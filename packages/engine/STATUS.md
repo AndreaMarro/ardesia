@@ -1080,3 +1080,25 @@ Pin: "test che tutte le query retrieval CRM (students_for_class, classes_for_stu
 - gate: **2041/0 VERDE** (ri-eseguito ORA). Criteri [VERIFICATO] gia documentati nell'entry precedente di STATUS (3° tool esposto, PrerequisiteChain persistita via build_teacher_book, grounding-guard 3-livelli, e2e + 7 avversari, additivo zero-regressioni).
 - `promote_pin lessonos` = **cap giornaliero raggiunto (12/12)** → driver bloccato sulla rotazione (gridlock cap-bound). Chiusura scritta in NEEDS-CLAUDE per rotazione manuale supervisore a ROADMAP riga 18 (grounded_memory_fundamentals). Builder non edita la riga PROSSIMA TASK.
 - SELF-ADV: 0/0 (NOOP, nessun diff codice). cost_usd: ~$0 (gate + verifica ancestry/criteri, ZERO LLM).
+
+
+## 2026-10-20 — REA / originali autorizzati e lettore PDF nel corso
+
+Descrittore canonico consegnato con i byte autorizzati, controllo dimensione e
+SHA-256, trasporto condiviso con invalidazione di sessione. La review indipendente
+ha trovato il limite legacy 256: corretto a8192 codepoint. Il client precedente
+read_asset/studyBlob resta compatibile. Web:173 test; API:216; Engine:2461 passati,
+25 skipped. Typecheck e build Web/pubblico verdi. Le prime esecuzioni errate o
+contese sono conservate nella ricevuta, non trattate come verdi.
+
+PDF.js6.4.299 è una dipendenza esatta del solo workspace Web, necessaria per
+recuperare il motore PDF completo. Worker, font, CMaps, ICC, Wasm e licenze sono
+locali; import del motore solo all'apertura. Un503 reale ha mostrato che il
+fallback PDF.js memorizzato non recuperava: adattatore con porta fresca, cleanup
+limitato e retry verificato. Browser390/820/1440, zoom200%, focus, CSP candidata,
+scan4,8MP, download, permessi V1/V2 e logout verificati.
+
+SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
+riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
+nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
+`docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.

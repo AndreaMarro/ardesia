@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "measuredAt": "2026-10-20T13:37:37.203197+00:00",
+  "status": "LOCAL_READER_VERIFIED_SYS01_INCOMPLETE",
+  "reaVersion": "6.7.0",
+  "pdfjsVersion": "6.4.299",
+  "checks": {
+    "engine": {
+      "passed": 2461,
+      "skipped": 25,
+      "warnings": 3,
+      "exit": 0,
+      "cwd": "packages/engine",
+      "command": "python -m pytest -q --no-header"
+    },
+    "api": {
+      "passed": 216,
+      "exit": 0
+    },
+    "web": {
+      "passed": 173,
+      "files": 24,
+      "exit": 0,
+      "runner": "threads; maxWorkers=1; no-file-parallelism; test/hook/teardown timeout=30000"
+    },
+    "typecheckWeb": {
+      "command": "tsc -b --noEmit",
+      "exit": 0
+    },
+    "buildWeb": {
+      "exit": 0
+    },
+    "buildPublic": {
+      "exit": 0,
+      "includesPdfAssets": false
+    },
+    "pdfAssetIntegrity": {
+      "matched": 201,
+      "failed": 0,
+      "licenseFiles": 11
+    }
+  },
+  "failedRuns": {
+    "engineFromWrongCwd": "14 missing-fixture failures from repo root; same suite passes from package cwd, no product/test edits",
+    "webUnderContention": "6 Testing Library wait failures; isolated cases pass, then complete suite passes without concurrent engine/browser jobs; no existing test weakened",
+    "unicodeFixture": "Initial test encoded a non-Latin header directly. Fixed test to mirror Core ensure_ascii JSON header encoding.",
+    "worker503": "Real retry failure reproduced, fixed with independently owned native Worker; browser retry succeeds"
+  },
+  "independentReview": {
+    "method": "Codex subagent; external CLI not run; cross-family independence not asserted",
+    "initialFinding": "P2 legacy editionId limit corrected",
+    "finalProbeCount": 11,
+    "runtimeVerifiedBy": "builder Chrome tests"
+  },
+  "notEstablished": [
+    "Full Studio suite and historical gate.sh (no Studio dependencies in this checkout; frozen script targets a different checkout)",
+    "SYS-01 annotation/formula/save/reopen/undo/export workflow",
+    "G0/G1 or all historic acceptance gates",
+    "Production deployment and CSP",
+    "Whole-browser memory/CPU bound",
+    "Complete accessibility conformance; axe has incomplete checks"
+  ],
+  "logs": [
+    {
+      "file": "engine-final.log",
+      "sha256": "196e8eb76e5a177ca3b8d33d4ca8550e8199df13073d4dabf0d03068d8699938"
+    },
+    {
+      "file": "api-final.log",
+      "sha256": "a109f640be3551e2e3b6a8491dd6fba0134bb6920fb0e7de77d4d351ede3cb04"
+    },
+    {
+      "file": "web-serial-final.log",
+      "sha256": "6e7035b88652928896516627ba4867394102d4ec808a86a8135a9cdc1c4a79da"
+    },
+    {
+      "file": "isolated-ui-final.log",
+      "sha256": "b7a5a8ce05c1f9d115e06f09d911a2de9976be75c4712956d0ab03b6991973b6"
+    },
+    {
+      "file": "focused-final.log",
+      "sha256": "c4080f97e1a563901ab05406e7e02d1f1afcd33a65208757356447c1e2ca9358"
+    },
+    {
+      "file": "typecheck-final.log",
+      "sha256": "207fe18d8d1473d264a14e613a4ff88f61d8a86bed95e122f2c3e6d1a8386c44"
+    },
+    {
+      "file": "web-build-final.log",
+      "sha256": "3020b36f3c41644bee90c211ed79113db6a4fccf309c790f95d120444d754a24"
+    },
+    {
+      "file": "public-build-check.log",
+      "sha256": "7548297f5b1a2ee2f6151cbf9956a8db324a3107318919b6f75692c52a543886"
+    },
+    {
+      "file": "browser-reader-final.log",
+      "sha256": "3f1eeef95d16b451673c4d9e812b06f5c557ecc2bebad9d9349f5502b2a552ef"
+    },
+    {
+      "file": "browser-boundaries-final.log",
+      "sha256": "14f2604adf202eb5ba0e30f225c3688312ed2d7a783dd8072df27ecfa8c543d4"
+    },
+    {
+      "file": "rea-current-build.log",
+      "sha256": "2722d6c60c7e9ce62641d7101c6501dff22ab01863100813ac2610eeaf057882"
+    }
+  ]
+}

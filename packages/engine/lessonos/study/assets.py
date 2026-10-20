@@ -88,6 +88,16 @@ def _upload_locked(store,principal,edition_id,data,mime,blob_dir,key):
 
 
 def read_asset(store,principal,asset_id,blob_dir:Path):
+    data, descriptor = read_original_asset(store, principal, asset_id, blob_dir)
+    return data, descriptor['mime']
+
+
+def read_original_asset(store, principal, asset_id, blob_dir: Path):
+    """Return canonical metadata only with authorized, integrity-checked bytes.
+
+    An upload is immutable; its identity is independent of any extracted-text
+    revision or PDF fingerprint. This is the same read policy as read_asset.
+    """
     row=store.connection.execute('SELECT * FROM study_assets WHERE id=? AND deleted=0',(asset_id,)).fetchone()
     if row is None:raise StudyError('not_found',404)
     edition=store._edition_access(principal,row['edition_id'])
@@ -95,5 +105,10 @@ def read_asset(store,principal,asset_id,blob_dir:Path):
     submitted=edition['teacherId']==principal.id and store._submitted_reference(row['edition_id'],row['owner_id'],asset_id)
     if not (owner or submitted):raise StudyError('forbidden',403)
     data=repository(store,blob_dir).get(row['blob_ref'])
-    if digest(data)!=row['sha256']:raise StudyError('asset_integrity_failure',503)
-    return data,row['mime']
+    if len(data)!=row['bytes'] or digest(data)!=row['sha256']:
+        raise StudyError('asset_integrity_failure',503)
+    return data, {
+        'id': row['id'], 'editionId': row['edition_id'], 'kind': 'immutable-upload',
+        'mime': row['mime'], 'bytes': row['bytes'], 'sha256': row['sha256'],
+        'extractionStatus': row['extraction_status'],
+    }

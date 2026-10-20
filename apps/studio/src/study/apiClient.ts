@@ -2,6 +2,8 @@ import {
   assertStudySessionEpoch, endStudySession, isStudySessionEpoch,
   studySessionEpoch, studySessionTicket,
 } from './sessionBoundary';
+import { decodeOriginalAsset } from './originalAsset';
+export type { OriginalAssetDescriptor, VerifiedOriginalAsset } from './originalAsset';
 
 export class StudyApiError extends Error {
   status: number;
@@ -11,7 +13,7 @@ export class StudyApiError extends Error {
   }
 }
 
-async function request<T>(path: string, options: RequestInit, decode: (response: Response) => Promise<T>): Promise<T> {
+async function request<T>(path: string, options: RequestInit, decode: (response: Response, signal: AbortSignal) => Promise<T>): Promise<T> {
   const ticket = studySessionTicket();
   const controller = new AbortController();
   const signals = [ticket.signal, options.signal].filter((signal): signal is AbortSignal => !!signal);
@@ -33,7 +35,7 @@ async function request<T>(path: string, options: RequestInit, decode: (response:
       assertStudySessionEpoch(ticket.epoch);
       throw new StudyApiError(error.error ?? 'request_failed', response.status);
     }
-    const value = await decode(response);
+    const value = await decode(response, controller.signal);
     assertStudySessionEpoch(ticket.epoch);
     return value;
   } finally {
@@ -49,6 +51,9 @@ export function studyRequest<T>(path: string, body?: unknown, options: RequestIn
   }, response => response.json() as Promise<T>);
 }
 export const studyBlob = (path: string, options: RequestInit = {}) => request(path, options, response => response.blob());
+export const studyOriginal = (id: string, options: RequestInit = {}) =>
+  request('/assets/' + encodeURIComponent(id), options,
+    (response, signal) => decodeOriginalAsset(response, id, signal));
 /** Logout intent always closes this local session, without claiming server revocation. */
 export async function signOutStudySession(allSessions = false): Promise<'CONFIRMED' | 'UNCONFIRMED' | null> {
   const epoch = studySessionEpoch();

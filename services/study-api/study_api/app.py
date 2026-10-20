@@ -405,9 +405,13 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.get('/study/assets/{asset_id}')
     def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
-        from lessonos.study.assets import read_asset
-        data,mime=read_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs')
-        return Response(data,media_type=mime,headers={'Content-Disposition':f'attachment; filename="original-{asset_id}"','Cache-Control':'no-store'})
+        from lessonos.study.assets import read_original_asset
+        data,descriptor=read_original_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs')
+        return Response(data,media_type=descriptor['mime'],headers={
+            'Content-Disposition':f'attachment; filename="original-{asset_id}"',
+            'Cache-Control':'no-store',
+            'X-Study-Asset-Descriptor':json.dumps(descriptor,separators=(',',':')),
+        })
 
     @app.post('/study/submissions')
     def submission(body: dict, request: Request, store=Depends(store_dependency)):

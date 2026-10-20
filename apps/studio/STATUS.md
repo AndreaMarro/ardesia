@@ -367,3 +367,25 @@ Prossima task: **T3 bundle .lesson**.
 
 - **2026-07-23 — ARD-06-A schema + projector puro.** Nuovo `src/lessonos/continuityProjection.ts` (368+ righe): tipi `Continuity*V1` estratti verbatim dal design §5.1/§5.4/§6, `validateContinuityScopeV1` senza default (`roomId===lessonId`, UUID canonico, zero I/O prima del gate), `projectContinuityV1` puro. Precedenza phase `corrupt>degraded>ready|empty` con normalizzazione corrupt che azzera i fatti di contenuto e mette Simulation a `unavailable/source-corrupt`. Open loop per seq append-only con riapertura e count cumulativo, ordine `lastObserved seq DESC → errorId codepoint ASC` (RED-06-04). Simulation fail-closed: G2 non accepted ⇒ `ready`/`error-open` **irraggiungibili per costruzione**, verificato da un test che itera tutte le fixture (RED-06-06). `nextAction` singola con required set §9.1 e ordine P0 totale §9.2; permutation oracle 3! + 100 shuffle seeded byte-identico, verde al primo run (RED-06-05). Fixture `@ts-expect-error` congelano 5 stati impossibili al typecheck: allargando la union tsc fallisce con 5 TS2578 (verificato, poi union ripristinata byte per byte). **Gate: vitest 32/32 focused, typecheck exit 0.** Nessun I/O, nessun import di `TeacherDashboardView`/`projectTeacherDashboard`, zero `readAll`/flat path. Prossima: **ARD-06-B0 indice composto**, poi **ARD-06-B loader**.
 - **2026-07-23 — ARD-06-B0 indice composto lesson+session.** `indexedDbEventLog.ts`: `DB_VERSION` 1→2, indice additivo `by_lesson_session_seq` keyPath `['lessonId','sessionId','seq']`; `readEnvelopesBySession` legge il key-range `[l,s,0]..[l,s,MAX_SAFE_INTEGER]` invece di `readAllEnvelopes()` + filtro. devDependency `fake-indexeddb@^6.2.5`: il fake in-file tollera la migration (`indexNames.contains` → false, `createIndex` no-op) ma non implementa `index()` né `IDBKeyRange`, quindi non puo' provare un key-range; 2 asserzioni `readEnvelopesBySession` migrate sul blocco IDB reale. Controprova: ripristinando scan-then-filter il test anti-scan fallisce. **Gate: file 49/49, suite 1938/0, tsc 0, gate.sh 1939/0, verify 0.** File tracked 6 (2 funzionali/test, 2 manifest, 2 ledger). Prossima: ARD-06-B loader.
+
+
+## 2026-10-20 — REA / originali autorizzati e lettore PDF nel corso
+
+Descrittore canonico consegnato con i byte autorizzati, controllo dimensione e
+SHA-256, trasporto condiviso con invalidazione di sessione. La review indipendente
+ha trovato il limite legacy 256: corretto a8192 codepoint. Il client precedente
+read_asset/studyBlob resta compatibile. Web:173 test; API:216; Engine:2461 passati,
+25 skipped. Typecheck e build Web/pubblico verdi. Le prime esecuzioni errate o
+contese sono conservate nella ricevuta, non trattate come verdi.
+
+PDF.js6.4.299 è una dipendenza esatta del solo workspace Web, necessaria per
+recuperare il motore PDF completo. Worker, font, CMaps, ICC, Wasm e licenze sono
+locali; import del motore solo all'apertura. Un503 reale ha mostrato che il
+fallback PDF.js memorizzato non recuperava: adattatore con porta fresca, cleanup
+limitato e retry verificato. Browser390/820/1440, zoom200%, focus, CSP candidata,
+scan4,8MP, download, permessi V1/V2 e logout verificati.
+
+SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
+riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
+nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
+`docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.
