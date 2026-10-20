@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-20T08:27:42.036157+00:00",
+  "observed_at": "2026-10-20T08:33:46.611851+00:00",
   "sha": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
   "sha_semantics": "Combined C7+C8 product.543 actual owned PG/Auth/Core/API and110 Web executed on this exact commit; immutable primary source/frontend nowf438. Historical proofs retain original commits.",
   "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
@@ -13,7 +13,7 @@
     "body_budget": "INDEPENDENT_FIXED_REVIEW_PLUS_ACTUAL_TCP_SCOPE_PASS",
     "rea": "LAST_CERTIFIED5CB_CURRENT_F438_REBIND_PENDING",
     "child_session_recovery": "SCOPED_PASS_C7_REAL_AUTH_PG_CHROME_AND_NATIVE_COOKIE_ORDERING",
-    "a11y": "SCOPED_PASS_26_REAL_AUTH_PG_VIEWS_C8"
+    "a11y": "SCOPED_PASS_26_CURRENT_F438_REAL_AUTH_PG_VIEWS"
   },
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "verification": {
@@ -262,7 +262,15 @@
       "historical_missing": 15,
       "global_gate_certified": false
     },
-    "a11y_current": {
+    "child_session_recovery": {
+      "report": "docs/ops/ARDESIA-C7-VERIFICATION-f4384eed.json",
+      "status": "C7_SCOPED_REAL_AUTH_PG_BROWSER_AND_NATIVE_COOKIE_RECOVERY_PASSED",
+      "actualBrowserCases": 2,
+      "independentTests": 63,
+      "rootNativeCookieOrdering": "ACTUAL_AUTH_PG_SCOPED_PASS",
+      "crossTab": "NOT_RUN"
+    },
+    "a11y_8f_historical": {
       "baselineSource": "5cbafd072504cb4603bf0daa903472fa0f528247",
       "candidateSource": "334e4cc885ac559b9966def77a371969eb017f9d",
       "origin": "http://127.0.0.1:5369",
@@ -316,13 +324,146 @@
       "fixtureSetup": "Four restored identities fresh logins; one own duplicate course draft created with real authorized API before read-only audits; no original14",
       "report": "docs/ops/ARDESIA-C8-VERIFICATION-8f184320.json"
     },
-    "child_session_recovery": {
-      "report": "docs/ops/ARDESIA-C7-VERIFICATION-f4384eed.json",
-      "status": "C7_SCOPED_REAL_AUTH_PG_BROWSER_AND_NATIVE_COOKIE_RECOVERY_PASSED",
-      "actualBrowserCases": 2,
-      "independentTests": 63,
-      "rootNativeCookieOrdering": "ACTUAL_AUTH_PG_SCOPED_PASS",
-      "crossTab": "NOT_RUN"
+    "a11y_current": {
+      "schema": "ardesia.c8-current-recheck/1",
+      "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "apiSource": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "status": "SCOPED_AUTOMATED_AUDIT_PASSED",
+      "origin": "http://127.0.0.1:5369",
+      "processId": 60175,
+      "authentication": "ACTUAL_OWN_SUPABASE_PG_RESTORED_REALM",
+      "views": 26,
+      "viewports": [
+        1440,
+        390
+      ],
+      "violations": 0,
+      "overflow": 0,
+      "pageErrors": 0,
+      "axeSha256": "20c09fe157a8a34a30e241aaa1fcdade657734f08ab379ecfbeb7d45cc46e878",
+      "pageGET": 68,
+      "directMeGET": 4,
+      "onlyGET": true,
+      "actorChecks": [
+        {
+          "actor": "restore-student",
+          "width": 1440,
+          "status": 200,
+          "principalId": "restore-student",
+          "role": "student"
+        },
+        {
+          "actor": "restore-tutor",
+          "width": 1440,
+          "status": 200,
+          "principalId": "restore-tutor",
+          "role": "teacher"
+        },
+        {
+          "actor": "restore-student",
+          "width": 390,
+          "status": 200,
+          "principalId": "restore-student",
+          "role": "student"
+        },
+        {
+          "actor": "restore-tutor",
+          "width": 390,
+          "status": 200,
+          "principalId": "restore-tutor",
+          "role": "teacher"
+        }
+      ],
+      "keyboard": [
+        {
+          "case": "login_trap_escape_restore",
+          "width": 1440,
+          "focusInside": true,
+          "focusTrapped": true,
+          "focusRestored": true
+        },
+        {
+          "case": "first_tab_skip_content",
+          "role": "student",
+          "width": 1440,
+          "first": {
+            "text": "Vai al contenuto",
+            "href": "#content"
+          },
+          "activeAfter": {
+            "tag": "MAIN",
+            "id": "content"
+          }
+        },
+        {
+          "case": "first_tab_skip_content",
+          "role": "tutor",
+          "width": 1440,
+          "first": {
+            "text": "Vai al contenuto",
+            "href": "#content"
+          },
+          "activeAfter": {
+            "tag": "MAIN",
+            "id": "content"
+          }
+        },
+        {
+          "case": "login_trap_escape_restore",
+          "width": 390,
+          "focusInside": true,
+          "focusTrapped": true,
+          "focusRestored": true
+        },
+        {
+          "case": "first_tab_skip_content",
+          "role": "student",
+          "width": 390,
+          "first": {
+            "text": "Vai al contenuto",
+            "href": "#content"
+          },
+          "activeAfter": {
+            "tag": "MAIN",
+            "id": "content"
+          }
+        },
+        {
+          "case": "first_tab_skip_content",
+          "role": "tutor",
+          "width": 390,
+          "first": {
+            "text": "Vai al contenuto",
+            "href": "#content"
+          },
+          "activeAfter": {
+            "tag": "MAIN",
+            "id": "content"
+          }
+        }
+      ],
+      "reportSha256": "f55fd4333da911e7192cf7bdaa72960cf089cf77066ac5030748fff4993cc82a",
+      "runtimeSourceManifest": "work/c7-owned-clone-20261020/evidence/c7-c8-f4384eed-process.json",
+      "sourceTreesUnchangedAfterMetadata": true,
+      "original14AccountsUsed": 0,
+      "learningWrites": 0,
+      "humanUX": "NOT_RUN",
+      "fullWCAG": "NOT_CERTIFIED",
+      "readiness": "DOM_CONTENT_LOADED_PLUS_EXPLICIT_PRIVATE_SHELL_LOADING_STATE_FONT_AND_TWO_ANIMATION_FRAMES;NOT_NETWORKIDLE",
+      "preservedHarnessFailures": [
+        "Initial networkidle timeout; zero audited cases; original apiSource field retained an obsolete5cb default. The subsequent successful runner states both exact API/Webf438 sources.",
+        "Second explicit-DOM attempt audited4views then strict-selector failure because two source views had loading surfaces. Final predicate waits for ALL visible loading surfaces without changing product or axe rules."
+      ],
+      "limits": [
+        "Automated axe and sampled keyboard/focus checks are not human UX or full WCAG certification.",
+        "Loopback LCP proxy on this host is not production performance or a load test.",
+        "No delivery/review mutation or remote preview exercised.",
+        "No mobile delivery/review mutation or edition date form certification.",
+        "Source-view data, text and actor authorization are not inferred from axe alone; actual authenticated fixture and exact source process recorded separately."
+      ],
+      "globalG0": "NOT_CERTIFIED",
+      "globalG1": "NOT_READY",
+      "report": "docs/ops/ARDESIA-C8-RECHECK-f4384eed.json"
     }
   },
   "rea": {
