@@ -26,13 +26,16 @@ class ResourceBody(BaseModel):
 
 
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
-               request_store_limit=16, request_store_wait=.5, calendar_provider=None):
+               request_store_limit=16, request_store_wait=.5, calendar_provider=None,
+               request_body_budget=128*1024*1024, request_body_wait=.5):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
         raise ValueError('invalid_store_admission')
     if type(request_store_wait) not in (int, float) or not 0 < request_store_wait <= 60:
         raise ValueError('invalid_store_admission')
+    from .body_admission import BodyAdmissionMiddleware, body_limit, boundary_error, validate_body_admission
+    validate_body_admission(request_body_budget, request_body_wait)
     from lessonos.study.operations import resume_erasures
     if runtime is None:
         resume_erasures(Path(db_path).parent)
@@ -49,11 +52,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         if error.status==401 and 'study_session' in request.cookies:
             request.state.rejected_study_session=True
 
-    def busy_response(*, logout=False):
+    def busy_response(*, logout=False, wait=None):
         body={'error':'server_busy'}
         if logout:body['serverRevocation']='UNCONFIRMED'
         response=JSONResponse(body,status_code=503,headers={
-            'Retry-After':str(max(1,math.ceil(request_store_wait))),
+            'Retry-After':str(max(1,math.ceil(request_store_wait if wait is None else wait))),
             'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'})
         if logout:clear_session_cookie(response)
         return response
@@ -127,17 +130,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
-        host = request.url.hostname
-        if host not in ('127.0.0.1', 'localhost', 'testserver'):
-            return JSONResponse({'error':'loopback_only'}, status_code=403)
+        denied = boundary_error(request.scope)
+        if denied:
+            return JSONResponse({'error':denied}, status_code=403)
         if request.method not in ('GET','HEAD','OPTIONS'):
-            origin = request.headers.get('origin')
-            if origin and origin != str(request.base_url).rstrip('/'):
-                return JSONResponse({'error':'origin_denied'}, status_code=403)
             # UTF-8/escaped 20k-character notes fit 256 KiB; notebook framing
             # includes base64 for up to 50 MiB of decoded original assets.
             notebook_inspect=request.url.path=='/study/notebook/inspect'
-            limit=20*1024*1024 if request.url.path=='/study/assets' else notebook_portable.MAX_ENCODED_BYTES if notebook_inspect else 256*1024
+            limit=body_limit(request.url.path)
             data=bytearray()
             async for chunk in request.stream():
                 data.extend(chunk)
@@ -457,4 +457,6 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     if frontend:
         from fastapi.staticfiles import StaticFiles
         app.mount('/', StaticFiles(directory=frontend,html=True),name='studio')
+    app.add_middleware(BodyAdmissionMiddleware, budget=request_body_budget,
+                       wait=request_body_wait, busy_response=busy_response)
     return app
