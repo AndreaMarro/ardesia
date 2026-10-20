@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-20T07:15:10.357519+00:00",
+  "observed_at": "2026-10-20T07:19:26.112380+00:00",
   "sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
   "sha_semantics": "Frozen integrated C5/C6 product. Later metadata commits do not relabel executions. Historical C4 logs and receipts retain a3; Engine/Web equality is an explicit Git tree check, not a new execution.",
   "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
@@ -215,6 +215,29 @@
       "cached_deliveries_retained": 17,
       "page_errors": 0,
       "report": "docs/ops/ARDESIA-C7-OPEN-FINDING-5cbafd07.json"
+    },
+    "restore_s": {
+      "status": "PROVED_SCOPED_SYNTHETIC_LOGICAL_FULL_STACK_RESTORE",
+      "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+      "phases": 4,
+      "assertions_per_phase": 43,
+      "tables_before_services": 83,
+      "raw_projection_files_identical": 4,
+      "core_storage_file_counts": [
+        3,
+        3,
+        3
+      ],
+      "degraded_clone": [
+        3,
+        2,
+        503
+      ],
+      "reconstruction": "FRESH_VOLUMES_SAME_BACKUP_PASS",
+      "cleanup": "TWO_NEW_NAMESPACES_REMOVED_ORIGINAL_FIVE_RUNNING",
+      "root_review": "docs/ops/ARDESIA-RESTORE-S-ROOT-REVIEW.json",
+      "historical_missing": 15,
+      "global_gate_certified": false
     }
   },
   "rea": {
@@ -266,7 +289,7 @@
   "blockers": [
     "C7-R1: verified child401 clears cookie but retains cached private UI; actual natural-expiry RED",
     "Human scientific/date/pilot/UX approvals not run",
-    "Independent full Auth/Storage restore PARTIAL",
+    "Historical original-source restore PARTIAL:15missing retained; separate known-complete S logical full-stack restore now PROVED_SCOPED",
     "Zero-added-cost remote preview/rollback not verified; local fallback",
     "AC-085 is due 2026-10-21 evening Europe/Rome, not yet certifiable",
     "Global principal role; organization membership model not implemented",
@@ -276,7 +299,7 @@
   "next_actions": [
     "Close observed current UI/Auth and restore gaps with actual proofs; global gates remain not certified",
     "Deepen the139-target coverage map through concrete public/open-source workflows",
-    "Investigate independent DB/Auth/Storage restore; preserve missing originals as explicit debt",
+    "Preserve historical15missing; complete remaining G0 media/offline/accessibility/commerce proofs after the accepted independent S restore",
     "Continue independent attendance/commercial slices in the same Core with scoped privacy"
   ],
   "monitor": {

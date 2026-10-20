@@ -74,3 +74,7 @@ Il prodotto rimane `5cbafd072504cb4603bf0daa903472fa0f528247`. Report e verifich
 ## 2026-10-20 — C7-R1: scadenza reale e interfaccia privata
 
 Il probe Chrome→HTTP/Auth/PG su5cb osserva200 prima della scadenza, poi401 sulla fonte e cookie eliminato, ma conserva17consegne già caricate nella shell privata. FindingP2 aperto; nessun nuovo accesso server negato aggirato, nessuna scrittura didattica o revoca nel probe. Riaccesso dei14account sintetici solo dopo il probe. Correzione condivisa del confine sessione da implementare e provare; binary401/logout503 ancora NOT_RUN. REA subgate PASS non chiude questo difetto né G0globale.
+
+## 2026-10-20 — Restore S ripetuto e verificato dal root
+
+Input sintetico nuovo e completo:3assetCore/3Storage/3file. DB/Auth/Storage ripristinati in cluster/servizi/volumi distinti;83tabelle+ruoli/policy prima dello startup; source spenta. Quattro fasi con43assert e quattro raw proiezioni byte-identici. Clone intenzionalmente3/2 risponde503, poi nuova ricostruzione torna3/3/3. Root ricalcola39hash e tre payload del tar; non dichiara un nuovo replayHTTP. Cleanup solo2namespace nuovi, original5running. AC047PROVED_SCOPED perS; debitoH15missing restaOPEN e G0/G1globali non certificati. Nessun cloud/spesa/providerlive.
