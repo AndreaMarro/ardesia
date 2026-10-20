@@ -148,6 +148,10 @@ def test_erasure_removes_tutor_source_hint_receipt_and_event_but_preserves_peer(
     from lessonos.study.ai_jobs import request_hint
     source=store.create_resource(student,'fluidi','notes','source to erase')
     peer_source=store.create_resource(peer,'fluidi','notes','peer source preserved')
+    from lessonos.study.submissions import submit
+    for actor, resource in ((student, source), (peer, peer_source)):
+        submit(store,actor,'fluidi','poiseuille-v1',[],'Submitted for tutor review','share-source',
+               source_refs=[{'resourceId':resource['id'],'revisionId':resource['revisionId']}])
     removed=request_hint(store,tutor,source['id'],1,'tutor-hint')
     preserved=request_hint(store,tutor,peer_source['id'],1,'peer-hint')
     ops.erase_student(store.path.parent,student.id,apply=True)

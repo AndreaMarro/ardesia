@@ -147,6 +147,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     async def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
         return store.get_resource(authenticate(request,store),resource_id)
 
+    @app.get('/study/resources/{resource_id}/revisions/{revision_id}')
+    async def resource_revision(resource_id: str, revision_id: str, request: Request, store=Depends(store_dependency)):
+        return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
+
     @app.get('/study/course')
     async def course(store=Depends(store_dependency)):
         edition=store.get_edition('fluidi')

@@ -22,8 +22,7 @@ def test_student_cannot_read_peer_source(tmp_path):
     store, teacher, first, peer, other = setup_store(tmp_path)
     source = store.create_resource(first, 'fluidi', 'notes', 'Private synthetic answer')
     assert store.get_resource(first, source['id'])['text'] == 'Private synthetic answer'
-    assert store.get_resource(teacher, source['id'])['text'] == 'Private synthetic answer'
-    for principal in (peer, other):
+    for principal in (teacher, peer, other):
         with pytest.raises(StudyError) as error:
             store.get_resource(principal, source['id'])
         assert error.value.code == 'forbidden'

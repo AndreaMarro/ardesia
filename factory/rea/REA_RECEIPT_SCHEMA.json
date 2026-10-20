@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ardesia:rea-receipt:4",
+  "title": "Receipt for actual REA execution linked to tested Ardesia code",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mission_id",
+    "status",
+    "synthetic",
+    "target_ids",
+    "target_kind",
+    "authorization_basis",
+    "rea_version",
+    "rea_operations",
+    "source_commit_or_version",
+    "product_commit",
+    "evidence",
+    "implementation",
+    "coverage",
+    "unknowns",
+    "limitations",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ardesia.rea-execution-receipt/4"
+    },
+    "mission_id": {
+      "enum": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "NOT_RUN",
+        "BLOCKED",
+        "FAIL"
+      ]
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "target_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^TARGET-[0-9]{3}$"
+      }
+    },
+    "target_kind": {
+      "enum": [
+        "OWN_ARDESIA",
+        "EXTERNAL_OPEN_SOURCE",
+        "THIRD_PARTY_AUTHORIZED"
+      ]
+    },
+    "authorization_basis": {
+      "type": "string",
+      "minLength": 8
+    },
+    "rea_version": {
+      "type": "string",
+      "minLength": 3
+    },
+    "rea_operations": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 5
+      }
+    },
+    "source_commit_or_version": {
+      "type": "string",
+      "minLength": 2
+    },
+    "product_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "source_files",
+        "test_names",
+        "test_outcome"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "REUSE",
+            "ADAPT",
+            "REPLACE",
+            "DEFER"
+          ]
+        },
+        "source_files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "test_names": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 4
+          }
+        },
+        "test_outcome": {
+          "const": "PASS"
+        }
+      }
+    },
+    "coverage": {
+      "enum": [
+        "COMPLETE_FOR_SCOPED_FEATURE",
+        "PARTIAL_WITH_DECLARED_UNKNOWN"
+      ]
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "benefit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "defect_avoided": {
+          "type": "string"
+        },
+        "time_saved_minutes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "measurement_method": {
+          "type": "string"
+        }
+      }
+    },
+    "alternative_justification": {
+      "type": "string",
+      "minLength": 25
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "browser",
+            "structure",
+            "contract",
+            "test",
+            "comparison"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 3
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

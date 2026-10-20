@@ -77,7 +77,9 @@ def read_asset(store,principal,asset_id,blob_dir:Path):
     row=store.connection.execute('SELECT * FROM study_assets WHERE id=? AND deleted=0',(asset_id,)).fetchone()
     if row is None:raise StudyError('not_found',404)
     edition=store._edition_access(principal,row['edition_id'])
-    if row['owner_id']!=principal.id and edition['teacherId']!=principal.id:raise StudyError('forbidden',403)
+    owner=row['owner_id']==principal.id
+    submitted=edition['teacherId']==principal.id and store._submitted_reference(row['edition_id'],row['owner_id'],asset_id)
+    if not (owner or submitted):raise StudyError('forbidden',403)
     path=blob_dir/row['blob_ref']
     data=path.read_bytes()
     if digest(data)!=row['sha256']:raise StudyError('asset_integrity_failure',503)

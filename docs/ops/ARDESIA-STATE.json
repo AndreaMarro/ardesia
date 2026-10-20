@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-10-20T02:30:50.639794+02:00",
+  "sha": "cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228",
+  "milestone": "G0",
+  "statuses": {
+    "G0": "IN_PROGRESS",
+    "G1": "NOT_READY",
+    "MARKETING_PREVIEW_READY": "NOT_READY",
+    "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING"
+  },
+  "rea": {
+    "version": "6.7.0",
+    "docs_downloaded": 20,
+    "missions": "NOT_RUN"
+  },
+  "deploys": [],
+  "trials": [],
+  "blockers": [
+    "P1 draft privacy: reproduced, fix in progress",
+    "No local Supabase/Docker/Postgres runtime",
+    "G1 requires real tutor review and approved dates"
+  ],
+  "next_actions": [
+    "REA R0 baseline capture/feature trace",
+    "Diary event projection/API/UI",
+    "Isolated local Supabase runtime and Core adapter",
+    "R1/R2/R3/R8 research and integration"
+  ]
+}

@@ -208,11 +208,40 @@ class StudyStore:
         return self.get_resource(principal, resource_id)
 
     def get_resource(self, principal, resource_id):
+        row = self.connection.execute('SELECT current_revision FROM study_resources WHERE id=? AND deleted=0', (resource_id,)).fetchone()
+        if row is None:
+            raise StudyError('not_found', 404)
+        return self.get_resource_revision(principal, resource_id, row['current_revision'])
+
+    def _submitted_reference(self, edition_id, owner_id, reference_id, revision_id=None):
+        """A committed submission grants only its explicit immutable references.
+
+        Membership and possession of an object ID are never sharing decisions.
+        Joining the receipt excludes incomplete/rolled-back submission attempts.
+        """
+        refs = 'source_refs' if revision_id is not None else 'asset_refs'
+        query = f'''SELECT s.{refs} FROM study_submissions s
+            JOIN study_receipts r ON r.id=s.receipt_id
+            AND r.actor_id=s.student_id AND r.operation='submission.received'
+            WHERE s.edition_id=? AND s.student_id=?'''
+        for row in self.connection.execute(query, (edition_id, owner_id)):
+            references = json.loads(row[0])
+            if revision_id is None:
+                if reference_id in references:
+                    return True
+            elif any(ref.get('resourceId') == reference_id and ref.get('revisionId') == revision_id for ref in references):
+                return True
+        return False
+
+    def get_resource_revision(self, principal, resource_id, revision_id):
         self._principal(principal)
-        row = self.connection.execute('SELECT r.*,v.text,v.sha256 FROM study_resources r JOIN study_revisions v ON v.id=r.current_revision WHERE r.id=? AND r.deleted=0', (resource_id,)).fetchone()
+        row = self.connection.execute('SELECT r.*,v.id AS revision_id,v.text,v.sha256 FROM study_resources r JOIN study_revisions v ON v.resource_id=r.id WHERE r.id=? AND v.id=? AND r.deleted=0', (resource_id, revision_id)).fetchone()
         if row is None:
             raise StudyError('not_found', 404)
         edition = self._edition_access(principal, row['edition_id'])
-        if row['owner_id'] != principal.id and edition['teacherId'] != principal.id and row['visibility'] != 'group':
+        owner = row['owner_id'] == principal.id
+        published = row['visibility'] == 'group'
+        submitted = edition['teacherId'] == principal.id and self._submitted_reference(row['edition_id'], row['owner_id'], resource_id, revision_id)
+        if not (owner or published or submitted):
             raise StudyError('forbidden', 403)
-        return {'id':row['id'], 'revisionId':row['current_revision'], 'contextId':row['context_id'], 'ownerId':row['owner_id'], 'editionId':row['edition_id'], 'kind':row['kind'], 'visibility':row['visibility'], 'text':row['text'], 'sha256':row['sha256']}
+        return {'id':row['id'], 'revisionId':row['revision_id'], 'contextId':row['context_id'], 'ownerId':row['owner_id'], 'editionId':row['edition_id'], 'kind':row['kind'], 'visibility':row['visibility'], 'text':row['text'], 'sha256':row['sha256']}
