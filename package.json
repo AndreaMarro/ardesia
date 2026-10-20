@@ -24,6 +24,7 @@
     "factory:readonly": "bash bin/monorepo.sh factory-readonly",
     "dev:web": "npm run dev --workspace @ardesia/web",
     "build:web": "npm run build --workspace @ardesia/web",
+    "build:web:public": "npm run build:public --workspace @ardesia/web",
     "typecheck:web": "npm run typecheck --workspace @ardesia/web",
     "test:web": "npm run test --workspace @ardesia/web",
     "e2e:web": "npm run e2e --workspace @ardesia/web"

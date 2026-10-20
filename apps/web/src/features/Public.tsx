@@ -6,14 +6,20 @@ import { ErrorNotice, Loading } from "../components/Feedback";
 type Course = {
   id: string;
   capacity: number;
-  priceMinor: number;
+  priceMinor: number | null;
   duration: string;
   sessions: { start: string; end: string }[];
   timezone: string;
   title: string;
   scope: string;
 };
-export function Public({ onLogin }: { onLogin: () => void }) {
+export function Public({
+  onLogin,
+  publicPreview = false,
+}: {
+  onLogin?: () => void;
+  publicPreview?: boolean;
+}) {
   const [course, setCourse] = useState<Course | null>(null),
     [loadError, setLoadError] = useState(""),
     [retry, setRetry] = useState(0);
@@ -26,7 +32,7 @@ export function Public({ onLogin }: { onLogin: () => void }) {
   useEffect(() => {
     let active = true;
     setLoadError("");
-    void studyRequest<Course>("/course")
+    void studyRequest<Course>(publicPreview ? "/public/course" : "/course")
       .then((c) => {
         if (active) setCourse(c);
       })
@@ -36,7 +42,7 @@ export function Public({ onLogin }: { onLogin: () => void }) {
     return () => {
       active = false;
     };
-  }, [retry]);
+  }, [retry, publicPreview]);
   async function interest(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -86,10 +92,12 @@ export function Public({ onLogin }: { onLogin: () => void }) {
         <nav aria-label="Esplora Ardesia">
           <a href="#corso">Il mini-corso</a>
           <a href="#laboratorio">Il laboratorio</a>
-          <button className="button-quiet" onClick={onLogin}>
-            Accedi al tuo spazio
-            <Arrow />
-          </button>
+          {onLogin && !publicPreview && (
+            <button className="button-quiet" onClick={onLogin}>
+              Accedi al tuo spazio
+              <Arrow />
+            </button>
+          )}
         </nav>
       </header>
       <main id="public-content" tabIndex={-1}>
@@ -176,32 +184,49 @@ export function Public({ onLogin }: { onLogin: () => void }) {
                 <p>Massimo {course.capacity} persone per edizione</p>
               </div>
               <div>
-                <span>Prezzo indicativo del mini-corso</span>
+                <span>
+                  {publicPreview
+                    ? "Condizioni del percorso"
+                    : "Prezzo indicativo del mini-corso"}
+                </span>
                 <strong>
-                  {(course.priceMinor / 100).toLocaleString("it-IT", {
-                    style: "currency",
-                    currency: "EUR",
-                    maximumFractionDigits: 0,
-                  })}
+                  {publicPreview || course.priceMinor === null
+                    ? "In definizione"
+                    : (course.priceMinor / 100).toLocaleString("it-IT", {
+                        style: "currency",
+                        currency: "EUR",
+                        maximumFractionDigits: 0,
+                      })}
                 </strong>
                 <p>
                   Programma, condizioni e date da confermare prima del pilot.
                 </p>
               </div>
-              <details>
-                <summary>Calendario della dimostrazione</summary>
-                {course.sessions.length ? (
-                  course.sessions.map((s) => (
-                    <p key={s.start}>{dateLabel(s.start, course.timezone)}</p>
-                  ))
-                ) : (
-                  <p>Date in definizione.</p>
-                )}
-                <p className="fine-print">
-                  Date sintetiche di prova. Non costituiscono un’offerta di
-                  iscrizione.
-                </p>
-              </details>
+              {publicPreview ? (
+                <div>
+                  <span>Il calendario</span>
+                  <strong>Date da confermare</strong>
+                  <p>
+                    Il primo gruppo è in preparazione. Le iscrizioni non sono
+                    aperte.
+                  </p>
+                </div>
+              ) : (
+                <details>
+                  <summary>Calendario della dimostrazione</summary>
+                  {course.sessions.length ? (
+                    course.sessions.map((s) => (
+                      <p key={s.start}>{dateLabel(s.start, course.timezone)}</p>
+                    ))
+                  ) : (
+                    <p>Date in definizione.</p>
+                  )}
+                  <p className="fine-print">
+                    Date sintetiche di prova. Non costituiscono un’offerta di
+                    iscrizione.
+                  </p>
+                </details>
+              )}
             </div>
           ) : (
             <Loading>Sto aprendo il programma…</Loading>
@@ -209,7 +234,7 @@ export function Public({ onLogin }: { onLogin: () => void }) {
         </section>
         <section className="public-lab-section" id="laboratorio">
           <div className="section-number">02 / Tocca il modello</div>
-          <PhysicsLab />
+          <PhysicsLab publicPreview={publicPreview} />
         </section>
         <section className="public-method">
           <h2>
@@ -232,76 +257,108 @@ export function Public({ onLogin }: { onLogin: () => void }) {
             </a>
           </div>
         </section>
-        <section className="interest-section" id="richiesta">
-          <div>
-            <div className="section-number">
-              03 / Prepariamo il primo gruppo
-            </div>
-            <h2>
-              Parti da una
-              <br />
-              buona domanda.
-            </h2>
-            <p>
-              Stiamo preparando il percorso. Qui puoi provare come verrà
-              registrata una richiesta di informazioni.
-            </p>
-            <p className="fine-print">
-              La raccolta di interesse reale non è ancora aperta. Il modulo
-              dimostrativo accetta solo indirizzi .invalid e salva una richiesta
-              sintetica.
-            </p>
-          </div>
-          <form onSubmit={(e) => void interest(e)}>
-            <h3>Prova la richiesta di informazioni</h3>
-            <label>
-              Contatto sintetico
-              <input
-                required
-                type="email"
-                autoComplete="off"
-                value={contact}
-                placeholder="studente@example.invalid"
-                onChange={(e) => {
-                  setContact(e.target.value);
-                  key.current = requestKey();
-                  setReceipt("");
-                }}
-              />
-            </label>
-            <label className="checkbox-label">
-              <input
-                type="checkbox"
-                required
-                checked={consent}
-                onChange={(e) => {
-                  setConsent(e.target.checked);
-                  key.current = requestKey();
-                  setReceipt("");
-                }}
-              />
-              Acconsento alla registrazione di questa richiesta sintetica.
-            </label>
-            <button
-              className="button-primary"
-              disabled={busy || !course || Boolean(receipt)}
-            >
-              {busy
-                ? "Registrazione…"
-                : receipt
-                  ? "Richiesta sintetica registrata"
-                  : "Invia richiesta di prova"}
-              <Arrow />
-            </button>
-            {error && <ErrorNotice message={error} />}{" "}
-            {receipt && (
-              <p className="success-notice" role="status">
-                Richiesta registrata. Riferimento <code>{receipt}</code>. Non è
-                stata inviata una conferma via email.
+        {publicPreview ? (
+          <section className="interest-section" id="richiesta">
+            <div>
+              <div className="section-number">03 / Il prossimo passo</div>
+              <h2>
+                Il percorso
+                <br />
+                prende forma.
+              </h2>
+              <p>
+                Stiamo preparando il primo gruppo: programma, calendario e
+                condizioni saranno disponibili prima dell’apertura delle
+                iscrizioni.
               </p>
-            )}
-          </form>
-        </section>
+            </div>
+            <div className="preview-invitation">
+              <h3>Intanto, comincia da una domanda.</h3>
+              <p>
+                Prova a tenere fissa la portata invece della pressione. Quale
+                grandezza deve cambiare quando il tubo si allarga?
+              </p>
+              <a className="button-primary" href="#laboratorio">
+                Torna al laboratorio <Arrow />
+              </a>
+              <p className="fine-print">
+                Questa anteprima non raccoglie contatti. La previsione resta nel
+                browser e non viene inviata al server.
+              </p>
+            </div>
+          </section>
+        ) : (
+          <section className="interest-section" id="richiesta">
+            <div>
+              <div className="section-number">
+                03 / Prepariamo il primo gruppo
+              </div>
+              <h2>
+                Parti da una
+                <br />
+                buona domanda.
+              </h2>
+              <p>
+                Stiamo preparando il percorso. Qui puoi provare come verrà
+                registrata una richiesta di informazioni.
+              </p>
+              <p className="fine-print">
+                La raccolta di interesse reale non è ancora aperta. Il modulo
+                dimostrativo accetta solo indirizzi .invalid e salva una
+                richiesta sintetica.
+              </p>
+            </div>
+            <form onSubmit={(e) => void interest(e)}>
+              <h3>Prova la richiesta di informazioni</h3>
+              <label>
+                Contatto sintetico
+                <input
+                  required
+                  type="email"
+                  autoComplete="off"
+                  value={contact}
+                  placeholder="studente@example.invalid"
+                  onChange={(e) => {
+                    setContact(e.target.value);
+                    key.current = requestKey();
+                    setReceipt("");
+                  }}
+                />
+              </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  required
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    key.current = requestKey();
+                    setReceipt("");
+                  }}
+                />
+                Acconsento alla registrazione di questa richiesta sintetica.
+              </label>
+              <button
+                className="button-primary"
+                disabled={busy || !course || Boolean(receipt)}
+              >
+                {busy
+                  ? "Registrazione…"
+                  : receipt
+                    ? "Richiesta sintetica registrata"
+                    : "Invia richiesta di prova"}
+                <Arrow />
+              </button>
+              {error && <ErrorNotice message={error} />}{" "}
+              {receipt && (
+                <p className="success-notice" role="status">
+                  Richiesta registrata. Riferimento <code>{receipt}</code>. Non
+                  è stata inviata una conferma via email.
+                </p>
+              )}
+            </form>
+          </section>
+        )}
       </main>
       <footer className="public-footer">
         <a className="wordmark" href="/">

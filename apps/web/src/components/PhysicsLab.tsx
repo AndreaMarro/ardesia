@@ -13,9 +13,11 @@ type Result = {
 export function PhysicsLab({
   onCommit,
   draftKey,
+  publicPreview = false,
 }: {
   onCommit?: (value: ActivityCommit | null) => void;
   draftKey?: string;
+  publicPreview?: boolean;
 }) {
   const saved = useRef(
     draftKey
@@ -74,7 +76,7 @@ export function PhysicsLab({
     controller.current = new AbortController();
     try {
       const value = await studyRequest<Result>(
-        "/activities/evaluate",
+        publicPreview ? "/public/activities/evaluate" : "/activities/evaluate",
         {
           activityId: "poiseuille-v1",
           parameters: { radiusRatio: radius, boundary },
