@@ -1,0 +1,223 @@
+{
+  "schema": "ardesia.c7-verification/1",
+  "integratedProduct": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "builderSource": "0ba36440c5280e2e923635bad571905cd6dfe951",
+  "status": "C7_SCOPED_REAL_AUTH_PG_BROWSER_AND_NATIVE_COOKIE_RECOVERY_PASSED",
+  "sourceReview": {
+    "rehashedEntries": 87,
+    "changedSourceBlobsVerified": 16,
+    "rootReviewSha256": "c77ba250bab5f7b0475b0aab432df761f57626f68c6685cb20e761bb2c31fe24",
+    "builderManifestSha256": "66121d346e7f0bff51147f0a40e6fcd5880ccc7b3c29e4bfd0b0bf80f771757c",
+    "reviewManifestSha256": "f5c208866beb35bedb57faaa64ba94a8ea2ecdef0a00ccc1008e786d7033b086"
+  },
+  "implementation": {
+    "trustedSignals": [
+      "cookie",
+      "missing"
+    ],
+    "oneSharedTransport": [
+      "JSON",
+      "binary",
+      "originalUpload"
+    ],
+    "epochAndAbort": "before_exchange_and_after_decode",
+    "explicitLogout503": "LOCAL_EXIT_WITH_SERVER_REVOCATION_UNCONFIRMED",
+    "initialAnonymous401": "PUBLIC_WITHOUT_LOGIN_POPUP",
+    "wrongBodyToken401": "PRESERVES_VALID_COOKIE_AND_ACTIVE_SESSION",
+    "schemaChanges": 0,
+    "dependenciesAdded": 0
+  },
+  "rootExecution": {
+    "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+    "coreApi": {
+      "passed": 543,
+      "skipped": 0,
+      "seconds": 101.73,
+      "realm": "OWN_C7_RESTORED_SUPABASE_ON54631_PG54632",
+      "logSha256": "b9a838115b04ae91392bd89eac8bbe4bdbd8d8a83697735cf67f08c4b25ad2d7"
+    },
+    "web": {
+      "passed": 110,
+      "files": 16,
+      "workerCount": 1,
+      "seconds": 26.19,
+      "logSha256": "f82bed42d9de98ed34b431dd604cd442f4d1433d9bb763a20345007d6519f11f"
+    },
+    "typecheck": "PASS",
+    "build": "PASS_114_MODULES_SEPARATE_OUTDIR",
+    "ci": {
+      "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "checks": [
+        {
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148989",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:35Z"
+        },
+        {
+          "name": "web (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148745",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:39Z"
+        },
+        {
+          "name": "studio (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148667",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:22:21Z"
+        },
+        {
+          "name": "e2e golden path (advisory)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148634",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:55Z"
+        },
+        {
+          "name": "study-api (HTTP + shared Core)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148570",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:20:22Z"
+        },
+        {
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148563",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:19:23Z"
+        },
+        {
+          "name": "engine (pytest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148203",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:20:24Z"
+        },
+        {
+          "name": "no-deploy-check",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500216/job/118527147418",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:21:47Z"
+        }
+      ]
+    }
+  },
+  "independentReview": {
+    "sourceCommit": "0ba36440c5280e2e923635bad571905cd6dfe951",
+    "passed": 63,
+    "ownNewProbes": 22,
+    "networkGuard": true,
+    "verdict": "NO_NEW_REPRODUCIBLE_FINDING_IN_OFFLINE_SCOPE",
+    "reportSha256": "4dfa7e0c22958c3378da9c03201728bb3cf140d0992d18df690670ee2d1b25fd"
+  },
+  "actualSupabaseBrowser": {
+    "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+    "reportSha256": "967d2370c9670cb4881f997415fad84ab59620e9a04cd1a7d2fa75010739d744",
+    "original14AccountsUsed": 0,
+    "learningWrites": 0,
+    "cases": [
+      {
+        "mode": "missing",
+        "status": "SCOPED_PASS",
+        "before": {
+          "privateShell": true,
+          "deliveries": 2,
+          "cookiePresent": true
+        },
+        "child": {
+          "status": 401,
+          "trustedSignal": "missing"
+        },
+        "after": {
+          "privateShellCount": 0,
+          "deliveries": 0,
+          "loginCount": 1,
+          "cookiePresent": false,
+          "editionInUrl": false
+        },
+        "pageErrors": []
+      },
+      {
+        "mode": "revoked",
+        "status": "SCOPED_PASS",
+        "before": {
+          "privateShell": true,
+          "deliveries": 2,
+          "cookiePresent": true
+        },
+        "child": {
+          "status": 401,
+          "trustedSignal": "cookie"
+        },
+        "after": {
+          "privateShellCount": 0,
+          "deliveries": 0,
+          "loginCount": 1,
+          "cookiePresent": false,
+          "editionInUrl": false
+        },
+        "pageErrors": []
+      }
+    ],
+    "cookieExpiry": "12s_browser_harness_TTL_WITH_SERVER_SESSION_STILL200_NOT_DEFAULT_ONE_HOUR_WAIT",
+    "revocation": "ONLY_OWN_CLONE_FRESH_SESSION_B"
+  },
+  "nativeCookieOrdering": {
+    "baseline": "5cb_client_AND5cb_API_RED_REAL_401_DELETES_NEW_COOKIE",
+    "intermediateCandidate": "0ba_client_WITH5cb_API_PASS_NOT_ALL_C7_API_CLAIM",
+    "combinedCandidate": "f438_client_ANDf438_API_SCOPED_PASS",
+    "baselineReportSha256": "687336bfc46fb6e70e189e65d25aa28d860d608e3476405a49322231f2b604f6",
+    "combinedReportSha256": "de41c88d2ac138cbc6663ea5ce1795627b877381e76f9bb87959d769b08e3845",
+    "oldDownstreamCancelledBeforeRelease": true,
+    "newCookieRetained": true,
+    "newMeStatus": 200,
+    "wrongBodyToken401KeepsValidCookie": true,
+    "relay": "ONLY_TIMING_REAL_HEADERS_BODY_STATUS_PRESERVED",
+    "uiScope": "ACTUAL_PRODUCT_TRANSPORT_AND_TRANSITION_FUNCTIONS_IN_TEST_HARNESS_NOT_LOGIN_COMPONENT",
+    "original14AccountsUsed": 0
+  },
+  "primary": {
+    "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+    "processId": 60961,
+    "origin": "http://127.0.0.1:5324",
+    "dataId": "05f4a05edde66bab",
+    "immutableSourceAndFrontend": true,
+    "databaseRestarted": false,
+    "existingActorsReadOnly": 14,
+    "meAndDiscoveryGET": 28,
+    "scope": "NOT_COMPLETE_G0_JOURNEY"
+  },
+  "preservedFailures": [
+    "Initial root Web run107PASS/3UI_WAIT_FAILURES with16workers whilePG/build ran; unchanged focused9PASS and serial110PASS; exactGitHub8checksSUCCESS. Cause not promoted to a product finding or OS diagnosis.",
+    "Incorrect explicit--root path produced15suite load failures; corrected cwd executed all110 without changing assertions.",
+    "First actual browser harness used nativeFetch.status() as method; failed report preserved. Corrected runner uses status property.",
+    "Final browser runner took158s and completed naturally; four screenshots and original handle retained during observation. Inspector attempt found PID already exited; no signal sent and no inspector enabled.",
+    "First native runner import expected absent esbuild; switched to already installed TypeScript transpileModule without modifying product sources.",
+    "First primary retirement minimalPATH omitted lsof; failed before signal. Corrected absolute/usr/sbin/lsof then ownership-checked SIGTERM only43753."
+  ],
+  "limits": [
+    "Cross-tab/native downloads/serviceworkers are not covered by a one-application tracked-fetch contract.",
+    "Current C7 natural default JWT expiry was not waited for; old5cb natural-expiry RED and new real revocation/browser-cookie expiry are separately attributed.",
+    "Binary401/logout503 rely on unit/component/HTTP scope here; two real browser journeys observe SourceViewer JSON401.",
+    "Memory/UI cleanup is not heap zeroization or complete durable offline privacy.",
+    "C8 actual26view semantic audit belongs to334/8f; combinedf438 reaudit pending, not retagged.",
+    "REA last certified5cb; source binding of current combined product remains pending."
+  ],
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY",
+  "humanScientificUXReview": "NOT_RUN",
+  "providerCallsAndCostsEarlierIncident": "UNKNOWN_PRESERVED"
+}
