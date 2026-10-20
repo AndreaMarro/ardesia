@@ -175,7 +175,7 @@ test("one source keeps exact independent views, historical authorization and por
       review = await tutor.newPage();
     for (const surface of [page, review])
       surface.on("pageerror", (error) => errors.push(error.name));
-    await page.goto("/?view=classroom");
+    await page.goto("/?view=classroom&edition=fluidi");
     await expect(page).toHaveTitle(/Ardesia/i);
     await expect(
       page.getByRole("heading", {
@@ -399,7 +399,7 @@ test("one source keeps exact independent views, historical authorization and por
       .click();
     const revision = await (await revisionResponse).json();
     expect(revision.revisionId).not.toBe(source.revisionId);
-    await page.goto("/?view=classroom");
+    await page.goto("/?view=classroom&edition=fluidi");
     const oldCards = page
       .locator(".source-board-view")
       .filter({ hasText: original });
@@ -443,7 +443,7 @@ test("one source keeps exact independent views, historical authorization and por
         )
       ).status(),
     ).toBe(200);
-    await review.goto("/?view=classroom");
+    await review.goto("/?view=classroom&edition=fluidi");
     const oldEntry = review
       .getByRole("complementary", { name: "Biblioteca delle fonti" })
       .locator("li")

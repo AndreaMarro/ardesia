@@ -207,16 +207,13 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     const waiting = await waiter.newPage();
     for (const surface of [page, review, waiting])
       surface.on("pageerror", (error) => errors.push(error.name));
-    await page.goto("/");
+    await page.goto("/?edition=fluidi");
     await expect(
       page.getByRole("heading", { name: "Riprendiamo il filo.", exact: true }),
     ).toBeVisible();
     await capture(page, "g0-student-today-390.png");
     phase = "waiting_list";
-    await waiting.goto("/?view=courses");
-    await expect(
-      waiting.getByText(/Non risultano edizioni accessibili al tuo account/),
-    ).toBeVisible();
+    await waiting.goto("/?view=courses&edition=fluidi");
     await expect(
       waiting.getByRole("button", {
         name: "Conferma partecipazione di test",
@@ -231,20 +228,25 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
         (edition: { id: string }) => edition.id === "fluidi",
       ),
     ).toBe(false);
+    // Waiting for this edition does not prohibit confirmed membership elsewhere.
+    await expect(waiting.locator('option[value="fluidi"]')).toHaveCount(0);
+    const unavailable = await (
+      await waiter.request.get("/study/workspace?editionId=fluidi")
+    ).json();
+    expect(unavailable.enrolled).toBe(false);
+    expect(unavailable.resources).toEqual([]);
+    expect(unavailable.submissions).toEqual([]);
     await capture(waiting, "g0-waitlist-820.png");
     const stillFull = await (await student.request.get("/study/course")).json();
     expect(stillFull.confirmedTest).toBe(10);
     expect(stillFull.available).toBe(0);
     assertions.push(
-      "waitlisted_user_has_read_only_fallback_without_membership_write",
+      "waitlisted_edition_is_not_selectable_or_enrolled_even_with_other_courses",
     );
 
     phase = "student_originals";
     await page
-      .getByRole("button", { name: "I miei corsi", exact: true })
-      .click();
-    await page
-      .getByRole("button", { name: "Apri l’aula", exact: true })
+      .getByRole("button", { name: "Apri il corso", exact: true })
       .click();
     await page
       .getByLabel("La tua previsione")
@@ -341,7 +343,7 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     await capture(page, "g0-originals-390.png");
 
     phase = "tutor_review";
-    await review.goto("/?view=courses");
+    await review.goto("/?view=courses&edition=fluidi");
     await review
       .getByText("Persone e accessi dell’edizione", { exact: true })
       .click();
@@ -360,7 +362,7 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     assertions.push(
       "real_roster_and_waitlist_ui_hide_unavailable_invitation_codes",
     );
-    await review.goto("/?view=review");
+    await review.goto("/?view=review&edition=fluidi");
     await chooseReview(review, original);
     await expect(review.getByLabel("Originale della fonte")).toHaveValue(
       original,
@@ -431,7 +433,7 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     );
 
     phase = "new_proof";
-    await page.goto("/?view=work");
+    await page.goto("/?view=work&edition=fluidi");
     const own = page.locator(".diary-entry").filter({ hasText: original });
     await own
       .getByText("Affronta una situazione nuova", { exact: true })
