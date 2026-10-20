@@ -1,28 +1,30 @@
-from datetime import datetime
-import json
-from zoneinfo import ZoneInfo
 from .models import StudyError
-from .store import identifier,canonical
+from .store import identifier
+from .calendar_time import normalize_sessions
+from .editions import configure_sessions_in_transaction
 from .transactions import transact
 
 
 def reserve_seat(store, actor, edition_id, key, now, ttl=900):
     store._principal(actor)
     if actor.role!='student':raise StudyError('forbidden',403)
-    if not 0<ttl<=3600:raise StudyError('invalid_expiry')
+    if type(ttl) not in (int,float) or not 0<ttl<=3600:raise StudyError('invalid_expiry')
     def apply(c):
         store.lock_edition(c, edition_id)
         edition=store.get_edition(edition_id)
+        effective_now=max(now,store.clock())
         if c.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(edition_id,actor.id)).fetchone():
             return {'id':None,'editionId':edition_id,'state':'confirmed','paymentMode':'test'}
-        previous=c.execute("SELECT * FROM study_holds WHERE edition_id=? AND student_id=? AND state='hold' AND expires_at>?",(edition_id,actor.id,now)).fetchone()
+        if edition['state']!='offered':raise StudyError('edition_not_offered',409)
+        normalize_sessions(edition_id,edition['sessions'],edition['timezone'])
+        previous=c.execute("SELECT * FROM study_holds WHERE edition_id=? AND student_id=? AND state='hold' AND expires_at>?",(edition_id,actor.id,effective_now)).fetchone()
         if previous:return {'id':previous['id'],'editionId':edition_id,'state':'hold','expiresAt':previous['expires_at'],'paymentMode':'test'}
         members=c.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?',(edition_id,)).fetchone()[0]
-        holds=c.execute("SELECT COUNT(*) FROM study_holds WHERE edition_id=? AND state='hold' AND expires_at>?",(edition_id,now)).fetchone()[0]
+        holds=c.execute("SELECT COUNT(*) FROM study_holds WHERE edition_id=? AND state='hold' AND expires_at>?",(edition_id,effective_now)).fetchone()[0]
         if members+holds>=edition['capacity']:raise StudyError('group_full',409)
         hold_id=identifier()
-        c.execute("INSERT INTO study_holds VALUES(?,?,?,?,'hold')",(hold_id,edition_id,actor.id,now+ttl))
-        return {'id':hold_id,'editionId':edition_id,'state':'hold','expiresAt':now+ttl,'paymentMode':'test'}
+        c.execute("INSERT INTO study_holds VALUES(?,?,?,?,'hold')",(hold_id,edition_id,actor.id,effective_now+ttl))
+        return {'id':hold_id,'editionId':edition_id,'state':'hold','expiresAt':effective_now+ttl,'paymentMode':'test'}
     try:return transact(store,actor,'seat.reserve',key,{'editionId':edition_id,'ttl':ttl},apply)
     except StudyError as error:
         if error.code=='group_full':
@@ -32,16 +34,22 @@ def reserve_seat(store, actor, edition_id, key, now, ttl=900):
 
 def confirm_test_enrollment(store, actor, hold_id, key, now):
     store._principal(actor)
+    if actor.role!='student':raise StudyError('forbidden',403)
     def apply(c):
-        hold=c.execute('SELECT * FROM study_holds WHERE id=?',(hold_id,)).fetchone()
+        identity=c.execute('SELECT edition_id,student_id FROM study_holds WHERE id=?',(hold_id,)).fetchone()
+        if not identity:raise StudyError('not_found',404)
+        if identity['student_id']!=actor.id:raise StudyError('forbidden',403)
+        store.lock_edition(c,identity['edition_id'])
+        effective_now=max(now,store.clock())
+        # Hold and edition may both have changed while waiting for the lock.
+        hold=c.execute('SELECT * FROM study_holds WHERE id=? AND student_id=?',(hold_id,actor.id)).fetchone()
         if not hold:raise StudyError('not_found',404)
-        if hold['student_id']!=actor.id:raise StudyError('forbidden',403)
         if hold['state']=='confirmed':return {'id':hold_id,'state':'confirmed','editionId':hold['edition_id'],'paymentMode':'test'}
-        if hold['expires_at']<=now or hold['state']!='hold':
+        edition=store.get_edition(hold['edition_id'])
+        if hold['expires_at']<=effective_now or hold['state']!='hold' or edition['state']!='offered':
             c.execute("UPDATE study_holds SET state='payment_requires_review' WHERE id=?",(hold_id,))
             return {'id':hold_id,'state':'payment_requires_review','paymentMode':'test'}
-        edition=store.get_edition(hold['edition_id'])
-        store.lock_edition(c, edition['id'])
+        normalize_sessions(edition['id'],edition['sessions'],edition['timezone'])
         count=c.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?',(edition['id'],)).fetchone()[0]
         if count>=edition['capacity']:raise StudyError('group_full',409)
         c.execute('INSERT OR IGNORE INTO study_members VALUES(?,?)',(edition['id'],actor.id))
@@ -66,24 +74,6 @@ def propose_cohorts(requests,slots):
 
 
 def configure_sessions(store,principal,edition_id,sessions):
-    store._edition_access(principal,edition_id,teacher_only=True)
-    if not isinstance(sessions,list) or len(sessions)!=4:raise StudyError('four_sessions_required')
-    intervals=[]
-    for session in sessions:
-        try:
-            start=datetime.fromisoformat(session['start']);end=datetime.fromisoformat(session['end'])
-            if start.utcoffset() is None or end.utcoffset() is None or (end-start).total_seconds()!=5400:raise ValueError()
-            if start.astimezone(ZoneInfo('Europe/Rome')).utcoffset()!=start.utcoffset():raise ValueError()
-        except (ValueError,KeyError,TypeError):raise StudyError('invalid_calendar')
-        if any(start<old_end and end>old_start for old_start,old_end in intervals):raise StudyError('calendar_conflict',409)
-        intervals.append((start,end))
+    store._principal(principal)
     with store.transaction() as c:
-        store.lock_teacher(c, principal.id)
-        if store.get_edition(edition_id)['sessions']==sessions:return
-        if c.execute('SELECT 1 FROM study_members WHERE edition_id=?',(edition_id,)).fetchone():raise StudyError('reconfirmation_required',409)
-        for row in c.execute('SELECT sessions FROM study_editions WHERE teacher_id=? AND id!=?',(principal.id,edition_id)):
-            for old in json.loads(row['sessions']):
-                old_start=datetime.fromisoformat(old['start']);old_end=datetime.fromisoformat(old['end'])
-                if any(start<old_end and end>old_start for start,end in intervals):raise StudyError('calendar_conflict',409)
-        c.execute('UPDATE study_editions SET sessions=? WHERE id=?',(canonical(sessions),edition_id))
-        store._event(c,principal,'edition.calendar',None,{'editionId':edition_id,'sessions':sessions})
+        configure_sessions_in_transaction(store,c,principal,edition_id,sessions)

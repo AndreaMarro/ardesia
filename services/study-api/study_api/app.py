@@ -332,13 +332,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/editions/{edition_id}/approve')
     def approve(edition_id: str, request: Request, store=Depends(store_dependency)):
-        principal=authenticate(request,store)
-        edition=store._edition_access(principal,edition_id,teacher_only=True)
-        if len(edition['sessions'])!=4:raise StudyError('four_sessions_required')
-        with store.transaction() as c:
-            c.execute("UPDATE study_editions SET state='offered' WHERE id=?",(edition_id,))
-            store._event(c,principal,'edition.approved',None,{'editionId':edition_id})
-        return store.get_edition(edition_id)
+        from lessonos.study.editions import offer_edition
+        return offer_edition(store,authenticate(request,store),edition_id,
+                             request.headers.get('Idempotency-Key',''),confirmed=True)
 
     @app.post('/study/layout')
     def layout(body: dict, request: Request, store=Depends(store_dependency)):
