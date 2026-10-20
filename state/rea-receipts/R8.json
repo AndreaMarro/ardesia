@@ -1,0 +1,169 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R8",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-048"
+  ],
+  "target_kind": "THIRD_PARTY_AUTHORIZED",
+  "authorization_basis": "PrairieLearn public homepage demonstration anonima, ricerca reversibile autorizzata, nessun account/trial/costo o estrazione quiz-bank. Nessun bypass di Passify. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Public deployed Next build RztiPvUyKo2_kLoWEdEK_, observed2026-10-20; source commit UNKNOWN.",
+  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "evidence": [
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/passify-access.evidence.json",
+      "sha256": "bdb38ad2aad5a112e8058aae572ab16704595f21c20d830811093946ff2278a8"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/numbas-access.evidence.json",
+      "sha256": "aa78bbe37bf6cda85a3276ea7bb365f7aebcec0bb692379a5aa92f4dfef5f348"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-error-retry.evidence.json",
+      "sha256": "deb0ebafb960256ae681b3d213e3e4e8aea70c18f92e7d3b8ceb2b912a49f411"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-inspection.evidence.json",
+      "sha256": "4fca1d8b08f3e222410163d6abb88b48b267f6967281ff56f3c8590b8cd30f0f"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-script-export.evidence.json",
+      "sha256": "643e9122ba1decda37210d8e92d0037cf0ede2ed5311281fe7e2e67d718de647"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-feature-application.evidence.json",
+      "sha256": "a1c0b23086c0dc1795879a6152e484be59f85e6973d89b9e5dba55dd253ba265"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-module-feature-trace.evidence.json",
+      "sha256": "9d511936e259677a81c2ca1abc3603e06f8f88ce531c0d86bed17718ed6e35f4"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/newvariant-provenance.evidence.json",
+      "sha256": "ebad97b2cb5410492dbe1ead37645a29915970ac56da0ab25f75ee62c51c5385"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/grade-provenance.evidence.json",
+      "sha256": "14227f0f1fe6d40c88a701b92e3e84264c09c829974540da14298d0bddd74e5d"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/feedback-provenance.evidence.json",
+      "sha256": "c09f4f75b49a9fa9d83b9892e3cb8ebaa17a8519f32c59a2633b5bba9e59ebd0"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/before-variant.evidence.json",
+      "sha256": "88281f696329e50596c648df91defbaacbfaf2ed7b352f1aeae2395506565517"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/after-variant.evidence.json",
+      "sha256": "6deac5d15e8f33217acd94f1cfefd535cec9332a9b6ef2b4b859fae3587d9c31"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/variant-comparison-fixed.evidence.json",
+      "sha256": "b09b083e7246444569ba229c489f1832d8bc92219bc0663b2e31d73f1c308070"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R8/prairie-runtime-reconciliation.evidence.json",
+      "sha256": "8fa270cd668a6442693139f91c525b43ad035acd2087bfca03030c8e699e50c4"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/final-2a654879/contracts/R8-final-assimilation.md",
+      "sha256": "89fdfa8c69f518f88e17494b2561367bcb499d22746bbad508f97340fbcff2a1"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/final-2a654879/tests/R8-final-tests.json",
+      "sha256": "4f9f893cd178d9a1539f4afd48f76212af47eea0fe49f40159383a5f6a8e2969"
+    }
+  ],
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "services/study-api/study_api/diary_routes.py",
+      "apps/web/src/features/Diary.tsx",
+      "apps/web/src/features/Work.tsx",
+      "packages/engine/lessonos/study/diary.py",
+      "packages/engine/lessonos/study/submissions.py",
+      "packages/engine/lessonos/study/context.py"
+    ],
+    "test_names": [
+      "services/study-api/tests/test_diary_http.py::test_diary_http_private_error_review_new_problem_and_transfer",
+      "services/study-api/tests/test_submission_http.py::test_malformed_payloads_fail_closed_as_client_errors",
+      "services/study-api/tests/test_submission_http.py::test_http_commit_failure_never_claims_success",
+      "packages/engine/tests/study/test_error_diary.py::test_replay_scopes_private_events_before_decoding_other_learners",
+      "packages/engine/tests/study/test_error_diary.py::test_ai_proposal_is_not_confirmed_debt_and_replays_after_restart",
+      "packages/engine/tests/study/test_error_diary.py::test_confirm_is_tutor_only_source_bound_and_idempotent",
+      "packages/engine/tests/study/test_error_diary.py::test_source_anchor_must_belong_to_submitted_revision",
+      "packages/engine/tests/study/test_error_diary.py::test_contest_and_dismiss_preserve_reason_and_exclude_false_positive",
+      "packages/engine/tests/study/test_error_diary.py::test_ambiguous_question_requires_source_check_before_confirming",
+      "packages/engine/tests/study/test_error_diary.py::test_source_revision_change_stales_feedback_and_revocation_hides_original",
+      "packages/engine/tests/study/test_error_diary.py::test_student_diary_persists_between_courses_without_granting_new_tutor_history",
+      "packages/engine/tests/study/test_error_diary.py::test_diary_receipt_and_event_roll_back_together",
+      "packages/engine/tests/study/test_error_diary.py::test_repeating_original_or_forging_plan_does_not_count_as_transfer",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_needs_distinct_submission_exact_reasoning_and_human_review",
+      "packages/engine/tests/study/test_error_diary.py::test_recurrence_requires_new_evidence_after_verification_and_preserves_history",
+      "packages/engine/tests/study/test_error_diary.py::test_parameter_change_is_required_even_when_tutor_uses_new_exercise_label",
+      "packages/engine/tests/study/test_error_diary.py::test_old_verified_transfer_cannot_close_a_later_recurrence",
+      "packages/engine/tests/study/test_error_diary.py::test_revoked_transfer_source_hides_procedure_and_verification_even_on_retry",
+      "packages/engine/tests/study/test_error_diary.py::test_identical_source_observation_with_new_key_reuses_one_thread",
+      "packages/engine/tests/study/test_error_diary.py::test_practice_cannot_relabel_a_submission_from_original_activity",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_submission_cannot_reuse_the_error_source",
+      "packages/engine/tests/study/test_error_diary.py::test_malformed_error_category_is_validation_error_without_writing",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_receipt_for_another_thread_cannot_be_relabelled",
+      "packages/engine/tests/study/test_error_diary.py::test_new_receipt_cannot_recycle_an_earlier_transfer_source",
+      "packages/engine/tests/study/test_error_diary.py::test_json_input_boundaries_raise_validation_errors",
+      "packages/engine/tests/study/test_error_diary.py::test_source_checked_accepts_only_a_boolean",
+      "packages/engine/tests/study/test_transfer_submission.py::test_transfer_receipt_freezes_the_assigned_problem_and_parameters",
+      "packages/engine/tests/study/test_transfer_submission.py::test_a_student_cannot_submit_someone_elses_transfer_or_an_unassigned_exercise",
+      "packages/engine/tests/study/test_transfer_submission.py::test_transfer_assignment_cannot_cross_an_edition_boundary",
+      "packages/engine/tests/study/test_transfer_submission.py::test_unregistered_submission_from_before_recurrence_is_not_new_evidence",
+      "packages/engine/tests/study/test_transfer_submission.py::test_every_base_activity_in_the_current_draft_pack_is_submittable"
+    ],
+    "test_outcome": "PASS"
+  },
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "unknowns": [
+    "Passify normal access returned Internal Server Error; no private diary or bypass was observed.",
+    "Public PrairieLearn numeric grades/new variants do not prove semantic mastery or a permanent personalized diary.",
+    "Remote deploy license bytes/source commit remain unknown. Functional original assimilation only; no external source/assets reused and no live ASR claim."
+  ],
+  "limitations": [
+    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
+    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
+    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
+    "{\"mode\": \"FUNCTIONAL_ORIGINAL_ASSIMILATION_ONLY\", \"license\": \"Repository mixed licenses including AGPL client; no license assigned automatically to marketing/demo assets\", \"verification\": \"Original research report retains official LICENSE link and limitation; exact primary license bytes for this remote deploy were not retained. No source reuse right is claimed and no third-party code supplied to product.\", \"primaryFiles\": [], \"unresolved\": \"PINNED_DEPLOY_LICENSE_BYTES_UNKNOWN; no permission for source or asset transfer is asserted.\"}"
+  ],
+  "created_at": "2026-10-20T04:24:44.056729+00:00",
+  "benefit": {
+    "defect_avoided": "Una risposta numerica corretta o una vecchia prova riutilizzata non chiudono automaticamente un errore: serve evidenza distinta e review del tutor.",
+    "time_saved_minutes": null,
+    "measurement_method": "Scenario esterno errore/nuovo tentativo; regressioni su riuso, ricorrenza, assegnazione e autorizzazioni, più percorso browser reale."
+  }
+}

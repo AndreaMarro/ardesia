@@ -1,0 +1,296 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R6",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-094",
+    "TARGET-095"
+  ],
+  "target_kind": "OWN_ARDESIA",
+  "authorization_basis": "Confronto fra repository/runtime Ardesia propri con fixture sintetiche e attori di test autorizzati. Questa preparazione non apre sessioni o servizi. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "capture_web_screenshot",
+    "compare_application_versions",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "observe_web_execution",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Own baseline cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228 runtime5309; C2a6646e7d58892afee624b89f68c6ba694f4aea9f runtime5321; frozenfe9995cae36c4c17cf47d31aac84baee0bef2be7 and actual final2a6548797e300e465abb554c949db740521b8352 runtime5323. Original versions/origins retained.",
+  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "evidence": [
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-after-detach-v3-capture.json",
+      "sha256": "f76dcd70f05a21e84ad8003e5a6fb51dea7d6c212f4154fd6d39bcc74e0f012c"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-before-after-comparison.json",
+      "sha256": "750674e30234a6c1b53b71fb02860f90955f1e91011453cc9eee094b4fb58493"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-before-detach-capture.json",
+      "sha256": "84eab593dbed83e783802fd45b95e9dfabf2f5cea30a6103cb71a3e23435390f"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-before-detach-v2-capture.json",
+      "sha256": "479ae52abd6f98ba1788b3425ff2be53fa2b80264970f9710f933bc0d2f15a56"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-before-detach-v3-capture.json",
+      "sha256": "e257a8b783ed0f90de96fe3a1076fabcb35e1874a856ec1593a1df807b0e2365"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-detach-notebook-capture.json",
+      "sha256": "33a66e5dd9cd8d0f783a032a2e7bb7b6833f5c9c2ac251d21d4397b384bbe895"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-feature-trace.json",
+      "sha256": "5c729ee058eccb131c65621eb407314808e98c3755cdb3bffc3a521e9eada8f2"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-historical-source-capture.json",
+      "sha256": "3f1f8966a7998a3671e8105b5bba4853300c07c88473992ffa0a1bb9a52770ff"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-lazy-graph.json",
+      "sha256": "3f944ab47ad1a06bf678998b391888af4d3f6d854289fd86c8f78db1d254479a"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-login-tutor-fresh-capture.json",
+      "sha256": "6bf106b97325daf23eddf45ec44b493bd90d9d763a06eb5e4dbd6adaf8068d5b"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-notebook-execution.json",
+      "sha256": "6b97d62c90ece8185520881c96b6b94b03fc829d04a3f7296a115468e0da1cc8"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-r0-context-comparison.json",
+      "sha256": "315dc8cf8a677e14e4e59c06a75e2f403fe6fa51a6c29b07cc2e4002afc09f49"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-reconcile.json",
+      "sha256": "d4843550918bf087345fc1b5fa1b97ff4e78faaf4515ed2b6596f0987dd54b3c"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-runtime-export-evidence.json",
+      "sha256": "7a06c4a6a1c368d5df3a8537d857597c16620abedd893a7d13fad0a191ae101f"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-runtime-inspection.json",
+      "sha256": "e927e6e008eec00b59202bbce3715c813103454bf0a63e5c0715f2d5a10f6268"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-semantic-provenance.json",
+      "sha256": "c80e6790a304a245b42ab8def4463824712e3230fdc39ef52884f2984ad3ba53"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-semantic-trace.json",
+      "sha256": "7579c15a6b079e5beb764a797c74ec9c7c07abb457809ada501368148bd282a2"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-source-graph.json",
+      "sha256": "476bdff604c138fafb0c6beb7242a3f7478038937f2387c5ef47e4662c83cee0"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-source-layout-capture.json",
+      "sha256": "3dab15003de53b0f79b5add982a6deeea65b88854f2d7613e4c1a3516d44ba8d"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-two-views-settled-capture.json",
+      "sha256": "fed82c86f343a6f9b37eb60a57d9e2ecfceaadfe43f0e528d5e8d7c2517b1ad7"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/candidate2-version-comparison.json",
+      "sha256": "feb917e9d9b40ac9975b3aa7a39354e3c064690e18694d9893a2798f79f1284f"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/built.application.evidence.json",
+      "sha256": "8276037b110b44f6a7df290d006e11c89d7a7a99ad27646d200bad594d42f352"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/fe-final-notebook.compare.evidence.json",
+      "sha256": "4630602075713f91359b315a1e91e8e9134b6a73553bc3f53f07c765f8490138"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/fe-final-versions.compare.evidence.json",
+      "sha256": "29b852ffeae26639147d11bab7d3d41b042e96eace98d1b589eb1d22eba3ef5a"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/history-runtime-export.evidence.json",
+      "sha256": "0a84b2beeb1583e3a1ca0f96108d2cb1df0abce74bd6888455f8eaca075694a0"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/history-runtime-inspect.evidence.json",
+      "sha256": "a784e5a85b6849ce2bb7d92e7471b4bc072383738df7dac1c73a4fd40fd168e6"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/history-two-revisions-pixels.evidence.json",
+      "sha256": "da0a0ee1156697ec1ab803845601a9afc47a39585b05b57b85935207f1fc31ff"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/large-final-cdp-v2-capture.evidence.json",
+      "sha256": "b62e62a980d43b8b388f0897380cd9a3c03f30e78747b62ed6948a0752e43507"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/notebook.feature.evidence.json",
+      "sha256": "5b8f21fac2e749276c91f2b8a2c0baf56fce3d0c41827df035bf39ace5c501f2"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/notebook.semantic.evidence.json",
+      "sha256": "b226956d13b7c957c0519803b357bfde4f267049a2e004e93850a251715517f2"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/runtime-reconcile.evidence.json",
+      "sha256": "bd025a6cb07bb95c4c6367139cd010c6c4f5514db357d42d035c147c67ce2038"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/source.application.evidence.json",
+      "sha256": "8325a533d7d0a4b2de7f6808fdd880a674fc51f0336612b49134a42369d906a0"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/tutor-synthetic-fluidi-final-reopen-capture.evidence.json",
+      "sha256": "27a7c0537ffc13a31c291f631966a4c3e2d4129386ff55fcbe6b4c09708f2092"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/unicode-astral-10001-capture.evidence.json",
+      "sha256": "521b6873aa35b359e9dbcbcf388b990768790c7c7d21f08b6e16dae1e3271ec7"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/unicode-astral-20000-capture.evidence.json",
+      "sha256": "eeaac635c16e09429686e633946d4ea3c7e77e1f86cf0a4761d4dfb0e6c2f9f7"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/unicode-astral-20001-capture.evidence.json",
+      "sha256": "7d0f3c6c75643877804e1c7271e5e9725838c12d4872d2f2912d8df6c8993761"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/unicode-mixed-20000-capture.evidence.json",
+      "sha256": "ae36d5b1ca84080a421f7014a1e1e13af01c3e8f469bd6378656e7d2054062c2"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R6/final-2a654879/unicode-mixed-20001-capture.evidence.json",
+      "sha256": "2d029057c45810d4c245fe338da9e0411e28227643fa631b7709b8d4006f6552"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/final-2a654879/contracts/R6-final-assimilation.md",
+      "sha256": "5a5e5171d2dca10d98cab2bdbcd72df3220bb00173ef600c422eb441b1870f79"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/final-2a654879/tests/R6-final-tests.json",
+      "sha256": "91bd0b1bc920df7c76a310166af00ae35e0635b38be1f5f6eb9f3fa277f70a56"
+    }
+  ],
+  "implementation": {
+    "decision": "REPLACE",
+    "source_files": [
+      "apps/web/src/components/SourceBoard.tsx",
+      "apps/web/src/components/SourceViewer.tsx",
+      "apps/web/src/features/Materials.tsx",
+      "apps/studio/src/study/NotebookPanel.tsx",
+      "packages/engine/lessonos/study/portable.py",
+      "packages/engine/lessonos/study/store.py",
+      "packages/engine/lessonos/study/view_layout.py",
+      "apps/studio/src/study/notebookPreview.ts",
+      "apps/web/src/useCourseWorkspace.ts",
+      "apps/web/src/components/useResourceComposer.ts",
+      "apps/web/src/components/sessionDraftCache.ts",
+      "apps/web/src/components/TaylorLab.tsx"
+    ],
+    "test_names": [
+      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
+      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
+      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
+      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
+      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "packages/engine/tests/study/test_portable_history.py::test_owner_export_contains_old_exact_pin_and_current_source_without_unreferenced_history",
+      "packages/engine/tests/study/test_portable_history.py::test_tutor_export_preserves_only_submitted_revision_and_does_not_export_private_head",
+      "packages/engine/tests/study/test_portable_history.py::test_unavailable_revision_has_only_known_reference_ids_and_explicit_loss",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_checks_snapshot_hashes_even_when_outer_digest_is_recomputed",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_dangling_exact_revision_references_with_a_valid_bundle_digest",
+      "packages/engine/tests/study/test_portable_history.py::test_unsigned_consistently_rehashed_content_is_not_claimed_canonical_or_authorized",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_legacy_v1_does_not_claim_history_reference_completeness",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_duplicate_revision_identity_cannot_resolve_to_different_content",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_revision_budget_and_bad_base64_fail_as_domain_errors",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_malformed_loss_metadata",
+      "services/study-api/tests/test_notebook_http.py::test_http_notebook_old_pin_roundtrip_respects_exact_revision_permission",
+      "packages/engine/tests/study/test_portable_budget.py::test_inspect_exact_compact_utf8_boundary_and_one_byte_over",
+      "packages/engine/tests/study/test_portable_budget.py::test_real96mib_inspection_boundary_is_inclusive_and_next_byte_is_refused",
+      "packages/engine/tests/study/test_portable_budget.py::test_encoded_refusal_precedes_attachment_decode",
+      "packages/engine/tests/study/test_portable_budget.py::test_export_refuses_legal450_snapshot_49mib_fixture_without_dropping_pins",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_inspect_accepts_exact_boundary_and_refuses_one_extra_byte",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_export_is_the_explicit_stable_compact_representation_and_budget_error_is_atomic",
+      "run-unicode-actual.mjs::five_actual_final_ui_core_boundaries",
+      "verify-history-actual.mjs::two_submitted_versions_same_id_private_head_denied_layout_unchanged",
+      "run-large-actual-cdp-v2.mjs::actual_core_79756209_byte_export_ui_reopen"
+    ],
+    "test_outcome": "PASS"
+  },
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "unknowns": [
+    "Global connected capture remains incomplete for events/equality_eligible=false, despite all successful final feature steps. No whole-application equivalence is asserted.",
+    "Baseline5309/C25321/final5323 origins and original step sequences are retained; context/alignment mismatch is not normalized away. Final fe→2a notebook compare aligns7steps plus2new exact-version checks, coveragepartial.",
+    "Static feature/semantic reachability does not prove React execution; final runtime reconciliation matched5 scoped chunks with4unmatched/2unknown/494staticunknown. Source maps remain unavailable.",
+    "The final .study preview reads exact versions/attempts but does not reconstruct layout geometry, legacy journal or sessions; unreferenced history is omitted explicitly.",
+    "The reconstructed79,756,209B final Core export is a new artifact/hash, not the deleted79,756,325B historical file. Assets are declared/integrity-checked; no asset playback/download is claimed for this large test.",
+    "Full tutor management create/configure/previewCAS and legacy collecting/approve gaps are not solved by this R6 scoped replay."
+  ],
+  "limitations": [
+    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
+    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
+    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
+    "{\"mode\": \"OWN_AUTHORIZED_SOURCE\", \"verification\": \"Fonte/bundle propri. C3 review composita SQLite è diagnosi, non runtime candidato né receipt.\", \"primaryFiles\": []}"
+  ],
+  "created_at": "2026-10-20T04:24:44.296264+00:00",
+  "benefit": {
+    "defect_avoided": "I sei difetti riprodotti su consumer, revisioni storiche, budget e Unicode sono corretti nel candidato, senza attribuire autenticità canonica a file non firmati.",
+    "time_saved_minutes": null,
+    "measurement_method": "Witness RED conservati; test418, browser, cinque confini Unicode, V1/V2 consegnate con V3 privata e apertura reale del nuovo export da79.756.209byte. Confronti REA parziali e UNKNOWN conservati."
+  }
+}

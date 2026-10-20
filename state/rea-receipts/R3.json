@@ -1,0 +1,136 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R3",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-052"
+  ],
+  "target_kind": "THIRD_PARTY_AUTHORIZED",
+  "authorization_basis": "Moodle official sandbox con identità demo ufficiali e dati originali, autorizzato dalla superficie demo e dall’utente. Nessun account inventato, invito/email/pagamento reale o trial. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "export_web_scripts",
+    "inspect_web_page",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Moodle sandbox UI5.3; remote commit UNKNOWN. Separate source b7260e59a83124d6311c0217df3ba27ef6b9a7b0.",
+  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "evidence": [
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/vendor-capture.json",
+      "sha256": "00615b86c7feac64c9a014b6675bf17bc30f4fb99bd029dfb3a670af59b60d71"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/course-connect-capture.json",
+      "sha256": "51f051a06489aadb47640680f9e97790ff4abf78758e5b3639618fe2a559a7ae"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/capacity-capture.json",
+      "sha256": "5846a9cb056f16cfe587c5e8b43f769c2717d8b0afb743fba01bff4ddd149e9e"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/dates-capture-v4.json",
+      "sha256": "e990b49161229905dd6a37477364edef469ce8908a9c3a3ec761061a0e9a1f1b"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/four-dates-capture.json",
+      "sha256": "861e7fc9f8b0eadaf0291b0d6efaa1d0f82ca9ea4f90dc934782b308689d77e1"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/assignment-capture-v4.json",
+      "sha256": "c93e8147086ab800476803f593fd7d79bef0531528b2ac2317a4701605daa841"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/inspect-v3.json",
+      "sha256": "f3feb74cac00ab938bee2981a67eaf339a27e4fdaff88f82bd5cce4be6d66ede"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/export-evidence-v2.json",
+      "sha256": "ac48a638e07e7fcd85e5af9025d06ae6e4ff7767dbf4fddce0f98be6c2e0e1dd"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/source-graph.json",
+      "sha256": "df0928600716c61e20f1319f8b39b19e96978c4ea7ae99d96e968dccc66948bf"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/feature-trace.json",
+      "sha256": "2172189a427e3f28d1f06e59425e1c4a1b4f1a44dd6fb2beceec42ea52018208"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/semantic-influence.json",
+      "sha256": "51480de5556a4258398fd0246b298e85e464914503e32832a6eeaf8f3c277b8d"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/final-2a654879/contracts/R3-final-assimilation.md",
+      "sha256": "6c7502dcc84dbb3c8d2edb06b604039ce9a99726831c33b86eeb267cae7c5cd1"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/final-2a654879/tests/R3-final-tests.json",
+      "sha256": "3d5d9fc289127fc4db2ae862895b15b5daa7645b1658d819cd392fbde8962fed"
+    }
+  ],
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/features/Courses.tsx",
+      "apps/web/src/features/Classroom.tsx",
+      "services/study-api/study_api/app.py",
+      "packages/engine/lessonos/study/groups.py",
+      "packages/engine/lessonos/study/store.py",
+      "packages/engine/lessonos/study/interests.py",
+      "packages/engine/lessonos/study/feedback.py"
+    ],
+    "test_names": [
+      "services/study-api/tests/test_access_http.py::test_invitation_cookie_revocation_and_payload_limit",
+      "services/study-api/tests/test_access_http.py::test_login_abuse_is_limited_without_blocking_read_only_course",
+      "services/study-api/tests/test_access_http.py::test_tutor_can_manage_only_own_member_invites_and_ops_health",
+      "services/study-api/tests/test_access_http.py::test_body_budget_preserves_unicode_notes_and_notebook_attachment_contract",
+      "services/study-api/tests/test_group_access_http.py::test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster",
+      "services/study-api/tests/test_draft_privacy_http.py::test_private_draft_is_hidden_from_tutor_workspace_export_and_bytes",
+      "packages/engine/tests/study/test_groups.py::test_twelve_requests_never_overbook_and_retry_is_idempotent",
+      "packages/engine/tests/study/test_groups.py::test_two_people_racing_for_last_seat_only_one_hold",
+      "packages/engine/tests/study/test_groups.py::test_expired_hold_does_not_consume_seat_or_confirm_late_payment",
+      "packages/engine/tests/study/test_groups.py::test_matching_requires_every_date_and_explains_exclusion",
+      "packages/engine/tests/study/test_groups.py::test_peer_hold_cannot_be_confirmed_and_changed_payload_conflicts",
+      "packages/engine/tests/study/test_groups.py::test_calendar_conflict_and_confirmed_date_change_require_reconfirmation"
+    ],
+    "test_outcome": "PASS"
+  },
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "unknowns": [
+    "Scoped at2a to capacity/roster/privacy/four-session rules already tested; complete tutor management create/configure/previewCAS UI is absent and remains separate G1 work.",
+    "Legacy holds during collecting and legacy approve validation remain known gaps; this receipt does not attest a complete launch-management flow.",
+    "Moodle per-enrolment-method capacity differs from Ardesia global edition capacity; demo rubric validity and payment flows were not proved.",
+    "Moodle remote source commit remains unknown; separate GPL source pin is research only and no GPL code was transferred."
+  ],
+  "limitations": [
+    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
+    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
+    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
+    "{\"mode\": \"FUNCTIONAL_ORIGINAL_ASSIMILATION_NO_COPYLEFT_CODE_TRANSFER\", \"license\": \"GPL-3.0-or-later\", \"verification\": \"COPYING.txt and actual analyzed module headers retained; source pin does not prove demo build equality. No Moodle GPL module supplied to product.\", \"primaryFiles\": [\"rights/R3/source/COPYING.txt\", \"rights/R3/source/source-revision.json\", \"retained-sources/R3/source/public/enrol/self/lib.php\"]}"
+  ],
+  "created_at": "2026-10-20T04:24:43.854320+00:00",
+  "alternative_justification": "Official public demo permitted original synthetic administration without creating an account or adding hosted infrastructure. Method-local enrollment cap was observed and deliberately not adopted as a global invariant.",
+  "benefit": {
+    "defect_avoided": "Capienza globale dell’edizione e serializzazione dell’ultimo posto impediscono l’undicesima iscrizione nel perimetro verificato.",
+    "time_saved_minutes": null,
+    "measurement_method": "Distinzione dal limite per metodo di Moodle; gara HTTP finale indipendente con esiti409/200, dieci confermati, due in attesa. I gap legacy restano aperti."
+  }
+}

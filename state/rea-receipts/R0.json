@@ -1,0 +1,106 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R0",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-094",
+    "TARGET-095"
+  ],
+  "target_kind": "OWN_ARDESIA",
+  "authorization_basis": "Software e repository propri, ricerca e fixture sintetiche autorizzate esplicitamente dall’utente; sessione di test solo come secret reference. Nessun ambiente produzione. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "export_web_scripts",
+    "trace_application_feature"
+  ],
+  "source_commit_or_version": "Own baseline PR266 cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228; runtime loopback5309, REA6.7.0",
+  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "evidence": [
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/capture-v2.json",
+      "sha256": "1d0124b4a872e99e52078b780a9c4f0604f57c004c4cd145562e702343df44e3"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/application.json",
+      "sha256": "bbead56e9e7ab5676b11882fda2ac79c34ae1a22790d4b3e957f49fc7178ae3c"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/feature-trace.json",
+      "sha256": "60c24930738c5aad72493f67c984dc16eeac4c589dbfa21e30df2a939c62c379"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/export.json",
+      "sha256": "659f7cf4dabaee92104e33e31ebdc3efa92aef7069bd7e7896215401dccbab1a"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/final-2a654879/contracts/R0-final-assimilation.md",
+      "sha256": "13b66463b43c590c3c94374d1bb90062c2a42a5569daf3997343da3211ca3a09"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/final-2a654879/tests/R0-final-tests.json",
+      "sha256": "f526a171e459552ca698a9d7cdc6bc2e9e34b20383187d0f1bce8873223bb33a"
+    }
+  ],
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/features/Classroom.tsx",
+      "apps/studio/src/study/postit.ts",
+      "apps/studio/src/study/NotebookPanel.tsx",
+      "packages/engine/lessonos/study/portable.py",
+      "packages/engine/lessonos/study/view_layout.py"
+    ],
+    "test_names": [
+      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
+      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
+      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
+      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
+      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "packages/engine/tests/study/test_portable_history.py::test_owner_export_contains_old_exact_pin_and_current_source_without_unreferenced_history",
+      "packages/engine/tests/study/test_portable_history.py::test_tutor_export_preserves_only_submitted_revision_and_does_not_export_private_head",
+      "packages/engine/tests/study/test_portable_history.py::test_unavailable_revision_has_only_known_reference_ids_and_explicit_loss",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_checks_snapshot_hashes_even_when_outer_digest_is_recomputed",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_dangling_exact_revision_references_with_a_valid_bundle_digest",
+      "packages/engine/tests/study/test_portable_history.py::test_unsigned_consistently_rehashed_content_is_not_claimed_canonical_or_authorized",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_legacy_v1_does_not_claim_history_reference_completeness",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_duplicate_revision_identity_cannot_resolve_to_different_content",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_revision_budget_and_bad_base64_fail_as_domain_errors",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_malformed_loss_metadata",
+      "services/study-api/tests/test_notebook_http.py::test_http_notebook_old_pin_roundtrip_respects_exact_revision_permission",
+      "packages/engine/tests/study/test_portable_budget.py::test_inspect_exact_compact_utf8_boundary_and_one_byte_over",
+      "packages/engine/tests/study/test_portable_budget.py::test_real96mib_inspection_boundary_is_inclusive_and_next_byte_is_refused",
+      "packages/engine/tests/study/test_portable_budget.py::test_encoded_refusal_precedes_attachment_decode",
+      "packages/engine/tests/study/test_portable_budget.py::test_export_refuses_legal450_snapshot_49mib_fixture_without_dropping_pins",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_inspect_accepts_exact_boundary_and_refuses_one_extra_byte",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_export_is_the_explicit_stable_compact_representation_and_budget_error_is_atomic"
+    ],
+    "test_outcome": "PASS"
+  },
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "unknowns": [
+    "The baseline is the actual cc0f37ba PR266 runtime5309, not the final runtime. It does not establish every old course or ACL path.",
+    "The .study preview explicitly does not reconstruct the legacy Excalidraw/audio journal or a live work session; no .lesson equivalence is claimed."
+  ],
+  "limitations": [
+    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
+    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
+    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
+    "{\"mode\": \"OWN_AUTHORIZED_SOURCE\", \"verification\": \"Autorità del proprietario, non una licenza OSS dedotta. Codice nuovo e Core propri.\", \"primaryFiles\": []}",
+    "Root integration maps the preserved Studio baseline to the active final Classroom surface; the historical StudyWorkspace is not asserted to drive the new course-first UI."
+  ],
+  "created_at": "2026-10-20T04:24:42.386486+00:00",
+  "benefit": {
+    "defect_avoided": "Distinguere la ripresa portabile in lettura dal vecchio journal evita di dichiarare ricostruite sessioni o contenuti non rappresentati.",
+    "time_saved_minutes": null,
+    "measurement_method": "Confronto del baseline reale con il nuovo Classroom; export e riapertura reali, hash e limiti espliciti."
+  }
+}

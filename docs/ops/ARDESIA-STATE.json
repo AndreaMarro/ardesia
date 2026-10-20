@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-20T04:13:43.395014+00:00",
+  "observed_at": "2026-10-20T04:34:42.672422+00:00",
   "sha": "2a6548797e300e465abb554c949db740521b8352",
   "sha_semantics": "Exact frozen Core/API/browser candidate on loopback5323. Later docs/CI commits do not relabel earlier executions; UI62 at424 has identical application bytes through2a.",
   "milestone": "G0",
@@ -144,12 +144,54 @@
       "authorized_actor_projections_equal": 4,
       "database_restart": "NOT_PERFORMED",
       "report_sha256": "3326aaa17d755339968631acc362da8b708a9c2880762dffcdf9278a9e5c00ac"
+    },
+    "acceptance": {
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "counts": {
+        "PARTIAL": 26,
+        "PROVED_SCOPED": 49,
+        "NOT_RUN": 6,
+        "BLOCKED": 4
+      },
+      "register_sha256": "2e875ea3b8bc3235bfc4542f6642a6586a9d4b8e415d18ffe9dc07df9ef638a8",
+      "register_unmodified": true,
+      "globalG0": "NOT_CERTIFIED"
+    },
+    "fresh_capacity_final": {
+      "schema": "ardesia.fresh-http-capacity-review/v1",
+      "sourceCommit": "2a6548797e300e465abb554c949db740521b8352",
+      "runtimeProcessId": 24085,
+      "dataId": "05f4a05edde66bab",
+      "synthetic": true,
+      "editionId": "fresh-final-f09d06186648",
+      "setup": "actual verified teacher Core commands for edition/dates; remaining flow through real HTTP/Auth/PostgreSQL",
+      "raceMode": "FRESH_TWO_HTTP_CLIENTS_LAST_SEAT",
+      "raceStatuses": [
+        409,
+        200
+      ],
+      "confirmed": 10,
+      "waitlisted": 2,
+      "activeHolds": 0,
+      "winnerRetry": "EXACT_SAME_RECEIPT",
+      "status": "SCOPED_CAPACITY_ASSERTIONS_PASSED",
+      "datesHumanApproved": false,
+      "globalG0": "NOT_EVALUATED",
+      "runnerSha256": "cbf7c84ca40f360c27924b05e7fec9c1484405271d7f9340983bb564ac618c40"
+    },
+    "latest_ci": {
+      "source_commit": "7e26a6cfb81032e5b1584c6f4971faca4fe1099c",
+      "product_code": "IDENTICAL_TO_2a_ONLY_CI_AND_DOCS_CHANGED",
+      "status": "SUCCESS",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39368528800",
+      "mcp_tests": 21,
+      "mcp_seconds": 14.497
     }
   },
   "rea": {
     "version": "6.7.0",
     "docs_downloaded": 20,
-    "missions": "AUTHENTIC_R0_R1_R2_R3_R8_R4_R6_EVIDENCE_COLLECTED_FINAL_SIX_SHA_BOUND_RECEIPTS_MISSING",
+    "missions": "SIX_AUTHENTIC_SCOPED_RECEIPTS_PASS_ON_FROZEN_2a654879",
     "R0": {
       "capture": "COMPLETE",
       "deep_trace": "PARTIAL_WITH_LIMITS",
@@ -165,9 +207,19 @@
       "entry_visits": 139,
       "assessment": "139_PARTITIONED_91_PATTERNS_48_ACCESS; entry visit is not complete reverse engineering"
     },
-    "gate": "NOT_SATISFIED",
-    "latest_review": "SIX_ORIGINAL_FINDINGS_FIXED; FINAL_ACTUAL_UNICODE_5_CASES_AND_TWO_SUBMITTED_REVISIONS_REPLAY_IN_PROGRESS",
-    "latest_review_status": "FINAL_SIX_RECEIPTS_PENDING"
+    "gate": "PASS_REA_SUBGATE_NOT_GLOBAL_G0",
+    "latest_review": "SIX_PORTABLE_CONSUMER_BUDGET_UNICODE_FINDINGS_REPLAYED_AND_CLOSED",
+    "latest_review_status": "FINAL_REA_GATE_PASS_WITH_DECLARED_UNKNOWN",
+    "receipt_source_commit": "2a6548797e300e465abb554c949db740521b8352",
+    "receipt_sha256": {
+      "R0": "efcf51c8c39577b897aead862bd847760bf3fcd2e9035d4b904e47e01d00b1f4",
+      "R1": "8e31f228c5b2dd904b2ed905f506d5aadb912d4e55795abfcf81d292cace7818",
+      "R2": "ad54f0cd729094a02b6c829fe1b0dd4652610e187ef2757e8052809dcf2955bc",
+      "R3": "1901113b46e3dd26471c6308c159d84b21abe42c397f184befc263467b0b0542",
+      "R8": "ac3815deffe19a7da49505c23b7187c6bdbfd788eb44bb82f8670bc5d7334ecb",
+      "R6": "07eb7586051fbe8b75dc5fda48b56c2a5d2bc659e3bd327c4617e034daa7619a"
+    },
+    "raw_evidence_files": 176
   },
   "runtime": {
     "source_commit": "2a6548797e300e465abb554c949db740521b8352",
@@ -185,7 +237,7 @@
   "deploys": [],
   "trials": [],
   "blockers": [
-    "Six final authentic same-candidate REA receipts and G0 matrix pending",
+    "Original85criterion matrix:49scoped proved/26partial/6notrun/4blocked; REA subgate passes but globalG0 remains NOT_CERTIFIED.",
     "PostgreSQL/private-storage restore partial; invitations disabled",
     "Vercel Pro has no verified zero-additional-cost guarantee: user-approved local fallback, no deploy",
     "Human scientific/date and UX review required for G1",
@@ -194,10 +246,10 @@
     "Calendar Google NOT_CONFIGURED; MCP host ChatGPT/Claude UNKNOWN. Codex host proof only one earlier listing; no universal host equivalence."
   ],
   "next_actions": [
-    "Close final REA replay and assemble six authentic receipts for frozen2a using unchanged gate",
-    "Finish original85criterion acceptance audit without promoting blocked Vercel/future/human checks",
-    "Implement tutor course administration in isolated G1 branch, with fail-closed offer state and monotonic CAS",
-    "Complete isolated restore and human approval gates before launch"
+    "Integrate and verify the complete G1 tutor management slice after independent review, legacy-hold consent binding and schema4 backup/migration",
+    "Preserve frozen2a evidence and do not relabel its tests as new product-SHA evidence",
+    "Finish scoped original acceptance gaps, full isolated restore and authorized host interoperability",
+    "Honor Vercel zero-cost fallback, human approvals and future21Octevening checkpoint without simulation"
   ],
   "monitor": {
     "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",

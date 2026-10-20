@@ -1,0 +1,121 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R1",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-097"
+  ],
+  "target_kind": "THIRD_PARTY_AUTHORIZED",
+  "authorization_basis": "Demo AFFiNE anonima nel browser di ricerca dedicato, dati didattici originali e autorizzazione utente alla ricerca reversibile. Nessun account, trial o profilo personale. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "export_web_scripts",
+    "inspect_web_page",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Observed app.affine.pro asset runtime.d78202b1.js; remote commit UNKNOWN. Separate source0b69a6da21e8fd35beb85667bb8496d9b3852238.",
+  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "evidence": [
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/inspect.json",
+      "sha256": "ea3354565c3163fb63f515dce47cc4ec16232b3527878e6aa1b45c65dceb6a65"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/capture.json",
+      "sha256": "38cb0de53e0ad96a012cfc4093a349a663878e5856538da82225d2fa9591bb5c"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/identity-capture.json",
+      "sha256": "c1bc6094ee73adb680386c1d599b2c066a798e228126eb79833f7b52fa0f8598"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/export-evidence-v2.json",
+      "sha256": "8e08f93a3c80deaa395a54cca91608c78848f2fa6dee1973f0f4e05b292819c6"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/source-graph.json",
+      "sha256": "578f35753fd253a0ca8228ee25900acb160b7e0f864ae6997673bed656023b72"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/feature-trace.json",
+      "sha256": "8b29a92460f5baac98963d9f242b0e904b4d3e4a95f3e5eb2c4b640240c513d4"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/semantic-trace-v2.json",
+      "sha256": "81c51c7a847a3c032134081986536eab57c26a286846280e41e5d60f9a750f8b"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/semantic-influence.json",
+      "sha256": "cac8c72f08853e9dde45e80f85a18eccaa9e38bbf98b48f815c64a9026a6adca"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/final-2a654879/raw/R1/ui-packages/radix-graph-v2.json",
+      "sha256": "90b05ba879a0c77cb83be4d0f32da8e8d28fc3483e625db00cf4d1f253d01925"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/final-2a654879/contracts/R1-final-assimilation.md",
+      "sha256": "30b66dc8a5e7f9262ffa1a2e9342596b5fb87730c9e4022f6cf89872bf525923"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/final-2a654879/tests/R1-final-tests.json",
+      "sha256": "47b8b31077ca8342f60ab3715fd2f1d663fe09087006455839039d2b51d04536"
+    }
+  ],
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/components/SourceBoard.tsx",
+      "apps/web/src/components/sourceBoardModel.ts",
+      "apps/web/src/components/useSourceBoard.ts",
+      "apps/web/src/components/SourceLibrary.tsx",
+      "apps/studio/src/study/postit.ts",
+      "packages/engine/lessonos/study/store.py",
+      "packages/engine/lessonos/study/view_layout.py",
+      "packages/engine/lessonos/study/context.py"
+    ],
+    "test_names": [
+      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
+      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
+      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
+      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
+      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "packages/engine/tests/study/test_access.py::test_invitation_is_single_use_persistent_and_scoped",
+      "packages/engine/tests/study/test_access.py::test_invitation_expiry_revocation_and_concurrent_exchange"
+    ],
+    "test_outcome": "PASS"
+  },
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "unknowns": [
+    "AFFiNE SaaS deploy source commit and cloud-collaboration behavior remain unknown. Separate source pin/license does not prove SaaS/source equality.",
+    "CDP connect cannot recover pre-attach network events; completed feature steps do not establish whole-app equivalence.",
+    "Ardesia source/view/reference behavior is an original functional assimilation; no AFFiNE code transfer is claimed. RadixDialog1.3.1 MIT is actually used in Login, not claimed as a transplanted source editor."
+  ],
+  "limitations": [
+    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
+    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
+    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
+    "{\"mode\": \"FUNCTIONAL_ORIGINAL_ASSIMILATION\", \"license\": \"MIT for frontend/BlockSuite outside restricted directories; backend/native excluded; third-party components retain original licenses\", \"verification\": \"Retained primary LICENSE and source-revision.json; does not establish SaaS/source equality. No AFFiNE code supplied to product by this research.\", \"primaryFiles\": [\"rights/R1/source/LICENSE\", \"rights/R1/source/source-revision.json\"], \"reuseCandidate\": {\"component\": \"@radix-ui/react-dialog1.3.1\", \"license\": \"MIT\", \"primaryFile\": \"rights/R1/ui-packages/package/LICENSE\", \"status\": \"LICENSED_CANDIDATE; actual final dependency/integration audit pending\"}}",
+    "Root verified the retained LICENSED_CANDIDATE separately: @radix-ui/react-dialog1.3.1 is an actual final dependency imported by Login; installed package LICENSE is MIT. This does not claim any AFFiNE code transfer or SaaS/source equality."
+  ],
+  "created_at": "2026-10-20T04:24:42.621315+00:00",
+  "benefit": {
+    "defect_avoided": "Identità indipendenti delle viste e pin esatti impediscono che duplicare una vista duplichi l’originale o lo sostituisca con la head corrente.",
+    "time_saved_minutes": null,
+    "measurement_method": "REA AFFiNE e scenario SourceBoard finale: due viste, geometria indipendente, CAS, refresh esplicito e conservazione dei riferimenti."
+  }
+}
