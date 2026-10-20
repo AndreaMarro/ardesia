@@ -10,7 +10,8 @@ def _assigned_activity(store, principal, edition_id, activity_id, thread_id=None
         return None
     from .diary import get_diary
     assigned = [thread for thread in get_diary(store, principal, edition_id)['threads']
-                if thread['status'] in ('OPEN', 'PRACTISING', 'RECURRED')
+                if thread['editionId'] == edition_id
+                and thread['status'] in ('OPEN', 'PRACTISING', 'RECURRED')
                 and thread.get('sourceState') == 'CURRENT'
                 and thread.get('transferExercise', {}).get('exerciseId') == activity_id
                 and (thread_id is None or thread['threadId'] == thread_id)]

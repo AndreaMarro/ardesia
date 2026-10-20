@@ -7,7 +7,7 @@ DOMAIN = 'Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppa
 HINTS = (
     'Individua prima quale grandezza rimane fissata: differenza di pressione oppure portata.',
     'Confronta le potenze del raggio: il rapporto compare alla quarta potenza.',
-    'A pressione fissata Q/Q0 = (r/r0)^4; a portata fissata Δp/Δp0 = 1/(r/r0)^4.',
+    'A pressione fissata Q/Q₀ = (r/r₀)^4 / [(η/η₀)(L/L₀)]; a portata fissata Δp/Δp₀ è il reciproco. Se viscosità e lunghezza restano costanti, i loro rapporti valgono uno.',
 )
 
 
@@ -26,7 +26,13 @@ def evaluate_activity(activity_id, parameters, attempt=None):
     boundary = parameters.get('boundary','pressure')
     if boundary not in ('pressure','flow'):
         raise StudyError('invalid_boundary')
-    ratio = values['radiusRatio'] ** 4 / (values['viscosity'] * values['length'])
+    radius_power = values['radiusRatio'] ** 4
+    resistance_factors = values['viscosity'] * values['length']
+    if radius_power <= 0 or resistance_factors <= 0:
+        raise StudyError('invalid_physical_domain')
+    ratio = radius_power / resistance_factors
+    if not math.isfinite(ratio) or ratio <= 0:
+        raise StudyError('invalid_physical_domain')
     if boundary == 'flow':
         ratio = 1 / ratio
     if not math.isfinite(ratio):

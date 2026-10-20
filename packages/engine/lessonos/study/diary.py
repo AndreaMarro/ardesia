@@ -324,6 +324,15 @@ def record_practice(store, principal, thread_id, submission_id, exercise_id, par
         if (context.get('threadId') != thread_id or context.get('exerciseId') != exercise_id
                 or canonical(context.get('parameters')) != canonical(plan['parameters'])):
             raise StudyError('transfer_receipt_mismatch')
+        # A later registration does not make an earlier answer new evidence.
+        # Both assignment and original submission must follow the latest error.
+        observed_seq = thread['observations'][-1]['eventSeq']
+        assigned_seq = context.get('assignedAfterEventSeq')
+        created = c.execute("SELECT seq FROM study_events WHERE kind='submission.received' AND json_extract(payload,'$.receiptId')=?",
+            (submission['receipt_id'],)).fetchone()
+        if (type(assigned_seq) is not int or assigned_seq < observed_seq
+                or created is None or created[0] <= observed_seq):
+            raise StudyError('new_evidence_required')
         refs = json.loads(submission['source_refs'])
         validate_sources(store, refs)
         prior_sources = {o['source']['resourceId'] for o in thread['observations']}
