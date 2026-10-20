@@ -96,3 +96,7 @@ Candidato0ba, integrato conC8 su f4384eed. Root ricalcola87entry e16blob; review
 ## 2026-10-20 — Riaudit C8 sul combinato f438
 
 26viste Chrome/Axe4.14/Auth/PG,1440/390,0violazioni/overflow/pageerror;4actorchecks e72GET complessivi, skipMAIN4 e modalTab/Escape/focusrestore2. Non retag8f: API/Web entrambif438 da snapshot immutabile clonePID60175. Tentativi incompleti networkidle0viste e strictloader4viste preservati; attesa finale verifica tutte le superfici loading+font+2frame. Nessun prodotto/regolaAxe modificato. UXumana/fullWCAG e azionimobili mutanti restanoNOTcertificati.
+
+## 2026-10-20 — REA082 verificata e recupero materiale dei dossier
+
+Root verifica139file/21.393.980B,21envelope originali; metodoV8setMultiple191B esatto nelpinprimario. Non equivale a interobundle/semantica o integrazioneprodotto. DuePDFsyntheticstesso primoID eSHAdiversi confermano che il fingerprint di vista non èautorità di revisione/ACL. UNKNOWN/fallimenti/captureincomplete restanooriginali; npm6.4.299 e deploy6.5.260 distinti. Prototipo082ADAPTER separato, nessuna nuova dipendenzaprodotto. Err60 e SF_DATALESS osservati: normaleFoundationdownload richiesto solo182filepropri082/C7,22.303.459B;0dataless dopo richiesta, poi139hash validi e copia ignorata verificata incheckout/tmp. Nessuna Evidence riemessa o impostazione globale modificata. R6f438/7binding inelaborazione separata.
