@@ -133,11 +133,17 @@ CREATE INDEX IF NOT EXISTS idx_consent_events_rel
     ON consent_events(teacher_id, class_id);
 """
 class SQLiteStore(Store):
-    def __init__(self, db_path: str = ":memory:", *, check_same_thread: bool = True) -> None:
-        self._conn = sqlite3.connect(db_path, check_same_thread=check_same_thread)
+    def __init__(self, db_path: str = ":memory:", *, check_same_thread: bool = True, initialize: bool = True) -> None:
+        if initialize:
+            self._conn = sqlite3.connect(db_path, check_same_thread=check_same_thread)
+        else:
+            # Request paths may open an existing DB, never create one in a race.
+            from pathlib import Path as FilePath
+            self._conn = sqlite3.connect(FilePath(db_path).resolve().as_uri()+'?mode=rw',
+                                         uri=True,check_same_thread=check_same_thread)
         self._conn.row_factory = sqlite3.Row
         self._in_transaction: bool = False
-        self._migrate()
+        if initialize:self._migrate()
 
     def _migrate(self) -> None:
         current = self._conn.execute("PRAGMA user_version").fetchone()[0]

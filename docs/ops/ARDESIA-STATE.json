@@ -464,13 +464,41 @@
       "globalG0": "NOT_CERTIFIED",
       "globalG1": "NOT_READY",
       "report": "docs/ops/ARDESIA-C8-RECHECK-f4384eed.json"
+    },
+    "administrative_registers": {
+      "status": "BACKEND_COMPOSED_PENDING_EXACT_COMBINED_VERIFICATION_UI_FIX_AND_LIVE_PG",
+      "builderCommit": "767ddcd84ad0debf5467051475732404b869ec4e",
+      "baseSuite": {
+        "source": "b37fd1977e348444ed634856dc9a66675bf9ef5f",
+        "pass": 592,
+        "pgSkipped": 18
+      },
+      "latestFocused": {
+        "source": "767ddcd84ad0debf5467051475732404b869ec4e",
+        "pass": 10
+      },
+      "independentLatest": {
+        "numeric422": 11,
+        "unicode": "422_SAFE",
+        "astral": "200",
+        "nfcDuplicate": "409",
+        "rejectedFacts": 0,
+        "cookiePreserved": true,
+        "reportSha256": "c48330beebe88d06e1eacfa9ae2e51e656411d41ec9ae4aad19928880cc99be9"
+      },
+      "uiInitial": "2d6002b17bedc567bf3057d6265b459807235bc3",
+      "uiFinding": "EXACT_PAYMENT_PIN_NOT_FULLY_VERIFIED_ON_HISTORY_REFRESH;SUCCESSOR_PENDING",
+      "livePgRls": "NOT_RUN",
+      "schema5MigrationExecuted": false,
+      "tutorTenStudentsTwoInterested": "NOT_RUN",
+      "noSecondCore": true
     }
   },
   "rea": {
     "last_certified_product_sha": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
     "last_original_G0": "PASS_REA_SUBGATE_ONLY",
     "last_original_G1": "PASS_REA_SUBGATE_ONLY",
-    "current_binding": "ACCEPTED_CURRENT_SCOPED_ROOT_REVIEW_ORIGINAL_G0_G1_REA_SUBGATES_PASS",
+    "current_binding": "ACCEPTED_F438_SCOPED_RECEIPTS;NEW_REGISTER_SOURCE_REBIND_PENDING_VERIFICATION",
     "catalog_targets": 139,
     "entry_visits": 139,
     "catalog_limit": "ENTRY_VISIT_IS_NOT_COMPLETE_REVERSE_ENGINEERING",
@@ -527,7 +555,8 @@
   },
   "infrastructure": {
     "local_supabase": "OWNED_LOOPBACK_ONLY_SCHEMA4_MIGRATIONS11",
-    "vercel": "EXISTING_PRO_WORKSPACE_ZERO_ADDITIONAL_COST_UNVERIFIED_LOCAL_FALLBACK"
+    "vercel": "EXISTING_PRO_WORKSPACE_ZERO_ADDITIONAL_COST_UNVERIFIED_LOCAL_FALLBACK",
+    "current_owned_docker_observation": "CLI_GUARD_COULD_NOT_VERIFY_TARGET_RUNNING;DIRECT_SOCKET_GET_VERSION_TIMEOUT_8S;NO_MUTATION_OR_SCHEMA5_MIGRATION"
   },
   "operational_incidents": {
     "python_redirection": "ZERO_APPENDED_BYTES_VERIFIED_EXIT137_CAUSE_UNKNOWN",
@@ -553,17 +582,28 @@
       "productionEnvironment": false,
       "cost": "UNKNOWN_NOT_ZERO",
       "mcpInspection": "403_SCOPE_FORBIDDEN",
-      "cliFallback": "NOT_INSTALLED",
+      "cliFallback": "EXISTING_AUTH_FILE_PRESENCE_VERIFIED_NO_SECRET_READ;ISOLATED_CLI64.7.0_INSTALL_PENDING",
       "cuaInitialAttempt": "TIMEOUT_KERNEL_RESET",
-      "remediation": "Add documented minimatch codex/ardesia-* false in repository; explicit candidate-ref push only; attempt normal authorized read/delete of new preview without modifying existing production services"
+      "remediation": "Add documented minimatch codex/ardesia-* false in repository; explicit candidate-ref push only; attempt normal authorized read/delete of new preview without modifying existing production services",
+      "cuaFollowup": "SECOND_GETSTATE_TIMEOUT_KERNEL_RESET;NO_MORE_UNCHANGED_RETRIES"
     }
   },
   "historical_state": "docs/ops/ARDESIA-STATE-a3cdf6ba.json",
   "architecture": [
     "docs/adr/ADR-0006-change-tolerance-and-growth.md",
-    "docs/adr/ADR-0007-encoded-body-admission.md"
+    "docs/adr/ADR-0007-encoded-body-admission.md",
+    "docs/adr/ADR-0008-administrative-registers.md"
   ],
-  "deploys": [],
+  "deploys": [
+    {
+      "sha": "9e0ebda8a8170e1d26e02705ef32dae0e77feb7c",
+      "environment": "Preview",
+      "productionEnvironment": false,
+      "origin": "UNINTENDED_AUTOMATIC_GIT_INTEGRATION",
+      "githubDeploymentId": 7196113616,
+      "status": "DELETION_AND_ADDED_COST_NOT_VERIFIED"
+    }
+  ],
   "trials": [],
   "merged": false,
   "blockers": [

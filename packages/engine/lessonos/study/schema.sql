@@ -151,3 +151,45 @@ UPDATE study_schema SET version=4 WHERE version=3;
 CREATE INDEX IF NOT EXISTS study_editions_teacher_id ON study_editions(teacher_id,id);
 CREATE INDEX IF NOT EXISTS study_members_student_id ON study_members(student_id,edition_id);
 CREATE INDEX IF NOT EXISTS study_holds_edition_state_expiry ON study_holds(edition_id,state,expires_at);
+
+CREATE TABLE IF NOT EXISTS study_attendance_records(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id),
+ session_id TEXT NOT NULL, student_id TEXT NOT NULL REFERENCES students(student_id),
+ revision INTEGER NOT NULL CHECK(revision BETWEEN 1 AND 9007199254740991),
+ supersedes_record_id TEXT, previous_revision INTEGER NOT NULL CHECK(previous_revision=revision-1),
+ status TEXT NOT NULL CHECK(status IN ('PRESENT','ABSENT','UNRECORDED')),
+ recorded_by TEXT NOT NULL REFERENCES teachers(teacher_id), recorded_at REAL NOT NULL,
+ reason TEXT NOT NULL CHECK(length(reason)<=1000), management_revision INTEGER NOT NULL CHECK(management_revision>=0),
+ session_snapshot TEXT NOT NULL,
+ receipt_id TEXT NOT NULL UNIQUE REFERENCES study_receipts(id) DEFERRABLE INITIALLY DEFERRED,
+ CHECK((revision=1 AND supersedes_record_id IS NULL) OR (revision>1 AND supersedes_record_id IS NOT NULL AND length(trim(reason))>0)),
+ UNIQUE(edition_id,session_id,student_id,revision),
+ UNIQUE(id,edition_id,session_id,student_id,revision),
+ FOREIGN KEY(supersedes_record_id,edition_id,session_id,student_id,previous_revision)
+  REFERENCES study_attendance_records(id,edition_id,session_id,student_id,revision)
+);
+CREATE INDEX IF NOT EXISTS study_attendance_cell ON study_attendance_records(edition_id,session_id,student_id,revision DESC);
+CREATE INDEX IF NOT EXISTS study_attendance_student ON study_attendance_records(student_id);
+CREATE TABLE IF NOT EXISTS study_manual_payment_records(
+ id TEXT PRIMARY KEY, entry_id TEXT NOT NULL, edition_id TEXT NOT NULL REFERENCES study_editions(id),
+ student_id TEXT NOT NULL REFERENCES students(student_id), revision INTEGER NOT NULL CHECK(revision BETWEEN 1 AND 9007199254740991),
+ supersedes_record_id TEXT, previous_revision INTEGER NOT NULL CHECK(previous_revision=revision-1),
+ status TEXT NOT NULL CHECK(status IN ('RECORDED_MANUALLY','VOIDED')),
+ amount_minor INTEGER NOT NULL CHECK(amount_minor BETWEEN 1 AND 1000000), currency TEXT NOT NULL CHECK(currency='EUR'),
+ external_reference TEXT NOT NULL CHECK(length(external_reference) BETWEEN 1 AND 128),
+ external_reference_key TEXT NOT NULL CHECK(length(external_reference_key) BETWEEN 1 AND 128),
+ recorded_by TEXT NOT NULL REFERENCES teachers(teacher_id), recorded_at REAL NOT NULL,
+ reason TEXT NOT NULL CHECK(length(reason)<=1000), offer_snapshot TEXT NOT NULL,
+ receipt_id TEXT NOT NULL UNIQUE REFERENCES study_receipts(id) DEFERRABLE INITIALLY DEFERRED,
+ CHECK((revision=1 AND supersedes_record_id IS NULL AND entry_id=id) OR (revision>1 AND supersedes_record_id IS NOT NULL AND length(trim(reason))>0)),
+ UNIQUE(entry_id,revision), UNIQUE(id,entry_id,edition_id,student_id,revision),
+ FOREIGN KEY(supersedes_record_id,entry_id,edition_id,student_id,previous_revision)
+  REFERENCES study_manual_payment_records(id,entry_id,edition_id,student_id,revision)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS study_manual_reference ON study_manual_payment_records(recorded_by,external_reference_key) WHERE revision=1;
+CREATE INDEX IF NOT EXISTS study_manual_edition_entry ON study_manual_payment_records(edition_id,entry_id,revision DESC);
+CREATE INDEX IF NOT EXISTS study_manual_student ON study_manual_payment_records(student_id);
+
+UPDATE study_schema SET version=5 WHERE version=4;
+
+CREATE INDEX IF NOT EXISTS study_interests_edition ON study_interests(edition_id);

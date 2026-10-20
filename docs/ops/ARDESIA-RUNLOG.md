@@ -110,3 +110,8 @@ Root indipendente verifica96file nuovi/41.996.467B,158riferimenti storici con ha
 ## 2026-10-20 — Correzione push e preview automatica Vercel
 
 Il root ha usato erroneamente pushHEAD anzichéref candidato: creato brevemente codex/ardesia-api-dispatch-20261020, fuori dalle due esclusioni Vercel. GitHub registra deploy7196113616 su9e0 comePreview/nonproduction alle09:21:33Z; ramo rimosso e candidato corretto aggiornato senzaforce. Costo ed eliminazione preview non verificati: non zero/nondichiarare nodeploy. MCPgetdeployment403scope, CLI noninstallata, primo tentativoCUAtimeout; nessun aggiramento/autenticazione alternativa. Vercel documenta minimatch e defaulttrue per rami non specificati: aggiunta esclusione codex/ardesia-*false, solo rami di questa impresa. Nessuna modifica ai servizi/ramo produzione. In corso verifica/rimozione del solo nuovo artefatto, nessun retrydeploy.
+
+
+## 2026-10-20 — Backend registro composto con C7, verifica integrata pendente
+
+Composti5b→93a→b37→767 suC7/C8corrente,19file; mergeApp conserva marker cookie/missing, headerfidato eabortsessione. Tre finding indipendenti reali chiusi nel perimetroSQLite/ASGI: Unicode, lettura pagina/totale atomica, numeri nonfiniti; logbase592/18skip è b37 e10focused è767, senza retagfullPASS. UI2d ha findingpinpersona/riferimento, fixinreview. Il checkpoint del solo clone non èpartito: primo readerIOstorage.env ritiratoTERM conidentità verificata e nessunadirectorybackupcreata; secondopreflight nonverificaDockerState. GETversiondel solosocketproprio timeout8s. NessunDDL/schema5/riavvioDB/signalAPI eseguito. PG/RLS, percorso10+2 ebackupnuovitablesNOT_RUN; nessunPASSglobale. ADR0008 documenta confini, CAS/storia, querybounded e limiti.

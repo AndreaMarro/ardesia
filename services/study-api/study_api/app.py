@@ -37,8 +37,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     from .body_admission import BodyBudgetFastAPI, body_limit, boundary_error, validate_body_admission
     validate_body_admission(request_body_budget, request_body_wait)
     from lessonos.study.operations import resume_erasures
+    startup_error=None
     if runtime is None:
-        resume_erasures(Path(db_path).parent)
+        try:resume_erasures(Path(db_path).parent,initialize=False)
+        except StudyError as error:startup_error=(error.code,error.status)
     store_slots = Semaphore(request_store_limit)
     cookie_options={'path':'/','httponly':True,'secure':secure_cookies,'samesite':'strict'}
 
@@ -101,7 +103,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             raise StudyError('server_busy',503) from None
         try:
             def open_store():
-                return runtime.open(token) if runtime else StudyStore(db_path,check_same_thread=False)
+                if startup_error is not None:raise StudyError(*startup_error)
+                return runtime.open(token) if runtime else StudyStore(db_path,check_same_thread=False,initialize=False)
             # Shields surround ownership transfer and disposal separately;
             # no cancel scope crosses the dependency yield/handler boundary.
             with CancelScope(shield=True):
@@ -153,8 +156,13 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
                 try:allowed,retry=await allow_attempt(request)
                 except StudyError as error:
-                    if error.code!='server_busy':raise
-                    return busy_response(logout=request.method=='DELETE' and request.url.path=='/study/session')
+                    logout_intent=request.method=='DELETE' and request.url.path=='/study/session'
+                    if error.code=='server_busy':return busy_response(logout=logout_intent)
+                    if logout_intent:
+                        denied=JSONResponse({'error':error.code,'serverRevocation':'UNCONFIRMED'},status_code=error.status)
+                        clear_session_cookie(denied)
+                        return denied
+                    return await domain_error(request,error)
                 if not allowed:return JSONResponse({'error':'rate_limited'},status_code=429,headers={'Retry-After':str(retry)})
         response = await call_next(request)
         response.headers['Cache-Control'] = 'no-store'
@@ -455,6 +463,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     from .admin_routes import install_admin_routes
     install_admin_routes(app,store_dependency,authenticate)
+    from .register_routes import install_register_routes
+    install_register_routes(app,store_dependency,authenticate)
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
     from .calendar_routes import install_calendar_routes

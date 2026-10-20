@@ -42,18 +42,24 @@ def _edition_view(row, descriptor):
 
 
 class StudyStore:
-    def __init__(self, path: str | Path, clock=time.time, *, check_same_thread=True):
+    """Operator initialization is explicit; HTTP opens only a current existing DB.
+
+    initialize=False never runs either legacy or Study schema migrations.
+    """
+    def __init__(self, path: str | Path, clock=time.time, *, check_same_thread=True, initialize=True):
         self.path = Path(path)
-        self.path.parent.mkdir(parents=True, exist_ok=True)
+        if not initialize and not self.path.is_file():
+            raise StudyError('database_schema_not_ready',503)
+        if initialize:self.path.parent.mkdir(parents=True, exist_ok=True)
         self.clock = clock
         with data_lock(self.path):
             if self.path.exists() and self.path.stat().st_size<100:
                 raise StudyError('database_integrity_failure',503)
-            self.legacy = SQLiteStore(str(self.path), check_same_thread=check_same_thread)
+            self.legacy = SQLiteStore(str(self.path), check_same_thread=check_same_thread, initialize=initialize)
             self.connection = self.legacy._conn
             self.connection.execute('PRAGMA foreign_keys=ON')
             self.connection.execute('PRAGMA busy_timeout=5000')
-            self.connection.execute('PRAGMA journal_mode=WAL')
+            if initialize:self.connection.execute('PRAGMA journal_mode=WAL')
             present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
             if not present and self.connection.execute(
                 "SELECT 1 FROM sqlite_master WHERE type='table' AND name GLOB 'study_*' LIMIT 1"
@@ -61,16 +67,22 @@ class StudyStore:
                 self.close()
                 raise StudyError('database_integrity_failure',503)
             if present:
-                from .schema_contract import validate_schema
+                from .schema_contract import validate_schema, ADMIN_COLUMNS
                 versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
                 tables={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
                 columns={row[1] for row in self.connection.execute('PRAGMA table_info(study_editions)')}
                 try:
                     validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,
-                        {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True)
+                        {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=initialize,admin_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS})
                 except BaseException:
                     self.close()
                     raise
+            if not initialize:
+                from lessonos.store.sqlite import SCHEMA_VERSION
+                if not present or self.connection.execute('PRAGMA user_version').fetchone()[0]!=SCHEMA_VERSION:
+                    self.close()
+                    raise StudyError('database_schema_not_ready',503)
+                return
             editions_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_editions'").fetchone()
             if editions_present:
                 columns={row[1] for row in self.connection.execute('PRAGMA table_info(study_editions)')}

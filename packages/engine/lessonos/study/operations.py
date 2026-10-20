@@ -70,10 +70,13 @@ def _existing_database(directory, *, allow_legacy_catalog=False):
         missing=required-present
         legacy_missing={name for name in required if name.startswith('study_calendar_')} if schema[0][0]==2 else set()
         if allow_legacy_catalog and schema[0][0]==2:legacy_missing.add('study_edition_packs')
+        if schema[0][0] in (1,2,3,4):
+            from .schema_contract import ADMIN_COLUMNS
+            legacy_missing.update(ADMIN_COLUMNS)
         if missing-legacy_missing:raise ValueError('database_integrity_schema')
-        from .schema_contract import validate_schema
+        from .schema_contract import validate_schema, ADMIN_COLUMNS
         from .models import StudyError
-        try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True)
+        try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True,admin_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS})
         except StudyError:raise ValueError('database_integrity_schema') from None
         return connection
     except BaseException:
@@ -127,9 +130,9 @@ def _preview(store,actor):
     row=store.connection.execute('SELECT role FROM study_principals WHERE id=?',(actor,)).fetchone()
     if row is None:
         if c.execute('SELECT 1 FROM students WHERE student_id=?',(actor,)).fetchone():raise ValueError('legacy_scope_requires_manual_review')
-        return {'resources':0,'submissions':0,'assets':0}
+        return {'resources':0,'submissions':0,'assets':0,'attendanceRecords':0,'manualPaymentRecords':0}
     if row['role']!='student':raise ValueError('student_only')
-    return {label:store.connection.execute(f'SELECT COUNT(*) FROM {table} WHERE {column}=?',(actor,)).fetchone()[0] for label,table,column in [('resources','study_resources','owner_id'),('submissions','study_submissions','student_id'),('assets','study_assets','owner_id')]}
+    return {label:store.connection.execute(f'SELECT COUNT(*) FROM {table} WHERE {column}=?',(actor,)).fetchone()[0] for label,table,column in [('resources','study_resources','owner_id'),('submissions','study_submissions','student_id'),('assets','study_assets','owner_id'),('attendanceRecords','study_attendance_records','student_id'),('manualPaymentRecords','study_manual_payment_records','student_id')]}
 
 
 def _erase_rows(store,actor):
@@ -138,6 +141,9 @@ def _erase_rows(store,actor):
     submissions={row[0] for row in c.execute('SELECT id FROM study_submissions WHERE student_id=?',(actor,))}
     reviews={row[0] for row in c.execute('SELECT r.id FROM study_reviews r JOIN study_feedback f ON f.id=r.candidate_id JOIN study_submissions s ON s.id=f.submission_id WHERE s.student_id=?',(actor,))}
     receipts=set()
+    for table in ('study_attendance_records','study_manual_payment_records'):
+        receipts.update(row[0] for row in c.execute(f'SELECT receipt_id FROM {table} WHERE student_id=?',(actor,)))
+        c.execute(f'DELETE FROM {table} WHERE student_id=?',(actor,))
     related_ids=resources|submissions|reviews|{actor}
     def references(value,ids):
         if isinstance(value,str):return value in ids
@@ -178,11 +184,11 @@ def _erase_rows(store,actor):
     c.execute('INSERT OR IGNORE INTO study_erased_actors VALUES(?)',(actor,))
 
 
-def erase_student(source,actor,*,apply=False):
+def erase_student(source,actor,*,apply=False,initialize=True):
     source=Path(source)
     _validate_blob_directory(source)
     existing=_existing_database(source);existing.close()
-    store=StudyStore(source/'study.sqlite')
+    store=StudyStore(source/'study.sqlite',initialize=initialize)
     try:
         with data_lock(store.path):
             _validate_blob_directory(source)
@@ -215,10 +221,10 @@ def _validate_blob_directory(source):
         if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(directory.resolve()):raise ValueError('blob_integrity_path')
 
 
-def resume_erasures(source):
+def resume_erasures(source,*,initialize=True):
     source=Path(source);ledger=source/'erasure-ledger.json'
     actors=_ledger(ledger) if ledger.exists() else []
-    for actor in actors:erase_student(source,actor,apply=True)
+    for actor in actors:erase_student(source,actor,apply=True,initialize=initialize)
     return {'replayed':len(actors)}
 
 

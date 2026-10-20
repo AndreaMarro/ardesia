@@ -6,6 +6,7 @@ import sqlite3
 import pytest
 from lessonos.study.store import StudyStore
 from lessonos.study.models import StudyError
+from lessonos.study.schema_contract import CURRENT_SCHEMA,ADMIN_COLUMNS
 from lessonos.study import editions
 from lessonos.study.groups import configure_sessions,reserve_seat
 from lessonos.study.operations import _existing_database,check_data
@@ -178,11 +179,14 @@ def test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repa
     store.add_test_member(tutor,eid,student.id)
     store.close()
     with sqlite3.connect(tmp_path/'study.sqlite') as raw:
+        raw.execute('DROP TABLE study_attendance_records')
+        raw.execute('DROP TABLE study_manual_payment_records')
+        raw.execute('ALTER TABLE study_holds DROP COLUMN offer_revision')
         raw.execute('UPDATE study_schema SET version=3')
         raw.execute('ALTER TABLE study_editions DROP COLUMN management_revision')
     raw.close()
     upgraded=StudyStore(tmp_path/'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0]==4
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
     assert upgraded._edition_access(student,eid)['state']=='draft'
     assert editions.admin_edition(upgraded,tutor,eid)['managementRevision']==0
     upgraded.close()
@@ -198,7 +202,8 @@ def test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repa
 
 def test_shared_schema_contract_rejects_unknown_or_incomplete_features():
     from lessonos.study.schema_contract import validate_schema,TABLES_V3
-    validate_schema(4,TABLES_V3,{'management_revision'},{'offer_revision'})
+    validate_schema(4,TABLES_V3,{'management_revision'},{'offer_revision'},allow_upgrade=True)
+    validate_schema(CURRENT_SCHEMA,TABLES_V3|set(ADMIN_COLUMNS),{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS)
     with pytest.raises(StudyError,match='newer_schema'):validate_schema(99,TABLES_V3,{'management_revision'},{'offer_revision'})
     with pytest.raises(StudyError,match='database_integrity_failure'):validate_schema(4,TABLES_V3-{'study_calendar_cache'},{'management_revision'},{'offer_revision'})
     with pytest.raises(StudyError,match='database_integrity_failure'):validate_schema(4,TABLES_V3,set(),{'offer_revision'})
@@ -277,5 +282,5 @@ def test_legacy_lessonos_without_any_study_table_can_bootstrap(tmp_path):
     path=tmp_path/'legacy-only.sqlite'
     legacy=SQLiteStore(str(path));legacy.close()
     store=StudyStore(path)
-    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==4
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
     store.close()
