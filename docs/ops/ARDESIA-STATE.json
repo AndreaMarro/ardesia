@@ -1,51 +1,46 @@
 {
-  "observed_at": "2026-10-20T03:18:17Z",
-  "sha": "b65e8637b5ac81a5813ccf8102eef45928ba06d8",
-  "sha_semantics": "Exact Core/API test tree, contained in pushed head b00b6da5; later documentation commits do not certify later product changes. Runtime5321 still C2.",
+  "observed_at": "2026-10-20T03:40:00Z",
+  "sha": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+  "sha_semantics": "Exact frozen Core/API/browser candidate; later documentation commits do not attest later product changes. Product served on owned loopback5323 from detached worktree.",
   "milestone": "G0",
   "statuses": {
     "G0": "IN_PROGRESS_NOT_CERTIFIED",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "shared_core": "384_STUDY_HTTP_TESTS_PASS_INCLUDING_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
+    "shared_core": "391_STUDY_HTTP_TESTS_PASS_INCLUDING_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
     "independent_auth_review": "2_REAL_AUTH_PG_LOGOUT_RECOVERY_PROVIDER_FAILURE_PASS",
-    "engine": "2323_PASS_22_DECLARED_SKIP",
-    "web": "AUDIT_FIXES_COMMITTED_MULTICOURSE_TAYLOR_NOTEBOOK_CONSUMER_IN_REVIEW",
+    "engine": "GITHUB_CI_PASS_AT_fe9995ca_LOCAL_PREVIOUS_2323_PASS_22_SKIP",
+    "web": "REAL_COURSE_SOURCEBOARD_AND_THREE_VIEWPORT_ANALYSIS_BROWSER_PASS_G0_STILL_PENDING",
     "calendar": "MOCK_ICS_DST_IMPLEMENTATION_IN_PROGRESS_GOOGLE_NOT_CONFIGURED",
     "mcp": "PRIMARY_RESEARCH_DONE_NOT_IMPLEMENTED"
   },
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "verification": {
     "current_core_http": {
-      "source_commit": "b65e8637b5ac81a5813ccf8102eef45928ba06d8",
-      "passed": 384,
+      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+      "passed": 391,
       "skipped": 0,
-      "seconds": 22.55,
-      "log_sha256": "bc40b2ab845ba0a7cdb78b5e5d19266c570ecceefa6873ace1b3665dc8dbd941"
+      "seconds": 31.96,
+      "log_sha256": "71530404deddc48b49968f7a1602d99356b172cde280e54b1eaa68a68fa33c00"
     },
     "independent_auth_review": {
       "passed": 2,
       "seconds": 1.86,
       "log_sha256": "94b60304ea37e3181ae56ad2264b60d2fd2e81a9120723e282acb1a424d3b12b"
     },
-    "engine": {
-      "passed": 2323,
-      "skipped": 22,
-      "seconds": 29.81,
-      "live_inference": "NOT_RUN",
-      "postgres": "EXERCISED_SEPARATELY_IN_384",
-      "log_sha256": "eea6a78f7f48d27f5a3b8cf6207e2f7aaaad48068aacf6e8064a7eea3fe9ee76"
-    },
     "last_browser_candidate": {
-      "source_commit": "a6646e7d58892afee624b89f68c6ba694f4aea9f",
+      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
       "http_assertions": 349,
       "http_requests": 170,
       "failures": 0,
-      "web": "PASS",
-      "source_board": "PASS",
-      "cold_application_restart": "ACTUAL_OWNED_PROCESS_RESTART_SAME_PG_3_AUTHORIZED_PROJECTIONS_EQUAL",
-      "database_restart": "NOT_PERFORMED",
-      "globalG0": "NOT_EVALUATED"
+      "web": "PASS_16_SECONDS",
+      "source_board": "PASS_16_6_SECONDS",
+      "analysis": "ACTUAL_AUTH_PG_390_820_1440_PASS_EXACT_PARAMETER_RECEIPT_AND_DENIALS",
+      "sampled_axe": "ZERO_VIOLATIONS_ON_THREE_ANALYSIS_STATES",
+      "globalG0": "NOT_CERTIFIED",
+      "http_report_sha256": "d75f91f0289a81b14d1f43f6af891b891dff558be3b5c397f202cdfc10165484",
+      "web_report_sha256": "4fd05495b9cc08737fbfc5bc700ddcf6e7c4c3b8ae3ecdd575317b0eb6d4589e",
+      "sourceboard_report_sha256": "f5cb7b3b3b72532672ea6ea565a3f1a15b7c471b6ca11e1feae0ae7dcfb3cab7"
     },
     "restore": {
       "status": "PARTIAL",
@@ -55,6 +50,44 @@
       "missing_fixture_asset_objects": 15,
       "auth_storage_services_rebuilt": false,
       "readiness_changed": false
+    },
+    "previous_engine_local": {
+      "passed": 2323,
+      "skipped": 22,
+      "seconds": 29.81,
+      "live_inference": "NOT_RUN",
+      "postgres": "EXERCISED_SEPARATELY_IN_384",
+      "log_sha256": "eea6a78f7f48d27f5a3b8cf6207e2f7aaaad48068aacf6e8064a7eea3fe9ee76"
+    },
+    "engine_ci": {
+      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+      "status": "SUCCESS",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39365047619/job/118439855088",
+      "live_inference": "NOT_RUN",
+      "live_postgres": "EXERCISED_SEPARATELY_IN_ROOT_391"
+    },
+    "earlier_fresh_capacity": {
+      "source_commit": "108ce860c77df438e91a49be738abf7b6248f6ef",
+      "mode": "FRESH_TWO_REAL_HTTP_CLIENTS_LAST_SEAT",
+      "statuses": [
+        409,
+        200
+      ],
+      "confirmed": 10,
+      "waitlisted": 2,
+      "active_holds": 0,
+      "winner_retry": "EXACT_SAME_RECEIPT",
+      "not_relabelled_as_latest_sha": true
+    },
+    "earlier_cold_restart": {
+      "pids": [
+        16983,
+        18390
+      ],
+      "data_id": "05f4a05edde66bab",
+      "authorized_actor_projections_equal": 4,
+      "source_change": "108ce860_TO_28e16083_ONLY_E2E_FIXTURE_SCOPE_PRODUCT_BYTES_IDENTICAL",
+      "database_restart": "NOT_PERFORMED"
     }
   },
   "rea": {
@@ -77,14 +110,16 @@
       "assessment": "139_PARTITIONED_91_PATTERNS_48_ACCESS; entry visit is not complete reverse engineering"
     },
     "gate": "NOT_SATISFIED",
-    "latest_review": "FOUND_HISTORICAL_CONSUMER_GAP_AND_EXPORT_OVER_HTTP_IMPORT_BUDGET",
-    "latest_review_status": "FIXES_IN_PROGRESS_NOT_CERTIFIED"
+    "latest_review": "FIVE_PORTABLE_CONSUMER_SIZE_SCOPE_FINDINGS_FIXED_AND_PRODUCT_TESTED_REA_REPLAY_PENDING",
+    "latest_review_status": "R6_AUTHENTIC_REPLAY_IN_PROGRESS_FINAL_RECEIPTS_PENDING"
   },
   "runtime": {
-    "source_commit": "a6646e7d58892afee624b89f68c6ba694f4aea9f",
-    "origin": "http://127.0.0.1:5321",
+    "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+    "origin": "http://127.0.0.1:5323",
     "dataId": "05f4a05edde66bab",
-    "synthetic": true
+    "synthetic": true,
+    "processId": 19265,
+    "source_mode": "DETACHED_FROZEN_WORKTREE"
   },
   "infrastructure": {
     "local_supabase": "22_SMOKE_TESTS_PASS_AFTER_REAL_RECOVERY",
@@ -95,25 +130,25 @@
   "trials": [],
   "blockers": [
     "Six final authentic same-candidate REA receipts and G0 matrix pending",
-    "New multicourse/Taylor/notebook consumer browser replay pending; encoded notebook budget contradiction reproduced and fix pending",
     "Calendar mock/DST/ICS and MCP acceptance not yet executed",
     "PostgreSQL/private-storage restore partial; invitations disabled",
     "Vercel Pro has no verified zero-additional-cost guarantee: user-approved local fallback, no deploy",
     "Human scientific/date and UX review required for G1",
-    "AC-085 checkpoint is due21Oct2026evening and cannot be certified early"
+    "AC-085 checkpoint is due21Oct2026evening and cannot be certified early",
+    "Course listing auto-fetches all pages; workspace cache16 and session draft cache24 can evict. Browser edition/date/attendance administration remains a G1 gap."
   ],
   "next_actions": [
-    "Freeze reviewed frontend and coherent notebook size policy",
-    "Run same-SHA actual HTTP tutor+10students+2waiters, fresh capacity race, browser replay and cold reopen",
-    "Complete Calendar and isolated official-SDK MCP contracts",
+    "Finish Calendar and isolated official-SDK MCP components with actual contracts",
+    "Re-evaluate original acceptance on the final integrated candidate without weakening Vercel/human/future checkpoint boundaries",
     "Bind authentic REA evidence/contracts/code/named tests to frozen candidate and evaluate unchanged gate",
-    "Continue G1 work with explicit partial/blocked/human boundaries"
+    "Complete G1 operations and tutor administration; preserve partial restore and human approval requirements"
   ],
   "monitor": {
     "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",
     "last_verified_github_delivery": "2026-10-20T00:04Z",
-    "new_review_comments": "NONE_AT_LAST_CHECK",
+    "new_review_comments": "NONE_ONLY_CODERABBIT_DRAFT_SKIP",
     "coderabbit": "DRAFT_SKIP_NOT_A_REVIEW",
-    "duplicate_automation_created": false
+    "duplicate_automation_created": false,
+    "last_checked_github": "2026-10-20T03:40Z"
   }
 }
