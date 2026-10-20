@@ -1,17 +1,17 @@
 {
-  "observed_at": "2026-10-20T09:19:17.122900+00:00",
-  "sha": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
-  "sha_semantics": "Combined C7+C8 product.543 actual owned PG/Auth/Core/API and110 Web executed on this exact commit; immutable primary source/frontend nowf438. Historical proofs retain original commits.",
-  "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
+  "observed_at": "2026-10-20T11:16:04.782895+00:00",
+  "sha": "46fda24283ef686172ff3edd082139fffe395e84",
+  "sha_semantics": "Last product commit at handoff: backend dd43 plus byte-exact UI786 composition. Historical 543 live PG and110 Web executions remain attributed to f438, not this product. This metadata file cannot contain its own final commit SHA; use GitHub and generated CURRENT for repository HEAD.",
+  "milestone": "USER_REQUESTED_STOP_FINAL_HANDOFF",
   "statuses": {
-    "G0": "IN_PROGRESS_NOT_CERTIFIED",
+    "G0": "NOT_CERTIFIED_WORK_STOP_REQUESTED",
     "G1": "NOT_READY",
     "G2": "NOT_RUN",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "core_api": "543_PASS_0_SKIP_ACTUAL_OWN_RESTORED_PG_AUTH_RLS_STORAGE",
+    "core_api": "CURRENT_BACKEND_CI_DD43_SUCCESS;LIVE_PG_F438_HISTORICAL;NEW_REGISTER_PG_NOT_RUN",
     "cookie_recovery": "ACTUAL_AUTH_PG_CHROME_REVOKE_401_COOKIE_CLEAR_PUBLIC200",
     "body_budget": "INDEPENDENT_FIXED_REVIEW_PLUS_ACTUAL_TCP_SCOPE_PASS",
-    "rea": "LAST_CERTIFIED5CB_CURRENT_F438_REBIND_PENDING",
+    "rea": "F438_SCOPED_RECEIPTS_ACCEPTED;CURRENT_REGISTER_REBIND_NOT_RUN",
     "child_session_recovery": "SCOPED_PASS_C7_REAL_AUTH_PG_CHROME_AND_NATIVE_COOKIE_ORDERING",
     "a11y": "SCOPED_PASS_26_CURRENT_F438_REAL_AUTH_PG_VIEWS"
   },
@@ -70,7 +70,7 @@
       "engine_skipped_at_a3": 24,
       "web_passed_at_a3": 81,
       "rerun_claimed": false,
-      "engine_identical_to_current": true,
+      "engine_identical_to_current": false,
       "web_identical_to_current": false,
       "current_web": {
         "source_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
@@ -78,76 +78,6 @@
         "workerCount": 1,
         "logSha256": "f82bed42d9de98ed34b431dd604cd442f4d1433d9bb763a20345007d6519f11f"
       }
-    },
-    "ci_current": {
-      "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
-      "checks": [
-        {
-          "name": "study-mcp (official SDK stdio + HTTP)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148989",
-          "started_at": "2026-10-20T08:18:58Z",
-          "completed_at": "2026-10-20T08:19:35Z"
-        },
-        {
-          "name": "web (typecheck + test + build)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148745",
-          "started_at": "2026-10-20T08:18:58Z",
-          "completed_at": "2026-10-20T08:19:39Z"
-        },
-        {
-          "name": "studio (typecheck + test + build)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148667",
-          "started_at": "2026-10-20T08:18:57Z",
-          "completed_at": "2026-10-20T08:22:21Z"
-        },
-        {
-          "name": "e2e golden path (advisory)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148634",
-          "started_at": "2026-10-20T08:18:58Z",
-          "completed_at": "2026-10-20T08:19:55Z"
-        },
-        {
-          "name": "study-api (HTTP + shared Core)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148570",
-          "started_at": "2026-10-20T08:18:58Z",
-          "completed_at": "2026-10-20T08:20:22Z"
-        },
-        {
-          "name": "hygiene (NUL + secrets + boundary + whitespace)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148563",
-          "started_at": "2026-10-20T08:18:57Z",
-          "completed_at": "2026-10-20T08:19:23Z"
-        },
-        {
-          "name": "engine (pytest)",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148203",
-          "started_at": "2026-10-20T08:18:58Z",
-          "completed_at": "2026-10-20T08:20:24Z"
-        },
-        {
-          "name": "no-deploy-check",
-          "status": "completed",
-          "conclusion": "success",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500216/job/118527147418",
-          "started_at": "2026-10-20T08:18:57Z",
-          "completed_at": "2026-10-20T08:21:47Z"
-        }
-      ],
-      "status": "ALL_EIGHT_CHECK_RUNS_SUCCESS"
     },
     "last_metadata_ci": {
       "sourceCommit": "1a23713efe46109fa325a2406eb5e2360d9aa945",
@@ -466,7 +396,7 @@
       "report": "docs/ops/ARDESIA-C8-RECHECK-f4384eed.json"
     },
     "administrative_registers": {
-      "status": "BACKEND_COMPOSED_PENDING_EXACT_COMBINED_VERIFICATION_UI_FIX_AND_LIVE_PG",
+      "status": "BACKEND_AND_WEB_COMPOSED;INDEPENDENT_FIX_REVIEWS_SCOPED;LIVE_PG_AND_FULL_JOURNEY_NOT_RUN",
       "builderCommit": "767ddcd84ad0debf5467051475732404b869ec4e",
       "baseSuite": {
         "source": "b37fd1977e348444ed634856dc9a66675bf9ef5f",
@@ -487,11 +417,284 @@
         "reportSha256": "c48330beebe88d06e1eacfa9ae2e51e656411d41ec9ae4aad19928880cc99be9"
       },
       "uiInitial": "2d6002b17bedc567bf3057d6265b459807235bc3",
-      "uiFinding": "EXACT_PAYMENT_PIN_NOT_FULLY_VERIFIED_ON_HISTORY_REFRESH;SUCCESSOR_PENDING",
+      "uiFinding": "UI_REGISTER_F1_VERIFIED_FIXED_SCOPED_MOCK;ORIGINAL_RED_PRESERVED",
       "livePgRls": "NOT_RUN",
       "schema5MigrationExecuted": false,
       "tutorTenStudentsTwoInterested": "NOT_RUN",
-      "noSecondCore": true
+      "noSecondCore": true,
+      "compositionSource": "46fda24283ef686172ff3edd082139fffe395e84",
+      "uiBuilderCommit": "78696de9c8caa0efa76a94d2ec9409cc7e83a334",
+      "uiIndependent": {
+        "pass": 6,
+        "nonSelectedSkip": 17,
+        "seconds": 10.59,
+        "scope": "MOCK_HTTP_REACT_ONLY;NO_PG_AUTH_BROWSER",
+        "reportSha256": "743f9797506d7e8c6ed2c150458aebf0c1b6a3f4fcde6dc07733067a2040d4d8",
+        "manifestSha256": "1b1e94fb57b08491c21e6585aa21acf4d9cd270bc67faae04d666dbeda84e4b0"
+      },
+      "rootLocalFinalChecks": {
+        "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84",
+        "checks": [
+          {
+            "name": "typecheck",
+            "exitCode": 0,
+            "timedOut": false,
+            "seconds": 22.55,
+            "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84"
+          },
+          {
+            "name": "web-tests",
+            "exitCode": null,
+            "timedOut": true,
+            "seconds": 210.3,
+            "logSha256": "fc8df17e89d41d788532eb858632b05921839c5221f298efeffa8a46b687b115",
+            "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84"
+          }
+        ],
+        "webResult": "INCOMPLETE_210S_TIMEOUT_WITH_TWO_FAILED_CASES_IN_PARTIAL_LOG;NOT_PASS",
+        "build": "NOT_RUN_LOCAL_AFTER_TIMEOUT;CI_BUILD_SUCCESS_SEPARATE",
+        "cause": "NOT_ESTABLISHED"
+      }
+    },
+    "ci_f438_historical": {
+      "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "checks": [
+        {
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148989",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:35Z"
+        },
+        {
+          "name": "web (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148745",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:39Z"
+        },
+        {
+          "name": "studio (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148667",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:22:21Z"
+        },
+        {
+          "name": "e2e golden path (advisory)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148634",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:19:55Z"
+        },
+        {
+          "name": "study-api (HTTP + shared Core)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148570",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:20:22Z"
+        },
+        {
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148563",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:19:23Z"
+        },
+        {
+          "name": "engine (pytest)",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500224/job/118527148203",
+          "started_at": "2026-10-20T08:18:58Z",
+          "completed_at": "2026-10-20T08:20:24Z"
+        },
+        {
+          "name": "no-deploy-check",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39392500216/job/118527147418",
+          "started_at": "2026-10-20T08:18:57Z",
+          "completed_at": "2026-10-20T08:21:47Z"
+        }
+      ],
+      "status": "ALL_EIGHT_CHECK_RUNS_SUCCESS"
+    },
+    "ci_current": {
+      "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84",
+      "status": "ALL_EIGHT_CHECK_RUNS_SUCCESS",
+      "observedAt": "2026-10-20T11:18:51.381104+00:00",
+      "checks": [
+        {
+          "name": "study-api (HTTP + shared Core)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484205",
+          "started_at": "2026-10-20T11:13:24Z",
+          "completed_at": "2026-10-20T11:14:44Z"
+        },
+        {
+          "name": "web (typecheck + test + build)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484160",
+          "started_at": "2026-10-20T11:13:25Z",
+          "completed_at": "2026-10-20T11:14:05Z"
+        },
+        {
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484138",
+          "started_at": "2026-10-20T11:13:25Z",
+          "completed_at": "2026-10-20T11:13:52Z"
+        },
+        {
+          "name": "engine (pytest)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484094",
+          "started_at": "2026-10-20T11:13:24Z",
+          "completed_at": "2026-10-20T11:14:59Z"
+        },
+        {
+          "name": "e2e golden path (advisory)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483901",
+          "started_at": "2026-10-20T11:13:24Z",
+          "completed_at": "2026-10-20T11:15:13Z"
+        },
+        {
+          "name": "studio (typecheck + test + build)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483879",
+          "started_at": "2026-10-20T11:13:24Z",
+          "completed_at": "2026-10-20T11:15:43Z"
+        },
+        {
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483722",
+          "started_at": "2026-10-20T11:13:25Z",
+          "completed_at": "2026-10-20T11:14:01Z"
+        },
+        {
+          "name": "no-deploy-check",
+          "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406301/job/118596482885",
+          "started_at": "2026-10-20T11:13:25Z",
+          "completed_at": "2026-10-20T11:16:57Z"
+        }
+      ],
+      "scope": "CI_OFFLINE_UNIT_INTEGRATION_PLUS_ADVISORY_STUDIO_GOLDEN_PATH;LIVE_REGISTER_PG_RLS_NOT_RUN",
+      "codeRabbitReviewClaimed": false,
+      "web": {
+        "passed": 139,
+        "files": 20,
+        "seconds": 11.09,
+        "typecheck": "SUCCESS",
+        "build": "SUCCESS",
+        "job": "118596484160",
+        "evidence": "docs/ops/admin-registers/web-ci-46fda-excerpt.log"
+      }
+    },
+    "ci_backend_dd43": {
+      "sourceCommit": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+      "checks": [
+        {
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114888",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:46:55Z"
+        },
+        {
+          "name": "study-api (HTTP + shared Core)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114865",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:47:49Z"
+        },
+        {
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114732",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:47:02Z"
+        },
+        {
+          "name": "studio (typecheck + test + build)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114729",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:49:07Z"
+        },
+        {
+          "name": "engine (pytest)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114707",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:47:52Z"
+        },
+        {
+          "name": "web (typecheck + test + build)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114651",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:47:02Z"
+        },
+        {
+          "name": "e2e golden path (advisory)",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294775/job/118586114386",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:47:30Z"
+        },
+        {
+          "name": "no-deploy-check",
+          "head_sha": "dd43df528778ce92777f0ffae1d5bb527480d13c",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39410294719/job/118586114007",
+          "started_at": "2026-10-20T10:46:28Z",
+          "completed_at": "2026-10-20T10:49:17Z"
+        }
+      ],
+      "codeRabbitIsReview": false,
+      "scope": "BACKEND_COMPOSITION_DD43;FINAL_PRODUCT46FDA_CI_SEPARATE_PENDING"
     }
   },
   "rea": {
@@ -529,7 +732,7 @@
         "report": "docs/ops/rea-deep/TARGET-082/RESEARCH.md",
         "root_review": "docs/ops/rea-deep/TARGET-082/ROOT-REVIEW.json",
         "full_semantic_equivalence": false,
-        "prototype082Adapter": "SEPARATE_REVIEW_PENDING",
+        "prototype082Adapter": "EXPERIMENTAL_NOT_INTEGRATED;INDEPENDENT_F082_1_LATE_REJECTION_OPEN",
         "raw_verified_cache": "artifacts/rea-evidence/deep-082"
       }
     ],
@@ -551,10 +754,12 @@
     "meAndDiscoveryGET": 28,
     "scope": "NOT_COMPLETE_G0_JOURNEY",
     "retired_owned_application_pid": 43753,
-    "synthetic": true
+    "synthetic": true,
+    "availabilityAtHandoff": "NOT_REVERIFIED;LAST_KNOWN_F438_PROCESS_IS_NOT_CURRENT46FDA",
+    "lastVerifiedSourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd"
   },
   "infrastructure": {
-    "local_supabase": "OWNED_LOOPBACK_ONLY_SCHEMA4_MIGRATIONS11",
+    "local_supabase": "LAST_VERIFIED_SCHEMA4_MIGRATIONS11;CURRENT_AVAILABILITY_UNVERIFIED;SCHEMA5_NOT_EXECUTED",
     "vercel": "EXISTING_PRO_WORKSPACE_ZERO_ADDITIONAL_COST_UNVERIFIED_LOCAL_FALLBACK",
     "current_owned_docker_observation": "CLI_GUARD_COULD_NOT_VERIFY_TARGET_RUNNING;DIRECT_SOCKET_GET_VERSION_TIMEOUT_8S;NO_MUTATION_OR_SCHEMA5_MIGRATION"
   },
@@ -582,10 +787,11 @@
       "productionEnvironment": false,
       "cost": "UNKNOWN_NOT_ZERO",
       "mcpInspection": "403_SCOPE_FORBIDDEN",
-      "cliFallback": "EXISTING_AUTH_FILE_PRESENCE_VERIFIED_NO_SECRET_READ;ISOLATED_CLI64.7.0_INSTALL_PENDING",
+      "cliFallback": "OFFICIAL_CLI64.7.0_PIN_INTEGRITY_VERIFIED;READ_ONLY_INSPECT_EXIT1_NO_EXISTING_CREDENTIALS;NO_REAUTH_OR_MUTATION",
       "cuaInitialAttempt": "TIMEOUT_KERNEL_RESET",
       "remediation": "Add documented minimatch codex/ardesia-* false in repository; explicit candidate-ref push only; attempt normal authorized read/delete of new preview without modifying existing production services",
-      "cuaFollowup": "SECOND_GETSTATE_TIMEOUT_KERNEL_RESET;NO_MORE_UNCHANGED_RETRIES"
+      "cuaFollowup": "SECOND_GETSTATE_TIMEOUT_KERNEL_RESET;NO_MORE_UNCHANGED_RETRIES",
+      "cleanup": "NOT_VERIFIED;MCP403_AND_CLI_NO_CREDENTIALS;NO_PRODUCTION_CHANGES"
     }
   },
   "historical_state": "docs/ops/ARDESIA-STATE-a3cdf6ba.json",
@@ -616,15 +822,21 @@
     "Earlier live CLI calls/cost UNKNOWN"
   ],
   "next_actions": [
-    "Integrate independently reviewed attendance/manual-register source, run real owned PG/Auth/RLS/UI 10students+2interested and refresh final-source evidence",
-    "Complete integrated attendance/manual ledger with independent review, real PG/UI and 10students+2interested journey",
-    "Finish remaining media/offline/source erasure/workspace paging/org role/full syllabus G0 requirements",
-    "Continue actual deep public/open-source research and product adoption for139 targets without entry-visit equivalence"
+    "RESUME_ONLY_ON_NEW_HUMAN_REQUEST: verify owned Docker/runtime and checkpoint before schema5, then real PG/Auth/RLS and tutor+10+2/browser/restore trials",
+    "After real integration verification rebind REA to final product; retain f438 and every historical result at original SHA",
+    "Complete remaining organization roles, paging, media/offline/erasure, full syllabus and human/scientific G0 approvals",
+    "Resolve only the accidentally created Vercel preview and verify marginal cost when normal account access is available; no production deployment or spend authorized"
   ],
   "monitor": {
     "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",
     "last_verified_github_delivery": "2026-10-20T00:04Z",
     "new_review_comments": "NONE_ONLY_CODERABBIT_DRAFT_SKIP",
     "duplicate_automation_created": false
+  },
+  "goal_control": {
+    "request": "User explicitly requested finishing current changes, uploading to GitHub and stopping the goal",
+    "scope": "Final integration/documentation/CI/PR closure only; no new research or product scope",
+    "nextAutomaticWork": "NONE;RESUME_REQUIRES_USER_REQUEST",
+    "globalGoalAchieved": false
   }
 }

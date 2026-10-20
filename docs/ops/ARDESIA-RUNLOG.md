@@ -115,3 +115,8 @@ Il root ha usato erroneamente pushHEAD anzichéref candidato: creato brevemente 
 ## 2026-10-20 — Backend registro composto con C7, verifica integrata pendente
 
 Composti5b→93a→b37→767 suC7/C8corrente,19file; mergeApp conserva marker cookie/missing, headerfidato eabortsessione. Tre finding indipendenti reali chiusi nel perimetroSQLite/ASGI: Unicode, lettura pagina/totale atomica, numeri nonfiniti; logbase592/18skip è b37 e10focused è767, senza retagfullPASS. UI2d ha findingpinpersona/riferimento, fixinreview. Il checkpoint del solo clone non èpartito: primo readerIOstorage.env ritiratoTERM conidentità verificata e nessunadirectorybackupcreata; secondopreflight nonverificaDockerState. GETversiondel solosocketproprio timeout8s. NessunDDL/schema5/riavvioDB/signalAPI eseguito. PG/RLS, percorso10+2 ebackupnuovitablesNOT_RUN; nessunPASSglobale. ADR0008 documenta confini, CAS/storia, querybounded e limiti.
+
+
+## 2026-10-20 — Consegna finale richiesta dall’utente
+
+L’utente chiede di concludere il lavoro corrente, mettere il lavoro su GitHub e fermare il goal. UI786 composta byte-per-byte in46fda242 su backenddd43:18file, nessuna dipendenza aggiunta. Recheck indipendente pin6PASS/17nonselezionati,571sorgenti congelate; vecchiofinding preservato. OttocheckCI reali dd43SUCCESS, prove finali46fda separate. Il goal globale non è raggiunto: G0NOT_CERTIFIED/G1NOT_READY; nessuna migrazione5 o viaggio10+2 inventati. Il fallback CLI ufficialeVercel64.7.0 è ora installato e verificato, ma inspectGET termina1 per credenziali assenti; nessun reauth/delete/deploy riuscito, preview9e0 e costo restanoUNKNOWN. Il ramo verrà conservato e la PR chiusa senza merge secondo la richiesta di chiusura; ripresa solo su nuova richiesta.
