@@ -26,7 +26,7 @@ def evaluate_activity(activity_id, parameters, attempt=None):
     boundary = parameters.get('boundary','pressure')
     if boundary not in ('pressure','flow'):
         raise StudyError('invalid_boundary')
-    ratio = values['radiusRatio'] ** 4
+    ratio = values['radiusRatio'] ** 4 / (values['viscosity'] * values['length'])
     if boundary == 'flow':
         ratio = 1 / ratio
     if not math.isfinite(ratio):

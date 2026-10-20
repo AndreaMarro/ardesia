@@ -1,29 +1,46 @@
 {
-  "observed_at": "2026-10-20T02:30:50.639794+02:00",
-  "sha": "cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228",
+  "observed_at": "2026-10-20T01:02:41.845181+00:00",
+  "sha": "2a4e061014beba72f91e715d33758c44a0615d49",
   "milestone": "G0",
   "statuses": {
     "G0": "IN_PROGRESS",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING"
+    "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING",
+    "diary_core": "122_STUDY_AND_HTTP_TESTS_PASS_REVIEW_PENDING"
   },
   "rea": {
     "version": "6.7.0",
     "docs_downloaded": 20,
-    "missions": "NOT_RUN"
+    "missions": "RUNNING_EVIDENCE_NOT_FINAL_RECEIPTS",
+    "R0": {
+      "capture": "COMPLETE",
+      "deep_trace": "PARTIAL_WITH_LIMITS",
+      "integration": "PENDING_FINAL_SHA"
+    },
+    "R8": {
+      "operations": 8,
+      "evidence_count": 14,
+      "integration": "CORE_TESTED_UI_AND_FINAL_SHA_PENDING"
+    }
   },
   "deploys": [],
   "trials": [],
   "blockers": [
-    "P1 draft privacy: reproduced, fix in progress",
-    "No local Supabase/Docker/Postgres runtime",
+    "G0 Core still uses SQLite/demo sessions; Postgres/Auth/Storage adapter not integrated",
+    "G0 final REA receipts and final-SHA replay pending",
     "G1 requires real tutor review and approved dates"
   ],
   "next_actions": [
-    "REA R0 baseline capture/feature trace",
-    "Diary event projection/API/UI",
-    "Isolated local Supabase runtime and Core adapter",
-    "R1/R2/R3/R8 research and integration"
-  ]
+    "Integrate shared Core with local Postgres, Supabase Auth and private Storage",
+    "Complete and visually review course-first apps/web",
+    "Finish all 139 target access reviews and deepen relevant subsystems",
+    "Replay G0 one tutor/10 students with final SHA"
+  ],
+  "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
+  "infrastructure": {
+    "local_supabase": "22_SMOKE_TESTS_PASS_AFTER_REAL_RECOVERY",
+    "application_adapter": "NOT_YET_INTEGRATED",
+    "vercel": "CONNECTOR_SCOPE_403_CLI_FALLBACK_PENDING"
+  }
 }

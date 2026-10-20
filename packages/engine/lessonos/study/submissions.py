@@ -5,16 +5,41 @@ from .activities import ACTIVITY_ID
 from .transactions import transact
 
 
-def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=None,source_refs=None):
+def _assigned_activity(store, principal, edition_id, activity_id, thread_id=None, parameters=None):
+    if activity_id == ACTIVITY_ID:
+        return None
+    from .diary import get_diary
+    assigned = [thread for thread in get_diary(store, principal, edition_id)['threads']
+                if thread['status'] in ('OPEN', 'PRACTISING', 'RECURRED')
+                and thread.get('sourceState') == 'CURRENT'
+                and thread.get('transferExercise', {}).get('exerciseId') == activity_id
+                and (thread_id is None or thread['threadId'] == thread_id)]
+    if not assigned:
+        raise StudyError('activity_not_assigned', 403)
+    if len(assigned) != 1:
+        raise StudyError('activity_assignment_ambiguous', 409)
+    thread = assigned[0]
+    plan = thread['transferExercise']
+    if parameters is not None and canonical(parameters) != canonical(plan['parameters']):
+        raise StudyError('transfer_plan_mismatch', 409)
+    return {'threadId': thread['threadId'], 'exerciseId': activity_id,
+            'parameters': plan['parameters'], 'prompt': plan['prompt'],
+            'rubric': thread['feedback']['rubric'],
+            'assignedAfterEventSeq': thread['history'][-1]['seq']}
+
+
+def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=None,source_refs=None,diary_thread_id=None,activity_parameters=None):
     store._edition_access(principal,edition_id)
     if principal.role!='student':raise StudyError('forbidden',403)
-    if activity_id!=ACTIVITY_ID:raise StudyError('activity_not_supported')
     if not isinstance(text,str) or len(text)>20_000 or not (text.strip() or asset_refs):raise StudyError('invalid_submission')
     if not isinstance(asset_refs,list) or len(asset_refs)>5 or any(not isinstance(ref,str) or len(ref)>128 for ref in asset_refs) or len(set(asset_refs))!=len(asset_refs):raise StudyError('invalid_attachments')
     source_refs=source_refs or []
     if not isinstance(source_refs,list) or len(source_refs)>5 or any(not isinstance(ref,dict) or not isinstance(ref.get('resourceId'),str) or not isinstance(ref.get('revisionId'),str) for ref in source_refs):raise StudyError('invalid_source_refs')
     payload={'editionId':edition_id,'activityId':activity_id,'assetRefs':asset_refs,'text':text,'parentId':parent_id,'sourceRefs':source_refs}
+    if diary_thread_id is not None:payload['diaryThreadId']=diary_thread_id
+    if activity_parameters is not None:payload['activityParameters']=activity_parameters
     def apply(c):
+        activity_context=_assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
         total=0
         for asset_id in asset_refs:
             row=c.execute('SELECT * FROM study_assets WHERE id=? AND deleted=0',(asset_id,)).fetchone()
@@ -42,7 +67,9 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             c.execute('INSERT INTO study_revisions VALUES(?,?,?,?,?)',(revision_id,resource_id,source_text,digest(source_text),store.clock()))
             effective_refs=[{'resourceId':resource_id,'revisionId':revision_id,'contextId':context_id}]
         c.execute('INSERT INTO study_submissions(id,edition_id,student_id,activity_id,revision,parent_id,text,asset_refs,source_refs,receipt_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (submission_id,edition_id,principal.id,activity_id,revision,parent_id,text,canonical(asset_refs),canonical(effective_refs),receipt_id,store.clock()))
-        return {'receiptId':receipt_id,'submissionId':submission_id,'studentId':principal.id,'activityId':activity_id,'revision':revision,'parentId':parent_id,'receivedAt':store.clock(),'state':'received'}
+        body={'receiptId':receipt_id,'submissionId':submission_id,'studentId':principal.id,'activityId':activity_id,'revision':revision,'parentId':parent_id,'receivedAt':store.clock(),'state':'received'}
+        if activity_context is not None:body['activityContext']=activity_context
+        return body
     return transact(store,principal,'submission.received',key,payload,apply)
 
 

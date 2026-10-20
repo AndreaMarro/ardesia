@@ -258,7 +258,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.post('/study/submissions')
     async def submission(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import submit
-        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]))
+        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'))
 
     @app.get('/study/receipts/{receipt_id}')
     async def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
@@ -306,6 +306,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         from lessonos.study.portable import inspect_notebook
         authenticate(request,store)
         return inspect_notebook(body)
+
+    from .diary_routes import install_diary_routes
+    install_diary_routes(app, store_dependency, authenticate)
 
     if frontend:
         from fastapi.staticfiles import StaticFiles

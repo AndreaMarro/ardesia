@@ -131,6 +131,7 @@ def _erase_rows(store,actor):
     submissions={row[0] for row in c.execute('SELECT id FROM study_submissions WHERE student_id=?',(actor,))}
     reviews={row[0] for row in c.execute('SELECT r.id FROM study_reviews r JOIN study_feedback f ON f.id=r.candidate_id JOIN study_submissions s ON s.id=f.submission_id WHERE s.student_id=?',(actor,))}
     receipts=set()
+    related_ids=resources|submissions|reviews|{actor}
     def references(value,ids):
         if isinstance(value,str):return value in ids
         if isinstance(value,dict):return any(references(item,ids) for item in value.values())
@@ -138,9 +139,9 @@ def _erase_rows(store,actor):
         return False
     for row in c.execute('SELECT id,actor_id,body FROM study_receipts'):
         body=json.loads(row['body'])
-        if row['actor_id']==actor or references(body,resources|submissions|reviews):receipts.add(row['id'])
+        if row['actor_id']==actor or references(body,related_ids):receipts.add(row['id'])
     for row in c.execute('SELECT id,actor_id,resource_id,payload FROM study_events').fetchall():
-        if row['actor_id']==actor or row['resource_id'] in resources or json.loads(row['payload']).get('receiptId') in receipts:
+        if row['actor_id']==actor or row['resource_id'] in resources or references(json.loads(row['payload']),related_ids|receipts):
             c.execute('DELETE FROM study_events WHERE id=?',(row['id'],))
     for receipt in receipts:c.execute('DELETE FROM study_receipts WHERE id=?',(receipt,))
     for review in reviews:
