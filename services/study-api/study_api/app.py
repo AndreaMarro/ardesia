@@ -45,11 +45,13 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     def clear_session_cookie(response):
         response.delete_cookie('study_session',**cookie_options)
 
-    def record_cookie_rejection(request,error):
+    def record_cookie_rejection(request,error,*,authenticate_missing=False):
         # This signal is set only by the cookie-authentication boundaries,
         # never by a body-token exchange or by an arbitrary route's 401.
         if error.status==401 and 'study_session' in request.cookies:
-            request.state.rejected_study_session=True
+            request.state.rejected_study_session='cookie'
+        elif error.status==401 and authenticate_missing:
+            request.state.rejected_study_session='missing'
 
     def busy_response(*, logout=False, wait=None):
         body={'error':'server_busy'}
@@ -69,7 +71,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         if exc.code=='server_busy':return busy_response()
         response=JSONResponse({'error':exc.code}, status_code=exc.status)
         if exc.status==401 and getattr(request.state,'rejected_study_session',False):
-            clear_session_cookie(response)
+            rejection=request.state.rejected_study_session
+            response.headers['X-Study-Session-Rejected']=rejection
+            if rejection=='cookie':clear_session_cookie(response)
         return response
 
     @app.exception_handler(sqlite3.Error)
@@ -189,7 +193,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
                 raise StudyError('unauthenticated',401)
             return principal
         except StudyError as error:
-            record_cookie_rejection(request,error)
+            record_cookie_rejection(request,error,authenticate_missing=True)
             raise
 
     @app.get('/study/health')

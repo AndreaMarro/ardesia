@@ -7,6 +7,11 @@ import {
 } from "./api";
 import { useCourseWorkspace } from "./useCourseWorkspace";
 import { clearResourceDrafts } from "./components/sessionDraftCache";
+import { signOutStudySession } from "../../studio/src/study/apiClient";
+import {
+  activateStudySession, beginStudySessionCheck, isStudySessionEpoch, studySessionEpoch,
+  StudySessionChangedError, subscribeStudySessionEnd,
+} from "../../studio/src/study/sessionBoundary";
 import { PhysicsLab } from "./components/PhysicsLab";
 import { Shell, type View } from "./components/Shell";
 import { ErrorNotice, Loading } from "./components/Feedback";
@@ -50,36 +55,52 @@ export default function App() {
     [loginOpen, setLoginOpen] = useState(false),
     [loginTrigger, setLoginTrigger] = useState<HTMLElement | null>(null),
     [parentId, setParentId] = useState<string | null>(null);
-  const course = useCourseWorkspace(me);
+  const sessionVersion = studySessionEpoch();
+  const course = useCourseWorkspace(me, sessionVersion);
   const { data, refresh } = course;
   useEffect(() => {
-    if (!course.sessionExpired) return;
-    setMe(null);
-    clearResourceDrafts();
-    setLoginTrigger(document.activeElement as HTMLElement | null);
-    setLoginOpen(true);
-  }, [course.sessionExpired]);
+    return subscribeStudySessionEnd(({ reason }) => {
+      setMe(null);
+      setChecking(false);
+      clearResourceDrafts();
+      setParentId(null);
+      setError("");
+      setLoginTrigger(document.activeElement as HTMLElement | null);
+      setLoginOpen(reason === "rejected");
+      const url = new URL(location.href);
+      url.searchParams.delete("edition");
+      url.searchParams.set("view", "today");
+      history.replaceState(null, "", url);
+      setView("today");
+    });
+  }, []);
   const affinity = `${me?.id}:${course.editionId}`;
   useEffect(() => {
     setParentId(null);
   }, [affinity]);
   useEffect(() => {
     let active = true;
-    void studyRequest<StudyMe>("/me")
+    const epoch = beginStudySessionCheck();
+    const controller = new AbortController();
+    void studyRequest<StudyMe>("/me", undefined, { signal: controller.signal })
       .then((value) => {
-        if (active) setMe(value);
+        if (active && activateStudySession(epoch)) {
+          setMe(value);
+          setChecking(false);
+        }
       })
       .catch((e) => {
-        if (active && !(e instanceof StudyApiError && e.status === 401))
+        if (active && isStudySessionEpoch(epoch) && !(e instanceof StudySessionChangedError) && !(e instanceof StudyApiError && e.status === 401))
           setError(
             "La connessione allo spazio di lavoro non è disponibile. Il laboratorio resta accessibile quando il servizio risponde.",
           );
       })
       .finally(() => {
-        if (active) setChecking(false);
+        if (active && isStudySessionEpoch(epoch)) setChecking(false);
       });
     return () => {
       active = false;
+      controller.abort();
     };
   }, []);
   function navigate(next: View) {
@@ -90,14 +111,8 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   async function logout() {
-    try {
-      await studyRequest("/session", undefined, { method: "DELETE" });
-      setMe(null);
-      clearResourceDrafts();
-      navigate("today");
-    } catch (e) {
-      setError(describeError(e, "Uscita non riuscita. Puoi riprovare."));
-    }
+    const outcome = await signOutStudySession();
+    if (outcome === "UNCONFIRMED") setError("Sei uscito da questo spazio. La revoca della sessione sul server non è confermata.");
   }
   if (checking)
     return (
@@ -110,6 +125,7 @@ export default function App() {
     <>
       {me ? (
         <Shell
+          key={sessionVersion}
           me={me}
           view={view}
           onView={navigate}
@@ -255,6 +271,7 @@ export default function App() {
             restoreFocus={loginTrigger}
             onClose={() => setLoginOpen(false)}
             onSuccess={(value) => {
+              if (!activateStudySession(studySessionEpoch())) return;
               setMe(value);
               setLoginOpen(false);
               setError("");

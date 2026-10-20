@@ -1,17 +1,70 @@
+import {
+  assertStudySessionEpoch, endStudySession, isStudySessionEpoch,
+  studySessionEpoch, studySessionTicket,
+} from './sessionBoundary';
+
 export class StudyApiError extends Error {
-  status:number
-  constructor(code:string,status:number){super(code);this.status=status}
-}
-export async function studyRequest<T>(path:string,body?:unknown,options:RequestInit={}):Promise<T> {
-  const response=await fetch(`/study${path}`,{
-    ...options,method:options.method??(body===undefined?'GET':'POST'),credentials:'same-origin',
-    headers:{...(body===undefined?{}:{'Content-Type':'application/json'}),...options.headers},
-    ...(body===undefined?{}:{body:JSON.stringify(body)}),
-  })
-  if(!response.ok){
-    const error=await response.json().catch(()=>({error:'network_error'})) as {error?:string}
-    throw new StudyApiError(error.error??'request_failed',response.status)
+  status: number;
+  sessionRejected: boolean;
+  constructor(code: string, status: number, sessionRejected = false) {
+    super(code); this.status = status; this.sessionRejected = sessionRejected;
   }
-  return response.json() as Promise<T>
 }
-export const requestKey=()=>crypto.randomUUID()
+
+async function request<T>(path: string, options: RequestInit, decode: (response: Response) => Promise<T>): Promise<T> {
+  const ticket = studySessionTicket();
+  const controller = new AbortController();
+  const signals = [ticket.signal, options.signal].filter((signal): signal is AbortSignal => !!signal);
+  const abort = () => controller.abort();
+  for (const signal of signals) {
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+  }
+  try {
+    const response = await fetch(`/study${path}`, { ...options, credentials: 'same-origin', signal: controller.signal });
+    assertStudySessionEpoch(ticket.epoch);
+    const rejection = response.headers.get('X-Study-Session-Rejected');
+    if (response.status === 401 && (rejection === 'cookie' || rejection === 'missing')) {
+      endStudySession('rejected', ticket.epoch);
+      throw new StudyApiError('unauthenticated', 401, true);
+    }
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'network_error' })) as { error?: string };
+      assertStudySessionEpoch(ticket.epoch);
+      throw new StudyApiError(error.error ?? 'request_failed', response.status);
+    }
+    const value = await decode(response);
+    assertStudySessionEpoch(ticket.epoch);
+    return value;
+  } finally {
+    for (const signal of signals) signal.removeEventListener('abort', abort);
+  }
+}
+export function studyRequest<T>(path: string, body?: unknown, options: RequestInit = {}): Promise<T> {
+  const headers = new Headers(body === undefined ? undefined : { 'Content-Type': 'application/json' });
+  new Headers(options.headers).forEach((value, key) => headers.set(key, value));
+  return request(path, {
+    ...options, method: options.method ?? (body === undefined ? 'GET' : 'POST'), headers,
+    ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+  }, response => response.json() as Promise<T>);
+}
+export const studyBlob = (path: string, options: RequestInit = {}) => request(path, options, response => response.blob());
+/** Logout intent always closes this local session, without claiming server revocation. */
+export async function signOutStudySession(allSessions = false): Promise<'CONFIRMED' | 'UNCONFIRMED' | null> {
+  const epoch = studySessionEpoch();
+  let outcome: 'CONFIRMED' | 'UNCONFIRMED' = 'CONFIRMED';
+  let current = false;
+  try {
+    const result = await studyRequest<{ serverRevocation?: string }>(
+      allSessions ? '/session/revoke-all' : '/session', allSessions ? {} : undefined,
+      { method: allSessions ? 'POST' : 'DELETE' },
+    );
+    if (result.serverRevocation === 'UNCONFIRMED') outcome = 'UNCONFIRMED';
+  } catch { outcome = 'UNCONFIRMED'; }
+  finally {
+    current = isStudySessionEpoch(epoch);
+    if (current) endStudySession('logout', epoch);
+  }
+  return current ? outcome : null;
+}
+export const requestKey = () => crypto.randomUUID();

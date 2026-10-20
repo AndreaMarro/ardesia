@@ -67,7 +67,7 @@ for (const surface of surfaces)
       "fetch",
       vi.fn(async (_url: string, options?: RequestInit) => {
         requests.push({
-          key: (options?.headers as Record<string, string>)["Idempotency-Key"],
+          key: new Headers(options?.headers).get("Idempotency-Key")!,
           body: options?.body as string,
         });
         return new Response(

@@ -493,6 +493,7 @@ test.each(["workspace", "discovery"] as const)(
           afterExpiry.push(path);
           return new Response(JSON.stringify({ error: "unauthenticated" }), {
             status: 401,
+            headers: { "X-Study-Session-Rejected": "cookie" },
           });
         }
         if (path.includes("/editions?"))

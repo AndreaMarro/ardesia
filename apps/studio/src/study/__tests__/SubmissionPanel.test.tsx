@@ -12,7 +12,7 @@ const source={resourceId:'resource-1',revisionId:'rev-1',contextId:'context-1'}
 
 test('lost commit response followed by remount retries exact persisted payload and key',async()=>{
  const requests:{key:string;body:unknown}[]=[]
- const fetcher=vi.fn(async(_url:string,options:RequestInit)=>{requests.push({key:(options.headers as Record<string,string>)['Idempotency-Key'],body:JSON.parse(options.body as string)});if(requests.length===1)throw new Error('response lost after commit');return new Response(JSON.stringify({receiptId:'receipt-same',revision:1}),{status:200})})
+ const fetcher=vi.fn(async(_url:string,options:RequestInit)=>{requests.push({key:new Headers(options.headers).get('Idempotency-Key')!,body:JSON.parse(options.body as string)});if(requests.length===1)throw new Error('response lost after commit');return new Response(JSON.stringify({receiptId:'receipt-same',revision:1}),{status:200})})
  vi.stubGlobal('fetch',fetcher)
  const first=render(<SubmissionPanel me={me} source={source} parentId={null} onUpdate={async()=>{}}/>)
  fireEvent.change(screen.getByRole('textbox',{name:'La tua spiegazione'}),{target:{value:'A fixed pressure Q scales with radius to the fourth'}})
@@ -30,7 +30,7 @@ test('partial upload retains acknowledged originals and remount retries the lost
  vi.stubGlobal('crypto',webcrypto)
  const requests:{key:string;body:unknown}[]=[]
  vi.stubGlobal('fetch',vi.fn(async(_url:string,options:RequestInit)=>{
-  requests.push({key:(options.headers as Record<string,string>)['Idempotency-Key'],body:options.body})
+  requests.push({key:new Headers(options.headers).get('Idempotency-Key')!,body:options.body})
   if(requests.length===2)throw new Error('lost response')
   return new Response(JSON.stringify({id:requests.length===1?'asset-a':'asset-b'}),{status:200})
  }))

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ErrorNotice, Loading } from "./Feedback";
+import { studyBlob } from "../../../studio/src/study/apiClient";
 export function AssetPreview({
   id,
   index = 1,
@@ -7,21 +8,21 @@ export function AssetPreview({
   id: string;
   index?: number;
 }) {
-  const [asset, setAsset] = useState<{ url: string; mime: string } | null>(
+  const [asset, setAsset] = useState<{ id: string; url: string; mime: string } | null>(
       null,
     ),
     [error, setError] = useState("");
   useEffect(() => {
     let active = true;
+    const controller = new AbortController();
     let url: string | undefined;
-    void fetch("/study/assets/" + encodeURIComponent(id), {
-      credentials: "same-origin",
-    })
-      .then(async (response) => {
-        if (!response.ok) throw Error();
-        const blob = await response.blob();
+    setError("");
+    setAsset(null);
+    void studyBlob("/assets/" + encodeURIComponent(id), { signal: controller.signal })
+      .then((blob) => {
+        if (!active) return;
         url = URL.createObjectURL(blob);
-        if (active) setAsset({ url, mime: blob.type });
+        setAsset({ id, url, mime: blob.type });
       })
       .catch(() => {
         if (active)
@@ -31,11 +32,12 @@ export function AssetPreview({
       });
     return () => {
       active = false;
+      controller.abort();
       if (url) URL.revokeObjectURL(url);
     };
   }, [id]);
   if (error) return <ErrorNotice message={error} />;
-  if (!asset) return <Loading>Sto aprendo l’originale {index}…</Loading>;
+  if (!asset || asset.id !== id) return <Loading>Sto aprendo l’originale {index}…</Loading>;
   return (
     <figure className="asset-preview">
       {asset.mime.startsWith("image/") ? (

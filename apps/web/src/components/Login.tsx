@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { beginStudySessionExchange, isStudySessionEpoch } from "../../../studio/src/study/sessionBoundary";
 import { studyRequest, type StudyMe } from "../api";
 import { ErrorNotice } from "./Feedback";
 export function Login({
@@ -11,6 +12,12 @@ export function Login({
   onSuccess: (me: StudyMe) => void;
   restoreFocus: HTMLElement | null;
 }) {
+  const mounted = useRef(true);
+  const pending = useRef<AbortController | null>(null);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; pending.current?.abort(); };
+  }, []);
   const [token, setToken] = useState(""),
     [invitation, setInvitation] = useState(false),
     [invitationMode, setInvitationMode] = useState<
@@ -44,21 +51,25 @@ export function Login({
     e.preventDefault();
     setBusy(true);
     setError("");
+    const epoch = beginStudySessionExchange();
+    const controller = new AbortController();
+    pending.current?.abort();
+    pending.current = controller;
     try {
-      onSuccess(
-        await studyRequest<StudyMe>(
+      const value = await studyRequest<StudyMe>(
           invitation && invitationMode === "available"
             ? "/invitations/accept"
             : "/session",
           { token },
-        ),
-      );
+          { signal: controller.signal },
+        );
+      if (mounted.current && isStudySessionEpoch(epoch)) onSuccess(value);
     } catch {
-      setError(
+      if (mounted.current && isStudySessionEpoch(epoch)) setError(
         "Il codice non è valido, è scaduto o è già stato usato. Controllalo e riprova.",
       );
     } finally {
-      setBusy(false);
+      if (mounted.current) setBusy(false);
     }
   }
   return (

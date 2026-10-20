@@ -14,8 +14,8 @@ type Paging = {
   previous: (string | null)[];
 };
 /** Discovery is SQL-authorized and bounded: one page plus at most one exact lookup. */
-export function useCourseWorkspace(me: StudyMe | null) {
-  const actor = me ? `${me.id}:${me.role}` : "";
+export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
+  const actor = me ? `${me.id}:${me.role}:${sessionVersion}` : "";
   const [listingVersion, setListingVersion] = useState(0);
   const [paging, setPaging] = useState<Paging>({
     actor: "",
@@ -155,7 +155,7 @@ export function useCourseWorkspace(me: StudyMe | null) {
           !controller.signal.aborted &&
           current.current.actor === actor
         ) {
-          if (failure instanceof StudyApiError && failure.status === 401)
+          if (failure instanceof StudyApiError && failure.sessionRejected)
             expireSession();
           else discoveryFailed.current = true;
           setError(
@@ -236,7 +236,7 @@ export function useCourseWorkspace(me: StudyMe | null) {
       setData(value);
     } catch (failure) {
       if (valid()) {
-        if (failure instanceof StudyApiError && failure.status === 401)
+        if (failure instanceof StudyApiError && failure.sessionRejected)
           expireSession();
         else if (
           failure instanceof StudyApiError &&
