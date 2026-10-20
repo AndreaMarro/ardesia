@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Edition, StudyMe } from "../api";
+import { EditionNavigation, type EditionPagination } from "./EditionNavigation";
 
 export type View =
   | "today"
@@ -46,6 +47,7 @@ export function Shell({
   editions = [],
   editionId,
   onEdition,
+  editionPagination,
 }: {
   me: StudyMe;
   view: View;
@@ -55,6 +57,7 @@ export function Shell({
   editions?: Edition[];
   editionId?: string | null;
   onEdition?: (id: string) => void;
+  editionPagination?: EditionPagination;
 }) {
   const tutor = me.role === "teacher";
   return (
@@ -77,9 +80,15 @@ export function Shell({
             Edizione corrente
             <select
               aria-label="Edizione corrente"
+              disabled={editionPagination?.loading}
               value={editionId ?? ""}
               onChange={(event) => onEdition?.(event.target.value)}
             >
+              {!editionId && (
+                <option value="" disabled>
+                  Scegli un’edizione
+                </option>
+              )}
               {editions.map((edition) => (
                 <option key={edition.id} value={edition.id}>
                   {edition.title ?? edition.id} · {edition.id}
@@ -88,7 +97,10 @@ export function Shell({
             </select>
           </label>
         )}
-        <nav aria-label="Navigazione principale">
+        {editionPagination && (
+          <EditionNavigation pagination={editionPagination} />
+        )}
+        <nav className="primary-navigation" aria-label="Navigazione principale">
           {items
             .filter((i) => !i.teacherOnly || tutor)
             .map((item) => (

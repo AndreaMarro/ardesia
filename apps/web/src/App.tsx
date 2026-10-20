@@ -52,6 +52,13 @@ export default function App() {
     [parentId, setParentId] = useState<string | null>(null);
   const course = useCourseWorkspace(me);
   const { data, refresh } = course;
+  useEffect(() => {
+    if (!course.sessionExpired) return;
+    setMe(null);
+    clearResourceDrafts();
+    setLoginTrigger(document.activeElement as HTMLElement | null);
+    setLoginOpen(true);
+  }, [course.sessionExpired]);
   const affinity = `${me?.id}:${course.editionId}`;
   useEffect(() => {
     setParentId(null);
@@ -110,33 +117,69 @@ export default function App() {
           editions={course.editions}
           editionId={course.editionId}
           onEdition={course.selectEdition}
+          editionPagination={course.pagination}
         >
           {(error || course.error) && (
             <ErrorNotice
               message={error || course.error}
               onRetry={() =>
-                void refresh()
+                void course
+                  .retry()
                   .then(() => setError(""))
                   .catch((e) => setError(describeError(e)))
               }
             />
           )}{" "}
+          {!course.listing &&
+            !course.error &&
+            course.editions.length === 0 &&
+            course.pagination.hasPrevious && (
+              <p role="status">
+                Questa pagina non contiene edizioni disponibili. Usa
+                “Precedenti” per rileggere le altre pagine.
+              </p>
+            )}
           {!course.listing && !course.error && course.editions.length === 0 ? (
-            me.role === "teacher" && view === "courses" ? <Suspense fallback={<Loading />}>
-              <Courses me={me} data={null} editions={[]} onManaged={course.reloadEditions}
-                onUpdate={refresh} onClassroom={() => navigate("classroom")} />
-            </Suspense> : <>
-              <header className="page-heading">
-                <h1>Il tuo spazio è pronto.</h1>
-                <p>
-                  Non risultano edizioni accessibili al tuo account. Puoi
-                  esplorare il laboratorio pubblico; fonti, consegne e
-                  iscrizioni restano chiuse.
-                </p>
-              </header>
-              {me.role === "teacher" && <button className="button-primary" onClick={() => navigate("courses")}>Crea la prima edizione</button>}
-              <PhysicsLab />
-            </>
+            me.role === "teacher" && view === "courses" ? (
+              <Suspense fallback={<Loading />}>
+                <Courses
+                  me={me}
+                  data={null}
+                  editions={[]}
+                  onManaged={course.reloadEditions}
+                  onUpdate={refresh}
+                  onClassroom={() => navigate("classroom")}
+                />
+              </Suspense>
+            ) : (
+              <>
+                <header className="page-heading">
+                  <h1>
+                    {course.pagination.hasPrevious
+                      ? "Questa pagina è vuota."
+                      : "Il tuo spazio è pronto."}
+                  </h1>
+                  <p>
+                    {course.pagination.hasPrevious
+                      ? "Puoi tornare alla pagina precedente oppure "
+                      : "Non risultano edizioni accessibili al tuo account. Puoi "}
+                    esplorare il laboratorio pubblico; fonti, consegne e
+                    iscrizioni restano chiuse.
+                  </p>
+                </header>
+                {me.role === "teacher" && (
+                  <button
+                    className="button-primary"
+                    onClick={() => navigate("courses")}
+                  >
+                    {course.pagination.hasPrevious
+                      ? "Prepara un’edizione"
+                      : "Crea la prima edizione"}
+                  </button>
+                )}
+                <PhysicsLab />
+              </>
+            )
           ) : !data && !error && !course.error ? (
             <Loading />
           ) : data ? (

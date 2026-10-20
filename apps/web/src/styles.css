@@ -723,12 +723,12 @@ dd {
   color: var(--muted);
   margin: 0 14px 12px;
 }
-.sidebar nav {
+.sidebar .primary-navigation {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.sidebar nav button {
+.sidebar .primary-navigation button {
   display: flex;
   align-items: center;
   gap: 13px;
@@ -740,18 +740,18 @@ dd {
   font-weight: 450;
   white-space: nowrap;
 }
-.sidebar nav button svg {
+.sidebar .primary-navigation button svg {
   width: 19px;
   height: 19px;
   color: #71806e;
   flex-shrink: 0;
 }
-.sidebar nav button[aria-current="page"] {
+.sidebar .primary-navigation button[aria-current="page"] {
   background: #dfe5d7;
   color: #243b30;
   font-weight: 600;
 }
-.sidebar nav button[aria-current="page"] svg {
+.sidebar .primary-navigation button[aria-current="page"] svg {
   color: #344e3c;
 }
 .sidebar-bottom {
@@ -1894,7 +1894,7 @@ dd {
   .sidebar-bottom > p {
     display: none;
   }
-  .sidebar nav {
+  .sidebar .primary-navigation {
     grid-column: 1/-1;
     grid-row: 2;
     flex-direction: row;
@@ -1902,12 +1902,12 @@ dd {
     gap: 9px;
     padding-bottom: 10px;
   }
-  .sidebar nav button {
+  .sidebar .primary-navigation button {
     min-height: 40px;
     padding: 10px 12px;
     font-size: 12px;
   }
-  .sidebar nav button svg {
+  .sidebar .primary-navigation button svg {
     width: 16px;
     height: 16px;
   }
@@ -2231,20 +2231,20 @@ dd {
   .sidebar .wordmark {
     font-size: 26px;
   }
-  .sidebar nav {
+  .sidebar .primary-navigation {
     margin: 0;
     padding-inline: 0;
     gap: 4px;
     flex-wrap: wrap;
     overflow-x: visible;
   }
-  .sidebar nav button {
+  .sidebar .primary-navigation button {
     font-size: 11px;
     padding: 9px 11px;
     gap: 7px;
     min-height: 41px;
   }
-  .sidebar nav button svg {
+  .sidebar .primary-navigation button svg {
     width: 15px;
     height: 15px;
   }
@@ -3122,3 +3122,7 @@ dd {
     max-width: 55%;
   }
 }
+.edition-pagination { margin: 8px 0 20px; font-size: 12px; color: var(--muted); }
+.edition-pagination p { margin: 0 0 8px; }
+.edition-pagination > div { display: flex; gap: 8px; flex-wrap: wrap; }
+.edition-pagination button { padding: 6px 10px; font-size: 12px; }
