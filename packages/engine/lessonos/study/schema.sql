@@ -105,3 +105,41 @@ CREATE TABLE IF NOT EXISTS study_edition_packs(
  course_id TEXT NOT NULL, pack_id TEXT NOT NULL, pack_version INTEGER NOT NULL CHECK(pack_version>0),
  pack_sha256 TEXT NOT NULL CHECK(length(pack_sha256)=64 AND pack_sha256 NOT GLOB '*[^0-9a-f]*')
 );
+CREATE TABLE IF NOT EXISTS study_calendar_targets(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id) ON DELETE CASCADE,
+ actor_id TEXT NOT NULL REFERENCES study_principals(id), provider TEXT NOT NULL CHECK(provider IN ('mock','ics')),
+ account_id TEXT NOT NULL, calendar_id TEXT NOT NULL CHECK(calendar_id='primary'),
+ source_version TEXT, sequence INTEGER NOT NULL DEFAULT 0 CHECK(sequence>=0), sync_cursor TEXT,
+ sync_version INTEGER NOT NULL DEFAULT 0 CHECK(sync_version>=0),
+ channel_id TEXT, channel_token TEXT, channel_resource TEXT, channel_expires REAL,
+ UNIQUE(edition_id,actor_id,provider,account_id,calendar_id), CHECK(account_id=actor_id)
+);
+CREATE TABLE IF NOT EXISTS study_calendar_intents(
+ id TEXT PRIMARY KEY, target_id TEXT NOT NULL REFERENCES study_calendar_targets(id) ON DELETE CASCADE,
+ actor_id TEXT NOT NULL REFERENCES study_principals(id), edition_id TEXT NOT NULL REFERENCES study_editions(id),
+ source_version TEXT NOT NULL CHECK(length(source_version)=64), preview_hash TEXT NOT NULL CHECK(length(preview_hash)=64),
+ body TEXT NOT NULL, created_at REAL NOT NULL, expires_at REAL NOT NULL CHECK(expires_at>created_at),
+ state TEXT NOT NULL DEFAULT 'preview' CHECK(state IN ('preview','publishing','published')),
+ confirm_key TEXT, consumed_at REAL, UNIQUE(actor_id,confirm_key)
+);
+CREATE INDEX IF NOT EXISTS study_calendar_intent_scope ON study_calendar_intents(actor_id,edition_id,target_id);
+CREATE TABLE IF NOT EXISTS study_calendar_mappings(
+ target_id TEXT NOT NULL REFERENCES study_calendar_targets(id) ON DELETE CASCADE,
+ session_id TEXT NOT NULL, event_id TEXT NOT NULL, source_version TEXT, etag TEXT, applied_body TEXT,
+ PRIMARY KEY(target_id,session_id), UNIQUE(target_id,event_id)
+);
+CREATE TABLE IF NOT EXISTS study_calendar_cache(
+ target_id TEXT NOT NULL REFERENCES study_calendar_targets(id) ON DELETE CASCADE,
+ event_id TEXT NOT NULL, start_utc TEXT, end_utc TEXT, etag TEXT NOT NULL,
+ status TEXT NOT NULL CHECK(status IN ('confirmed','tentative','cancelled')),
+ PRIMARY KEY(target_id,event_id)
+);
+CREATE TABLE IF NOT EXISTS study_calendar_deliveries(
+ target_id TEXT NOT NULL REFERENCES study_calendar_targets(id) ON DELETE CASCADE,
+ channel_id TEXT NOT NULL, delivery_id TEXT NOT NULL, created_at REAL NOT NULL,
+ PRIMARY KEY(target_id,channel_id,delivery_id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS study_calendar_active_publish ON study_calendar_intents(target_id) WHERE state='publishing';
+
+UPDATE study_schema SET version=3 WHERE version=2;

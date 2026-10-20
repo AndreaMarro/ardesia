@@ -64,11 +64,13 @@ def _existing_database(directory, *, allow_legacy_catalog=False):
     try:
         if connection.execute('PRAGMA integrity_check').fetchone()[0]!='ok' or connection.execute('PRAGMA foreign_key_check').fetchone():raise ValueError('database_integrity')
         schema=connection.execute('SELECT version FROM study_schema').fetchall()
-        if len(schema)!=1 or schema[0][0]!=2:raise ValueError('database_integrity_schema')
+        if len(schema)!=1 or schema[0][0] not in (2,3):raise ValueError('database_integrity_schema')
         required=set(re.findall(r'CREATE TABLE IF NOT EXISTS (\w+)',Path(__file__).with_name('schema.sql').read_text()))
         present={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         missing=required-present
-        if missing and not (allow_legacy_catalog and missing=={'study_edition_packs'}):raise ValueError('database_integrity_schema')
+        legacy_missing={name for name in required if name.startswith('study_calendar_')} if schema[0][0]==2 else set()
+        if allow_legacy_catalog and schema[0][0]==2:legacy_missing.add('study_edition_packs')
+        if missing-legacy_missing:raise ValueError('database_integrity_schema')
         return connection
     except BaseException:
         connection.close();raise
@@ -231,8 +233,8 @@ def restore_data(backup,destination,current_ledger):
     try:
         for ref in manifest['files']:
             path=stage/ref;path.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(backup/ref,path);os.chmod(path,0o600)
-        # Validate an older snapshot before the one permitted metadata upgrade.
-        # Missing canonical tables remain corruption, never repaired by opening.
+        # Validate recognized v2 metadata before additive bootstrap. Missing
+        # canonical tables or v3 Calendar tables remain corruption.
         existing=_existing_database(stage,allow_legacy_catalog=True);existing.close()
         upgraded=StudyStore(stage/'study.sqlite');upgraded.close()
         _write_ledger(stage/'erasure-ledger.json',sorted(set(actors+_ledger(stage/'erasure-ledger.json'))))

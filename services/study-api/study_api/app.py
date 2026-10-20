@@ -26,7 +26,7 @@ class ResourceBody(BaseModel):
 
 
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
-               request_store_limit=16, request_store_wait=.5):
+               request_store_limit=16, request_store_wait=.5, calendar_provider=None):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
@@ -419,6 +419,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
+    from .calendar_routes import install_calendar_routes
+    from lessonos.study.calendar_mock import MockCalendar
+    install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
 
     if frontend:
         from fastapi.staticfiles import StaticFiles

@@ -85,6 +85,9 @@ def test_restore_prebinding_backup_replays_current_erasure_ledger(tmp_path):
     backup=tmp_path/'old-backup'
     backup_data(tmp_path/'source',backup)
     with sqlite3.connect(backup/'study.sqlite') as connection:
+        for table in ('study_calendar_deliveries','study_calendar_cache','study_calendar_mappings','study_calendar_intents','study_calendar_targets'):
+            connection.execute('DROP TABLE '+table)
+        connection.execute('UPDATE study_schema SET version=2')
         connection.execute('DROP TABLE study_edition_packs')
     connection.close()
     manifest_path=backup/'backup-manifest.json'

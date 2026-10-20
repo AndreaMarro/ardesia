@@ -49,9 +49,15 @@ class StudyStore:
             self.connection.execute('PRAGMA busy_timeout=5000')
             self.connection.execute('PRAGMA journal_mode=WAL')
             present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
-            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 2:
+            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 3:
                 self.close()
                 raise StudyError('newer_schema', 503)
+            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 3:
+                required={'study_calendar_targets','study_calendar_intents','study_calendar_mappings','study_calendar_cache','study_calendar_deliveries'}
+                actual={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'study_calendar_%'")}
+                if not required.issubset(actual):
+                    self.close()
+                    raise StudyError('database_integrity_failure',503)
             catalog_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_edition_packs'").fetchone()
             self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
             if not catalog_present:
