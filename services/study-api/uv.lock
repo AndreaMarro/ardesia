@@ -38,6 +38,7 @@ name = "ardesia-study-api"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "anyio" },
     { name = "fastapi" },
     { name = "pillow" },
     { name = "psycopg", extra = ["binary"] },
@@ -53,6 +54,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "anyio", specifier = ">=4.15,<5" },
     { name = "fastapi", specifier = "==0.139.0" },
     { name = "pillow", specifier = ">=12,<13" },
     { name = "psycopg", extras = ["binary"], specifier = "==3.3.3" },

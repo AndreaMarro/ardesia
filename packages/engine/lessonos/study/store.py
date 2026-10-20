@@ -1,6 +1,6 @@
 """Single-database adapter. Study facts and LessonOS projections commit together.
 
-One SQLite connection per request/thread. Never call legacy auto-commit save
+One SQLite connection per logical unit of work. Never call legacy auto-commit save
 methods inside a study transaction; the adapter owns its complete transaction.
 """
 from contextlib import contextmanager
@@ -31,14 +31,14 @@ def digest(value: str | bytes):
 
 
 class StudyStore:
-    def __init__(self, path: str | Path, clock=time.time):
+    def __init__(self, path: str | Path, clock=time.time, *, check_same_thread=True):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.clock = clock
         with data_lock(self.path):
             if self.path.exists() and self.path.stat().st_size<100:
                 raise StudyError('database_integrity_failure',503)
-            self.legacy = SQLiteStore(str(self.path))
+            self.legacy = SQLiteStore(str(self.path), check_same_thread=check_same_thread)
             self.connection = self.legacy._conn
             self.connection.execute('PRAGMA foreign_keys=ON')
             self.connection.execute('PRAGMA busy_timeout=5000')

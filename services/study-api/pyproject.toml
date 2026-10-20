@@ -3,6 +3,7 @@ name = "ardesia-study-api"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "anyio>=4.15,<5",
     "fastapi==0.139.0",
     "pillow>=12,<13",
     "psycopg[binary]==3.3.3",

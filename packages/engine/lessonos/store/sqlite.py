@@ -133,8 +133,8 @@ CREATE INDEX IF NOT EXISTS idx_consent_events_rel
     ON consent_events(teacher_id, class_id);
 """
 class SQLiteStore(Store):
-    def __init__(self, db_path: str = ":memory:") -> None:
-        self._conn = sqlite3.connect(db_path)
+    def __init__(self, db_path: str = ":memory:", *, check_same_thread: bool = True) -> None:
+        self._conn = sqlite3.connect(db_path, check_same_thread=check_same_thread)
         self._conn.row_factory = sqlite3.Row
         self._in_transaction: bool = False
         self._migrate()

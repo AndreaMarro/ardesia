@@ -23,7 +23,9 @@ Concurrency belongs to the invariant: edition row locks protect capacity, per-co
 | Authentication provider | Runtime identity/session boundary | Forgery, revocation, login/logout and role isolation |
 | Context/diary projection | Shared Core projection, canonical events retained | Exact source/revision, stale/revoked policy, authorized replay |
 
-These boundaries reduce the cost of change; they do not certify unlimited scale. Current local runtime opens a synchronous PostgreSQL connection per request and uses synchronous provider transport. Connection pooling, worker configuration and load targets require measurement before a capacity claim. Event projection is scoped and indexed but still replays the authorized history. Incremental checkpoints may be added only with rebuild/reconciliation tests.
+These boundaries reduce the cost of change; they do not certify unlimited scale. The local runtime opens a synchronous PostgreSQL connection per request and uses synchronous provider transport. Those operations run in FastAPI/AnyIO workers, including dependency setup/teardown, abuse counters and original uploads; they must not occupy the ASGI event loop. One connection belongs to one logical request, even if setup, command and teardown use different workers. SQLite permits that explicit request handoff without permitting concurrent commands on the same connection; direct Core callers retain the default thread check.
+
+The worker pool bounds concurrently executing synchronous calls, not the total number of open connections or queued requests. Connection pooling, admission control, worker configuration and load targets require measurement before a capacity claim. A causal regression holds each of six synchronous boundaries and requires health to complete before releasing it; this verifies event-loop progress, not production throughput. Event projection is scoped and indexed but still replays the authorized history. Incremental checkpoints may be added only with rebuild/reconciliation tests.
 
 ## Current limitations
 

@@ -1,9 +1,11 @@
 """Loopback-only synthetic M1 adapter. No production authentication claims."""
 import json,sqlite3,os
+from anyio import CancelScope, CapacityLimiter, to_thread
 from lessonos.study.store import digest
 from pathlib import Path
 from fastapi import FastAPI, Request, Response, Depends
 from fastapi.responses import JSONResponse
+from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
 from lessonos.study.models import StudyError
 from lessonos.study.store import StudyStore
@@ -46,6 +48,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         async def postgres_error(request, exc):
             return JSONResponse({'error':'storage_unavailable'},status_code=503)
 
+    def allow_attempt(request):
+        # The connection is opened, used and closed in one worker invocation.
+        limiter=runtime.open() if runtime else StudyStore(db_path)
+        try:
+            return limiter.allow_request(digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
+        finally:
+            limiter.close()
+
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
         host = request.url.hostname
@@ -64,9 +74,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
                 if len(data)>limit:return JSONResponse({'error':'payload_too_large'},status_code=413)
             request._body=bytes(data)
             if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
-                limiter=runtime.open() if runtime else StudyStore(db_path)
-                try:allowed,retry=limiter.allow_request(digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
-                finally:limiter.close()
+                allowed,retry=await run_in_threadpool(allow_attempt, request)
                 if not allowed:return JSONResponse({'error':'rate_limited'},status_code=429,headers={'Retry-After':str(retry)})
         response = await call_next(request)
         response.headers['Cache-Control'] = 'no-store'
@@ -78,11 +86,23 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         # expired HttpOnly cookie. Protected routes still validate it normally.
         recovery = request.url.path in ('/study/session','/study/invitations/accept')
         token = '' if recovery else request.cookies.get('study_session','')
-        store = runtime.open(token) if runtime else StudyStore(db_path)
+        # FastAPI can schedule setup, handler and teardown on different workers.
+        # This connection still belongs to one request and is never used by
+        # concurrent commands. Aggregate/transaction barriers remain in the Core.
+        def open_store():
+            return runtime.open(token) if runtime else StudyStore(db_path, check_same_thread=False)
+        # Finish ownership transfer before observing cancellation. An async
+        # dependency also avoids sync-generator finalization on the event loop
+        # when FastAPI's threadpool context receives a BaseException.
+        with CancelScope(shield=True):
+            store = await run_in_threadpool(open_store)
         try:
             yield store
         finally:
-            store.close()
+            # Cleanup must progress even when the ordinary worker pool is full
+            # or the request's cancellation scope is already cancelled.
+            with CancelScope(shield=True):
+                await to_thread.run_sync(store.close, limiter=CapacityLimiter(1))
 
     def authenticate(request, store):
         if runtime is not None:
@@ -99,7 +119,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             'capabilities':{'invitationCodes':runtime is None}}
 
     @app.get('/study/ops/health')
-    async def readiness(request: Request, store=Depends(store_dependency)):
+    def readiness(request: Request, store=Depends(store_dependency)):
         principal=authenticate(request,store)
         if principal.role!='teacher':raise StudyError('forbidden',403)
         if runtime is not None:
@@ -109,7 +129,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return JSONResponse(result,status_code=200 if result['ok'] else 503)
 
     @app.post('/study/session')
-    async def session(body: SessionBody, response: Response, store=Depends(store_dependency)):
+    def session(body: SessionBody, response: Response, store=Depends(store_dependency)):
         if runtime is not None:
             principal = runtime.exchange(body.token)
             response.set_cookie('study_session', body.token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
@@ -122,7 +142,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'id':principal.id,'role':principal.role,'synthetic':True}
 
     @app.post('/study/invitations/accept')
-    async def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
+    def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
         if runtime is not None:raise StudyError('supabase_invitation_not_configured',501)
         token=store.accept_invitation(body.token)
         principal=store.principal_for_session(token)
@@ -130,24 +150,24 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'id':principal.id,'role':principal.role,'synthetic':True}
 
     @app.post('/study/editions/{edition_id}/invitations')
-    async def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+    def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         if runtime is not None:raise StudyError('supabase_invitation_not_configured',501)
         return store.create_invitation(authenticate(request,store),edition_id,body.get('actorId'))
 
     @app.get('/study/editions/{edition_id}/access')
-    async def access_list(edition_id: str, request: Request, store=Depends(store_dependency)):
+    def access_list(edition_id: str, request: Request, store=Depends(store_dependency)):
         store._edition_access(authenticate(request,store),edition_id,teacher_only=True)
         return {'capabilities':{'invitationCodes':runtime is None},'members':[row[0] for row in store.connection.execute('SELECT student_id FROM study_members WHERE edition_id=? ORDER BY student_id',(edition_id,))],
                 'waitlist':[row[0] for row in store.connection.execute('SELECT student_id FROM study_waitlist WHERE edition_id=? ORDER BY student_id',(edition_id,))],
                 'invitations':[dict(row) for row in store.connection.execute('SELECT id,actor_id,state,expires_at FROM study_invitations WHERE edition_id=? ORDER BY id',(edition_id,))]}
 
     @app.delete('/study/invitations/{invitation_id}')
-    async def revoke_invitation(invitation_id: str, request: Request, store=Depends(store_dependency)):
+    def revoke_invitation(invitation_id: str, request: Request, store=Depends(store_dependency)):
         store.revoke_invitation(authenticate(request,store),invitation_id)
         return {'revoked':True}
 
     @app.post('/study/session/revoke-all')
-    async def revoke_all(request: Request, response: Response, store=Depends(store_dependency)):
+    def revoke_all(request: Request, response: Response, store=Depends(store_dependency)):
         principal=authenticate(request,store)
         if runtime is not None:runtime.sign_out(request.cookies.get('study_session',''),all_sessions=True)
         else:store.revoke_all_sessions(principal)
@@ -155,7 +175,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'revoked':True}
 
     @app.delete('/study/session')
-    async def logout(request: Request, response: Response, store=Depends(store_dependency)):
+    def logout(request: Request, response: Response, store=Depends(store_dependency)):
         if runtime is not None:
             try:runtime.sign_out(request.cookies.get('study_session',''))
             except StudyError as error:
@@ -167,24 +187,24 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'ok':True}
 
     @app.get('/study/me')
-    async def me(request: Request, store=Depends(store_dependency)):
+    def me(request: Request, store=Depends(store_dependency)):
         principal = authenticate(request,store)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
 
     @app.post('/study/resources')
-    async def create_resource(body: ResourceBody, request: Request, store=Depends(store_dependency)):
+    def create_resource(body: ResourceBody, request: Request, store=Depends(store_dependency)):
         return store.create_resource(authenticate(request,store),body.editionId,body.kind,body.text,body.visibility,key=request.headers.get('Idempotency-Key'))
 
     @app.get('/study/resources/{resource_id}')
-    async def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
+    def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
         return store.get_resource(authenticate(request,store),resource_id)
 
     @app.get('/study/resources/{resource_id}/revisions/{revision_id}')
-    async def resource_revision(resource_id: str, revision_id: str, request: Request, store=Depends(store_dependency)):
+    def resource_revision(resource_id: str, revision_id: str, request: Request, store=Depends(store_dependency)):
         return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
 
     @app.get('/study/course')
-    async def course(editionId: str='fluidi', store=Depends(store_dependency)):
+    def course(editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.catalog import edition_pack
         from lessonos.study.coursepack import load_coursepack
         edition=store.get_edition(editionId)
@@ -199,28 +219,28 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             'synthetic':True,'editorialStatus':pack['status'],'scope':pack['scope']}
 
     @app.post('/study/activities/evaluate')
-    async def evaluate(body: dict):
+    def evaluate(body: dict):
         from lessonos.study.activities import evaluate_activity
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
 
     @app.get('/study/coursepack')
-    async def coursepack(editionId: str='fluidi', store=Depends(store_dependency)):
+    def coursepack(editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.coursepack import load_coursepack
         edition=store.get_edition(editionId)
         return load_coursepack(edition['packId'],edition['packVersion'])
 
     @app.post('/study/interests')
-    async def interest(body: dict, request: Request, store=Depends(store_dependency)):
+    def interest(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.interests import record_interest
         return record_interest(store,body,request.headers.get('Idempotency-Key',''))
 
     @app.get('/study/interests')
-    async def interests(editionId: str, request: Request, store=Depends(store_dependency)):
+    def interests(editionId: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.interests import list_interests
         return list_interests(store,authenticate(request,store),editionId)
 
     @app.get('/study/workspace')
-    async def workspace(editionId: str, request: Request, store=Depends(store_dependency)):
+    def workspace(editionId: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import list_submissions
         from lessonos.study.feedback import list_feedback
         principal=authenticate(request,store)
@@ -239,17 +259,17 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId)}
 
     @app.post('/study/editions/{edition_id}/holds')
-    async def hold(edition_id: str, request: Request, store=Depends(store_dependency)):
+    def hold(edition_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.groups import reserve_seat
         return reserve_seat(store,authenticate(request,store),edition_id,request.headers.get('Idempotency-Key',''),store.clock())
 
     @app.post('/study/holds/{hold_id}/confirm')
-    async def confirm(hold_id: str, request: Request, store=Depends(store_dependency)):
+    def confirm(hold_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.groups import confirm_test_enrollment
         return confirm_test_enrollment(store,authenticate(request,store),hold_id,request.headers.get('Idempotency-Key',''),store.clock())
 
     @app.post('/study/editions/{edition_id}/approve')
-    async def approve(edition_id: str, request: Request, store=Depends(store_dependency)):
+    def approve(edition_id: str, request: Request, store=Depends(store_dependency)):
         principal=authenticate(request,store)
         edition=store._edition_access(principal,edition_id,teacher_only=True)
         if len(edition['sessions'])!=4:raise StudyError('four_sessions_required')
@@ -259,76 +279,78 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return store.get_edition(edition_id)
 
     @app.post('/study/layout')
-    async def layout(body: dict, request: Request, store=Depends(store_dependency)):
+    def layout(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.view_layout import save_layout
         return save_layout(store,authenticate(request,store),body.get('editionId'),body.get('views'),body.get('expectedVersion'))
 
     @app.post('/study/assets')
     async def upload(request: Request, editionId: str, store=Depends(store_dependency)):
         from lessonos.study.assets import upload_asset
-        principal=authenticate(request,store)
         key=request.headers.get('Idempotency-Key','')
         if not 1<=len(key)<=256:raise StudyError('idempotency_key_required')
         data=bytearray()
         async for chunk in request.stream():
             data.extend(chunk)
             if len(data)>20*1024*1024:raise StudyError('asset_too_large',413)
-        return upload_asset(store,principal,editionId,bytes(data),request.headers.get('Content-Type',''),Path(db_path).parent/'blobs',key=key)
+        def store_original():
+            return upload_asset(store,authenticate(request,store),editionId,bytes(data),
+                request.headers.get('Content-Type',''),Path(db_path).parent/'blobs',key=key)
+        return await run_in_threadpool(store_original)
 
     @app.get('/study/assets/{asset_id}')
-    async def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
+    def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.assets import read_asset
         data,mime=read_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs')
         return Response(data,media_type=mime,headers={'Content-Disposition':f'attachment; filename="original-{asset_id}"','Cache-Control':'no-store'})
 
     @app.post('/study/submissions')
-    async def submission(body: dict, request: Request, store=Depends(store_dependency)):
+    def submission(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import submit
         return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'))
 
     @app.get('/study/receipts/{receipt_id}')
-    async def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
+    def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import get_receipt
         return get_receipt(store,authenticate(request,store),receipt_id)
 
     @app.post('/study/feedback/drafts')
-    async def candidate(body: dict, request: Request, store=Depends(store_dependency)):
+    def candidate(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.feedback import propose_feedback
         return propose_feedback(store,authenticate(request,store),body.get('submissionId'))
 
     @app.post('/study/feedback/{candidate_id}/publish')
-    async def publish(candidate_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+    def publish(candidate_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.feedback import review_feedback
         return review_feedback(store,authenticate(request,store),candidate_id,body.get('expectedRevision'),body.get('text'),request.headers.get('Idempotency-Key',''),body.get('decision','returned'))
 
     @app.post('/study/resources/{resource_id}/revise')
-    async def revise(resource_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+    def revise(resource_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.context import revise_resource
         return revise_resource(store,authenticate(request,store),resource_id,body.get('expectedRevision'),body.get('text'))
 
     @app.delete('/study/resources/{resource_id}')
-    async def remove(resource_id: str, request: Request, store=Depends(store_dependency)):
+    def remove(resource_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.context import delete_resource
         delete_resource(store,authenticate(request,store),resource_id)
         return {'deleted':True}
 
     @app.get('/study/context/{context_id}')
-    async def context(context_id: str, request: Request, query: str='', resourceId: str | None=None, revisionId: str | None=None, store=Depends(store_dependency)):
+    def context(context_id: str, request: Request, query: str='', resourceId: str | None=None, revisionId: str | None=None, store=Depends(store_dependency)):
         from lessonos.study.context import retrieve_context
         return retrieve_context(store,authenticate(request,store),context_id,query,resource_id=resourceId,revision_id=revisionId)
 
     @app.post('/study/hints')
-    async def hint(body: dict, request: Request, store=Depends(store_dependency)):
+    def hint(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.ai_jobs import request_hint
         return request_hint(store,authenticate(request,store),body.get('resourceId'),body.get('level'),request.headers.get('Idempotency-Key',''))
 
     @app.get('/study/notebook')
-    async def notebook(editionId: str, request: Request, store=Depends(store_dependency)):
+    def notebook(editionId: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.portable import export_notebook
         return export_notebook(store,authenticate(request,store),editionId,Path(db_path).parent/'blobs')
 
     @app.post('/study/notebook/inspect')
-    async def inspect(body: dict, request: Request, store=Depends(store_dependency)):
+    def inspect(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.portable import inspect_notebook
         authenticate(request,store)
         return inspect_notebook(body)
