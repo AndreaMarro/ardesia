@@ -46,6 +46,7 @@ def test_owner_export_contains_old_exact_pin_and_current_source_without_unrefere
     assert inspected['referencesComplete'] is True and inspected['resourceRevisions']==len(revisions)
     assert inspected['sha256']==bundle['sha256']
     assert 'Historical source revisions' not in ' '.join(bundle['omissions'])
+    assert 'Unreferenced historical source revisions are not included; this notebook contains current resources and exact revisions referenced by exported submissions or views.' in bundle['omissions']
     store.close()
 
 

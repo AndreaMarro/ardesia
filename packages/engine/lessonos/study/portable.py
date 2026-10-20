@@ -71,6 +71,7 @@ def export_notebook(store, principal, edition_id, blob_dir):
         raise StudyError('notebook_budget_exceeded')
     omissions = [
         'Read-only notebook: does not restore server sessions, enrollment, live collaboration or payment state.',
+        'Unreferenced historical source revisions are not included; this notebook contains current resources and exact revisions referenced by exported submissions or views.',
         'The legacy Excalidraw/audio journal is not represented by this notebook.',
         'No live OCR, ASR or AI result is certified by this export.',
     ]
