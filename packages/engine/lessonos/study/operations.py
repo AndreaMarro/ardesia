@@ -73,10 +73,14 @@ def _existing_database(directory, *, allow_legacy_catalog=False):
         if schema[0][0] in (1,2,3,4):
             from .schema_contract import ADMIN_COLUMNS
             legacy_missing.update(ADMIN_COLUMNS)
+        from .scientific_notebook import NOTEBOOK_COLUMNS
+        if schema[0][0] in (1,2,3,4,5):
+            legacy_missing.update(NOTEBOOK_COLUMNS)
         if missing-legacy_missing:raise ValueError('database_integrity_schema')
         from .schema_contract import validate_schema, ADMIN_COLUMNS
         from .models import StudyError
-        try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True,admin_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS})
+        try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True,admin_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS},
+            notebook_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in NOTEBOOK_COLUMNS})
         except StudyError:raise ValueError('database_integrity_schema') from None
         return connection
     except BaseException:

@@ -6,6 +6,7 @@ import sqlite3
 import pytest
 from lessonos.study.store import StudyStore
 from lessonos.study.models import StudyError
+from lessonos.study.schema_contract import CURRENT_SCHEMA
 from lessonos.study.groups import configure_sessions
 from lessonos.study import attendance,manual_payments
 from lessonos.study.operations import backup_data,restore_data,erase_student,_existing_database
@@ -246,7 +247,7 @@ def test_schema4_upgrade_preserves_facts_and_schema5_missing_features_fail_witho
     with sqlite3.connect(tmp_path/'study.sqlite') as c:
         c.execute('DROP TABLE study_attendance_records');c.execute('DROP TABLE study_manual_payment_records');c.execute('UPDATE study_schema SET version=4')
     upgraded=StudyStore(tmp_path/'study.sqlite')
-    assert pedagogical_facts(upgraded)==before and upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0]==5
+    assert pedagogical_facts(upgraded)==before and upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
     assert attendance.register(upgraded,tutor,'register-edition')['cells'][0]['status']=='UNRECORDED'
     upgraded.close()
     with sqlite3.connect(tmp_path/'study.sqlite') as c:c.execute('DROP TABLE study_manual_payment_records')
@@ -320,7 +321,7 @@ def test_schema5_missing_column_or_marker_is_never_repaired(tmp_path):
     with pytest.raises(StudyError,match='database_integrity_failure'):StudyStore(tmp_path/'study.sqlite')
     with sqlite3.connect(tmp_path/'study.sqlite') as c:
         assert 'offer_snapshot' not in {r[1] for r in c.execute('PRAGMA table_info(study_manual_payment_records)')}
-        assert c.execute('SELECT version FROM study_schema').fetchone()[0]==5
+        assert c.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
 
 
 def test_manual_facts_do_not_enter_learning_notebook_or_pedagogical_events(tmp_path):

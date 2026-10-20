@@ -193,3 +193,15 @@ CREATE INDEX IF NOT EXISTS study_manual_student ON study_manual_payment_records(
 UPDATE study_schema SET version=5 WHERE version=4;
 
 CREATE INDEX IF NOT EXISTS study_interests_edition ON study_interests(edition_id);
+
+CREATE TABLE IF NOT EXISTS study_notebook_bindings(
+ resource_id TEXT PRIMARY KEY REFERENCES study_resources(id) ON DELETE CASCADE,
+ asset_id TEXT NOT NULL REFERENCES study_assets(id),
+ asset_sha256 TEXT NOT NULL CHECK(length(asset_sha256)=64),
+ page_count INTEGER NOT NULL CHECK(page_count BETWEEN 1 AND 20)
+);
+CREATE TABLE IF NOT EXISTS study_notebook_snapshots(
+ revision_id TEXT PRIMARY KEY REFERENCES study_revisions(id) ON DELETE CASCADE,
+ state TEXT NOT NULL, sha256 TEXT NOT NULL CHECK(length(sha256)=64)
+);
+UPDATE study_schema SET version=6 WHERE version=5;

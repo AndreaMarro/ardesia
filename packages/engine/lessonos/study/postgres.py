@@ -143,14 +143,16 @@ class PostgresStudyStore(StudyStore):
         # KeyError/partially reconstructed canonical table. Do not repair PG.
         try:
             from .schema_contract import validate_schema, ADMIN_COLUMNS
+            from .scientific_notebook import NOTEBOOK_COLUMNS
             tables={row[0] for row in self.connection.execute("SELECT tablename FROM pg_tables WHERE schemaname='public'")}
             columns={row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name='study_editions'")}
             hold_columns={row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name='study_holds'")}
             admin_columns={table:{row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name=?",(table,))} for table in ADMIN_COLUMNS}
+            notebook_columns={table:{row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name=?",(table,))} for table in NOTEBOOK_COLUMNS}
             if 'study_schema' not in tables:
                 validate_schema(None,tables,columns,hold_columns)
             versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
-            validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,hold_columns,admin_columns=admin_columns)
+            validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,hold_columns,admin_columns=admin_columns,notebook_columns=notebook_columns)
         except BaseException:
             self.close()
             raise

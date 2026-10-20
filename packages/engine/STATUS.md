@@ -1102,3 +1102,26 @@ SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
 riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
 nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
 `docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.
+
+
+## 2026-10-20 — REA / Core del quaderno scientifico
+
+Binding immutabile risorsa→PDF, stato annotato per revisione, CAS/idempotenza,
+V1 consegnata/V2 privata ed export con originale. Schema 6 additivo; collisioni
+legacy esplicite, nessuna migrazione durante le richieste HTTP. Core e API
+riusano archivio, ricevute, revisioni ed erasure ledger esistenti.
+
+REA MCP sullo Studio originale conferma apertura compositore/integrale; il
+flusso successivo registra un errore non-JSON nel journal e timeout di Undo.
+Redo e riapertura non eseguiti: causalità non provata e flusso non certificato.
+
+Review Codex separata: quattro P2 riprodotti e corretti (coordinate enormi, MIME
+assente, originali incoerenti tra revisioni, surrogati nelle identità/CAS).
+Otto regressioni rosse prima del fix; 31 test mirati verdi; Engine 2473 passati,
+25 skipped; API 235 passati. Due probe indipendenti ripetuti verdi. Tre warning
+Engine riguardano fixture class-scoped legacy deprecate. PostgreSQL live e
+frontend non verificati in questo incremento; nessun gate indebolito.
+
+SYS-01 resta aperto: editor visuale, Undo isolato, geometria interattiva,
+salva/chiudi/riapri browser e confronto equivalente autorizzato ancora richiesti.
+Nessun push/merge/deploy. Dettaglio: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-CORE.md.

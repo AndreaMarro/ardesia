@@ -389,6 +389,23 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         from lessonos.study.view_layout import save_layout
         return save_layout(store,authenticate(request,store),body.get('editionId'),body.get('views'),body.get('expectedVersion'))
 
+    @app.post('/study/scientific-notebooks')
+    def create_scientific_notebook(body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.scientific_notebook import save_notebook
+        return save_notebook(store,authenticate(request,store),body.get('editionId'),body.get('assetId'),
+            body.get('assetSha256'),body.get('state'),request.headers.get('Idempotency-Key',''),Path(db_path).parent/'blobs')
+
+    @app.post('/study/scientific-notebooks/{resource_id}/revisions')
+    def revise_scientific_notebook(resource_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.scientific_notebook import save_notebook
+        principal=authenticate(request,store)
+        current=store.get_resource(principal,resource_id)
+        if current['kind']!='scientific-notebook':raise StudyError('notebook_command_required')
+        source=current['notebook']['source']
+        return save_notebook(store,principal,current['editionId'],source['assetId'],
+            source['sha256'],body.get('state'),request.headers.get('Idempotency-Key',''),Path(db_path).parent/'blobs',
+            resource_id=resource_id,expected_revision=body.get('expectedRevision'))
+
     @app.post('/study/assets')
     async def upload(request: Request, editionId: str, store=Depends(store_dependency)):
         from lessonos.study.assets import upload_asset

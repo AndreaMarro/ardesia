@@ -9,7 +9,7 @@ API Python read_asset restituisce ancora byte e MIME (`lessonos/study/assets.py:
 
 La route HTTP restituisce descrittore e byte nella stessa risposta autorizzata,
 con no-store e Content-Disposition attachment
-(`services/study-api/study_api/app.py:406`, percorso dalla root del monorepo).
+(`services/study-api/study_api/app.py:425`, percorso dalla root del monorepo).
 Il client condiviso verifica stream e hash prima di consegnare il Blob alla UI
 (`apps/studio/src/study/originalAsset.ts:50`); studyOriginal conserva il confine di
 sessione del trasporto esistente (`apps/studio/src/study/apiClient.ts:54`).

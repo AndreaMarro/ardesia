@@ -55,6 +55,11 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
         for ref in source_refs:
             resource=store.get_resource(principal,ref['resourceId'])
             if resource['editionId']!=edition_id or resource['revisionId']!=ref['revisionId']:raise StudyError('stale_source',409)
+            if resource['kind']=='scientific-notebook':
+                if resource['notebook']['source']['assetId'] not in asset_refs:
+                    raise StudyError('notebook_original_required')
+                if ref.get('contextId',resource['contextId'])!=resource['contextId']:
+                    raise StudyError('invalid_source_refs')
         revision=1
         if parent_id:
             store.lock_aggregate(c, 'submission.parent', parent_id)

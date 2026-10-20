@@ -114,13 +114,18 @@ def export_notebook(store, principal, edition_id, blob_dir):
         if len(snapshots) > MAX_REVISIONS:
             raise StudyError('notebook_budget_exceeded')
     assets, total = [], 0
-    asset_ids = sorted({ref for row in submissions for ref in row['asset_refs']})
+    from .scientific_notebook import KIND
+    notebook_asset_ids = {source['notebook']['source']['assetId']
+        for source in resources + list(snapshots.values()) if source['kind'] == KIND}
+    asset_ids = sorted({ref for row in submissions for ref in row['asset_refs']} | notebook_asset_ids)
     if len(asset_ids) > MAX_ITEMS:
         raise StudyError('notebook_budget_exceeded')
     for asset_id in asset_ids:
         data, mime = read_asset(store, principal, asset_id, blob_dir)
         total += len(data)
         if total > MAX_BYTES:
+            if asset_id in notebook_asset_ids:
+                raise StudyError('notebook_budget_exceeded',413)
             omissions.append('Attachment omitted by 50 MiB notebook budget: ' + asset_id)
             continue
         assets.append({'id': asset_id, 'mime': mime, 'sha256': digest(data), 'bytes': len(data), 'base64': base64.b64encode(data).decode()})
@@ -139,6 +144,11 @@ def _source_hash(resource):
         raise StudyError('source_integrity_failure')
     if digest(resource['text']) != resource.get('sha256'):
         raise StudyError('source_integrity_failure')
+    from .scientific_notebook import KIND, inspect_snapshot
+    if resource.get('kind') == KIND:
+        inspect_snapshot(resource.get('notebook'),resource['text'])
+    elif 'notebook' in resource:
+        raise StudyError('notebook_snapshot_integrity_failure')
 
 
 def _revision_index(resources, revisions):
@@ -197,6 +207,7 @@ def inspect_notebook(bundle):
     for resource in resources + revisions:
         _source_hash(resource)
     total = 0
+    asset_index = {}
     for asset in assets:
         try:
             if not isinstance(asset, dict) or not isinstance(asset.get('base64'), str) or type(asset.get('bytes')) is not int:
@@ -205,9 +216,39 @@ def inspect_notebook(bundle):
             total += len(data)
             if total > MAX_BYTES or len(data) != asset['bytes'] or digest(data) != asset.get('sha256'):
                 raise ValueError()
+            if asset.get('id') in asset_index:
+                raise ValueError()
+            asset_index[asset.get('id')] = asset
         except (ValueError, TypeError, binascii.Error):
             raise StudyError('asset_integrity_failure') from None
     revision_aware = 'resourceRevisions' in bundle
+    from .scientific_notebook import KIND, inspect_snapshot
+    from io import BytesIO
+    from pypdf import PdfReader
+    checked_originals = {}
+    notebook_bindings = {}
+    for resource in resources + revisions:
+        if resource.get('kind') == KIND:
+            source = inspect_snapshot(resource['notebook'],resource['text'],asset_index)
+            resource_id = resource.get('id')
+            if not _identifier(resource_id):
+                raise StudyError('notebook_original_integrity_failure')
+            if resource_id in notebook_bindings and notebook_bindings[resource_id] != source:
+                raise StudyError('notebook_original_integrity_failure')
+            notebook_bindings[resource_id] = source
+            asset_id = source['assetId']
+            if asset_id not in checked_originals:
+                try:
+                    pdf = PdfReader(BytesIO(base64.b64decode(asset_index[asset_id]['base64'],validate=True)),strict=True)
+                    checked_originals[asset_id] = len(pdf.pages)
+                except Exception:
+                    raise StudyError('notebook_original_integrity_failure') from None
+            if checked_originals[asset_id] != source['pageCount']:
+                raise StudyError('notebook_original_integrity_failure')
+    for resource in resources + revisions:
+        resource_id = resource.get('id')
+        if _identifier(resource_id) and resource_id in notebook_bindings and resource.get('kind') != KIND:
+            raise StudyError('notebook_original_integrity_failure')
     unavailable = _inspect_references(bundle, resources, revisions, submissions) if revision_aware else set()
     return {'valid': True, 'resources': len(resources), 'resourceRevisions': len(revisions),
             'submissions': len(submissions), 'assets': len(assets), 'unavailableResourceRefs': len(unavailable),

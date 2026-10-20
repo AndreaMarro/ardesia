@@ -68,12 +68,17 @@ class StudyStore:
                 raise StudyError('database_integrity_failure',503)
             if present:
                 from .schema_contract import validate_schema, ADMIN_COLUMNS
+                from .scientific_notebook import NOTEBOOK_COLUMNS
                 versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
                 tables={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
                 columns={row[1] for row in self.connection.execute('PRAGMA table_info(study_editions)')}
                 try:
                     validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,
-                        {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=initialize,admin_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS})
+                        {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=initialize,admin_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS},
+                        notebook_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in NOTEBOOK_COLUMNS})
+                    if initialize and versions[0][0] < 6 and self.connection.execute(
+                            "SELECT 1 FROM study_resources WHERE kind='scientific-notebook' LIMIT 1").fetchone():
+                        raise StudyError('notebook_kind_migration_conflict',503)
                 except BaseException:
                     self.close()
                     raise
@@ -321,6 +326,8 @@ class StudyStore:
 
     def create_resource(self, principal, edition_id, kind, text, visibility='private', *, key=None):
         self._edition_access(principal, edition_id)
+        if kind == 'scientific-notebook':
+            raise StudyError('notebook_command_required')
         if not isinstance(text, str) or len(text) > 20_000 or not text.strip():
             raise StudyError('invalid_text')
         if visibility not in ('private', 'group') or visibility == 'group' and principal.role != 'teacher':
@@ -375,4 +382,8 @@ class StudyStore:
         submitted = edition['teacherId'] == principal.id and self._submitted_reference(row['edition_id'], row['owner_id'], resource_id, revision_id)
         if not (owner or published or submitted):
             raise StudyError('forbidden', 403)
-        return {'id':row['id'], 'revisionId':row['revision_id'], 'contextId':row['context_id'], 'ownerId':row['owner_id'], 'editionId':row['edition_id'], 'kind':row['kind'], 'visibility':row['visibility'], 'text':row['text'], 'sha256':row['sha256']}
+        resource = {'id':row['id'], 'revisionId':row['revision_id'], 'contextId':row['context_id'], 'ownerId':row['owner_id'], 'editionId':row['edition_id'], 'kind':row['kind'], 'visibility':row['visibility'], 'text':row['text'], 'sha256':row['sha256']}
+        if row['kind'] == 'scientific-notebook':
+            from .scientific_notebook import read_snapshot
+            resource['notebook'] = read_snapshot(self, resource)
+        return resource

@@ -2,6 +2,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from lessonos.study.store import StudyStore
+from lessonos.study.schema_contract import CURRENT_SCHEMA
 from lessonos.study.groups import configure_sessions
 from study_api.app import create_app
 
@@ -273,7 +274,7 @@ def test_http_never_upgrades_schema4_and_operator_upgrade_is_separate(tmp_path):
         assert c.execute('SELECT version FROM study_schema').fetchone()[0]==4
         assert not c.execute("SELECT 1 FROM sqlite_master WHERE name='study_attendance_records'").fetchone()
     operator=StudyStore(path)
-    assert operator.connection.execute('SELECT version FROM study_schema').fetchone()[0]==5
+    assert operator.connection.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
     operator.close()
 
 

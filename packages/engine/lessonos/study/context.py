@@ -55,6 +55,7 @@ def _invalidate_projection(c,resource_id):
 def revise_resource(store,principal,resource_id,expected_revision,text):
     resource=store.get_resource(principal,resource_id)
     if resource['ownerId']!=principal.id:raise StudyError('forbidden',403)
+    if resource['kind']=='scientific-notebook':raise StudyError('notebook_command_required')
     if not isinstance(text,str) or not 1<=len(text)<=20_000:raise StudyError('invalid_text')
     revision=identifier()
     with store.transaction() as c:
