@@ -7,9 +7,11 @@ import subprocess
 import tempfile
 import warnings
 from .models import StudyError
-from .store import identifier,digest
+from .store import identifier,digest,canonical
 from .lock import data_lock
 from .blobs import repository
+from .uploads import begin_upload, compensate_upload, uploaded_receipt
+from .transactions import lookup_receipt
 
 LIMITS={'image/png':10,'image/jpeg':10,'image/webp':10,'application/pdf':20,'audio/mpeg':20,'audio/mp4':20,'audio/webm':20}
 
@@ -53,24 +55,36 @@ def validate_asset(data,mime):
         raise StudyError('malformed_media',415) from error
 
 
-def upload_asset(store,principal,edition_id,data,mime,blob_dir:Path):
+def upload_asset(store,principal,edition_id,data,mime,blob_dir:Path,*,key=None):
     with data_lock(store.path) if repository(store, blob_dir).is_local else nullcontext():
-        return _upload_locked(store,principal,edition_id,data,mime,blob_dir)
+        return _upload_locked(store,principal,edition_id,data,mime,blob_dir,key)
 
 
-def _upload_locked(store,principal,edition_id,data,mime,blob_dir):
+def _upload_locked(store,principal,edition_id,data,mime,blob_dir,key):
     store._edition_access(principal,edition_id)
     text,status=validate_asset(data,mime)
     asset_id=identifier()
     blobs=repository(store,blob_dir)
+    hashed=digest(canonical({'editionId':edition_id,'mime':mime,'bytes':len(data),'sha256':digest(data)}))
+    asset_id,previous=begin_upload(store,principal,edition_id,asset_id,key=key,payload_hash=hashed)
+    if previous is not None:return previous
     try:
-        blobs.put(asset_id,data,mime)
         with store.transaction() as c:
+            store.lock_aggregate(c,'asset.upload',asset_id)
+            if key is not None:
+                previous=lookup_receipt(c,principal.id,'asset.uploaded',key,hashed)
+                if previous is not None:return previous
+            intent=c.execute('SELECT state FROM study_upload_intents WHERE id=?',(asset_id,)).fetchone()
+            if intent is None or intent['state']!='pending':raise StudyError('upload_cleanup_pending',409)
+            blobs.put(asset_id,data,mime)
             c.execute('INSERT INTO study_assets(id,edition_id,owner_id,mime,bytes,sha256,blob_ref,native_text,extraction_status) VALUES(?,?,?,?,?,?,?,?,?)', (asset_id,edition_id,principal.id,mime,len(data),digest(data),asset_id,text,status))
-    except BaseException:
-        blobs.remove(asset_id)
+            c.execute("UPDATE study_upload_intents SET state='committed' WHERE id=?",(asset_id,))
+            result={'id':asset_id,'mime':mime,'bytes':len(data),'sha256':digest(data),'nativeText':text,'extractionStatus':status,'private':True}
+            result=uploaded_receipt(store,c,principal,key,hashed,result)
+    except Exception:
+        compensate_upload(store,blobs,asset_id)
         raise
-    return {'id':asset_id,'mime':mime,'bytes':len(data),'sha256':digest(data),'nativeText':text,'extractionStatus':status,'private':True}
+    return result
 
 
 def read_asset(store,principal,asset_id,blob_dir:Path):

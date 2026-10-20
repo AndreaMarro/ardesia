@@ -173,7 +173,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/resources')
     async def create_resource(body: ResourceBody, request: Request, store=Depends(store_dependency)):
-        return store.create_resource(authenticate(request,store),body.editionId,body.kind,body.text,body.visibility)
+        return store.create_resource(authenticate(request,store),body.editionId,body.kind,body.text,body.visibility,key=request.headers.get('Idempotency-Key'))
 
     @app.get('/study/resources/{resource_id}')
     async def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
@@ -233,8 +233,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             except StudyError:pass
         submissions=list_submissions(store,principal,editionId)
         for item in submissions:item['feedback']=list_feedback(store,principal,item['id'])
-        layout=store.connection.execute('SELECT data FROM study_layouts WHERE actor_id=? AND edition_id=?',(principal.id,editionId)).fetchone()
-        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,'layouts':json.loads(layout[0]) if layout else []}
+        from lessonos.study.view_layout import load_layout
+        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId)}
 
     @app.post('/study/editions/{edition_id}/holds')
     async def hold(edition_id: str, request: Request, store=Depends(store_dependency)):
@@ -258,33 +258,20 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/layout')
     async def layout(body: dict, request: Request, store=Depends(store_dependency)):
-        from lessonos.study.store import canonical
-        principal=authenticate(request,store);edition_id=body.get('editionId')
-        store._edition_access(principal,edition_id)
-        views=body.get('views')
-        if not isinstance(views,list) or len(views)>50:raise StudyError('invalid_layout')
-        seen=set()
-        for view in views:
-            ref=view.get('pluginState',{})
-            resource=store.get_resource(principal,ref.get('resourceId'))
-            if resource['editionId']!=edition_id or resource['contextId']!=ref.get('contextId'):raise StudyError('invalid_layout')
-            if view.get('instanceId') in seen:raise StudyError('invalid_layout')
-            seen.add(view.get('instanceId'))
-            bounds=view.get('bounds',{})
-            if any(type(bounds.get(k)) not in (float,int) or not -10000<bounds[k]<10000 for k in ('x','y','width','height')):raise StudyError('invalid_layout')
-        with store.transaction() as c:
-            c.execute('INSERT INTO study_layouts VALUES(?,?,?) ON CONFLICT(actor_id,edition_id) DO UPDATE SET data=excluded.data',(principal.id,edition_id,canonical(views)))
-        return {'saved':True}
+        from lessonos.study.view_layout import save_layout
+        return save_layout(store,authenticate(request,store),body.get('editionId'),body.get('views'),body.get('expectedVersion'))
 
     @app.post('/study/assets')
     async def upload(request: Request, editionId: str, store=Depends(store_dependency)):
         from lessonos.study.assets import upload_asset
         principal=authenticate(request,store)
+        key=request.headers.get('Idempotency-Key','')
+        if not 1<=len(key)<=256:raise StudyError('idempotency_key_required')
         data=bytearray()
         async for chunk in request.stream():
             data.extend(chunk)
             if len(data)>20*1024*1024:raise StudyError('asset_too_large',413)
-        return upload_asset(store,principal,editionId,bytes(data),request.headers.get('Content-Type',''),Path(db_path).parent/'blobs')
+        return upload_asset(store,principal,editionId,bytes(data),request.headers.get('Content-Type',''),Path(db_path).parent/'blobs',key=key)
 
     @app.get('/study/assets/{asset_id}')
     async def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
@@ -324,9 +311,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return {'deleted':True}
 
     @app.get('/study/context/{context_id}')
-    async def context(context_id: str, request: Request, query: str='', store=Depends(store_dependency)):
+    async def context(context_id: str, request: Request, query: str='', resourceId: str | None=None, revisionId: str | None=None, store=Depends(store_dependency)):
         from lessonos.study.context import retrieve_context
-        return retrieve_context(store,authenticate(request,store),context_id,query)
+        return retrieve_context(store,authenticate(request,store),context_id,query,resource_id=resourceId,revision_id=revisionId)
 
     @app.post('/study/hints')
     async def hint(body: dict, request: Request, store=Depends(store_dependency)):

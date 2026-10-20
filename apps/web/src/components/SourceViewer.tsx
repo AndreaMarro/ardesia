@@ -72,7 +72,14 @@ export function SourceViewer({
     setContextError("");
     try {
       const value = await studyRequest<ContextPacket>(
-        "/context/" + encodeURIComponent(resource.contextId) + "?query=",
+        "/context/" +
+          encodeURIComponent(resource.contextId) +
+          "?" +
+          new URLSearchParams({
+            query: "",
+            resourceId: resource.id,
+            revisionId: resource.revisionId,
+          }),
         undefined,
         { signal: controller.signal },
       );
@@ -154,7 +161,17 @@ export function SourceViewer({
         {contextError && <ErrorNotice message={contextError} />}{" "}
         {context && (
           <div className="context-results">
-            <h3>Collegamenti revisionati</h3>
+            <h3>
+              {context.sourceState === "HISTORICAL"
+                ? "Contesto della versione consegnata"
+                : "Collegamenti revisionati"}
+            </h3>
+            {context.sourceState === "HISTORICAL" && (
+              <p className="fine-print">
+                Il contesto riguarda la revisione selezionata e i collegamenti
+                autorizzati, senza sostituirla con la versione corrente.
+              </p>
+            )}
             {context.observations.length === 0 ? (
               <p>Nessun collegamento revisionato disponibile.</p>
             ) : (

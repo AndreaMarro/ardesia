@@ -1,15 +1,15 @@
 {
-  "observed_at": "2026-10-20T01:41:46.744280+00:00",
-  "sha": "6e9f20450b3a15c1f57c941a303488f202088b57",
+  "observed_at": "2026-10-20T02:08:01.140331+00:00",
+  "sha": "db28748cca05658f11a92bbc31f9150e7bc74475",
   "milestone": "G0",
   "statuses": {
     "G0": "IN_PROGRESS",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
     "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING",
-    "diary_core": "LIVE_POSTGRES_FLOW_TESTED_FINAL_SHA_REPLAY_PENDING",
-    "shared_core": "144_STUDY_HTTP_LIVE_POSTGRES_TESTS_PASS",
-    "web": "17_UNIT_TESTS_PASS_TYPECHECK_BUILD_PASS"
+    "diary_core": "COMMITTED_CANDIDATE_HTTP_AND_WEB_SCENARIOS_PASS_GLOBAL_G0_NOT_EVALUATED",
+    "shared_core": "162_STUDY_HTTP_LIVE_POSTGRES_TESTS_PASS_WORKING_CANDIDATE",
+    "web": "32_UNIT_TESTS_PASS_TYPECHECK_BUILD_PASS_WORKING_CANDIDATE"
   },
   "rea": {
     "version": "6.7.0",
@@ -34,19 +34,19 @@
   "deploys": [],
   "trials": [],
   "blockers": [
-    "All six final REA receipts missing; original G0 gate actually fails, no certification",
-    "Exact candidate SHA replay and real Auth/PG/Storage web scenario pending",
-    "Storage cleanup crash/failed-compensation orphan requires durable intent/reconciliation",
-    "Supabase invitations deliberately disabled; PostgreSQL application backup not yet verified",
-    "G0 full acceptance matrix (including Taylor and Vercel preview) not certified",
+    "Original G0 REA gate still NOT_SATISFIED; six final SHA-bound receipts missing",
+    "New SourceBoard/tutor notebook/upload/context candidate needs committed browser replay and explicit cold server restart",
+    "Taylor second pack/lifecycle, Calendar mock/DST and product MCP acceptance not yet implemented",
+    "Supabase invitations deliberately disabled; PostgreSQL/Storage application backup/restore not yet verified",
     "Vercel current Pro workspace does not guarantee no additional cost; no deploy performed",
     "G1 requires human scientific review and approved dates"
   ],
   "next_actions": [
-    "Publish integrated candidate to existing PR267, replay actual G0 on candidate SHA",
-    "Fix durable media recovery and complete original acceptance matrix",
-    "Bind original REA evidence, integrated components and test results to exact code SHA",
-    "Continue G1 locally; retain human approval and zero-cost boundaries"
+    "Commit/push new integrated candidate after frozen UI scenario and hygiene checks",
+    "Restart owned application on exact candidate; SourceBoard/browser/REA R6 and cold-process evidence",
+    "Implement Taylor through the same versioned course/assignment lifecycle",
+    "Implement scoped Calendar/MCP contracts or disclose unsupported remote capabilities",
+    "Assemble authentic original REA envelopes with contracts/code/named tests on one SHA; retain all unknowns"
   ],
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "infrastructure": {
@@ -54,30 +54,51 @@
     "application_adapter": "LIVE_LOCAL_POSTGRES_AUTH_RLS_PRIVATE_STORAGE_INTEGRATED_SHARED_CORE",
     "vercel": "BROWSER_ACCESS_RECOVERED_EXISTING_WORKSPACE_PRO_NO_VERIFIED_ZERO_ADDITIONAL_COST; LOCAL_FALLBACK"
   },
-  "code_state": "UNCOMMITTED_CANDIDATE_ON_BASE_SHA; replay exact committed candidate before certification",
+  "code_state": "NEW_WORKING_CANDIDATE_ON_LAST_VERIFIED_SHA; committed replay pending",
   "verification": {
-    "engine": {
-      "passed": 2159,
-      "skipped": 17
-    },
-    "studio": {
-      "passed": 2155,
-      "skipped": 5
-    },
-    "g0_http_working_tree": {
-      "assertions": 349,
+    "last_committed_candidate": {
+      "sha": "db28748cca05658f11a92bbc31f9150e7bc74475",
+      "http_assertions": 349,
       "failed": 0,
-      "students_confirmed": 10,
-      "waitlisted": 2,
-      "globalG0": "NOT_EVALUATED"
+      "web_scenario": "PASSED",
+      "working_tree_dirty": false,
+      "source_changes_during_run": false,
+      "roster": {
+        "confirmed": 10,
+        "waitlisted": 2
+      },
+      "globalG0": "NOT_EVALUATED",
+      "capacity_race_mode": "PERSISTED_EVIDENCE_RECHECK",
+      "cold_server_restart": "NOT_CHECKED_BY_THAT_SCENARIO"
     },
-    "pack_delivery_fix": {
-      "red_failures": 3,
-      "green_focused_tests": 18
-    },
-    "source_context_identity": {
-      "red_failures": 3,
-      "green_web_unit_tests": 17
+    "new_working_candidate": {
+      "shared_core_http_live_postgres": {
+        "passed": 162
+      },
+      "engine": {
+        "passed": 2168,
+        "skipped": 20
+      },
+      "studio": {
+        "passed": 2157,
+        "skipped": 5,
+        "typecheck": "PASS",
+        "build": "PASS"
+      },
+      "web": {
+        "passed": 32,
+        "typecheck": "PASS",
+        "build": "PASS"
+      },
+      "independent_upload_review": {
+        "private_probes": 9,
+        "residual_fixture_objects": 0,
+        "confirmed_gap": "Missing HTTP Idempotency-Key accepted in review snapshot",
+        "fix": "HTTP header now required; tested by integrator on actual Auth/PG/Storage",
+        "reviewer_fix_rerun": "NOT_RUN"
+      },
+      "candidate_sha_replay": "PENDING_NEW_COMMIT"
     }
-  }
+  },
+  "sha_semantics": "Last fully replayed committed candidate; newer working candidate results are separate below."
 }

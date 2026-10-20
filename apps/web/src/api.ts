@@ -1,11 +1,15 @@
 export { studyRequest, requestKey } from "../../studio/src/study/apiClient";
 export type {
   StudyMe,
-  Workspace,
   StudyResource,
   Submission,
   Edition,
 } from "../../studio/src/study/contracts";
+import type { Workspace as LegacyWorkspace } from "../../studio/src/study/contracts";
+export type Workspace = LegacyWorkspace & {
+  layoutSaved: boolean;
+  layoutVersion: string;
+};
 
 export function dateLabel(instant: string, timezone = "Europe/Rome") {
   return new Intl.DateTimeFormat("it-IT", {
@@ -29,7 +33,6 @@ export { StudyApiError } from "../../studio/src/study/apiClient";
 export type {
   PostitReference,
   Feedback,
-  ContextPacket,
 } from "../../studio/src/study/contracts";
 
 export function describeError(
@@ -56,3 +59,8 @@ export function describeError(
   };
   return messages[code] ?? fallback;
 }
+
+import type { ContextPacket as LegacyContextPacket } from "../../studio/src/study/contracts";
+export type ContextPacket = LegacyContextPacket & {
+  sourceState?: "CURRENT" | "HISTORICAL";
+};

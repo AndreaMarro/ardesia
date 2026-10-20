@@ -91,8 +91,8 @@ test("late context A cannot appear under source B and query uses the canonical p
   await screen.findByText("Collegamento B");
   expect(screen.getByText("Collegamento B")).toBeTruthy();
   expect(calls.filter((url) => url.startsWith("/study/context/"))).toEqual([
-    "/study/context/context-A?query=",
-    "/study/context/context-B?query=",
+    "/study/context/context-A?query=&resourceId=A&revisionId=revision-A",
+    "/study/context/context-B?query=&resourceId=B&revisionId=revision-B",
   ]);
 });
 
@@ -142,4 +142,25 @@ test("unmount cancels a pending context request", async () => {
   await openContext();
   view.unmount();
   expect(signal?.aborted).toBe(true);
+});
+
+test("historical context is identified without presenting it as the current source", async () => {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(
+      async (url: string) =>
+        new Response(
+          JSON.stringify(
+            url.startsWith("/study/context/")
+              ? { ...context("A"), sourceState: "HISTORICAL" }
+              : resource("A"),
+          ),
+        ),
+    ),
+  );
+  render(<SourceViewer reference={reference("A")} />);
+  await screen.findByText("Fonte A");
+  await openContext();
+  await screen.findByText("Contesto della versione consegnata");
+  expect(screen.getByText("Collegamento A")).toBeTruthy();
 });

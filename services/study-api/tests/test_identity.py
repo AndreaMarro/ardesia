@@ -38,3 +38,18 @@ def test_http_identity_is_session_owned_and_peer_response_has_no_body(tmp_path):
 def test_demo_session_boundary_refuses_production(tmp_path):
     with pytest.raises(ValueError, match='synthetic_only'):
         create_app(tmp_path/'demo.sqlite', demo=False)
+
+
+def test_source_creation_retry_recovers_the_same_resource_and_rejects_changed_text(tmp_path):
+    store, teacher, student, peer, other = setup_store(tmp_path)
+    with TestClient(create_app(store.path, demo=True)) as client:
+        client.post('/study/session', json={'token':store.issue_session(student)})
+        body={'editionId':'fluidi','kind':'notes','text':'Un solo originale','visibility':'private'}
+        headers={'Idempotency-Key':'lost-create-response'}
+        first=client.post('/study/resources',json=body,headers=headers)
+        replay=client.post('/study/resources',json=body,headers=headers)
+        assert first.status_code == replay.status_code == 200
+        assert replay.json() == first.json()
+        assert store.connection.execute('SELECT COUNT(*) FROM study_resources').fetchone()[0] == 1
+        assert client.post('/study/resources',json={**body,'text':'Changed'},headers=headers).status_code == 409
+        assert store.connection.execute('SELECT COUNT(*) FROM study_revisions').fetchone()[0] == 1

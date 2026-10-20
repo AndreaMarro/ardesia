@@ -72,3 +72,16 @@ La prova crea due utenti temporanei, una tabella con RLS, policy per proprietari
 Postgres nativo sarebbe un'alternativa per query e RLS, ma da solo non fornisce Auth e Storage Supabase. PGlite è utile per test PostgreSQL embedded; non costituisce una verifica di questo stack. Non sono stati presentati come sostituti equivalenti.
 
 Fonti consultate: [CLI locale](https://supabase.com/docs/guides/local-development/cli/getting-started), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security), [Storage access control](https://supabase.com/docs/guides/storage/security/access-control), [download privati](https://supabase.com/docs/guides/storage/serving/downloads), [cambiamento dei grant di default](https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically). Il passaggio Envoy riguarda il compose self-hosted; questa CLI fissata usa ancora Kong, come confermato dal suo sorgente.
+
+## Recupero degli originali applicativi
+
+Le nuove migrazioni applicative aggiungono `study_upload_intents` e il legame di idempotenza per attore e chiave. L'intenzione è committata prima della scrittura esterna; metadati, ricevuta e completamento sono atomici nel Core. La policy Storage rifiuta upload senza un'intenzione valida. L'endpoint HTTP richiede `Idempotency-Key`; i client derivano una chiave stabile da corso, MIME e hash dei byte. Il Core conserva la chiamata diretta senza chiave per fixture/compatibilità, che non equivale al contratto HTTP idempotente.
+
+L'operatore può ispezionare le sole intenzioni recuperabili senza elencare identità, oggetti o contenuti:
+
+```bash
+uv run --project services/study-api python bin/study-demo/recover-supabase-uploads.py \
+  --env-file ../supabase-local/.env.local --data-dir ../g0-supabase-data
+```
+
+`--apply` ritenta la cancellazione attraverso il provider per un lotto limitato; un lock per originale esclude il caricamento attivo e gli originali committati sono esclusi. Dopo l'arresto forzato del servizio attendere la fine del timeout del provider; le intenzioni `pending` hanno una grazia di dieci minuti. Gli errori restano recuperabili, senza falsa ricevuta. I test locali coprono un cleanup fallito sullo Storage reale e la ripetizione dello stesso upload HTTP; non attestano cancellazione forense, backup PostgreSQL/Storage completo o produzione.

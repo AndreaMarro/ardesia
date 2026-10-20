@@ -46,7 +46,7 @@ export function Work({
             </p>
           </header>
           <div className="work-notebook">
-            <NotebookPanel />
+            <NotebookPanel editionId={data.edition.id} />
           </div>
         </>
       ) : (

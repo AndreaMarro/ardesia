@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { PhysicsLab } from "../components/PhysicsLab";
 import { SubmissionPanel } from "../../../studio/src/study/SubmissionPanel";
-import { SourceViewer } from "../components/SourceViewer";
+import { SourceBoard } from "../components/SourceBoard";
+import { useResourceComposer } from "../components/useResourceComposer";
+import { ErrorNotice } from "../components/Feedback";
 import type { PostitReference } from "../../../studio/src/study/contracts";
-import {
-  studyRequest,
-  type StudyMe,
-  type Workspace,
-  type StudyResource,
-} from "../api";
+import { type StudyMe, type Workspace } from "../api";
 
 export function Classroom({
   me,
@@ -21,38 +18,24 @@ export function Classroom({
   onUpdate: () => Promise<void>;
   parentId?: string | null;
 }) {
-  const [text, setText] = useState("");
   const [source, setSource] = useState<PostitReference | null>(null);
-  const [message, setMessage] = useState("");
-  const [busy, setBusy] = useState(false);
+  const [selectionMessage, setSelectionMessage] = useState("");
   const tutor = me.role === "teacher";
-  async function save() {
-    setBusy(true);
-    try {
-      const resource = await studyRequest<StudyResource>("/resources", {
-        editionId: data.edition.id,
-        kind: tutor ? "activity" : "notes",
-        visibility: tutor ? "group" : "private",
-        text,
-      });
+  const composer = useResourceComposer({
+    editionId: data.edition.id,
+    kind: tutor ? "activity" : "notes",
+    visibility: tutor ? "group" : "private",
+    successMessage: tutor
+      ? "Materiale pubblicato al gruppo."
+      : "Nota salvata nel tuo spazio privato.",
+    onCreated: (resource) =>
       setSource({
         resourceId: resource.id,
         revisionId: resource.revisionId,
         contextId: resource.contextId,
-      });
-      setText("");
-      setMessage(
-        tutor
-          ? "Materiale pubblicato al gruppo."
-          : "Nota salvata nel tuo spazio privato.",
-      );
-      await onUpdate();
-    } catch {
-      setMessage("Il salvataggio non è riuscito. Il testo è ancora qui.");
-    } finally {
-      setBusy(false);
-    }
-  }
+      }),
+    onUpdate,
+  });
   return (
     <>
       <header className="page-heading">
@@ -86,64 +69,41 @@ export function Classroom({
                 ? "Traccia o spiegazione"
                 : "Una nota, una domanda, un procedimento"}
               <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                value={composer.text}
+                onChange={(e) => {
+                  composer.edit(e.target.value);
+                  setSelectionMessage("");
+                }}
+                disabled={composer.busy}
                 rows={4}
                 maxLength={20000}
               />
             </label>
             <button
               className="button-primary"
-              disabled={busy || !text.trim()}
-              onClick={() => void save()}
+              disabled={composer.busy || !composer.text.trim()}
+              onClick={() => void composer.save()}
             >
               {tutor ? "Pubblica al gruppo" : "Salva nota privata"}
             </button>
-            <p role="status">{message}</p>
+            {composer.error && <ErrorNotice message={composer.error} />}
+            <p role="status">{selectionMessage || composer.message}</p>
           </section>
-          <section className="resource-collection">
-            <div className="section-title">
-              <h2>Fonti e passaggi</h2>
-              <span>La fonte resta una, anche fra più viste</span>
-            </div>
-            {data.resources.length === 0 ? (
-              <p className="empty-state">
-                Il foglio è pronto. Aggiungi la prima nota o un originale nella
-                consegna.
-              </p>
-            ) : (
-              <div className="resource-grid">
-                {data.resources.map((resource) => (
-                  <article className="source-note" key={resource.id}>
-                    <SourceViewer
-                      reference={{
-                        resourceId: resource.id,
-                        revisionId: resource.revisionId,
-                        contextId: resource.contextId,
-                      }}
-                    />
-                    {!tutor && (
-                      <button
-                        onClick={() => {
-                          setSource({
-                            resourceId: resource.id,
-                            revisionId: resource.revisionId,
-                            contextId: resource.contextId,
-                          });
-                          setMessage("Fonte collegata alla prossima consegna.");
-                        }}
-                      >
-                        Collega alla consegna
-                      </button>
-                    )}
-                  </article>
-                ))}
-              </div>
-            )}
-          </section>
+          <SourceBoard
+            key={`${me.id}:${data.edition.id}`}
+            me={me}
+            data={data}
+            onUpdate={onUpdate}
+            onUse={(reference) => {
+              setSource(reference);
+              setSelectionMessage("Fonte collegata alla prossima consegna.");
+            }}
+          />
           {!tutor && (
             <section className="submission-surface">
               <SubmissionPanel
+                key={`${me.id}:${data.edition.id}`}
+                editionId={data.edition.id}
                 me={me}
                 source={source}
                 parentId={parentId}

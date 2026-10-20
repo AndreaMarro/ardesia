@@ -161,6 +161,7 @@ def _erase_rows(store,actor):
     for resource in resources:c.execute('DELETE FROM study_revisions WHERE resource_id=?',(resource,))
     c.execute('DELETE FROM study_resources WHERE owner_id=?',(actor,))
     c.execute('DELETE FROM study_assets WHERE owner_id=?',(actor,))
+    c.execute('DELETE FROM study_upload_intents WHERE owner_id=?',(actor,))
     for layout in c.execute('SELECT * FROM study_layouts').fetchall():
         if layout['actor_id']==actor:c.execute('DELETE FROM study_layouts WHERE actor_id=?',(actor,))
         else:

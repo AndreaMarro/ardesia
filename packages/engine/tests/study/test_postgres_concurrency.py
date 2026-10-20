@@ -89,3 +89,22 @@ def test_concurrent_confirmation_with_different_keys_opens_one_observation(pg_st
                 'parameters': {'radiusRatio': 2}, 'prompt': 'Cambia il raggio a pressione fissata.'})
     assert concurrent_calls(pg_configuration, tmp_path, confirm) == ['accepted', 'invalid_diary_transition']
     assert diary.get_thread(pg_store, tutor, proposed['threadId'])['observedCount'] == 1
+
+
+def test_concurrent_layout_edits_do_not_silently_overwrite_another_tab(pg_store, pg_configuration, tmp_path):
+    from lessonos.study.view_layout import load_layout, save_layout
+    tutor, student, peer, edition = seed(pg_store)
+    resource = pg_store.create_resource(student, edition, 'notes', 'Fonte unica')
+    initial = load_layout(pg_store, student, edition)
+    barrier = Barrier(2)
+    def edit(store, index):
+        rendezvous(barrier)
+        item={'kind':'plugin-postit-object','pluginId':'ardesia.study','instanceId':'view-1',
+              'bounds':{'x':index*100,'y':0,'width':320,'height':240},'zIndex':0,
+              'selected':False,'hovered':False,'proximity':'far',
+              'pluginState':{'resourceId':resource['id'],'revisionId':resource['revisionId'],'contextId':resource['contextId']}}
+        save_layout(store,student,edition,[item],initial['layoutVersion'])
+    assert concurrent_calls(pg_configuration,tmp_path,edit) == ['accepted','stale_layout']
+    loaded=load_layout(pg_store,student,edition)
+    assert len(loaded['layouts']) == 1 and loaded['layoutSaved'] is True
+    assert pg_store.connection.execute('SELECT COUNT(*) FROM study_resources WHERE id=?',(resource['id'],)).fetchone()[0] == 1

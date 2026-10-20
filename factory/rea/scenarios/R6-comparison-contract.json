@@ -1,0 +1,117 @@
+{
+  "is_rea_cli_request": false,
+  "mission": "R6",
+  "status": "FINAL_SOURCEBOARD_TUTOR_EXPORT_CANDIDATE_PENDING",
+  "baseline_commit": "cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228",
+  "initial_candidate_commit": "db28748cca05658f11a92bbc31f9150e7bc74475",
+  "baseline_evidence": [
+    {
+      "path": "rea-evidence/R0/capture-v2.json",
+      "sha256": "1d0124b4a872e99e52078b780a9c4f0604f57c004c4cd145562e702343df44e3",
+      "evidence_id": "ev_fb960030a4d6d8bf57d2cb74650477d2abc7bf92428b2d1b8f810608806ebbb0",
+      "operation": "capture_browser_scenario"
+    },
+    {
+      "path": "rea-evidence/R0/application.json",
+      "sha256": "bbead56e9e7ab5676b11882fda2ac79c34ae1a22790d4b3e957f49fc7178ae3c",
+      "evidence_id": "ev_754ca42567b51dc7c12aa9e705f177b0ba1b9e33b583ee877ccaad787f36d5c1",
+      "operation": "analyze_javascript_application"
+    },
+    {
+      "path": "rea-evidence/R0/feature-trace.json",
+      "sha256": "60c24930738c5aad72493f67c984dc16eeac4c589dbfa21e30df2a939c62c379",
+      "evidence_id": "ev_b26740985454bfb2b187b0bdd6219cab1dfeae14445df24cab2fd0c0a54ee597",
+      "operation": "trace_application_feature"
+    },
+    {
+      "path": "rea-evidence/R0/export.json",
+      "sha256": "659f7cf4dabaee92104e33e31ebdc3efa92aef7069bd7e7896215401dccbab1a",
+      "evidence_id": "ev_d135df1c418f646ba75a39c29d429f6ba07a6bf2a1beae57ab05804334addce0",
+      "operation": "export_web_scripts"
+    }
+  ],
+  "normalization": {
+    "rules": [],
+    "policy": "Use only builtin volatile-field normalization. Preserve all source/revision/receipt/actor IDs, ACL, result, price/capacity and meaningful text. Different start_origin is a real compatibility boundary."
+  },
+  "required_slices": [
+    {
+      "id": "R6-SOURCE-VIEWS",
+      "actor": "tutor-synthetic",
+      "steps": [
+        "workspace-ready",
+        "write-source",
+        "save-source",
+        "persisted-source",
+        "second-view",
+        "two-views",
+        "move-view",
+        "saved-layout",
+        "materials",
+        "export",
+        "export-receipt",
+        "reopen",
+        "recovered-source"
+      ],
+      "invariants": [
+        "one canonical source and revision, two distinct view instances",
+        "bounds mutate only view; source hash/revision/ACL unchanged",
+        "layout is persisted by same Core and restored after new page",
+        "notebook export available to same role as baseline; manifest and losses exact"
+      ],
+      "execution": "NOT_RUN_NEW_UI_LAYOUT_AND_EXPORT_TUTOR_GAPS_REPORTED"
+    },
+    {
+      "id": "R6-EXACT-REVISION",
+      "actor": "student then assigned tutor",
+      "steps": [
+        "create-private-v1",
+        "submit-v1",
+        "create-v2",
+        "open-submitted-v1",
+        "show-feedback-stale",
+        "reopen-v1"
+      ],
+      "invariants": [
+        "tutor sees only explicitly submitted revision, never private head",
+        "new source revision cannot relabel content of historical source",
+        "STALE differs from UNAVAILABLE and excludes current recall derivatives"
+      ],
+      "execution": "FINAL_REVISION_MUTATION_NOT_RUN; CANDIDATE1_READONLY_EXACT_SOURCE_CONTEXT_OBSERVED"
+    },
+    {
+      "id": "R6-COURSE",
+      "actor": "existing synthetic actors, coordinated with QA",
+      "steps": [
+        "all-four-dates",
+        "ten-confirmed-two-waiting",
+        "private-work",
+        "manual-review",
+        "contestation",
+        "transfer-attempt",
+        "receipt-and-notebook",
+        "cold-reopen"
+      ],
+      "invariants": [
+        "all four dates visible, edition global capacity10, interests not paid enrollment",
+        "peer draft/feedback isolation",
+        "original assets preserved, transcription a separate revision",
+        "review and diary anchored to exact procedure/source/revision",
+        "new attempt and transfer verification distinct from arbitrary correct number"
+      ],
+      "execution": "ROOT_QA_COMPLETED_ON_CANDIDATE1; FINAL_UI_SHA_AND_REPLAY_PENDING"
+    }
+  ],
+  "rea_pipeline": [
+    "capture_browser_scenario on actual final candidate",
+    "inspect_web_page + export_web_scripts",
+    "analyze_javascript_application source selected at SHA + shipped assets",
+    "trace_application_feature + trace_javascript_semantics around source/layout or exact revision presenter",
+    "reconcile_javascript_runtime with exact shipped asset hashes",
+    "compare_application_versions with R0 source graph",
+    "compare_web_captures R0/new preserving context mismatch if origins differ",
+    "aligned before/after comparison on new candidate same origin for view or revision state"
+  ],
+  "auth_policy": "QA fixture released; only read-only existing student-01 used in candidate1. No credentials in public JSON, no resets. Final writes must remain coordinated.",
+  "exit": "Research alone cannot create PASS; root must integrate missing UI controls, run exact-SHA product tests, and write authentic receipt."
+}

@@ -87,3 +87,15 @@ CREATE TABLE IF NOT EXISTS study_layouts(
 CREATE INDEX IF NOT EXISTS study_event_student ON study_events(json_extract(payload,'$.studentId'),seq);
 CREATE INDEX IF NOT EXISTS study_event_thread ON study_events(json_extract(payload,'$.threadId'),seq);
 CREATE INDEX IF NOT EXISTS study_event_edition ON study_events(json_extract(payload,'$.thread.editionId'),seq);
+CREATE TABLE IF NOT EXISTS study_upload_intents(
+ id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id),
+ owner_id TEXT NOT NULL REFERENCES study_principals(id),
+ state TEXT NOT NULL CHECK(state IN ('pending','committed','cleanup_required')),
+ expires_at REAL NOT NULL, created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS study_upload_recovery ON study_upload_intents(state,expires_at,created_at);
+CREATE TABLE IF NOT EXISTS study_upload_requests(
+ actor_id TEXT NOT NULL REFERENCES study_principals(id), request_key TEXT NOT NULL,
+ payload_hash TEXT NOT NULL, asset_id TEXT NOT NULL UNIQUE REFERENCES study_upload_intents(id) ON DELETE CASCADE,
+ PRIMARY KEY(actor_id,request_key)
+);

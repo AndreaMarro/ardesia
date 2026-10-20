@@ -1,11 +1,8 @@
 import { useState } from "react";
+import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import { CoursePackPreview } from "../../../studio/src/study/CoursePackPreview";
-import {
-  describeError,
-  studyRequest,
-  type StudyMe,
-  type Workspace,
-} from "../api";
+import { type StudyMe, type Workspace } from "../api";
+import { useResourceComposer } from "../components/useResourceComposer";
 import { SourceViewer } from "../components/SourceViewer";
 import { ResourceEditor } from "../components/ResourceEditor";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
@@ -22,37 +19,18 @@ export function Materials({
     resources = data.resources.filter(
       (r) => r.visibility === "group" || r.ownerId === me.id,
     );
-  const [selected, setSelected] = useState<string | null>(null),
-    [text, setText] = useState(""),
-    [busy, setBusy] = useState(false),
-    [error, setError] = useState(""),
-    [message, setMessage] = useState("");
+  const [selected, setSelected] = useState<string | null>(null);
   const current = resources.find((r) => r.id === selected);
-  async function create(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError("");
-    try {
-      const r = await studyRequest<{ id: string }>("/resources", {
-        editionId: data.edition.id,
-        kind: tutor ? "material" : "notes",
-        visibility: tutor ? "group" : "private",
-        text,
-      });
-      setSelected(r.id);
-      setText("");
-      setMessage(
-        tutor
-          ? "Materiale condiviso con il gruppo."
-          : "Nota salvata nel tuo spazio privato.",
-      );
-      await onUpdate();
-    } catch (ex) {
-      setError(describeError(ex));
-    } finally {
-      setBusy(false);
-    }
-  }
+  const composer = useResourceComposer({
+    editionId: data.edition.id,
+    kind: tutor ? "material" : "notes",
+    visibility: tutor ? "group" : "private",
+    successMessage: tutor
+      ? "Materiale condiviso con il gruppo."
+      : "Nota salvata nel tuo spazio privato.",
+    onCreated: (resource) => setSelected(resource.id),
+    onUpdate,
+  });
   return (
     <>
       <header className="page-heading">
@@ -104,7 +82,12 @@ export function Materials({
                 ? "Aggiungi un materiale al gruppo"
                 : "Aggiungi una nota privata"}
             </summary>
-            <form onSubmit={(e) => void create(e)}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                void composer.save();
+              }}
+            >
               <label>
                 {tutor
                   ? "Traccia, spiegazione o riferimento"
@@ -112,23 +95,24 @@ export function Materials({
                 <textarea
                   required
                   rows={6}
-                  value={text}
+                  value={composer.text}
                   maxLength={20000}
-                  onChange={(e) => setText(e.target.value)}
+                  onChange={(e) => composer.edit(e.target.value)}
+                  disabled={composer.busy}
                 />
               </label>
               <button
                 className="button-primary"
-                disabled={busy || !text.trim()}
+                disabled={composer.busy || !composer.text.trim()}
               >
-                {busy
+                {composer.busy
                   ? "Salvataggio…"
                   : tutor
                     ? "Condividi con il gruppo"
                     : "Salva nota privata"}
               </button>
-              {error && <ErrorNotice message={error} />}{" "}
-              {message && <p role="status">{message}</p>}
+              {composer.error && <ErrorNotice message={composer.error} />}{" "}
+              {composer.message && <p role="status">{composer.message}</p>}
             </form>
           </details>
         </aside>
@@ -162,6 +146,17 @@ export function Materials({
           )}
         </div>
       </div>
+      {tutor && (
+        <details className="disclosure-panel tutor-notebook">
+          <summary>Quaderno portabile dell’edizione</summary>
+          <p>
+            Esporta le fonti e i tentativi accessibili al tuo account tutor, con
+            gli originali e la disposizione delle tue viste. La riapertura è in
+            lettura.
+          </p>
+          <NotebookPanel editionId={data.edition.id} />
+        </details>
+      )}
       {tutor && (
         <details className="disclosure-panel content-bank">
           <summary>Banco dei contenuti originali in revisione</summary>

@@ -208,18 +208,24 @@ class StudyStore:
     def _event(self, c, principal, kind, resource_id, payload):
         c.execute('INSERT INTO study_events(id,actor_id,kind,resource_id,payload,created_at) VALUES(?,?,?,?,?,?)', (identifier(), principal.id, kind, resource_id, canonical(payload), self.clock()))
 
-    def create_resource(self, principal, edition_id, kind, text, visibility='private'):
+    def create_resource(self, principal, edition_id, kind, text, visibility='private', *, key=None):
         self._edition_access(principal, edition_id)
         if not isinstance(text, str) or len(text) > 20_000 or not text.strip():
             raise StudyError('invalid_text')
         if visibility not in ('private', 'group') or visibility == 'group' and principal.role != 'teacher':
             raise StudyError('forbidden', 403)
         resource_id, revision_id, context_id = identifier(), identifier(), identifier()
-        with self.transaction() as c:
+        def apply(c):
             c.execute('INSERT INTO study_resources(id,edition_id,owner_id,kind,visibility,context_id,current_revision) VALUES(?,?,?,?,?,?,?)', (resource_id, edition_id, principal.id, kind, visibility, context_id, revision_id))
             c.execute('INSERT INTO study_revisions VALUES(?,?,?,?,?)', (revision_id, resource_id, text, digest(text), self.clock()))
-            self._event(c, principal, 'resource.created', resource_id, {'revisionId': revision_id})
-        return self.get_resource(principal, resource_id)
+            return self.get_resource(principal, resource_id)
+        if key is not None:
+            from .transactions import transact
+            return transact(self,principal,'resource.created',key,{'editionId':edition_id,'kind':kind,'text':text,'visibility':visibility},apply)
+        with self.transaction() as c:
+            resource=apply(c)
+            self._event(c,principal,'resource.created',resource_id,{'revisionId':revision_id})
+            return resource
 
     def get_resource(self, principal, resource_id):
         row = self.connection.execute('SELECT current_revision FROM study_resources WHERE id=? AND deleted=0', (resource_id,)).fetchone()

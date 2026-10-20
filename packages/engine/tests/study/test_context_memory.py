@@ -75,3 +75,18 @@ def test_plain_text_submission_without_selected_source_has_recoverable_context(t
     packet=retrieve_context(store,student,observation[0],'')
     assert len(packet['observations'])==1
     assert packet['observations'][0]['evidence']['text']=='Q grows with radius squared'
+
+
+def test_tutor_can_open_submitted_historical_context_without_the_new_private_head(tmp_path):
+    store,tutor,student,peer,other=setup_store(tmp_path)
+    resource,review=reviewed_source(store,tutor,student)
+    revised=revise_resource(store,student,resource['id'],resource['revisionId'],'NUOVA BOZZA NON CONSEGNATA')
+    packet=retrieve_context(store,tutor,resource['contextId'],'',resource_id=resource['id'],revision_id=resource['revisionId'])
+    assert packet['resource']['revisionId']==resource['revisionId']
+    assert packet['resource']['text']==resource['text']
+    assert packet['sourceState']=='HISTORICAL'
+    assert packet['observations']==[] and packet['omittedStale']==1
+    assert revised['revisionId'] not in str(packet) and 'NUOVA BOZZA' not in str(packet)
+    for actor in (peer,other):
+        with pytest.raises(ValueError):
+            retrieve_context(store,actor,resource['contextId'],'',resource_id=resource['id'],revision_id=resource['revisionId'])

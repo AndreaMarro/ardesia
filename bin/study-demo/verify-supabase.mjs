@@ -622,7 +622,7 @@ class HttpScenario {
         const response = await this.request(
           actor,
           `/assets?editionId=${EDITION}`,
-          { method: "POST", binary: bytes, mime: fixture.mime },
+          { method: "POST", binary: bytes, mime: fixture.mime, key: this.key(`upload-${fixture.name}`) },
         );
         this.state.media[fixture.name] = this.expectResponse(
           `storage_upload_${fixture.name}`,
@@ -658,6 +658,7 @@ class HttpScenario {
       {
         method: "POST",
         binary: Buffer.from("This is not a PDF."),
+        key: this.key("upload-malformed-pdf"),
         mime: "application/pdf",
       },
     );

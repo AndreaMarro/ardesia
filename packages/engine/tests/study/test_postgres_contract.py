@@ -171,6 +171,9 @@ def test_auth_rls_exact_revision_and_revocation(pg_store, pg_configuration, iden
     tutor_store = connect(0)
     assert tutor_store.get_resource_revision(tutor, source['id'], source['revisionId'])['text'] == source['text']
     assert tutor_store.connection.execute('SELECT text FROM study_revisions WHERE id=?', (newer['revisionId'],)).fetchone() is None
+    historical=retrieve_context(tutor_store,tutor,source['contextId'],'',resource_id=source['id'],revision_id=source['revisionId'])
+    assert historical['sourceState']=='HISTORICAL' and historical['resource']['text']==source['text']
+    assert newer['revisionId'] not in str(historical) and 'Bozza successiva' not in str(historical)
     tutor_store.close()
     path = '/rest/v1/study_revisions?resource_id=eq.' + source['id'] + '&select=id,text'
     status, visible = api_request(pg_configuration, 'GET', path, token=sessions[0]['token'])
@@ -308,3 +311,74 @@ def test_error_diary_transfer_is_shared_on_authenticated_postgres(pg_store, pg_c
     finally:
         for store in (tutor_store, student_store, peer_store):
             store.close()
+
+
+def test_postgres_storage_failed_compensation_survives_and_is_recoverable(identities, pg_store, pg_configuration, tmp_path):
+    from lessonos.study.assets import upload_asset
+    from lessonos.study.uploads import recover_uploads
+    from study_api.runtime import SupabaseRuntime, SupabaseBlobs
+    from test_upload_recovery import png, reject_metadata
+    actors, sessions = identities
+    tutor, student, peer, edition = actors
+    runtime = SupabaseRuntime(pg_configuration, tmp_path)
+    store = runtime.open(sessions[1]['token'])
+    actual_blobs = store.blobs
+
+    class FailedCleanup:
+        is_local = False
+
+        def put(self, blob_id, data, mime):
+            actual_blobs.put(blob_id, data, mime)
+
+        def remove(self, blob_id):
+            raise OSError('synthetic cleanup transport failure')
+
+    store.blobs = FailedCleanup()
+    original = reject_metadata(store)
+    try:
+        with pytest.raises(RuntimeError, match='synthetic metadata failure'):
+            upload_asset(store, student, edition, png(), 'image/png', tmp_path / 'blobs')
+        store.transaction = original
+        intent = store.connection.execute('SELECT * FROM study_upload_intents WHERE owner_id=?', (student.id,)).fetchone()
+        assert intent['state'] == 'cleanup_required'
+        assert pg_store.connection.execute('SELECT COUNT(*) FROM study_assets WHERE id=?', (intent['id'],)).fetchone()[0] == 0
+        assert pg_store.connection.execute("SELECT COUNT(*) FROM storage.objects WHERE bucket_id='ardesia-originals' AND name=?", (intent['id'],)).fetchone()[0] == 1
+        # A browser cannot enumerate intent or create an untracked arbitrary blob.
+        status, _ = api_request(pg_configuration, 'GET', '/rest/v1/study_upload_intents?select=id', token=sessions[1]['token'])
+        assert status in (401, 403)
+        with pytest.raises(StudyError, match='provider_unavailable'):
+            actual_blobs.put(uuid.uuid4().hex, png(), 'image/png')
+        with pytest.raises(StudyError, match='forbidden'):
+            recover_uploads(store, actual_blobs)
+        counts = recover_uploads(pg_store, SupabaseBlobs(runtime, ''))
+        assert counts['cleaned'] >= 1 and counts['failed'] == 0
+        assert pg_store.connection.execute('SELECT COUNT(*) FROM study_upload_intents WHERE id=?', (intent['id'],)).fetchone()[0] == 0
+        assert pg_store.connection.execute("SELECT COUNT(*) FROM storage.objects WHERE bucket_id='ardesia-originals' AND name=?", (intent['id'],)).fetchone()[0] == 0
+    finally:
+        store.close()
+
+
+def test_real_http_upload_idempotency_keeps_one_private_original(identities, pg_store, pg_configuration, tmp_path):
+    from fastapi.testclient import TestClient
+    from study_api.app import create_app
+    from study_api.runtime import SupabaseRuntime
+    from test_upload_recovery import png
+    actors, sessions = identities
+    tutor, student, peer, edition = actors
+    app = create_app(tmp_path / 'postgres.lock', demo=True, runtime=SupabaseRuntime(pg_configuration, tmp_path))
+    with TestClient(app) as client:
+        assert client.post('/study/session', json={'token': sessions[1]['token']}).status_code == 200
+        missing=client.post('/study/assets?editionId='+edition,content=png(),headers={'Content-Type':'image/png'})
+        assert missing.status_code==422 and missing.json()=={'error':'idempotency_key_required'}
+        assert pg_store.connection.execute('SELECT COUNT(*) FROM study_assets WHERE owner_id=?',(student.id,)).fetchone()[0]==0
+        headers = {'Content-Type': 'image/png', 'Idempotency-Key': 'lost-upload-response'}
+        first = client.post('/study/assets?editionId=' + edition, content=png(), headers=headers)
+        assert first.status_code == 200
+        replay = client.post('/study/assets?editionId=' + edition, content=png(), headers=headers)
+        assert replay.status_code == 200 and replay.json() == first.json()
+        assert pg_store.connection.execute('SELECT COUNT(*) FROM study_assets WHERE owner_id=?', (student.id,)).fetchone()[0] == 1
+        assert pg_store.connection.execute("SELECT COUNT(*) FROM storage.objects WHERE bucket_id='ardesia-originals' AND name=?", (first.json()['id'],)).fetchone()[0] == 1
+        assert client.post('/study/session', json={'token': sessions[2]['token']}).status_code == 200
+        denied = client.get('/study/assets/' + first.json()['id'])
+        assert denied.status_code == 404  # RLS conceals existence before Core lookup.
+        assert denied.json() == {'error':'not_found'}

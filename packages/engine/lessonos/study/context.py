@@ -75,12 +75,19 @@ def delete_resource(store,principal,resource_id):
         store._event(c,principal,'resource.deleted',resource_id,{})
 
 
-def retrieve_context(store,principal,context_id,query,limit=6):
+def retrieve_context(store,principal,context_id,query,limit=6,*,resource_id=None,revision_id=None):
     # Scope lookup is deliberately before the text-search loop.
     store._principal(principal)
     resources=store.connection.execute('SELECT id FROM study_resources WHERE context_id=? AND deleted=0',(context_id,)).fetchall()
     if not resources:raise StudyError('context_not_found',404)
-    resource=store.get_resource(principal,resources[0]['id'])
+    if resource_id is not None or revision_id is not None:
+        if not isinstance(resource_id,str) or not isinstance(revision_id,str):raise StudyError('invalid_source_refs')
+        resource=store.get_resource_revision(principal,resource_id,revision_id)
+        if resource['contextId']!=context_id:raise StudyError('context_not_found',404)
+    else:
+        resource=store.get_resource(principal,resources[0]['id'])
+    head=store.connection.execute('SELECT current_revision FROM study_resources WHERE id=?',(resource['id'],)).fetchone()
+    source_state='CURRENT' if head and head[0]==resource['revisionId'] else 'HISTORICAL'
     observations=[];omitted=0
     sql='SELECT o.*,s.text AS attempt FROM study_observations o JOIN study_submissions s ON s.id=o.submission_id WHERE o.context_id=?'
     parameters=[context_id]
@@ -95,4 +102,4 @@ def retrieve_context(store,principal,context_id,query,limit=6):
         if query and not any(word in (row['text']+' '+row['attempt']).casefold() for word in query.casefold().split()):continue
         refs=json.loads(row['source_refs'])
         observations.append({'id':row['id'],'reviewId':row['review_id'],'text':row['text'],'evidence':{'submissionId':row['submission_id'],'sourceId':refs[0]['resourceId'] if refs else None,'revisionId':refs[0]['revisionId'] if refs else None,'segmentId':segment.seg_id,'text':row['attempt']},'status':'reviewed_synthetic','relations':['attempt_of','feedback_on','supports']})
-    return {'contextId':context_id,'resource':resource,'observations':observations[:max(0,min(limit,6))],'omittedStale':omitted,'limits':['La provenienza non certifica la correttezza disciplinare.','Review eseguita da tutor sintetico.']}
+    return {'contextId':context_id,'resource':resource,'sourceState':source_state,'observations':observations[:max(0,min(limit,6))],'omittedStale':omitted,'limits':['La provenienza non certifica la correttezza disciplinare.','Review eseguita da tutor sintetico.']}
