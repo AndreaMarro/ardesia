@@ -221,7 +221,7 @@ test("source text stays escaped and file sizes above the old75MiB ceiling reach 
   expect(document.querySelector("img")).toBeNull();
   expect(fetch).toHaveBeenCalledTimes(1);
 });
-test("download uses the same compact JSON representation that the inspect client sends", async () => {
+test("download preserves exact JSON number tokens and whitespace for canonical snapshot digests", async () => {
   let serialized: Blob | undefined;
   const createObjectURL = vi.fn((blob: Blob) => {
     serialized = blob;
@@ -229,14 +229,26 @@ test("download uses the same compact JSON representation that the inspect client
   });
   vi.stubGlobal("URL", { createObjectURL, revokeObjectURL: vi.fn() });
   vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
-  const fetcher = vi.fn(
-    async (_path: string) => new Response(JSON.stringify(bundle)),
-  );
+  const encoded = JSON.stringify({ ...bundle, numericFixture: [0, 1] }, null, 2)
+    .replace('"numericFixture": [\n    0,\n    1\n  ]', '"numericFixture": [\n    -0.0,\n    1.0\n  ]');
+  const fetcher = vi.fn(async (_path: string) => new Response(encoded));
   vi.stubGlobal("fetch", fetcher);
   render(<NotebookPanel editionId="analysis" />);
   fireEvent.click(screen.getByRole("button", { name: "Esporta quaderno" }));
   await waitFor(() =>
-    expect(serialized?.size).toBe(new Blob([JSON.stringify(bundle)]).size),
+    expect(serialized?.size).toBe(new Blob([encoded]).size),
   );
+  expect(await serialized?.text()).toBe(encoded);
   expect(fetcher.mock.calls[0][0]).toBe("/study/notebook?editionId=analysis");
+});
+
+test("inspect receives the raw imported JSON without normalizing floating-point tokens", async () => {
+  setup();
+  const encoded = JSON.stringify({ ...bundle, numericFixture: [0, 1] })
+    .replace('"numericFixture":[0,1]', '"numericFixture":[-0.0,1.0]');
+  const file = new File([encoded], "raw.study.json", { type: "application/json" });
+  Object.defineProperty(file, "text", { value: async () => encoded });
+  fireEvent.change(screen.getByLabelText("Riapri quaderno .study.json"), { target: { files: [file] } });
+  await screen.findByText("Procedimento consegnato v1");
+  expect(vi.mocked(fetch).mock.calls[0][1]?.body).toBe(encoded);
 });

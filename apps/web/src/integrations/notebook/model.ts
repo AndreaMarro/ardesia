@@ -1,16 +1,9 @@
 import type { StudyResource } from "../../api";
-
-export type Rect = [number, number, number, number];
-export type Annotation = {
-  id: string; page: number; rect: Rect; kind: "note" | "formula" | "highlight"; content: string;
-};
-export type NotebookState = { v: 1; title: string; annotations: Annotation[] };
+import type { Rect, NotebookState, NotebookSnapshot } from "../../../../studio/src/study/scientificNotebookSnapshot";
+export type { Rect, Annotation, NotebookState } from "../../../../studio/src/study/scientificNotebookSnapshot";
 export type NotebookResource = StudyResource & {
   kind: "scientific-notebook";
-  notebook: {
-    v: 1; sha256: string; state: NotebookState;
-    source: { assetId: string; sha256: string; pageCount: number; coordinates: "pdf-normalized-unrotated-top-left-v1" };
-  };
+  notebook: NotebookSnapshot;
 };
 export function notebookResource(value: StudyResource): NotebookResource {
   const book = value as NotebookResource;

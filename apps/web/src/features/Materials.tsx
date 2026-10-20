@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
+import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
 import { type StudyMe, type Workspace } from "../api";
 import { useResourceComposer } from "../components/useResourceComposer";
@@ -162,7 +163,7 @@ export function Materials({
             gli originali e la disposizione delle tue viste. La riapertura è in
             lettura.
           </p>
-          <NotebookPanel editionId={data.edition.id} />
+          <NotebookPanel editionId={data.edition.id} renderSource={renderPortableNotebook} />
         </details>
       )}
       {tutor && (

@@ -427,3 +427,49 @@ recupero da reload/crash. Penna/touch, screen reader, altri browser, 200 formule
 PostgreSQL live, workflow equivalente esterno e G0/G1 restano da verificare.
 SYS-01 e lo sviluppo complessivo Ardesia restano aperti. Nessun push o deploy.
 Dettagli: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-EDITOR.md.
+
+
+## 2026-10-20 — quaderno portabile, lettura delle revisioni esportate
+
+Il pannello condiviso conserva gli snapshot scientifici e i byte JSON originali
+per export e ispezione. Il Web inietta il lettore locale: PDF, formule statiche,
+note e versioni consegnate; Studio autonomo mantiene testo/download. Nessun
+lookup della head, comando di scrittura o fiducia canonica desunta dal file.
+Verifica Core online richiesta; byte/SHA e pagine sono controllati prima del
+rendering. Sessione, file e selezione invalidano i risultati asincroni precedenti.
+
+Nessuna nuova dipendenza. PDF.js, MathLive e DOMPurify già fissati; zero LLM in
+prodotto. REA 6.7.0 via MCP: AFFiNE guest nota/persistenza/menu Export, ciclo PDF
+esterno incompleto; osservazione passiva del lettore locale con bundle completo
+delle tre Evidence e limiti di attach/rete. Nessun setup ripetuto.
+
+Verifiche: 239 test Web in 31 file, build Web finale con typecheck. Build pubblica
+riuscita prima della sola correzione CSS del lettore, non importata dall'entry
+pubblica. Gate Studio congelato finale: {"passed": 2156, "failed": 1, "exit": 1, "replay": "not run because Vitest failed"}; replay non eseguito.
+Prima esecuzione: 2155/2, file non modificati; 11 test isolati passati, causa
+non accertata. Nessun gate indebolito. Review UI (4 probe), parser separato,
+CSS finale solo lettura. Wrapper review.sh non disponibile, non rivendicato.
+
+Chrome/API SQLite reali: export studente/tutor, chiusura e riavvio, riapertura
+V1 senza sostituzione con V2 privata, nessun GET Core, byte JSON esatti e file
+alterati rifiutati. Il primo harness export richiese SIGTERM dopo il report e
+chiusura browser; riapertura finale exit 0. Overflow SHA a 390 px corretto e
+riprovato; 390/820/1440, zoom CSS 200%, focus e cleanup. Axe: zero violazioni,
+22 controlli passati, ARIA/contrasto parzialmente incompleti. Non è una
+certificazione di accessibilità o UI perfetta. Altri browser, screen reader,
+touch/penna, carico con 200 formule, offline e workflow esterno restano aperti.
+
+Secondo gate fallito in no-emoji.test.ts con STACK_TRACE_ERROR, senza lista
+di caratteri responsabili. Causa non accertata; esito isolato in verification.json.
+Dopo due fallimenti, stop del ciclo secondo AGENTS Studio §5. Nessun terzo
+gate o modifica delle soglie. Incremento non committato; checkpoint di review.
+SYS-01 e il programma complessivo rimangono aperti. Nessun push, merge, deploy
+o messaggio esterno. Evidenze: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-PORTABLE.md.
+
+- **2026-10-20 — pubblicazione del checkpoint REA autorizzata dall'utente.**
+  La richiesta diretta «metti tutto su github in modo ultra ordinato» autorizza
+  commit e pubblicazione del candidato conservato dopo i due gate falliti.
+  Il checkpoint rimane **GATE_STUDIO_FAILED**: 2156 passati, 1 fallito, replay
+  non eseguito. Nessuna ulteriore modifica al prodotto o al gate in questa fase.
+  Gli esiti precedenti restano storici; il commit rende il candidato
+  revisionabile e non certifica il completamento di SYS-01 o del programma.

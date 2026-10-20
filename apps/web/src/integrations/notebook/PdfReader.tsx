@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
-import type { VerifiedOriginalAsset } from "../../../../studio/src/study/originalAsset";
 import { ErrorNotice, Loading } from "../../components/Feedback";
 import { openPdf, type PdfTask } from "./pdfDocument";
 import { renderPdfPage, type PdfFrame } from "./renderPdfPage";
 import "./notebook.css";
 
 type Extras = { overlay?: (frame: PdfFrame) => ReactNode; pageTools?: (page: number) => ReactNode };
-export function PdfReader({ original, overlay, pageTools }: { original: VerifiedOriginalAsset } & Extras) {
-  const [loaded, setLoaded] = useState<{ original: VerifiedOriginalAsset; pdf: PDFDocumentProxy } | null>(null);
+/** Rendering input only. Authorization and integrity belong to the caller's boundary. */
+export type PdfInput = { blob: Blob };
+export function PdfReader({ original, overlay, pageTools, expectedPages }: { original: PdfInput; expectedPages?: number } & Extras) {
+  const [loaded, setLoaded] = useState<{ original: PdfInput; expectedPages?: number; pdf: PDFDocumentProxy } | null>(null);
   const [loadError, setLoadError] = useState("");
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -30,7 +31,8 @@ export function PdfReader({ original, overlay, pageTools }: { original: Verified
       const pdf = await loading.promise;
       controller.signal.throwIfAborted();
       if (pdf.numPages < 1 || pdf.numPages > 20) throw new Error("pdf_page_limit");
-      setLoaded({ original, pdf });
+      if (expectedPages !== undefined && pdf.numPages !== expectedPages) throw new Error("pdf_page_count_mismatch");
+      setLoaded({ original, expectedPages, pdf });
     })().catch(() => {
       if (!controller.signal.aborted) {
         setLoadError("Non riesco ad aprire questo PDF. Puoi riprovare o scaricare l’originale.");
@@ -42,9 +44,9 @@ export function PdfReader({ original, overlay, pageTools }: { original: Verified
       // Invalidate first. A blocked old worker cannot delay the next source.
       void loading?.destroy().catch(() => {});
     };
-  }, [original, attempt]);
+  }, [original, expectedPages, attempt]);
   if (loadError) return <ErrorNotice message={loadError} onRetry={() => setAttempt(n => n + 1)} />;
-  if (!loaded || loaded.original !== original) return <Loading>Sto preparando le pagine…</Loading>;
+  if (!loaded || loaded.original !== original || loaded.expectedPages !== expectedPages) return <Loading>Sto preparando le pagine…</Loading>;
   return <PdfPages key={attempt} pdf={loaded.pdf} overlay={overlay} pageTools={pageTools} />;
 }
 

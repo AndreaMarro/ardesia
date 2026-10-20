@@ -7,6 +7,7 @@ import { SourceViewer } from "../components/SourceViewer";
 import { AssetPreview } from "../components/AssetPreview";
 import { EmptyState } from "../components/Feedback";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
+import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
 export function Work({
   me,
   data,
@@ -55,7 +56,7 @@ export function Work({
           </header>
           <ScientificNotebooks me={me} data={data} onUpdate={onUpdate} />
           <div className="work-notebook">
-            <NotebookPanel editionId={data.edition.id} />
+            <NotebookPanel editionId={data.edition.id} renderSource={renderPortableNotebook} />
           </div>
         </>
       ) : (

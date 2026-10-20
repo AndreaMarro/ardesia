@@ -64,4 +64,4 @@ Ogni pagina + riassunto 1 riga.
 - **mcp-grounded-memory** (no page yet) — M3 white-label B2B: server JSON-RPC 2.0 / MCP in-process (`GroundedMemoryServer`) che espone 3 tool teacher-scoped con re-verifica grounding (`verify_citation`): `grounded_memory_recall` (segmenti verbatim per query), `grounded_memory_progression` (ConceptProgression persistite), `grounded_memory_prerequisites` (PrerequisiteChain persistite). Progression+prerequisites condividono il guard `_ground_concept`/`_ground_citation` (ownership lesson-span + `is_verified_excerpt` + `verify_citation` same-lesson + concept-tie `content_tokens`). Ogni item emesso è riverificato; candidati non grounded droppati e dichiarati in `dropped_ungrounded`. `lessonos/mcp/grounded_memory.py:1` (524 righe), `tests/test_mcp_grounded_memory.py:1` (45 test).
 
 - **original-assets.md** — byte e descrittore autorizzati, identità immutabile e confine del lettore PDF
-- **scientific-notebook.md** — binding PDF immutabile, annotazioni per revisione, CAS, export e confine con la futura UI
+- **scientific-notebook.md** — binding PDF immutabile, annotazioni per revisione, CAS, editor Web e riapertura portabile

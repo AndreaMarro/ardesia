@@ -1,29 +1,43 @@
-import { useEffect, useRef, useState } from "react";
-import { studyRequest } from "./apiClient";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { studyBlob, studyRequest } from "./apiClient";
+import { studySessionTicket } from "./sessionBoundary";
 import {
   notebookSourceKey,
   readNotebookPreview,
   type NotebookInspection,
   type NotebookPreview,
+  type NotebookSource,
 } from "./notebookPreview";
 const ENCODED_LIMIT = 96 * 1024 * 1024;
 export function NotebookPanel({
   editionId = "fluidi",
-}: { editionId?: string } = {}) {
+  renderSource,
+}: { editionId?: string; renderSource?: (source: NotebookSource, assets: NotebookPreview["assets"]) => ReactNode } = {}) {
   const [message, setMessage] = useState(""),
     [preview, setPreview] = useState<NotebookPreview | null>(null),
     [inspection, setInspection] = useState<NotebookInspection | null>(null),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [opened, setOpened] = useState<string | null>(null);
   const pending = useRef(false),
     generation = useRef(0),
     mounted = useRef(true),
     controller = useRef<AbortController | null>(null);
   useEffect(() => {
     mounted.current = true;
+    const ticket = studySessionTicket();
+    const clear = () => {
+      generation.current++;
+      controller.current?.abort();
+      pending.current = false;
+      setPreview(null); setInspection(null); setOpened(null); setBusy(false);
+      setMessage("La sessione è cambiata. Riapri il file nel tuo spazio.");
+    };
+    ticket.signal.addEventListener("abort", clear, { once: true });
     return () => {
       mounted.current = false;
       generation.current++;
       controller.current?.abort();
+      ticket.signal.removeEventListener("abort", clear);
     };
   }, []);
   async function download() {
@@ -31,19 +45,16 @@ export function NotebookPanel({
     pending.current = true;
     setBusy(true);
     setMessage("");
+    const current = ++generation.current;
     try {
-      const bundle = await studyRequest<Record<string, unknown>>(
+      // Preserve the server's exact JSON number representation and snapshot digests.
+      const encoded = await studyBlob(
         "/notebook?editionId=" + encodeURIComponent(editionId),
       );
-      if (!mounted.current) return;
-      const encoded = JSON.stringify(bundle);
-      if (new TextEncoder().encode(encoded).byteLength > ENCODED_LIMIT)
+      if (!mounted.current || current !== generation.current) return;
+      if (encoded.size > ENCODED_LIMIT)
         throw Error("notebook_budget_exceeded");
-      const url = URL.createObjectURL(
-        new Blob([encoded], {
-          type: "application/json",
-        }),
-      );
+      const url = URL.createObjectURL(encoded);
       const anchor = document.createElement("a");
       anchor.href = url;
       anchor.download = `ardesia-${editionId.replace(/[^a-zA-Z0-9_-]/g, "-") || "corso"}.study.json`;
@@ -53,15 +64,17 @@ export function NotebookPanel({
         "Quaderno esportato con hash degli originali e omissioni dichiarate.",
       );
     } catch (error) {
-      if (mounted.current)
+      if (mounted.current && current === generation.current)
         setMessage(
           error instanceof Error && error.message === "notebook_budget_exceeded"
             ? "Il quaderno supera il limite di 96 MiB. Nessun file parziale è stato creato."
             : "Export non completato.",
         );
     } finally {
-      pending.current = false;
-      if (mounted.current) setBusy(false);
+      if (current === generation.current) {
+        pending.current = false;
+        if (mounted.current) setBusy(false);
+      }
     }
   }
   async function reopen(file: File | undefined) {
@@ -70,18 +83,22 @@ export function NotebookPanel({
     setBusy(true);
     setPreview(null);
     setInspection(null);
+    setOpened(null);
     setMessage("Lettura del file…");
     const current = ++generation.current;
     controller.current = new AbortController();
     try {
       // Same encoded request budget as /notebook/inspect; decoded originals have their own Core budget.
       if (file.size > ENCODED_LIMIT) throw Error("notebook_budget_exceeded");
-      const bundle: unknown = JSON.parse(await file.text());
+      const encoded = await file.text();
+      if (!mounted.current || current !== generation.current) return;
+      const bundle: unknown = JSON.parse(encoded);
       const presentation = readNotebookPreview(bundle);
       const checked = await studyRequest<NotebookInspection>(
         "/notebook/inspect",
-        bundle,
-        { signal: controller.current.signal },
+        undefined,
+        { signal: controller.current.signal, method: "POST",
+          headers: { "Content-Type": "application/json" }, body: encoded },
       );
       if (!mounted.current || current !== generation.current) return;
       if (checked.valid !== true) throw Error("invalid_notebook");
@@ -101,8 +118,10 @@ export function NotebookPanel({
         setInspection(null);
       }
     } finally {
-      pending.current = false;
-      if (mounted.current && current === generation.current) setBusy(false);
+      if (current === generation.current) {
+        pending.current = false;
+        if (mounted.current) setBusy(false);
+      }
     }
   }
   function downloadAsset(asset: NotebookPreview["assets"][number]) {
@@ -133,7 +152,10 @@ export function NotebookPanel({
           type="file"
           accept=".json"
           disabled={busy}
-          onChange={(e) => void reopen(e.target.files?.[0])}
+          onChange={(e) => {
+            void reopen(e.target.files?.[0]);
+            e.target.value = "";
+          }}
         />
       </label>
       <p role="status">{message}</p>
@@ -184,6 +206,16 @@ export function NotebookPanel({
                   : "Revisione referenziata nel file"}
               </p>
               <p>{item.text}</p>
+              {item.notebook && renderSource && <>
+                <button className="notebook-open-source"
+                  aria-expanded={opened === notebookSourceKey(item.id, item.revisionId)}
+                  onClick={() => setOpened(opened === notebookSourceKey(item.id, item.revisionId)
+                    ? null : notebookSourceKey(item.id, item.revisionId))}>
+                  {opened === notebookSourceKey(item.id, item.revisionId) ? "Chiudi pagine annotate" : "Apri pagine annotate"} · {item.notebook.state.title}
+                </button>
+                {opened === notebookSourceKey(item.id, item.revisionId) &&
+                  renderSource(item, preview.assets)}
+              </>}
               <p>
                 Origine indicata nel file: {item.ownerId} ·{" "}
                 {item.visibility === "private" ? "Privata" : "Gruppo"}

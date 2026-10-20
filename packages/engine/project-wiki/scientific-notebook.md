@@ -30,3 +30,13 @@ consegna collega la revisione salvata e il suo originale; il tutor legge lo
 snapshot consegnato. Bozze non salvate solo in memoria, con avviso ed export.
 Verifiche e limiti residui:
 `docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-EDITOR.md`.
+
+Gli export .study.json si riaprono ora con pagine e annotazioni della revisione
+inclusa (`apps/web/src/integrations/notebook/NotebookReading.tsx:18`, percorsi
+dalla root monorepo). Il trasporto mantiene i byte JSON originali, compresa la
+rappresentazione Python dei float (`apps/studio/src/study/NotebookPanel.tsx:51`
+e `:93`). Dopo ispezione online autenticata (`NotebookPanel.tsx:97`), il lettore
+usa gli asset locali verificati (`apps/web/src/integrations/notebook/portablePdf.ts:5`).
+Il renderer legge stato e Blob senza recuperare la head o importare permessi
+(`apps/web/src/integrations/notebook/NotebookReading.tsx:18`). Confini e verifiche:
+`docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-PORTABLE.md`.

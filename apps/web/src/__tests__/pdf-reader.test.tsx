@@ -107,6 +107,17 @@ test("closing before Blob conversion finishes never creates a worker", async () 
   expect(openPdf).not.toHaveBeenCalled();
 });
 
+test("a local PDF with a different page count never renders annotations against the wrong geometry", async () => {
+  const first = loading();
+  const overlay = vi.fn(() => <span>Misbound annotation</span>);
+  vi.mocked(openPdf).mockResolvedValue(first.task);
+  render(<PdfReader original={original("a")} expectedPages={3} overlay={overlay} />);
+  await screen.findByRole("alert");
+  expect(first.pdf.getPage).not.toHaveBeenCalled();
+  expect(overlay).not.toHaveBeenCalled();
+  expect(first.destroy).toHaveBeenCalledOnce();
+});
+
 test("render failure offers retry and preserves the document", async () => {
   const first = loading();
   first.pdf.getPage = vi.fn().mockRejectedValueOnce(new Error("render failed"))

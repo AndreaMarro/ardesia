@@ -1,4 +1,6 @@
 /** Presentation boundary for an untrusted, read-only artifact. No ACL or live source lookup. */
+import { readNotebookSnapshot, type NotebookSnapshot } from "./scientificNotebookSnapshot";
+export type { Rect, Annotation, NotebookState, NotebookSnapshot } from "./scientificNotebookSnapshot";
 export type NotebookSource = {
   id: string;
   revisionId: string;
@@ -8,6 +10,8 @@ export type NotebookSource = {
   visibility: string;
   text: string;
   sha256: string;
+  editionId?: string;
+  notebook?: NotebookSnapshot;
 };
 export type NotebookReference = {
   resourceId: string;
@@ -27,7 +31,7 @@ export type NotebookPreview = {
     source_refs: NotebookReference[];
     feedback: LocalFeedback[];
   }[];
-  assets: { id: string; mime: string; base64: string; sha256: string }[];
+  assets: { id: string; mime: string; base64: string; sha256: string; bytes?: number }[];
   unavailableResourceRefs: NotebookReference[];
   omissions: string[];
   layoutViews: number;
@@ -92,7 +96,7 @@ export function readNotebookPreview(value: unknown): NotebookPreview {
   ] as const) {
     for (const raw of input) {
       const r = object(raw);
-      const source = {
+      const source: NotebookSource = {
         id: id(r.id),
         revisionId: id(r.revisionId),
         contextId: id(r.contextId),
@@ -102,6 +106,17 @@ export function readNotebookPreview(value: unknown): NotebookPreview {
         text: text(r.text),
         sha256: text(r.sha256, 64),
       };
+      if (r.editionId !== undefined) {
+        source.editionId = text(r.editionId, 8192);
+        if (!source.editionId) throw Error("invalid_notebook_presentation");
+      }
+      if (source.kind === "scientific-notebook") {
+        if (!source.editionId || !/^[a-f0-9]{64}$/.test(source.sha256))
+          throw Error("invalid_notebook_presentation");
+        source.notebook = readNotebookSnapshot(r.notebook, source.text);
+      } else if ("notebook" in r) {
+        throw Error("invalid_notebook_presentation");
+      }
       const key = notebookSourceKey(source.id, source.revisionId);
       const previous = index.get(key);
       if (
@@ -152,15 +167,49 @@ export function readNotebookPreview(value: unknown): NotebookPreview {
       )
         throw Error("invalid_notebook_presentation");
     }
+  let knownBytes = 0;
+  const assetIds = new Set<string>();
   const assets = rows(b.assets, 100).map((raw) => {
     const a = object(raw);
+    const assetId = id(a.id);
+    if (assetIds.has(assetId)) throw Error("invalid_notebook_presentation");
+    assetIds.add(assetId);
+    if (a.bytes !== undefined) {
+      if (typeof a.bytes !== "number" || !Number.isSafeInteger(a.bytes) || a.bytes < 0)
+        throw Error("invalid_notebook_presentation");
+      knownBytes += a.bytes;
+      if (knownBytes > 50 * 1024 * 1024) throw Error("invalid_notebook_presentation");
+    }
     return {
-      id: id(a.id),
+      id: assetId,
       mime: text(a.mime, 128),
       sha256: text(a.sha256, 64),
       base64: text(a.base64, 70 * 1024 * 1024),
+      ...(a.bytes === undefined ? {} : { bytes: a.bytes as number }),
     };
   });
+  const assetIndex = new Map(assets.map(asset => [asset.id, asset]));
+  const bindings = new Map<string, string>();
+  for (const { source } of index.values()) {
+    if (!source.notebook) continue;
+    const binding = source.notebook.source;
+    const identity = JSON.stringify(binding);
+    const previous = bindings.get(source.id);
+    if (previous !== undefined && previous !== identity)
+      throw Error("invalid_notebook_presentation");
+    bindings.set(source.id, identity);
+    const asset = assetIndex.get(binding.assetId);
+    // Absence stays explicit for the UI; never replace an omitted PDF. Core
+    // decides whether the artifact's declared omissions are admissible.
+    if (!asset) continue;
+    if (asset.mime !== "application/pdf" || asset.sha256 !== binding.sha256
+        || asset.bytes === undefined || asset.bytes < 1 || asset.bytes > 20 * 1024 * 1024)
+      throw Error("invalid_notebook_presentation");
+  }
+  for (const { source } of index.values()) {
+    if (bindings.has(source.id) && !source.notebook)
+      throw Error("invalid_notebook_presentation");
+  }
   const unavailableResourceRefs = rows(
     b.unavailableResourceRefs ?? [],
     600,

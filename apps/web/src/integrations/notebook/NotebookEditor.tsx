@@ -7,6 +7,7 @@ import { PdfReader } from "./PdfReader";
 import { AnnotationLayer } from "./AnnotationLayer";
 import { FormulaField } from "./FormulaField";
 import { useNotebookDraft } from "./useNotebookDraft";
+import { NotebookReading, DownloadOriginal } from "./NotebookReading";
 import { anchorRect, type Annotation, type NotebookResource, type Rect } from "./model";
 
 export function NotebookEditor({ resource, actor, onSaved, onUse, readOnly = false }: {
@@ -35,29 +36,9 @@ export function NotebookEditor({ resource, actor, onSaved, onUse, readOnly = fal
   if (revoked) return <ErrorNotice message="La sessione è cambiata. Riapri il quaderno dal tuo spazio." />;
   if (error) return <ErrorNotice message={error} onRetry={() => setAttempt(n => n + 1)} />;
   if (!original) return <Loading>Sto verificando l’originale del quaderno…</Loading>;
-  return readOnly ? <NotebookReading resource={resource} original={original} />
+  return readOnly ? <NotebookReading state={resource.notebook.state} revisionId={resource.revisionId}
+    original={original} assetId={resource.notebook.source.assetId} pageCount={resource.notebook.source.pageCount} />
     : <Editing key={`${actor}:${resource.id}`} resource={resource} original={original} actor={actor} onSaved={onSaved} onUse={onUse} />;
-}
-
-function Download({ original }: { original: VerifiedOriginalAsset }) {
-  const [url, setUrl] = useState("");
-  useEffect(() => {
-    const value = URL.createObjectURL(original.blob); setUrl(value);
-    return () => URL.revokeObjectURL(value);
-  }, [original]);
-  return url ? <a href={url} download={`originale-${original.descriptor.id}.pdf`}>Scarica il PDF originale</a> : null;
-}
-function NotebookReading({ resource, original }: { resource: NotebookResource; original: VerifiedOriginalAsset }) {
-  return <section className="scientific-notebook notebook-reading" aria-label="Quaderno scientifico in lettura">
-    <h3>{resource.notebook.state.title}</h3>
-    <p className="fine-print">Versione selezionata · {resource.revisionId.slice(0, 8)}</p>
-    <PdfReader original={original} overlay={frame => <AnnotationLayer frame={frame} annotations={resource.notebook.state.annotations} />} />
-    <ol className="notebook-reading-notes">{resource.notebook.state.annotations.map(a => <li key={a.id}>
-      <strong>Pagina {a.page} · {a.kind === "formula" ? "Formula" : a.kind === "highlight" ? "Evidenziazione" : "Nota"}</strong>
-      {a.kind === "formula" ? <FormulaField readOnly value={a.content} /> : <p>{a.content || "Passaggio evidenziato nel PDF."}</p>}
-    </li>)}</ol>
-    <Download original={original} />
-  </section>;
 }
 
 function Editing({ resource, original, actor, onSaved, onUse }: {
@@ -118,7 +99,7 @@ function Editing({ resource, original, actor, onSaved, onUse }: {
     {editor.conflict && <p className="source-warning">Esiste una versione più recente. Conserva la bozza oppure rileggi e ripristina la versione salvata.</p>}
     <div className="notebook-workspace">
       <div className="notebook-document">
-        <PdfReader original={original}
+        <PdfReader original={original} expectedPages={resource.notebook.source.pageCount}
           pageTools={page => <div className="notebook-page-tools" role="group" aria-label={`Annota pagina ${page}`}>
             <button disabled={disabled || editor.state.annotations.length >= 200} onClick={() => add("note", page)}>＋ Nota</button>
             <button disabled={disabled || editor.state.annotations.length >= 200} onClick={() => add("formula", page)}>ƒ Formula</button>
@@ -135,7 +116,7 @@ function Editing({ resource, original, actor, onSaved, onUse }: {
             }}
             onMove={disabled ? undefined : move} />}
         />
-        <Download original={original} />
+        <DownloadOriginal original={original} assetId={original.descriptor.id} />
       </div>
       <aside className="notebook-inspector" aria-label="Annotazioni del quaderno">
         <h3>I tuoi passaggi <span>{editor.state.annotations.length}</span></h3>

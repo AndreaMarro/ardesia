@@ -143,3 +143,5 @@ Append-only. 1 riga per modifica.
 - 2026-10-20T13:37:37.203197+00:00: original-assets — descrittore autorizzato, identità binaria e collegamento alle prove del lettore PDF; SYS-01 resta aperto.
 
 - 2026-10-20T14:18:42.653655+00:00 — Quaderno scientifico: binding PDF, snapshot per revisione, CAS/export/erasure; aggiornato riferimento route originali. Evidenze REA e limiti in scientific-notebook.md.
+
+- 2026-10-20T17:34:53.185345+00:00 — Quaderno scientifico: documentati byte JSON originali, lettore portabile locale dopo ispezione online e confine di integrità; verifiche nel report SCIENTIFIC-NOTEBOOK-PORTABLE.
