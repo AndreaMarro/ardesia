@@ -26,7 +26,10 @@ def propose_feedback(store,principal,submission_id):
         previous=c.execute('SELECT * FROM study_feedback WHERE submission_id=?',(submission_id,)).fetchone()
         if previous:return candidate_dict(previous)
         candidate_id=identifier()
-        text='Proposta sintetica, da rivedere: identifica la grandezza fissata e confronta la potenza del raggio. Nessuna lettura automatica di immagini o audio è stata eseguita.'
+        from .catalog import activity_metadata
+        _, activity=activity_metadata(store,submission['edition_id'],submission['activity_id'])
+        focus=activity['skill'] if activity else 'Descrivi e giustifica il procedimento della nuova prova.'
+        text='Proposta sintetica, da rivedere: '+focus+' Nessuna lettura automatica di immagini o audio è stata eseguita.'
         c.execute("INSERT INTO study_feedback VALUES(?,?,?,'deterministic_fake','proposed',?,?)",(candidate_id,submission_id,submission['revision'],text,submission['source_refs']))
         return candidate_dict(c.execute('SELECT * FROM study_feedback WHERE id=?',(candidate_id,)).fetchone())
 

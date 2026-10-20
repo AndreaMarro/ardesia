@@ -9,7 +9,7 @@ from .feedback import validate_sources
 
 
 def project_review(store,c,review_id):
-    row=c.execute('SELECT r.id,r.text,r.teacher_id,s.student_id,s.edition_id,s.id AS submission_id,f.source_refs FROM study_reviews r JOIN study_feedback f ON f.id=r.candidate_id JOIN study_submissions s ON s.id=f.submission_id WHERE r.id=? AND r.decision=\'returned\'',(review_id,)).fetchone()
+    row=c.execute('SELECT r.id,r.text,r.teacher_id,s.student_id,s.edition_id,s.activity_id,s.id AS submission_id,f.source_refs FROM study_reviews r JOIN study_feedback f ON f.id=r.candidate_id JOIN study_submissions s ON s.id=f.submission_id WHERE r.id=? AND r.decision=\'returned\'',(review_id,)).fetchone()
     if not row:return
     refs=json.loads(row['source_refs'])
     context_id=f"edition-{row['edition_id']}-{row['student_id']}"
@@ -24,15 +24,19 @@ def project_review(store,c,review_id):
         return
     # These are the existing canonical LessonOS tables, in this same transaction.
     path_id='study-path-'+row['edition_id'];lesson_id='study-review-'+review_id;source_id='study-source-'+review_id;seg_id='study-'+review_id
+    from .catalog import activity_metadata
+    descriptor,activity=activity_metadata(store,row['edition_id'],row['activity_id'])
+    concept=activity.get('conceptId',activity['id']) if activity else 'procedure'
+    label=activity['skill'] if activity else 'Procedimento e giustificazione'
     previous=c.execute('SELECT lesson_ids FROM paths WHERE path_id=?',(path_id,)).fetchone()
     lessons=json.loads(previous[0]) if previous else []
     if lesson_id not in lessons:lessons.append(lesson_id)
-    c.execute('INSERT INTO paths(path_id,title,subject,lesson_ids,source_ids,synthetic,teacher_id) VALUES(?,?,?,?,?,1,?) ON CONFLICT(path_id) DO UPDATE SET lesson_ids=excluded.lesson_ids',(path_id,'Fisica: osservazioni revisionate','fisica',canonical(lessons),'[]',row['teacher_id']))
+    c.execute('INSERT INTO paths(path_id,title,subject,lesson_ids,source_ids,synthetic,teacher_id) VALUES(?,?,?,?,?,1,?) ON CONFLICT(path_id) DO UPDATE SET lesson_ids=excluded.lesson_ids',(path_id,descriptor['title']+': osservazioni revisionate',descriptor['subject'],canonical(lessons),'[]',row['teacher_id']))
     c.execute('INSERT OR IGNORE INTO sources VALUES(?,?,?)',(source_id,'Review sintetica con fonte','text'))
     c.execute('INSERT OR IGNORE INTO lessons VALUES(?,?,?,?,?)',(lesson_id,path_id,'Review del tentativo',len(lessons),source_id))
     c.execute('INSERT OR IGNORE INTO segments VALUES(?,?,?,?,?)',(seg_id,lesson_id,0,1,row['text']))
     # A compact, meaningful relationship, grounded in the approved segment.
-    c.execute('INSERT OR IGNORE INTO nodes VALUES(?,?,?,?,?)',('study-node-'+review_id,lesson_id,'concept','proporzioni','Grandezze fissate e potenze'))
+    c.execute('INSERT OR IGNORE INTO nodes VALUES(?,?,?,?,?)',('study-node-'+review_id,lesson_id,'concept',concept,label))
 
 
 def rebuild_projection(store):

@@ -12,6 +12,14 @@ HINTS = (
 
 
 def evaluate_activity(activity_id, parameters, attempt=None):
+    from .taylor import evaluate_exp_taylor
+    handlers = {'taylor-exp-v1': evaluate_exp_taylor}
+    if isinstance(activity_id, str) and activity_id in handlers:
+        return handlers[activity_id](parameters)
+    return _evaluate_physics(activity_id, parameters)
+
+
+def _evaluate_physics(activity_id, parameters):
     if activity_id in ('units-v1','hydrostatic-v1','buoyancy-v1'):
         return _evaluate_extension(activity_id,parameters)
     if activity_id != ACTIVITY_ID:
@@ -20,7 +28,7 @@ def evaluate_activity(activity_id, parameters, attempt=None):
     values = {}
     for key in ('radiusRatio','viscosity','length'):
         value = parameters.get(key,1)
-        if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or not 0 < value <= 100:
+        if isinstance(value,bool) or not isinstance(value,(int,float)) or not 0 < value <= 100 or not math.isfinite(value):
             raise StudyError('invalid_physical_domain')
         values[key] = value
     boundary = parameters.get('boundary','pressure')
@@ -44,7 +52,7 @@ def evaluate_activity(activity_id, parameters, attempt=None):
 
 def _number(parameters,key,default,*,minimum=0,maximum=1e9,zero=False):
     value=parameters.get(key,default)
-    if type(value) not in (int,float) or not math.isfinite(value) or value>maximum or (value<minimum if zero else value<=minimum):
+    if type(value) not in (int,float) or value>maximum or (value<minimum if zero else value<=minimum) or not math.isfinite(value):
         raise StudyError('invalid_physical_domain')
     return value
 

@@ -99,3 +99,9 @@ CREATE TABLE IF NOT EXISTS study_upload_requests(
  payload_hash TEXT NOT NULL, asset_id TEXT NOT NULL UNIQUE REFERENCES study_upload_intents(id) ON DELETE CASCADE,
  PRIMARY KEY(actor_id,request_key)
 );
+
+CREATE TABLE IF NOT EXISTS study_edition_packs(
+ edition_id TEXT PRIMARY KEY REFERENCES study_editions(id) ON DELETE CASCADE,
+ course_id TEXT NOT NULL, pack_id TEXT NOT NULL, pack_version INTEGER NOT NULL CHECK(pack_version>0),
+ pack_sha256 TEXT NOT NULL CHECK(length(pack_sha256)=64 AND pack_sha256 NOT GLOB '*[^0-9a-f]*')
+);

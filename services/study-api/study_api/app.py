@@ -184,18 +184,19 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
 
     @app.get('/study/course')
-    async def course(store=Depends(store_dependency)):
+    async def course(editionId: str='fluidi', store=Depends(store_dependency)):
+        from lessonos.study.catalog import edition_pack
+        from lessonos.study.coursepack import load_coursepack
+        edition=store.get_edition(editionId)
+        binding=edition_pack(store,editionId)
+        pack=load_coursepack(binding['packId'],binding['packVersion'])
         if runtime is not None:
-            public=runtime.catalog(store,'fluidi')
-            count=public['confirmedTest']
-            edition=public
+            count=runtime.catalog(store,editionId)['confirmedTest']
         else:
-            edition=store.get_edition('fluidi')
-            count=store.connection.execute("SELECT COUNT(*) FROM study_members WHERE edition_id='fluidi'").fetchone()[0]
-        return {key:edition[key] for key in ('id','capacity','priceMinor','state','sessions','timezone')} | {
-            'title':'Fisica: relazioni e fluidi', 'confirmedTest':count,'available':edition['capacity']-count,
-            'synthetic':True,'editorialStatus':'DRAFT','duration':'4 incontri da 90 minuti',
-            'scope':'Proporzioni, unità e fluidi. Il modulo non copre l’intero syllabus.'}
+            count=store.connection.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?',(editionId,)).fetchone()[0]
+        return {key:edition[key] for key in ('id','capacity','priceMinor','state','sessions','timezone')} | binding | {
+            'confirmedTest':count,'available':edition['capacity']-count,
+            'synthetic':True,'editorialStatus':pack['status'],'scope':pack['scope']}
 
     @app.post('/study/activities/evaluate')
     async def evaluate(body: dict):
@@ -203,9 +204,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
 
     @app.get('/study/coursepack')
-    async def coursepack():
+    async def coursepack(editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.coursepack import load_coursepack
-        return load_coursepack()
+        edition=store.get_edition(editionId)
+        return load_coursepack(edition['packId'],edition['packVersion'])
 
     @app.post('/study/interests')
     async def interest(body: dict, request: Request, store=Depends(store_dependency)):

@@ -47,7 +47,13 @@ class StudyStore:
             if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 2:
                 self.close()
                 raise StudyError('newer_schema', 503)
+            catalog_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_edition_packs'").fetchone()
             self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
+            if not catalog_present:
+                from .catalog import DEFAULT_COURSE, DEFAULT_PACK, LEGACY_PACK_SHA256
+                self.connection.execute('INSERT INTO study_edition_packs SELECT id,?,?,1,? FROM study_editions',
+                    (DEFAULT_COURSE, DEFAULT_PACK, LEGACY_PACK_SHA256))
+                self.connection.commit()
 
     def close(self):
         self.legacy.close()
@@ -165,23 +171,29 @@ class StudyStore:
             c.execute('INSERT INTO study_rate_limits VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET attempts=study_rate_limits.attempts+1',(bucket,now+window))
         return True,window
 
-    def create_edition(self, principal, edition_id, capacity=10, price_minor=4900):
+    def create_edition(self, principal, edition_id, capacity=10, price_minor=4900, *,
+                       course_id='fisica-fluidi', pack_id='relazioni-fluidi-v1', pack_version=1):
         self._principal(principal)
         if principal.role != 'teacher':
             raise StudyError('forbidden', 403)
         if type(capacity) is not int or not 1 <= capacity <= 10 or type(price_minor) is not int or price_minor < 0:
             raise StudyError('invalid_edition')
         assert_pseudonymous(edition_id, 'edition_id')
+        from .catalog import validate_binding
+        binding = validate_binding(course_id, pack_id, pack_version)
         with self.transaction() as c:
-            c.execute('INSERT INTO classes VALUES(?,?,?)', (edition_id, principal.id, 'Fisica: relazioni e fluidi'))
+            c.execute('INSERT INTO classes VALUES(?,?,?)', (edition_id, principal.id, binding['title']))
             c.execute('INSERT INTO study_editions(id,teacher_id,capacity,price_minor) VALUES(?,?,?,?)', (edition_id, principal.id, capacity, price_minor))
+            c.execute('INSERT INTO study_edition_packs VALUES(?,?,?,?,?)',
+                (edition_id, course_id, pack_id, pack_version, binding['packSha256']))
         return self.get_edition(edition_id)
 
     def get_edition(self, edition_id):
         row = self.connection.execute('SELECT * FROM study_editions WHERE id=?', (edition_id,)).fetchone()
         if row is None:
             raise StudyError('not_found', 404)
-        return {'id': row['id'], 'teacherId': row['teacher_id'], 'capacity': row['capacity'], 'priceMinor': row['price_minor'], 'state': row['state'], 'sessions': json.loads(row['sessions']), 'timezone': row['timezone']}
+        from .catalog import edition_pack
+        return {**edition_pack(self, edition_id), 'id': row['id'], 'teacherId': row['teacher_id'], 'capacity': row['capacity'], 'priceMinor': row['price_minor'], 'state': row['state'], 'sessions': json.loads(row['sessions']), 'timezone': row['timezone']}
 
     def _edition_access(self, principal, edition_id, teacher_only=False):
         self._principal(principal)

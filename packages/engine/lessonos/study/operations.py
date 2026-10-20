@@ -53,7 +53,7 @@ def check_data(directory):
     except (OSError,ValueError,sqlite3.Error):return {'ok':False,'databaseIntegrity':'failed','verifiedBlobs':0}
 
 
-def _existing_database(directory):
+def _existing_database(directory, *, allow_legacy_catalog=False):
     """Read-only, non-migrating inspection: never repair loss into emptiness."""
     path=Path(directory)/'study.sqlite'
     if path.is_symlink() or not path.is_file():raise ValueError('database_integrity_path')
@@ -67,7 +67,8 @@ def _existing_database(directory):
         if len(schema)!=1 or schema[0][0]!=2:raise ValueError('database_integrity_schema')
         required=set(re.findall(r'CREATE TABLE IF NOT EXISTS (\w+)',Path(__file__).with_name('schema.sql').read_text()))
         present={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        if not required.issubset(present):raise ValueError('database_integrity_schema')
+        missing=required-present
+        if missing and not (allow_legacy_catalog and missing=={'study_edition_packs'}):raise ValueError('database_integrity_schema')
         return connection
     except BaseException:
         connection.close();raise
@@ -230,6 +231,10 @@ def restore_data(backup,destination,current_ledger):
     try:
         for ref in manifest['files']:
             path=stage/ref;path.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(backup/ref,path);os.chmod(path,0o600)
+        # Validate an older snapshot before the one permitted metadata upgrade.
+        # Missing canonical tables remain corruption, never repaired by opening.
+        existing=_existing_database(stage,allow_legacy_catalog=True);existing.close()
+        upgraded=StudyStore(stage/'study.sqlite');upgraded.close()
         _write_ledger(stage/'erasure-ledger.json',sorted(set(actors+_ledger(stage/'erasure-ledger.json'))))
         resume_erasures(stage)
         store=StudyStore(stage/'study.sqlite')
