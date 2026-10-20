@@ -269,3 +269,80 @@ def test_budget_stays_owned_through_worker_cleanup_even_on_cancellation(tmp_path
         retry=Exchange();await retry.run(app)
         assert retry.status!=503 and retry.reads>0 and runtime.active==0
     asyncio.run(exercise())
+
+
+@pytest.mark.parametrize('fault',['auth_open','ingress_receive'])
+@pytest.mark.parametrize('termination',['finish','send_error','cancel'])
+def test_body_budget_covers_unhandled_outer_500_response(tmp_path,fault,termination):
+    class FaultRuntime(NoProvider):
+        def open(self,token=''):
+            if fault=='auth_open' and self.opens==0:
+                self.opens+=1
+                raise RuntimeError('synthetic unexpected open error')
+            return super().open(token)
+    runtime=FaultRuntime();app=create_app(tmp_path/'unused',demo=True,runtime=runtime,
+        request_body_budget=96*MIB,request_body_wait=.03)
+    async def exercise():
+        first=Exchange();sending=asyncio.Event();release=asyncio.Event();original=first.send
+        if fault=='ingress_receive':
+            async def broken_receive():raise RuntimeError('synthetic unexpected receive error')
+            first.receive=broken_receive
+        async def held_send(message):
+            await original(message)
+            if message['type']=='http.response.body' and not message.get('more_body',False):
+                assert first.status==500
+                sending.set();await release.wait()
+                if termination=='send_error':raise OSError('synthetic failed500 send')
+        first.send=held_send;task=asyncio.create_task(first.run(app))
+        try:
+            await asyncio.wait_for(sending.wait(),2)
+            assert not task.done()
+            before=runtime.opens
+            denied=Exchange();await asyncio.wait_for(denied.run(app),2)
+            assert {'status':denied.status,'reads':denied.reads,'newOpens':runtime.opens-before}=={
+                'status':503,'reads':0,'newOpens':0}
+        finally:
+            if termination=='cancel':task.cancel()
+            else:release.set()
+            expected=asyncio.CancelledError if termination=='cancel' else OSError if termination=='send_error' else RuntimeError
+            with pytest.raises(expected):await asyncio.wait_for(task,2)
+        retry=Exchange();await retry.run(app)
+        assert retry.status==401 and retry.reads>0
+    asyncio.run(exercise())
+
+
+def test_outer_budget_preserves_fastapi_surface_custom_middleware_and_500_handler(tmp_path):
+    import json
+    from fastapi import FastAPI,Depends
+    from starlette.responses import JSONResponse
+    class BrokenRuntime(NoProvider):
+        def open(self,token=''):raise RuntimeError('synthetic open error')
+    app=create_app(tmp_path/'unused',demo=True,runtime=BrokenRuntime())
+    assert isinstance(app,FastAPI)
+    router=app.router;app.state.marker='retained-state';seen=[]
+    class AddedMiddleware:
+        def __init__(self,app):self.app=app
+        async def __call__(self,scope,receive,send):
+            seen.append(scope.get('path'));await self.app(scope,receive,send)
+    app.add_middleware(AddedMiddleware)
+    def original():return 'original'
+    app.dependency_overrides[original]=lambda:'override'
+    @app.get('/review/dependencies')
+    def dependencies(value=Depends(original)):
+        return {'value':value,'state':app.state.marker}
+    @app.exception_handler(Exception)
+    async def custom_error(request,error):return JSONResponse({'custom500':True},status_code=500)
+    assert '/review/dependencies' in app.openapi()['paths']
+    assert any(getattr(route,'path',None)=='/review/dependencies' for route in app.routes)
+    async def exercise():
+        probe=Exchange(path='/review/dependencies',method='GET');await probe.run(app)
+        assert probe.status==200 and json.loads(b''.join(m.get('body',b'') for m in probe.messages))=={
+            'value':'override','state':'retained-state'}
+        failure=Exchange()
+        with pytest.raises(RuntimeError):await failure.run(app)
+        assert failure.status==500
+        assert len([m for m in failure.messages if m['type']=='http.response.start'])==1
+        assert json.loads(b''.join(m.get('body',b'') for m in failure.messages))=={'custom500':True}
+        assert seen==['/review/dependencies','/study/notebook/inspect']
+        assert app.router is router
+    asyncio.run(exercise())

@@ -5,7 +5,7 @@ import math
 from anyio import CancelScope, CapacityLimiter, Semaphore, create_task_group, fail_after, to_thread
 from lessonos.study.store import digest
 from pathlib import Path
-from fastapi import FastAPI, Request, Response, Depends, Query
+from fastapi import Request, Response, Depends, Query
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
@@ -34,12 +34,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         raise ValueError('invalid_store_admission')
     if type(request_store_wait) not in (int, float) or not 0 < request_store_wait <= 60:
         raise ValueError('invalid_store_admission')
-    from .body_admission import BodyAdmissionMiddleware, body_limit, boundary_error, validate_body_admission
+    from .body_admission import BodyBudgetFastAPI, body_limit, boundary_error, validate_body_admission
     validate_body_admission(request_body_budget, request_body_wait)
     from lessonos.study.operations import resume_erasures
     if runtime is None:
         resume_erasures(Path(db_path).parent)
-    app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
     store_slots = Semaphore(request_store_limit)
     cookie_options={'path':'/','httponly':True,'secure':secure_cookies,'samesite':'strict'}
 
@@ -60,6 +59,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'})
         if logout:clear_session_cookie(response)
         return response
+
+    app = BodyBudgetFastAPI(title='Ardesia Study — synthetic M1', version='0.1.0',
+                            body_budget=request_body_budget, body_wait=request_body_wait,
+                            busy_response=busy_response)
 
     @app.exception_handler(StudyError)
     async def domain_error(request, exc):
@@ -457,6 +460,4 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     if frontend:
         from fastapi.staticfiles import StaticFiles
         app.mount('/', StaticFiles(directory=frontend,html=True),name='studio')
-    app.add_middleware(BodyAdmissionMiddleware, budget=request_body_budget,
-                       wait=request_body_wait, busy_response=busy_response)
     return app

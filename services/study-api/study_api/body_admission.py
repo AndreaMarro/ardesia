@@ -4,6 +4,7 @@ The reservation covers the whole downstream ASGI call, including response and
 cleanup. Small requests can use free space while a larger waiter times out.
 """
 from anyio import Event, fail_after
+from fastapi import FastAPI
 from starlette.datastructures import Headers, URL
 
 from lessonos.study import portable
@@ -96,3 +97,21 @@ class BodyAdmissionMiddleware:
             await self.app(scope, receive, send)
         finally:
             self.budget.release(weight)
+
+
+class BodyBudgetFastAPI(FastAPI):
+    """Wrap the complete framework stack, including ServerErrorMiddleware.
+
+    FastAPI0.139/Starlette1.9 build the automatic500 boundary outside user
+    middleware. Calling super preserves exception handlers, routes and cleanup;
+    the budget must surround its result to cover a blocked/failing500 send.
+    """
+    def __init__(self, *, body_budget, body_wait, busy_response, **kwargs):
+        validate_body_admission(body_budget, body_wait)
+        super().__init__(**kwargs)
+        self._body_admission_options = {
+            'budget': body_budget, 'wait': body_wait, 'busy_response': busy_response}
+
+    def build_middleware_stack(self):
+        return BodyAdmissionMiddleware(
+            super().build_middleware_stack(), **self._body_admission_options)
