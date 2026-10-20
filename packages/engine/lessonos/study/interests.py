@@ -16,7 +16,8 @@ def record_interest(store, request, key):
     if not isinstance(key,str) or not 1<=len(key)<=256:
         raise StudyError('idempotency_key_required')
     edition_id=request.get('editionId','fluidi')
-    store.get_edition(edition_id)
+    from .editions import public_edition
+    public_edition(store,edition_id)
     payload={'editionId':edition_id,'contact':contact,'topic':topic,'slots':slots,'consent':True}
     hashed=digest(canonical(payload))
     with store.transaction() as c:

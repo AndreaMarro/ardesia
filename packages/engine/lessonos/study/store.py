@@ -49,15 +49,30 @@ class StudyStore:
             self.connection.execute('PRAGMA busy_timeout=5000')
             self.connection.execute('PRAGMA journal_mode=WAL')
             present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
-            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] > 3:
-                self.close()
-                raise StudyError('newer_schema', 503)
-            if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 3:
-                required={'study_calendar_targets','study_calendar_intents','study_calendar_mappings','study_calendar_cache','study_calendar_deliveries'}
-                actual={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'study_calendar_%'")}
-                if not required.issubset(actual):
+            if present:
+                from .schema_contract import validate_schema
+                versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
+                tables={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+                columns={row[1] for row in self.connection.execute('PRAGMA table_info(study_editions)')}
+                try:
+                    validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,
+                        {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True)
+                except BaseException:
                     self.close()
-                    raise StudyError('database_integrity_failure',503)
+                    raise
+            editions_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_editions'").fetchone()
+            if editions_present:
+                columns={row[1] for row in self.connection.execute('PRAGMA table_info(study_editions)')}
+                if 'management_revision' not in columns:
+                    if present and self.connection.execute('SELECT version FROM study_schema').fetchone()[0] >= 4:
+                        self.close()
+                        raise StudyError('database_integrity_failure',503)
+                    self.connection.execute('ALTER TABLE study_editions ADD COLUMN management_revision INTEGER NOT NULL DEFAULT 0 CHECK(management_revision>=0)')
+                    self.connection.commit()
+            if self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_holds'").fetchone():
+                if 'offer_revision' not in {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')}:
+                    self.connection.execute('ALTER TABLE study_holds ADD COLUMN offer_revision INTEGER CHECK(offer_revision>=0)')
+                    self.connection.commit()
             catalog_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_edition_packs'").fetchone()
             self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
             if not catalog_present:
@@ -182,24 +197,35 @@ class StudyStore:
             c.execute('INSERT INTO study_rate_limits VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET attempts=study_rate_limits.attempts+1',(bucket,now+window))
         return True,window
 
-    def create_edition(self, principal, edition_id, capacity=10, price_minor=4900, *,
-                       course_id='fisica-fluidi', pack_id='relazioni-fluidi-v1', pack_version=1):
+    def _insert_edition(self, c, principal, edition_id, capacity=10, price_minor=4900, *,
+                        course_id='fisica-fluidi', pack_id='relazioni-fluidi-v1', pack_version=1,
+                        initial_state='collecting'):
         self._principal(principal)
         if principal.role != 'teacher':
             raise StudyError('forbidden', 403)
         if type(capacity) is not int or not 1 <= capacity <= 10 or type(price_minor) is not int or price_minor < 0:
+            raise StudyError('invalid_edition')
+        if initial_state not in ('collecting','draft'):
             raise StudyError('invalid_edition')
         if not isinstance(edition_id, str) or not 1 <= len(edition_id) <= MAX_EDITION_IDENTIFIER_LENGTH:
             raise StudyError('invalid_edition')
         assert_pseudonymous(edition_id, 'edition_id')
         from .catalog import validate_binding
         binding = validate_binding(course_id, pack_id, pack_version)
-        with self.transaction() as c:
-            c.execute('INSERT INTO classes VALUES(?,?,?)', (edition_id, principal.id, binding['title']))
-            c.execute('INSERT INTO study_editions(id,teacher_id,capacity,price_minor) VALUES(?,?,?,?)', (edition_id, principal.id, capacity, price_minor))
-            c.execute('INSERT INTO study_edition_packs VALUES(?,?,?,?,?)',
-                (edition_id, course_id, pack_id, pack_version, binding['packSha256']))
+        c.execute('INSERT INTO classes VALUES(?,?,?)', (edition_id, principal.id, binding['title']))
+        c.execute('INSERT INTO study_editions(id,teacher_id,capacity,price_minor,state) VALUES(?,?,?,?,?)',
+                  (edition_id, principal.id, capacity, price_minor, initial_state))
+        c.execute('INSERT INTO study_edition_packs VALUES(?,?,?,?,?)',
+                  (edition_id, course_id, pack_id, pack_version, binding['packSha256']))
         return self.get_edition(edition_id)
+
+    def create_edition(self, principal, edition_id, capacity=10, price_minor=4900, *,
+                       course_id='fisica-fluidi', pack_id='relazioni-fluidi-v1', pack_version=1):
+        # Existing direct callers collect interest. HTTP management explicitly
+        # chooses draft; neither state can reserve a seat before an offer.
+        with self.transaction() as c:
+            return self._insert_edition(c,principal,edition_id,capacity,price_minor,
+                course_id=course_id,pack_id=pack_id,pack_version=pack_version)
 
     def get_edition(self, edition_id):
         row = self.connection.execute('SELECT * FROM study_editions WHERE id=?', (edition_id,)).fetchone()

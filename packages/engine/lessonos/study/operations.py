@@ -64,13 +64,17 @@ def _existing_database(directory, *, allow_legacy_catalog=False):
     try:
         if connection.execute('PRAGMA integrity_check').fetchone()[0]!='ok' or connection.execute('PRAGMA foreign_key_check').fetchone():raise ValueError('database_integrity')
         schema=connection.execute('SELECT version FROM study_schema').fetchall()
-        if len(schema)!=1 or schema[0][0] not in (2,3):raise ValueError('database_integrity_schema')
+        if len(schema)!=1:raise ValueError('database_integrity_schema')
         required=set(re.findall(r'CREATE TABLE IF NOT EXISTS (\w+)',Path(__file__).with_name('schema.sql').read_text()))
         present={row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         missing=required-present
         legacy_missing={name for name in required if name.startswith('study_calendar_')} if schema[0][0]==2 else set()
         if allow_legacy_catalog and schema[0][0]==2:legacy_missing.add('study_edition_packs')
         if missing-legacy_missing:raise ValueError('database_integrity_schema')
+        from .schema_contract import validate_schema
+        from .models import StudyError
+        try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True)
+        except StudyError:raise ValueError('database_integrity_schema') from None
         return connection
     except BaseException:
         connection.close();raise

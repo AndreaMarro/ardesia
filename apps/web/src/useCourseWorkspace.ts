@@ -9,6 +9,8 @@ import {
 type Listing = { items: Edition[]; nextCursor: string | null };
 /** Server listings authorize selection; this cache only keeps UI data, never grants access. */
 export function useCourseWorkspace(me: StudyMe | null) {
+  const [listingVersion, setListingVersion] = useState(0);
+  const preferred = useRef<{ actor: string; id: string } | null>(null);
   const [editions, setEditions] = useState<Edition[]>([]);
   const [editionId, setEditionId] = useState<string | null>(null);
   const [data, setData] = useState<Workspace | null>(null);
@@ -56,8 +58,10 @@ export function useCourseWorkspace(me: StudyMe | null) {
       if (!active) return;
       setEditions(items);
       const requested = new URL(location.href).searchParams.get("edition");
+      const preference = preferred.current?.actor === me.id ? preferred.current.id : requested;
       const selected =
-        items.find((item) => item.id === requested)?.id ?? items[0]?.id ?? null;
+        items.find((item) => item.id === preference)?.id ?? items.find((item) => item.id === requested)?.id ?? items[0]?.id ?? null;
+      preferred.current = null;
       setEditionId(selected);
       const url = new URL(location.href);
       if (selected) url.searchParams.set("edition", selected);
@@ -80,7 +84,7 @@ export function useCourseWorkspace(me: StudyMe | null) {
       active = false;
       controller.abort();
     };
-  }, [me?.id, me?.role]);
+  }, [me?.id, me?.role, listingVersion]);
   const refresh = useCallback(async () => {
     if (
       !me ||
@@ -142,6 +146,13 @@ export function useCourseWorkspace(me: StudyMe | null) {
     history.replaceState(null, "", url);
     setEditionId(id);
   }
+  function reloadEditions(id: string) {
+    if (!me || current.current.actor !== me.id) return;
+    // The command response supplies a preference, never client authority.
+    // A fresh server listing must include it before selection is possible.
+    preferred.current = { actor: me.id, id };
+    setListingVersion((value) => value + 1);
+  }
   const sameActor = owner.current === me?.id;
   return {
     editions: sameActor ? editions : [],
@@ -152,5 +163,6 @@ export function useCourseWorkspace(me: StudyMe | null) {
     error: sameActor ? error : "",
     refresh,
     selectEdition,
+    reloadEditions,
   };
 }

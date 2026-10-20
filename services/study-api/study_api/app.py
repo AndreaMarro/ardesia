@@ -266,10 +266,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
 
     @app.get('/study/course')
-    def course(editionId: str='fluidi', store=Depends(store_dependency)):
+    def course(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.catalog import edition_pack
         from lessonos.study.coursepack import load_coursepack
-        edition=store.get_edition(editionId)
+        from lessonos.study.editions import public_edition
+        edition=public_edition(store,editionId,authenticate(request,store) if request.cookies.get('study_session') else None)
         binding=edition_pack(store,editionId)
         pack=load_coursepack(binding['packId'],binding['packVersion'])
         if runtime is not None:
@@ -286,9 +287,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
 
     @app.get('/study/coursepack')
-    def coursepack(editionId: str='fluidi', store=Depends(store_dependency)):
+    def coursepack(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.coursepack import load_coursepack
-        edition=store.get_edition(editionId)
+        from lessonos.study.editions import public_edition
+        edition=public_edition(store,editionId,authenticate(request,store) if request.cookies.get('study_session') else None)
         return load_coursepack(edition['packId'],edition['packVersion'])
 
     @app.post('/study/interests')
@@ -306,7 +308,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         from lessonos.study.submissions import list_submissions
         from lessonos.study.feedback import list_feedback
         principal=authenticate(request,store)
-        edition=store.get_edition(editionId)
+        from lessonos.study.editions import public_edition
+        edition=public_edition(store,editionId,principal)
         member=bool(store.connection.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(editionId,principal.id)).fetchone())
         if principal.role=='teacher' and principal.id!=edition['teacherId']:raise StudyError('forbidden',403)
         if not member and principal.role!='teacher':return {'enrolled':False,'edition':edition,'resources':[],'submissions':[],'layouts':[]}
@@ -332,9 +335,12 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/editions/{edition_id}/approve')
     def approve(edition_id: str, request: Request, store=Depends(store_dependency)):
-        from lessonos.study.editions import offer_edition
-        return offer_edition(store,authenticate(request,store),edition_id,
-                             request.headers.get('Idempotency-Key',''),confirmed=True)
+        from lessonos.study.editions import owned_edition
+        owned_edition(store,authenticate(request,store),edition_id,store.connection)
+        return JSONResponse({'error':'offer_preview_required',
+            'message':'Use the tutor offer preview, then explicitly confirm its revision.',
+            'preview':'/study/admin/editions/'+edition_id+'/offer/preview',
+            'confirm':'/study/admin/editions/'+edition_id+'/offer/confirm'},status_code=409)
 
     @app.post('/study/layout')
     def layout(body: dict, request: Request, store=Depends(store_dependency)):
@@ -413,6 +419,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         authenticate(request,store)
         return inspect_notebook(body)
 
+    from .admin_routes import install_admin_routes
+    install_admin_routes(app,store_dependency,authenticate)
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
     from .calendar_routes import install_calendar_routes

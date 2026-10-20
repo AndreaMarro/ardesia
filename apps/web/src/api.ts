@@ -34,6 +34,7 @@ export function dateLabel(instant: string, timezone = "Europe/Rome") {
 }
 
 export const editionState: Record<string, string> = {
+  draft: "Bozza privata",
   collecting: "Raccolta di interesse",
   offered: "Edizione proposta",
   confirmed: "Confermata",

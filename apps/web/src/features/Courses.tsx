@@ -1,3 +1,4 @@
+import { EditionManager } from "../components/EditionManager";
 import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
@@ -16,13 +17,15 @@ export function Courses({
   onClassroom,
   editions,
   onEdition,
+  onManaged,
 }: {
-  data: Workspace;
+  data: Workspace | null;
   me: StudyMe;
   onUpdate: () => Promise<void>;
   onClassroom: () => void;
   editions?: Edition[];
   onEdition?: (id: string) => void;
+  onManaged?: (id: string) => void;
 }) {
   return (
     <>
@@ -35,7 +38,8 @@ export function Courses({
           date.
         </p>
       </header>
-      {(editions ?? [data.edition]).map((edition) => (
+      {me.role === "teacher" && <EditionManager editionId={data?.edition.id ?? null} defaultOpen={data?.edition.state === "draft"} onChanged={(id) => onManaged?.(id)} />}
+      {(editions ?? (data ? [data.edition] : [])).map((edition) => (
         <section
           className="edition-row"
           key={edition.id}
@@ -74,7 +78,7 @@ export function Courses({
           </div>
         </section>
       ))}
-      <div className="course-detail-layout">
+      {data && <div className="course-detail-layout">
         <div className="plain-panel">
           <p className="section-meta">
             Edizione corrente · {courseTitle(data.edition)}
@@ -101,17 +105,17 @@ export function Courses({
             attestata.
           </p>
         </div>
-      </div>
-      {me.role === "teacher" && (
+      </div>}
+      {data && me.role === "teacher" && (
         <details className="disclosure-panel">
           <summary>Persone e accessi dell’edizione</summary>
           <AccessPanel editionId={data.edition.id} />
         </details>
       )}
-      <CoursePackDisclosure
+      {data && <CoursePackDisclosure
         editionId={data.edition.id}
         summary="Programma e materiali in preparazione"
-      />
+      />}
     </>
   );
 }

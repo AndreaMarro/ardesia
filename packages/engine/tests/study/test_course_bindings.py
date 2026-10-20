@@ -9,8 +9,17 @@ from test_identity_store import setup_store
 def test_legacy_database_backfills_binding_without_rewriting_facts(tmp_path):
     store, tutor, student, *_ = setup_store(tmp_path)
     source = store.create_resource(student, 'fluidi', 'notes', 'Originale precedente al binding.')
-    # This is a database with the previous schema; no new binding rows exist.
+    # Build the actual pre-binding V2 shape, not a damaged current database.
+    for table in ('study_calendar_deliveries','study_calendar_cache','study_calendar_mappings','study_calendar_intents','study_calendar_targets'):
+        store.connection.execute('DROP TABLE '+table)
+    store.connection.execute('ALTER TABLE study_editions DROP COLUMN management_revision')
+    store.connection.execute('ALTER TABLE study_holds DROP COLUMN offer_revision')
+    store.connection.execute('UPDATE study_schema SET version=2')
     store.connection.execute('DROP TABLE IF EXISTS study_edition_packs')
+    store.connection.commit()
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 2
+    assert 'management_revision' not in {row[1] for row in store.connection.execute('PRAGMA table_info(study_editions)')}
+    assert 'offer_revision' not in {row[1] for row in store.connection.execute('PRAGMA table_info(study_holds)')}
     store.close()
     reopened = StudyStore(tmp_path / 'study.sqlite')
     assert reopened.get_edition('fluidi')['packId'] == 'relazioni-fluidi-v1'

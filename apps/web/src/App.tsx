@@ -122,7 +122,10 @@ export default function App() {
             />
           )}{" "}
           {!course.listing && !course.error && course.editions.length === 0 ? (
-            <>
+            me.role === "teacher" && view === "courses" ? <Suspense fallback={<Loading />}>
+              <Courses me={me} data={null} editions={[]} onManaged={course.reloadEditions}
+                onUpdate={refresh} onClassroom={() => navigate("classroom")} />
+            </Suspense> : <>
               <header className="page-heading">
                 <h1>Il tuo spazio è pronto.</h1>
                 <p>
@@ -131,6 +134,7 @@ export default function App() {
                   iscrizioni restano chiuse.
                 </p>
               </header>
+              {me.role === "teacher" && <button className="button-primary" onClick={() => navigate("courses")}>Crea la prima edizione</button>}
               <PhysicsLab />
             </>
           ) : !data && !error && !course.error ? (
@@ -150,6 +154,7 @@ export default function App() {
                   data={data}
                   editions={course.editions}
                   onEdition={course.selectEdition}
+                  onManaged={course.reloadEditions}
                   onUpdate={refresh}
                   onClassroom={() => navigate("classroom")}
                 />

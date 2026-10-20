@@ -128,3 +128,46 @@ test("an empty authorized list never requests an arbitrary authenticated workspa
   await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(1));
   expect(fetcher.mock.calls[0][0]).toContain("/study/editions?");
 });
+
+function ManagedProbe({ actor = me }: { actor?: StudyMe }) {
+  const state = useCourseWorkspace(actor);
+  return <>
+    <p data-testid="managed-selection">{state.editionId ?? "none"}</p>
+    <p data-testid="managed-workspace">{state.data?.edition.title ?? "loading"}</p>
+    <button onClick={() => state.reloadEditions("new-owned")}>Rileggi edizioni</button>
+    {state.error && <p role="alert">{state.error}</p>}
+  </>;
+}
+
+test("management refresh re-fetches the authorized listing before selecting a created edition", async () => {
+  let listings = 0;
+  let release!: (value: Response) => void;
+  const paths: string[] = [];
+  vi.stubGlobal("fetch", vi.fn(async (path: string) => {
+    paths.push(path);
+    if (path.includes("/editions?")) {
+      listings++;
+      return listings === 1 ? json({ items: [edition("physics")], nextCursor: null }) : new Promise<Response>((resolve) => { release = resolve; });
+    }
+    return json(workspace(path.endsWith("new-owned") ? "new-owned" : "physics"));
+  }));
+  render(<ManagedProbe />);
+  await waitFor(() => expect(screen.getByTestId("managed-workspace").textContent).toBe("physics"));
+  fireEvent.click(screen.getByRole("button", { name: "Rileggi edizioni" }));
+  await waitFor(() => expect(release).toBeTypeOf("function"));
+  expect(paths.some((path) => path.includes("workspace?") && path.endsWith("new-owned"))).toBe(false);
+  await act(async () => { release(json({ items: [edition("physics"), edition("new-owned")], nextCursor: null })); });
+  await waitFor(() => expect(screen.getByTestId("managed-workspace").textContent).toBe("new-owned"));
+  expect(screen.getByTestId("managed-selection").textContent).toBe("new-owned");
+  expect(listings).toBe(2);
+});
+
+test("a preferred id absent from the fresh authorized listing is never selected", async () => {
+  vi.stubGlobal("fetch", vi.fn(async (path: string) => path.includes("/editions?") ? json({ items: [edition("physics")], nextCursor: null }) : json(workspace("physics"))));
+  render(<ManagedProbe />);
+  await waitFor(() => expect(screen.getByTestId("managed-workspace").textContent).toBe("physics"));
+  fireEvent.click(screen.getByRole("button", { name: "Rileggi edizioni" }));
+  await waitFor(() => expect((fetch as ReturnType<typeof vi.fn>).mock.calls.filter(([path]) => path.includes("/editions?")).length).toBe(2));
+  expect(screen.getByTestId("managed-selection").textContent).toBe("physics");
+  expect((fetch as ReturnType<typeof vi.fn>).mock.calls.some(([path]) => path.includes("workspace?") && path.endsWith("new-owned"))).toBe(false);
+});

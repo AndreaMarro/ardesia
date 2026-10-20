@@ -21,7 +21,7 @@ def catalog(tmp_path):
     store.add_test_member(other,'d-peer',peer.id)
     with store.transaction() as c:
         c.execute('INSERT INTO study_waitlist VALUES(?,?)',('e-wait',student.id))
-        c.execute('INSERT INTO study_holds VALUES(?,?,?,?,?)',('hold-only','z-last',student.id,store.clock()+100,'hold'))
+        c.execute('INSERT INTO study_holds(id,edition_id,student_id,expires_at,state) VALUES(?,?,?,?,?)',('hold-only','z-last',student.id,store.clock()+100,'hold'))
         c.execute('INSERT INTO enrollments VALUES(?,?,?)',('legacy-only','e-wait',empty.id))
     yield store,teacher,other,student,peer,empty
     store.close()

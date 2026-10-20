@@ -139,6 +139,21 @@ class PostgresStudyStore(StudyStore):
                 claims['session_id'] = str(auth_session_id)
             self._raw.execute("SELECT set_config('request.jwt.claims', %s, false)", (json.dumps(claims),))
             self._raw.execute('SET ROLE ardesia_app')
+        # A missing migration is a named availability boundary, never a later
+        # KeyError/partially reconstructed canonical table. Do not repair PG.
+        try:
+            from .schema_contract import validate_schema
+            tables={row[0] for row in self.connection.execute("SELECT tablename FROM pg_tables WHERE schemaname='public'")}
+            columns={row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name='study_editions'")}
+            hold_columns={row[0] for row in self.connection.execute("SELECT column_name FROM information_schema.columns WHERE table_schema='public' AND table_name='study_holds'")}
+            if 'study_schema' not in tables:
+                validate_schema(None,tables,columns,hold_columns)
+            versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
+            validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,hold_columns)
+        except BaseException:
+            self.close()
+            raise
+
 
     def close(self):
         self._raw.close()

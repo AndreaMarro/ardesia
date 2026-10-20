@@ -4,7 +4,7 @@ from lessonos.study.groups import reserve_seat, confirm_test_enrollment, propose
 from lessonos.study.store import StudyStore
 from lessonos.study.models import StudyError
 from test_identity_store import setup_store
-from lessonos.study.editions import offer_edition
+from lessonos.study.editions import offer_edition,preview_offer,admin_edition
 
 
 def offered_store(tmp_path):
@@ -23,7 +23,10 @@ def offered_store(tmp_path):
 def prepare_offer(store,tutor,edition_id):
     dates=[{'start':f'2026-11-{day:02}T18:00:00+01:00','end':f'2026-11-{day:02}T19:30:00+01:00'} for day in (3,5,10,12)]
     configure_sessions(store,tutor,edition_id,dates)
-    return offer_edition(store,tutor,edition_id,'fixture-offer-'+edition_id,confirmed=True)
+    revision=admin_edition(store,tutor,edition_id)['managementRevision']
+    preview=preview_offer(store,tutor,edition_id,'fixture-preview-'+edition_id,revision=revision)
+    return offer_edition(store,tutor,edition_id,'fixture-offer-'+edition_id,confirmed=True,
+        preview_id=preview['previewId'],preview_hash=preview['previewHash'],revision=revision)['edition']
 
 
 def test_twelve_requests_never_overbook_and_retry_is_idempotent(tmp_path):
@@ -101,7 +104,7 @@ def pending_legacy_hold(tmp_path, *, expiry=1000):
     dates=[{'start':f'2026-11-{day:02}T18:00:00+01:00','end':f'2026-11-{day:02}T19:30:00+01:00'} for day in (3,5,10,12)]
     configure_sessions(store,tutor,'legacy-edition',dates)
     with store.transaction() as c:
-        c.execute("INSERT INTO study_holds VALUES('legacy-hold',?,?,?,'hold')",('legacy-edition',student.id,expiry))
+        c.execute("INSERT INTO study_holds(id,edition_id,student_id,expires_at,state) VALUES('legacy-hold',?,?,?,'hold')",('legacy-edition',student.id,expiry))
     return store,tutor,student,dates
 
 
@@ -186,13 +189,16 @@ def test_offer_is_explicit_owned_idempotent_and_requires_all_four_valid_dates(tm
     with pytest.raises(StudyError,match='explicit_confirmation_required'):
         offer_edition(store,tutor,'offer-edition','declined',confirmed=False)
     with pytest.raises(StudyError,match='four_sessions_required'):
-        offer_edition(store,tutor,'offer-edition','missing-dates',confirmed=True)
+        preview_offer(store,tutor,'offer-edition','missing-dates',revision=0)
     for actor in (peer,student):
         with pytest.raises(StudyError,match='forbidden'):
             offer_edition(store,actor,'offer-edition','foreign',confirmed=True)
     first=prepare_offer(store,tutor,'offer-edition')
     assert first['state']=='offered' and first['scientificApproval']=='NOT_ATTESTED'
-    assert offer_edition(store,tutor,'offer-edition','fixture-offer-offer-edition',confirmed=True)==first
+    preview=__import__('json').loads(store.connection.execute("SELECT body FROM study_receipts WHERE actor_id=? AND operation='edition.offer.preview'",(tutor.id,)).fetchone()[0])
+    replay=offer_edition(store,tutor,'offer-edition','fixture-offer-offer-edition',confirmed=True,
+        preview_id=preview['previewId'],preview_hash=preview['previewHash'],revision=preview['expectedRevision'])
+    assert replay['edition']==first and replay['previewId']==preview['previewId']
     assert store.connection.execute("SELECT COUNT(*) FROM study_receipts WHERE operation='edition.offered'").fetchone()[0]==1
     store.close()
 
@@ -230,7 +236,7 @@ def test_hold_expiry_uses_clock_after_waiting_for_the_edition_lock(tmp_path,monk
 
 def test_explicitly_offering_legacy_collecting_does_not_revalidate_old_holds(tmp_path):
     store,tutor,student,dates=pending_legacy_hold(tmp_path)
-    offer_edition(store,tutor,'legacy-edition','new-explicit-offer',confirmed=True)
+    prepare_offer(store,tutor,'legacy-edition')
     assert store.connection.execute('SELECT state FROM study_holds').fetchone()[0]=='payment_requires_review'
     assert confirm_test_enrollment(store,student,'legacy-hold','old-terms-confirm',101)['state']=='payment_requires_review'
     assert store.connection.execute('SELECT COUNT(*) FROM study_members').fetchone()[0]==0

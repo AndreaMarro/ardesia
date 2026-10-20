@@ -78,3 +78,10 @@ def submission_course_context(store, edition_id, activity_id, parameters, transf
             'modelId': activity['id'] if activity else None,
             'modelVersion': activity.get('version',1) if activity else None,
             'parameters': effective}
+
+
+def list_pack_descriptors():
+    return [{**describe_pack(pack_id,version),
+             'editorialStatus':load_pack(pack_id,version)['status'],
+             'scope':load_pack(pack_id,version)['scope']}
+            for pack_id,version in sorted(_PACKS)]

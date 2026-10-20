@@ -17,14 +17,18 @@ def reserve_seat(store, actor, edition_id, key, now, ttl=900):
             return {'id':None,'editionId':edition_id,'state':'confirmed','paymentMode':'test'}
         if edition['state']!='offered':raise StudyError('edition_not_offered',409)
         normalize_sessions(edition_id,edition['sessions'],edition['timezone'])
+        offer_revision=c.execute('SELECT management_revision FROM study_editions WHERE id=?',(edition_id,)).fetchone()[0]
         previous=c.execute("SELECT * FROM study_holds WHERE edition_id=? AND student_id=? AND state='hold' AND expires_at>?",(edition_id,actor.id,effective_now)).fetchone()
-        if previous:return {'id':previous['id'],'editionId':edition_id,'state':'hold','expiresAt':previous['expires_at'],'paymentMode':'test'}
+        if previous and previous['offer_revision']==offer_revision:
+            return {'id':previous['id'],'editionId':edition_id,'state':'hold','expiresAt':previous['expires_at'],'paymentMode':'test','offerRevision':offer_revision}
+        if previous:
+            c.execute("UPDATE study_holds SET state='payment_requires_review' WHERE id=?",(previous['id'],))
         members=c.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?',(edition_id,)).fetchone()[0]
         holds=c.execute("SELECT COUNT(*) FROM study_holds WHERE edition_id=? AND state='hold' AND expires_at>?",(edition_id,effective_now)).fetchone()[0]
         if members+holds>=edition['capacity']:raise StudyError('group_full',409)
         hold_id=identifier()
-        c.execute("INSERT INTO study_holds VALUES(?,?,?,?,'hold')",(hold_id,edition_id,actor.id,effective_now+ttl))
-        return {'id':hold_id,'editionId':edition_id,'state':'hold','expiresAt':effective_now+ttl,'paymentMode':'test'}
+        c.execute("INSERT INTO study_holds(id,edition_id,student_id,expires_at,state,offer_revision) VALUES(?,?,?,?,'hold',?)",(hold_id,edition_id,actor.id,effective_now+ttl,offer_revision))
+        return {'id':hold_id,'editionId':edition_id,'state':'hold','expiresAt':effective_now+ttl,'paymentMode':'test','offerRevision':offer_revision}
     try:return transact(store,actor,'seat.reserve',key,{'editionId':edition_id,'ttl':ttl},apply)
     except StudyError as error:
         if error.code=='group_full':
@@ -46,7 +50,8 @@ def confirm_test_enrollment(store, actor, hold_id, key, now):
         if not hold:raise StudyError('not_found',404)
         if hold['state']=='confirmed':return {'id':hold_id,'state':'confirmed','editionId':hold['edition_id'],'paymentMode':'test'}
         edition=store.get_edition(hold['edition_id'])
-        if hold['expires_at']<=effective_now or hold['state']!='hold' or edition['state']!='offered':
+        current_revision=c.execute('SELECT management_revision FROM study_editions WHERE id=?',(hold['edition_id'],)).fetchone()[0]
+        if hold['offer_revision'] is None or hold['offer_revision']!=current_revision or hold['expires_at']<=effective_now or hold['state']!='hold' or edition['state']!='offered':
             c.execute("UPDATE study_holds SET state='payment_requires_review' WHERE id=?",(hold_id,))
             return {'id':hold_id,'state':'payment_requires_review','paymentMode':'test'}
         normalize_sessions(edition['id'],edition['sessions'],edition['timezone'])

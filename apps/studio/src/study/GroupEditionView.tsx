@@ -33,8 +33,10 @@ export function GroupEditionView({
         );
         if (result.state !== "confirmed") {
           setMessage(
-            "Riserva scaduta: la conferma richiede verifica del tutor.",
+            "Questa riserva richiede una nuova accettazione delle condizioni. Rileggi le quattro date e riprova.",
           );
+          holdKey.current = requestKey();
+          confirmKey.current = requestKey();
           return;
         }
       }
@@ -50,18 +52,6 @@ export function GroupEditionView({
       setBusy(false);
     }
   }
-  async function approve() {
-    setBusy(true);
-    try {
-      await studyRequest(`/editions/${edition.id}/approve`, {});
-      setMessage("Edizione di test approvata.");
-      await onUpdate();
-    } catch {
-      setMessage("Edizione non approvata.");
-    } finally {
-      setBusy(false);
-    }
-  }
   return (
     <section className="study-group">
       <h2>Il gruppo dell’edizione</h2>
@@ -71,13 +61,13 @@ export function GroupEditionView({
           style: "currency",
           currency: "EUR",
         })}{" "}
-        totali · Pagamento di test
+        indicativi · Nessun addebito
       </p>
       <p>
         Stato:{" "}
         {edition.state === "offered"
-          ? "edizione proposta e approvata dal tutor sintetico"
-          : "in raccolta"}
+          ? "offerta di test confermata"
+          : edition.state === "draft" ? "bozza privata" : "in raccolta"}
       </p>
       <ul>
         {edition.sessions.map((session) => (
@@ -96,19 +86,14 @@ export function GroupEditionView({
         ))}
       </ul>
       {teacher ? (
-        <button
-          onClick={() => void approve()}
-          disabled={busy || edition.state === "offered"}
-        >
-          Approva edizione di test
-        </button>
+        <p>Prepara e conferma l’offerta nell’area Mini-corsi.</p>
       ) : !enrolled ? (
         <button
           className="study-primary"
           onClick={() => void join()}
-          disabled={busy}
+          disabled={busy || edition.state !== "offered"}
         >
-          Conferma partecipazione di test
+          {edition.state === "offered" ? "Conferma partecipazione di test" : "Offerta in preparazione"}
         </button>
       ) : (
         <p>Iscrizione di test confermata.</p>

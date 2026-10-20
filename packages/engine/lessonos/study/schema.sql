@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS study_erased_actors(id TEXT PRIMARY KEY);
 CREATE TABLE IF NOT EXISTS study_editions(
  id TEXT PRIMARY KEY REFERENCES classes(class_id), teacher_id TEXT NOT NULL REFERENCES teachers(teacher_id),
  capacity INTEGER NOT NULL CHECK(capacity BETWEEN 1 AND 10), price_minor INTEGER NOT NULL CHECK(price_minor>=0),
- state TEXT NOT NULL DEFAULT 'collecting', sessions TEXT NOT NULL DEFAULT '[]', timezone TEXT NOT NULL DEFAULT 'Europe/Rome'
+ management_revision INTEGER NOT NULL DEFAULT 0 CHECK(management_revision>=0),
+ state TEXT NOT NULL DEFAULT 'draft', sessions TEXT NOT NULL DEFAULT '[]', timezone TEXT NOT NULL DEFAULT 'Europe/Rome'
 );
 CREATE TABLE IF NOT EXISTS study_members(
  edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
@@ -49,7 +50,8 @@ CREATE TABLE IF NOT EXISTS study_interests(
 );
 CREATE TABLE IF NOT EXISTS study_holds(
  id TEXT PRIMARY KEY, edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
- expires_at REAL NOT NULL, state TEXT NOT NULL CHECK(state IN ('hold','confirmed','payment_requires_review','cancelled'))
+ expires_at REAL NOT NULL, state TEXT NOT NULL CHECK(state IN ('hold','confirmed','payment_requires_review','cancelled')),
+ offer_revision INTEGER CHECK(offer_revision>=0)
 );
 CREATE TABLE IF NOT EXISTS study_waitlist(
  edition_id TEXT NOT NULL REFERENCES study_editions(id), student_id TEXT NOT NULL REFERENCES students(student_id),
@@ -143,3 +145,8 @@ CREATE TABLE IF NOT EXISTS study_calendar_deliveries(
 CREATE UNIQUE INDEX IF NOT EXISTS study_calendar_active_publish ON study_calendar_intents(target_id) WHERE state='publishing';
 
 UPDATE study_schema SET version=3 WHERE version=2;
+
+UPDATE study_schema SET version=4 WHERE version=3;
+
+CREATE INDEX IF NOT EXISTS study_editions_teacher_id ON study_editions(teacher_id,id);
+CREATE INDEX IF NOT EXISTS study_holds_edition_state_expiry ON study_holds(edition_id,state,expires_at);

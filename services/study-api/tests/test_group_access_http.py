@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from lessonos.study.store import StudyStore
 from study_api.app import create_app
 from lessonos.study.groups import configure_sessions
-from lessonos.study.editions import offer_edition
+from lessonos.study.editions import offer_edition,preview_offer,admin_edition
 
 
 def test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster(tmp_path):
@@ -12,7 +12,9 @@ def test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster(tmp_p
     store.create_edition(tutor, 'fluidi', capacity=2)
     dates=[{'start':f'2026-11-{day:02}T18:00:00+01:00','end':f'2026-11-{day:02}T19:30:00+01:00'} for day in (3,5,10,12)]
     configure_sessions(store,tutor,'fluidi',dates)
-    offer_edition(store,tutor,'fluidi','fixture-offer',confirmed=True)
+    revision=admin_edition(store,tutor,'fluidi')['managementRevision']
+    preview=preview_offer(store,tutor,'fluidi','fixture-preview',revision=revision)
+    offer_edition(store,tutor,'fluidi','fixture-offer',confirmed=True,preview_id=preview['previewId'],preview_hash=preview['previewHash'],revision=revision)
     tokens = {actor.id: store.issue_session(actor) for actor in [tutor, *students]}
     app = create_app(store.path, demo=True)
     with TestClient(app) as client:
