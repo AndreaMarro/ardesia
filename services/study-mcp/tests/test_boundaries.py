@@ -7,7 +7,7 @@ import httpx2
 from pydantic import ValidationError
 
 from study_mcp.config import Settings
-from study_mcp.contracts import ContextInput, CourseInput, ReceiptInput
+from study_mcp.contracts import ContextInput, CourseInput, ReceiptInput, RubricDTO
 from study_mcp.gateway import CoreGateway, ReadFailure
 from study_mcp.projections import context_packet, receipt_packet
 
@@ -50,6 +50,19 @@ class InputTests(unittest.TestCase):
 
 
 class ProjectionTests(unittest.TestCase):
+    def test_diary_rubric_is_a_strict_allowlisted_object_without_text_rewriting(self):
+        criterion = '  Usa la quarta potenza a pressione fissata.  '
+        dto = RubricDTO.model_validate({'criterion':criterion, 'procedureRequired':True,
+                                       'futurePrivateCoreField':'not automatically exposed'})
+        self.assertEqual(dto.model_dump(), {'criterion':criterion, 'procedureRequired':True})
+        for flag in (False, 1, 1.0, 'true', None):
+            with self.subTest(flag=flag), self.assertRaises(ValidationError):
+                RubricDTO(criterion=criterion, procedureRequired=flag)
+        for invalid in ([], ['criterion'], {}, {'criterion':' ', 'procedureRequired':True},
+                        {'criterion':'x'*4001, 'procedureRequired':True}):
+            with self.assertRaises(ValidationError):
+                RubricDTO.model_validate(invalid)
+
     def test_receipt_reports_actual_version_without_invented_source_hash(self):
         body = dict(receiptId='r', submissionId='s', studentId='student', activityId='a',
                     revision=2, parentId='parent', receivedAt=123.0, state='received')

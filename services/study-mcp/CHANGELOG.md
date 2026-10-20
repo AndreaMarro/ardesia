@@ -8,3 +8,4 @@
 - Add strict input schemas, explicit response allowlists, safe error envelopes, bounded HTTP reads, and no interactive UI claim.
 - Isolate SDK/httpx2 dependencies from the Study API's httpx 0.28 environment.
 - Test actual subprocess stdio against disposable real Study HTTP/SQLite; Supabase/host acceptance requires separate replay.
+- Preserve the canonical object-shaped rubric in assigned diary transfer receipts; verify the exact activity context through official Client/stdio against real isolated Study HTTP.

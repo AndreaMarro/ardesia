@@ -14,6 +14,8 @@ Unexpected arguments are forbidden. IDs in paths are restricted and encoded. A l
 
 Both `structuredContent` and the single JSON text fallback contain the same `ardesia.mcp.read/1` envelope: status, allowlisted data, truthful source version, evidence references, capabilities, losses, and a safe error code when unavailable. The selected context must match all three returned identities. Each review retains its own evidence refs. Receipt versions contain the actual `receiptId`, `submissionId` and integer `revision`; a missing source hash is declared, never synthesized. `received` means received, not correct. Historical sources remain explicitly `HISTORICAL`; no head fallback occurs.
 
+Assigned diary transfer receipts preserve Core's `activityContext`, including the object-shaped rubric `{criterion, procedureRequired: true}`. The criterion is preserved without rewriting; no list conversion, inferred rubric or automatic procedure approval is introduced. New Core fields are allowlisted rather than exposed implicitly.
+
 There are no MCP Apps resources, `ui://` URLs or HTML. `interactiveUI` is false. Canvas placement, original media playback and editing are unsupported. Source, prompt, rubric and review strings are inert untrusted data. An MCP consumer must not treat quoted source instructions as tool or identity authority.
 
 ## Run locally

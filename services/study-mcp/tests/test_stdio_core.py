@@ -174,6 +174,30 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual(packet['data']['courseContext'], receipt['courseContext'])
                 self.assertEqual(packet['data']['state'], 'received')
 
+    async def test_assigned_diary_transfer_preserves_canonical_rubric_and_access(self):
+        receipt_id = self.fixture['transferReceipt']['receiptId']
+        async with httpx2.AsyncClient(trust_env=False) as http:
+            response = await http.get(self.origin+'/study/receipts/'+receipt_id,
+                headers={'Cookie':'study_session='+self.fixture['tokens']['student']})
+            self.assertEqual(response.status_code, 200)
+            canonical = response.json()
+        self.assertIsInstance(canonical['activityContext']['rubric'], dict)
+        self.assertIs(canonical['activityContext']['rubric']['procedureRequired'], True)
+        for actor in ('student', 'tutor'):
+            async with self.client(actor) as client:
+                packet = self.packet(await client.call_tool('submission.get_receipt', {'receiptId':receipt_id}))
+                self.assertEqual(packet['status'], 'ok')
+                self.assertEqual(packet['data']['activityContext'], canonical['activityContext'])
+                self.assertEqual(packet['sourceVersion'], {key:canonical[key]
+                    for key in ('receiptId','submissionId','revision')})
+                self.assertTrue(any('unsupported' in loss for loss in packet['losses']))
+        for actor in ('peer', 'other-tutor'):
+            async with self.client(actor) as client:
+                packet = self.packet(await client.call_tool('submission.get_receipt', {'receiptId':receipt_id}))
+                self.assertEqual(packet['error'], 'NOT_AVAILABLE')
+                self.assertIsNone(packet['data'])
+                self.assertEqual(packet['evidenceRefs'], [])
+
     async def test_invalid_args_and_factory_tools_are_denied_without_authority(self):
         async with self.client() as client:
             cases = [('lesson.get_context',{'contextId':self.refs()['contextId']}),

@@ -1,6 +1,6 @@
 """Strict caller inputs; explicit allowlists for authorized Core response data."""
 from typing import Annotated, Generic, Literal, TypeVar
-from pydantic import BaseModel, ConfigDict, Field, JsonValue, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, JsonValue, StringConstraints, field_validator
 
 Identifier = Annotated[str, StringConstraints(min_length=1, max_length=128, pattern=r'^[A-Za-z0-9][A-Za-z0-9_-]*$')]
 ContextIdentifier = Annotated[str, StringConstraints(min_length=1, max_length=8192, pattern=r'^[A-Za-z0-9][A-Za-z0-9_-]*$')]
@@ -115,12 +115,34 @@ class CourseContext(CoreDTO):
     parameters: dict[str, JsonValue] | None
 
 
+class RubricDTO(CoreDTO):
+    criterion: str = Field(min_length=1, max_length=4000)
+    procedureRequired: Literal[True]
+
+    @field_validator('criterion')
+    @classmethod
+    def nonblank_criterion(cls, value):
+        # Core accepts the original text, including surrounding whitespace,
+        # but requires an actual nonblank criterion. Do not rewrite the pin.
+        if not value.strip():
+            raise ValueError('invalid_rubric')
+        return value
+
+    @field_validator('procedureRequired', mode='before')
+    @classmethod
+    def explicit_procedure_requirement(cls, value):
+        # Literal[True] alone can accept numeric 1 through Python equality.
+        if value is not True:
+            raise ValueError('procedure_rubric_required')
+        return value
+
+
 class ActivityContext(CoreDTO):
     threadId: CoreId
     exerciseId: CoreId
     parameters: dict[str, JsonValue]
     prompt: Text
-    rubric: list[str]
+    rubric: RubricDTO
     assignedAfterEventSeq: int
 
 
