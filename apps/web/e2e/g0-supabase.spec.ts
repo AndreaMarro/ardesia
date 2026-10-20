@@ -78,7 +78,8 @@ async function chooseReview(page: Page, text: string) {
   await expect(candidates.first()).toBeVisible();
   for (let index = 0; index < (await candidates.count()); index++) {
     await candidates.nth(index).click();
-    if ((await page.locator(".submission-answer").textContent()) === text)
+    // The answer also retains the separately committed lab prediction.
+    if ((await page.locator(".submission-answer").textContent())?.includes(text))
       return;
   }
   throw Error("submitted_attempt_not_found_in_tutor_queue");
