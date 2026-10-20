@@ -149,4 +149,5 @@ UPDATE study_schema SET version=3 WHERE version=2;
 UPDATE study_schema SET version=4 WHERE version=3;
 
 CREATE INDEX IF NOT EXISTS study_editions_teacher_id ON study_editions(teacher_id,id);
+CREATE INDEX IF NOT EXISTS study_members_student_id ON study_members(student_id,edition_id);
 CREATE INDEX IF NOT EXISTS study_holds_edition_state_expiry ON study_holds(edition_id,state,expires_at);

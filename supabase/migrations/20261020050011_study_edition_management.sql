@@ -4,6 +4,7 @@ ALTER TABLE public.study_editions ADD COLUMN management_revision BIGINT NOT NULL
 ALTER TABLE public.study_holds ADD COLUMN offer_revision BIGINT CHECK(offer_revision>=0);
 ALTER TABLE public.study_editions ALTER COLUMN state SET DEFAULT 'draft';
 CREATE INDEX study_editions_teacher_id ON public.study_editions(teacher_id,id);
+CREATE INDEX study_members_student_id ON public.study_members(student_id,edition_id);
 CREATE INDEX study_holds_edition_state_expiry ON public.study_holds(edition_id,state,expires_at);
 
 -- Keep backend SELECT/FOR UPDATE available to the existing student seat
