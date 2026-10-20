@@ -35,6 +35,12 @@ def digest(value: str | bytes):
     return hashlib.sha256(value.encode() if isinstance(value, str) else value).hexdigest()
 
 
+def _edition_view(row, descriptor):
+    return {**descriptor, 'id': row['id'], 'teacherId': row['teacher_id'],
+            'capacity': row['capacity'], 'priceMinor': row['price_minor'], 'state': row['state'],
+            'sessions': json.loads(row['sessions']), 'timezone': row['timezone']}
+
+
 class StudyStore:
     def __init__(self, path: str | Path, clock=time.time, *, check_same_thread=True):
         self.path = Path(path)
@@ -237,31 +243,43 @@ class StudyStore:
         if row is None:
             raise StudyError('not_found', 404)
         from .catalog import edition_pack
-        return {**edition_pack(self, edition_id), 'id': row['id'], 'teacherId': row['teacher_id'], 'capacity': row['capacity'], 'priceMinor': row['price_minor'], 'state': row['state'], 'sessions': json.loads(row['sessions']), 'timezone': row['timezone']}
+        return _edition_view(row, edition_pack(self, edition_id))
 
-    def list_editions(self, principal, *, limit=50, after=None):
+    def list_editions(self, principal, *, limit=50, after=None, edition_id=None):
         """Discover only owned/member editions; decode only the bounded page."""
         self._principal(principal)
         if type(limit) is not int or not 1 <= limit <= 100:
             raise StudyError('invalid_edition_pagination')
         if after is not None and (not isinstance(after, str) or not 1 <= len(after) <= MAX_EDITION_CURSOR_LENGTH):
             raise StudyError('invalid_edition_pagination')
+        if edition_id is not None and (not isinstance(edition_id, str) or
+                not 1 <= len(edition_id) <= MAX_EDITION_CURSOR_LENGTH or after is not None):
+            raise StudyError('invalid_edition_pagination')
+        query = ('SELECT e.id,e.teacher_id,e.capacity,e.price_minor,e.state,e.sessions,e.timezone,'
+                 'p.course_id,p.pack_id,p.pack_version,p.pack_sha256 FROM study_editions e '
+                 'LEFT JOIN study_edition_packs p ON p.edition_id=e.id ')
+        # A LEFT JOIN keeps an authorized row with a missing pin in the page,
+        # so validation fails closed instead of silently omitting that edition.
         if principal.role == 'teacher':
-            query = 'SELECT e.id FROM study_editions e WHERE e.teacher_id=?'
+            query += 'WHERE e.teacher_id=?'
         else:
-            query = ('SELECT e.id FROM study_editions e JOIN study_members m ON m.edition_id=e.id '
-                     'WHERE m.student_id=?')
+            query += 'JOIN study_members m ON m.edition_id=e.id WHERE m.student_id=?'
         parameters = [principal.id]
+        if edition_id is not None:
+            query += ' AND e.id=?'
+            parameters.append(edition_id)
         if after is not None:
             query += ' AND e.id>?'
             parameters.append(after)
         query += ' ORDER BY e.id LIMIT ?'
-        rows = self.connection.execute(query, (*parameters, limit + 1)).fetchall()
+        rows = self.connection.execute(query, (*parameters, 1 if edition_id is not None else limit + 1)).fetchall()
         page = rows[:limit]
-        cursor = page[-1]['id'] if len(rows) > limit else None
+        cursor = page[-1]['id'] if edition_id is None and len(rows) > limit else None
         if cursor is not None and len(cursor) > MAX_EDITION_CURSOR_LENGTH:
             raise StudyError('legacy_edition_identifier_requires_migration', 409)
-        return {'items': [self.get_edition(row['id']) for row in page],
+        from .catalog import bound_descriptor
+        descriptors = {}
+        return {'items': [_edition_view(row, bound_descriptor(row, descriptors=descriptors)) for row in page],
                 'nextCursor': cursor}
 
     def _edition_access(self, principal, edition_id, teacher_only=False):

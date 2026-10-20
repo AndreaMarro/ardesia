@@ -79,7 +79,7 @@ def test_scope_and_limit_apply_before_json_decode_or_descriptor_resolution(catal
     statements=[];store.connection.set_trace_callback(statements.append)
     page=store.list_editions(teacher,limit=2)
     assert ids(page)==['a-physics','c-analysis'] and page['nextCursor']=='c-analysis'
-    assert resolved==['a-physics','c-analysis']
+    assert resolved==[]  # No per-row canonical lookup after the scoped page query.
     query=next(sql for sql in statements if sql.startswith('SELECT e.id'))
     assert 'teacher_id=' in query and "'tutor-list'" in query and 'ORDER BY e.id' in query and 'LIMIT 3' in query
 
@@ -162,3 +162,131 @@ def test_unusable_legacy_cursor_fails_explicitly_without_truncating_or_skipping(
     with pytest.raises(StudyError,match='legacy_edition_identifier_requires_migration') as error:
         store.list_editions(teacher,limit=2)
     assert error.value.status==409
+
+
+@pytest.mark.parametrize('count,packs',[(1,1),(50,1),(50,2)])
+@pytest.mark.parametrize('role',['teacher','student'])
+def test_page_uses_one_scoped_query_and_one_real_read_parse_hash_per_distinct_pack(tmp_path,monkeypatch,count,packs,role):
+    import json
+    from pathlib import Path
+    from lessonos.study import catalog as registry
+    store=StudyStore(tmp_path/'batch.sqlite')
+    tutor=store.create_principal('batch-tutor','teacher')
+    student=store.create_principal('batch-student','student')
+    for index in range(count):
+        options={'course_id':'analisi-1','pack_id':'taylor-exp-v1'} if packs==2 and index%2 else {}
+        edition=f'entry-{index:03}'
+        store.create_edition(tutor,edition,**options)
+        if role=='student':store.add_test_member(tutor,edition,student.id)
+    statements=[];store.connection.set_trace_callback(statements.append)
+    read=Path.read_text;loads=json.loads;sha256=registry.hashlib.sha256
+    reads=[];documents=set();parses=[];hashes=[]
+    def observed_read(path,*args,**kwargs):
+        value=read(path,*args,**kwargs)
+        if path.parent.name=='content' and path.name in ('relazioni-fluidi-v1.json','taylor-exp-v1.json'):
+            reads.append(path.name);documents.add(value)
+        return value
+    def observed_loads(value,*args,**kwargs):
+        if isinstance(value,str) and value in documents:parses.append(value)
+        return loads(value,*args,**kwargs)
+    def observed_hash(value=b'',*args,**kwargs):
+        hashes.append(value)
+        return sha256(value,*args,**kwargs)
+    monkeypatch.setattr(Path,'read_text',observed_read)
+    monkeypatch.setattr(json,'loads',observed_loads)
+    monkeypatch.setattr(registry.hashlib,'sha256',observed_hash)
+    page=store.list_editions(tutor if role=='teacher' else student,limit=count)
+    selects=[sql for sql in statements if sql.startswith('SELECT')]
+    metrics={'role':role,'rows':len(page['items']),'selectQueries':len(selects),'packReads':len(reads),'packParses':len(parses),'packHashes':len(hashes)}
+    print(metrics)
+    assert len(page['items'])==count and page['nextCursor'] is None
+    assert len(selects)==2  # One persisted-principal check plus one joined page.
+    assert len(reads)==len(parses)==len(hashes)==packs
+    assert len(set(reads))==packs
+    store.close()
+
+
+@pytest.mark.parametrize('role',['teacher','student'])
+@pytest.mark.parametrize('damage',['missing','hash','course','pack','version'])
+def test_every_in_scope_binding_is_validated_even_after_same_pack_was_resolved(catalog,role,damage):
+    store,teacher,_,student,*_=catalog
+    # z-last follows an earlier row pinned to the same physics pack.
+    if role=='student':store.add_test_member(teacher,'z-last',student.id)
+    with store.transaction() as c:
+        if damage=='missing':c.execute("DELETE FROM study_edition_packs WHERE edition_id='z-last'")
+        else:
+            column,value={'hash':('pack_sha256','0'*64),'course':('course_id','analisi-1'),
+                          'pack':('pack_id','missing'),'version':('pack_version',2)}[damage]
+            c.execute('UPDATE study_edition_packs SET '+column+"=? WHERE edition_id='z-last'",(value,))
+    with pytest.raises(StudyError,match='coursepack_unavailable') as error:
+        store.list_editions(teacher if role=='teacher' else student,limit=100)
+    assert error.value.status==409
+
+
+def test_corrupt_foreign_nonmember_waitlist_and_hold_rows_are_never_decoded(catalog):
+    store,teacher,other,student,*_=catalog
+    with store.transaction() as c:
+        for eid in ('d-peer','e-wait','z-last'):
+            c.execute('UPDATE study_editions SET sessions=? WHERE id=?',('not json',eid))
+            c.execute('DELETE FROM study_edition_packs WHERE edition_id=?',(eid,))
+    assert ids(store.list_editions(student))==['a-physics','b-other','c-analysis']
+    assert store.list_editions(student,edition_id='d-peer')=={'items':[],'nextCursor':None}
+    assert store.list_editions(teacher,edition_id='b-other')=={'items':[],'nextCursor':None}
+
+
+@pytest.mark.parametrize('damage',['changed','invalid_json','missing_file'])
+def test_pack_file_is_rechecked_on_each_page_without_global_cache_or_canonical_mutation(catalog,tmp_path,monkeypatch,damage):
+    import json
+    from pathlib import Path
+    from lessonos.study import catalog as registry
+    store,teacher,*_=catalog
+    private=tmp_path/'private-registry';content=private/'content';content.mkdir(parents=True)
+    source=Path(registry.__file__).parent/'content'
+    for name in ('relazioni-fluidi-v1.json','taylor-exp-v1.json'):
+        (content/name).write_bytes((source/name).read_bytes())
+    monkeypatch.setattr(registry,'__file__',str(private/'catalog.py'))
+    first=store.list_editions(teacher,limit=1)
+    before=[tuple(row) for row in store.connection.execute('SELECT * FROM study_edition_packs ORDER BY edition_id')]
+    path=content/'relazioni-fluidi-v1.json'
+    if damage=='changed':
+        pack=json.loads(path.read_text());pack['scope']='A changed private fixture';path.write_text(json.dumps(pack))
+    elif damage=='invalid_json':path.write_text('{broken')
+    else:path.unlink()
+    with pytest.raises(StudyError,match='coursepack_unavailable') as error:
+        store.list_editions(teacher,limit=1)
+    assert error.value.status==409
+    assert [tuple(row) for row in store.connection.execute('SELECT * FROM study_edition_packs ORDER BY edition_id')]==before
+    assert ids(first)==['a-physics']
+
+
+def test_exact_edition_filter_is_authorized_and_never_returns_a_cursor(catalog):
+    store,teacher,other,student,peer,empty=catalog
+    for actor in (teacher,student):
+        page=store.list_editions(actor,edition_id='c-analysis',limit=1)
+        assert ids(page)==['c-analysis'] and page['nextCursor'] is None
+        assert page['items'][0]==store.get_edition('c-analysis')
+    for actor,eid in ((other,'c-analysis'),(peer,'a-physics'),(empty,'e-wait'),(student,'e-wait'),(student,'z-last'),(teacher,'b-other')):
+        assert store.list_editions(actor,edition_id=eid)=={'items':[],'nextCursor':None}
+    assert store.list_editions(teacher,edition_id="' OR 1=1 --")=={'items':[],'nextCursor':None}
+
+
+@pytest.mark.parametrize('edition_id',['','x'*8193,True,1,[],{}])
+def test_invalid_exact_filter_fails_before_page_query(catalog,edition_id):
+    store,teacher,*_=catalog
+    with pytest.raises(StudyError,match='invalid_edition_pagination') as error:
+        store.list_editions(teacher,edition_id=edition_id)
+    assert error.value.status==422
+
+
+def test_exact_filter_and_after_are_mutually_exclusive(catalog):
+    store,teacher,*_=catalog
+    with pytest.raises(StudyError,match='invalid_edition_pagination'):
+        store.list_editions(teacher,edition_id='a-physics',after='a')
+
+
+@pytest.mark.parametrize('length',[129,8192])
+def test_exact_filter_accepts_complete_authorized_legacy_identifier(catalog,length):
+    store,teacher,*_=catalog
+    eid='b'*length;legacy_edition(store,teacher,eid)
+    page=store.list_editions(teacher,edition_id=eid,limit=1)
+    assert ids(page)==[eid] and page['nextCursor'] is None

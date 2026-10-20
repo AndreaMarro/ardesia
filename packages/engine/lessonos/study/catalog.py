@@ -41,17 +41,34 @@ def validate_binding(course_id, pack_id, version):
     return descriptor
 
 
-def edition_pack(store, edition_id):
-    row = store.connection.execute('SELECT * FROM study_edition_packs WHERE edition_id=?', (edition_id,)).fetchone()
+def bound_descriptor(row, *, descriptors=None):
+    """Validate every pin; a caller may share resolved packs within one page.
+
+    The optional dictionary belongs to that single call, never the process:
+    a later page must read/parse/hash the bundled file again.
+    """
     if row is None:
         raise StudyError('coursepack_unavailable', 409)
     try:
-        descriptor = validate_binding(row['course_id'], row['pack_id'], row['pack_version'])
-    except StudyError:
+        pack_id, version = row['pack_id'], row['pack_version']
+        _entry(pack_id, version)
+        key = (pack_id, version)
+        if descriptors is None:
+            descriptor = describe_pack(pack_id, version)
+        else:
+            if key not in descriptors:
+                descriptors[key] = describe_pack(pack_id, version)
+            descriptor = descriptors[key]
+        if row['course_id'] != descriptor['courseId'] or row['pack_sha256'] != descriptor['packSha256']:
+            raise StudyError('coursepack_unavailable', 409)
+    except (StudyError, OSError, ValueError, KeyError, TypeError):
         raise StudyError('coursepack_unavailable', 409) from None
-    if descriptor['packSha256'] != row['pack_sha256']:
-        raise StudyError('coursepack_unavailable', 409)
     return descriptor
+
+
+def edition_pack(store, edition_id):
+    row = store.connection.execute('SELECT * FROM study_edition_packs WHERE edition_id=?', (edition_id,)).fetchone()
+    return bound_descriptor(row)
 
 
 def activity_metadata(store, edition_id, activity_id):
