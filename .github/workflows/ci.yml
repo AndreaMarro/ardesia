@@ -43,6 +43,25 @@ jobs:
           PYTHONPATH: packages/engine:services/study-api
         run: uv run --project services/study-api python -m pytest packages/engine/tests/study services/study-api/tests -q -rs
 
+  study-mcp:
+    name: study-mcp (official SDK stdio + HTTP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install separate API and MCP environments
+        run: |
+          uv sync --project services/study-api --frozen --python 3.13
+          uv venv --python 3.13 .mcp-ci-venv
+          uv pip install --python .mcp-ci-venv/bin/python -r services/study-mcp/requirements.lock
+      - name: Read-only boundaries and actual official stdio to disposable Core
+        env:
+          PYTHONPATH: services/study-mcp
+          ARDESIA_MCP_TEST_API_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: .mcp-ci-venv/bin/python -m unittest discover -s services/study-mcp/tests -v
+
   studio:
     name: studio (typecheck + test + build)
     runs-on: ubuntu-latest
