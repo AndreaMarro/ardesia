@@ -1,0 +1,63 @@
+web (typecheck + test + build)	Set up job	2026-10-20T11:13:25.8683048Z Build Date: 2026-10-14T17:06:54Z
+web (typecheck + test + build)	Run npm run typecheck:web	﻿2026-10-20T11:13:44.3210193Z ##[group]Run npm run typecheck:web
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.3210594Z ^[[36;1mnpm run typecheck:web^[[0m
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.3241018Z shell: /usr/bin/bash -e {0}
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.3241421Z ##[endgroup]
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.4031777Z
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.4032762Z > ardesia-monorepo@0.1.0 typecheck:web
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.4033447Z > npm run typecheck --workspace @ardesia/web
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.4033677Z
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.5016437Z
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.5017765Z > @ardesia/web@0.1.0 typecheck
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.5018362Z > tsc -b --noEmit
+web (typecheck + test + build)	Run npm run typecheck:web	2026-10-20T11:13:44.5018786Z
+web (typecheck + test + build)	Run npm run test:web	﻿2026-10-20T11:13:47.6299091Z ##[group]Run npm run test:web
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.6299472Z ^[[36;1mnpm run test:web^[[0m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.6329794Z shell: /usr/bin/bash -e {0}
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.6330223Z ##[endgroup]
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.7149512Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.7150473Z > ardesia-monorepo@0.1.0 test:web
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.7151035Z > npm run test --workspace @ardesia/web
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.7151273Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.8154446Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.8155173Z > @ardesia/web@0.1.0 test
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.8155696Z > vitest run
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:47.8155865Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:48.0543808Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:48.0548499Z ^[[1m^[[30m^[[46m RUN ^[[49m^[[39m^[[22m ^[[36mv4.1.8 ^[[39m^[[90m/home/runner/work/ardesia/ardesia/apps/web^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:48.0549325Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:49.7669586Z  ^[[32m✓^[[39m src/__tests__/course-workspace.test.tsx ^[[2m(^[[22m^[[2m17 tests^[[22m^[[2m)^[[22m^[[33m 676^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:49.9837118Z  ^[[32m✓^[[39m src/__tests__/register-commands.test.tsx ^[[2m(^[[22m^[[2m11 tests^[[22m^[[2m)^[[22m^[[33m 804^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:50.4149129Z  ^[[32m✓^[[39m src/__tests__/source-board.test.tsx ^[[2m(^[[22m^[[2m12 tests^[[22m^[[2m)^[[22m^[[33m 1197^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:51.5173279Z  ^[[32m✓^[[39m src/__tests__/workflows.test.tsx ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[33m 765^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:51.5618914Z  ^[[32m✓^[[39m src/__tests__/notebook-preview.test.tsx ^[[2m(^[[22m^[[2m18 tests^[[22m^[[2m)^[[22m^[[33m 513^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:52.3140709Z  ^[[32m✓^[[39m src/__tests__/edition-management.test.tsx ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[33m 960^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:52.3169079Z    ^[[33m^[[2m✓^[[22m^[[39m an empty tutor workspace creates a private draft, preserving fields and key after a failed request ^[[33m 399^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:52.3195049Z    ^[[33m^[[2m✓^[[22m^[[39m four wall dates reach Core unchanged; preview needs a deliberate checkbox before confirmation ^[[33m 322^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:53.4704821Z  ^[[32m✓^[[39m src/__tests__/register-reading.test.tsx ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[33m 795^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:53.6939241Z  ^[[32m✓^[[39m src/__tests__/register-payment-pin.test.tsx ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[33m 1136^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:53.6941990Z    ^[[33m^[[2m✓^[[22m^[[39m off-page reread rejects changed immutable person and preserves the origin draft ^[[33m 484^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:53.8440400Z  ^[[32m✓^[[39m src/__tests__/session-transport.test.ts ^[[2m(^[[22m^[[2m11 tests^[[22m^[[2m)^[[22m^[[32m 78^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:55.0059039Z  ^[[32m✓^[[39m src/__tests__/course-drafts.test.tsx ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[33m 394^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:55.3224337Z  ^[[32m✓^[[39m src/__tests__/source-context-identity.test.tsx ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[33m 407^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:55.3248901Z    ^[[33m^[[2m✓^[[22m^[[39m late context A cannot appear under source B and query uses the canonical parameter ^[[33m 301^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:55.4809037Z  ^[[32m✓^[[39m src/__tests__/session-boundary.test.tsx ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[33m 1976^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:55.4859836Z    ^[[33m^[[2m✓^[[22m^[[39m a verified child json 401 (cookie) removes the private application and opens access ^[[33m 1091^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:56.4014491Z  ^[[32m✓^[[39m src/__tests__/course-submission.test.tsx ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[33m 350^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:56.7582955Z  ^[[32m✓^[[39m src/__tests__/session-legacy.test.tsx ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[33m 372^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:57.1103311Z  ^[[32m✓^[[39m src/__tests__/taylor-classroom.test.tsx ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[33m 702^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:57.1105124Z    ^[[33m^[[2m✓^[[22m^[[39m the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt ^[[33m 701^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:57.7834583Z  ^[[32m✓^[[39m src/__tests__/access-capabilities.test.tsx ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[33m 383^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:57.9835382Z  ^[[32m✓^[[39m src/__tests__/edition-register.test.tsx ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 280^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:58.5365348Z  ^[[32m✓^[[39m src/__tests__/resource-composer.test.tsx ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[33m 481^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:58.5367732Z    ^[[33m^[[2m✓^[[22m^[[39m Classroom: retry reuses an immutable draft key and a new draft rotates it ^[[33m 382^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.0357137Z  ^[[32m✓^[[39m src/__tests__/accessibility-semantics.test.tsx ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[33m 329^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1470655Z  ^[[32m✓^[[39m src/__tests__/course-pack-disclosure.test.tsx ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[33m 307^[[2mms^[[22m^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1493909Z
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1497946Z ^[[2m Test Files ^[[22m ^[[1m^[[32m20 passed^[[39m^[[22m^[[90m (20)^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1499021Z ^[[2m      Tests ^[[22m ^[[1m^[[32m139 passed^[[39m^[[22m^[[90m (139)^[[39m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1499769Z ^[[2m   Start at ^[[22m 11:13:48
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1500928Z ^[[2m   Duration ^[[22m 11.09s^[[2m (transform 1.05s, setup 0ms, import 3.24s, tests 12.90s, environment 13.09s)^[[22m
+web (typecheck + test + build)	Run npm run test:web	2026-10-20T11:13:59.1501792Z
+web (typecheck + test + build)	Run npm run build:web	2026-10-20T11:13:59.3701416Z > tsc -b && vite build
+web (typecheck + test + build)	Run npm run build:web	2026-10-20T11:14:02.8689885Z ^[[32m✓ built in 167ms^[[39m

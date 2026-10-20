@@ -1,0 +1,117 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "AD63D1CB430F9DEF982AA2E0F19727DA"
+  },
+  "start_url": {
+    "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/zo6LFFHWkXdMPJdCk0gAS",
+    "query": [
+      {
+        "name": "blockIds",
+        "value": {
+          "source": "literal",
+          "value": "sgY5YuFgXY"
+        }
+      }
+    ]
+  },
+  "environment": {
+    "locale": "en-US",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "source-anchor-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"]:has-text(\"R4-L1-ANCHOR-741\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "add-reading-correction",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"] [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "Correction v2: at fixed pressure radius ratio 2 gives flow ratio 16, using the fourth power. "
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "correction-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"]:has-text(\"Correction v2\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "undo-correction",
+      "action": "press",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"] [contenteditable=true]"
+      },
+      "key": "Meta+z",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "correction-undone",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"Correction v2\")"
+      },
+      "state": "detached",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "redo-correction",
+      "action": "press",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"] [contenteditable=true]"
+      },
+      "key": "Meta+Shift+z",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "correction-redone",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"]:has-text(\"Correction v2\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

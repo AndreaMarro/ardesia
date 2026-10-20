@@ -1,0 +1,934 @@
+{
+  "generatedAt": "2026-10-20T06:08:04.765170+00:00",
+  "candidateUnderEvidence": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "registerSha256": "2e875ea3b8bc3235bfc4542f6642a6586a9d4b8e415d18ffe9dc07df9ef638a8",
+  "registerUnmodified": true,
+  "criteriaCount": 85,
+  "globalG0Verdict": "NOT_CERTIFIED",
+  "globalG1Verdict": "NOT_READY",
+  "globalG2Verdict": "NOT_RUN",
+  "marketingPreviewReady": "NOT_READY",
+  "launchAllowed": false,
+  "counts": {
+    "PARTIAL": 28,
+    "PROVED_SCOPED": 47,
+    "NOT_RUN": 6,
+    "BLOCKED": 4
+  },
+  "countsByGate": {
+    "G0": {
+      "PARTIAL": 26,
+      "PROVED_SCOPED": 44,
+      "NOT_RUN": 2,
+      "BLOCKED": 2
+    },
+    "G1": {
+      "BLOCKED": 2,
+      "NOT_RUN": 3,
+      "PARTIAL": 2,
+      "PROVED_SCOPED": 3
+    },
+    "G2": {
+      "NOT_RUN": 1
+    }
+  },
+  "currentReaStatus": {
+    "sourceCommit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+    "G0": {
+      "gate": "G0",
+      "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "status": "PASS",
+      "problems": []
+    },
+    "G1": {
+      "gate": "G1",
+      "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "status": "PASS",
+      "problems": []
+    },
+    "scope": "REA_SUBGATES_ONLY_NOT_GLOBAL_ACCEPTANCE",
+    "originalPolicyChanged": false,
+    "rawOriginalInputsVerified": 257,
+    "selectedAuthenticEnvelopes": 148,
+    "rootMetadataCorrections": "C4_REA_METADATA"
+  },
+  "boundednessLimits": [
+    "UI discovery one authorized page50 plus at most one exact lookup; selected entry outside page occupies max51combooptions. Next/previous preserve selection and unsaved field, not unlimited automatic pagination.",
+    "Core listing limit1..100; newIDs1..128, legacy/exact/cursor1..8192; cursor beyondbudget fails409; no OFFSET or separate authority.",
+    "One joined page query plus persisted-principal lookup; pack read/parse/SHA once per distinct registered tuple within that page, no globalcache. Unit fixture counts are not production throughput.",
+    "Per-app request-store admission defaults16 and0.5s bounded wait/503Retry-After, held throughcleanup; not a globalmultiworker/database connection budget. Workerpool remains distinct.",
+    "Calendar snapshot max100, cursor256; mock in-process event store resets on restart, durable mappings remain. Partial stale publication needs operator review; missedpush explicitreconcile; no GoogleOAuth/watchrenewal/scheduler.",
+    "ICS four independentUTC stableUID events, noATTENDEE/invites/RRULE or nativeclient-sync claim.",
+    "Notebook budgets:100resources/submissions/assets,500exact referenced revisions,50MiB decoded originals,96MiB encodedHTTP budget. Unreferenced historical revisions omitted; internal hashes not authenticity or authority.",
+    "MCP has onlythree readonlytools. Codex scope3actualcalls; ChatGPT/ClaudeUNKNOWN, nativeUIunsupported, scheduleVersion/sourcehashmaynotbeprovided byCore and losses stayexplicit.",
+    "52drafts andtwo membershipfixtures prove bounded UI/ACL behavior, not booking allstates, throughput, peakconcurrency or multischool scale."
+  ],
+  "hardBoundaries": [
+    "Seven scoped actual REA receipts root-reviewed and original G0/G1 REA subgates PASS on exact a3; this does not certify globalG0/G1, doctor universal health, human approval or remote readiness.",
+    "V4G0 NOT_CERTIFIED, G1 NOT_READY, G2/human/scientific/futurecheckpoint NOT_RUN.",
+    "No remote staging/domain/region/rollback or zeroextra-cost certification; cloud fallback remains blocked/local.",
+    "Restore PARTIAL: sameownedPG instance/separateDB;15restored/15missingfixtureobjects, Auth/Storage services not rebuilt.",
+    "Roles are actor/course withteacher/student; no organization-wide multischool or commercialadmin guarantee.",
+    "Factory incident enabledfour live tests:two visibleTLSfailures andtwoCLIexecutions without retained usage telemetry; costUNKNOWN. Laterallowlist/skips do not erase the incident.",
+    "C4 rejectedHttpOnlycookie remains and publiccourse may401 afterrevocation; C5ffa87100 is proposed successor, not partofC4 evidence.",
+    "Pagamenti/presenze/ricavi/partecipantireconfirmation UI/umani non completati dal nuovo gestionale."
+  ],
+  "historicalConsistencyNotes": [
+    "Prior audit retained a NOT_SATISFIED report-mode GATE_REPORT and missing-receipt hard boundary alongside later root observedGatePASS/PROVED receipt rows. Both remain verbatim historical; neither is a current C4 gate result.",
+    "A prior PROVED_SCOPED remains visible in historicalSnapshot even where C4 evidence is partial/pending. No earlier execution or screenshot is re-labelled with a3."
+  ],
+  "schema": "ardesia.scoped-acceptance-audit/v2",
+  "fullAuditSha256": "8fbc96fc41da2ccdcfedb4d35d34e1f2a7a64d6cf95f4f9750d36beda239ff18",
+  "criteria": [
+    {
+      "id": "AC-001",
+      "task": "T01",
+      "gate": "G0",
+      "test": "baseline",
+      "assertion": "SHA e branch recuperati; build/gate esistenti con fallimenti e skip conservati",
+      "status": "PARTIAL",
+      "finding": "C4 è legato a a3 con499Study/API+PG,2427Engine/24skip e81Web; vecchi fallimenti e snapshot2a restano storici. Il baseline originario non è ricostruito come nuova esecuzione.",
+      "minimumNextStep": "Consolidare la ricevuta del baseline senza rietichettare i vecchi log come esecuzioni finali."
+    },
+    {
+      "id": "AC-002",
+      "task": "T01",
+      "gate": "G0",
+      "test": "rea-discovery",
+      "assertion": "REA presente nella versione realmente compatibile, doctor + tools/list + lettura dei contratti ufficiali attestati; BLOCKED/NOT_RUN non valgono PASS e impediscono G0 se non risolti.",
+      "status": "PARTIAL",
+      "finding": "Doctor6.7.0 e207tool restano prove storiche con healthy/environment_healthy=false per provider/registrazioni mancanti. I sette subgate REA C4 sono stati verificati dal root sullo SHA a3; questo non attesta ogni capacità del tool o salute universale.",
+      "minimumNextStep": "Setup e gate REA sono attestati separatamente; non attribuire questi esiti a ogni capacità possibile del tool."
+    },
+    {
+      "id": "AC-003",
+      "task": "T02",
+      "gate": "G0",
+      "test": "postit-identity",
+      "assertion": "Muovere/ridimensionare post-it non cambia ResourceRef né policy",
+      "status": "PROVED_SCOPED",
+      "finding": "I11test SourceBoard WebC4 e i contratti layout Core sono rieseguiti; la prova browser movimento/resize2a è preservata separatamente e non rietichettata C4.",
+      "minimumNextStep": "Ambito: viste SourceBoard e contratto /layout; non certifica ogni plugin storico."
+    },
+    {
+      "id": "AC-004",
+      "task": "T02",
+      "gate": "G0",
+      "test": "postit-children",
+      "assertion": "Detach/archive dei figli mantiene provenienza e revisioni",
+      "status": "PARTIAL",
+      "finding": "Detach/layoutvuoto è coperto da unitC4 e prova2a; figli annidati/archive e tutti i plugin storici restano non provati.",
+      "minimumNextStep": "Collegare una prova esplicita dei figli/archive alla loro proiezione dichiarata, senza confondere vista e fonte."
+    },
+    {
+      "id": "AC-005",
+      "task": "T02",
+      "gate": "G0",
+      "test": "contracts",
+      "assertion": "DTO malformati e revisioni sconosciute respinti senza dati parziali",
+      "status": "PARTIAL",
+      "finding": "C4 aggiunge DTOadminstrict, CAS/ABA, rigetto parametri e schema4failclosed; resta assente una matrice completa di ogni DTO/pluginV4.",
+      "minimumNextStep": "Completare la matrice dei contratti effettivamente esposti dal client, mantenendo gli error path privi di dati parziali."
+    },
+    {
+      "id": "AC-006",
+      "task": "T03",
+      "gate": "G0",
+      "test": "tenant-boundary",
+      "assertion": "Studente A non legge oggetti di B o altra organizzazione, anche conoscendo ID",
+      "status": "PARTIAL",
+      "finding": "C4 prova peer/altrotutor negati in exactlisting, note private, MCP/RLS e401revoca; organizzazioni distinte/multischool non esistono come confine provato.",
+      "minimumNextStep": "Provare un'organizzazione distinta se viene introdotta; non chiamare multi-tenant una prova fra soli corsi/attori."
+    },
+    {
+      "id": "AC-007",
+      "task": "T03",
+      "gate": "G0",
+      "test": "private-draft",
+      "assertion": "Tutor non vede bozza personale non condivisa",
+      "status": "PROVED_SCOPED",
+      "finding": "Testprivacy499 e bridgeMCP C4 provano revisione storica esatta e nuovaheadprivata negata al tutor; note non consegnate non diventano condivise.",
+      "minimumNextStep": "Ambito: API/Core/RLS, SourceBoard e contesto MCP effettivamente esercitati."
+    },
+    {
+      "id": "AC-008",
+      "task": "T03",
+      "gate": "G0",
+      "test": "teacher-scope",
+      "assertion": "Tutor assegnato vede consegna; altro tutor e admin commerciale no",
+      "status": "PARTIAL",
+      "finding": "Altro tutor è negato anche su nuove bozze e ricevuteTaylor/MCP; il ruolo admincommerciale non è implementato né testato.",
+      "minimumNextStep": "Aggiungere il confine admin commerciale quando esiste; non derivarlo dall'altro tutor."
+    },
+    {
+      "id": "AC-009",
+      "task": "T03",
+      "gate": "G0",
+      "test": "storage-policy",
+      "assertion": "Bucket privato e signed URL disponibili solo dopo autorizzazione",
+      "status": "PARTIAL",
+      "finding": "Vero Storage autenticato rimane coperto dalla suitePG499; un flusso applicativo signedURL con expiry/revoca resta non esposto/non integralmente provato.",
+      "minimumNextStep": "Attestare separatamente il percorso signed URL del bucket applicativo o dichiarare esplicitamente che la capacità non è esposta."
+    },
+    {
+      "id": "AC-010",
+      "task": "T03",
+      "gate": "G0",
+      "test": "upload-truncated",
+      "assertion": "File incompleto, firma incompatibile e limiti rifiutati con errore utile",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteC4 copre uploadmalformati/troncati, firma e budget; nessuna nuova certificazione OCR/ASR o scanner generalizzato.",
+      "minimumNextStep": "Ambito: validazione degli upload supportati e budget HTTP/Core."
+    },
+    {
+      "id": "AC-011",
+      "task": "T03",
+      "gate": "G0",
+      "test": "idempotent-finalize",
+      "assertion": "Retry dopo commit conserva una sola risorsa/ricevuta",
+      "status": "PROVED_SCOPED",
+      "finding": "SuitePG499 include retryupload/originaleprivato e compensation recovery;52nuovecreazioni HTTP con keysdistinte non sostituiscono la specifica prova retry dello stesso upload.",
+      "minimumNextStep": "Non implica transazione distribuita DB/Storage; i guasti e la compensazione sono testati nei confini dichiarati."
+    },
+    {
+      "id": "AC-012",
+      "task": "T04",
+      "gate": "G0",
+      "test": "capacity-race",
+      "assertion": "Due richieste sull’ultimo posto producono un’iscrizione e un’attesa/rifiuto",
+      "status": "PROVED_SCOPED",
+      "finding": "Nuova offerta viaHTTP draft→config→preview→confirm revision2, nove confermati, due clientultimo posto409/200; retryvincitore identico. Overlap sul filo non misurato.",
+      "minimumNextStep": "Setup edizione/date tramite comandi Core autorizzati del tutor; richieste concorrenti schedulate in due thread, senza timestamp di overlap sul filo. Nessun pagamento o approvazione umana impliciti."
+    },
+    {
+      "id": "AC-013",
+      "task": "T04",
+      "gate": "G0",
+      "test": "eleventh-seat",
+      "assertion": "Mai undici enrolled/hold validi per capienza10",
+      "status": "PROVED_SCOPED",
+      "finding": "La prova frescaC4 termina con10confirmed/2waitlist/0activeholds; la suitePGcopre anche il vincoloDB dell’undicesimo membro.",
+      "minimumNextStep": "Ambito sintetico, capienza10 e lifecycle hold/membership del Core; nessun incasso reale."
+    },
+    {
+      "id": "AC-014",
+      "task": "T04",
+      "gate": "G0",
+      "test": "expired-hold",
+      "assertion": "Scadenza e pagamento tardivo non causano overbooking o doppio incasso",
+      "status": "PARTIAL",
+      "finding": "TTLe bindingoffertaNULL/stale sono failclosed nei test; pagamento tardivo reale e doppioincasso non sono provati: paymentMode=test.",
+      "minimumNextStep": "Separare garanzia di capienza dal futuro pagamento idempotente; mantenere paymentMode=test."
+    },
+    {
+      "id": "AC-015",
+      "task": "T04",
+      "gate": "G0",
+      "test": "four-dates",
+      "assertion": "Abbinamento considera tutte le date e non solo la prima",
+      "status": "PROVED_SCOPED",
+      "finding": "Matcher e quartoappuntamento conflittuale sono provati nei testC4; browser configura4×90min e conferma offerta esplicita. Nessuna approvazione umana delle date.",
+      "minimumNextStep": "Non prova ancora un gestionale docente completo per creare/approvare offerte da browser."
+    },
+    {
+      "id": "AC-016",
+      "task": "T04",
+      "gate": "G0",
+      "test": "commerce-states",
+      "assertion": "Interesse, riserva, pagato e presenza restano distinti",
+      "status": "PARTIAL",
+      "finding": "Gestione tutor draft/config/offer ora esiste; interesse/hold/membership/attesa restano distinti. Pagato, presenza, ricavi e carico docente non sono completati.",
+      "minimumNextStep": "Implementare il gestionale autorizzato senza inventare pagamenti o presenze dai soli eventi di accesso."
+    },
+    {
+      "id": "AC-017",
+      "task": "T05",
+      "gate": "G0",
+      "test": "mixed-input",
+      "assertion": "Immagine/PDF/audio/testo raggiungono la stessa assegnazione con originale preservato",
+      "status": "PARTIAL",
+      "finding": "Prova mediareale completa2a è storica; regressioni upload499 preservano originali. La nuova UIgestionaleC4 non è un nuovo replay completo immagine/PDF/audio/testo.",
+      "minimumNextStep": "ASR/OCR/AI restano simulati o non eseguiti, come dichiarato."
+    },
+    {
+      "id": "AC-018",
+      "task": "T05",
+      "gate": "G0",
+      "test": "offline-receipt",
+      "assertion": "Offline produce bozza locale, non falsa ricevuta al tutor",
+      "status": "PARTIAL",
+      "finding": "C4 prova campo non salvato e memo locale durante paginazione/cambio corso, più testretryACK; manca disconnessione→bozza durevole→restartbrowser→reconnect.",
+      "minimumNextStep": "Provare quel percorso offline; distinguere bozza locale da ricevuta Core e dalla cache sessione bounded 24."
+    },
+    {
+      "id": "AC-019",
+      "task": "T05",
+      "gate": "G0",
+      "test": "source-transcript",
+      "assertion": "Correzione della trascrizione non muta i bytes della fonte",
+      "status": "PARTIAL",
+      "finding": "Fonti/versioni ed originali immutabili hanno regressioni; trascrizioneOCR/ASR editata e riconsegnata end-to-end non è eseguita inC4.",
+      "minimumNextStep": "Aggiungere la prova di trascrizione editabile preservando hash dei byte, con provider reale o simulazione esplicita."
+    },
+    {
+      "id": "AC-020",
+      "task": "T05",
+      "gate": "G0",
+      "test": "shared-class",
+      "assertion": "Aula comune e spazi individuali non pubblicano implicitamente i tentativi",
+      "status": "PROVED_SCOPED",
+      "finding": "Le regressioni condiviso/privatoC4 e le proveMCP mantengono separate membership e autorizzazione alla consegna; non pubblicano implicitamente i tentativi peer.",
+      "minimumNextStep": "Ambito dei ruoli e corsi sintetici esercitati; non condivisione implicita per appartenenza al gruppo."
+    },
+    {
+      "id": "AC-021",
+      "task": "T06",
+      "gate": "G0",
+      "test": "poiseuille-fixed-pressure",
+      "assertion": "r×2 con Δp fissa e Lcostante produce Q×16",
+      "status": "PROVED_SCOPED",
+      "finding": "Evaluator deterministicoPoiseuille e relativo testC4 verificano Q×16. Taylor/Fisica restano DRAFT: nessuna approvazione scientifica umana.",
+      "minimumNextStep": "Controllo numerico deterministico, non approvazione scientifica umana del corso."
+    },
+    {
+      "id": "AC-022",
+      "task": "T06",
+      "gate": "G0",
+      "test": "poiseuille-fixed-flow",
+      "assertion": "r×2 L×2 con Qfissa produce Δp/8",
+      "status": "PROVED_SCOPED",
+      "finding": "TestparametricoC4 verifica Δp/8 conQfissa,r×2,L×2 entro dominio dichiarato.",
+      "minimumNextStep": "Non estendere la formula oltre dominio e vincoli dichiarati."
+    },
+    {
+      "id": "AC-023",
+      "task": "T06",
+      "gate": "G0",
+      "test": "units",
+      "assertion": "Area/volume e unitàlineari non hanno la stessa scala di conversione",
+      "status": "PROVED_SCOPED",
+      "finding": "TestmodellioriginaliC4 distinguono scale lineari/quadratiche/cubiche; non è una prova didattica con studenti reali.",
+      "minimumNextStep": "Verifica aritmetica del dominio dichiarato, non validazione didattica con studenti reali."
+    },
+    {
+      "id": "AC-024",
+      "task": "T06",
+      "gate": "G0",
+      "test": "transfer",
+      "assertion": "Manipolare slider non conta come risposta corretta; esiste problema nuovo",
+      "status": "PROVED_SCOPED",
+      "finding": "RegressioniWeb eCoreC4 invalidano feedback allo slider e richiedono previsione/consegna distinta; verifica procedimento del tutor non è sostituita dal numero corretto.",
+      "minimumNextStep": "Una risposta numerica o un click non risolve automaticamente il thread."
+    },
+    {
+      "id": "AC-025",
+      "task": "T06",
+      "gate": "G0",
+      "test": "analysis-extension",
+      "assertion": "Secondo packTaylor usa lo stesso lifecycle senza nuovo database",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteanalysisC4 copre submission→receipt→review→context/diary nello stessoCore/DB; MCPPG legge ricevutaTaylor autorizzata e nega tutorFisica. Nuovo browsercrea/configura/offre entrambi pack senza nuovo solver.",
+      "minimumNextStep": "Taylor rimane DRAFT e numericalCheck non è scientificApproval; nessun secondo database o solver d'autorità."
+    },
+    {
+      "id": "AC-026",
+      "task": "T06",
+      "gate": "G0",
+      "test": "legacy-scoring",
+      "assertion": "Punteggio con penalità ha assessment_version distinta dal correct_count storico",
+      "status": "NOT_RUN",
+      "finding": "Ancora nessuna prova specifica di assessment_version separata per penalità;2427Engine verdi non la inventano.",
+      "minimumNextStep": "Individuare o implementare il contratto di scoring versionato e il suo test di compatibilità."
+    },
+    {
+      "id": "AC-027",
+      "task": "T07",
+      "gate": "G0",
+      "test": "stale-feedback",
+      "assertion": "Feedback per revisione superata è marcato STALE e non restituito come corrente",
+      "status": "PROVED_SCOPED",
+      "finding": "Testfeedback/contextC4 mantengono STALE distinto da fonteHISTORICAL. MCP reale apre l’esatta revisione senza aprire headprivata.",
+      "minimumNextStep": "CURRENT/HISTORICAL della fonte non significano validità attuale di ogni vecchia osservazione."
+    },
+    {
+      "id": "AC-028",
+      "task": "T07",
+      "gate": "G0",
+      "test": "review-provenance",
+      "assertion": "AI e controlloscientifico non diventano approvazione umana",
+      "status": "PROVED_SCOPED",
+      "finding": "Provenienza NOT_ATTESTED/DRAFT e test contro autoapprovazione restano espliciti; conferma di tutor sintetico su offerta non è approvazione scientifica/umana.",
+      "minimumNextStep": "Nessuna approvazione di un docente reale è attestata."
+    },
+    {
+      "id": "AC-029",
+      "task": "T07",
+      "gate": "G0",
+      "test": "resubmit",
+      "assertion": "Un nuovo tentativo conserva i precedenti e relativo feedback",
+      "status": "PROVED_SCOPED",
+      "finding": "Suitefeedback/concorrenzaPG C4 mantiene parent/storia/feedback precedenti e vieta forkconcorrenti; non è importautorevole di fileportabile.",
+      "minimumNextStep": "Ambito dei comandi di consegna del Core, non importazione autorevole di un artifact locale."
+    },
+    {
+      "id": "AC-030",
+      "task": "T07",
+      "gate": "G0",
+      "test": "ai-unavailable",
+      "assertion": "Flusso utile e revisionemanuale disponibili a provider spento",
+      "status": "PROVED_SCOPED",
+      "finding": "C4 usa provider deterministico e controlli manuali; attività/gestione non richiedono AIpagata. AIoff non significa offline di rete.",
+      "minimumNextStep": "Disponibilità offline di rete non è implicata da AI OFF."
+    },
+    {
+      "id": "AC-031",
+      "task": "T07",
+      "gate": "G0",
+      "test": "cost-limit",
+      "assertion": "Costo sconosciuto o budget esaurito non genera chiamate automatiche pagate",
+      "status": "PARTIAL",
+      "finding": "Il guard prodotto per prezzoUNKNOWN/budget resta testato, ma un runfactory precedente abilitò4live:2TLSfalliti+2CLIeseguiti senza telemetria; costoUNKNOWN. Le allowlist successive non cancellano l’incidente.",
+      "minimumNextStep": "Mantenere costofactoryUNKNOWN per l’incidente, consentirelive solo con opt-in esplicito e ambienteallowlist; verificarebudget prima di nuovechiamate."
+    },
+    {
+      "id": "AC-032",
+      "task": "T08",
+      "gate": "G0",
+      "test": "recall-acl",
+      "assertion": "Retrieval filtra accessi prima di mostrare estratti",
+      "status": "PROVED_SCOPED",
+      "finding": "Il bridgeufficialeMCP C4 e tre chiamateCodex verificano exactrefs/HISTORICAL conACLcorrenti prima degli estratti; nessunaheadprivata o clientInfo amplia i permessi.",
+      "minimumNextStep": "Nessun clientInfo o artifact locale espande i permessi."
+    },
+    {
+      "id": "AC-033",
+      "task": "T08",
+      "gate": "G0",
+      "test": "unattributed-event",
+      "assertion": "Errore della classe senza autore non diventa errore personale",
+      "status": "PARTIAL",
+      "finding": "Richiesta attribuzione/fonte nei testDiario persiste; manca un caso reale o test dedicato di errore collettivo senza autore.",
+      "minimumNextStep": "Aggiungere il caso negativo senza attribuire l'errore della classe a un singolo studente."
+    },
+    {
+      "id": "AC-034",
+      "task": "T08",
+      "gate": "G0",
+      "test": "source-erasure",
+      "assertion": "Rimozione/revoca fonte invalida cache e accessi ai derivati",
+      "status": "PARTIAL",
+      "finding": "Suite erasure/recovery e source revocation copre derivati logici; restore e cancellazione fisicaPG+Storage/backup non sono completamente provati end-to-end.",
+      "minimumNextStep": "Completare la prova operativa di revoca/cancellazione sul backend reale, mantenendo separata la cancellazione fisica di backup/snapshot."
+    },
+    {
+      "id": "AC-035",
+      "task": "T08",
+      "gate": "G0",
+      "test": "cold-reopen",
+      "assertion": "Browser e server riavviati ritrovano contesto e versioni persistite",
+      "status": "PROVED_SCOPED",
+      "finding": "Browser e vero processo applicativo a3 riavviati:32proiezioni autorizzate di4attori e due nuovi profili Chrome ritrovano layout, revisioni, contesti e packetJSON identici. PID34531→37977, stesso dataId/build; nessun DBrestart.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-036",
+      "task": "T08",
+      "gate": "G0",
+      "test": "morphism-laws",
+      "assertion": "Roundtrip preserva solo la proiezione dichiarata e non espande permessi",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteportabileC4 conserva esatterevisionireferenziate, perdite e hash interni; canonicalAuthenticity NOT_VERIFIED. Non enumera storia non referenziata né attribuisce ACL dalfile.",
+      "minimumNextStep": "Ambito della proiezione notebook supportata; non sincronizzazione completa o ricostruzione di storia non referenziata."
+    },
+    {
+      "id": "AC-037",
+      "task": "T09",
+      "gate": "G0",
+      "test": "calendar-mock",
+      "assertion": "Retry/pushduplicate/sync410 non duplicano né cancellano sessioni",
+      "status": "PROVED_SCOPED",
+      "finding": "JourneyHTTP/Auth/PGC4 conmockesplicito:ACKperso→retry,4mapping/eventi,410resync eCore/membership invariati. Pushduplicate/outoforder/lateACK sono regressioniCore499.",
+      "minimumNextStep": "Mock in-process, Google non configurato; snapshot max 100 e intento parziale stale richiede revisione operatore."
+    },
+    {
+      "id": "AC-038",
+      "task": "T09",
+      "gate": "G0",
+      "test": "timezone",
+      "assertion": "Ora Europe/Rome e altra timezone corrette al cambioDST",
+      "status": "PROVED_SCOPED",
+      "finding": "C4calendario verifica Europe/Rome, DSTnoncoincidenteNewYork eTokyo stessiUTC; browserNewYork rifiuta gapRome. ICSUTC eoffsetespliciti non certificano clientcalendar nativo.",
+      "minimumNextStep": "ICS UTC, non attestazione interoperabilità di un calendario nativo remoto."
+    },
+    {
+      "id": "AC-039",
+      "task": "T09",
+      "gate": "G0",
+      "test": "mcp-scopes",
+      "assertion": "ClientMCP non può accedere a altrotenant o strumenti della fabbrica",
+      "status": "PARTIAL",
+      "finding": "MCP C4 espone solo3toolread-only e bridge4attori verificaACLcorrenti. Factorytools negati sono testdefinizione/precedenteprova; nessun tenant organizzativo distinto è certificato.",
+      "minimumNextStep": "Confine implementato attore/corso; nessuna organizzazione distinta o host esterno generico viene certificato."
+    },
+    {
+      "id": "AC-040",
+      "task": "T09",
+      "gate": "G0",
+      "test": "mcp-ui-fallback",
+      "assertion": "Host senza UI riceve testo/dati autorizzati e loss/unsupported dichiarati",
+      "status": "PROVED_SCOPED",
+      "finding": "RaweventiCodex C4 mostrano testoJSON uguale a structured_content per3tool,interactiveUI=false e3lossesplicite; bridgeSDK prova gli stessi packet.",
+      "minimumNextStep": "ChatGPT/Claude e una UI MCP nativa restano UNKNOWN; il servizio non pubblica risorse MCP Apps."
+    },
+    {
+      "id": "AC-041",
+      "task": "T10",
+      "gate": "G0",
+      "test": "public-projection",
+      "assertion": "Scheda condivisibile non contiene nomi iscritti/compiti/errori",
+      "status": "PROVED_SCOPED",
+      "finding": "Proiezionepubblica e notebookACL sono nella suiteC4; bozze nuove anonime404. La scheda non pubblica roster/consegne/errori privati.",
+      "minimumNextStep": "Non rende pubbliche le fixture attraverso un export senza autenticazione."
+    },
+    {
+      "id": "AC-042",
+      "task": "T10",
+      "gate": "G0",
+      "test": "accessible-path",
+      "assertion": "Keyboard/focus/label e controlli automatici accessibilità sulle viste critiche",
+      "status": "PARTIAL",
+      "finding": "81unitWebC4 includono keyboard/layout/capability tests; nuove schermate sono pulite, ma non esiste qui Axe+focus/contrastoC4 completo per tutte le vistecritiche.",
+      "minimumNextStep": "Eseguire audit finale tastiera/focus/label/contrasto sulle viste realmente servite, senza vendere un campione come certificazione totale."
+    },
+    {
+      "id": "AC-043",
+      "task": "T10",
+      "gate": "G0",
+      "test": "mobile-path",
+      "assertion": "Schermo stretto permette consegna e review senza overflow irrecuperabile",
+      "status": "PARTIAL",
+      "finding": "Gestioneofferte e paging sono provati a390/820/1440senzaoverflow; consegna/reviewmobile completa resta campione storico e non è integralmente ripetuta dalnuovo set.",
+      "minimumNextStep": "Completare la review tutor mobile e gli error state delle form, mantenendo evidenza dei viewport."
+    },
+    {
+      "id": "AC-044",
+      "task": "T10",
+      "gate": "G0",
+      "test": "bundle-budget",
+      "assertion": "Bundle e LCPproxy misurati; strumenti pesanti non caricati sulla home",
+      "status": "PARTIAL",
+      "finding": "BuildC4 misura main217.30kB/gzip68.48 e lazychunks; nessun nuovoLCPproxyC4 numerico concoldnetwork/home, né throughput di produzione.",
+      "minimumNextStep": "Misurare LCPproxy locale finale con metodo/limiti e verificare il caricamento differito, senza assimilarlo a performance di produzione."
+    },
+    {
+      "id": "AC-045",
+      "task": "T11",
+      "gate": "G1",
+      "test": "remote-identity",
+      "assertion": "Due account distinti su staging remoto dimostrano isolamento e sessioni",
+      "status": "BLOCKED",
+      "finding": "Auth/PG/browser reali sono loopback. Dueaccountsu stagingremoto non provati: zeroextracosto non confermato mantiene BLOCKED.",
+      "minimumNextStep": "Sbloccare un ambiente remoto verificato senza costi aggiuntivi oppure ottenere la specifica autorizzazione economica; non etichettare loopback come staging remoto."
+    },
+    {
+      "id": "AC-046",
+      "task": "T11",
+      "gate": "G1",
+      "test": "worker-restart",
+      "assertion": "Crash dopo calcolo/commit non pubblica due risultati",
+      "status": "NOT_RUN",
+      "finding": "Nessun crashworker dopo calcolo/commit provato. Dispatch/admission e retrycalendar non sono una prova di quelworker.",
+      "minimumNextStep": "Provare il worker quando introdotto oppure tenerne disabilitata la capacità non attestata."
+    },
+    {
+      "id": "AC-047",
+      "task": "T11",
+      "gate": "G1",
+      "test": "backup-restore",
+      "assertion": "Ripristino DB e oggetti privati provato in ambiente separato",
+      "status": "PARTIAL",
+      "finding": "Resta PARTIAL storico: separatoDB stessaistanzaPG,4proiezioni,15oggetti recuperati/15fixture mancanti,Auth/Storage services non ricostruiti. Nessun restore nuovo audit.",
+      "minimumNextStep": "Completare restore DB+oggetti privati e servizi d'identità in ambiente realmente separato, senza promuovere la prova parziale."
+    },
+    {
+      "id": "AC-048",
+      "task": "T11",
+      "gate": "G1",
+      "test": "deployment-scope",
+      "assertion": "Repo/root/SHA/domain/regioni e costi sono effettivamente confermati",
+      "status": "BLOCKED",
+      "finding": "C4SHA/root/runtime/build sono identificati; domain/region/costi remoti e deploymentrollback non confermati, quindiBLOCKED.",
+      "minimumNextStep": "Eseguire il preflight remoto entro vincolo economico e una ricevuta dominio/regioni/rollback; altrimenti mantenere il limite esplicito."
+    },
+    {
+      "id": "AC-049",
+      "task": "T09",
+      "gate": "G1",
+      "test": "calendar-authorized",
+      "assertion": "Prova Google su calendario autorizzato oppure capability pubblicamente disabilitata e limite riportato",
+      "status": "PROVED_SCOPED",
+      "finding": "RunnerCalendarC4 hashverificato controlla capabilities GoogleNOT_CONFIGURED e targetgoogle501; mock/ICS e limitiADR sono dichiarati. Non è prova Google/OAuth/watch/inviti.",
+      "minimumNextStep": "Non è un test Google live, OAuth, watch, inviti o native calendar interoperability."
+    },
+    {
+      "id": "AC-050",
+      "task": "T09",
+      "gate": "G1",
+      "test": "mcp-real-host",
+      "assertion": "Almeno host/scopo dichiarato realmente testato; gli altri restano non certificati",
+      "status": "PROVED_SCOPED",
+      "finding": "Tre reali chiamateMCPcompleted da hostCodex sullo stesso a3: list(limit1),contextexact,receipt. L’asserzione richiede almeno host/scopo dichiarato: PROVED_SCOPED solo per questo scopo; ChatGPT/Claude/UI nativeUNKNOWN.",
+      "minimumNextStep": "Preservare lo scopo tretoolread-onlyCodexa3; ChatGPT/Claude e MCPApps/nativeUI restanoUNKNOWN, authfilechangesNOT_AUDITED."
+    },
+    {
+      "id": "AC-051",
+      "task": "T12",
+      "gate": "G0",
+      "test": "full-course",
+      "assertion": "Tutor+10studenti+2interessati attraversano tutti gli stati con dati sintetici e API vere",
+      "status": "PARTIAL",
+      "finding": "Tutorpuòora creare/configurare/confermare viaUI; freshrace10+2 e52draft non attraversano tutti gli stati commerciali/presenza né un’intera coorte umana.",
+      "minimumNextStep": "Completare i gap del criterio e la matrice G0/REA, mantenendo distinto il corso sintetico dal pilot reale."
+    },
+    {
+      "id": "AC-052",
+      "task": "T12",
+      "gate": "G1",
+      "test": "human-review",
+      "assertion": "Tutor approva contenuti, offerta, quattrodate e modalitàsupporto; non un accountsynthetic",
+      "status": "NOT_RUN",
+      "finding": "Nessun tutor umano ha approvato contenuti/offerta/4date/supporto. Checkbox sintetico ed evaluator non soddisfano questa condizione.",
+      "minimumNextStep": "Ricevere e registrare la revisione del tutor reale sulle versioni esatte."
+    },
+    {
+      "id": "AC-053",
+      "task": "T12",
+      "gate": "G1",
+      "test": "human-ux",
+      "assertion": "Prova d’uso reale documenta ostacoli; automation non viene venduta come UXperfetta",
+      "status": "NOT_RUN",
+      "finding": "Automation e screenshot non sono un testd’uso di persone reali; ostacoliUXumani restanoNOT_RUN.",
+      "minimumNextStep": "Eseguire una sessione d'uso reale autorizzata e riportare limiti ed errori, non una valutazione perfetta."
+    },
+    {
+      "id": "AC-054",
+      "task": "T12",
+      "gate": "G2",
+      "test": "real-cohort",
+      "assertion": "Partecipanti veri e prima lezione effettiva, non lead o fixture",
+      "status": "NOT_RUN",
+      "finding": "Nessun partecipantevero/prima lezione effettiva:dataset tutto sintetico.",
+      "minimumNextStep": "Attestare G2 solo dopo gruppo e lezione reali sotto condizioni approvate."
+    },
+    {
+      "id": "AC-055",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-ai-candidate",
+      "assertion": "Una osservazione AI senza verifica resta CANDIDATE; non entra nei conteggi degli errori confermati.",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteDiarioC4 conservaAI CANDIDATE fuori da erroriconfermati; non aggiunge un servizioAIreale.",
+      "minimumNextStep": "L'AI non può convertire questa proposta in risoluzione."
+    },
+    {
+      "id": "AC-056",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-source-anchor",
+      "assertion": "Ogni osservazione ha fonte, revisione, posizione/passo ed evento realmente risolvibili per l’attore autorizzato.",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteDiarioC4 richiede fonte/revisione/posizione/evento risolvibili; bridgeMCP mostraexactrefs senza fabbricareancore.",
+      "minimumNextStep": "Ambito delle osservazioni personali create dai comandi canonici autorizzati."
+    },
+    {
+      "id": "AC-057",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-tutor-confirm",
+      "assertion": "Conferma tutor con rubrica registrata apre un thread una sola volta anche dopo retry.",
+      "status": "PROVED_SCOPED",
+      "finding": "Conferma/rubrica/idempotenza e racePG sono coperte da499; receipttransferMCP preserva rubrica dict/procedureRequired. Tutor è sintetico.",
+      "minimumNextStep": "Tutor resta sintetico nelle prove; nessun giudizio disciplinare umano implicito."
+    },
+    {
+      "id": "AC-058",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-transfer-not-lucky",
+      "assertion": "Risposta corretta casuale o ripetizione stessa domanda non risolvono il thread senza prova nuova adeguata.",
+      "status": "PROVED_SCOPED",
+      "finding": "TestC4 negano riusooriginale, altrothread/corso eprove antecedenti alla recurrence; il numero casualmente giusto non chiude il thread senza procedimento/verifica.",
+      "minimumNextStep": "La verifica riguarda quella prova, non padronanza permanente."
+    },
+    {
+      "id": "AC-059",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-recurrence",
+      "assertion": "Errore confermato dopo VERIFIED_RESOLVED riapre RECURRED conservando le prove precedenti.",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteC4 riapreRECURRED con nuovaevidenza e conserva la storia; non deduce padronanza permanente.",
+      "minimumNextStep": "Proof principalmente nei test Core finali, non un nuovo episodio clinico/didattico reale."
+    },
+    {
+      "id": "AC-060",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-contestation",
+      "assertion": "OCR/ASR errato o item ambiguo possono essere contestati e DISMISSED con motivazione e storico.",
+      "status": "PROVED_SCOPED",
+      "finding": "Contestation/DISMISSED conreason/history e sourceCheckedboolean sono testati; nessuna accuratezzaOCR/ASR è attestata.",
+      "minimumNextStep": "Nessuna accuratezza OCR/ASR è attestata da questa transizione."
+    },
+    {
+      "id": "AC-061",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-no-double-truth",
+      "assertion": "Stati derivati da eventi canonici LessonOS e rigenerabili; cache del diario non diventa seconda fonte.",
+      "status": "PROVED_SCOPED",
+      "finding": "EventjournalCore e rollback/replayC4 rimangono fonteunica; cacheUI/bindingCalendar non diventano unsecondo ledgerpedagogico.",
+      "minimumNextStep": "La cache UI sessione non è memoria durevole di autorità."
+    },
+    {
+      "id": "AC-062",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-privacy",
+      "assertion": "Studente B non vede diario o feedback di A tramite UI, API, ricerca, signed URL e MCP.",
+      "status": "PARTIAL",
+      "finding": "API/MCP/Storage neganopeer; nuovaAuthrevocata401svuotaDOMcacheprivata. CanalesignedURLapp conexpiry/revoca resta non provato/non esposto.",
+      "minimumNextStep": "Chiudere quel canale quando viene esposto e provarne gli stessi confini, senza dedurre sicurezza da un bucket infrastrutturale diverso."
+    },
+    {
+      "id": "AC-063",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-cross-course",
+      "assertion": "Lo studente A conserva il diario passando Fisica→Analisi; un nuovo tutor non riceve automaticamente la vecchia cronologia.",
+      "status": "PROVED_SCOPED",
+      "finding": "TestcareerFisica→Analisi e bridgeMCP C4 mantengono diario personale e negano nuovotutor; actualA→B→A prova UIcache su2draftfixture, non da solo l’intera storiaDiario.",
+      "minimumNextStep": "La selezione corso non espande il ruolo del docente né importa storia da un artifact locale."
+    },
+    {
+      "id": "AC-064",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-source-revoked",
+      "assertion": "Revoca o modifica della fonte invalida ogni derivato rilevante e non mostra come validi i vecchi estratti.",
+      "status": "PROVED_SCOPED",
+      "finding": "SuiteC4 invalida derivati relevanti a sourcechange/revoke e nascondeprocedureverificate revocate; nessuna revoca promessa di copie giàscaricate.",
+      "minimumNextStep": "Non promette revoca di una copia già scaricata fuori dall'autorità del Core."
+    },
+    {
+      "id": "AC-065",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-group-summary",
+      "assertion": "Il tutor assegnato distingue trend confermati e proposte; la vista condivisa non identifica i singoli studenti.",
+      "status": "PARTIAL",
+      "finding": "Tutorcandidate/confirmed distinti; manca vistatrend condivisa deidentificata conprotezione smallgroups.",
+      "minimumNextStep": "Implementare/testare la proiezione condivisa con regole anti-identificazione; non riusare il diario individuale."
+    },
+    {
+      "id": "AC-066",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-offline-idempotent",
+      "assertion": "Diario e correzione restano disponibili con AI spenta; retry non crea due osservazioni né due thread.",
+      "status": "PROVED_SCOPED",
+      "finding": "TestC4 conAIoff e retry nonduplicano osservazioni/thread; disponibilità offline di rete o browserchiuso non è attestata.",
+      "minimumNextStep": "Non equivale a disponibilità offline di rete o sincronizzazione del browser chiuso."
+    },
+    {
+      "id": "AC-067",
+      "task": "T01",
+      "gate": "G0",
+      "test": "rea-r0-observed",
+      "assertion": "R0 ha una ricevuta REA PASS con prova browser sul baseline Ardesia, artefatti hash e test collegato allo SHA.",
+      "status": "PROVED_SCOPED",
+      "finding": "Ricevuta R0 a3 root-reviewed, baseline reale conservata, nuova riapertura REA e catena di file/test/hash. Classroom è la superficie attiva; manipolazione GUI rimane storica2a e unit a3.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-068",
+      "task": "T02",
+      "gate": "G0",
+      "test": "rea-r1-external",
+      "assertion": "R1 ha un target esterno autorizzato realmente osservato con REA, contratto di identità/post-it e test integrato.",
+      "status": "PROVED_SCOPED",
+      "finding": "AFFiNE autorizzato realmente osservato e versionato; contratto fonte/vista e source/test a3 verificati. Nuove osservazioni a3 in lettura; GUI donor e2a restano storiche.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-069",
+      "task": "T06",
+      "gate": "G0",
+      "test": "rea-r2-external",
+      "assertion": "R2 ha un esempio didattico esterno realmente studiato con REA, decisione esplicita e laboratorio con test.",
+      "status": "PROVED_SCOPED",
+      "finding": "Doenet esterno reale conservato con decisione funzionale originale, laboratorio e test a3. Dataset sintetico e approvazione scientifica NOT_RUN; nessuna copia AGPL.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-070",
+      "task": "T04",
+      "gate": "G0",
+      "test": "rea-r3-external",
+      "assertion": "R3 ha un prodotto gestione corsi autorizzato realmente studiato con REA, decisione e test di capienza e calendario.",
+      "status": "PROVED_SCOPED",
+      "finding": "Moodle demo realmente studiato, nuovo gestionale a3 osservato con REA e test capienza/calendario a3:offertaesplicita e raceHTTP10+2. Fonti e limiti remoti restano dichiarati.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-071",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "rea-r8-error-journal",
+      "assertion": "R8 ha scenario esterno REA di errore/ripasso o donor equivalente, decisione e diario implementato con test.",
+      "status": "PROVED_SCOPED",
+      "finding": "Donor PrairieLearn/Numbas reale e alternativa aPassify documentata; Diario originale con test a3 e lettura corrente. Nessuna mastery o nuova contestazione scritta inferita dal replay.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-072",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-r6-comparison",
+      "assertion": "R6 confronta con REA nuova app e baseline usando prove compatibili, indicando coverage e limitazioni.",
+      "status": "PROVED_SCOPED",
+      "finding": "R6 confronta con REA baseline e versioni preservate più a3; contesti diversi, unmatched, eventi incompleti e storia2a dichiarati. Due revisioni esatte riaperte non equivalgono all’interoquaderno.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-073",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-to-code-chain",
+      "assertion": "Ogni ricevuta obbligatoria collega target/versione→Evidence→contratto→file implementato→test eseguito sullo SHA.",
+      "status": "PROVED_SCOPED",
+      "finding": "Sette ricevute collegano target/versione→envelopeoriginale→contrattoderivato→fileesattoa3→test eseguito.257inputverificati; titoli nominaliWeb corretti conAST,185refPython verificati sulla collection distinta daexecution499.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-074",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-no-block-pass",
+      "assertion": "Nessuna missione mancante, bloccata o solo documentale soddisfa G0; il validator fallisce senza receipt o prove.",
+      "status": "PROVED_SCOPED",
+      "finding": "Verificatore originale invariato e selftest effettivo rifiutano ricevute mancanti/sintetiche. G0/G1 qui sono soltanto subgateREA; i criteri globali non sono promossi.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-075",
+      "task": "T08",
+      "gate": "G1",
+      "test": "rea-r4-memory",
+      "assertion": "R4 documenta memoria/ripresa con Evidence e test sul proprio percorso; eventuali fonti chiuse limitate non sono dichiarate analizzate.",
+      "status": "PROVED_SCOPED",
+      "finding": "R4 ha donor autorizzato alternativo097 giàregistrato, apertura/ripresa del proprio percorso con riferimenti/storia esatti e test a3; Brambleoltrelogin, audio/seek e backendremoto non dichiarati provati.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-076",
+      "task": "T09",
+      "gate": "G1",
+      "test": "rea-r5-interop",
+      "assertion": "R5 prova almeno due adapter ufficiali con contratti/permessi/perdite; REA usato soltanto se tecnicamente pertinente.",
+      "status": "PARTIAL",
+      "finding": "MCP ufficiale+realCodexscope è provato; Calendar èmock/ICSnonGoogle, nativeICSinteropnonprovata. Non sono dueadapterufficiali live certificati.",
+      "minimumNextStep": "Dichiarare precisamente gli adapter e completare la prova richiesta, mantenendo disabilitate le capacità non attestate."
+    },
+    {
+      "id": "AC-077",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-measured-usefulness",
+      "assertion": "Il report R0→R6 indica comportamenti acquisiti, difetti trovati o risparmi stimati con metodo; UNKNOWN è ammesso, numeri inventati no.",
+      "status": "PROVED_SCOPED",
+      "finding": "Le sette ricevute riportano comportamenti acquisiti/difetti evitati con metodo qualitativo e time_saved_minutes=null. Coverage/UNKNOWN preservati; regexmetadataerrata individuata/corretta prima accettazione.",
+      "minimumNextStep": "Conservare scopo e provenienza; non promuovere questa prova a certificazione globale o a backend/feature esclusi."
+    },
+    {
+      "id": "AC-078",
+      "task": "T02",
+      "gate": "G0",
+      "test": "rea-fallback-decision",
+      "assertion": "Ogni vendor esterno REA non accessibile porta a due alternative comparate, target scelto equivalente per il workflow, Evidence REA autentica e test; blocco non è PASS.",
+      "status": "PARTIAL",
+      "finding": "Alternative/donorstorici preservati; completa copertura di ogni vendorinaccessibile echainC4 non provata. Visitare139entry non equivale a139reverseengineering.",
+      "minimumNextStep": "Verificare copertura completa delle sostituzioni richieste, senza usare il blocco o un punteggio senza prova come PASS."
+    },
+    {
+      "id": "AC-079",
+      "task": "T01",
+      "gate": "G0",
+      "test": "trial-ledger-no-charge",
+      "assertion": "Ogni trial autorizzato risulta interamente gratuito, senza carta/rinnovo/addebito possibile e registrato con termini/scadenza; trial non conforme rifiutato.",
+      "status": "PROVED_SCOPED",
+      "finding": "LedgerC4 NO_TRIALS_STARTED/trials[] è letto immutabile; non certifica untrialfuturo. IncidenteLLM non è oscurato come gratuitàtrial.",
+      "minimumNextStep": "Non certifica termini o gratuità di un trial futuro; registrarli prima dell'eventuale attivazione."
+    },
+    {
+      "id": "AC-080",
+      "task": "T12",
+      "gate": "G0",
+      "test": "marketing-preview-truth",
+      "assertion": "La pagina Fisica e il laboratorio funzionano realmente, form richiesta con ricevuta reale e distinzione MARKETING_PREVIEW_READY vs G0/G1; se non pronti, non pubblicizzare come pronti.",
+      "status": "PARTIAL",
+      "finding": "Pagina/lab restano locali con formsynthetic.invalid. CookieHttpOnlyrifiutato inC4 resta nelbrowser epubliccourse ritorna401 dopo revoca; propostaC5 non integrata inC4. MARKETING_PREVIEW_READY non attestata.",
+      "minimumNextStep": "IntegrareC5solo dopo freezeC4 e rieseguire veroAuthrevoke→401+cookieclear→paginaanonima; separare marketinglocale da stagingremoto/consensoreale."
+    },
+    {
+      "id": "AC-081",
+      "task": "T12",
+      "gate": "G0",
+      "test": "staging-smoke-and-rollback",
+      "assertion": "Preview/staging Vercel collegata a SHA e test reale desktop/mobile, con rollback e nessun rischio per prod o dati privati.",
+      "status": "BLOCKED",
+      "finding": "Nessun staging/previewVercel remoto, smoke/rollback a costoaggiuntivozeroverificato: fallbacklocale non sostituisce il requisito.",
+      "minimumNextStep": "Sbloccare un'opzione remota realmente autorizzata e verificata o mantenere il limite; una prova loopback non soddisfa il criterio congelato."
+    },
+    {
+      "id": "AC-082",
+      "task": "T12",
+      "gate": "G0",
+      "test": "github-shared-handoff",
+      "assertion": "RUNLOG/STATE/DECISIONS/TRIALS sanificati pubblicati su branch/PR GH; monitor ChatGPT orario documentato, findings triagati con SHA e test.",
+      "status": "PARTIAL",
+      "finding": "HandoffstoricoGH/PR preservato; STATE nelblobC4 descrive2a e monitororario/findingcompleto non interamenteattestati. Questo audit non pubblica oaggiorna metadaticanonici.",
+      "minimumNextStep": "Aggiornare il solo handoff/provenienza dopo review della proposta; non attribuire al monitor consegna o push non osservati."
+    },
+    {
+      "id": "AC-083",
+      "task": "T04",
+      "gate": "G0",
+      "test": "online-autonomy-no-billing",
+      "assertion": "Operazioni online autorizzate non creano nuove fatturazioni; prova su policy e saldo; nessuna conversione o acquisto automatico.",
+      "status": "BLOCKED",
+      "finding": "Remoto rimaneBLOCKEDperzeroextracosto nonprovato; costofactoryincidente4live UNKNOWN. apiSpendUsd0 prodotto non è bilancio globale o saldo.",
+      "minimumNextStep": "Non fare deploy per aggirare il vincolo; confermare condizioni economiche o ottenere autorizzazione specifica."
+    },
+    {
+      "id": "AC-084",
+      "task": "T01",
+      "gate": "G0",
+      "test": "public-repo-license-scan",
+      "assertion": "Prima di cambiare visibilità repo o condividere build, licenze, segreti, manuali e asset auditati; altrimenti repo privato e preview sanificata.",
+      "status": "PARTIAL",
+      "finding": "Raw/fonti/private/segreti restano fuori dai deliverablecitati; auditlicenze/secret/provenienzacompleto dell’interabuildC4 non è allegato né eseguito qui.",
+      "minimumNextStep": "Completare il controllo della superficie da condividere prima di cambiare visibilità o pubblicare una nuova build."
+    },
+    {
+      "id": "AC-085",
+      "task": "T12",
+      "gate": "G0",
+      "test": "wed-21-readiness-receipt",
+      "assertion": "Checkpoint mercoledì 21 ottobre 2026 sera con stato marketing, link funzionanti, test, blocchi, prossimo passo; scadenza non converte NOT_RUN in PASS.",
+      "status": "NOT_RUN",
+      "finding": "Checkpoint21ottobre2026seraEurope/Rome ancora futuro. Nessuna scadenza o report20ottobre converteNOT_RUNinPASS.",
+      "minimumNextStep": "Produrre al momento dovuto stato, link verificati, test, blocchi e prossimo passo; la scadenza non promuove NOT_RUN."
+    }
+  ]
+}

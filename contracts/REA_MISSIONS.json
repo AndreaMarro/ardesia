@@ -1,0 +1,174 @@
+{
+  "schema": "ardesia.rea-mission-plan/4",
+  "is_rea_cli_request": false,
+  "status": "NOT_RUN",
+  "missions": [
+    {
+      "id": "R0",
+      "task": "T01",
+      "targets": [
+        "TARGET-094",
+        "TARGET-095"
+      ],
+      "objective": "Baseline Ardesia propria",
+      "scenario": "Aprire lezione → nota/immagine → esportare → riaprire pulito",
+      "required_artifacts": "Scenario/DOM/canvas/stato semantico, SHA e log",
+      "boundary": "Nessun riferimento a studenti reali; prima baseline poi nuovo prodotto",
+      "status": "NOT_RUN",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": false,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R1",
+      "task": "T02",
+      "targets": [
+        "TARGET-096",
+        "TARGET-097",
+        "TARGET-099"
+      ],
+      "objective": "Post-it, risorsa e contesto",
+      "scenario": "Creare carta → collegarla a due viste → modificare fonte → riaprire",
+      "required_artifacts": "Identity and revision graph, view mappings, conflict/undo behavior",
+      "boundary": "Account installazione autorizzata; niente bundleproprietario nella PR",
+      "status": "NOT_RUN",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": true,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R2",
+      "task": "T06",
+      "targets": [
+        "TARGET-001",
+        "TARGET-002",
+        "TARGET-109",
+        "TARGET-047"
+      ],
+      "objective": "Attività e feedback",
+      "scenario": "Previsione → manipolazione → aiuto → audio/ragionamento → nuovo tentativo",
+      "required_artifacts": "Model/control/state contract e feedback anchors",
+      "boundary": "Non ottenere chiavi nascoste o copiare quesiti riservati",
+      "status": "NOT_RUN",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": true,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R3",
+      "task": "T04",
+      "targets": [
+        "TARGET-021",
+        "TARGET-022",
+        "TARGET-107",
+        "TARGET-051"
+      ],
+      "objective": "Corso e spazi individuali",
+      "scenario": "Creare 4date → iscrizione → posto10 → attesa → consegne → rubrica",
+      "required_artifacts": "Edition lifecycle, visibility, booking and assignment specification",
+      "boundary": "Nessun pagamento/invito reale sul vendor senza autorizzazione",
+      "status": "NOT_RUN",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": true,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R4",
+      "task": "T08",
+      "targets": [
+        "TARGET-003",
+        "TARGET-004",
+        "TARGET-105"
+      ],
+      "objective": "Memoria e ripresa",
+      "scenario": "Cercare fonte → tornare al segmento → correggere lettura → rientrare",
+      "required_artifacts": "Timeline/source anchors e invalidazione",
+      "boundary": "Solo media sintetici o espressamente consentiti",
+      "status": "NOT_RUN",
+      "gate": "G1",
+      "receipt_mandatory": true,
+      "requires_external_observation": false,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R5",
+      "task": "T09",
+      "targets": [
+        "TARGET-121",
+        "TARGET-130",
+        "TARGET-098"
+      ],
+      "objective": "Interoperabilità",
+      "scenario": "Leggere scope → preview operazione → confermare → retry → revocare",
+      "required_artifacts": "Contract manifest, losses, capability fallback",
+      "boundary": "Versioni API/SDK e ID restituiti veri, nessun tokenpassthrough",
+      "status": "NOT_RUN",
+      "gate": "G1",
+      "receipt_mandatory": false,
+      "requires_external_observation": false,
+      "pass_condition": "OFFICIAL_API_CONTRACT_AND_INTEGRATION_TEST"
+    },
+    {
+      "id": "R6",
+      "task": "T12",
+      "targets": [
+        "TARGET-094",
+        "TARGET-095"
+      ],
+      "objective": "Confronto sul prodotto nuovo",
+      "scenario": "Eseguire l’intero corso sintetico e confrontare con baseline",
+      "required_artifacts": "Acceptance receipt su build, non sola somiglianza grafica",
+      "boundary": "Normalize solo volatilità dichiarate, non differenze semantiche",
+      "status": "NOT_RUN",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": false,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST"
+    },
+    {
+      "id": "R7",
+      "task": "P2-KIRCHHOFF",
+      "targets": [
+        "TARGET-060",
+        "TARGET-063",
+        "TARGET-064",
+        "TARGET-065",
+        "TARGET-091"
+      ],
+      "objective": "Kirchhoff coerente",
+      "scenario": "Schema → passo → confronto formule/diagramma → caso alternativo",
+      "required_artifacts": "StudentTrace contract e numerical witness comparison",
+      "boundary": "Nessuna claim di tutte le famiglie; oracoli con dipendenze esplicite",
+      "status": "NOT_RUN",
+      "gate": "P2",
+      "receipt_mandatory": false,
+      "requires_external_observation": false,
+      "pass_condition": "AFTER_G1_SCOPED_CIRCUIT_DOMAIN"
+    },
+    {
+      "id": "R8",
+      "task": "T07B",
+      "targets": [
+        "TARGET-042",
+        "TARGET-008",
+        "TARGET-100",
+        "TARGET-051",
+        "TARGET-048",
+        "TARGET-047"
+      ],
+      "objective": "Diario errori individuale con provenienza, correzione, contestazione, ripasso e prova di trasferimento",
+      "scenario": "Prodotto accessibile: sbaglia un passaggio, ricevi feedback, modifica fonte, prova un esercizio diverso, riapri il diario; confronta con LessonOS learningDebtProjection",
+      "required_artifacts": "Cattura REA, stato/schemi del diario, collegamento errore→prova nuova, impl+test su Ardesia, perimetro noto, receipt autenticabile",
+      "boundary": "Progetto OSS/demo autorizzato se prodotto chiuso inaccessibile. Non scaricare quiz proprietari né dati di studenti reali",
+      "gate": "G0",
+      "receipt_mandatory": true,
+      "requires_external_observation": true,
+      "pass_condition": "REAL_REA_CAPTURE_PLUS_IMPLEMENTATION_AND_TEST",
+      "status": "NOT_RUN"
+    }
+  ]
+}

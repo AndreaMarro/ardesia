@@ -17,6 +17,7 @@ node_modules/
 __pycache__/
 *.pyc
 dist/
+dist-public/
 .nx/
 .vercel/
 
@@ -35,3 +36,6 @@ output/playwright/
 test-results/
 playwright-report/
 .vercel
+
+# Isolated synthetic study runtime, sessions and original uploads.
+.study-demo/

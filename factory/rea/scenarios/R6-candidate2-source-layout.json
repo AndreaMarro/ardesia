@@ -1,0 +1,201 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5354",
+    "target_id": "690BD383D1B8DD97082E966F8FA5B20C"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5321/?view=classroom"
+  },
+  "environment": {
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "classroom-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".source-board"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "write-original-baseline-text",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Traccia o spiegazione"
+      },
+      "value": {
+        "source": "literal",
+        "value": "REA R0 — area: 1 cm² = 0,0001 m²."
+      }
+    },
+    {
+      "step_id": "publish-dedicated-source",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Pubblica al gruppo"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "canonical-source-in-library",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "aside.board-library li:has-text(\"REA R0 — area\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "open-first-view",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "aside.board-library li:has-text(\"REA R0 — area\") button"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "first-view-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "article.source-board-view:has-text(\"REA R0 — area\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "duplicate-view",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "article.source-board-view:has-text(\"REA R0 — area\") button[aria-label^=\"Duplica vista\"]"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "two-independent-views",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ":nth-match(article.source-board-view:has-text(\"REA R0 — area\"), 2)"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "table-representation",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Tavolo"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "move-copy-by-keyboard",
+      "action": "press",
+      "locator": {
+        "kind": "css",
+        "selector": ":nth-match(article.source-board-view:has-text(\"REA R0 — area\"), 2) .board-view-handle"
+      },
+      "key": "ArrowRight"
+    },
+    {
+      "step_id": "resize-copy-by-keyboard",
+      "action": "press",
+      "locator": {
+        "kind": "css",
+        "selector": ":nth-match(article.source-board-view:has-text(\"REA R0 — area\"), 2) .board-view-handle"
+      },
+      "key": "Shift+ArrowRight"
+    },
+    {
+      "step_id": "dirty-layout-explicit",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "[data-testid=\"board-save-state\"]:has-text(\"non salvate\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "save-exact-layout",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Salva disposizione"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "layout-persisted",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "[data-testid=\"board-save-state\"]:has-text(\"Disposizione salvata\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "reopen-classroom",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5321/?view=classroom"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 20000
+    },
+    {
+      "step_id": "two-views-recovered",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ":nth-match(article.source-board-view:has-text(\"REA R0 — area\"), 2)"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "network",
+      "page-errors"
+    ],
+    "network": {
+      "response_body": true
+    },
+    "limits": {
+      "max_network_body_bytes": 2097152
+    }
+  }
+}

@@ -186,6 +186,7 @@ def test_eval_real_missing_path_json_returns_1(tmp_path) -> None:
     assert "no path.json" in stderr.getvalue()
 
 
+@pytest.mark.live_model
 @pytest.mark.skipif(
     not _HAS_LIVE_KEY,
     reason="no DEEPSEEK/KIMI key available (env or .env) — live eval would raise",
@@ -219,6 +220,7 @@ def test_eval_real_live_flag_parses() -> None:
         ), f"Unexpected error: {stderr.getvalue()}"
 
 
+@pytest.mark.live_model
 @pytest.mark.skipif(
     not _HAS_LIVE_KEY,
     reason="no DEEPSEEK/KIMI key available (env or .env) — live eval would raise",

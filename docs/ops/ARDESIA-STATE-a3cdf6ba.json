@@ -1,0 +1,216 @@
+{
+  "observed_at": "2026-10-20T06:15:39.325770+00:00",
+  "sha": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "sha_semantics": "Exact frozen C4 product source. This metadata commit is later and does not relabel executions. Successors C5/C6 are separate until independently verified and integrated.",
+  "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
+  "statuses": {
+    "G0": "IN_PROGRESS_NOT_CERTIFIED",
+    "G1": "NOT_READY",
+    "G2": "NOT_RUN",
+    "MARKETING_PREVIEW_READY": "NOT_READY",
+    "core_api": "499_PASS_0_SKIP_REAL_LOCAL_PG_AUTH_RLS_PRIVATE_STORAGE",
+    "engine": "2427_PASS_24_SKIP_3_WARNINGS_ENV_ALLOWLIST",
+    "web": "81_PASS_TYPECHECK_BUILD_PASS",
+    "rea": "SEVEN_RECEIPTS_ORIGINAL_G0_G1_SUBGATES_PASS_ONLY"
+  },
+  "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
+  "verification": {
+    "core_api": {
+      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "passed": 499,
+      "skipped": 0,
+      "seconds": 39.47,
+      "log_sha256": "d1246dcbef6108669a2ac4aae1b261971a499ed08612cb165669b1c418588d90"
+    },
+    "engine": {
+      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "passed": 2427,
+      "skipped": 24,
+      "warnings": 3,
+      "seconds": 49.75,
+      "provider_keys_inherited": false,
+      "log_sha256": "06e1d749ee85e0ffda19ea699ec8990013337999934ff7f7dc6eed9d83c423cd"
+    },
+    "web": {
+      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "passed": 81,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "tests_log_sha256": "82115c1ada9154ce372147ec7c9976f5995ae981415d50d8d8eb1ea4a1ca688f"
+    },
+    "management_browser": {
+      "packs": 2,
+      "widths": [
+        390,
+        820,
+        1440
+      ],
+      "screenshots": 8,
+      "report_sha256": "92cabe6e60d9e5614da22d3740d56ea25a1095f50a4103e82c7b82e1a2748f49"
+    },
+    "bounded_discovery": {
+      "new_private_drafts": 52,
+      "max_combo_options": 51,
+      "shared_qa_accounts_untouched": 14,
+      "new_auth_accounts_deleted": 4,
+      "report_sha256": "f84babba33dcca3d9be82de866cc163161631a4a443fec912493d7083ee28d32"
+    },
+    "fresh_capacity": {
+      "confirmed": 10,
+      "waiting": 2,
+      "active_holds": 0,
+      "http_race_statuses": [
+        409,
+        200
+      ],
+      "wire_overlap_measured": false,
+      "report_sha256": "9e960379f775f132517bc4f5c4383a01c14c5c3aa05d487c05f960d0f22880d9"
+    },
+    "cold_restart": {
+      "pids": [
+        34531,
+        37977
+      ],
+      "actors": 4,
+      "projections": 32,
+      "fresh_chrome_profiles": 2,
+      "database_restart": false,
+      "report_sha256": "647f09a3c39b463cfe0ccadd791313f83c3709a73c8dabfab2224dab2a56ee5a"
+    },
+    "calendar": {
+      "provider": "EXPLICIT_IN_PROCESS_MOCK_NOT_GOOGLE",
+      "report_sha256": "9f46fb00599f502deb2e234f5c83b97ab6fea77fb7a5c53d583f60995dd2acdd"
+    },
+    "mcp": {
+      "bridge_checks": 20,
+      "codex_actual_tools": [
+        "course.list_mine",
+        "lesson.get_context",
+        "submission.get_receipt"
+      ],
+      "ChatGPT": "UNKNOWN",
+      "Claude": "UNKNOWN",
+      "interactive_ui": false,
+      "host_report_sha256": "b9c30375432c88d36f41c3bfe1131957333d676e293a7aa67e2799990469b840"
+    },
+    "runtime_demo": {
+      "seconds": 37.84,
+      "chapters": 10,
+      "uncut_actual_recording": true,
+      "sha256": "04eb4a97f005f7e060ac499317ad03b1d52c21c8dbab5f3c69228ed0d7a415f3"
+    },
+    "restore": {
+      "status": "PARTIAL",
+      "storage_restored": 15,
+      "fixture_objects_missing": 15,
+      "auth_storage_services_rebuilt": false
+    },
+    "acceptance": {
+      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "counts": {
+        "PARTIAL": 28,
+        "PROVED_SCOPED": 47,
+        "NOT_RUN": 6,
+        "BLOCKED": 4
+      },
+      "register_sha256": "2e875ea3b8bc3235bfc4542f6642a6586a9d4b8e415d18ffe9dc07df9ef638a8",
+      "register_unmodified": true,
+      "public_report": "docs/ops/ARDESIA-V4-ACCEPTANCE-a3cdf6ba.json"
+    },
+    "ci": {
+      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "status": "ALL_LISTED_CHECKS_SUCCESS",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39373146216",
+      "CodeRabbit": "DRAFT_SKIP_NOT_REVIEW"
+    }
+  },
+  "rea": {
+    "version": "6.7.0",
+    "catalog_targets": 139,
+    "entry_visits": 139,
+    "catalog_limit": "139_ENTRY_VISITS_NOT_139_COMPLETE_REVERSE_ENGINEERINGS",
+    "receipt_source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+    "receipts": {
+      "R0": "08344a92e45a2db5e7341ed989c138d8c0ef4aa21c2326c27599b56556f6378c",
+      "R1": "0903cce62e78661487635aed85c5b7ac5209a5086a76a87561a8fd399086dedf",
+      "R2": "cfa5223a409e9413de79365cb273e668c65540ed4ad992827fdc50cddbf8dc7c",
+      "R3": "385abfa5a8e00578efacadaafd29c0300d3c84ca7ff183e0d9949273911e72e3",
+      "R8": "5718f77532bce91d400fd404b8f9b4d38ec82e59eb50217c43c8992ee311c29b",
+      "R6": "6d657cc5b4831b4613eca824dab81bbf29f9895bf852336b4439170ba3b208b8",
+      "R4": "53b5b6d47e24d76f17e0fcff4903eae436c9f1c2541cd5fc6b903063c876301b"
+    },
+    "original_inputs": 257,
+    "original_bytes": 369461967,
+    "authentic_envelopes": 148,
+    "new_a3_envelopes": 33,
+    "G0": "PASS_REA_SUBGATE_ONLY",
+    "G1": "PASS_REA_SUBGATE_ONLY",
+    "network_equality": "INCOMPLETE_NOT_ELIGIBLE",
+    "policy_changed": false,
+    "raw_artifacts": "PRIVATE_IGNORED_NOT_PUBLIC_GIT",
+    "review": "ROOT_AST_AND_ACTUAL_PYTEST_COLLECTION_INDEPENDENT_METADATA_REVIEW"
+  },
+  "runtime": {
+    "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+    "origin": "http://127.0.0.1:5324",
+    "dataId": "05f4a05edde66bab",
+    "synthetic": true,
+    "processId": 37977
+  },
+  "infrastructure": {
+    "local_supabase": "OWNED_LOOPBACK_ONLY_SCHEMA4_MIGRATIONS11",
+    "vercel": "EXISTING_PRO_WORKSPACE_ZERO_ADDITIONAL_COST_UNVERIFIED_LOCAL_FALLBACK"
+  },
+  "operational_incidents": {
+    "python_redirection": "ZERO_APPENDED_BYTES_VERIFIED_EXIT137_CAUSE_UNKNOWN",
+    "earlier_live_engine": {
+      "tests_enabled": 4,
+      "visible_tls_failures": 2,
+      "cli_provider_outcome_not_retained": 2,
+      "provider_calls_and_cost": "UNKNOWN",
+      "remediation": "EXPLICIT_RUN_LIVE_MODELS_FLAG_AND_ENV_ALLOWLIST",
+      "default_guard": "4_SKIPPED_ZERO_CONNECTIONS_NOT_FOUR_PASS"
+    }
+  },
+  "successors": {
+    "C5": {
+      "source_commit": "ffa8710010716220de30902062fcfe7cd22a92e7",
+      "status": "ACTUAL_AUTH_PG_BROWSER_PREINTEGRATION_VERIFIED_NOT_YET_INTEGRATED",
+      "independent_checks": 52,
+      "temporary_server": "5325_CLOSED",
+      "new_auth_fixture": "DELETED_BINDINGS_ZERO_CORE_PRINCIPAL_RETAINED"
+    },
+    "C6": {
+      "status": "INDEPENDENT_500_RESPONSE_LIFETIME_FINDING_REPRODUCED_FIX_IN_PROGRESS",
+      "first_candidate": "94670baafe836864f9c83f0e6e051f2116345fd9",
+      "integrated": false
+    }
+  },
+  "architecture": "docs/adr/ADR-0006-change-tolerance-and-growth.md",
+  "historical_state": "docs/ops/ARDESIA-STATE-2a654879.json",
+  "deploys": [],
+  "trials": [],
+  "merged": false,
+  "blockers": [
+    "Human scientific/date/pilot/UX approvals not run",
+    "Independent full Auth/Storage restore PARTIAL",
+    "Zero-added-cost remote preview/rollback not verified; local fallback",
+    "AC-085 is due 2026-10-21 evening Europe/Rome, not yet certifiable",
+    "Global principal role; organization membership model not implemented",
+    "Workspace/submissions unpaged; calendar teacher scan; no unlimited scale claim",
+    "A3 rejected cookie may block public page; C5 successor separately verified",
+    "Earlier live CLI calls/cost UNKNOWN"
+  ],
+  "next_actions": [
+    "Integrate C5 after this immutable C4 metadata handoff",
+    "Integrate C6 only after new frozen fix and independent verification",
+    "Keep source-specific evidence and original acceptance requirements unchanged",
+    "Continue G0 gaps and G1 independent attendance/administration slices in one Core"
+  ],
+  "monitor": {
+    "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",
+    "last_verified_github_delivery": "2026-10-20T00:04Z",
+    "new_review_comments": "NONE_ONLY_CODERABBIT_DRAFT_SKIP",
+    "duplicate_automation_created": false
+  }
+}

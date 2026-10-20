@@ -1,0 +1,107 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "7BB74F3B00FE8A0F92B21CD466FAD362"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5321/"
+  },
+  "environment": {
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "open-materials",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Materiali"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "material-list-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".material-list li:first-child button"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "open-existing-source",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": ".material-list li:first-child button"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "original-revision-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".source-viewer .original-text"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "show-source-provenance",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "summary:has-text(\"Fonte, versione e contesto\")"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "recall-existing-context",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Apri il contesto di lavoro"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "context-observed",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".context-results"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ],
+    "limits": {
+      "max_network_body_bytes": 262144
+    }
+  }
+}

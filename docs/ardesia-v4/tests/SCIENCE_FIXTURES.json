@@ -1,0 +1,58 @@
+{
+  "synthetic": true,
+  "editorial_status": "DRAFT_REQUIRES_TEACHER_REVIEW",
+  "model_assumptions": [
+    "Newtonian fluid",
+    "steady laminar flow",
+    "cylindrical tube",
+    "positive radius viscosity length"
+  ],
+  "cases": [
+    {
+      "name": "r_double_pressure_fixed",
+      "mode": "pressure_fixed",
+      "r_ratio": 2.0,
+      "length_ratio": 1.0,
+      "viscosity_ratio": 1.0,
+      "expected_flow_ratio": 16.0
+    },
+    {
+      "name": "r_length_double_flow_fixed",
+      "mode": "flow_fixed",
+      "r_ratio": 2.0,
+      "length_ratio": 2.0,
+      "viscosity_ratio": 1.0,
+      "expected_pressure_ratio": 0.125
+    },
+    {
+      "name": "r_120percent_pressure_fixed",
+      "mode": "pressure_fixed",
+      "r_ratio": 1.2,
+      "length_ratio": 1.0,
+      "viscosity_ratio": 1.0,
+      "expected_flow_ratio": 2.0736
+    },
+    {
+      "name": "viscosity_double_flow_fixed",
+      "mode": "flow_fixed",
+      "r_ratio": 1.0,
+      "length_ratio": 1.0,
+      "viscosity_ratio": 2.0,
+      "expected_pressure_ratio": 2.0
+    }
+  ],
+  "analysis_example": {
+    "expression": "(sin(x)-x)/x^3",
+    "limit_at": 0,
+    "expected": -0.16666666666666666,
+    "method": "Taylor ordine 3 con resto o(x^3)",
+    "status": "ORIGINAL_EXAMPLE_NOT_PRODUCT_TEST"
+  },
+  "assessment_profile": {
+    "status": "DRAFT_NOT_NORMATIVELY_CERTIFIED_THIS_SESSION",
+    "correct_tenths": 10,
+    "wrong_tenths": -1,
+    "omitted_tenths": 0,
+    "note": "Profilo di calcolo isolato, non lode/graduatoria; verificare fonte prima del claim ufficiale."
+  }
+}

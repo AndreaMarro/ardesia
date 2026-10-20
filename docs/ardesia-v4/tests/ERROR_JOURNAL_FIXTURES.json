@@ -1,0 +1,19 @@
+{
+  "schema": "ardesia.error-journal-fixtures/4",
+  "synthetic_only": true,
+  "status": "SPEC_ONLY_NOT_RUN",
+  "cases": [
+    {"id": "EJ-01", "name": "AI proposes, no confirmed error", "events": ["error.proposed"], "expected_status": "CANDIDATE", "expected_behavior": "Not listed in teacher-confirmed error totals"},
+    {"id": "EJ-02", "name": "Teacher confirms a source-bound observation", "events": ["error.proposed", "error.confirmed"], "expected_status": "OPEN", "expected_behavior": "Same source revision and attempt anchor; one thread"},
+    {"id": "EJ-03", "name": "A lucky retry is not proof", "events": ["error.confirmed", "error.transfer_attempted"], "expected_status": "PRACTISING", "expected_behavior": "Correct final number alone does not close thread"},
+    {"id": "EJ-04", "name": "Transfer verified", "events": ["error.confirmed", "error.transfer_attempted", "error.transfer_verified"], "expected_status": "VERIFIED_RESOLVED", "expected_behavior": "Distinct task and evidence of reasoning, human or scoped verifier approval"},
+    {"id": "EJ-05", "name": "Recurrence after verification", "events": ["error.confirmed", "error.transfer_attempted", "error.transfer_verified", "error.recurred"], "expected_status": "RECURRED", "expected_behavior": "Previous attempt not overwritten and next remedial action shown"},
+    {"id": "EJ-06", "name": "Transcription error rejected", "events": ["error.proposed", "error.dismissed"], "expected_status": "DISMISSED", "expected_behavior": "Reason and correction recorded; false-positive excluded"},
+    {"id": "EJ-07", "name": "Question ambiguous", "events": ["error.proposed", "error.dismissed"], "expected_status": "DISMISSED", "expected_behavior": "Source ambiguity addressed before penalizing student"},
+    {"id": "EJ-08", "name": "Idempotency", "events": ["error.confirmed", "error.confirmed"], "expected_status": "OPEN", "expected_behavior": "Same idempotency key does not duplicate observation/thread"},
+    {"id": "EJ-09", "name": "No AI available", "events": ["error.confirmed", "error.transfer_attempted"], "expected_status": "PRACTISING", "expected_behavior": "Manual tutor review continues with zero provider calls"},
+    {"id": "EJ-10", "name": "Cross-course portability", "events": ["error.confirmed", "course.changed"], "expected_status": "OPEN", "expected_behavior": "Student retains diary in Analisi, other teacher does not inherit access"},
+    {"id": "EJ-11", "name": "Revoked source", "events": ["error.confirmed", "source.revoked"], "expected_status": "OPEN", "expected_behavior": "Current visible diary hides revoked source, marks evidence unavailable, invalidates derived model"},
+    {"id": "EJ-12", "name": "Cross-student negative", "events": ["error.confirmed", "student_b.unauthorized_read"], "expected_status": "OPEN", "expected_behavior": "Student B receives 403/404 and no signed storage URL, no diary disclosure"}
+  ]
+}

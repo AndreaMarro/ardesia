@@ -1,0 +1,119 @@
+{
+  "target": "TARGET-082",
+  "status": "FROZEN_HASH_AND_EXACT_191B_METHOD_REVIEW_PASSED_WITH_LIMITS",
+  "checkedFiles": 139,
+  "checkedBytes": 21393980,
+  "originalEvidence": [
+    {
+      "path": "history-feature.evidence.json",
+      "evidenceId": "ev_4d0ab46259f0f49befbe5625b747bbfb42dc3b003b7ab56313b5a75842fc46e0"
+    },
+    {
+      "path": "history-semantic.evidence.json",
+      "evidenceId": "ev_fa57f44a02b5f55c1461b27756536537cb8edc01adb1ee2ef2f4c1520c0f33c8"
+    },
+    {
+      "path": "isolated-v2-read-1440.evidence.json",
+      "evidenceId": "ev_9261313ae38c5325275bff49b873978e8fed5d40014bce991ce1809d6789019f"
+    },
+    {
+      "path": "isolated-v2-read-390.evidence.json",
+      "evidenceId": "ev_668f8e7d61ec12eeaabb589479b7044c708ffe326fcef05ac4d813b8eb38961b"
+    },
+    {
+      "path": "navigation-execution.evidence.json",
+      "evidenceId": "ev_554af490822f8e319596feeeda3891c48b2f265673b6a229ac215dcb202fb8d1"
+    },
+    {
+      "path": "official-entry.evidence.json",
+      "evidenceId": "ev_528a544ef47e832582ed70ac4c6219fd340f2615fdf09acc72f5c34309983b8b"
+    },
+    {
+      "path": "original-v1-fresh-reopen.evidence.json",
+      "evidenceId": "ev_d46def6b3d47fb9ec98d9ea3d3e5c5904db7b5766b647dc43d2ff1098bdb055b"
+    },
+    {
+      "path": "original-v1-navigate-find.evidence.json",
+      "evidenceId": "ev_a9102b8a2152071fe237747034b0e8439a2d791a40ffba380be46f0ca0d77e08"
+    },
+    {
+      "path": "original-v1-open.evidence.json",
+      "evidenceId": "ev_fe9c67fa069c3ef90309a87cbdf2846697565b7db424a2552073fa9457b3ba83"
+    },
+    {
+      "path": "original-v1-rotate.evidence.json",
+      "evidenceId": "ev_8d61bac3f111501d93a1e8e6ad381af284c20ee9970edb1911bba5067bed87aa"
+    },
+    {
+      "path": "original-v1-rotated-observe.evidence.json",
+      "evidenceId": "ev_31f270dc4e6cfe5fc89bc1cc7d0ce62362890e83d71a13e0c1d7cdb9cb033e08"
+    },
+    {
+      "path": "original-v2-aligned-observe.evidence.json",
+      "evidenceId": "ev_3857fb2880b03c4e3305cc28e421ebae370e29118cdd8c2bce496936bd8cc39f"
+    },
+    {
+      "path": "original-v2-mobile-fit-observe.evidence.json",
+      "evidenceId": "ev_d9ba3841c55c5c7d25ae73b218d0ca09118bde16c17801cc12a1cef61a0f4136"
+    },
+    {
+      "path": "original-v2-mobile-upright.evidence.json",
+      "evidenceId": "ev_63cc0611d6015c8fd70595cb171a45f44e97305467932e3d178cd8fa83fc32dc"
+    },
+    {
+      "path": "original-v2-reading-focus.evidence.json",
+      "evidenceId": "ev_53f36ffdd2853ea449b229c96a5e55e75024a498ee435bbdbb5a3cdfbffaadc7"
+    },
+    {
+      "path": "original-v2-revised-explanation.evidence.json",
+      "evidenceId": "ev_95c5cd045c258154d240fefd5b25cab8f0372aca54c2444421fa5b76bfb72ee0"
+    },
+    {
+      "path": "runtime-export.evidence.json",
+      "evidenceId": "ev_342aea96311eaa19980f9a671a05c2fe79b9e23cda09e843b80676afcc626627"
+    },
+    {
+      "path": "runtime-inspect.evidence.json",
+      "evidenceId": "ev_63c1855ebaf6c4818665cbef531215ea92c2110db4cc9622427284a981e6d082"
+    },
+    {
+      "path": "runtime-reconcile-v2.evidence.json",
+      "evidenceId": "ev_05044bf3c2a5b53a14f67fe807a4c8477643a9619f3238905044b86ffbf0d3e0"
+    },
+    {
+      "path": "source.application.evidence.json",
+      "evidenceId": "ev_f141d93f31110e57737ffa1a0b8661b0678c4eba20e150fd9889174fd4c1c698"
+    },
+    {
+      "path": "v1-v2-compare.evidence.json",
+      "evidenceId": "ev_c8ca4f2b665eacebb5f0284e9af3135a8577fd42fe76b8540b97a112fdb33ab5"
+    }
+  ],
+  "exactMethodMatches": [
+    {
+      "utf16Range": [
+        586010,
+        586201
+      ],
+      "executionCount": 6,
+      "bytes": 191,
+      "sha256": "f30c647a1adc99f52293d1ad917a1a7ded2d7202767c197bddaccd57628ede7a",
+      "pinnedSubstringOccurrences": 1
+    }
+  ],
+  "coreLicenseHash": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+  "researchSha256": "32bf6efc70ebe7eaadb4f6dd992caa652c3283b67e7677b64807433303200207",
+  "freezeSha256": "1f9af827d2427134b7a4cf053f24e215761c267cd269a9f89bc6addb2e746834",
+  "productIntegration": false,
+  "productTestExecutionByRoot": false,
+  "fullSemanticEquality": false,
+  "limits": [
+    "Two software pins npm6.4.299 and deployed6.5.260 remain distinct.",
+    "Only one191B method source matched; no whole-bundle equivalence.",
+    "V8 counts are internal calls, not extra user actions.",
+    "Raw reconcile UNKNOWN and failed/incomplete/cancelled captures remain unchanged.",
+    "Core Apache license review does not clear transitives/fonts/worker assets.",
+    "Renderer prototype082-ADAPTER is separate and not reviewed here.",
+    "No Ardesia ACL, pedagogical outcome, performance or library installation certified."
+  ]
+}

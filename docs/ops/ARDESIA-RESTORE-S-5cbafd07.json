@@ -1,0 +1,484 @@
+{
+  "schema": "ardesia-known-complete-independent-restore-S/v1",
+  "runId": "s20261020t0634",
+  "status": "PROVED_SCOPED_SYNTHETIC_LOGICAL_FULL_STACK_RESTORE",
+  "productCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "productSource": {
+    "status": "PASS_SCOPED_PRODUCTION_FILES",
+    "productCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "trackedProductionBlobsChecked": 416,
+    "zeroByteFilesCheckedByStatAndEmptyGitBlob": 0,
+    "nonemptyProductionFilesReadAndGitBlobHashed": 416,
+    "excludedArchivedTestFiles": 150,
+    "untrackedPythonBytecodeExcluded": true,
+    "productEdits": 0,
+    "limits": [
+      "Full archive created directly by git archive. Independent byte check excludes tests after native reads in Documents blocked on unused test files; no filesystem cause established."
+    ]
+  },
+  "source": "NEW_SYNTHETIC_REALM_CLUSTER_AUTH_STORAGE",
+  "target": "NEW_CLUSTER_AUTH_STORAGE_WITH_EMPTY_NEW_VOLUMES",
+  "infrastructure": "same owned local Docker VM, distinct clusters/services/networks/volumes, pinned5images, loopbackonly",
+  "images": {
+    "db": "public.ecr.aws/supabase/postgres@sha256:b15d862126dd2dac02da524696ccfde2dcce2ceaee0a58973b2727befe492706",
+    "auth": "public.ecr.aws/supabase/gotrue@sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+    "storage": "public.ecr.aws/supabase/storage-api@sha256:ec2ad41411eac8fc2b769b4bb00d1af32ae37eca3745c15bdb329db27d218934",
+    "rest": "public.ecr.aws/supabase/postgrest@sha256:d155c6718ed9a9f990d159a2ab7c0a3f16944dbb6d0a0344557421042acfe0df",
+    "kong": "public.ecr.aws/supabase/kong@sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d"
+  },
+  "captureChecks": [
+    {
+      "label": "before-backup",
+      "checks": 43,
+      "status": "PASS",
+      "projectionSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83"
+    },
+    {
+      "label": "after-restore",
+      "checks": 43,
+      "status": "PASS",
+      "projectionSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83"
+    },
+    {
+      "label": "after-restart",
+      "checks": 43,
+      "status": "PASS",
+      "projectionSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83"
+    },
+    {
+      "label": "final-reconstructed",
+      "checks": 43,
+      "status": "PASS",
+      "projectionSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83"
+    }
+  ],
+  "exactProjectionNormalization": "NONE",
+  "actorCount": 4,
+  "confirmedMembers": 2,
+  "dbBeforeServices": {
+    "status": "PASS",
+    "allSourceTablesEqual": true,
+    "tablesCompared": 83,
+    "rolesEqual": true,
+    "membershipsEqual": true,
+    "policiesEqual": true,
+    "schema": [
+      {
+        "version": 4
+      }
+    ],
+    "sourceManifestSha256": "c18d7b4d7af0e2f36deae6fc2fac92d57a83f42a6f3fc225ea498fb98f52b10d",
+    "preexistingRoleCreateStatementsExplicitlySkipped": [
+      "anon",
+      "authenticated",
+      "authenticator",
+      "dashboard_user",
+      "pgbouncer",
+      "postgres",
+      "service_role",
+      "supabase_admin",
+      "supabase_auth_admin",
+      "supabase_etl_admin",
+      "supabase_privileged_role",
+      "supabase_read_only_user",
+      "supabase_replication_admin",
+      "supabase_storage_admin"
+    ],
+    "ignoredRestoreErrors": 0,
+    "authStorageStartedBeforeRestore": false
+  },
+  "sourceCountsAtCutoff": {
+    "auth.users": 4,
+    "auth.identities": 4,
+    "auth.sessions": 13,
+    "storage.objects": 3,
+    "public.study_assets": 3,
+    "public.study_submissions": 2,
+    "public.study_revisions": 3,
+    "public.study_layouts": 1
+  },
+  "knownCompleteInventory": {
+    "status": "KNOWN_COMPLETE",
+    "coreAssets": 3,
+    "storageObjects": 3,
+    "archiveFiles": 3,
+    "missing": 0,
+    "unreferenced": 0,
+    "matches": [
+      {
+        "assetId": "8c16448ed0d74616840791968ba4d454",
+        "blobRef": "8c16448ed0d74616840791968ba4d454",
+        "mime": "audio/mpeg",
+        "bytes": 3779,
+        "sha256": "a3dd2e582b77a2a871c375a6fa674e6e922adf70273df531763f730a7e8754ca",
+        "archivePath": "./stub/stub/ardesia-originals/8c16448ed0d74616840791968ba4d454/a59546d1-4c20-45d5-a4ce-3437cabb46ae"
+      },
+      {
+        "assetId": "8ec7aa2cb2da4c95a43a31eba93e2b79",
+        "blobRef": "8ec7aa2cb2da4c95a43a31eba93e2b79",
+        "mime": "image/png",
+        "bytes": 213,
+        "sha256": "3cbd2eb96cbb5aac313a497a86a454c2e28fb0dd8556fc3abca0e6a7db7593e7",
+        "archivePath": "./stub/stub/ardesia-originals/8ec7aa2cb2da4c95a43a31eba93e2b79/fc109c79-afb3-469e-9ab4-3c251714ce30"
+      },
+      {
+        "assetId": "d0f84e1008b9492c96d760cbfbaa0a3d",
+        "blobRef": "d0f84e1008b9492c96d760cbfbaa0a3d",
+        "mime": "application/pdf",
+        "bytes": 470,
+        "sha256": "83524d8629a34853135e53a7418bd60ac3a7b3c90627ccf9e2dd0d48e5952ac3",
+        "archivePath": "./stub/stub/ardesia-originals/d0f84e1008b9492c96d760cbfbaa0a3d/929de2b4-6beb-484d-a0a6-40bfb28b6f05"
+      }
+    ]
+  },
+  "backupFiles": {
+    "source-db-before.json": {
+      "bytes": 43181,
+      "sha256": "c18d7b4d7af0e2f36deae6fc2fac92d57a83f42a6f3fc225ea498fb98f52b10d"
+    },
+    "database.dump": {
+      "bytes": 459205,
+      "sha256": "171d8d9e7f3fd6db228bd724983b3958fed2591257ad7059a774a290b68e3635"
+    },
+    "service-config.json": {
+      "bytes": 5386,
+      "sha256": "7b06df80c120d29fba8e2ed4ef5d1473ab9145623136dad7d099bef1920fc7ce"
+    },
+    "roles-no-passwords.sql": {
+      "bytes": 5519,
+      "sha256": "a543d3ed16cb0b1cb3dfab8364a0644bd5fedcda7859377e665efb363de14df7"
+    },
+    "storage.tar.gz": {
+      "bytes": 4025,
+      "sha256": "2db82db694cf696c3afee973e038a7823c413fd507f35679de9f2bdc8b71f8b3"
+    }
+  },
+  "authAndDirectStorage": {
+    "status": "PASS",
+    "checks": [
+      {
+        "case": "restore-tutor restored Auth identity matches preserved userId",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-student restored Auth identity matches preserved userId",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-peer restored Auth identity matches preserved userId",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-other-tutor restored Auth identity matches preserved userId",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-student direct Storage authorized original",
+        "status": "PASS",
+        "sha256": "3cbd2eb96cbb5aac313a497a86a454c2e28fb0dd8556fc3abca0e6a7db7593e7"
+      },
+      {
+        "case": "restore-tutor direct Storage authorized original",
+        "status": "PASS",
+        "sha256": "3cbd2eb96cbb5aac313a497a86a454c2e28fb0dd8556fc3abca0e6a7db7593e7"
+      },
+      {
+        "case": "restore-peer direct Storage denied",
+        "status": "PASS",
+        "httpStatus": 400
+      },
+      {
+        "case": "restore-other-tutor direct Storage denied",
+        "status": "PASS",
+        "httpStatus": 400
+      },
+      {
+        "case": "target-only peer session revoked; copied stale cookie denied",
+        "status": "PASS",
+        "httpStatus": 401
+      }
+    ],
+    "http": [
+      {
+        "case": "four_real_auth_password_logins_and_study_cookie_exchange",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-peer POST /study/session/revoke-all",
+        "status": "PASS",
+        "httpStatus": 200,
+        "bodySha256": "e35edb6495ef7fcd38ccf18e6c6c94401834abaa9e3f19a9ad43fe82eb2a828b"
+      },
+      {
+        "case": "restore-student GET /study/me",
+        "status": "PASS",
+        "httpStatus": 200,
+        "bodySha256": "2af3c2731db8bf35a0d495c87913c984f18f46e5046fc74b9325f17e7ce27d30"
+      },
+      {
+        "case": "restore-tutor GET /study/me",
+        "status": "PASS",
+        "httpStatus": 200,
+        "bodySha256": "4144ed7029d23bcb5a0a0ce220a842930cfc15050ac634b2e6ff56cab9735177"
+      },
+      {
+        "case": "restore-other-tutor GET /study/me",
+        "status": "PASS",
+        "httpStatus": 200,
+        "bodySha256": "8f876bbe8e2941106de14a114e9c494192480f6b4e72f985f80b9eb660b6e2c2"
+      }
+    ],
+    "revocationScope": "ONLY_OWN_SYNTHETIC_TARGET_PEER",
+    "original14AccountsUsed": 0,
+    "sourceAvailable": false
+  },
+  "degradedCase": {
+    "status": "PASS",
+    "case": "DECLARED_DEGRADED_CLONE",
+    "intentionallyRemovedOwnTargetAssetId": "8ec7aa2cb2da4c95a43a31eba93e2b79",
+    "coreReadOutcome": "503 provider_unavailable; no fake bytes/head fallback",
+    "historicalMissingAssets": 15,
+    "historicalDebtResolved": false,
+    "sourceBackupUnchanged": true,
+    "http": [
+      {
+        "case": "four_real_auth_password_logins_and_study_cookie_exchange",
+        "status": "PASS"
+      },
+      {
+        "case": "restore-student GET /study/assets/8ec7aa2cb2da4c95a43a31eba93e2b79",
+        "status": "PASS",
+        "httpStatus": 503,
+        "bodySha256": "c0dde99239b63ba9575ee5cbc159e497a37278d3a97565054a6d85bd390a92a4"
+      },
+      {
+        "case": "restore-tutor GET /study/assets/8ec7aa2cb2da4c95a43a31eba93e2b79",
+        "status": "PASS",
+        "httpStatus": 503,
+        "bodySha256": "c0dde99239b63ba9575ee5cbc159e497a37278d3a97565054a6d85bd390a92a4"
+      }
+    ],
+    "nextAction": "reconstruct target again from preserved complete backup; do not call degraded clone complete"
+  },
+  "degradedCounts": {
+    "status": "PASS",
+    "activeCoreAssets": 3,
+    "storageObjects": 2,
+    "inventedRecoveredBytes": 0,
+    "historicalDebtResolved": false
+  },
+  "finalReconstruction": {
+    "status": "PASS",
+    "normalization": "NONE_EXACT_JSON",
+    "baselineSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83",
+    "finalSha256": "46c943ac1b621fe58d88dd4375c68ed0e306cddfd16495d93d376b5c8cff7f83",
+    "sourceAvailable": false,
+    "newTargetVolumes": true
+  },
+  "newTargetVolumes": {
+    "status": "PASS",
+    "volumes": {
+      "db-volume": {
+        "name": "ardesia-g0-restore-target-s20261020t0634-db-volume",
+        "firstTargetCreated": "2026-10-20T08:53:59+02:00",
+        "reconstructedTargetCreated": "2026-10-20T09:01:11+02:00",
+        "distinctCreation": true
+      },
+      "storage-volume": {
+        "name": "ardesia-g0-restore-target-s20261020t0634-storage-volume",
+        "firstTargetCreated": "2026-10-20T08:53:59+02:00",
+        "reconstructedTargetCreated": "2026-10-20T09:01:11+02:00",
+        "distinctCreation": true
+      }
+    },
+    "sourceStopped": true,
+    "pinnedImagesExact": true,
+    "loopbackBindingsExact": true,
+    "originalNetworkOrVolumeAttached": false
+  },
+  "cleanup": {
+    "status": "PASS",
+    "newContainersNetworksVolumesAbsent": true,
+    "ownedPortsClosed": [
+      5367,
+      5368,
+      54431,
+      54432,
+      54531,
+      54532
+    ],
+    "originalContainerMetadataOnly": [
+      {
+        "name": "supabase_db_ardesia-g0-local",
+        "running": true,
+        "startedAt": "2026-10-20T00:59:34.056060367Z"
+      },
+      {
+        "name": "supabase_auth_ardesia-g0-local",
+        "running": true,
+        "startedAt": "2026-10-20T00:59:46.145241003Z"
+      },
+      {
+        "name": "supabase_storage_ardesia-g0-local",
+        "running": true,
+        "startedAt": "2026-10-20T00:59:48.02875121Z"
+      },
+      {
+        "name": "supabase_rest_ardesia-g0-local",
+        "running": true,
+        "startedAt": "2026-10-20T00:59:47.085256382Z"
+      },
+      {
+        "name": "supabase_kong_ardesia-g0-local",
+        "running": true,
+        "startedAt": "2026-10-20T00:59:45.504269394Z"
+      }
+    ],
+    "sourceOriginalApiDbAuthStorageRequests": 0,
+    "originalStartStopCommands": 0,
+    "vmStopped": false,
+    "imagesRemoved": false,
+    "privateBackupAndEvidenceRetained": true,
+    "at": 1792480328.797604
+  },
+  "resourceObservation": {
+    "vmMemoryBytes": 4094447616,
+    "currentContainerUsageApproxBytes": 870113603,
+    "containers": [
+      {
+        "container": "ardesia-g0-restore-target-s20261020t0634-kong",
+        "approxBytes": 96248791
+      },
+      {
+        "container": "ardesia-g0-restore-target-s20261020t0634-storage",
+        "approxBytes": 86046146
+      },
+      {
+        "container": "ardesia-g0-restore-target-s20261020t0634-rest",
+        "approxBytes": 5824839
+      },
+      {
+        "container": "ardesia-g0-restore-target-s20261020t0634-auth",
+        "approxBytes": 12027166
+      },
+      {
+        "container": "ardesia-g0-restore-target-s20261020t0634-db",
+        "approxBytes": 88059412
+      },
+      {
+        "container": "supabase_storage_ardesia-g0-local",
+        "approxBytes": 165779865
+      },
+      {
+        "container": "supabase_rest_ardesia-g0-local",
+        "approxBytes": 32862371
+      },
+      {
+        "container": "supabase_auth_ardesia-g0-local",
+        "approxBytes": 45518684
+      },
+      {
+        "container": "supabase_kong_ardesia-g0-local",
+        "approxBytes": 170813030
+      },
+      {
+        "container": "supabase_db_ardesia-g0-local",
+        "approxBytes": 166933299
+      }
+    ],
+    "hostFreeBytes": 14030127104,
+    "at": 1792479835.350821,
+    "method": "Docker stats working-set estimate; not VM available memory or RSS guarantee"
+  },
+  "protectiveLauncherUnitTests": {
+    "passed": 7,
+    "log": "logs/controls-final-green.log"
+  },
+  "authIdentitySetup": "Core create_principal + same existing operator Auth-to-principal binding; no SQLmembership/submission/receipt fabrication",
+  "operations": "editionpreview/offer/holds/confirm/resources/uploads/submissions/feedback/layout/diary through authenticated realTCP StudyHTTP",
+  "notebookScope": "restored export accepted by actual Core inspect; unsigned internal integrity/reference checks, not new artifact ACL authority",
+  "humanScientificApproval": "NOT_RUN_AUTOMATED_SYNTHETIC_TUTOR_FIXTURE",
+  "ocrAsrLiveInference": "NOT_RUN",
+  "payment": "TEST_ONLY_NO_MONEY",
+  "browserUiRestoreReplay": "NOT_RUN",
+  "historical15MissingObjects": {
+    "status": "OPEN_UNCHANGED",
+    "resolved": false,
+    "includedInNewSFixture": false
+  },
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_CERTIFIED",
+  "cloudProviderCalls": 0,
+  "paidServices": 0,
+  "sourceOriginal14AccountsUsed": 0,
+  "limits": [
+    "Known-complete small new fixture, not full original source recovery.",
+    "Logical restore on same Docker VM, not host/VM loss, RTO or capacity proof.",
+    "Dedicated bridges are not air-gapped; configured destinations were loopback/own network, providers and SMTP absent.",
+    "Fresh target logins prove restored passwords/identities and real session enforcement; no claim about all historical source tokens.",
+    "83domain tables/roleattributes/memberships/policies compared before service startup; Auth logins intentionally change target operational session records afterwards.",
+    "150 archived test files excluded from independent byte-hash check after filesystem reads blocked;416 production blobs checked against Git; archive itself generated from5cb.",
+    "One sacrificial target missing object is separate from15historicalmissing; finaltarget rebuilt clean then allnewresourcesremoved."
+  ],
+  "harnessCorrectionsRetained": [
+    {
+      "case": "internal bridge did not publish loopback ports",
+      "fix": "dedicated loopback-bound bridge; no airgap claim",
+      "evidence": "logs/source-services-up-attempt1.log + private source runtime logs; metadata observed in tool transcript"
+    },
+    {
+      "case": "Kong copied600 root-owned file unreadable by Kong user",
+      "fix": "configuration written600 by Kong user on startup",
+      "evidence": "logs/source-kong-runtime.log prior error in tool transcript"
+    },
+    {
+      "case": "fixture started before API readiness",
+      "fix": "bounded explicit readiness",
+      "evidence": "logs/source-fixture-attempt1.log"
+    },
+    {
+      "case": "runner used holdId instead of canonical id",
+      "fix": "canonical DTO and stable idempotent checkpoint retry",
+      "evidence": "logs/source-fixture-attempt2.log and attempt3 success"
+    },
+    {
+      "case": "temporary initdb Unix socket looked ready; PID1 name wrapped by image",
+      "fix": "final TCP5432 readiness, new empty target each retry",
+      "evidence": "logs/target-restore-attempt1.log; logs/target-attempt1-details/target-empty-database.log; logs/target-restore-attempt2.log"
+    },
+    {
+      "case": "cold API readiness deadline too short",
+      "fix": "60second bounded readiness with diagnostics; finalfullreconstruction exit0",
+      "evidence": "logs/target-restore-attempt3.log; logs/target-restore-final-reconstruction.log"
+    },
+    {
+      "case": "verifier read blocked in Documents on unused source/test files",
+      "fix": "interrupt only owned reader; emptyfile stat+Git and production-scope bytecheck",
+      "evidence": "tool transcript + evidence/product-source-integrity.json"
+    }
+  ],
+  "completedAt": "2026-10-20T07:12:55.489680+00:00",
+  "projectionRawFiles": {
+    "before-backup": {
+      "path": "private/before-backup-projections.json",
+      "bytes": 35784,
+      "rawFileSha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf"
+    },
+    "after-restore": {
+      "path": "private/after-restore-projections.json",
+      "bytes": 35784,
+      "rawFileSha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf"
+    },
+    "after-restart": {
+      "path": "private/after-restart-projections.json",
+      "bytes": 35784,
+      "rawFileSha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf"
+    },
+    "final-reconstructed": {
+      "path": "private/final-reconstructed-projections.json",
+      "bytes": 35784,
+      "rawFileSha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf"
+    }
+  },
+  "assertionInventory43": "evidence/assertion-inventory-43.json"
+}

@@ -41,6 +41,7 @@ def test_registers_in_router() -> None:
     assert "kimi" in router._providers
 
 
+@pytest.mark.live_model
 @pytest.mark.skipif(
     not os.environ.get("KIMI_API_KEY"),
     reason="no KIMI_API_KEY: live Moonshot call skipped (wiring only)",

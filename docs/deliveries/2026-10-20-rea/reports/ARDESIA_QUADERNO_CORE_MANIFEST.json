@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "createdAt": "2026-10-20T14:20:52.371535+00:00",
+  "commit": "ebcb6bc8020f444281f87770b66e43b7bb665a7a",
+  "baseCommit": "d0235e8a9dbbccd6808741a087dd0359908feb2b",
+  "incrementBaseCommit": "746c7fb34bf8159728afecf30c9f284c7e51b7d4",
+  "status": "LOCAL_NOTEBOOK_CORE_VERIFIED_SYS01_INCOMPLETE",
+  "sourceFileCount": 74,
+  "incrementFileCount": 31,
+  "patchChecks": [
+    {
+      "patch": "cumulative.patch",
+      "base": "d0235e8a9dbbccd6808741a087dd0359908feb2b",
+      "check": "git apply --cached --check",
+      "exitCode": 0
+    },
+    {
+      "patch": "notebook-core-only.patch",
+      "base": "746c7fb34bf8159728afecf30c9f284c7e51b7d4",
+      "check": "git apply --cached --check",
+      "exitCode": 0
+    }
+  ],
+  "exclusions": [
+    "databases",
+    "session files",
+    "node_modules",
+    "unchanged repository files"
+  ],
+  "archive": {
+    "name": "ARDESIA_QUADERNO_CORE_REA.zip",
+    "bytes": 1350721,
+    "sha256": "cbec20996462feb30c83dc1959136653cd7988f2b64e89b8c26789789d728d01",
+    "fileCount": 119
+  }
+}
