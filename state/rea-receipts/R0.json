@@ -16,38 +16,54 @@
     "export_web_scripts",
     "trace_application_feature"
   ],
-  "source_commit_or_version": "Own baseline PR266 cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228; runtime loopback5309, REA6.7.0",
-  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "source_commit_or_version": "Own baseline PR266 cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228; runtime loopback5309, REA6.7.0 Current own Ardesia a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119, origin5324/PID34531. Historical origins/version fields are unchanged.",
+  "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
   "evidence": [
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/capture-v2.json",
-      "sha256": "1d0124b4a872e99e52078b780a9c4f0604f57c004c4cd145562e702343df44e3"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R0/capture-v2.json",
+      "sha256": "1d0124b4a872e99e52078b780a9c4f0604f57c004c4cd145562e702343df44e3",
+      "kind": "browser"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/application.json",
-      "sha256": "bbead56e9e7ab5676b11882fda2ac79c34ae1a22790d4b3e957f49fc7178ae3c"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R0/application.json",
+      "sha256": "bbead56e9e7ab5676b11882fda2ac79c34ae1a22790d4b3e957f49fc7178ae3c",
+      "kind": "structure"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/feature-trace.json",
-      "sha256": "60c24930738c5aad72493f67c984dc16eeac4c589dbfa21e30df2a939c62c379"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R0/feature-trace.json",
+      "sha256": "60c24930738c5aad72493f67c984dc16eeac4c589dbfa21e30df2a939c62c379",
+      "kind": "structure"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R0/export.json",
-      "sha256": "659f7cf4dabaee92104e33e31ebdc3efa92aef7069bd7e7896215401dccbab1a"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R0/export.json",
+      "sha256": "659f7cf4dabaee92104e33e31ebdc3efa92aef7069bd7e7896215401dccbab1a",
+      "kind": "structure"
     },
     {
-      "kind": "contract",
-      "path": "artifacts/rea-evidence/final-2a654879/contracts/R0-final-assimilation.md",
-      "sha256": "13b66463b43c590c3c94374d1bb90062c2a42a5569daf3997343da3211ca3a09"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-sourceboard-capture.evidence.json",
+      "sha256": "33ee2541fd4727ab25cbc2f76856f0a09f4182946118ee8f89adc84c9364f3bc",
+      "kind": "browser"
     },
     {
-      "kind": "test",
-      "path": "artifacts/rea-evidence/final-2a654879/tests/R0-final-tests.json",
-      "sha256": "f526a171e459552ca698a9d7cdc6bc2e9e34b20383187d0f1bce8873223bb33a"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-export-v3-capture.evidence.json",
+      "sha256": "45bf93f556e97588fdc6a0938b79d258f404f9e8f9fa41a60f879b4b0373a664",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-reopen-capture.evidence.json",
+      "sha256": "8dadf07f737ef6ce632f89c4bebddd78710f6bfb39bb2e85779fff513fad42cc",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/contracts/R0-a3-assimilation.md",
+      "sha256": "320270551ec6bafdc2a942854cef21084177626249be0042d494f865a1e24f9e",
+      "kind": "contract"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/tests/R0-a3-tests.json",
+      "sha256": "805c0deffa92c463b3d6281458574a6c6a830e16a635e93ff784f187e9c5ef3a",
+      "kind": "test"
     }
   ],
   "implementation": {
@@ -57,50 +73,78 @@
       "apps/studio/src/study/postit.ts",
       "apps/studio/src/study/NotebookPanel.tsx",
       "packages/engine/lessonos/study/portable.py",
-      "packages/engine/lessonos/study/view_layout.py"
+      "packages/engine/lessonos/study/view_layout.py",
+      "apps/web/src/components/SourceBoard.tsx",
+      "apps/web/src/components/sourceBoardModel.ts",
+      "apps/web/src/components/useSourceBoard.ts"
     ],
     "test_names": [
-      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
-      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
-      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
-      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
-      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "packages/engine/tests/study/test_portable_budget.py::test_encoded_refusal_precedes_attachment_decode",
+      "packages/engine/tests/study/test_portable_budget.py::test_export_refuses_legal450_snapshot_49mib_fixture_without_dropping_pins",
+      "packages/engine/tests/study/test_portable_budget.py::test_inspect_exact_compact_utf8_boundary_and_one_byte_over",
+      "packages/engine/tests/study/test_portable_budget.py::test_real96mib_inspection_boundary_is_inclusive_and_next_byte_is_refused",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_checks_snapshot_hashes_even_when_outer_digest_is_recomputed",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_duplicate_revision_identity_cannot_resolve_to_different_content",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_legacy_v1_does_not_claim_history_reference_completeness",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_dangling_exact_revision_references_with_a_valid_bundle_digest",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_malformed_loss_metadata",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_revision_budget_and_bad_base64_fail_as_domain_errors",
       "packages/engine/tests/study/test_portable_history.py::test_owner_export_contains_old_exact_pin_and_current_source_without_unreferenced_history",
       "packages/engine/tests/study/test_portable_history.py::test_tutor_export_preserves_only_submitted_revision_and_does_not_export_private_head",
       "packages/engine/tests/study/test_portable_history.py::test_unavailable_revision_has_only_known_reference_ids_and_explicit_loss",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_checks_snapshot_hashes_even_when_outer_digest_is_recomputed",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_dangling_exact_revision_references_with_a_valid_bundle_digest",
       "packages/engine/tests/study/test_portable_history.py::test_unsigned_consistently_rehashed_content_is_not_claimed_canonical_or_authorized",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_legacy_v1_does_not_claim_history_reference_completeness",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_duplicate_revision_identity_cannot_resolve_to_different_content",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_revision_budget_and_bad_base64_fail_as_domain_errors",
-      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_malformed_loss_metadata",
-      "services/study-api/tests/test_notebook_http.py::test_http_notebook_old_pin_roundtrip_respects_exact_revision_permission",
-      "packages/engine/tests/study/test_portable_budget.py::test_inspect_exact_compact_utf8_boundary_and_one_byte_over",
-      "packages/engine/tests/study/test_portable_budget.py::test_real96mib_inspection_boundary_is_inclusive_and_next_byte_is_refused",
-      "packages/engine/tests/study/test_portable_budget.py::test_encoded_refusal_precedes_attachment_decode",
-      "packages/engine/tests/study/test_portable_budget.py::test_export_refuses_legal450_snapshot_49mib_fixture_without_dropping_pins",
+      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
+      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
+      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
+      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_export_is_the_explicit_stable_compact_representation_and_budget_error_is_atomic",
       "services/study-api/tests/test_notebook_budget_http.py::test_http_inspect_accepts_exact_boundary_and_refuses_one_extra_byte",
-      "services/study-api/tests/test_notebook_budget_http.py::test_http_export_is_the_explicit_stable_compact_representation_and_budget_error_is_atomic"
+      "services/study-api/tests/test_notebook_http.py::test_http_notebook_old_pin_roundtrip_respects_exact_revision_permission",
+      "apps/web/src/__tests__/source-board.test.tsx :: classroom restores two independent views of the pinned original rather than substituting the current resource head",
+      "apps/web/src/__tests__/source-board.test.tsx :: portable notebook exports the requested edition instead of a hardcoded course",
+      "apps/web/src/__tests__/source-board.test.tsx :: duplicating and keyboard moving persist two instance identities with one exact source and no new resource",
+      "apps/web/src/__tests__/source-board.test.tsx :: failed layout save preserves views and retries the same snapshot without a false saved message",
+      "apps/web/src/__tests__/source-board.test.tsx :: a late save acknowledgement never marks edits made during that request as saved",
+      "apps/web/src/__tests__/source-board.test.tsx :: detaching the last view persists an empty board and reopening never recreates the source",
+      "apps/web/src/__tests__/source-board.test.tsx :: a stale pin keeps its old text and refresh changes only the selected view reference",
+      "apps/web/src/__tests__/source-board.test.tsx :: a layout conflict preserves the draft until explicit discard and server reload",
+      "apps/web/src/__tests__/source-board.test.tsx :: a tutor reopens an authorized submitted revision when the student's private head is absent",
+      "apps/web/src/__tests__/source-board.test.tsx :: reopening an inaccessible revision does not add an empty or substituted view",
+      "apps/web/src/__tests__/source-board.test.tsx :: keyboard resizing changes the selected view dimensions without moving its duplicate",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: within-budget ASCII fields and a 68MiB base64 retain the constant-time fast path",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: an oversized astral source stops counting at the first excess codepoint",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: portable preview renders exact historical and current pairs; never substitutes a current head for a submitted pin",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: a Core-sized astral source reaches inspect and renders intact after upload",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: a tutor artifact with no readable current head still renders the submitted historical snapshot",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: malformed presentation fields are rejected even when an internal-integrity inspect could accept them",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: legacy reference scope and declared missing revisions remain explicit; no head is opened to fill the gap",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: declared losses and unsigned authenticity are visible without granting imported access",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: unsupported artifacts never enter the preview or the inspect API",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: source text stays escaped and file sizes above the old75MiB ceiling reach the96MiB inspect boundary",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: download uses the same compact JSON representation that the inspect client sends"
     ],
     "test_outcome": "PASS"
   },
-  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
   "unknowns": [
-    "The baseline is the actual cc0f37ba PR266 runtime5309, not the final runtime. It does not establish every old course or ACL path.",
-    "The .study preview explicitly does not reconstruct the legacy Excalidraw/audio journal or a live work session; no .lesson equivalence is claimed."
+    "REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Legacy5309 versus later origins retains capture_context_mismatch. New a3 read-only research did not recreate or move existing source views; current view manipulation is covered by a3 Web unit regressions; actual GUI drag/resize is historical2a, not a new a3 browser claim."
   ],
   "limitations": [
-    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
-    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
-    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
-    "{\"mode\": \"OWN_AUTHORIZED_SOURCE\", \"verification\": \"Autorità del proprietario, non una licenza OSS dedotta. Codice nuovo e Core propri.\", \"primaryFiles\": []}",
-    "Root integration maps the preserved Studio baseline to the active final Classroom surface; the historical StudyWorkspace is not asserted to drive the new course-first UI."
+    "PRIVATE PROPOSAL ONLY: status PASS is a proposed scoped execution/assimilation result, not an installed receipt, gate execution, global G0/G1 certification, human pilot or production launch. Root must independently validate original schema, hashes, rights, code/test pin and policy before installation.",
+    "Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
+    "Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
+    "Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
+    "No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
+    "Own repository and Core; owner authorization, not an inferred donor OSS license.",
+    "Root maps the historical StudyWorkspace baseline to the active Classroom surface. New a3 REA SourceBoard observations are read-only; browser drag/resize belongs to2a and a3 unit regressions remain distinct.",
+    "Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
   ],
-  "created_at": "2026-10-20T04:24:42.386486+00:00",
+  "created_at": "2026-10-20T05:48:44.143368+00:00",
   "benefit": {
-    "defect_avoided": "Distinguere la ripresa portabile in lettura dal vecchio journal evita di dichiarare ricostruite sessioni o contenuti non rappresentati.",
+    "defect_avoided": "Prevents a layout operation from duplicating or replacing source content, and prevents portable history from silently resolving to a newer private head.",
     "time_saved_minutes": null,
-    "measurement_method": "Confronto del baseline reale con il nuovo Classroom; export e riapertura reali, hash e limiti espliciti."
+    "measurement_method": "Qualitative contract/witness comparison plus root executed a3 Core499/Web81 and actual browser/PG reports; no saved-time measurement."
   }
 }

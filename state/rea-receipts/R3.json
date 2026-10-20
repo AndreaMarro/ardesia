@@ -7,83 +7,157 @@
     "TARGET-052"
   ],
   "target_kind": "THIRD_PARTY_AUTHORIZED",
-  "authorization_basis": "Moodle official sandbox con identità demo ufficiali e dati originali, autorizzato dalla superficie demo e dall’utente. Nessun account inventato, invito/email/pagamento reale o trial. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "authorization_basis": "Moodle official sandbox con identità demo ufficiali e dati originali, autorizzato dalla superficie demo e dall’utente. Nessun account inventato, invito/email/pagamento reale o trial. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Current own a3 scoped UI observed with existing synthetic test actors; no production use. New writes limited to one owned synthetic test edition and read-only notebook inspection.",
   "rea_version": "6.7.0",
   "rea_operations": [
     "analyze_javascript_application",
     "capture_browser_scenario",
+    "compare_web_captures",
     "export_web_scripts",
     "inspect_web_page",
+    "reconcile_javascript_runtime",
     "trace_application_feature",
     "trace_javascript_semantics"
   ],
   "source_commit_or_version": "Moodle sandbox UI5.3; remote commit UNKNOWN. Separate source b7260e59a83124d6311c0217df3ba27ef6b9a7b0.",
-  "product_commit": "2a6548797e300e465abb554c949db740521b8352",
+  "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "alternative_justification": "Official public demo permitted original synthetic administration without creating an account or adding hosted infrastructure. Method-local enrollment cap was observed and deliberately not adopted as a global invariant.",
   "evidence": [
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/vendor-capture.json",
-      "sha256": "00615b86c7feac64c9a014b6675bf17bc30f4fb99bd029dfb3a670af59b60d71"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/vendor-capture.json",
+      "sha256": "00615b86c7feac64c9a014b6675bf17bc30f4fb99bd029dfb3a670af59b60d71",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/course-connect-capture.json",
-      "sha256": "51f051a06489aadb47640680f9e97790ff4abf78758e5b3639618fe2a559a7ae"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/course-connect-capture.json",
+      "sha256": "51f051a06489aadb47640680f9e97790ff4abf78758e5b3639618fe2a559a7ae",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/capacity-capture.json",
-      "sha256": "5846a9cb056f16cfe587c5e8b43f769c2717d8b0afb743fba01bff4ddd149e9e"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/capacity-capture.json",
+      "sha256": "5846a9cb056f16cfe587c5e8b43f769c2717d8b0afb743fba01bff4ddd149e9e",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/dates-capture-v4.json",
-      "sha256": "e990b49161229905dd6a37477364edef469ce8908a9c3a3ec761061a0e9a1f1b"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/dates-capture-v4.json",
+      "sha256": "e990b49161229905dd6a37477364edef469ce8908a9c3a3ec761061a0e9a1f1b",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/four-dates-capture.json",
-      "sha256": "861e7fc9f8b0eadaf0291b0d6efaa1d0f82ca9ea4f90dc934782b308689d77e1"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/four-dates-capture.json",
+      "sha256": "861e7fc9f8b0eadaf0291b0d6efaa1d0f82ca9ea4f90dc934782b308689d77e1",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/assignment-capture-v4.json",
-      "sha256": "c93e8147086ab800476803f593fd7d79bef0531528b2ac2317a4701605daa841"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/assignment-capture-v4.json",
+      "sha256": "c93e8147086ab800476803f593fd7d79bef0531528b2ac2317a4701605daa841",
+      "kind": "browser"
     },
     {
-      "kind": "browser",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/inspect-v3.json",
-      "sha256": "f3feb74cac00ab938bee2981a67eaf339a27e4fdaff88f82bd5cce4be6d66ede"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/inspect-v3.json",
+      "sha256": "f3feb74cac00ab938bee2981a67eaf339a27e4fdaff88f82bd5cce4be6d66ede",
+      "kind": "browser"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/export-evidence-v2.json",
-      "sha256": "ac48a638e07e7fcd85e5af9025d06ae6e4ff7767dbf4fddce0f98be6c2e0e1dd"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/export-evidence-v2.json",
+      "sha256": "ac48a638e07e7fcd85e5af9025d06ae6e4ff7767dbf4fddce0f98be6c2e0e1dd",
+      "kind": "structure"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/source-graph.json",
-      "sha256": "df0928600716c61e20f1319f8b39b19e96978c4ea7ae99d96e968dccc66948bf"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/source-graph.json",
+      "sha256": "df0928600716c61e20f1319f8b39b19e96978c4ea7ae99d96e968dccc66948bf",
+      "kind": "structure"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/feature-trace.json",
-      "sha256": "2172189a427e3f28d1f06e59425e1c4a1b4f1a44dd6fb2beceec42ea52018208"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/feature-trace.json",
+      "sha256": "2172189a427e3f28d1f06e59425e1c4a1b4f1a44dd6fb2beceec42ea52018208",
+      "kind": "structure"
     },
     {
-      "kind": "structure",
-      "path": "artifacts/rea-evidence/final-2a654879/raw/R3/semantic-influence.json",
-      "sha256": "51480de5556a4258398fd0246b298e85e464914503e32832a6eeaf8f3c277b8d"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/semantic-influence.json",
+      "sha256": "51480de5556a4258398fd0246b298e85e464914503e32832a6eeaf8f3c277b8d",
+      "kind": "structure"
     },
     {
-      "kind": "contract",
-      "path": "artifacts/rea-evidence/final-2a654879/contracts/R3-final-assimilation.md",
-      "sha256": "6c7502dcc84dbb3c8d2edb06b604039ce9a99726831c33b86eeb267cae7c5cd1"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-capture.evidence.json",
+      "sha256": "e458a5890d70e11fa7dd2de665f2caba8604bd2ed308b105f103654eaab72914",
+      "kind": "browser"
     },
     {
-      "kind": "test",
-      "path": "artifacts/rea-evidence/final-2a654879/tests/R3-final-tests.json",
-      "sha256": "3d5d9fc289127fc4db2ae862895b15b5daa7645b1658d819cd392fbde8962fed"
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-capture.evidence.json",
+      "sha256": "9b6243af1379444f6a95f359812b546935527b0a362609e76b069ecb6b6b08e9",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-v2-capture.evidence.json",
+      "sha256": "d0dfeb66adffe4735c27a49fdb8eea35261601b90d098ad991db4fb27f01fdc6",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/configure-preview-capture.evidence.json",
+      "sha256": "1fa2279149ad6ad1c87aad9a6b1a34fbf4be502c9fbd06392aacfe1b4c376351",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/confirm-offer-capture.evidence.json",
+      "sha256": "5b2916601ca22d312add294ec1dfc64ef7c18f5d70235bcccb39d0e9fc0e7193",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-runtime-inspect.evidence.json",
+      "sha256": "d9d748d4463da196d0a8e511b9ebf943ec87b4f86d94bac9af8cce66ca0bf97e",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/source.application.evidence.json",
+      "sha256": "79290423694e995b2bb602b9a97a39b77f8c8ecb1a5333e3001445c30b728995",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.feature.evidence.json",
+      "sha256": "8edc18f28d1c5d95ba9435a68d8c8688a46a464450694c76a36c5743ce76824e",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.semantic-v2.evidence.json",
+      "sha256": "2efb7396d8076304a8c1b1a3792c57dbc9c0cb59719d49e06aec98981a113a61",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management-create.semantic.evidence.json",
+      "sha256": "78f15c612b1e9b9649b3cf562f38583aee36ebe0eb8eda6909fa675bd024f0d0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/built-courses.application.evidence.json",
+      "sha256": "3af16aa5ed0e683ebc51408172730daf723220896fa87cf0a3969f27fc879b9c",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-reconcile-v2.evidence.json",
+      "sha256": "8c65c22eaa28e0e3747728f3a3728763252c4ccbebc30e204949fa195f59a9c9",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-after.compare.evidence.json",
+      "sha256": "0d60a70641da9db61a0b2c4eeb0b34b7b403774109b6ef2d7ccf967eed999d11",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/peer-mine-only-capture.evidence.json",
+      "sha256": "15db697ddfa5e34029bcee88c344bb5cd5f9407c664cb6079d59ef5dcd1f70f3",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/contracts/R3-a3-assimilation.md",
+      "sha256": "3218aaf48237a8db843a9caac0b443d2057b9c828183939b1c69376b67d75a75",
+      "kind": "contract"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/tests/R3-a3-tests.json",
+      "sha256": "04c3b002a98bb02709a17ad132e3351430ce351f14cc04b63690a7d134df644a",
+      "kind": "test"
     }
   ],
   "implementation": {
@@ -95,42 +169,116 @@
       "packages/engine/lessonos/study/groups.py",
       "packages/engine/lessonos/study/store.py",
       "packages/engine/lessonos/study/interests.py",
-      "packages/engine/lessonos/study/feedback.py"
+      "packages/engine/lessonos/study/feedback.py",
+      "apps/web/src/components/EditionManager.tsx",
+      "apps/web/src/components/EditionNavigation.tsx",
+      "apps/web/src/editionAdmin.ts",
+      "apps/web/src/useCourseWorkspace.ts",
+      "packages/engine/lessonos/study/editions.py",
+      "packages/engine/lessonos/study/catalog.py"
     ],
     "test_names": [
-      "services/study-api/tests/test_access_http.py::test_invitation_cookie_revocation_and_payload_limit",
-      "services/study-api/tests/test_access_http.py::test_login_abuse_is_limited_without_blocking_read_only_course",
-      "services/study-api/tests/test_access_http.py::test_tutor_can_manage_only_own_member_invites_and_ops_health",
-      "services/study-api/tests/test_access_http.py::test_body_budget_preserves_unicode_notes_and_notebook_attachment_contract",
-      "services/study-api/tests/test_group_access_http.py::test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster",
-      "services/study-api/tests/test_draft_privacy_http.py::test_private_draft_is_hidden_from_tutor_workspace_export_and_bytes",
-      "packages/engine/tests/study/test_groups.py::test_twelve_requests_never_overbook_and_retry_is_idempotent",
-      "packages/engine/tests/study/test_groups.py::test_two_people_racing_for_last_seat_only_one_hold",
+      "packages/engine/tests/study/test_edition_admin.py::test_a_conflict_in_the_fourth_date_is_rejected_and_published_edits_require_reconfirmation",
+      "packages/engine/tests/study/test_edition_admin.py::test_aba_and_same_revision_concurrency_cannot_approve_a_stale_offer",
+      "packages/engine/tests/study/test_edition_admin.py::test_core_invalid_admin_parameters_cannot_write",
+      "packages/engine/tests/study/test_edition_admin.py::test_create_is_idempotent_immutable_binding_owned_and_not_a_sale",
+      "packages/engine/tests/study/test_edition_admin.py::test_dst_gap_ambiguous_fold_and_elapsed_duration_are_resolved_by_core",
+      "packages/engine/tests/study/test_edition_admin.py::test_legacy_lessonos_without_any_study_table_can_bootstrap",
+      "packages/engine/tests/study/test_edition_admin.py::test_legacy_null_binding_cannot_confirm_but_completed_membership_is_preserved",
+      "packages/engine/tests/study/test_edition_admin.py::test_missing_schema_marker_with_study_tables_fails_without_recreating_metadata",
+      "packages/engine/tests/study/test_edition_admin.py::test_noop_representation_and_idempotent_retries_do_not_advance_revision",
+      "packages/engine/tests/study/test_edition_admin.py::test_preview_expiry_false_tamper_foreign_and_double_confirm_fail_closed",
+      "packages/engine/tests/study/test_edition_admin.py::test_same_actor_create_key_race_creates_one_class_edition_and_binding",
+      "packages/engine/tests/study/test_edition_admin.py::test_schema4_missing_hold_binding_or_calendar_table_is_not_repaired",
+      "packages/engine/tests/study/test_edition_admin.py::test_shared_schema_contract_rejects_unknown_or_incomplete_features",
+      "packages/engine/tests/study/test_edition_admin.py::test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repair",
+      "packages/engine/tests/study/test_edition_listing.py::test_corrupt_foreign_nonmember_waitlist_and_hold_rows_are_never_decoded",
+      "packages/engine/tests/study/test_edition_listing.py::test_cursor_is_exclusive_stable_and_has_no_duplicates",
+      "packages/engine/tests/study/test_edition_listing.py::test_default_page_is_bounded_to_fifty_and_does_not_decode_the_lookahead",
+      "packages/engine/tests/study/test_edition_listing.py::test_every_in_scope_binding_is_validated_even_after_same_pack_was_resolved",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_edition_filter_is_authorized_and_never_returns_a_cursor",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_filter_accepts_complete_authorized_legacy_identifier",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_filter_and_after_are_mutually_exclusive",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_core_cursors_fail_as_domain_errors",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_core_limits_fail_as_domain_errors_before_listing",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_exact_filter_fails_before_page_query",
+      "packages/engine/tests/study/test_edition_listing.py::test_legacy_identifier_is_a_reusable_cursor_across_two_complete_pages",
+      "packages/engine/tests/study/test_edition_listing.py::test_new_edition_identifier_budget_rejects_invalid_ids_without_new_rows",
+      "packages/engine/tests/study/test_edition_listing.py::test_new_identifiers_at_one_and_128_are_accepted",
+      "packages/engine/tests/study/test_edition_listing.py::test_pack_file_is_rechecked_on_each_page_without_global_cache_or_canonical_mutation",
+      "packages/engine/tests/study/test_edition_listing.py::test_page_uses_one_scoped_query_and_one_real_read_parse_hash_per_distinct_pack",
+      "packages/engine/tests/study/test_edition_listing.py::test_persisted_principal_is_verified_before_discovery",
+      "packages/engine/tests/study/test_edition_listing.py::test_scope_and_limit_apply_before_json_decode_or_descriptor_resolution",
+      "packages/engine/tests/study/test_edition_listing.py::test_student_lists_own_memberships_only_across_teachers_not_waitlist_holds_or_legacy_projection",
+      "packages/engine/tests/study/test_edition_listing.py::test_teacher_lists_only_owned_editions_and_descriptor",
+      "packages/engine/tests/study/test_edition_listing.py::test_unusable_legacy_cursor_fails_explicitly_without_truncating_or_skipping",
+      "packages/engine/tests/study/test_edition_listing.py::test_valid_cursor_bounds_are_parameterized_and_never_expand_scope",
+      "packages/engine/tests/study/test_groups.py::test_calendar_conflict_and_confirmed_date_change_require_reconfirmation",
       "packages/engine/tests/study/test_groups.py::test_expired_hold_does_not_consume_seat_or_confirm_late_payment",
       "packages/engine/tests/study/test_groups.py::test_matching_requires_every_date_and_explains_exclusion",
       "packages/engine/tests/study/test_groups.py::test_peer_hold_cannot_be_confirmed_and_changed_payload_conflicts",
-      "packages/engine/tests/study/test_groups.py::test_calendar_conflict_and_confirmed_date_change_require_reconfirmation"
+      "packages/engine/tests/study/test_groups.py::test_twelve_requests_never_overbook_and_retry_is_idempotent",
+      "packages/engine/tests/study/test_groups.py::test_two_people_racing_for_last_seat_only_one_hold",
+      "packages/engine/tests/study/test_postgres_edition_admin.py::test_pg_management_anonymous_schema_guard_owner_write_and_student_row_lock",
+      "packages/engine/tests/study/test_postgres_edition_listing.py::test_postgres_discovery_scopes_authenticated_teacher_and_members_before_decode",
+      "services/study-api/tests/test_access_http.py::test_body_budget_preserves_unicode_notes_and_notebook_attachment_contract",
+      "services/study-api/tests/test_access_http.py::test_invitation_cookie_revocation_and_payload_limit",
+      "services/study-api/tests/test_access_http.py::test_login_abuse_is_limited_without_blocking_read_only_course",
+      "services/study-api/tests/test_access_http.py::test_tutor_can_manage_only_own_member_invites_and_ops_health",
+      "services/study-api/tests/test_admin_http.py::test_admin_dto_ownership_draft_visibility_and_revocation_fail_closed",
+      "services/study-api/tests/test_admin_http.py::test_teacher_creates_configures_previews_and_explicitly_offers_without_charging",
+      "services/study-api/tests/test_draft_privacy_http.py::test_private_draft_is_hidden_from_tutor_workspace_export_and_bytes",
+      "services/study-api/tests/test_editions_http.py::test_authenticated_editions_roundtrip_membership_and_pack_descriptors",
+      "services/study-api/tests/test_editions_http.py::test_exact_discovery_is_membership_scoped_before_decode_and_after_revocation",
+      "services/study-api/tests/test_editions_http.py::test_http_invalid_page_bounds_are_422_without_loading_editions",
+      "services/study-api/tests/test_editions_http.py::test_http_legacy_129_cursor_roundtrip_and_new_creation_guard",
+      "services/study-api/tests/test_editions_http.py::test_http_legacy_identifier_beyond_cursor_budget_fails_409_without_partial_page",
+      "services/study-api/tests/test_editions_http.py::test_invalid_exact_discovery_is_422_without_metadata",
+      "services/study-api/tests/test_editions_http.py::test_revoked_cookie_cannot_discover_even_with_other_actor_query",
+      "services/study-api/tests/test_group_access_http.py::test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: URL edition and pagination select only authorized courses; late workspace cannot replace the selected course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: changing actor removes the previous workspace before the next listing resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: an empty authorized list never requests an arbitrary authenticated workspace",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: management refresh re-fetches the authorized listing before selecting a created edition",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a preferred id absent from the fresh authorized listing is never selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: discovery failure retries discovery even when no edition was selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a deep URL needs one exact authorized lookup, without fetching every page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: page changes keep the selected workspace and load only the requested page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a membership revoked between discovery and workspace clears cached course data",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a created preference survives a failed exact lookup and uses a fresh listing on retry",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: %s: a new principal cannot request the previous course before its discovery resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a scoped denial %s still permits another independently listed course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a known session 401 from %s clears all cached courses until reauthentication",
+      "apps/web/src/__tests__/edition-management.test.tsx :: an empty tutor workspace creates a private draft, preserving fields and key after a failed request",
+      "apps/web/src/__tests__/edition-management.test.tsx :: four wall dates reach Core unchanged; preview needs a deliberate checkbox before confirmation",
+      "apps/web/src/__tests__/edition-management.test.tsx :: a late creation ACK after actor change cannot select a course or expose tutor controls",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: login offers invitation codes only after the runtime explicitly supports them",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: real Supabase runtime shows account access without promising unavailable invitations",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: supported invitation login uses its dedicated endpoint and server identity",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: access panel shows persisted roster and waitlist without unsupported invitation actions",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: unknown capability never creates an invitation promise and access loading can be retried"
     ],
     "test_outcome": "PASS"
   },
-  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
   "unknowns": [
-    "Scoped at2a to capacity/roster/privacy/four-session rules already tested; complete tutor management create/configure/previewCAS UI is absent and remains separate G1 work.",
-    "Legacy holds during collecting and legacy approve validation remain known gaps; this receipt does not attest a complete launch-management flow.",
-    "Moodle per-enrolment-method capacity differs from Ardesia global edition capacity; demo rubric validity and payment flows were not proved.",
-    "Moodle remote source commit remains unknown; separate GPL source pin is research only and no GPL code was transferred."
+    "REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "No scientific sign-off, real payment, invitations or launch is attested. Our four future dates are synthetic and scientifically NOT_ATTESTED. Fresh HTTP last-seat proof records200/409 but wireOverlapMeasured:false. Moodle capacity is per enrolment method, not proof of Ardesia global capacity.",
+    "Own REA listing had9 prior editions, so next-page behavior comes from the independent root actual52-draft report, not this capture. Legacy collecting/approve compatibility remains limited as stated by current Core tests; no claim of a complete legacy management migration is made."
   ],
   "limitations": [
-    "Pedagogical dataset synthetic:true (original synthetic fixtures); receipt.synthetic:false attests actual REA execution, not a mock receipt or real-student data.",
-    "This scoped execution/assimilation receipt does not declare globalG0, human pilot, scientific approval, production launch or external host compatibility.",
-    "Original provider envelopes remain byte-identical; contract/test summaries are our derived documents. No normalization of semantic differences, source versions or runtime origins.",
-    "{\"mode\": \"FUNCTIONAL_ORIGINAL_ASSIMILATION_NO_COPYLEFT_CODE_TRANSFER\", \"license\": \"GPL-3.0-or-later\", \"verification\": \"COPYING.txt and actual analyzed module headers retained; source pin does not prove demo build equality. No Moodle GPL module supplied to product.\", \"primaryFiles\": [\"rights/R3/source/COPYING.txt\", \"rights/R3/source/source-revision.json\", \"retained-sources/R3/source/public/enrol/self/lib.php\"]}"
+    "PRIVATE PROPOSAL ONLY: status PASS is a proposed scoped execution/assimilation result, not an installed receipt, gate execution, global G0/G1 certification, human pilot or production launch. Root must independently validate original schema, hashes, rights, code/test pin and policy before installation.",
+    "Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
+    "Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
+    "Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
+    "No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
+    "Moodle GPL-3.0-or-later primary COPYING.txt/source pin retained privately. Separate source is not proof of demo build equality. No Moodle module transferred into product.",
+    "Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
   ],
-  "created_at": "2026-10-20T04:24:43.854320+00:00",
-  "alternative_justification": "Official public demo permitted original synthetic administration without creating an account or adding hosted infrastructure. Method-local enrollment cap was observed and deliberately not adopted as a global invariant.",
+  "created_at": "2026-10-20T05:48:44.143368+00:00",
   "benefit": {
-    "defect_avoided": "Capienza globale dell’edizione e serializzazione dell’ultimo posto impediscono l’undicesima iscrizione nel perimetro verificato.",
+    "defect_avoided": "Prevents a stale calendar preview from offering altered dates, a foreign edition from being selected from URL, unbounded listing/pack work, or the last seat being allocated twice.",
     "time_saved_minutes": null,
-    "measurement_method": "Distinzione dal limite per metodo di Moodle; gara HTTP finale indipendente con esiti409/200, dieci confermati, due in attesa. I gap legacy restano aperti."
+    "measurement_method": "Qualitative contract/witness comparison plus root executed a3 Core499/Web81 and actual browser/PG reports; no saved-time measurement."
   }
 }

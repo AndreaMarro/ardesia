@@ -1,0 +1,52 @@
+# ADR-0006 — Confini di cambiamento e limiti di crescita
+
+**Stato: ADOTTATA per il candidato C4;2026-10-20. Estensioni e limiti restano aperti.** Fonte congelata `a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119`. QA congelata e sette ricevute REA riesaminate dal root; subgate REA G0/G1 PASS, senza certificazione globale. Integra le decisioni ADR-0004/0005 conservandone il testo e la provenienza storica; i precedenti riferimenti allo schema3 o all’assenza di gestione edizioni descrivono quegli slice. **G1 globale NOT_CERTIFIED; G0 non certificato, Google live NOT_CONFIGURED, restore ancora parziale, approvazione scientifica umana NOT_RUN.**
+
+## Decisione
+
+1. **Un Core modulare nello stesso monolite e database.** Edizioni, iscrizioni, fonti, consegne/ricevute, diario e proiezioni condividono policy e transazioni; SQLite e Postgres restano adattatori dello stesso dominio. Un’edizione conserva il binding immutabile `(courseId,packId,packVersion,packSha256)`. Aggiungere una versione crea una scelta nuova: non cambia il programma delle edizioni esistenti. UI, Calendar e MCP consumano Core e proiezioni autorizzate; nessun secondo ledger o store di memoria.
+2. **Contratto schema esplicito.** Il Core riconosce lo schema4 e verifica tabelle/caratteristiche richieste; gli upgrade SQLite supportati sono additivi. La perdita del marker con tabelle Study persistite fallisce senza ricrearlo; la perdita di caratteristiche richieste è un errore d’integrità. Postgres richiede migrazioni amministrative, mai riparazioni al primo HTTP. Calendar richiede il proprio insieme di funzionalità introdotto con3, entro le versioni globali riconosciute: oggi3..4; una versione futura sconosciuta resta rifiutata. Una nuova migrazione deve aggiornare contratto e test, non solo il numero.
+3. **Offerta esplicita e accettazione versionata.** Anteprima durevole, hash, revisione attesa, scadenza e booleano true precedono l’offerta. Le variazioni materiali avanzano `managementRevision`, così il ritorno agli stessi valori non riabilita un’anteprima vecchia (ABA). Hold nuovi legati a `offer_revision`; legacy NULL richiedono revisione, senza inferire consenso da stato/date. Conferma rilegge stato, revisione e TTL dopo il lock. Ricevute e iscrizioni concluse rimangono fatti storici; l’offerta di test non attesta scienza o pagamento.
+4. **Autorizzazione prima della decodifica nei confini di lettura.** Discovery e gestione verificano il principal persistito e filtrano ownership/membership in SQL prima di JSON/pack. La UI non ricava accesso da URL, hold o risposta create. RLS protegge anche i draft nel ruolo backend, nei binding e nel catalogo SECURITY DEFINER; i ruoli browser non ricevono scritture canoniche. I consumer delle fonti conservano l’esatta coppia risorsa/revisione e il contesto autorizzato, senza sostituire una versione storica con il head.
+5. **Discovery limitata senza cache globale dei pack.** Pagina UI50 più al massimo una selezione esatta fuori pagina; ogni invocazione Core compie una verifica del principal e una query dati scoped (due SELECT totali nei contratti), non query per riga. Il LEFT JOIN rende esplicito il pin mancante; ogni pin è ricontrollato anche dopo risoluzione dello stesso pack. Cache descrittori locale alla pagina: una lettura/parse/hash per distinto `(packId,version)`, nuova verifica alla chiamata seguente. Indici `(teacher_id,id)` e `(student_id,edition_id)` supportano i due percorsi; non costituiscono una misura di latenza PG.
+6. **Isolamento UI per attore, ruolo e richiesta.** Selezione URL viene confermata dalla discovery; generazioni/abort e affinità edizione impediscono a risposte tardive di riempire un altro corso. Cache workspace limitata a16; al401 osservato si cancellano selezione/cache/draft e si richiede accesso, al diniego di una sola edizione si rimuove quella selezione. Un503 permette retry della fase fallita senza ripetere create. Revoca e scadenza sono rilevate alla successiva risposta verificata: manca un canale di invalidazione immediata. Le bozze sono memoria di sessione limitata, non persistenza offline/dopo riavvio.
+
+## Evidenza disponibile, separata dalle promesse
+
+I log e il report seguenti sono prove del candidato indicato, lette per questa proposta; non sono nuove esecuzioni del redattore. Percorsi sotto `work/`:
+
+| Artefatto | Perimetro osservato | SHA256 |
+|---|---|---|
+| `management-a3cdf6ba-core-pg.log` | 499 pass, zero skip; suite Core/API con PG reale abilitato | `d1246dcbef6108669a2ac4aae1b261971a499ed08612cb165669b1c418588d90` |
+| `management-a3cdf6ba-engine.log` | 2427 pass,24 skip espliciti,3 warning | `06e1d749ee85e0ffda19ea699ec8990013337999934ff7f7dc6eed9d83c423cd` |
+| `management-a3cdf6ba-web-tests.log` | 81 pass; typecheck e build separati verdi | `82115c1ada9154ce372147ec7c9976f5995ae981415d50d8d8eb1ea4a1ca688f` |
+| `management-final-pg-browser/report.json` | Browser→TCP/Auth/PG/RLS;2 pack,8 screenshot verificati per hash | `92cabe6e60d9e5614da22d3740d56ea25a1095f50a4103e82c7b82e1a2748f49` |
+
+Typecheck e build sono in `management-a3cdf6ba-web-typecheck.log` e `management-a3cdf6ba-web-build.log`. Il viaggio autentico crea, salva, legge l’anteprima, conferma esplicitamente e riapre entrambe le edizioni; verifica anche rifiuto del wall time inesistente a Roma con campi preservati. Browser New York, corso Europe/Rome, screenshot1440/820/390 per entrambi i pack; otto hash corrispondono ai file. Questo non certifica tutte le pagine, accessibilità completa, comportamento temporale o condizioni di rete. Gli skip Engine restano esclusioni esplicite, non successi di integrazione live.
+
+## Estensioni da precedere con contratti
+
+| Limite materiale attuale | Confine da estendere e prova richiesta prima di ampliare |
+|---|---|
+| Calendario: scan O(edizioni del tutor×4) sotto lock docente, anche per anteprima/conferma. | Definire stati/finestra che riservano tempo; se necessario query o proiezione sessioni ricostruibile nello stesso DB. Conservare ordine lock docente→edizione; test sovrapposizione al quarto incontro, DST e gare tra edizioni. Nessuna soglia di capacità dedotta dai test. |
+| Workspace e liste consegne non paginate; il workspace include fonti e feedback. | Introdurre cursori scoped e budget espliciti prima di cataloghi di lavoro ampi; contratti SQLite/PG per autorizzazione prima del decode, versioni esatte, pagina completa senza omissioni silenziose ed export coerente. |
+| Storia cursori UI O(pagine visitate), pur con50+1 descrittori. | Scegliere storia limitata o ritorno esplicito alla prima pagina; test back/next, cancellazioni, selezione fuori pagina e bozze durante cambio attore/risposte lente. Non chiamarla memoria costante oggi. |
+| Admission pre-Auth/DB per processo: default16 scope, attesa0,5s, poi503; pulizia inclusa nel possesso del permit. | Budget connessioni su tutti i processi più attività amministrative; misurare carico e risorse prima di pooling/throughput dichiarato. Contratti cancellation/open/command/close e salute indipendente restano necessari. Questo semaforo non limita tutti i body, buffer o code di rete. |
+| Registry attuale: due packId distinti, entrambi versione1; il selettore usa solo packId. | **Prima** di esporre versione2 dello stesso ID, chiave/valore UI compositi `(packId,packVersion)` e test che scelta, preview e binding mantengano la versione; nessuna migrazione automatica dei vecchi pin. |
+| Copy temporale e fallimenti di rete hanno prove parziali. | Prima di nuove promesse, test a clock fisso su collecting/draft/offered e date trascorse, fuso corso/browser; perdita ACK e navigazione/reload con retry dello stesso intento. Il viaggio nominale su due pack non prova ogni guasto di rete. |
+
+Nuovi provider restano dietro porte piccole con contratti di autorizzazione, timeout, idempotenza e recovery prima dell’attivazione; il mock Calendar e l’ICS non certificano Google live. Lo stesso criterio vale per migrazioni e restore completo. Nessun nuovo framework o dipendenza è necessario per questa decisione. Le prove sopra delimitano la manutenzione verificata; non attestano scala illimitata o tolleranza a ogni cambiamento.
+
+## Limite organizzazioni e ruoli per contesto
+
+La specifica02, `02_PERSONE_CORSI_E_GESTIONALE.md`, distingue `Organization`, `User` e `Membership`: i ruoli appartengono all’organizzazione. Il Core di questa fonte conserva invece `study_principals(id,role)` con un solo ruolo globale; ownership delle edizioni e scope SQL/RLS non realizzano quel modello organizzativo. La stessa persona docente nell’organizzazioneA e studentessa nellaB non è modellata. Il candidato non attesta prontezza per più scuole o tenant indipendenti.
+
+Prima di introdurre organizzazioni o ruoli multipli serve una migrazione nel medesimo Core: identità della persona distinta dalla membership per organizzazione, scope e autorizzazioni SQL/RLS coerenti, contesto organizzativo esplicito nel selettore e nei comandi. Contratti necessari: stessa persona teacher inA/student inB, negazione dei riferimenti e delle risposte tardive tra contesti, amministratore commerciale senza accesso automatico a compiti/note, pin e ricevute storiche ancora risolvibili con i diritti esatti. Nessun secondo Core, ledger o login per aggirare il cambiamento. Questa è una condizione di estensione futura, non un’implementazione compresa nello slice.
+
+## Limite di integrità delle migrazioni legacy
+
+Il controllo completo delle tabelle canoniche descritto per questa fonte riguarda gli schemi riconosciuti da3 in avanti. Il rifiuto di tabelle Study senza marker è provato; non è una garanzia su ogni combinazione di corruzione degli schemi1/2. Quei percorsi storici di upgrade possono ancora ricreare una tabella canonica assente. Prima di modificarli o promettere recupero fail-closed per qualsiasi database legacy servono casi dedicati che provino assenza di riparazione distruttiva e conservazione dei fatti. Le migrazioni amministrative e i backup non sostituiscono quei contratti.
+
+## Confine dei successori
+
+C5, correzione del cookie rifiutato, ha una prova reale separata su `ffa8710010716220de30902062fcfe7cd22a92e7`, prima dell’integrazione. C6, budget pesato dei body prima della lettura, è in revisione: il primo freeze ha un finding indipendente sul ciclo della risposta500, riprodotto e in correzione. Nessuno dei due è parte dei byte o dei conteggi C4. Il limite attuale sui body e le prove storiche rimangono espliciti fino alla verifica del successore integrato.
