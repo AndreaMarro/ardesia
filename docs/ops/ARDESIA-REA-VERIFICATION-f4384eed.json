@@ -1,0 +1,141 @@
+{
+  "schema": "ardesia.root-successor-rea-review/2",
+  "productCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "metadataHeadReviewed": "26332dd1107efb1a4c214d3a8b3837a9fb79b8cc",
+  "originalPolicyHashesUnchanged": {
+    "factory/rea/check_rea_gates.py": "502c2d92302dc91872439c47b3466af0e86dfd2c01fcaa1e1166b4ab2217291c",
+    "factory/rea/REA_GATES.json": "40b229e989860bb5fadbd786d5f44c58e207d4ac4f8cc753c984caa81d33f592",
+    "factory/rea/REA_RECEIPT_SCHEMA.json": "ed23cfba7cd5c698b7814f2c1b29a6f0802cc870600fc1c0b27a98e97c4d27f7",
+    "contracts/REA_MISSIONS.json": "dca8c4b3b3fa210ce1319dd35b9189af37d196f936966e044e83c609b149e735"
+  },
+  "freezeManifestSHA256": "1d30b9a7a42a7869a3969b953154178d7bb78ab61686753b5b9d5005cefc87e4",
+  "newFilesVerified": 96,
+  "newBytes": 41996467,
+  "historicalFilesRehashed": 158,
+  "historicalAuthenticEnvelopeIds": 158,
+  "newAuthenticEnvelopeIds": {
+    "ev_922c5e5a0f89cf8198d52ea55a847a6e7792a54aef1ab395ce4e2dbea468b635": "capture_browser_scenario",
+    "ev_cd31e07e73a6c637349169ec38a49e01aad428ce54d3ce42458259d65b0e1855": "capture_browser_scenario",
+    "ev_d10d8fb5b121def0360403147e7a204805885d7ff71ae6ca157384e874bd4ec2": "capture_browser_scenario",
+    "ev_56ad7ffe1a7c426c25190ca93b59be36d84a56982271c23023b209ff2ad275f4": "capture_browser_scenario",
+    "ev_446b9914d6037d0fba8cc261f6192bf0635185fff5fb328fe2705d380021a6c1": "inspect_web_page",
+    "ev_9ccd0df3a53bf0ed38e7de3a8dd7c98e261f7eae3393fe1ae88ac24f0e39da04": "export_web_scripts",
+    "ev_b6ec78a701535dc6aed170b95b0a0eaeaf930c6d3a124dcf0344865f0c8d79ff": "inspect_web_page",
+    "ev_a4f7acb3285d6f9ba8c95a7d367fff2bd051309085c0947fa35dbcb1c2fb617c": "export_web_scripts",
+    "ev_80619d42f265db537241f74c0da78b7402ac07c32ad542d9289e625c730376ec": "analyze_javascript_application",
+    "ev_71459dd2581862e550c7ce6d52a3a9cdd005cedbb1fc6077a224844c3e0f53a0": "analyze_javascript_application",
+    "ev_450462ef519a006c1e425475f6e94aeb6b7c5ca865edaaabb4dcb2acf3c06ae2": "trace_javascript_semantics",
+    "ev_61a86aa98d2baf02ff12cc6e48fb541e445ae33d118d64b87f107d390101e5af": "trace_application_feature",
+    "ev_a156b35f821beb3e610cb4200799b01b8d7bcc70840a9bfc615ec62faae2c124": "compare_application_versions",
+    "ev_f9dcdcabd6caaa5db46a7dddebd9dc27d8e6066ef67f40049f228d711d953c6d": "compare_web_captures",
+    "ev_b8717dbcfad879a5488a3fbc5ef48b12c13b48d5a8b3539fe25eee3f1a67fd22": "reconcile_javascript_runtime"
+  },
+  "sidecars": [
+    {
+      "name": "courses-readonly",
+      "requests": 5,
+      "steps": 5
+    },
+    {
+      "name": "tutor-sourceboard",
+      "requests": 13,
+      "steps": 8
+    },
+    {
+      "name": "student-memory-reopen",
+      "requests": 6,
+      "steps": 10
+    }
+  ],
+  "currentCapturesGlobalINCOMPLETE": {
+    "courses-before-capture.evidence.json": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "courses-readonly-capture.evidence.json": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "tutor-sourceboard-capture.evidence.json": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "student-memory-reopen-capture.evidence.json": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    }
+  },
+  "selectedAuthoredSourceFiles": 24,
+  "changedVs5cb": 9,
+  "runtimeOccurrencesVerified": 13,
+  "compiledFilesVerified": 9,
+  "sourceFilesVerified": 39,
+  "pythonNominals": 178,
+  "webNominals": 83,
+  "independentWebAST": {
+    "files": 16,
+    "literalDeclarations": 87,
+    "dynamicUNKNOWN": 2,
+    "typescript": "6.0.2",
+    "sha256": "169db3eea5fcb4bfd229becf737dee4f97e4b0aa4ff9618e48cd473412de1542"
+  },
+  "actualExecution": {
+    "CoreAPI": "543_PASS_0_SKIP_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
+    "Web": "110_PASS_16_FILES_CURRENT_SERIAL_RUN"
+  },
+  "nominalCollectionNotExecution": true,
+  "applicationComparison": {
+    "unchanged": 0,
+    "added": 0,
+    "removed": 0,
+    "changed": 7,
+    "unknown": 363
+  },
+  "acceptedScope": "Previously assimilated functional components, with current read-only REA runtime evidence and separately executed current Core/API/Web tests. No new vendor visit, GUI mutation, pedagogical validation or benchmark claimed.",
+  "R4": "Previously accepted registered097alternative; unchanged policy and justification.",
+  "installed": true,
+  "gatesExecuted": true,
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY",
+  "receiptHashes": {
+    "R0": "51c19ae1cf1ae0222e58724f96e7d843e9c1ffb3492fd7255859aa4024cd9067",
+    "R1": "3d8701013351b16b40e0f7a9ac59f7180c4b00140bc8190228d519bd3fd8d9bc",
+    "R2": "e794d1b5cbac283ececf9b525ef148fccd5002ba55e578cdded42b13408a9550",
+    "R3": "cea60cb2612058ffe0c58c158982de762e95ca332dc232bec2ace44018af50d7",
+    "R8": "da96c6e8d3ec6894c7cc1e4e74350d3d1e8fbed0bc0cc1d14c76db96a736d4ec",
+    "R6": "f044c168d1f57b07cc56fa4d7232ef9c49492e1ac30ad60cf9bdb07f72f66231",
+    "R4": "dfd7323b356dd925d3acf2f8f6523cc0c78fa1832ce410b324ee819cfd8cc37d"
+  },
+  "originalGates": {
+    "G0": {
+      "gate": "G0",
+      "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "status": "PASS",
+      "problems": []
+    },
+    "G1": {
+      "gate": "G1",
+      "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+      "status": "PASS",
+      "problems": []
+    }
+  },
+  "reviewScopeNotExpandedByGate": true,
+  "reviewer": "root independently rehashed254inputs, rederived TypeScriptAST, verified source/test/served-byte provenance; preparer not reviewer"
+}

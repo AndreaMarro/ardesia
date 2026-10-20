@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-20T08:33:46.611851+00:00",
+  "observed_at": "2026-10-20T09:19:17.122900+00:00",
   "sha": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
   "sha_semantics": "Combined C7+C8 product.543 actual owned PG/Auth/Core/API and110 Web executed on this exact commit; immutable primary source/frontend nowf438. Historical proofs retain original commits.",
   "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
@@ -467,17 +467,17 @@
     }
   },
   "rea": {
-    "last_certified_product_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "last_certified_product_sha": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
     "last_original_G0": "PASS_REA_SUBGATE_ONLY",
     "last_original_G1": "PASS_REA_SUBGATE_ONLY",
-    "current_binding": "PENDING_SOURCE_BOUND_F438_REVIEW_ORIGINAL_POLICY_UNCHANGED",
+    "current_binding": "ACCEPTED_CURRENT_SCOPED_ROOT_REVIEW_ORIGINAL_G0_G1_REA_SUBGATES_PASS",
     "catalog_targets": 139,
     "entry_visits": 139,
     "catalog_limit": "ENTRY_VISIT_IS_NOT_COMPLETE_REVERSE_ENGINEERING",
     "raw_artifacts": "PRIVATE_IGNORED",
     "original_policy_changed": false,
-    "current_report": "docs/ops/ARDESIA-REA-VERIFICATION-5cbafd07.json",
-    "unknown_comparison_items": 190,
+    "current_report": "docs/ops/ARDESIA-REA-VERIFICATION-f4384eed.json",
+    "unknown_comparison_items": 363,
     "depth_map": "docs/ops/ARDESIA-REA-DEPTH-139.json",
     "deep_research_supplements": [
       {
@@ -504,7 +504,13 @@
         "prototype082Adapter": "SEPARATE_REVIEW_PENDING",
         "raw_verified_cache": "artifacts/rea-evidence/deep-082"
       }
-    ]
+    ],
+    "prior_5cb_unknown_comparison_items": 190,
+    "current_changed_comparison_items": 7,
+    "current_capture_scope": "ALL4_GLOBAL_INCOMPLETE_EVENTS_READONLY;NO_NEW_DONOR_VISIT_OR_GUI_MUTATION",
+    "current_source_files_verified": 39,
+    "current_root_core_api": 543,
+    "current_root_web": 110
   },
   "runtime": {
     "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
@@ -552,7 +558,7 @@
     "Earlier live CLI calls/cost UNKNOWN"
   ],
   "next_actions": [
-    "Rebind REA currentf438 with fresh R6 observation and original gate review",
+    "Integrate independently reviewed attendance/manual-register source, run real owned PG/Auth/RLS/UI 10students+2interested and refresh final-source evidence",
     "Complete integrated attendance/manual ledger with independent review, real PG/UI and 10students+2interested journey",
     "Finish remaining media/offline/source erasure/workspace paging/org role/full syllabus G0 requirements",
     "Continue actual deep public/open-source research and product adoption for139 targets without entry-visit equivalence"

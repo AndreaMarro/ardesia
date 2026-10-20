@@ -7,11 +7,11 @@
     "TARGET-097"
   ],
   "target_kind": "THIRD_PARTY_AUTHORIZED",
-  "authorization_basis": "User authorized actual reversible donor research and isolated a3 browser sessions with original synthetic text. Bramble normal sign-in boundary respected; official Logseq demo with no personal folder grant; AFFiNE anonymous guest workspace. No account, cost, trial, production data or bypass. Pedagogical fixtures synthetic:true; attestation genuine. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation.",
+  "authorization_basis": "User authorized actual reversible donor research and isolated a3 browser sessions with original synthetic text. Bramble normal sign-in boundary respected; official Logseq demo with no personal folder grant; AFFiNE anonymous guest workspace. No account, cost, trial, production data or bypass. Pedagogical fixtures synthetic:true; attestation genuine. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation. Newf438: normal read-only browser with existing authorized synthetic sessions from private environment refs; no new account/revoke/layout/data write.",
   "rea_version": "6.7.0",
-  "source_commit_or_version": "Historical AFFiNE SENTRY_RELEASE0.27.4; remote commit UNKNOWN. Separate frontend source0b69a6da21e8fd35beb85667bb8496d9b3852238; Logseq/og6e7afa8eb040686ff057156ee877193b581dd369. Own a3 runtime5324/PID34531. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits.",
+  "source_commit_or_version": "Historical AFFiNE SENTRY_RELEASE0.27.4; remote commit UNKNOWN. Separate frontend source0b69a6da21e8fd35beb85667bb8496d9b3852238; Logseq/og6e7afa8eb040686ff057156ee877193b581dd369. Own a3 runtime5324/PID34531. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits. New own-product f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd immutable runtime5324PID60961; donor/a3/2a/5cb references remain historical.",
   "alternative_justification": "Bramble TARGET-003 normal access requires sign-in. Two authorized alternatives compared on five0–5 factors (functionality, observability, legal transferability, quality, cost/risk): Logseq16/25, AFFiNE22/25. AFFiNE TARGET-097 selected because anonymous source/block search, correction and reopen actually execute without account; only original functional contracts assimilated. Root accepted existing registered TARGET-097 and this functional justification; no registry or policy was changed.",
-  "product_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
   "rea_operations": [
     "analyze_javascript_application",
     "capture_browser_scenario",
@@ -24,7 +24,7 @@
     "trace_javascript_semantics"
   ],
   "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
-  "created_at": "2026-10-20T06:42:00.302998+00:00",
+  "created_at": "2026-10-20T08:53:51.774047+00:00",
   "implementation": {
     "decision": "ADAPT",
     "source_files": [
@@ -32,7 +32,11 @@
       "packages/engine/lessonos/study/diary.py",
       "apps/web/src/features/Diary.tsx",
       "apps/web/src/components/SourceViewer.tsx",
-      "packages/engine/lessonos/study/view_layout.py"
+      "packages/engine/lessonos/study/view_layout.py",
+      "apps/studio/src/study/sessionBoundary.ts",
+      "apps/studio/src/study/apiClient.ts",
+      "apps/web/src/App.tsx",
+      "apps/web/src/components/sessionDraftCache.ts"
     ],
     "test_names": [
       "packages/engine/tests/study/test_context_memory.py::test_changed_or_removed_source_invalidates_memory_and_citations",
@@ -78,41 +82,66 @@
       "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
       "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
       "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
-      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state"
+      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: a verified child %s 401 (%s) removes the private application and opens access",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: an untrusted child %s preserves the private application",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: an anonymous initial authentication boundary remains public without opening access",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: explicit logout clears the private application even when server revocation is unconfirmed",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: a late rejection from the previous session cannot clear a newly authenticated actor",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: the legacy application also removes its private surface after a verified missing session",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: legacy explicit logout also clears locally and preserves the unconfirmed revocation warning",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: a login completed after the legacy application unmounts cannot activate a session",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: a new login aborts previous requests before its exchange",
+      "apps/web/src/__tests__/session-transport.test.ts :: HTTP idempotency survives every supported HeadersInit representation",
+      "apps/web/src/__tests__/session-transport.test.ts :: concurrent verified rejections end one session once and cancel its other pending requests",
+      "apps/web/src/__tests__/session-transport.test.ts :: a successful body decoded after a new login cannot return old private data",
+      "apps/web/src/__tests__/session-transport.test.ts :: status%s and marker%s cannot end an established session",
+      "apps/web/src/__tests__/session-transport.test.ts :: an original upload uses the same trusted session boundary as JSON and binary reads",
+      "apps/web/src/__tests__/session-transport.test.ts :: changing session while reading an upload never sends the old file under the new actor",
+      "apps/web/src/__tests__/session-transport.test.ts :: a failed exchange aborts tracked old requests without invalidating an established session",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: public and private brand links retain the complete visible name",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: skip links target a main that can receive focus without joining the tab order",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: two editions of the same course are articles rather than indistinguishable region landmarks",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: deliveries progress from the page heading to each attempt and then its feedback"
     ],
     "test_outcome": "PASS"
   },
   "unknowns": [
-    "Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
-    "All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
-    "Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
-    "Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
-    "Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
-    "Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
-    "First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
-    "Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
-    "Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
-    "Historical/a3 scope retained: Text/source/block anchors only. No audio/video seek, transcript speaker proof, remote backend build equality, cloud sync, device/OS restart or current keyword-search UI was proved. Donor correction is historical; a3 replay is read-only and does not write a new contest/correction.",
-    "Historical/a3 scope retained: AFFiNE selected public release0.27.4 is separate from source0b69; remote commit UNKNOWN.22,434,059-byte donor sourcemap exceeded REA4,194,304-byte limit; original truncation error preserved, no partial map passed off as original. Reconciliation and semantic unknowns remain.",
-    "Historical/a3 scope retained: Root reviewed and accepted registered TARGET-097 as the authorized functional alternative under the unchanged mission policy and explicit justification. Bramble beyond normal sign-in access remains unexamined; donor comparison is historical, not a new visit or remote backend/source equivalence."
+    "Currentf438 observations are read-only Courses configuration/four-session display, persisted SourceBoard exact pins/provenance/context, and Diary prior explanation/exact source/context/history. No current create/configure/preview-confirm, GUI move/resize/detach, new graded attempt/review/contest/transfer, notebook file upload/export, or session revocation was performed by this researcher.",
+    "All four current browser scenarios are globally INCOMPLETE/equality_eligible:false due to missing events. Completed steps and ordinary HTTP GET sidecars do not fill missing network observations.",
+    "Both current inspections are attach_limited/policy_filtered. Target/frame attribution and excluded scripts remain bounded; current export identifies13 script occurrences, not a complete runtime inventory.",
+    "REA application comparison5cb→f438 reports0unchanged/7changed/363UNKNOWN. Selected file scope expanded17→24, so counts are not a comparable coverage benchmark. Historical190UNKNOWN remains historical and unresolved; it is not replaced with unchanged facts.",
+    "REA Courses comparison is CHANGED with five aligned steps, eight artifact differences, no literal normalization; global network incompleteness prevents whole-system equality. Viewport and actual state/data differences are retained rather than normalized.",
+    "Current session-source reconciliation has13runtime scripts/0matched/13unmatched/4UNKNOWN/31staticUNKNOWN. TS source digests and compiled JS digests differ; no source-map, source-to-bundle semantic equivalence or absence of functionality is claimed. The auxiliary two-layer observation used a cache label for authored source and is diagnostic only; corrected selected proof uses one application layer.",
+    "Main source graph24files151205B/21940AST has0parse failures but6000semantic-node ceiling;660nodes/518relations/194unknown in separate three-file session graph. endStudySession trace finds1seed/1node/0relations/1UNKNOWN, not full propagation proof. Runtime behavior of rejection is supported separately by root tests/browser proof, not inferred from this trace.",
+    "Git Engine tree equals5cb, but Web, Studio and API trees changed;9of24selected file bytes changed. No oldWeb81 byte-equivalence argument is applied to current110Web. Current source inventory and test collection name verification execute zero test bodies.",
+    "Nominal Web inventory contains16files/87literal declarations/2dynamic-name declarationsUNKNOWN. It is AST nomination, not110 individual execution records. Separate root serial log proves110passes/16files; nominal Python collection543 is separate from actual root543pass0skip log.",
+    "Documents FileProvider marked original files compressed,dataless; normal reads hitErr60. Public Foundation startDownloadingUbiquitousItem was requested only for our new artifacts, then exact JSON/id/byte/hash copies were checked in temporary storage. Zero-byte failed copies were rejected; no originals re-emitted or retagged. Initial cleanup timed out; subsequent PID absence/profile removal is separate proof.",
+    "Historical5cb/donor scope, not current replay: Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "Historical5cb/donor scope, not current replay: All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Historical5cb/donor scope, not current replay: Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Historical5cb/donor scope, not current replay: Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Historical5cb/donor scope, not current replay: Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "Historical5cb/donor scope, not current replay: First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Text/source/block anchors only. No audio/video seek, transcript speaker proof, remote backend build equality, cloud sync, device/OS restart or current keyword-search UI was proved. Donor correction is historical; a3 replay is read-only and does not write a new contest/correction.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: AFFiNE selected public release0.27.4 is separate from source0b69; remote commit UNKNOWN.22,434,059-byte donor sourcemap exceeded REA4,194,304-byte limit; original truncation error preserved, no partial map passed off as original. Reconciliation and semantic unknowns remain.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Root reviewed and accepted registered TARGET-097 as the authorized functional alternative under the unchanged mission policy and explicit justification. Bramble beyond normal sign-in access remains unexamined; donor comparison is historical, not a new visit or remote backend/source equivalence."
   ],
   "limitations": [
-    "PRIVATE PROPOSED RECEIPT ONLY: statusPASS is proposed scoped result pending independent root review, copy/hash/rights/name validation and original gate. No canonical receipt/state/gate written by this preparer; no globalG0/G1 certification.",
-    "Attestation synthetic:false means genuine REA/provider execution and actual root tests. Pedagogical dataset/actors/model responses are synthetic:true; no real student/account/payment/invite or production data mutation.",
-    "Product binding5cbafd072504cb4603bf0daa903472fa0f528247 is distinct from metadataHEADc718901e091e706a44f8532d54cf2444fbbe2837. Runtime5324/PID43753/dataId05f4a05edde66bab observed separately; source/body/cookie proofs are ordinary sidecars, not REA envelopes.",
-    "Historical donor/a3/C2/fe/2a Evidence paths, hashes and source versions are preserved. Current own sourcegraph does not become fresh donor source research. Historical contract/test summaries are replaced only by explicit successor-derived documents, never normalized provider raw.",
-    "No GPL/AGPL donor code, quiz-bank/vendor asset or manual supplied to product. No automatic framework/library adoption. No performance benchmark or numerical time saving measured.",
-    "Historical rights/scope retained: Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
-    "Historical rights/scope retained: Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
-    "Historical rights/scope retained: Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
-    "Historical rights/scope retained: No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
-    "Historical rights/scope retained: AFFiNE selected frontend outside backend/native exclusions MIT; Logseq AGPL3 observed and researched only. No GPL/AGPL code copied. No audio/video search equivalent is asserted.",
-    "Historical rights/scope retained: Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
+    "PRIVATE PROPOSAL ONLY: statusPASS is a proposed scoped receipt for independent root review and original unchanged gate; no canonical receipt/state/gate installed by this preparer. GlobalG0 remainsNOTCERTIFIED and GlobalG1 remainsNOTREADY.",
+    "Attestation synthetic:false means genuine REA observations and actual root test executions. Teaching dataset, test actors and deterministic model responses are synthetic:true; apiSpendUsd0. No real students, new accounts, charges, invites or study-data writes by this replay.",
+    "Productf4384eed61e87510cbb7e29b9e7f9ff6d6fecebd is bound to immutable /tmp/ardesia-primary-f4384eed, runtime5324/PID60961/dataId05f4a05edde66bab. MetadataHEAD is recorded separately and never substituted for the product. Cookie existence/body size are ordinary sidecars, not REA provider evidence.",
+    "External donor and baseline/a3/2a/5cb envelopes retain their original source versions, origins and hashes. No new external visit or donor-code integration is implied by the current own-product replay. Full139entry access is not139deep investigations; research map remains a depth map with open gaps.",
+    "Historical root-corrected names, R0 activeClassroom mapping and accepted R4TARGET097alternative are retained. R1 GUI drag/resize is historical2a; current110Web executes SourceBoard unit regressions, while the new REA GUI replay is read-only.",
+    "No GPL/AGPL donor code/manual/quiz bank/vendor assets supplied as product code. MathLive081, PDF.js082/adapter and Tiptap116 remain separately frozen research and prospective contracts, not newly installed dependencies or additional product proof. No benchmark or numerical time saving measured."
   ],
   "benefit": {
     "defect_avoided": "Prevents a resumed lesson from silently using a changed source or a different student’s explanation, while retaining the earlier reasoning and next action.",
     "time_saved_minutes": null,
-    "measurement_method": "Root current539Core/API actual log plus exact named collection; Web81a3 on byte-identical Web tree is historical execution. New5cb read-only capture/sourcegraph/compare; no time benchmark."
+    "measurement_method": "Actual current root543Core/API and110Web executions, separate exact nominal collection/AST; fresh current REA read-only capture/compare/reconcile. Qualitative benefit only; no time/throughput benchmark."
   },
   "evidence": [
     {
@@ -326,14 +355,34 @@
       "sha256": "7da69cbd7267c00d1aaa7e8d5f7afb01e2af97301617265ba106967139eebf0f"
     },
     {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "67d2cb1eb0324f0e033faf1435b591ef1bdff3d7032c85c937a4e451428233fe"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/memory-inspect.evidence.json",
+      "sha256": "f7251bd83ef5440b968486004441beccb1cc987d61c500232bdcec93326fe05d"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/memory-export.evidence.json",
+      "sha256": "9281281dbd5a9e88d773856ecc5fb63f67f191994e47511b60dfe7d300fbe9d5"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/source.application.evidence.json",
+      "sha256": "c0b09b30c8cad0013cfb12e9488713c4e9cc631e61bd100199ee4d93ac2067de"
+    },
+    {
       "kind": "contract",
-      "path": "artifacts/rea-evidence/successor-5cb/contracts/R4-5cb-assimilation.md",
-      "sha256": "9833d4d165295c39c848839a88ce1da70268e33556c1c0a9ddf7b9d12a3cab81"
+      "path": "artifacts/rea-evidence/successor-f4384eed/contracts/R4-f438-assimilation.md",
+      "sha256": "133309aed246ad7c5e88920024d83cef6fe54e2d88c96f81624cf9ad0c04033b"
     },
     {
       "kind": "test",
-      "path": "artifacts/rea-evidence/successor-5cb/tests/R4-5cb-tests.json",
-      "sha256": "3c0921338d6728646d6098770837c64c6a1112441c26a08f45aa01f967ffc64d"
+      "path": "artifacts/rea-evidence/successor-f4384eed/tests/R4-f438-tests.json",
+      "sha256": "8a3947cd52cf565e30b9ca6ffa188a08b27fc2af93b74a0d4e4be587d00b8eb3"
     }
   ]
 }
