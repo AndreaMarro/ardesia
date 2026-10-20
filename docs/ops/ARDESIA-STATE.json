@@ -538,6 +538,24 @@
       "provider_calls_and_cost": "UNKNOWN",
       "remediation": "EXPLICIT_RUN_LIVE_MODELS_FLAG_AND_ENV_ALLOWLIST",
       "default_guard": "4_SKIPPED_ZERO_CONNECTIONS_NOT_FOUR_PASS"
+    },
+    "vercel_automatic_preview_9e0": {
+      "status": "GITHUB_CONFIRMS_PREVIEW_NON_PRODUCTION;DELETION_AND_COST_NOT_VERIFIED",
+      "sha": "9e0ebda8a8170e1d26e02705ef32dae0e77feb7c",
+      "cause": "Root default push briefly created integration branch outside the two explicit deployment exclusions",
+      "temporaryBranch": "codex/ardesia-api-dispatch-20261020",
+      "branchRemoved": true,
+      "correctCandidateBranchUpdated": true,
+      "githubDeploymentId": 7196113616,
+      "vercelDeploymentId": "dpl_5iUwzeRarRoXUxb49ra4te4Ypwv1",
+      "createdAt": "2026-10-20T09:21:33Z",
+      "environment": "Preview",
+      "productionEnvironment": false,
+      "cost": "UNKNOWN_NOT_ZERO",
+      "mcpInspection": "403_SCOPE_FORBIDDEN",
+      "cliFallback": "NOT_INSTALLED",
+      "cuaInitialAttempt": "TIMEOUT_KERNEL_RESET",
+      "remediation": "Add documented minimatch codex/ardesia-* false in repository; explicit candidate-ref push only; attempt normal authorized read/delete of new preview without modifying existing production services"
     }
   },
   "historical_state": "docs/ops/ARDESIA-STATE-a3cdf6ba.json",
