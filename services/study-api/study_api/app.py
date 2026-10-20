@@ -3,12 +3,12 @@ import json,sqlite3,os
 from anyio import CancelScope, CapacityLimiter, to_thread
 from lessonos.study.store import digest
 from pathlib import Path
-from fastapi import FastAPI, Request, Response, Depends
+from fastapi import FastAPI, Request, Response, Depends, Query
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
 from lessonos.study.models import StudyError
-from lessonos.study.store import StudyStore
+from lessonos.study.store import StudyStore, MAX_EDITION_CURSOR_LENGTH
 
 
 class SessionBody(BaseModel):
@@ -148,6 +148,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         principal=store.principal_for_session(token)
         response.set_cookie('study_session',token,httponly=True,secure=secure_cookies,samesite='strict',max_age=3600)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
+
+    @app.get('/study/editions')
+    def editions(request: Request, limit: int=Query(50, ge=1, le=100),
+                 after: str | None=Query(None, min_length=1, max_length=MAX_EDITION_CURSOR_LENGTH), store=Depends(store_dependency)):
+        return store.list_editions(authenticate(request,store),limit=limit,after=after)
 
     @app.post('/study/editions/{edition_id}/invitations')
     def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):

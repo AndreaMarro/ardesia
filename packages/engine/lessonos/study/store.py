@@ -17,6 +17,11 @@ from lessonos.store.sqlite import SQLiteStore
 from .models import Principal, StudyError
 from .lock import data_lock
 
+MAX_EDITION_IDENTIFIER_LENGTH = 128
+# Historic identifiers were unbounded. Keep a bounded compatibility cursor
+# without changing or truncating their persisted identity.
+MAX_EDITION_CURSOR_LENGTH = 8192
+
 
 def identifier():
     return uuid.uuid4().hex
@@ -178,6 +183,8 @@ class StudyStore:
             raise StudyError('forbidden', 403)
         if type(capacity) is not int or not 1 <= capacity <= 10 or type(price_minor) is not int or price_minor < 0:
             raise StudyError('invalid_edition')
+        if not isinstance(edition_id, str) or not 1 <= len(edition_id) <= MAX_EDITION_IDENTIFIER_LENGTH:
+            raise StudyError('invalid_edition')
         assert_pseudonymous(edition_id, 'edition_id')
         from .catalog import validate_binding
         binding = validate_binding(course_id, pack_id, pack_version)
@@ -194,6 +201,31 @@ class StudyStore:
             raise StudyError('not_found', 404)
         from .catalog import edition_pack
         return {**edition_pack(self, edition_id), 'id': row['id'], 'teacherId': row['teacher_id'], 'capacity': row['capacity'], 'priceMinor': row['price_minor'], 'state': row['state'], 'sessions': json.loads(row['sessions']), 'timezone': row['timezone']}
+
+    def list_editions(self, principal, *, limit=50, after=None):
+        """Discover only owned/member editions; decode only the bounded page."""
+        self._principal(principal)
+        if type(limit) is not int or not 1 <= limit <= 100:
+            raise StudyError('invalid_edition_pagination')
+        if after is not None and (not isinstance(after, str) or not 1 <= len(after) <= MAX_EDITION_CURSOR_LENGTH):
+            raise StudyError('invalid_edition_pagination')
+        if principal.role == 'teacher':
+            query = 'SELECT e.id FROM study_editions e WHERE e.teacher_id=?'
+        else:
+            query = ('SELECT e.id FROM study_editions e JOIN study_members m ON m.edition_id=e.id '
+                     'WHERE m.student_id=?')
+        parameters = [principal.id]
+        if after is not None:
+            query += ' AND e.id>?'
+            parameters.append(after)
+        query += ' ORDER BY e.id LIMIT ?'
+        rows = self.connection.execute(query, (*parameters, limit + 1)).fetchall()
+        page = rows[:limit]
+        cursor = page[-1]['id'] if len(rows) > limit else None
+        if cursor is not None and len(cursor) > MAX_EDITION_CURSOR_LENGTH:
+            raise StudyError('legacy_edition_identifier_requires_migration', 409)
+        return {'items': [self.get_edition(row['id']) for row in page],
+                'nextCursor': cursor}
 
     def _edition_access(self, principal, edition_id, teacher_only=False):
         self._principal(principal)
