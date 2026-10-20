@@ -262,3 +262,61 @@ def test_two_editions_share_provider_account_calendar_scope_without_event_identi
     assert len(provider.events[first['plan']['providerScope']])==8
     assert len(provider.events)==1 and store.connection.execute('SELECT COUNT(*) FROM study_calendar_mappings').fetchone()[0]==8
     assert not reconcile_calendar(store,tutor,'calendar-edition',first['plan']['targetId'],provider)['conflicts']
+
+
+def test_late_duplicate_publish_ack_cannot_regress_a_newer_confirmed_mapping(calendar):
+    from concurrent.futures import ThreadPoolExecutor
+    import threading
+    store,_,tutor,*_,now=calendar
+    edition_id='late-ack-edition'
+    store.create_edition(tutor,edition_id)
+    configure_sessions(store,tutor,edition_id,dates())
+    first=preview_schedule(store,tutor,edition_id,'mock','first-preview')
+
+    class HeldAcknowledgement(MockCalendar):
+        def __init__(self):
+            super().__init__();self.entered=threading.Event();self.release=threading.Event();self.hold=True
+        def upsert(self,*args):
+            result=super().upsert(*args)
+            if self.hold:
+                self.hold=False;self.entered.set();assert self.release.wait(4)
+            return result
+
+    provider=HeldAcknowledgement()
+    def publish(connection,intent,key):
+        return confirm_schedule(connection,tutor,edition_id,intent['previewId'],intent['previewHash'],
+            intent['sourceVersion'],True,key,provider)
+    def late_duplicate():
+        connection=StudyStore(store.path,clock=lambda:now[0])
+        try:return publish(connection,first,'first-confirm')
+        finally:connection.close()
+
+    with ThreadPoolExecutor(1) as pool:
+        pending=pool.submit(late_duplicate)
+        try:
+            assert provider.entered.wait(2)
+            # The same intent/key may finish through another request while its
+            # first provider acknowledgement is still in flight.
+            assert publish(store,first,'first-confirm')['state']=='published'
+            december=[{'start':f'2026-12-{day:02}T18:00:00+01:00',
+                'end':f'2026-12-{day:02}T19:30:00+01:00'} for day in (1,3,8,10)]
+            # This edition has no members; canonical administrative rescheduling
+            # is authorized and a new explicit preview/confirm is required.
+            configure_sessions(store,tutor,edition_id,december)
+            latest=preview_schedule(store,tutor,edition_id,'mock','latest-preview')
+            latest_receipt=publish(store,latest,'latest-confirm')
+            mappings=[dict(row) for row in store.connection.execute(
+                'SELECT * FROM study_calendar_mappings WHERE target_id=? ORDER BY session_id',
+                (latest['plan']['targetId'],))]
+            external=deepcopy(provider.events)
+        finally:provider.release.set()
+        with pytest.raises(StudyError,match='calendar_preview_stale'):pending.result()
+
+    assert [dict(row) for row in store.connection.execute(
+        'SELECT * FROM study_calendar_mappings WHERE target_id=? ORDER BY session_id',
+        (latest['plan']['targetId'],))]==mappings
+    assert all(row['source_version']==latest['sourceVersion'] for row in mappings)
+    assert provider.events==external and sum(map(len,provider.events.values()))==4
+    assert publish(store,latest,'latest-confirm')==latest_receipt
+    assert not reconcile_calendar(store,tutor,edition_id,latest['plan']['targetId'],provider)['conflicts']
+    assert store.get_edition(edition_id)['sessions']==december

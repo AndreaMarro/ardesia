@@ -126,6 +126,16 @@ def confirm_schedule(store,actor,edition_id,preview_id,preview_hash,expected_ver
             except (TimeoutError,OSError):raise StudyError('calendar_provider_unavailable',503) from None
             with store.transaction() as c:
                 store.lock_edition(c,edition_id)
+                # The provider ACK may arrive after a duplicate request has
+                # completed this intent and a newer confirmed plan. Validate
+                # authority again under the same lock as Calendar publication.
+                current=_owned_intent(c,actor,edition_id,preview_id)
+                if current['source_version']!=expected_version or source_version(_edition(store,actor,edition_id,True))!=expected_version:
+                    raise StudyError('calendar_preview_stale',409)
+                previous=lookup_receipt(c,actor.id,'calendar.confirm',key,hashed)
+                if previous is not None:return previous
+                if current['state']!='publishing' or current['confirm_key']!=key or current['preview_hash']!=preview_hash:
+                    raise StudyError('calendar_intent_consumed',409)
                 c.execute('UPDATE study_calendar_mappings SET source_version=?,etag=?,applied_body=? WHERE target_id=? AND session_id=?',
                     (expected_version,applied['etag'],canonical(body),plan['targetId'],item['sessionId']))
     with store.transaction() as c:
