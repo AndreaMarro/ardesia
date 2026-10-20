@@ -104,29 +104,33 @@ export function SourceLibrary({
       {error && <ErrorNotice message={error} />}
       {entries.length ? (
         <ul>
-          {entries.map((entry, index) => (
-            <li key={`${entry.resourceId}:${entry.revisionId}`}>
-              <span className="board-library-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <strong>{entry.title}</strong>
-                <small>
-                  {entry.detail} · rev. {entry.revisionId.slice(0, 8)}
-                </small>
-                <button
-                  disabled={full || opening !== null}
-                  onClick={() => void open(entry)}
-                  aria-label={`Apri fonte ${index + 1} sul tavolo`}
-                >
-                  {opening === `${entry.resourceId}:${entry.revisionId}`
-                    ? "Apertura…"
-                    : "Apri una vista"}{" "}
-                  <span aria-hidden="true">↗</span>
-                </button>
-              </div>
-            </li>
-          ))}
+          {entries.map((entry, index) => {
+            const label =
+              opening === `${entry.resourceId}:${entry.revisionId}`
+                ? "Apertura…"
+                : "Apri una vista";
+            return (
+              <li key={`${entry.resourceId}:${entry.revisionId}`}>
+                <span className="board-library-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <strong>{entry.title}</strong>
+                  <small>
+                    {entry.detail} · rev. {entry.revisionId.slice(0, 8)}
+                  </small>
+                  <button
+                    disabled={full || opening !== null}
+                    onClick={() => void open(entry)}
+                    aria-label={`${label}: fonte ${index + 1}`}
+                  >
+                    {label}{" "}
+                    <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <p className="empty-inline">

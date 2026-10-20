@@ -77,7 +77,7 @@ export function Public({ onLogin }: { onLogin: () => void }) {
         Vai al contenuto
       </a>
       <header className="public-nav">
-        <a className="wordmark" href="/" aria-label="Ardesia, inizio">
+        <a className="wordmark" href="/">
           <span className="brand-symbol" aria-hidden="true">
             a
           </span>
@@ -92,7 +92,7 @@ export function Public({ onLogin }: { onLogin: () => void }) {
           </button>
         </nav>
       </header>
-      <main id="public-content">
+      <main id="public-content" tabIndex={-1}>
         <section className="public-hero">
           <div className="hero-copy">
             <h1>

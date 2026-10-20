@@ -66,7 +66,7 @@ export function Shell({
         Vai al contenuto
       </a>
       <aside className="sidebar" aria-label="Navigazione e account">
-        <a className="wordmark" href="/" aria-label="Ardesia, inizio">
+        <a className="wordmark" href="/">
           <span className="brand-symbol" aria-hidden="true">
             a
           </span>
@@ -149,7 +149,7 @@ export function Shell({
             Ambiente di prova · dati sintetici
           </span>
         </header>
-        <main id="content" className="page-content">
+        <main id="content" className="page-content" tabIndex={-1}>
           {children}
         </main>
       </div>

@@ -378,10 +378,10 @@ function BoardView({
           onPointerDown={(event) => start(event, false)}
           onKeyDown={(event) => keyboard(event)}
           {...pointerEvents}
-          aria-label={`Sposta vista ${index + 1} con le frecce`}
+          title="Sposta la vista con le frecce. Maiusc + frecce ridimensiona."
         >
           <span aria-hidden="true">⠿</span>
-          <span>Fonte {String(index + 1).padStart(2, "0")}</span>
+          <span>Fonte {String(index + 1).padStart(2, "0")}</span>{" "}
           <small>rev. {view.pluginState.revisionId.slice(0, 8)}</small>
         </button>
         <button
@@ -417,7 +417,7 @@ function BoardView({
         <button
           disabled={!canDuplicate}
           onClick={onDuplicate}
-          aria-label={`Duplica vista ${index + 1}`}
+          aria-label={`Altra vista: fonte ${index + 1}`}
         >
           Altra vista
         </button>

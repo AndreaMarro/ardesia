@@ -146,12 +146,12 @@ test("duplicating and keyboard moving persist two instance identities with one e
   );
   mountBoard();
   await screen.findByText(original.text, { selector: ".original-text" });
-  fireEvent.click(screen.getByRole("button", { name: "Duplica vista 1" }));
+  fireEvent.click(screen.getByRole("button", { name: "Altra vista: fonte 1" }));
   await waitFor(() =>
     expect(document.querySelectorAll(".source-board-view")).toHaveLength(2),
   );
   fireEvent.keyDown(
-    screen.getByRole("button", { name: "Sposta vista 2 con le frecce" }),
+    screen.getByRole("button", { name: "Fonte 02 rev. revision" }),
     { key: "ArrowRight" },
   );
   fireEvent.click(screen.getByRole("button", { name: "Salva disposizione" }));
@@ -183,7 +183,7 @@ test("failed layout save preserves views and retries the same snapshot without a
   );
   mountBoard();
   await screen.findByText(original.text, { selector: ".original-text" });
-  fireEvent.click(screen.getByRole("button", { name: "Duplica vista 1" }));
+  fireEvent.click(screen.getByRole("button", { name: "Altra vista: fonte 1" }));
   fireEvent.click(screen.getByRole("button", { name: "Salva disposizione" }));
   await screen.findByRole("alert");
   expect(screen.getByTestId("board-save-state").textContent).toContain(
@@ -216,11 +216,11 @@ test("a late save acknowledgement never marks edits made during that request as 
   );
   mountBoard();
   await screen.findByText(original.text, { selector: ".original-text" });
-  fireEvent.click(screen.getByRole("button", { name: "Duplica vista 1" }));
+  fireEvent.click(screen.getByRole("button", { name: "Altra vista: fonte 1" }));
   const save = screen.getByRole("button", { name: "Salva disposizione" });
   fireEvent.click(save);
   fireEvent.click(save);
-  fireEvent.click(screen.getByRole("button", { name: "Duplica vista 2" }));
+  fireEvent.click(screen.getByRole("button", { name: "Altra vista: fonte 2" }));
   await act(async () => {
     finish(json({ saved: true, layoutVersion: "c".repeat(64) }));
   });
@@ -268,7 +268,7 @@ test("detaching the last view persists an empty board and reopening never recrea
   );
   expect(document.querySelectorAll(".source-board-view")).toHaveLength(0);
   fireEvent.click(
-    screen.getByRole("button", { name: "Apri fonte 1 sul tavolo" }),
+    screen.getByRole("button", { name: "Apri una vista: fonte 1" }),
   );
   await screen.findByText(original.text, { selector: ".original-text" });
   expect(document.querySelectorAll(".source-board-view")).toHaveLength(1);
@@ -396,7 +396,7 @@ test("a tutor reopens an authorized submitted revision when the student's privat
   );
   expect(document.querySelectorAll(".source-board-view")).toHaveLength(0);
   fireEvent.click(
-    screen.getByRole("button", { name: "Apri fonte 1 sul tavolo" }),
+    screen.getByRole("button", { name: "Apri una vista: fonte 1" }),
   );
   await screen.findByText(original.text, { selector: ".original-text" });
   const card = document.querySelector(".source-board-view");
@@ -416,7 +416,7 @@ test("reopening an inaccessible revision does not add an empty or substituted vi
   );
   mountBoard({ ...base, layouts: [] });
   fireEvent.click(
-    screen.getByRole("button", { name: "Apri fonte 1 sul tavolo" }),
+    screen.getByRole("button", { name: "Apri una vista: fonte 1" }),
   );
   await screen.findByRole("alert");
   expect(document.querySelectorAll(".source-board-view")).toHaveLength(0);
@@ -442,7 +442,7 @@ test("keyboard resizing changes the selected view dimensions without moving its 
     { key: "ArrowRight" },
   );
   fireEvent.keyDown(
-    screen.getByRole("button", { name: "Sposta vista 2 con le frecce" }),
+    screen.getByRole("button", { name: "Fonte 02 rev. revision" }),
     { key: "ArrowDown", shiftKey: true },
   );
   fireEvent.click(screen.getByRole("button", { name: "Salva disposizione" }));
@@ -451,4 +451,20 @@ test("keyboard resizing changes the selected view dimensions without moving its 
     first.bounds,
     { ...second.bounds, width: 376, height: 316 },
   ]);
+});
+
+
+test("board names include the visible command text, including while an original is opening", async () => {
+  let finish!: (response: Response) => void;
+  vi.stubGlobal("fetch", vi.fn()
+    .mockImplementationOnce(() => new Promise<Response>((resolve) => { finish = resolve; }))
+    .mockImplementation(async () => json(original)));
+  mountBoard({ ...base, layouts: [] });
+  const open = screen.getByRole("button", { name: "Apri una vista: fonte 1" });
+  fireEvent.click(open);
+  expect(screen.getByRole("button", { name: "Apertura…: fonte 1" })).toBeTruthy();
+  finish(json(original));
+  await screen.findByText(original.text, { selector: ".original-text" });
+  expect(screen.getByRole("button", { name: "Fonte 01 rev. revision" })).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Altra vista: fonte 1" })).toBeTruthy();
 });

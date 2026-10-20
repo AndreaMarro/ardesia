@@ -98,14 +98,14 @@ function Delivery({
   return (
     <article className="delivery-row">
       <div className="section-title">
-        <h3>
+        <h2 className="delivery-title">
           Tentativo {submission.revision} ·{" "}
           {submission.activity_id === "poiseuille-v1"
             ? "Laboratorio Fluidi"
             : submission.activity_id === "taylor-exp-v1"
               ? "Taylor e resto"
               : "Nuova prova"}
-        </h3>
+        </h2>
         <span>
           {submission.feedback.some((f) => f.review)
             ? "Feedback disponibile"

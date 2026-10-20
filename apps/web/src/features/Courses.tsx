@@ -40,7 +40,7 @@ export function Courses({
       </header>
       {me.role === "teacher" && <EditionManager editionId={data?.edition.id ?? null} defaultOpen={data?.edition.state === "draft"} onChanged={(id) => onManaged?.(id)} />}
       {(editions ?? (data ? [data.edition] : [])).map((edition) => (
-        <section
+        <article
           className="edition-row"
           key={edition.id}
           aria-label={courseTitle(edition)}
@@ -76,7 +76,7 @@ export function Courses({
               Apri l’aula
             </button>
           </div>
-        </section>
+        </article>
       ))}
       {data && <div className="course-detail-layout">
         <div className="plain-panel">
