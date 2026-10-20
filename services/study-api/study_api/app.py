@@ -10,7 +10,7 @@ from lessonos.study.store import StudyStore
 
 
 class SessionBody(BaseModel):
-    token: str = Field(min_length=1, max_length=256)
+    token: str = Field(min_length=1, max_length=8192)
 
 
 class ResourceBody(BaseModel):
@@ -20,11 +20,12 @@ class ResourceBody(BaseModel):
     visibility: str = 'private'
 
 
-def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30):
+def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     from lessonos.study.operations import resume_erasures
-    resume_erasures(Path(db_path).parent)
+    if runtime is None:
+        resume_erasures(Path(db_path).parent)
     app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
 
     @app.exception_handler(StudyError)
@@ -38,6 +39,12 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.exception_handler(OSError)
     async def io_error(request, exc):
         return JSONResponse({'error':'storage_unavailable'},status_code=503)
+
+    if runtime is not None:
+        import psycopg
+        @app.exception_handler(psycopg.Error)
+        async def postgres_error(request, exc):
+            return JSONResponse({'error':'storage_unavailable'},status_code=503)
 
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
@@ -57,7 +64,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
                 if len(data)>limit:return JSONResponse({'error':'payload_too_large'},status_code=413)
             request._body=bytes(data)
             if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
-                limiter=StudyStore(db_path)
+                limiter=runtime.open() if runtime else StudyStore(db_path)
                 try:allowed,retry=limiter.allow_request(digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
                 finally:limiter.close()
                 if not allowed:return JSONResponse({'error':'rate_limited'},status_code=429,headers={'Retry-After':str(retry)})
@@ -66,14 +73,20 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         response.headers['X-Content-Type-Options'] = 'nosniff'
         return response
 
-    async def store_dependency():
-        store = StudyStore(db_path)
+    async def store_dependency(request: Request):
+        # Re-authentication and local logout must remain possible with an old,
+        # expired HttpOnly cookie. Protected routes still validate it normally.
+        recovery = request.url.path in ('/study/session','/study/invitations/accept')
+        token = '' if recovery else request.cookies.get('study_session','')
+        store = runtime.open(token) if runtime else StudyStore(db_path)
         try:
             yield store
         finally:
             store.close()
 
     def authenticate(request, store):
+        if runtime is not None:
+            return runtime.principal(store)
         principal = store.principal_for_session(request.cookies.get('study_session',''))
         if principal is None:
             raise StudyError('unauthenticated',401)
@@ -81,18 +94,26 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.get('/study/health')
     async def health():
-        return {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16]}
+        return {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16],
+            'persistence':'postgres' if runtime else 'sqlite','authentication':'supabase' if runtime else 'synthetic_session',
+            'capabilities':{'invitationCodes':runtime is None}}
 
     @app.get('/study/ops/health')
     async def readiness(request: Request, store=Depends(store_dependency)):
         principal=authenticate(request,store)
         if principal.role!='teacher':raise StudyError('forbidden',403)
+        if runtime is not None:
+            return JSONResponse({'ok':False,'persistence':'postgres','backup':'NOT_YET_VERIFIED'},status_code=503)
         from lessonos.study.operations import check_data
         result=check_data(Path(db_path).parent)
         return JSONResponse(result,status_code=200 if result['ok'] else 503)
 
     @app.post('/study/session')
     async def session(body: SessionBody, response: Response, store=Depends(store_dependency)):
+        if runtime is not None:
+            principal = runtime.exchange(body.token)
+            response.set_cookie('study_session', body.token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
+            return {'id':principal.id,'role':principal.role,'synthetic':True,'authentication':'supabase'}
         principal = store.principal_for_session(body.token)
         if principal is None:
             raise StudyError('invalid_demo_access',401)
@@ -102,6 +123,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/invitations/accept')
     async def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
+        if runtime is not None:raise StudyError('supabase_invitation_not_configured',501)
         token=store.accept_invitation(body.token)
         principal=store.principal_for_session(token)
         response.set_cookie('study_session',token,httponly=True,secure=secure_cookies,samesite='strict',max_age=3600)
@@ -109,12 +131,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/editions/{edition_id}/invitations')
     async def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+        if runtime is not None:raise StudyError('supabase_invitation_not_configured',501)
         return store.create_invitation(authenticate(request,store),edition_id,body.get('actorId'))
 
     @app.get('/study/editions/{edition_id}/access')
     async def access_list(edition_id: str, request: Request, store=Depends(store_dependency)):
         store._edition_access(authenticate(request,store),edition_id,teacher_only=True)
-        return {'members':[row[0] for row in store.connection.execute('SELECT student_id FROM study_members WHERE edition_id=? ORDER BY student_id',(edition_id,))],
+        return {'capabilities':{'invitationCodes':runtime is None},'members':[row[0] for row in store.connection.execute('SELECT student_id FROM study_members WHERE edition_id=? ORDER BY student_id',(edition_id,))],
+                'waitlist':[row[0] for row in store.connection.execute('SELECT student_id FROM study_waitlist WHERE edition_id=? ORDER BY student_id',(edition_id,))],
                 'invitations':[dict(row) for row in store.connection.execute('SELECT id,actor_id,state,expires_at FROM study_invitations WHERE edition_id=? ORDER BY id',(edition_id,))]}
 
     @app.delete('/study/invitations/{invitation_id}')
@@ -124,13 +148,21 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.post('/study/session/revoke-all')
     async def revoke_all(request: Request, response: Response, store=Depends(store_dependency)):
-        store.revoke_all_sessions(authenticate(request,store))
+        principal=authenticate(request,store)
+        if runtime is not None:runtime.sign_out(request.cookies.get('study_session',''),all_sessions=True)
+        else:store.revoke_all_sessions(principal)
         response.delete_cookie('study_session',secure=secure_cookies,samesite='strict')
         return {'revoked':True}
 
     @app.delete('/study/session')
     async def logout(request: Request, response: Response, store=Depends(store_dependency)):
-        store.revoke_session(request.cookies.get('study_session',''))
+        if runtime is not None:
+            try:runtime.sign_out(request.cookies.get('study_session',''))
+            except StudyError as error:
+                if error.status != 401:
+                    response.delete_cookie('study_session')
+                    return {'ok':True,'serverRevocation':'UNCONFIRMED'}
+        else:store.revoke_session(request.cookies.get('study_session',''))
         response.delete_cookie('study_session')
         return {'ok':True}
 
@@ -153,8 +185,13 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.get('/study/course')
     async def course(store=Depends(store_dependency)):
-        edition=store.get_edition('fluidi')
-        count=store.connection.execute("SELECT COUNT(*) FROM study_members WHERE edition_id='fluidi'").fetchone()[0]
+        if runtime is not None:
+            public=runtime.catalog(store,'fluidi')
+            count=public['confirmedTest']
+            edition=public
+        else:
+            edition=store.get_edition('fluidi')
+            count=store.connection.execute("SELECT COUNT(*) FROM study_members WHERE edition_id='fluidi'").fetchone()[0]
         return {key:edition[key] for key in ('id','capacity','priceMinor','state','sessions','timezone')} | {
             'title':'Fisica: relazioni e fluidi', 'confirmedTest':count,'available':edition['capacity']-count,
             'synthetic':True,'editorialStatus':'DRAFT','duration':'4 incontri da 90 minuti',

@@ -9,6 +9,7 @@ def transact(store, principal, operation, key, payload, apply):
         raise StudyError('idempotency_key_required')
     hashed=digest(canonical(payload))
     with store.transaction() as c:
+        store.lock_command(c, principal.id, operation, key)
         previous=c.execute('SELECT * FROM study_receipts WHERE actor_id=? AND operation=? AND request_key=?',(principal.id,operation,key)).fetchone()
         if previous:
             if previous['payload_hash']!=hashed:raise StudyError('idempotency_conflict',409)

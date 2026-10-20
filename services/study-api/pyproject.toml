@@ -5,6 +5,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi==0.139.0",
     "pillow>=12,<13",
+    "psycopg[binary]==3.3.3",
     "pypdf>=6.13.3,<7",
     "uvicorn>=0.30,<1",
 ]

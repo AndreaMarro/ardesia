@@ -22,6 +22,7 @@ def propose_feedback(store,principal,submission_id):
     submission=submission_for_actor(store,principal,submission_id,teacher_only=True)
     validate_sources(store,json.loads(submission['source_refs']))
     with store.transaction() as c:
+        store.lock_aggregate(c, 'feedback.draft', submission_id)
         previous=c.execute('SELECT * FROM study_feedback WHERE submission_id=?',(submission_id,)).fetchone()
         if previous:return candidate_dict(previous)
         candidate_id=identifier()
@@ -41,6 +42,7 @@ def review_feedback(store,principal,candidate_id,expected_revision,edits,key,dec
     if type(expected_revision) is not int or expected_revision!=candidate['submission_revision']:raise StudyError('stale_revision',409)
     if decision not in ('returned','needs_clarification') or not isinstance(edits,str) or not 1<=len(edits)<=20_000:raise StudyError('invalid_review')
     def apply(c):
+        store.lock_aggregate(c, 'feedback.review', candidate_id)
         validate_sources(store,json.loads(candidate['source_refs']))
         if c.execute('SELECT 1 FROM study_reviews WHERE candidate_id=?',(candidate_id,)).fetchone():raise StudyError('already_reviewed',409)
         review_id=identifier()

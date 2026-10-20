@@ -21,6 +21,14 @@
     "smoke:studio:production:p30-audit": "bash bin/monorepo.sh smoke-studio-production-p30-audit",
     "verify": "bash bin/monorepo.sh verify-core",
     "verify:elab": "bash bin/monorepo.sh verify-elab",
-    "factory:readonly": "bash bin/monorepo.sh factory-readonly"
-  }
+    "factory:readonly": "bash bin/monorepo.sh factory-readonly",
+    "dev:web": "npm run dev --workspace @ardesia/web",
+    "build:web": "npm run build --workspace @ardesia/web",
+    "typecheck:web": "npm run typecheck --workspace @ardesia/web",
+    "test:web": "npm run test --workspace @ardesia/web",
+    "e2e:web": "npm run e2e --workspace @ardesia/web"
+  },
+  "workspaces": [
+    "apps/web"
+  ]
 }

@@ -1,0 +1,90 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "17CB60E49DA82398874595C802090865"
+  },
+  "start_url": {
+    "url": "https://sandbox.moodledemo.net/course/edit.php?category=1&lang=en"
+  },
+  "actions": [
+    {
+      "step_id": "new-course",
+      "action": "goto",
+      "timeout_ms": 15000,
+      "destination": {
+        "url": "https://sandbox.moodledemo.net/course/edit.php?category=1&lang=en"
+      },
+      "wait_until": "domcontentloaded"
+    },
+    {
+      "step_id": "full-name",
+      "action": "fill",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_fullname"
+      },
+      "value": {
+        "source": "literal",
+        "value": "ARDESIA REA original physics 20261020"
+      }
+    },
+    {
+      "step_id": "short-name",
+      "action": "fill",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_shortname"
+      },
+      "value": {
+        "source": "literal",
+        "value": "REA-PHYS-20261020-0240"
+      }
+    },
+    {
+      "step_id": "save-course",
+      "action": "click",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_saveanddisplay"
+      }
+    },
+    {
+      "step_id": "course-ready",
+      "action": "wait_for",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "h1:has-text(\"ARDESIA REA original physics\")"
+      },
+      "state": "visible"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "events": [
+      "network",
+      "page-errors"
+    ],
+    "network": {
+      "response_body": true
+    },
+    "limits": {
+      "max_network_body_bytes": 262144
+    }
+  },
+  "environment": {
+    "service_workers": "allow"
+  }
+}

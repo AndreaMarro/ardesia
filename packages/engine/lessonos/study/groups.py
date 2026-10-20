@@ -11,6 +11,7 @@ def reserve_seat(store, actor, edition_id, key, now, ttl=900):
     if actor.role!='student':raise StudyError('forbidden',403)
     if not 0<ttl<=3600:raise StudyError('invalid_expiry')
     def apply(c):
+        store.lock_edition(c, edition_id)
         edition=store.get_edition(edition_id)
         if c.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(edition_id,actor.id)).fetchone():
             return {'id':None,'editionId':edition_id,'state':'confirmed','paymentMode':'test'}
@@ -40,6 +41,7 @@ def confirm_test_enrollment(store, actor, hold_id, key, now):
             c.execute("UPDATE study_holds SET state='payment_requires_review' WHERE id=?",(hold_id,))
             return {'id':hold_id,'state':'payment_requires_review','paymentMode':'test'}
         edition=store.get_edition(hold['edition_id'])
+        store.lock_edition(c, edition['id'])
         count=c.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?',(edition['id'],)).fetchone()[0]
         if count>=edition['capacity']:raise StudyError('group_full',409)
         c.execute('INSERT OR IGNORE INTO study_members VALUES(?,?)',(edition['id'],actor.id))
@@ -76,6 +78,7 @@ def configure_sessions(store,principal,edition_id,sessions):
         if any(start<old_end and end>old_start for old_start,old_end in intervals):raise StudyError('calendar_conflict',409)
         intervals.append((start,end))
     with store.transaction() as c:
+        store.lock_teacher(c, principal.id)
         if store.get_edition(edition_id)['sessions']==sessions:return
         if c.execute('SELECT 1 FROM study_members WHERE edition_id=?',(edition_id,)).fetchone():raise StudyError('reconfirmation_required',409)
         for row in c.execute('SELECT sessions FROM study_editions WHERE teacher_id=? AND id!=?',(principal.id,edition_id)):

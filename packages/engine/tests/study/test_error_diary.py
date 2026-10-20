@@ -39,6 +39,16 @@ def opened(tmp_path):
     return data
 
 
+def test_replay_scopes_private_events_before_decoding_other_learners(tmp_path):
+    store, tutor, student, peer, other, *_ = opened(tmp_path)
+    with store.transaction() as connection:
+        store._event(connection, peer, 'error.proposed.v1', None,
+            {'diaryVersion': 1, 'threadId': 'unrelated-damaged-projection', 'studentId': peer.id, 'thread': None})
+    view = diary().get_diary(store, student)
+    assert len(view['threads']) == 1
+    assert view['threads'][0]['studentId'] == student.id
+
+
 def test_ai_proposal_is_not_confirmed_debt_and_replays_after_restart(tmp_path):
     store, tutor, student, peer, other, receipt, anchor, result = proposed(tmp_path, 'ai')
     assert result['status'] == 'CANDIDATE'
@@ -121,7 +131,7 @@ def test_student_diary_persists_between_courses_without_granting_new_tutor_histo
     assert diary().get_diary(store, student, 'analisi')['threads'][0]['threadId'] == result['threadId']
     assert diary().get_diary(store, other, 'analisi')['threads'] == []
     for actor in (peer, other):
-        with pytest.raises(StudyError, match='forbidden'):
+        with pytest.raises(StudyError, match='not_found'):
             diary().get_thread(store, actor, result['threadId'])
     with pytest.raises(StudyError):
         diary().get_diary(store, tutor)

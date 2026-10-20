@@ -20,6 +20,7 @@ def record_interest(store, request, key):
     payload={'editionId':edition_id,'contact':contact,'topic':topic,'slots':slots,'consent':True}
     hashed=digest(canonical(payload))
     with store.transaction() as c:
+        store.lock_command(c, 'anonymous', 'interest.record', key)
         previous=c.execute('SELECT * FROM study_interests WHERE request_key=?',(key,)).fetchone()
         if previous:
             if previous['payload_hash']!=hashed:raise StudyError('idempotency_conflict',409)

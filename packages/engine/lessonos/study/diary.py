@@ -23,8 +23,30 @@ def _text(value, code='invalid_diary_text', limit=4000):
     return value
 
 
-def _events(store):
-    for row in store.connection.execute('SELECT * FROM study_events ORDER BY seq'):
+def _events(store, principal, edition_id=None, thread_id=None):
+    # Scope the canonical ledger before decoding/replaying private payloads.
+    # The learner's career view spans editions; tutors remain edition scoped.
+    placeholders = ','.join('?' for _ in KINDS)
+    query = f'SELECT * FROM study_events WHERE kind IN ({placeholders})'
+    parameters = list(sorted(KINDS))
+    if principal.role == 'student':
+        query += " AND json_extract(payload,'$.studentId')=?"
+        parameters.append(principal.id)
+    else:
+        query += """ AND json_extract(payload,'$.threadId') IN (
+            SELECT json_extract(payload,'$.threadId') FROM study_events
+            WHERE kind='error.proposed.v1'
+              AND json_extract(payload,'$.thread.editionId') IN (
+                SELECT id FROM study_editions WHERE teacher_id=?"""
+        parameters.append(principal.id)
+        if edition_id:
+            query += ' AND id=?'
+            parameters.append(edition_id)
+        query += '))'
+    if thread_id:
+        query += " AND json_extract(payload,'$.threadId')=?"
+        parameters.append(thread_id)
+    for row in store.connection.execute(query + ' ORDER BY seq', parameters):
         if row['kind'] not in KINDS:
             continue
         payload = json.loads(row['payload'])
@@ -32,9 +54,9 @@ def _events(store):
             yield row, payload
 
 
-def _project(store):
+def _project(store, principal, edition_id=None, thread_id=None):
     threads = {}
-    for row, payload in _events(store):
+    for row, payload in _events(store, principal, edition_id, thread_id):
         thread_id = payload['threadId']
         if row['kind'] == 'error.proposed.v1':
             threads[thread_id] = {**payload['thread'], 'status': 'CANDIDATE',
@@ -84,7 +106,7 @@ def _access(store, principal, thread, teacher_only=False):
 
 def _thread(store, principal, thread_id, teacher_only=False):
     store._principal(principal)
-    thread = _project(store).get(thread_id)
+    thread = _project(store, principal, thread_id=thread_id).get(thread_id)
     if thread is None:
         raise StudyError('not_found', 404)
     _access(store, principal, thread, teacher_only)
@@ -156,7 +178,7 @@ def get_diary(store, principal, edition_id=None):
     elif edition_id:
         store._edition_access(principal, edition_id)
     visible = []
-    for thread in _project(store).values():
+    for thread in _project(store, principal, edition_id).values():
         if principal.role == 'student' and thread['studentId'] != principal.id:
             continue
         if principal.role == 'teacher' and thread['editionId'] != edition_id:
@@ -179,7 +201,16 @@ def _emit(store, c, principal, kind, thread_id, payload, source=None):
 def _command(store, principal, operation, key, payload, apply):
     # Receipts contain identifiers only: replay must not restore a revoked source
     # from a historical response body. The visible projection is rebuilt per read.
-    receipt = transact(store, principal, 'diary.' + operation + '.v1', key, payload, apply)
+    def apply_to_aggregate(connection):
+        if payload.get('threadId'):
+            aggregate = payload['threadId']
+            namespace = 'diary.thread'
+        else:
+            aggregate = [payload.get(name) for name in ('submissionId', 'conceptId', 'category', 'anchor')]
+            namespace = 'diary.proposal'
+        store.lock_aggregate(connection, namespace, aggregate)
+        return apply(connection)
+    receipt = transact(store, principal, 'diary.' + operation + '.v1', key, payload, apply_to_aggregate)
     return get_thread(store, principal, receipt['threadId'])
 
 
@@ -220,7 +251,7 @@ def propose_error(store, principal, submission_id, concept_id, category, anchor,
             raise StudyError('invalid_error_observation')
         source = _anchor(store, principal, submission, anchor)
         validate_sources(store, [source])
-        for existing in _project(store).values():
+        for existing in _project(store, principal, submission['edition_id']).values():
             if (existing['studentId'] == submission['student_id']
                     and existing['submissionId'] == submission_id
                     and existing['conceptId'] == concept_id and existing['category'] == category

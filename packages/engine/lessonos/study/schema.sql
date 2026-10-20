@@ -84,3 +84,6 @@ CREATE TABLE IF NOT EXISTS study_layouts(
  actor_id TEXT NOT NULL REFERENCES study_principals(id), edition_id TEXT NOT NULL REFERENCES study_editions(id),
  data TEXT NOT NULL, PRIMARY KEY(actor_id,edition_id)
 );
+CREATE INDEX IF NOT EXISTS study_event_student ON study_events(json_extract(payload,'$.studentId'),seq);
+CREATE INDEX IF NOT EXISTS study_event_thread ON study_events(json_extract(payload,'$.threadId'),seq);
+CREATE INDEX IF NOT EXISTS study_event_edition ON study_events(json_extract(payload,'$.thread.editionId'),seq);

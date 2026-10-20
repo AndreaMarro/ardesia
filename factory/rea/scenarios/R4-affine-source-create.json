@@ -1,0 +1,100 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "AD63D1CB430F9DEF982AA2E0F19727DA"
+  },
+  "start_url": {
+    "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/all"
+  },
+  "environment": {
+    "locale": "en-US",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "shell-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "test_id",
+        "value": "sidebar-new-page-button"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "new-original-source",
+      "action": "click",
+      "locator": {
+        "kind": "test_id",
+        "value": "sidebar-new-page-button"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "source-editor-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "doc-title [contenteditable=true]"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "name-original-source",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "doc-title [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "R4 Lesson 1 - Poiseuille source"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "write-contestable-explanation",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "R4-L1-ANCHOR-741. Claim to contest: at fixed pressure doubling radius multiplies flow by four. Teacher explanation v1: compare the radius power before computing."
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "original-explanation-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"R4-L1-ANCHOR-741\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

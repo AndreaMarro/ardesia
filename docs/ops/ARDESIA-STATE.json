@@ -1,18 +1,20 @@
 {
-  "observed_at": "2026-10-20T01:02:41.845181+00:00",
-  "sha": "2a4e061014beba72f91e715d33758c44a0615d49",
+  "observed_at": "2026-10-20T01:41:46.744280+00:00",
+  "sha": "6e9f20450b3a15c1f57c941a303488f202088b57",
   "milestone": "G0",
   "statuses": {
     "G0": "IN_PROGRESS",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
     "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING",
-    "diary_core": "122_STUDY_AND_HTTP_TESTS_PASS_REVIEW_PENDING"
+    "diary_core": "LIVE_POSTGRES_FLOW_TESTED_FINAL_SHA_REPLAY_PENDING",
+    "shared_core": "144_STUDY_HTTP_LIVE_POSTGRES_TESTS_PASS",
+    "web": "17_UNIT_TESTS_PASS_TYPECHECK_BUILD_PASS"
   },
   "rea": {
     "version": "6.7.0",
     "docs_downloaded": 20,
-    "missions": "RUNNING_EVIDENCE_NOT_FINAL_RECEIPTS",
+    "missions": "R0_R1_R2_R3_R8_EVIDENCE_COLLECTED_R4_IN_PROGRESS_R6_AND_FINAL_RECEIPTS_PENDING",
     "R0": {
       "capture": "COMPLETE",
       "deep_trace": "PARTIAL_WITH_LIMITS",
@@ -22,25 +24,60 @@
       "operations": 8,
       "evidence_count": 14,
       "integration": "CORE_TESTED_UI_AND_FINAL_SHA_PENDING"
+    },
+    "catalog": {
+      "targets": 139,
+      "entry_visits": 139,
+      "assessment": "139_PARTITIONED_91_PATTERNS_48_ACCESS; entry visit is not complete reverse engineering"
     }
   },
   "deploys": [],
   "trials": [],
   "blockers": [
-    "G0 Core still uses SQLite/demo sessions; Postgres/Auth/Storage adapter not integrated",
-    "G0 final REA receipts and final-SHA replay pending",
-    "G1 requires real tutor review and approved dates"
+    "All six final REA receipts missing; original G0 gate actually fails, no certification",
+    "Exact candidate SHA replay and real Auth/PG/Storage web scenario pending",
+    "Storage cleanup crash/failed-compensation orphan requires durable intent/reconciliation",
+    "Supabase invitations deliberately disabled; PostgreSQL application backup not yet verified",
+    "G0 full acceptance matrix (including Taylor and Vercel preview) not certified",
+    "Vercel current Pro workspace does not guarantee no additional cost; no deploy performed",
+    "G1 requires human scientific review and approved dates"
   ],
   "next_actions": [
-    "Integrate shared Core with local Postgres, Supabase Auth and private Storage",
-    "Complete and visually review course-first apps/web",
-    "Finish all 139 target access reviews and deepen relevant subsystems",
-    "Replay G0 one tutor/10 students with final SHA"
+    "Publish integrated candidate to existing PR267, replay actual G0 on candidate SHA",
+    "Fix durable media recovery and complete original acceptance matrix",
+    "Bind original REA evidence, integrated components and test results to exact code SHA",
+    "Continue G1 locally; retain human approval and zero-cost boundaries"
   ],
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "infrastructure": {
     "local_supabase": "22_SMOKE_TESTS_PASS_AFTER_REAL_RECOVERY",
-    "application_adapter": "NOT_YET_INTEGRATED",
-    "vercel": "CONNECTOR_SCOPE_403_CLI_FALLBACK_PENDING"
+    "application_adapter": "LIVE_LOCAL_POSTGRES_AUTH_RLS_PRIVATE_STORAGE_INTEGRATED_SHARED_CORE",
+    "vercel": "BROWSER_ACCESS_RECOVERED_EXISTING_WORKSPACE_PRO_NO_VERIFIED_ZERO_ADDITIONAL_COST; LOCAL_FALLBACK"
+  },
+  "code_state": "UNCOMMITTED_CANDIDATE_ON_BASE_SHA; replay exact committed candidate before certification",
+  "verification": {
+    "engine": {
+      "passed": 2159,
+      "skipped": 17
+    },
+    "studio": {
+      "passed": 2155,
+      "skipped": 5
+    },
+    "g0_http_working_tree": {
+      "assertions": 349,
+      "failed": 0,
+      "students_confirmed": 10,
+      "waitlisted": 2,
+      "globalG0": "NOT_EVALUATED"
+    },
+    "pack_delivery_fix": {
+      "red_failures": 3,
+      "green_focused_tests": 18
+    },
+    "source_context_identity": {
+      "red_failures": 3,
+      "green_web_unit_tests": 17
+    }
   }
 }

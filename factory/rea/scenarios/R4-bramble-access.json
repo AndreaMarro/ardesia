@@ -1,0 +1,49 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "headless": true
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5353/"
+  },
+  "environment": {
+    "locale": "en-US",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "ordinary-public-entry",
+      "action": "goto",
+      "destination": {
+        "url": "https://my.bramble.io/smart-search"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 25000
+    },
+    {
+      "step_id": "surface-settled",
+      "action": "wait_for_timeout",
+      "duration_ms": 1800
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

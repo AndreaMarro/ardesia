@@ -1,12 +1,12 @@
 import json
 from .models import StudyError
 from .store import identifier,canonical,digest
-from .activities import ACTIVITY_ID
+from .coursepack import base_activity_ids
 from .transactions import transact
 
 
 def _assigned_activity(store, principal, edition_id, activity_id, thread_id=None, parameters=None):
-    if activity_id == ACTIVITY_ID:
+    if activity_id in base_activity_ids():
         return None
     from .diary import get_diary
     assigned = [thread for thread in get_diary(store, principal, edition_id)['threads']
@@ -52,6 +52,7 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             if resource['editionId']!=edition_id or resource['revisionId']!=ref['revisionId']:raise StudyError('stale_source',409)
         revision=1
         if parent_id:
+            store.lock_aggregate(c, 'submission.parent', parent_id)
             parent=c.execute('SELECT * FROM study_submissions WHERE id=?',(parent_id,)).fetchone()
             if not parent or parent['student_id']!=principal.id or parent['edition_id']!=edition_id or parent['activity_id']!=activity_id:raise StudyError('forbidden',403)
             if c.execute('SELECT 1 FROM study_submissions WHERE parent_id=?',(parent_id,)).fetchone():raise StudyError('newer_attempt_exists',409)

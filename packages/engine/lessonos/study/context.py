@@ -54,10 +54,13 @@ def revise_resource(store,principal,resource_id,expected_revision,text):
     if not isinstance(text,str) or not 1<=len(text)<=20_000:raise StudyError('invalid_text')
     revision=identifier()
     with store.transaction() as c:
-        current=c.execute('SELECT current_revision FROM study_resources WHERE id=?',(resource_id,)).fetchone()[0]
-        if current!=expected_revision:raise StudyError('stale_revision',409)
+        current=c.execute('SELECT current_revision FROM study_resources WHERE id=?',(resource_id,)).fetchone()
+        if current is None:raise StudyError('forbidden',403)
+        if current[0]!=expected_revision:raise StudyError('stale_revision',409)
         c.execute('INSERT INTO study_revisions VALUES(?,?,?,?,?)',(revision,resource_id,text,digest(text),store.clock()))
-        c.execute('UPDATE study_resources SET current_revision=? WHERE id=?',(revision,resource_id))
+        updated=c.execute('UPDATE study_resources SET current_revision=? WHERE id=? AND current_revision=? AND deleted=0',
+            (revision,resource_id,expected_revision))
+        if updated.rowcount!=1:raise StudyError('stale_revision',409)
         _invalidate_projection(c,resource_id)
         store._event(c,principal,'resource.revised',resource_id,{'revisionId':revision})
     return store.get_resource(principal,resource_id)

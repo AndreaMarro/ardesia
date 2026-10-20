@@ -54,3 +54,15 @@ def test_unregistered_submission_from_before_recurrence_is_not_new_evidence(tmp_
     with pytest.raises(StudyError, match='new_evidence_required'):
         diary().record_practice(store, student, thread_id, old['submissionId'],
             'poiseuille-transfer-v1', {'radiusRatio': 2, 'boundary': 'pressure'}, 'recycle-old')
+
+
+@pytest.mark.parametrize('activity_id', ['poiseuille-v1', 'units-v1', 'hydrostatic-v1', 'buoyancy-v1'])
+def test_every_base_activity_in_the_current_draft_pack_is_submittable(tmp_path, activity_id):
+    from test_identity_store import setup_store
+    store, tutor, student, peer, other = setup_store(tmp_path)
+    receipt = submit(store, student, 'fluidi', activity_id, [],
+                     'Procedura originale con modello e unità.', 'base-' + activity_id)
+    assert receipt['activityId'] == activity_id
+    assert receipt['studentId'] == student.id
+    assert 'activityContext' not in receipt  # A regular exercise is not a diary transfer.
+    assert store.connection.execute('SELECT activity_id FROM study_submissions').fetchone()[0] == activity_id

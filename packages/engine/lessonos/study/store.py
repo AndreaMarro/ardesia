@@ -69,6 +69,18 @@ class StudyStore:
         with sqlite3.connect(target) as destination:
             self.connection.backup(destination)
 
+    def lock_command(self, connection, actor_id, operation, key):
+        """SQLite's BEGIN IMMEDIATE already serializes all writes."""
+
+    def lock_aggregate(self, connection, namespace, aggregate_id):
+        """Serialize one domain aggregate independently of request keys."""
+
+    def lock_edition(self, connection, edition_id):
+        """Dialect hook: PostgreSQL locks this aggregate, SQLite its writer."""
+
+    def lock_teacher(self, connection, teacher_id):
+        """Serialize calendar decisions for one tutor across their editions."""
+
     def create_principal(self, actor_id, role):
         assert_pseudonymous(actor_id, 'actor_id')
         if role not in ('teacher', 'student'):
@@ -146,10 +158,11 @@ class StudyStore:
         """Persistent, bounded counters; caller supplies a hash, never raw tokens."""
         now=self.clock()
         with self.transaction() as c:
+            self.lock_command(c, 'anonymous', 'rate.limit', bucket)
             c.execute('DELETE FROM study_rate_limits WHERE expires_at<=?',(now,))
             row=c.execute('SELECT * FROM study_rate_limits WHERE bucket=?',(bucket,)).fetchone()
             if row and row['attempts']>=limit:return False,max(1,int(row['expires_at']-now)+1)
-            c.execute('INSERT INTO study_rate_limits VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET attempts=attempts+1',(bucket,now+window))
+            c.execute('INSERT INTO study_rate_limits VALUES(?,1,?) ON CONFLICT(bucket) DO UPDATE SET attempts=study_rate_limits.attempts+1',(bucket,now+window))
         return True,window
 
     def create_edition(self, principal, edition_id, capacity=10, price_minor=4900):
@@ -183,6 +196,7 @@ class StudyStore:
         """Seed/confirmation primitive; still checks real transaction capacity."""
         self._edition_access(principal, edition_id, teacher_only=True)
         with self.transaction() as c:
+            self.lock_edition(c, edition_id)
             if c.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?', (edition_id, student_id)).fetchone():
                 return
             count = c.execute('SELECT COUNT(*) FROM study_members WHERE edition_id=?', (edition_id,)).fetchone()[0]

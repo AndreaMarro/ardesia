@@ -1,7 +1,7 @@
 """Private original assets. Validation does not imply OCR or ASR success."""
 from io import BytesIO
+from contextlib import nullcontext
 import json
-import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -9,6 +9,7 @@ import warnings
 from .models import StudyError
 from .store import identifier,digest
 from .lock import data_lock
+from .blobs import repository
 
 LIMITS={'image/png':10,'image/jpeg':10,'image/webp':10,'application/pdf':20,'audio/mpeg':20,'audio/mp4':20,'audio/webm':20}
 
@@ -53,22 +54,21 @@ def validate_asset(data,mime):
 
 
 def upload_asset(store,principal,edition_id,data,mime,blob_dir:Path):
-    with data_lock(store.path):
+    with data_lock(store.path) if repository(store, blob_dir).is_local else nullcontext():
         return _upload_locked(store,principal,edition_id,data,mime,blob_dir)
 
 
 def _upload_locked(store,principal,edition_id,data,mime,blob_dir):
     store._edition_access(principal,edition_id)
     text,status=validate_asset(data,mime)
-    asset_id=identifier();blob_dir.mkdir(parents=True,exist_ok=True,mode=0o700)
-    path=blob_dir/asset_id
+    asset_id=identifier()
+    blobs=repository(store,blob_dir)
     try:
-        with path.open('xb') as output:
-            os.chmod(path,0o600);output.write(data);output.flush();os.fsync(output.fileno())
+        blobs.put(asset_id,data,mime)
         with store.transaction() as c:
             c.execute('INSERT INTO study_assets(id,edition_id,owner_id,mime,bytes,sha256,blob_ref,native_text,extraction_status) VALUES(?,?,?,?,?,?,?,?,?)', (asset_id,edition_id,principal.id,mime,len(data),digest(data),asset_id,text,status))
     except BaseException:
-        path.unlink(missing_ok=True)
+        blobs.remove(asset_id)
         raise
     return {'id':asset_id,'mime':mime,'bytes':len(data),'sha256':digest(data),'nativeText':text,'extractionStatus':status,'private':True}
 
@@ -80,7 +80,6 @@ def read_asset(store,principal,asset_id,blob_dir:Path):
     owner=row['owner_id']==principal.id
     submitted=edition['teacherId']==principal.id and store._submitted_reference(row['edition_id'],row['owner_id'],asset_id)
     if not (owner or submitted):raise StudyError('forbidden',403)
-    path=blob_dir/row['blob_ref']
-    data=path.read_bytes()
+    data=repository(store,blob_dir).get(row['blob_ref'])
     if digest(data)!=row['sha256']:raise StudyError('asset_integrity_failure',503)
     return data,row['mime']

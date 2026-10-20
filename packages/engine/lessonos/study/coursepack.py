@@ -1,5 +1,6 @@
 """Original draft CoursePack. Numeric checks never issue scientific approval."""
 import json,math
+from functools import lru_cache
 from pathlib import Path
 from .activities import evaluate_activity
 from .store import canonical,digest
@@ -7,6 +8,16 @@ from .store import canonical,digest
 
 def load_coursepack():
     return json.loads((Path(__file__).parent/'content/relazioni-fluidi-v1.json').read_text())
+
+
+@lru_cache(maxsize=1)
+def base_activity_ids():
+    """Immutable activity registry for the current bundled course pack.
+
+    The edition access check remains in submit(); arbitrary or transfer IDs
+    still require an explicit tutor assignment. Pack changes ship with code.
+    """
+    return frozenset(item['id'] for item in load_coursepack()['activities'])
 
 
 def validate_coursepack(pack):
