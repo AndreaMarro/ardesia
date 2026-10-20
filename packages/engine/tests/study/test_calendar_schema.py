@@ -4,6 +4,7 @@ import pytest
 from lessonos.study.store import StudyStore,digest
 from lessonos.study.models import StudyError
 from lessonos.study.operations import backup_data,restore_data,check_data,_existing_database
+from lessonos.study.schema_contract import CURRENT_SCHEMA
 from test_identity_store import setup_store
 
 TABLES=('study_calendar_deliveries','study_calendar_cache','study_calendar_mappings','study_calendar_intents','study_calendar_targets')
@@ -14,6 +15,8 @@ def legacy_backup(tmp_path,version):
     backup=tmp_path/'backup';backup_data(source,backup)
     with sqlite3.connect(backup/'study.sqlite') as c:
         for table in TABLES:c.execute('DROP TABLE '+table)
+        c.execute('ALTER TABLE study_editions DROP COLUMN management_revision')
+        c.execute('ALTER TABLE study_holds DROP COLUMN offer_revision')
         c.execute('UPDATE study_schema SET version=?',(version,))
     c.close()  # checkpoint the fixture before hashing/copying its main file
     path=backup/'backup-manifest.json';manifest=json.loads(path.read_text())
@@ -32,7 +35,7 @@ def test_v2_verified_backup_upgrades_and_replays_current_erasure_ledger(tmp_path
     result=restore_data(backup,tmp_path/'restored',ledger)
     assert result['restored'] and result['erasureReplay']==1
     store=StudyStore(tmp_path/'restored'/'study.sqlite')
-    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==3
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==CURRENT_SCHEMA
     assert store.connection.execute('SELECT 1 FROM study_principals WHERE id=?',('student-01',)).fetchone() is None
     assert all(store.connection.execute('SELECT COUNT(*) FROM '+table).fetchone()[0]==0 for table in TABLES)
     store.close()

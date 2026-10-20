@@ -84,6 +84,13 @@ def test_mock_push_duplicate_out_of_order_lost_and_410_preserve_core_and_mapping
     receipt=submit(store,student,'calendar-edition','poiseuille-v1',[],'Ragionamento canonico.','preserved',source_refs=[{'resourceId':source['id'],'revisionId':source['revisionId']}])
     draft=propose_feedback(store,tutor,receipt['submissionId'])
     review_feedback(store,tutor,draft['id'],1,'Osservazione sintetica restituita.','preserved-review')
+    # Booking now requires the tutor's explicit, version-bound offer. Keep the
+    # general fixture tentative for the separate ICS preview assertions.
+    from lessonos.study import editions
+    current=editions.admin_edition(store,tutor,'calendar-edition')
+    offered=editions.preview_offer(store,tutor,'calendar-edition','preserved-offer-preview',revision=current['managementRevision'])
+    editions.offer_edition(store,tutor,'calendar-edition','preserved-offer-confirm',confirmed=True,
+        preview_id=offered['previewId'],preview_hash=offered['previewHash'],revision=offered['expectedRevision'])
     hold=reserve_seat(store,peer,'calendar-edition','preserved-hold',now[0],ttl=1)
     confirm_test_enrollment(store,peer,hold['id'],'late-confirm',now[0]+2)
     intent=preview(calendar);confirm(calendar,intent)

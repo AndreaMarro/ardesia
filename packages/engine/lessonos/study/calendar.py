@@ -7,10 +7,19 @@ from .store import canonical,digest,identifier
 from .transactions import transact,lookup_receipt,record_receipt
 from .calendar_time import normalize_sessions,render_ics,instant,utc
 from .calendar_port import CalendarPort,SyncGone
+from .schema_contract import CURRENT_SCHEMA
+
+
+def _schema_ready(store):
+    # The Core validates the canonical schema on opening the store. Calendar
+    # needs its V3 feature set, not an exact global version that would reject
+    # each later additive migration. Unknown future versions still fail closed.
+    version=store.connection.execute('SELECT version FROM study_schema').fetchone()[0]
+    return 3<=version<=CURRENT_SCHEMA
 
 
 def capabilities(store=None):
-    ready=store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==3 if store is not None else None
+    ready=_schema_ready(store) if store is not None else None
     return {'google':'NOT_CONFIGURED','mock':'IN_PROCESS_TEST_DOUBLE','ics':'AVAILABLE',
         'schemaStatus':'NOT_CHECKED' if ready is None else 'READY' if ready else 'REQUIRES_MIGRATION_10',
         'pushTransport':'IN_PROCESS_MOCK_ONLY','channelRenewal':'MANUAL_MOCK_ONLY',
@@ -27,7 +36,7 @@ def _edition(store,actor,edition_id,teacher=False):
         row=store.connection.execute('SELECT e.id FROM study_editions e JOIN study_members m ON m.edition_id=e.id WHERE e.id=? AND m.student_id=?',(edition_id,actor.id)).fetchone()
     else:row=None
     if not row:raise StudyError('forbidden',403)
-    if store.connection.execute('SELECT version FROM study_schema').fetchone()[0]!=3:raise StudyError('calendar_schema_not_ready',503)
+    if not _schema_ready(store):raise StudyError('calendar_schema_not_ready',503)
     return store.get_edition(edition_id)
 
 
