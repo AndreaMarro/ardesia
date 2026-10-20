@@ -38,6 +38,16 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         resume_erasures(Path(db_path).parent)
     app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
     store_slots = Semaphore(request_store_limit)
+    cookie_options={'path':'/','httponly':True,'secure':secure_cookies,'samesite':'strict'}
+
+    def clear_session_cookie(response):
+        response.delete_cookie('study_session',**cookie_options)
+
+    def record_cookie_rejection(request,error):
+        # This signal is set only by the cookie-authentication boundaries,
+        # never by a body-token exchange or by an arbitrary route's 401.
+        if error.status==401 and 'study_session' in request.cookies:
+            request.state.rejected_study_session=True
 
     def busy_response(*, logout=False):
         body={'error':'server_busy'}
@@ -45,13 +55,16 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         response=JSONResponse(body,status_code=503,headers={
             'Retry-After':str(max(1,math.ceil(request_store_wait))),
             'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'})
-        if logout:response.delete_cookie('study_session')
+        if logout:clear_session_cookie(response)
         return response
 
     @app.exception_handler(StudyError)
     async def domain_error(request, exc):
         if exc.code=='server_busy':return busy_response()
-        return JSONResponse({'error':exc.code}, status_code=exc.status)
+        response=JSONResponse({'error':exc.code}, status_code=exc.status)
+        if exc.status==401 and getattr(request.state,'rejected_study_session',False):
+            clear_session_cookie(response)
+        return response
 
     @app.exception_handler(sqlite3.Error)
     async def storage_error(request, exc):
@@ -146,8 +159,17 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         # expired HttpOnly cookie. Protected routes still validate it normally.
         recovery = request.url.path in ('/study/session','/study/invitations/accept')
         token = '' if recovery else request.cookies.get('study_session','')
-        async with admitted_store(token) as store:
-            yield store
+        opened=False
+        try:
+            async with admitted_store(token) as store:
+                opened=True
+                yield store
+        except StudyError as error:
+            # Only open(token-from-cookie) verifies Auth here. A failure after
+            # yield can belong to the handler/close and proves no such fact.
+            if runtime is not None and token and not opened:
+                record_cookie_rejection(request,error)
+            raise
 
     async def session_store_dependency(body: SessionBody):
         # FastAPI validates this same bounded body once; an old cookie cannot
@@ -156,12 +178,16 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             yield store
 
     def authenticate(request, store):
-        if runtime is not None:
-            return runtime.principal(store)
-        principal = store.principal_for_session(request.cookies.get('study_session',''))
-        if principal is None:
-            raise StudyError('unauthenticated',401)
-        return principal
+        try:
+            if runtime is not None:
+                return runtime.principal(store)
+            principal = store.principal_for_session(request.cookies.get('study_session',''))
+            if principal is None:
+                raise StudyError('unauthenticated',401)
+            return principal
+        except StudyError as error:
+            record_cookie_rejection(request,error)
+            raise
 
     @app.get('/study/health')
     async def health():
@@ -183,13 +209,13 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     def session(body: SessionBody, response: Response, store=Depends(session_store_dependency)):
         if runtime is not None:
             principal = runtime.principal(store)
-            response.set_cookie('study_session', body.token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
+            response.set_cookie('study_session', body.token, max_age=3600, **cookie_options)
             return {'id':principal.id,'role':principal.role,'synthetic':True,'authentication':'supabase'}
         principal = store.principal_for_session(body.token)
         if principal is None:
             raise StudyError('invalid_demo_access',401)
         token = store.issue_session(principal)
-        response.set_cookie('study_session', token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
+        response.set_cookie('study_session', token, max_age=3600, **cookie_options)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
 
     @app.post('/study/invitations/accept')
@@ -197,7 +223,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         if runtime is not None:raise StudyError('supabase_invitation_not_configured',501)
         token=store.accept_invitation(body.token)
         principal=store.principal_for_session(token)
-        response.set_cookie('study_session',token,httponly=True,secure=secure_cookies,samesite='strict',max_age=3600)
+        response.set_cookie('study_session',token,max_age=3600,**cookie_options)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
 
     @app.get('/study/editions')
@@ -228,7 +254,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         principal=authenticate(request,store)
         if runtime is not None:runtime.sign_out(request.cookies.get('study_session',''),all_sessions=True,store=store)
         else:store.revoke_all_sessions(principal)
-        response.delete_cookie('study_session',secure=secure_cookies,samesite='strict')
+        clear_session_cookie(response)
         return {'revoked':True}
 
     @app.delete('/study/session')
@@ -244,9 +270,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
             if error.code=='server_busy':
                 return busy_response(logout=True)
             if error.status!=401:
-                response.delete_cookie('study_session')
+                clear_session_cookie(response)
                 return {'ok':True,'serverRevocation':'UNCONFIRMED'}
-        response.delete_cookie('study_session')
+        clear_session_cookie(response)
         return {'ok':True}
 
     @app.get('/study/me')
