@@ -1,6 +1,8 @@
 """Loopback-only synthetic M1 adapter. No production authentication claims."""
 import json,sqlite3,os
-from anyio import CancelScope, CapacityLimiter, to_thread
+from contextlib import asynccontextmanager
+import math
+from anyio import CancelScope, CapacityLimiter, Semaphore, create_task_group, fail_after, to_thread
 from lessonos.study.store import digest
 from pathlib import Path
 from fastapi import FastAPI, Request, Response, Depends, Query
@@ -22,16 +24,32 @@ class ResourceBody(BaseModel):
     visibility: str = 'private'
 
 
-def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None):
+def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
+               request_store_limit=16, request_store_wait=.5):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
+    if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
+        raise ValueError('invalid_store_admission')
+    if type(request_store_wait) not in (int, float) or not 0 < request_store_wait <= 60:
+        raise ValueError('invalid_store_admission')
     from lessonos.study.operations import resume_erasures
     if runtime is None:
         resume_erasures(Path(db_path).parent)
     app = FastAPI(title='Ardesia Study — synthetic M1', version='0.1.0')
+    store_slots = Semaphore(request_store_limit)
+
+    def busy_response(*, logout=False):
+        body={'error':'server_busy'}
+        if logout:body['serverRevocation']='UNCONFIRMED'
+        response=JSONResponse(body,status_code=503,headers={
+            'Retry-After':str(max(1,math.ceil(request_store_wait))),
+            'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'})
+        if logout:response.delete_cookie('study_session')
+        return response
 
     @app.exception_handler(StudyError)
     async def domain_error(request, exc):
+        if exc.code=='server_busy':return busy_response()
         return JSONResponse({'error':exc.code}, status_code=exc.status)
 
     @app.exception_handler(sqlite3.Error)
@@ -48,13 +66,50 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         async def postgres_error(request, exc):
             return JSONResponse({'error':'storage_unavailable'},status_code=503)
 
-    def allow_attempt(request):
-        # The connection is opened, used and closed in one worker invocation.
-        limiter=runtime.open() if runtime else StudyStore(db_path)
+    @asynccontextmanager
+    async def admitted_store(token=''):
+        # Admission precedes remote Auth, DB opening and worker dispatch. This
+        # is a per-app scope bound, independent of the ordinary worker budget.
         try:
-            return limiter.allow_request(digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
+            with fail_after(request_store_wait):
+                await store_slots.acquire()
+        except TimeoutError:
+            raise StudyError('server_busy',503) from None
+        try:
+            def open_store():
+                return runtime.open(token) if runtime else StudyStore(db_path,check_same_thread=False)
+            # Shields surround ownership transfer and disposal separately;
+            # no cancel scope crosses the dependency yield/handler boundary.
+            with CancelScope(shield=True):
+                store=await run_in_threadpool(open_store)
+            try:
+                yield store
+            finally:
+                with CancelScope(shield=True):
+                    await to_thread.run_sync(store.close,limiter=CapacityLimiter(1))
         finally:
-            limiter.close()
+            store_slots.release()
+
+    async def allow_attempt(request):
+        # Release the counter's scope before the login/interest route acquires
+        # its own scope, including when the configured admission limit is one.
+        result, failure = None, None
+        async def count():
+            nonlocal result, failure
+            try:
+                async with admitted_store() as limiter:
+                    with CancelScope(shield=True):
+                        result=await run_in_threadpool(limiter.allow_request,
+                            digest((request.client.host if request.client else 'unknown')+request.url.path),auth_limit)
+            except Exception as error:
+                failure=error
+        # A raw caller cancellation becomes structured child cancellation.
+        # The worker finishes before close/release, even in this middleware
+        # phase that precedes the downstream ASGI task group.
+        async with create_task_group() as group:
+            group.start_soon(count)
+        if failure is not None:raise failure
+        return result
 
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
@@ -74,7 +129,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
                 if len(data)>limit:return JSONResponse({'error':'payload_too_large'},status_code=413)
             request._body=bytes(data)
             if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
-                allowed,retry=await run_in_threadpool(allow_attempt, request)
+                try:allowed,retry=await allow_attempt(request)
+                except StudyError as error:
+                    if error.code!='server_busy':raise
+                    return busy_response(logout=request.method=='DELETE' and request.url.path=='/study/session')
                 if not allowed:return JSONResponse({'error':'rate_limited'},status_code=429,headers={'Retry-After':str(retry)})
         response = await call_next(request)
         response.headers['Cache-Control'] = 'no-store'
@@ -86,23 +144,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         # expired HttpOnly cookie. Protected routes still validate it normally.
         recovery = request.url.path in ('/study/session','/study/invitations/accept')
         token = '' if recovery else request.cookies.get('study_session','')
-        # FastAPI can schedule setup, handler and teardown on different workers.
-        # This connection still belongs to one request and is never used by
-        # concurrent commands. Aggregate/transaction barriers remain in the Core.
-        def open_store():
-            return runtime.open(token) if runtime else StudyStore(db_path, check_same_thread=False)
-        # Finish ownership transfer before observing cancellation. An async
-        # dependency also avoids sync-generator finalization on the event loop
-        # when FastAPI's threadpool context receives a BaseException.
-        with CancelScope(shield=True):
-            store = await run_in_threadpool(open_store)
-        try:
+        async with admitted_store(token) as store:
             yield store
-        finally:
-            # Cleanup must progress even when the ordinary worker pool is full
-            # or the request's cancellation scope is already cancelled.
-            with CancelScope(shield=True):
-                await to_thread.run_sync(store.close, limiter=CapacityLimiter(1))
+
+    async def session_store_dependency(body: SessionBody):
+        # FastAPI validates this same bounded body once; an old cookie cannot
+        # override the exchanged token or supply a role/actor identity.
+        async with admitted_store(body.token if runtime else '') as store:
+            yield store
 
     def authenticate(request, store):
         if runtime is not None:
@@ -129,9 +178,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         return JSONResponse(result,status_code=200 if result['ok'] else 503)
 
     @app.post('/study/session')
-    def session(body: SessionBody, response: Response, store=Depends(store_dependency)):
+    def session(body: SessionBody, response: Response, store=Depends(session_store_dependency)):
         if runtime is not None:
-            principal = runtime.exchange(body.token)
+            principal = runtime.principal(store)
             response.set_cookie('study_session', body.token, httponly=True, secure=secure_cookies, samesite='strict', max_age=3600)
             return {'id':principal.id,'role':principal.role,'synthetic':True,'authentication':'supabase'}
         principal = store.principal_for_session(body.token)
@@ -174,20 +223,26 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.post('/study/session/revoke-all')
     def revoke_all(request: Request, response: Response, store=Depends(store_dependency)):
         principal=authenticate(request,store)
-        if runtime is not None:runtime.sign_out(request.cookies.get('study_session',''),all_sessions=True)
+        if runtime is not None:runtime.sign_out(request.cookies.get('study_session',''),all_sessions=True,store=store)
         else:store.revoke_all_sessions(principal)
         response.delete_cookie('study_session',secure=secure_cookies,samesite='strict')
         return {'revoked':True}
 
     @app.delete('/study/session')
-    def logout(request: Request, response: Response, store=Depends(store_dependency)):
-        if runtime is not None:
-            try:runtime.sign_out(request.cookies.get('study_session',''))
-            except StudyError as error:
-                if error.status != 401:
-                    response.delete_cookie('study_session')
-                    return {'ok':True,'serverRevocation':'UNCONFIRMED'}
-        else:store.revoke_session(request.cookies.get('study_session',''))
+    async def logout(request: Request, response: Response):
+        token=request.cookies.get('study_session','')
+        try:
+            async with admitted_store(token if runtime else '') as store:
+                def revoke():
+                    if runtime is not None:runtime.sign_out(token,store=store)
+                    else:store.revoke_session(token)
+                await run_in_threadpool(revoke)
+        except StudyError as error:
+            if error.code=='server_busy':
+                return busy_response(logout=True)
+            if error.status!=401:
+                response.delete_cookie('study_session')
+                return {'ok':True,'serverRevocation':'UNCONFIRMED'}
         response.delete_cookie('study_session')
         return {'ok':True}
 

@@ -90,8 +90,9 @@ class SupabaseRuntime:
         finally:
             store.close()
 
-    def sign_out(self, token, *, all_sessions=False):
-        self.exchange(token)
+    def sign_out(self, token, *, all_sessions=False, store=None):
+        if store is None:self.exchange(token)
+        else:self.principal(store)
         scope = 'global' if all_sessions else 'local'
         self.request('POST', '/auth/v1/logout?scope=' + scope, token=token)
 
