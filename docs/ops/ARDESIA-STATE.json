@@ -1,20 +1,66 @@
 {
-  "observed_at": "2026-10-20T02:08:01.140331+00:00",
-  "sha": "db28748cca05658f11a92bbc31f9150e7bc74475",
+  "observed_at": "2026-10-20T03:18:17Z",
+  "sha": "b65e8637b5ac81a5813ccf8102eef45928ba06d8",
+  "sha_semantics": "Exact Core/API test tree, contained in pushed head b00b6da5; later documentation commits do not certify later product changes. Runtime5321 still C2.",
   "milestone": "G0",
   "statuses": {
-    "G0": "IN_PROGRESS",
+    "G0": "IN_PROGRESS_NOT_CERTIFIED",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "draft_privacy": "LOCAL_TESTS_PASS_INDEPENDENT_REVIEW_NO_FINDING",
-    "diary_core": "COMMITTED_CANDIDATE_HTTP_AND_WEB_SCENARIOS_PASS_GLOBAL_G0_NOT_EVALUATED",
-    "shared_core": "162_STUDY_HTTP_LIVE_POSTGRES_TESTS_PASS_WORKING_CANDIDATE",
-    "web": "32_UNIT_TESTS_PASS_TYPECHECK_BUILD_PASS_WORKING_CANDIDATE"
+    "shared_core": "384_STUDY_HTTP_TESTS_PASS_INCLUDING_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
+    "independent_auth_review": "2_REAL_AUTH_PG_LOGOUT_RECOVERY_PROVIDER_FAILURE_PASS",
+    "engine": "2323_PASS_22_DECLARED_SKIP",
+    "web": "AUDIT_FIXES_COMMITTED_MULTICOURSE_TAYLOR_NOTEBOOK_CONSUMER_IN_REVIEW",
+    "calendar": "MOCK_ICS_DST_IMPLEMENTATION_IN_PROGRESS_GOOGLE_NOT_CONFIGURED",
+    "mcp": "PRIMARY_RESEARCH_DONE_NOT_IMPLEMENTED"
+  },
+  "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
+  "verification": {
+    "current_core_http": {
+      "source_commit": "b65e8637b5ac81a5813ccf8102eef45928ba06d8",
+      "passed": 384,
+      "skipped": 0,
+      "seconds": 22.55,
+      "log_sha256": "bc40b2ab845ba0a7cdb78b5e5d19266c570ecceefa6873ace1b3665dc8dbd941"
+    },
+    "independent_auth_review": {
+      "passed": 2,
+      "seconds": 1.86,
+      "log_sha256": "94b60304ea37e3181ae56ad2264b60d2fd2e81a9120723e282acb1a424d3b12b"
+    },
+    "engine": {
+      "passed": 2323,
+      "skipped": 22,
+      "seconds": 29.81,
+      "live_inference": "NOT_RUN",
+      "postgres": "EXERCISED_SEPARATELY_IN_384",
+      "log_sha256": "eea6a78f7f48d27f5a3b8cf6207e2f7aaaad48068aacf6e8064a7eea3fe9ee76"
+    },
+    "last_browser_candidate": {
+      "source_commit": "a6646e7d58892afee624b89f68c6ba694f4aea9f",
+      "http_assertions": 349,
+      "http_requests": 170,
+      "failures": 0,
+      "web": "PASS",
+      "source_board": "PASS",
+      "cold_application_restart": "ACTUAL_OWNED_PROCESS_RESTART_SAME_PG_3_AUTHORIZED_PROJECTIONS_EQUAL",
+      "database_restart": "NOT_PERFORMED",
+      "globalG0": "NOT_EVALUATED"
+    },
+    "restore": {
+      "status": "PARTIAL",
+      "database": "SEPARATE_DATABASE_SAME_OWNED_POSTGRES_INSTANCE",
+      "authorized_actor_projections_equal": 4,
+      "restored_storage_objects_hash_equal": 15,
+      "missing_fixture_asset_objects": 15,
+      "auth_storage_services_rebuilt": false,
+      "readiness_changed": false
+    }
   },
   "rea": {
     "version": "6.7.0",
     "docs_downloaded": 20,
-    "missions": "R0_R1_R2_R3_R8_EVIDENCE_COLLECTED_R4_IN_PROGRESS_R6_AND_FINAL_RECEIPTS_PENDING",
+    "missions": "AUTHENTIC_R0_R1_R2_R3_R8_R4_R6_EVIDENCE_COLLECTED_FINAL_SIX_SHA_BOUND_RECEIPTS_MISSING",
     "R0": {
       "capture": "COMPLETE",
       "deep_trace": "PARTIAL_WITH_LIMITS",
@@ -29,76 +75,45 @@
       "targets": 139,
       "entry_visits": 139,
       "assessment": "139_PARTITIONED_91_PATTERNS_48_ACCESS; entry visit is not complete reverse engineering"
-    }
+    },
+    "gate": "NOT_SATISFIED",
+    "latest_review": "FOUND_HISTORICAL_CONSUMER_GAP_AND_EXPORT_OVER_HTTP_IMPORT_BUDGET",
+    "latest_review_status": "FIXES_IN_PROGRESS_NOT_CERTIFIED"
   },
-  "deploys": [],
-  "trials": [],
-  "blockers": [
-    "Original G0 REA gate still NOT_SATISFIED; six final SHA-bound receipts missing",
-    "New SourceBoard/tutor notebook/upload/context candidate needs committed browser replay and explicit cold server restart",
-    "Taylor second pack/lifecycle, Calendar mock/DST and product MCP acceptance not yet implemented",
-    "Supabase invitations deliberately disabled; PostgreSQL/Storage application backup/restore not yet verified",
-    "Vercel current Pro workspace does not guarantee no additional cost; no deploy performed",
-    "G1 requires human scientific review and approved dates"
-  ],
-  "next_actions": [
-    "Commit/push new integrated candidate after frozen UI scenario and hygiene checks",
-    "Restart owned application on exact candidate; SourceBoard/browser/REA R6 and cold-process evidence",
-    "Implement Taylor through the same versioned course/assignment lifecycle",
-    "Implement scoped Calendar/MCP contracts or disclose unsupported remote capabilities",
-    "Assemble authentic original REA envelopes with contracts/code/named tests on one SHA; retain all unknowns"
-  ],
-  "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
+  "runtime": {
+    "source_commit": "a6646e7d58892afee624b89f68c6ba694f4aea9f",
+    "origin": "http://127.0.0.1:5321",
+    "dataId": "05f4a05edde66bab",
+    "synthetic": true
+  },
   "infrastructure": {
     "local_supabase": "22_SMOKE_TESTS_PASS_AFTER_REAL_RECOVERY",
     "application_adapter": "LIVE_LOCAL_POSTGRES_AUTH_RLS_PRIVATE_STORAGE_INTEGRATED_SHARED_CORE",
     "vercel": "BROWSER_ACCESS_RECOVERED_EXISTING_WORKSPACE_PRO_NO_VERIFIED_ZERO_ADDITIONAL_COST; LOCAL_FALLBACK"
   },
-  "code_state": "NEW_WORKING_CANDIDATE_ON_LAST_VERIFIED_SHA; committed replay pending",
-  "verification": {
-    "last_committed_candidate": {
-      "sha": "db28748cca05658f11a92bbc31f9150e7bc74475",
-      "http_assertions": 349,
-      "failed": 0,
-      "web_scenario": "PASSED",
-      "working_tree_dirty": false,
-      "source_changes_during_run": false,
-      "roster": {
-        "confirmed": 10,
-        "waitlisted": 2
-      },
-      "globalG0": "NOT_EVALUATED",
-      "capacity_race_mode": "PERSISTED_EVIDENCE_RECHECK",
-      "cold_server_restart": "NOT_CHECKED_BY_THAT_SCENARIO"
-    },
-    "new_working_candidate": {
-      "shared_core_http_live_postgres": {
-        "passed": 162
-      },
-      "engine": {
-        "passed": 2168,
-        "skipped": 20
-      },
-      "studio": {
-        "passed": 2157,
-        "skipped": 5,
-        "typecheck": "PASS",
-        "build": "PASS"
-      },
-      "web": {
-        "passed": 32,
-        "typecheck": "PASS",
-        "build": "PASS"
-      },
-      "independent_upload_review": {
-        "private_probes": 9,
-        "residual_fixture_objects": 0,
-        "confirmed_gap": "Missing HTTP Idempotency-Key accepted in review snapshot",
-        "fix": "HTTP header now required; tested by integrator on actual Auth/PG/Storage",
-        "reviewer_fix_rerun": "NOT_RUN"
-      },
-      "candidate_sha_replay": "PENDING_NEW_COMMIT"
-    }
-  },
-  "sha_semantics": "Last fully replayed committed candidate; newer working candidate results are separate below."
+  "deploys": [],
+  "trials": [],
+  "blockers": [
+    "Six final authentic same-candidate REA receipts and G0 matrix pending",
+    "New multicourse/Taylor/notebook consumer browser replay pending; encoded notebook budget contradiction reproduced and fix pending",
+    "Calendar mock/DST/ICS and MCP acceptance not yet executed",
+    "PostgreSQL/private-storage restore partial; invitations disabled",
+    "Vercel Pro has no verified zero-additional-cost guarantee: user-approved local fallback, no deploy",
+    "Human scientific/date and UX review required for G1",
+    "AC-085 checkpoint is due21Oct2026evening and cannot be certified early"
+  ],
+  "next_actions": [
+    "Freeze reviewed frontend and coherent notebook size policy",
+    "Run same-SHA actual HTTP tutor+10students+2waiters, fresh capacity race, browser replay and cold reopen",
+    "Complete Calendar and isolated official-SDK MCP contracts",
+    "Bind authentic REA evidence/contracts/code/named tests to frozen candidate and evaluate unchanged gate",
+    "Continue G1 work with explicit partial/blocked/human boundaries"
+  ],
+  "monitor": {
+    "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",
+    "last_verified_github_delivery": "2026-10-20T00:04Z",
+    "new_review_comments": "NONE_AT_LAST_CHECK",
+    "coderabbit": "DRAFT_SKIP_NOT_A_REVIEW",
+    "duplicate_automation_created": false
+  }
 }
