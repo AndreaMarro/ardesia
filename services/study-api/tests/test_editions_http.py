@@ -93,3 +93,33 @@ def test_http_legacy_identifier_beyond_cursor_budget_fails_409_without_partial_p
         response=client.get('/study/editions',params={'limit':2})
         assert response.status_code==409
         assert response.json()=={'error':'legacy_edition_identifier_requires_migration'}
+
+
+def test_exact_discovery_is_membership_scoped_before_decode_and_after_revocation(listing):
+    store,teacher,student,peer,other=listing
+    with store.transaction() as connection:
+        connection.execute("UPDATE study_editions SET sessions='malformed-json' WHERE id='private-other'")
+        connection.execute("DELETE FROM study_edition_packs WHERE edition_id='private-other'")
+    with TestClient(create_app(store.path,demo=True)) as client:
+        assert client.get('/study/editions',params={'editionId':'analysis'}).status_code==401
+        client.post('/study/session',json={'token':store.issue_session(student)})
+        exact=client.get('/study/editions',params={'editionId':'analysis','limit':1,'actorId':other.id})
+        assert exact.status_code==200 and exact.json()=={'items':[store.get_edition('analysis')],'nextCursor':None}
+        for unknown in ('missing','private-other','waiting'):
+            response=client.get('/study/editions',params={'editionId':unknown,'teacherId':other.id})
+            assert response.status_code==200 and response.json()=={'items':[],'nextCursor':None}
+        with store.transaction() as connection:
+            connection.execute('DELETE FROM study_members WHERE edition_id=? AND student_id=?',('analysis',student.id))
+        revoked=client.get('/study/editions',params={'editionId':'analysis'})
+        assert revoked.status_code==200 and revoked.json()=={'items':[],'nextCursor':None}
+
+
+@pytest.mark.parametrize('query',[
+    {'editionId':''}, {'editionId':'x'*8193}, {'editionId':'analysis','after':'a'},
+])
+def test_invalid_exact_discovery_is_422_without_metadata(listing,query):
+    store,teacher,*_=listing
+    with TestClient(create_app(store.path,demo=True)) as client:
+        client.post('/study/session',json={'token':store.issue_session(teacher)})
+        response=client.get('/study/editions',params=query)
+        assert response.status_code==422 and 'packSha256' not in response.text

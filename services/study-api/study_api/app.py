@@ -202,8 +202,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.get('/study/editions')
     def editions(request: Request, limit: int=Query(50, ge=1, le=100),
-                 after: str | None=Query(None, min_length=1, max_length=MAX_EDITION_CURSOR_LENGTH), store=Depends(store_dependency)):
-        return store.list_editions(authenticate(request,store),limit=limit,after=after)
+                 after: str | None=Query(None, min_length=1, max_length=MAX_EDITION_CURSOR_LENGTH),
+                 editionId: str | None=Query(None, min_length=1, max_length=MAX_EDITION_CURSOR_LENGTH), store=Depends(store_dependency)):
+        return store.list_editions(authenticate(request,store),limit=limit,after=after,edition_id=editionId)
 
     @app.post('/study/editions/{edition_id}/invitations')
     def invitation(edition_id: str, body: dict, request: Request, store=Depends(store_dependency)):
