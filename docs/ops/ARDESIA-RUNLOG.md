@@ -78,3 +78,9 @@ Il probe Chrome→HTTP/Auth/PG su5cb osserva200 prima della scadenza, poi401 sul
 ## 2026-10-20 — Restore S ripetuto e verificato dal root
 
 Input sintetico nuovo e completo:3assetCore/3Storage/3file. DB/Auth/Storage ripristinati in cluster/servizi/volumi distinti;83tabelle+ruoli/policy prima dello startup; source spenta. Quattro fasi con43assert e quattro raw proiezioni byte-identici. Clone intenzionalmente3/2 risponde503, poi nuova ricostruzione torna3/3/3. Root ricalcola39hash e tre payload del tar; non dichiara un nuovo replayHTTP. Cleanup solo2namespace nuovi, original5running. AC047PROVED_SCOPED perS; debitoH15missing restaOPEN e G0/G1globali non certificati. Nessun cloud/spesa/providerlive.
+
+## 2026-10-20 — Audit26viste e REA profonda081
+
+Axe4.14/Chrome/Auth/PG su5cb:26stati,1440/390px,72GET,0pageerror/overflow;3regole semantiche aperte e focusDOMskiplink da provare. ModalTab/Escape/restore verificati. LCPproxy locale692/284ms, un solo scriptindex sulla home; non performance produzione o testmutante consegna/review. C7 e C8 procedono su file disgiunti da5cb, un solo integratore.
+
+REA081:16envelope autentici,99file/24.529.964B ricalcolati dal root;843924B V8 del widget uguali al tarballNPMMathLive0.111.1/SHA512 verificato, MITcore primaria. Input→undo→redo e APIsetValue/resetUndo reali derivano un contratto per isolamento draft/history; nessuna ACLfuga vendor dichiarata. ContrattoADAPT, libreriaDEFER fino a bisogno misurato/licenze asset/a11y/budget. Nessuna nuova dipendenza o testprodotto per081. Mappa139 resta snapshot storico.

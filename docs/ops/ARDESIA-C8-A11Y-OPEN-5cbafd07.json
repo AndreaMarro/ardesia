@@ -1,0 +1,244 @@
+{
+  "id": "C8-A11Y",
+  "status": "OPEN_ACTUAL_BROWSER_AUDIT",
+  "sourceCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "cases": 26,
+  "viewports": [
+    1440,
+    390
+  ],
+  "requests": {
+    "GET": 72,
+    "mutations": 0
+  },
+  "pageErrors": 0,
+  "horizontalOverflowCases": 0,
+  "axeVersion": "4.14.0",
+  "violations": [
+    "heading-order",
+    "label-content-name-mismatch",
+    "landmark-unique"
+  ],
+  "keyboard": [
+    {
+      "case": "login_trap_escape_restore",
+      "width": 1440,
+      "focusInside": true,
+      "focusTrapped": true,
+      "focusRestored": true
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "student",
+      "width": 1440,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "BODY",
+        "id": ""
+      }
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "tutor",
+      "width": 1440,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "BODY",
+        "id": ""
+      }
+    },
+    {
+      "case": "login_trap_escape_restore",
+      "width": 390,
+      "focusInside": true,
+      "focusTrapped": true,
+      "focusRestored": true
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "student",
+      "width": 390,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "BODY",
+        "id": ""
+      }
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "tutor",
+      "width": 390,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "BODY",
+        "id": ""
+      }
+    }
+  ],
+  "publicColdLoad": [
+    {
+      "viewport": 1440,
+      "lcpEntries": [
+        {
+          "startTime": 312,
+          "size": 3185,
+          "tag": "SPAN"
+        },
+        {
+          "startTime": 692,
+          "size": 120978,
+          "tag": "H1"
+        }
+      ],
+      "navigation": [
+        {
+          "duration": 260.70000000298023,
+          "domContentLoaded": 260.6000000089407,
+          "transferSize": 941
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/index-CghMtfr2.js",
+          "type": "script",
+          "transferSize": 217600,
+          "encodedBodySize": 217300,
+          "duration": 127.79999999701977
+        },
+        {
+          "path": "/assets/Feedback-BE8kG5BR.js",
+          "type": "other",
+          "transferSize": 10983,
+          "encodedBodySize": 10683,
+          "duration": 113.1000000089407
+        },
+        {
+          "path": "/assets/sessionDraftCache-CM3MXBDc.js",
+          "type": "other",
+          "transferSize": 740,
+          "encodedBodySize": 440,
+          "duration": 115.8999999910593
+        },
+        {
+          "path": "/assets/index-DKHdThXY.css",
+          "type": "link",
+          "transferSize": 43943,
+          "encodedBodySize": 43643,
+          "duration": 115.79999999701977
+        },
+        {
+          "path": "/study/me",
+          "type": "fetch",
+          "transferSize": 327,
+          "encodedBodySize": 27,
+          "duration": 250.1000000089407
+        },
+        {
+          "path": "/favicon.ico",
+          "type": "other",
+          "transferSize": 322,
+          "encodedBodySize": 22,
+          "duration": 39.099999994039536
+        },
+        {
+          "path": "/study/course",
+          "type": "fetch",
+          "transferSize": 1195,
+          "encodedBodySize": 895,
+          "duration": 67.70000000298023
+        }
+      ],
+      "deviceMemory": 8,
+      "hardwareConcurrency": 8,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+    },
+    {
+      "viewport": 390,
+      "lcpEntries": [
+        {
+          "startTime": 80,
+          "size": 3185,
+          "tag": "SPAN"
+        },
+        {
+          "startTime": 284,
+          "size": 59000,
+          "tag": "H1"
+        }
+      ],
+      "navigation": [
+        {
+          "duration": 46.599999994039536,
+          "domContentLoaded": 46.5,
+          "transferSize": 941
+        }
+      ],
+      "resources": [
+        {
+          "path": "/assets/index-CghMtfr2.js",
+          "type": "script",
+          "transferSize": 217600,
+          "encodedBodySize": 217300,
+          "duration": 25.299999997019768
+        },
+        {
+          "path": "/assets/sessionDraftCache-CM3MXBDc.js",
+          "type": "other",
+          "transferSize": 740,
+          "encodedBodySize": 440,
+          "duration": 17
+        },
+        {
+          "path": "/assets/Feedback-BE8kG5BR.js",
+          "type": "other",
+          "transferSize": 10983,
+          "encodedBodySize": 10683,
+          "duration": 19.700000002980232
+        },
+        {
+          "path": "/assets/index-DKHdThXY.css",
+          "type": "link",
+          "transferSize": 43943,
+          "encodedBodySize": 43643,
+          "duration": 15.200000002980232
+        },
+        {
+          "path": "/study/me",
+          "type": "fetch",
+          "transferSize": 327,
+          "encodedBodySize": 27,
+          "duration": 105.90000000596046
+        },
+        {
+          "path": "/study/course",
+          "type": "fetch",
+          "transferSize": 1195,
+          "encodedBodySize": 895,
+          "duration": 38.3999999910593
+        }
+      ],
+      "deviceMemory": 8,
+      "hardwareConcurrency": 8,
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+    }
+  ],
+  "fullPrivateSyntheticReportSha256": "9769e982572a72a76fe879d8d0ed8997d8b399fc79ceb3c180b47cbaed08df29",
+  "limits": [
+    "Automated axe and sampled keyboard/focus checks are not human UX or full WCAG certification.",
+    "Loopback LCP proxy on this host is not production performance or a load test.",
+    "No delivery/review mutation or remote preview exercised.",
+    "Date-management form and mutating delivery/review mobile journey NOT_RUN in this audit."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "targetId": "TARGET-081",
+  "status": "DEEP_OBSERVED_WITH_LIMITS",
+  "productCommit": null,
+  "receipt": false,
+  "decision": {
+    "functionalContract": "ADAPT",
+    "libraryInstallation": "DEFER_UNTIL_MEASURED_NEED_ASSET_LICENSES_INPUT_BUDGET_AND_ACCESSIBILITY_TESTS"
+  },
+  "sourcePin": "30ad20a7a47ea43a2f6915808023202c78f37742",
+  "package": "mathlive@0.111.1",
+  "license": "MIT_CORE_ONLY_VERIFIED",
+  "integrationBoundary": {
+    "proposedConsumer": "apps/web/src/components/useResourceComposer.ts",
+    "authorities": [
+      "Core resourceId/revisionId ACL",
+      "Core commit/submission history"
+    ],
+    "scopeKey": [
+      "actor",
+      "role",
+      "course",
+      "resourceId",
+      "revisionId"
+    ],
+    "onScopeChange": "Unmount or silent-load then resetUndo; no old context history",
+    "onRevocation": "Dispose editor and clear context-bound draft",
+    "onLateAck": "Existing composer actor/course/revision guards; never accept cross-context ACK",
+    "format": "Original LaTeX text within existing resource flow; no second canonical store"
+  },
+  "actualProbe": "setValue retains old undo history; resetUndo prevents subsequent keyboard undo from restoring previous formula",
+  "securityClaim": "No cross-actor ACL leak was tested; integration risk derived from actual public widget behavior",
+  "reuseState": "NO_CODE_OR_ASSET_ADDED_TO_PRODUCT",
+  "unknown": [
+    "Third party font/dependency licenses before adoption",
+    "ComputeEngine license/version for reuse and grading behavior",
+    "Site/documentation deploy commit",
+    "Complete semantic/dynamic control flow",
+    "Network events completeness",
+    "Persistence across browser/OS/cloud restarts",
+    "Actual Ardesia adapter performance/accessibility/benefit time"
+  ],
+  "testsNecessaryNotExecuted": [
+    "context-change undo isolation",
+    "revocation readonly cleanup",
+    "silent setValue not dirty or committed",
+    "late ACK actor/course/revision guard",
+    "Unicode/LaTeX byte bounds and history budget",
+    "keyboard/screen-reader checks",
+    "exact original roundtrip",
+    "renderer separate from grading"
+  ],
+  "report": "RESEARCH.md",
+  "rawManifest": "manifest.json"
+}
