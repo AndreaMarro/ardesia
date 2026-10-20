@@ -246,3 +246,36 @@ def test_legacy_null_binding_cannot_confirm_but_completed_membership_is_preserve
     assert store.connection.execute('SELECT COUNT(*) FROM study_members').fetchone()[0]==1
     assert store.connection.execute('SELECT COUNT(*) FROM enrollments').fetchone()[0]==1
     store.close()
+
+
+@pytest.mark.parametrize('missing_columns',[False,True])
+def test_missing_schema_marker_with_study_tables_fails_without_recreating_metadata(tmp_path,missing_columns):
+    import sqlite3
+    path=tmp_path/'missing-marker.sqlite'
+    store=StudyStore(path)
+    store.connection.execute('DROP TABLE study_schema')
+    if missing_columns:
+        store.connection.execute('ALTER TABLE study_editions DROP COLUMN management_revision')
+        store.connection.execute('ALTER TABLE study_holds DROP COLUMN offer_revision')
+    store.connection.commit()
+    before=store.connection.execute("SELECT name,sql FROM sqlite_master WHERE name LIKE 'study_%' ORDER BY name").fetchall()
+    before=[tuple(row) for row in before]
+    store.close()
+    with pytest.raises(StudyError,match='database_integrity_failure') as error:
+        StudyStore(path)
+    assert error.value.status==503
+    with sqlite3.connect(path) as connection:
+        assert connection.execute("SELECT name,sql FROM sqlite_master WHERE name LIKE 'study_%' ORDER BY name").fetchall()==before
+        assert connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone() is None
+        if missing_columns:
+            assert 'management_revision' not in {row[1] for row in connection.execute('PRAGMA table_info(study_editions)')}
+            assert 'offer_revision' not in {row[1] for row in connection.execute('PRAGMA table_info(study_holds)')}
+
+
+def test_legacy_lessonos_without_any_study_table_can_bootstrap(tmp_path):
+    from lessonos.store.sqlite import SQLiteStore
+    path=tmp_path/'legacy-only.sqlite'
+    legacy=SQLiteStore(str(path));legacy.close()
+    store=StudyStore(path)
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0]==4
+    store.close()

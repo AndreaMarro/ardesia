@@ -49,6 +49,11 @@ class StudyStore:
             self.connection.execute('PRAGMA busy_timeout=5000')
             self.connection.execute('PRAGMA journal_mode=WAL')
             present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_schema'").fetchone()
+            if not present and self.connection.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name GLOB 'study_*' LIMIT 1"
+            ).fetchone():
+                self.close()
+                raise StudyError('database_integrity_failure',503)
             if present:
                 from .schema_contract import validate_schema
                 versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
