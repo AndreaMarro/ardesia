@@ -46,8 +46,15 @@ export type NotebookInspection = {
 const record = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === "object" && !Array.isArray(value);
 function text(value: unknown, max = 20_000): string {
-  if (typeof value !== "string" || value.length > max)
-    throw Error("invalid_notebook_presentation");
+  if (typeof value !== "string") throw Error("invalid_notebook_presentation");
+  // Core budgets count Unicode codepoints. UTF-16 length is a safe O(1) fast
+  // path; otherwise count without copying the string, stopping at max + 1.
+  if (value.length > max) {
+    let remaining = max;
+    for (const _codePoint of value) {
+      if (--remaining < 0) throw Error("invalid_notebook_presentation");
+    }
+  }
   return value;
 }
 function id(value: unknown) {

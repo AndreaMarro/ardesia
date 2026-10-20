@@ -8,6 +8,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
+import { readNotebookPreview } from "../../../studio/src/study/notebookPreview";
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
@@ -50,6 +51,61 @@ const bundle = {
     "Solo versioni correnti accessibili e revisioni referenziate, senza storia completa.",
   ],
 };
+test.each([
+  ["astral beyond UTF-16 midpoint", "𝑥".repeat(10_001)],
+  ["astral at codepoint limit", "𝑥".repeat(20_000)],
+  ["mixed BMP and astral at codepoint limit", "a".repeat(10_000) + "𝑥".repeat(10_000)],
+  ["ASCII at codepoint limit", "a".repeat(20_000)],
+])("portable source accepts %s under the Core codepoint budget", (_label, text) => {
+  const preview = readNotebookPreview({ ...bundle, resources: [source("v2", text)] });
+  expect(preview.sources[0].source.text).toBe(text);
+});
+test.each([
+  ["astral", "𝑥".repeat(20_001)],
+  ["mixed BMP and astral", "a".repeat(10_001) + "𝑥".repeat(10_000)],
+  ["ASCII", "a".repeat(20_001)],
+])("portable source rejects %s beyond the Core codepoint budget", (_label, text) => {
+  expect(() => readNotebookPreview({ ...bundle, resources: [source("v2", text)] }))
+    .toThrow("invalid_notebook_presentation");
+});
+test("within-budget ASCII fields and a 68MiB base64 retain the constant-time fast path", () => {
+  const base64 = "A".repeat(68 * 1024 * 1024);
+  const iterator = vi.spyOn(String.prototype, Symbol.iterator);
+  let iterations: number;
+  let actual: string;
+  try {
+    const preview = readNotebookPreview({
+      ...bundle,
+      assets: [{ id: "asset", mime: "image/png", sha256: "a".repeat(64), base64 }],
+    });
+    actual = preview.assets[0].base64;
+    iterations = iterator.mock.calls.length;
+  } finally {
+    iterator.mockRestore();
+  }
+  expect(actual).toBe(base64);
+  expect(iterations).toBe(0);
+});
+test("an oversized astral source stops counting at the first excess codepoint", () => {
+  const text = "𝑥".repeat(40_000);
+  const original = String.prototype[Symbol.iterator];
+  let yielded = 0;
+  const iterator = vi.spyOn(String.prototype, Symbol.iterator)
+    .mockImplementation(function* (this: string) {
+      for (const point of { [Symbol.iterator]: () => original.call(this) }) {
+        if (String(this) === text) yielded += 1;
+        yield point;
+      }
+      return undefined;
+    });
+  try {
+    expect(() => readNotebookPreview({ ...bundle, resources: [source("v2", text)] }))
+      .toThrow("invalid_notebook_presentation");
+  } finally {
+    iterator.mockRestore();
+  }
+  expect(yielded).toBe(20_001);
+});
 function upload(value: unknown) {
   const file = new File([JSON.stringify(value)], "quaderno.study.json", {
     type: "application/json",
@@ -93,6 +149,14 @@ test("portable preview renders exact historical and current pairs; never substit
   expect(
     (fetch as ReturnType<typeof vi.fn>).mock.calls.map((call) => call[0]),
   ).toEqual(["/study/notebook/inspect"]);
+});
+test("a Core-sized astral source reaches inspect and renders intact after upload", async () => {
+  setup();
+  const text = "𝑥".repeat(10_001);
+  upload({ ...bundle, resources: [source("v2", text)] });
+  await screen.findByText(text);
+  expect(screen.queryByText(/struttura non leggibile/)).toBeNull();
+  expect(fetch).toHaveBeenCalledTimes(1);
 });
 test("a tutor artifact with no readable current head still renders the submitted historical snapshot", async () => {
   setup();
