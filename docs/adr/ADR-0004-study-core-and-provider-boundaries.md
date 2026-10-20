@@ -18,6 +18,7 @@ Concurrency belongs to the invariant: edition row locks protect capacity, per-co
 | --- | --- | --- |
 | Course UI or navigation | `apps/web` and typed API client | Typecheck, interaction test, actual API journey |
 | New original model | Activity evaluator and course-pack registry | Domain/unit goldens, invalid domain, actual submission |
+| New course edition | Immutable edition/pack/version/hash binding; authenticated bounded course discovery | Shared lifecycle, wrong-pack rejection, own/enrolled SQL scope and migration contracts |
 | Storage provider | `BlobRepository` implementation | Exact bytes/hash, private access, compensation and recovery |
 | Database provider | Persistence adapter and additive migration | Shared Core contracts, races and authority tests on that provider |
 | Authentication provider | Runtime identity/session boundary | Forgery, revocation, login/logout and role isolation |
@@ -25,7 +26,11 @@ Concurrency belongs to the invariant: edition row locks protect capacity, per-co
 
 These boundaries reduce the cost of change; they do not certify unlimited scale. The local runtime opens a synchronous PostgreSQL connection per request and uses synchronous provider transport. Those operations run in FastAPI/AnyIO workers, including dependency setup/teardown, abuse counters and original uploads; they must not occupy the ASGI event loop. One connection belongs to one logical request, even if setup, command and teardown use different workers. SQLite permits that explicit request handoff without permitting concurrent commands on the same connection; direct Core callers retain the default thread check.
 
-The worker pool bounds concurrently executing synchronous calls, not the total number of open connections or queued requests. Connection pooling, admission control, worker configuration and load targets require measurement before a capacity claim. A causal regression holds each of six synchronous boundaries and requires health to complete before releasing it; this verifies event-loop progress, not production throughput. Event projection is scoped and indexed but still replays the authorized history. Incremental checkpoints may be added only with rebuild/reconciliation tests.
+The worker pool bounds concurrently executing synchronous calls, not the total number of open connections or queued requests. A separate per-application admission budget now precedes remote Auth and database opening: default16 active store scopes, at most0.5seconds waiting, then503 `server_busy` with `Retry-After`. A permit remains owned through command completion and worker cleanup, including cancellation. The abuse-counter scope ends before the login scope begins; login, logout and revoke-all reuse one authenticated store. Health bypasses store admission. Causal tests hold open, command, close and counter workers, cancel active and queued requests, and require health to complete before release. This verifies bounded store ownership and event-loop progress, not production throughput.
+
+This limit is per application process. With W processes, budget the database for up to W times the configured active store limit plus explicitly counted administrative/background connections. It does not bound all incoming request bodies, network queues or external infrastructure. Connection pooling, deployment worker counts and load targets require measurement before a capacity claim. Event projection is scoped and indexed but still replays the authorized history. Incremental checkpoints may be added only with rebuild/reconciliation tests.
+
+Portable notebooks retain exact `(resourceId, revisionId)` references alongside current resources. Unreferenced history is explicitly omitted. A hash verifies internal consistency of this unsigned artifact; it does not establish canonical authenticity, import authority or permission to fetch a newer private head. Read-only consumers must resolve the exact pair and report unsupported or missing fields without silently substituting current state.
 
 ## Current limitations
 
