@@ -1,161 +1,110 @@
 {
-  "observed_at": "2026-10-20T06:15:39.325770+00:00",
-  "sha": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-  "sha_semantics": "Exact frozen C4 product source. This metadata commit is later and does not relabel executions. Successors C5/C6 are separate until independently verified and integrated.",
+  "observed_at": "2026-10-20T06:27:47.896832+00:00",
+  "sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "sha_semantics": "Frozen integrated C5/C6 product. Later metadata commits do not relabel executions. Historical C4 logs and receipts retain a3; Engine/Web equality is an explicit Git tree check, not a new execution.",
   "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
   "statuses": {
     "G0": "IN_PROGRESS_NOT_CERTIFIED",
     "G1": "NOT_READY",
     "G2": "NOT_RUN",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "core_api": "499_PASS_0_SKIP_REAL_LOCAL_PG_AUTH_RLS_PRIVATE_STORAGE",
-    "engine": "2427_PASS_24_SKIP_3_WARNINGS_ENV_ALLOWLIST",
-    "web": "81_PASS_TYPECHECK_BUILD_PASS",
-    "rea": "SEVEN_RECEIPTS_ORIGINAL_G0_G1_SUBGATES_PASS_ONLY"
+    "core_api": "539_PASS_0_SKIP_ACTUAL_LOCAL_PG_AUTH_RLS_PRIVATE_STORAGE",
+    "cookie_recovery": "ACTUAL_AUTH_PG_CHROME_REVOKE_401_COOKIE_CLEAR_PUBLIC200",
+    "body_budget": "INDEPENDENT_FIXED_REVIEW_PLUS_ACTUAL_TCP_SCOPE_PASS",
+    "rea": "LAST_CERTIFIED_A3_SUCCESSOR_BINDING_PENDING"
   },
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "verification": {
     "core_api": {
-      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-      "passed": 499,
+      "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+      "passed": 539,
       "skipped": 0,
-      "seconds": 39.47,
-      "log_sha256": "d1246dcbef6108669a2ac4aae1b261971a499ed08612cb165669b1c418588d90"
+      "seconds": 40.47,
+      "log_sha256": "3196459463a4cd24a04c92ea1126c02b47bbde89f3ba71579b6c69d85aaa2975",
+      "provider_keys_inherited": false
     },
-    "engine": {
-      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-      "passed": 2427,
-      "skipped": 24,
-      "warnings": 3,
-      "seconds": 49.75,
-      "provider_keys_inherited": false,
-      "log_sha256": "06e1d749ee85e0ffda19ea699ec8990013337999934ff7f7dc6eed9d83c423cd"
-    },
-    "web": {
-      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-      "passed": 81,
-      "typecheck": "PASS",
-      "build": "PASS",
-      "tests_log_sha256": "82115c1ada9154ce372147ec7c9976f5995ae981415d50d8d8eb1ea4a1ca688f"
-    },
-    "management_browser": {
-      "packs": 2,
-      "widths": [
-        390,
-        820,
-        1440
-      ],
-      "screenshots": 8,
-      "report_sha256": "92cabe6e60d9e5614da22d3740d56ea25a1095f50a4103e82c7b82e1a2748f49"
-    },
-    "bounded_discovery": {
-      "new_private_drafts": 52,
-      "max_combo_options": 51,
+    "cookie_recovery": {
+      "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+      "new_auth_users_deleted": 1,
+      "remaining_identity_bindings": 0,
       "shared_qa_accounts_untouched": 14,
-      "new_auth_accounts_deleted": 4,
-      "report_sha256": "f84babba33dcca3d9be82de866cc163161631a4a443fec912493d7083ee28d32"
+      "core_principal_retained": "cookie-380d312567fa",
+      "report_sha256": "24422f70b33ae751a0e52721c8d2b772cff634734a3bce74c668cfdf5b3e88d3",
+      "wall_clock_expiry": "NOT_RUN",
+      "provider503": "SEPARATE_UNIT_BOUNDARY"
     },
-    "fresh_capacity": {
-      "confirmed": 10,
-      "waiting": 2,
-      "active_holds": 0,
-      "http_race_statuses": [
-        409,
-        200
-      ],
-      "wire_overlap_measured": false,
-      "report_sha256": "9e960379f775f132517bc4f5c4383a01c14c5c3aa05d487c05f960d0f22880d9"
+    "body_budget": {
+      "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+      "default_mib": 128,
+      "wait_seconds": 0.5,
+      "weights_kib": {
+        "ordinary": 256,
+        "assets": 20480,
+        "notebook": 98304
+      },
+      "tcp_report_sha256": "b97576240d58ebfe99aa9aaed38b283b50348258f6079797ee7f5586c44f6331",
+      "tcp_scope": "ONE_INCOMPLETE_BYTE_BODY;503_SMALL_WORK_HEALTH_ORIGIN_DISCONNECT",
+      "actual_tcp_auth_open_counter": "NOT_INSTRUMENTED",
+      "zero_receive_open": "SEPARATE_INDEPENDENT_ASGI_PROBES"
     },
-    "cold_restart": {
-      "pids": [
-        34531,
-        37977
-      ],
-      "actors": 4,
-      "projections": 32,
-      "fresh_chrome_profiles": 2,
-      "database_restart": false,
-      "report_sha256": "647f09a3c39b463cfe0ccadd791313f83c3709a73c8dabfab2224dab2a56ee5a"
+    "independent_review": {
+      "source_commit": "a8a8e32e32b5e3a8d441ef76f2f143d28c9790b9",
+      "api_tree_identical_to_current": "4ffcf0fd55e71d8997d51ea277b47c55b284ce3f",
+      "independent_probes": 12,
+      "frozen_regressions": 75,
+      "finding": "C6-R1_FIXED_WITHIN_TESTED_SCOPE",
+      "manifest_sha256": "a1b0502237b95fab72ffccffad429f1de19b68cb8dde4d5769f85dc791bb878f",
+      "original_red_preserved": true
     },
-    "calendar": {
-      "provider": "EXPLICIT_IN_PROCESS_MOCK_NOT_GOOGLE",
-      "report_sha256": "9f46fb00599f502deb2e234f5c83b97ab6fea77fb7a5c53d583f60995dd2acdd"
+    "engine_web": {
+      "source_commit_of_runs": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "engine_tree": "69db76d4cbdc081019944f618f14bc9fd5aa3de2",
+      "web_tree": "c170d626ce3c76deda43e8aeca0c5c6490d01c4e",
+      "both_identical_to_current": true,
+      "engine_passed_at_a3": 2427,
+      "engine_skipped_at_a3": 24,
+      "web_passed_at_a3": 81,
+      "rerun_claimed": false
     },
-    "mcp": {
-      "bridge_checks": 20,
-      "codex_actual_tools": [
-        "course.list_mine",
-        "lesson.get_context",
-        "submission.get_receipt"
-      ],
-      "ChatGPT": "UNKNOWN",
-      "Claude": "UNKNOWN",
-      "interactive_ui": false,
-      "host_report_sha256": "b9c30375432c88d36f41c3bfe1131957333d676e293a7aa67e2799990469b840"
-    },
-    "runtime_demo": {
-      "seconds": 37.84,
-      "chapters": 10,
-      "uncut_actual_recording": true,
-      "sha256": "04eb4a97f005f7e060ac499317ad03b1d52c21c8dbab5f3c69228ed0d7a415f3"
-    },
-    "restore": {
-      "status": "PARTIAL",
-      "storage_restored": 15,
-      "fixture_objects_missing": 15,
-      "auth_storage_services_rebuilt": false
+    "ci_current": "PENDING_AFTER_PUSH_DO_NOT_REUSE_FDA_GREEN",
+    "last_metadata_ci": {
+      "source_commit": "fda47b81558aea11997062384a6c0c06382b3adc",
+      "status": "ALL_LISTED_CHECKS_SUCCESS",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39379626775",
+      "CodeRabbit": "DRAFT_SKIP_NOT_REVIEW"
     },
     "acceptance": {
-      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-      "counts": {
+      "status": "CURRENT_REAUDIT_PENDING",
+      "last_frozen_report": "docs/ops/ARDESIA-V4-ACCEPTANCE-a3cdf6ba.json",
+      "last_frozen_source": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+      "last_frozen_counts": {
         "PARTIAL": 28,
         "PROVED_SCOPED": 47,
         "NOT_RUN": 6,
         "BLOCKED": 4
       },
-      "register_sha256": "2e875ea3b8bc3235bfc4542f6642a6586a9d4b8e415d18ffe9dc07df9ef638a8",
-      "register_unmodified": true,
-      "public_report": "docs/ops/ARDESIA-V4-ACCEPTANCE-a3cdf6ba.json"
-    },
-    "ci": {
-      "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-      "status": "ALL_LISTED_CHECKS_SUCCESS",
-      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39373146216",
-      "CodeRabbit": "DRAFT_SKIP_NOT_REVIEW"
+      "register_unmodified": true
     }
   },
   "rea": {
-    "version": "6.7.0",
+    "last_certified_product_sha": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+    "last_original_G0": "PASS_REA_SUBGATE_ONLY",
+    "last_original_G1": "PASS_REA_SUBGATE_ONLY",
+    "current_binding": "PENDING_ACTUAL_R6_AND_ROOT_REVIEW",
     "catalog_targets": 139,
     "entry_visits": 139,
-    "catalog_limit": "139_ENTRY_VISITS_NOT_139_COMPLETE_REVERSE_ENGINEERINGS",
-    "receipt_source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
-    "receipts": {
-      "R0": "08344a92e45a2db5e7341ed989c138d8c0ef4aa21c2326c27599b56556f6378c",
-      "R1": "0903cce62e78661487635aed85c5b7ac5209a5086a76a87561a8fd399086dedf",
-      "R2": "cfa5223a409e9413de79365cb273e668c65540ed4ad992827fdc50cddbf8dc7c",
-      "R3": "385abfa5a8e00578efacadaafd29c0300d3c84ca7ff183e0d9949273911e72e3",
-      "R8": "5718f77532bce91d400fd404b8f9b4d38ec82e59eb50217c43c8992ee311c29b",
-      "R6": "6d657cc5b4831b4613eca824dab81bbf29f9895bf852336b4439170ba3b208b8",
-      "R4": "53b5b6d47e24d76f17e0fcff4903eae436c9f1c2541cd5fc6b903063c876301b"
-    },
-    "original_inputs": 257,
-    "original_bytes": 369461967,
-    "authentic_envelopes": 148,
-    "new_a3_envelopes": 33,
-    "G0": "PASS_REA_SUBGATE_ONLY",
-    "G1": "PASS_REA_SUBGATE_ONLY",
-    "network_equality": "INCOMPLETE_NOT_ELIGIBLE",
-    "policy_changed": false,
-    "raw_artifacts": "PRIVATE_IGNORED_NOT_PUBLIC_GIT",
-    "review": "ROOT_AST_AND_ACTUAL_PYTEST_COLLECTION_INDEPENDENT_METADATA_REVIEW"
+    "catalog_limit": "ENTRY_VISIT_IS_NOT_COMPLETE_REVERSE_ENGINEERING",
+    "raw_artifacts": "PRIVATE_IGNORED",
+    "original_policy_changed": false
   },
   "runtime": {
-    "source_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+    "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
     "origin": "http://127.0.0.1:5324",
+    "processId": 43753,
     "dataId": "05f4a05edde66bab",
     "synthetic": true,
-    "processId": 37977
+    "retired_owned_application_pid": 37977,
+    "database_restart": false
   },
   "infrastructure": {
     "local_supabase": "OWNED_LOOPBACK_ONLY_SCHEMA4_MIGRATIONS11",
@@ -172,22 +121,11 @@
       "default_guard": "4_SKIPPED_ZERO_CONNECTIONS_NOT_FOUR_PASS"
     }
   },
-  "successors": {
-    "C5": {
-      "source_commit": "ffa8710010716220de30902062fcfe7cd22a92e7",
-      "status": "ACTUAL_AUTH_PG_BROWSER_PREINTEGRATION_VERIFIED_NOT_YET_INTEGRATED",
-      "independent_checks": 52,
-      "temporary_server": "5325_CLOSED",
-      "new_auth_fixture": "DELETED_BINDINGS_ZERO_CORE_PRINCIPAL_RETAINED"
-    },
-    "C6": {
-      "status": "INDEPENDENT_500_RESPONSE_LIFETIME_FINDING_REPRODUCED_FIX_IN_PROGRESS",
-      "first_candidate": "94670baafe836864f9c83f0e6e051f2116345fd9",
-      "integrated": false
-    }
-  },
-  "architecture": "docs/adr/ADR-0006-change-tolerance-and-growth.md",
-  "historical_state": "docs/ops/ARDESIA-STATE-2a654879.json",
+  "historical_state": "docs/ops/ARDESIA-STATE-a3cdf6ba.json",
+  "architecture": [
+    "docs/adr/ADR-0006-change-tolerance-and-growth.md",
+    "docs/adr/ADR-0007-encoded-body-admission.md"
+  ],
   "deploys": [],
   "trials": [],
   "merged": false,
@@ -198,14 +136,13 @@
     "AC-085 is due 2026-10-21 evening Europe/Rome, not yet certifiable",
     "Global principal role; organization membership model not implemented",
     "Workspace/submissions unpaged; calendar teacher scan; no unlimited scale claim",
-    "A3 rejected cookie may block public page; C5 successor separately verified",
     "Earlier live CLI calls/cost UNKNOWN"
   ],
   "next_actions": [
-    "Integrate C5 after this immutable C4 metadata handoff",
-    "Integrate C6 only after new frozen fix and independent verification",
-    "Keep source-specific evidence and original acceptance requirements unchanged",
-    "Continue G0 gaps and G1 independent attendance/administration slices in one Core"
+    "Rebind successor REA only after fresh evidence, exact source/test provenance and root review",
+    "Deepen the139-target coverage map through concrete public/open-source workflows",
+    "Investigate independent DB/Auth/Storage restore; preserve missing originals as explicit debt",
+    "Continue independent attendance/commercial slices in the same Core with scoped privacy"
   ],
   "monitor": {
     "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",

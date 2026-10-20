@@ -1,0 +1,59 @@
+{
+  "schema": "ardesia.integrated-c6-verification/v1",
+  "sourceCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY",
+  "coreApi": {
+    "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "passed": 539,
+    "skipped": 0,
+    "seconds": 40.47,
+    "log_sha256": "3196459463a4cd24a04c92ea1126c02b47bbde89f3ba71579b6c69d85aaa2975",
+    "provider_keys_inherited": false
+  },
+  "cookieRecovery": {
+    "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "new_auth_users_deleted": 1,
+    "remaining_identity_bindings": 0,
+    "shared_qa_accounts_untouched": 14,
+    "core_principal_retained": "cookie-380d312567fa",
+    "report_sha256": "24422f70b33ae751a0e52721c8d2b772cff634734a3bce74c668cfdf5b3e88d3",
+    "wall_clock_expiry": "NOT_RUN",
+    "provider503": "SEPARATE_UNIT_BOUNDARY"
+  },
+  "bodyBudget": {
+    "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "default_mib": 128,
+    "wait_seconds": 0.5,
+    "weights_kib": {
+      "ordinary": 256,
+      "assets": 20480,
+      "notebook": 98304
+    },
+    "tcp_report_sha256": "b97576240d58ebfe99aa9aaed38b283b50348258f6079797ee7f5586c44f6331",
+    "tcp_scope": "ONE_INCOMPLETE_BYTE_BODY;503_SMALL_WORK_HEALTH_ORIGIN_DISCONNECT",
+    "actual_tcp_auth_open_counter": "NOT_INSTRUMENTED",
+    "zero_receive_open": "SEPARATE_INDEPENDENT_ASGI_PROBES"
+  },
+  "independentReview": {
+    "source_commit": "a8a8e32e32b5e3a8d441ef76f2f143d28c9790b9",
+    "api_tree_identical_to_current": "4ffcf0fd55e71d8997d51ea277b47c55b284ce3f",
+    "independent_probes": 12,
+    "frozen_regressions": 75,
+    "finding": "C6-R1_FIXED_WITHIN_TESTED_SCOPE",
+    "manifest_sha256": "a1b0502237b95fab72ffccffad429f1de19b68cb8dde4d5769f85dc791bb878f",
+    "original_red_preserved": true
+  },
+  "sourceProvenance": "integration-provenance.json",
+  "reaCurrent": "PENDING_NEW_BINDING;A3_SUBGATES_PASS_HISTORICAL",
+  "ciCurrent": "PENDING",
+  "productionDeploys": 0,
+  "merged": false,
+  "historicalProviderCost": "UNKNOWN_FOR_TWO_EARLIER_CLI_LIVE_TESTS",
+  "limits": [
+    "Per-app encoded-route maxima only, not RSS/transport/global-memory/throughput",
+    "No active-body read deadline or heavy-request fairness guarantee",
+    "Human/scientific/pilot approval NOT_RUN; independent Auth/Storage restore PARTIAL",
+    "No verified zero-additional-cost remote environment; local fallback"
+  ]
+}
