@@ -112,7 +112,7 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         async with self.client() as client:
             self.assertEqual(client.protocol_version, '2026-07-28')
             tools = (await client.list_tools()).tools
-            self.assertEqual({tool.name for tool in tools}, {'course.list_mine', 'lesson.get_context', 'receipt.get'})
+            self.assertEqual({tool.name for tool in tools}, {'course.list_mine', 'lesson.get_context', 'submission.get_receipt'})
             for tool in tools:
                 self.assertTrue(tool.annotations.read_only_hint)
                 self.assertFalse(tool.annotations.destructive_hint)
@@ -159,7 +159,7 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         for actor in ('peer', 'other-tutor'):
             async with self.client(actor) as client:
                 for name,args in (('lesson.get_context',self.refs()),
-                                  ('receipt.get',{'receiptId':self.fixture['receipt']['receiptId']})):
+                                  ('submission.get_receipt',{'receiptId':self.fixture['receipt']['receiptId']})):
                     packet = self.packet(await client.call_tool(name, args))
                     self.assertEqual(packet['error'], 'NOT_AVAILABLE')
                     self.assertIsNone(packet['sourceVersion'])
@@ -169,7 +169,7 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         receipt = self.fixture['receipt']
         for actor in ('student', 'tutor'):
             async with self.client(actor) as client:
-                packet = self.packet(await client.call_tool('receipt.get', {'receiptId':receipt['receiptId']}))
+                packet = self.packet(await client.call_tool('submission.get_receipt', {'receiptId':receipt['receiptId']}))
                 self.assertEqual(packet['sourceVersion'], {key:receipt[key] for key in ('receiptId','submissionId','revision')})
                 self.assertEqual(packet['data']['courseContext'], receipt['courseContext'])
                 self.assertEqual(packet['data']['state'], 'received')
@@ -180,12 +180,12 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
                      ('lesson.get_context',{**self.refs(),'query':'x'*501}),
                      ('lesson.get_context',{**self.refs(),'factory':'execute'}),
                      ('course.list_mine',{'limit':True}),
-                     ('receipt.get',{'receiptId':'../../study/factory'}),
-                     ('receipt.get',{'receiptId':'r','url':'http://evil.invalid'})]
+                     ('submission.get_receipt',{'receiptId':'../../study/factory'}),
+                     ('submission.get_receipt',{'receiptId':'r','url':'http://evil.invalid'})]
             for name,args in cases:
                 packet = self.packet(await client.call_tool(name,args))
                 self.assertEqual(packet['error'], 'INVALID_ARGUMENTS')
-            for name in ('factory.run','calendar.write','lesson.delete','ui.open'):
+            for name in ('factory.run','calendar.write','lesson.delete','ui.open','receipt.get'):
                 packet = self.packet(await client.call_tool(name,{}))
                 self.assertEqual(packet['error'], 'NOT_SUPPORTED')
 

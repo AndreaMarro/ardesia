@@ -8,7 +8,7 @@ This optional local stdio service forwards three reads to the existing Study HTT
 | --- | --- | --- |
 | `course.list_mine` | `limit` integer 1–50, default 20; optional opaque `cursor` up to 8192 characters | `GET /study/editions?limit=…&after=…` |
 | `lesson.get_context` | **all** `contextId`, `resourceId`, `revisionId`; optional `query` up to 500 characters | `GET /study/context/{contextId}?resourceId=…&revisionId=…&query=…` |
-| `receipt.get` | `receiptId` | `GET /study/receipts/{receiptId}` |
+| `submission.get_receipt` | `receiptId` | `GET /study/receipts/{receiptId}` |
 
 Unexpected arguments are forbidden. IDs in paths are restricted and encoded. A listing returns one page, not an unbounded automatic traversal. The returned cursor is opaque; legacy cursors are not restricted to the 128-character limit for creating new editions. No invented `/courses/mine` endpoint is used. Teacher ownership and student confirmed membership come from Core's existing `/editions` contract, not from client metadata. The listing does not certify payment or a confirmed timetable. Core supplies no schedule version; `sourceVersion.scheduleVersion` is null.
 

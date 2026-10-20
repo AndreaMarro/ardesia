@@ -153,6 +153,6 @@ class Envelope(BaseModel, Generic[Data]):
     error: str | None = None
 
 
-INPUTS = {'course.list_mine':CourseInput, 'lesson.get_context':ContextInput, 'receipt.get':ReceiptInput}
+INPUTS = {'course.list_mine':CourseInput, 'lesson.get_context':ContextInput, 'submission.get_receipt':ReceiptInput}
 OUTPUTS = {'course.list_mine':Envelope[CoursePage], 'lesson.get_context':Envelope[ContextDTO],
-           'receipt.get':Envelope[ReceiptDTO]}
+           'submission.get_receipt':Envelope[ReceiptDTO]}
