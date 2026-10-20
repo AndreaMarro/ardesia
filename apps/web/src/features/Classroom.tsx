@@ -13,6 +13,7 @@ import { useResourceComposer } from "../components/useResourceComposer";
 import { ErrorNotice } from "../components/Feedback";
 import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
+import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 
 export function Classroom({
   me,
@@ -72,6 +73,10 @@ export function Classroom({
       </section>
       {data.enrolled ? (
         <>
+          <ScientificNotebooks me={me} data={data} onUpdate={onUpdate} onUse={tutor ? undefined : reference => {
+            setSource(reference);
+            setSelectionMessage("Quaderno collegato alla prossima consegna.");
+          }} />
           <section className="source-composer">
             <div>
               <h2>

@@ -24,4 +24,9 @@ con integrità interna unsigned, non autenticità server
 
 API, migrazione, evidenze REA e limiti:
 `docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-CORE.md` (root del monorepo).
-L'editor visuale e la storia Undo integrati nell'aula restano da realizzare.
+L'editor visuale è ora integrato nell'aula e in «Il mio lavoro», con note,
+formule MathLive, geometria PDF, Undo isolato, salvataggio e riapertura. La
+consegna collega la revisione salvata e il suo originale; il tutor legge lo
+snapshot consegnato. Bozze non salvate solo in memoria, con avviso ed export.
+Verifiche e limiti residui:
+`docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-EDITOR.md`.

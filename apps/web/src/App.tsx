@@ -231,6 +231,7 @@ export default function App() {
                 <Work
                   me={me}
                   data={data}
+                  onUpdate={refresh}
                   onRetry={(id) => {
                     setParentId(id);
                     navigate("classroom");

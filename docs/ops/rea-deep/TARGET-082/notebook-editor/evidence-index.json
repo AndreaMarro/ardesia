@@ -1,0 +1,250 @@
+{
+  "rea": "6.7.0",
+  "transport": "MCP stdio",
+  "tools": 207,
+  "observations": [
+    {
+      "name": "mathlive-package",
+      "evidenceId": "ev_130ba8d9c1091f5d70310765bb06bae05b97ee70da36964db3152ecb4f510cca",
+      "parentEvidenceId": "ev_d70e3d107c1a5302e6c0ac3f6a3ab3b24c254833946dae1a8f350a33bf458684",
+      "subject": {
+        "name": "mathlive",
+        "digest": {
+          "sha256": "d45bb2f21186c8c0c259b721479e262a8be211d0110231bd1e2e66c99ed70be2"
+        },
+        "local_path": "/private/tmp/ardesia-public-rea-20261020/apps/studio/node_modules/mathlive",
+        "format": "directory",
+        "architecture": null
+      },
+      "operation": "inspect_analysis_view",
+      "completeness": null,
+      "limitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 19 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Semantic unknown retention reached an effective capacity. Omission coverage counts examined emission occurrences by family and reason, including repeats; it does not count unexamined source frontiers or distinct discarded identities.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "normalizedLimitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 19 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Semantic unknown retention reached an effective capacity. Omission coverage counts examined emission occurrences by family and reason, including repeats; it does not count unexamined source frontiers or distinct discarded identities.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "steps": [],
+      "resultFile": "mathlive-package.json",
+      "resultSha256": "bcf8b58be094ecd3b89c3af7cb053d2403a6e94ce2eeb45c7a1dab25c18ad9fc"
+    },
+    {
+      "name": "notebook-runtime-final",
+      "evidenceId": "ev_de64475928f53c3ea64e359d27829e3403c23a2c2a48ed8ef8a64af3c9e7b099",
+      "parentEvidenceId": null,
+      "subject": null,
+      "operation": "capture_browser_scenario",
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason.",
+        "Browser host platform and architecture were not observed."
+      ],
+      "normalizedLimitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason."
+      ],
+      "steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-notebooks",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-reference",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-original",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "title",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "second-page",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "second-canvas",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "add-note",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "write-note",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "save-note",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "save-settled",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "close",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "return",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "reopen",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-reopened",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "return-to-anchor",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "anchor-retained",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "formula",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "mathfield",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "latex",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "write-formula",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "save-formula",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "formula-settled",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "rotate",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "zoom",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "final-render",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "resultFile": "notebook-runtime-final.json",
+      "resultSha256": "56c64c39d22afd68bd92402706a3f9b12402b468484b6d58e7a76f46133949de"
+    }
+  ],
+  "retainedFailureFiles": [
+    "before-save-wait-fix-notebook-runtime.json",
+    "before-unique-anchor-fix-notebook-runtime.json",
+    "before-unique-anchor-fix-notebook-runtime-export.json"
+  ],
+  "unknowns": [
+    "full JavaScript semantic coverage",
+    "full network body capture and wire provenance",
+    "external equivalent notebook workflow",
+    "complete accessibility and touch performance"
+  ]
+}

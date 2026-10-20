@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { requestKey, studyRequest } from "./apiClient";
+import { requestKey, studyRequest, StudyApiError } from "./apiClient";
 import type { PostitReference, StudyMe } from "./contracts";
 import { uploadOriginal } from "./uploadOriginal";
 type SubmissionPayload = {
@@ -191,6 +191,27 @@ export function SubmissionPanel({
     setMessage("");
     const sentKey = draft.key;
     try {
+      let assetRefs = draft.assetRefs;
+      if (!draft.pending && source) {
+        const exact = await studyRequest<{ id: string; revisionId: string; contextId: string; kind: string; notebook?: { source: { assetId: string } } }>(
+          `/resources/${encodeURIComponent(source.resourceId)}/revisions/${encodeURIComponent(source.revisionId)}`,
+        );
+        if (exact.id !== source.resourceId || exact.revisionId !== source.revisionId || exact.contextId !== source.contextId)
+          throw Error("source_identity_mismatch");
+        if (exact.kind === "scientific-notebook") {
+          if (!exact.notebook?.source.assetId) throw Error("notebook_original_required");
+          assetRefs = [...new Set([...assetRefs, exact.notebook.source.assetId])];
+        }
+      }
+      if (assetRefs.length > 5) {
+        if (mounted.current) setMessage("La fonte aggiunge il suo PDF: puoi consegnare al massimo 5 originali insieme.");
+        return;
+      }
+      // Source verification is asynchronous: another mounted editor may have changed this draft.
+      if ((mounted.current ? current.current : load()).key !== sentKey) {
+        if (mounted.current) setMessage("La bozza è cambiata durante la verifica della fonte. Controllala e consegna di nuovo.");
+        return;
+      }
       const payload = draft.pending ?? {
         editionId,
         activityId,
@@ -198,7 +219,7 @@ export function SubmissionPanel({
         text: prediction
           ? `Previsione: ${prediction}\n\nProcedimento: ${draft.text}`
           : draft.text,
-        assetRefs: draft.assetRefs,
+        assetRefs,
         parentId: draft.parentId,
         sourceRefs: source ? [source] : [],
       };
@@ -230,7 +251,12 @@ export function SubmissionPanel({
             `Consegnato · ricevuta ${received.receiptId} · tentativo ${received.revision}. L’elenco non è stato aggiornato; puoi ricaricarlo.`,
           );
       }
-    } catch {
+    } catch (failure) {
+      if (failure instanceof StudyApiError && failure.status === 409 && failure.message === "stale_source") {
+        update(value => value.key === sentKey ? { ...value, pending: undefined, key: requestKey() } : value);
+        if (mounted.current) setMessage("La fonte è stata aggiornata. Riapri il quaderno o la fonte, collega la versione salvata e consegna di nuovo. La spiegazione è conservata.");
+        return;
+      }
       if (mounted.current)
         setMessage(
           "Invio non ancora confermato dal servizio. La bozza resta in questa pagina; riprova: la stessa richiesta recupera la ricevuta senza duplicati.",
@@ -254,7 +280,7 @@ export function SubmissionPanel({
           <textarea
             aria-label="La tua spiegazione"
             rows={5}
-            disabled={Boolean(draft.pending)}
+            disabled={busy || Boolean(draft.pending)}
             value={draft.text}
             maxLength={textLimit}
             onChange={(event) =>
@@ -282,6 +308,17 @@ export function SubmissionPanel({
             ? "Fonte contestuale collegata"
             : "Nessuna fonte contestuale selezionata"}
         </p>
+        {!!draft.assetRefs.length && <ul aria-label="Originali allegati alla bozza">
+          {draft.assetRefs.map((id, index) => <li key={id}>
+            Originale {index + 1}{" "}
+            <button type="button" disabled={busy || Boolean(draft.pending)}
+              aria-label={`Rimuovi allegato ${index + 1} dalla bozza`}
+              onClick={() => {
+                update(value => ({ ...value, assetRefs: value.assetRefs.filter(asset => asset !== id), key: requestKey() }));
+                setMessage("Allegato rimosso dalla bozza. L’originale privato è conservato.");
+              }}>Rimuovi dalla bozza</button>
+          </li>)}
+        </ul>}
         {!activityReady && !draft.pending && (
           <p>
             Prima registra la previsione e confrontala con il modello. Poi

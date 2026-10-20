@@ -1,0 +1,204 @@
+{
+  "createdAt": "2026-10-20T15:36:39.826702+00:00",
+  "incrementBase": "ebcb6bc8020f444281f87770b66e43b7bb665a7a",
+  "webFullSuite": {
+    "passed": 191,
+    "files": 29,
+    "exit": 0,
+    "scope": "before final one-attribute PDF viewport role correction"
+  },
+  "finalAriaRegression": {
+    "passed": 9,
+    "files": 2,
+    "exit": 0
+  },
+  "studioGate": {
+    "passed": 2158,
+    "failed": 0,
+    "exit": 0
+  },
+  "webBuild": {
+    "typecheck": 0,
+    "build": 0,
+    "warning": "lazy MathLive chunk exceeds 500 kB; retained, threshold unchanged"
+  },
+  "publicBuild": {
+    "typecheck": 0,
+    "build": 0
+  },
+  "browserQuality": {
+    "identity": {
+      "url": "http://127.0.0.1:5397/?view=work&edition=fluidi",
+      "title": "Ardesia — piccoli gruppi, idee chiare"
+    },
+    "frameworkErrorOverlay": false,
+    "consoleLogs": [],
+    "csp": [],
+    "focus": {
+      "label": "Pagina precedente",
+      "outline": "3px"
+    },
+    "mathInputUndo": true,
+    "axe": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            {
+              "target": [
+                "button[aria-label=\"Pagina precedente\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element content contains only non-text characters"
+            },
+            {
+              "target": [
+                ".notebook-anchor-note > span[aria-hidden=\"true\"]:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".notebook-anchor-note > .notebook-anchor-caption[aria-hidden=\"true\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "target": [
+                ".notebook-anchor-formula > span[aria-hidden=\"true\"]:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__mathit:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__mathit:nth-child(5)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__msubsup:nth-child(6) > .ML__vlist-t.ML__vlist-t2 > .ML__vlist-r:nth-child(1) > .ML__vlist > span > span:nth-child(2) > .ML__cmr"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__mathit:nth-child(7)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__msubsup:nth-child(8) > .ML__vlist-t.ML__vlist-t2 > .ML__vlist-r:nth-child(1) > .ML__vlist > span > span:nth-child(2) > .ML__cmr"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__mathit:nth-child(12)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__msubsup:nth-child(13) > .ML__vlist-t.ML__vlist-t2 > .ML__vlist-r:nth-child(1) > .ML__vlist > span > span:nth-child(2) > .ML__cmr"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__mathit:nth-child(14)"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            },
+            {
+              "target": [
+                ".ML__msubsup:nth-child(15) > .ML__vlist-t.ML__vlist-t2 > .ML__vlist-r:nth-child(1) > .ML__vlist > span > span:nth-child(2) > .ML__cmr"
+              ],
+              "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+            }
+          ]
+        }
+      ],
+      "passes": 25
+    },
+    "geometry": {
+      "390": {
+        "client": 390,
+        "scroll": 390
+      },
+      "820": {
+        "client": 820,
+        "scroll": 820
+      },
+      "1440": {
+        "client": 1440,
+        "scroll": 1440
+      }
+    },
+    "reducedMotion": true,
+    "errors": []
+  },
+  "fullBrowserJourney": "browser-ui.json; before final MathLive keyboard/Undo and PDF viewport ARIA fixes, separately revalidated in final browser quality run",
+  "rea": {
+    "version": "6.7.0",
+    "tools": 207,
+    "actionsCompleted": 25,
+    "startNavigationCompleted": true,
+    "evidenceId": "ev_de64475928f53c3ea64e359d27829e3403c23a2c2a48ed8ef8a64af3c9e7b099",
+    "completeness": "incomplete: selected network bodies unavailable",
+    "codeBoundary": "before final PDF viewport role attribute; captured build hashes in build-manifest.json"
+  },
+  "independentReview": {
+    "initialFindings": 3,
+    "fixedAndReprobed": 3,
+    "finalFollowups": "source review only"
+  },
+  "coreApiTests": "not rerun; Core/API unchanged",
+  "logs": [
+    {
+      "name": "web-tests-final.log",
+      "sha256": "2cc97f4417ac01e122a0c4bca053735eeb770eb0aba037e6c3e216be7f9eda60"
+    },
+    {
+      "name": "web-aria-regression.log",
+      "sha256": "38c3f8690a0b337282a364538a1326846e3d520f0ebdabf58a510020f79d6a06"
+    },
+    {
+      "name": "build-web-final.log",
+      "sha256": "21c75646b5a17cefac41e9e18a8a3055806408bb87154ac9803f685d02f701ff"
+    },
+    {
+      "name": "build-public-final.log",
+      "sha256": "7615a4e7e9f42e457ecdcaeaead38dc7ca58ec31270e0e5b5e785f50f4e04d8f"
+    },
+    {
+      "name": "studio-gate-final.log",
+      "sha256": "5d40edc6c2547b3a8b4d485fe18a96beab9ae92d37be9c41af5839c17947bf81"
+    },
+    {
+      "name": "studio-replay-final.log",
+      "sha256": "289b801491b54ef589b67ac1c7ba97ac9310f0c9c2ac33f4b9c54e0feb7f4943"
+    },
+    {
+      "name": "browser-ui-pass.log",
+      "sha256": "30bab54be6d001ebd641445f773554cceb6759d27930c3bfd2dc5a03a6c71c0f"
+    },
+    {
+      "name": "browser-quality-final-aria.log",
+      "sha256": "df278d4a0ec0f1cd27a9145a8258a6aef85cf160ef20eabb933276161be6d3b4"
+    },
+    {
+      "name": "rea-runtime-final.log",
+      "sha256": "49c4011cbd1b990b76118c6b1e8e810f3d20fa58d79b678f7e8cb934cc44b327"
+    }
+  ],
+  "goalComplete": false,
+  "externalActions": "none"
+}

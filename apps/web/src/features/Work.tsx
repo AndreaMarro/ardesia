@@ -6,14 +6,17 @@ import { Diary } from "./Diary";
 import { SourceViewer } from "../components/SourceViewer";
 import { AssetPreview } from "../components/AssetPreview";
 import { EmptyState } from "../components/Feedback";
+import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 export function Work({
   me,
   data,
   onRetry,
+  onUpdate = async () => {},
 }: {
   me: StudyMe;
   data: Workspace;
   onRetry: (id: string) => void;
+  onUpdate?: () => Promise<void>;
 }) {
   const [tab, setTab] = useState("diary");
   return (
@@ -50,6 +53,7 @@ export function Work({
               lettura, con gli hash degli originali.
             </p>
           </header>
+          <ScientificNotebooks me={me} data={data} onUpdate={onUpdate} />
           <div className="work-notebook">
             <NotebookPanel editionId={data.edition.id} />
           </div>

@@ -19,8 +19,86 @@
 .pdf-text p { color: var(--muted); margin: 12px 0; }
 .pdf-text pre { white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; line-height: 1.8; max-height: 360px; overflow: auto; }
 .asset-identity { overflow-wrap: anywhere; }
+.scientific-notebooks { margin: 40px 0; padding: 30px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.notebook-collection-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.notebook-collection-heading h2 { margin: 0 0 8px; font-size: clamp(22px, 2.5vw, 30px); line-height: 1.2; letter-spacing: -.035em; }
+.notebook-collection-heading p { margin: 0; color: var(--muted); max-width: 620px; font-size: 14px; }
+.notebook-upload { display: block; flex: 0 0 210px; color: var(--ink); font-size: 13px; font-weight: 600; }
+.notebook-upload input { display: block; margin-top: 6px; width: 100%; font-size: 12px; }
+.notebook-upload input::file-selector-button { background: var(--green); color: white; border: 0; border-radius: 4px; padding: 11px; cursor: pointer; }
+.notebook-library { display: flex; gap: 8px; overflow: auto; padding: 3px 3px 16px; }
+.notebook-library button { text-align: left; flex: 0 0 auto; max-width: 240px; overflow-wrap: anywhere; }
+.notebook-library button[aria-pressed="true"] { background: var(--pale); border-color: var(--green); }
+.notebook-library small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; }
+.notebook-opening-hint, .notebook-empty { color: var(--muted); font-size: 14px; max-width: 640px; }
+.scientific-notebook { min-width: 0; }
+.notebook-commandbar { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+.notebook-title { font-size: 12px; color: var(--muted); flex: 1; min-width: min(270px, 100%); margin: 0; }
+.notebook-title input { display: block; width: 100%; font-size: 20px; font-weight: 550; letter-spacing: -.025em; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; color: var(--ink); }
+.notebook-save-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.notebook-save-state { margin: 12px 0 20px; font-size: 12px; color: var(--green); min-height: 20px; }
+.notebook-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 290px; border-top: 1px solid var(--line); }
+.notebook-document { min-width: 0; padding-right: 24px; }
+.notebook-document > a { display: inline-block; padding: 12px 0; font-size: 12px; color: var(--muted); }
+.notebook-inspector { border-left: 1px solid var(--line); padding: 18px 0 18px 22px; min-width: 0; }
+.notebook-inspector h3 { font-size: 16px; margin: 0 0 20px; }
+.notebook-inspector h3 > span { float: right; font-size: 12px; color: var(--muted); font-weight: 400; }
+.notebook-note-index { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow: auto; }
+.notebook-note-index button { display: flex; width: 100%; gap: 12px; text-align: left; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 13px 8px; font-size: 13px; font-weight: 450; }
+.notebook-note-index button > span:first-child { font-size: 11px; color: var(--muted); padding-top: 2px; }
+.notebook-note-index button > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.notebook-note-index small { display: block; color: var(--muted); font-size: 11px; margin-top: 6px; }
+.notebook-note-index button[aria-pressed="true"] { background: var(--pale); box-shadow: inset 3px 0 var(--green); }
+.notebook-annotation-editor { padding-top: 20px; }
+.notebook-annotation-editor h4 { font-size: 13px; margin: 0 0 14px; font-weight: 600; }
+.notebook-annotation-editor fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.notebook-annotation-editor label { display: block; font-size: 12px; color: var(--muted); }
+.notebook-annotation-editor textarea, .notebook-formula textarea { width: 100%; resize: vertical; min-height: 100px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); padding: 10px; color: var(--ink); line-height: 1.6; }
+.notebook-annotation-editor button { margin-top: 10px; font-size: 12px; padding: 9px 12px; }
+.notebook-geometry { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; font-size: 12px; }
+.notebook-geometry label { display: inline-flex; flex-direction: column; width: 48%; margin-top: 10px; padding-right: 8px; }
+.notebook-geometry input { width: 100%; border: 1px solid var(--line); border-radius: 4px; padding: 8px; background: var(--surface); color: var(--ink); }
+.notebook-remove { color: var(--danger); }
+.notebook-page-tools { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 12px; }
+.notebook-page-tools button { min-height: 40px; padding: 8px 12px; font-size: 12px; }
+.notebook-page-tools > span { display: block; flex-basis: 100%; color: var(--accent-text); font-size: 12px; }
+.notebook-layer { position: absolute; inset: 0; pointer-events: none; }
+.notebook-layer.is-placing { pointer-events: auto; cursor: crosshair; }
+.notebook-anchor { position: absolute; pointer-events: auto; overflow: hidden; display: flex; align-items: start; gap: 6px; padding: 6px; border: 1px solid #617453; border-radius: 3px; background: #f2f3dbe8; color: #263427; min-height: 0; font-weight: 400; font-size: 13px; text-align: left; box-shadow: 0 2px 6px #202b2b14; touch-action: none; }
+.notebook-anchor:hover:not(:disabled), .notebook-anchor.is-selected { border-color: var(--accent-text); background: #fff3d9f0; outline: 2px solid var(--accent-text); outline-offset: 1px; }
+.notebook-anchor > span:first-child { display: inline-block; flex: 0 0 auto; font: .77em/1.5 Inter, sans-serif; color: #4c5c41; }
+.notebook-anchor-caption { overflow: hidden; overflow-wrap: anywhere; line-height: 1.45; }
+.notebook-formula-preview { font-size: 1.46em; display: inline-block; line-height: 1.5; pointer-events: none; }
+.notebook-anchor-highlight { background: #ead97665; border-color: #a68c2870; box-shadow: none; }
+.notebook-formula { min-width: 0; }
+.notebook-formula math-field { display: block; width: 100%; max-width: 100%; min-height: 60px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; font-size: 23px; padding: 8px; overflow: auto; }
+.notebook-formula math-field::part(menu-toggle) { display: none; }
+.notebook-formula-readonly math-field { min-height: 0; border: 0; padding: 4px 0; background: transparent; }
+.notebook-formula-readonly math-field::part(virtual-keyboard-toggle) { display: none; }
+.notebook-formula details { margin: 12px 0; font-size: 12px; color: var(--muted); }
+.notebook-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-top: 20px; border-top: 1px solid var(--line); }
+.notebook-footer button { font-size: 12px; }
+.notebook-discard { flex-basis: 100%; padding: 16px; background: var(--pale); border-radius: 4px; font-size: 13px; }
+.notebook-discard p { margin-top: 0; }
+.notebook-discard button { margin-right: 8px; }
+.notebook-reading-notes { padding-left: 22px; }
+.notebook-reading-notes li { margin: 16px 0; }
+.notebook-reading-notes strong { font-size: 12px; color: var(--muted); }
+.notebook-reading-notes p { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 1100px) {
+  .notebook-workspace { grid-template-columns: minmax(0, 1fr); }
+  .notebook-document { padding-right: 0; }
+  .notebook-inspector { padding: 24px 0; border-left: 0; border-top: 1px solid var(--line); }
+  .notebook-note-index { max-height: 190px; }
+}
 @media (max-width: 540px) {
   .pdf-view-controls { width: 100%; }
   .pdf-view-controls select { flex: 1; min-width: 0; font-size: 12px; }
   .pdf-toolbar { gap: 12px; }
+  .notebook-collection-heading { align-items: stretch; flex-direction: column; gap: 18px; }
+  .notebook-upload { flex: none; }
+  .notebook-save-actions { width: 100%; }
+  .notebook-save-actions button { flex: 1; padding: 10px 8px; font-size: 12px; }
+  .scientific-notebooks { margin: 28px 0; padding: 22px 0; }
+  .notebook-footer { align-items: stretch; flex-direction: column; }
 }

@@ -1,10 +1,12 @@
 import type { PDFDocumentProxy } from "pdfjs-dist";
+import type { PageGeometry } from "./model";
 
 export type PdfFrame = {
   canvas: HTMLCanvasElement;
   text: string;
   textTruncated: boolean;
   number: number;
+  geometry: PageGeometry;
 };
 export type PageView = { number: number; width: number; zoom: number; rotation: number };
 
@@ -54,7 +56,8 @@ export async function renderPdfPage(
       length += text.length;
       if (length > limit) break;
     }
-    return { canvas, text: parts.join("").trim(), textTruncated: length > limit, number: view.number };
+    return { canvas, text: parts.join("").trim(), textTruncated: length > limit, number: view.number,
+      geometry: viewport };
   } finally {
     signal.removeEventListener("abort", cancel);
   }

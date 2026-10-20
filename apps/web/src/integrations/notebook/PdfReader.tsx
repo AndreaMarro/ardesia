@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import type { VerifiedOriginalAsset } from "../../../../studio/src/study/originalAsset";
 import { ErrorNotice, Loading } from "../../components/Feedback";
@@ -6,7 +6,8 @@ import { openPdf, type PdfTask } from "./pdfDocument";
 import { renderPdfPage, type PdfFrame } from "./renderPdfPage";
 import "./notebook.css";
 
-export function PdfReader({ original }: { original: VerifiedOriginalAsset }) {
+type Extras = { overlay?: (frame: PdfFrame) => ReactNode; pageTools?: (page: number) => ReactNode };
+export function PdfReader({ original, overlay, pageTools }: { original: VerifiedOriginalAsset } & Extras) {
   const [loaded, setLoaded] = useState<{ original: VerifiedOriginalAsset; pdf: PDFDocumentProxy } | null>(null);
   const [loadError, setLoadError] = useState("");
   const [attempt, setAttempt] = useState(0);
@@ -44,10 +45,10 @@ export function PdfReader({ original }: { original: VerifiedOriginalAsset }) {
   }, [original, attempt]);
   if (loadError) return <ErrorNotice message={loadError} onRetry={() => setAttempt(n => n + 1)} />;
   if (!loaded || loaded.original !== original) return <Loading>Sto preparando le pagine…</Loading>;
-  return <PdfPages key={attempt} pdf={loaded.pdf} />;
+  return <PdfPages key={attempt} pdf={loaded.pdf} overlay={overlay} pageTools={pageTools} />;
 }
 
-function PdfPages({ pdf }: { pdf: PDFDocumentProxy }) {
+function PdfPages({ pdf, overlay, pageTools }: { pdf: PDFDocumentProxy } & Extras) {
   const host = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(600);
   const [number, setNumber] = useState(1);
@@ -94,11 +95,15 @@ function PdfPages({ pdf }: { pdf: PDFDocumentProxy }) {
           <button onClick={() => setRotation(n => (n + 90) % 360)} aria-label="Ruota il PDF di 90 gradi">Ruota ↻</button>
         </div>
       </div>
-      <div ref={host} className="pdf-viewport" tabIndex={0} aria-label="Pagina PDF, area scorrevole">
+      {pageTools?.(number)}
+      <div ref={host} className="pdf-viewport" role="region" tabIndex={0} aria-label="Pagina PDF, area scorrevole">
         {visible.error ? <ErrorNotice message={visible.error} onRetry={() => setAttempt(n => n + 1)} />
           : !visible.frame ? <Loading>Sto leggendo pagina {number}…</Loading>
-          : <div className="pdf-paper" role="img" aria-label={`Pagina ${number} di ${pdf.numPages}`}
-              ref={element => { if (element && visible.frame) element.replaceChildren(visible.frame.canvas); }} />}
+          : <div className="pdf-paper" style={{ position: "relative" }}>
+              <div role="img" aria-label={`Pagina ${number} di ${pdf.numPages}`}
+                ref={element => { if (element && visible.frame) element.replaceChildren(visible.frame.canvas); }} />
+              {overlay?.(visible.frame)}
+            </div>}
       </div>
       <p className="pdf-page-status" role="status">
         {visible.frame ? `Pagina ${visible.frame.number} di ${pdf.numPages}` : visible.error ? "Anteprima non disponibile" : "Lettura in corso"}

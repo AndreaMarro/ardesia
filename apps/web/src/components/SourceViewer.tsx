@@ -7,6 +7,8 @@ import {
   type StudyResource,
 } from "../api";
 import { ErrorNotice, Loading } from "./Feedback";
+import { NotebookEditor } from "../integrations/notebook/NotebookEditor";
+import { notebookResource } from "../integrations/notebook/model";
 export function SourceViewer({
   reference,
   onSelect,
@@ -116,6 +118,8 @@ export function SourceViewer({
         </span>
         <span>Revisione {resource.revisionId.slice(0, 8)}</span>
       </div>
+      {resource.kind === "scientific-notebook" && <NotebookEditor key={resource.revisionId}
+        resource={notebookResource(resource)} actor={resource.ownerId} readOnly onSaved={() => {}} />}
       {onSelect ? (
         <>
           <p className="fine-print">

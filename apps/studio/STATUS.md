@@ -389,3 +389,41 @@ SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
 riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
 nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
 `docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.
+
+
+## 2026-10-20 — REA / editor del quaderno scientifico nel corso
+
+PDF, note, evidenziazioni e formule sono ora integrati nella stessa superficie
+Web, in Aula e nel lavoro privato. Undo isolato, coordinate dal PageViewport,
+CAS e retry idempotente, riapertura della head, consegna con PDF esatto e lettura
+della revisione consegnata al tutor. SubmissionPanel condiviso verifica la
+fonte prima del primo invio e permette la rimozione locale degli allegati.
+
+Nuove dipendenze Web esatte: MathLive 0.110.0 per editing matematico strutturato
+e DOMPurify 3.4.17 per markup non fidato, con macro HTML inerti e filtro CSS.
+Compute Engine transitive installato ma disattivato a runtime; font e licenze
+locali. Chunk matematico differito ~833 kB / 231 kB gzip: warning Vite conservato.
+Nessun LLM in prodotto. Licenze in apps/web/THIRD_PARTY_NOTICES.md.
+
+REA 6.7.0 via MCP: pacchetto MathLive statico, grafo incompleto; scenario nuovo
+editor 25 azioni completate, DOM/accessibilità/screenshot e 168 eventi. Corpi
+rete parziali: completezza globale incomplete/events. Tentativi falliti dello
+scenario e limiti preservati. Review separata: tre finding riprodotti, corretti
+e riprovati; delta finali letti, senza rivendicare nuovi probe. Wrapper esterno
+review.sh assente.
+
+Verifiche: 191 test Web in 29 file; dopo l’ultima aggiunta del ruolo ARIA al
+viewport, 9 test mirati, typecheck/build Web e pubblico, browser/axe ripetuti.
+Gate Studio congelato finale: {"passed":2158,"failed":0,"exit":0}, incluso
+replay. Chrome locale e API SQLite: risposta persa/retry senza duplicato,
+riapertura esatta, PDF con stesso fingerprint separati per SHA, consegna V1 e
+head privata V2 negata al tutor, logout. Responsive 390/820/1440, zoom 200%,
+focus visibile, input MathLive e primo Cmd+Z, zero errori console/page/CSP.
+Axe: zero violazioni, 25 passati; contrasto parzialmente incompleto su simboli
+e testo sul PDF. Non è una certificazione completa di accessibilità.
+
+Le bozze non salvate restano in memoria, con avviso d’uscita ed export, senza
+recupero da reload/crash. Penna/touch, screen reader, altri browser, 200 formule,
+PostgreSQL live, workflow equivalente esterno e G0/G1 restano da verificare.
+SYS-01 e lo sviluppo complessivo Ardesia restano aperti. Nessun push o deploy.
+Dettagli: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-EDITOR.md.
