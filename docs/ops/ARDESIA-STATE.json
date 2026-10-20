@@ -1,7 +1,7 @@
 {
-  "observed_at": "2026-10-20T07:26:48.862001+00:00",
-  "sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-  "sha_semantics": "Frozen integrated C5/C6 product. Later metadata commits do not relabel executions. Historical C4 logs and receipts retain a3; Engine/Web equality is an explicit Git tree check, not a new execution.",
+  "observed_at": "2026-10-20T07:54:24.032869+00:00",
+  "sha": "8f1843205a532c045b15e82d0d74636373505146",
+  "sha_semantics": "Integrated C8 product;86Web and26actual Auth/PG browser views executed on334 whose product trees equal this commit. Core/API539 run remains attributed to5cb. Primary runtime still5cb pending combined C7 replacement.",
   "milestone": "G0_IN_PROGRESS_G1_SUCCESSIVE_SLICES",
   "statuses": {
     "G0": "IN_PROGRESS_NOT_CERTIFIED",
@@ -11,9 +11,9 @@
     "core_api": "539_PASS_0_SKIP_ACTUAL_LOCAL_PG_AUTH_RLS_PRIVATE_STORAGE",
     "cookie_recovery": "ACTUAL_AUTH_PG_CHROME_REVOKE_401_COOKIE_CLEAR_PUBLIC200",
     "body_budget": "INDEPENDENT_FIXED_REVIEW_PLUS_ACTUAL_TCP_SCOPE_PASS",
-    "rea": "ORIGINAL_G0_G1_REA_SUBGATES_PASS_5CB_SCOPED_NOT_GLOBAL",
+    "rea": "LAST_CERTIFIED5CB_CURRENT_C8_REBIND_PENDING",
     "child_session_recovery": "OPEN_ACTUAL_RED_C7_R1",
-    "a11y": "OPEN_ACTUAL_FINDINGS_C8"
+    "a11y": "SCOPED_PASS_26_REAL_AUTH_PG_VIEWS_C8"
   },
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "verification": {
@@ -69,68 +69,8 @@
       "rerun_claimed": false
     },
     "ci_current": {
-      "sourceCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
-      "status": "ALL_EIGHT_CHECK_RUNS_SUCCESS",
-      "checks": [
-        {
-          "name": "no-deploy-check",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380276141/job/118487573888"
-        },
-        {
-          "name": "e2e golden path (advisory)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573181"
-        },
-        {
-          "name": "study-api (HTTP + shared Core)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573152"
-        },
-        {
-          "name": "studio (typecheck + test + build)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573135"
-        },
-        {
-          "name": "hygiene (NUL + secrets + boundary + whitespace)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573115"
-        },
-        {
-          "name": "study-mcp (official SDK stdio + HTTP)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573092"
-        },
-        {
-          "name": "engine (pytest)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487573060"
-        },
-        {
-          "name": "web (typecheck + test + build)",
-          "status": "completed",
-          "conclusion": "success",
-          "head_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
-          "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39380275739/job/118487572785"
-        }
-      ],
-      "CodeRabbit": "DRAFT_SKIP_NOT_REVIEW",
-      "humanReview": "NOT_RUN"
+      "source_commit": "8f1843205a532c045b15e82d0d74636373505146",
+      "status": "PENDING_AFTER_PUSH_NO_OLD_GREEN_RETAG"
     },
     "last_metadata_ci": {
       "metadataCommit": "32f4be4c22ce456232ab7d5a2038ecb4de469f74",
@@ -240,30 +180,65 @@
       "global_gate_certified": false
     },
     "a11y_current": {
-      "status": "OPEN_ISSUES_C8",
-      "source_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
-      "cases": 26,
+      "baselineSource": "5cbafd072504cb4603bf0daa903472fa0f528247",
+      "candidateSource": "334e4cc885ac559b9966def77a371969eb017f9d",
+      "origin": "http://127.0.0.1:5369",
+      "persistence": "ACTUAL_POSTGRES_SUPABASE_AUTH_STORAGE",
+      "views": 26,
       "viewports": [
         1440,
         390
       ],
-      "only_get_requests": 72,
-      "page_errors": 0,
-      "overflow_cases": 0,
-      "violations": [
-        "label-content-name-mismatch",
-        "landmark-unique",
-        "heading-order"
+      "violations": 0,
+      "overflow": 0,
+      "pageErrors": 0,
+      "pageGET": 68,
+      "directMeGET": 4,
+      "onlyGET": true,
+      "positiveActorRoleChecks": [
+        {
+          "actor": "restore-student",
+          "width": 1440,
+          "status": 200,
+          "principalId": "restore-student",
+          "role": "student"
+        },
+        {
+          "actor": "restore-tutor",
+          "width": 1440,
+          "status": 200,
+          "principalId": "restore-tutor",
+          "role": "teacher"
+        },
+        {
+          "actor": "restore-student",
+          "width": 390,
+          "status": 200,
+          "principalId": "restore-student",
+          "role": "student"
+        },
+        {
+          "actor": "restore-tutor",
+          "width": 390,
+          "status": 200,
+          "principalId": "restore-tutor",
+          "role": "teacher"
+        }
       ],
-      "report": "docs/ops/ARDESIA-C8-A11Y-OPEN-5cbafd07.json",
-      "human_ux_certification": false
+      "baselineReportSha256": "2d95224affac56dedb0a70f0b6354bec16528d7ba9549383dada699ba2fdb542",
+      "candidateReportSha256": "0db9da61213c2d5f538da413b03c5a4f2b419624875fc70c827ebd4c14b11b8b",
+      "axeSha256": "20c09fe157a8a34a30e241aaa1fcdade657734f08ab379ecfbeb7d45cc46e878",
+      "skipLinkFocus": "MAIN_FOR_BOTH_ROLES_BOTH_WIDTHS",
+      "loginModal": "FOCUS_TAB_TRAP_ESCAPE_RESTORE_PASS",
+      "fixtureSetup": "Four restored identities fresh logins; one own duplicate course draft created with real authorized API before read-only audits; no original14",
+      "report": "docs/ops/ARDESIA-C8-VERIFICATION-8f184320.json"
     }
   },
   "rea": {
     "last_certified_product_sha": "5cbafd072504cb4603bf0daa903472fa0f528247",
     "last_original_G0": "PASS_REA_SUBGATE_ONLY",
     "last_original_G1": "PASS_REA_SUBGATE_ONLY",
-    "current_binding": "ROOT_ACCEPTED_INDEPENDENT_REVIEW_ORIGINAL_POLICY_UNCHANGED",
+    "current_binding": "PENDING_CURRENT_PRODUCT_C8_THEN_C7_SOURCE_BOUND_REVIEW",
     "catalog_targets": 139,
     "entry_visits": 139,
     "catalog_limit": "ENTRY_VISIT_IS_NOT_COMPLETE_REVERSE_ENGINEERING",
@@ -319,7 +294,6 @@
   "merged": false,
   "blockers": [
     "C7-R1: verified child401 clears cookie but retains cached private UI; actual natural-expiry RED",
-    "C8:26-view real-browser audit has3semantic Axe rules open; independent fixes in progress",
     "Human scientific/date/pilot/UX approvals not run",
     "Historical original-source restore PARTIAL:15missing retained; separate known-complete S logical full-stack restore now PROVED_SCOPED",
     "Zero-added-cost remote preview/rollback not verified; local fallback",
@@ -329,7 +303,7 @@
     "Earlier live CLI calls/cost UNKNOWN"
   ],
   "next_actions": [
-    "Close observed current UI/Auth and restore gaps with actual proofs; global gates remain not certified",
+    "Complete C7 two real expiry cases, independent review and actual clone; then combined runtime/REA and remaining G0 flows",
     "Deepen the139-target coverage map through concrete public/open-source workflows",
     "Preserve historical15missing; complete remaining G0 media/offline/accessibility/commerce proofs after the accepted independent S restore",
     "Continue independent attendance/commercial slices in the same Core with scoped privacy"

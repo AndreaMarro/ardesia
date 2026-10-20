@@ -84,3 +84,7 @@ Input sintetico nuovo e completo:3assetCore/3Storage/3file. DB/Auth/Storage ripr
 Axe4.14/Chrome/Auth/PG su5cb:26stati,1440/390px,72GET,0pageerror/overflow;3regole semantiche aperte e focusDOMskiplink da provare. ModalTab/Escape/restore verificati. LCPproxy locale692/284ms, un solo scriptindex sulla home; non performance produzione o testmutante consegna/review. C7 e C8 procedono su file disgiunti da5cb, un solo integratore.
 
 REA081:16envelope autentici,99file/24.529.964B ricalcolati dal root;843924B V8 del widget uguali al tarballNPMMathLive0.111.1/SHA512 verificato, MITcore primaria. Input→undo→redo e APIsetValue/resetUndo reali derivano un contratto per isolamento draft/history; nessuna ACLfuga vendor dichiarata. ContrattoADAPT, libreriaDEFER fino a bisogno misurato/licenze asset/a11y/budget. Nessuna nuova dipendenza o testprodotto per081. Mappa139 resta snapshot storico.
+
+## 2026-10-20 — C8 integrato dopo replica Auth/PG reale
+
+C8 origine334e4cc8, integrazione8f184320; sette alberi prodotto identici verificati, senza rietichettare i run. Builder86Web/16focused, baselineimmutabile12FAIL/4PASS,6Chromiummock. Root replica con quattro identità restaurate e una seconda bozza viaAPI reale: baseline26viste riproduce3regole; candidato26viste1440/390 conAxeidentico0violazioni/overflow/pageerror, skipfocusMAIN e modaltrap/Escape/restore. Tutte le richieste audit sonoGET. Primary5324 rimane5cb fino alla sostituzione combinataC7; nuovo5369 isolato. Nessuna dipendenza/schema/CoreAPI modificati, REA corrente ancora5cb e rebindpending.

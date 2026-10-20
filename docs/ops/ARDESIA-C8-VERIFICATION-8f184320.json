@@ -1,0 +1,101 @@
+{
+  "schema": "ardesia.c8-verification/1",
+  "integratedProduct": "8f1843205a532c045b15e82d0d74636373505146",
+  "executedCandidate": "334e4cc885ac559b9966def77a371969eb017f9d",
+  "componentGitTreesByteIdentical": {
+    "apps/web": "d6f3f7044702c9ed812f24b5472512bcdebbefaf",
+    "apps/studio": "9742d03ee9955bde62c7053aeacca03620c1b340",
+    "services/study-api": "4ffcf0fd55e71d8997d51ea277b47c55b284ce3f",
+    "packages/engine": "69db76d4cbdc081019944f618f14bc9fd5aa3de2",
+    "packs": "4d29574307ee84442ea2a827e81ac9e974693715",
+    "supabase/migrations": "0ac0ae1de8ea70e602ecfcdd7ea2596318cccf4a",
+    "bin/study-demo": "dec78588510e5863bfac8f3e014d9d0c0d3d7733"
+  },
+  "rootSourceReview": {
+    "status": "SOURCE_AND_FROZEN_ARTIFACT_REVIEW_PASSED_ACTUAL_REPLAY_PENDING",
+    "sourceCommit": "334e4cc885ac559b9966def77a371969eb017f9d",
+    "parent": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "filesRehashed": 55,
+    "productFilesVerified": 10,
+    "apiEnginePacksMigrationsIdenticalTo5cb": true,
+    "review": "Small semantic changes; article cards appropriate independent units; visible names preserved; loading label varies with visible text; main tabindex-1; no transport/Core changes",
+    "actualCloneBaseline": "26cases/3rules reproduced; 68pageGET+4directMeGET; no mutations during audit",
+    "newDependency": false,
+    "globalG0": "NOT_CERTIFIED",
+    "globalG1": "NOT_READY"
+  },
+  "builder": {
+    "unitPassed": 86,
+    "focusedPassed": 16,
+    "immutableBaselineFailed": 12,
+    "immutableBaselinePassed": 4,
+    "chromiumMockScenarios": 6,
+    "axeMockViews": 26,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "manifestSha256": "950fbce8a5543dd9c3ce08782f3f118fe98456e0cf14064a37dade9851188e8a"
+  },
+  "actualRoot": {
+    "baselineSource": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "candidateSource": "334e4cc885ac559b9966def77a371969eb017f9d",
+    "origin": "http://127.0.0.1:5369",
+    "persistence": "ACTUAL_POSTGRES_SUPABASE_AUTH_STORAGE",
+    "views": 26,
+    "viewports": [
+      1440,
+      390
+    ],
+    "violations": 0,
+    "overflow": 0,
+    "pageErrors": 0,
+    "pageGET": 68,
+    "directMeGET": 4,
+    "onlyGET": true,
+    "positiveActorRoleChecks": [
+      {
+        "actor": "restore-student",
+        "width": 1440,
+        "status": 200,
+        "principalId": "restore-student",
+        "role": "student"
+      },
+      {
+        "actor": "restore-tutor",
+        "width": 1440,
+        "status": 200,
+        "principalId": "restore-tutor",
+        "role": "teacher"
+      },
+      {
+        "actor": "restore-student",
+        "width": 390,
+        "status": 200,
+        "principalId": "restore-student",
+        "role": "student"
+      },
+      {
+        "actor": "restore-tutor",
+        "width": 390,
+        "status": 200,
+        "principalId": "restore-tutor",
+        "role": "teacher"
+      }
+    ],
+    "baselineReportSha256": "2d95224affac56dedb0a70f0b6354bec16528d7ba9549383dada699ba2fdb542",
+    "candidateReportSha256": "0db9da61213c2d5f538da413b03c5a4f2b419624875fc70c827ebd4c14b11b8b",
+    "axeSha256": "20c09fe157a8a34a30e241aaa1fcdade657734f08ab379ecfbeb7d45cc46e878",
+    "skipLinkFocus": "MAIN_FOR_BOTH_ROLES_BOTH_WIDTHS",
+    "loginModal": "FOCUS_TAB_TRAP_ESCAPE_RESTORE_PASS",
+    "fixtureSetup": "Four restored identities fresh logins; one own duplicate course draft created with real authorized API before read-only audits; no original14"
+  },
+  "primaryRuntime": "PID43753_ON5324_REMAINS_FROZEN5CB_UNTIL_C7_COMBINED_REPLACEMENT",
+  "rea": "LAST_CERTIFIED5CB_CURRENT_PRODUCT_REBIND_PENDING",
+  "newDependencies": 0,
+  "limits": [
+    "Automated sample; human UX/full WCAG not certified",
+    "Mutating mobile submission/review and edition form not exercised in this audit",
+    "86Web executed on334; identity of integrated product is a Git proof, not a retagged run"
+  ],
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY"
+}
