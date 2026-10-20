@@ -36,7 +36,7 @@ def _validate_view(store, principal, edition_id, view, seen):
         raise StudyError('invalid_layout')
     for key in ('x', 'y', 'width', 'height'):
         value = bounds.get(key)
-        if type(value) not in (int, float) or not math.isfinite(value) or not -10000 < value < 10000:
+        if type(value) not in (int, float) or not -10000 < value < 10000 or not math.isfinite(value):
             raise StudyError('invalid_layout')
         if key in ('width', 'height') and value <= 0:
             raise StudyError('invalid_layout')

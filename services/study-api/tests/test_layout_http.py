@@ -68,3 +68,18 @@ def test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout(sess
     reopened = client.get('/study/workspace?editionId=fluidi').json()
     assert reopened['layoutSaved'] is True and reopened['layouts'] == []
     assert store.get_resource(student, resource['id'])['text'] == 'Originale privato'
+
+
+@pytest.mark.parametrize('field',['x','y','width','height','zIndex'])
+@pytest.mark.parametrize('sign',[-1,1])
+def test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view(session,field,sign):
+    client,store,student,resource=session
+    original=view(resource)
+    assert client.post('/study/layout',json={'editionId':'fluidi','views':[original]}).status_code==200
+    malformed=deepcopy(original)
+    target=malformed if field=='zIndex' else malformed['bounds']
+    target[field]=sign*10**1000
+    response=client.post('/study/layout',json={'editionId':'fluidi','views':[malformed]})
+    assert response.status_code==422 and response.json()=={'error':'invalid_layout'}
+    assert client.get('/study/workspace?editionId=fluidi').json()['layouts']==[original]
+    assert store.get_resource(student,resource['id'])['text']=='Originale privato'
