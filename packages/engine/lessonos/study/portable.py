@@ -11,6 +11,20 @@ from .feedback import list_feedback
 MAX_ITEMS = 100
 MAX_REVISIONS = 500
 MAX_BYTES = 50 * 1024 * 1024
+# The complete compact UTF-8 artifact, including base64 and the outer digest.
+# Shared with the HTTP framing boundary; decoded originals keep MAX_BYTES.
+MAX_ENCODED_BYTES = 96 * 1024 * 1024
+
+
+def encode_notebook(bundle):
+    """Stable wire representation and one encoded budget for every consumer."""
+    try:
+        encoded = canonical(bundle).encode('utf-8')
+    except (TypeError, ValueError, UnicodeError):
+        raise StudyError('invalid_notebook') from None
+    if len(encoded) > MAX_ENCODED_BYTES:
+        raise StudyError('notebook_budget_exceeded', 413)
+    return encoded
 
 
 def _list(bundle, key, limit):
@@ -114,6 +128,8 @@ def export_notebook(store, principal, edition_id, blob_dir):
               'unavailableResourceRefs': [unavailable[key] for key in sorted(unavailable)],
               'submissions': submissions, 'assets': assets, 'layout': layout, 'omissions': omissions}
     bundle['sha256'] = digest(canonical(bundle))
+    # Refuse the whole artifact rather than silently losing exact pins or assets.
+    encode_notebook(bundle)
     return bundle
 
 
@@ -159,6 +175,8 @@ def _inspect_references(bundle, resources, revisions, submissions):
 def inspect_notebook(bundle):
     if not isinstance(bundle, dict) or bundle.get('format') != 'ardesia-study-notebook-v1' or type(bundle.get('schemaVersion')) is not int or bundle['schemaVersion'] != 1:
         raise StudyError('unsupported_notebook')
+    # Check framing before base64 decoding or constructing the revision index.
+    encode_notebook(bundle)
     resources = _list(bundle, 'resources', MAX_ITEMS)
     submissions = _list(bundle, 'submissions', MAX_ITEMS)
     assets = _list(bundle, 'assets', MAX_ITEMS)

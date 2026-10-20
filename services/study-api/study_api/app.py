@@ -11,6 +11,7 @@ from starlette.concurrency import run_in_threadpool
 from pydantic import BaseModel, Field
 from lessonos.study.models import StudyError
 from lessonos.study.store import StudyStore, MAX_EDITION_CURSOR_LENGTH
+from lessonos.study import portable as notebook_portable
 
 
 class SessionBody(BaseModel):
@@ -122,11 +123,12 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
                 return JSONResponse({'error':'origin_denied'}, status_code=403)
             # UTF-8/escaped 20k-character notes fit 256 KiB; notebook framing
             # includes base64 for up to 50 MiB of decoded original assets.
-            limit=20*1024*1024 if request.url.path=='/study/assets' else 96*1024*1024 if request.url.path=='/study/notebook/inspect' else 256*1024
+            notebook_inspect=request.url.path=='/study/notebook/inspect'
+            limit=20*1024*1024 if request.url.path=='/study/assets' else notebook_portable.MAX_ENCODED_BYTES if notebook_inspect else 256*1024
             data=bytearray()
             async for chunk in request.stream():
                 data.extend(chunk)
-                if len(data)>limit:return JSONResponse({'error':'payload_too_large'},status_code=413)
+                if len(data)>limit:return JSONResponse({'error':'notebook_budget_exceeded' if notebook_inspect else 'payload_too_large'},status_code=413)
             request._body=bytes(data)
             if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
                 try:allowed,retry=await allow_attempt(request)
@@ -406,8 +408,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
 
     @app.get('/study/notebook')
     def notebook(editionId: str, request: Request, store=Depends(store_dependency)):
-        from lessonos.study.portable import export_notebook
-        return export_notebook(store,authenticate(request,store),editionId,Path(db_path).parent/'blobs')
+        bundle=notebook_portable.export_notebook(store,authenticate(request,store),editionId,Path(db_path).parent/'blobs')
+        return Response(notebook_portable.encode_notebook(bundle),media_type='application/json')
 
     @app.post('/study/notebook/inspect')
     def inspect(body: dict, request: Request, store=Depends(store_dependency)):
