@@ -19,6 +19,27 @@ CREATE POLICY edition_teacher_update ON public.study_editions FOR UPDATE TO arde
    SELECT 1 FROM public.study_principals p WHERE p.id=teacher_id AND p.role='teacher'));
 CREATE POLICY edition_teacher_delete ON public.study_editions FOR DELETE TO ardesia_app
  USING (teacher_id=(SELECT ardesia_private.actor_id()));
+-- Draft privacy applies at the backend SQL boundary as well as the HTTP
+-- route. SECURITY DEFINER membership helpers avoid recursive policy joins.
+DROP POLICY backend_edition_catalog ON public.study_editions;
+CREATE POLICY backend_edition_catalog ON public.study_editions FOR SELECT TO ardesia_app
+ USING (state!='draft' OR ardesia_private.can_enter(id));
+DROP POLICY backend_pack_catalog ON public.study_edition_packs;
+CREATE POLICY backend_pack_catalog ON public.study_edition_packs FOR SELECT TO ardesia_app
+ USING (EXISTS (SELECT 1 FROM public.study_editions e WHERE e.id=edition_id));
+CREATE OR REPLACE FUNCTION ardesia_private.catalog(edition TEXT) RETURNS JSONB
+LANGUAGE sql STABLE SECURITY DEFINER SET search_path = '' AS $$
+ SELECT jsonb_build_object(
+  'id',e.id,'capacity',e.capacity,'priceMinor',e.price_minor,'state',e.state,
+  'sessions',e.sessions::jsonb,'timezone',e.timezone,
+  'courseId',p.course_id,'packId',p.pack_id,'packVersion',p.pack_version,'packSha256',p.pack_sha256,
+  'confirmedTest',(SELECT count(*) FROM public.study_members m WHERE m.edition_id=e.id),
+  'available',e.capacity-(SELECT count(*) FROM public.study_members m WHERE m.edition_id=e.id)
+ ) FROM public.study_editions e JOIN public.study_edition_packs p ON p.edition_id=e.id
+ WHERE e.id=edition AND (e.state!='draft' OR ardesia_private.can_enter(e.id))
+$$;
+REVOKE ALL ON FUNCTION ardesia_private.catalog(TEXT) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION ardesia_private.catalog(TEXT) TO ardesia_app;
 CREATE FUNCTION ardesia_private.immutable_edition_teacher() RETURNS TRIGGER
 LANGUAGE plpgsql SET search_path='' AS $$
 BEGIN

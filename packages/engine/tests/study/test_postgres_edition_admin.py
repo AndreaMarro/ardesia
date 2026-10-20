@@ -18,6 +18,14 @@ def test_pg_management_anonymous_schema_guard_owner_write_and_student_row_lock(p
         teacher=stores[0]
         edition=editions.create_draft(teacher,tutor,'taylor-exp-v1',1,10,3900,'pg-management-create')['edition']
         eid=edition['id']
+        # A private draft must not leak through the trusted backend's anonymous
+        # SQL path or the SECURITY DEFINER public catalog projection.
+        assert teacher.connection.execute('SELECT id FROM study_editions WHERE id=?',(eid,)).fetchone()[0]==eid
+        assert teacher.connection.execute('SELECT ardesia_private.catalog(?)',(eid,)).fetchone()[0]['id']==eid
+        for unentitled in (anonymous,stores[1],stores[2]):
+            assert unentitled.connection.execute('SELECT id FROM study_editions WHERE id=?',(eid,)).fetchone() is None
+            assert unentitled.connection.execute('SELECT edition_id FROM study_edition_packs WHERE edition_id=?',(eid,)).fetchone() is None
+            assert unentitled.connection.execute('SELECT ardesia_private.catalog(?)',(eid,)).fetchone()[0] is None
         dates=[{'localStart':f'2027-04-{day:02}T18:00'} for day in (3,5,10,12)]
         editions.edit_draft(teacher,tutor,eid,'pg-management-configure',revision=0,capacity=10,price_minor=3900,starts=dates)
         preview=editions.preview_offer(teacher,tutor,eid,'pg-management-preview',revision=1)
