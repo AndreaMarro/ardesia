@@ -1,46 +1,32 @@
 {
-  "observed_at": "2026-10-20T03:40:00Z",
-  "sha": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
-  "sha_semantics": "Exact frozen Core/API/browser candidate; later documentation commits do not attest later product changes. Product served on owned loopback5323 from detached worktree.",
+  "observed_at": "2026-10-20T04:13:43.395014+00:00",
+  "sha": "2a6548797e300e465abb554c949db740521b8352",
+  "sha_semantics": "Exact frozen Core/API/browser candidate on loopback5323. Later docs/CI commits do not relabel earlier executions; UI62 at424 has identical application bytes through2a.",
   "milestone": "G0",
   "statuses": {
     "G0": "IN_PROGRESS_NOT_CERTIFIED",
     "G1": "NOT_READY",
     "MARKETING_PREVIEW_READY": "NOT_READY",
-    "shared_core": "391_STUDY_HTTP_TESTS_PASS_INCLUDING_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
+    "shared_core": "418_STUDY_HTTP_TESTS_PASS_INCLUDING_REAL_LOCAL_PG_AUTH_RLS_STORAGE",
     "independent_auth_review": "2_REAL_AUTH_PG_LOGOUT_RECOVERY_PROVIDER_FAILURE_PASS",
-    "engine": "GITHUB_CI_PASS_AT_fe9995ca_LOCAL_PREVIOUS_2323_PASS_22_SKIP",
-    "web": "REAL_COURSE_SOURCEBOARD_AND_THREE_VIEWPORT_ANALYSIS_BROWSER_PASS_G0_STILL_PENDING",
-    "calendar": "MOCK_ICS_DST_IMPLEMENTATION_IN_PROGRESS_GOOGLE_NOT_CONFIGURED",
-    "mcp": "PRIMARY_RESEARCH_DONE_NOT_IMPLEMENTED"
+    "engine": "2353_PASS_23_DECLARED_SKIP_LOCAL_FINAL_CANDIDATE",
+    "web": "62_UNIT_PLUS_REAL_COURSE_SOURCEBOARD_BROWSER_PASS_FINAL_REA_PENDING",
+    "calendar": "ACTUAL_TCP_AUTH_PG_MOCK_LOST_ACK_RETRY_ICS_DST_RECONCILE_PASS_GOOGLE_NOT_CONFIGURED",
+    "mcp": "OFFICIAL_SDK_STDIO_ACTUAL_PG_AUTH_BRIDGE_PASS_HOST_CODEX_ONE_LIST_ONLY"
   },
   "pull_request": "https://github.com/AndreaMarro/ardesia/pull/267",
   "verification": {
     "current_core_http": {
-      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
-      "passed": 391,
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "passed": 418,
       "skipped": 0,
-      "seconds": 31.96,
-      "log_sha256": "71530404deddc48b49968f7a1602d99356b172cde280e54b1eaa68a68fa33c00"
+      "seconds": 37.69,
+      "log_sha256": "8081537b51024fd1dcb3325403df86e13b0dfaa67a2bc4f4b5816724f17e81b5"
     },
     "independent_auth_review": {
       "passed": 2,
       "seconds": 1.86,
       "log_sha256": "94b60304ea37e3181ae56ad2264b60d2fd2e81a9120723e282acb1a424d3b12b"
-    },
-    "last_browser_candidate": {
-      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
-      "http_assertions": 349,
-      "http_requests": 170,
-      "failures": 0,
-      "web": "PASS_16_SECONDS",
-      "source_board": "PASS_16_6_SECONDS",
-      "analysis": "ACTUAL_AUTH_PG_390_820_1440_PASS_EXACT_PARAMETER_RECEIPT_AND_DENIALS",
-      "sampled_axe": "ZERO_VIOLATIONS_ON_THREE_ANALYSIS_STATES",
-      "globalG0": "NOT_CERTIFIED",
-      "http_report_sha256": "d75f91f0289a81b14d1f43f6af891b891dff558be3b5c397f202cdfc10165484",
-      "web_report_sha256": "4fd05495b9cc08737fbfc5bc700ddcf6e7c4c3b8ae3ecdd575317b0eb6d4589e",
-      "sourceboard_report_sha256": "f5cb7b3b3b72532672ea6ea565a3f1a15b7c471b6ca11e1feae0ae7dcfb3cab7"
     },
     "restore": {
       "status": "PARTIAL",
@@ -88,6 +74,76 @@
       "authorized_actor_projections_equal": 4,
       "source_change": "108ce860_TO_28e16083_ONLY_E2E_FIXTURE_SCOPE_PRODUCT_BYTES_IDENTICAL",
       "database_restart": "NOT_PERFORMED"
+    },
+    "current_engine": {
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "passed": 2353,
+      "skipped": 23,
+      "seconds": 57.42,
+      "log_sha256": "0d9a799ed9225baf45b03d1cc358f3f57588e0a25061cea20d09f1a2998e7e0b",
+      "live_inference": "NOT_RUN",
+      "postgres": "SEPARATE_ROOT_418"
+    },
+    "previous_browser_candidate": {
+      "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+      "http_assertions": 349,
+      "http_requests": 170,
+      "failures": 0,
+      "web": "PASS_16_SECONDS",
+      "source_board": "PASS_16_6_SECONDS",
+      "analysis": "ACTUAL_AUTH_PG_390_820_1440_PASS_EXACT_PARAMETER_RECEIPT_AND_DENIALS",
+      "sampled_axe": "ZERO_VIOLATIONS_ON_THREE_ANALYSIS_STATES",
+      "globalG0": "NOT_CERTIFIED",
+      "http_report_sha256": "d75f91f0289a81b14d1f43f6af891b891dff558be3b5c397f202cdfc10165484",
+      "web_report_sha256": "4fd05495b9cc08737fbfc5bc700ddcf6e7c4c3b8ae3ecdd575317b0eb6d4589e",
+      "sourceboard_report_sha256": "f5cb7b3b3b72532672ea6ea565a3f1a15b7c471b6ca11e1feae0ae7dcfb3cab7"
+    },
+    "last_browser_candidate": {
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "http_assertions": 349,
+      "http_requests": 170,
+      "failures": 0,
+      "web_seconds": 22.0,
+      "sourceboard_seconds": 21.5,
+      "globalG0": "NOT_CERTIFIED",
+      "http_report_sha256": "57ad365838e6ff7136b8642475974530333d6ca2bbab554209876bc670d4cb1a",
+      "web_report_sha256": "5077e6658df166bfb49fb70544e6f8fa92231af0b32f7b54585c070321156a37",
+      "sourceboard_report_sha256": "f9809d87d02244daf3d2a0e0f2177a800e51dd375dcaa2642f24f27b2857fc69"
+    },
+    "calendar_actual_journey": {
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "status": "SCOPED_PASS",
+      "report_sha256": "a7b77df5e6e04b57f5d925cc81abe132082c832cc985c72af26c4ac424061007",
+      "provider": "IN_PROCESS_MOCK_NOT_GOOGLE",
+      "invitations": "NONE",
+      "canonical_dates_changed": false
+    },
+    "mcp_actual_pg_bridge": {
+      "adapter_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "core_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "status": "SCOPED_PASS",
+      "report_sha256": "64ee23b416fe1a16463623e42696fa977c06935f54e8fe05186531a46a7ca380",
+      "checks": 20
+    },
+    "codex_host": {
+      "adapter_commit": "424521930c2031ff19c660f819a4cb61d3664da7",
+      "core_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+      "tool_calls": 1,
+      "tool": "course.list_mine",
+      "report_sha256": "9aaef5403ea4b650f2fe639526f2187f9a7f154ba7a06e87346395c043b74360",
+      "ChatGPT": "UNKNOWN",
+      "Claude": "UNKNOWN"
+    },
+    "cold_restart_final": {
+      "source_commit": "2a6548797e300e465abb554c949db740521b8352",
+      "previous_source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+      "pids": [
+        19265,
+        24085
+      ],
+      "authorized_actor_projections_equal": 4,
+      "database_restart": "NOT_PERFORMED",
+      "report_sha256": "3326aaa17d755339968631acc362da8b708a9c2880762dffcdf9278a9e5c00ac"
     }
   },
   "rea": {
@@ -110,15 +166,15 @@
       "assessment": "139_PARTITIONED_91_PATTERNS_48_ACCESS; entry visit is not complete reverse engineering"
     },
     "gate": "NOT_SATISFIED",
-    "latest_review": "FIVE_PORTABLE_CONSUMER_SIZE_SCOPE_FINDINGS_FIXED_AND_PRODUCT_TESTED_REA_REPLAY_PENDING",
-    "latest_review_status": "R6_AUTHENTIC_REPLAY_IN_PROGRESS_FINAL_RECEIPTS_PENDING"
+    "latest_review": "SIX_ORIGINAL_FINDINGS_FIXED; FINAL_ACTUAL_UNICODE_5_CASES_AND_TWO_SUBMITTED_REVISIONS_REPLAY_IN_PROGRESS",
+    "latest_review_status": "FINAL_SIX_RECEIPTS_PENDING"
   },
   "runtime": {
-    "source_commit": "fe9995cae36c4c17cf47d31aac84baee0bef2be7",
+    "source_commit": "2a6548797e300e465abb554c949db740521b8352",
     "origin": "http://127.0.0.1:5323",
     "dataId": "05f4a05edde66bab",
     "synthetic": true,
-    "processId": 19265,
+    "processId": 24085,
     "source_mode": "DETACHED_FROZEN_WORKTREE"
   },
   "infrastructure": {
@@ -130,18 +186,18 @@
   "trials": [],
   "blockers": [
     "Six final authentic same-candidate REA receipts and G0 matrix pending",
-    "Calendar mock/DST/ICS and MCP acceptance not yet executed",
     "PostgreSQL/private-storage restore partial; invitations disabled",
     "Vercel Pro has no verified zero-additional-cost guarantee: user-approved local fallback, no deploy",
     "Human scientific/date and UX review required for G1",
     "AC-085 checkpoint is due21Oct2026evening and cannot be certified early",
-    "Course listing auto-fetches all pages; workspace cache16 and session draft cache24 can evict. Browser edition/date/attendance administration remains a G1 gap."
+    "Course listing auto-fetches all pages; workspace cache16 and session draft cache24 can evict. Browser edition/date/attendance administration remains a G1 gap.",
+    "Calendar Google NOT_CONFIGURED; MCP host ChatGPT/Claude UNKNOWN. Codex host proof only one earlier listing; no universal host equivalence."
   ],
   "next_actions": [
-    "Finish Calendar and isolated official-SDK MCP components with actual contracts",
-    "Re-evaluate original acceptance on the final integrated candidate without weakening Vercel/human/future checkpoint boundaries",
-    "Bind authentic REA evidence/contracts/code/named tests to frozen candidate and evaluate unchanged gate",
-    "Complete G1 operations and tutor administration; preserve partial restore and human approval requirements"
+    "Close final REA replay and assemble six authentic receipts for frozen2a using unchanged gate",
+    "Finish original85criterion acceptance audit without promoting blocked Vercel/future/human checks",
+    "Implement tutor course administration in isolated G1 branch, with fail-closed offer state and monotonic CAS",
+    "Complete isolated restore and human approval gates before launch"
   ],
   "monitor": {
     "status": "EXISTING_CHATGPT_TASK_DOCUMENTED_NOT_LOCALLY_VERIFIED",
@@ -149,6 +205,6 @@
     "new_review_comments": "NONE_ONLY_CODERABBIT_DRAFT_SKIP",
     "coderabbit": "DRAFT_SKIP_NOT_A_REVIEW",
     "duplicate_automation_created": false,
-    "last_checked_github": "2026-10-20T03:40Z"
+    "last_checked_github": "2026-10-20T04:13:43.395014+00:00"
   }
 }
