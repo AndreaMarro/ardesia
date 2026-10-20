@@ -1,0 +1,107 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "headless": true
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5321/?view=classroom"
+  },
+  "environment": {
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reduced_motion": "reduce",
+    "service_workers": "block",
+    "color_scheme": "light"
+  },
+  "actions": [
+    {
+      "step_id": "workspace-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".source-board"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "table-view",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Tavolo"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "own-reference-focused",
+      "action": "press",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-081ebabe-8d18-431c-b604-e1bdcf888e71\"] .board-view-handle"
+      },
+      "timeout_ms": 15000,
+      "key": "Enter"
+    },
+    {
+      "step_id": "source-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-081ebabe-8d18-431c-b604-e1bdcf888e71\"]:has-text(\"REA R0 — area\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ],
+    "limits": {
+      "max_network_body_bytes": 8388608,
+      "max_total_event_allocation_bytes": 67108864,
+      "max_network_body_allocation_bytes": 33554432
+    }
+  },
+  "storage": {
+    "cookies": [
+      {
+        "name": "study_session",
+        "value": {
+          "source": "secret",
+          "secret_id": "r6-c2-session"
+        },
+        "destination": {
+          "url": "http://127.0.0.1:5321/"
+        },
+        "http_only": true,
+        "secure": false,
+        "same_site": "Strict"
+      }
+    ]
+  },
+  "secrets": [
+    {
+      "secret_id": "r6-c2-session",
+      "environment_variable": "ARDESIA_REA_R6_C2_SESSION"
+    }
+  ]
+}

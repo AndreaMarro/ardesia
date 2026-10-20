@@ -1,0 +1,130 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "headless": true
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5321/?view=classroom"
+  },
+  "environment": {
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reduced_motion": "reduce",
+    "service_workers": "block",
+    "color_scheme": "light"
+  },
+  "actions": [
+    {
+      "step_id": "workspace-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": ".source-board"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "open-submitted-v1",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-a6f703a4-71c4-459a-a0e4-982f9fc5dc85\"] details.provenance summary"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "historical-context",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-a6f703a4-71c4-459a-a0e4-982f9fc5dc85\"] details.provenance button"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "show-feedback-historical",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-a6f703a4-71c4-459a-a0e4-982f9fc5dc85\"] .context-results:has-text(\"Contesto della versione consegnata\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "reopen-v1",
+      "action": "goto",
+      "destination": {
+        "url": "http://127.0.0.1:5321/?view=classroom"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "historical-original-recovered",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "article[data-instance-id=\"view-a6f703a4-71c4-459a-a0e4-982f9fc5dc85\"]:has-text(\"TAVOLO e8ff83cc\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "network",
+      "page-errors"
+    ],
+    "limits": {
+      "max_network_body_bytes": 8388608,
+      "max_total_event_allocation_bytes": 67108864,
+      "max_network_body_allocation_bytes": 33554432
+    },
+    "network": {
+      "request_body": false,
+      "response_body": true,
+      "header_values": false
+    }
+  },
+  "storage": {
+    "cookies": [
+      {
+        "name": "study_session",
+        "value": {
+          "source": "secret",
+          "secret_id": "r6-c2-session"
+        },
+        "destination": {
+          "url": "http://127.0.0.1:5321/"
+        },
+        "http_only": true,
+        "secure": false,
+        "same_site": "Strict"
+      }
+    ]
+  },
+  "secrets": [
+    {
+      "secret_id": "r6-c2-session",
+      "environment_variable": "ARDESIA_REA_R6_C2_SESSION"
+    }
+  ]
+}
