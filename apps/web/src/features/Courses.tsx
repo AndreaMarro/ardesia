@@ -2,6 +2,7 @@ import { EditionManager } from "../components/EditionManager";
 import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
+import { EditionRegister } from "../register/EditionRegister";
 import { courseTitle, courseSubject } from "../course";
 import {
   editionState,
@@ -112,6 +113,7 @@ export function Courses({
           <AccessPanel editionId={data.edition.id} />
         </details>
       )}
+      {data && <EditionRegister me={me} edition={data.edition} />}
       {data && <CoursePackDisclosure
         editionId={data.edition.id}
         summary="Programma e materiali in preparazione"
