@@ -1,4 +1,11 @@
 import { useState } from "react";
+import {
+  courseTitle,
+  courseSubject,
+  isTaylor,
+  type ActivityCommit,
+} from "../course";
+import { TaylorLab } from "../components/TaylorLab";
 import { PhysicsLab } from "../components/PhysicsLab";
 import { SubmissionPanel } from "../../../studio/src/study/SubmissionPanel";
 import { SourceBoard } from "../components/SourceBoard";
@@ -18,10 +25,12 @@ export function Classroom({
   onUpdate: () => Promise<void>;
   parentId?: string | null;
 }) {
+  const [commit, setCommit] = useState<ActivityCommit | null>(null);
   const [source, setSource] = useState<PostitReference | null>(null);
   const [selectionMessage, setSelectionMessage] = useState("");
   const tutor = me.role === "teacher";
   const composer = useResourceComposer({
+    actorId: me.id,
     editionId: data.edition.id,
     kind: tutor ? "activity" : "notes",
     visibility: tutor ? "group" : "private",
@@ -39,7 +48,9 @@ export function Classroom({
   return (
     <>
       <header className="page-heading">
-        <p className="breadcrumb">Fisica / Fluidi e ragionamento fisico</p>
+        <p className="breadcrumb">
+          {courseSubject(data.edition)} / {courseTitle(data.edition)}
+        </p>
         <h1>Metti un’idea alla prova.</h1>
         <p>
           Prevedi prima di muovere il modello. Spiega dopo. Il tuo ragionamento
@@ -47,7 +58,17 @@ export function Classroom({
         </p>
       </header>
       <section className="lab-surface">
-        <PhysicsLab />
+        {isTaylor(data.edition) ? (
+          <TaylorLab
+            onCommit={setCommit}
+            draftKey={JSON.stringify([me.id, data.edition.id, "taylor-lab"])}
+          />
+        ) : (
+          <PhysicsLab
+            onCommit={setCommit}
+            draftKey={JSON.stringify([me.id, data.edition.id, "physics-lab"])}
+          />
+        )}
       </section>
       {data.enrolled ? (
         <>
@@ -69,6 +90,11 @@ export function Classroom({
                 ? "Traccia o spiegazione"
                 : "Una nota, una domanda, un procedimento"}
               <textarea
+                aria-label={
+                  tutor
+                    ? "Traccia o spiegazione"
+                    : "Una nota, una domanda, un procedimento"
+                }
                 value={composer.text}
                 onChange={(e) => {
                   composer.edit(e.target.value);
@@ -104,6 +130,13 @@ export function Classroom({
               <SubmissionPanel
                 key={`${me.id}:${data.edition.id}`}
                 editionId={data.edition.id}
+                activityId={
+                  isTaylor(data.edition) ? "taylor-exp-v1" : "poiseuille-v1"
+                }
+                activityParameters={commit?.parameters}
+                prediction={commit?.prediction}
+                activityReady={Boolean(commit)}
+                requireProcedure
                 me={me}
                 source={source}
                 parentId={parentId}

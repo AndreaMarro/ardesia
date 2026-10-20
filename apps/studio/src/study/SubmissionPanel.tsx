@@ -1,51 +1,348 @@
-import { useEffect, useRef, useState } from 'react'
-import { requestKey, studyRequest } from './apiClient'
-import type { PostitReference, StudyMe } from './contracts'
-import { uploadOriginal } from './uploadOriginal'
-type SubmissionPayload={editionId:string;activityId:string;text:string;assetRefs:string[];parentId:string|null;sourceRefs:PostitReference[]}
-type Draft={text:string;assetRefs:string[];key:string;parentId:string|null;pending?:SubmissionPayload}
-export function SubmissionPanel({me,source,parentId,onUpdate,editionId='fluidi'}:{me:StudyMe;source:PostitReference|null;parentId:string|null;onUpdate:()=>Promise<void>;editionId?:string}){
-  const storageKey=`ardesia-study-draft:${me.id}:${editionId}`
-  function load():Draft{try{const value=JSON.parse(localStorage.getItem(storageKey)??(editionId==='fluidi'?localStorage.getItem(`ardesia-study-draft:${me.id}`):null)??'null') as Draft|null;return value??{text:'',assetRefs:[],key:requestKey(),parentId}}catch{return {text:'',assetRefs:[],key:requestKey(),parentId}}}
-  const [draft,setDraft]=useState<Draft>(load)
-  const [message,setMessage]=useState('')
-  const [busy,setBusy]=useState(false)
-  const pending=useRef(false)
-  const uploading=useRef(false)
-  useEffect(()=>{if(parentId!==null)setDraft(previous=>previous.parentId===parentId||previous.pending?previous:{...previous,parentId,key:requestKey()})},[parentId])
-  useEffect(()=>{localStorage.setItem(storageKey,JSON.stringify(draft))},[draft,storageKey])
-  async function upload(files:FileList|null){
-    if(!files?.length||uploading.current||pending.current)return
-    uploading.current=true;setBusy(true);setMessage('Caricamento privato in corso…')
-    try{
-      for(const file of Array.from(files)){
-        const asset=await uploadOriginal(file,editionId)
-        // Keep each acknowledged original if a later file fails. Reselecting a
-        // file after a lost response uses its stable content key across remounts.
-        setDraft(previous=>({...previous,assetRefs:[...new Set([...previous.assetRefs,asset.id])],key:requestKey()}))
+import { useEffect, useRef, useState } from "react";
+import { requestKey, studyRequest } from "./apiClient";
+import type { PostitReference, StudyMe } from "./contracts";
+import { uploadOriginal } from "./uploadOriginal";
+type SubmissionPayload = {
+  editionId: string;
+  activityId: string;
+  activityParameters?: Record<string, unknown>;
+  text: string;
+  assetRefs: string[];
+  parentId: string | null;
+  sourceRefs: PostitReference[];
+};
+type Draft = {
+  text: string;
+  assetRefs: string[];
+  key: string;
+  parentId: string | null;
+  pending?: SubmissionPayload;
+};
+type Receipt = {
+  receiptId: string;
+  revision: number;
+  courseContext?: {
+    modelId: string | null;
+    courseId?: string;
+    packId?: string;
+    packVersion?: number;
+    packSha256?: string;
+    parameters: Record<string, unknown> | null;
+  };
+};
+type Props = {
+  me: StudyMe;
+  source: PostitReference | null;
+  parentId: string | null;
+  onUpdate: () => Promise<void>;
+  editionId?: string;
+  activityId?: string;
+  activityParameters?: Record<string, unknown>;
+  prediction?: string;
+  activityReady?: boolean;
+  requireProcedure?: boolean;
+};
+export function SubmissionPanel({
+  me,
+  source,
+  parentId,
+  onUpdate,
+  editionId = "fluidi",
+  activityId = "poiseuille-v1",
+  activityParameters,
+  prediction,
+  activityReady = true,
+  requireProcedure = false,
+}: Props) {
+  const textLimit =
+    20000 -
+    (prediction ? `Previsione: ${prediction}\n\nProcedimento: `.length : 0);
+  const storageKey = `ardesia-study-draft:${me.id}:${editionId}`;
+  const receiptKey = `ardesia-study-receipt:${me.id}:${editionId}`;
+  const blank = (): Draft => ({
+    text: "",
+    assetRefs: [],
+    key: requestKey(),
+    parentId,
+  });
+  function load(): Draft {
+    try {
+      return (
+        (JSON.parse(
+          localStorage.getItem(storageKey) ??
+            (editionId === "fluidi"
+              ? localStorage.getItem(`ardesia-study-draft:${me.id}`)
+              : null) ??
+            "null",
+        ) as Draft) ?? blank()
+      );
+    } catch {
+      return blank();
+    }
+  }
+  function previousReceipt(): Receipt | null {
+    try {
+      return JSON.parse(
+        localStorage.getItem(receiptKey) ?? "null",
+      ) as Receipt | null;
+    } catch {
+      return null;
+    }
+  }
+  const [draft, setDraft] = useState<Draft>(load);
+  const [receipt, setReceipt] = useState<Receipt | null>(previousReceipt);
+  const [receiptVerified, setReceiptVerified] = useState(false);
+  const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState(false);
+  const pending = useRef(false),
+    uploading = useRef(false),
+    mounted = useRef(true),
+    current = useRef(draft);
+  current.current = draft;
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+  const instance = useRef(requestKey());
+  const notify = () =>
+    window.dispatchEvent(
+      new CustomEvent("ardesia:submission-draft", {
+        detail: { storageKey, sender: instance.current },
+      }),
+    );
+  useEffect(() => {
+    const changed = (event: Event) => {
+      const detail = (
+        event as CustomEvent<{ storageKey: string; sender: string }>
+      ).detail;
+      if (
+        detail.storageKey === storageKey &&
+        detail.sender !== instance.current
+      ) {
+        const next = load();
+        current.current = next;
+        setDraft(next);
+        setReceipt(previousReceipt());
+        setReceiptVerified(false);
       }
-      setMessage('Originale caricato in privato. La consegna deve ancora essere inviata.')
-    }catch{setMessage('Caricamento non completato. Gli originali già confermati sono conservati; puoi riselezionare il file per riprovare senza duplicati.')}
-    finally{uploading.current=false;setBusy(false)}
+    };
+    window.addEventListener("ardesia:submission-draft", changed);
+    return () =>
+      window.removeEventListener("ardesia:submission-draft", changed);
+  }, [storageKey]);
+  // Persist acknowledgements immediately, including after a course switch has unmounted this editor.
+  function update(change: (value: Draft) => Draft) {
+    const next = change(mounted.current ? current.current : load());
+    localStorage.setItem(storageKey, JSON.stringify(next));
+    current.current = next;
+    if (mounted.current) setDraft(next);
+    notify();
   }
-  async function send(event:React.FormEvent){event.preventDefault();if(pending.current||uploading.current)return;pending.current=true;setBusy(true);setMessage('')
-    try{
-      const payload=draft.pending??{editionId,activityId:'poiseuille-v1',text:draft.text,assetRefs:draft.assetRefs,parentId:draft.parentId,sourceRefs:source?[source]:[]}
-      const pendingDraft={...draft,pending:payload}
-      localStorage.setItem(storageKey,JSON.stringify(pendingDraft));setDraft(pendingDraft)
-      const receipt=await studyRequest<{receiptId:string;revision:number}>('/submissions',payload,{headers:{'Idempotency-Key':draft.key}})
-      setMessage(`Consegnato · ricevuta ${receipt.receiptId} · tentativo ${receipt.revision}`)
-      setDraft({text:'',assetRefs:[],key:requestKey(),parentId:null});localStorage.removeItem(storageKey)
-      try{await onUpdate()}catch{setMessage(`Consegnato · ricevuta ${receipt.receiptId} · tentativo ${receipt.revision}. L’elenco non è stato aggiornato; puoi ricaricarlo.`)}
-    }catch{setMessage('Invio non ancora confermato dal servizio. La bozza resta in questa pagina; riprova: la stessa richiesta recupera la ricevuta senza duplicati.')}
-    finally{pending.current=false;setBusy(false)}
+  useEffect(() => {
+    if (
+      parentId !== null &&
+      current.current.parentId !== parentId &&
+      !current.current.pending
+    )
+      update((value) => ({ ...value, parentId, key: requestKey() }));
+  }, [parentId]);
+  async function upload(files: FileList | null) {
+    if (!files?.length || uploading.current || pending.current) return;
+    uploading.current = true;
+    setBusy(true);
+    setMessage("Caricamento privato in corso…");
+    try {
+      for (const file of Array.from(files)) {
+        const asset = await uploadOriginal(file, editionId);
+        update((value) => ({
+          ...value,
+          assetRefs: [...new Set([...value.assetRefs, asset.id])],
+          key: requestKey(),
+        }));
+      }
+      if (mounted.current)
+        setMessage(
+          "Originale caricato in privato. La consegna deve ancora essere inviata.",
+        );
+    } catch {
+      if (mounted.current)
+        setMessage(
+          "Caricamento non completato. Gli originali già confermati sono conservati; puoi riselezionare il file per riprovare senza duplicati.",
+        );
+    } finally {
+      uploading.current = false;
+      if (mounted.current) setBusy(false);
+    }
   }
-  return <section className="study-submission"><h2>{parentId?'Nuovo tentativo':'Consegna il tuo tentativo'}</h2><p>Testo, PNG/JPEG/WebP, PDF o MP3/M4A/WebM. Immagini: 10 MiB; PDF/audio: 20 MiB; massimo 5 allegati e 50 MiB complessivi. PDF fino a 20 pagine, audio fino a 3 minuti.</p>
-    <form onSubmit={event=>void send(event)}><label>La tua spiegazione<textarea rows={5} disabled={Boolean(draft.pending)} value={draft.text} maxLength={20000} onChange={event=>setDraft(previous=>({...previous,text:event.target.value,key:requestKey()}))}/></label>
-      <label>Aggiungi originale privato<input type="file" disabled={busy||Boolean(draft.pending)} multiple accept="image/png,image/jpeg,image/webp,application/pdf,audio/mpeg,audio/mp4,audio/webm" onChange={event=>void upload(event.target.files)}/></label>
-      <p>{draft.assetRefs.length} allegati privati · {source?'Fonte contestuale collegata':'Nessuna fonte contestuale selezionata'}</p>
-      <button className="study-primary" disabled={busy||(!draft.text.trim()&&!draft.assetRefs.length)}>Consegna</button>
-      <p role="status" data-testid="submission-status">{message}</p></form>
-    <p>Originali conservati. OCR e ASR live non eseguiti: il tutor può rivedere il file e chiedere chiarimenti.</p>
-  </section>
+  async function send(event: React.FormEvent) {
+    event.preventDefault();
+    if (
+      (!draft.pending && draft.text.length > textLimit) ||
+      pending.current ||
+      uploading.current ||
+      (!draft.pending &&
+        (!activityReady || (requireProcedure && !draft.text.trim())))
+    )
+      return;
+    pending.current = true;
+    setBusy(true);
+    setMessage("");
+    const sentKey = draft.key;
+    try {
+      const payload = draft.pending ?? {
+        editionId,
+        activityId,
+        ...(activityParameters === undefined ? {} : { activityParameters }),
+        text: prediction
+          ? `Previsione: ${prediction}\n\nProcedimento: ${draft.text}`
+          : draft.text,
+        assetRefs: draft.assetRefs,
+        parentId: draft.parentId,
+        sourceRefs: source ? [source] : [],
+      };
+      update((value) => ({ ...value, pending: payload }));
+      const received = await studyRequest<Receipt>("/submissions", payload, {
+        headers: { "Idempotency-Key": sentKey },
+      });
+      localStorage.setItem(receiptKey, JSON.stringify(received));
+      // A late ACK clears only its own immutable request, never a newer draft.
+      if (load().key === sentKey) localStorage.removeItem(storageKey);
+      notify();
+      if (!mounted.current) return;
+      setReceipt(received);
+      setReceiptVerified(true);
+      setMessage(
+        `Consegnato · ricevuta ${received.receiptId} · tentativo ${received.revision}`,
+      );
+      if (current.current.key === sentKey) {
+        const next = blank();
+        next.parentId = null;
+        current.current = next;
+        setDraft(next);
+      }
+      try {
+        await onUpdate();
+      } catch {
+        if (mounted.current)
+          setMessage(
+            `Consegnato · ricevuta ${received.receiptId} · tentativo ${received.revision}. L’elenco non è stato aggiornato; puoi ricaricarlo.`,
+          );
+      }
+    } catch {
+      if (mounted.current)
+        setMessage(
+          "Invio non ancora confermato dal servizio. La bozza resta in questa pagina; riprova: la stessa richiesta recupera la ricevuta senza duplicati.",
+        );
+    } finally {
+      pending.current = false;
+      if (mounted.current) setBusy(false);
+    }
+  }
+  return (
+    <section className="study-submission">
+      <h2>{parentId ? "Nuovo tentativo" : "Consegna il tuo tentativo"}</h2>
+      <p>
+        Testo, PNG/JPEG/WebP, PDF o MP3/M4A/WebM. Immagini: 10 MiB; PDF/audio:
+        20 MiB; massimo 5 allegati e 50 MiB complessivi. PDF fino a 20 pagine,
+        audio fino a 3 minuti.
+      </p>
+      <form onSubmit={(event) => void send(event)}>
+        <label>
+          La tua spiegazione
+          <textarea
+            aria-label="La tua spiegazione"
+            rows={5}
+            disabled={Boolean(draft.pending)}
+            value={draft.text}
+            maxLength={textLimit}
+            onChange={(event) =>
+              update((value) => ({
+                ...value,
+                text: event.target.value,
+                key: requestKey(),
+              }))
+            }
+          />
+        </label>
+        <label>
+          Aggiungi originale privato
+          <input
+            type="file"
+            disabled={busy || Boolean(draft.pending)}
+            multiple
+            accept="image/png,image/jpeg,image/webp,application/pdf,audio/mpeg,audio/mp4,audio/webm"
+            onChange={(event) => void upload(event.target.files)}
+          />
+        </label>
+        <p>
+          {draft.assetRefs.length} allegati privati ·{" "}
+          {source
+            ? "Fonte contestuale collegata"
+            : "Nessuna fonte contestuale selezionata"}
+        </p>
+        {!activityReady && !draft.pending && (
+          <p>
+            Prima registra la previsione e confrontala con il modello. Poi
+            spiega il procedimento qui.
+          </p>
+        )}
+        {draft.pending && (
+          <p>
+            Richiesta già inviata: il nuovo invio recupera la stessa ricevuta
+            con attività, parametri e spiegazione originali.
+          </p>
+        )}
+        <button
+          className="study-primary"
+          disabled={
+            busy ||
+            (!draft.pending && draft.text.length > textLimit) ||
+            (!draft.pending && !activityReady) ||
+            (requireProcedure
+              ? !draft.text.trim()
+              : !draft.text.trim() && !draft.assetRefs.length)
+          }
+        >
+          Consegna
+        </button>
+        <p role="status" data-testid="submission-status">
+          {message}
+        </p>
+        {receipt && (
+          <details>
+            <summary>Ultima ricevuta di questa edizione</summary>
+            <p>
+              {message ? "Identificativo riportato sopra" : receipt.receiptId} ·
+              tentativo {receipt.revision}
+            </p>
+            {receipt.courseContext && (
+              <p>
+                Modello {receipt.courseContext.modelId ?? "non associato"} ·
+                parametri registrati:{" "}
+                {JSON.stringify(receipt.courseContext.parameters)}
+              </p>
+            )}
+            {receipt.courseContext?.packId && (
+              <p className="id-text">
+                Pack {receipt.courseContext.packId} · versione{" "}
+                {receipt.courseContext.packVersion} · SHA-256{" "}
+                {receipt.courseContext.packSha256}
+              </p>
+            )}
+            <p>
+              {receiptVerified
+                ? "Ricezione confermata dal servizio. La verifica del procedimento spetta al tutor."
+                : "Riferimento conservato in questo browser. Rileggi le consegne per verificare lo stato del servizio."}
+            </p>
+          </details>
+        )}
+      </form>
+      <p>
+        Originali conservati. OCR e ASR live non eseguiti: il tutor può rivedere
+        il file e chiedere chiarimenti.
+      </p>
+    </section>
+  );
 }

@@ -7,6 +7,7 @@ import {
   type Submission,
   type Workspace,
 } from "../api";
+import { courseTitle, isTaylor } from "../course";
 import { AssetPreview } from "../components/AssetPreview";
 import { SourceViewer } from "../components/SourceViewer";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
@@ -35,7 +36,9 @@ export function Review({
   return (
     <>
       <header className="page-heading">
-        <p className="breadcrumb">Mini-corsi / Fisica / Regia tutor</p>
+        <p className="breadcrumb">
+          Mini-corsi / {courseTitle(data.edition)} / Regia tutor
+        </p>
         <h1>Un intervento preciso.</h1>
         <p>
           Apri la consegna, ritrova il passaggio e restituisci una spiegazione.
@@ -106,6 +109,8 @@ export function Review({
               <SubmissionReview
                 key={current.id}
                 submission={current}
+                editionId={data.edition.id}
+                taylor={isTaylor(data.edition)}
                 onUpdate={onUpdate}
                 onDiary={onDiary}
               />
@@ -123,10 +128,14 @@ export function Review({
 }
 function SubmissionReview({
   submission,
+  editionId,
+  taylor,
   onUpdate,
   onDiary,
 }: {
   submission: Submission;
+  editionId: string;
+  taylor: boolean;
   onUpdate: () => Promise<void>;
   onDiary: () => void;
 }) {
@@ -302,6 +311,8 @@ function SubmissionReview({
           )}
           <ObservationForm
             submission={submission}
+            editionId={editionId}
+            taylor={taylor}
             anchor={anchor}
             source={loaded}
             onDiary={onDiary}
@@ -313,16 +324,22 @@ function SubmissionReview({
 }
 function ObservationForm({
   submission,
+  editionId,
+  taylor,
   anchor,
   source,
   onDiary,
 }: {
   submission: Submission;
+  editionId: string;
+  taylor: boolean;
   anchor: Anchor | null;
   source: StudyResource | null;
   onDiary: () => void;
 }) {
-  const [concept, setConcept] = useState("radius-power"),
+  const [concept, setConcept] = useState(
+      taylor ? "taylor-exp-remainder" : "radius-power",
+    ),
     [category, setCategory] = useState("model_selection"),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
@@ -342,7 +359,7 @@ function ObservationForm({
         conceptId: string;
         status: string;
       }[];
-    }>("/diary?editionId=fluidi")
+    }>("/diary?" + new URLSearchParams({ editionId }))
       .then((value) => {
         if (active)
           setRecurrences(
@@ -357,7 +374,7 @@ function ObservationForm({
     return () => {
       active = false;
     };
-  }, [submission.id, submission.student_id]);
+  }, [submission.id, submission.student_id, editionId]);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!anchor) return;
@@ -450,7 +467,13 @@ function ObservationForm({
                   changed();
                 }}
               >
-                <option value="radius-power">Potenze del raggio</option>
+                {taylor ? (
+                  <option value="taylor-exp-remainder">
+                    Taylor, fattoriale e resto
+                  </option>
+                ) : (
+                  <option value="radius-power">Potenze del raggio</option>
+                )}
                 <option value="unit-conversion">Conversione delle unità</option>
                 <option value="model-selection">Scelta del modello</option>
                 <option value="procedure">Procedimento</option>

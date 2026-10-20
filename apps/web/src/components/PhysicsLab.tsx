@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { describeError, studyRequest } from "../api";
+import type { ActivityCommit } from "../course";
+import { readResourceDraft, writeResourceDraft } from "./sessionDraftCache";
+import { requestKey } from "../api";
 import { ErrorNotice } from "./Feedback";
 type Result = {
   ratio: number;
@@ -7,10 +10,25 @@ type Result = {
   calculatedVariable: string;
   domain: string;
 };
-export function PhysicsLab() {
-  const [radius, setRadius] = useState(1.5),
-    [boundary, setBoundary] = useState("pressure"),
-    [prediction, setPrediction] = useState("");
+export function PhysicsLab({
+  onCommit,
+  draftKey,
+}: {
+  onCommit?: (value: ActivityCommit | null) => void;
+  draftKey?: string;
+}) {
+  const saved = useRef(
+    draftKey
+      ? (JSON.parse(readResourceDraft(draftKey)?.text ?? "null") as {
+          radius: number;
+          boundary: string;
+          prediction: string;
+        } | null)
+      : null,
+  );
+  const [radius, setRadius] = useState(saved.current?.radius ?? 1.5),
+    [boundary, setBoundary] = useState(saved.current?.boundary ?? "pressure"),
+    [prediction, setPrediction] = useState(saved.current?.prediction ?? "");
   const [result, setResult] = useState<Result | null>(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
@@ -20,6 +38,13 @@ export function PhysicsLab() {
     controller = useRef<AbortController | null>(null),
     mounted = useRef(true),
     resultElement = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (draftKey)
+      writeResourceDraft(draftKey, {
+        text: JSON.stringify({ radius, boundary, prediction }),
+        key: requestKey(),
+      });
+  }, [draftKey, radius, boundary, prediction]);
   useEffect(() => {
     mounted.current = true;
     return () => {
@@ -35,12 +60,13 @@ export function PhysicsLab() {
   }, [result]);
   function invalidate() {
     sequence.current++;
+    onCommit?.(null);
     setResult(null);
     setChanged(true);
     setError("");
   }
   async function evaluate() {
-    if (pending.current) return;
+    if (pending.current || (onCommit && !prediction.trim())) return;
     pending.current = true;
     setBusy(true);
     setError("");
@@ -57,6 +83,11 @@ export function PhysicsLab() {
       );
       if (current === sequence.current) {
         setResult(value);
+        onCommit?.({
+          activityId: "poiseuille-v1",
+          parameters: { radiusRatio: radius, boundary },
+          prediction: prediction.trim(),
+        });
         setChanged(false);
       }
     } catch (e) {
@@ -189,7 +220,10 @@ export function PhysicsLab() {
             La tua previsione
             <input
               value={prediction}
-              onChange={(e) => setPrediction(e.target.value)}
+              onChange={(e) => {
+                setPrediction(e.target.value);
+                if (onCommit) invalidate();
+              }}
               placeholder="Che cosa pensi che cambierà?"
               maxLength={1000}
             />
@@ -227,7 +261,10 @@ export function PhysicsLab() {
               <span>2 ×</span>
             </span>
           </label>
-          <button className="button-primary" disabled={busy}>
+          <button
+            className="button-primary"
+            disabled={busy || Boolean(onCommit && !prediction.trim())}
+          >
             {busy ? "Calcolo in corso…" : "Metti alla prova"}
           </button>
           {error && <ErrorNotice message={error} />}

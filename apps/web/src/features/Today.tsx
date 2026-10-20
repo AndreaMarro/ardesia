@@ -1,4 +1,5 @@
 import { dateLabel, editionState, type StudyMe, type Workspace } from "../api";
+import { courseTitle, courseSubject, isDateConfirmed } from "../course";
 import type { View } from "../components/Shell";
 
 export function Today({
@@ -52,32 +53,41 @@ export function Today({
               <circle cx="240" cy="25" r="5" />
               <circle cx="375" cy="105" r="5" />
             </svg>
-            <span>FISICA</span>
+            <span>
+              {courseSubject(data.edition).toLocaleUpperCase("it-IT")}
+            </span>
           </div>
           <div className="course-focus-body">
             <div className="section-meta">
-              <span>Semestre Filtro</span>
+              <span>{data.edition.duration ?? "Programma dell’edizione"}</span>
               <span>
                 {editionState[data.edition.state] ?? data.edition.state}
               </span>
             </div>
-            <h2>Fluidi e ragionamento fisico</h2>
+            <h2>{courseTitle(data.edition)}</h2>
             <p>
-              Quattro incontri per scegliere il modello giusto, leggere le
-              grandezze e spiegare un procedimento.
+              Prevedi, confronta con il modello e spiega il procedimento. Fonti,
+              tentativi e correzioni restano collegati.
             </p>
             <div className="course-action-row">
               <span>
                 {first ? (
                   <>
-                    Prossimo incontro
+                    {isDateConfirmed(data.edition)
+                      ? "Prossimo incontro"
+                      : "Prima data proposta"}
                     <strong>
                       {dateLabel(first.start, data.edition.timezone)}
                     </strong>
                   </>
                 ) : (
                   <>
-                    Quattro incontri<strong>Calendario dell’edizione</strong>
+                    {data.edition.sessions.length} incontri
+                    <strong>
+                      {isDateConfirmed(data.edition)
+                        ? "Calendario dell’edizione"
+                        : "Date da confermare"}
+                    </strong>
                   </>
                 )}
               </span>
@@ -94,31 +104,23 @@ export function Today({
         <aside className="agenda" aria-label="Calendario degli incontri">
           <div className="section-title">
             <h2>Tutte le date</h2>
-            <span>4 incontri</span>
+            <span>{data.edition.sessions.length} incontri</span>
           </div>
           <ol>
             {data.edition.sessions.map((session, index) => (
               <li key={session.start}>
                 <span className="session-index">0{index + 1}</span>
                 <div>
-                  <strong>
-                    {
-                      [
-                        "Grandezze e proporzioni",
-                        "Pressione ed equilibrio",
-                        "Flussi e resistenze",
-                        "Un problema nuovo",
-                      ][index]
-                    }
-                  </strong>
+                  <strong>Incontro {index + 1}</strong>
                   <span>{dateLabel(session.start, data.edition.timezone)}</span>
                 </div>
               </li>
             ))}
           </ol>
           <p className="fine-print">
-            Date della fixture di prova. Il calendario del pilot richiede
-            l’approvazione del tutor.
+            {isDateConfirmed(data.edition)
+              ? "Calendario dell’edizione di prova."
+              : "Date proposte, da confermare con il tutor."}
           </p>
         </aside>
       </div>
@@ -158,7 +160,7 @@ export function Today({
               <strong>
                 {tutor ? "Gestisci questa edizione" : "Il tuo gruppo"}
               </strong>
-              <small>Programma, quattro date e partecipazione.</small>
+              <small>Programma, calendario e partecipazione.</small>
             </span>
             <Arrow />
           </button>

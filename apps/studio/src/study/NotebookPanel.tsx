@@ -1,34 +1,46 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { studyRequest } from "./apiClient";
-import type { Feedback, PostitReference, StudyResource } from "./contracts";
-type Notebook = {
-  resources: StudyResource[];
-  submissions: {
-    id: string;
-    student_id: string;
-    text: string;
-    revision: number;
-    parent_id: string | null;
-    receipt_id: string;
-    source_refs: PostitReference[];
-    asset_refs: string[];
-    feedback: Feedback[];
-  }[];
-  assets: { id: string; mime: string; base64: string; sha256: string }[];
-  omissions: string[];
-};
+import {
+  notebookSourceKey,
+  readNotebookPreview,
+  type NotebookInspection,
+  type NotebookPreview,
+} from "./notebookPreview";
+const ENCODED_LIMIT = 96 * 1024 * 1024;
 export function NotebookPanel({
   editionId = "fluidi",
 }: { editionId?: string } = {}) {
-  const [message, setMessage] = useState("");
-  const [preview, setPreview] = useState<Notebook | null>(null);
+  const [message, setMessage] = useState(""),
+    [preview, setPreview] = useState<NotebookPreview | null>(null),
+    [inspection, setInspection] = useState<NotebookInspection | null>(null),
+    [busy, setBusy] = useState(false);
+  const pending = useRef(false),
+    generation = useRef(0),
+    mounted = useRef(true),
+    controller = useRef<AbortController | null>(null);
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      generation.current++;
+      controller.current?.abort();
+    };
+  }, []);
   async function download() {
+    if (pending.current) return;
+    pending.current = true;
+    setBusy(true);
+    setMessage("");
     try {
       const bundle = await studyRequest<Record<string, unknown>>(
         "/notebook?editionId=" + encodeURIComponent(editionId),
       );
+      if (!mounted.current) return;
+      const encoded = JSON.stringify(bundle);
+      if (new TextEncoder().encode(encoded).byteLength > ENCODED_LIMIT)
+        throw Error("notebook_budget_exceeded");
       const url = URL.createObjectURL(
-        new Blob([JSON.stringify(bundle, null, 2)], {
+        new Blob([encoded], {
           type: "application/json",
         }),
       );
@@ -40,38 +52,67 @@ export function NotebookPanel({
       setMessage(
         "Quaderno esportato con hash degli originali e omissioni dichiarate.",
       );
-    } catch {
-      setMessage("Export non completato.");
+    } catch (error) {
+      if (mounted.current)
+        setMessage(
+          error instanceof Error && error.message === "notebook_budget_exceeded"
+            ? "Il quaderno supera il limite di 96 MiB. Nessun file parziale è stato creato."
+            : "Export non completato.",
+        );
+    } finally {
+      pending.current = false;
+      if (mounted.current) setBusy(false);
     }
   }
   async function reopen(file: File | undefined) {
-    if (!file) return;
+    if (!file || pending.current) return;
+    pending.current = true;
+    setBusy(true);
+    setPreview(null);
+    setInspection(null);
+    setMessage("Lettura del file…");
+    const current = ++generation.current;
+    controller.current = new AbortController();
     try {
-      if (file.size > 75 * 1024 * 1024) throw new Error("file too large");
-      const bundle = JSON.parse(await file.text()) as Notebook;
-      const checked = await studyRequest<{
-        resources: number;
-        submissions: number;
-      }>("/notebook/inspect", bundle);
-      setPreview(bundle);
-      setMessage(
-        `Quaderno riaperto e verificato: ${checked.resources} fonti, ${checked.submissions} tentativi. Lettura portabile; nessuna iscrizione o sessione ripristinata.`,
+      // Same encoded request budget as /notebook/inspect; decoded originals have their own Core budget.
+      if (file.size > ENCODED_LIMIT) throw Error("notebook_budget_exceeded");
+      const bundle: unknown = JSON.parse(await file.text());
+      const presentation = readNotebookPreview(bundle);
+      const checked = await studyRequest<NotebookInspection>(
+        "/notebook/inspect",
+        bundle,
+        { signal: controller.current.signal },
       );
-    } catch {
-      setMessage("Quaderno non supportato o integrità non verificata.");
-      setPreview(null);
+      if (!mounted.current || current !== generation.current) return;
+      if (checked.valid !== true) throw Error("invalid_notebook");
+      setPreview(presentation);
+      setInspection(checked);
+      setMessage(
+        `Quaderno riaperto in lettura: ${presentation.sources.length} versioni incluse, ${presentation.submissions.length} tentativi. Contenuto locale, senza ripristino di iscrizioni o sessioni.`,
+      );
+    } catch (error) {
+      if (mounted.current && current === generation.current) {
+        setMessage(
+          error instanceof Error && error.message === "notebook_budget_exceeded"
+            ? "Il file supera il limite di 96 MiB per la riapertura."
+            : "Quaderno non supportato, struttura non leggibile o integrità interna non verificata.",
+        );
+        setPreview(null);
+        setInspection(null);
+      }
+    } finally {
+      pending.current = false;
+      if (mounted.current && current === generation.current) setBusy(false);
     }
   }
-  function downloadAsset(asset: Notebook["assets"][number]) {
-    const data = Uint8Array.from(atob(asset.base64), (char) =>
-      char.charCodeAt(0),
-    );
+  function downloadAsset(asset: NotebookPreview["assets"][number]) {
+    const bytes = Uint8Array.from(atob(asset.base64), (c) => c.charCodeAt(0));
     const url = URL.createObjectURL(
-      new Blob([data], { type: "application/octet-stream" }),
+      new Blob([bytes], { type: "application/octet-stream" }),
     );
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `originale-${asset.id}`;
+    anchor.download = `originale-${asset.id.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
     anchor.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
@@ -79,28 +120,72 @@ export function NotebookPanel({
     <section className="study-notebook">
       <h2>Quaderno portabile</h2>
       <p>
-        Export .study.json in lettura: fonti, tentativi, review e allegati
-        supportati. Il journal della lavagna usa l’export .lesson esistente.
+        Export .study.json in lettura: fonti accessibili, revisioni
+        referenziate, tentativi, review e originali supportati. Include le
+        omissioni, senza ricostruire tutta la storia della lavagna.
       </p>
-      <button onClick={() => void download()}>Esporta quaderno</button>
+      <button disabled={busy} onClick={() => void download()}>
+        Esporta quaderno
+      </button>
       <label>
         Riapri quaderno .study.json
         <input
           type="file"
           accept=".json"
-          onChange={(event) => void reopen(event.target.files?.[0])}
+          disabled={busy}
+          onChange={(e) => void reopen(e.target.files?.[0])}
         />
       </label>
       <p role="status">{message}</p>
-      {preview && (
+      {preview && inspection && (
         <div aria-label="Quaderno riaperto in lettura">
           <h3>Quaderno riaperto</h3>
-          {preview.resources.map((item) => (
-            <article className="study-postit" key={item.id}>
+          <div className="notebook-scope">
+            <p>
+              Autenticità canonica non verificata. L’ispezione controlla
+              l’integrità interna del file; il contenuto locale non attribuisce
+              accessi al corso.
+            </p>
+            <p>
+              {inspection.referenceIntegrity === "CHECKED_INTERNALLY"
+                ? "Riferimenti risorsa/revisione controllati all’interno del file."
+                : inspection.referenceIntegrity ===
+                    "CHECKED_WITH_DECLARED_LOSSES"
+                  ? "Riferimenti controllati con versioni non disponibili dichiarate."
+                  : "Formato precedente: i riferimenti storici non sono verificati da questa ispezione."}
+            </p>
+          </div>
+          <p>
+            {preview.layoutViews} viste del tavolo indicate nel file. Questa
+            anteprima legge le fonti e i tentativi; non ricostruisce il tavolo,
+            il journal o una sessione di lavoro.
+          </p>
+          <details>
+            <summary>Ambito dell’ispezione del file</summary>
+            <p>
+              Integrità: {inspection.integrityScope ?? "ambito non dichiarato"}.
+              Autenticità canonica:{" "}
+              {inspection.canonicalAuthenticity ?? "non attestata"}.
+              Riferimenti:{" "}
+              {inspection.referenceIntegrity ?? "ambito non dichiarato"} ·{" "}
+              {inspection.referenceIntegrityScope ?? "ambito non dichiarato"}.
+            </p>
+          </details>
+          <h3>Versioni delle fonti incluse</h3>
+          {preview.sources.map(({ source: item, current }) => (
+            <article
+              className="study-postit"
+              key={notebookSourceKey(item.id, item.revisionId)}
+            >
               <h4>Fonte · {item.kind}</h4>
+              <p>
+                {current
+                  ? "Snapshot corrente indicato nel file"
+                  : "Revisione referenziata nel file"}
+              </p>
               <p>{item.text}</p>
               <p>
-                Origine: {item.ownerId} ·{" "}
+                Origine indicata nel file: {item.ownerId} ·{" "}
                 {item.visibility === "private" ? "Privata" : "Gruppo"}
               </p>
               <p>
@@ -112,34 +197,56 @@ export function NotebookPanel({
               </p>
             </article>
           ))}
+          <h3>Tentativi e collegamenti</h3>
           {preview.submissions.map((item) => (
             <article className="study-postit" key={item.id}>
               <h4>
                 Tentativo {item.revision} · {item.student_id}
               </h4>
               <p>{item.text}</p>
-              <p>Ricevuta: {item.receipt_id}</p>
+              <p>Ricevuta indicata nel file: {item.receipt_id}</p>
               {item.parent_id && <p>Tentativo precedente: {item.parent_id}</p>}
-              {item.source_refs.map((ref) => (
-                <p key={ref.resourceId}>
-                  Fonte collegata: {ref.resourceId} · revisione {ref.revisionId}
-                </p>
-              ))}
+              {item.source_refs.map((ref) => {
+                const included = preview.sources.some(
+                  ({ source }) =>
+                    source.id === ref.resourceId &&
+                    source.revisionId === ref.revisionId,
+                );
+                return (
+                  <p key={notebookSourceKey(ref.resourceId, ref.revisionId)}>
+                    Fonte collegata: {ref.resourceId} · revisione{" "}
+                    {ref.revisionId} ·{" "}
+                    {included
+                      ? "versione esatta inclusa"
+                      : "versione non inclusa, nessuna sostituzione con la corrente"}
+                  </p>
+                );
+              })}
               {item.feedback.map(
-                (feedback) =>
-                  feedback.review && (
-                    <div key={feedback.id}>
-                      <h5>Review del tutor sintetico</h5>
-                      <p>{feedback.review.text}</p>
-                      {feedback.stale && (
-                        <p>Derivato obsoleto: fonte modificata.</p>
-                      )}
+                (f) =>
+                  f.review && (
+                    <div key={f.id}>
+                      <h5>Review indicata nel file</h5>
+                      <p>{f.review.text}</p>
+                      {f.stale && <p>Derivato obsoleto: fonte modificata.</p>}
                     </div>
                   ),
               )}
             </article>
           ))}
-          <h4>Originali inclusi nel file</h4>
+          {preview.unavailableResourceRefs.length > 0 && (
+            <>
+              <h3>Revisioni dichiarate non disponibili</h3>
+              <ul>
+                {preview.unavailableResourceRefs.map((ref) => (
+                  <li key={notebookSourceKey(ref.resourceId, ref.revisionId)}>
+                    {ref.resourceId} · revisione {ref.revisionId}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          <h3>Originali inclusi nel file</h3>
           {preview.assets.map((asset) => (
             <article key={asset.id}>
               <p>
@@ -161,8 +268,8 @@ export function NotebookPanel({
           ))}
           <h3>Omissioni dell’export</h3>
           <ul>
-            {preview.omissions.map((item) => (
-              <li key={item}>{item}</li>
+            {preview.omissions.map((item, index) => (
+              <li key={index}>{item}</li>
             ))}
           </ul>
         </div>

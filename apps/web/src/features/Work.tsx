@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import type { StudyMe, Workspace } from "../api";
+import { baseActivity, isTaylor } from "../course";
 import { Diary } from "./Diary";
 import { SourceViewer } from "../components/SourceViewer";
 import { AssetPreview } from "../components/AssetPreview";
@@ -35,7 +36,11 @@ export function Work({
         </nav>
       )}
       {tab === "diary" ? (
-        <Diary me={me} editionId={data.edition.id} />
+        <Diary
+          me={me}
+          editionId={data.edition.id}
+          taylor={isTaylor(data.edition)}
+        />
       ) : tab === "notebook" ? (
         <>
           <header className="page-heading">
@@ -69,6 +74,7 @@ export function Work({
                 <Delivery
                   key={submission.id}
                   submission={submission}
+                  baseActivityId={baseActivity(data.edition)}
                   onRetry={onRetry}
                 />
               ))}
@@ -81,9 +87,11 @@ export function Work({
 }
 function Delivery({
   submission,
+  baseActivityId,
   onRetry,
 }: {
   submission: Workspace["submissions"][number];
+  baseActivityId: string;
   onRetry: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -94,7 +102,9 @@ function Delivery({
           Tentativo {submission.revision} ·{" "}
           {submission.activity_id === "poiseuille-v1"
             ? "Laboratorio Fluidi"
-            : "Nuova prova"}
+            : submission.activity_id === "taylor-exp-v1"
+              ? "Taylor e resto"
+              : "Nuova prova"}
         </h3>
         <span>
           {submission.feedback.some((f) => f.review)
@@ -132,7 +142,7 @@ function Delivery({
           </>
         )}
       </details>
-      {submission.activity_id === "poiseuille-v1" && (
+      {submission.activity_id === baseActivityId && (
         <button onClick={() => onRetry(submission.id)}>
           Prepara un nuovo tentativo
         </button>

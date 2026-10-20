@@ -38,6 +38,7 @@ const concepts: Record<string, string> = {
   "unit-conversion": "Conversione delle unità",
   "model-selection": "Scelta del modello",
   procedure: "Procedimento",
+  "taylor-exp-remainder": "Taylor, fattoriale e resto",
 };
 const labels: Record<string, string> = {
   CANDIDATE: "Da verificare",
@@ -48,34 +49,71 @@ const labels: Record<string, string> = {
   DISMISSED: "Archiviato",
 };
 
-export function Diary({ me, editionId }: { me: StudyMe; editionId: string }) {
+export function Diary({
+  me,
+  editionId,
+  taylor = false,
+}: {
+  me: StudyMe;
+  editionId: string;
+  taylor?: boolean;
+}) {
   const [data, setData] = useState<DiaryData | null>(null);
   const [filter, setFilter] = useState("open");
   const [loadError, setLoadError] = useState("");
   const [loading, setLoading] = useState(true);
+  const scope = `${me.id}:${editionId}`;
+  const currentScope = useRef(scope);
+  currentScope.current = scope;
+  const loadingRequest = useRef<{
+    sequence: number;
+    controller?: AbortController;
+  }>({ sequence: 0 });
   async function refresh() {
+    if (currentScope.current !== scope) return;
+    loadingRequest.current.controller?.abort();
+    const controller = new AbortController();
+    const sequence = ++loadingRequest.current.sequence;
+    loadingRequest.current.controller = controller;
     setLoadError("");
     setLoading(true);
     try {
-      setData(
-        await studyRequest<DiaryData>(
-          "/diary" +
-            (me.role === "teacher"
-              ? "?editionId=" + encodeURIComponent(editionId)
-              : ""),
-        ),
+      const value = await studyRequest<DiaryData>(
+        "/diary?" + new URLSearchParams({ editionId }),
+        undefined,
+        { signal: controller.signal },
       );
+      if (
+        sequence === loadingRequest.current.sequence &&
+        !controller.signal.aborted &&
+        currentScope.current === scope
+      )
+        setData(value);
     } catch (e) {
+      if (
+        sequence !== loadingRequest.current.sequence ||
+        controller.signal.aborted
+      )
+        return;
       setLoadError(
         describeError(e, "Il diario non è disponibile. Puoi riprovare."),
       );
       throw e;
     } finally {
-      setLoading(false);
+      if (
+        sequence === loadingRequest.current.sequence &&
+        !controller.signal.aborted
+      )
+        setLoading(false);
     }
   }
   useEffect(() => {
+    setData(null);
     void refresh().catch(() => {});
+    return () => {
+      loadingRequest.current.sequence++;
+      loadingRequest.current.controller?.abort();
+    };
   }, [me.id, editionId]); // eslint-disable-line react-hooks/exhaustive-deps
   const visible =
     data?.threads.filter(
@@ -146,6 +184,7 @@ export function Diary({ me, editionId }: { me: StudyMe; editionId: string }) {
               key={thread.threadId}
               thread={thread}
               tutor={me.role === "teacher"}
+              taylor={taylor}
               onUpdate={refresh}
             />
           ))}
@@ -158,10 +197,12 @@ export function Diary({ me, editionId }: { me: StudyMe; editionId: string }) {
 function DiaryCard({
   thread,
   tutor,
+  taylor,
   onUpdate,
 }: {
   thread: DiaryThread;
   tutor: boolean;
+  taylor: boolean;
   onUpdate: () => Promise<void>;
 }) {
   const [answer, setAnswer] = useState("");
@@ -172,6 +213,10 @@ function DiaryCard({
   const [criterion, setCriterion] = useState("");
   const [nextStep, setNextStep] = useState("");
   const [prompt, setPrompt] = useState("");
+  const [x, setX] = useState("-0.5"),
+    [degree, setDegree] = useState("3"),
+    [originalX, setOriginalX] = useState("0.5"),
+    [originalDegree, setOriginalDegree] = useState("3");
   const [radius, setRadius] = useState("2");
   const [originalRadius, setOriginalRadius] = useState("1.5");
   const [boundary, setBoundary] = useState("pressure");
@@ -262,8 +307,12 @@ function DiaryCard({
         transferExercise: {
           exerciseId: "transfer-" + thread.threadId,
           prompt,
-          parameters: { radiusRatio: Number(radius), boundary },
-          originalParameters: { radiusRatio: Number(originalRadius), boundary },
+          parameters: taylor
+            ? { x: Number(x), degree: Number(degree) }
+            : { radiusRatio: Number(radius), boundary },
+          originalParameters: taylor
+            ? { x: Number(originalX), degree: Number(originalDegree) }
+            : { radiusRatio: Number(originalRadius), boundary },
         },
       });
     } catch {
@@ -318,6 +367,12 @@ function DiaryCard({
           <details className="entry-practice">
             <summary>Affronta una situazione nuova</summary>
             <p>{thread.transferExercise.prompt}</p>
+            <p className="fine-print">
+              Parametri assegnati:{" "}
+              {JSON.stringify(thread.transferExercise.parameters)}. La verifica
+              del procedimento è a cura del tutor; questa prova manuale non
+              certifica automaticamente il modello.
+            </p>
             <label>
               Spiega il tuo procedimento
               <textarea
@@ -370,40 +425,90 @@ function DiaryCard({
               onChange={(e) => setPrompt(e.target.value)}
             />
           </label>
-          <div className="parameter-comparison">
-            <label>
-              Rapporto originale r/r₀
-              <input
-                type="number"
-                min="0.1"
-                max="100"
-                step="0.05"
-                value={originalRadius}
-                onChange={(e) => setOriginalRadius(e.target.value)}
-              />
-            </label>
-            <label>
-              Nuovo rapporto r/r₀
-              <input
-                type="number"
-                min="0.1"
-                max="100"
-                step="0.05"
-                value={radius}
-                onChange={(e) => setRadius(e.target.value)}
-              />
-            </label>
-            <label>
-              Grandezza fissata nel confronto
-              <select
-                value={boundary}
-                onChange={(e) => setBoundary(e.target.value)}
-              >
-                <option value="pressure">Differenza di pressione</option>
-                <option value="flow">Portata</option>
-              </select>
-            </label>
-          </div>
+          {taylor ? (
+            <div className="parameter-comparison">
+              <label>
+                Argomento originale x
+                <input
+                  type="number"
+                  min={-1}
+                  max={1}
+                  step="any"
+                  value={originalX}
+                  onChange={(e) => setOriginalX(e.target.value)}
+                />
+              </label>
+              <label>
+                Grado originale
+                <input
+                  type="number"
+                  min={0}
+                  max={12}
+                  step={1}
+                  value={originalDegree}
+                  onChange={(e) => setOriginalDegree(e.target.value)}
+                />
+              </label>
+              <label>
+                Nuovo argomento x
+                <input
+                  type="number"
+                  min={-1}
+                  max={1}
+                  step="any"
+                  value={x}
+                  onChange={(e) => setX(e.target.value)}
+                />
+              </label>
+              <label>
+                Nuovo grado
+                <input
+                  type="number"
+                  min={0}
+                  max={12}
+                  step={1}
+                  value={degree}
+                  onChange={(e) => setDegree(e.target.value)}
+                />
+              </label>
+            </div>
+          ) : (
+            <div className="parameter-comparison">
+              <label>
+                Rapporto originale r/r₀
+                <input
+                  type="number"
+                  min="0.1"
+                  max="100"
+                  step="0.05"
+                  value={originalRadius}
+                  onChange={(e) => setOriginalRadius(e.target.value)}
+                />
+              </label>
+              <label>
+                Nuovo rapporto r/r₀
+                <input
+                  type="number"
+                  min="0.1"
+                  max="100"
+                  step="0.05"
+                  value={radius}
+                  onChange={(e) => setRadius(e.target.value)}
+                />
+              </label>
+              <label>
+                Grandezza fissata nel confronto
+                <select
+                  value={boundary}
+                  onChange={(e) => setBoundary(e.target.value)}
+                >
+                  <option value="pressure">Differenza di pressione</option>
+                  <option value="flow">Portata</option>
+                </select>
+              </label>
+            </div>
+          )}
+
           {thread.category === "ambiguous_question" && (
             <label className="checkbox-label">
               <input
@@ -421,7 +526,22 @@ function DiaryCard({
               !explanation.trim() ||
               !criterion.trim() ||
               !nextStep.trim() ||
-              !prompt.trim()
+              !prompt.trim() ||
+              (taylor &&
+                (![x, originalX].every(
+                  (v) =>
+                    v.trim() !== "" &&
+                    Number.isFinite(Number(v)) &&
+                    Number(v) >= -1 &&
+                    Number(v) <= 1,
+                ) ||
+                  ![degree, originalDegree].every(
+                    (v) =>
+                      v.trim() !== "" &&
+                      Number.isInteger(Number(v)) &&
+                      Number(v) >= 0 &&
+                      Number(v) <= 12,
+                  )))
             }
             onClick={() => void confirm()}
           >

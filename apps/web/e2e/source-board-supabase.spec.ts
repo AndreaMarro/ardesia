@@ -187,6 +187,13 @@ test("one source keeps exact independent views, historical authorization and por
     const revised = `TAVOLO ${executionId}: Q cresce con r⁴.`;
     phase = "source_and_receipt";
     await page
+      .getByLabel("La tua previsione", { exact: true })
+      .fill("Prevedo Q proporzionale alla quarta potenza del raggio.");
+    await page
+      .getByRole("button", { name: "Metti alla prova", exact: true })
+      .click();
+    await expect(page.getByTestId("physics-ratio")).toHaveText("Q/Q0 = 5,0625");
+    await page
       .getByLabel("Una nota, una domanda, un procedimento")
       .fill(original);
     const created = page.waitForResponse(
@@ -504,12 +511,28 @@ test("one source keeps exact independent views, historical authorization and por
         ),
     ).toBe(true);
     expect(notebook.layout).toHaveLength(tutorBaseline.layouts.length + 2);
+    expect(
+      notebook.resourceRevisions.some(
+        (item: { id: string; revisionId: string; text: string }) =>
+          item.id === source.id &&
+          item.revisionId === source.revisionId &&
+          item.text === original,
+      ),
+    ).toBe(true);
     await review
       .getByLabel("Riapri quaderno .study.json")
       .setInputFiles(notebookPath);
     await expect(
-      review.getByText(/Quaderno riaperto e verificato:/),
+      review.getByText(/Quaderno riaperto in lettura:/),
     ).toBeVisible();
+    await expect(
+      review.getByText(/Autenticità canonica non verificata/),
+    ).toBeVisible();
+    const reopened = review
+      .locator("article.study-postit")
+      .filter({ hasText: original })
+      .filter({ hasText: `Revisione: ${source.revisionId}` });
+    await expect(reopened).toHaveCount(1);
     await expect(
       review.getByRole("heading", {
         name: "Omissioni dell’export",

@@ -1,18 +1,28 @@
 import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
-import { editionState, type Workspace, type StudyMe } from "../api";
+import { courseTitle, courseSubject } from "../course";
+import {
+  editionState,
+  type Workspace,
+  type StudyMe,
+  type Edition,
+} from "../api";
 
 export function Courses({
   data,
   me,
   onUpdate,
   onClassroom,
+  editions,
+  onEdition,
 }: {
   data: Workspace;
   me: StudyMe;
   onUpdate: () => Promise<void>;
   onClassroom: () => void;
+  editions?: Edition[];
+  onEdition?: (id: string) => void;
 }) {
   return (
     <>
@@ -25,29 +35,50 @@ export function Courses({
           date.
         </p>
       </header>
-      <section className="edition-row">
-        <div className="subject-mark">F</div>
-        <div>
-          <p className="section-meta">Fisica · Semestre Filtro</p>
-          <h2>Fluidi e ragionamento fisico</h2>
-          <p>
-            4 incontri · massimo {data.edition.capacity} persone ·{" "}
-            {(data.edition.priceMinor / 100).toLocaleString("it-IT", {
-              style: "currency",
-              currency: "EUR",
-            })}{" "}
-            indicativi
-          </p>
-        </div>
-        <div className="edition-row-action">
-          <span>{editionState[data.edition.state] ?? data.edition.state}</span>
-          <button className="button-primary" onClick={onClassroom}>
-            Apri l’aula
-          </button>
-        </div>
-      </section>
+      {(editions ?? [data.edition]).map((edition) => (
+        <section
+          className="edition-row"
+          key={edition.id}
+          aria-label={courseTitle(edition)}
+        >
+          <div className="subject-mark">
+            {courseSubject(edition).slice(0, 1)}
+          </div>
+          <div>
+            <p className="section-meta">
+              {courseSubject(edition)} ·{" "}
+              {edition.duration ?? "Programma dell’edizione"}
+            </p>
+            <h2>{courseTitle(edition)}</h2>
+            <p>
+              {edition.sessions.length} incontri · massimo {edition.capacity}{" "}
+              persone ·{" "}
+              {(edition.priceMinor / 100).toLocaleString("it-IT", {
+                style: "currency",
+                currency: "EUR",
+              })}{" "}
+              indicativi
+            </p>
+          </div>
+          <div className="edition-row-action">
+            <span>{editionState[edition.state] ?? edition.state}</span>
+            <button
+              className="button-primary"
+              onClick={() => {
+                onEdition?.(edition.id);
+                onClassroom();
+              }}
+            >
+              Apri l’aula
+            </button>
+          </div>
+        </section>
+      ))}
       <div className="course-detail-layout">
         <div className="plain-panel">
+          <p className="section-meta">
+            Edizione corrente · {courseTitle(data.edition)}
+          </p>
           <GroupEditionView
             edition={data.edition}
             teacher={me.role === "teacher"}
@@ -74,21 +105,13 @@ export function Courses({
       {me.role === "teacher" && (
         <details className="disclosure-panel">
           <summary>Persone e accessi dell’edizione</summary>
-          <AccessPanel />
+          <AccessPanel editionId={data.edition.id} />
         </details>
       )}
-      <CoursePackDisclosure summary="Programma e materiali in preparazione" />
-      <section className="next-subject">
-        <span>La prima estensione</span>
-        <h2>Analisi 1</h2>
-        <p>
-          Taylor, limiti e cancellazioni. Nello stesso spazio di lavoro, con lo
-          stesso diario.
-        </p>
-        <p className="fine-print">
-          In preparazione. Non sono aperte iscrizioni a un secondo corso.
-        </p>
-      </section>
+      <CoursePackDisclosure
+        editionId={data.edition.id}
+        summary="Programma e materiali in preparazione"
+      />
     </>
   );
 }

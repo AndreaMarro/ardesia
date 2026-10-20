@@ -12,7 +12,7 @@ type Access = {
   invitations: Invitation[];
   capabilities?: { invitationCodes?: boolean };
 };
-export function AccessPanel() {
+export function AccessPanel({ editionId = "fluidi" }: { editionId?: string }) {
   const [data, setData] = useState<Access | null>(null);
   const [actor, setActor] = useState("");
   const [token, setToken] = useState("");
@@ -23,7 +23,9 @@ export function AccessPanel() {
     setLoading(true);
     setError("");
     try {
-      const value = await studyRequest<Access>("/editions/fluidi/access");
+      const value = await studyRequest<Access>(
+        `/editions/${encodeURIComponent(editionId)}/access`,
+      );
       setData(value);
       setActor((previous) =>
         value.members.includes(previous) ? previous : (value.members[0] ?? ""),
@@ -36,7 +38,7 @@ export function AccessPanel() {
   }
   useEffect(() => {
     void refresh();
-  }, []);
+  }, [editionId]);
   async function create() {
     if (busy || data?.capabilities?.invitationCodes !== true) return;
     setBusy(true);
@@ -44,7 +46,7 @@ export function AccessPanel() {
     setToken("");
     try {
       const value = await studyRequest<{ token: string }>(
-        "/editions/fluidi/invitations",
+        `/editions/${encodeURIComponent(editionId)}/invitations`,
         { actorId: actor },
       );
       setToken(value.token);

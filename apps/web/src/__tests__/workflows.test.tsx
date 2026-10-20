@@ -274,7 +274,7 @@ test("a transfer partially received by the service stays frozen and retries the 
   vi.stubGlobal(
     "fetch",
     vi.fn(async (url: string, options?: RequestInit) => {
-      if (url === "/study/diary")
+      if (url.startsWith("/study/diary?"))
         return new Response(
           JSON.stringify({
             threads: [thread],

@@ -22,6 +22,7 @@ export function Materials({
   const [selected, setSelected] = useState<string | null>(null);
   const current = resources.find((r) => r.id === selected);
   const composer = useResourceComposer({
+    actorId: me.id,
     editionId: data.edition.id,
     kind: tutor ? "material" : "notes",
     visibility: tutor ? "group" : "private",
@@ -95,6 +96,11 @@ export function Materials({
                   ? "Traccia, spiegazione o riferimento"
                   : "Titolo e contenuto della nota"}
                 <textarea
+                  aria-label={
+                    tutor
+                      ? "Traccia, spiegazione o riferimento"
+                      : "Titolo e contenuto della nota"
+                  }
                   required
                   rows={6}
                   value={composer.text}
@@ -161,6 +167,7 @@ export function Materials({
       )}
       {tutor && (
         <CoursePackDisclosure
+          editionId={data.edition.id}
           summary="Banco dei contenuti originali in revisione"
           className="content-bank"
         />

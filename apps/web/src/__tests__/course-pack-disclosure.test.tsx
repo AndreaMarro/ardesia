@@ -57,7 +57,7 @@ for (const surface of [
         requests.push({ path, method: options?.method ?? "GET" });
         return new Response(
           JSON.stringify(
-            path.endsWith("/coursepack")
+            path.startsWith("/study/coursepack")
               ? pack
               : path.endsWith("/activities/evaluate")
                 ? {
@@ -96,7 +96,7 @@ for (const surface of [
     const previewCalls = () =>
       requests.filter(
         (request) =>
-          request.path === "/study/coursepack" ||
+          request.path.startsWith("/study/coursepack") ||
           request.path === "/study/activities/evaluate",
       );
     expect(previewCalls()).toEqual([]);
@@ -108,10 +108,12 @@ for (const surface of [
     );
     fireEvent.click(summary);
     await screen.findByRole("heading", { name: pack.title });
-    expect(previewCalls()).toEqual([
-      { path: "/study/coursepack", method: "GET" },
-      { path: "/study/activities/evaluate", method: "POST" },
-    ]);
+    await waitFor(() =>
+      expect(previewCalls()).toEqual([
+        { path: "/study/coursepack?editionId=fluidi", method: "GET" },
+        { path: "/study/activities/evaluate", method: "POST" },
+      ]),
+    );
     fireEvent.click(summary);
     await waitFor(() =>
       expect(

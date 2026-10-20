@@ -214,22 +214,30 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     await capture(page, "g0-student-today-390.png");
     phase = "waiting_list";
     await waiting.goto("/?view=courses");
-    await waiting
-      .getByRole("button", {
+    await expect(
+      waiting.getByText(/Non risultano edizioni accessibili al tuo account/),
+    ).toBeVisible();
+    await expect(
+      waiting.getByRole("button", {
         name: "Conferma partecipazione di test",
         exact: true,
-      })
-      .click();
-    await expect(
-      waiting.getByText("Gruppo completo: sei in lista d’attesa.", {
-        exact: true,
       }),
-    ).toBeVisible();
+    ).toHaveCount(0);
+    const waitingCourses = await (
+      await waiter.request.get("/study/editions?limit=50")
+    ).json();
+    expect(
+      waitingCourses.items.some(
+        (edition: { id: string }) => edition.id === "fluidi",
+      ),
+    ).toBe(false);
     await capture(waiting, "g0-waitlist-820.png");
     const stillFull = await (await student.request.get("/study/course")).json();
     expect(stillFull.confirmedTest).toBe(10);
     expect(stillFull.available).toBe(0);
-    assertions.push("waitlisted_ui_does_not_overbook");
+    assertions.push(
+      "waitlisted_user_has_read_only_fallback_without_membership_write",
+    );
 
     phase = "student_originals";
     await page
@@ -507,11 +515,12 @@ test("G0 candidate: real auth, preserved roster, media originals, manual diary t
     await expect(
       page.getByRole("heading", { name: "Quaderno riaperto", exact: true }),
     ).toBeVisible();
+    await expect(page.getByText(/Quaderno riaperto in lettura:/)).toBeVisible();
     await expect(
-      page.getByText(/Quaderno riaperto e verificato:/),
+      page.getByText(/Autenticità canonica non verificata/),
     ).toBeVisible();
     assertions.push(
-      "downloaded_notebook_reopens_with_server_integrity_verification",
+      "downloaded_notebook_reopens_with_unsigned_internal_integrity_scope",
     );
     expect(errors).toEqual([]);
     completed = true;

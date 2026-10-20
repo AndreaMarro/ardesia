@@ -1,11 +1,13 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
   describeError,
   StudyApiError,
   studyRequest,
   type StudyMe,
-  type Workspace,
 } from "./api";
+import { useCourseWorkspace } from "./useCourseWorkspace";
+import { clearResourceDrafts } from "./components/sessionDraftCache";
+import { PhysicsLab } from "./components/PhysicsLab";
 import { Shell, type View } from "./components/Shell";
 import { ErrorNotice, Loading } from "./components/Feedback";
 import { Public } from "./features/Public";
@@ -44,11 +46,16 @@ export default function App() {
   const [me, setMe] = useState<StudyMe | null>(null),
     [checking, setChecking] = useState(true),
     [view, setView] = useState<View>(initialView),
-    [data, setData] = useState<Workspace | null>(null),
     [error, setError] = useState(""),
     [loginOpen, setLoginOpen] = useState(false),
     [loginTrigger, setLoginTrigger] = useState<HTMLElement | null>(null),
     [parentId, setParentId] = useState<string | null>(null);
+  const course = useCourseWorkspace(me);
+  const { data, refresh } = course;
+  const affinity = `${me?.id}:${course.editionId}`;
+  useEffect(() => {
+    setParentId(null);
+  }, [affinity]);
   useEffect(() => {
     let active = true;
     void studyRequest<StudyMe>("/me")
@@ -68,20 +75,6 @@ export default function App() {
       active = false;
     };
   }, []);
-  const refresh = useCallback(async () => {
-    if (!me) return;
-    const value = await studyRequest<Workspace>("/workspace?editionId=fluidi");
-    setData(value);
-  }, [me?.id]);
-  useEffect(() => {
-    if (me) {
-      setData(null);
-      setError("");
-      void refresh().catch((e) =>
-        setError(describeError(e, "Il tuo spazio non è disponibile. Riprova.")),
-      );
-    }
-  }, [me?.id, refresh]);
   function navigate(next: View) {
     setView(next);
     const url = new URL(location.href);
@@ -93,7 +86,7 @@ export default function App() {
     try {
       await studyRequest("/session", undefined, { method: "DELETE" });
       setMe(null);
-      setData(null);
+      clearResourceDrafts();
       navigate("today");
     } catch (e) {
       setError(describeError(e, "Uscita non riuscita. Puoi riprovare."));
@@ -114,10 +107,13 @@ export default function App() {
           view={view}
           onView={navigate}
           onLogout={() => void logout()}
+          editions={course.editions}
+          editionId={course.editionId}
+          onEdition={course.selectEdition}
         >
-          {error && (
+          {(error || course.error) && (
             <ErrorNotice
-              message={error}
+              message={error || course.error}
               onRetry={() =>
                 void refresh()
                   .then(() => setError(""))
@@ -125,10 +121,23 @@ export default function App() {
               }
             />
           )}{" "}
-          {!data && !error ? (
+          {!course.listing && !course.error && course.editions.length === 0 ? (
+            <>
+              <header className="page-heading">
+                <h1>Il tuo spazio è pronto.</h1>
+                <p>
+                  Non risultano edizioni accessibili al tuo account. Puoi
+                  esplorare il laboratorio pubblico; fonti, consegne e
+                  iscrizioni restano chiuse.
+                </p>
+              </header>
+              <PhysicsLab />
+            </>
+          ) : !data && !error && !course.error ? (
             <Loading />
           ) : data ? (
             <Suspense
+              key={affinity}
               fallback={
                 <Loading>Sto aprendo questa parte del tuo spazio…</Loading>
               }
@@ -139,6 +148,8 @@ export default function App() {
                 <Courses
                   me={me}
                   data={data}
+                  editions={course.editions}
+                  onEdition={course.selectEdition}
                   onUpdate={refresh}
                   onClassroom={() => navigate("classroom")}
                 />

@@ -5,7 +5,15 @@ import {
   studyRequest,
   type StudyResource,
 } from "../api";
+import {
+  acknowledgeResourceDraft,
+  readResourceDraft,
+  subscribeResourceDraft,
+  ensureDraftActor,
+  writeResourceDraft,
+} from "./sessionDraftCache";
 type Options = {
+  actorId?: string;
   editionId: string;
   kind: string;
   visibility: "group" | "private";
@@ -14,22 +22,40 @@ type Options = {
   onUpdate: () => Promise<void>;
 };
 export function useResourceComposer(options: Options) {
-  const [text, setText] = useState(""),
+  const cacheKey = options.actorId
+    ? JSON.stringify([options.actorId, options.editionId, options.kind])
+    : null;
+  const initial = useRef(
+    cacheKey
+      ? (readResourceDraft(cacheKey) ?? { text: "", key: requestKey() })
+      : { text: "", key: requestKey() },
+  );
+  const [text, setText] = useState(initial.current.text),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [message, setMessage] = useState("");
-  const draft = useRef({ text: "", key: requestKey() }),
+  const draft = useRef(initial.current),
     pending = useRef(false),
     mounted = useRef(true);
   useEffect(() => {
+    if (options.actorId) ensureDraftActor(options.actorId);
+    const unsubscribe = subscribeResourceDraft(() => {
+      const saved = cacheKey ? readResourceDraft(cacheKey) : undefined;
+      if (saved) {
+        draft.current = saved;
+        setText(saved.text);
+      }
+    });
     mounted.current = true;
     return () => {
       mounted.current = false;
+      unsubscribe();
     };
   }, []);
   function edit(value: string) {
     if (pending.current || value === draft.current.text) return;
     draft.current = { text: value, key: requestKey() };
+    if (cacheKey) writeResourceDraft(cacheKey, draft.current);
     setText(value);
     setError("");
     setMessage("");
@@ -52,6 +78,7 @@ export function useResourceComposer(options: Options) {
         },
         { headers: { "Idempotency-Key": immutableDraft.key } },
       );
+      if (cacheKey) acknowledgeResourceDraft(cacheKey, immutableDraft.key);
       if (!mounted.current) return;
       // An acknowledged create remains successful even if the subsequent course refresh fails.
       draft.current = { text: "", key: requestKey() };

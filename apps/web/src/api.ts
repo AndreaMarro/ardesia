@@ -3,10 +3,22 @@ export type {
   StudyMe,
   StudyResource,
   Submission,
-  Edition,
 } from "../../studio/src/study/contracts";
-import type { Workspace as LegacyWorkspace } from "../../studio/src/study/contracts";
-export type Workspace = LegacyWorkspace & {
+import type {
+  Edition as LegacyEdition,
+  Workspace as LegacyWorkspace,
+} from "../../studio/src/study/contracts";
+export type Edition = LegacyEdition & {
+  courseId?: string;
+  packId?: string;
+  packVersion?: number;
+  packSha256?: string;
+  title?: string;
+  subject?: string;
+  duration?: string;
+};
+export type Workspace = Omit<LegacyWorkspace, "edition"> & {
+  edition: Edition;
   layoutSaved: boolean;
   layoutVersion: string;
 };

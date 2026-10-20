@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { StudyMe } from "../api";
+import type { Edition, StudyMe } from "../api";
 
 export type View =
   | "today"
@@ -43,12 +43,18 @@ export function Shell({
   onView,
   onLogout,
   children,
+  editions = [],
+  editionId,
+  onEdition,
 }: {
   me: StudyMe;
   view: View;
   onView: (v: View) => void;
   onLogout: () => void;
   children: ReactNode;
+  editions?: Edition[];
+  editionId?: string | null;
+  onEdition?: (id: string) => void;
 }) {
   const tutor = me.role === "teacher";
   return (
@@ -66,6 +72,22 @@ export function Shell({
         <p className="workspace-label">
           {tutor ? "Il tuo studio" : "Il tuo spazio"}
         </p>
+        {editions.length > 0 && (
+          <label className="course-selector">
+            Edizione corrente
+            <select
+              aria-label="Edizione corrente"
+              value={editionId ?? ""}
+              onChange={(event) => onEdition?.(event.target.value)}
+            >
+              {editions.map((edition) => (
+                <option key={edition.id} value={edition.id}>
+                  {edition.title ?? edition.id} · {edition.id}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <nav aria-label="Navigazione principale">
           {items
             .filter((i) => !i.teacherOnly || tutor)
@@ -107,7 +129,10 @@ export function Shell({
       </aside>
       <div className="app-main">
         <header className="topbar">
-          <span>{tutor ? "Regia dei mini-corsi" : "Il tuo percorso"}</span>
+          <span>
+            {editions.find((edition) => edition.id === editionId)?.title ??
+              (tutor ? "Regia dei mini-corsi" : "Il tuo percorso")}
+          </span>
           <span className="environment-note">
             Ambiente di prova · dati sintetici
           </span>
