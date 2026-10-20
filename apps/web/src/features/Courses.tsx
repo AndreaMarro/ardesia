@@ -1,6 +1,6 @@
 import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
-import { CoursePackPreview } from "../../../studio/src/study/CoursePackPreview";
+import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
 import { editionState, type Workspace, type StudyMe } from "../api";
 
 export function Courses({
@@ -77,10 +77,7 @@ export function Courses({
           <AccessPanel />
         </details>
       )}
-      <details className="disclosure-panel">
-        <summary>Programma e materiali in preparazione</summary>
-        <CoursePackPreview />
-      </details>
+      <CoursePackDisclosure summary="Programma e materiali in preparazione" />
       <section className="next-subject">
         <span>La prima estensione</span>
         <h2>Analisi 1</h2>

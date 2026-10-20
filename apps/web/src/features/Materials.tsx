@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
-import { CoursePackPreview } from "../../../studio/src/study/CoursePackPreview";
+import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
 import { type StudyMe, type Workspace } from "../api";
 import { useResourceComposer } from "../components/useResourceComposer";
 import { SourceViewer } from "../components/SourceViewer";
@@ -42,7 +42,9 @@ export function Materials({
         </p>
       </header>
       <div className="materials-layout">
-        <aside>
+        <aside
+          aria-label={tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}
+        >
           <h2>{tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}</h2>
           {resources.length ? (
             <ul className="material-list">
@@ -158,10 +160,10 @@ export function Materials({
         </details>
       )}
       {tutor && (
-        <details className="disclosure-panel content-bank">
-          <summary>Banco dei contenuti originali in revisione</summary>
-          <CoursePackPreview />
-        </details>
+        <CoursePackDisclosure
+          summary="Banco dei contenuti originali in revisione"
+          className="content-bank"
+        />
       )}
     </>
   );

@@ -206,6 +206,7 @@ export function SourceBoard({ me, data, onUpdate, onUse }: Props) {
           ) : (
             <div
               className={"board-viewport board-" + mode}
+              role="region"
               aria-label={
                 mode === "table" ? "Tavolo delle fonti" : "Lettura delle fonti"
               }

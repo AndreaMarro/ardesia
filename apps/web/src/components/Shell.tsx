@@ -56,7 +56,7 @@ export function Shell({
       <a className="skip-link" href="#content">
         Vai al contenuto
       </a>
-      <aside className="sidebar">
+      <aside className="sidebar" aria-label="Navigazione e account">
         <a className="wordmark" href="/" aria-label="Ardesia, inizio">
           <span className="brand-symbol" aria-hidden="true">
             a

@@ -11,9 +11,11 @@
   --paper: #f8f7f3;
   --surface: #fffefa;
   --ink: #202b2b;
-  --muted: #65706a;
+  --muted: #536058;
   --line: #dfe1d9;
   --accent: #cb6548;
+  --accent-text: #a44932;
+  --index-text: #5b6b50;
   --action: #aa4932;
   --green: #355d4e;
   --pale: #e8ece3;
@@ -519,7 +521,7 @@ dd {
   border-top: 1px solid var(--line);
 }
 .programme-row > span {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 12px;
 }
 .programme-row h3 {
@@ -718,7 +720,7 @@ dd {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #758073;
+  color: var(--muted);
   margin: 0 14px 12px;
 }
 .sidebar nav {
@@ -760,7 +762,7 @@ dd {
   font-style: italic;
   font-size: 14px;
   line-height: 1.5;
-  color: #7b8477;
+  color: var(--muted);
   margin: 24px 14px;
 }
 .profile-control {
@@ -927,7 +929,7 @@ dd {
 }
 .session-index {
   font-size: 10px;
-  color: #819076;
+  color: var(--index-text);
   padding-top: 3px;
 }
 .agenda li strong {
@@ -962,7 +964,7 @@ dd {
   padding: 21px 4px;
 }
 .action-number {
-  color: #a8aea1;
+  color: var(--index-text);
   font-family: Georgia, serif;
   font-size: 21px;
   min-width: 30px;
@@ -1543,7 +1545,7 @@ dd {
 .document-icon {
   font-family: Georgia, serif;
   font-size: 17px;
-  color: #7c8b6f;
+  color: var(--index-text);
   flex-shrink: 0;
 }
 .material-detail {
@@ -2692,7 +2694,7 @@ dd {
   min-width: 0;
 }
 .board-library-number {
-  color: #778769;
+  color: var(--index-text);
   font:
     16px Georgia,
     serif;

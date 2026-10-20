@@ -91,7 +91,7 @@ export function Today({
             </div>
           </div>
         </section>
-        <aside className="agenda">
+        <aside className="agenda" aria-label="Calendario degli incontri">
           <div className="section-title">
             <h2>Tutte le date</h2>
             <span>4 incontri</span>
