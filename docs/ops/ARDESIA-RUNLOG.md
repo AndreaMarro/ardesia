@@ -61,3 +61,16 @@
 2026-10-20 — C4 REA root acceptance: seven receipts on exact a3; original policies/schema/mission registry unchanged. Original257inputs/369461967bytes and148authentic envelopes retained privately, including33newa3observations. Root TypeScriptAST removes fixture IDs mistaken for test names and restores the full apostrophe title;185Python refs matched actual499-case collection, not new execution. Active R0surface is Classroom; R1GUI actions are historical2a plus current unit regressions, current REA reads do not claim new drag/resize. Registered TARGET097 accepted for R4 under unchanged alternative policy; blocked Bramble access remains unknown. Original G0/G1 REA subgates both actually PASS, independent metadata review no residual finding. Global acceptance remains47PROVED_SCOPED/28PARTIAL/6NOT_RUN/4BLOCKED, G0NOT_CERTIFIED/G1NOT_READY.
 
 2026-10-20 — C5/C6 integrated freeze5cbafd07: cookie fixb5c5339a, initial body budgetdf0baf36 then reviewed500fix5cbafd07. IndependentC6-R1 RED preserved, fix12probes+75regressions on API-tree-identicala8; root539Core/API actualPG/Auth/RLS/Storage PASS0skip40.47s. Owned37977 stopped after identity/physicalcwd verification, own43753 serves same5324/dataId/Webbuild. ActualTCP budget4checks PASS; actualnewAuth+Chrome invalidbodytokenpreservation/localrevoke401+HttpOnlycookieclear/public200/private401 PASS. One newAuthfixture deleted/binding0/Coreprincipalretained, shared14untouched. Engine/Web trees exactlya3, no rerun relabel. OriginalREA receipts remaina3 pendingfreshsuccessorrebind; globalG0/G1 uncertified. ADR0007 records per-app128MiB/.5s and limits, no dependencies. Code pushed/PR267 updated; no merge/deploy.
+
+
+## 2026-10-20 — REA successore5cb e copertura verificata
+
+Le sette missioni R0/R1/R2/R3/R8/R6/R4 hanno ricevute accettate dal root dopo revisione indipendente. I checker originali G0 e G1 sono PASS: **sono subgate REA, non certificazione globale G0/G1**.
+
+10 nuovi envelope autentici, 24 GET di sola lettura, 70 file nuovi e 148 envelope storici ricalcolati. Il confronto conserva 190 UNKNOWN. Le prove di scrittura/GUI/Notebook restano attribuite alle rispettive fonti storiche; 139 tentativi di accesso non equivalgono a 139 reverse engineering completi.
+
+Il prodotto rimane `5cbafd072504cb4603bf0daa903472fa0f528247`. Report e verifiche separano 539 test Core/API eseguiti su PostgreSQL/Auth/Storage reali, raccolta nominale dei test, Web storico byte-identico e CI attuale. I raw privati sono esclusi.
+
+## 2026-10-20 — C7-R1: scadenza reale e interfaccia privata
+
+Il probe Chrome→HTTP/Auth/PG su5cb osserva200 prima della scadenza, poi401 sulla fonte e cookie eliminato, ma conserva17consegne già caricate nella shell privata. FindingP2 aperto; nessun nuovo accesso server negato aggirato, nessuna scrittura didattica o revoca nel probe. Riaccesso dei14account sintetici solo dopo il probe. Correzione condivisa del confine sessione da implementare e provare; binary401/logout503 ancora NOT_RUN. REA subgate PASS non chiude questo difetto né G0globale.

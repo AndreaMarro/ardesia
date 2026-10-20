@@ -7,11 +7,11 @@
     "TARGET-097"
   ],
   "target_kind": "THIRD_PARTY_AUTHORIZED",
-  "authorization_basis": "User authorized actual reversible donor research and isolated a3 browser sessions with original synthetic text. Bramble normal sign-in boundary respected; official Logseq demo with no personal folder grant; AFFiNE anonymous guest workspace. No account, cost, trial, production data or bypass. Pedagogical fixtures synthetic:true; attestation genuine.",
+  "authorization_basis": "User authorized actual reversible donor research and isolated a3 browser sessions with original synthetic text. Bramble normal sign-in boundary respected; official Logseq demo with no personal folder grant; AFFiNE anonymous guest workspace. No account, cost, trial, production data or bypass. Pedagogical fixtures synthetic:true; attestation genuine. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation.",
   "rea_version": "6.7.0",
-  "source_commit_or_version": "Historical AFFiNE SENTRY_RELEASE0.27.4; remote commit UNKNOWN. Separate frontend source0b69a6da21e8fd35beb85667bb8496d9b3852238; Logseq/og6e7afa8eb040686ff057156ee877193b581dd369. Own a3 runtime5324/PID34531.",
+  "source_commit_or_version": "Historical AFFiNE SENTRY_RELEASE0.27.4; remote commit UNKNOWN. Separate frontend source0b69a6da21e8fd35beb85667bb8496d9b3852238; Logseq/og6e7afa8eb040686ff057156ee877193b581dd369. Own a3 runtime5324/PID34531. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits.",
   "alternative_justification": "Bramble TARGET-003 normal access requires sign-in. Two authorized alternatives compared on five0–5 factors (functionality, observability, legal transferability, quality, cost/risk): Logseq16/25, AFFiNE22/25. AFFiNE TARGET-097 selected because anonymous source/block search, correction and reopen actually execute without account; only original functional contracts assimilated. Root accepted existing registered TARGET-097 and this functional justification; no registry or policy was changed.",
-  "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "product_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
   "rea_operations": [
     "analyze_javascript_application",
     "capture_browser_scenario",
@@ -23,6 +23,97 @@
     "trace_application_feature",
     "trace_javascript_semantics"
   ],
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "created_at": "2026-10-20T06:42:00.302998+00:00",
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "packages/engine/lessonos/study/context.py",
+      "packages/engine/lessonos/study/diary.py",
+      "apps/web/src/features/Diary.tsx",
+      "apps/web/src/components/SourceViewer.tsx",
+      "packages/engine/lessonos/study/view_layout.py"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_context_memory.py::test_changed_or_removed_source_invalidates_memory_and_citations",
+      "packages/engine/tests/study/test_context_memory.py::test_memory_is_grounded_persistent_and_permission_filtered_before_search",
+      "packages/engine/tests/study/test_context_memory.py::test_plain_text_submission_without_selected_source_has_recoverable_context",
+      "packages/engine/tests/study/test_context_memory.py::test_projection_rebuild_and_review_consumer_are_idempotent",
+      "packages/engine/tests/study/test_context_memory.py::test_rebuild_cannot_resurrect_stale_legacy_retrieval_text",
+      "packages/engine/tests/study/test_context_memory.py::test_shared_activity_does_not_publish_peer_observations",
+      "packages/engine/tests/study/test_context_memory.py::test_tutor_can_open_submitted_historical_context_without_the_new_private_head",
+      "packages/engine/tests/study/test_error_diary.py::test_ai_proposal_is_not_confirmed_debt_and_replays_after_restart",
+      "packages/engine/tests/study/test_error_diary.py::test_ambiguous_question_requires_source_check_before_confirming",
+      "packages/engine/tests/study/test_error_diary.py::test_confirm_is_tutor_only_source_bound_and_idempotent",
+      "packages/engine/tests/study/test_error_diary.py::test_contest_and_dismiss_preserve_reason_and_exclude_false_positive",
+      "packages/engine/tests/study/test_error_diary.py::test_diary_receipt_and_event_roll_back_together",
+      "packages/engine/tests/study/test_error_diary.py::test_identical_source_observation_with_new_key_reuses_one_thread",
+      "packages/engine/tests/study/test_error_diary.py::test_json_input_boundaries_raise_validation_errors",
+      "packages/engine/tests/study/test_error_diary.py::test_malformed_error_category_is_validation_error_without_writing",
+      "packages/engine/tests/study/test_error_diary.py::test_new_receipt_cannot_recycle_an_earlier_transfer_source",
+      "packages/engine/tests/study/test_error_diary.py::test_old_verified_transfer_cannot_close_a_later_recurrence",
+      "packages/engine/tests/study/test_error_diary.py::test_parameter_change_is_required_even_when_tutor_uses_new_exercise_label",
+      "packages/engine/tests/study/test_error_diary.py::test_practice_cannot_relabel_a_submission_from_original_activity",
+      "packages/engine/tests/study/test_error_diary.py::test_recurrence_requires_new_evidence_after_verification_and_preserves_history",
+      "packages/engine/tests/study/test_error_diary.py::test_repeating_original_or_forging_plan_does_not_count_as_transfer",
+      "packages/engine/tests/study/test_error_diary.py::test_replay_scopes_private_events_before_decoding_other_learners",
+      "packages/engine/tests/study/test_error_diary.py::test_revoked_transfer_source_hides_procedure_and_verification_even_on_retry",
+      "packages/engine/tests/study/test_error_diary.py::test_source_anchor_must_belong_to_submitted_revision",
+      "packages/engine/tests/study/test_error_diary.py::test_source_checked_accepts_only_a_boolean",
+      "packages/engine/tests/study/test_error_diary.py::test_source_revision_change_stales_feedback_and_revocation_hides_original",
+      "packages/engine/tests/study/test_error_diary.py::test_student_diary_persists_between_courses_without_granting_new_tutor_history",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_needs_distinct_submission_exact_reasoning_and_human_review",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_receipt_for_another_thread_cannot_be_relabelled",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_submission_cannot_reuse_the_error_source",
+      "services/study-api/tests/test_diary_http.py::test_diary_http_private_error_review_new_problem_and_transfer",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: late context A cannot appear under source B and query uses the canonical parameter",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: a stale context error cannot replace the new source context",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: unmount cancels a pending context request",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: historical context is identified without presenting it as the current source",
+      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
+      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
+      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
+      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical/a3 scope retained: Text/source/block anchors only. No audio/video seek, transcript speaker proof, remote backend build equality, cloud sync, device/OS restart or current keyword-search UI was proved. Donor correction is historical; a3 replay is read-only and does not write a new contest/correction.",
+    "Historical/a3 scope retained: AFFiNE selected public release0.27.4 is separate from source0b69; remote commit UNKNOWN.22,434,059-byte donor sourcemap exceeded REA4,194,304-byte limit; original truncation error preserved, no partial map passed off as original. Reconciliation and semantic unknowns remain.",
+    "Historical/a3 scope retained: Root reviewed and accepted registered TARGET-097 as the authorized functional alternative under the unchanged mission policy and explicit justification. Bramble beyond normal sign-in access remains unexamined; donor comparison is historical, not a new visit or remote backend/source equivalence."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSED RECEIPT ONLY: statusPASS is proposed scoped result pending independent root review, copy/hash/rights/name validation and original gate. No canonical receipt/state/gate written by this preparer; no globalG0/G1 certification.",
+    "Attestation synthetic:false means genuine REA/provider execution and actual root tests. Pedagogical dataset/actors/model responses are synthetic:true; no real student/account/payment/invite or production data mutation.",
+    "Product binding5cbafd072504cb4603bf0daa903472fa0f528247 is distinct from metadataHEADc718901e091e706a44f8532d54cf2444fbbe2837. Runtime5324/PID43753/dataId05f4a05edde66bab observed separately; source/body/cookie proofs are ordinary sidecars, not REA envelopes.",
+    "Historical donor/a3/C2/fe/2a Evidence paths, hashes and source versions are preserved. Current own sourcegraph does not become fresh donor source research. Historical contract/test summaries are replaced only by explicit successor-derived documents, never normalized provider raw.",
+    "No GPL/AGPL donor code, quiz-bank/vendor asset or manual supplied to product. No automatic framework/library adoption. No performance benchmark or numerical time saving measured.",
+    "Historical rights/scope retained: Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
+    "Historical rights/scope retained: Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
+    "Historical rights/scope retained: Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
+    "Historical rights/scope retained: No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
+    "Historical rights/scope retained: AFFiNE selected frontend outside backend/native exclusions MIT; Logseq AGPL3 observed and researched only. No GPL/AGPL code copied. No audio/video search equivalent is asserted.",
+    "Historical rights/scope retained: Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents a resumed lesson from silently using a changed source or a different student’s explanation, while retaining the earlier reasoning and next action.",
+    "time_saved_minutes": null,
+    "measurement_method": "Root current539Core/API actual log plus exact named collection; Web81a3 on byte-identical Web tree is historical execution. New5cb read-only capture/sourcegraph/compare; no time benchmark."
+  },
   "evidence": [
     {
       "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/R4/affine-open-capture.json",
@@ -215,94 +306,34 @@
       "kind": "structure"
     },
     {
-      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/contracts/R4-a3-assimilation.md",
-      "sha256": "a1af9858de29761d632e2446a9ff5d17f6cd7ab935b1eb74e0d2cff377c912e1",
-      "kind": "contract"
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "64a8177c6dc24227c80c29d0447b8a4586ac80ba823d58e94b2e0aa0a63ad557"
     },
     {
-      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/tests/R4-a3-tests.json",
-      "sha256": "c6eaa2792624e8c86a29d1a90f518537eae37398f72ceae2ce032c3860a143b2",
-      "kind": "test"
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/memory-inspect.evidence.json",
+      "sha256": "49e8843cc15978205c08cdcb21fef9f3524b06114afce7f014a79f30560631f2"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/memory-export.evidence.json",
+      "sha256": "0392fb314ec2595d9a87e80a3ceb6ceffc8a865e5330bcb2e6d8b75ca9e49c4e"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/source.application.evidence.json",
+      "sha256": "7da69cbd7267c00d1aaa7e8d5f7afb01e2af97301617265ba106967139eebf0f"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-5cb/contracts/R4-5cb-assimilation.md",
+      "sha256": "9833d4d165295c39c848839a88ce1da70268e33556c1c0a9ddf7b9d12a3cab81"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-5cb/tests/R4-5cb-tests.json",
+      "sha256": "3c0921338d6728646d6098770837c64c6a1112441c26a08f45aa01f967ffc64d"
     }
-  ],
-  "implementation": {
-    "decision": "ADAPT",
-    "source_files": [
-      "packages/engine/lessonos/study/context.py",
-      "packages/engine/lessonos/study/diary.py",
-      "apps/web/src/features/Diary.tsx",
-      "apps/web/src/components/SourceViewer.tsx",
-      "packages/engine/lessonos/study/view_layout.py"
-    ],
-    "test_names": [
-      "packages/engine/tests/study/test_context_memory.py::test_changed_or_removed_source_invalidates_memory_and_citations",
-      "packages/engine/tests/study/test_context_memory.py::test_memory_is_grounded_persistent_and_permission_filtered_before_search",
-      "packages/engine/tests/study/test_context_memory.py::test_plain_text_submission_without_selected_source_has_recoverable_context",
-      "packages/engine/tests/study/test_context_memory.py::test_projection_rebuild_and_review_consumer_are_idempotent",
-      "packages/engine/tests/study/test_context_memory.py::test_rebuild_cannot_resurrect_stale_legacy_retrieval_text",
-      "packages/engine/tests/study/test_context_memory.py::test_shared_activity_does_not_publish_peer_observations",
-      "packages/engine/tests/study/test_context_memory.py::test_tutor_can_open_submitted_historical_context_without_the_new_private_head",
-      "packages/engine/tests/study/test_error_diary.py::test_ai_proposal_is_not_confirmed_debt_and_replays_after_restart",
-      "packages/engine/tests/study/test_error_diary.py::test_ambiguous_question_requires_source_check_before_confirming",
-      "packages/engine/tests/study/test_error_diary.py::test_confirm_is_tutor_only_source_bound_and_idempotent",
-      "packages/engine/tests/study/test_error_diary.py::test_contest_and_dismiss_preserve_reason_and_exclude_false_positive",
-      "packages/engine/tests/study/test_error_diary.py::test_diary_receipt_and_event_roll_back_together",
-      "packages/engine/tests/study/test_error_diary.py::test_identical_source_observation_with_new_key_reuses_one_thread",
-      "packages/engine/tests/study/test_error_diary.py::test_json_input_boundaries_raise_validation_errors",
-      "packages/engine/tests/study/test_error_diary.py::test_malformed_error_category_is_validation_error_without_writing",
-      "packages/engine/tests/study/test_error_diary.py::test_new_receipt_cannot_recycle_an_earlier_transfer_source",
-      "packages/engine/tests/study/test_error_diary.py::test_old_verified_transfer_cannot_close_a_later_recurrence",
-      "packages/engine/tests/study/test_error_diary.py::test_parameter_change_is_required_even_when_tutor_uses_new_exercise_label",
-      "packages/engine/tests/study/test_error_diary.py::test_practice_cannot_relabel_a_submission_from_original_activity",
-      "packages/engine/tests/study/test_error_diary.py::test_recurrence_requires_new_evidence_after_verification_and_preserves_history",
-      "packages/engine/tests/study/test_error_diary.py::test_repeating_original_or_forging_plan_does_not_count_as_transfer",
-      "packages/engine/tests/study/test_error_diary.py::test_replay_scopes_private_events_before_decoding_other_learners",
-      "packages/engine/tests/study/test_error_diary.py::test_revoked_transfer_source_hides_procedure_and_verification_even_on_retry",
-      "packages/engine/tests/study/test_error_diary.py::test_source_anchor_must_belong_to_submitted_revision",
-      "packages/engine/tests/study/test_error_diary.py::test_source_checked_accepts_only_a_boolean",
-      "packages/engine/tests/study/test_error_diary.py::test_source_revision_change_stales_feedback_and_revocation_hides_original",
-      "packages/engine/tests/study/test_error_diary.py::test_student_diary_persists_between_courses_without_granting_new_tutor_history",
-      "packages/engine/tests/study/test_error_diary.py::test_transfer_needs_distinct_submission_exact_reasoning_and_human_review",
-      "packages/engine/tests/study/test_error_diary.py::test_transfer_receipt_for_another_thread_cannot_be_relabelled",
-      "packages/engine/tests/study/test_error_diary.py::test_transfer_submission_cannot_reuse_the_error_source",
-      "services/study-api/tests/test_diary_http.py::test_diary_http_private_error_review_new_problem_and_transfer",
-      "apps/web/src/__tests__/source-context-identity.test.tsx :: late context A cannot appear under source B and query uses the canonical parameter",
-      "apps/web/src/__tests__/source-context-identity.test.tsx :: a stale context error cannot replace the new source context",
-      "apps/web/src/__tests__/source-context-identity.test.tsx :: unmount cancels a pending context request",
-      "apps/web/src/__tests__/source-context-identity.test.tsx :: historical context is identified without presenting it as the current source",
-      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
-      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
-      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
-      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
-      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
-      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state"
-    ],
-    "test_outcome": "PASS"
-  },
-  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
-  "unknowns": [
-    "REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
-    "The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
-    "Text/source/block anchors only. No audio/video seek, transcript speaker proof, remote backend build equality, cloud sync, device/OS restart or current keyword-search UI was proved. Donor correction is historical; a3 replay is read-only and does not write a new contest/correction.",
-    "AFFiNE selected public release0.27.4 is separate from source0b69; remote commit UNKNOWN.22,434,059-byte donor sourcemap exceeded REA4,194,304-byte limit; original truncation error preserved, no partial map passed off as original. Reconciliation and semantic unknowns remain.",
-    "Root reviewed and accepted registered TARGET-097 as the authorized functional alternative under the unchanged mission policy and explicit justification. Bramble beyond normal sign-in access remains unexamined; donor comparison is historical, not a new visit or remote backend/source equivalence."
-  ],
-  "limitations": [
-    "PRIVATE PROPOSAL ONLY: status PASS is a proposed scoped execution/assimilation result, not an installed receipt, gate execution, global G0/G1 certification, human pilot or production launch. Root must independently validate original schema, hashes, rights, code/test pin and policy before installation.",
-    "Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
-    "Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
-    "Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
-    "No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
-    "AFFiNE selected frontend outside backend/native exclusions MIT; Logseq AGPL3 observed and researched only. No GPL/AGPL code copied. No audio/video search equivalent is asserted.",
-    "Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
-  ],
-  "created_at": "2026-10-20T05:48:44.143368+00:00",
-  "benefit": {
-    "defect_avoided": "Prevents a resumed lesson from silently using a changed source or a different student’s explanation, while retaining the earlier reasoning and next action.",
-    "time_saved_minutes": null,
-    "measurement_method": "Qualitative contract/witness comparison plus root executed a3 Core499/Web81 and actual browser/PG reports; no saved-time measurement."
-  }
+  ]
 }

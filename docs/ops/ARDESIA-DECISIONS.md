@@ -34,3 +34,16 @@
 - Preserve the historical2a evidence and its actual gate outcome separately from C4. New metadata, an SDK host test, screenshots or aggregate test counts do not relabel historical executions. A scoped REA subgate cannot certify global G0/G1, scientific approval, human usability, remote zero-cost staging or a future dated checkpoint.
 
 - C6 body admission reserves route maxima before first receive, independent of Content-Length and store slots, and holds ownership around the complete framework stack. Delegate stack assembly to FastAPI super(); do not duplicate500handlers or wrap away the FastAPI interface. Preserve the original failed freeze/review. Test automatic/custom500, send/cancel/background cleanup, small work under heavy wait, cookie/error boundaries and real TCP before broadening capacity claims. This is an encoded per-app budget, not an RSS/global/throughput promise.
+
+
+## 2026-10-20 — REA successore5cb e copertura verificata
+
+Le sette missioni R0/R1/R2/R3/R8/R6/R4 hanno ricevute accettate dal root dopo revisione indipendente. I checker originali G0 e G1 sono PASS: **sono subgate REA, non certificazione globale G0/G1**.
+
+10 nuovi envelope autentici, 24 GET di sola lettura, 70 file nuovi e 148 envelope storici ricalcolati. Il confronto conserva 190 UNKNOWN. Le prove di scrittura/GUI/Notebook restano attribuite alle rispettive fonti storiche; 139 tentativi di accesso non equivalgono a 139 reverse engineering completi.
+
+Il prodotto rimane `5cbafd072504cb4603bf0daa903472fa0f528247`. Report e verifiche separano 539 test Core/API eseguiti su PostgreSQL/Auth/Storage reali, raccolta nominale dei test, Web storico byte-identico e CI attuale. I raw privati sono esclusi.
+
+## 2026-10-20 — C7-R1: scadenza reale e interfaccia privata
+
+Il probe Chrome→HTTP/Auth/PG su5cb osserva200 prima della scadenza, poi401 sulla fonte e cookie eliminato, ma conserva17consegne già caricate nella shell privata. FindingP2 aperto; nessun nuovo accesso server negato aggirato, nessuna scrittura didattica o revoca nel probe. Riaccesso dei14account sintetici solo dopo il probe. Correzione condivisa del confine sessione da implementare e provare; binary401/logout503 ancora NOT_RUN. REA subgate PASS non chiude questo difetto né G0globale.

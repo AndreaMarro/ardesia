@@ -7,7 +7,7 @@
     "TARGET-109"
   ],
   "target_kind": "EXTERNAL_OPEN_SOURCE",
-  "authorization_basis": "Pacchetto OSS DoenetML non modificato eseguito localmente in profilo dedicato con fixture Poiseuille originale. Nessun login, acquisto, account o quiz proprietario. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale.",
+  "authorization_basis": "Pacchetto OSS DoenetML non modificato eseguito localmente in profilo dedicato con fixture Poiseuille originale. Nessun login, acquisto, account o quiz proprietario. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation.",
   "rea_version": "6.7.0",
   "rea_operations": [
     "analyze_javascript_application",
@@ -19,9 +19,77 @@
     "trace_application_feature",
     "trace_javascript_semantics"
   ],
-  "source_commit_or_version": "@doenet/doenetml0.7.27; tag v0.7.27 -> eed95cd1ce266d9082c68e7ca0d823c9394f1a70; own local fixture5352.",
-  "product_commit": "a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119",
+  "source_commit_or_version": "@doenet/doenetml0.7.27; tag v0.7.27 -> eed95cd1ce266d9082c68e7ca0d823c9394f1a70; own local fixture5352. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits.",
+  "product_commit": "5cbafd072504cb4603bf0daa903472fa0f528247",
   "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "created_at": "2026-10-20T06:42:00.302998+00:00",
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/components/PhysicsLab.tsx",
+      "apps/web/src/features/Work.tsx",
+      "packages/engine/lessonos/study/activities.py",
+      "packages/engine/lessonos/study/submissions.py"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_physics_activity.py::test_demo_accepts_only_synthetic_contact_with_consent",
+      "packages/engine/tests/study/test_physics_activity.py::test_fixed_quantity_changes_result_and_description",
+      "packages/engine/tests/study/test_physics_activity.py::test_interest_contact_is_scoped_to_edition_tutor",
+      "packages/engine/tests/study/test_physics_activity.py::test_interest_survives_reopen_and_retry_does_not_duplicate",
+      "packages/engine/tests/study/test_physics_activity.py::test_invalid_physical_domain_is_rejected",
+      "packages/engine/tests/study/test_physics_variations.py::test_huge_integer_is_rejected_before_float_conversion",
+      "packages/engine/tests/study/test_physics_variations.py::test_poiseuille_varies_length_and_viscosity_with_the_declared_constraint",
+      "packages/engine/tests/study/test_physics_variations.py::test_unrepresentable_ratios_fail_validation_instead_of_division_by_zero",
+      "packages/engine/tests/study/test_submissions.py::test_failure_before_commit_never_returns_receipt",
+      "packages/engine/tests/study/test_submissions.py::test_malformed_or_oversize_upload_is_not_accepted",
+      "packages/engine/tests/study/test_submissions.py::test_peer_asset_rejected_and_private_submission_is_not_listed",
+      "packages/engine/tests/study/test_submissions.py::test_private_image_pdf_and_original_bytes_survive_reopen",
+      "packages/engine/tests/study/test_submissions.py::test_retry_after_commit_returns_one_receipt_and_one_event",
+      "packages/engine/tests/study/test_submissions.py::test_ten_concurrent_submissions_have_distinct_authority_and_receipts",
+      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
+      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
+      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
+      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state",
+      "apps/web/src/__tests__/course-submission.test.tsx :: Taylor sends course-specific frozen parameters and retry retains the original human procedure after a switch",
+      "apps/web/src/__tests__/course-submission.test.tsx :: an upload acknowledged after switching course updates only its original draft"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical/a3 scope retained: Audio/ASR and a new complete a3 lab browser interaction were not observed in this replay. Scientific approval of teaching material and human transfer/mastery are not inferred from numerical correctness."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSED RECEIPT ONLY: statusPASS is proposed scoped result pending independent root review, copy/hash/rights/name validation and original gate. No canonical receipt/state/gate written by this preparer; no globalG0/G1 certification.",
+    "Attestation synthetic:false means genuine REA/provider execution and actual root tests. Pedagogical dataset/actors/model responses are synthetic:true; no real student/account/payment/invite or production data mutation.",
+    "Product binding5cbafd072504cb4603bf0daa903472fa0f528247 is distinct from metadataHEADc718901e091e706a44f8532d54cf2444fbbe2837. Runtime5324/PID43753/dataId05f4a05edde66bab observed separately; source/body/cookie proofs are ordinary sidecars, not REA envelopes.",
+    "Historical donor/a3/C2/fe/2a Evidence paths, hashes and source versions are preserved. Current own sourcegraph does not become fresh donor source research. Historical contract/test summaries are replaced only by explicit successor-derived documents, never normalized provider raw.",
+    "No GPL/AGPL donor code, quiz-bank/vendor asset or manual supplied to product. No automatic framework/library adoption. No performance benchmark or numerical time saving measured.",
+    "Historical rights/scope retained: Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
+    "Historical rights/scope retained: Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
+    "Historical rights/scope retained: Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
+    "Historical rights/scope retained: No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
+    "Historical rights/scope retained: DoenetML0.7.27 package metadata AGPL-3.0-or-later and primary LICENSE retained privately. It ran unmodified locally; no AGPL code supplied to product.",
+    "Historical rights/scope retained: Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents an answer from appearing correct for parameters different from those actually evaluated or recorded in the submission.",
+    "time_saved_minutes": null,
+    "measurement_method": "Root current539Core/API actual log plus exact named collection; Web81a3 on byte-identical Web tree is historical execution. New5cb read-only capture/sourcegraph/compare; no time benchmark."
+  },
   "evidence": [
     {
       "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/connect-capture.json",
@@ -79,71 +147,14 @@
       "kind": "comparison"
     },
     {
-      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/contracts/R2-a3-assimilation.md",
-      "sha256": "29a3aad6a6fe931c1144b5c5628e313ecae128ab7ccca5ce225284432861f03a",
-      "kind": "contract"
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-5cb/contracts/R2-5cb-assimilation.md",
+      "sha256": "b7d8977744702ae04592a5545609b9769896eb597b6da0bce06b56a9c1051b2f"
     },
     {
-      "path": "artifacts/rea-evidence/g1-a3cdf6ba/root-derived/tests/R2-a3-tests.json",
-      "sha256": "073ba982555133d09f089fcbf29f10951515368657ebb2e2c7d4d8d4eab530b8",
-      "kind": "test"
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-5cb/tests/R2-5cb-tests.json",
+      "sha256": "34a099e281d3c53001de05299ad9d14b60af780c37953d363d777cb99d939932"
     }
-  ],
-  "implementation": {
-    "decision": "ADAPT",
-    "source_files": [
-      "apps/web/src/components/PhysicsLab.tsx",
-      "apps/web/src/features/Work.tsx",
-      "packages/engine/lessonos/study/activities.py",
-      "packages/engine/lessonos/study/submissions.py"
-    ],
-    "test_names": [
-      "packages/engine/tests/study/test_physics_activity.py::test_demo_accepts_only_synthetic_contact_with_consent",
-      "packages/engine/tests/study/test_physics_activity.py::test_fixed_quantity_changes_result_and_description",
-      "packages/engine/tests/study/test_physics_activity.py::test_interest_contact_is_scoped_to_edition_tutor",
-      "packages/engine/tests/study/test_physics_activity.py::test_interest_survives_reopen_and_retry_does_not_duplicate",
-      "packages/engine/tests/study/test_physics_activity.py::test_invalid_physical_domain_is_rejected",
-      "packages/engine/tests/study/test_physics_variations.py::test_huge_integer_is_rejected_before_float_conversion",
-      "packages/engine/tests/study/test_physics_variations.py::test_poiseuille_varies_length_and_viscosity_with_the_declared_constraint",
-      "packages/engine/tests/study/test_physics_variations.py::test_unrepresentable_ratios_fail_validation_instead_of_division_by_zero",
-      "packages/engine/tests/study/test_submissions.py::test_failure_before_commit_never_returns_receipt",
-      "packages/engine/tests/study/test_submissions.py::test_malformed_or_oversize_upload_is_not_accepted",
-      "packages/engine/tests/study/test_submissions.py::test_peer_asset_rejected_and_private_submission_is_not_listed",
-      "packages/engine/tests/study/test_submissions.py::test_private_image_pdf_and_original_bytes_survive_reopen",
-      "packages/engine/tests/study/test_submissions.py::test_retry_after_commit_returns_one_receipt_and_one_event",
-      "packages/engine/tests/study/test_submissions.py::test_ten_concurrent_submissions_have_distinct_authority_and_receipts",
-      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
-      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
-      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
-      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
-      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
-      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
-      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state",
-      "apps/web/src/__tests__/course-submission.test.tsx :: Taylor sends course-specific frozen parameters and retry retains the original human procedure after a switch",
-      "apps/web/src/__tests__/course-submission.test.tsx :: an upload acknowledged after switching course updates only its original draft"
-    ],
-    "test_outcome": "PASS"
-  },
-  "unknowns": [
-    "REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
-    "The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
-    "Audio/ASR and a new complete a3 lab browser interaction were not observed in this replay. Scientific approval of teaching material and human transfer/mastery are not inferred from numerical correctness."
-  ],
-  "limitations": [
-    "PRIVATE PROPOSAL ONLY: status PASS is a proposed scoped execution/assimilation result, not an installed receipt, gate execution, global G0/G1 certification, human pilot or production launch. Root must independently validate original schema, hashes, rights, code/test pin and policy before installation.",
-    "Receipt synthetic:false describes genuine REA/provider evidence and real test runs. Pedagogical fixtures, model responses and test actors are synthetic:true; runtime provider deterministic_fake and apiSpendUsd0. No real students, charges, invitations or external accounts were created by this research.",
-    "Historical provider envelopes remain byte-identical with their actual version/origin; current a3 tests and browser observations are separately identified. Derived contracts, sidecars and named-test summaries are our documents, not provider evidence.",
-    "Current network-enabled browser captures are globally incomplete/equality_eligible:false because event collection is incomplete. Completed scenario steps prove only those recorded states; no whole-system equality, blanket network coverage, semantic completeness or remote/source build equivalence is claimed.",
-    "No GPL/AGPL donor code or vendor data is supplied as product code. Original envelopes/licenses remain private ignored research artifacts; only our sanitized assimilation report is suitable for publication. No numerical time saving or performance benchmark was measured.",
-    "DoenetML0.7.27 package metadata AGPL-3.0-or-later and primary LICENSE retained privately. It ran unmodified locally; no AGPL code supplied to product.",
-    "Root corrected nominal Web test metadata with the TypeScript AST: fixture IDs removed and apostrophe-truncated titles restored. Aggregate Web81 is the separate execution proof; declaration templates are not expanded execution telemetry."
-  ],
-  "created_at": "2026-10-20T05:48:44.143368+00:00",
-  "benefit": {
-    "defect_avoided": "Prevents an answer from appearing correct for parameters different from those actually evaluated or recorded in the submission.",
-    "time_saved_minutes": null,
-    "measurement_method": "Qualitative contract/witness comparison plus root executed a3 Core499/Web81 and actual browser/PG reports; no saved-time measurement."
-  }
+  ]
 }

@@ -1,0 +1,82 @@
+{
+  "id": "C7-R1",
+  "priority": "P2",
+  "status": "OPEN_ACTUAL_RED",
+  "sourceCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "observation": {
+    "status": "RED_CONFIRMED_CHILD_401_RETAINS_PRIVATE_SHELL",
+    "productCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+    "metadataCommit": "c718901e091e706a44f8532d54cf2444fbbe2837",
+    "mode": "ACTUAL_HTTP_BROWSER_NATURAL_JWT_EXPIRY_NO_INTERCEPTION",
+    "actor": "student-01",
+    "expiresAt": 1792480415,
+    "startedAt": "2026-10-20T07:09:08.155Z",
+    "requests": [
+      {
+        "method": "GET",
+        "path": "/study/me",
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "path": "/study/editions",
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "path": "/study/workspace",
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "path": "/study/diary",
+        "bodyBytes": 0
+      },
+      {
+        "method": "GET",
+        "path": "/study/resources/a420ccd3424143e2a7541594a5e71201/revisions/efe8801b15904a6c98e9543488c7a646",
+        "bodyBytes": 0
+      }
+    ],
+    "pageErrors": [],
+    "authRevocations": 0,
+    "accountsCreated": 0,
+    "learningWrites": 0,
+    "beforeMe": 200,
+    "before": {
+      "at": "2026-10-20T07:09:12.199Z",
+      "privateShellVisible": true,
+      "deliveries": 17,
+      "selectedIndex": 0,
+      "sourceReferences": 1
+    },
+    "childResponse": {
+      "status": 401,
+      "at": "2026-10-20T07:13:38.526Z",
+      "path": "/study/resources/a420ccd3424143e2a7541594a5e71201/revisions/efe8801b15904a6c98e9543488c7a646"
+    },
+    "after": {
+      "privateShellVisible": true,
+      "deliveries": 17,
+      "cookiePresent": false,
+      "alerts": [
+        "La sessione \u00e8 scaduta. Accedi di nuovo.Riprova"
+      ]
+    },
+    "endedAt": "2026-10-20T07:13:40.582Z",
+    "runnerSha256": "12c8a93a69a8a1ac76419b4b98bdf7a1806f2bf0b86dffb85190d21c1eb3f4f4"
+  },
+  "impact": "Cached private UI remains visible after a verified expired session is rejected by a child read; no server ACL bypass or new unauthorized data observed.",
+  "negativeScope": [
+    "Binary child401 NOT_RUN",
+    "Explicit logout503 NOT_RUN",
+    "No account revocation",
+    "No learning writes"
+  ],
+  "qaRefreshAfterProbe": {
+    "existingAccounts": 14,
+    "newUsers": 0,
+    "revocations": 0,
+    "logSha256": "a15b4b9aefe0e4fe06a3605b24ecc05795fb059a4ced050b54e0432be4cc7bdc"
+  }
+}
