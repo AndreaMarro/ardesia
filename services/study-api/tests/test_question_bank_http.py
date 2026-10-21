@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
 
 from lessonos.study import question_bank
 from lessonos.study.catalog import LEGACY_PACK_SHA256
+from lessonos.study.question_bank_approvals import ApprovalGate
 from lessonos.study.store import StudyStore
 from study_api.app import create_app
 
@@ -45,6 +46,14 @@ def bank_app(tmp_path, monkeypatch):
     store.add_test_member(actors['owner'], 'fluidi', actors['member'].id)
     store.create_edition(actors['owner'], 'analisi', course_id='analisi-1', pack_id='taylor-exp-v1')
     store.add_test_member(actors['owner'], 'analisi', actors['member'].id)
+    # Publication is denied by default. These two synthetic records are the
+    # explicitly approved fixture; nothing here touches the bundled 4.000.
+    published = question_bank.load_bank()
+    gate = ApprovalGate(store, published, 'fluidi')
+    for item in questions:
+        gate.approve(actors['owner'], question_id=item['id'], question_version=item['version'],
+                     content_sha256=published.approval_content_sha256(item['id']),
+                     decision='APPROVED', motivation='fixture sintetica revisionata')
     tokens = {name: store.issue_session(actor) for name, actor in actors.items()}
     app = create_app(store.path, demo=True)
     with TestClient(app) as client:
@@ -97,7 +106,7 @@ def test_practice_discloses_solution_only_in_feedback_and_keeps_pins(bank_app):
     result = client.post(BASE + '/attempts', json={'questionId': 'fixture-1', 'response': '6/4', 'bankSha256': page.json()['bankSha256']})
     assert result.status_code == 200 and result.json()['outcome'] == 'correct'
     assert result.json()['solution'] == 'Spiegazione riservata completa.'
-    assert result.json()['scientificApproval'] == 'NOT_RUN' and result.json()['persisted'] is False
+    assert result.json()['scientificApproval'] == 'APPROVED' and result.json()['persisted'] is False
     assert store.get_edition('fluidi') == before
     assert store.connection.execute('SELECT COUNT(*) FROM study_submissions').fetchone()[0] == 0
 

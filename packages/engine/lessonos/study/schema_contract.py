@@ -1,7 +1,7 @@
 """Recognized canonical schema features, shared by SQLite and PostgreSQL."""
 from .models import StudyError
 
-CURRENT_SCHEMA = 6
+CURRENT_SCHEMA = 7
 CALENDAR_TABLES = frozenset({'study_calendar_targets','study_calendar_intents',
     'study_calendar_mappings','study_calendar_cache','study_calendar_deliveries'})
 # The V3 snapshot is explicit: future additive features are versioned here,
@@ -18,13 +18,24 @@ ADMIN_COLUMNS={
  'study_manual_payment_records':frozenset('id entry_id edition_id student_id revision supersedes_record_id previous_revision status amount_minor currency external_reference external_reference_key recorded_by recorded_at reason offer_snapshot receipt_id'.split()),
 }
 
+# Schema7: the approval decision and its append-only transition trail. Adding a
+# column is a new schema version; a v7 database must already carry every field.
+APPROVAL_COLUMNS={
+ 'study_question_bank_approvals':frozenset('id edition_id bank_id question_id question_version '
+    'content_sha256 bank_sha256 scientific_status editorial_status actor_id created_at motivation '
+    'revoked_at revoked_by revocation_reason supersedes_id'.split()),
+ 'study_question_bank_approval_events':frozenset('id approval_id edition_id bank_id question_id '
+    'question_version content_sha256 event actor_id created_at motivation payload'.split()),
+}
 
-def validate_schema(version,tables,edition_columns,hold_columns=(),*,allow_upgrade=False,admin_columns=None,notebook_columns=None):
+
+def validate_schema(version,tables,edition_columns,hold_columns=(),*,allow_upgrade=False,admin_columns=None,
+                    notebook_columns=None,approval_columns=None):
     if type(version) is not int:
         raise StudyError('database_schema_not_ready',503)
     if version>CURRENT_SCHEMA:
         raise StudyError('newer_schema',503)
-    if version not in (1,2,3,4,5,6):
+    if version not in (1,2,3,4,5,6,7):
         raise StudyError('database_schema_not_ready',503)
     if version>=3 and not TABLES_V3.issubset(tables):
         raise StudyError('database_integrity_failure',503)
@@ -36,6 +47,9 @@ def validate_schema(version,tables,edition_columns,hold_columns=(),*,allow_upgra
     from .scientific_notebook import NOTEBOOK_COLUMNS
     if (version>=6 or set(NOTEBOOK_COLUMNS).intersection(tables)) and (not set(NOTEBOOK_COLUMNS).issubset(tables) or any(
         not required.issubset((notebook_columns or {}).get(table,set())) for table,required in NOTEBOOK_COLUMNS.items())):
+        raise StudyError('database_integrity_failure',503)
+    if (version>=7 or set(APPROVAL_COLUMNS).intersection(tables)) and (not set(APPROVAL_COLUMNS).issubset(tables) or any(
+        not required.issubset((approval_columns or {}).get(table,set())) for table,required in APPROVAL_COLUMNS.items())):
         raise StudyError('database_integrity_failure',503)
     if version<CURRENT_SCHEMA and not allow_upgrade:
         raise StudyError('database_schema_not_ready',503)

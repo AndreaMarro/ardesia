@@ -1,0 +1,124 @@
+-- Schema7: default-deny publication of bundled banks.
+-- The corpus stays immutable; approval is an external decision bound to the
+-- exact question revision and the SHA-256 of its authored content. Revocation
+-- is a durable state transition; the event trail is append-only.
+DO $$ BEGIN
+ IF (SELECT count(*) FROM public.study_schema WHERE version=6)!=1 OR (SELECT count(*) FROM public.study_schema)!=1 THEN
+  RAISE EXCEPTION 'schema6 required before question bank approval migration';
+ END IF;
+END $$;
+CREATE TABLE public.study_question_bank_approvals(
+ id TEXT PRIMARY KEY,
+ edition_id TEXT NOT NULL,
+ bank_id TEXT NOT NULL CHECK(length(bank_id) BETWEEN 1 AND 128),
+ question_id TEXT NOT NULL CHECK(length(question_id) BETWEEN 1 AND 128),
+ question_version INTEGER NOT NULL CHECK(question_version>=1),
+ content_sha256 TEXT NOT NULL CHECK(length(content_sha256)=64),
+ bank_sha256 TEXT NOT NULL CHECK(length(bank_sha256)=64),
+ scientific_status TEXT NOT NULL CHECK(scientific_status IN ('APPROVED','REJECTED')),
+ editorial_status TEXT NOT NULL CHECK(editorial_status IN ('PUBLISHED','WITHHELD','REVOKED')),
+ actor_id TEXT NOT NULL CHECK(length(actor_id) BETWEEN 1 AND 128),
+ created_at DOUBLE PRECISION NOT NULL,
+ motivation TEXT NOT NULL CHECK(length(motivation) BETWEEN 1 AND 2000),
+ revoked_at DOUBLE PRECISION,
+ revoked_by TEXT CHECK(revoked_by IS NULL OR length(revoked_by) BETWEEN 1 AND 128),
+ revocation_reason TEXT CHECK(revocation_reason IS NULL OR length(revocation_reason)<=2000),
+ supersedes_id TEXT REFERENCES public.study_question_bank_approvals(id),
+ CHECK((scientific_status='APPROVED' AND editorial_status IN ('PUBLISHED','REVOKED'))
+    OR (scientific_status='REJECTED' AND editorial_status='WITHHELD')),
+ CHECK((editorial_status='REVOKED')=(revoked_at IS NOT NULL AND revoked_by IS NOT NULL)),
+ CHECK((editorial_status='REVOKED') OR (revocation_reason IS NULL))
+);
+CREATE UNIQUE INDEX study_bank_approval_active
+ ON public.study_question_bank_approvals(edition_id,bank_id,question_id,question_version,content_sha256)
+ WHERE scientific_status='APPROVED' AND editorial_status='PUBLISHED';
+CREATE INDEX study_bank_approval_serving
+ ON public.study_question_bank_approvals(edition_id,bank_id,scientific_status,editorial_status);
+CREATE INDEX study_bank_approval_question
+ ON public.study_question_bank_approvals(edition_id,bank_id,question_id,created_at DESC);
+CREATE TABLE public.study_question_bank_approval_events(
+ id TEXT PRIMARY KEY,
+ approval_id TEXT NOT NULL REFERENCES public.study_question_bank_approvals(id),
+ edition_id TEXT NOT NULL,
+ bank_id TEXT NOT NULL,
+ question_id TEXT NOT NULL,
+ question_version INTEGER NOT NULL,
+ content_sha256 TEXT NOT NULL CHECK(length(content_sha256)=64),
+ event TEXT NOT NULL CHECK(event IN ('APPROVED','REJECTED','REVOKED')),
+ actor_id TEXT NOT NULL CHECK(length(actor_id) BETWEEN 1 AND 128),
+ created_at DOUBLE PRECISION NOT NULL,
+ motivation TEXT NOT NULL CHECK(length(motivation) BETWEEN 1 AND 2000),
+ payload TEXT NOT NULL
+);
+CREATE INDEX study_bank_approval_event_trail
+ ON public.study_question_bank_approval_events(edition_id,bank_id,question_id,created_at);
+
+CREATE FUNCTION ardesia_private.study_bank_approval_guard() RETURNS trigger
+LANGUAGE plpgsql AS $$ BEGIN
+ IF TG_OP='DELETE' THEN RAISE EXCEPTION 'approval_rows_are_not_deletable'; END IF;
+ IF OLD.id IS DISTINCT FROM NEW.id OR OLD.edition_id IS DISTINCT FROM NEW.edition_id
+   OR OLD.bank_id IS DISTINCT FROM NEW.bank_id OR OLD.question_id IS DISTINCT FROM NEW.question_id
+   OR OLD.question_version IS DISTINCT FROM NEW.question_version
+   OR OLD.content_sha256 IS DISTINCT FROM NEW.content_sha256
+   OR OLD.bank_sha256 IS DISTINCT FROM NEW.bank_sha256
+   OR OLD.scientific_status IS DISTINCT FROM NEW.scientific_status
+   OR OLD.actor_id IS DISTINCT FROM NEW.actor_id
+   OR OLD.created_at IS DISTINCT FROM NEW.created_at
+   OR OLD.motivation IS DISTINCT FROM NEW.motivation
+   OR OLD.supersedes_id IS DISTINCT FROM NEW.supersedes_id THEN
+  RAISE EXCEPTION 'approval_identity_is_immutable';
+ END IF;
+ IF NOT (OLD.editorial_status='PUBLISHED' AND NEW.editorial_status='REVOKED') THEN
+  RAISE EXCEPTION 'approval_update_is_not_a_revocation';
+ END IF;
+ RETURN NEW;
+END $$;
+CREATE TRIGGER study_bank_approval_immutable BEFORE UPDATE OR DELETE
+ ON public.study_question_bank_approvals FOR EACH ROW
+ EXECUTE FUNCTION ardesia_private.study_bank_approval_guard();
+
+CREATE FUNCTION ardesia_private.study_bank_approval_event_guard() RETURNS trigger
+LANGUAGE plpgsql AS $$ BEGIN
+ IF TG_OP='INSERT' THEN
+  IF NOT EXISTS(SELECT 1 FROM public.study_question_bank_approvals a
+   WHERE a.id=NEW.approval_id AND a.edition_id=NEW.edition_id
+     AND a.bank_id=NEW.bank_id AND a.question_id=NEW.question_id
+     AND a.question_version=NEW.question_version
+     AND a.content_sha256=NEW.content_sha256) THEN
+   RAISE EXCEPTION 'approval_event_identity_mismatch';
+  END IF;
+  RETURN NEW;
+ END IF;
+ RAISE EXCEPTION 'approval_events_are_append_only';
+END $$;
+CREATE TRIGGER study_bank_approval_event_append_only BEFORE INSERT OR UPDATE OR DELETE
+ ON public.study_question_bank_approval_events FOR EACH ROW
+ EXECUTE FUNCTION ardesia_private.study_bank_approval_event_guard();
+GRANT EXECUTE ON FUNCTION ardesia_private.study_bank_approval_guard(),
+ ardesia_private.study_bank_approval_event_guard() TO ardesia_app;
+
+ALTER TABLE public.study_question_bank_approvals ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.study_question_bank_approval_events ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.study_question_bank_approvals,public.study_question_bank_approval_events
+ FROM PUBLIC,anon,authenticated,ardesia_app;
+GRANT SELECT,INSERT,UPDATE ON public.study_question_bank_approvals TO ardesia_app;
+GRANT SELECT,INSERT ON public.study_question_bank_approval_events TO ardesia_app;
+CREATE POLICY approval_read ON public.study_question_bank_approvals FOR SELECT TO ardesia_app
+ USING(ardesia_private.can_enter(edition_id));
+CREATE POLICY approval_insert ON public.study_question_bank_approvals FOR INSERT TO ardesia_app
+ WITH CHECK(actor_id=(SELECT ardesia_private.actor_id())
+  AND EXISTS(SELECT 1 FROM public.study_editions e WHERE e.id=edition_id
+   AND e.teacher_id=(SELECT ardesia_private.actor_id())));
+CREATE POLICY approval_revoke ON public.study_question_bank_approvals FOR UPDATE TO ardesia_app
+ USING(EXISTS(SELECT 1 FROM public.study_editions e WHERE e.id=edition_id
+   AND e.teacher_id=(SELECT ardesia_private.actor_id())))
+ WITH CHECK(editorial_status='REVOKED' AND revoked_by=(SELECT ardesia_private.actor_id())
+  AND EXISTS(SELECT 1 FROM public.study_editions e WHERE e.id=edition_id
+   AND e.teacher_id=(SELECT ardesia_private.actor_id())));
+CREATE POLICY approval_event_read ON public.study_question_bank_approval_events FOR SELECT TO ardesia_app
+ USING(ardesia_private.can_enter(edition_id));
+CREATE POLICY approval_event_insert ON public.study_question_bank_approval_events FOR INSERT TO ardesia_app
+ WITH CHECK(EXISTS(SELECT 1 FROM public.study_editions e WHERE e.id=edition_id
+   AND e.teacher_id=(SELECT ardesia_private.actor_id())));
+UPDATE public.study_schema SET version=7 WHERE version=6;
+NOTIFY pgrst,'reload schema';
