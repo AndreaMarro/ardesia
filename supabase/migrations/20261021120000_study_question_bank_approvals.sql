@@ -1,9 +1,21 @@
 -- Schema7: default-deny publication of bundled banks.
+-- Canonical order is v6 -> v7 (this migration) -> v8 (exam attempts).
 -- The corpus stays immutable; approval is an external decision bound to the
 -- exact question revision and the SHA-256 of its authored content. Revocation
 -- is a durable state transition; the event trail is append-only.
 DO $$ BEGIN
- IF (SELECT count(*) FROM public.study_schema WHERE version=6)!=1 OR (SELECT count(*) FROM public.study_schema)!=1 THEN
+ IF (SELECT count(*) FROM public.study_schema)!=1 THEN
+  RAISE EXCEPTION 'single schema marker required before question bank approval migration';
+ END IF;
+ IF (SELECT version FROM public.study_schema)=6 THEN
+  NULL;
+ ELSIF (SELECT version FROM public.study_schema)=7
+   AND to_regclass('public.study_exam_attempts') IS NOT NULL
+   AND to_regclass('public.study_question_bank_approvals') IS NULL THEN
+  -- Pre-convergence v7 exam lineage: approvals become the canonical v7 tables
+  -- without bumping; the following exam migration completes v8.
+  NULL;
+ ELSE
   RAISE EXCEPTION 'schema6 required before question bank approval migration';
  END IF;
 END $$;
