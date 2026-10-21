@@ -11,6 +11,8 @@ from fractions import Fraction
 import re
 import unicodedata
 
+from .question_bank import parse_rational
+
 MAX_QUANTITY_LENGTH = 200
 _NUMBER = r'[+-]?(?:[0-9]+(?:[.,][0-9]*)?|[.,][0-9]+)(?:[eE][+-]?[0-9]{1,3})?'
 _QUANTITY = re.compile(rf'^({_NUMBER})(?:\s*/\s*({_NUMBER}))?\s*(.*)$')
@@ -70,22 +72,6 @@ def _normalize(value: str) -> str:
     return re.sub(r'\s+', '', text)
 
 
-def _number(value: str) -> Fraction | None:
-    lowered = value.lower()
-    if 'e' in lowered:
-        exponent = lowered.split('e', 1)[1]
-        try:
-            if abs(int(exponent)) > 30:
-                return None
-        except ValueError:
-            return None
-    try:
-        number = Fraction(value.replace(',', '.'))
-    except (ValueError, ZeroDivisionError, OverflowError):
-        return None
-    return number if abs(number) <= Fraction(10 ** 30) else None
-
-
 def _unit_factor(token: str) -> tuple[tuple[tuple[str, int], ...], Fraction] | None:
     if token in _BASE:
         return _BASE[token]
@@ -140,7 +126,7 @@ def parse_quantity(value: str, *, expected_unit: str | None = None) -> Fraction 
     """Parse a number with optional unit and return it in canonical SI base.
 
     When ``expected_unit`` is supplied the unit dimensions must match exactly.
-    An omitted unit is accepted only for a dimensionless expected unit.
+    An omitted unit inherits the expected unit. Numeric bounds match the bank.
     """
     if not isinstance(value, str) or len(value) > MAX_QUANTITY_LENGTH:
         return None
@@ -153,14 +139,12 @@ def parse_quantity(value: str, *, expected_unit: str | None = None) -> Fraction 
         expected = canonical_unit(expected_unit)
         if expected is None:
             return None
-    number = _number(match.group(1))
+    number_text = match.group(1)
+    if match.group(2) is not None:
+        number_text += '/' + match.group(2)
+    number = parse_rational(number_text)
     if number is None:
         return None
-    if match.group(2) is not None:
-        divisor = _number(match.group(2))
-        if divisor is None or divisor == 0:
-            return None
-        number /= divisor
     raw_unit = match.group(3).strip()
     if not raw_unit:
         return number * (expected[1] if expected is not None else 1)

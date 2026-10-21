@@ -10,7 +10,7 @@ from lessonos.study.store import StudyStore
 from study_api.app import create_app
 
 
-def synthetic_bank(path):
+def synthetic_bank(path, *, completion_answer=None):
     path.mkdir(parents=True)
     (path / 'questions').mkdir()
     questions = []
@@ -35,6 +35,10 @@ def synthetic_bank(path):
             'familyId': f'family-{index:03}', 'lawFamily': f'law-{index:03}',
             'status': 'DRAFT', 'reviewer': None,
         })
+        if kind == 'completion' and completion_answer is not None:
+            questions[-1]['answer'] = dict(completion_answer)
+            questions[-1]['prompt'] = f"Esprimi il valore {completion_answer['text']} nella unità dichiarata."
+            questions[-1]['solution'] = f"Il valore atteso è {completion_answer['text']}."
     payload = json.dumps(questions, ensure_ascii=False).encode()
     (path / 'questions' / 'U1.json').write_bytes(payload)
     manifest = {
@@ -141,3 +145,56 @@ def test_http_partial_review_fails_closed_without_legacy_fallback(tmp_path, monk
         assert started.json()['error'] == 'exam_not_ready'
     store.close()
     clear_bank_cache()
+
+
+def test_http_rational_bank_answers_save_reopen_and_preserve_dimensions(tmp_path, monkeypatch):
+    path = tmp_path / 'bank'
+    questions = synthetic_bank(path, completion_answer={
+        'kind': 'rational', 'exact': '4', 'unit': 'Pa', 'text': '4 Pa', 'accepted': ['4'],
+    })
+    monkeypatch.setitem(BANK_PATHS, BANK_ID, path)
+    clear_bank_cache()
+    store = StudyStore(tmp_path / 'numeric.sqlite')
+    tutor = store.create_principal('numeric-tutor', 'teacher')
+    student = store.create_principal('numeric-student', 'student')
+    store.create_edition(tutor, 'fluidi')
+    store.add_test_member(tutor, 'fluidi', student.id)
+    bank = QuestionBank(path)
+    gate = ApprovalGate(store, bank, 'fluidi')
+    for question in questions:
+        gate.approve(tutor, question_id=question['id'], question_version=1,
+                     content_sha256=bank.approval_content_sha256(question['id']),
+                     decision='APPROVED', motivation='revisione sintetica numerica')
+    token, database = store.issue_session(student), store.path
+    store.close()
+    try:
+        with TestClient(create_app(database, demo=True)) as client:
+            assert client.post('/study/session', json={'token': token}).status_code == 200
+            started = client.post('/study/exams', json={'editionId': 'fluidi'})
+            assert started.status_code == 200
+            attempt = started.json()
+            question_ids = [question['id'] for question in attempt['questions'] if question['type'] == 'completion']
+            answers = dict(zip(question_ids, ['8/2 Pa', '4.0 Pa', '4 pA', '4 J']))
+            saved = client.put(f"/study/exams/{attempt['id']}/answers",
+                               json={'answers': answers, 'expectedRevision': 0})
+            assert saved.status_code == 200
+            assert saved.json()['answerRevision'] == 1
+
+        with TestClient(create_app(database, demo=True)) as client:
+            assert client.post('/study/session', json={'token': token}).status_code == 200
+            reopened = client.get(f"/study/exams/{attempt['id']}")
+            assert reopened.status_code == 200
+            assert reopened.json()['answers'] == answers
+            assert reopened.json()['answerRevision'] == 1
+            submitted = client.post(f"/study/exams/{attempt['id']}/submit", json={'expectedRevision': 1})
+            assert submitted.status_code == 200
+            result = submitted.json()['result']
+            statuses = {question['questionId']: question['status'] for question in result['questions']}
+            assert [statuses[question_id] for question_id in question_ids[:4]] == ['correct', 'correct', 'wrong', 'wrong']
+            assert (result['correct'], result['wrong'], result['omitted'], result['scoreTenths']) == (2, 2, 27, 18)
+            assert result['validity']['valid'] is True
+            reviewed = client.get(f"/study/exams/{attempt['id']}").json()['result']
+            assert reviewed['validity'].pop('checkedAt') >= result['validity'].pop('checkedAt')
+            assert reviewed == result
+    finally:
+        clear_bank_cache()
