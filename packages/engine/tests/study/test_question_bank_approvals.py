@@ -128,6 +128,49 @@ def test_default_deny_and_approval_bound_to_exact_revision(world):
     assert ApprovalGate(world['store'], restored, 'fluidi').servable_ids() == frozenset({question['id']})
 
 
+def test_pending_cursor_survives_approving_the_last_item_on_a_page(world):
+    gate, owner, bank = world['gate'], world['owner'], world['bank']
+    first_page = gate.pending_questions(limit=2)
+    assert len(first_page['items']) == 2
+    cursor = first_page['nextCursor']
+    assert cursor == first_page['items'][-1]['id']
+    question = next(item for item in world['questions'] if item['id'] == cursor)
+    approve(gate, owner, bank, question)
+    next_page = gate.pending_questions(limit=2, after=cursor)
+    assert next_page['total'] == 5
+    assert [item['id'] for item in next_page['items']] == ['fixture-002', 'fixture-003']
+    assert next_page['nextCursor'] == 'fixture-003'
+
+
+def test_pending_cursor_survives_rejecting_the_last_item_on_a_page(world):
+    gate, owner, bank = world['gate'], world['owner'], world['bank']
+    first_page = gate.pending_questions(limit=2)
+    cursor = first_page['nextCursor']
+    question = next(item for item in world['questions'] if item['id'] == cursor)
+    approve(gate, owner, bank, question, decision='REJECTED')
+    next_page = gate.pending_questions(limit=2, after=cursor)
+    assert next_page['total'] == 6
+    assert [item['id'] for item in next_page['items']] == ['fixture-002', 'fixture-003']
+
+
+def test_pending_cursor_survives_revoking_a_previously_approved_item(world):
+    gate, owner, bank = world['gate'], world['owner'], world['bank']
+    first_page = gate.pending_questions(limit=2)
+    cursor = first_page['nextCursor']
+    question = next(item for item in world['questions'] if item['id'] == cursor)
+    approval = approve(gate, owner, bank, question)
+    gate.revoke(owner, approval['approvalId'], reason='revoca sintetica')
+    next_page = gate.pending_questions(limit=2, after=cursor)
+    assert next_page['total'] == 6
+    assert [item['id'] for item in next_page['items']] == ['fixture-002', 'fixture-003']
+
+
+def test_cursor_outside_the_active_filter_is_rejected(world):
+    gate = world['gate']
+    with pytest.raises(StudyError, match='invalid_question_cursor'):
+        gate.pending_questions(limit=2, after='fixture-000', unit_id='U7')
+
+
 def test_content_change_denies_until_the_new_bytes_are_approved(world):
     gate, owner, question = world['gate'], world['owner'], world['questions'][0]
     original = question['solution']

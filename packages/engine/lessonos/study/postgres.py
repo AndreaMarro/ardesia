@@ -120,6 +120,8 @@ def migrate(database_url):
 
 
 class PostgresStudyStore(StudyStore):
+    is_postgres = True
+
     def __init__(self, database_url, data_directory, *, clock=None,
                  administrative=False, auth_user_id=None, auth_session_id=None):
         import psycopg

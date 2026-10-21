@@ -46,6 +46,8 @@ class StudyStore:
 
     initialize=False never runs either legacy or Study schema migrations.
     """
+    is_postgres = False
+
     def __init__(self, path: str | Path, clock=time.time, *, check_same_thread=True, initialize=True):
         self.path = Path(path)
         if not initialize and not self.path.is_file():

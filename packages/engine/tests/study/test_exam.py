@@ -1,5 +1,6 @@
 """Exam contract: original 31-item pack, MUR scoring, privacy and persistence."""
 import json
+from copy import deepcopy
 from pathlib import Path
 
 import pytest
@@ -105,6 +106,20 @@ def test_completion_accepts_equivalent_notation_and_rejects_units_of_the_wrong_q
         grade_answers(pack, {'fis-comp-22': 10})
     with pytest.raises(StudyError, match='invalid_exam_answers'):
         grade_answers(pack, {'unknown': 'x'})
+
+
+def test_completion_bare_number_uses_the_prompt_unit_kpa():
+    pack = deepcopy(load_exam_pack())
+    question = next(item for item in pack['questions'] if item['id'] == 'fis-comp-29')
+    question['numeric'] = {'value': 20, 'tolerance': 0.001, 'units': ['kpa'], 'unit': 'kPa'}
+    question['accepted'] = ['20 kPa']
+    assert detail(grade_answers(pack, {'fis-comp-29': '20'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20.0'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '2e1'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20000 Pa'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20 Pa'}), 'fis-comp-29')['status'] == 'wrong'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20 K'}), 'fis-comp-29')['status'] == 'wrong'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20000 kPa'}), 'fis-comp-29')['status'] == 'wrong'
 
 
 def test_attempt_hides_answers_before_submission_and_survives_reopen(tmp_path):

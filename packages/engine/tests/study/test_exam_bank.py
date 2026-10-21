@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from lessonos.study import exam, question_bank
+from lessonos.study.exam_bank import _question
 from lessonos.study.exam import (
     DURATION_SECONDS,
     get_attempt,
@@ -120,6 +121,15 @@ def test_start_uses_only_approved_bank_and_never_leaks_solutions(bank_world):
     assert all('explanation' not in question and 'answer' not in question
                for question in attempt['questions'])
     assert attempt['answerRevision'] == 0
+
+
+def test_question_revision_above_one_is_unsupported_not_silently_served(bank_world):
+    full = bank_world['bank'].review_record('synth-000')
+    full['version'] = 2
+    approval = {'approvalId': 'synthetic', 'questionVersion': 2,
+                'contentSha256': 'a' * 64}
+    with pytest.raises(StudyError, match='exam_question_version_unsupported'):
+        _question(full, approval)
 
 
 def test_cas_rejects_stale_writes_and_accepts_monotonic_revision(bank_world):
