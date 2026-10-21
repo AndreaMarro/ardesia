@@ -335,6 +335,31 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         edition=public_edition(store,editionId,authenticate(request,store) if request.cookies.get('study_session') else None)
         return load_coursepack(edition['packId'],edition['packVersion'])
 
+    @app.get('/study/exams')
+    def exams(editionId: str, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.exam import list_attempts
+        return list_attempts(store,authenticate(request,store),editionId)
+
+    @app.post('/study/exams')
+    def start_exam(body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.exam import start_attempt
+        return start_attempt(store,authenticate(request,store),body.get('editionId'))
+
+    @app.get('/study/exams/{attempt_id}')
+    def exam(attempt_id: str, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.exam import get_attempt
+        return get_attempt(store,authenticate(request,store),attempt_id)
+
+    @app.put('/study/exams/{attempt_id}/answers')
+    def exam_answers(attempt_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.exam import save_answers
+        return save_answers(store,authenticate(request,store),attempt_id,body.get('answers'))
+
+    @app.post('/study/exams/{attempt_id}/submit')
+    def exam_submit(attempt_id: str, body: dict, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.exam import submit_attempt
+        return submit_attempt(store,authenticate(request,store),attempt_id,body.get('answers') if 'answers' in body else None)
+
     @app.post('/study/interests')
     def interest(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.interests import record_interest

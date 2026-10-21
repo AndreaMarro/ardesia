@@ -8,12 +8,14 @@ export type View =
   | "classroom"
   | "work"
   | "review"
+  | "exam"
   | "materials";
 const items: {
   id: View;
   label: string;
   studentLabel?: string;
   teacherOnly?: boolean;
+  studentOnly?: boolean;
   icon: string;
 }[] = [
   { id: "today", label: "Oggi", icon: "M3 10 12 3l9 7v11h-6v-7H9v7H3Z" },
@@ -34,6 +36,12 @@ const items: {
     label: "Da correggere",
     teacherOnly: true,
     icon: "M4 4h16v16H4zM8 12l3 3 6-7",
+  },
+  {
+    id: "exam",
+    label: "Prova di fisica",
+    studentOnly: true,
+    icon: "M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4",
   },
   { id: "materials", label: "Materiali", icon: "M3 6h7l2 2h9v12H3z" },
 ];
@@ -102,7 +110,7 @@ export function Shell({
         )}
         <nav className="primary-navigation" aria-label="Navigazione principale">
           {items
-            .filter((i) => !i.teacherOnly || tutor)
+            .filter((i) => (!i.teacherOnly || tutor) && (!i.studentOnly || !tutor))
             .map((item) => (
               <button
                 key={item.id}

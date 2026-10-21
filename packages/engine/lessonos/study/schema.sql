@@ -205,3 +205,25 @@ CREATE TABLE IF NOT EXISTS study_notebook_snapshots(
  state TEXT NOT NULL, sha256 TEXT NOT NULL CHECK(length(sha256)=64)
 );
 UPDATE study_schema SET version=6 WHERE version=5;
+
+CREATE TABLE IF NOT EXISTS study_exam_attempts(
+ id TEXT PRIMARY KEY,
+ edition_id TEXT NOT NULL REFERENCES study_editions(id) ON DELETE CASCADE,
+ student_id TEXT NOT NULL REFERENCES study_principals(id) ON DELETE CASCADE,
+ pack_id TEXT NOT NULL,
+ pack_version INTEGER NOT NULL CHECK(pack_version>=1),
+ pack_sha256 TEXT NOT NULL CHECK(length(pack_sha256)=64),
+ question_order TEXT NOT NULL,
+ answers TEXT NOT NULL DEFAULT '{}',
+ status TEXT NOT NULL CHECK(status IN ('in_progress','submitted','expired')),
+ started_at REAL NOT NULL,
+ deadline_at REAL NOT NULL,
+ submitted_at REAL,
+ score_tenths INTEGER,
+ receipt_id TEXT,
+ result TEXT,
+ pack_snapshot TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS study_exam_attempts_student ON study_exam_attempts(student_id,edition_id,started_at DESC);
+CREATE INDEX IF NOT EXISTS study_exam_attempts_open ON study_exam_attempts(status,deadline_at);
+UPDATE study_schema SET version=7 WHERE version=6;
