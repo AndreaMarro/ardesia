@@ -25,7 +25,7 @@ The student exam is explicitly unavailable. Mini-course dates and sales remain u
 | Core/public API regressions | PASS | 49 tests |
 | Generated artifact drift control | PASS | Tampered artifact rejected; restored artifact accepted |
 | Browser static preview | PASS | 4 Playwright tests: 390, 820, 1440 pixels, headers and missing route |
-| Real protected Vercel URL | Recorded in draft PR | Deployment metadata and remote verification are added to the PR after deployment |
+| Real protected Vercel URL | BLOCKED / NOT_DEPLOYED as accepted preview | First deployment received production target; contained by project pause; next preview is BLOCKED |
 | Authenticated cloud Study runtime | NOT_RUN | Not part of this static preview |
 
 Browser tests check navigation, keyboard-adjusted radius, Q ratio 16 and pressure ratio 1/16 at r/r0=2, invalidation after input changes, absence of API/external network requests, no page errors, no horizontal overflow, and security headers. Screenshots below are from the final local static build, not a live REA capture or a claim about remote rendering. Chrome for Testing 156.0.8078.47 was used via `ARDESIA_BROWSER`; the Playwright browser download was corrupt in this environment. CI uses the pinned Playwright browser installation.
@@ -36,7 +36,7 @@ Browser tests check navigation, keyboard-adjusted radius, Q ratio 16 and pressur
 
 ## Deployment separation
 
-The existing root `vercel.json` continues to build Studio; the `pro/ardesia-*` branch prefix is disabled for automatic deployment before creating remote branches. The new project `ardesia-fisica-preview` has no Git link, no production target, no custom domain, no environment variables, and SSO protection for preview deployments. No paid feature is selected. The connector did not expose billing/plan details, so this is not a measurement of hosting cost.
+The existing root `vercel.json` continues to build Studio; the `pro/ardesia-*` branch prefix is disabled for automatic deployment before creating remote branches. The new project `ardesia-fisica-preview` has no Git link or environment variables, and SSO protection for preview deployments. The intended nonproduction target was not respected by the platform on its first deployment; the incident below records the actual state. No paid feature is selected. The connector did not expose billing/plan details, so this is not a measurement of hosting cost.
 
 `apps/web/vercel.json` documents a future source build rooted at `apps/web`. For the first deployment the already verified `dist-public` files are uploaded through the Vercel API, with a static root configuration: no install/build command, output `.`, the same headers, no catch-all rewrite. This avoids relying on Python availability in Vercel's build image. `gitMetadata.commitSha` records the source commit; deployment ID and exact URL are recorded in the PR. No backend or functions are deployed. The CSP forbids connections and form submissions.
 
@@ -52,3 +52,25 @@ npm run e2e:public --workspace @ardesia/web
 ```
 
 `ARDESIA_BROWSER` can select an installed compatible Chrome executable. The test server is a plain static server with the deployment headers, no API proxy and no SPA fallback. Scientific model limits are unchanged; a passing build is not production authentication certification.
+
+## Deployment incident and current handoff
+
+**Accepted protected preview: NOT_DEPLOYED.** The source build is commit `6d4e149d26ba7885e3e45d320402d060e2987270` in draft PR #278. Subsequent changes to this report do not change the built assets.
+
+The first API call omitted `target`, as the REST reference describes for Preview. Vercel nevertheless created `dpl_3pJhCk6A8EWzKQp44VJGQ1M149qc` with `target: production`. This was an execution error relative to the mandate. The platform's separate [first-deployment rule](https://vercel.com/docs/deployments/environments#first-deployment) explains the exception: every new project's first deployment is Production, even when Preview is requested. I had not accounted for that rule before the call.
+
+The deployment reached READY before cancellation; cancel returned 400. An anonymous read returned HTTP200. Only the tested public static assets were included, with no real data or secrets. An attempted project SSO change to `all_except_custom_domains` was rejected by automatic approval review as a security-weakening change; it was not applied or retried. The project's preview SSO setting remains unchanged.
+
+The new isolated project was then **paused** using the Vercel connector. A fresh anonymous request to the erroneous deployment returned **HTTP503 / DEPLOYMENT_PAUSED**. Studio and its pre-existing domains were not modified. New default project aliases created by that first deployment are part of the paused project; this is not a claim that no production-targeted deployment ever occurred.
+
+A subsequent deployment with `forceNew: 1` and omitted target has the correct Preview representation (`target: null`) but is blocked by the pause:
+
+- Project: `prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`.
+- Candidate deployment: `dpl_EosAsznY2QX5Wn5rGPwd27kvMSWz`.
+- Candidate URL: `https://ardesia-fisica-preview-n9hq62dvb-andreas-projects-6d4e9791.vercel.app`.
+- State: `BLOCKED`; source SHA matches the tested build above.
+- Protected remote home/CSS/JS/navigation/PhysicsLab acceptance: **NOT_RUN**.
+
+The available connector has no deployment-delete operation, the local Vercel CLI has no credentials, and the dashboard browser is at the login wall. The remaining operation is concrete: remove only the erroneous production deployment, preserve the blocked preview record so the project is not empty, then resume and create a fresh preview from the verified assets. Recheck target, SSO and all remote acceptance conditions before calling it online. Do not resume while the unwanted production deployment is still active; do not delete all deployment records and trigger the first-deployment rule again.
+
+GitHub Actions for the code commit passed: CI run [39688449000](https://github.com/AndreaMarro/ardesia/actions/runs/39688449000), including public build and real browser without API, and Studio readiness [39688448964](https://github.com/AndreaMarro/ardesia/actions/runs/39688448964). These passes do not close the Vercel deployment blocker.
