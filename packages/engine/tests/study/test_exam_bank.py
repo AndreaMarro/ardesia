@@ -21,12 +21,12 @@ from lessonos.study.store import StudyStore
 from legacy_exam_fixture import insert_historical_attempt
 
 
-def synthetic_bank(path, *, count=31):
+def synthetic_bank(path, *, count=31, mcq_count=21, law_family=None):
     path.mkdir(parents=True)
     (path / 'questions').mkdir()
     questions = []
     for index in range(count):
-        kind = 'multiple_choice' if index < 21 else 'completion'
+        kind = 'multiple_choice' if index < mcq_count else 'completion'
         value = index + 1
         question = {
             'id': f'synth-{index:03}',
@@ -55,7 +55,7 @@ def synthetic_bank(path, *, count=31):
             'difficulty': {'level': 'base', 'rank': 1, 'reason': 'Sintetico'},
             'descriptors': {'calculatorAllowed': False, 'scope': 'syllabus_core'},
             'familyId': f'family-{index:03}',
-            'lawFamily': f'law-{index:03}',
+            'lawFamily': law_family or f'law-{index:03}',
             'status': 'DRAFT',
             'reviewer': None,
         }
@@ -164,6 +164,41 @@ def test_submit_is_atomic_and_marks_revoked_snapshot_invalid(bank_world):
         start_attempt(store, bank_world['peer'], 'fluidi')
 
 
+def test_reapproval_cannot_resurrect_a_revoked_snapshot(bank_world):
+    store = bank_world['store']
+    student = bank_world['student']
+    attempt = start_attempt(store, student, 'fluidi')
+    target_id = attempt['questions'][0]['id']
+    approvals = {question['id']: approval for approval, question in
+                 zip(bank_world['approvals'], bank_world['questions'])}
+    old_approval = approvals[target_id]
+    submitted = submit_attempt(store, student, attempt['id'], expected_revision=0)
+    assert submitted['result']['validity']['valid'] is True
+
+    bank_world['gate'].revoke(bank_world['owner'], old_approval['approvalId'],
+                              reason='revoca prima della riapprovazione')
+    invalid = get_attempt(store, student, attempt['id'])
+    assert invalid['result']['validity']['valid'] is False
+    assert target_id in invalid['result']['validity']['invalidQuestionIds']
+
+    replacement = bank_world['gate'].approve(
+        bank_world['owner'], question_id=target_id,
+        question_version=old_approval['questionVersion'],
+        content_sha256=old_approval['contentSha256'],
+        decision='APPROVED', motivation='riapprovazione dello stesso contenuto')
+    assert replacement['approvalId'] != old_approval['approvalId']
+
+    still_invalid = get_attempt(store, student, attempt['id'])
+    assert still_invalid['result']['validity']['valid'] is False
+    assert target_id in still_invalid['result']['validity']['invalidQuestionIds']
+
+    fresh = start_attempt(store, student, 'fluidi')
+    assert fresh['id'] != attempt['id']
+    assert any(question['id'] == target_id for question in fresh['questions'])
+    fresh_result = submit_attempt(store, student, fresh['id'], expected_revision=0)
+    assert fresh_result['result']['validity']['valid'] is True
+
+
 def test_synthetic_31_question_flow_saves_reopens_and_grades(bank_world):
     store = bank_world['store']
     student = bank_world['student']
@@ -194,9 +229,10 @@ def test_synthetic_31_question_flow_saves_reopens_and_grades(bank_world):
     assert {question['questionId']: question for question in reviewed['result']['questions']}[second['id']]['status'] == 'wrong'
 
 
-def _unready_bank_world(tmp_path, monkeypatch, *, approved=0, rejected=0, revoke=False):
+def _unready_bank_world(tmp_path, monkeypatch, *, approved=0, rejected=0, revoke=False,
+                        mcq_count=21, law_family=None):
     path = tmp_path / 'bank'
-    questions = synthetic_bank(path)
+    questions = synthetic_bank(path, mcq_count=mcq_count, law_family=law_family)
     monkeypatch.setitem(BANK_PATHS, BANK_ID, path)
     clear_bank_cache()
     store = StudyStore(tmp_path / 'study.sqlite')
@@ -238,6 +274,9 @@ def test_bank_exam_requires_all_31_servable_approvals(tmp_path, monkeypatch,
                                 rejected=rejected)
     try:
         if allowed:
+            listed = list_attempts(world['store'], world['student'], 'fluidi')
+            assert listed['pack']['ready'] is True
+            assert listed['pack']['approvedCount'] == 31
             attempt = start_attempt(world['store'], world['student'], 'fluidi')
             assert len(attempt['questions']) == 31
             assert all(len(question['options']) == 5 for question in attempt['questions']
@@ -259,6 +298,29 @@ def test_revoked_approval_does_not_count_towards_the_31(tmp_path, monkeypatch):
     world = _unready_bank_world(tmp_path, monkeypatch, approved=31, revoke=True)
     try:
         assert len(world['gate'].servable_approvals()) == 30
+        listed = list_attempts(world['store'], world['student'], 'fluidi')
+        assert listed['pack']['ready'] is False
+        assert listed['pack']['approvedCount'] == 30
+        with pytest.raises(StudyError, match='exam_not_ready'):
+            start_attempt(world['store'], world['student'], 'fluidi')
+    finally:
+        world['store'].close()
+        clear_bank_cache()
+
+
+@pytest.mark.parametrize('mcq_count,law_family', [
+    (31, None),
+    (21, 'law-shared'),
+])
+def test_pack_summary_rejects_a_31_question_paper_that_cannot_be_composed(
+        tmp_path, monkeypatch, mcq_count, law_family):
+    world = _unready_bank_world(tmp_path, monkeypatch, approved=31,
+                                mcq_count=mcq_count, law_family=law_family)
+    try:
+        listed = list_attempts(world['store'], world['student'], 'fluidi')
+        assert listed['pack']['ready'] is False
+        assert listed['pack']['approvedCount'] == 31
+        assert 'composizione non disponibile' in listed['pack']['subtitle']
         with pytest.raises(StudyError, match='exam_not_ready'):
             start_attempt(world['store'], world['student'], 'fluidi')
     finally:
