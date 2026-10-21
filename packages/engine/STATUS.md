@@ -1222,5 +1222,7 @@ PostgreSQL live, trigger e RLS: NOT_RUN per assenza runtime e
 `ARDESIA_SUPABASE_ENV_FILE`. Restano incompatibili la forma MCQ (4 opzioni
 intere vs 5 opzioni A–E), il pack fisso e l'autosalvataggio; nessuna
 integrazione semantica dichiarata. Ramo
-`codex/study-schema-convergence-20261021`, PR in bozza con base #272. Dettaglio
-in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`. Nessun merge o deploy.
+`codex/study-schema-convergence-20261021`, PR in bozza #273 con base #272
+(head `baafe1cfbafbfcd74cbbf4ba26458bff347407c1`); tutti i job CI verdi.
+Dettaglio in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`. Nessun merge o
+deploy.

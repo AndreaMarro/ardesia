@@ -75,14 +75,15 @@ Ambiente: macOS, Python 3.13.14 via `uv`, SQLite locale.
 | Studio mirato | `uv run --project services/study-api python -m pytest packages/engine/tests/study services/study-api/tests -q -rs` | **733 passed, 18 skipped** |
 | Web typecheck | `npm run typecheck:web` | pass |
 | Web build | `npm run build:web` | pass |
-| Web test | `npm run test:web` | 243/244; 1 flake pre-esistente |
+| Web test | `npm run test:web` | 243/244 locale; CI web verde |
 
 Gli skip engine/API sono i contratti Supabase live, i modelli live e il corpus
 dispense non presenti in CI; nessuno è un test di convergenza. Il flake web è
 `session-boundary.test.tsx` ("Consegne e feedback" non trovato entro il timeout
 di 1 s sotto carico parallelo): passa da solo e fallisce anche sul HEAD #272
 `73121ef0` con lo stesso comando, quindi non è introdotto da questa convergenza.
-Non è stato disabilitato né modificato.
+Non è stato disabilitato né modificato. Sulla PR draft #273 tutti i job CI
+(engine, study-api, study-mcp, web, studio, hygiene, e2e advisory) sono verdi.
 
 `packages/engine/tests/study/test_schema_convergence.py` copre:
 
