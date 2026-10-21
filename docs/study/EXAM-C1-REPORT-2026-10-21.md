@@ -4,7 +4,11 @@ Data: 2026-10-21. Branch: `codex/study-exam-c1-20261021`. Base: `178a737c`
 (head della PR #275, `codex/study-exam-integrated-20261021`). Worktree:
 `/tmp/opencode/ardesia-wt/examint`.
 
-Nessun merge, deploy, pubblicazione o approvazione reale è stato eseguito.
+Nessun merge né deploy di produzione è stato eseguito. La PR #276 ha però
+creato automaticamente un preview Vercel perché il branch non era
+nell'allowlist: il preview non è stato rimosso (CLI Vercel locale non
+autenticato) e il branch è ora escluso da `git.deploymentEnabled` per
+impedire nuovi deploy.
 
 ## Perimetro
 
@@ -180,7 +184,8 @@ certificazione scientifica. **Non va committata**: il repository è pubblico.
 | Dispositivi fisici, screen reader, Pencil | `NOT_RUN` | Fuori dal perimetro locale |
 | Revisione scientifica umana dei 4.000 quesiti | `NOT_RUN` | Nessuna approvazione reale |
 | Calibrazione empirica della difficoltà | `NOT_RUN` | La banca dichiara `editorial_not_student_calibrated` |
-| Merge, deploy, produzione | `NOT_RUN` | Non autorizzati |
+| Preview Vercel automatico | **CREATO, non rimosso** | PR #276; CLI Vercel locale non autenticato. Branch aggiunto a `deploymentEnabled: false` |
+| Merge, deploy di produzione | `NOT_RUN` | Non autorizzati |
 
 ## Rischi residui
 
@@ -194,6 +199,9 @@ certificazione scientifica. **Non va committata**: il repository è pubblico.
   un punto di partenza per la revisione umana.
 - Il flake web osservato una volta in `session-boundary.test.tsx` non è stato
   riprodotto nel rerun completo; resta un rischio di instabilità noto.
+- Il preview Vercel `ardesia-lavagna-git-codex-stud-babc13-andreas-projects-6d4e9791.vercel.app`
+  resta raggiungibile finché non viene eliminato dalla dashboard Vercel. Non
+  è un deploy di produzione e non contiene dati reali.
 
 ## Riproduzione
 
