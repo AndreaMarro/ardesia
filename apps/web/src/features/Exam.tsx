@@ -478,7 +478,9 @@ export function Exam({ data }: { data: Workspace }) {
             </p>
             {!examReady && (
               <p role="status">
-                Servono 31 quesiti approvati per aprire la prova.
+                {(listing.pack.approvedCount ?? 0) >= 31
+                  ? "I quesiti approvati non bastano a comporre la prova: servono 21 scelte e 10 completamenti con famiglie distinte."
+                  : "Servono 31 quesiti approvati per aprire la prova."}
               </p>
             )}
           </div>
@@ -491,7 +493,9 @@ export function Exam({ data }: { data: Workspace }) {
               ? "Preparazione…"
               : examReady
                 ? "Inizia la prova"
-                : "In attesa delle approvazioni"}
+                : (listing.pack.approvedCount ?? 0) >= 31
+                  ? "Composizione non disponibile"
+                  : "In attesa delle approvazioni"}
           </button>
         </section>
       ) : (
@@ -663,7 +667,7 @@ function ExamRunner({
             </fieldset>
           ) : (
             <label className="exam-completion">
-              {question.format}
+              Testo o numero
               <input
                 type="text"
                 inputMode="text"
@@ -864,6 +868,7 @@ function ExamResultView({
               </dl>
               <details open={question.status !== "correct"}>
                 <summary>Spiegazione</summary>
+                <p>{question.explanation}</p>
                 {question.solutionSteps?.length ? (
                   <ol className="exam-solution-steps">
                     {question.solutionSteps.map((step) => (
@@ -873,9 +878,7 @@ function ExamResultView({
                       </li>
                     ))}
                   </ol>
-                ) : (
-                  <p>{question.explanation}</p>
-                )}
+                ) : null}
               </details>
             </article>
           ))}

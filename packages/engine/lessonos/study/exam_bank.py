@@ -113,21 +113,18 @@ def _question(full, approval):
     }
 
 
-def build_bank_pack(store, principal, edition, edition_id, seed, *, profile_id=BANK_PROFILE_ID):
-    bank_id = bound_bank_id(edition)
-    if bank_id is None:
-        return None
-    _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
+def _exam_profile(bank, profile_id):
     profile = _profile(bank, profile_id)
     if (profile.get('questionCount') != TOTAL_QUESTIONS
             or profile.get('multipleChoice') != exam_engine.MCQ_COUNT
             or profile.get('completion') != exam_engine.COMPLETION_COUNT
             or profile.get('durationSeconds') != exam_engine.DURATION_SECONDS):
         raise StudyError('exam_profile_mismatch', 409)
-    gate = ApprovalGate(store, bank, edition_id)
-    approvals = gate.servable_approvals()
-    if len(approvals) < TOTAL_QUESTIONS:
-        raise StudyError('exam_not_ready', 409)
+    return profile
+
+
+def _compose_questions(bank, approvals, profile_id, seed):
+    """Run the same composition and projection used by a real attempt."""
     try:
         selection = bank.exam(seed, profile_id=profile_id, published_ids=frozenset(approvals))
     except StudyError as error:
@@ -143,6 +140,20 @@ def build_bank_pack(store, principal, edition, edition_id, seed, *, profile_id=B
         if approval is None:
             raise StudyError('exam_not_ready', 409)
         questions.append(_question(bank.review_record(question_id), approval))
+    return questions
+
+
+def build_bank_pack(store, principal, edition, edition_id, seed, *, profile_id=BANK_PROFILE_ID):
+    bank_id = bound_bank_id(edition)
+    if bank_id is None:
+        return None
+    _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
+    profile = _exam_profile(bank, profile_id)
+    gate = ApprovalGate(store, bank, edition_id)
+    approvals = gate.servable_approvals()
+    if len(approvals) < TOTAL_QUESTIONS:
+        raise StudyError('exam_not_ready', 409)
+    questions = _compose_questions(bank, approvals, profile_id, seed)
     return {
         'schemaVersion': exam_engine.PACK_SCHEMA_BANK,
         'id': bank_pack_id(bank_id, profile_id),
@@ -167,22 +178,32 @@ def build_bank_pack(store, principal, edition, edition_id, seed, *, profile_id=B
 
 
 def pack_summary(store, edition, edition_id):
-    """Listing projection for an activated bank, without sampling questions."""
+    """Listing projection whose readiness matches an actual attempt start."""
     bank_id = bound_bank_id(edition)
     if bank_id is None:
         return None
     bank = load_bank(bank_id)
-    profile = _profile(bank, BANK_PROFILE_ID)
-    approved_count = len(ApprovalGate(store, bank, edition_id).servable_approvals())
-    ready = approved_count >= TOTAL_QUESTIONS
+    profile = _exam_profile(bank, BANK_PROFILE_ID)
+    approvals = ApprovalGate(store, bank, edition_id).servable_approvals()
+    approved_count = len(approvals)
+    ready = False
+    if approved_count >= TOTAL_QUESTIONS:
+        try:
+            _compose_questions(bank, approvals, BANK_PROFILE_ID, 'readiness-probe')
+            ready = True
+        except StudyError:
+            ready = False
+    subtitle = ('31 quesiti approvati · 21 scelte + 10 completamenti'
+                if ready else
+                (f'{approved_count} quesiti approvati · composizione non disponibile'
+                 if approved_count >= TOTAL_QUESTIONS else
+                 f'{approved_count}/31 quesiti approvati · prova non disponibile'))
     return {
         'id': bank_pack_id(bank_id, BANK_PROFILE_ID),
         'version': exam_engine.PACK_VERSION,
         'schemaVersion': exam_engine.PACK_SCHEMA_BANK,
         'title': 'Fisica — Prova di semestre',
-        'subtitle': ('31 quesiti approvati · 21 scelte + 10 completamenti'
-                     if ready else
-                     f'{approved_count}/31 quesiti approvati · prova non disponibile'),
+        'subtitle': subtitle,
         'ready': ready,
         'approvedCount': approved_count,
         'durationSeconds': profile['durationSeconds'],
@@ -209,7 +230,7 @@ def result_validity(store, edition_id, pack):
         invalid = []
         for question in pack['questions']:
             approval = approvals.get(question['id'])
-            if (approval is None or approval['approvalId'] in revoked
+            if (approval is None or question['approvalId'] in revoked
                     or approval['questionVersion'] != question['questionVersion']
                     or approval['contentSha256'] != question['contentSha256']):
                 invalid.append(question['id'])

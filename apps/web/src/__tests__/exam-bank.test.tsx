@@ -187,11 +187,13 @@ test("a bank exam sends option ids, CAS revision and shows an invalid result", a
     expect(put?.body).toEqual({ answers: { q1: "C" }, expectedRevision: 3 });
   });
   fireEvent.click(screen.getByRole("button", { name: "Successiva" }));
+  expect(screen.getByText("Testo o numero")).toBeTruthy();
   fireEvent.click(screen.getByRole("button", { name: "Consegna" }));
   await screen.findByText("Consegnare adesso?");
   fireEvent.click(screen.getByRole("button", { name: "Consegna definitivamente" }));
   await screen.findByText("La prova è consegnata.");
   expect(screen.getByText("Prova non valida.")).toBeTruthy();
+  expect(screen.getByText("Spiegazione completa.")).toBeTruthy();
   expect(screen.getByText("Passo uno")).toBeTruthy();
   const submitted = calls.find(
     (call) => call.method === "POST" && call.path.endsWith("/submit"),
