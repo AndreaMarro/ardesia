@@ -1,0 +1,24 @@
+{
+  "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+  "sourceCommit": "e9c87b072913744f6cc6df21217b8856cddfef1f",
+  "bankId": "physics-semestre-2026",
+  "bankVersion": 1,
+  "manifestSHA256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896",
+  "humanReviewRequired": true,
+  "items": [
+    {
+      "questionId": "u5-temperature-difference-13",
+      "questionRevision": 1,
+      "questionContentSHA256": "1b170cd3f1168bbe851125be7dfa4c6cdf5165772a6f19429b82c25389686e2a",
+      "shard": "questions/U5-01.json",
+      "state": "HOLD",
+      "severity": "P2",
+      "reason": "Prompt says without ratios between temperatures, then asks ratio of Celsius values; mathematical result is not an absolute-temperature ratio.",
+      "humanReviewRequired": true,
+      "productionOrDatabaseMutation": false
+    }
+  ],
+  "allOtherQuestionsRemain": "DRAFT_WITHOUT_HUMAN_APPROVAL",
+  "publicationAuthorized": false,
+  "productMutation": false
+}

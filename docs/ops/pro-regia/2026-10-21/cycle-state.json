@@ -1,0 +1,132 @@
+{
+  "observedAt": "2026-10-21T07:31:59.552563+00:00",
+  "reviewBranch": "codex/ardesia-pro-regia-20261021",
+  "reviewBase": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+  "bankSource": "e9c87b072913744f6cc6df21217b8856cddfef1f",
+  "deepseek": {
+    "status": "WAITING_FOR_HANDOFF",
+    "remoteDevices": 0,
+    "authorshipAttributed": false
+  },
+  "producer": {
+    "status": "DELIVERY_RECEIVED_DRAFT",
+    "pr": 270,
+    "received": 4000,
+    "schemaValidated": 4000,
+    "independentScienceCalculations": 10,
+    "humanApproved": 0,
+    "canonicallyImportedThroughApprovalPipeline": 0,
+    "publishedThroughApprovalPipeline": 0
+  },
+  "rea": "REA_NOT_ACCESSIBLE",
+  "newCompleteSubsystemsAcquired": 0,
+  "productionMutations": 0,
+  "ownership": [
+    "bin/pro-regia/",
+    "docs/ops/pro-regia/2026-10-21/"
+  ],
+  "tests": [
+    {
+      "scope": "PR269 engine tests/study",
+      "passed": 436,
+      "skipped": 18,
+      "exit": 0
+    },
+    {
+      "scope": "PR269 API tests/test_exam_http.py",
+      "passed": 3,
+      "exit": 0
+    },
+    {
+      "scope": "PR269 independent boundaries incl MUR",
+      "passed": 2,
+      "failed": 6,
+      "exit": 1
+    },
+    {
+      "scope": "PR269 UI actual HTTP autosave",
+      "passed": 0,
+      "failed": 1,
+      "exit": 1
+    },
+    {
+      "scope": "PR270 bank API approval/access/aliases",
+      "passed": 2,
+      "failed": 1,
+      "exit": 1
+    },
+    {
+      "scope": "Inbox adapter final unittest",
+      "passed": 5,
+      "failed": 0,
+      "exit": 0
+    },
+    {
+      "scope": "Inbox adapter corpus round trips",
+      "passed": 4000,
+      "failed": 0,
+      "exit": 0
+    },
+    {
+      "scope": "PR270 producer validator rerun",
+      "records": 4000,
+      "errors": 0,
+      "exit": 0
+    }
+  ],
+  "notRun": [
+    "PostgreSQL live/auth/RLS/storage/restore",
+    "browser layouts390/820/1440",
+    "full API suite completed in this run",
+    "combined PR269+270 runtime",
+    "human approvals",
+    "G2 real course"
+  ],
+  "interruptedRuns": [
+    {
+      "scope": "full API suite in initial sandbox",
+      "exit": 130,
+      "testsReported": 0,
+      "status": "NOT_COMPLETED"
+    }
+  ],
+  "nextTask": {
+    "owner": "DeepSeek after explicit PR270 file handoff",
+    "action": "Enforce scientific/editorial approval before serving questions to students",
+    "acceptance": "DRAFT denied/excluded; tutor private review allowed; only synthetic exact-revision approved fixture served"
+  },
+  "delivery": {
+    "pr": 271,
+    "firstCommit": "bf205d2dff093a1b75e9da7c5c80980706ab0e33",
+    "publishedFilesByteVerified": 48,
+    "workerFilesModified": 0,
+    "logFormatting": {
+      "reason": "GitHub hygiene whitespace gate",
+      "originalsCommit": "bf205d2dff093a1b75e9da7c5c80980706ab0e33",
+      "changes": [
+        {
+          "path": "bank-contracts/bank-contract-red.log",
+          "originalSHA256": "85fe36562359f09e58b946aad29502867b3f83fa80af6d6eca6a9b139d3c50ed",
+          "displaySHA256": "f757f72c3c88e8893498e00208a25335585a6cb0b2c0e612b0dac7d0a2b9e45c"
+        },
+        {
+          "path": "exam-autosave-red.log",
+          "originalSHA256": "00f87ca29fa26f15f918e23b7e298f5df1bf035b90325727702e48ba8dd9fab0",
+          "displaySHA256": "54ed4c5bfecdaaa7ad943f313b819cbb485b48899cd51e52731d94d17cafe52e"
+        },
+        {
+          "path": "ui-autosave/vitest.log",
+          "originalSHA256": "3afdadfdd6f385df28ff9544217a1845b6748108dad21d454277c38fc11ce553",
+          "displaySHA256": "f02aaedc11e8103e34a8ca506393b75b174f0f565bc15c9c094518fc844b3035"
+        }
+      ],
+      "testOutcomesChanged": false
+    },
+    "recurringCycle": {
+      "enabled": true,
+      "cadence": "daily morning",
+      "timezone": "Europe/Rome",
+      "starts": "2026-10-22"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "exam_sha": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+  "bank_sha": "e9c87b072913744f6cc6df21217b8856cddfef1f",
+  "questionId": "u1-area-conversion-02",
+  "options": 5,
+  "solutionChars": 2500,
+  "results": [
+    {
+      "case": "unaltered_pr269_pack",
+      "status": "accepted"
+    },
+    {
+      "case": "pr270_mcq_preserving_all_options",
+      "status": "rejected",
+      "code": "exam_mcq_invalid",
+      "httpStatus": 409
+    },
+    {
+      "case": "five_options_isolated_with_short_explanation",
+      "status": "rejected",
+      "code": "exam_mcq_invalid",
+      "httpStatus": 409
+    }
+  ],
+  "merged_app_syntax": "PASS",
+  "scope": "One live validator contract probe, no fullsuite, no question generation, no product changes"
+}

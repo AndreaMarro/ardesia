@@ -1,0 +1,749 @@
+{
+  "scope": "Existing 31-item demo, NOT the requested 4000-item corpus.",
+  "sourcePath": "/workspace/scratch/7fc3ceb3d233/ardesia-review/packages/engine/lessonos/study/content/fisica-semestre-filtro-v1.json",
+  "sourceSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+  "reviewedSourceSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+  "sourceHashMatchesReviewedBytes": true,
+  "gitHEAD": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+  "gitEvidence": {
+    "status": "OBSERVED",
+    "head": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+    "sourceRelativePath": "packages/engine/lessonos/study/content/fisica-semestre-filtro-v1.json",
+    "sourceAtHEADSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+    "sourceBytesMatchHEAD": true,
+    "expectedCommit": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+    "expectedCommitMatches": true
+  },
+  "packId": "fisica-semestre-filtro-v1",
+  "packVersion": 1,
+  "questionRevisionPolicy": "Absent in source: null, never inferred from pack version",
+  "counts": {
+    "receivedDemoItems": 31,
+    "uniqueIds": 31,
+    "mcq": 21,
+    "completion": 10,
+    "readByModel": 31,
+    "independentCalculations": 23,
+    "calculationsConsistentUnderIntendedModel": 23,
+    "conceptualItemsWithoutIndependentNumericalAnswerCheck": 8,
+    "humanScientificApprovalsIssued": 0,
+    "pipelineTransitionsPerformed": 0,
+    "newQuestionsGenerated": 0,
+    "sourceFilesChanged": 0
+  },
+  "limits": [
+    "JSON schema success does not imply physical validity.",
+    "These model reviews do not authorize SCIENCE_REVIEWED or publication.",
+    "The arithmetic passes are conditional on the explicitly recorded physical models.",
+    "No automatic plagiarism or semantic deduplication over an external corpus was performed.",
+    "No student data, external AI call or network access is used by this probe."
+  ],
+  "mcqOptionCounts": {
+    "4": 21
+  },
+  "murFiveOptionFormat": "FAIL: all 21 MCQ have 4 choices",
+  "explanationWordCounts": {
+    "min": 10,
+    "median": 27,
+    "max": 46,
+    "total": 878
+  },
+  "wordCountInterpretation": "Descriptive only, not an editorial approval threshold. Reading finds compact feedback, not step-by-step tutoring.",
+  "metadataKeyPresence": {
+    "unit": 0,
+    "macroarea": 0,
+    "microarea": 0,
+    "competence": 0,
+    "difficulty": 0,
+    "revision": 0
+  },
+  "checks": [
+    {
+      "id": "fis-mecc-01",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "(v0+v1)*t/2",
+      "calculated": "80",
+      "answerObserved": "80 m",
+      "valueCompared": "80",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-mecc-02",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "a=F/m",
+      "calculated": "3",
+      "answerObserved": "3 m/s²",
+      "valueCompared": "3",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-mecc-03",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "v=sqrt(2gh), rounded to 0.1 m/s",
+      "calculated": "4.0",
+      "answerObserved": "4,0 m/s",
+      "valueCompared": "4.0",
+      "consistentUnderModel": true,
+      "condition": "Approximate answer at two significant digits; exact result is 3.959797974644666136644728427787154619995"
+    },
+    {
+      "id": "fis-mecc-04",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "p_before=1; K_before=1/2; test every offered outcome",
+      "calculated": "[1]",
+      "answerObserved": "Il primo carrello si ferma e il secondo parte con velocità v.",
+      "valueCompared": "[1]",
+      "consistentUnderModel": true,
+      "condition": "Central 1D elastic collision"
+    },
+    {
+      "id": "fis-mecc-05",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "a_c=v^2/r",
+      "calculated": "2",
+      "answerObserved": "2 m/s²",
+      "valueCompared": "2",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-termo-06",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "Q/R=n*(3/2)*deltaT",
+      "calculated": "300",
+      "answerObserved": "300 R",
+      "valueCompared": "300",
+      "consistentUnderModel": true,
+      "condition": "Numerical coefficient in mol*K; heat capacity model Cv=3R/2"
+    },
+    {
+      "id": "fis-termo-08",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "V2/V1=p1/p2 at fixed n,T",
+      "calculated": "1/3",
+      "answerObserved": "Diventa un terzo del valore iniziale.",
+      "valueCompared": "1/3",
+      "consistentUnderModel": true,
+      "condition": "Quantity of gas fixed; premise is absent from prompt"
+    },
+    {
+      "id": "fis-elettro-09",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "F2/F1=(r1/r2)^2",
+      "calculated": "1/4",
+      "answerObserved": "F/4",
+      "valueCompared": "1/4",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-elettro-10",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "Req=1/(1/R1+1/R2); Itotal=V/Req",
+      "calculated": "[Fraction(3, 1), Fraction(4, 1)]",
+      "answerObserved": "La resistenza equivalente è 3 Ω e la corrente totale è 4 A.",
+      "valueCompared": "[Fraction(3, 1), Fraction(4, 1)]",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-elettro-11",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "C2/C1=d1/d2; V2/V1=C1/C2 for fixed Q",
+      "calculated": "[Fraction(1, 2), Fraction(2, 1)]",
+      "answerObserved": "La carica resta invariata, la capacità si dimezza e la differenza di potenziale raddoppia.",
+      "valueCompared": "[Fraction(1, 2), Fraction(2, 1)]",
+      "consistentUnderModel": true,
+      "condition": "Ideal parallel plates, fixed area/dielectric, negligible leakage/fringing; not stated"
+    },
+    {
+      "id": "fis-onde-14",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "v=lambda*f",
+      "calculated": "100",
+      "answerObserved": "100 m/s",
+      "valueCompared": "100",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-onde-15",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "d=v*t; nearest offered approximate kilometre",
+      "calculated": "1",
+      "answerObserved": "circa 1 km",
+      "valueCompared": "1",
+      "consistentUnderModel": true,
+      "condition": "Exact distance is 1020 m; approximation is explicit in selected option"
+    },
+    {
+      "id": "fis-onde-16",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "q=1/(1/f-1/p); m=-q/p",
+      "calculated": "[Fraction(20, 1), Fraction(-1, 1)]",
+      "answerObserved": "reale, capovolta e della stessa dimensione dell'oggetto.",
+      "valueCompared": "[Fraction(20, 1), Fraction(-1, 1)]",
+      "consistentUnderModel": true,
+      "condition": "Thin-lens approximation; implicit"
+    },
+    {
+      "id": "fis-fluid-18",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "v2/v1=A1/A2",
+      "calculated": "2",
+      "answerObserved": "raddoppia.",
+      "valueCompared": "2",
+      "consistentUnderModel": true,
+      "condition": "Mean speed through two sections of a filled rigid tube without branches/leaks"
+    },
+    {
+      "id": "fis-mod-21",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "N/N0=(1/2)^(15/5)",
+      "calculated": "1/8",
+      "answerObserved": "1/8",
+      "valueCompared": "1/8",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-22",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "v=v0+a*t",
+      "calculated": "10",
+      "answerObserved": "10",
+      "valueCompared": "10",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-23",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "W=F*delta_x for same direction AND sense",
+      "calculated": "30",
+      "answerObserved": "30",
+      "valueCompared": "30",
+      "consistentUnderModel": true,
+      "condition": "Same sense must be added to prompt; opposite sense gives -30 J"
+    },
+    {
+      "id": "fis-comp-24",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "rho=m/V",
+      "calculated": "3",
+      "answerObserved": "3",
+      "valueCompared": "3",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-25",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "V2=V1*T2/T1",
+      "calculated": "4",
+      "answerObserved": "4",
+      "valueCompared": "4",
+      "consistentUnderModel": true,
+      "condition": "Fixed amount of gas; implicit"
+    },
+    {
+      "id": "fis-comp-26",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "V=R*I",
+      "calculated": "5",
+      "answerObserved": "5",
+      "valueCompared": "5",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-27",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "v=lambda*f",
+      "calculated": "2",
+      "answerObserved": "2",
+      "valueCompared": "2",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-28",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "N/N0=(1/2)^3",
+      "calculated": "1/8",
+      "answerObserved": "1/8",
+      "valueCompared": "1/8",
+      "consistentUnderModel": true,
+      "condition": null
+    },
+    {
+      "id": "fis-comp-29",
+      "packVersion": 1,
+      "questionRevision": null,
+      "equation": "delta_p=rho*g*h",
+      "calculated": "20000",
+      "answerObserved": "20000",
+      "valueCompared": "20000",
+      "consistentUnderModel": true,
+      "condition": null
+    }
+  ],
+  "edgeCases": {
+    "fis-comp-23": {
+      "sameLinePositiveSense": "30",
+      "sameLineOppositeSense": "-30",
+      "unit": "J",
+      "interpretation": "Direction (line) alone does not fix the sign of work."
+    },
+    "fis-onde-17": {
+      "thetaIncidentDegrees": "0",
+      "thetaRefractedDegrees": "0",
+      "snellLeft": "0",
+      "snellRight": "0",
+      "interpretation": "At normal incidence both frequency and angle are unchanged."
+    },
+    "fis-elettro-13": {
+      "magneticDipole": [
+        1,
+        0,
+        0
+      ],
+      "loopNormal": [
+        0,
+        0,
+        1
+      ],
+      "geometry": "Source and displacement stay in loop plane z=0; m_z=r_z=0.",
+      "normalDipoleFieldNumerator": "0",
+      "interpretation": "B_normal=0 over the loop; flux and induced loop emf are zero."
+    },
+    "fis-comp-22": {
+      "validUnitDimensions": {
+        "m/s": {
+          "L": 1,
+          "T": -1
+        }
+      },
+      "invalidListedUnitDimensions": {
+        "m/s⁻¹": {
+          "L": 1,
+          "T": 1
+        }
+      },
+      "interpretation": "m divided by s^-1 equals m*s, not velocity."
+    }
+  },
+  "integrationHolds": [
+    {
+      "questionId": "fis-elettro-11",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "98019a859d557c20fe0594a771e0fd69de3e0aeb03fd4b402a5d0ddf3b881321",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P2",
+      "findingType": "MISSING_PHYSICAL_ASSUMPTIONS",
+      "evidenceLevel": "MODEL_REVIEW_REQUIRED",
+      "reason": "Requires ideal parallel plates, fixed area/dielectric, negligible fringing/leakage; absent in prompt.",
+      "sourceLine": 161,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    },
+    {
+      "questionId": "fis-elettro-13",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "7c031422e9d58756da4b280f44e9772872b61afb5c53a2c3f6eb4e3214373b9e",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P2",
+      "findingType": "GEOMETRY_AMBIGUITY",
+      "evidenceLevel": "LIMITING_CASE_REVIEW_REQUIRED",
+      "reason": "Geometry/closed loop missing; an in-plane magnetic dipole can approach with identically zero normal flux.",
+      "sourceLine": 189,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    },
+    {
+      "questionId": "fis-onde-17",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "927d74c37033adf914587d5478a7ab7151e102251b7991d04febbc3ddc099fea",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P2",
+      "findingType": "NORMAL_INCIDENCE_AMBIGUITY",
+      "evidenceLevel": "LIMITING_CASE_REVIEW_REQUIRED",
+      "reason": "At normal incidence angle is also unchanged; explanation unconditionally says it changes.",
+      "sourceLine": 245,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    },
+    {
+      "questionId": "fis-comp-22",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "57f7570b03459fe7208a931e7c30354d2f0f75472ef38ed48456186262a947f0",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P1",
+      "findingType": "UNIT_DIMENSION_ERROR",
+      "evidenceLevel": "VERIFIED_FROM_SOURCE_AND_DIMENSIONAL_ALGEBRA",
+      "reason": "10 m/s correct, but numeric.units contains dimensionally invalid m/s⁻¹.",
+      "sourceLine": 315,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    },
+    {
+      "questionId": "fis-comp-23",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "bfa86aedf8768b27b17c0cf51f1dcb0a53019309f851e5e127bfe7ebd0b72ceb",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P2",
+      "findingType": "FORCE_DISPLACEMENT_SIGN_AMBIGUITY",
+      "evidenceLevel": "LIMITING_CASE_REVIEW_REQUIRED",
+      "reason": "Missing same sense: collinear opposite displacement gives -30 J; define W=F·delta r.",
+      "sourceLine": 341,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    },
+    {
+      "questionId": "fis-comp-29",
+      "questionRevision": null,
+      "packId": "fisica-semestre-filtro-v1",
+      "packVersion": 1,
+      "packSHA256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "questionContentSHA256": "204e487ac2f3851d00bb7f635e0ba33cb258523c6dc7c71762b23cd63f8e8e3a",
+      "state": "HOLD",
+      "scope": "PRO_REGIA_INTEGRATION_VERIFICATION_ONLY",
+      "humanReviewRequired": true,
+      "severity": "P1",
+      "findingType": "UNIT_SCALE_GRADING_ERROR",
+      "evidenceLevel": "VERIFIED_BY_SEPARATE_SOFTWARE_REVIEWER",
+      "reason": "20000 Pa =20 kPa correct; unit scale issue separately reviewed by parent.",
+      "sourceLine": 479,
+      "productionOrDatabaseMutation": false,
+      "gradingRuntimeProbeDuplicatedHere": false,
+      "releaseCondition": "Authorized human review plus a separately versioned corrected candidate and regression evidence"
+    }
+  ],
+  "editorialFlags": [
+    {
+      "id": "fis-termo-06",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "Correct numerical coefficient; write energy units and explain W=0 and Cv convention."
+    },
+    {
+      "id": "fis-termo-08",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "State fixed amount of gas; without n fixed PV/T permits other outcomes."
+    },
+    {
+      "id": "fis-mod-20",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "Correct ideal photoelectric result at fixed frequency; explicit photoelectric effect is not listed in 2026 syllabus."
+    },
+    {
+      "id": "fis-mod-21",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "1/8 is correct for undecayed original nuclei, not necessarily remaining total sample mass; near-duplicate of comp-28."
+    },
+    {
+      "id": "fis-comp-25",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "Correct for fixed amount of gas; state closed system/fixed n."
+    },
+    {
+      "id": "fis-comp-28",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "Correct fraction and percentage; same three-half-lives task as mod-21."
+    },
+    {
+      "id": "fis-comp-30",
+      "packVersion": 1,
+      "questionRevision": null,
+      "reason": "Same across components is correct; accepted costante can imply time-constant current, not guaranteed."
+    }
+  ],
+  "nearDuplicateCandidates": [
+    {
+      "ids": [
+        "fis-mod-21",
+        "fis-comp-28"
+      ],
+      "reason": "Both ask remaining parent-nucleus fraction after exactly three half-lives: 1/8.",
+      "review": "manual model comparison, not semantic corpus scan"
+    }
+  ],
+  "perItemReading": [
+    {
+      "id": "fis-mecc-01",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 46,
+      "note": "Intended result consistent; explain why average speed applies only to constant acceleration."
+    },
+    {
+      "id": "fis-mecc-02",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 17,
+      "note": "Intended result consistent; mention vertical balance and net horizontal force."
+    },
+    {
+      "id": "fis-mecc-03",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 27,
+      "note": "Correct rounded value; approximation 15.68~16 is feasible mentally but should be explained."
+    },
+    {
+      "id": "fis-mecc-04",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 39,
+      "note": "Correct for the 1D central collision imposed by the track; no conservation-equation derivation."
+    },
+    {
+      "id": "fis-mecc-05",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 28,
+      "note": "Correct; constant speed means constant magnitude, not constant velocity vector."
+    },
+    {
+      "id": "fis-termo-06",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 38,
+      "note": "Correct numerical coefficient; write energy units and explain W=0 and Cv convention."
+    },
+    {
+      "id": "fis-termo-07",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 38,
+      "note": "Correct in intended macroscopic thermodynamics; distractors deserve separate explanation."
+    },
+    {
+      "id": "fis-termo-08",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 34,
+      "note": "State fixed amount of gas; without n fixed PV/T permits other outcomes."
+    },
+    {
+      "id": "fis-elettro-09",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 27,
+      "note": "Correct inverse-square ratio assuming unchanged charges and medium."
+    },
+    {
+      "id": "fis-elettro-10",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 41,
+      "note": "Correct parallel resistance and total current."
+    },
+    {
+      "id": "fis-elettro-11",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 32,
+      "note": "Requires ideal parallel plates, fixed area/dielectric, negligible fringing/leakage; absent in prompt."
+    },
+    {
+      "id": "fis-elettro-12",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 34,
+      "note": "Correct for isolated long straight wire, ignoring external fields/end effects."
+    },
+    {
+      "id": "fis-elettro-13",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 33,
+      "note": "Geometry/closed loop missing; an in-plane magnetic dipole can approach with identically zero normal flux."
+    },
+    {
+      "id": "fis-onde-14",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 25,
+      "note": "Correct speed and dimensional relation."
+    },
+    {
+      "id": "fis-onde-15",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 31,
+      "note": "Correct distance and explicit approximation."
+    },
+    {
+      "id": "fis-onde-16",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 39,
+      "note": "Correct under thin-lens model; state the approximation."
+    },
+    {
+      "id": "fis-onde-17",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 38,
+      "note": "At normal incidence angle is also unchanged; explanation unconditionally says it changes."
+    },
+    {
+      "id": "fis-fluid-18",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 25,
+      "note": "Correct for section-averaged speed in filled rigid tube; avoid implying local pointwise speed."
+    },
+    {
+      "id": "fis-fluid-19",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 37,
+      "note": "Correct for homogeneous connected liquid under uniform gravity with same surface pressure."
+    },
+    {
+      "id": "fis-mod-20",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 36,
+      "note": "Correct ideal photoelectric result at fixed frequency; explicit photoelectric effect is not listed in 2026 syllabus."
+    },
+    {
+      "id": "fis-mod-21",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 24,
+      "note": "1/8 is correct for undecayed original nuclei, not necessarily remaining total sample mass; near-duplicate of comp-28."
+    },
+    {
+      "id": "fis-comp-22",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 17,
+      "note": "10 m/s correct, but numeric.units contains dimensionally invalid m/s⁻¹."
+    },
+    {
+      "id": "fis-comp-23",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 19,
+      "note": "Missing same sense: collinear opposite displacement gives -30 J; define W=F·delta r."
+    },
+    {
+      "id": "fis-comp-24",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 15,
+      "note": "Density and SI conversion correct."
+    },
+    {
+      "id": "fis-comp-25",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 24,
+      "note": "Correct for fixed amount of gas; state closed system/fixed n."
+    },
+    {
+      "id": "fis-comp-26",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 14,
+      "note": "Correct Ohm-law value."
+    },
+    {
+      "id": "fis-comp-27",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 10,
+      "note": "Correct value; explanation only 10 whitespace-delimited words."
+    },
+    {
+      "id": "fis-comp-28",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 20,
+      "note": "Correct fraction and percentage; same three-half-lives task as mod-21."
+    },
+    {
+      "id": "fis-comp-29",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 21,
+      "note": "20000 Pa =20 kPa correct; unit scale issue separately reviewed by parent."
+    },
+    {
+      "id": "fis-comp-30",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 24,
+      "note": "Same across components is correct; accepted costante can imply time-constant current, not guaranteed."
+    },
+    {
+      "id": "fis-comp-31",
+      "packVersion": 1,
+      "questionRevision": null,
+      "explanationWords": 25,
+      "note": "Correct frequency definition."
+    }
+  ]
+}

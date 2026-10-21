@@ -1,0 +1,128 @@
+{
+  "sourceSha": "e9c87b072913744f6cc6df21217b8856cddfef1f",
+  "environment": "FastAPI TestClient/ASGI real handlers, real QuestionBank records, synthetic SQLite; no browser or PostgreSQL",
+  "bankSha256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896",
+  "bankRecordCount": 4000,
+  "statusCounts": {
+    "DRAFT": 4000
+  },
+  "coldLoadSeconds": 1.9345,
+  "processPeakRssKiB": 201684,
+  "access": {
+    "anonymousStatus": 401,
+    "outsiderStatus": 403,
+    "studentPageStatus": 200,
+    "changedPinStatus": 409
+  },
+  "studentPage": {
+    "total": 4000,
+    "ids": [
+      "u1-area-conversion-01",
+      "u1-area-conversion-02"
+    ],
+    "statuses": [
+      "DRAFT",
+      "DRAFT"
+    ],
+    "hasAnswerOrSolution": false
+  },
+  "exam": {
+    "keys": [
+      "bankId",
+      "bankSha256",
+      "durationSeconds",
+      "editorialStatus",
+      "excludedScopes",
+      "familyRepetition",
+      "includedScopes",
+      "lawFamilyRepetition",
+      "profileId",
+      "questions",
+      "samplingStrategy",
+      "scientificApproval",
+      "scoring",
+      "seed"
+    ],
+    "questionCount": 31,
+    "formatCounts": {
+      "multiple_choice": 21,
+      "completion": 10
+    },
+    "optionCounts": [
+      5
+    ],
+    "durationSeconds": 3000
+  },
+  "feedbackBeforeAnyDurableSubmission": {
+    "questionId": "u4-incoherent-sound-sum-16",
+    "response": "",
+    "statusCode": 200,
+    "outcome": "omitted",
+    "hasAnswer": true,
+    "hasSolution": true,
+    "persisted": false
+  },
+  "persistenceBefore": {
+    "study_submissions": 0,
+    "study_receipts": 0,
+    "study_exam_attempts": null
+  },
+  "persistenceAfter": {
+    "study_submissions": 0,
+    "study_receipts": 0,
+    "study_exam_attempts": null
+  },
+  "rejectedDeclaredCompletionAliases": [],
+  "filteredQuestions": [
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    },
+    {
+      "unit": "U6",
+      "difficulty": "difficile",
+      "format": "completion"
+    }
+  ]
+}

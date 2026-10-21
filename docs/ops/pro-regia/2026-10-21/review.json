@@ -1,0 +1,63 @@
+{
+  "schema": "ardesia.pro-regia.exam-review.v1",
+  "observedAt": "2026-10-21T07:16:46.457083+00:00",
+  "sourceCommit": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+  "sources": {
+    "packages/engine/lessonos/study/content/fisica-semestre-filtro-v1.json": {
+      "sha256": "3e732c79578efcaa27b23e10072338758a24c5970108dfb475a7dd49bf368fa9",
+      "matchesCommittedBytes": true
+    },
+    "packages/engine/lessonos/study/exam.py": {
+      "sha256": "0c501f77aa5d46e4be620595e50126c6576cb9a61457b5fcef2905dcb95a66d7",
+      "matchesCommittedBytes": true
+    },
+    "packages/engine/lessonos/study/store.py": {
+      "sha256": "ccabe80d872319f3e34943142b4addc478a3cd2d5fc897a75e9e80749c89fe8d",
+      "matchesCommittedBytes": true
+    },
+    "apps/web/src/features/Exam.tsx": {
+      "sha256": "9b679e9bcc59b860b1bdd8af7f21bf8fb934b0454efc63e92c2343a33dd5ce1c",
+      "matchesCommittedBytes": true
+    },
+    "apps/web/src/api.ts": {
+      "sha256": "92ecd1f25f54038393672515a82d2933b345b530c8c923ea454b1a0084ddb0c4",
+      "matchesCommittedBytes": true
+    },
+    "apps/studio/src/study/apiClient.ts": {
+      "sha256": "09c95ab6af2ff6e24891f40cb16ccc1d368320e2a9ed24301c319dfcec5f1224",
+      "matchesCommittedBytes": true
+    },
+    "services/study-api/study_api/app.py": {
+      "sha256": "944f92c190b257ac6443f9312d09dab0593adf0193f89c7bfafc0a73d45f5620",
+      "matchesCommittedBytes": true
+    }
+  },
+  "scope": "independent manual integration check; no production mutation",
+  "quarantineSourceMatches": true,
+  "humanScientificApproval": "NOT_RUN",
+  "postgres": "NOT_RUN",
+  "realBrowser": "NOT_RUN",
+  "productionMutation": false,
+  "testsRun": 8,
+  "failures": [
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_mur_2026_multiple_choice_has_five_options",
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_equivalent_decimal_kpa",
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_spaced_scientific_notation",
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_does_not_ignore_kilo_prefix",
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_acceleration_unit",
+    "pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_unrecognized_unit_suffix"
+  ],
+  "errors": [],
+  "skipped": [],
+  "regressionStatus": "FAIL",
+  "heldQuestionIds": [
+    "fis-elettro-11",
+    "fis-elettro-13",
+    "fis-onde-17",
+    "fis-comp-22",
+    "fis-comp-23",
+    "fis-comp-29"
+  ],
+  "status": "FAIL",
+  "releaseCertification": "NOT_GRANTED"
+}
