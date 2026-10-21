@@ -4,6 +4,7 @@ These tests never touch Supabase production. They create disposable databases
 on the URL supplied in ARDESIA_TEST_POSTGRES_URL. Without that explicit opt-in
 the module skips, exactly like the existing live Supabase contracts.
 """
+import json
 import os
 import uuid
 from contextlib import contextmanager
@@ -175,11 +176,11 @@ def actor_edition():
         yield url, teacher, student, peer, edition, identities
 
 
-def test_fresh_database_reaches_v8_with_both_families():
+def test_fresh_database_reaches_v9_with_both_families():
     with _fresh_database() as url:
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
-            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
             tables = {row[0] for row in connection.execute(
                 "SELECT tablename FROM pg_tables WHERE schemaname='public'")}
             assert {'study_question_bank_approvals', 'study_question_bank_approval_events',
@@ -190,14 +191,14 @@ def test_fresh_database_reaches_v8_with_both_families():
                     'study_exam_attempt_guard'} <= triggers
 
 
-def test_v6_with_data_preserves_rows_and_reaches_v8():
+def test_v6_with_data_preserves_rows_and_reaches_v9():
     with _fresh_database() as url:
         _to_v6(url)
         with psycopg.connect(url, autocommit=True) as connection:
             teacher, student, peer, edition, _ = _seed_edition(connection)
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
-            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
             assert connection.execute('SELECT teacher_id FROM study_editions WHERE id=%s',
                 (edition,)).fetchone()[0] == teacher
             assert connection.execute('SELECT count(*) FROM study_members WHERE edition_id=%s',
@@ -215,7 +216,7 @@ def test_canonical_v7_approvals_preserves_decisions_and_adds_exam():
                 ('approval-1', edition, 'q1', 'b' * 64, 'c' * 64, teacher))
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
-            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
             assert connection.execute(
                 'SELECT editorial_status FROM study_question_bank_approvals WHERE id=%s',
                 ('approval-1',)).fetchone()[0] == 'PUBLISHED'
@@ -231,11 +232,14 @@ def test_legacy_v7_exam_only_upgrades_without_recreating_table():
                 "SELECT 'public.study_exam_attempts'::regclass::oid").fetchone()[0]
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
-            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
             assert connection.execute(
                 "SELECT 'public.study_exam_attempts'::regclass::oid").fetchone()[0] == old_oid
             assert connection.execute('SELECT status FROM study_exam_attempts WHERE id=%s',
                 ('legacy-attempt',)).fetchone()[0] == 'in_progress'
+            assert connection.execute(
+                'SELECT answer_revision FROM study_exam_attempts WHERE id=%s',
+                ('legacy-attempt',)).fetchone()[0] == 0
             assert connection.execute(
                 "SELECT count(*) FROM ardesia_private.migrations WHERE name IN "
                 "('20261021120000_study_question_bank_approvals.sql',"
@@ -251,7 +255,32 @@ def test_partial_v6_with_approval_tables_is_repaired_by_retry():
             connection.execute('UPDATE study_schema SET version=6')
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+
+
+def test_v8_exam_upgrades_additively_to_v9_without_losing_rows():
+    with _fresh_database() as url:
+        _to_canonical_v7(url)
+        with psycopg.connect(url, autocommit=True) as connection:
+            _apply(connection, MIGRATIONS / '20261021130000_study_exam_attempts.sql')
+            teacher, student, peer, edition, _ = _seed_edition(connection)
+            _attempt(connection, edition, student, 'v8-attempt')
+            connection.execute(
+                "UPDATE study_exam_attempts SET answers='{\"q1\":1}' WHERE id='v8-attempt'")
+            old_oid = connection.execute(
+                "SELECT 'public.study_exam_attempts'::regclass::oid").fetchone()[0]
             assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+        with psycopg.connect(url, autocommit=True) as connection:
+            _apply(connection, MIGRATIONS / '20261021140000_study_exam_answer_revision.sql')
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+            assert connection.execute(
+                "SELECT 'public.study_exam_attempts'::regclass::oid").fetchone()[0] == old_oid
+            row = connection.execute(
+                'SELECT status,answers,answer_revision FROM study_exam_attempts WHERE id=%s',
+                ('v8-attempt',)).fetchone()
+            assert row[0] == 'in_progress'
+            assert json.loads(row[1]) == {'q1': 1}
+            assert row[2] == 0
 
 
 def test_interrupted_exam_migration_rolls_back_without_losing_v7():
@@ -269,7 +298,7 @@ def test_interrupted_exam_migration_rolls_back_without_losing_v7():
             connection.execute('DROP TABLE study_exam_attempts')
         migrate(url)
         with psycopg.connect(url, autocommit=True) as connection:
-            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+            assert connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
 
 
 def test_approval_rls_and_append_only_events(actor_edition):

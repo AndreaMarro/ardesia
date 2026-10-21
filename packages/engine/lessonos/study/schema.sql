@@ -289,6 +289,7 @@ CREATE TRIGGER IF NOT EXISTS study_bank_approval_events_no_delete
 UPDATE study_schema SET version=7 WHERE version=6;
 
 -- Schema8: persistent exam attempts, added after the v7 approval gate.
+-- Schema9 adds the monotonic answer revision for CAS autosave.
 CREATE TABLE IF NOT EXISTS study_exam_attempts(
  id TEXT PRIMARY KEY,
  edition_id TEXT NOT NULL REFERENCES study_editions(id) ON DELETE CASCADE,
@@ -305,8 +306,9 @@ CREATE TABLE IF NOT EXISTS study_exam_attempts(
  score_tenths INTEGER,
  receipt_id TEXT,
  result TEXT,
- pack_snapshot TEXT NOT NULL
+ pack_snapshot TEXT NOT NULL,
+ answer_revision INTEGER NOT NULL DEFAULT 0 CHECK(answer_revision>=0)
 );
 CREATE INDEX IF NOT EXISTS study_exam_attempts_student ON study_exam_attempts(student_id,edition_id,started_at DESC);
 CREATE INDEX IF NOT EXISTS study_exam_attempts_open ON study_exam_attempts(status,deadline_at);
-UPDATE study_schema SET version=8 WHERE version=7;
+UPDATE study_schema SET version=9 WHERE version IN (7,8);

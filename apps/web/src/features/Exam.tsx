@@ -28,7 +28,11 @@ type ExamPack = {
   rules: Rules;
   provenance: string;
   questionCount: number;
+  ready?: boolean;
+  approvedCount?: number;
 };
+
+type SolutionStep = { title: string; explanation: string };
 
 type ExamQuestion =
   | {
@@ -37,6 +41,7 @@ type ExamQuestion =
       type: "mcq";
       prompt: string;
       options: string[];
+      answerType?: "option_id";
     }
   | {
       id: string;
@@ -60,6 +65,8 @@ type ResultQuestion = {
   status: "correct" | "wrong" | "omitted";
   pointsTenths: number;
   explanation: string;
+  solutionSteps?: SolutionStep[];
+  familyId?: string;
 };
 
 type ExamResult = {
@@ -70,6 +77,12 @@ type ExamResult = {
   wrong: number;
   omitted: number;
   questions: ResultQuestion[];
+  validity?: {
+    valid: boolean;
+    invalidQuestionIds: string[];
+    checkedAt: number;
+    gate?: string;
+  };
 };
 
 type ExamSummary = {
@@ -85,6 +98,7 @@ type ExamSummary = {
   correct: number | null;
   wrong: number | null;
   omitted: number | null;
+  answerRevision?: number;
 };
 
 type ExamAttempt = {
@@ -103,10 +117,11 @@ type ExamAttempt = {
   durationSeconds: number;
   rules: Rules;
   questions: ExamQuestion[];
+  answerRevision: number;
   result: ExamResult | null;
 };
 
-type ExamList = { attempts: ExamSummary[]; pack: ExamPack };
+type ExamList = { attempts: ExamSummary[]; pack: ExamPack | null };
 
 type AnswerMap = Record<string, number | string | null>;
 
@@ -118,6 +133,12 @@ const statusLabel = {
 
 function isAnswered(value: number | string | null | undefined) {
   return value !== undefined && value !== null && String(value).trim() !== "";
+}
+
+function sameAnswers(a: AnswerMap, b: AnswerMap) {
+  const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+  for (const key of keys) if (a[key] !== b[key]) return false;
+  return true;
 }
 
 function clock(seconds: number) {
@@ -157,6 +178,12 @@ export function Exam({ data }: { data: Workspace }) {
   const [filter, setFilter] = useState<"all" | "wrong" | "omitted">("all");
   const dirty = useRef(false);
   const submittingRef = useRef(false);
+  const revisionRef = useRef(0);
+  const savingRef = useRef(false);
+  const pendingRef = useRef(false);
+  const answersRef = useRef<AnswerMap>({});
+  const examRef = useRef<ExamAttempt | null>(null);
+  const flushRef = useRef<() => void>(() => undefined);
 
   const refresh = useCallback(async (active = true) => {
     const value = await studyRequest<ExamList>(
@@ -184,8 +211,18 @@ export function Exam({ data }: { data: Workspace }) {
     };
   }, [refresh]);
 
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
+
+  useEffect(() => {
+    examRef.current = exam;
+  }, [exam]);
+
   function open(next: ExamAttempt) {
     dirty.current = false;
+    pendingRef.current = false;
+    revisionRef.current = next.answerRevision ?? 0;
     setExam(next);
     setAnswers(next.answers ?? {});
     setCurrent(0);
@@ -232,26 +269,77 @@ export function Exam({ data }: { data: Workspace }) {
     setAnswers((previous) => ({ ...previous, [questionId]: value }));
   }
 
+  const reloadAfterConflict = useCallback(async (attemptId: string) => {
+    const fresh = await studyRequest<ExamAttempt>(`/exams/${attemptId}`);
+    examRef.current = fresh;
+    revisionRef.current = fresh.answerRevision ?? 0;
+    answersRef.current = fresh.answers ?? {};
+    setExam(fresh);
+    setAnswers(fresh.answers ?? {});
+    setSaved("error");
+    dirty.current = false;
+    pendingRef.current = false;
+    setError(
+      "Le risposte sono state salvate in un’altra scheda. Ho ricaricato l’ultima versione: controlla e riprova.",
+    );
+  }, []);
+
+  const flush = useCallback(async () => {
+    const currentExam = examRef.current;
+    if (!currentExam || currentExam.status !== "in_progress") return;
+    if (savingRef.current) {
+      pendingRef.current = true;
+      return;
+    }
+    const snapshot = answersRef.current;
+    const baseRevision = revisionRef.current;
+    savingRef.current = true;
+    pendingRef.current = false;
+    setSaved("saving");
+    try {
+      const value = await studyRequest<ExamAttempt>(
+        `/exams/${currentExam.id}/answers`,
+        { answers: snapshot, expectedRevision: baseRevision },
+        { method: "PUT" },
+      );
+      revisionRef.current = value.answerRevision ?? baseRevision + 1;
+      const changedDuringSave = !sameAnswers(answersRef.current, snapshot);
+      dirty.current = changedDuringSave;
+      pendingRef.current = changedDuringSave;
+      setSaved(changedDuringSave ? "saving" : "saved");
+    } catch (failure) {
+      if (
+        failure instanceof StudyApiError &&
+        failure.status === 409 &&
+        failure.message === "exam_revision_conflict"
+      ) {
+        await reloadAfterConflict(currentExam.id).catch(() =>
+          setSaved("error"),
+        );
+        return;
+      }
+      setSaved("error");
+      dirty.current = true;
+      if (!(failure instanceof StudyApiError && failure.status === 409))
+        setError(describeError(failure));
+    } finally {
+      savingRef.current = false;
+      if (pendingRef.current && dirty.current && examRef.current) {
+        pendingRef.current = false;
+        window.setTimeout(() => flushRef.current(), 0);
+      }
+    }
+  }, [reloadAfterConflict]);
+
+  useEffect(() => {
+    flushRef.current = () => void flush();
+  }, [flush]);
+
   useEffect(() => {
     if (!exam || exam.status !== "in_progress" || !dirty.current) return;
-    const id = window.setTimeout(() => {
-      setSaved("saving");
-      void studyRequest<ExamAttempt>(
-        `/exams/${exam.id}/answers`,
-        { answers },
-        { method: "PUT" },
-      )
-        .then(() => {
-          dirty.current = false;
-          setSaved("saved");
-        })
-        .catch((failure) => {
-          if (!(failure instanceof StudyApiError && failure.status === 409))
-            setSaved("error");
-        });
-    }, 700);
+    const id = window.setTimeout(() => void flush(), 700);
     return () => window.clearTimeout(id);
-  }, [answers, exam]);
+  }, [answers, exam, flush]);
 
   useEffect(() => {
     if (!exam || exam.status !== "in_progress") return;
@@ -266,6 +354,10 @@ export function Exam({ data }: { data: Workspace }) {
     async (force = false) => {
       if (!exam || exam.status !== "in_progress" || submittingRef.current)
         return;
+      if (savingRef.current) {
+        setError("Attendi la fine del salvataggio e consegna di nuovo.");
+        return;
+      }
       if (!force && !confirming) {
         setConfirming(true);
         return;
@@ -277,22 +369,31 @@ export function Exam({ data }: { data: Workspace }) {
       try {
         const value = await studyRequest<ExamAttempt>(
           `/exams/${exam.id}/submit`,
-          { answers },
+          { answers, expectedRevision: revisionRef.current },
           { method: "POST" },
         );
+        revisionRef.current = value.answerRevision ?? revisionRef.current;
         setExam(value);
         setRemaining(0);
         setSaved("idle");
         dirty.current = false;
         await refresh().catch(() => undefined);
       } catch (failure) {
-        setError(describeError(failure));
+        if (
+          failure instanceof StudyApiError &&
+          failure.status === 409 &&
+          failure.message === "exam_revision_conflict"
+        ) {
+          await reloadAfterConflict(exam.id).catch(() => undefined);
+        } else {
+          setError(describeError(failure));
+        }
       } finally {
         submittingRef.current = false;
         setSubmitting(false);
       }
     },
-    [answers, confirming, exam, refresh],
+    [answers, confirming, exam, refresh, reloadAfterConflict],
   );
 
   useEffect(() => {
@@ -338,6 +439,7 @@ export function Exam({ data }: { data: Workspace }) {
   const openAttempt = listing?.attempts.find(
     (attempt) => attempt.status === "in_progress",
   );
+  const examReady = listing?.pack?.ready !== false;
   return (
     <>
       <header className="page-heading">
@@ -364,29 +466,40 @@ export function Exam({ data }: { data: Workspace }) {
             Riprendi la prova
           </button>
         </section>
-      ) : (
+      ) : listing?.pack ? (
         <section className="exam-start" aria-labelledby="exam-start-title">
           <div>
-            <p className="exam-kicker">
-              {listing?.pack.subtitle ?? "Semestre filtro 2026/27"}
-            </p>
-            <h2 id="exam-start-title">
-              {listing?.pack.title ?? "Fisica — Prova di filtro"}
-            </h2>
+            <p className="exam-kicker">{listing.pack.subtitle}</p>
+            <h2 id="exam-start-title">{listing.pack.title}</h2>
             <p>
               Prova originale scritta per ARDESIA, ispirata ai programmi di
               fisica della scuola secondaria superiore. Non è un fac-simile
               ufficiale.
             </p>
+            {!examReady && (
+              <p role="status">
+                Servono 31 quesiti approvati per aprire la prova.
+              </p>
+            )}
           </div>
           <button
             className="button-primary"
-            disabled={starting}
+            disabled={starting || !examReady}
             onClick={() => void start()}
           >
-            {starting ? "Preparazione…" : "Inizia la prova"}
+            {starting
+              ? "Preparazione…"
+              : examReady
+                ? "Inizia la prova"
+                : "In attesa delle approvazioni"}
           </button>
         </section>
+      ) : (
+        !loading && (
+          <EmptyState title="Nessuna prova disponibile.">
+            Questa edizione non è collegata a una prova di fisica approvata.
+          </EmptyState>
+        )
       )}
       <ExamHistory attempts={listing?.attempts ?? []} onOpen={reopen} />
     </>
@@ -522,23 +635,31 @@ function ExamRunner({
           {question.type === "mcq" ? (
             <fieldset className="exam-options">
               <legend>Scegli una sola risposta.</legend>
-              {question.options.map((option, index) => (
+              {question.options.map((option, index) => {
+                const optionValue =
+                  question.answerType === "option_id"
+                    ? String.fromCharCode(65 + index)
+                    : index;
+                return (
                 <label
                   key={option}
-                  className={answers[question.id] === index ? "is-selected" : ""}
+                  className={
+                    answers[question.id] === optionValue ? "is-selected" : ""
+                  }
                 >
                   <input
                     type="radio"
                     name={`exam-${question.id}`}
-                    checked={answers[question.id] === index}
-                    onChange={() => onAnswer(question.id, index)}
+                    checked={answers[question.id] === optionValue}
+                    onChange={() => onAnswer(question.id, optionValue)}
                   />
                   <span className="exam-option-letter">
                     {String.fromCharCode(65 + index)}
                   </span>
                   <span>{option}</span>
                 </label>
-              ))}
+                );
+              })}
             </fieldset>
           ) : (
             <label className="exam-completion">
@@ -647,6 +768,13 @@ function ExamResultView({
           omessa. Le spiegazioni restano disponibili qui.
         </p>
       </header>
+      {result.validity && !result.validity.valid && (
+        <div className="exam-invalid" role="alert">
+          <strong>Prova non valida.</strong> La revisione scientifica di uno o
+          più quesiti è stata revocata dopo l’avvio. Il punteggio resta visibile
+          per trasparenza, ma non va considerato un esito valido.
+        </div>
+      )}
       <section className="exam-score" aria-label="Esito della prova">
         <div>
           <span>Punteggio</span>
@@ -736,7 +864,18 @@ function ExamResultView({
               </dl>
               <details open={question.status !== "correct"}>
                 <summary>Spiegazione</summary>
-                <p>{question.explanation}</p>
+                {question.solutionSteps?.length ? (
+                  <ol className="exam-solution-steps">
+                    {question.solutionSteps.map((step) => (
+                      <li key={`${question.questionId}-${step.title}`}>
+                        <strong>{step.title}</strong>
+                        <p>{step.explanation}</p>
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>{question.explanation}</p>
+                )}
               </details>
             </article>
           ))}

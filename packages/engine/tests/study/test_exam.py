@@ -19,6 +19,7 @@ from lessonos.study.exam import (
 )
 from lessonos.study.models import StudyError
 from lessonos.study.store import StudyStore
+from legacy_exam_fixture import insert_historical_attempt
 
 
 def setup_exam_store(tmp_path, now=None):
@@ -84,7 +85,17 @@ def test_completion_accepts_equivalent_notation_and_rejects_units_of_the_wrong_q
     assert detail(grade_answers(pack, {'fis-comp-22': '9,8'}), 'fis-comp-22')['status'] == 'wrong'
     assert detail(grade_answers(pack, {'fis-comp-22': '   '}), 'fis-comp-22')['status'] == 'omitted'
     assert detail(grade_answers(pack, {'fis-comp-29': '2×10^4 Pa'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '2 × 10^4 Pa'}), 'fis-comp-29')['status'] == 'correct'
     assert detail(grade_answers(pack, {'fis-comp-29': '20 kPa'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20.0 kPa'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20,0 kPa'}), 'fis-comp-29')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-29': '20000 kPa'}), 'fis-comp-29')['status'] == 'wrong'
+    assert detail(grade_answers(pack, {'fis-comp-22': '10 m/s²'}), 'fis-comp-22')['status'] == 'wrong'
+    assert detail(grade_answers(pack, {'fis-comp-22': '10 m/s banana'}), 'fis-comp-22')['status'] == 'wrong'
+    assert detail(grade_answers(pack, {'fis-comp-24': '3000 kg/m³'}), 'fis-comp-24')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-24': '3 g/cm³'}), 'fis-comp-24')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-25': '4 dm³'}), 'fis-comp-25')['status'] == 'correct'
+    assert detail(grade_answers(pack, {'fis-comp-26': '5000 mV'}), 'fis-comp-26')['status'] == 'correct'
     assert detail(grade_answers(pack, {'fis-comp-28': '1/8'}), 'fis-comp-28')['status'] == 'correct'
     assert detail(grade_answers(pack, {'fis-comp-28': '0,125'}), 'fis-comp-28')['status'] == 'correct'
     assert detail(grade_answers(pack, {'fis-comp-30': 'la stessa'}), 'fis-comp-30')['status'] == 'correct'
@@ -98,7 +109,7 @@ def test_completion_accepts_equivalent_notation_and_rejects_units_of_the_wrong_q
 
 def test_attempt_hides_answers_before_submission_and_survives_reopen(tmp_path):
     store, tutor, student, peer, outsider = setup_exam_store(tmp_path)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     assert attempt['status'] == 'in_progress'
     assert attempt['remainingSeconds'] == DURATION_SECONDS
     assert len(attempt['questions']) == 31
@@ -129,7 +140,7 @@ def test_attempt_hides_answers_before_submission_and_survives_reopen(tmp_path):
 def test_deadline_grades_only_persisted_answers_and_marks_expired(tmp_path):
     now = [1000.0]
     store, tutor, student, *_ = setup_exam_store(tmp_path, now=now)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     assert attempt['deadlineAt'] == 1000 + DURATION_SECONDS
     save_answers(store, student, attempt['id'], {'fis-mecc-01': 0})
     now[0] = 1000 + DURATION_SECONDS + 11
@@ -145,7 +156,7 @@ def test_deadline_grades_only_persisted_answers_and_marks_expired(tmp_path):
 def test_deadline_grace_still_accepts_the_final_client_submission(tmp_path):
     now = [2000.0]
     store, tutor, student, *_ = setup_exam_store(tmp_path, now=now)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     now[0] = 2000 + DURATION_SECONDS + 5
     submitted = submit_attempt(store, student, attempt['id'], {'fis-mecc-01': 0})
     assert submitted['status'] == 'submitted'
@@ -154,7 +165,7 @@ def test_deadline_grace_still_accepts_the_final_client_submission(tmp_path):
 
 def test_one_open_attempt_per_student_and_edition_and_snapshot_tampering_fails_closed(tmp_path):
     store, tutor, student, *_ = setup_exam_store(tmp_path)
-    first = start_attempt(store, student, 'fluidi')
+    first = insert_historical_attempt(store, student)
     second = start_attempt(store, student, 'fluidi')
     assert second['id'] == first['id']
     store.connection.execute("UPDATE study_exam_attempts SET pack_snapshot='{}' WHERE id=?", (first['id'],))

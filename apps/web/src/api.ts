@@ -70,6 +70,11 @@ export function describeError(
       "Controlla la fonte della domanda ambigua prima di confermare.",
     distinct_exercise_required:
       "Il nuovo problema deve avere un’identità e parametri diversi.",
+    exam_not_ready:
+      "La prova non è ancora disponibile: servono tutti i 31 quesiti approvati.",
+    exam_unavailable: "Questa edizione non prevede una prova.",
+    exam_revision_conflict:
+      "Le risposte sono state salvate in un’altra scheda. Ho ricaricato i dati aggiornati.",
   };
   return messages[code] ?? fallback;
 }

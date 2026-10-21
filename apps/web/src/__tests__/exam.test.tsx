@@ -58,6 +58,7 @@ const attempt = {
   durationSeconds: 3000,
   rules: pack.rules,
   questions,
+  answerRevision: 0,
   result: null,
 };
 
@@ -143,7 +144,12 @@ test("the exam hides explanations, autosaves answers, submits and reviews errors
       if (path.includes("/exams?editionId=physics")) return response({ attempts: [], pack });
       if (path === "/study/exams" && method === "POST") return response(attempt);
       if (path === "/study/exams/attempt-1") return response(attempt);
-      if (path === "/study/exams/attempt-1/answers") return response({ ...attempt, answers: body.answers });
+      if (path === "/study/exams/attempt-1/answers")
+        return response({
+          ...attempt,
+          answers: body.answers,
+          answerRevision: body.expectedRevision + 1,
+        });
       if (path === "/study/exams/attempt-1/submit")
         return response({ ...attempt, status: "submitted", submittedAt: 2000, remainingSeconds: 0, result });
       return response({ error: "not_found" });
@@ -169,7 +175,10 @@ test("the exam hides explanations, autosaves answers, submits and reviews errors
   await screen.findByText("La prova è consegnata.");
   expect(screen.getByText("0,9")).toBeTruthy();
   const submitted = calls.find((call) => call.method === "POST" && call.path.endsWith("/submit"));
-  expect(submitted?.body).toEqual({ answers: { q1: 1, q2: "3 m/s" } });
+  expect(submitted?.body).toEqual({
+    answers: { q1: 1, q2: "3 m/s" },
+    expectedRevision: 1,
+  });
   expect(screen.getByText("La somma è 4.")).toBeTruthy();
   expect(screen.getByText("La velocità è 2 m/s.")).toBeTruthy();
   fireEvent.click(screen.getByRole("button", { name: "Errate (1)" }));

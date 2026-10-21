@@ -1,4 +1,4 @@
-"""Canonical v6 -> v7 (approvals) -> v8 (exams) convergence and rollback."""
+"""Canonical v6 -> v7 (approvals) -> v8 (exams) -> v9 (CAS) convergence."""
 import hashlib
 import sqlite3
 from pathlib import Path
@@ -6,19 +6,21 @@ from pathlib import Path
 import pytest
 
 from lessonos.study import operations
-from lessonos.study.exam import get_attempt, start_attempt
+from lessonos.study.exam import get_attempt
 from lessonos.study.models import StudyError
 from lessonos.study.schema_contract import (
-    ADMIN_COLUMNS, APPROVAL_COLUMNS, CURRENT_SCHEMA, EXAM_COLUMNS, TABLES_V3,
+    ADMIN_COLUMNS, APPROVAL_COLUMNS, CURRENT_SCHEMA, EXAM_COLUMNS, EXAM_COLUMNS_V8, TABLES_V3,
     validate_schema,
 )
 from lessonos.study.scientific_notebook import NOTEBOOK_COLUMNS
 from lessonos.study.store import StudyStore
+from legacy_exam_fixture import insert_historical_attempt
 
 ROOT = Path(__file__).resolve().parents[4]
 MIGRATIONS = ROOT / 'supabase' / 'migrations'
 APPROVAL_MIGRATION = MIGRATIONS / '20261021120000_study_question_bank_approvals.sql'
 EXAM_MIGRATION = MIGRATIONS / '20261021130000_study_exam_attempts.sql'
+CAS_MIGRATION = MIGRATIONS / '20261021140000_study_exam_answer_revision.sql'
 
 
 def seed(store):
@@ -47,16 +49,16 @@ def column_map(required):
     return {table: set(columns) for table, columns in required.items()}
 
 
-def test_new_database_is_v8_with_both_features(tmp_path):
+def test_new_database_is_v9_with_all_features(tmp_path):
     store = StudyStore(tmp_path / 'study.sqlite')
-    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA == 8
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA == 9
     assert table_columns(store.connection, 'study_question_bank_approvals') >= APPROVAL_COLUMNS[
         'study_question_bank_approvals']
     assert table_columns(store.connection, 'study_exam_attempts') == EXAM_COLUMNS['study_exam_attempts']
     store.close()
 
 
-def test_v6_upgrades_to_v8_without_losing_pre_existing_rows(tmp_path):
+def test_v6_upgrades_to_v9_without_losing_pre_existing_rows(tmp_path):
     store = StudyStore(tmp_path / 'study.sqlite')
     teacher, student = seed(store)
     store.close()
@@ -67,7 +69,7 @@ def test_v6_upgrades_to_v8_without_losing_pre_existing_rows(tmp_path):
         connection.execute('UPDATE study_schema SET version=6')
     operations._existing_database(tmp_path).close()
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
     assert upgraded.get_edition('fluidi')['teacherId'] == teacher.id
     assert upgraded.connection.execute(
         'SELECT COUNT(*) FROM study_members WHERE student_id=?', (student.id,)).fetchone()[0] == 1
@@ -86,7 +88,7 @@ def test_canonical_v7_approval_database_upgrades_and_preserves_decisions(tmp_pat
         connection.execute('DROP TABLE study_exam_attempts')
         connection.execute('UPDATE study_schema SET version=7')
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
     row = upgraded.connection.execute(
         'SELECT question_id,editorial_status FROM study_question_bank_approvals').fetchone()
     assert row['question_id'] == 'u1-area-conversion-01' and row['editorial_status'] == 'PUBLISHED'
@@ -97,7 +99,7 @@ def test_canonical_v7_approval_database_upgrades_and_preserves_decisions(tmp_pat
 def test_legacy_v7_exam_database_upgrades_and_preserves_attempts(tmp_path):
     store = StudyStore(tmp_path / 'study.sqlite')
     teacher, student = seed(store)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     store.close()
     with sqlite3.connect(tmp_path / 'study.sqlite') as connection:
         connection.execute('DROP TABLE study_question_bank_approval_events')
@@ -105,7 +107,7 @@ def test_legacy_v7_exam_database_upgrades_and_preserves_attempts(tmp_path):
         connection.execute('UPDATE study_schema SET version=7')
     operations._existing_database(tmp_path).close()
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
     current = get_attempt(upgraded, student, attempt['id'])
     assert current['status'] == 'in_progress'
     assert current['packId'] == 'fisica-semestre-filtro-v1'
@@ -139,13 +141,13 @@ def test_backup_restore_preserves_gate_and_exam_attempt_together(tmp_path):
     store = StudyStore(tmp_path / 'source' / 'study.sqlite')
     teacher, student = seed(store)
     insert_approval(store)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     store.close()
     operations.backup_data(tmp_path / 'source', tmp_path / 'backup')
     restored = tmp_path / 'restored'
     operations.restore_data(tmp_path / 'backup', restored, tmp_path / 'source' / 'erasure-ledger.json')
     returned = StudyStore(restored / 'study.sqlite')
-    assert returned.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 8
+    assert returned.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
     assert returned.connection.execute(
         'SELECT COUNT(*) FROM study_question_bank_approvals').fetchone()[0] == 1
     assert returned.connection.execute(
@@ -157,7 +159,7 @@ def test_student_erasure_removes_attempt_but_keeps_editorial_decision(tmp_path):
     store = StudyStore(tmp_path / 'source' / 'study.sqlite')
     teacher, student = seed(store)
     insert_approval(store)
-    attempt = start_attempt(store, student, 'fluidi')
+    attempt = insert_historical_attempt(store, student)
     store.close()
     operations.erase_student(tmp_path / 'source', student.id, apply=True)
     erased = StudyStore(tmp_path / 'source' / 'study.sqlite')
@@ -181,13 +183,23 @@ def test_contract_distinguishes_canonical_v7_from_legacy_exam_v7():
         validate_schema(7, tables | set(APPROVAL_COLUMNS), editions, holds,
                         approval_columns=column_map(APPROVAL_COLUMNS), **common)
     with pytest.raises(StudyError, match='database_integrity_failure'):
-        validate_schema(7, tables | set(EXAM_COLUMNS), editions, holds,
-                        exam_columns=column_map(EXAM_COLUMNS), **common)
-    validate_schema(7, tables | set(EXAM_COLUMNS), editions, holds, allow_upgrade=True,
-                    exam_columns=column_map(EXAM_COLUMNS), **common)
+        validate_schema(7, tables | set(EXAM_COLUMNS_V8), editions, holds,
+                        exam_columns=column_map(EXAM_COLUMNS_V8), **common)
+    validate_schema(7, tables | set(EXAM_COLUMNS_V8), editions, holds, allow_upgrade=True,
+                    exam_columns=column_map(EXAM_COLUMNS_V8), **common)
     with pytest.raises(StudyError, match='database_integrity_failure'):
         validate_schema(8, tables | set(APPROVAL_COLUMNS), editions, holds, allow_upgrade=True,
                         approval_columns=column_map(APPROVAL_COLUMNS), **common)
+    validate_schema(8, tables | set(APPROVAL_COLUMNS) | set(EXAM_COLUMNS_V8), editions, holds,
+                    allow_upgrade=True, approval_columns=column_map(APPROVAL_COLUMNS),
+                    exam_columns=column_map(EXAM_COLUMNS_V8), **common)
+    with pytest.raises(StudyError, match='database_integrity_failure'):
+        validate_schema(9, tables | set(APPROVAL_COLUMNS) | set(EXAM_COLUMNS_V8), editions, holds,
+                        approval_columns=column_map(APPROVAL_COLUMNS),
+                        exam_columns=column_map(EXAM_COLUMNS_V8), **common)
+    validate_schema(9, tables | set(APPROVAL_COLUMNS) | set(EXAM_COLUMNS), editions, holds,
+                    approval_columns=column_map(APPROVAL_COLUMNS),
+                    exam_columns=column_map(EXAM_COLUMNS), **common)
 
 
 def test_postgres_migrations_have_unique_prefix_and_canonical_order():
@@ -195,12 +207,16 @@ def test_postgres_migrations_have_unique_prefix_and_canonical_order():
     prefixes = [name.split('_', 1)[0] for name in names]
     assert len(prefixes) == len(set(prefixes))
     assert APPROVAL_MIGRATION.name in names and EXAM_MIGRATION.name in names
-    assert names.index(APPROVAL_MIGRATION.name) < names.index(EXAM_MIGRATION.name)
+    assert CAS_MIGRATION.name in names
+    assert names.index(APPROVAL_MIGRATION.name) < names.index(EXAM_MIGRATION.name) < names.index(CAS_MIGRATION.name)
     approval = APPROVAL_MIGRATION.read_text()
     exam = EXAM_MIGRATION.read_text()
+    cas = CAS_MIGRATION.read_text()
     assert 'UPDATE public.study_schema SET version=7 WHERE version=6;' in approval
     assert 'UPDATE public.study_schema SET version=8 WHERE version=7;' in exam
     assert "to_regclass('public.study_exam_attempts')" in approval
     assert "to_regclass('public.study_question_bank_approvals')" in exam
     assert 'NOT IN (7,8) THEN' in exam
     assert '=8 THEN' in approval
+    assert 'ADD COLUMN IF NOT EXISTS answer_revision' in cas
+    assert 'UPDATE public.study_schema SET version=9 WHERE version=8;' in cas
