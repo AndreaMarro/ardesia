@@ -360,6 +360,8 @@ GREEN e round trip sui 4.000 reali ripetuto con successo. Nessuna modifica
 runtime o contenuto dei worker;
 nessun merge in main, deploy, spesa, messaggio agli studenti o dato reale.
 
+La consegna è pubblicata nella [draft PR #271](https://github.com/AndreaMarro/ardesia/pull/271), primo commit `bf205d2dff093a1b75e9da7c5c80980706ab0e33`: 48 file confrontati byte per byte con GitHub, zero file dei worker modificati. Il primo gate hygiene ha rilevato solo spazi finali/righe vuote alla fine di tre log. La successiva normalizzazione di presentazione conserva gli originali in quel commit e gli hash prima/dopo in `cycle-state.json`; assert ed esiti dei test sono invariati. Nessuna policy CI indebolita. Attivato il ciclo giornaliero di regia dal 22 ottobre al mattino, Europe/Rome; i tre audit orari esistenti restano invariati.
+
 **Unica priorità successiva:** DeepSeek, con handoff esplicito dei file del
 produttore #270, deve introdurre il gate Core/API che impedisce di erogare agli
 studenti quesiti privi di approvazione scientifica/editoriale autorizzata.

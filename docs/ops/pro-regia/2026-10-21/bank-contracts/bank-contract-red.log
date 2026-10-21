@@ -5,7 +5,7 @@ test_bank_publication_gate.py:118: in test_students_cannot_receive_unapproved_dr
     assert observation["studentPage"]["statuses"] == [], (
 E   AssertionError: Publication gate violated: a synthetic student received unapproved DRAFT questions ['u1-area-conversion-01', 'u1-area-conversion-02'] before any human scientific/editorial approval.
 E   assert ['DRAFT', 'DRAFT'] == []
-E     
+E
 E     Left contains 2 more items, first extra item: 'DRAFT'
 E     Use -v to get more diff
 =============================== warnings summary ===============================
@@ -20,4 +20,3 @@ PASSED test_bank_publication_gate.py::test_access_projection_and_version_control
 PASSED test_bank_publication_gate.py::test_declared_completion_aliases_are_accepted
 FAILED test_bank_publication_gate.py::test_students_cannot_receive_unapproved_drafts
 1 failed, 2 passed, 1 warning in 4.01s
-

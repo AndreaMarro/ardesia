@@ -94,5 +94,39 @@
     "owner": "DeepSeek after explicit PR270 file handoff",
     "action": "Enforce scientific/editorial approval before serving questions to students",
     "acceptance": "DRAFT denied/excluded; tutor private review allowed; only synthetic exact-revision approved fixture served"
+  },
+  "delivery": {
+    "pr": 271,
+    "firstCommit": "bf205d2dff093a1b75e9da7c5c80980706ab0e33",
+    "publishedFilesByteVerified": 48,
+    "workerFilesModified": 0,
+    "logFormatting": {
+      "reason": "GitHub hygiene whitespace gate",
+      "originalsCommit": "bf205d2dff093a1b75e9da7c5c80980706ab0e33",
+      "changes": [
+        {
+          "path": "bank-contracts/bank-contract-red.log",
+          "originalSHA256": "85fe36562359f09e58b946aad29502867b3f83fa80af6d6eca6a9b139d3c50ed",
+          "displaySHA256": "f757f72c3c88e8893498e00208a25335585a6cb0b2c0e612b0dac7d0a2b9e45c"
+        },
+        {
+          "path": "exam-autosave-red.log",
+          "originalSHA256": "00f87ca29fa26f15f918e23b7e298f5df1bf035b90325727702e48ba8dd9fab0",
+          "displaySHA256": "54ed4c5bfecdaaa7ad943f313b819cbb485b48899cd51e52731d94d17cafe52e"
+        },
+        {
+          "path": "ui-autosave/vitest.log",
+          "originalSHA256": "3afdadfdd6f385df28ff9544217a1845b6748108dad21d454277c38fc11ce553",
+          "displaySHA256": "f02aaedc11e8103e34a8ca506393b75b174f0f565bc15c9c094518fc844b3035"
+        }
+      ],
+      "testOutcomesChanged": false
+    },
+    "recurringCycle": {
+      "enabled": true,
+      "cadence": "daily morning",
+      "timezone": "Europe/Rome",
+      "starts": "2026-10-22"
+    }
   }
 }
