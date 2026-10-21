@@ -312,3 +312,36 @@ CREATE TABLE IF NOT EXISTS study_exam_attempts(
 CREATE INDEX IF NOT EXISTS study_exam_attempts_student ON study_exam_attempts(student_id,edition_id,started_at DESC);
 CREATE INDEX IF NOT EXISTS study_exam_attempts_open ON study_exam_attempts(status,deadline_at);
 UPDATE study_schema SET version=9 WHERE version IN (7,8);
+
+-- Schema10: notes and scientific decisions are private, immutable revisions.
+-- An APPROVED review alone never creates a row in the publication ledger.
+CREATE TABLE IF NOT EXISTS study_question_bank_reviews(
+ id TEXT PRIMARY KEY,
+ edition_id TEXT NOT NULL,
+ bank_id TEXT NOT NULL CHECK(length(bank_id) BETWEEN 1 AND 128),
+ question_id TEXT NOT NULL CHECK(length(question_id) BETWEEN 1 AND 128),
+ question_version INTEGER NOT NULL CHECK(question_version>=1),
+ content_sha256 TEXT NOT NULL CHECK(length(content_sha256)=64),
+ bank_sha256 TEXT NOT NULL CHECK(length(bank_sha256)=64),
+ status TEXT NOT NULL CHECK(status IN ('PENDING','APPROVED','REJECTED')),
+ notes TEXT NOT NULL CHECK(length(notes) BETWEEN 1 AND 2000),
+ actor_id TEXT NOT NULL CHECK(length(actor_id) BETWEEN 1 AND 128),
+ created_at REAL NOT NULL,
+ supersedes_id TEXT UNIQUE REFERENCES study_question_bank_reviews(id)
+);
+CREATE INDEX IF NOT EXISTS study_bank_review_question
+ ON study_question_bank_reviews(edition_id,bank_id,question_id,created_at);
+CREATE TRIGGER IF NOT EXISTS study_bank_review_identity
+ BEFORE INSERT ON study_question_bank_reviews
+ WHEN NEW.supersedes_id IS NOT NULL AND NOT EXISTS (
+   SELECT 1 FROM study_question_bank_reviews r
+   WHERE r.id=NEW.supersedes_id AND r.edition_id=NEW.edition_id
+     AND r.bank_id=NEW.bank_id AND r.question_id=NEW.question_id)
+ BEGIN SELECT RAISE(ABORT,'review_identity_mismatch'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_reviews_no_update
+ BEFORE UPDATE ON study_question_bank_reviews
+ BEGIN SELECT RAISE(ABORT,'question_reviews_are_append_only'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_reviews_no_delete
+ BEFORE DELETE ON study_question_bank_reviews
+ BEGIN SELECT RAISE(ABORT,'question_reviews_are_append_only'); END;
+UPDATE study_schema SET version=10 WHERE version=9;

@@ -201,11 +201,11 @@ def test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repa
 
 
 def test_shared_schema_contract_rejects_unknown_or_incomplete_features():
-    from lessonos.study.schema_contract import (validate_schema,TABLES_V3,APPROVAL_COLUMNS,EXAM_COLUMNS)
+    from lessonos.study.schema_contract import (validate_schema,TABLES_V3,APPROVAL_COLUMNS,EXAM_COLUMNS,QUESTION_REVIEW_COLUMNS)
     from lessonos.study.scientific_notebook import NOTEBOOK_COLUMNS
     validate_schema(4,TABLES_V3,{'management_revision'},{'offer_revision'},allow_upgrade=True)
-    current=TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS)|set(APPROVAL_COLUMNS)|set(EXAM_COLUMNS)
-    validate_schema(CURRENT_SCHEMA,current,{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS,approval_columns=APPROVAL_COLUMNS,exam_columns=EXAM_COLUMNS)
+    current=TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS)|set(APPROVAL_COLUMNS)|set(EXAM_COLUMNS)|set(QUESTION_REVIEW_COLUMNS)
+    validate_schema(CURRENT_SCHEMA,current,{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS,approval_columns=APPROVAL_COLUMNS,exam_columns=EXAM_COLUMNS,question_review_columns=QUESTION_REVIEW_COLUMNS)
     with pytest.raises(StudyError,match='database_integrity_failure'):
         validate_schema(CURRENT_SCHEMA,TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS)|set(EXAM_COLUMNS),{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS,exam_columns=EXAM_COLUMNS)
     with pytest.raises(StudyError,match='database_integrity_failure'):

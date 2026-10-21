@@ -78,13 +78,14 @@ def base(edition='fluidi'):
     return f'/study/editions/{edition}/question-banks/{question_bank.BANK_ID}'
 
 
-def decide(world, question, *, decision='APPROVED', version=None, digest=None, edition='fluidi'):
+def publish_fixture(world, question, *, decision='APPROVED', version=None, digest=None, edition='fluidi'):
     return world['client'].post(base(edition) + '/review/approvals', json={
         'questionId': question['id'],
         'questionVersion': question['version'] if version is None else version,
         'contentSha256': world['bank'].approval_content_sha256(question['id']) if digest is None else digest,
         'decision': decision,
         'motivation': 'revisione sintetica',
+        'confirmPublication': True,  # This fixture deliberately exercises publication.
     })
 
 
@@ -110,7 +111,7 @@ def test_teacher_preview_is_private_and_withholds_solutions_from_the_list(world)
     assert world['client'].get(base() + '/review/questions/fixture-0').status_code == 403
     world['client'].post('/study/session', json={'token': world['tokens']['outsider']})
     assert world['client'].get(base() + '/review/questions').status_code == 403
-    assert decide(world, world['questions'][0]).status_code == 403
+    assert publish_fixture(world, world['questions'][0]).status_code == 403
     login(world, 'owner')
     preview = world['client'].get(base() + '/review/questions')
     assert preview.status_code == 200
@@ -131,7 +132,7 @@ def test_teacher_preview_is_private_and_withholds_solutions_from_the_list(world)
 def test_approved_fixture_on_the_exact_revision_is_served_end_to_end(world):
     login(world, 'owner')
     for question in world['questions']:
-        response = decide(world, question)
+        response = publish_fixture(world, question)
         assert response.status_code == 200, response.text
         assert response.json()['scientificStatus'] == 'APPROVED'
         assert response.json()['editorialStatus'] == 'PUBLISHED'
@@ -166,14 +167,14 @@ def test_approved_fixture_on_the_exact_revision_is_served_end_to_end(world):
 def test_stale_hash_or_revision_cannot_publish_anything(world):
     login(world, 'owner')
     question = world['questions'][0]
-    stale = decide(world, question, digest='0' * 64)
+    stale = publish_fixture(world, question, digest='0' * 64)
     assert stale.status_code == 409 and stale.json()['error'] == 'question_revision_changed'
-    old = decide(world, question, version=2)
+    old = publish_fixture(world, question, version=2)
     assert old.status_code == 409 and old.json()['error'] == 'question_revision_changed'
     unknown = world['client'].post(base() + '/review/approvals', json={
         'questionId': 'does-not-exist', 'questionVersion': 1,
         'contentSha256': '0' * 64, 'decision': 'APPROVED',
-        'motivation': 'revisione sintetica'})
+        'motivation': 'revisione sintetica', 'confirmPublication': True})
     assert unknown.status_code == 404
     assert world['client'].get(base() + '/review/questions').json()['items'][0]['approval'] is None
     login(world, 'member')
@@ -182,7 +183,7 @@ def test_stale_hash_or_revision_cannot_publish_anything(world):
 
 def test_revocation_withdraws_publication_and_keeps_the_audit_trail(world):
     login(world, 'owner')
-    approval = decide(world, world['questions'][0]).json()
+    approval = publish_fixture(world, world['questions'][0]).json()
     login(world, 'member')
     assert world['client'].get(base() + '/questions').json()['total'] == 1
     login(world, 'owner')
@@ -209,7 +210,7 @@ def test_revocation_withdraws_publication_and_keeps_the_audit_trail(world):
 
 def test_edition_isolation_and_partial_publication_counts(world):
     login(world, 'owner')
-    assert decide(world, world['questions'][0], edition='fluidi-b').status_code == 200
+    assert publish_fixture(world, world['questions'][0], edition='fluidi-b').status_code == 200
     login(world, 'member')
     assert world['client'].get(base() + '/questions').json()['total'] == 0
     assert world['client'].get(base('fluidi-b') + '/questions').json()['total'] == 1
