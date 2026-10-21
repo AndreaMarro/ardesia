@@ -201,4 +201,6 @@ def test_postgres_migrations_have_unique_prefix_and_canonical_order():
     assert 'UPDATE public.study_schema SET version=7 WHERE version=6;' in approval
     assert 'UPDATE public.study_schema SET version=8 WHERE version=7;' in exam
     assert "to_regclass('public.study_exam_attempts')" in approval
-    assert '!=7 THEN' in exam
+    assert "to_regclass('public.study_question_bank_approvals')" in exam
+    assert 'NOT IN (7,8) THEN' in exam
+    assert '=8 THEN' in approval

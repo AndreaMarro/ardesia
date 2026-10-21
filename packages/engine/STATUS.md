@@ -1226,3 +1226,21 @@ integrazione semantica dichiarata. Ramo
 (head `baafe1cfbafbfcd74cbbf4ba26458bff347407c1`); tutti i job CI verdi.
 Dettaglio in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`. Nessun merge o
 deploy.
+
+## 2026-10-21 — PostgreSQL reale: convergenza e trigger d'esame
+
+Riprodotto su PostgreSQL 16.15 il blocco della #273: su un database v7
+"legacy" con la vecchia #269 già applicata, la migrazione `20261021130000`
+tentava di ricreare `study_exam_attempts` e falliva con `DuplicateTable`.
+Corrette entrambe le migrazioni in modo additivo e idempotente: la tabella
+esistente non viene ricreata, le colonne vengono validate, indici/policy/trigger
+mancanti vengono installati e il marker passa a 8. Aggiunto
+`study_exam_attempt_guard` (identità immutabile, nessun update dopo la consegna,
+transizione chiusa con risultato completo, DELETE negato).
+
+Verifica: 8 test reali su database temporanei PostgreSQL (nuovo, v6 con dati, v7
+canonico, v7 legacy exam-only, parziale con retry, rollback su tabella
+incompatibile, RLS approvazioni, RLS/tentativi chiusi). Restano NOT_RUN Auth,
+PostgREST e Storage Supabase. Dettaglio in
+docs/study/POSTGRES-CONVERGENCE-2026-10-21.md. Nessun dato o corpus reale
+modificato; nessun merge o deploy.

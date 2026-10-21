@@ -57,12 +57,12 @@ accettata come forma canonica in sola lettura. L'upgrade è additivo: le tabelle
 del gate nascono vuote, quindi il default-deny resta attivo e nessuna
 approvazione viene inventata.
 
-La migrazione PostgreSQL del gate accetta anche la forma v7 "solo esame"
-quando `public.study_exam_attempts` esiste e le tabelle del gate non esistono;
-in quel caso non incrementa la versione e lascia che la migrazione d'esame
-successiva completi v8. Su un database con ledger delle migrazioni, la vecchia
-migrazione d'esame `20261021120000_study_exam_attempts.sql` resta registrata
-come storia e non viene rieseguita.
+Le migrazioni PostgreSQL sono idempotenti: la forma v7 "solo esame" crea le
+tabelle del gate senza incrementare la versione, poi la migrazione d'esame
+valida la tabella esistente e completa v8. La vecchia migrazione
+`20261021120000_study_exam_attempts.sql` resta nel ledger come storia e non
+viene rieseguita; il nuovo file `20261021130000` non ricrea la tabella. Il caso
+è collaudato su PostgreSQL reale, non solo con una guardia statica.
 
 ## Test eseguiti
 
@@ -76,6 +76,7 @@ Ambiente: macOS, Python 3.13.14 via `uv`, SQLite locale.
 | Web typecheck | `npm run typecheck:web` | pass |
 | Web build | `npm run build:web` | pass |
 | Web test | `npm run test:web` | 243/244 locale; CI web verde |
+| PostgreSQL nativo | `test_postgres_schema_convergence.py` con `ARDESIA_TEST_POSTGRES_URL` | **8 passed** |
 
 Gli skip engine/API sono i contratti Supabase live, i modelli live e il corpus
 dispense non presenti in CI; nessuno è un test di convergenza. Il flake web è
@@ -103,21 +104,26 @@ Il probe originale #271 non è stato modificato. Le regressioni post-correzione
 sono nel file separato `test_schema_convergence.py` e nei test già presenti del
 gate (`test_question_bank_approvals.py`, `test_question_bank_approval_http.py`).
 
-## PostgreSQL: NOT_RUN
+## PostgreSQL: PASS nativo, Supabase stack NOT_RUN
 
-Nell'ambiente non esiste un runtime PostgreSQL (`psql`, `initdb`, Docker o
-Supabase CLI non disponibili) e i contratti live si saltano senza
-`ARDESIA_SUPABASE_ENV_FILE`. Quindi **non** sono stati eseguiti su PostgreSQL
-reale:
+La convergenza è stata collaudata su **PostgreSQL 16.15 nativo**, cluster
+isolato in `/tmp`, con database temporanei creati e distrutti dal test. Il
+dettaglio è in `docs/study/POSTGRES-CONVERGENCE-2026-10-21.md`.
 
-- applicazione delle due migrazioni e dei loro `DO $$` guard;
-- trigger di immutabilità/append-only delle approvazioni;
-- RLS e grant di `study_question_bank_approvals`,
-  `study_question_bank_approval_events`, `study_exam_attempts`;
-- `NOTIFY pgrst` e ricaricamento schema.
+Esito: **8 test reali passati**, inclusi i cinque scenari di migrazione, il
+retry dopo migrazione parziale, il rollback su tabella incompatibile, RLS delle
+approvazioni, isolamento fra studenti, trigger append-only e immutabilità dei
+tentativi chiusi. Il caso storico v7 "solo esame" ora aggiorna senza ricreare la
+tabella e conserva l'OID e i tentativi esistenti.
 
-Questi restano gate espliciti prima di qualsiasi deploy. La verifica statica
-delle migrazioni è inclusa nei test, ma non sostituisce un collaudo live.
+Restano **NOT_RUN** soltanto le parti che richiedono lo stack Supabase completo:
+
+- Auth/GoTrue reale, PostgREST, Storage e `NOTIFY pgrst`;
+- test HTTP con JWT e chiavi anon/service-role;
+- backup/restore dell'intero stack Supabase.
+
+I test live esistenti continuano a saltare senza `ARDESIA_SUPABASE_ENV_FILE`.
+Il collaudo nativo non viene presentato come equivalente a Supabase.
 
 ## Incompatibilità residue con MCQ, grading e autosalvataggio
 
@@ -145,14 +151,14 @@ delle migrazioni è inclusa nei test, ma non sostituisce un collaudo live.
    può ospitare oggi un esame composto dai 4.000 quesiti. Il gate #272 non
    protegge il pack fisso #269: sono due corpus distinti. Il pack resta
    `DRAFT`/`NOT_RUN` e non è una prova MUR.
-5. **RLS d'esame più permissiva del dominio.** La policy PostgreSQL
-   `exam_attempt_update` consente l'update al proprietario iscritto; il vincolo
-   "non modificare un tentativo chiuso" è applicativo, non un trigger DB. Da
-   irrobustire se si vuole la stessa garanzia del gate.
+5. **RLS d'esame.** La policy `exam_attempt_update` consente l'update al
+   proprietario iscritto; il trigger `study_exam_attempt_guard` impedisce
+   identità modificata, tentativi chiusi e risultati parziali. Restano da
+   collaudare sullo stack Supabase completo, non solo su PostgreSQL nativo.
 
 ## Limiti
 
-- Nessun collaudo PostgreSQL reale (vedi `NOT_RUN`).
+- PostgreSQL nativo collaudato; stack Supabase completo ancora `NOT_RUN`.
 - Nessuna integrazione semantica tra esame #269 e banca #270: la convergenza è
   di schema e di test, non di formato MCQ né di grading condiviso.
 - Nessuna revisione umana dei 4.000 quesiti e nessuna approvazione automatica.
