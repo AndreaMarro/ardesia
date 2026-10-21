@@ -205,3 +205,85 @@ CREATE TABLE IF NOT EXISTS study_notebook_snapshots(
  state TEXT NOT NULL, sha256 TEXT NOT NULL CHECK(length(sha256)=64)
 );
 UPDATE study_schema SET version=6 WHERE version=5;
+
+-- Schema7: default-deny scientific/editorial publication of bundled banks.
+-- The corpus stays immutable; approval is an external, auditable decision bound
+-- to the exact question revision and the SHA-256 of its authored content.
+CREATE TABLE IF NOT EXISTS study_question_bank_approvals(
+ id TEXT PRIMARY KEY,
+ edition_id TEXT NOT NULL,
+ bank_id TEXT NOT NULL CHECK(length(bank_id) BETWEEN 1 AND 128),
+ question_id TEXT NOT NULL CHECK(length(question_id) BETWEEN 1 AND 128),
+ question_version INTEGER NOT NULL CHECK(question_version>=1),
+ content_sha256 TEXT NOT NULL CHECK(length(content_sha256)=64),
+ bank_sha256 TEXT NOT NULL CHECK(length(bank_sha256)=64),
+ scientific_status TEXT NOT NULL CHECK(scientific_status IN ('APPROVED','REJECTED')),
+ editorial_status TEXT NOT NULL CHECK(editorial_status IN ('PUBLISHED','WITHHELD','REVOKED')),
+ actor_id TEXT NOT NULL CHECK(length(actor_id) BETWEEN 1 AND 128),
+ created_at REAL NOT NULL,
+ motivation TEXT NOT NULL CHECK(length(motivation) BETWEEN 1 AND 2000),
+ revoked_at REAL,
+ revoked_by TEXT CHECK(revoked_by IS NULL OR length(revoked_by) BETWEEN 1 AND 128),
+ revocation_reason TEXT CHECK(revocation_reason IS NULL OR length(revocation_reason)<=2000),
+ supersedes_id TEXT REFERENCES study_question_bank_approvals(id),
+ CHECK((scientific_status='APPROVED' AND editorial_status IN ('PUBLISHED','REVOKED'))
+    OR (scientific_status='REJECTED' AND editorial_status='WITHHELD')),
+ CHECK((editorial_status='REVOKED')=(revoked_at IS NOT NULL AND revoked_by IS NOT NULL)),
+ CHECK((editorial_status='REVOKED') OR (revocation_reason IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS study_bank_approval_active
+ ON study_question_bank_approvals(edition_id,bank_id,question_id,question_version,content_sha256)
+ WHERE scientific_status='APPROVED' AND editorial_status='PUBLISHED';
+CREATE INDEX IF NOT EXISTS study_bank_approval_serving
+ ON study_question_bank_approvals(edition_id,bank_id,scientific_status,editorial_status);
+CREATE INDEX IF NOT EXISTS study_bank_approval_question
+ ON study_question_bank_approvals(edition_id,bank_id,question_id,created_at DESC);
+CREATE TABLE IF NOT EXISTS study_question_bank_approval_events(
+ id TEXT PRIMARY KEY,
+ approval_id TEXT NOT NULL REFERENCES study_question_bank_approvals(id),
+ edition_id TEXT NOT NULL,
+ bank_id TEXT NOT NULL,
+ question_id TEXT NOT NULL,
+ question_version INTEGER NOT NULL,
+ content_sha256 TEXT NOT NULL CHECK(length(content_sha256)=64),
+ event TEXT NOT NULL CHECK(event IN ('APPROVED','REJECTED','REVOKED')),
+ actor_id TEXT NOT NULL CHECK(length(actor_id) BETWEEN 1 AND 128),
+ created_at REAL NOT NULL,
+ motivation TEXT NOT NULL CHECK(length(motivation) BETWEEN 1 AND 2000),
+ payload TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS study_bank_approval_event_trail
+ ON study_question_bank_approval_events(edition_id,bank_id,question_id,created_at);
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_identity_no_update
+ BEFORE UPDATE ON study_question_bank_approvals
+ WHEN OLD.id IS NOT NEW.id OR OLD.edition_id IS NOT NEW.edition_id
+   OR OLD.bank_id IS NOT NEW.bank_id OR OLD.question_id IS NOT NEW.question_id
+   OR OLD.question_version IS NOT NEW.question_version
+   OR OLD.content_sha256 IS NOT NEW.content_sha256 OR OLD.bank_sha256 IS NOT NEW.bank_sha256
+   OR OLD.scientific_status IS NOT NEW.scientific_status
+   OR OLD.actor_id IS NOT NEW.actor_id OR OLD.created_at IS NOT NEW.created_at
+   OR OLD.motivation IS NOT NEW.motivation OR OLD.supersedes_id IS NOT NEW.supersedes_id
+ BEGIN SELECT RAISE(ABORT,'approval_identity_is_immutable'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_revocation_only
+ BEFORE UPDATE ON study_question_bank_approvals
+ WHEN NOT (OLD.editorial_status='PUBLISHED' AND NEW.editorial_status='REVOKED')
+ BEGIN SELECT RAISE(ABORT,'approval_update_is_not_a_revocation'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_no_delete
+ BEFORE DELETE ON study_question_bank_approvals
+ BEGIN SELECT RAISE(ABORT,'approval_rows_are_not_deletable'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_event_identity
+ BEFORE INSERT ON study_question_bank_approval_events
+ WHEN NOT EXISTS (
+   SELECT 1 FROM study_question_bank_approvals a
+   WHERE a.id=NEW.approval_id AND a.edition_id=NEW.edition_id
+     AND a.bank_id=NEW.bank_id AND a.question_id=NEW.question_id
+     AND a.question_version=NEW.question_version
+     AND a.content_sha256=NEW.content_sha256)
+ BEGIN SELECT RAISE(ABORT,'approval_event_identity_mismatch'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_events_no_update
+ BEFORE UPDATE ON study_question_bank_approval_events
+ BEGIN SELECT RAISE(ABORT,'approval_events_are_append_only'); END;
+CREATE TRIGGER IF NOT EXISTS study_bank_approval_events_no_delete
+ BEFORE DELETE ON study_question_bank_approval_events
+ BEGIN SELECT RAISE(ABORT,'approval_events_are_append_only'); END;
+UPDATE study_schema SET version=7 WHERE version=6;

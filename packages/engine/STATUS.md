@@ -1174,3 +1174,33 @@ originali. Gate e baseline invariati; boundary ora verde sull’index completo.
 Il CSV usa LF, con identiche 4.000 righe interpretate. Nuova esecuzione di
 assembler e validatore completa e verde, manifest e corpus invariati.
 Dettagli riproducibili nel rapporto INTEGRATION-VALIDATION-2026-10-21.md.
+
+
+## 2026-10-21 — Gate P0 di pubblicazione della banca Fisica
+
+Default deny per edizione: nessun quesito della banca di 4.000 raggiunge uno
+studente senza un'approvazione scientifica/editoriale persistita, legata alla
+versione esatta e allo SHA-256 del contenuto autoriale. Il corpus resta
+immutabile e DRAFT; l'approvazione vive in schema 7
+(`study_question_bank_approvals`, eventi append-only, revoca come transizione).
+Solo il docente proprietario dell'edizione approva, rifiuta, revoca e legge
+l'audit. La pagina studente, il dettaglio, l'esame e il tentativo sono filtrati;
+un esame senza famiglie sufficienti fallisce con 409, senza composizioni parziali.
+Ripristino backup conserva le approvazioni; l'erasure di uno studente non tocca
+le decisioni editoriali. Concorrenza e idempotenza provate su SQLite.
+
+Verifica: validatore del produttore verde su 4.000 record (manifest SHA-256
+15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896, revisione
+umana NOT_RUN); suite Study 714 passati, 18 saltati (contratti Supabase live
+senza env file); 11 test engine e 7 HTTP dedicati al gate. Probe indipendente
+sulla banca reale: 0 approvazioni iniziali, pagina studente vuota, esame 409,
+una approvazione esatta pubblica un solo quesito, revoca lo ritira lasciando
+una riga e due eventi. Il probe #271 originale non è stato modificato: il suo
+primo test è verde, il secondo presuppone la baseline vulnerabile (esame 200
+senza approvazioni) e ora diverge in modo atteso.
+
+PostgreSQL live non verificato: nessun runtime disponibile; migrazione e RLS
+restano da collaudare prima del deploy. Nessuna approvazione reale dei 4.000,
+nessun merge o deploy. Ramo codex/physics-bank-approval-gate-20261021; PR in bozza #272, base
+codex/physics-bank-4000-20261021. Dettaglio in
+docs/study/QUESTION-BANK-PUBLICATION-GATE-2026-10-21.md.

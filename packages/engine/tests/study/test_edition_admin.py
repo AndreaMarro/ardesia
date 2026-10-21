@@ -201,10 +201,13 @@ def test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repa
 
 
 def test_shared_schema_contract_rejects_unknown_or_incomplete_features():
-    from lessonos.study.schema_contract import validate_schema,TABLES_V3
+    from lessonos.study.schema_contract import validate_schema,TABLES_V3,APPROVAL_COLUMNS
     from lessonos.study.scientific_notebook import NOTEBOOK_COLUMNS
     validate_schema(4,TABLES_V3,{'management_revision'},{'offer_revision'},allow_upgrade=True)
-    validate_schema(CURRENT_SCHEMA,TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS),{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS)
+    current=TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS)|set(APPROVAL_COLUMNS)
+    validate_schema(CURRENT_SCHEMA,current,{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS,approval_columns=APPROVAL_COLUMNS)
+    with pytest.raises(StudyError,match='database_integrity_failure'):
+        validate_schema(CURRENT_SCHEMA,TABLES_V3|set(ADMIN_COLUMNS)|set(NOTEBOOK_COLUMNS)|set(APPROVAL_COLUMNS),{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS,notebook_columns=NOTEBOOK_COLUMNS)
     with pytest.raises(StudyError,match='database_integrity_failure'):
         validate_schema(CURRENT_SCHEMA,TABLES_V3|set(ADMIN_COLUMNS),{'management_revision'},{'offer_revision'},admin_columns=ADMIN_COLUMNS)
     with pytest.raises(StudyError,match='newer_schema'):validate_schema(99,TABLES_V3,{'management_revision'},{'offer_revision'})

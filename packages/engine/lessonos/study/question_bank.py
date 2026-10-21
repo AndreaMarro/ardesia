@@ -32,6 +32,20 @@ _SHA = re.compile(r'^[0-9a-f]{64}$')
 _BANK_CACHE_LIMIT = 1
 _BANK_CACHE = OrderedDict()
 _BANK_CACHE_LOCK = RLock()
+# Editorial bookkeeping is projected, never authored content: approving a
+# question must not change the digest of the same revision.
+APPROVAL_EXCLUDED_FIELDS = frozenset({'status', 'reviewer'})
+
+
+def approval_content_sha256(question):
+    """SHA-256 of every authored field except the editorial projections.
+
+    The deny-list is deliberate: adding a new authored field changes the
+    digest, so an old approval fails closed instead of silently covering it.
+    """
+    body = {key: value for key, value in question.items() if key not in APPROVAL_EXCLUDED_FIELDS}
+    return hashlib.sha256(json.dumps(body, ensure_ascii=False, sort_keys=True,
+                                     separators=(',', ':'), allow_nan=False).encode()).hexdigest()
 
 
 class _FrozenDict(dict):
@@ -197,6 +211,7 @@ class QuestionBank:
             if len(self._profiles) != len(profiles) or not profiles:
                 raise ValueError('profile identities')
             self._by_id = {}
+            self._content_sha256 = {}
             seen_shards = set()
             shards = manifest['shards']
             if not isinstance(shards, list) or not 1 <= len(shards) <= 32:
@@ -223,6 +238,7 @@ class QuestionBank:
                     if question['id'] in self._by_id:
                         raise ValueError('duplicate question')
                     self._by_id[question['id']] = question
+                    self._content_sha256[question['id']] = approval_content_sha256(question)
             if len(self._by_id) != manifest['questionCount']:
                 raise ValueError('bank count')
             self._source_names = tuple(row[0] for row in observed)
@@ -232,6 +248,7 @@ class QuestionBank:
             self.manifest = _freeze(self.manifest)
             self._profiles = _freeze(self._profiles)
             self._by_id = _freeze(self._by_id)
+            self._content_sha256 = _freeze(self._content_sha256)
             self._questions = tuple(self._by_id[key] for key in sorted(self._by_id))
             self._sealed = True
         except (OSError, ValueError, KeyError, TypeError, AttributeError):
@@ -283,23 +300,56 @@ class QuestionBank:
         if expected_sha256 is not None and expected_sha256 != self.sha256:
             raise StudyError('question_bank_changed', 409)
 
-    def catalog(self):
+    def approval_content_sha256(self, question_id):
+        """Digest bound to one exact revision; unknown ids fail closed."""
+        if not isinstance(question_id, str) or question_id not in self._content_sha256:
+            raise StudyError('question_not_found', 404)
+        return self._content_sha256[question_id]
+
+    def question_version(self, question_id):
+        if not isinstance(question_id, str) or question_id not in self._by_id:
+            raise StudyError('question_not_found', 404)
+        return self._by_id[question_id]['version']
+
+    def review_record(self, question_id):
+        """Private reviewer projection: full authored content, never public."""
+        if not isinstance(question_id, str) or question_id not in self._by_id:
+            raise StudyError('question_not_found', 404)
+        return deepcopy(self._by_id[question_id])
+
+    def catalog(self, published_ids=None):
+        """Catalog. When a publication filter is supplied, counts cover it only."""
+        if published_ids is None:
+            questions = self._questions
+        else:
+            if not isinstance(published_ids, (set, frozenset)):
+                raise StudyError('invalid_publication_filter')
+            questions = tuple(q for q in self._questions if q['id'] in published_ids)
+        published = None if published_ids is None else len(questions)
         return {
             'id': self.manifest['id'], 'version': self.manifest['version'],
             'schemaVersion': self.manifest['schemaVersion'], 'bankSha256': self.sha256,
             'title': self.manifest.get('title', 'Fisica — Semestre filtro 2026/27'),
-            'questionCount': len(self._questions), 'editorialStatus': 'DRAFT',
+            'questionCount': len(questions), 'editorialStatus': 'DRAFT',
             'scientificApproval': 'NOT_RUN', 'calculatorAllowed': False,
-            'countsByDifficulty': dict(Counter(q['difficulty']['level'] for q in self._questions)),
-            'countsByUnit': dict(Counter(q['taxonomy']['unitId'] for q in self._questions)),
-            'countsByFormat': dict(Counter(q['format'] for q in self._questions)),
+            'countsByDifficulty': dict(Counter(q['difficulty']['level'] for q in questions)),
+            'countsByUnit': dict(Counter(q['taxonomy']['unitId'] for q in questions)),
+            'countsByFormat': dict(Counter(q['format'] for q in questions)),
             'examProfiles': deepcopy(list(self._profiles.values())),
             'taxonomy': deepcopy(self.manifest.get('taxonomy', [])),
             'difficultyRubric': deepcopy(self.manifest.get('difficultyRubric', {})),
             'practiceAttemptsPersisted': False,
+            'publication': {
+                'gate': 'scientific-editorial-approval-v1',
+                'defaultDeny': True,
+                'publishedQuestionCount': published,
+                'status': ('REVIEW_REQUIRED' if published is None
+                           else 'PUBLISHED' if published else 'UNPUBLISHED'),
+            },
         }
 
-    def _filtered(self, *, unit_id=None, difficulty=None, format=None, query=None, mini_course_id=None):
+    def _filtered(self, *, unit_id=None, difficulty=None, format=None, query=None, mini_course_id=None,
+                  published_ids=None):
         if unit_id is not None and unit_id not in {f'U{index}' for index in range(1, 8)}:
             raise StudyError('invalid_question_filter')
         if difficulty is not None and difficulty not in LEVELS:
@@ -313,6 +363,8 @@ class QuestionBank:
         terms = _alias(query).split() if query else []
         result = []
         for question in self._questions:
+            if published_ids is not None and question['id'] not in published_ids:
+                continue
             if unit_id and question['taxonomy']['unitId'] != unit_id:
                 continue
             if difficulty and question['difficulty']['level'] != difficulty:
@@ -328,13 +380,13 @@ class QuestionBank:
             result.append(question)
         return result
 
-    def questions(self, *, limit=20, after=None, expected_sha256=None, **filters):
+    def questions(self, *, limit=20, after=None, expected_sha256=None, published_ids=None, **filters):
         self._pin(expected_sha256)
         if type(limit) is not int or not 1 <= limit <= 100:
             raise StudyError('invalid_question_pagination')
         if after is not None and (not isinstance(after, str) or not 1 <= len(after) <= 128):
             raise StudyError('invalid_question_pagination')
-        questions = self._filtered(**filters)
+        questions = self._filtered(published_ids=published_ids, **filters)
         total = len(questions)
         if after is not None:
             if not any(question['id'] == after for question in questions):
@@ -355,12 +407,13 @@ class QuestionBank:
             raise StudyError('invalid_exam_profile')
         return self._profiles[profile_id]
 
-    def exam(self, seed, *, profile_id='semestre-2026', difficulty=None, expected_sha256=None):
+    def exam(self, seed, *, profile_id='semestre-2026', difficulty=None, expected_sha256=None,
+             published_ids=None):
         self._pin(expected_sha256)
         if not isinstance(seed, str) or not 1 <= len(seed) <= 128:
             raise StudyError('invalid_exam_seed')
         profile = self._exam_profile(profile_id)
-        questions = self._filtered(difficulty=difficulty)
+        questions = self._filtered(difficulty=difficulty, published_ids=published_ids)
         included_scopes = profile.get('includedScopes',
                                       ['syllabus_core'] if profile_id == 'semestre-2026' else None)
         excluded_scopes = sorted({q['descriptors'].get('scope', 'syllabus_core') for q in questions
@@ -489,13 +542,24 @@ def load_bank(bank_id=BANK_ID):
 
 def bank_for_edition(store, principal, edition_id, bank_id=BANK_ID):
     """Recheck persisted membership and the pinned CoursePack on every request."""
+    return bank_access_for_edition(store, principal, edition_id, bank_id)[1]
+
+
+def bank_access_for_edition(store, principal, edition_id, bank_id=BANK_ID):
+    """Return the authorized edition and bank; never trust a client bank id."""
     edition = store._edition_access(principal, edition_id)
     if bank_id not in edition.get('questionBankIds', []):
         raise StudyError('question_bank_not_available_for_edition', 404)
-    return load_bank(bank_id)
+    return edition, load_bank(bank_id)
 
 
 def bank_catalog_for_edition(store, principal, edition_id):
     edition = store._edition_access(principal, edition_id)
-    return {'editionId': edition_id, 'items': [load_bank(bank_id).catalog()
-            for bank_id in edition.get('questionBankIds', [])]}
+    from .question_bank_approvals import ApprovalGate
+    items = []
+    for bank_id in edition.get('questionBankIds', []):
+        bank = load_bank(bank_id)
+        gate = ApprovalGate(store, bank, edition_id)
+        published = None if principal.role == 'teacher' else gate.servable_ids()
+        items.append(bank.catalog(published_ids=published))
+    return {'editionId': edition_id, 'items': items}
