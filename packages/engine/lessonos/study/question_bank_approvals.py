@@ -8,6 +8,8 @@ durable state, never a deletion; the transition trail is append-only.
 This module never rewrites the bank JSON, never attributes an approval to the
 4.000 authored records and never exposes answers on a preview list.
 """
+import json
+
 from .models import StudyError
 from .store import canonical, identifier
 
@@ -47,7 +49,17 @@ def _event(row):
         'contentSha256': row['content_sha256'], 'event': row['event'],
         'actorId': row['actor_id'], 'createdAt': row['created_at'],
         'motivation': row['motivation'],
+        'reviewId': json.loads(row['payload']).get('reviewId'),
     }
+
+
+def _review(row):
+    return {'reviewId': row['id'], 'editionId': row['edition_id'],
+            'bankId': row['bank_id'], 'questionId': row['question_id'],
+            'questionVersion': row['question_version'], 'contentSha256': row['content_sha256'],
+            'bankSha256': row['bank_sha256'], 'status': row['status'], 'notes': row['notes'],
+            'actorId': row['actor_id'], 'createdAt': row['created_at'],
+            'supersedesId': row['supersedes_id']}
 
 
 class ApprovalGate:
@@ -165,29 +177,115 @@ class ApprovalGate:
     def _latest_any(self, question_id):
         return self._latest_for(question_id)
 
-    def approve(self, principal, *, question_id, question_version, content_sha256,
-                decision, motivation=None):
-        """Persist one binding decision. A stale revision or digest is rejected."""
-        self._teacher_edition(principal)
+    def _review_rows(self, question_id):
+        return self.store.connection.execute(
+            'SELECT * FROM study_question_bank_reviews WHERE edition_id=? AND bank_id=? '
+            'AND question_id=? ORDER BY created_at,id',
+            (self.edition_id, self.bank_id, question_id)).fetchall()
+
+    def _latest_review(self, question_id):
+        rows = self._review_rows(question_id)
+        parents = {row['supersedes_id'] for row in rows if row['supersedes_id']}
+        heads = [row for row in rows if row['id'] not in parents]
+        if len(heads) > 1:
+            raise StudyError('question_review_conflict', 409)
+        return heads[0] if heads else None
+
+    def _publication_for_review(self, question_id, review_id):
+        # The existing immutable event payload records the publication's source
+        # review. A delayed command must never revive a revoked publication.
+        rows = self.store.connection.execute(
+            'SELECT a.*,e.payload AS review_payload FROM study_question_bank_approvals a '
+            'JOIN study_question_bank_approval_events e ON e.approval_id=a.id '
+            "WHERE a.edition_id=? AND a.bank_id=? AND a.question_id=? AND e.event='APPROVED'",
+            (self.edition_id, self.bank_id, question_id)).fetchall()
+        return next((row for row in rows
+                     if json.loads(row['review_payload']).get('reviewId') == review_id), None)
+
+    def _validate_binding(self, question_id, question_version, content_sha256):
         if not isinstance(question_id, str) or not question_id:
             raise StudyError('invalid_question_id')
         if type(question_version) is not int or question_version < 1:
             raise StudyError('invalid_question_revision')
         if not isinstance(content_sha256, str) or len(content_sha256) != 64:
             raise StudyError('invalid_question_content_hash')
-        if decision not in SCIENTIFIC_STATUSES:
-            raise StudyError('invalid_scientific_decision')
-        motivation = _text(motivation, field='motivation', required=True)
-        expected_version = self.bank.question_version(question_id)
-        expected_digest = self.bank.approval_content_sha256(question_id)
-        if question_version != expected_version or content_sha256 != expected_digest:
-            # The reviewer read something else: approve nothing, reveal nothing.
+        if (question_version != self.bank.question_version(question_id)
+                or content_sha256 != self.bank.approval_content_sha256(question_id)):
             raise StudyError('question_revision_changed', 409)
+
+    def save_review(self, principal, *, question_id, question_version, content_sha256,
+                    status, notes, expected_review_id):
+        """Append private observations/decision. Never writes publication state."""
+        self._teacher_edition(principal)
+        self._validate_binding(question_id, question_version, content_sha256)
+        if status not in ('PENDING', 'APPROVED', 'REJECTED'):
+            raise StudyError('invalid_scientific_decision')
+        notes = _text(notes, field='review_notes', required=True)
+        if expected_review_id is not None:
+            _text(expected_review_id, field='review_id', maximum=128, required=True)
         with self.store.transaction() as connection:
             self.store.lock_aggregate(connection, 'question-bank-approval',
                                       f'{self.edition_id}:{self.bank_id}:{question_id}')
+            previous = self._latest_review(question_id)
+            if expected_review_id != (previous['id'] if previous else None):
+                raise StudyError('question_review_conflict', 409)
+            review_id = identifier()
+            connection.execute(
+                'INSERT INTO study_question_bank_reviews('
+                'id,edition_id,bank_id,question_id,question_version,content_sha256,bank_sha256,'
+                'status,notes,actor_id,created_at,supersedes_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
+                (review_id, self.edition_id, self.bank_id, question_id, question_version,
+                 content_sha256, self.bank.sha256, status, notes, principal.id,
+                 self.store.clock(), expected_review_id))
+            row = connection.execute('SELECT * FROM study_question_bank_reviews WHERE id=?',
+                                     (review_id,)).fetchone()
+        return _review(row)
+
+    def publish_review(self, principal, review_id):
+        """Explicit editorial action on the exact, latest positive review."""
+        self._teacher_edition(principal)
+        row = self.store.connection.execute(
+            'SELECT * FROM study_question_bank_reviews WHERE id=? AND edition_id=? AND bank_id=?',
+            (review_id, self.edition_id, self.bank_id)).fetchone()
+        if row is None:
+            raise StudyError('question_review_not_found', 404)
+        return self.approve(principal, question_id=row['question_id'],
+                            question_version=row['question_version'],
+                            content_sha256=row['content_sha256'], decision='APPROVED',
+                            motivation=row['notes'], review_id=review_id)
+
+    def approve(self, principal, *, question_id, question_version, content_sha256,
+                decision, motivation=None, review_id=None):
+        """Persist an explicit publication authorization (legacy Core command).
+
+        Scientific review uses save_review instead. HTTP callers must confirm
+        this editorial action; publish_review also pins the latest private review.
+        """
+        self._teacher_edition(principal)
+        self._validate_binding(question_id, question_version, content_sha256)
+        if decision not in SCIENTIFIC_STATUSES:
+            raise StudyError('invalid_scientific_decision')
+        motivation = _text(motivation, field='motivation', required=True)
+        with self.store.transaction() as connection:
+            self.store.lock_aggregate(connection, 'question-bank-approval',
+                                      f'{self.edition_id}:{self.bank_id}:{question_id}')
+            if review_id is not None:
+                review = self._latest_review(question_id)
+                if review is None or review['id'] != review_id:
+                    raise StudyError('question_review_conflict', 409)
+                if review['status'] != 'APPROVED' or not self._matches(review):
+                    raise StudyError('scientific_review_not_approved', 409)
+                prior_publication = self._publication_for_review(question_id, review_id)
+                if prior_publication is not None:
+                    if prior_publication['editorial_status'] != EDITORIAL_PUBLISHED:
+                        raise StudyError('review_publication_revoked', 409)
+                    return _approval(prior_publication)
             active = self._latest_active(question_id, question_version, content_sha256)
             if decision == 'APPROVED' and active is not None:
+                if review_id is not None:
+                    # A different review's existing publication cannot serve
+                    # as a successful, unrecorded command for this review.
+                    raise StudyError('question_already_published', 409)
                 return _approval(active)
             if decision == 'REJECTED' and active is not None:
                 raise StudyError('approval_active_requires_revocation', 409)
@@ -204,7 +302,8 @@ class ApprovalGate:
                  content_sha256, self.bank.sha256, decision, editorial, principal.id, created_at,
                  motivation, previous['id'] if previous else None))
             self._append_event(connection, approval_id, question_id, question_version,
-                               content_sha256, decision, principal.id, created_at, motivation)
+                               content_sha256, decision, principal.id, created_at, motivation,
+                               review_id=review_id)
             row = connection.execute('SELECT * FROM study_question_bank_approvals WHERE id=?',
                                      (approval_id,)).fetchone()
         return _approval(row)
@@ -240,11 +339,12 @@ class ApprovalGate:
         return _approval(updated)
 
     def _append_event(self, connection, approval_id, question_id, question_version,
-                      content_sha256, event, actor_id, created_at, motivation):
+                      content_sha256, event, actor_id, created_at, motivation, review_id=None):
         payload = canonical({
             'gate': GATE_ID, 'event': event, 'questionId': question_id,
             'questionVersion': question_version, 'contentSha256': content_sha256,
             'actorId': actor_id, 'createdAt': created_at,
+            **({'reviewId': review_id} if review_id is not None else {}),
         })
         connection.execute(
             'INSERT INTO study_question_bank_approval_events('
@@ -260,7 +360,14 @@ class ApprovalGate:
         state = {'questionId': question_id,
                  'questionVersion': self.bank.question_version(question_id),
                  'contentSha256': self.bank.approval_content_sha256(question_id),
-                 'servable': current is not None, 'approval': None}
+                 'servable': current is not None, 'approval': None, 'review': None,
+                 'reviewPublication': None}
+        review = self._latest_review(question_id)
+        if review is not None:
+            state['review'] = _review(review)
+            publication = self._publication_for_review(question_id, review['id'])
+            if publication is not None:
+                state['reviewPublication'] = _approval(publication)
         if row is not None:
             state['approval'] = _approval(row)
         return state
@@ -301,7 +408,16 @@ class ApprovalGate:
                 "ORDER BY created_at, CASE event WHEN 'REVOKED' THEN 1 ELSE 0 END, id",
                 (row['id'],)).fetchall()
             items.append({**_approval(row), 'events': [_event(event) for event in events]})
-        return {'questionId': question_id, 'approvals': items}
+        # Follow the predecessor chain; wall-clock timestamps can tie.
+        review_rows = self._review_rows(question_id)
+        by_id = {row['id']: row for row in review_rows}
+        head = self._latest_review(question_id)
+        reviews, seen = [], set()
+        while head is not None and head['id'] not in seen:
+            reviews.append(_review(head))
+            seen.add(head['id'])
+            head = by_id.get(head['supersedes_id'])
+        return {'questionId': question_id, 'approvals': items, 'reviews': list(reversed(reviews))}
 
     def approval_events(self, principal, approval_id):
         self._teacher_edition(principal)
@@ -345,12 +461,14 @@ class ApprovalGate:
         page = records[:limit]
         items = []
         for question, row, servable in page:
+            review = self._latest_review(question['id'])
             items.append({'id': question['id'], 'version': question['version'],
                           'title': question['title'], 'prompt': question['prompt'],
                           'format': question['format'], 'taxonomy': dict(question['taxonomy']),
                           'difficulty': dict(question['difficulty']),
                           'contentSha256': self.bank.approval_content_sha256(question['id']),
                           'servable': servable,
+                          'review': _review(review) if review is not None else None,
                           'approval': _approval(row) if row is not None else None})
         return {'bankId': self.bank_id, 'bankSha256': self.bank.sha256, 'total': total,
                 'items': items, 'nextCursor': page[-1][0]['id'] if len(records) > limit else None}

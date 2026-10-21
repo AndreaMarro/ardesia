@@ -307,6 +307,7 @@ test("C1: real Study API browser journey, CAS conflict, independent grading and 
           contentSha256: state.contentSha256,
           decision: "APPROVED",
           motivation: "C1 browser reapproval proof",
+          confirmPublication: true, // Explicit editorial action, separate from scientific review.
         },
       },
     );

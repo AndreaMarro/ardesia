@@ -8,7 +8,7 @@ No endpoint here publishes an approval for the bundled 4.000 records by itself.
 from typing import Literal
 
 from fastapi import Depends, Query, Request
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 
 from lessonos.study.models import StudyError
 from lessonos.study.question_bank import bank_access_for_edition, bank_catalog_for_edition
@@ -38,6 +38,22 @@ class ApprovalBody(BaseModel):
     contentSha256: StrictStr = Field(pattern=r'^[0-9a-f]{64}$')
     decision: Literal['APPROVED', 'REJECTED']
     motivation: StrictStr = Field(min_length=1, max_length=2000)
+    confirmPublication: StrictBool = False
+
+
+class ScientificReviewBody(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    questionId: StrictStr = Field(min_length=1, max_length=128)
+    questionVersion: int = Field(ge=1, le=1_000_000)
+    contentSha256: StrictStr = Field(pattern=r'^[0-9a-f]{64}$')
+    status: Literal['PENDING', 'APPROVED', 'REJECTED']
+    notes: StrictStr = Field(min_length=1, max_length=2000)
+    expectedReviewId: StrictStr | None = Field(max_length=128)
+
+
+class PublicationBody(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    confirmPublication: StrictBool
 
 
 class RevocationBody(BaseModel):
@@ -159,11 +175,35 @@ def install_question_bank_routes(app, store_dependency, authenticate):
     def decide(edition_id: str, bank_id: str, body: ApprovalBody, request: Request,
                store=Depends(store_dependency)):
         principal = authenticate(request, store)
+        store._edition_access(principal, edition_id, teacher_only=True)
+        if body.decision == 'APPROVED' and not body.confirmPublication:
+            raise StudyError('publication_confirmation_required', 409)
         _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
         return ApprovalGate(store, bank, edition_id).approve(
             principal, question_id=body.questionId, question_version=body.questionVersion,
             content_sha256=body.contentSha256, decision=body.decision,
             motivation=body.motivation)
+
+    @app.post(prefix + '/{bank_id}/review/reviews')
+    def save_review(edition_id: str, bank_id: str, body: ScientificReviewBody,
+                    request: Request, store=Depends(store_dependency)):
+        principal = authenticate(request, store)
+        store._edition_access(principal, edition_id, teacher_only=True)
+        _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
+        return ApprovalGate(store, bank, edition_id).save_review(
+            principal, question_id=body.questionId, question_version=body.questionVersion,
+            content_sha256=body.contentSha256, status=body.status, notes=body.notes,
+            expected_review_id=body.expectedReviewId)
+
+    @app.post(prefix + '/{bank_id}/review/reviews/{review_id}/publish')
+    def publish_review(edition_id: str, bank_id: str, review_id: str, body: PublicationBody,
+                       request: Request, store=Depends(store_dependency)):
+        principal = authenticate(request, store)
+        store._edition_access(principal, edition_id, teacher_only=True)
+        if not body.confirmPublication:
+            raise StudyError('publication_confirmation_required', 409)
+        _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
+        return ApprovalGate(store, bank, edition_id).publish_review(principal, review_id)
 
     @app.post(prefix + '/{bank_id}/review/approvals/{approval_id}/revoke')
     def revoke(edition_id: str, bank_id: str, approval_id: str, body: RevocationBody,

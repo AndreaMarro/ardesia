@@ -1,7 +1,7 @@
 """Recognized canonical schema features, shared by SQLite and PostgreSQL."""
 from .models import StudyError
 
-CURRENT_SCHEMA = 9
+CURRENT_SCHEMA = 10
 CALENDAR_TABLES = frozenset({'study_calendar_targets','study_calendar_intents',
     'study_calendar_mappings','study_calendar_cache','study_calendar_deliveries'})
 # The V3 snapshot is explicit: future additive features are versioned here,
@@ -43,6 +43,13 @@ EXAM_COLUMNS={
  'study_exam_attempts':EXAM_COLUMNS_V8['study_exam_attempts'] | frozenset({'answer_revision'}),
 }
 
+# Schema10: private scientific reviews precede the existing publication ledger.
+# No question payload is copied; every review is bound to its authored digest.
+QUESTION_REVIEW_COLUMNS={
+ 'study_question_bank_reviews':frozenset('id edition_id bank_id question_id question_version '
+    'content_sha256 bank_sha256 status notes actor_id created_at supersedes_id'.split()),
+}
+
 
 def _complete(columns, required, tables):
     return set(required).issubset(tables) and all(
@@ -50,12 +57,12 @@ def _complete(columns, required, tables):
 
 
 def validate_schema(version,tables,edition_columns,hold_columns=(),*,allow_upgrade=False,admin_columns=None,
-                    notebook_columns=None,approval_columns=None,exam_columns=None):
+                    notebook_columns=None,approval_columns=None,exam_columns=None,question_review_columns=None):
     if type(version) is not int:
         raise StudyError('database_schema_not_ready',503)
     if version>CURRENT_SCHEMA:
         raise StudyError('newer_schema',503)
-    if version not in (1,2,3,4,5,6,7,8,9):
+    if version not in (1,2,3,4,5,6,7,8,9,10):
         raise StudyError('database_schema_not_ready',503)
     if version>=3 and not TABLES_V3.issubset(tables):
         raise StudyError('database_integrity_failure',503)
@@ -76,6 +83,9 @@ def validate_schema(version,tables,edition_columns,hold_columns=(),*,allow_upgra
     if set(EXAM_COLUMNS_V8).intersection(tables) and not exams_v8:
         raise StudyError('database_integrity_failure',503)
     if version>=9 and not exams_v9:
+        raise StudyError('database_integrity_failure',503)
+    if (version>=10 or set(QUESTION_REVIEW_COLUMNS).intersection(tables)) and not _complete(
+            question_review_columns,QUESTION_REVIEW_COLUMNS,tables):
         raise StudyError('database_integrity_failure',503)
     if version>=7 and not approvals:
         # Only the known pre-convergence v7 exam lineage may upgrade in place.

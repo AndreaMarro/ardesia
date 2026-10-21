@@ -15,6 +15,7 @@ import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
+import { QuestionBankReview } from "../components/QuestionBankReview";
 
 export function Classroom({
   me,
@@ -75,7 +76,8 @@ export function Classroom({
       {data.enrolled ? (
         <>
           {data.edition.questionBankIds?.includes("physics-semestre-2026") && (
-            <PhysicsQuestionBank key={`${me.id}:${data.edition.id}:physics-bank`} editionId={data.edition.id} />
+            tutor ? <QuestionBankReview key={`${me.id}:${data.edition.id}:review-bank`} editionId={data.edition.id} />
+              : <PhysicsQuestionBank key={`${me.id}:${data.edition.id}:physics-bank`} editionId={data.edition.id} />
           )}
           <ScientificNotebooks me={me} data={data} onUpdate={onUpdate} onUse={tutor ? undefined : reference => {
             setSource(reference);
