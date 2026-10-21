@@ -82,9 +82,10 @@ def _numeric(answer):
 def _question(full, approval):
     if full['format'] == 'multiple_choice':
         options = [option['text'] for option in full['options']]
-        if len(options) != 5 or full['answer'].get('correctOptionId') not in 'ABCDE':
+        answer = full['answer'].get('correctOptionId')
+        if (len(options) != 5 or not isinstance(answer, str)
+                or len(answer) != 1 or answer not in 'ABCDE'):
             raise StudyError('exam_question_invalid', 409)
-        answer = full['answer']['correctOptionId']
         accepted = None
         numeric = None
     else:
