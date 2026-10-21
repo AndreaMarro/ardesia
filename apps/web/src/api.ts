@@ -16,6 +16,7 @@ export type Edition = LegacyEdition & {
   title?: string;
   subject?: string;
   duration?: string;
+  questionBankIds?: string[];
 };
 export type Workspace = Omit<LegacyWorkspace, "edition"> & {
   edition: Edition;

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewedOn": "2026-10-21",
+  "reviewKind": "AI-assisted authoring scientific audit",
+  "independentHumanReview": false,
+  "difficultyEmpiricalCalibration": false,
+  "counts": {
+    "modelCount": 92,
+    "byUnit": {
+      "U3": 50,
+      "U5": 42
+    },
+    "expectedExpandedQuestions": 1472,
+    "expectedQuestionsPerDifficulty": 368,
+    "standaloneConceptualQuestions": 32,
+    "individuallyAuthoredOverrides": 11,
+    "overrideDifficultyCounts": {
+      "facile": 8,
+      "difficile": 2,
+      "base": 1
+    }
+  },
+  "sourceHashes": {
+    "models_fluids_thermal.json": "c2e98962e8bdc71547e9b308334cbcc43929d8b201528ece807cc64aa927eda1",
+    "overrides_fluid_thermal.json": "53d2c24b479b30e17d5af174b27dad8109fcf25c1e1609be218af31b518ca23e"
+  },
+  "reviewScope": [
+    "Controllo editoriale delle92 relazioni fisiche, conversioni di unità, variabili, costanti, vincoli e domini.",
+    "Controllo delle32 domande concettuali indipendenti e degli11 task individuali.",
+    "Screening dei1472 record U3/U5 del build intermedio, prima delle ultime correzioni; controllo delle famiglie simmetriche e delle operazioni non adatte al vincolo senza calcolatrice.",
+    "Verifica algebrica dei92 modelli per scelta di campioni, inversioni e domini; non è una prova scientifica indipendente.",
+    "Verifica del contenuto e della struttura degli11 override con il generatore aggiornato.",
+    "Mappatura di48 argomenti ministeriali U3/U5 e dei62 obiettivi delle due prove2025."
+  ],
+  "correctedFindings": [
+    {
+      "id": "normalized_radiative_temperature",
+      "severity": "scientific_metadata",
+      "status": "fixed",
+      "models": [
+        "U5-emitted-blackbody-power",
+        "U5-net-blackbody-exchange"
+      ],
+      "detail": "θ=T/(100 K) è adimensionale. Unità e dimensioni dei metadati corrette in 1; coefficiente σA(100 K)^4 espresso in W, non W/K^4."
+    },
+    {
+      "id": "standalone_concept_context",
+      "severity": "physical_context",
+      "status": "fixed",
+      "models": [
+        "U3-pressure-area",
+        "U3-stevino-gauge",
+        "U3-stevino-absolute",
+        "U3-vertical-wall-force",
+        "U3-hydraulic-force",
+        "U3-archimedes-force",
+        "U3-floating-fraction",
+        "U3-volume-flow",
+        "U3-venturi-area-ratio",
+        "U3-poiseuille-flow",
+        "U3-parabolic-profile",
+        "U3-couette-force",
+        "U3-pressure-gradient-fixed-speed",
+        "U3-laplace-droplet",
+        "U5-temperature-difference",
+        "U5-ideal-gas-pressure",
+        "U5-isochoric-heat",
+        "U5-isobaric-work",
+        "U5-first-law-expansion",
+        "U5-engine-efficiency",
+        "U5-carnot-efficiency",
+        "U5-free-expansion-pressure",
+        "U5-sensible-heat",
+        "U5-two-body-calorimetry",
+        "U5-calorimeter-capacity",
+        "U5-latent-heat",
+        "U5-plane-conduction",
+        "U5-net-blackbody-exchange",
+        "U5-reversible-isothermal-entropy",
+        "U5-entropy-hot-cold",
+        "U5-ideal-expansion-entropy",
+        "U5-statistical-entropy"
+      ],
+      "detail": "Tutti i32 concettuali hanno contesto, ipotesi, legge, derivazione, errori tipici e metadati propri. Eliminati rimandi a geometrie o condizioni assenti e code esplicative di problemi differenti."
+    },
+    {
+      "id": "boundary_values_of_concept",
+      "severity": "physical_domain",
+      "status": "fixed",
+      "models": [
+        "U3-parabolic-profile",
+        "U5-net-blackbody-exchange"
+      ],
+      "detail": "I concettuali sull’asse/parete e sull’equilibrio radiativo non ereditano i domini numerici stretti 0<u<1 oppure T_s>T_a."
+    },
+    {
+      "id": "symmetric_inverse_tasks",
+      "severity": "semantic_repetition",
+      "status": "fixed",
+      "models": [
+        "U3-hydraulic-series",
+        "U3-hydraulic-parallel",
+        "U3-horizontal-jet-range",
+        "U5-isothermal-chambers"
+      ],
+      "detail": "Serial5 sostituito con ripartizione di pressione, chiusura di ramo a Δp fissata, fori a quote complementari e ripartizione di molecole. Non si conta più il semplice scambio di etichette come un nuovo problema inverso."
+    },
+    {
+      "id": "transcendental_constraint",
+      "severity": "unnecessary_math",
+      "status": "fixed",
+      "models": [
+        "U5-isothermal-work",
+        "U5-ideal-expansion-entropy"
+      ],
+      "detail": "I vincoli generici x=kz avrebbero introdotto z ln z e inversioni estranee all’obiettivo. Serial15 ora usa cammini composti, logaritmi di due/quattro e bilanci espliciti, con risultati24 J e8 J/K."
+    },
+    {
+      "id": "celsius_coordinate_ratios",
+      "severity": "interpretation",
+      "status": "fixed_with_explicit_convention",
+      "models": [
+        "U5-temperature-after-heating",
+        "U5-two-body-calorimetry",
+        "U5-calorimeter-capacity",
+        "U5-ice-final-temperature",
+        "U5-warm-water-and-ice",
+        "U5-interface-temperature"
+      ],
+      "detail": "I rapporti delle letture Celsius sono qualificati come rapporti di coordinate numeriche sulla scala scelta; non sono rapporti di temperatura assoluta. I rapporti termodinamici richiedono kelvin."
+    },
+    {
+      "id": "exam_2025_u3_u5_gaps",
+      "severity": "coverage",
+      "status": "fixed",
+      "models": [
+        "U3-poiseuille-flow",
+        "U3-pressure-gradient-fixed-speed",
+        "U5-two-body-calorimetry",
+        "U5-isobaric-work",
+        "U5-ideal-expansion-entropy",
+        "U5-gas-density",
+        "U5-ideal-gas-pressure",
+        "U5-isobaric-monatomic-heat"
+      ],
+      "detail": "Aggiunte verifiche effettive di L/r aQ fissata, incomprimibilità, C=mc, lavoro isobaro inverso, entropia funzione di stato, energia molecolare con leggefornita, gas reale/ideale, Reynolds dimensionale e ΔU distinta daQ eW."
+    }
+  ],
+  "checks": {
+    "modelSampleInversionCheck": {
+      "passed": 92,
+      "total": 92,
+      "limitation": "Controllo su domini e campioni selezionati; non prova unicità globale per ogni vincolo futuro."
+    },
+    "individualOverrideCheck": {
+      "ok": true,
+      "errors": [],
+      "questionCount": 11,
+      "byDifficulty": {
+        "facile": 8,
+        "difficile": 2,
+        "base": 1
+      },
+      "byUnit": {
+        "U3": 5,
+        "U5": 6
+      },
+      "byFormat": {
+        "multiple_choice": 11
+      },
+      "familyCount": 11,
+      "solutionWords": {
+        "minimum": 398,
+        "maximum": 499,
+        "total": 4756
+      },
+      "duplicatePolicy": "Exact text, digit-normalized full prompt, explicit reasoning signature. This is not an exhaustive semantic proof.",
+      "humanScientificReview": "NOT_RUN",
+      "difficultyCalibration": "NOT_RUN"
+    },
+    "preliminaryExpandedNumericScreen": {
+      "records": 1472,
+      "exactRationalAnswersWithNumeratorAbove10000": 0,
+      "denominatorsAbove100": [
+        {
+          "questionId": "u5-carnot-efficiency-13",
+          "answer": "1/200"
+        },
+        {
+          "questionId": "u5-free-expansion-pressure-11",
+          "answer": "1/150"
+        },
+        {
+          "questionId": "u5-reversible-isothermal-entropy-13",
+          "answer": "1/300"
+        }
+      ],
+      "assessment": "Le tre frazioni restano esatte e semplici da mantenere senza divisione decimale. Pi greco, radici e logaritmi forniti rimangono simbolici quando previsto."
+    },
+    "historicalCoverageCounts": {
+      "direct": 48,
+      "provided_law_extension": 6,
+      "covered_by_combination": 4,
+      "adapted": 2,
+      "reframed_to_remove_ambiguity": 1,
+      "adapted_provided_law_extension": 1
+    },
+    "expectedScopeCounts": {
+      "syllabus_core": 1326,
+      "provided_law_extension": 146
+    }
+  },
+  "sourceHandling": {
+    "uploadedPdfCount": 4,
+    "pdfPages": {
+      "Valdes": 429,
+      "Ragozzino": 576,
+      "Scannicchio": 768,
+      "FisicaTB": 133
+    },
+    "readingScope": "Indici e campioni mirati letti; FisicaTB è una scansione con OCR mirato. Non si afferma lettura esaustiva pagina per pagina.",
+    "missingRequestedBook": "Testbustes Eseriziario Completo Semestre Filtro.pdf non risultava presente fra i file accessibili.",
+    "copyrightedFilesUploadedToRepository": false,
+    "knownSourceIssues": [
+      "Valdes PDF425–426: formula dei decibel associata all’intensità con fattore20, da non replicare; per intensità si usa10 log10.",
+      "Valdes PDF426: l’esempio di pressione in profondità richiede distinguere pressione relativa da assoluta."
+    ]
+  },
+  "limitations": [
+    "I controlli automatici rilevano incongruenze definite, non certificano assenza di ogni errore fisico o didattico.",
+    "I quesiti derivano da92 scenari fisici U3/U5 con compiti diversi per scenario; non vengono presentati come1472 concetti fisici indipendenti.",
+    "Il controllo di firme, testo e simmetrie evidenti non equivale a una prova esaustiva di non ripetitività semantica.",
+    "Difficoltà ed esigenze temporali sono editoriali e attendono calibrazione su studenti.",
+    "Il build finale e la risoluzione dei questionIds delle mappe devono essere verificati dal processo di assemblaggio comune."
+  ]
+}

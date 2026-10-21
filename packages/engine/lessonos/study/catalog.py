@@ -31,7 +31,10 @@ def describe_pack(pack_id=DEFAULT_PACK, version=1):
         raise StudyError('coursepack_unavailable', 409)
     canonical = json.dumps(pack, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
     return {'courseId': course_id, 'packId': pack_id, 'packVersion': version,
-            'packSha256': hashlib.sha256(canonical.encode()).hexdigest(), 'title': title, 'subject': subject, 'duration': duration}
+            'packSha256': hashlib.sha256(canonical.encode()).hexdigest(), 'title': title, 'subject': subject, 'duration': duration,
+            # Supplementary practice does not rewrite the immutable CoursePack
+            # JSON or its persisted edition pin. Access remains edition-scoped.
+            'questionBankIds': ['physics-semestre-2026'] if subject == 'fisica' else []}
 
 
 def validate_binding(course_id, pack_id, version):

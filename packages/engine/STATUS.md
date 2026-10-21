@@ -1125,3 +1125,52 @@ frontend non verificati in questo incremento; nessun gate indebolito.
 SYS-01 resta aperto: editor visuale, Undo isolato, geometria interattiva,
 salva/chiudi/riapri browser e confronto equivalente autorizzato ancora richiesti.
 Nessun push/merge/deploy. Dettaglio: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-CORE.md.
+
+
+## 2026-10-21 — Banca Fisica semestre filtro: 4.000 quesiti e integrazione Study
+
+Banca originale completa: 1.000 base, 1.000 facili, 1.000 medi, 1.000 difficili;
+27 shard JSON, schema, catalogo CSV, fonti e mappe dei 147 argomenti editoriali
+del programma 2026/27 e dei 62 obiettivi delle due prove 2025. Le 250 famiglie
+articolano compiti diversi; parentela, limiti dei controlli semantici e 179
+approfondimenti con legge fornita sono dichiarati. Spiegazioni 213–1129 parole.
+
+Integrazione additiva: banca collegata alle edizioni di Fisica, CoursePack e SHA
+esistenti conservati, API autenticata, proiezioni senza soluzioni, correzione
+esatta senza eval/CAS/LLM a runtime, cache immutabile, filtri e allenamenti in Aula.
+I tentativi sono stateless e non confluiscono nel diario. Le simulazioni 2026
+usano 21 scelte multiple e 10 completamenti, 50minuti, sole domande core,31 lawFamily.
+
+Verifica completa: 2738 test Python passati, 27 saltati con motivi registrati;
+243 test web, TypeScript e build verdi. Schema/proiezione/correzione su 4.000 record;
+100 prove campionate su 2 profili e 5 selezioni di livello ; 40 pagine senza salti.
+Wheel verificato con manifest,schema e tutti i 27 shard, hash coincidenti e caricamento
+dei 4.000 quesiti da distribuzione estratta. Nessun gate esistente indebolito.
+
+Review assistita incrociata: corretti collisioni di simboli, unità e domini,
+ambiguità delle inverse e casi esponenziali con radici perse dal risolutore.
+Reviewer umano: null; stato: DRAFT; calibrazione difficoltà su studenti:NOT_RUN.
+Il wrapper storico review.sh dipende da CLI assenti; non è dichiarata una review
+Claude. La suite frozen è eseguita direttamente nel checkout perché il wrapper
+usa un percorso storico. L’utente ha richiesto la pubblicazione GitHub: ramo
+dedicato e PR in bozza sul ramo minicorsi; nessun merge o deploy autorizzato/eseguito.
+
+Rapporti: packs/semestre-filtro-2026-27/README.md e docs/INTEGRATION-VALIDATION-2026-10-21.md
+nel medesimo pacchetto; manifest SHA-256
+15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896.
+Costo sessione non esposto dal runtime, nessuna cifra inventata.
+
+### Pubblicazione e conformità alla struttura del repository
+
+Pubblicata la PR in bozza #270, ramo codex/physics-bank-4000-20261021,
+con base nel ramo minicorsi codex/ardesia-public-rea-20261020. Verificati su
+GitHub manifest e tutti i 27 shard della banca completa. Il primo run CI ha
+superato engine, study-api, study-mcp, web, studio e golden path e2e advisory.
+
+Il controllo hygiene ha individuato i percorsi authoring sotto packs: spostati
+gli strumenti in bin/content/physics_bank e i JSON editoriali in data, con
+aggiornamento dei riferimenti. Tutti i 17 JSON spostati conservano i byte
+originali. Gate e baseline invariati; boundary ora verde sull’index completo.
+Il CSV usa LF, con identiche 4.000 righe interpretate. Nuova esecuzione di
+assembler e validatore completa e verde, manifest e corpus invariati.
+Dettagli riproducibili nel rapporto INTEGRATION-VALIDATION-2026-10-21.md.

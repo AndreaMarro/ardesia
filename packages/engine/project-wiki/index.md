@@ -65,3 +65,5 @@ Ogni pagina + riassunto 1 riga.
 
 - **original-assets.md** — byte e descrittore autorizzati, identità immutabile e confine del lettore PDF
 - **scientific-notebook.md** — binding PDF immutabile, annotazioni per revisione, CAS, editor Web e riapertura portabile
+
+- **physics-question-bank.md** — banca statica di Fisica, accesso per edizione, correzione esatta, famiglie e stato editoriale

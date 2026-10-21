@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-21",
+  "status": "PASS",
+  "scientificApproval": "NOT_RUN",
+  "bankId": "physics-semestre-2026",
+  "manifestSha256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896",
+  "recordCount": 4000,
+  "shardCount": 27,
+  "shardBytes": 53236609,
+  "maxShardBytes": 2347465,
+  "countsByDifficulty": {
+    "base": 1000,
+    "facile": 1000,
+    "medio": 1000,
+    "difficile": 1000
+  },
+  "countsByUnit": {
+    "U1": 160,
+    "U2": 928,
+    "U3": 800,
+    "U4": 272,
+    "U5": 672,
+    "U6": 800,
+    "U7": 368
+  },
+  "countsByFormat": {
+    "completion": 1463,
+    "multiple_choice": 2537
+  },
+  "countsByScope": {
+    "syllabus_core": 3821,
+    "provided_law_extension": 179
+  },
+  "lawFamilies": 212,
+  "canonicalAnswersCorrect": 4000,
+  "canonicalAnswersByFormat": {
+    "completion": 1463,
+    "multiple_choice": 2537
+  },
+  "studentProjectionsChecked": 4000,
+  "pagination": {
+    "pages": 40,
+    "pageSize": 100,
+    "distinctIds": 4000
+  },
+  "examProfilesChecked": [
+    "semestre-2026",
+    "semestre-2025-historical"
+  ],
+  "examInstancesChecked": 100,
+  "examLevelsChecked": [
+    "mixed",
+    "base",
+    "facile",
+    "medio",
+    "difficile"
+  ],
+  "seedsPerProfileAndLevel": 10,
+  "determinismChecks": 10,
+  "unitCoverageStrategy": "editorial_training_not_ministerial_quotas",
+  "timingSeconds": {
+    "coldSnapshotLoad": 0.85312,
+    "warmLoadMean100": 0.001468,
+    "warmLoadMax100": 0.005599,
+    "allCanonicalGradesAndProjections": 0.256154,
+    "pagination40Pages": 2.571214,
+    "examInstancesAndDeterminism": 3.44195
+  },
+  "maxProcessRssKiB": 165120,
+  "limitations": [
+    "Wall-clock timings describe one local execution and are not a production SLA.",
+    "This checks stored keys against the deterministic runtime grader; it does not independently prove every physical premise.",
+    "Attempts remain stateless; no external services, real-user data or production session were used.",
+    "Human scientific approval and production deployment were not performed."
+  ]
+}
