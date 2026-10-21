@@ -1,7 +1,7 @@
 # Gate di pubblicazione scientifica/editoriale — P0
 
 Data: 2026-10-21. Base: `codex/physics-bank-approval-gate-20261021`, SHA
-`e9c87b072913744f6cc6df21217b8856cddfef1f` (PR #270). Worktree isolato:
+`e9c87b072913744f6cc6df21217b8856cddfef1f` (PR #270). PR in bozza #272. Worktree isolato:
 `/Users/andreamarro/VOLUME 3/ardesia-bank-approval-20261021`.
 
 ## Perimetro

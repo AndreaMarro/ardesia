@@ -1201,5 +1201,6 @@ senza approvazioni) e ora diverge in modo atteso.
 
 PostgreSQL live non verificato: nessun runtime disponibile; migrazione e RLS
 restano da collaudare prima del deploy. Nessuna approvazione reale dei 4.000,
-nessun merge o deploy. Ramo codex/physics-bank-approval-gate-20261021;
-dettaglio in docs/study/QUESTION-BANK-PUBLICATION-GATE-2026-10-21.md.
+nessun merge o deploy. Ramo codex/physics-bank-approval-gate-20261021; PR in bozza #272, base
+codex/physics-bank-4000-20261021. Dettaglio in
+docs/study/QUESTION-BANK-PUBLICATION-GATE-2026-10-21.md.
