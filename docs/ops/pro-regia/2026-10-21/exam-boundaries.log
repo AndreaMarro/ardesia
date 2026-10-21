@@ -1,0 +1,98 @@
+test_correct_basic_answers_are_not_rejected (pro_regia_exam_boundaries.ExamBoundaryProbes.test_correct_basic_answers_are_not_rejected) ... ok
+test_mur_2026_multiple_choice_has_five_options (pro_regia_exam_boundaries.ExamBoundaryProbes.test_mur_2026_multiple_choice_has_five_options) ... FAIL
+test_pressure_accepts_equivalent_decimal_kpa (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_equivalent_decimal_kpa) ... FAIL
+test_pressure_accepts_spaced_scientific_notation (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_spaced_scientific_notation) ... FAIL
+test_pressure_does_not_ignore_kilo_prefix (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_does_not_ignore_kilo_prefix) ... FAIL
+test_sqlite_privacy_receipt_retry_and_content_snapshot (pro_regia_exam_boundaries.ExamBoundaryProbes.test_sqlite_privacy_receipt_retry_and_content_snapshot) ... ok
+test_velocity_rejects_acceleration_unit (pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_acceleration_unit) ... FAIL
+test_velocity_rejects_unrecognized_unit_suffix (pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_unrecognized_unit_suffix) ... FAIL
+
+======================================================================
+FAIL: test_mur_2026_multiple_choice_has_five_options (pro_regia_exam_boundaries.ExamBoundaryProbes.test_mur_2026_multiple_choice_has_five_options)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 45, in test_mur_2026_multiple_choice_has_five_options
+    self.assertEqual(wrong_counts, {}, 'DM 941/2026 requires five alternatives per MCQ')
+AssertionError: {'fis-mecc-01': 4, 'fis-mecc-02': 4, 'fis-[349 chars]': 4} != {}
++ {}
+- {'fis-elettro-09': 4,
+-  'fis-elettro-10': 4,
+-  'fis-elettro-11': 4,
+-  'fis-elettro-12': 4,
+-  'fis-elettro-13': 4,
+-  'fis-fluid-18': 4,
+-  'fis-fluid-19': 4,
+-  'fis-mecc-01': 4,
+-  'fis-mecc-02': 4,
+-  'fis-mecc-03': 4,
+-  'fis-mecc-04': 4,
+-  'fis-mecc-05': 4,
+-  'fis-mod-20': 4,
+-  'fis-mod-21': 4,
+-  'fis-onde-14': 4,
+-  'fis-onde-15': 4,
+-  'fis-onde-16': 4,
+-  'fis-onde-17': 4,
+-  'fis-termo-06': 4,
+-  'fis-termo-07': 4,
+-  'fis-termo-08': 4} : DM 941/2026 requires five alternatives per MCQ
+
+======================================================================
+FAIL: test_pressure_accepts_equivalent_decimal_kpa (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_equivalent_decimal_kpa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 26, in test_pressure_accepts_equivalent_decimal_kpa
+    self.assertEqual(self.status('fis-comp-29', '20.0 kPa'), 'correct')
+AssertionError: 'wrong' != 'correct'
+- wrong
++ correct
+
+
+======================================================================
+FAIL: test_pressure_accepts_spaced_scientific_notation (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_accepts_spaced_scientific_notation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 29, in test_pressure_accepts_spaced_scientific_notation
+    self.assertEqual(self.status('fis-comp-29', '2 × 10^4 Pa'), 'correct')
+AssertionError: 'wrong' != 'correct'
+- wrong
++ correct
+
+
+======================================================================
+FAIL: test_pressure_does_not_ignore_kilo_prefix (pro_regia_exam_boundaries.ExamBoundaryProbes.test_pressure_does_not_ignore_kilo_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 23, in test_pressure_does_not_ignore_kilo_prefix
+    self.assertEqual(self.status('fis-comp-29', '20000 kPa'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+======================================================================
+FAIL: test_velocity_rejects_acceleration_unit (pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_acceleration_unit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 17, in test_velocity_rejects_acceleration_unit
+    self.assertEqual(self.status('fis-comp-22', '10 m/s^2'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+======================================================================
+FAIL: test_velocity_rejects_unrecognized_unit_suffix (pro_regia_exam_boundaries.ExamBoundaryProbes.test_velocity_rejects_unrecognized_unit_suffix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/ardesia-review/bin/pro-regia/test_exam_boundaries.py", line 20, in test_velocity_rejects_unrecognized_unit_suffix
+    self.assertEqual(self.status('fis-comp-22', '10 m/s banana'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.170s
+
+FAILED (failures=6)

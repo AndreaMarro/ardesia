@@ -1,0 +1,33 @@
+
+ RUN  v4.1.8 /tmp/ardesia-exam-autosave-6rd_mwuf
+
+ ❯ ui-race.test.tsx (1 test | 1 failed) 2123ms
+   × newest answer remains persisted after an older autosave arrives late 2121ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  09:18:51
+   Duration  3.37s (transform 151ms, setup 0ms, import 275ms, tests 2.12s, environment 789ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  ui-race.test.tsx > newest answer remains persisted after an older autosave arrives late
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ ui-race.test.tsx:93:47
+     91|   writeFileSync(join(output, 'observed.json'), JSON.stringify(observed…
+     92|   expect(selectedBeforeReopen).toBe(true);
+     93|   expect(beforeReopen.answers['fis-mecc-01']).toBe(1);
+       |                                               ^
+     94|   expect(selectedAfterReopen).toBe(true);
+     95| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

@@ -1,0 +1,67 @@
+test_correct_basic_answers_are_not_rejected (__main__.ExamBoundaryProbes.test_correct_basic_answers_are_not_rejected) ... ok
+test_pressure_accepts_equivalent_decimal_kpa (__main__.ExamBoundaryProbes.test_pressure_accepts_equivalent_decimal_kpa) ... FAIL
+test_pressure_accepts_spaced_scientific_notation (__main__.ExamBoundaryProbes.test_pressure_accepts_spaced_scientific_notation) ... FAIL
+test_pressure_does_not_ignore_kilo_prefix (__main__.ExamBoundaryProbes.test_pressure_does_not_ignore_kilo_prefix) ... FAIL
+test_sqlite_privacy_receipt_retry_and_content_snapshot (__main__.ExamBoundaryProbes.test_sqlite_privacy_receipt_retry_and_content_snapshot) ... ok
+test_velocity_rejects_acceleration_unit (__main__.ExamBoundaryProbes.test_velocity_rejects_acceleration_unit) ... FAIL
+test_velocity_rejects_unrecognized_unit_suffix (__main__.ExamBoundaryProbes.test_velocity_rejects_unrecognized_unit_suffix) ... FAIL
+
+======================================================================
+FAIL: test_pressure_accepts_equivalent_decimal_kpa (__main__.ExamBoundaryProbes.test_pressure_accepts_equivalent_decimal_kpa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/probes-review/test_exam_boundaries.py", line 26, in test_pressure_accepts_equivalent_decimal_kpa
+    self.assertEqual(self.status('fis-comp-29', '20.0 kPa'), 'correct')
+AssertionError: 'wrong' != 'correct'
+- wrong
++ correct
+
+
+======================================================================
+FAIL: test_pressure_accepts_spaced_scientific_notation (__main__.ExamBoundaryProbes.test_pressure_accepts_spaced_scientific_notation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/probes-review/test_exam_boundaries.py", line 29, in test_pressure_accepts_spaced_scientific_notation
+    self.assertEqual(self.status('fis-comp-29', '2 × 10^4 Pa'), 'correct')
+AssertionError: 'wrong' != 'correct'
+- wrong
++ correct
+
+
+======================================================================
+FAIL: test_pressure_does_not_ignore_kilo_prefix (__main__.ExamBoundaryProbes.test_pressure_does_not_ignore_kilo_prefix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/probes-review/test_exam_boundaries.py", line 23, in test_pressure_does_not_ignore_kilo_prefix
+    self.assertEqual(self.status('fis-comp-29', '20000 kPa'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+======================================================================
+FAIL: test_velocity_rejects_acceleration_unit (__main__.ExamBoundaryProbes.test_velocity_rejects_acceleration_unit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/probes-review/test_exam_boundaries.py", line 17, in test_velocity_rejects_acceleration_unit
+    self.assertEqual(self.status('fis-comp-22', '10 m/s^2'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+======================================================================
+FAIL: test_velocity_rejects_unrecognized_unit_suffix (__main__.ExamBoundaryProbes.test_velocity_rejects_unrecognized_unit_suffix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7fc3ceb3d233/probes-review/test_exam_boundaries.py", line 20, in test_velocity_rejects_unrecognized_unit_suffix
+    self.assertEqual(self.status('fis-comp-22', '10 m/s banana'), 'wrong')
+AssertionError: 'correct' != 'wrong'
+- correct
++ wrong
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.148s
+
+FAILED (failures=5)

@@ -1,0 +1,303 @@
+{
+  "schema": "ardesia-regia-donor-inventory.v1",
+  "observed_date": "2026-10-21",
+  "comparison_ardesia_commit": "61e7f00be9fc4ecfdf5eb362275b3b8a566d92bf",
+  "method": "Authorized GitHub repository metadata, complete non-truncated recursive trees, branch heads and selected file reads. Exact blob comparison excludes empty files. No runtime executed.",
+  "runtime_status": "NOT_RUN",
+  "rea_status_this_execution": "REA_NOT_ACCESSIBLE",
+  "acquisition_status": "NESSUN NUOVO SOTTOSISTEMA COMPLETO ACQUISITO",
+  "repositories": [
+    {
+      "repository": "AndreaMarro/DM418Reasoning",
+      "default_branch": "main",
+      "commit_sha": "dd3603dafb4b3073051e5f6d8fb4bfb000b9eae0",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 142,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "1.0.0 (package.json)",
+      "candidates": [
+        "shared/schema.ts",
+        "server/routes.ts",
+        "server/storage.ts",
+        "client/src/components/quiz-section.tsx",
+        "client/src/components/results-section.tsx"
+      ],
+      "constraints": [
+        "Historical schema fixes 15 MCQ + 16 COMP and four MCQ options; session timer defaults to 2700 seconds.",
+        "convertToFrontendFormat renumbers question IDs by index and drops unit/difficulty/calculation_type.",
+        "package.json declares MIT, but no root LICENSE was found and GitHub license metadata is null."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/StressTest",
+      "default_branch": "main",
+      "commit_sha": "4177f1319b5384560195e95c4f73d69c3cec73a0",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 82,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.0.0 (package.json)",
+      "candidates": [
+        "src/hooks/useExamState.ts",
+        "src/components/views/ExamView.tsx",
+        "src/components/views/ResultsView.tsx",
+        "src/components/HistoryView.tsx",
+        "src/utils/pdfExport.ts",
+        "server/services/examGenerator.js"
+      ],
+      "constraints": [
+        "Client hook uses 45-minute timer; finishExam counts correct answers without wrong-answer penalty.",
+        "Answer equivalence includes first-character MCQ matching, 5 percent numeric tolerance, and Levenshtein tolerance for longer answers.",
+        "Use as behavior reference or selectively adapted code, not current exam/scientific authority."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/lessonos",
+      "default_branch": "auto/main",
+      "commit_sha": "7c3fdac86ee9f8947c7f87f5b84660a88a32340d",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 646,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 228,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0 (pyproject.toml)",
+      "candidates": [
+        "lessonos/course/quiz_assembler.py",
+        "lessonos/course/teacher_review.py",
+        "lessonos/course/anki_exporter.py",
+        "lessonos/graph/learning_debt.py",
+        "lessonos/graph/path_memory.py",
+        "lessonos/graph/next_lesson_planner.py"
+      ],
+      "constraints": [
+        "Core is already substantially present under Ardesia packages/engine; avoid a second canonical store.",
+        "Teacher review module explicitly calls itself a stub; reviewer identity optional in v0.",
+        "Learning-debt computation is pure and explicitly has zero DB persistence in this module."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/numeria",
+      "default_branch": "auto/main",
+      "commit_sha": "e3edbeb58a1dc052950517a4f7bb1748a83eaacc",
+      "visibility": "private",
+      "archived": false,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 149,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0 (package.json)",
+      "candidates": [
+        "src/lib/scoring/index.ts",
+        "src/lib/progress.ts",
+        "src/lib/quiz-engine/schema.ts",
+        "src/lib/curriculum/taxonomy.ts"
+      ],
+      "constraints": [
+        "Progress persistence uses localStorage; mastery score is not the MUR exam grade.",
+        "Package name is numeria-lab; it overlaps with the separate numeria-lab repository."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/numeria-lab",
+      "default_branch": "main",
+      "commit_sha": "e72a11f7d858861d2016dea49c28002d96ad013f",
+      "visibility": "private",
+      "archived": false,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 182,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0; ts-fsrs ^5.4.1 (package.json)",
+      "candidates": [
+        "src/lib/srs.ts",
+        "src/components/scheduled-review.tsx",
+        "src/lib/progress.ts",
+        "src/components/learning-graph.tsx",
+        "src/components/whiteboard.tsx"
+      ],
+      "constraints": [
+        "FSRS functions reviewCard/dueConceptIds/nextDue already exist; review maps correct to Good and wrong to Again.",
+        "Cards and progress live in localStorage; adaptation must preserve LessonOS as canonical authority.",
+        "README states Prisma/Postgres and billing are prepared but not enabled by default; not runtime-reverified."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/numerical-lab-journey",
+      "default_branch": "codex/initial-mvp",
+      "commit_sha": "b33a5ebf58c0f02592cb5d3e438f9b32a4eeb01d",
+      "visibility": "private",
+      "archived": false,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 169,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "MVP on codex/initial-mvp",
+      "candidates": [
+        "packages/quiz-engine/src/index.ts",
+        "packages/agent-core/src/llm-budget.ts",
+        "packages/agent-core/src/llm-circuit-breaker.ts",
+        "packages/agent-core/src/llm-quality-gate.ts",
+        "packages/curriculum/src/index.ts"
+      ],
+      "constraints": [
+        "generateApprovedQuizBank assigns status approved without human approval and a verificationScript with assert(true).",
+        "Do not adopt that approval or verification convention for the 4000-question corpus.",
+        "Schema is MATLAB/numerical-computing-oriented, not the Physics syllabus."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/ardesia-studio",
+      "default_branch": "main",
+      "commit_sha": "839e009b5fd8a52f9b89afe6eaad814bbaa677ec",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 136,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 68,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.0.0; Excalidraw ^0.18.1, MathLive ^0.110.0, pdfjs-dist ^6.0.227 (package.json)",
+      "candidates": [
+        "src/MathComposer.tsx",
+        "src/loadFile.ts",
+        "src/latexToImage.ts",
+        "src/store/WorkspaceStore.ts",
+        "src/store/JournalRecorder.ts",
+        "src/store/ReplayEngine.ts"
+      ],
+      "constraints": [
+        "MathComposer and many other source/test files already byte-identical to apps/studio in Ardesia #268.",
+        "README's historical product claims were not rerun; do not count them as new acceptance."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/ardesia-knowledge",
+      "default_branch": "main",
+      "commit_sha": "dedb19577c331ebb7d38dca4962a9089b4f46deb",
+      "visibility": "private",
+      "archived": false,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 553,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 189,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "No application version established",
+      "candidates": [
+        "00-CURRENT.md",
+        "00-INDEX.md",
+        "20-Decisions/",
+        "30-Evidence-Receipts/",
+        "90-Operations/Truth/"
+      ],
+      "constraints": [
+        "00-CURRENT.md is generated, source_of_truth false, status DEGRADED, freshness 2026-07-25.",
+        "Use historical evidence/decisions, not this stale snapshot as the current application state."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/ardesia-simulator",
+      "default_branch": "main",
+      "commit_sha": "b6f8c97449470b12c3ccb216fb3cfc246a2d79bf",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 18,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0 (package.json)",
+      "candidates": [
+        "src/circuit.ts",
+        "src/netlist.ts",
+        "src/breadboard.ts",
+        "src/toolhost-client.ts"
+      ],
+      "constraints": [
+        "src/circuit.ts contains solveLedSeries, a small resistor/LED series model; it is not a general SPICE engine.",
+        "Arduino/browser simulation dependencies are avr8js and @wokwi/elements; runtime not exercised."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/ardesia-lavagna",
+      "default_branch": "main",
+      "commit_sha": "82b5d5df5c4a51237816a96d2ffc4bb1ac26792a",
+      "visibility": "private",
+      "archived": true,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 38,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0 (package.json)",
+      "candidates": [
+        "src/lib/useInk.ts",
+        "src/lib/strokes.ts",
+        "src/lib/recognize.ts",
+        "src/toolhost/router.ts",
+        "src/toolhost/session.ts",
+        "src/toolsdk/connect.ts"
+      ],
+      "constraints": [
+        "Ink hook includes pointer pressure/coalescing, pages and 600 ms debounced localStorage save.",
+        "Independent whiteboard authority must not be duplicated; compare current Studio behavior before selecting a port."
+      ]
+    },
+    {
+      "repository": "AndreaMarro/kirchhoff",
+      "default_branch": "main",
+      "commit_sha": "b35a8b5da0616f00a7764397bda0e6b95aca3c95",
+      "visibility": "public",
+      "archived": false,
+      "license_metadata": null,
+      "root_license_files": [],
+      "tracked_blob_count": 1107,
+      "exact_nonempty_code_or_markdown_blob_matches_in_ardesia268": 0,
+      "note": "Read-only GitHub inventory; no runtime execution, acquisition or integration.",
+      "version": "0.1.0 (pyproject.toml)",
+      "candidates": [
+        "src/kirchhoff/domain/mna.py",
+        "src/kirchhoff/domain/independent_dc.py",
+        "src/kirchhoff/domain/independent_phasor.py",
+        "src/kirchhoff/domain/laplace.py",
+        "src/kirchhoff/api/mcp_server.py",
+        "web/src/student/sessionBundle.ts"
+      ],
+      "constraints": [
+        "README declares scoped DC/AC/Laplace support, not completion of 21 families.",
+        "Current README states 15 PARTIAL, 6 NOT_SUPPORTED, 0 COMPLETE in previous delivery; not rerun.",
+        "No top-level LICENSE; docs/01-fonti-esterne.md separately records dataset-specific exclusions and attribution requirements."
+      ]
+    }
+  ],
+  "additional_evidence": {
+    "examforge": {
+      "path": "docs/product/EXAMFORGE-PACK.md",
+      "status": "product canon draft, implementation target; document explicitly disclaims implementation"
+    },
+    "mathlive": {
+      "path": "docs/ops/rea-deep/TARGET-081/root-review.json",
+      "status": "SCOPED_DONOR_RESEARCH_REVIEWED_NOT_PRODUCT_ASSIMILATION",
+      "version": "0.111.1",
+      "source_commit": "30ad20a7a47ea43a2f6915808023202c78f37742",
+      "library_installation": "DEFER_UNTIL_MEASURED_NEED_ASSET_LICENSES_INPUT_BUDGET_AND_ACCESSIBILITY_TESTS",
+      "newProductTests": 0
+    }
+  },
+  "limitations": [
+    "Static observations of potentially unsafe historical behavior are not verified runtime bugs.",
+    "Zero identical nonempty blobs does not prove no integration: code may have evolved or been adapted.",
+    "Metadata license:null is not proof of lack of rights; third-party dependency and content rights require separate provenance."
+  ]
+}

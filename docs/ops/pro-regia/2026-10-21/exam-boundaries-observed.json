@@ -1,0 +1,83 @@
+{
+  "identity": "PRO-REGIA-INTEGRAZIONE / independent exam review",
+  "sha": "b9764d2e1785c26893f424ea547d2df081e0aca2",
+  "utc": "2026-10-21T07:05:37.813050+00:00",
+  "runtime": "Python stdlib + actual LessonOS modules + temporary real SQLite; no mocks or PostgreSQL",
+  "observations": [
+    {
+      "question_id": "fis-comp-22",
+      "answer": "10 m/s",
+      "expected": "correct",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": true
+    },
+    {
+      "question_id": "fis-comp-22",
+      "answer": "10 m/s^2",
+      "expected": "wrong",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": false
+    },
+    {
+      "question_id": "fis-comp-22",
+      "answer": "10 m/s banana",
+      "expected": "wrong",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": false
+    },
+    {
+      "question_id": "fis-comp-29",
+      "answer": "20000 Pa",
+      "expected": "correct",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": true
+    },
+    {
+      "question_id": "fis-comp-29",
+      "answer": "20 kPa",
+      "expected": "correct",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": true
+    },
+    {
+      "question_id": "fis-comp-29",
+      "answer": "20000 kPa",
+      "expected": "wrong",
+      "observed": "correct",
+      "points_tenths": 10,
+      "matches_contract": false
+    },
+    {
+      "question_id": "fis-comp-29",
+      "answer": "20.0 kPa",
+      "expected": "correct",
+      "observed": "wrong",
+      "points_tenths": -1,
+      "matches_contract": false
+    },
+    {
+      "question_id": "fis-comp-29",
+      "answer": "2 × 10^4 Pa",
+      "expected": "correct",
+      "observed": "wrong",
+      "points_tenths": -1,
+      "matches_contract": false
+    }
+  ],
+  "unittest_exit": 1,
+  "expected_failures": 5,
+  "passed_controls": 2,
+  "mcq_option_counts": [
+    4
+  ],
+  "not_run": [
+    "PostgreSQL concurrency",
+    "PostgreSQL RLS",
+    "browser UI"
+  ]
+}
