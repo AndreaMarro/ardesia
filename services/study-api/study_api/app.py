@@ -353,12 +353,12 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.put('/study/exams/{attempt_id}/answers')
     def exam_answers(attempt_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.exam import save_answers
-        return save_answers(store,authenticate(request,store),attempt_id,body.get('answers'))
+        return save_answers(store,authenticate(request,store),attempt_id,body.get('answers'),expected_revision=body.get('expectedRevision'))
 
     @app.post('/study/exams/{attempt_id}/submit')
     def exam_submit(attempt_id: str, body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.exam import submit_attempt
-        return submit_attempt(store,authenticate(request,store),attempt_id,body.get('answers') if 'answers' in body else None)
+        return submit_attempt(store,authenticate(request,store),attempt_id,body.get('answers') if 'answers' in body else None,expected_revision=body.get('expectedRevision'))
 
     @app.post('/study/interests')
     def interest(body: dict, request: Request, store=Depends(store_dependency)):

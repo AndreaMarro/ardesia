@@ -8,7 +8,7 @@ from lessonos.study.store import StudyStore,digest
 from lessonos.study.assets import upload_asset,read_asset
 from lessonos.study.submissions import submit,list_submissions
 from lessonos.study.context import rebuild_projection
-from lessonos.study.exam import start_attempt
+from legacy_exam_fixture import insert_historical_attempt
 
 
 def operation():
@@ -46,7 +46,7 @@ def test_backup_restore_verifies_bytes_and_revokes_access(tmp_path):
 
 def test_erasure_removes_history_derivatives_assets_and_survives_old_restore(tmp_path):
     ops=operation();store,tutor,student,peer,asset,token=setup_data(tmp_path)
-    start_attempt(store,student,'fluidi')
+    insert_historical_attempt(store,student)
     source=store.path.parent;backup=tmp_path/'before-erasure'
     ops.backup_data(source,backup)
     preview=ops.erase_student(source,student.id,apply=False)

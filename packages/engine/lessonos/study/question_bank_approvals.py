@@ -110,6 +110,27 @@ class ApprovalGate:
         """Ids with an active approval for the current revision and content."""
         return frozenset(self._active_by_question())
 
+    def servable_approvals(self):
+        """Private server projection keyed by question id; never HTTP-public."""
+        return {question_id: _approval(row)
+                for question_id, row in self._active_by_question().items()}
+
+    def revoked_approval_ids(self, approval_ids):
+        """Approval decisions that have a durable REVOKED transition.
+
+        A snapshot is invalidated by the revocation of the decision under which
+        it was started, even if the same content is later re-approved.
+        """
+        ids = tuple(sorted({value for value in approval_ids
+                            if isinstance(value, str) and value}))
+        if not ids:
+            return frozenset()
+        placeholders = ','.join('?' for _ in ids)
+        rows = self.store.connection.execute(
+            'SELECT DISTINCT approval_id FROM study_question_bank_approval_events '
+            "WHERE event='REVOKED' AND approval_id IN (" + placeholders + ')', ids).fetchall()
+        return frozenset(row['approval_id'] for row in rows)
+
     def _latest_active(self, question_id, question_version, content_sha256):
         return self.store.connection.execute(
             'SELECT * FROM study_question_bank_approvals WHERE edition_id=? AND bank_id=? '

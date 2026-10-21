@@ -104,6 +104,14 @@ class StudyStore:
                     self.connection.execute('ALTER TABLE study_holds ADD COLUMN offer_revision INTEGER CHECK(offer_revision>=0)')
                     self.connection.commit()
             catalog_present = self.connection.execute("SELECT 1 FROM sqlite_master WHERE name='study_edition_packs'").fetchone()
+            if present:
+                schema_version = self.connection.execute('SELECT version FROM study_schema').fetchone()[0]
+                exam_columns = {row[1] for row in self.connection.execute('PRAGMA table_info(study_exam_attempts)')}
+                if schema_version in (7,8) and exam_columns and 'answer_revision' not in exam_columns:
+                    self.connection.execute(
+                        'ALTER TABLE study_exam_attempts ADD COLUMN answer_revision INTEGER NOT NULL DEFAULT 0 CHECK(answer_revision>=0)')
+                    self.connection.execute('UPDATE study_schema SET version=9 WHERE version=8')
+                    self.connection.commit()
             self.connection.executescript(Path(__file__).with_name('schema.sql').read_text())
             if not catalog_present:
                 from .catalog import DEFAULT_COURSE, DEFAULT_PACK, LEGACY_PACK_SHA256

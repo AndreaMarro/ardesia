@@ -3409,6 +3409,28 @@ dd {
   gap: 8px;
   flex-wrap: wrap;
 }
+.exam-invalid {
+  margin: 1rem 0 1.25rem;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid #a33;
+  background: #fff4f2;
+  color: #4a1b16;
+  line-height: 1.5;
+}
+
+.exam-solution-steps {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.exam-solution-steps li + li {
+  margin-top: 0.75rem;
+}
+
+.exam-solution-steps p {
+  margin: 0.25rem 0 0;
+}
+
 .exam-score {
   display: flex;
   align-items: center;
