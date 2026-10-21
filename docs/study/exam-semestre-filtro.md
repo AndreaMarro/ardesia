@@ -68,10 +68,10 @@ fisica». La vista:
 
 ```sh
 # Engine, dalla cartella packages/engine
-PYTHONPATH=. ../../../ardesia-semestre-m1-20261019/packages/engine/.venv/bin/python -m pytest -q tests
+PYTHONPATH=. python -m pytest -q tests
 
 # API, dalla cartella services/study-api
-PYTHONPATH=../../packages/engine:. .venv/bin/python -m pytest -q tests
+PYTHONPATH=../../packages/engine:. python -m pytest -q tests
 
 # Web, dalla radice
 npm run typecheck:web
