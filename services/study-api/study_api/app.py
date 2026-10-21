@@ -488,6 +488,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     install_register_routes(app,store_dependency,authenticate)
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
+    from .question_bank_routes import install_question_bank_routes
+    install_question_bank_routes(app, store_dependency, authenticate)
     from .calendar_routes import install_calendar_routes
     from lessonos.study.calendar_mock import MockCalendar
     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())

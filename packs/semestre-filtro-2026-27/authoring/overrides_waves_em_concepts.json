@@ -1,0 +1,232 @@
+[
+  {
+    "modelId": "U4-wave-wavelength",
+    "serial": 2,
+    "reasoningTask": "qualitative_u4-wave-wavelength",
+    "objective": "Distinguere polarizzazione longitudinale e trasversale delle onde meccaniche",
+    "prompt": "Un’onda sonora si propaga in aria ferma lungo una direzione rettilinea. Nel modello usuale delle piccole perturbazioni, come oscillano le particelle d’aria rispetto alla direzione di propagazione?",
+    "answer": {
+      "kind": "text",
+      "exact": "Parallelamente alla propagazione, producendo compressioni e rarefazioni",
+      "unit": "1"
+    },
+    "options": [
+      "Parallelamente alla propagazione, producendo compressioni e rarefazioni",
+      "Sempre perpendicolarmente, come punti di una corda trasversale",
+      "Descrivono necessariamente circonferenze attorno alla sorgente",
+      "Restano tutte immobili e non cambiano mai pressione o densità",
+      "Viaggiano tutte dalla sorgente all’ascoltatore senza tornare indietro"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Onde trasversali e longitudinali",
+    "microarea": "Propagazione",
+    "explanation": "Il suono in aria è un’onda meccanica longitudinale. Longitudinale significa che il movimento locale delle particelle avviene lungo la stessa direzione in cui si propaga la perturbazione. Le particelle oscillano attorno alle posizioni di equilibrio: in certe regioni si addensano e in altre si diradano, producendo compressioni e rarefazioni. La propagazione di queste variazioni porta energia e informazione lontano dalla sorgente, senza richiedere che le stesse molecole attraversino tutta la distanza fino all’ascoltatore. La parola «longitudinale» descrive quindi una relazione geometrica fra due direzioni, non una velocità elevata o un trasporto permanente di materia. Il confronto con una corda vibrante aiuta: in un’onda trasversale della corda i punti possono muoversi su e giù mentre la perturbazione si propaga orizzontalmente.",
+    "steps": [
+      {
+        "title": "Separare le due direzioni",
+        "explanation": "La prima direzione è quella in cui avanza il segnale sonoro. La seconda è quella degli spostamenti locali del mezzo. Non sono la stessa grandezza, anche quando sono parallele."
+      },
+      {
+        "title": "Applicare la definizione di longitudinale",
+        "explanation": "Nel suono in aria le due direzioni sono parallele. Le oscillazioni alternate generano variazioni di pressione e densità che si trasmettono alle regioni vicine."
+      },
+      {
+        "title": "Escludere le alternative",
+        "explanation": "Il moto trasversale appartiene a un altro tipo di onda. L’immobilità assoluta del mezzo escluderebbe la perturbazione acustica, mentre il trasporto completo delle molecole confonderebbe il suono con una corrente d’aria."
+      }
+    ]
+  },
+  {
+    "modelId": "U4-spherical-intensity",
+    "serial": 2,
+    "reasoningTask": "qualitative_u4-spherical-intensity",
+    "objective": "Riconoscere che la propagazione del suono richiede materia",
+    "prompt": "Una sorgente sonora vibra all’interno di una campana da cui viene progressivamente tolta l’aria. Perché la trasmissione del suono attraverso l’interno della campana si riduce fino a mancare nel vuoto ideale?",
+    "answer": {
+      "kind": "text",
+      "exact": "Il suono richiede un mezzo materiale che trasmetta le perturbazioni meccaniche",
+      "unit": "1"
+    },
+    "options": [
+      "Il suono richiede un mezzo materiale che trasmetta le perturbazioni meccaniche",
+      "La frequenza della sorgente deve diventare necessariamente zero",
+      "Nel vuoto nessuna forma di energia può propagarsi",
+      "La luce e il suono hanno sempre bisogno dello stesso mezzo materiale",
+      "La gravità scompare quando viene tolta l’aria"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Suono e necessità di un mezzo",
+    "microarea": "Acustica",
+    "explanation": "Il suono è una perturbazione meccanica: si propaga grazie alle interazioni fra le parti di un mezzo materiale. In aria, variazioni di pressione e densità in una regione producono variazioni nelle regioni vicine. Nel vuoto ideale non esistono particelle del mezzo che realizzino questa trasmissione. La sorgente può continuare a vibrare, ma non trasmette attraverso il vuoto un’onda acustica come farebbe nell’aria. Questa conclusione non riguarda tutte le forme di propagazione dell’energia. La radiazione elettromagnetica, per esempio, può attraversare il vuoto. La domanda distingue quindi la natura meccanica del suono dalla possibilità generale di trasferire energia. Nella situazione sperimentale reale potrebbero restare percorsi attraverso supporti solidi: il testo si riferisce espressamente al tragitto nell’interno svuotato.",
+    "steps": [
+      {
+        "title": "Identificare il meccanismo",
+        "explanation": "Le particelle del mezzo trasmettono una perturbazione alle vicine attraverso le forze che le collegano. Togliere il mezzo elimina questo percorso meccanico."
+      },
+      {
+        "title": "Distinguere sorgente e propagazione",
+        "explanation": "La sorgente può oscillare anche se il segnale non raggiunge un ascoltatore attraverso il vuoto. Mancanza di trasmissione non significa frequenza propria obbligatoriamente nulla."
+      },
+      {
+        "title": "Controllare la generalizzazione",
+        "explanation": "La luce non è un’onda di compressione dell’aria. Usare la conclusione sul suono per vietare ogni trasporto energetico nel vuoto sarebbe una generalizzazione scorretta."
+      }
+    ]
+  },
+  {
+    "modelId": "U6-current-charge-time",
+    "serial": 2,
+    "reasoningTask": "qualitative_u6-current-charge-time",
+    "objective": "Descrivere qualitativamente il campo magnetico prodotto da una corrente rettilinea",
+    "prompt": "Un lungo filo rettilineo è percorso da corrente continua. Quale descrizione qualitativa del campo magnetico vicino al filo è corretta, trascurando estremi e altri conduttori?",
+    "answer": {
+      "kind": "text",
+      "exact": "Le linee sono circonferenze attorno al filo in piani perpendicolari ad esso, con verso legato a quello della corrente",
+      "unit": "1"
+    },
+    "options": [
+      "Le linee sono circonferenze attorno al filo in piani perpendicolari ad esso, con verso legato a quello della corrente",
+      "Le linee sono tutte parallele al filo e non cambiano mai verso invertendo la corrente",
+      "Il campo magnetico esiste soltanto se la corrente cambia nel tempo",
+      "Il filo produce soltanto campo elettrico e mai campo magnetico",
+      "Il campo ha necessariamente lo stesso verso radiale del campo di una carica positiva"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Oersted e campi generati da correnti",
+    "microarea": "Campi magnetici delle correnti",
+    "explanation": "L’esperienza di Oersted mostra che una corrente elettrica produce effetti magnetici. Per un lungo filo rettilineo, la simmetria della configurazione porta a linee di campo che circondano il filo. Nel modello ideale sono circonferenze in piani perpendicolari alla direzione del filo. Il verso si determina con la mano destra: il pollice segue la corrente convenzionale e le dita avvolte indicano il verso delle linee di campo. Invertire la corrente inverte quindi anche il verso del campo. Non è necessaria una corrente variabile nel tempo per avere magnetismo: una corrente continua è sufficiente. La variazione temporale entra in altri fenomeni, come l’induzione, e non va confusa con la produzione del campo da parte di una corrente già presente.",
+    "steps": [
+      {
+        "title": "Usare la geometria della sorgente",
+        "explanation": "Un filo lungo e rettilineo non seleziona una particolare direzione radiale intorno a sé. Le linee di campo magnetico circondano la corrente nel piano trasversale."
+      },
+      {
+        "title": "Determinare il verso",
+        "explanation": "La regola della mano destra lega il verso del campo alla corrente convenzionale. Non richiede di usare il verso opposto della deriva elettronica nei metalli."
+      },
+      {
+        "title": "Distinguere campo magnetico e induzione",
+        "explanation": "Un campo magnetico statico può essere prodotto da corrente costante. Per una f.e.m. indotta si deve invece considerare una variazione del flusso concatenato al circuito di interesse."
+      }
+    ]
+  },
+  {
+    "modelId": "U7-photon-rate-power",
+    "serial": 2,
+    "reasoningTask": "qualitative_u7-photon-rate-power",
+    "objective": "Distinguere energia per fotone e intensità nella condizione energetica di ionizzazione",
+    "prompt": "Nel confronto elementare fra fotoni e ionizzazione di un atomo, quale proprietà del singolo fotone determina se può fornire l’energia necessaria a rimuovere un elettrone in un evento di assorbimento a un fotone?",
+    "answer": {
+      "kind": "text",
+      "exact": "La sua energia hf, quindi la frequenza, confrontata con l’energia richiesta dal processo",
+      "unit": "1"
+    },
+    "options": [
+      "La sua energia hf, quindi la frequenza, confrontata con l’energia richiesta dal processo",
+      "Soltanto il numero totale di fotoni emessi dalla sorgente",
+      "Soltanto l’area del laboratorio",
+      "Il fatto che il fascio sia visibile all’occhio, indipendentemente dalla frequenza",
+      "Il numero di minuti da cui la lampada è accesa, indipendentemente dall’energia del fotone"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Radiazioni ionizzanti e non ionizzanti",
+    "microarea": "Interazione radiazione-materia",
+    "explanation": "La ionizzazione richiede energia per rimuovere un elettrone da un sistema legato. Nel modello dichiarato di assorbimento di un singolo fotone, l’energia disponibile in quell’evento è hf. La frequenza permette quindi di confrontare l’energia del quanto con quella richiesta dal processo. Aumentare il numero di fotoni aumenta il numero di occasioni di interazione e la potenza complessiva, ma non rende automaticamente più energetico ciascun fotone. Il vincolo «a un fotone» evita di confondere il ragionamento con processi multiphotonici o altri meccanismi più complessi. La capacità di un fascio di produrre effetti dipende poi anche dal materiale e dalle probabilità di interazione: la domanda isola il requisito energetico del singolo evento, senza pretendere che energia sufficiente garantisca ogni assorbimento.",
+    "steps": [
+      {
+        "title": "Identificare la soglia energetica",
+        "explanation": "L’elettrone legato non può essere rimosso senza fornire l’energia richiesta dalla configurazione atomica. Il dato pertinente è un’energia per evento."
+      },
+      {
+        "title": "Usare la relazione di Planck",
+        "explanation": "Ogni fotone porta hf. Due fotoni di frequenza diversa hanno energia diversa anche se vengono emessi con la stessa potenza totale di fascio."
+      },
+      {
+        "title": "Separare quantità e qualità energetica",
+        "explanation": "Più fotoni della stessa frequenza non cambiano hf. La distinzione fra energia individuale e intensità complessiva rende scorretta un’interpretazione basata soltanto sulla luminosità o sulla durata di accensione."
+      }
+    ]
+  },
+  {
+    "modelId": "U7-radioactive-activity",
+    "serial": 2,
+    "reasoningTask": "qualitative_u7-radioactive-activity",
+    "objective": "Distinguere beta più da beta meno, alfa e ionizzazione",
+    "prompt": "In un decadimento β⁺, quale trasformazione avviene nel nucleo?",
+    "answer": {
+      "kind": "text",
+      "exact": "Un protone diventa un neutrone, con emissione di un positrone e di un neutrino elettronico",
+      "unit": "1"
+    },
+    "options": [
+      "Un protone diventa un neutrone, con emissione di un positrone e di un neutrino elettronico",
+      "Un neutrone diventa un protone, con emissione di un elettrone e di un antineutrino",
+      "Il nucleo emette sempre due protoni e due neutroni insieme",
+      "Un elettrone orbitale viene espulso senza alcuna trasformazione nucleare",
+      "Il nucleo emette soltanto un fotone e conserva sempre lo stesso stato energetico"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Decadimento beta più",
+    "microarea": "Trasformazioni nucleari",
+    "explanation": "Nel decadimento beta più un protone si trasforma in un neutrone. Il numero totale di nucleoni rimane invariato, ma i protoni diminuiscono di uno: il nucleo figlio ha quindi lo stesso numero di massa A e numero atomico Z inferiore di uno. Il processo emette un positrone, antiparticella dell’elettrone con carica positiva, e un neutrino elettronico. Questo non è il beta meno, che trasforma invece un neutrone in protone ed emette un elettrone. Non è neppure una semplice ionizzazione della nube elettronica. La trasformazione può avvenire soltanto nei nuclei per cui è energeticamente consentita; la domanda identifica il meccanismo quando il decadimento beta più è già dichiarato, senza affermare che qualsiasi nucleo lo compia.",
+    "steps": [
+      {
+        "title": "Seguire i nucleoni",
+        "explanation": "Un protone iniziale viene sostituito da un neutrone finale. Il totale A non cambia, mentre Z diminuisce di uno."
+      },
+      {
+        "title": "Controllare la carica",
+        "explanation": "Il protone iniziale porta +e. Nei prodotti il neutrone e il neutrino sono neutri, mentre il positrone porta +e: la carica totale si conserva."
+      },
+      {
+        "title": "Confrontare le alternative",
+        "explanation": "La seconda opzione descrive beta meno, la terza descrive l’emissione alfa e la quarta un processo elettronico esterno al nucleo. La presenza del positrone distingue il beta più nella prima risposta."
+      }
+    ]
+  }
+]

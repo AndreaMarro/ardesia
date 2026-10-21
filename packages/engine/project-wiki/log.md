@@ -145,3 +145,5 @@ Append-only. 1 riga per modifica.
 - 2026-10-20T14:18:42.653655+00:00 — Quaderno scientifico: binding PDF, snapshot per revisione, CAS/export/erasure; aggiornato riferimento route originali. Evidenze REA e limiti in scientific-notebook.md.
 
 - 2026-10-20T17:34:53.185345+00:00 — Quaderno scientifico: documentati byte JSON originali, lettore portabile locale dopo ispezione online e confine di integrità; verifiche nel report SCIENTIFIC-NOTEBOOK-PORTABLE.
+
+- 2026-10-21 — Banca Fisica: snapshot verificato e immutabile, accesso per edizione, proiezioni separate, correzione esatta stateless e simulazioni per profilo. Fonti in physics-question-bank.md.

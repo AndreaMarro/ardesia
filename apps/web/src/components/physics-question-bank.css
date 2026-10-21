@@ -1,0 +1,28 @@
+.physics-bank { max-width: 62rem; margin: 1.5rem auto; }
+.physics-bank header { margin-bottom: 1.5rem; }
+.physics-bank-review, .physics-bank-session-note { color: var(--muted, #596366); font-size: .9rem; }
+.physics-bank-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: end; margin: 1.5rem 0; }
+.physics-bank-filters label { display: grid; gap: .4rem; }
+.physics-bank-search { grid-column: span 2; }
+.physics-bank-actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; margin: 1rem 0; }
+.physics-bank-actions button { min-height: 2.75rem; }
+.physics-bank-question { border: 1px solid var(--line, #d5dcd8); border-radius: 1rem; padding: 1.5rem; margin: 1rem 0; background: var(--surface, #fffefa); }
+.physics-bank-question-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; justify-content: space-between; font-size: .85rem; color: var(--muted, #596366); }
+.physics-bank-prompt { white-space: pre-wrap; line-height: 1.75; overflow-wrap: anywhere; font-size: 1.05rem; }
+.physics-bank-question fieldset { padding: 0; border: 0; margin: 1rem 0; }
+.physics-bank-question legend { font-weight: 600; margin-bottom: .7rem; }
+.physics-bank-option { display: flex; align-items: start; gap: .75rem; padding: .75rem; border: 1px solid var(--line, #d5dcd8); border-radius: .6rem; margin: .5rem 0; cursor: pointer; line-height: 1.5; }
+.physics-bank-option:has(input:checked) { background: #edf3ee; border-color: #315a42; }
+.physics-bank-option input[type="radio"] { flex: 0 0 1rem; width: 1rem; height: 1rem; margin-top: .25rem; }
+.physics-bank-question form > label { display: grid; gap: .5rem; }
+.physics-bank-question form small { color: var(--muted, #596366); }
+.physics-bank-feedback { border-top: 1px solid var(--line, #d5dcd8); margin-top: 1.5rem; padding-top: 1rem; }
+.physics-bank-solution-text { line-height: 1.8; overflow-wrap: anywhere; }
+.physics-bank-solution-text p { white-space: pre-wrap; }
+.physics-bank-solution-text h4 { margin-top: 1.5rem; margin-bottom: .5rem; font-size: 1rem; }
+@media (max-width: 650px) {
+  .physics-bank-filters { grid-template-columns: 1fr; }
+  .physics-bank-search { grid-column: auto; }
+  .physics-bank-question { padding: 1rem; }
+  .physics-bank-actions button { flex: 1 1 auto; }
+}
