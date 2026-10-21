@@ -16,7 +16,7 @@ const course = {
   timezone: "Europe/Rome",
 };
 
-test("public preview uses only the public API and sends no prediction or contact", async () => {
+test("public preview sends neither API requests, predictions nor contacts", async () => {
   const calls: { url: string; body?: unknown }[] = [];
   vi.stubGlobal(
     "fetch",
@@ -49,19 +49,10 @@ test("public preview uses only the public API and sends no prediction or contact
   });
   fireEvent.click(screen.getByRole("button", { name: "Metti alla prova" }));
   await screen.findByTestId("physics-ratio");
-  expect(calls).toEqual([
-    { url: "/study/public/course", body: undefined },
-    {
-      url: "/study/public/activities/evaluate",
-      body: {
-        activityId: "poiseuille-v1",
-        parameters: { radiusRatio: 1.5, boundary: "pressure" },
-      },
-    },
-  ]);
+  expect(calls).toEqual([]);
 });
 
-test("public course error is recoverable and lab is still available", async () => {
+test("API-backed course errors remain recoverable and the lab stays available", async () => {
   let unavailable = true;
   vi.stubGlobal(
     "fetch",
@@ -71,7 +62,7 @@ test("public course error is recoverable and lab is still available", async () =
         : Response.json(course),
     ),
   );
-  render(<Public publicPreview />);
+  render(<Public />);
   await screen.findByText("La scheda del corso non è disponibile.");
   expect(screen.getByRole("button", { name: "Metti alla prova" })).toBeTruthy();
   unavailable = false;

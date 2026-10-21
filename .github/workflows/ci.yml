@@ -29,6 +29,12 @@ jobs:
       - run: npm run typecheck:web
       - run: npm run test:web
       - run: npm run build:web
+      - name: Public static build (all cases must match Core)
+        run: npm run build:web:public
+      - name: Install browser for the backend-free public preview
+        run: npx playwright install --with-deps chromium
+      - name: Public preview in a real browser, with no API
+        run: npm run e2e:public --workspace @ardesia/web
 
   study-api:
     name: study-api (HTTP + shared Core)

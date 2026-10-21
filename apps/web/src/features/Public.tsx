@@ -3,12 +3,13 @@ import { dateLabel, describeError, requestKey, studyRequest } from "../api";
 import { PhysicsLab } from "../components/PhysicsLab";
 import { Arrow } from "./Today";
 import { ErrorNotice, Loading } from "../components/Feedback";
+import { publicCourse } from "../publicPreview";
 type Course = {
   id: string;
   capacity: number;
   priceMinor: number | null;
   duration: string;
-  sessions: { start: string; end: string }[];
+  sessions: readonly { start: string; end: string }[];
   timezone: string;
   title: string;
   scope: string;
@@ -20,7 +21,7 @@ export function Public({
   onLogin?: () => void;
   publicPreview?: boolean;
 }) {
-  const [course, setCourse] = useState<Course | null>(null),
+  const [course, setCourse] = useState<Course | null>(publicPreview ? publicCourse : null),
     [loadError, setLoadError] = useState(""),
     [retry, setRetry] = useState(0);
   const [contact, setContact] = useState(""),
@@ -32,7 +33,12 @@ export function Public({
   useEffect(() => {
     let active = true;
     setLoadError("");
-    void studyRequest<Course>(publicPreview ? "/public/course" : "/course")
+    if (publicPreview) {
+      setCourse(publicCourse);
+      return;
+    }
+    setCourse(null);
+    void studyRequest<Course>("/course")
       .then((c) => {
         if (active) setCourse(c);
       })
@@ -92,6 +98,7 @@ export function Public({
         <nav aria-label="Esplora Ardesia">
           <a href="#corso">Il mini-corso</a>
           <a href="#laboratorio">Il laboratorio</a>
+          {publicPreview && <a href="#esame">Il simulatore</a>}
           {onLogin && !publicPreview && (
             <button className="button-quiet" onClick={onLogin}>
               Accedi al tuo spazio
@@ -127,7 +134,7 @@ export function Public({
         </section>
         <div className="preview-note">
           <span className="status-dot" />
-          Anteprima in preparazione. Laboratorio funzionante, contenuti in
+          Anteprima Fisica · Semestre Filtro. Laboratorio esplorabile, contenuti in
           revisione. Nessuna vendita attiva.
         </div>
         <section className="public-course" id="corso">
@@ -244,12 +251,14 @@ export function Public({
           </h2>
           <div>
             <p>
-              Una nota rimane tua. Quando la consegni, il tutor ritrova proprio
-              quella versione: il passaggio, l’originale e il contesto.
+              {publicPreview
+                ? "Il percorso in sviluppo collega quaderno, consegne e feedback del tutor: ogni passaggio deve conservare il suo originale e la sua versione."
+                : "Una nota rimane tua. Quando la consegni, il tutor ritrova proprio quella versione: il passaggio, l’originale e il contesto."}
             </p>
             <p>
-              Dal feedback nasce una nuova prova. Il diario conserva quello che
-              è cambiato, anche quando passi a un altro corso.
+              {publicPreview
+                ? "Quaderno e diario appartengono allo spazio personale e non sono accessibili da questa anteprima. Qui puoi esplorare il modello fisico senza un account."
+                : "Dal feedback nasce una nuova prova. Il diario conserva quello che è cambiato, anche quando passi a un altro corso."}
             </p>
             <a className="text-link" href="#richiesta">
               Conosci il primo gruppo
@@ -257,6 +266,26 @@ export function Public({
             </a>
           </div>
         </section>
+        {publicPreview && (
+          <section className="public-exam-status" id="esame" aria-labelledby="exam-status-title">
+            <div>
+              <h2 id="exam-status-title">Verso il test completo.</h2>
+              <p>Il laboratorio è disponibile per esplorare un modello di fluidodinamica.</p>
+            </div>
+            <div>
+              <h3>Simulazione d’esame non ancora disponibile</h3>
+              <p>
+                La banca di quesiti è in bozza e richiede una revisione scientifica
+                e una pubblicazione deliberata. Non viene distribuita in questa anteprima.
+              </p>
+              <p>
+                Qui non sono disponibili sessioni d’esame, punteggi, salvataggio
+                delle risposte o accesso studente. Il modulo Fluidi copre una parte
+                del programma, non l’intero test.
+              </p>
+            </div>
+          </section>
+        )}
         {publicPreview ? (
           <section className="interest-section" id="richiesta">
             <div>
