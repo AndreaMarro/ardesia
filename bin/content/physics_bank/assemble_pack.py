@@ -7,8 +7,8 @@ import json
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
-PACK=HERE.parent
 ROOT=HERE.parents[2]
+PACK=ROOT/'packs/semestre-filtro-2026-27'
 BANK=ROOT/'packages/engine/lessonos/study/content/physics-semestre-2026-bank'
 
 
@@ -131,7 +131,7 @@ def main():
     }
     write(BANK/'manifest.json',manifest)
     with (PACK/'catalog.csv').open('w',newline='') as stream:
-        writer=csv.writer(stream)
+        writer=csv.writer(stream,lineterminator='\n')
         writer.writerow(['id','unitId','macroarea','microarea','topic','difficulty','format','reasoningTask','familyId','lawFamily','scope','estimatedSeconds'])
         for q in records:
             writer.writerow([q['id'],*(q['taxonomy'][k] for k in ('unitId','macroarea','microarea','topic')),

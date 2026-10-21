@@ -2,7 +2,8 @@
 import json
 from pathlib import Path
 
-OUT=Path(__file__).with_name('models_methods_mechanics.json')
+ROOT=Path(__file__).resolve().parents[3]
+OUT=ROOT/'packs/semestre-filtro-2026-27/data/models_methods_mechanics.json'
 MODELS=[]
 
 

@@ -19,10 +19,12 @@ In questo pacchetto sono disponibili anche:
 - `sources/coverage-*.json`: corrispondenze fra argomenti del programma e quesiti/famiglie.
 - `sources/exams-2025-blueprint.json`: analisi degli obiettivi dei 62 quesiti dei due appelli precedenti; non una riproduzione dei fascicoli.
 - `sources/source-registry.json`: provenienza, collegamenti e modalità di consultazione delle fonti.
-- `authoring/models_*.json`: 250 famiglie fisiche con leggi, grandezze, ipotesi, domini, esempi esatti ed errori tipici.
-- `authoring/overrides_*.json`: problemi scritti individualmente per concetti, simmetrie, casi con più soluzioni e approfondimenti storici.
+- `data/models_*.json`: 250 famiglie fisiche con leggi, grandezze, ipotesi, domini, esempi esatti ed errori tipici.
+- `data/overrides_*.json`: problemi scritti individualmente per concetti, simmetrie, casi con più soluzioni e approfondimenti storici.
 - `reports/delivery-validation.json`: esito della verifica sul corpus realmente consegnato e sul motore della piattaforma.
 - `docs/AI-REVIEW-2026-10-21.md`: verifiche e limiti della revisione assistita.
+
+Gli strumenti eseguibili di stesura, generazione e verifica sono in `bin/content/physics_bank/`, dalla root del repository. Il pack conserva dati editoriali, fonti, metodo e rapporti; le dipendenze del generatore sono separate dal runtime della piattaforma.
 
 ## Esito sul corpus consegnato
 
@@ -117,11 +119,11 @@ Il caricamento verifica conteggi, identità e hash degli shard. Una cache di con
 Dalla root del repository, con Python e le dipendenze editoriali installate in un ambiente separato:
 
 ```bash
-python -m pip install -r packs/semestre-filtro-2026-27/authoring/requirements.txt
-python packs/semestre-filtro-2026-27/authoring/build_bank.py --expected 4000
-python packs/semestre-filtro-2026-27/authoring/assemble_pack.py
-python packs/semestre-filtro-2026-27/authoring/validate_bank.py
-python packs/semestre-filtro-2026-27/authoring/benchmark_runtime.py
+python -m pip install -r bin/content/physics_bank/requirements.txt
+python bin/content/physics_bank/build_bank.py --expected 4000
+python bin/content/physics_bank/assemble_pack.py
+python bin/content/physics_bank/validate_bank.py
+python bin/content/physics_bank/benchmark_runtime.py
 ```
 
 I JSON dei modelli sono le sorgenti editoriali canoniche del build. Gli script `author_mechanics.py` e `author_concepts_mechanics.py` documentano anche la stesura delle famiglie U1/U2; non è necessario eseguirli per consumare o ricostruire la banca dai modelli già consegnati.

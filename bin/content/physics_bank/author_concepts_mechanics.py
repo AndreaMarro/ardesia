@@ -3,6 +3,9 @@
 import json
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[3]
+OUT = ROOT / 'packs/semestre-filtro-2026-27/data/concepts_methods_mechanics.json'
+
 C = {}
 
 
@@ -170,6 +173,5 @@ for model_id, (microarea, topic) in CONCEPT_TOPICS.items():
 
 
 if __name__ == '__main__':
-    path = Path(__file__).with_name('concepts_methods_mechanics.json')
-    path.write_text(json.dumps(C, ensure_ascii=False, indent=2) + '\n')
+    OUT.write_text(json.dumps(C, ensure_ascii=False, indent=2) + '\n')
     print(len(C), 'additional conceptual tasks')

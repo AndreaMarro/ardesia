@@ -12,6 +12,7 @@ import jsonschema
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[2]
+PACK=ROOT/'packs/semestre-filtro-2026-27'
 BANK=ROOT/'packages/engine/lessonos/study/content/physics-semestre-2026-bank'
 sys.path.insert(0,str(ROOT/'packages/engine'))
 from lessonos.study.question_bank import QuestionBank, parse_rational
@@ -107,13 +108,13 @@ def main():
                 coverage_walk(item,unit_id)
         elif isinstance(value,list):
             for item in value:coverage_walk(item,unit_id)
-    for path in sorted((HERE.parent/'sources').glob('coverage-u*.json')):
+    for path in sorted((PACK/'sources').glob('coverage-u*.json')):
         coverage_walk(json.loads(path.read_text()))
-    syllabus=json.loads((HERE.parent/'sources/taxonomy-2026.json').read_text())
+    syllabus=json.loads((PACK/'sources/taxonomy-2026.json').read_text())
     required_topics={(unit['id'],topic) for unit in syllabus['units'] for topic in unit['topics']}
     for unit_id,topic in sorted(required_topics-matched_topics):
         errors.append('unmapped syllabus topic: '+unit_id+' '+topic)
-    historical=json.loads((HERE.parent/'sources/exams-2025-coverage.json').read_text())
+    historical=json.loads((PACK/'sources/exams-2025-coverage.json').read_text())
     coverage_walk(historical)
     historical_keys={(entry['paper'],entry['historicalQuestionNumber']) for entry in historical['entries']}
     if len(historical_keys)!=62 or historical.get('unmappedHistoricalQuestions'):
@@ -129,7 +130,7 @@ def main():
         'examSamples':exam_samples,'elapsedSeconds':round(time.perf_counter()-started,3),
         'manifestSha256':bank.sha256,'humanScientificReview':'NOT_RUN',
         'note':'Verifica tecnica completa dei record; non certifica da sola correttezza scientifica o unicità semantica.'}
-    destination=HERE.parent/'reports/delivery-validation.json'
+    destination=PACK/'reports/delivery-validation.json'
     destination.parent.mkdir(exist_ok=True)
     destination.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({k:v for k,v in report.items() if k!='examSamples'},ensure_ascii=False,indent=2))

@@ -1159,3 +1159,18 @@ Rapporti: packs/semestre-filtro-2026-27/README.md e docs/INTEGRATION-VALIDATION-
 nel medesimo pacchetto; manifest SHA-256
 15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896.
 Costo sessione non esposto dal runtime, nessuna cifra inventata.
+
+### Pubblicazione e conformità alla struttura del repository
+
+Pubblicata la PR in bozza #270, ramo codex/physics-bank-4000-20261021,
+con base nel ramo minicorsi codex/ardesia-public-rea-20261020. Verificati su
+GitHub manifest e tutti i 27 shard della banca completa. Il primo run CI ha
+superato engine, study-api, study-mcp, web, studio e golden path e2e advisory.
+
+Il controllo hygiene ha individuato i percorsi authoring sotto packs: spostati
+gli strumenti in bin/content/physics_bank e i JSON editoriali in data, con
+aggiornamento dei riferimenti. Tutti i 17 JSON spostati conservano i byte
+originali. Gate e baseline invariati; boundary ora verde sull’index completo.
+Il CSV usa LF, con identiche 4.000 righe interpretate. Nuova esecuzione di
+assembler e validatore completa e verde, manifest e corpus invariati.
+Dettagli riproducibili nel rapporto INTEGRATION-VALIDATION-2026-10-21.md.

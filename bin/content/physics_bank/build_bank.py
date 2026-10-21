@@ -23,6 +23,8 @@ import sympy as s
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+PACK = ROOT / 'packs/semestre-filtro-2026-27'
+DATA = PACK / 'data'
 DEST = ROOT / 'packages/engine/lessonos/study/content/physics-semestre-2026-bank'
 X, Z, Y, ALPHA, BETA = s.symbols('x z y alpha beta', positive=True)
 LOCALS = {'x': X, 'z': Z, 'y': Y, 'pi': s.pi, 'sqrt': s.sqrt,
@@ -511,7 +513,7 @@ def evaluation_steps(model,sample,state):
 @lru_cache(maxsize=1)
 def load_overrides():
     result={}
-    for path in sorted(HERE.glob('overrides_*.json')):
+    for path in sorted(DATA.glob('overrides_*.json')):
         payload=json.loads(path.read_text())
         for entry in payload if isinstance(payload,list) else payload['overrides']:
             by_serial=result.setdefault(entry['modelId'],{})
@@ -947,7 +949,7 @@ def main():
         raise SystemExit('shard-size must be between 1 and 1000')
     if not 1 <= args.jobs <= 8:
         raise SystemExit('jobs must be between 1 and 8')
-    paths=[Path(p) for p in args.models] if args.models else sorted(HERE.glob('models_*.json'))
+    paths=[Path(p) for p in args.models] if args.models else sorted(DATA.glob('models_*.json'))
     models=[]
     for path in paths:
         payload=json.loads(path.read_text())

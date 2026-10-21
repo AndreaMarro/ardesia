@@ -9,12 +9,13 @@ import time
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+PACK = ROOT / 'packs/semestre-filtro-2026-27'
 sys.path.insert(0, str(ROOT / "packages/engine"))
 
 from lessonos.study.question_bank import BANK_ID, BANK_PATHS, LEVELS, clear_bank_cache, load_bank
 
 
-DEST = HERE.parent / 'docs/RUNTIME-CORPUS-VALIDATION-2026-10-21.json'
+DEST = PACK / 'docs/RUNTIME-CORPUS-VALIDATION-2026-10-21.json'
 FORBIDDEN = {'answer', 'solution', 'solutionSteps', 'verification', 'correctOptionId', 'accepted', 'exact'}
 
 
