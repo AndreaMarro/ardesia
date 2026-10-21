@@ -8,6 +8,7 @@ from lessonos.study.store import StudyStore,digest
 from lessonos.study.assets import upload_asset,read_asset
 from lessonos.study.submissions import submit,list_submissions
 from lessonos.study.context import rebuild_projection
+from lessonos.study.exam import start_attempt
 
 
 def operation():
@@ -45,10 +46,12 @@ def test_backup_restore_verifies_bytes_and_revokes_access(tmp_path):
 
 def test_erasure_removes_history_derivatives_assets_and_survives_old_restore(tmp_path):
     ops=operation();store,tutor,student,peer,asset,token=setup_data(tmp_path)
+    start_attempt(store,student,'fluidi')
     source=store.path.parent;backup=tmp_path/'before-erasure'
     ops.backup_data(source,backup)
     preview=ops.erase_student(source,student.id,apply=False)
     assert preview['submissions']==2 and preview['resources']==2
+    assert preview['examAttempts']==1
     assert store.principal_for_session(token)
     ops.erase_student(source,student.id,apply=True)
     assert store.principal_for_session(token) is None
@@ -58,9 +61,11 @@ def test_erasure_removes_history_derivatives_assets_and_survives_old_restore(tmp
     assert 'private attachment' not in dump and 'Verifica la quarta potenza' not in dump
     assert 'peer remains' in dump
     assert store.connection.execute('SELECT COUNT(*) FROM study_submissions').fetchone()[0]==0
+    assert store.connection.execute('SELECT COUNT(*) FROM study_exam_attempts').fetchone()[0]==0
     ops.restore_data(backup,tmp_path/'after',source/'erasure-ledger.json')
     restored=StudyStore(tmp_path/'after/study.sqlite')
     assert restored.connection.execute('SELECT COUNT(*) FROM study_submissions').fetchone()[0]==0
+    assert restored.connection.execute('SELECT COUNT(*) FROM study_exam_attempts').fetchone()[0]==0
     assert 'private attachment' not in '\n'.join(restored.connection.iterdump())
     assert not (tmp_path/'after/blobs'/asset['id']).exists()
     with pytest.raises(ValueError,match='erased_identity'):restored.create_principal(student.id,'student')

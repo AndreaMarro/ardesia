@@ -67,7 +67,7 @@ class StudyStore:
                 self.close()
                 raise StudyError('database_integrity_failure',503)
             if present:
-                from .schema_contract import validate_schema, ADMIN_COLUMNS
+                from .schema_contract import validate_schema, ADMIN_COLUMNS, EXAM_COLUMNS
                 from .scientific_notebook import NOTEBOOK_COLUMNS
                 versions=self.connection.execute('SELECT version FROM study_schema').fetchall()
                 tables={row[0] for row in self.connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
@@ -75,7 +75,8 @@ class StudyStore:
                 try:
                     validate_schema(versions[0][0] if len(versions)==1 else None,tables,columns,
                         {row[1] for row in self.connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=initialize,admin_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS},
-                        notebook_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in NOTEBOOK_COLUMNS})
+                        notebook_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in NOTEBOOK_COLUMNS},
+                        exam_columns={table:{row[1] for row in self.connection.execute(f'PRAGMA table_info({table})')} for table in EXAM_COLUMNS})
                     if initialize and versions[0][0] < 6 and self.connection.execute(
                             "SELECT 1 FROM study_resources WHERE kind='scientific-notebook' LIMIT 1").fetchone():
                         raise StudyError('notebook_kind_migration_conflict',503)

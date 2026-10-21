@@ -35,12 +35,16 @@ const Review = lazy(() =>
 const Materials = lazy(() =>
   import("./features/Materials").then((m) => ({ default: m.Materials })),
 );
+const Exam = lazy(() =>
+  import("./features/Exam").then((m) => ({ default: m.Exam })),
+);
 const views: View[] = [
   "today",
   "courses",
   "classroom",
   "work",
   "review",
+  "exam",
   "materials",
 ];
 function initialView(): View {
@@ -243,6 +247,8 @@ export default function App() {
                   onUpdate={refresh}
                   onDiary={() => navigate("work")}
                 />
+              ) : view === "exam" && me.role === "student" ? (
+                <Exam data={data} />
               ) : view === "materials" ? (
                 <Materials me={me} data={data} onUpdate={refresh} />
               ) : (
