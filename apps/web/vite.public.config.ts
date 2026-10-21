@@ -10,7 +10,8 @@ export default defineConfig({
       transformIndexHtml: {
         order: "pre",
         handler: (html) =>
-          html.replace("/src/main.tsx", "/src/public-main.tsx"),
+          html.replace("/src/main.tsx", "/src/public-main.tsx")
+            .replace(/<title>.*?<\/title>/, "<title>Ardesia Fisica — Semestre Filtro · Anteprima</title>"),
       },
     },
   ],

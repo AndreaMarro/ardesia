@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from lessonos.study.activities import evaluate_activity
 from lessonos.study.models import StudyError
+from lessonos.study.public_preview import RADIUS_MAX, RADIUS_MIN, public_course
 
 MAX_BODY_BYTES = 4096
 PUBLIC_PREFIX = '/study/public/'
@@ -58,14 +59,7 @@ def create_public_app(*, frontend: Path | None = None, request_limit=120, clock=
 
     @app.get('/study/public/course')
     async def course():
-        return {
-            'id': 'fluidi-public-v1', 'version': 1, 'status': 'proposed',
-            'title': 'Fluidi e ragionamento fisico',
-            'scope': 'Proporzioni, unità e fluidi; non l’intero programma del semestre.',
-            'duration': 'Quattro incontri proposti', 'capacity': 10,
-            'priceMinor': None, 'sessions': [], 'timezone': 'Europe/Rome',
-            'interestCollection': 'closed', 'editorialStatus': 'DRAFT',
-        }
+        return public_course()
 
     @app.post('/study/public/activities/evaluate')
     async def evaluate(request: Request):
@@ -92,7 +86,7 @@ def create_public_app(*, frontend: Path | None = None, request_limit=120, clock=
         if not isinstance(parameters, dict) or not set(parameters) <= {'radiusRatio', 'boundary'}:
             return JSONResponse({'error': 'invalid_parameters'}, status_code=422)
         radius = parameters.get('radiusRatio', 1)
-        if type(radius) not in (int, float) or not .5 <= radius <= 2:
+        if type(radius) not in (int, float) or not RADIUS_MIN <= radius <= RADIUS_MAX:
             return JSONResponse({'error': 'invalid_physical_domain'}, status_code=422)
         try:
             return evaluate_activity(body['activityId'], parameters)

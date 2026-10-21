@@ -4,6 +4,7 @@ import type { ActivityCommit } from "../course";
 import { readResourceDraft, writeResourceDraft } from "./sessionDraftCache";
 import { requestKey } from "../api";
 import { ErrorNotice } from "./Feedback";
+import { publicActivityResult, publicCaseCount, publicRadius } from "../publicPreview";
 type Result = {
   ratio: number;
   fixedQuantity: string;
@@ -75,8 +76,8 @@ export function PhysicsLab({
     const current = ++sequence.current;
     controller.current = new AbortController();
     try {
-      const value = await studyRequest<Result>(
-        publicPreview ? "/public/activities/evaluate" : "/activities/evaluate",
+      const value = publicPreview ? publicActivityResult(radius, boundary) : await studyRequest<Result>(
+        "/activities/evaluate",
         {
           activityId: "poiseuille-v1",
           parameters: { radiusRatio: radius, boundary },
@@ -110,8 +111,8 @@ export function PhysicsLab({
       <div className="lab-introduction">
         <h2 id="physics-title">Che cosa tieni fisso?</h2>
         <p>
-          Un tubo si allarga. La portata aumenta sempre? Parti dal vincolo, poi
-          metti alla prova la tua previsione.
+          Confronta due tubi cilindrici della stessa lunghezza, con lo stesso
+          fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.
         </p>
       </div>
       <div className="lab-layout">
@@ -123,7 +124,7 @@ export function PhysicsLab({
           <svg
             viewBox="0 0 560 260"
             role="img"
-            aria-label={`Tubo idealizzato con rapporto dei raggi ${radius}`}
+            aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}`}
           >
             <defs>
               <pattern
@@ -141,40 +142,38 @@ export function PhysicsLab({
               </pattern>
             </defs>
             <rect width="560" height="260" fill="url(#lab-grid)" opacity=".2" />
+            <path d="M25 102H235V158H25Z" className="tube-body" />
             <path
-              d="M0 100H150M0 160H150M410 100H560M410 160H560"
-              className="tube-baseline"
-            />
-            <path
-              d={`M150 100Q170 100 190 ${130 - radius * 28}H370Q390 ${130 - radius * 28} 410 100V160Q390 160 370 ${130 + radius * 28}H190Q170 ${130 + radius * 28} 150 160Z`}
+              d={`M325 ${130 - radius * 28}H535V${130 + radius * 28}H325Z`}
               className="tube-body"
             />
             <path
-              d="M35 130H125M435 130H525"
+              d="M40 130H220M340 130H520"
               stroke="currentColor"
               strokeWidth="1.5"
             />
             <path
-              d="m115 124 10 6-10 6m400-12 10 6-10 6"
+              d="m210 124 10 6-10 6m290-12 10 6-10 6"
               fill="none"
               stroke="currentColor"
             />
             <path
-              d={`M280 ${130 - radius * 28}V130`}
+              d={`M430 ${130 - radius * 28}V130M130 102V130`}
               stroke="currentColor"
               strokeDasharray="4 4"
             />
-            <text x="294" y={117 - radius * 14}>
+            <text x="444" y={117 - radius * 14}>
               r
             </text>
+            <text x="144" y="112">r₀</text>
             <text x="280" y="225" textAnchor="middle">
               r / r₀ = {radius.toLocaleString("it-IT")}
             </text>
-            <text x="18" y="68">
-              ingresso
+            <text x="130" y="54" textAnchor="middle">
+              riferimento
             </text>
-            <text x="455" y="68">
-              uscita
+            <text x="430" y="54" textAnchor="middle">
+              confronto
             </text>
           </svg>
           <p>Schema ideale · fluido newtoniano · moto laminare</p>
@@ -195,8 +194,8 @@ export function PhysicsLab({
                 </strong>
                 <p>
                   {result.fixedQuantity === "pressure"
-                    ? "La pressione è fissata. Il rapporto dei raggi compare alla quarta potenza."
-                    : "La portata è fissata. Confronta la pressione necessaria nei due tubi."}
+                    ? "La differenza di pressione è fissata. Il rapporto dei raggi compare alla quarta potenza."
+                    : "La portata è fissata. Confronta la differenza di pressione necessaria nei due tubi."}
                 </p>
               </>
             ) : (
@@ -248,9 +247,9 @@ export function PhysicsLab({
             <input
               aria-label="Rapporto dei raggi"
               type="range"
-              min="0.5"
-              max="2"
-              step="0.05"
+              min={publicRadius.min}
+              max={publicRadius.max}
+              step={publicRadius.step}
               value={radius}
               onChange={(e) => {
                 setRadius(Number(e.target.value));
@@ -281,6 +280,15 @@ export function PhysicsLab({
               Controllo numerico deterministico. Contenuto in revisione
               scientifica prima del pilot.
             </p>
+            {publicPreview && (
+              <p className="fine-print">
+                Questa anteprima esplora {publicCaseCount} configurazioni: tutti i
+                risultati sono stati calcolati dal motore scientifico di Ardesia
+                durante la preparazione della pagina. Lunghezza e viscosità
+                rimangono costanti. La previsione scritta resta nel browser e non
+                viene valutata automaticamente.
+              </p>
+            )}
           </details>
         </form>
       </div>
