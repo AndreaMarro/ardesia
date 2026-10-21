@@ -76,14 +76,17 @@ def _existing_database(directory, *, allow_legacy_catalog=False):
         from .scientific_notebook import NOTEBOOK_COLUMNS
         if schema[0][0] in (1,2,3,4,5):
             legacy_missing.update(NOTEBOOK_COLUMNS)
-        from .schema_contract import validate_schema, ADMIN_COLUMNS, APPROVAL_COLUMNS
-        if schema[0][0] in (1,2,3,4,5,6):
+        from .schema_contract import (validate_schema, ADMIN_COLUMNS, APPROVAL_COLUMNS, EXAM_COLUMNS)
+        if schema[0][0] in (1,2,3,4,5,6,7):
             legacy_missing.update(APPROVAL_COLUMNS)
+        if schema[0][0] in (1,2,3,4,5,6,7):
+            legacy_missing.update(EXAM_COLUMNS)
         if missing-legacy_missing:raise ValueError('database_integrity_schema')
         from .models import StudyError
         try:validate_schema(schema[0][0],present,{row[1] for row in connection.execute('PRAGMA table_info(study_editions)')},{row[1] for row in connection.execute('PRAGMA table_info(study_holds)')},allow_upgrade=True,admin_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in ADMIN_COLUMNS},
             notebook_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in NOTEBOOK_COLUMNS},
-            approval_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in APPROVAL_COLUMNS})
+            approval_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in APPROVAL_COLUMNS},
+            exam_columns={table:{row[1] for row in connection.execute(f'PRAGMA table_info({table})')} for table in EXAM_COLUMNS})
         except StudyError:raise ValueError('database_integrity_schema') from None
         return connection
     except BaseException:
@@ -137,9 +140,9 @@ def _preview(store,actor):
     row=store.connection.execute('SELECT role FROM study_principals WHERE id=?',(actor,)).fetchone()
     if row is None:
         if c.execute('SELECT 1 FROM students WHERE student_id=?',(actor,)).fetchone():raise ValueError('legacy_scope_requires_manual_review')
-        return {'resources':0,'submissions':0,'assets':0,'attendanceRecords':0,'manualPaymentRecords':0}
+        return {'resources':0,'submissions':0,'assets':0,'attendanceRecords':0,'manualPaymentRecords':0,'examAttempts':0}
     if row['role']!='student':raise ValueError('student_only')
-    return {label:store.connection.execute(f'SELECT COUNT(*) FROM {table} WHERE {column}=?',(actor,)).fetchone()[0] for label,table,column in [('resources','study_resources','owner_id'),('submissions','study_submissions','student_id'),('assets','study_assets','owner_id'),('attendanceRecords','study_attendance_records','student_id'),('manualPaymentRecords','study_manual_payment_records','student_id')]}
+    return {label:store.connection.execute(f'SELECT COUNT(*) FROM {table} WHERE {column}=?',(actor,)).fetchone()[0] for label,table,column in [('resources','study_resources','owner_id'),('submissions','study_submissions','student_id'),('assets','study_assets','owner_id'),('attendanceRecords','study_attendance_records','student_id'),('manualPaymentRecords','study_manual_payment_records','student_id'),('examAttempts','study_exam_attempts','student_id')]}
 
 
 def _erase_rows(store,actor):

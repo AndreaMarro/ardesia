@@ -1204,3 +1204,23 @@ restano da collaudare prima del deploy. Nessuna approvazione reale dei 4.000,
 nessun merge o deploy. Ramo codex/physics-bank-approval-gate-20261021; PR in bozza #272, base
 codex/physics-bank-4000-20261021. Dettaglio in
 docs/study/QUESTION-BANK-PUBLICATION-GATE-2026-10-21.md.
+
+## 2026-10-21 — Convergenza schemi Study (#272 + #269)
+
+Risolto il conflitto reale fra gate editoriale e esame persistente: entrambe le
+PR dichiaravano schema 7 e la stessa migrazione `20261021120000`. Sequenza
+canonica: v6 → v7 approvals (#272 invariata) → v8 exam (#269 rinumerata come
+`20261021130000_study_exam_attempts.sql`). `CURRENT_SCHEMA=8`. La forma v7
+"solo esame" è accettata solo come upgrade additivo, mai come forma canonica in
+sola lettura; un v7 parziale fallisce senza scritture. Il corpus, il gate e i
+4.000 quesiti non sono stati modificati nel merito.
+
+Verifica: engine 2529 passati, 25 saltati; API 248 passati; typecheck e build web
+verdi. La suite web completa ha un flake pre-esistente in
+`session-boundary.test.tsx`, presente anche sul HEAD #272 e non disabilitato.
+PostgreSQL live, trigger e RLS: NOT_RUN per assenza runtime e
+`ARDESIA_SUPABASE_ENV_FILE`. Restano incompatibili la forma MCQ (4 opzioni
+intere vs 5 opzioni A–E), il pack fisso e l'autosalvataggio; nessuna
+integrazione semantica dichiarata. Ramo
+`codex/study-schema-convergence-20261021`, PR in bozza con base #272. Dettaglio
+in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`. Nessun merge o deploy.

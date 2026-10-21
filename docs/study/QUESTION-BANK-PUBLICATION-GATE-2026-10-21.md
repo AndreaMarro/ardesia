@@ -125,6 +125,16 @@ l'esame restituisce `409`. La divergenza è attesa ed è coperta dal test
 `test_default_deny_blocks_list_detail_attempt_and_exam`; non è un
 indebolimento del probe.
 
+## Convergenza schemi con #269
+
+La convergenza è tracciata in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`.
+Il gate resta **schema 7** e la sua migrazione resta
+`20261021120000_study_question_bank_approvals.sql`; l'esame della PR #269 è
+rinumerato a **schema 8** con
+`20261021130000_study_exam_attempts.sql`. La forma v7 "solo esame" è accettata
+solo come upgrade additivo, mai come forma canonica. Il corpus e il gate non
+sono stati modificati nel merito.
+
 ## PostgreSQL: NOT_RUN
 
 La migrazione è stata scritta e confrontata con lo schema SQLite, ma non è stata
