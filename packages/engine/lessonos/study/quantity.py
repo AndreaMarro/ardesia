@@ -21,14 +21,18 @@ _BASE = {
     's': ((('s', 1),), Fraction(1)),
     'kg': ((('kg', 1),), Fraction(1)),
     'g': ((('kg', 1),), Fraction(1, 1000)),
-    'Pa': ((('Pa', 1),), Fraction(1)),
-    'N': ((('N', 1),), Fraction(1)),
-    'J': ((('J', 1),), Fraction(1)),
-    'W': ((('W', 1),), Fraction(1)),
-    'Hz': ((('Hz', 1),), Fraction(1)),
-    'V': ((('V', 1),), Fraction(1)),
+    'Pa': ((('kg', 1), ('m', -1), ('s', -2)), Fraction(1)),
+    'N': ((('kg', 1), ('m', 1), ('s', -2)), Fraction(1)),
+    'J': ((('kg', 1), ('m', 2), ('s', -2)), Fraction(1)),
+    'W': ((('kg', 1), ('m', 2), ('s', -3)), Fraction(1)),
+    'Hz': ((('s', -1),), Fraction(1)),
+    'V': ((('kg', 1), ('m', 2), ('s', -3), ('A', -1)), Fraction(1)),
     'A': ((('A', 1),), Fraction(1)),
-    'C': ((('C', 1),), Fraction(1)),
+    'C': ((('A', 1), ('s', 1)), Fraction(1)),
+    'F': ((('kg', -1), ('m', -2), ('s', 4), ('A', 2)), Fraction(1)),
+    'S': ((('kg', -1), ('m', -2), ('s', 3), ('A', 2)), Fraction(1)),
+    'T': ((('kg', 1), ('s', -2), ('A', -1)), Fraction(1)),
+    'Wb': ((('kg', 1), ('m', 2), ('s', -2), ('A', -1)), Fraction(1)),
     'K': ((('K', 1),), Fraction(1)),
     'mol': ((('mol', 1),), Fraction(1)),
     'cd': ((('cd', 1),), Fraction(1)),
@@ -67,10 +71,19 @@ def _normalize(value: str) -> str:
 
 
 def _number(value: str) -> Fraction | None:
+    lowered = value.lower()
+    if 'e' in lowered:
+        exponent = lowered.split('e', 1)[1]
+        try:
+            if abs(int(exponent)) > 30:
+                return None
+        except ValueError:
+            return None
     try:
-        return Fraction(value.replace(',', '.'))
+        number = Fraction(value.replace(',', '.'))
     except (ValueError, ZeroDivisionError, OverflowError):
         return None
+    return number if abs(number) <= Fraction(10 ** 30) else None
 
 
 def _unit_factor(token: str) -> tuple[tuple[tuple[str, int], ...], Fraction] | None:
@@ -135,6 +148,11 @@ def parse_quantity(value: str, *, expected_unit: str | None = None) -> Fraction 
     match = _QUANTITY.fullmatch(text)
     if match is None:
         return None
+    expected = None
+    if expected_unit is not None:
+        expected = canonical_unit(expected_unit)
+        if expected is None:
+            return None
     number = _number(match.group(1))
     if number is None:
         return None
@@ -145,16 +163,13 @@ def parse_quantity(value: str, *, expected_unit: str | None = None) -> Fraction 
         number /= divisor
     raw_unit = match.group(3).strip()
     if not raw_unit:
-        # The prompt supplies the unit; a bare numeric answer is conventional.
-        return number
+        return number * (expected[1] if expected is not None else 1)
     parsed = canonical_unit(raw_unit)
     if parsed is None:
         return None
     signature, scale = parsed
-    if expected_unit is not None:
-        expected = canonical_unit(expected_unit)
-        if expected is None or expected[0] != signature:
-            return None
+    if expected is not None and expected[0] != signature:
+        return None
     return number * scale
 
 

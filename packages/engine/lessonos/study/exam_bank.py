@@ -80,6 +80,8 @@ def _numeric(answer):
 
 
 def _question(full, approval):
+    if full.get('version') != 1:
+        raise StudyError('exam_question_version_unsupported', 409)
     if full['format'] == 'multiple_choice':
         options = [option['text'] for option in full['options']]
         answer = full['answer'].get('correctOptionId')

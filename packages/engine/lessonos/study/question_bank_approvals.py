@@ -106,14 +106,32 @@ class ApprovalGate:
             (self.edition_id, self.bank_id)).fetchall()
         return {row['question_id']: row for row in rows if self._matches(row)}
 
+    def _servable_rows(self):
+        if self.store.is_postgres:
+            rows = self.store.connection.execute(
+                'SELECT approval_id,question_id,question_version,content_sha256 '
+                'FROM ardesia_private.study_servable_approvals(?,?)',
+                (self.edition_id, self.bank_id)).fetchall()
+        else:
+            rows = self.store.connection.execute(
+                'SELECT * FROM study_question_bank_approvals WHERE edition_id=? AND bank_id=? '
+                "AND scientific_status='APPROVED' AND editorial_status='PUBLISHED'",
+                (self.edition_id, self.bank_id)).fetchall()
+        return {row['question_id']: row for row in rows if self._matches(row)}
+
     def servable_ids(self):
         """Ids with an active approval for the current revision and content."""
-        return frozenset(self._active_by_question())
+        return frozenset(self._servable_rows())
 
     def servable_approvals(self):
         """Private server projection keyed by question id; never HTTP-public."""
-        return {question_id: _approval(row)
-                for question_id, row in self._active_by_question().items()}
+        rows = self._servable_rows()
+        if self.store.is_postgres:
+            return {question_id: {'approvalId': row['approval_id'],
+                                  'questionVersion': row['question_version'],
+                                  'contentSha256': row['content_sha256']}
+                    for question_id, row in rows.items()}
+        return {question_id: _approval(row) for question_id, row in rows.items()}
 
     def revoked_approval_ids(self, approval_ids):
         """Approval decisions that have a durable REVOKED transition.
@@ -125,10 +143,15 @@ class ApprovalGate:
                             if isinstance(value, str) and value}))
         if not ids:
             return frozenset()
-        placeholders = ','.join('?' for _ in ids)
-        rows = self.store.connection.execute(
-            'SELECT DISTINCT approval_id FROM study_question_bank_approval_events '
-            "WHERE event='REVOKED' AND approval_id IN (" + placeholders + ')', ids).fetchall()
+        if self.store.is_postgres:
+            rows = self.store.connection.execute(
+                'SELECT approval_id FROM ardesia_private.study_revoked_approvals(?,?,?)',
+                (self.edition_id, self.bank_id, list(ids))).fetchall()
+        else:
+            placeholders = ','.join('?' for _ in ids)
+            rows = self.store.connection.execute(
+                'SELECT DISTINCT approval_id FROM study_question_bank_approval_events '
+                "WHERE event='REVOKED' AND approval_id IN (" + placeholders + ')', ids).fetchall()
         return frozenset(row['approval_id'] for row in rows)
 
     def _latest_active(self, question_id, question_version, content_sha256):
@@ -316,7 +339,7 @@ class ApprovalGate:
             records.append((question, current or latest.get(question['id']), servable))
         total = len(records)
         if after is not None:
-            if not any(question['id'] == after for question, _, _ in records):
+            if not any(question['id'] == after for question in questions):
                 raise StudyError('invalid_question_cursor')
             records = [record for record in records if record[0]['id'] > after]
         page = records[:limit]

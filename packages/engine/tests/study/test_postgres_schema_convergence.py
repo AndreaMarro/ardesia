@@ -317,7 +317,12 @@ def test_approval_rls_and_append_only_events(actor_edition):
             ('event-1', 'approval-1', edition, 'b' * 64, teacher))
     with psycopg.connect(url, autocommit=True) as connection:
         _as(connection, identities[student])
-        assert connection.execute('SELECT count(*) FROM study_question_bank_approvals').fetchone()[0] == 1
+        assert connection.execute('SELECT count(*) FROM study_question_bank_approvals').fetchone()[0] == 0
+        assert connection.execute('SELECT count(*) FROM study_question_bank_approval_events').fetchone()[0] == 0
+        projection = connection.execute(
+            "SELECT approval_id,question_id,question_version,content_sha256 "
+            "FROM ardesia_private.study_servable_approvals(%s,'bank')", (edition,)).fetchall()
+        assert projection == [('approval-1', 'q1', 1, 'b' * 64)]
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             connection.execute(
                 "INSERT INTO study_question_bank_approvals VALUES(%s,%s,'bank','q2',1,%s,%s,"
@@ -327,16 +332,34 @@ def test_approval_rls_and_append_only_events(actor_edition):
         _as(connection, identities[peer])
         assert connection.execute('SELECT count(*) FROM study_question_bank_approvals').fetchone()[0] == 0
     with psycopg.connect(url, autocommit=True) as connection:
+        connection.execute('SET ROLE anon')
+        with pytest.raises(psycopg.errors.InsufficientPrivilege):
+            connection.execute(
+                "SELECT * FROM ardesia_private.study_servable_approvals(%s,'bank')", (edition,))
+    with psycopg.connect(url, autocommit=True) as connection:
         _as(connection, identities[teacher])
         connection.execute(
             "UPDATE study_question_bank_approvals SET editorial_status='REVOKED',"
             "revoked_at=2,revoked_by=%s,revocation_reason='error' WHERE id='approval-1'", (teacher,))
+        connection.execute(
+            "INSERT INTO study_question_bank_approval_events VALUES(%s,%s,%s,'bank','q1',1,%s,"
+            "'REVOKED',%s,2,'error','{}')",
+            ('event-2', 'approval-1', edition, 'b' * 64, teacher))
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             connection.execute("DELETE FROM study_question_bank_approvals WHERE id='approval-1'")
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             connection.execute("UPDATE study_question_bank_approval_events SET motivation='x'")
         with pytest.raises(psycopg.errors.InsufficientPrivilege):
             connection.execute("DELETE FROM study_question_bank_approval_events")
+    with psycopg.connect(url, autocommit=True) as connection:
+        _as(connection, identities[student])
+        assert connection.execute(
+            "SELECT count(*) FROM ardesia_private.study_servable_approvals(%s,'bank')",
+            (edition,)).fetchone()[0] == 0
+        revoked = connection.execute(
+            "SELECT approval_id FROM ardesia_private.study_revoked_approvals(%s,'bank',ARRAY[%s]::text[])",
+            (edition, 'approval-1')).fetchall()
+        assert revoked == [('approval-1',)]
 
 
 def test_exam_rls_isolation_and_closed_attempt_immutability(actor_edition):
