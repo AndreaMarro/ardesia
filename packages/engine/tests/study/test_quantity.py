@@ -51,6 +51,18 @@ def test_expected_values_use_the_same_canonical_scale_as_answers():
     assert expected_quantity(1, 'L') == Fraction(1, 1000)
 
 
+@pytest.mark.parametrize('value,expected', [
+    ('1e100 Pa', Fraction(10 ** 100)),
+    ('1e-100 Pa', Fraction(1, 10 ** 100)),
+    ('1e101 Pa', None),
+    ('1e-101 Pa', None),
+    ('1e100/1e-100 Pa', None),
+    ('9' * 65 + ' Pa', None),
+])
+def test_quantities_follow_the_bounded_rational_bank_contract(value, expected):
+    assert parse_quantity(value, expected_unit='Pa') == expected
+
+
 @pytest.mark.parametrize('value,unit', [
     ('20 Pa', 'K'),
     ('20 Pa', 'kPa'),

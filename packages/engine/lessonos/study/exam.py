@@ -8,6 +8,7 @@ from pathlib import Path
 
 from .models import StudyError
 from .quantity import canonical_unit, expected_quantity, parse_quantity
+from .question_bank import parse_rational
 from .store import canonical, digest, identifier
 
 LEGACY_PACK_ID = 'fisica-semestre-filtro-v1'
@@ -203,6 +204,8 @@ def _numeric_answer(value, numeric):
         if parsed is None:
             return None
         exact = numeric.get('exact', numeric.get('value'))
+        if isinstance(exact, str):
+            exact = parse_rational(exact)
         expected = expected_quantity(exact, unit)
         if expected is None:
             return None
@@ -224,10 +227,13 @@ def _numeric_answer(value, numeric):
 
 
 def _completion_matches(question, value):
+    numeric = question.get('numeric')
+    if numeric is not None and numeric.get('unit') is not None:
+        # Unit symbols are case-sensitive: a text alias must not turn Pa into pA.
+        return _numeric_answer(value, numeric) is True
     normalized = normalize_answer(value)
     if any(normalized == normalize_answer(accepted) for accepted in question['accepted']):
         return True
-    numeric = question.get('numeric')
     return _numeric_answer(value, numeric) is True if numeric is not None else False
 
 
