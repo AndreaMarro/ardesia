@@ -45,8 +45,8 @@ class ConfirmBody(StrictBody):
 
 def install_admin_routes(app,store_dependency,authenticate):
     @app.get('/study/admin/coursepacks')
-    def coursepacks(request:Request,store=Depends(store_dependency)):
-        return editions.registry(store,authenticate(request,store))
+    def coursepacks(request:Request,includeInventory:bool=False,store=Depends(store_dependency)):
+        return editions.registry(store,authenticate(request,store),include_inventory=includeInventory)
 
     @app.post('/study/admin/editions')
     def create(body:CreateBody,request:Request,store=Depends(store_dependency)):

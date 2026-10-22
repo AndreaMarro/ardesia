@@ -5,10 +5,16 @@ import { openPdf, type PdfTask } from "./pdfDocument";
 import { renderPdfPage, type PdfFrame } from "./renderPdfPage";
 import "./notebook.css";
 
-type Extras = { overlay?: (frame: PdfFrame) => ReactNode; pageTools?: (page: number) => ReactNode };
+type Extras = {
+  overlay?: (frame: PdfFrame) => ReactNode;
+  pageTools?: (page: number) => ReactNode;
+  pageRequest?: PdfPageRequest;
+};
 /** Rendering input only. Authorization and integrity belong to the caller's boundary. */
 export type PdfInput = { blob: Blob };
-export function PdfReader({ original, overlay, pageTools, expectedPages }: { original: PdfInput; expectedPages?: number } & Extras) {
+/** A fresh request per activation, bound to the immutable input it navigates. */
+export type PdfPageRequest = { original: PdfInput; page: number };
+export function PdfReader({ original, overlay, pageTools, pageRequest, expectedPages }: { original: PdfInput; expectedPages?: number } & Extras) {
   const [loaded, setLoaded] = useState<{ original: PdfInput; expectedPages?: number; pdf: PDFDocumentProxy } | null>(null);
   const [loadError, setLoadError] = useState("");
   const [attempt, setAttempt] = useState(0);
@@ -47,10 +53,11 @@ export function PdfReader({ original, overlay, pageTools, expectedPages }: { ori
   }, [original, expectedPages, attempt]);
   if (loadError) return <ErrorNotice message={loadError} onRetry={() => setAttempt(n => n + 1)} />;
   if (!loaded || loaded.original !== original || loaded.expectedPages !== expectedPages) return <Loading>Sto preparando le pagine…</Loading>;
-  return <PdfPages key={attempt} pdf={loaded.pdf} overlay={overlay} pageTools={pageTools} />;
+  return <PdfPages key={attempt} pdf={loaded.pdf} overlay={overlay} pageTools={pageTools}
+    pageRequest={pageRequest?.original === original ? pageRequest : undefined} />;
 }
 
-function PdfPages({ pdf, overlay, pageTools }: { pdf: PDFDocumentProxy } & Extras) {
+function PdfPages({ pdf, overlay, pageTools, pageRequest }: { pdf: PDFDocumentProxy } & Extras) {
   const host = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(600);
   const [number, setNumber] = useState(1);
@@ -60,6 +67,12 @@ function PdfPages({ pdf, overlay, pageTools }: { pdf: PDFDocumentProxy } & Extra
   const [state, setState] = useState<{ key?: string; frame?: PdfFrame; error?: string }>({});
   const key = `${number}/${width}/${zoom}/${rotation}/${attempt}`;
   const visible = state.key === key ? state : {};
+  useEffect(() => {
+    if (!pageRequest || !Number.isSafeInteger(pageRequest.page)
+        || pageRequest.page < 1 || pageRequest.page > pdf.numPages) return;
+    setNumber(pageRequest.page);
+    host.current?.focus();
+  }, [pdf, pageRequest]);
   useEffect(() => {
     const element = host.current;
     if (!element) return;

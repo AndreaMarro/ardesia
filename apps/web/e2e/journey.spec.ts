@@ -93,9 +93,9 @@ test("submitted source → tutor observation → new student proof → tutor ver
   expect(sent.ok()).toBe(true);
   const receipt = await sent.json();
   const page = await tutor.newPage();
-  await page.goto("/?view=review");
+  await page.goto("/?view=review&edition=fluidi");
   await page
-    .getByRole("button", { name: /student-01.*Da correggere/ })
+    .getByRole("button", { name: new RegExp(`student-01.*Tentativo ${receipt.revision}.*Da correggere`) })
     .last()
     .click();
   await expect(page.getByText(original, { exact: true }).first()).toBeVisible();
@@ -113,9 +113,14 @@ test("submitted source → tutor observation → new student proof → tutor ver
   await page
     .getByText("Collega un passaggio al diario", { exact: true })
     .click();
+  const observationCreated = page.waitForResponse(response =>
+    response.url().endsWith("/diary/observations") && response.request().method() === "POST",
+  );
   await page
     .getByRole("button", { name: "Proponi il passaggio", exact: true })
     .click();
+  const observation = await (await observationCreated).json();
+  expect(observation.threadId).toBeTruthy();
   await page
     .getByRole("button", { name: "Apri il diario per il prossimo passo" })
     .click();
@@ -145,13 +150,17 @@ test("submitted source → tutor observation → new student proof → tutor ver
     .click();
   await expect(entry.getByText("Da riprovare", { exact: true })).toBeVisible();
   const learner = await student.newPage();
-  await learner.goto("/?view=work");
+  await learner.goto("/?view=work&edition=fluidi");
   const own = learner.locator(".diary-entry").filter({ hasText: original });
   await own.getByText("Affronta una situazione nuova", { exact: true }).click();
   const procedure =
     "Il rapporto dei raggi è due; a pressione fissata la portata varia con la quarta potenza: 2^4 = 16.";
   await own.getByLabel("Spiega il tuo procedimento").fill(procedure);
+  const proofSent = learner.waitForResponse(response =>
+    response.url().endsWith("/study/submissions") && response.request().method() === "POST",
+  );
   await own.getByRole("button", { name: "Consegna la nuova prova" }).click();
+  const transferReceipt = await (await proofSent).json();
   await expect(
     own.getByText("Nuova prova consegnata. La verifica spetta al tutor."),
   ).toBeVisible();
@@ -193,6 +202,21 @@ test("submitted source → tutor observation → new student proof → tutor ver
     "/study/receipts/" + receipt.receiptId,
   );
   expect((await stored.json()).submissionId).toBe(receipt.submissionId);
+  // A transfer attempt is a legitimate new submission with its own activity.
+  // Its manual diary form and existing recurrence links remain available,
+  // without borrowing the entry laboratory's scientific concepts.
+  await page.goto("/?view=review&edition=fluidi");
+  await page.getByRole("button", {
+    name: new RegExp(`student-01.*Tentativo ${transferReceipt.revision}.*Da correggere`),
+  }).last().click();
+  await expect(page.locator(".submission-answer")).toHaveText(procedure);
+  await page.getByText("Collega un passaggio al diario", { exact: true }).click();
+  await expect(page.getByText("Osservazione manuale:", { exact: false })).toBeVisible();
+  await expect(page.getByRole("combobox", { name: "Concetto", exact: true })).toHaveValue("procedure");
+  await expect(page.getByRole("option", { name: "Potenze del raggio", exact: true })).toHaveCount(0);
+  const recurrences = page.getByRole("combobox", { name: "Nuova osservazione o ricomparsa", exact: true });
+  await expect(recurrences).toBeVisible();
+  await expect(recurrences.locator(`option[value="${observation.threadId}"]`)).toHaveText("Ricomparsa: radius-power");
   await tutor.close();
   await student.close();
 });
@@ -227,7 +251,7 @@ test("shared material edits preserve the exact original revision and expose cont
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await login(context, "tutor-synthetic");
-  await page.goto("/?view=materials");
+  await page.goto("/?view=materials&edition=fluidi");
   await page
     .getByText("Aggiungi un materiale al gruppo", { exact: true })
     .click();

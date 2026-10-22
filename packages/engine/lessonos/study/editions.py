@@ -141,10 +141,14 @@ def admin_edition(store, principal, edition_id):
             'paymentMode':'test','scientificApproval':'NOT_ATTESTED'}
 
 
-def registry(store, principal):
+def registry(store, principal, *, include_inventory=False):
     require_teacher(store,principal)
     from .catalog import list_pack_descriptors
-    return {'items':list_pack_descriptors(),'paymentMode':'test'}
+    result = {'items':list_pack_descriptors(),'paymentMode':'test'}
+    if include_inventory:
+        from .curriculum_inventory import build_inventory
+        result['inventory'] = build_inventory(result['items'])
+    return result
 
 
 def _indicative_terms(capacity, price_minor):

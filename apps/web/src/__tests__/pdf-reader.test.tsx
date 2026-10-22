@@ -3,11 +3,16 @@ import { act, cleanup, fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 import { PdfReader } from "../integrations/notebook/PdfReader";
+import { NotebookReading } from "../integrations/notebook/NotebookReading";
+import type { NotebookState } from "../integrations/notebook/model";
 import { openPdf, type PdfTask } from "../integrations/notebook/pdfDocument";
 import { renderPdfPage } from "../integrations/notebook/renderPdfPage";
 import type { VerifiedOriginalAsset } from "../../../studio/src/study/originalAsset";
 
 vi.mock("../integrations/notebook/pdfDocument", () => ({ openPdf: vi.fn() }));
+vi.mock("../integrations/notebook/FormulaPreview", () => ({
+  FormulaPreview: ({ value }: { value: string }) => <span>{value}</span>,
+}));
 function deferred<T>() {
   let resolve!: (value: T) => void, reject!: (reason: Error) => void;
   const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
@@ -23,6 +28,9 @@ function page(text: string) {
     rotate: 0,
     getViewport: vi.fn(({ scale, rotation }: { scale: number; rotation: number }) => ({
       width: (rotation % 180 ? 800 : 600) * scale, height: (rotation % 180 ? 600 : 800) * scale,
+      viewBox: [0, 0, 600, 800],
+      convertToViewportPoint: (x: number, y: number) => [x * scale, (800 - y) * scale],
+      convertToPdfPoint: (x: number, y: number) => [x / scale, 800 - y / scale],
     })),
     render: vi.fn(() => ({ promise: Promise.resolve(), cancel: vi.fn() })),
     getTextContent: vi.fn(async () => ({ items: [{ str: text, hasEOL: true }] })),
@@ -38,6 +46,8 @@ beforeEach(() => {
   vi.mocked(openPdf).mockReset();
   vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({} as CanvasRenderingContext2D);
   vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
+  vi.stubGlobal("URL", { createObjectURL: vi.fn(() => "blob:original"), revokeObjectURL: vi.fn() });
+  vi.stubGlobal("fetch", vi.fn());
 });
 afterEach(() => { cleanup(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
@@ -137,4 +147,76 @@ test("raster size stays bounded without omitting large source images", async () 
   expect(result.canvas.width * result.canvas.height).toBeLessThanOrEqual(4_000_000);
   expect(Math.max(result.canvas.width, result.canvas.height)).toBeLessThanOrEqual(8192);
   expect(result.text).toBe("CURRENT");
+});
+
+const notebook = (content = "Q=Av", annotationPage = 2): NotebookState => ({
+  v: 1, title: "Continuità", annotations: [
+    { id: "formula-1", page: annotationPage, rect: [.1, .2, .3, .1], kind: "formula", content },
+  ],
+});
+
+test("a reading annotation opens its exact page again after manual navigation without reloading the PDF", async () => {
+  const source = original("a"), first = loading();
+  vi.mocked(openPdf).mockResolvedValue(first.task);
+  render(<NotebookReading state={notebook()} revisionId="revision-1" original={source} assetId="a" pageCount={2} />);
+  await screen.findByRole("img", { name: "Pagina 1 di 2" });
+  fireEvent.click(screen.getByRole("button", { name: "Apri pagina 2, annotazione 1" }));
+  await screen.findByRole("img", { name: "Pagina 2 di 2" });
+  expect(document.activeElement).toBe(screen.getByRole("region", { name: "Pagina PDF, area scorrevole" }));
+  fireEvent.click(screen.getByRole("button", { name: "Pagina precedente" }));
+  await screen.findByRole("img", { name: "Pagina 1 di 2" });
+  fireEvent.click(screen.getByRole("button", { name: "Apri pagina 2, annotazione 1" }));
+  await screen.findByRole("img", { name: "Pagina 2 di 2" });
+  expect(openPdf).toHaveBeenCalledOnce();
+  expect(fetch).not.toHaveBeenCalled();
+});
+
+test("a pending annotation jump cannot survive a revision change on the same PDF", async () => {
+  const source = original("a"), delayed = deferred<ReturnType<typeof page>>();
+  const oldGetPage = vi.fn(async () => page("OLD PAGE"));
+  const first = loading(oldGetPage), second = loading(vi.fn(async () => page("NEW PAGE")));
+  vi.mocked(openPdf).mockResolvedValueOnce(first.task).mockResolvedValueOnce(second.task);
+  const view = render(<NotebookReading state={notebook("old formula")} revisionId="revision-1"
+    original={source} assetId="a" pageCount={2} />);
+  await screen.findByRole("img", { name: "Pagina 1 di 2" });
+  oldGetPage.mockReturnValueOnce(delayed.promise);
+  fireEvent.click(screen.getByRole("button", { name: "Apri pagina 2, annotazione 1" }));
+  await act(async () => { await Promise.resolve(); });
+  view.rerender(<NotebookReading state={notebook("new formula")} revisionId="revision-2"
+    original={source} assetId="a" pageCount={2} />);
+  await screen.findByText("NEW PAGE");
+  await act(async () => delayed.resolve(page("LATE OLD PAGE")));
+  expect(screen.getByRole("img", { name: "Pagina 1 di 2" })).toBeTruthy();
+  expect(screen.queryByText("LATE OLD PAGE")).toBeNull();
+  expect(screen.queryByText("old formula")).toBeNull();
+  expect(second.pdf.getPage).toHaveBeenCalledExactlyOnceWith(1);
+  expect(first.destroy).toHaveBeenCalledOnce();
+  expect(fetch).not.toHaveBeenCalled();
+});
+
+test("page requests reject malformed pages and requests bound to another original", async () => {
+  const source = original("a"), first = loading();
+  vi.mocked(openPdf).mockResolvedValue(first.task);
+  const view = render(<PdfReader original={source} pageRequest={{ original: source, page: 2 }} />);
+  await screen.findByRole("img", { name: "Pagina 2 di 2" });
+  vi.mocked(first.pdf.getPage).mockClear();
+  for (const invalid of [0, -1, 1.5, 3, Number.NaN, Infinity, Number.MAX_VALUE]) {
+    view.rerender(<PdfReader original={source} pageRequest={{ original: source, page: invalid }} />);
+    await act(async () => { await Promise.resolve(); });
+  }
+  view.rerender(<PdfReader original={source} pageRequest={{ original: original("b"), page: 1 }} />);
+  await act(async () => { await Promise.resolve(); });
+  expect(screen.getByRole("img", { name: "Pagina 2 di 2" })).toBeTruthy();
+  expect(first.pdf.getPage).not.toHaveBeenCalled();
+});
+
+test("reading notes remain available without offering navigation to missing PDFs or invalid pages", async () => {
+  const view = render(<NotebookReading state={notebook()} revisionId="revision-1" assetId="a" pageCount={2} />);
+  expect(screen.getByText("Q=Av")).toBeTruthy();
+  expect(screen.queryByRole("button", { name: /Apri pagina/ })).toBeNull();
+  vi.mocked(openPdf).mockResolvedValue(loading().task);
+  view.rerender(<NotebookReading state={notebook("Q=Av", 3)} revisionId="revision-1"
+    original={original("a")} assetId="a" pageCount={2} />);
+  await screen.findByRole("img", { name: "Pagina 1 di 2" });
+  expect(screen.queryByRole("button", { name: /Apri pagina/ })).toBeNull();
 });

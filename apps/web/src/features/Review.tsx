@@ -7,7 +7,7 @@ import {
   type Submission,
   type Workspace,
 } from "../api";
-import { courseTitle, isTaylor } from "../course";
+import { baseActivity, courseTitle, type LabActivityId } from "../course";
 import { AssetPreview } from "../components/AssetPreview";
 import { SourceViewer } from "../components/SourceViewer";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
@@ -33,6 +33,7 @@ export function Review({
     (s) => filter === "all" || !s.feedback.some((f) => f.review),
   );
   const current = data.submissions.find((s) => s.id === selected);
+  const activityId = baseActivity(data.edition);
   return (
     <>
       <header className="page-heading">
@@ -107,10 +108,10 @@ export function Review({
           <div className="review-detail">
             {current ? (
               <SubmissionReview
-                key={current.id}
+                key={JSON.stringify([data.edition.id, data.edition.packSha256, current.id, activityId])}
                 submission={current}
                 editionId={data.edition.id}
-                taylor={isTaylor(data.edition)}
+                activityId={current.activity_id === activityId ? activityId : null}
                 onUpdate={onUpdate}
                 onDiary={onDiary}
               />
@@ -129,13 +130,13 @@ export function Review({
 function SubmissionReview({
   submission,
   editionId,
-  taylor,
+  activityId,
   onUpdate,
   onDiary,
 }: {
   submission: Submission;
   editionId: string;
-  taylor: boolean;
+  activityId: LabActivityId | null;
   onUpdate: () => Promise<void>;
   onDiary: () => void;
 }) {
@@ -312,7 +313,7 @@ function SubmissionReview({
           <ObservationForm
             submission={submission}
             editionId={editionId}
-            taylor={taylor}
+            activityId={activityId}
             anchor={anchor}
             source={loaded}
             onDiary={onDiary}
@@ -325,20 +326,21 @@ function SubmissionReview({
 function ObservationForm({
   submission,
   editionId,
-  taylor,
+  activityId,
   anchor,
   source,
   onDiary,
 }: {
   submission: Submission;
   editionId: string;
-  taylor: boolean;
+  activityId: LabActivityId | null;
   anchor: Anchor | null;
   source: StudyResource | null;
   onDiary: () => void;
 }) {
   const [concept, setConcept] = useState(
-      taylor ? "taylor-exp-remainder" : "radius-power",
+      activityId === "taylor-exp-v1" ? "taylor-exp-remainder"
+        : activityId === "poiseuille-v1" ? "radius-power" : "procedure",
     ),
     [category, setCategory] = useState("model_selection"),
     [busy, setBusy] = useState(false),
@@ -413,6 +415,9 @@ function ObservationForm({
   return (
     <details className="observation-form">
       <summary>Collega un passaggio al diario</summary>
+      {activityId === null && <p className="fine-print">
+        Osservazione manuale: scegli un concetto generale oppure collega una ricomparsa già documentata.
+      </p>}
       <p>
         Seleziona un estratto nell’originale a sinistra. La proposta sarà poi
         confermata con una spiegazione, una rubrica e un problema diverso.
@@ -467,13 +472,13 @@ function ObservationForm({
                   changed();
                 }}
               >
-                {taylor ? (
+                {activityId === "taylor-exp-v1" ? (
                   <option value="taylor-exp-remainder">
                     Taylor, fattoriale e resto
                   </option>
-                ) : (
+                ) : activityId === "poiseuille-v1" ? (
                   <option value="radius-power">Potenze del raggio</option>
-                )}
+                ) : null}
                 <option value="unit-conversion">Conversione delle unità</option>
                 <option value="model-selection">Scelta del modello</option>
                 <option value="procedure">Procedimento</option>

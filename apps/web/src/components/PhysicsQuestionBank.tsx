@@ -12,7 +12,7 @@ type Question = {
   taxonomy: { unitId: string; macroarea: string; microarea: string; topic: string };
   difficulty: { level: Level; reason: string };
   familyId: string;
-  status: "DRAFT";
+  status: "PUBLISHED";
   descriptors?: { scope?: string };
 };
 type QuestionPage = { bankSha256: string; items: Question[]; total: number; nextCursor: string | null };
@@ -29,7 +29,7 @@ type Feedback = {
   matchingPolicy: string;
   answer: { text: string; unit: string; correctOptionId?: string };
   solution: string;
-  scientificApproval: "NOT_RUN";
+  scientificApproval: "APPROVED";
 };
 type Exam = {
   bankSha256: string;
@@ -37,12 +37,12 @@ type Exam = {
   durationSeconds: number;
   questions: Question[];
 };
-const units = [
+export const physicsUnits = [
   ["U1", "Metodi e misure"], ["U2", "Meccanica"], ["U3", "Fluidi"],
   ["U4", "Onde meccaniche"], ["U5", "Termodinamica"],
   ["U6", "Elettricità e magnetismo"], ["U7", "Radiazioni e ottica"],
 ];
-const levels: Level[] = ["base", "facile", "medio", "difficile"];
+export const physicsLevels: Level[] = ["base", "facile", "medio", "difficile"];
 
 function bankError(error: unknown) {
   const code = error instanceof Error ? error.message : "";
@@ -57,7 +57,7 @@ function inline(text: string) {
 }
 
 /** Render original Markdown text without interpreting HTML or executable math. */
-function Solution({ text }: { text: string }) {
+export function QuestionSolution({ text }: { text: string }) {
   return <div className="physics-bank-solution-text">{text.split(/\n\s*\n/).map((block, index) => {
     const lines = block.split("\n");
     if (/^#{1,6}\s/.test(lines[0])) {
@@ -131,7 +131,7 @@ function QuestionCard({ question, base, bankSha256, index }: {
       <p><strong>Risultato:</strong> {feedback.answer.correctOptionId ? `${feedback.answer.correctOptionId}. ` : ""}{feedback.answer.text}</p>
       {feedback.matchingPolicy === "approved_aliases_only" && feedback.outcome === "incorrect" &&
         <p>Il confronto riconosce le forme di risposta previste. Controlla lo svolgimento anche se hai scritto una forma simbolica equivalente.</p>}
-      <Solution text={feedback.solution} />
+      <QuestionSolution text={feedback.solution} />
     </section>}
   </article>;
 }
@@ -209,7 +209,7 @@ function BankReader({ editionId, bankId }: { editionId: string; bankId: string }
     <header>
       <h2>Fisica, un quesito alla volta.</h2>
       <p>{catalog ? `${catalog.questionCount.toLocaleString("it-IT")} quesiti` : "Banca dei quesiti"} · quattro livelli · senza calcolatrice.</p>
-      <p className="physics-bank-review">Materiale originale in attesa di revisione scientifica. Gli svolgimenti sono disponibili dopo la risposta.</p>
+      <p className="physics-bank-review">Sono disponibili solo i quesiti pubblicati per questa edizione. Gli svolgimenti sono disponibili dopo la risposta.</p>
       <p className="physics-bank-session-note">Allenamento personale: le risposte di questa sezione non vengono salvate nel diario del corso.</p>
     </header>
     <div className="physics-bank-actions">
@@ -221,10 +221,10 @@ function BankReader({ editionId, bankId }: { editionId: string; bankId: string }
     {exam ? <p role="status">Allenamento nel formato 2026: 21 scelte multiple e 10 completamenti. Tempo di riferimento: {exam.durationSeconds / 60} minuti. Puoi aprire la correzione dopo ogni risposta. La distribuzione degli argomenti è una scelta didattica per l’allenamento, non una quota ministeriale.</p>
       : <form className="physics-bank-filters" onSubmit={event => { event.preventDefault(); changeFilter("query", search); }}>
         <label>Argomento<select value={filters.unit} onChange={event => changeFilter("unit", event.target.value)}>
-          <option value="">Tutti gli argomenti</option>{units.map(([id, title]) => <option key={id} value={id}>{title}</option>)}
+          <option value="">Tutti gli argomenti</option>{physicsUnits.map(([id, title]) => <option key={id} value={id}>{title}</option>)}
         </select></label>
         <label>Difficoltà<select value={filters.difficulty} onChange={event => changeFilter("difficulty", event.target.value)}>
-          <option value="">Tutti i livelli</option>{levels.map(level => <option key={level}>{level}</option>)}
+          <option value="">Tutti i livelli</option>{physicsLevels.map(level => <option key={level}>{level}</option>)}
         </select></label>
         <label>Formato<select value={filters.format} onChange={event => changeFilter("format", event.target.value)}>
           <option value="">Tutti i formati</option><option value="multiple_choice">Scelta multipla</option><option value="completion">Completamento</option>

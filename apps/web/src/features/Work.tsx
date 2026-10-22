@@ -1,24 +1,28 @@
 import { useState } from "react";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import type { StudyMe, Workspace } from "../api";
-import { baseActivity, isTaylor } from "../course";
+import { baseActivity, courseScope } from "../course";
 import { Diary } from "./Diary";
 import { SourceViewer } from "../components/SourceViewer";
 import { AssetPreview } from "../components/AssetPreview";
 import { EmptyState } from "../components/Feedback";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
-export function Work({
-  me,
-  data,
-  onRetry,
-  onUpdate = async () => {},
-}: {
+type Props = {
   me: StudyMe;
   data: Workspace;
   onRetry: (id: string) => void;
   onUpdate?: () => Promise<void>;
-}) {
+};
+export function Work(props: Props) {
+  return <WorkScope key={courseScope(props.me, props.data.edition)} {...props} />;
+}
+function WorkScope({
+  me,
+  data,
+  onRetry,
+  onUpdate = async () => {},
+}: Props) {
   const [tab, setTab] = useState("diary");
   return (
     <>
@@ -43,7 +47,7 @@ export function Work({
         <Diary
           me={me}
           editionId={data.edition.id}
-          taylor={isTaylor(data.edition)}
+          activityId={baseActivity(data.edition)}
         />
       ) : tab === "notebook" ? (
         <>
@@ -96,7 +100,7 @@ function Delivery({
   onRetry,
 }: {
   submission: Workspace["submissions"][number];
-  baseActivityId: string;
+  baseActivityId: string | null;
   onRetry: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -147,7 +151,7 @@ function Delivery({
           </>
         )}
       </details>
-      {submission.activity_id === baseActivityId && (
+      {baseActivityId !== null && submission.activity_id === baseActivityId && (
         <button onClick={() => onRetry(submission.id)}>
           Prepara un nuovo tentativo
         </button>

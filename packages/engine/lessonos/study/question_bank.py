@@ -21,6 +21,7 @@ from .models import StudyError
 
 BANK_ID = 'physics-semestre-2026'
 BANK_PATHS = {BANK_ID: Path(__file__).parent / 'content' / 'physics-semestre-2026-bank'}
+_BANK_SUBJECTS = {(BANK_ID, 1): 'fisica'}
 LEVELS = ('base', 'facile', 'medio', 'difficile')
 FORMATS = ('multiple_choice', 'completion')
 MAX_ANSWER_LENGTH = 128
@@ -347,6 +348,69 @@ class QuestionBank:
                            else 'PUBLISHED' if published else 'UNPUBLISHED'),
             },
         }
+
+    def inventory_collections(self):
+        """Private, detached metadata for declared groups; not enrolment authority.
+
+        Counts come from this verified snapshot, including overlapping membership.
+        No edition ledger is consulted and no authored answer text is projected.
+        """
+        subject = _BANK_SUBJECTS.get((self.manifest['id'], self.manifest['version']))
+        if subject is None:
+            raise StudyError('question_bank_unavailable', 409)
+        definitions = self.manifest.get('miniCourses', ())
+        if not isinstance(definitions, (list, tuple)):
+            raise StudyError('question_bank_unavailable', 409)
+        for question in self._questions:
+            memberships = question['descriptors'].get('miniCourseIds', ())
+            if (not isinstance(memberships, (list, tuple))
+                    or not all(isinstance(value, str) for value in memberships)):
+                raise StudyError('question_bank_unavailable', 409)
+        result, seen = [], set()
+        for definition in definitions:
+            if (not isinstance(definition, dict)
+                    or not isinstance(definition.get('id'), str) or not definition['id']
+                    or definition['id'] in seen
+                    or not isinstance(definition.get('title'), str) or not definition['title']
+                    or definition.get('bankId', self.manifest['id']) != self.manifest['id']):
+                raise StudyError('question_bank_unavailable', 409)
+            mini_course_id = definition['id']
+            seen.add(mini_course_id)
+            questions = tuple(q for q in self._questions
+                              if mini_course_id in q['descriptors'].get('miniCourseIds', ()))
+            prerequisites = set()
+            for question in questions:
+                labels = question['descriptors'].get('prerequisites', ())
+                if isinstance(labels, (list, tuple)):
+                    prerequisites.update(label for label in labels if isinstance(label, str) and label)
+            result.append({
+                'id': f"{self.manifest['id']}@{self.manifest['version']}:{mini_course_id}",
+                'title': definition['title'], 'subject': subject, 'bankId': self.manifest['id'],
+                'bankVersion': self.manifest['version'], 'bankSha256': self.sha256,
+                'academicYear': self.manifest.get('academicYear'),
+                'selection': {'miniCourseId': mini_course_id},
+                'unitIds': sorted({q['taxonomy']['unitId'] for q in questions}),
+                'microareas': sorted({q['taxonomy']['microarea'] for q in questions}),
+                'topics': sorted({q['taxonomy']['topic'] for q in questions}),
+                'prerequisites': sorted(prerequisites),
+                'learningObjectives': sorted({q['descriptors']['learningObjective'] for q in questions
+                    if isinstance(q['descriptors'].get('learningObjective'), str)
+                    and q['descriptors']['learningObjective']}),
+                'questionCount': len(questions),
+                'familyCount': len({q['familyId'] for q in questions}),
+                'solutionCount': sum(bool(q['solution']) for q in questions),
+                'countsByDifficulty': dict(sorted(Counter(q['difficulty']['level'] for q in questions).items())),
+                'countsByFormat': dict(sorted(Counter(q['format'] for q in questions).items())),
+                'countsByUnit': dict(sorted(Counter(q['taxonomy']['unitId'] for q in questions).items())),
+                'questionRefs': [{'id': q['id'], 'version': q['version'],
+                                  'contentSha256': self._content_sha256[q['id']]} for q in questions[:3]],
+                'creatable': False, 'editorialStatus': 'DRAFT', 'scientificReview': 'NOT_RUN',
+                'gaps': ['Gruppo di quesiti, non un CoursePack configurato.',
+                         'Sequenza didattica e incontri da progettare.',
+                         'Revisione scientifica e decisione editoriale da completare.',
+                         'Percorso completo e collaudo dell’edizione da verificare.'],
+            })
+        return result
 
     def _filtered(self, *, unit_id=None, difficulty=None, format=None, query=None, mini_course_id=None,
                   published_ids=None):

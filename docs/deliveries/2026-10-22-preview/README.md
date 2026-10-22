@@ -3,6 +3,12 @@
 Base: PR #277, `eee007d265f89f55b1ba0d08b092f2de1d3603c8`.
 Date: 2026-10-22 (Europe/Rome). Preview only; no scientific approval of bank questions.
 
+**Dated follow-up:** the incident and measurements below describe the original
+#278 session. The convergence session on 22 October observed a later deployment
+record as READY, but could not verify the current project protections or remote
+interaction. See [the current observation](#convergence-observation-22-october-2026)
+and the [canonical convergence audit](../../ops/ARDESIA-CONVERGENCE-AUDIT-2026-10-22.md).
+
 ## Defect and correction
 
 Before: public entry fetched `/public/course` and PhysicsLab fetched `/public/activities/evaluate`, but the standalone static deployment supplies neither endpoint. The discriminating offline rendering test failed before this change (1 failure).
@@ -74,3 +80,29 @@ A subsequent deployment with `forceNew: 1` and omitted target has the correct Pr
 The available connector has no deployment-delete operation, the local Vercel CLI has no credentials, and the dashboard browser is at the login wall. The remaining operation is concrete: remove only the erroneous production deployment, preserve the blocked preview record so the project is not empty, then resume and create a fresh preview from the verified assets. Recheck target, SSO and all remote acceptance conditions before calling it online. Do not resume while the unwanted production deployment is still active; do not delete all deployment records and trigger the first-deployment rule again.
 
 GitHub Actions for the code commit passed: CI run [39688449000](https://github.com/AndreaMarro/ardesia/actions/runs/39688449000), including public build and real browser without API, and Studio readiness [39688448964](https://github.com/AndreaMarro/ardesia/actions/runs/39688448964). These passes do not close the Vercel deployment blocker.
+
+## Convergence observation 22 October 2026
+
+Read-only inspection of the supplied deployment ID
+`dpl_6Ee5hXwDuQsDPeAaF9G8pfxAGSiE` returned `READY`, `target: null`, project
+`prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`, no aliases, and this recorded URL:
+[existing deployment](https://ardesia-fisica-preview-cv49dagv8-andreas-projects-6d4e9791.vercel.app).
+The response contained no Git source association, including when Git information
+was requested. It does not independently establish the historical source-SHA claim.
+
+Subsequent project inspection and deployment listing under the observed team
+scope `team_23uD0RgdInaTaOPEL0EGltup` returned HTTP403, “Not authorized”.
+Team authorization operations were not exposed. Consequently the latest
+deployment, current pause/SSO settings, build provenance and authenticated remote
+home/laboratory acceptance remain **BLOCKED / NOT_RUN**. The incident above is
+retained as history; neither an ongoing pause nor its resolution is inferred from
+an inaccessible project. No new deployment, protection change, domain change or
+backend exposure was attempted in this convergence session.
+
+The combined source was independently rebuilt and its four static-browser tests
+passed locally with Playwright 1.60.0 and Chrome for Testing 148.0.7778.96 at
+390/820/1440 px. The browser tests exercised navigation, both boundary conditions
+at radius ratio 2, same-origin assets, absence of API traffic, the connection
+policy and 404s for absent API routes. The separate build gate checked all 62
+Core-derived states for reproducibility. This local result does not close remote
+acceptance.

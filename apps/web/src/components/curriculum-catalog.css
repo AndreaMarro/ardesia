@@ -1,0 +1,27 @@
+.curriculum-catalog { margin: 0 0 32px; padding: 28px; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; }
+.curriculum-catalog > p { max-width: 76ch; color: var(--muted); }
+.curriculum-catalog h2 { font-size: clamp(25px, 3vw, 34px); }
+.curriculum-filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 18px; }
+.curriculum-filters [aria-pressed="true"] { background: var(--green); border-color: var(--green); color: white; }
+.curriculum-catalog input { min-width: 0; width: 100%; max-width: 560px; }
+.curriculum-result-count { font-size: 14px; color: var(--muted); }
+.curriculum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.curriculum-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+.curriculum-card-heading { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.curriculum-card-heading p { margin-bottom: 12px; }
+.curriculum-status { color: #6a4d23; background: #f6eddc; border: 1px solid #e4d4b4; border-radius: 4px; padding: 3px 8px; font-size: 11px; letter-spacing: .06em; white-space: nowrap; }
+.curriculum-card h3 { font-size: 22px; line-height: 1.3; }
+.curriculum-card h4 { margin: 20px 0 8px; }
+.curriculum-counts { color: var(--green); font-weight: 600; }
+.curriculum-card details { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.curriculum-card summary { min-height: 44px; padding: 8px 0; font-weight: 600; }
+.curriculum-card ul { padding-left: 22px; }
+.curriculum-card li { margin-bottom: 6px; }
+.curriculum-card code, .curriculum-card a { overflow-wrap: anywhere; word-break: break-word; }
+.curriculum-card code { font-size: 12px; }
+.curriculum-candidate { border-top: 3px solid #b8c3ac; }
+.curriculum-topics { font-size: 14px; }
+.curriculum-prerequisites { margin-top: 24px; }
+.curriculum-prerequisites summary { min-height: 44px; padding: 10px 0; }
+@media (max-width: 900px) { .curriculum-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .curriculum-catalog { padding: 18px 14px; } .curriculum-card { padding: 18px 14px; } .curriculum-catalog .section-title { display: block; } .curriculum-catalog .section-title > button { width: 100%; } .curriculum-filters > button { flex: 1 1 100%; } }

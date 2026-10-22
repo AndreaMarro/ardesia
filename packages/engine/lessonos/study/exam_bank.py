@@ -5,10 +5,9 @@ is available only to editions whose CoursePack binds no bank at all, so a
 student can never reach unapproved legacy content through a pending review.
 """
 from copy import deepcopy
-from fractions import Fraction
 
 from .models import StudyError
-from .question_bank import load_bank, bank_access_for_edition
+from .question_bank import load_bank, bank_access_for_edition, parse_rational
 from .question_bank_approvals import ApprovalGate, GATE_ID
 from .store import canonical
 
@@ -71,12 +70,11 @@ def _numeric(answer):
     exact = answer.get('exact')
     if answer.get('kind') != 'rational' or not isinstance(exact, str):
         return None
-    try:
-        value = float(Fraction(exact.replace(',', '.')))
-    except (ValueError, ZeroDivisionError, OverflowError):
-        raise StudyError('exam_question_invalid', 409) from None
+    number = parse_rational(exact)
+    if number is None:
+        raise StudyError('exam_question_invalid', 409)
     unit = answer.get('unit') or '1'
-    return {'value': value, 'exact': exact, 'unit': unit, 'tolerance': 0, 'units': [unit]}
+    return {'value': float(number), 'exact': exact, 'unit': unit, 'tolerance': 0, 'units': [unit]}
 
 
 def _question(full, approval):

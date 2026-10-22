@@ -3,6 +3,7 @@ import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
 import { EditionRegister } from "../register/EditionRegister";
+import { CurriculumCatalog } from "../components/CurriculumCatalog";
 import { courseTitle, courseSubject } from "../course";
 import {
   editionState,
@@ -39,6 +40,14 @@ export function Courses({
           date.
         </p>
       </header>
+      {me.role === "teacher" && <CurriculumCatalog
+        key={`${me.id}:${me.role}`}
+        availableProgrammeIds={(editions ?? (data ? [data.edition] : [])).map((edition) => `${edition.packId}@${edition.packVersion}`)}
+        onOpenProgramme={(packId, version) => {
+          const edition = (editions ?? (data ? [data.edition] : [])).find((candidate) => candidate.packId === packId && candidate.packVersion === version);
+          if (edition) { onEdition?.(edition.id); onClassroom(); }
+        }}
+      />}
       {me.role === "teacher" && <EditionManager editionId={data?.edition.id ?? null} defaultOpen={data?.edition.state === "draft"} onChanged={(id) => onManaged?.(id)} />}
       {(editions ?? (data ? [data.edition] : [])).map((edition) => (
         <article

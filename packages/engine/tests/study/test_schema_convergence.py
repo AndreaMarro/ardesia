@@ -49,16 +49,16 @@ def column_map(required):
     return {table: set(columns) for table, columns in required.items()}
 
 
-def test_new_database_is_v9_with_all_features(tmp_path):
+def test_new_database_is_v10_with_all_features(tmp_path):
     store = StudyStore(tmp_path / 'study.sqlite')
-    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA == 9
+    assert store.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA == 10
     assert table_columns(store.connection, 'study_question_bank_approvals') >= APPROVAL_COLUMNS[
         'study_question_bank_approvals']
     assert table_columns(store.connection, 'study_exam_attempts') == EXAM_COLUMNS['study_exam_attempts']
     store.close()
 
 
-def test_v6_upgrades_to_v9_without_losing_pre_existing_rows(tmp_path):
+def test_v6_upgrades_to_v10_without_losing_pre_existing_rows(tmp_path):
     store = StudyStore(tmp_path / 'study.sqlite')
     teacher, student = seed(store)
     store.close()
@@ -69,7 +69,7 @@ def test_v6_upgrades_to_v9_without_losing_pre_existing_rows(tmp_path):
         connection.execute('UPDATE study_schema SET version=6')
     operations._existing_database(tmp_path).close()
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA
     assert upgraded.get_edition('fluidi')['teacherId'] == teacher.id
     assert upgraded.connection.execute(
         'SELECT COUNT(*) FROM study_members WHERE student_id=?', (student.id,)).fetchone()[0] == 1
@@ -88,7 +88,7 @@ def test_canonical_v7_approval_database_upgrades_and_preserves_decisions(tmp_pat
         connection.execute('DROP TABLE study_exam_attempts')
         connection.execute('UPDATE study_schema SET version=7')
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA
     row = upgraded.connection.execute(
         'SELECT question_id,editorial_status FROM study_question_bank_approvals').fetchone()
     assert row['question_id'] == 'u1-area-conversion-01' and row['editorial_status'] == 'PUBLISHED'
@@ -107,7 +107,7 @@ def test_legacy_v7_exam_database_upgrades_and_preserves_attempts(tmp_path):
         connection.execute('UPDATE study_schema SET version=7')
     operations._existing_database(tmp_path).close()
     upgraded = StudyStore(tmp_path / 'study.sqlite')
-    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+    assert upgraded.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA
     current = get_attempt(upgraded, student, attempt['id'])
     assert current['status'] == 'in_progress'
     assert current['packId'] == 'fisica-semestre-filtro-v1'
@@ -147,7 +147,7 @@ def test_backup_restore_preserves_gate_and_exam_attempt_together(tmp_path):
     restored = tmp_path / 'restored'
     operations.restore_data(tmp_path / 'backup', restored, tmp_path / 'source' / 'erasure-ledger.json')
     returned = StudyStore(restored / 'study.sqlite')
-    assert returned.connection.execute('SELECT version FROM study_schema').fetchone()[0] == 9
+    assert returned.connection.execute('SELECT version FROM study_schema').fetchone()[0] == CURRENT_SCHEMA
     assert returned.connection.execute(
         'SELECT COUNT(*) FROM study_question_bank_approvals').fetchone()[0] == 1
     assert returned.connection.execute(
@@ -198,7 +198,7 @@ def test_contract_distinguishes_canonical_v7_from_legacy_exam_v7():
                         approval_columns=column_map(APPROVAL_COLUMNS),
                         exam_columns=column_map(EXAM_COLUMNS_V8), **common)
     validate_schema(9, tables | set(APPROVAL_COLUMNS) | set(EXAM_COLUMNS), editions, holds,
-                    approval_columns=column_map(APPROVAL_COLUMNS),
+                    allow_upgrade=True, approval_columns=column_map(APPROVAL_COLUMNS),
                     exam_columns=column_map(EXAM_COLUMNS), **common)
 
 

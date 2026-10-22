@@ -22,7 +22,7 @@ from lessonos.study.store import StudyStore
 from legacy_exam_fixture import insert_historical_attempt
 
 
-def synthetic_bank(path, *, count=31, mcq_count=21, law_family=None):
+def synthetic_bank(path, *, count=31, mcq_count=21, law_family=None, completion_answer=None):
     path.mkdir(parents=True)
     (path / 'questions').mkdir()
     questions = []
@@ -60,6 +60,10 @@ def synthetic_bank(path, *, count=31, mcq_count=21, law_family=None):
             'status': 'DRAFT',
             'reviewer': None,
         }
+        if kind == 'completion' and completion_answer is not None:
+            question['answer'] = dict(completion_answer)
+            question['prompt'] = f"Esprimi il valore {completion_answer['text']} nella unità dichiarata."
+            question['solution'] = f"Il valore atteso è {completion_answer['text']}."
         questions.append(question)
     payload = json.dumps(questions, ensure_ascii=False).encode()
     (path / 'questions' / 'U1.json').write_bytes(payload)
@@ -82,9 +86,9 @@ def synthetic_bank(path, *, count=31, mcq_count=21, law_family=None):
 
 
 @pytest.fixture
-def bank_world(tmp_path, monkeypatch):
+def bank_world(tmp_path, monkeypatch, request):
     path = tmp_path / 'bank'
-    questions = synthetic_bank(path)
+    questions = synthetic_bank(path, completion_answer=getattr(request, 'param', None))
     monkeypatch.setitem(BANK_PATHS, BANK_ID, path)
     clear_bank_cache()
     store = StudyStore(tmp_path / 'study.sqlite')
@@ -237,6 +241,71 @@ def test_synthetic_31_question_flow_saves_reopens_and_grades(bank_world):
     assert graded[second['id']]['status'] == 'wrong'
     reviewed = get_attempt(store, student, attempt['id'])
     assert {question['questionId']: question for question in reviewed['result']['questions']}[second['id']]['status'] == 'wrong'
+
+
+@pytest.mark.parametrize('bank_world,cases', [
+    ({'kind': 'rational', 'exact': '4', 'unit': 'Pa', 'text': '4 Pa', 'accepted': ['4']}, [
+        ('8/2 Pa', 'correct'), ('4.0 Pa', 'correct'), ('0.004 kPa', 'correct'),
+        ('4 pA', 'wrong'), ('4 pa', 'wrong'), ('4 PA', 'wrong'), ('4 J', 'wrong'),
+        ('1/0 Pa', 'wrong'), ('1e999999 Pa', 'wrong'), ('__import__("os")', 'wrong'),
+    ]),
+    ({'kind': 'rational', 'exact': '1/3', 'unit': 'Pa', 'text': '1/3 Pa', 'accepted': ['1/3']}, [
+        ('2/6 Pa', 'correct'), ('0.3333333333333333 Pa', 'wrong'),
+        ('1/3 Pa', 'correct'), ('1/3 pA', 'wrong'),
+    ]),
+    ({'kind': 'rational', 'exact': '8 / 2', 'unit': 'Pa', 'text': '4 Pa', 'accepted': ['4']}, [
+        ('4.0 Pa', 'correct'), ('4 pA', 'wrong'),
+    ]),
+    ({'kind': 'rational', 'exact': '1e40', 'unit': 'Pa', 'text': '1e40 Pa', 'accepted': ['1e40']}, [
+        ('1e40 Pa', 'correct'), ('2e40/2 Pa', 'correct'), ('1e40 pA', 'wrong'),
+    ]),
+    ({'kind': 'rational', 'exact': '1e-40', 'unit': 'Pa', 'text': '1e-40 Pa', 'accepted': ['1e-40']}, [
+        ('1e-40 Pa', 'correct'), ('2e-40/2 Pa', 'correct'), ('0 Pa', 'wrong'),
+    ]),
+], indirect=['bank_world'])
+def test_rational_grading_survives_bank_projection_and_sqlite_reopen(bank_world, cases):
+    store, student = bank_world['store'], bank_world['student']
+    attempt = start_attempt(store, student, 'fluidi')
+    completions = [question for question in attempt['questions'] if question['type'] == 'completion']
+    answers = {question['id']: response for question, (response, _) in zip(completions, cases)}
+    expected = {question['id']: status for question, (_, status) in zip(completions, cases)}
+    saved = save_answers(store, student, attempt['id'], answers, expected_revision=0)
+    assert saved['answerRevision'] == 1
+    with pytest.raises(StudyError, match='invalid_exam_answers'):
+        save_answers(store, student, attempt['id'], {completions[0]['id']: '1' * 201}, expected_revision=1)
+    path = store.path
+    store.close()
+
+    reopened_store = StudyStore(path)
+    try:
+        reopened = get_attempt(reopened_store, student, attempt['id'])
+        assert reopened['answers'] == answers
+        assert reopened['answerRevision'] == 1
+        snapshot = json.loads(reopened_store.connection.execute(
+            'SELECT pack_snapshot FROM study_exam_attempts WHERE id=?', (attempt['id'],)
+        ).fetchone()['pack_snapshot'])
+        numeric = next(question['numeric'] for question in snapshot['questions'] if question['type'] == 'completion')
+        assert numeric['exact'] == bank_world['questions'][-1]['answer']['exact']
+        result = submit_attempt(reopened_store, student, attempt['id'], expected_revision=1)['result']
+        statuses = {question['questionId']: question['status'] for question in result['questions']}
+        assert {question_id: statuses[question_id] for question_id in expected} == expected
+        correct = sum(status == 'correct' for status in expected.values())
+        wrong = len(expected) - correct
+        assert (result['correct'], result['wrong'], result['omitted'], result['scoreTenths']) == (
+            correct, wrong, 31 - len(expected), correct * 10 - wrong)
+        assert result['validity']['valid'] is True
+    finally:
+        reopened_store.close()
+
+    review_store = StudyStore(path)
+    try:
+        reviewed = get_attempt(review_store, student, attempt['id'])['result']
+        assert reviewed['validity']['valid'] is True
+        # Validity is rechecked on read; only its timestamp is expected to change.
+        assert reviewed['validity'].pop('checkedAt') >= result['validity'].pop('checkedAt')
+        assert reviewed == result
+    finally:
+        review_store.close()
 
 
 def _unready_bank_world(tmp_path, monkeypatch, *, approved=0, rejected=0, revoke=False,

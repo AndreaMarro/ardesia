@@ -2,7 +2,8 @@ import { useState } from "react";
 import {
   courseTitle,
   courseSubject,
-  isTaylor,
+  baseActivity,
+  courseScope,
   type ActivityCommit,
 } from "../course";
 import { TaylorLab } from "../components/TaylorLab";
@@ -15,22 +16,37 @@ import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
+import { QuestionBankReview } from "../components/QuestionBankReview";
 
-export function Classroom({
-  me,
-  data,
-  onUpdate,
-  parentId = null,
-}: {
+type Props = {
   me: StudyMe;
   data: Workspace;
   onUpdate: () => Promise<void>;
   parentId?: string | null;
-}) {
+};
+
+export function Classroom(props: Props) {
+  return <ClassroomScope key={courseScope(props.me, props.data.edition)} {...props} />;
+}
+
+function ClassroomScope({
+  me,
+  data,
+  onUpdate,
+  parentId = null,
+}: Props) {
   const [commit, setCommit] = useState<ActivityCommit | null>(null);
   const [source, setSource] = useState<PostitReference | null>(null);
   const [selectionMessage, setSelectionMessage] = useState("");
   const tutor = me.role === "teacher";
+  const activityId = baseActivity(data.edition);
+  const draftScope = courseScope(me, data.edition);
+  // A parent's selection may arrive before its own course-change effect clears
+  // it. Never seed a destination draft with a retry from another course/activity.
+  const retryParentId = parentId && data.submissions.some(submission =>
+    submission.id === parentId && submission.student_id === me.id &&
+    submission.activity_id === activityId,
+  ) ? parentId : null;
   const composer = useResourceComposer({
     actorId: me.id,
     editionId: data.edition.id,
@@ -53,29 +69,39 @@ export function Classroom({
         <p className="breadcrumb">
           {courseSubject(data.edition)} / {courseTitle(data.edition)}
         </p>
-        <h1>Metti un’idea alla prova.</h1>
+        <h1>{activityId ? "Metti un’idea alla prova." : "Il tuo percorso di lavoro."}</h1>
         <p>
-          Prevedi prima di muovere il modello. Spiega dopo. Il tuo ragionamento
-          conta.
+          {activityId
+            ? "Prevedi prima di muovere il modello. Spiega dopo. Il tuo ragionamento conta."
+            : "Organizza le fonti, conserva i passaggi e prepara le domande per il tutor."}
         </p>
       </header>
       <section className="lab-surface">
-        {isTaylor(data.edition) ? (
+        {activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
-            draftKey={JSON.stringify([me.id, data.edition.id, "taylor-lab"])}
+            draftKey={JSON.stringify([draftScope, "taylor-lab"])}
           />
-        ) : (
+        ) : activityId === "poiseuille-v1" ? (
           <PhysicsLab
             onCommit={setCommit}
-            draftKey={JSON.stringify([me.id, data.edition.id, "physics-lab"])}
+            draftKey={JSON.stringify([draftScope, "physics-lab"])}
           />
+        ) : (
+          <div className="empty-state">
+            <h2>Questo percorso non ha un laboratorio disponibile.</h2>
+            <p>
+              Non è prevista una consegna guidata da questa pagina. Puoi usare
+              le note, le fonti e il quaderno quando partecipi all’edizione.
+            </p>
+          </div>
         )}
       </section>
       {data.enrolled ? (
         <>
           {data.edition.questionBankIds?.includes("physics-semestre-2026") && (
-            <PhysicsQuestionBank key={`${me.id}:${data.edition.id}:physics-bank`} editionId={data.edition.id} />
+            tutor ? <QuestionBankReview key={`${me.id}:${data.edition.id}:review-bank`} editionId={data.edition.id} />
+              : <PhysicsQuestionBank key={`${me.id}:${data.edition.id}:physics-bank`} editionId={data.edition.id} />
           )}
           <ScientificNotebooks me={me} data={data} onUpdate={onUpdate} onUse={tutor ? undefined : reference => {
             setSource(reference);
@@ -134,21 +160,19 @@ export function Classroom({
               setSelectionMessage("Fonte collegata alla prossima consegna.");
             }}
           />
-          {!tutor && (
+          {!tutor && activityId && (
             <section className="submission-surface">
               <SubmissionPanel
                 key={`${me.id}:${data.edition.id}`}
                 editionId={data.edition.id}
-                activityId={
-                  isTaylor(data.edition) ? "taylor-exp-v1" : "poiseuille-v1"
-                }
-                activityParameters={commit?.parameters}
-                prediction={commit?.prediction}
-                activityReady={Boolean(commit)}
+                activityId={activityId}
+                activityParameters={commit?.activityId === activityId ? commit.parameters : undefined}
+                prediction={commit?.activityId === activityId ? commit.prediction : undefined}
+                activityReady={commit?.activityId === activityId}
                 requireProcedure
                 me={me}
                 source={source}
-                parentId={parentId}
+                parentId={retryParentId}
                 onUpdate={onUpdate}
               />
             </section>
@@ -156,10 +180,10 @@ export function Classroom({
         </>
       ) : (
         <section className="empty-state">
-          <h2>Il laboratorio è aperto.</h2>
+          <h2>{activityId ? "Il laboratorio è aperto." : "Il percorso è consultabile."}</h2>
           <p>
             Conferma la partecipazione all’edizione per accedere al tuo lavoro e
-            consegnare.
+            {activityId ? "consegnare." : "salvare note e quaderno."}
           </p>
         </section>
       )}

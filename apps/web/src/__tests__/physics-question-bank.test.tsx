@@ -9,7 +9,7 @@ const question = {
   id: "physics-test", prompt: "Quanto vale la metà di tre metri?", format: "multiple_choice",
   options: ["1", "3/2", "2", "3", "6"].map((text, index) => ({ id: "ABCDE"[index], text })),
   taxonomy: { unitId: "U1", macroarea: "Misure", microarea: "Rapporti", topic: "Un rapporto" },
-  difficulty: { level: "base", reason: "Una divisione" }, familyId: "half", status: "DRAFT",
+  difficulty: { level: "base", reason: "Una divisione" }, familyId: "half", status: "PUBLISHED",
 };
 const catalog = { title: "Banca", questionCount: 4000, bankSha256: sha, countsByDifficulty: { base: 1000, facile: 1000, medio: 1000, difficile: 1000 } };
 const page = { items: [question], total: 1, nextCursor: null, bankSha256: sha };
@@ -22,7 +22,7 @@ test("bank loads only when opened and reveals the complete explanation after a p
       attempts.push(JSON.parse(options?.body as string));
       return json({ questionId: question.id, outcome: "correct", score: 1, matchingPolicy: "choice_id",
         answer: { text: "3/2 m", correctOptionId: "B", unit: "m" },
-        solution: "## Perché dividiamo\n\nLa misura va separata in due parti uguali.\n\n## Calcolo\n\n3 / 2 = 1,5 m.\n\n## Controllo\n\nDue parti da 1,5 m ricostruiscono i 3 m iniziali.", scientificApproval: "NOT_RUN" });
+        solution: "## Perché dividiamo\n\nLa misura va separata in due parti uguali.\n\n## Calcolo\n\n3 / 2 = 1,5 m.\n\n## Controllo\n\nDue parti da 1,5 m ricostruiscono i 3 m iniziali.", scientificApproval: "APPROVED" });
     }
     return json(url.includes("/questions?") ? page : catalog);
   });
@@ -45,7 +45,7 @@ test("filters are sent to the authenticated edition and completion accepts fract
   vi.stubGlobal("fetch", vi.fn(async (url: string, options?: RequestInit) => {
     calls.push({ url, ...(options?.body ? { body: JSON.parse(options.body as string) } : {}) });
     if (url.endsWith("/attempts")) return json({ questionId: "completion-test", outcome: "correct", score: 1,
-      matchingPolicy: "exact_rational", answer: { text: "3/2 m", unit: "m" }, solution: "Il rapporto è esatto.", scientificApproval: "NOT_RUN" });
+      matchingPolicy: "exact_rational", answer: { text: "3/2 m", unit: "m" }, solution: "Il rapporto è esatto.", scientificApproval: "APPROVED" });
     if (url.includes("/questions?")) return json({ ...page, items: [{ ...question, id: "completion-test", format: "completion", options: [] }] });
     return json(catalog);
   }));
@@ -107,4 +107,15 @@ test("the training paper uses the pinned 2026 profile and returns to the filtere
   fireEvent.click(screen.getByRole("button", { name: "Torna alla ricerca" }));
   await screen.findByText(question.prompt);
   expect(screen.getAllByRole("article")).toHaveLength(1);
+});
+
+test("the student reader describes the published projection without declaring the corpus reviewed", async () => {
+  vi.stubGlobal("fetch", vi.fn(async (url: string) => json(url.includes("/questions?")
+    ? { ...page, items: [{ ...question, status: "PUBLISHED" }] }
+    : { ...catalog, questionCount: 1, publication: { publishedQuestionCount: 1, defaultDeny: true } })));
+  render(<PhysicsQuestionBank editionId="fluidi" />);
+  fireEvent.click(screen.getByText(/Allenati con la banca di fisica/));
+  await screen.findByText(question.prompt);
+  expect(screen.getByText(/Sono disponibili solo i quesiti pubblicati per questa edizione/)).toBeTruthy();
+  expect(screen.queryByText(/Materiale originale in attesa di revisione scientifica/)).toBeNull();
 });

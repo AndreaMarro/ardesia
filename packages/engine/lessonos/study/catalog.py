@@ -8,8 +8,10 @@ DEFAULT_COURSE = 'fisica-fluidi'
 DEFAULT_PACK = 'relazioni-fluidi-v1'
 LEGACY_PACK_SHA256 = '3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f'
 _PACKS = {
-    (DEFAULT_PACK, 1): ('relazioni-fluidi-v1.json', DEFAULT_COURSE, 'Fisica: relazioni e fluidi', 'fisica', '4 incontri da 90 minuti'),
-    ('taylor-exp-v1', 1): ('taylor-exp-v1.json', 'analisi-1', 'Analisi 1: Taylor e resto', 'analisi', 'Modulo DRAFT, durata non deliberata'),
+    (DEFAULT_PACK, 1): ('relazioni-fluidi-v1.json', DEFAULT_COURSE, 'Fisica: relazioni e fluidi', 'fisica',
+                       '4 incontri da 90 minuti', 'poiseuille-v1', ('physics-semestre-2026',)),
+    ('taylor-exp-v1', 1): ('taylor-exp-v1.json', 'analisi-1', 'Analisi 1: Taylor e resto', 'analisi',
+                         'Modulo DRAFT, durata non deliberata', 'taylor-exp-v1', ()),
 }
 
 
@@ -25,16 +27,32 @@ def load_pack(pack_id=DEFAULT_PACK, version=1):
 
 
 def describe_pack(pack_id=DEFAULT_PACK, version=1):
-    _, course_id, title, subject, duration = _entry(pack_id, version)
+    _, course_id, title, subject, duration, *capabilities = _entry(pack_id, version)
+    # Metadata alone grants no laboratory or bank. Bindings belong to the exact
+    # registered revision; neither the subject nor the first activity selects one.
+    if capabilities and len(capabilities) != 2:
+        raise StudyError('coursepack_unavailable', 409)
+    entry_activity_id, bank_ids = capabilities or (None, ())
+    if (not isinstance(bank_ids, tuple)
+            or any(not isinstance(bank_id, str) or not bank_id for bank_id in bank_ids)
+            or len(set(bank_ids)) != len(bank_ids)):
+        raise StudyError('coursepack_unavailable', 409)
     pack = load_pack(pack_id, version)
     if pack['id'] != pack_id or pack['version'] != version:
         raise StudyError('coursepack_unavailable', 409)
+    if entry_activity_id is not None:
+        activities = pack.get('activities')
+        if (not isinstance(entry_activity_id, str) or not entry_activity_id
+                or not isinstance(activities, list)
+                or sum(isinstance(item, dict) and item.get('id') == entry_activity_id
+                       for item in activities) != 1):
+            raise StudyError('coursepack_unavailable', 409)
     canonical = json.dumps(pack, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
     return {'courseId': course_id, 'packId': pack_id, 'packVersion': version,
             'packSha256': hashlib.sha256(canonical.encode()).hexdigest(), 'title': title, 'subject': subject, 'duration': duration,
             # Supplementary practice does not rewrite the immutable CoursePack
             # JSON or its persisted edition pin. Access remains edition-scoped.
-            'questionBankIds': ['physics-semestre-2026'] if subject == 'fisica' else []}
+            'questionBankIds': list(bank_ids), 'entryActivityId': entry_activity_id}
 
 
 def validate_binding(course_id, pack_id, version):
