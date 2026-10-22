@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { describeError, requestKey, studyRequest, type StudyMe } from "../api";
 import { SourceViewer } from "../components/SourceViewer";
 import { ErrorNotice, Loading } from "../components/Feedback";
+import type { LabActivityId } from "../course";
 
 export type DiaryThread = {
   threadId: string;
@@ -52,11 +53,11 @@ const labels: Record<string, string> = {
 export function Diary({
   me,
   editionId,
-  taylor = false,
+  activityId = null,
 }: {
   me: StudyMe;
   editionId: string;
-  taylor?: boolean;
+  activityId?: LabActivityId | null;
 }) {
   const [data, setData] = useState<DiaryData | null>(null);
   const [filter, setFilter] = useState("open");
@@ -184,7 +185,7 @@ export function Diary({
               key={thread.threadId}
               thread={thread}
               tutor={me.role === "teacher"}
-              taylor={taylor}
+              activityId={activityId}
               onUpdate={refresh}
             />
           ))}
@@ -197,14 +198,15 @@ export function Diary({
 function DiaryCard({
   thread,
   tutor,
-  taylor,
+  activityId,
   onUpdate,
 }: {
   thread: DiaryThread;
   tutor: boolean;
-  taylor: boolean;
+  activityId: LabActivityId | null;
   onUpdate: () => Promise<void>;
 }) {
+  const taylor = activityId === "taylor-exp-v1";
   const [answer, setAnswer] = useState("");
   const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
@@ -298,6 +300,7 @@ function DiaryCard({
     }
   }
   async function confirm() {
+    if (activityId === null) return;
     try {
       await command("confirm", {
         rubric: { criterion, procedureRequired: true },
@@ -394,7 +397,13 @@ function DiaryCard({
             </button>
           </details>
         )}
-      {tutor && thread.status === "CANDIDATE" && (
+      {tutor && thread.status === "CANDIDATE" && activityId === null && (
+        <p className="fine-print">
+          La preparazione guidata di una nuova prova non è disponibile per questa attività.
+          L’osservazione e lo storico restano consultabili.
+        </p>
+      )}
+      {tutor && thread.status === "CANDIDATE" && activityId !== null && (
         <details className="entry-practice">
           <summary>Verifica e prepara il prossimo passo</summary>
           <label>
