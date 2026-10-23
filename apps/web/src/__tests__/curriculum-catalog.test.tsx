@@ -22,7 +22,7 @@ const inventory = {
   sharedPrerequisites: [{ label: "Lettura di una formula", entryIds: ["one", "two"] }],
 };
 
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+afterEach(() => { history.replaceState(null, "", "/"); cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 test("teacher opens a real curriculum inventory on demand, with content references and separate draft states", async () => {
   const fetcher = vi.fn(async (_path: string, _init?: RequestInit) => json({ items: [], inventory }));
@@ -72,4 +72,28 @@ test("student never requests private inventory and a late teacher response canno
   await act(async () => { finish(json({ items: [], inventory })); });
   expect(screen.queryByRole("heading", { name: "Taylor e resto" })).toBeNull();
   expect(screen.queryByRole("button", { name: "Apri catalogo e copertura" })).toBeNull();
+});
+
+
+test("catalog links reopen the exact unit and reject an obsolete composition without a fallback", async () => {
+  const coverage = { questionCount: 272, familyCount: 17, unitIds: ["U4"], prerequisites: ["Lettura di una formula"],
+    learningObjectives: ["Confrontare due frequenze"], microareas: ["Interferenza"], countsByAuthoringStatus: { DRAFT: 272 },
+    editorialStatus: "DRAFT", scientificReview: "NOT_ATTESTED", publicationStatus: "EDITION_SCOPED", creatable: false, gaps: ["Sequenza da deliberare"] };
+  const pathways = { id: "fixture-composition", version: 2, sha256: "d".repeat(64),
+    bankRef: { bankId: "physics-semestre-2026", bankVersion: 1, bankSha256: "b".repeat(64) },
+    items: [{ ...coverage, id: "fixture-path", title: "Percorso sintetico", units: [{ ...coverage, id: "U4", title: "Onde meccaniche", collectionIds: [inventory.collections[0].id] }] }],
+    coverage, transversalCollectionIds: [] };
+  const url = `/?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=2&catalogSha=${pathways.sha256}`;
+  history.replaceState(null, "", url);
+  vi.stubGlobal("fetch", vi.fn(async () => json({ items: [], inventory: { ...inventory, pathways, pathwaysError: null } })));
+  render(<Courses me={teacher} {...props} />);
+  await screen.findByRole("heading", { name: "U4 · Onde meccaniche" });
+  expect(screen.getByRole("article", { name: "Onde meccaniche" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: /Pubblica|Approva|Consegna/ })).toBeNull();
+  history.replaceState(null, "", url.replace("catalogVersion=2", "catalogVersion=999"));
+  fireEvent(window, new PopStateEvent("popstate"));
+  expect(screen.getByRole("heading", { name: "Riferimento non disponibile" })).toBeTruthy();
+  expect(screen.queryByRole("article", { name: "Onde meccaniche" })).toBeNull();
+  fireEvent.click(screen.getByRole("link", { name: "Tutti i percorsi" }));
+  expect(screen.getByRole("article", { name: "Percorso sintetico" })).toBeTruthy();
 });
