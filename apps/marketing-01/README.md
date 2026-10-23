@@ -57,7 +57,7 @@ Su Render: `SKIP_INSTALL_DEPS=true`, build `python3 apps/marketing-01/build.py`,
 python3 apps/marketing-01/build.py --preview-url https://PREVIEW.example/
 ```
 
-Cloudflare Pages e Netlify leggono `_headers` dalla directory generata. Render richiede regole equivalenti nel suo controllo hosting. Gli asset hanno nomi con hash e cache immutable; HTML deve rivalidare. `_headers` non deve essere interpretato come prova che il provider abbia già applicato le regole: controllare la risposta reale.
+Cloudflare Pages e Netlify leggono `_headers` dalla directory generata. Render richiede regole equivalenti nel suo controllo hosting. Gli asset hanno nomi con hash e cache immutable; HTML e manifest devono rivalidare. Su Render la regola asset precede il catch-all perché vince il primo valore corrispondente; l’ordine è provato sulle risposte reali. Dopo un deploy attendere e verificare il digest: le prime risposte possono ancora appartenere alla versione precedente. `_headers` non deve essere interpretato come prova che il provider abbia già applicato le regole: controllare la risposta reale.
 
 **Pubblicazione di produzione e DNS richiedono autorizzazione di Andrea.** Dopo l’autorizzazione, creare un servizio Static Site di produzione distinto o promuovere consapevolmente la configurazione, scegliere l’URL definitivo e generare:
 
