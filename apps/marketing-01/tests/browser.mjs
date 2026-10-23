@@ -28,9 +28,9 @@ const results = [];
 const watchdog = setTimeout(() => { console.error('browser_deadline'); server?.kill('SIGTERM'); process.exit(1); }, 600000);
 const cleanLayout = async page => {
   const problems = await page.evaluate(() => {
-    const clipped = [...document.querySelectorAll('h1,h2,h3,.course-choice span,.selected-course,.button')].filter(element => {
+    const clipped = [...document.querySelectorAll('h1,h2,h3,.course-choice span,.selected-course,.button,.step-number')].filter(element => {
       const box = element.getBoundingClientRect();
-      return box.width && box.height && (box.left < -.5 || box.right > innerWidth + .5 || element.scrollWidth > element.clientWidth + 2);
+      return box.width && box.height && (box.left < -.5 || box.right > innerWidth + .5 || element.scrollWidth > element.clientWidth + 2 || (element.matches('.step-number') && box.height > parseFloat(getComputedStyle(element).lineHeight) + 1));
     }).map(element => ({tag: element.tagName, text: element.textContent.slice(0, 80)}));
     return {overflow: document.documentElement.scrollWidth > innerWidth + 1, clipped};
   });
