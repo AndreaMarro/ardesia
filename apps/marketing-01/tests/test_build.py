@@ -33,7 +33,7 @@ class BuildTests(unittest.TestCase):
     def test_titles_and_additional_courses_are_data_not_renderer_constants(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp).resolve();(root/'composition.json').write_text(json.dumps({'id':'synthetic','version':2,'bankRef':{},'paths':[{'id':'analisi','title':'Analisi sintetica <nuova>','unitIds':['A1']},{'id':'algebra','title':'Algebra sintetica','unitIds':['A2']}]}))
-            data={'subject':'Matematica','academicYear':'2026/27','composition':'composition.json','contact':{'whatsapp':'393461653930','email':'fixture@example.com'},'courses':{id:{'intro':'<test>','topics':['Tema'],'outcomes':['Obiettivo'],'symbol':'unknown'} for id in ['analisi','algebra']}}
+            data={'subject':'Matematica','academicYear':'2026/27','composition':'composition.json','reference':{'url':'https://example.com/matematica','label':'Programma di Matematica'},'contact':{'whatsapp':'393461653930','email':'fixture@example.com'},'courses':{id:{'intro':'<test>','topics':['Tema'],'outcomes':['Obiettivo'],'symbol':'unknown'} for id in ['analisi','algebra']}}
             config=root/'catalog.json';config.write_text(json.dumps(data))
             with patch.object(build,'ROOT',root):
                 loaded,courses,identity=build.load_catalog(config)
@@ -43,6 +43,8 @@ class BuildTests(unittest.TestCase):
                 self.assertIn('Microcorsi di Matematica 2026/27',html)
                 self.assertIn('Due percorsi.',html)
                 self.assertIn('Matematica · 2026/27',html)
+                self.assertIn('https://example.com/matematica',html)
+                self.assertNotIn('syllabus MUR',html)
                 self.assertNotIn('>Strumenti e meccanica<',html)
                 del data['courses']['algebra'];config.write_text(json.dumps(data))
                 with self.assertRaisesRegex(ValueError,'must_match'):build.load_catalog(config)
