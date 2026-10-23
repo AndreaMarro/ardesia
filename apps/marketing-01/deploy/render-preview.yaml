@@ -2,11 +2,11 @@
 services:
   - type: web
     runtime: static
-    name: ardesia-golive-ux01-preview
+    name: ardesia-golive02-preview
     repo: https://github.com/AndreaMarro/ardesia
-    branch: pro/ardesia-golive-ux-01-20261023
+    branch: pro/ardesia-golive-02-20261024
     autoDeployTrigger: off
-    buildCommand: python3 apps/marketing-01/build.py
+    buildCommand: python3 apps/marketing-01/build.py --review-examples
     staticPublishPath: apps/marketing-01/dist
     envVars:
       - key: SKIP_INSTALL_DEPS

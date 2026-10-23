@@ -16,12 +16,13 @@ jobs:
           node-version: 26.5.1
           cache: npm
       - run: python3 -m unittest discover -s apps/marketing-01/tests -v
-      - run: python3 apps/marketing-01/build.py
+      - run: python3 apps/marketing-01/build.py --review-examples
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps chromium firefox webkit
       - name: Static interest journey in a real browser
         env:
           MARKETING_ENGINES: chromium,firefox,webkit
+          MARKETING_REQUIRE_EXAMPLES: "1"
           MARKETING_QA_OUTPUT: ${{ runner.temp }}/marketing-qa
         run: node apps/marketing-01/tests/browser.mjs
       - uses: actions/upload-artifact@v4

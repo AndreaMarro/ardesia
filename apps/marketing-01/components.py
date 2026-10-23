@@ -30,11 +30,12 @@ def external_link(link, label=None):
     return f'<a href="{text(link["url"])}" target="_blank" rel="noopener noreferrer">{text(label or link["label"])} {icon("external")}</a>'
 
 
-def course_card(course, number, contact):
+def course_card(course, number, contact, demo_url=None):
     return template('course.html', id=text(course['id']), number=f'{number:02}',
                     units=text(' + '.join(course['unitIds'])), title=text(course['title']),
                     intro=text(course['intro']), fit=text(course['fit']),
                     topics=items(course['topics']), outcomes=items(course['outcomes']),
+                    demo_link=(f'<a class="example-teaser" href="{text(demo_url)}"><span class="cta-label">Guarda un esercizio spiegato</span> {icon("arrow")}</a>' if demo_url else ''),
                     contact_url=text(contact), external=icon('external'), chevron=icon('chevron'))
 
 

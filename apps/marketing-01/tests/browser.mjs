@@ -195,6 +195,43 @@ try {
           results.push({secondSubject: 'Matematica', sameTemplatesSameInteractionCode: 'PASS', noPhysicsOrMURResidual: 'PASS', twoCanonicalFixturePaths: 'PASS', contactSelectionReload: 'PASS'});
         } finally { mathServer.kill('SIGTERM'); }
       }
+      // New pedagogical transfer: problem -> optional hint -> reasoning -> check -> syllabus -> contact.
+      const manifest = await (await context.request.get('/source-manifest.json')).json();
+      if (process.env.MARKETING_REQUIRE_EXAMPLES === '1') expect(manifest.examples).toHaveLength(4);
+      for (const entry of manifest.examples || []) {
+        for (const width of widths) {
+          await page.setViewportSize({width, height: 844}); await page.goto('/' + entry.url);
+          await expect(page.locator('.editorial-note')).toContainText('DRAFT');
+          const hint = page.locator('.example-hint'), reasoning = page.locator('.example-reasoning'), check = page.locator('.example-check');
+          await expect(page.locator('.example-result')).toBeHidden();
+          await hint.locator('summary').focus(); await page.keyboard.press('Enter');
+          await expect(hint.locator('p')).toBeVisible(); await expect(page.locator('.example-result')).toBeHidden();
+          await reasoning.locator('summary').click(); await expect(page.locator('.example-result')).toBeVisible();
+          await check.locator('summary').click(); await expect(check.getByRole('heading', {name: 'Il controllo', exact: true})).toBeVisible();
+          await cleanLayout(page);
+          if ([320,390,820,1440].includes(width)) await page.screenshot({path: path.join(output, engine+'-example-'+entry.pathId+'-'+width+'.png'),fullPage:true});
+          if ([320,820].includes(width)) {
+            await page.evaluate(() => {document.documentElement.style.fontSize='200%';}); await cleanLayout(page);
+          }
+          await page.reload(); await expect(page.locator('.example-result')).toBeHidden();
+        }
+        const href=await page.locator('.example-contact').getAttribute('href');
+        const course=canonical.paths.find(c=>c.id===entry.pathId);
+        expect(new URL(href).searchParams.get('text')).toContain(course.title);
+        const popupReady=context.waitForEvent('page'); await page.locator('.example-contact').click();
+        const popup=await popupReady; await popup.waitForLoadState(); expect(popup.url()).toBe(href); await popup.close();
+        await page.locator('.example-back').click();
+        await expect(page.getByRole('radio',{name:course.title,exact:true})).toBeChecked();
+        expect(new URL(page.url()).hash).toBe('#'+entry.pathId);
+        const selectedCard=page.locator('#'+entry.pathId);
+        await selectedCard.locator('.example-teaser').click(); await expect(page.locator('.example-problem')).toBeVisible();
+        const nj=await browser.newContext({baseURL:origin,javaScriptEnabled:false});
+        const np=await nj.newPage(); await np.goto('/'+entry.url);
+        await np.locator('.example-reasoning summary').first().click(); await expect(np.locator('.example-result')).toBeVisible();
+        await np.locator('.example-check summary').click(); await expect(np.locator('.example-check h3').first()).toBeVisible();
+        await nj.close();
+        results.push({engine,exampleId:entry.id,widths:'12 PASS',progressiveReveal:'PASS',hintDoesNotRevealSolution:'PASS',returnPreservesCourse:'PASS',specificContact:'PASS',reloadResetsDisclosure:'PASS',text200:'PASS',noJavaScript:'PASS'});
+      }
       expect(errors).toEqual([]);
       const response = await page.goto('/pagina-inesistente/sottopagina/'); expect(response.status()).toBe(404);
       await expect(page.getByRole('heading', {name: 'Questo percorso non c’è.'})).toBeVisible();
