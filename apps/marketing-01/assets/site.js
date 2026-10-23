@@ -15,7 +15,8 @@
     title.textContent = name;
     links.forEach(link => {
       link.href = choice.dataset.href;
-      link.setAttribute('aria-label', `Chiedi disponibilità per ${name} su WhatsApp`);
+      const action = link.closest('.interest-bar') ? 'Scrivi · Chiedi disponibilità su WhatsApp' : 'Chiedi disponibilità su WhatsApp';
+      link.setAttribute('aria-label', `${action} per ${name}`);
     });
     if (updateURL) {
       const url = new URL(location.href);

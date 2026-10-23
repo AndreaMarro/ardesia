@@ -63,6 +63,10 @@ try {
         await expect(page.locator('h1')).toHaveText('Preparati al Semestre Filtro, un argomento alla volta.');
         await expect(page.getByText('Nuovi gruppi in formazione.', {exact: true})).toBeVisible();
         await expect(page.locator('article.course-card')).toHaveCount(4);
+        await expect(page.locator('header .wordmark')).toHaveAccessibleName('Ardesia con Andrea Marro');
+        await expect(page.locator('.contact-panel .interest-link')).toHaveAccessibleName('Chiedi disponibilità su WhatsApp per Strumenti e meccanica');
+        const stickyName = await page.locator('.interest-bar .interest-link').getAttribute('aria-label');
+        expect(stickyName).toContain('Scrivi'); expect(stickyName).toContain('Chiedi disponibilità');
         await cleanLayout(page);
         await page.screenshot({path: path.join(output, `${engine}-hero-${width}.png`)});
         for (const course of canonical.paths) {
