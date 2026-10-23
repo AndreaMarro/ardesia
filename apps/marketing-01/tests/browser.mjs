@@ -34,6 +34,11 @@ const cleanLayout = async page => {
     }).map(element => ({tag: element.tagName, text: element.textContent.slice(0, 80)}));
     return {overflow: document.documentElement.scrollWidth > innerWidth + 1, clipped};
   });
+  if (problems.overflow || problems.clipped.length) {
+    const diagnostic = await page.evaluate(() => [...document.querySelectorAll('body *')].filter(node => {const box=node.getBoundingClientRect();return box.width && (box.right > innerWidth + 1 || box.left < -1);}).map(node => ({tag:node.tagName,class:node.className,text:node.textContent?.slice(0,120),bounds:node.getBoundingClientRect().toJSON()})));
+    await writeFile(path.join(output, 'layout-failure.json'),JSON.stringify({url:page.url(),viewport:page.viewportSize(),problems,diagnostic},null,2));
+    await page.screenshot({path:path.join(output,'layout-failure.png')});
+  }
   expect(problems).toEqual({overflow: false, clipped: []});
 };
 try {
@@ -139,7 +144,9 @@ try {
       await keyboardRadio.focus(); await page.keyboard.press('ArrowDown'); await expect(radio).toBeChecked();
       await page.keyboard.press('Tab'); await expect(page.locator('.contact-panel .interest-link')).toBeFocused();
       const teacher = page.locator('#docente'); await teacher.scrollIntoViewIfNeeded();
-      const portrait = teacher.locator('img'); await portrait.evaluate(image => image.decode());
+      const portrait = teacher.locator('img');
+      await expect.poll(() => portrait.evaluate(image => image.complete && image.naturalWidth === 640)).toBe(true);
+      await portrait.evaluate(image => image.decode());
       expect(await portrait.evaluate(image => image.naturalWidth)).toBe(640);
       await page.screenshot({path: path.join(output, `${engine}-teacher-390.png`)});
       await page.locator('#footer').scrollIntoViewIfNeeded(); await expect(bar).toBeHidden();

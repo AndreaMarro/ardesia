@@ -146,7 +146,7 @@ def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', pr
     elif sitemap.exists():
         sitemap.unlink()
     security = json.loads((HERE / 'security.json').read_text())
-    (output / '_headers').write_text('/*\n' + ''.join(f'  {key}: {value}\n' for key, value in security.items()) + '  Cache-Control: public, max-age=0, must-revalidate\n' + ('  X-Robots-Tag: noindex, nofollow\n' if not site_url else '') + '/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n')
+    (output / '_headers').write_text('/*\n' + ''.join(f'  {key}: {value}\n' for key, value in security.items()) + ('  X-Robots-Tag: noindex, nofollow\n' if not site_url else '') + '/\n  Cache-Control: public, max-age=0, must-revalidate\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n')
     (output / 'source-manifest.json').write_text(json.dumps({'composition': identity, 'mode': 'production-ready' if site_url else 'preview', 'courseIds': [course['id'] for course in courses], 'assets': asset_map, 'publicBase': site_url or preview_url}, indent=2) + '\n')
     return output
 

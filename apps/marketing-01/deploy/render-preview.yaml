@@ -11,8 +11,6 @@ services:
     envVars:
       - key: SKIP_INSTALL_DEPS
         value: "true"
-    previews:
-      generation: manual
     headers:
       - path: /*
         name: Content-Security-Policy
@@ -32,7 +30,7 @@ services:
       - path: /*
         name: X-Robots-Tag
         value: noindex, nofollow
-      - path: /*
+      - path: /
         name: Cache-Control
         value: public, max-age=0, must-revalidate
       - path: /assets/*
