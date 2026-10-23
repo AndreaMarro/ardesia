@@ -26,8 +26,8 @@ def main():
     if db.exists():
         raise RuntimeError('fixture_requires_new_database')
     with closing(StudyStore(db)) as store:
-        actors = {name:store.create_principal(name, 'teacher' if name in ('tutor', 'other-tutor') else 'student')
-                  for name in ('tutor', 'student', 'peer', 'other-tutor', 'revocable')}
+        actors = {name:store.create_principal(name, 'teacher' if name in ('tutor', 'other-tutor', 'revocable-tutor') else 'student')
+                  for name in ('tutor', 'student', 'peer', 'other-tutor', 'revocable', 'revocable-tutor')}
         store.create_edition(actors['tutor'], 'fluidi')
         store.create_edition(actors['tutor'], 'fluidi-second')
         store.create_edition(actors['other-tutor'], 'unrelated-edition')

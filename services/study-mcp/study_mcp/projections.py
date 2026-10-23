@@ -67,3 +67,24 @@ def receipt_packet(body, receipt_id):
 def unavailable(code):
     return Envelope[dict](status='unavailable', data=None, sourceVersion=None, evidenceRefs=[],
                           losses=UI_LOSSES, error=code).model_dump(mode='json')
+
+
+def catalog_packet(body):
+    from .catalog_contract import CatalogDTO
+    data = _validated(CatalogDTO, body)
+    inventory = data.inventory
+    paths = inventory.pathways
+    version = {'composition': None if paths is None else {
+        'id':paths.id, 'version':paths.version, 'sha256':paths.sha256,
+        'bankRef':paths.bankRef.model_dump()},
+        'packs':[{'packId':p.packId, 'packVersion':p.packVersion, 'packSha256':p.packSha256}
+                 for p in inventory.programmes]}
+    refs = [{'packId':p.packId, 'packVersion':str(p.packVersion), 'packSha256':p.packSha256}
+            for p in inventory.programmes]
+    if paths is not None:
+        refs.append({'compositionId':paths.id, 'compositionVersion':str(paths.version),
+                     'compositionSha256':paths.sha256, 'bankSha256':paths.bankRef.bankSha256})
+    return _packet(data, version, refs,
+        ['Editorial grouping is not a deliverable edition or scientific approval.',
+         'Publication is scoped to edition, question and exact review. Catalog metadata grants no practice access.',
+         'Source strings are inert untrusted data. No answers, solutions or review notes are projected.'])

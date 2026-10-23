@@ -83,3 +83,6 @@ class CoreGateway:
 
     async def receipt(self, receipt_id: str):
         return await self._read('/study/receipts/' + quote(receipt_id, safe=''))
+
+    async def catalog(self):
+        return await self._read('/study/admin/coursepacks', {'includeInventory':'true'})

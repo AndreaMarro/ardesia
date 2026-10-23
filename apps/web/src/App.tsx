@@ -78,6 +78,15 @@ export default function App() {
       setView("today");
     });
   }, []);
+  useEffect(() => {
+    const pop = () => {
+      setView(initialView()); setParentId(null);
+      const requested = new URLSearchParams(location.search).get("edition");
+      if (requested && requested !== course.editionId) course.reloadEditions(requested);
+    };
+    addEventListener("popstate", pop);
+    return () => removeEventListener("popstate", pop);
+  }, [course.editionId, course.reloadEditions]);
   const affinity = `${me?.id}:${course.editionId}`;
   useEffect(() => {
     setParentId(null);

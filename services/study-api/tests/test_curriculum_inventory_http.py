@@ -59,3 +59,28 @@ def test_inventory_rechecks_teacher_session_before_loading_corpus(tmp_path, monk
             assert client.get(url).status_code == 401
     finally:
         store.close()
+
+
+def test_pathway_pins_and_unavailable_state_are_explicit_metadata(tmp_path, monkeypatch):
+    from lessonos.study import curriculum_pathways
+    store = StudyStore(tmp_path / 'pathways.sqlite')
+    teacher = store.create_principal('fixture-teacher', 'teacher')
+    try:
+        with TestClient(create_app(store.path, demo=True)) as client:
+            client.post('/study/session', json={'token':store.issue_session(teacher)})
+            payload = client.get('/study/admin/coursepacks?includeInventory=true').json()['inventory']
+            paths = payload['pathways']
+            assert [item['questionCount'] for item in paths['items']] == [1088,1472,800,640]
+            assert payload['pathwaysError'] is None
+            config = curriculum_pathways.load_pathways_config()
+            config['bankRef']['bankVersion'] = 999
+            monkeypatch.setattr(curriculum_pathways, 'load_pathways_config', lambda: config)
+            result = client.get('/study/admin/coursepacks?includeInventory=true')
+            assert result.status_code == 200
+            assert result.json()['inventory']['pathways'] is None
+            assert result.json()['inventory']['pathwaysError'] == 'curriculum_pathways_unavailable'
+            assert len(result.json()['inventory']['programmes']) == 2
+        for table in ('study_editions','study_question_bank_reviews','study_question_bank_approvals'):
+            assert store.connection.execute('SELECT COUNT(*) FROM '+table).fetchone()[0] == 0
+    finally:
+        store.close()

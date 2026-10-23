@@ -71,8 +71,8 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         cls.directory.cleanup()
 
     @asynccontextmanager
-    async def client(self, actor='tutor'):
-        token = self.fixture['tokens'][actor]
+    async def client(self, actor='tutor', *, session=None):
+        token = self.fixture['tokens'][actor] if session is None else session
         with tempfile.TemporaryFile(mode='w+') as errors:
             params = StdioServerParameters(command=sys.executable, args=['-m', 'study_mcp'], cwd=str(SERVICE),
                 env={'PYTHONPATH':str(SERVICE), 'ARDESIA_STUDY_ORIGIN':self.origin,
@@ -108,11 +108,46 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         return {'contextId':source['contextId'], 'resourceId':source['id'],
                 'revisionId':revision or source['revisionId']}
 
+    async def test_teacher_catalog_matches_actual_http_core_and_forbids_authority(self):
+        async with self.client() as client:
+            packet = self.packet(await client.call_tool('catalog.get_teacher', {}))
+            self.assertEqual(packet['status'], 'ok')
+            async with httpx2.AsyncClient(trust_env=False) as http:
+                response = await http.get(self.origin + '/study/admin/coursepacks?includeInventory=true',
+                    headers={'Cookie':'study_session='+self.fixture['tokens']['tutor']})
+                expected = response.json()['inventory']
+            actual = packet['data']['inventory']
+            self.assertEqual(actual['pathways']['items'], expected['pathways']['items'])
+            self.assertEqual(actual['pathways']['bankRef'], expected['pathways']['bankRef'])
+            self.assertEqual(actual['pathways']['sha256'], expected['pathways']['sha256'])
+            self.assertEqual(packet['sourceVersion']['composition']['sha256'], expected['pathways']['sha256'])
+            self.assertEqual([p['packId'] for p in actual['programmes']], [p['packId'] for p in expected['programmes']])
+            self.assertEqual([p['questionCount'] for p in actual['pathways']['items']], [1088,1472,800,640])
+            for key in ('actor', 'role', 'url', 'sql', 'factory', 'session', 'bankId'):
+                error = self.packet(await client.call_tool('catalog.get_teacher', {key:'forbidden'}))
+                self.assertEqual(error['error'], 'INVALID_ARGUMENTS')
+            for forbidden in ('"answer":', '"solution":', 'correctOptionId', 'solutionSteps', 'reviewNotes'):
+                self.assertNotIn(forbidden, json.dumps(actual))
+        async with self.client('student') as client:
+            denied = self.packet(await client.call_tool('catalog.get_teacher', {}))
+            self.assertEqual(denied['error'], 'NOT_AVAILABLE')
+
+    async def test_teacher_catalog_rechecks_revocation_and_invalid_sessions(self):
+        async with self.client('revocable-tutor') as client:
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['status'], 'ok')
+            async with httpx2.AsyncClient(trust_env=False) as http:
+                response = await http.delete(self.origin+'/study/session',
+                    headers={'Cookie':'study_session='+self.fixture['tokens']['revocable-tutor']})
+                self.assertEqual(response.status_code, 200)
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['error'], 'AUTH_REQUIRED')
+        async with self.client(session='invalid-synthetic-session') as client:
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['error'], 'AUTH_REQUIRED')
+
     async def test_discovery_is_exact_read_only_stateless_protocol_and_no_ui(self):
         async with self.client() as client:
             self.assertEqual(client.protocol_version, '2026-07-28')
             tools = (await client.list_tools()).tools
-            self.assertEqual({tool.name for tool in tools}, {'course.list_mine', 'lesson.get_context', 'submission.get_receipt'})
+            self.assertEqual({tool.name for tool in tools}, {'course.list_mine', 'lesson.get_context', 'submission.get_receipt', 'catalog.get_teacher'})
             for tool in tools:
                 self.assertTrue(tool.annotations.read_only_hint)
                 self.assertFalse(tool.annotations.destructive_hint)

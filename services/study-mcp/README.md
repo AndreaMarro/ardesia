@@ -1,6 +1,6 @@
 # Study MCP, read only
 
-This optional local stdio service forwards three reads to the existing Study HTTP API. It has no database access, service key, factory, shell, SQL, arbitrary URL tool, mutation, calendar write or second identity store. Every valid call reaches Study HTTP with one operator-supplied private user session; Core decides authority again on each invocation. `clientInfo`, tool arguments, source text and document artifacts cannot supply an actor or role.
+This optional local stdio service forwards four reads to the existing Study HTTP API. It has no database access, service key, factory, shell, SQL, arbitrary URL tool, mutation, calendar write or second identity store. Every valid call reaches Study HTTP with one operator-supplied private user session; Core decides authority again on each invocation. `clientInfo`, tool arguments, source text and document artifacts cannot supply an actor or role.
 
 ## Contract
 
@@ -61,3 +61,22 @@ This is not evidence of Supabase Auth/PostgreSQL, a remote deployment, scientifi
 Original adapter code; no third-party app bundle or proprietary bytes are copied. Public API usage was checked against installed official SDK **2.3.0**, the archived R5 primary-source package, the pinned [SDK source](https://github.com/modelcontextprotocol/python-sdk/tree/2118f14f8a19bc158d8a1cf90af58d85d187f849), and [MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28). The public constructor-based `mcp.server.Server` API is used to publish explicit schemas and enforce strict Pydantic inputs; no v1/FastMCP API is assumed. The official SDK handles protocol dispatch and stateless-era framing.
 
 Direct dependencies: `mcp` MIT, `pydantic` MIT, `httpx2` BSD-3-Clause. SDK and httpx2 notices are preserved under `licenses/`. Transitive versions are pinned in the service-local freeze. The research blueprint's older proposed `/courses/mine` path and optional reference pair are superseded by the actual Core contract above; archival research evidence is left unchanged.
+
+## Teacher catalog (M01)
+
+The fourth read, `catalog.get_teacher`, takes an empty object and rejects all
+additional arguments. It forwards `GET /study/admin/coursepacks?includeInventory=true`
+using the same verified user session and existing 512 KiB, queue and deadline
+bounds. Core checks teacher authority before loading any catalog content.
+
+Its allowlisted inventory preserves the Web's composition ID/version/SHA,
+canonical unit and collection references, bank pin, derived quantities,
+prerequisites, authoring states and the two separate CoursePack identities.
+`sourceVersion.composition` pins the organization and bank; the packs retain their
+own pins. Unknown/obsolete composition references are explicit as
+`pathways: null` with `pathwaysError`, while the configured packs remain readable.
+Global authoring metadata does not infer edition-scoped scientific review or
+publication. This tool exposes no questions, correct answers, solutions or
+private review notes and grants no creation, practice or publication authority.
+The official SDK/stdio/HTTP test compares pathway metadata against the actual
+HTTP response and rejects student access and caller-supplied authority arguments.
