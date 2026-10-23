@@ -206,7 +206,7 @@ try {
           await expect(page.locator('.example-result')).toBeHidden();
           await hint.locator('summary').focus(); await page.keyboard.press('Enter');
           await expect(hint.locator('p')).toBeVisible(); await expect(page.locator('.example-result')).toBeHidden();
-          await reasoning.locator('summary').click(); await expect(page.locator('.example-result')).toBeVisible();
+          await reasoning.locator(':scope > summary').click(); await expect(page.locator('.example-result')).toBeVisible();
           await check.locator('summary').click(); await expect(check.getByRole('heading', {name: 'Il controllo', exact: true})).toBeVisible();
           await cleanLayout(page);
           if ([320,390,820,1440].includes(width)) await page.screenshot({path: path.join(output, engine+'-example-'+entry.pathId+'-'+width+'.png'),fullPage:true});
