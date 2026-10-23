@@ -71,8 +71,8 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         cls.directory.cleanup()
 
     @asynccontextmanager
-    async def client(self, actor='tutor'):
-        token = self.fixture['tokens'][actor]
+    async def client(self, actor='tutor', *, session=None):
+        token = self.fixture['tokens'][actor] if session is None else session
         with tempfile.TemporaryFile(mode='w+') as errors:
             params = StdioServerParameters(command=sys.executable, args=['-m', 'study_mcp'], cwd=str(SERVICE),
                 env={'PYTHONPATH':str(SERVICE), 'ARDESIA_STUDY_ORIGIN':self.origin,
@@ -131,6 +131,17 @@ class StdioCoreTests(unittest.IsolatedAsyncioTestCase):
         async with self.client('student') as client:
             denied = self.packet(await client.call_tool('catalog.get_teacher', {}))
             self.assertEqual(denied['error'], 'NOT_AVAILABLE')
+
+    async def test_teacher_catalog_rechecks_revocation_and_invalid_sessions(self):
+        async with self.client('revocable-tutor') as client:
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['status'], 'ok')
+            async with httpx2.AsyncClient(trust_env=False) as http:
+                response = await http.delete(self.origin+'/study/session',
+                    headers={'Cookie':'study_session='+self.fixture['tokens']['revocable-tutor']})
+                self.assertEqual(response.status_code, 200)
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['error'], 'AUTH_REQUIRED')
+        async with self.client(session='invalid-synthetic-session') as client:
+            self.assertEqual(self.packet(await client.call_tool('catalog.get_teacher', {}))['error'], 'AUTH_REQUIRED')
 
     async def test_discovery_is_exact_read_only_stateless_protocol_and_no_ui(self):
         async with self.client() as client:

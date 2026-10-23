@@ -6,8 +6,11 @@ test('teacher navigates pinned pathways, units and collections; back, reload and
   expect(access.synthetic).toBe(true);
   expect((await context.request.post('/study/session',{data:{token:access.tokens['tutor-synthetic']}})).ok()).toBe(true);
   const errors: string[]=[];page.on('pageerror', e=>errors.push(e.message));
+  page.on('console', message => { if(message.type() === 'error') errors.push(message.text()); });
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/?view=courses&edition=fluidi');
+  await expect(page).toHaveTitle(/Ardesia/i);
+  await expect(page.locator('vite-error-overlay')).toHaveCount(0);
   const catalog=page.getByRole('region',{name:'Catalogo privato del docente'});
   const loaded=page.waitForResponse(r=>r.url().includes('admin/coursepacks?includeInventory=true'));
   await catalog.getByRole('button',{name:'Apri catalogo e copertura'}).click();

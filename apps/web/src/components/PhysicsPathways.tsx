@@ -23,7 +23,7 @@ function Metadata({ item }: { item: Coverage }) {
   return <>
     <p className="curriculum-counts">{item.questionCount.toLocaleString("it-IT")} quesiti · {item.familyCount} famiglie</p>
     <p>Stato autoriale: {Object.entries(item.countsByAuthoringStatus).map(([state, count]) => `${state}: ${count.toLocaleString("it-IT")}`).join(" · ") || "non documentato"}. Revisione umana da attestare.</p>
-    <h4>Obiettivi dichiarati nei quesiti</h4><ul>{item.learningObjectives.map(text => <li key={text}>{text}</li>)}</ul>
+    <details><summary>Obiettivi dichiarati nei quesiti ({item.learningObjectives.length})</summary><ul>{item.learningObjectives.map(text => <li key={text}>{text}</li>)}</ul></details>
     <h4>Prerequisiti dichiarati</h4>{item.prerequisites.length ? <ul>{item.prerequisites.map(text => <li key={text}>{text}</li>)}</ul> : <p>Non documentati.</p>}
     <h4>Copertura osservata</h4><p>{item.microareas.join(" · ") || "Non documentata"}</p>
     <h4>Prima dell’erogazione</h4><ul>{item.gaps.map(text => <li key={text}>{text}</li>)}</ul>
