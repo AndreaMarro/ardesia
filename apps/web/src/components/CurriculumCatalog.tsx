@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { studyRequest } from "../api";
 import { ErrorNotice, Loading } from "./Feedback";
 import "./curriculum-catalog.css";
+import { PhysicsPathways, hasPathwayLink, type Pathways } from "./PhysicsPathways";
 
 type Source = { title?: string; url?: string; scope?: string };
 type Common = {
@@ -22,7 +23,7 @@ type Collection = Common & {
   creatable: false;
 };
 type Inventory = {
-  programmes: Programme[]; collections: Collection[];
+  programmes: Programme[]; collections: Collection[]; pathways?: Pathways | null; pathwaysError?: string | null;
   sharedPrerequisites: { label: string; entryIds: string[] }[];
 };
 const subjects: Record<string, string> = { fisica: "Fisica", analisi: "Analisi matematica" };
@@ -78,9 +79,25 @@ function CollectionCard({ item }: { item: Collection }) {
 export function CurriculumCatalog({ availableProgrammeIds = [], onOpenProgramme }: {
   availableProgrammeIds?: string[]; onOpenProgramme?: (packId: string, version: number) => void;
 }) {
-  const [open, setOpen] = useState(false), [inventory, setInventory] = useState<Inventory | null>(null);
+  const [open, setOpen] = useState(() => ["pathways", "programmes", "collections"].includes(new URLSearchParams(location.search).get("catalog") ?? "")), [inventory, setInventory] = useState<Inventory | null>(null);
   const [error, setError] = useState(""), [retry, setRetry] = useState(0);
-  const [kind, setKind] = useState<"programmes" | "collections">("programmes"), [query, setQuery] = useState("");
+  const [kind, setKind] = useState<"programmes" | "collections" | "pathways">(hasPathwayLink() ? "pathways" : new URLSearchParams(location.search).get("catalog") === "collections" ? "collections" : "programmes"), [query, setQuery] = useState("");
+  function selectKind(value: "programmes" | "collections" | "pathways") {
+    const url = new URL(location.href);
+    url.searchParams.set("catalog", value);
+    if (value !== "pathways") for (const key of ["pathway", "unit", "catalogVersion", "catalogSha"]) url.searchParams.delete(key);
+    history.pushState(null, "", url);
+    setKind(value);
+  }
+  useEffect(() => {
+    const pop = () => {
+      const value = new URLSearchParams(location.search).get("catalog");
+      setKind(value === "pathways" || value === "collections" ? value : "programmes");
+      if (value) setOpen(true);
+    };
+    addEventListener("popstate", pop);
+    return () => removeEventListener("popstate", pop);
+  }, []);
   useEffect(() => {
     if (!open) return;
     const controller = new AbortController(); let current = true;
@@ -93,7 +110,7 @@ export function CurriculumCatalog({ availableProgrammeIds = [], onOpenProgramme 
   }, [open, retry]);
   const visible = useMemo(() => {
     const terms = query.trim().toLocaleLowerCase("it-IT").split(/\s+/).filter(Boolean);
-    return (inventory?.[kind] ?? []).filter((item) => {
+    return (kind === "pathways" ? [] : inventory?.[kind] ?? []).filter((item) => {
       const extra = "topics" in item ? [...item.topics, ...item.microareas] : [item.scope];
       const text = [item.title, subjectLabel(item.subject), ...item.prerequisites, ...item.learningObjectives, ...extra].join(" ").toLocaleLowerCase("it-IT");
       return terms.every((term) => text.includes(term));
@@ -104,11 +121,13 @@ export function CurriculumCatalog({ availableProgrammeIds = [], onOpenProgramme 
     <p>Programmi configurati, contenuti da organizzare e prerequisiti condivisi. Le bozze restano distinte dalle edizioni offerte.</p>
     {open && <div id="curriculum-content">
       {error ? <><ErrorNotice message={error} /><button onClick={() => setRetry((value) => value + 1)}>Riprova a leggere il catalogo</button></> : !inventory ? <Loading>Leggo programmi e materiali…</Loading> : <>
-        <div className="curriculum-filters" aria-label="Tipo di materiale"><button aria-pressed={kind === "programmes"} onClick={() => setKind("programmes")}>Programmi configurati ({inventory.programmes.length})</button><button aria-pressed={kind === "collections"} onClick={() => setKind("collections")}>Raccolte da progettare ({inventory.collections.length})</button></div>
-        <label>Cerca nel catalogo<input type="search" aria-label="Cerca nel catalogo" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Argomento, obiettivo o prerequisito" /></label>
+        <div className="curriculum-filters" aria-label="Tipo di materiale"><button aria-pressed={kind === "pathways"} onClick={() => selectKind("pathways")}>Percorsi di Fisica ({inventory.pathways?.items.length ?? "—"})</button><button aria-pressed={kind === "programmes"} onClick={() => selectKind("programmes")}>Programmi configurati ({inventory.programmes.length})</button><button aria-pressed={kind === "collections"} onClick={() => selectKind("collections")}>Raccolte da progettare ({inventory.collections.length})</button></div>
+        {kind !== "pathways" && <><label>Cerca nel catalogo<input type="search" aria-label="Cerca nel catalogo" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Argomento, obiettivo o prerequisito" /></label>
         <p className="fine-print">Stato del materiale sorgente. Le decisioni scientifiche e di pubblicazione appartengono alla singola edizione. Le raccolte non vengono sommate come corsi o quesiti distinti.</p>
         <p role="status" className="curriculum-result-count">{visible.length ? `${visible.length} risultati nel catalogo` : "Nessun risultato. Prova un argomento o un prerequisito diverso."}</p>
         <div className="curriculum-grid">{visible.map((item) => "packId" in item ? <ProgrammeCard key={item.id} item={item} onOpen={availableProgrammeIds.includes(item.id) && onOpenProgramme ? () => onOpenProgramme(item.packId, item.packVersion) : undefined} /> : <CollectionCard key={item.id} item={item} />)}</div>
+        </>}
+        {kind === "pathways" && <PhysicsPathways data={inventory.pathways ?? null} unavailable={inventory.pathwaysError} renderCollection={(id) => { const item = inventory.collections.find(collection => collection.id === id); return item ? <CollectionCard key={id} item={item} /> : <p key={id} role="status">Raccolta non disponibile: {id}</p>; }} />}
         {inventory.sharedPrerequisites.length > 0 && <details className="curriculum-prerequisites"><summary>Prerequisiti condivisi ({inventory.sharedPrerequisites.length})</summary><p className="fine-print">Etichette già presenti in più programmi o raccolte; non attestano che esistano moduli di recupero dedicati.</p><ul>{inventory.sharedPrerequisites.map((item) => <li key={item.label}>{item.label} <span className="fine-print">· {item.entryIds.length} riferimenti</span></li>)}</ul></details>}
       </>}
     </div>}

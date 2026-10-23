@@ -25,3 +25,17 @@
 .curriculum-prerequisites summary { min-height: 44px; padding: 10px 0; }
 @media (max-width: 900px) { .curriculum-grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .curriculum-catalog { padding: 18px 14px; } .curriculum-card { padding: 18px 14px; } .curriculum-catalog .section-title { display: block; } .curriculum-catalog .section-title > button { width: 100%; } .curriculum-filters > button { flex: 1 1 100%; } }
+.physics-pathways { margin-top: 24px; overflow-wrap: anywhere; }
+.physics-pathways > h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.25; margin: 18px 0; }
+.physics-pathways h4 { margin-top: 24px; }
+.pathway-breadcrumb { line-height: 2; font-size: 14px; }
+.pathway-breadcrumb a { display: inline-block; padding: 4px 0; }
+.pathway-index { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.pathway-index li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.pathway-index a { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+.pathway-index span { color: var(--muted); font-size: 14px; align-self: center; }
+.pathway-identity { margin-top: 24px; }
+.pathway-identity summary, .physics-pathways > details > summary { min-height: 44px; padding: 10px 0; }
+.physics-pathways code { overflow-wrap: anywhere; font-size: 12px; }
+.physics-pathways :focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .physics-pathways, .physics-pathways * { scroll-behavior: auto; transition: none; animation: none; } }
