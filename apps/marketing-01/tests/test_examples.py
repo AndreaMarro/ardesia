@@ -56,6 +56,15 @@ class ExampleTests(unittest.TestCase):
     def test_source_record_changes_fail_closed(self):
         _, courses, _ = build.load_catalog()
         source = json.loads((HERE/'examples/selection.json').read_text())
+        source['examples'].append(copy.deepcopy(source['examples'][0]))
+        source['examples'][-1]['id'] = 'duplicate-path'
+        original = Path.read_text
+        def duplicate_read(path, *args, **kwargs):
+            return json.dumps(source) if path.name == 'selection.json' else original(path, *args, **kwargs)
+        with patch.object(Path, 'read_text', duplicate_read):
+            with self.assertRaisesRegex(ValueError, 'identity_mismatch'):
+                examples.load_examples(courses, review=True)
+        source['examples'].pop()
         source['examples'][0]['record']['answerDisplay'] = 'A'
         original = Path.read_text
         def fake_read(path, *args, **kwargs):

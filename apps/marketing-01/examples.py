@@ -20,11 +20,13 @@ def load_examples(courses, review=False, production=False, subject=None):
     paths = {course['id']: course for course in courses}
     result = []
     seen = set()
+    seen_paths = set()
     for entry in selection['examples']:
         record = entry['record']
-        if (subject is not None and entry['subject'] != subject) or entry['id'] in seen or entry['pathId'] not in paths or entry['unitIds'] != paths[entry['pathId']]['unitIds']:
+        if (subject is not None and entry['subject'] != subject) or entry['id'] in seen or entry['pathId'] in seen_paths or entry['pathId'] not in paths or entry['unitIds'] != paths[entry['pathId']]['unitIds']:
             raise ValueError('example_identity_mismatch')
         seen.add(entry['id'])
+        seen_paths.add(entry['pathId'])
         if entry['id'] != record['id'] or entry['source']['recordSHA256'] != digest(record) or record['provenance'] != 'original':
             raise ValueError('example_source_mismatch')
         if entry['status'] != record['status'] or entry['status'] not in ['DRAFT', 'APPROVED']:
