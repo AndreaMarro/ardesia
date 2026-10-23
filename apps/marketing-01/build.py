@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
-"""Build an independent static interest page from canonical composition + editorial copy."""
+"""Dependency-free static build: canonical composition + versioned editorial data."""
 import argparse
 import hashlib
-from html import escape as esc
 import json
+import os
 from pathlib import Path
 import re
-import shutil
 from urllib.parse import quote, urlsplit
+
+from components import (choice, course_card, external_link, faq, icon, path_link,
+                        review, template, text)
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-SUPERPROF = 'https://www.superprof.it/problemi-con-circuiti-riuscite-superare-esame-elettrotecnica-contattatemi-pentirete.html'
-PHYSICS_REVIEW = 'https://www.superprof.it/problemi-con-fisica-riuscite-superare-gli-esami-fisica-contattatemi-pentirete.html'
+
+
+def secure_url(value):
+    parsed = urlsplit(value)
+    if parsed.scheme != 'https' or not parsed.netloc or parsed.username or parsed.password:
+        raise ValueError('explicit_https_reference_required')
+    return value
+
 
 def load_catalog(path=HERE / 'catalog.json'):
     data = json.loads(Path(path).read_text())
@@ -22,7 +30,8 @@ def load_catalog(path=HERE / 'catalog.json'):
     composition = json.loads(ref.read_text())
     canonical = json.dumps(composition, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
     reference = data['reference']
-    if urlsplit(reference['url']).scheme != 'https' or not urlsplit(reference['url']).netloc or not reference['label'].strip():
+    secure_url(reference['url'])
+    if not reference['label'].strip():
         raise ValueError('explicit_programme_reference_required')
     paths = composition['paths']
     ids = [p['id'] for p in paths]
@@ -31,87 +40,122 @@ def load_catalog(path=HERE / 'catalog.json'):
     if not re.fullmatch(r'[1-9][0-9]{6,14}', data['contact']['whatsapp']):
         raise ValueError('invalid_contact')
     courses = []
-    for p in paths:
-        if not re.fullmatch(r'[a-z][a-z0-9-]*', p['id']) or not p['title'].strip() or not p['unitIds']:
+    for path in paths:
+        if not re.fullmatch(r'[a-z][a-z0-9-]*', path['id']) or not path['title'].strip() or not path['unitIds']:
             raise ValueError('invalid_course_reference')
-        courses.append({**data['courses'][p['id']], **p})
+        editorial = data['courses'][path['id']]
+        for field in ['intro', 'fit', 'topics', 'outcomes']:
+            if not editorial.get(field):
+                raise ValueError(f'missing_course_{field}')
+        courses.append({**editorial, **path})
     return data, courses, {'id': composition['id'], 'version': composition['version'],
-                           'sha256': hashlib.sha256(canonical.encode()).hexdigest(), 'bankRef': composition['bankRef']}
+                         'sha256': hashlib.sha256(canonical.encode()).hexdigest(), 'bankRef': composition['bankRef']}
+
 
 def contact_url(data, course):
-    message = (f"Ciao Andrea, mi interessa il microcorso Ardesia di {data['subject']} «{course['title']}» "
-               f"per il semestre filtro {data['academicYear']}. Vorrei ricevere informazioni quando "
-               "saranno definiti programma, disponibilità e condizioni. È una manifestazione d’interesse non vincolante.")
+    message = (f"Ciao Andrea, vorrei conoscere la disponibilità del microcorso Ardesia di {data['subject']} "
+               f"«{course['title']}» per {data['examLabel']} {data['academicYear']}. "
+               "Mi puoi dare informazioni sui gruppi e sulle modalità? È una richiesta non vincolante.")
     return f"https://wa.me/{data['contact']['whatsapp']}?text={quote(message, safe='')}"
 
-def diagram(kind):
-    # Original explanatory line drawings, no third-party assets or scientific simulation.
-    bodies = {
-      'mechanics': '<path d="M12 100L164 33M12 100H170"/><path d="M65 73l-14-28 29-13 14 28z"/><path d="M74 59L56 18M74 59v47M74 59l41-18"/><text x="49" y="17">N</text><text x="79" y="113">mg</text><text x="116" y="39">F</text>',
-      'fluids': '<path d="M20 23v76q0 9 10 9h120q10 0 10-9V23"/><path class="wash" d="M21 54h138v45q0 8-9 8H30q-9 0-9-8z"/><path stroke-dasharray="5 5" d="M20 54h140"/><path d="M101 64v34m-4-28 4-6 4 6m-8 22 4 6 4-6"/><text x="109" y="85">h</text><text x="30" y="35">p = p₀ + ρgh</text>',
-      'fields': '<path d="M38 64q52-88 104 0M38 64q52-56 104 0M38 64q52 56 104 0M38 64q52 88 104 0M38 64H142"/><circle cx="38" cy="64" r="13"/><circle cx="142" cy="64" r="13"/><text x="32" y="70">+</text><text x="136" y="70">−</text>',
-      'waves': '<path d="M58 10v45m0 18v45M12 38h31M12 64h31M12 90h31M73 47q20 17 0 34M86 34q40 30 0 60M102 20q62 44 0 88M120 10q82 54 0 108"/>'}
-    return '<svg class="course-diagram" viewBox="0 0 180 128" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'+bodies.get(kind, bodies['waves'])+'</svg>'
 
-def render(data, courses, identity, site_url=None):
+def render(data, courses, identity, site_url=None, preview_url=None):
+    page = json.loads((HERE / 'page.json').read_text())
+    teacher = page['teachers'][data['teacherId']]
+    organization = page['organization']
     count_word = {1: 'Un', 2: 'Due', 3: 'Tre', 4: 'Quattro'}.get(len(courses), str(len(courses)))
-    options = ''.join(f'<option value="{esc(c["id"])}" data-href="{esc(contact_url(data,c))}">{esc(c["title"])}</option>' for c in courses)
-    def selector(suffix):
-        return f'<label for="course-{suffix}">Scegli il percorso</label><select id="course-{suffix}" class="course-choice">{options}</select>'
-    cards = []
-    for i, c in enumerate(courses, 1):
-        topics = ''.join(f'<li>{esc(t)}</li>' for t in c['topics'])
-        outcomes = ''.join(f'<li>{esc(t)}</li>' for t in c['outcomes'])
-        cards.append(f'''<article class="course-card" id="{esc(c['id'])}" aria-labelledby="title-{esc(c['id'])}">
- <div class="card-top"><span class="course-number">{i:02}</span><span class="unit-label">Unità {esc(' + '.join(u.removeprefix('U') for u in c['unitIds']))}</span></div>
- <h3 id="title-{esc(c['id'])}">{esc(c['title'])}</h3><p class="course-intro">{esc(c['intro'])}</p>
- <div class="card-subject"><ul class="topics">{topics}</ul>{diagram(c.get('symbol'))}</div>
- <details class="outcomes"><summary>Su cosa lavoreremo<span aria-hidden="true">+</span></summary><ul>{outcomes}</ul></details>
- <a class="course-cta" data-course="{esc(c['id'])}" href="{esc(contact_url(data,c))}" target="_blank" rel="noopener noreferrer">Mi interessa <span class="sr-only">{esc(c['title'])} su WhatsApp</span><span aria-hidden="true">↗</span></a></article>''')
-    metadata = '<meta name="robots" content="noindex, nofollow">' if not site_url else f'<link rel="canonical" href="{esc(site_url)}"><meta property="og:url" content="{esc(site_url)}">'
-    return f'''<!doctype html>
-<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ardesia · Microcorsi di {esc(data['subject'])} {esc(data['academicYear'])}</title><meta name="description" content="{count_word} percorsi tematici per preparare {esc(data['subject'])} nel semestre filtro {esc(data['academicYear'])}. Scopri argomenti e obiettivi e manifesta interesse senza impegno su WhatsApp.">{metadata}
-<meta name="theme-color" content="#faf9f6"><meta property="og:title" content="Ardesia · Dalle formule al ragionamento."><meta property="og:description" content="{count_word} microcorsi di {esc(data['subject'])}. Scegli da dove partire, senza impegno."><meta property="og:type" content="website"><meta property="og:locale" content="it_IT">
-<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./assets/site.css"><script defer src="./assets/site.js"></script></head>
-<body><a class="skip" href="#main">Vai al contenuto</a><header class="header shell"><a class="wordmark" href="./" aria-label="Ardesia, inizio pagina">Ardesia<span class="byline">con Andrea Marro</span></a><nav aria-label="Navigazione principale"><a href="#percorsi">Percorsi</a><a href="#docente">Il docente</a><a href="#domande">Domande</a></nav><span class="header-year">{esc(data['subject'])} · {esc(data['academicYear'])}</span></header>
-<main id="main" class="shell">
-<section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><h1 id="hero-title">Dalle formule<br>al ragionamento.</h1><p class="lead">{count_word} microcorsi di {esc(data['subject'])} per il semestre filtro {esc(data['academicYear'])}. Scegli il tema su cui vuoi lavorare.</p><a class="button" href="#percorsi">Esplora i percorsi <span aria-hidden="true">↓</span></a><p class="hero-status">Proposte in preparazione · Interesse non vincolante</p></div>
-<aside class="interest-panel" aria-labelledby="interest-title"><h2 id="interest-title">Da dove vuoi partire?</h2>{selector('hero')}<a class="button interest-link" href="{esc(contact_url(data,courses[0]))}" target="_blank" rel="noopener noreferrer">Mi interessa · WhatsApp <span aria-hidden="true">↗</span></a><p>Interesse non vincolante. Condizioni da definire.</p><p class="fine">Si apre una chat con il percorso scelto. Il messaggio lo invii tu.</p></aside></section>
-<section class="courses section" id="percorsi" aria-labelledby="courses-title"><h2 id="courses-title">{count_word} percorsi.<br class="mobile-only"> Il tuo punto di partenza.</h2><p class="section-intro">{esc(data.get('audience', 'Per chi vuole affrontare un tema alla volta, collegando teoria ed esercizi.'))}</p><div class="course-grid">{''.join(cards)}</div><p class="syllabus">Riferimento: <a href="{esc(data['reference']['url'])}" target="_blank" rel="noopener noreferrer">{esc(data['reference']['label'])} ↗</a>. I raggruppamenti sono una proposta didattica di Andrea Marro.</p></section>
-<section class="method section" aria-labelledby="method-title"><h2 id="method-title">Capire la scelta,<br>non solo il risultato.</h2><div><p>Partire dal problema. Riconoscere le grandezze. Scegliere il modello. Spiegare i passaggi e controllare la risposta.</p><p>Questi sono gli obiettivi proposti dei microcorsi. Il programma dettagliato e le modalità saranno comunicati prima di ogni eventuale adesione.</p><p class="fine">Preparazione indipendente, senza affiliazione al MUR o agli atenei. Nessuna garanzia di superamento della prova.</p></div></section>
-<section class="section teacher" id="docente" aria-labelledby="teacher-title"><h2 id="teacher-title">Il docente,<br>prima del corso.</h2><div class="teacher-profile"><img src="./assets/andrea.webp" alt="Andrea Marro" width="160" height="160" loading="lazy"><div><h3>Andrea Marro</h3><p class="role">Insegnante e tutor scientifico</p><p>Lezioni di matematica, fisica, elettrotecnica ed elettronica. Un lavoro sul punto in cui si interrompe il ragionamento, per ricostruirlo un passaggio alla volta.</p><div class="teacher-links"><a href="{SUPERPROF}" target="_blank" rel="noopener noreferrer">Profilo e recensioni su Superprof ↗</a><a href="https://andreamarro.it/esempi" target="_blank" rel="noopener noreferrer">Il mio lavoro ↗</a></div></div></div>
-<div class="review-grid"><figure><blockquote>“Spiega gli argomenti in modo semplice e chiaro”</blockquote><figcaption>Maddalena <span>Esperienza generale di lezione</span><a href="{SUPERPROF}" target="_blank" rel="noopener noreferrer">Fonte: Superprof ↗</a></figcaption></figure><figure><blockquote>“È stato preciso, pulito e mi ha dato molto supporto”</blockquote><figcaption>Huascar <span>Preparazione di Fisica per il semestre filtro</span><a href="{PHYSICS_REVIEW}" target="_blank" rel="noopener noreferrer">Fonte: Superprof ↗</a></figcaption></figure></div><p class="fine"><a href="https://andreamarro.it/recensioni" target="_blank" rel="noopener noreferrer">Leggi tutte le recensioni ↗</a></p></section>
-<section class="section faq" id="domande" aria-labelledby="faq-title"><h2 id="faq-title">Prima di scrivermi.</h2>
-<details open><summary>I corsi sono già confermati?<span aria-hidden="true">+</span></summary><p>Stiamo raccogliendo interesse. L’avvio e le condizioni saranno comunicati prima di ogni adesione. I percorsi sono proposte tematiche, non edizioni già confermate.</p></details>
-<details><summary>Scrivere equivale a iscriversi?<span aria-hidden="true">+</span></summary><p>No. Aprire la chat o inviare il messaggio non prenota un posto, non comporta pagamenti e non conclude un’iscrizione. Serve a segnalare quale percorso ti interessa.</p></details>
-<details><summary>Date, durata e costi?<span aria-hidden="true">+</span></summary><p>Calendario, durata, formato, numero di partecipanti ed eventuali costi sono ancora da definire. Riceverai le informazioni prima di decidere se aderire.</p></details>
-<details><summary>Posso scegliere un solo percorso?<span aria-hidden="true">+</span></summary><p>Sì. Puoi indicare il tema che ti serve, oppure scrivere ad Andrea per confrontarti sul punto di partenza. Non è richiesta adesione a tutti i percorsi.</p></details>
-<details><summary>Come si collega alla prova?<span aria-hidden="true">+</span></summary><p>I temi sono organizzati sulle unità del programma di {esc(data['subject'])}. Il lavoro proposto collega comprensione dei fenomeni, impostazione degli esercizi e controllo delle risposte. Per programma e regole ufficiali fai riferimento al MUR e al tuo ateneo.</p></details>
-<details><summary>Che cosa succede ai miei dati?<span aria-hidden="true">+</span></summary><p>Questa pagina non contiene moduli di raccolta e non salva richieste in un database. La chat si svolge su WhatsApp: il testo è preparato sul tuo dispositivo e decidi tu se inviarlo. Consulta l’<a href="https://andreamarro.it/privacy" target="_blank" rel="noopener noreferrer">informativa di Andrea</a> e l’<a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank" rel="noopener noreferrer">informativa WhatsApp</a>.</p></details></section>
-</main><footer class="shell footer"><div><a class="wordmark" href="./">Ardesia</a><p>Un progetto di Andrea Marro. {count_word} modi per cominciare dalla Fisica.</p><a href="mailto:{esc(data['contact']['email'])}">{esc(data['contact']['email'])}</a></div><div><a href="https://andreamarro.it/privacy" target="_blank" rel="noopener noreferrer">Privacy</a><a href="https://andreamarro.it/note-legali" target="_blank" rel="noopener noreferrer">Note legali</a><p>P. IVA 03934000047 · © 2026 Andrea Marro</p></div></footer>
-<aside class="interest-bar" aria-label="Segnala il percorso che ti interessa" hidden><div class="shell bar-inner"><div class="bar-selection">{selector('sticky')}</div><div><a class="button interest-link" href="{esc(contact_url(data,courses[0]))}" target="_blank" rel="noopener noreferrer">Mi interessa <span aria-hidden="true">↗</span></a><p>Su WhatsApp · senza impegno</p></div></div></aside>
-</body></html>'''
+    context = {**data, 'countWord': count_word, 'count': len(courses)}
+    for link in teacher['links'] + teacher['reviews']:
+        secure_url(link['url'])
+    for key in ['privacy', 'legal', 'reviews']:
+        secure_url(organization[key])
+    description = f"{count_word} microcorsi di {data['subject']} per {data['examLabel']} {data['academicYear']}. Teoria, esercizi spiegati e nuovi gruppi in formazione. Chiedi disponibilità."
+    metadata = '<meta name="robots" content="noindex, nofollow">'
+    og_image = ''
+    if site_url:
+        metadata = f'<link rel="canonical" href="{text(site_url)}"><meta property="og:url" content="{text(site_url)}">'
+    if data.get('social'):
+        social = data['social']
+        og_image = f'<meta property="og:image" content="{text(site_url or preview_url or "./")}assets/{text(social["image"])}">'
+        og_image += f'<meta property="og:image:alt" content="Ardesia — Microcorsi di {text(data["subject"])}"><meta property="og:image:width" content="{int(social["width"])}"><meta property="og:image:height" content="{int(social["height"])}">'
+    contacts = [(course, contact_url(data, course)) for course in courses]
+    security = json.loads((HERE / 'security.json').read_text())
+    return template('page.html', subject=text(data['subject']), academic_year=text(data['academicYear']),
+                    description=text(description), metadata=metadata, og_image=og_image,
+                    meta_csp=text(security['Content-Security-Policy'].replace("; frame-ancestors 'none'", '')),
+                    hero_title=text(page['hero']['title'].format_map(context)),
+                    hero_lead=text(page['hero']['lead'].format_map(context)), availability=text(data['availability']),
+                    teacher_name=text(teacher['name']), teacher_first=text(teacher['name'].split()[0]),
+                    teacher_image=text(teacher['image']), teacher_role=text(teacher['role']), teacher_bio=text(teacher['bio']),
+                    teacher_links=''.join(external_link(link) for link in teacher['links']),
+                    reviews=''.join(review(value) for value in teacher['reviews']), reviews_url=text(organization['reviews']),
+                    path_index=''.join(path_link(course, i) for i, course in enumerate(courses, 1)),
+                    course_cards=''.join(course_card(course, i, url) for i, (course, url) in enumerate(contacts, 1)),
+                    audience=text(data['audience']), count_word=count_word, reference_url=text(data['reference']['url']),
+                    reference_label=text(data['reference']['label']),
+                    method_title=text(page['method']['title']), method_intro=text(page['method']['intro']),
+                    method_steps=''.join(f'<li><span class="step-number">{i:02}</span><div><h3>{text(step["title"])}</h3><p>{text(step["body"])}</p></div></li>' for i, step in enumerate(page['method']['steps'], 1)),
+                    faq=''.join(faq(value, context, organization['privacy']) for value in page['faq']),
+                    choices=''.join(choice(course, i, url) for i, (course, url) in enumerate(contacts, 1)),
+                    fallback_contacts=''.join(f'<li>{external_link({"url": url, "label": course["title"]})}</li>' for course, url in contacts),
+                    initial_contact=text(contacts[0][1]), initial_title=text(courses[0]['title']),
+                    email=text(data['contact']['email']), whatsapp=text(data['contact']['whatsapp']), phone_display=text(data['contact']['display']),
+                    organization_name=text(organization['name']), vat=text(organization['vat']), copyright_year=text(organization['copyrightYear']),
+                    privacy_url=text(organization['privacy']), legal_url=text(organization['legal']),
+                    arrow=icon('arrow'), external=icon('external'))
 
-def build(output=HERE/'dist', site_url=None, catalog=HERE/'catalog.json'):
+
+def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', preview_url=None):
     if site_url:
         parsed = urlsplit(site_url)
-        if parsed.scheme != 'https' or not parsed.netloc or parsed.query or parsed.fragment or parsed.username:
+        if parsed.scheme != 'https' or not parsed.netloc or parsed.query or parsed.fragment or parsed.username or parsed.password:
             raise ValueError('site_url_must_be_final_https_address')
-        site_url = site_url.rstrip('/')+'/'
+        site_url = site_url.rstrip('/') + '/'
+    if preview_url:
+        secure_url(preview_url)
+        parsed_preview = urlsplit(preview_url)
+        if site_url or parsed_preview.query or parsed_preview.fragment:
+            raise ValueError('preview_and_production_addresses_must_be_distinct')
+        preview_url = preview_url.rstrip('/') + '/'
     data, courses, identity = load_catalog(catalog)
-    output=Path(output);output.mkdir(parents=True,exist_ok=True)
-    (output/'index.html').write_text(render(data,courses,identity,site_url))
-    shutil.copytree(HERE/'assets', output/'assets', dirs_exist_ok=True)
-    (output/'404.html').write_text('<!doctype html><html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Pagina non trovata · Ardesia</title><body style="font:1.2rem system-ui;background:#faf9f6;color:#171725;max-width:42rem;margin:15vh auto;padding:2rem"><h1>Questo percorso non c’è.</h1><p>La pagina richiesta non è disponibile.</p><a href="'+esc(site_url or '/')+'">Torna ai microcorsi di '+esc(data['subject'])+'</a></body></html>')
-    (output/'robots.txt').write_text('User-agent: *\nDisallow: /\n' if not site_url else 'User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n')
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=True)
+    assets = output / 'assets'
+    assets.mkdir(exist_ok=True)
+    # Only generated assets from the previous build are removed, never source files.
+    for old in assets.iterdir():
+        if old.is_file():
+            old.unlink()
+    asset_map = {}
+    for source in sorted((HERE / 'assets').iterdir()):
+        if source.is_file():
+            payload = source.read_bytes()
+            digest = hashlib.sha256(payload).hexdigest()[:12]
+            filename = f'{source.stem}.{digest}{source.suffix}'
+            (assets / filename).write_bytes(payload)
+            asset_map[source.name] = filename
+    html = render(data, courses, identity, site_url, preview_url)
+    for source, hashed in asset_map.items():
+        html = html.replace('assets/' + source, 'assets/' + hashed)
+    (output / 'index.html').write_text(html)
+    (output / '404.html').write_text(template('404.html', subject=text(data['subject']), home=text(site_url or '/'), stylesheet=(site_url or '/') + 'assets/' + asset_map['site.css'], tokens=(site_url or '/') + 'assets/' + asset_map['tokens.css']))
+    (output / 'robots.txt').write_text('User-agent: *\nDisallow: /\n' if not site_url else 'User-agent: *\nAllow: /\nSitemap: ' + site_url + 'sitemap.xml\n')
+    sitemap = output / 'sitemap.xml'
     if site_url:
-        (output/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+esc(site_url)+'</loc></url></urlset>')
-    elif (output/'sitemap.xml').exists():
-        (output/'sitemap.xml').unlink()
-    (output/'source-manifest.json').write_text(json.dumps({'composition':identity,'mode':'production-ready' if site_url else 'preview','courseIds':[c['id'] for c in courses]},indent=2)+'\n')
+        sitemap.write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + text(site_url) + '</loc></url></urlset>')
+    elif sitemap.exists():
+        sitemap.unlink()
+    security = json.loads((HERE / 'security.json').read_text())
+    (output / '_headers').write_text('/*\n' + ''.join(f'  {key}: {value}\n' for key, value in security.items()) + '  Cache-Control: public, max-age=0, must-revalidate\n' + ('  X-Robots-Tag: noindex, nofollow\n' if not site_url else '') + '/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n')
+    (output / 'source-manifest.json').write_text(json.dumps({'composition': identity, 'mode': 'production-ready' if site_url else 'preview', 'courseIds': [course['id'] for course in courses], 'assets': asset_map, 'publicBase': site_url or preview_url}, indent=2) + '\n')
     return output
 
-if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=HERE/'dist');parser.add_argument('--site-url');args=parser.parse_args()
-    print(build(args.output,args.site_url))
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output', type=Path, default=HERE / 'dist')
+    parser.add_argument('--site-url')
+    parser.add_argument('--preview-url', default=os.environ.get('RENDER_EXTERNAL_URL'))
+    parser.add_argument('--catalog', type=Path, default=HERE / 'catalog.json')
+    args = parser.parse_args()
+    print(build(args.output, args.site_url, args.catalog, args.preview_url if not args.site_url else None))
