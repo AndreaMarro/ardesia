@@ -79,14 +79,32 @@ def base(edition='fluidi'):
 
 
 def publish_fixture(world, question, *, decision='APPROVED', version=None, digest=None, edition='fluidi'):
-    return world['client'].post(base(edition) + '/review/approvals', json={
+    payload = {
         'questionId': question['id'],
         'questionVersion': question['version'] if version is None else version,
         'contentSha256': world['bank'].approval_content_sha256(question['id']) if digest is None else digest,
         'decision': decision,
         'motivation': 'revisione sintetica',
-        'confirmPublication': True,  # This fixture deliberately exercises publication.
-    })
+        'confirmPublication': True,
+    }
+    # Positive fixtures exercise the actual two-step publication contract.
+    # Invalid revisions and legacy negative decisions still exercise the old
+    # endpoint so its error and authorization boundaries remain covered.
+    if decision == 'APPROVED' and version is None and digest is None:
+        review = world['client'].post(base(edition) + '/review/reviews', json={
+            'questionId': payload['questionId'],
+            'questionVersion': payload['questionVersion'],
+            'contentSha256': payload['contentSha256'],
+            'status': 'APPROVED',
+            'notes': 'Revisione scientifica della sola fixture sintetica.',
+            'expectedReviewId': None,
+        })
+        if review.status_code != 200:
+            return review
+        return world['client'].post(
+            base(edition) + f"/review/reviews/{review.json()['reviewId']}/publish",
+            json={'confirmPublication': True})
+    return world['client'].post(base(edition) + '/review/approvals', json=payload)
 
 
 def test_default_deny_blocks_list_detail_attempt_and_exam(world):
