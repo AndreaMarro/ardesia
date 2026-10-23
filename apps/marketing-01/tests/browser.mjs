@@ -44,6 +44,8 @@ const cleanLayout = async page => {
 try {
   for (const engine of (process.env.MARKETING_ENGINES || 'chromium').split(',')) {
     let browser;
+    // Safari on macOS uses Option-Tab for links unless full keyboard navigation is enabled.
+    const nextKey = engine === 'webkit' && process.platform === 'darwin' ? 'Alt+Tab' : 'Tab';
     try {
       browser = await engines[engine].launch({headless: true, ...(engine === 'chromium' && process.env.ARDESIA_BROWSER ? {executablePath: process.env.ARDESIA_BROWSER} : {})});
       const context = await browser.newContext({baseURL: origin, reducedMotion: 'reduce'});
@@ -93,7 +95,7 @@ try {
       await page.locator('.path-index a[href="#onde-ottica-radiazioni"]').focus();
       await page.keyboard.press('Enter');
       await expect(page.locator('#onde-ottica-radiazioni')).toBeFocused();
-      await page.keyboard.press('Tab');
+      await page.keyboard.press(nextKey);
       await expect(page.locator('#onde-ottica-radiazioni summary')).toBeFocused();
       await page.locator('#onde-ottica-radiazioni .back-to-paths').click();
       await expect(page.locator('.path-index')).toBeInViewport();
@@ -139,10 +141,10 @@ try {
         await page.screenshot({path: path.join(output, `${engine}-short-${width}-${height}.png`)});
       }
       await page.setViewportSize({width: 390, height: 844}); await page.goto('/');
-      await page.keyboard.press('Tab'); await expect(page.getByRole('link', {name: 'Vai al contenuto'})).toBeFocused(); await page.keyboard.press('Enter');
+      await page.keyboard.press(nextKey); await expect(page.getByRole('link', {name: 'Vai al contenuto'})).toBeFocused(); await page.keyboard.press('Enter');
       const keyboardRadio = page.getByRole('radio', {name: 'Strumenti e meccanica', exact: true});
       await keyboardRadio.focus(); await page.keyboard.press('ArrowDown'); await expect(radio).toBeChecked();
-      await page.keyboard.press('Tab'); await expect(page.locator('.contact-panel .interest-link')).toBeFocused();
+      await page.keyboard.press(nextKey); await expect(page.locator('.contact-panel .interest-link')).toBeFocused();
       const teacher = page.locator('#docente'); await teacher.scrollIntoViewIfNeeded();
       const portrait = teacher.locator('img');
       await expect.poll(() => portrait.evaluate(image => image.complete && image.naturalWidth === 640)).toBe(true);

@@ -20,7 +20,7 @@ npx playwright install --with-deps chromium firefox webkit
 MARKETING_ENGINES=chromium,firefox,webkit node apps/marketing-01/tests/browser.mjs
 ```
 
-Opzioni: `MARKETING_QA_OUTPUT` conserva screenshot/risultati; `ARDESIA_BROWSER` seleziona un eseguibile Chromium locale; `MARKETING_BASE_URL` prova lo stesso artifact in hosting HTTPS invece di avviare un server locale. Il test intercetta la destinazione WhatsApp dopo l’attivazione reale del link: nessun messaggio viene inviato. Copre 12 larghezze, programmi, CTA, tastiera, testo 200%, viewport bassi, reflow, Back/Forward/reload, assenza JS, seconda materia sintetica, asset e 404 annidata. In CI gira nei tre motori. `tests/subject_fixture.py OUTPUT` genera la seconda materia fuori dal Core.
+Opzioni: `MARKETING_QA_OUTPUT` conserva screenshot/risultati; `ARDESIA_BROWSER` seleziona un eseguibile Chromium locale; `MARKETING_BASE_URL` prova lo stesso artifact in hosting HTTPS invece di avviare un server locale. Il test intercetta la destinazione WhatsApp dopo l’attivazione reale del link: nessun messaggio viene inviato. Copre 12 larghezze, programmi, CTA, tastiera, testo 200%, viewport bassi, reflow, Back/Forward/reload, assenza JS, seconda materia sintetica, asset e 404 annidata. In CI gira nei tre motori. Su WebKit/macOS i passaggi fra link usano Option-Tab, scorciatoia nativa Apple quando la navigazione completa con Tab non è attiva; gli assert di focus restano identici. Nessuna impostazione del computer viene modificata. `tests/subject_fixture.py OUTPUT` genera la seconda materia fuori dal Core.
 
 ## Dove si modifica che cosa
 
