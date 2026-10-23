@@ -62,6 +62,7 @@ a:focus-visible, input:focus-visible, summary:focus-visible, .course-card:focus-
 .course-intro { margin-block: .8rem; font-weight: 500; }
 .course-fit { color: var(--muted); font-size: .95rem; margin-block-end: 1.15rem; }
 summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3rem; cursor: pointer; list-style: none; }
+.summary-text, .cta-label { min-width: 0; overflow-wrap: anywhere; }
 summary::-webkit-details-marker { display: none; }
 summary .icon { color: var(--accent); transition: transform .15s ease; }
 details[open] > summary .icon { transform: rotate(180deg); }

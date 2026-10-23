@@ -54,4 +54,4 @@ def faq(value, context, privacy):
     links = ''
     if value.get('privacyLinks'):
         links = '<p class="privacy-links">' + external_link({'url': privacy, 'label': 'Informativa di Andrea'}) + ' · ' + external_link({'url': 'https://www.whatsapp.com/legal/privacy-policy-eea', 'label': 'Informativa WhatsApp'}) + '</p>'
-    return f'<details><summary>{text(value["question"])}{icon("chevron")}</summary><div class="faq-answer"><p>{text(value["answer"].format_map(context))}</p>{links}</div></details>'
+    return f'<details><summary><span class="summary-text">{text(value["question"])}</span>{icon("chevron")}</summary><div class="faq-answer"><p>{text(value["answer"].format_map(context))}</p>{links}</div></details>'
