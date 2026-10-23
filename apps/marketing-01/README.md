@@ -74,3 +74,20 @@ Conservare SHA, ID deploy e `source-manifest.json` prima della pubblicazione. In
 Se l’artifact non è più conservato dal provider, eseguire checkout dello SHA approvato in una directory isolata e ricostruire con il medesimo URL; distribuire solo quel pacchetto. L’app non ha database, migrazioni o stato cliente da recuperare. Verificare di nuovo HTTP, manifest e CTA. Non rimuovere la preview finché il candidato di produzione non è stato verificato.
 
 Il confronto fra provider, prezzi e limiti verificati è in `deploy/HOSTING.md`. Le prove REA e visuali complete sono nella consegna esterna al repository, con digest associati all’artifact finale.
+
+## GO-LIVE02 — esercizi editoriali, senza motore quiz
+
+Le quattro dimostrazioni sono proiezioni allowlist dei soli record Q01 originali dei kit `AndreaMarro/ardesia-knowledge`, commit `6d5f0c6124fa3adbcb92b6d19ba5d83669e2c4e8`. `examples/selection.json` conserva i record immutati, origine e SHA del file/record, più una presentazione didattica versionata. I kit integrali, altre domande, PDF e archivi di revisione non entrano in `dist`. Non si importa o esegue il generatore editoriale esterno.
+
+`examples.py` è un renderer di documenti, senza parser matematico, MathJax, database, grading o JavaScript. La notazione Unicode dei passaggi è esplicita e revisionabile. Tre disclosure HTML native separano suggerimento, ragionamento e controllo/errore. Il problema resta visibile; leggere il solo suggerimento non mostra il risultato. Reload riparte con le spiegazioni chiuse. Ogni pagina ha ritorno al programma con `?percorso=ID#ID` e contatto specifico, anche senza JS. Le pagine separate non caricano i contenuti degli esercizi nella prima navigazione della landing.
+
+```sh
+python3 apps/marketing-01/build.py --review-examples --preview-url https://ardesia-golive02-preview.onrender.com/
+MARKETING_REQUIRE_EXAMPLES=1 MARKETING_ENGINES=chromium,firefox,webkit node apps/marketing-01/tests/browser.mjs
+```
+
+Il flag è **solo preview**: con `--site-url` viene rifiutato. In assenza di autorizzazioni la build produzione esclude ogni DRAFT, elimina anche eventuali pagine generate precedentemente e non inserisce link agli esempi. `examples/approvals.json` è vuoto: non è stata registrata un’approvazione umana. Per ammettere un esempio in produzione occorre una decisione esplicita, registrata/versionata con ID, `contentSHA256` dell’intera selezione (record+presentazione+provenienza), revisore scientifico, autore dell’autorizzazione editoriale e riferimento alla decisione. Cambiare il contenuto invalida l’autorizzazione. Il controllo automatico non sostituisce tale decisione né i gate Core/LessonOS, che rimangono invariati.
+
+`deploy/render-preview.yaml` descrive il nuovo sito editoriale separato; `deploy/render-production.yaml` è **solo preparato**, non applicato. Non allegare il dominio alla preview DRAFT. La produzione richiede autorizzazione esplicita anche per DNS e indicizzazione. Dopo l’autorizzazione si può creare `ardesia-fisica` dalla branch/SHA approvata, applicare gli header senza X-Robots-Tag noindex, verificare l’URL Render, poi aggiungere il dominio `fisica.andreamarro.it`. Il valore del CNAME deve essere quello assegnato da Render al servizio di produzione, non quello della preview. Non modificare record apex, `www`, MX o altri servizi. Le interrogazioni DNS di sola lettura del mandato non hanno trovato un record attuale per il sottodominio; l’accesso di scrittura al gestore DNS non è certificato.
+
+Rollback: conservare deployID/SHA precedente e configurazione; scegliere il precedente deploy riuscito nel solo Static Site di produzione, controllare autodeploy off, header/cache/canonical/404/CTA. Se necessario ricostruire lo SHA precedente con lo stesso dominio. Nessuna migrazione dati. Il rollback di un artifact non ripristina DNS/header/domains: verificare separatamente il Blueprint versionato. La preview rimane noindex.

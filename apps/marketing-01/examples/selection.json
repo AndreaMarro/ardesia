@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "examples": [
+    {
+      "id": "ARD-SF26-01-Q01",
+      "version": 1,
+      "pathId": "strumenti-meccanica",
+      "unitIds": [
+        "U1",
+        "U2"
+      ],
+      "subject": "Fisica",
+      "status": "DRAFT",
+      "source": {
+        "repository": "AndreaMarro/ardesia-knowledge",
+        "commit": "6d5f0c6124fa3adbcb92b6d19ba5d83669e2c4e8",
+        "path": "editorial/semestre-filtro-2026-27/dati/01_strumenti-meccanica.json",
+        "fileSHA256": "622a496b023a514cfd8e8b8a0b47848858ea042948d90207d1503cb9023d270e",
+        "recordSHA256": "3f094dec7c701bd83094146d2271be20c5232fd92491faf8a20cf56ed78e8703"
+      },
+      "record": {
+        "id": "ARD-SF26-01-Q01",
+        "format": "MCQ",
+        "prompt": "Un blocco di $6\\,\\mathrm{kg}$ subisce una forza risultante di $12\\,\\mathrm N$. Qual è il modulo dell'accelerazione?",
+        "options": [
+          "$1$",
+          "$2$",
+          "$3$",
+          "$6$",
+          "$12$"
+        ],
+        "answerDisplay": "B",
+        "commentary": "Il secondo principio dà $a=F_{\\rm ris}/m=12/6=2\\,\\mathrm{m/s^2}$. Il risultato non è una forza: occorre dichiarare $\\mathrm{m/s^2}$.",
+        "skill": "divisione forza/massa",
+        "difficulty": "base",
+        "status": "DRAFT",
+        "provenance": "original",
+        "linkedCanonicalIds": [
+          "u1-vector-angle-ratio-01",
+          "u2-horizontal-braking-friction-01",
+          "u2-uniform-displacement-03"
+        ]
+      },
+      "presentation": {
+        "title": "Dalla forza all’accelerazione",
+        "promptText": "Un blocco di 6 kg subisce una forza risultante di 12 N. Qual è il modulo dell’accelerazione?",
+        "objective": "Distinguere forza risultante e accelerazione, usando correttamente le unità.",
+        "prerequisites": "Divisioni e unità di forza e massa.",
+        "hint": "La forza indicata è già la risultante. Quale relazione la collega alla massa e all’accelerazione?",
+        "steps": [
+          "Consideriamo una massa costante e un sistema di riferimento inerziale. Il testo fornisce già il modulo della forza risultante: Fᵣ = 12 N.",
+          "La seconda legge di Newton è Fᵣ = m a. Per trovare a dividiamo entrambi i membri per la massa positiva: a = Fᵣ / m.",
+          "Sostituiamo i dati: a = (12 N) / (6 kg) = 2 m/s². La risposta è B."
+        ],
+        "result": "2 m/s²",
+        "check": "Un newton vale kg · m/s². Dividere N per kg dà quindi m/s². A parità di massa, una forza risultante doppia produrrebbe un’accelerazione doppia.",
+        "error": "Scrivere 2 N: il numero è corretto, ma l’unità sarebbe quella di una forza. Qui stiamo calcolando un’accelerazione."
+      }
+    },
+    {
+      "id": "ARD-SF26-02-Q01",
+      "version": 1,
+      "pathId": "fluidi-termodinamica",
+      "unitIds": [
+        "U3",
+        "U5"
+      ],
+      "subject": "Fisica",
+      "status": "DRAFT",
+      "source": {
+        "repository": "AndreaMarro/ardesia-knowledge",
+        "commit": "6d5f0c6124fa3adbcb92b6d19ba5d83669e2c4e8",
+        "path": "editorial/semestre-filtro-2026-27/dati/02_fluidi-termodinamica.json",
+        "fileSHA256": "0d69e1f005c384ba2b9c8ba311a761e61657a4a30db9e4286882b708d562fef0",
+        "recordSHA256": "a6e869d4cf6c131c79cc0cc0d73fae9a2acb6992603fd704df021a9868fc21b9"
+      },
+      "record": {
+        "id": "ARD-SF26-02-Q01",
+        "format": "MCQ",
+        "prompt": "Se una forza normale e l'area su cui agisce raddoppiano, la pressione media:",
+        "options": [
+          "raddoppia",
+          "si dimezza",
+          "quadruplica",
+          "rimane uguale",
+          "diventa zero"
+        ],
+        "answerDisplay": "D",
+        "commentary": "Il rapporto $p=F/A$ è invariato: $2F/(2A)=F/A$. Occorre confrontare entrambe le variazioni.",
+        "skill": "proporzionalità",
+        "difficulty": "base",
+        "status": "DRAFT",
+        "provenance": "original",
+        "linkedCanonicalIds": [
+          "u3-pressure-area-01",
+          "u3-density-01",
+          "u3-floating-fraction-01"
+        ]
+      },
+      "presentation": {
+        "title": "Due variazioni, un solo rapporto",
+        "objective": "Confrontare come forza e area influenzano la pressione media.",
+        "prerequisites": "Rapporti e fattori moltiplicativi.",
+        "hint": "Scrivi la definizione di pressione media. Non cambia soltanto la forza: considera anche l’area.",
+        "steps": [
+          "La pressione media è il rapporto tra forza normale e area positiva: p = F / A.",
+          "Dopo il cambiamento abbiamo F′ = 2F e A′ = 2A. Quindi p′ = (2F) / (2A).",
+          "Il fattore 2 compare sia al numeratore sia al denominatore e si semplifica: p′ = F / A = p. La risposta è D: rimane uguale."
+        ],
+        "result": "La pressione media rimane uguale.",
+        "check": "Sostituendo entrambe le variazioni si ritrova direttamente p′ = p, senza dover dividere per una pressione iniziale che potrebbe essere nulla. L’unità resta N/m², cioè pascal. Il confronto riguarda la pressione media, senza assumere una distribuzione uniforme locale.",
+        "error": "Rispondere “raddoppia” considerando soltanto la forza: anche l’area è raddoppiata, e le due variazioni si compensano."
+      }
+    },
+    {
+      "id": "ARD-SF26-03-Q01",
+      "version": 1,
+      "pathId": "elettricita-magnetismo",
+      "unitIds": [
+        "U6"
+      ],
+      "subject": "Fisica",
+      "status": "DRAFT",
+      "source": {
+        "repository": "AndreaMarro/ardesia-knowledge",
+        "commit": "6d5f0c6124fa3adbcb92b6d19ba5d83669e2c4e8",
+        "path": "editorial/semestre-filtro-2026-27/dati/03_elettricita-magnetismo.json",
+        "fileSHA256": "99835312d3a05f2d6c8bf9ad6245a3af1d89e5fc5d17730061e9d0ba647e5b20",
+        "recordSHA256": "9e92098b4e9c301dfde3f442a0d19c0245f8f4592d2251847b47667d6a25470e"
+      },
+      "record": {
+        "id": "ARD-SF26-03-Q01",
+        "format": "MCQ",
+        "prompt": "Se tensione e resistenza di un resistore ohmico raddoppiano contemporaneamente, la corrente:",
+        "options": [
+          "raddoppia",
+          "si dimezza",
+          "quadruplica",
+          "rimane uguale",
+          "diventa zero"
+        ],
+        "answerDisplay": "D",
+        "commentary": "$I=V/R$; con $2V$ e $2R$ il rapporto resta uguale.",
+        "skill": "rapporti",
+        "difficulty": "base",
+        "status": "DRAFT",
+        "provenance": "original",
+        "linkedCanonicalIds": [
+          "u6-two-series-resistors-01",
+          "u6-two-parallel-resistors-01",
+          "u6-series-parallel-resistor-network-01"
+        ]
+      },
+      "presentation": {
+        "title": "La corrente e il rapporto V/R",
+        "objective": "Applicare la legge di Ohm quando cambiano due grandezze.",
+        "prerequisites": "Rapporti; significato di tensione, corrente e resistenza.",
+        "hint": "Quale rapporto lega la tensione e la resistenza alla corrente? Sostituisci entrambe le variazioni prima di concludere.",
+        "steps": [
+          "Per il resistore ohmico considerato, con resistenza positiva e nel regime descritto, vale I = V / R.",
+          "Dopo il cambiamento V′ = 2V e R′ = 2R. La nuova corrente è I′ = (2V) / (2R).",
+          "Semplificando lo stesso fattore otteniamo I′ = V / R = I. La risposta è D: rimane uguale."
+        ],
+        "result": "La corrente rimane uguale.",
+        "check": "V/Ω dà ampere, l’unità della corrente. Il risultato riguarda il modello ohmico e le variazioni dichiarate; non implica che un resistore reale riscaldato mantenga automaticamente la stessa resistenza.",
+        "error": "Applicare “più tensione → più corrente” ignorando che anche la resistenza cambia. Prima confronta il rapporto completo."
+      }
+    },
+    {
+      "id": "ARD-SF26-04-Q01",
+      "version": 1,
+      "pathId": "onde-ottica-radiazioni",
+      "unitIds": [
+        "U4",
+        "U7"
+      ],
+      "subject": "Fisica",
+      "status": "DRAFT",
+      "source": {
+        "repository": "AndreaMarro/ardesia-knowledge",
+        "commit": "6d5f0c6124fa3adbcb92b6d19ba5d83669e2c4e8",
+        "path": "editorial/semestre-filtro-2026-27/dati/04_onde-ottica-radiazioni.json",
+        "fileSHA256": "424fb69d155ef04994dbc9d3072ee94b43417bdb7f08c598b5b186b7e3d6a931",
+        "recordSHA256": "8fca9f797b8ae44b9136897f876e7c56bfcc9e83ee5fc093d35d94b1eaae3a4b"
+      },
+      "record": {
+        "id": "ARD-SF26-04-Q01",
+        "format": "MCQ",
+        "prompt": "In uno stesso mezzo una frequenza si dimezza mentre la velocità di propagazione resta costante. La lunghezza d'onda:",
+        "options": [
+          "si dimezza",
+          "raddoppia",
+          "quadruplica",
+          "rimane uguale",
+          "diventa zero"
+        ],
+        "answerDisplay": "B",
+        "commentary": "Da $\\lambda=v/f$: dimezzare il denominatore raddoppia il rapporto.",
+        "skill": "rapporti",
+        "difficulty": "base",
+        "status": "DRAFT",
+        "provenance": "original",
+        "linkedCanonicalIds": [
+          "u4-wave-wavelength-01",
+          "u7-wavelength-in-medium-04",
+          "u7-photon-packet-frequency-01"
+        ]
+      },
+      "presentation": {
+        "title": "Frequenza e lunghezza d’onda",
+        "objective": "Collegare frequenza e lunghezza d’onda a velocità fissata.",
+        "prerequisites": "Proporzionalità inversa; significato di frequenza e velocità.",
+        "hint": "La velocità resta costante. Scrivi la relazione tra velocità, frequenza e lunghezza d’onda, poi isola quest’ultima.",
+        "steps": [
+          "La relazione è v = λ f, con frequenza positiva. Isoliamo λ: λ = v / f.",
+          "La nuova frequenza è f′ = f / 2, mentre v è fissata dal testo. Dunque λ′ = v / (f / 2).",
+          "Dividere per una metà equivale a moltiplicare per due: λ′ = 2v / f = 2λ. La risposta è B: raddoppia."
+        ],
+        "result": "La lunghezza d’onda raddoppia.",
+        "check": "(m/s) / (1/s) dà metri. Inoltre λ′ f′ = (2λ)(f/2) = λ f = v: la velocità rimane quella dichiarata.",
+        "error": "Dimezzare anche la lunghezza d’onda. A velocità fissata, frequenza e lunghezza d’onda variano in senso inverso; non basta dire “stesso mezzo” se la velocità non fosse fissata."
+      }
+    }
+  ]
+}

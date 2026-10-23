@@ -149,3 +149,24 @@ legend { padding: 0; font-weight: 600; margin-block-end: .8rem; }
 /* A small landscape viewport needs reading space more than a floating conversion panel. */
 @media (max-height: 30rem) { .interest-bar { display: none; } body { padding-block-end: 0; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+/* Editorial examples: separate documents keep the landing's initial payload small. */
+.example-teaser { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; font-size: .95rem; }
+.example-content { max-width: 52rem; padding-block: clamp(2rem, 5vw, 4rem); }
+.example-content h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); max-width: 22ch; }
+.example-objective { font-size: 1.15rem; margin-block: 1.25rem; }
+.editorial-note { display: inline-block; padding: .4rem .65rem; background: var(--soft); font-size: .8rem; margin-block: 1rem; }
+.prerequisites,.muted { color: var(--muted); }
+.example-problem { margin-block: 2rem; padding: clamp(1rem, 4vw, 2rem); background: #f1f0f9; border-radius: .4rem; }
+.example-problem h2,.example-next h2 { font-size: clamp(1.65rem, 4vw, 2.1rem); }
+.example-options { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style-type: upper-alpha; padding-inline-start: 1.5rem; margin-block: 1rem; }
+.example-options li { padding-inline-end: .5rem; margin-inline-end: .75rem; }
+.example-reveal { padding: 1rem .5rem; }
+.example-reveal p + h3 { margin-block-start: 1.25rem; }
+.example-content details { border-block-end: 1px solid var(--line); }
+.example-content summary { min-height: 3.75rem; }
+.worked-steps { padding-inline-start: 1.5rem; }
+.worked-steps li + li { margin-block-start: 1rem; }
+.example-result { padding: 1rem; background: var(--soft); margin-block: 1rem; }
+.example-next { margin-block: 2rem; padding-block: 1.5rem; }
+.example-next .button { margin-block: 1rem; max-width: 100%; }
+.example-back { display: block; padding-block: .5rem; }
