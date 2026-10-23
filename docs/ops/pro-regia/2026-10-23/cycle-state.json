@@ -1,0 +1,106 @@
+{
+  "schema": "ardesia.pro-regia.cycle-state.v2",
+  "date": "2026-10-23",
+  "sourceCommits": {
+    "main": "b124eee04acc8062c27284f23c5d9108e3767c27",
+    "baselinePR271": "fe245fd803aaf072721d3f27beeea3bf9f9da9d5",
+    "physicsBankPR270": "e9c87b072913744f6cc6df21217b8856cddfef1f",
+    "combinedProductPR282": "68af43a6c7fd0e072fea1c3b12f9ea96a1a93f30",
+    "regressionCodeCommit": "959c1cf2bb48616fdc32d60aa488d80c9680d98a"
+  },
+  "workers": {
+    "deepseek": {
+      "state": "WAITING_FOR_HANDOFF",
+      "verifiedLocalSession": false,
+      "localWorkAbsenceInferred": false,
+      "remoteDesktopDevices": 0,
+      "required": [
+        "worker",
+        "branch",
+        "commit SHA",
+        "owned paths",
+        "commands and actual results"
+      ]
+    },
+    "bankProducer": {
+      "state": "DELIVERY_RECEIVED_DRAFT",
+      "pr": 270,
+      "authorshipBeyondVerifiedGitHubCommit": "NOT_ATTESTED"
+    },
+    "proIntegrator": {
+      "state": "OWNERSHIP_HANDOFF_REQUIRED_FOR_FIX",
+      "unmodifiedOwnedCode": [
+        "services/study-api/study_api/question_bank_routes.py",
+        "packages/engine/lessonos/study/question_bank_approvals.py"
+      ]
+    }
+  },
+  "bankStages": {
+    "QUESTION_INBOX": 4000,
+    "SCHEMA_VALID": 4000,
+    "MATH_VALID": {
+      "fullyAttested": false,
+      "independentCalculationsPreviouslyChecked": 10
+    },
+    "SCIENCE_REVIEWED_HUMAN": 0,
+    "EDITORIALLY_APPROVED_HUMAN": 0,
+    "IMPORTED_CANONICALLY_APPROVED": 0,
+    "PUBLISHED_HUMAN_APPROVED": 0,
+    "note": "4,000 real authored DRAFT; 2,537 five-option MCQ and 1,463 completions; no second corpus created. Synthetic test approvals are not approvals of real corpus."
+  },
+  "rea": "REA_NOT_ACCESSIBLE",
+  "product": {
+    "completeNewSubsystemsAcquired": 0,
+    "mergePerformed": false,
+    "deployPerformed": false,
+    "studentFacingLaunch": "HOLD"
+  },
+  "newFinding": {
+    "id": "REGIA-20261023-SCIENCE-REVIEW-BYPASS-LEGACY",
+    "severity": "P1",
+    "observedCommit": "959c1cf2bb48616fdc32d60aa488d80c9680d98a",
+    "productBaseCommit": "68af43a6c7fd0e072fea1c3b12f9ea96a1a93f30",
+    "paths": [
+      "services/study-api/study_api/question_bank_routes.py:174-185",
+      "packages/engine/lessonos/study/question_bank_approvals.py:257-295"
+    ],
+    "environment": "GitHub Actions CI; FastAPI ASGI TestClient + temporary SQLite store + synthetic two-question bank",
+    "scenarios": [
+      {
+        "name": "legacy APPROVED confirmed without prior saved scientific review",
+        "observedHttpStatus": 200,
+        "requiredHttpStatus": 409,
+        "result": "RED"
+      },
+      {
+        "name": "legacy APPROVED confirmed after explicit review publication and revocation",
+        "observedHttpStatus": 200,
+        "requiredHttpStatus": 409,
+        "result": "RED"
+      }
+    ],
+    "ci": {
+      "run": 39914220383,
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/39914220383",
+      "studyApi": "FAIL: 2 new regression RED; 830 other tests PASS; 30 SKIP",
+      "otherSixJobs": "SUCCESS at regressionCodeCommit"
+    },
+    "fixed": false,
+    "green": "NOT_RUN",
+    "interpretation": "Teacher/edition authorization is enforced, but the legacy publication path permits bypassing the separate scientific review ledger; revocation can be followed by a new legacy publication. No production exploit claimed."
+  },
+  "delivery": {
+    "draftPr": 283,
+    "url": "https://github.com/AndreaMarro/ardesia/pull/283",
+    "branch": "pro/ardesia-regia-review-ledger-20261023",
+    "createdFile": "services/study-api/tests/test_pro_regia_review_ledger.py",
+    "codeCommit": "959c1cf2bb48616fdc32d60aa488d80c9680d98a",
+    "owner": "pro-regia",
+    "workerOwnedCodeModified": false
+  },
+  "nextSinglePriority": {
+    "owner": "Pro integratore dopo handoff esplicito di proprietà di Core/API (#282 branch)",
+    "action": "Disattivare o vincolare alla revisione positiva corrente il vecchio endpoint /review/approvals, senza creare pubblicazioni per DRAFT non revisionati o riattivare pubblicazioni revocate",
+    "acceptance": "Entrambi i RED della #283 diventano GREEN; corretta revisione privata invisibile allo studente; pubblicazione esatta e revoca con retry verificati; API SQLite e PostgreSQL/RLS reali testati separatamente; 4.000 DRAFT restano senza approvazione."
+  }
+}
