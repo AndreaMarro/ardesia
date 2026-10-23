@@ -52,6 +52,7 @@ try {
       // A real new-tab navigation is exercised; no WhatsApp message or account is involved.
       await context.route('https://wa.me/**', route => route.fulfill({contentType: 'text/html', body: '<title>WhatsApp link under test</title><p>No message sent</p>'}));
       context.setDefaultTimeout(7000);
+      context.setDefaultNavigationTimeout(15000);
       const page = await context.newPage();
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
@@ -92,14 +93,14 @@ try {
       await page.setViewportSize({width: 390, height: 844}); expect(await programme.evaluate(node => node.open)).toBe(false);
       // Donor transfer 2: index -> chosen course -> return/FAQ -> persistent full title -> change -> contact.
       await page.goto('/');
-      await page.locator('.path-index a[href="#onde-ottica-radiazioni"]').focus();
+      await page.locator('.path-index a[href$="#onde-ottica-radiazioni"]').focus();
       await page.keyboard.press('Enter');
       await expect(page.locator('#onde-ottica-radiazioni')).toBeFocused();
       await page.keyboard.press(nextKey);
       await expect(page.locator('#onde-ottica-radiazioni summary')).toBeFocused();
       await page.locator('#onde-ottica-radiazioni .back-to-paths').click();
       await expect(page.locator('.path-index')).toBeInViewport();
-      await page.locator('.path-index a[href="#onde-ottica-radiazioni"]').click();
+      await page.locator('.path-index a[href$="#onde-ottica-radiazioni"]').click();
       await expect(page.locator('.selected-course')).toHaveText('Onde, ottica e radiazioni');
       await page.getByRole('link', {name: 'FAQ', exact: true}).click();
       const bar = page.locator('.interest-bar'); await expect(bar).toBeVisible();
@@ -117,6 +118,14 @@ try {
       await page.getByRole('radio', {name: 'Elettricità e magnetismo', exact: true}).check();
       await page.goBack(); await expect(radio).toBeChecked();
       await page.goForward(); await expect(page.getByRole('radio', {name: 'Elettricità e magnetismo', exact: true})).toBeChecked();
+      // Modified-click keeps the target course even when the source tab chose another.
+      const independent = await context.newPage(); await independent.goto('/?percorso=fluidi-termodinamica#scegli-percorso');
+      const openedCourse = context.waitForEvent('page');
+      await independent.locator('.path-index a').last().click({modifiers: [process.platform === 'darwin' ? 'Meta' : 'Control']});
+      const openedTab = await openedCourse; await openedTab.waitForLoadState();
+      await expect(openedTab.getByRole('radio', {name: 'Onde, ottica e radiazioni', exact: true})).toBeChecked();
+      await expect(independent.getByRole('radio', {name: 'Fluidi e termodinamica', exact: true})).toBeChecked();
+      await openedTab.close(); await independent.close(); await page.bringToFront();
       // Independent tabs and unrecognised query values have a deterministic default.
       const other = await context.newPage(); await other.goto('/?percorso=sconosciuto');
       await expect(other.getByRole('radio', {name: 'Strumenti e meccanica', exact: true})).toBeChecked(); await other.close();

@@ -39,7 +39,7 @@ def course_card(course, number, contact):
 
 
 def path_link(course, number):
-    return f'<li><a href="#{text(course["id"])}"><span class="index-number">{number:02}</span><span>{text(course["title"])}</span>{icon("arrow")}</a></li>'
+    return f'<li><a href="?percorso={text(course["id"])}#{text(course["id"])}"><span class="index-number">{number:02}</span><span>{text(course["title"])}</span>{icon("arrow")}</a></li>'
 
 
 def choice(course, number, contact):
