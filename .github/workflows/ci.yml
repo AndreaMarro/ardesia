@@ -35,6 +35,21 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Public preview in a real browser, with no API
         run: npm run e2e:public --workspace @ardesia/web
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install the disposable Study API environment
+        run: uv sync --project services/study-api --frozen --python 3.13
+      - name: Teacher physics pathways in a real browser, on disposable SQLite
+        env:
+          ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: bin/ci/web-e2e-physics-pathways.sh
+      - name: Teacher-path evidence on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-physics-pathways-${{ github.sha }}
+          path: apps/web/test-results/physics-pathways/
+          if-no-files-found: warn
+          retention-days: 14
 
   study-api:
     name: study-api (HTTP + shared Core)
