@@ -179,7 +179,15 @@ def install_question_bank_routes(app, store_dependency, authenticate):
         if body.decision == 'APPROVED' and not body.confirmPublication:
             raise StudyError('publication_confirmation_required', 409)
         _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
-        return ApprovalGate(store, bank, edition_id).approve(
+        gate = ApprovalGate(store, bank, edition_id)
+        if body.decision == 'APPROVED':
+            # Publication requires an explicit, recorded, current scientific review.
+            # The compatibility route cannot carry a review ID; confirmation alone
+            # must never create or revive a PUBLISHED record.
+            gate._validate_binding(
+                body.questionId, body.questionVersion, body.contentSha256)
+            raise StudyError('publication_requires_scientific_review', 409)
+        return gate.approve(
             principal, question_id=body.questionId, question_version=body.questionVersion,
             content_sha256=body.contentSha256, decision=body.decision,
             motivation=body.motivation)
