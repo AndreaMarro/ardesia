@@ -1,0 +1,1325 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/taylor-plot.test.tsx --maxWorkers=1
+
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/web
+
+ ❯ src/__tests__/taylor-plot.test.tsx (9 tests | 9 failed) 6519ms
+   × no comparison before a prediction; the graph uses canonical samples and degree controls invalidate it 257ms
+   × degree zero has a horizontal canonical polynomial; it changes after a new prediction and degree 1069ms
+   × a legacy numeric result remains committable with an explicit unavailable graph 30ms
+   × rejects malformed nonfinite canonical data without inventing a curve 1021ms
+   × rejects malformed unordered canonical data without inventing a curve 1026ms
+   × rejects malformed oversized canonical data without inventing a curve 1024ms
+   × rejects malformed degree canonical data without inventing a curve 1023ms
+   × rejects malformed request-x canonical data without inventing a curve 1017ms
+   × invalid inputs do not call; a response for edited inputs never restores a stale curve or commit 48ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > no comparison before a prediction; the graph uses canonical samples and degree controls invalidate it
+AssertionError: expected SVGSVGElement{ …(2), …(2) } to be null
+
+- Expected:
+null
+
++ Received:
+<svg
+  aria-label="Il polinomio somma i termini da zero al grado scelto"
+  role="img"
+  viewBox="0 0 560 260"
+>
+  <path
+    d="M45 200H520M75 225V35"
+    fill="none"
+    opacity=".4"
+    stroke="currentColor"
+    stroke-width="1"
+  />
+  <path
+    d="M90 190C190 185 265 150 335 105S450 45 500 35"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  />
+  <path
+    d="M90 190L185 170L285 140L385 95L490 43"
+    fill="none"
+    stroke="var(--accent)"
+    stroke-dasharray="5 5"
+    stroke-width="2"
+  />
+  <text
+    x="120"
+    y="65"
+  >
+    Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+  </text>
+  <text
+    x="120"
+    y="230"
+  >
+    Schema della costruzione · n + 1 termini
+  </text>
+</svg>
+
+ ❯ src/__tests__/taylor-plot.test.tsx:32:37
+     30|   const fetch = fetchResult(canonical()); vi.stubGlobal("fetch", fetch…
+     31|   const onCommit = vi.fn(); render(<TaylorLab onCommit={onCommit} />);
+     32|   expect(screen.queryByRole("img")).toBeNull();
+       |                                     ^
+     33|   compare(); expect(fetch).not.toHaveBeenCalled();
+     34|   predict(); compare();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > degree zero has a horizontal canonical polynomial; it changes after a new prediction and degree
+TestingLibraryElementError: Unable to find role="img" and name `/polinomio di grado 0/`
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              0
+               ·
+              1
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              1,5
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="0"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              0
+               ·
+              1
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              1,5
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="0"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/taylor-plot.test.tsx:52:30
+     50|   render(<TaylorLab onCommit={vi.fn()} />); predict();
+     51|   fireEvent.change(screen.getByLabelText("Grado del polinomio"), { tar…
+     52|   const first = await screen.findByRole("img", { name: /polinomio di g…
+       |                              ^
+     53|   const firstPath = first.querySelector('[data-series="polynomial"]')!…
+     54|   expect(screen.getByRole("button", { name: "Grado precedente" })).toH…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > a legacy numeric result remains committable with an explicit unavailable graph
+TestingLibraryElementError: Unable to find an element with the text: /Grafico non disponibile/. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              3
+               ·
+              4
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1,64583333
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              0,0078125
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="3"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/taylor-plot.test.tsx:66:17
+     64|   render(<TaylorLab onCommit={commit} />); predict(); compare();
+     65|   await screen.findByText(/Maggiorante conservativo/);
+     66|   expect(screen.getByText(/Grafico non disponibile/)).toBeTruthy();
+       |                 ^
+     67|   expect(screen.queryByRole("img")).toBeNull();
+     68|   expect(commit).toHaveBeenLastCalledWith(expect.objectContaining({ ac…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > rejects malformed nonfinite canonical data without inventing a curve
+ FAIL  src/__tests__/taylor-plot.test.tsx > rejects malformed unordered canonical data without inventing a curve
+ FAIL  src/__tests__/taylor-plot.test.tsx > rejects malformed oversized canonical data without inventing a curve
+ FAIL  src/__tests__/taylor-plot.test.tsx > rejects malformed request-x canonical data without inventing a curve
+TestingLibraryElementError: Unable to find role="alert"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              3
+               ·
+              4
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1,64583333
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              0,0078125
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="3"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              3
+               ·
+              4
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1,64583333
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              0,0078125
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="3"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/taylor-plot.test.tsx:80:16
+     78|   vi.stubGlobal("fetch", fetchResult(value)); const commit = vi.fn();
+     79|   render(<TaylorLab onCommit={commit} />); predict(); compare();
+     80|   await screen.findByRole("alert");
+       |                ^
+     81|   expect(screen.queryByRole("img")).toBeNull();
+     82|   expect(commit.mock.calls.every(([item]) => item === null)).toBe(true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > rejects malformed degree canonical data without inventing a curve
+TestingLibraryElementError: Unable to find role="alert"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              8
+               ·
+              4
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1,64583333
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              0,0078125
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="3"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="taylor-title"
+      class="physics-lab taylor-lab"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="section-meta"
+        >
+          Analisi 1 · banco originale DRAFT
+        </p>
+        <h2
+          id="taylor-title"
+        >
+          Quanto basta per approssimare?
+        </h2>
+        <p>
+          Scegli un grado. Prevedi il valore e spiega come controlleresti il resto, poi confronta il polinomio con il modello.
+        </p>
+      </div>
+      <div
+        class="lab-layout"
+      >
+        <div
+          class="lab-experiment"
+        >
+          <div
+            class="lab-caption"
+          >
+            <span>
+              Maclaurin di exp
+            </span>
+            <span>
+              Centro 0
+            </span>
+          </div>
+          <svg
+            aria-label="Il polinomio somma i termini da zero al grado scelto"
+            role="img"
+            viewBox="0 0 560 260"
+          >
+            <path
+              d="M45 200H520M75 225V35"
+              fill="none"
+              opacity=".4"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M90 190C190 185 265 150 335 105S450 45 500 35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M90 190L185 170L285 140L385 95L490 43"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-dasharray="5 5"
+              stroke-width="2"
+            />
+            <text
+              x="120"
+              y="65"
+            >
+              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+            </text>
+            <text
+              x="120"
+              y="230"
+            >
+              Schema della costruzione · n + 1 termini
+            </text>
+          </svg>
+          <div
+            aria-busy="false"
+            aria-live="polite"
+            class="lab-result"
+          >
+            <span>
+              Polinomio di grado
+              8
+               ·
+              4
+               termini
+            </span>
+            <strong>
+              Pₙ(
+              0.5
+              ) =
+              1,64583333
+            </strong>
+            <p>
+              Maggiorante conservativo |Rₙ| ≤
+
+              0,0078125
+            </p>
+            <p>
+              Controllo numerico DRAFT. Il procedimento e la dimostrazione del limite richiedono la verifica del tutor.
+            </p>
+          </div>
+        </div>
+        <form
+          class="lab-controls"
+        >
+          <label>
+            La tua previsione e il controllo del resto
+            <textarea
+              aria-label="La tua previsione e il controllo del resto"
+              maxlength="1000"
+              rows="3"
+            >
+              Mi aspetto una curva più vicina aumentando il grado; controllo il maggiorante.
+            </textarea>
+          </label>
+          <label>
+            Argomento x
+            <input
+              max="1"
+              min="-1"
+              step="any"
+              type="number"
+              value="0.5"
+            />
+          </label>
+          <label>
+            Grado del polinomio
+            <input
+              max="12"
+              min="0"
+              step="1"
+              type="number"
+              value="3"
+            />
+          </label>
+          <button
+            class="button-primary"
+          >
+            Registra la previsione e confronta
+          </button>
+          <details>
+            <summary>
+              Ipotesi e limiti del banco
+            </summary>
+            <p>
+              Exp reale, centro 0, −1 ≤ x ≤ 1, grado 0–12.
+            </p>
+            <p>
+              Il calcolo non approva il ragionamento scritto. Revisione scientifica umana: da eseguire.
+            </p>
+          </details>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/taylor-plot.test.tsx:80:16
+     78|   vi.stubGlobal("fetch", fetchResult(value)); const commit = vi.fn();
+     79|   render(<TaylorLab onCommit={commit} />); predict(); compare();
+     80|   await screen.findByRole("alert");
+       |                ^
+     81|   expect(screen.queryByRole("img")).toBeNull();
+     82|   expect(commit.mock.calls.every(([item]) => item === null)).toBe(true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/__tests__/taylor-plot.test.tsx > invalid inputs do not call; a response for edited inputs never restores a stale curve or commit
+AssertionError: expected SVGSVGElement{ …(2), …(2) } to be null
+
+- Expected:
+null
+
++ Received:
+<svg
+  aria-label="Il polinomio somma i termini da zero al grado scelto"
+  role="img"
+  viewBox="0 0 560 260"
+>
+  <path
+    d="M45 200H520M75 225V35"
+    fill="none"
+    opacity=".4"
+    stroke="currentColor"
+    stroke-width="1"
+  />
+  <path
+    d="M90 190C190 185 265 150 335 105S450 45 500 35"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  />
+  <path
+    d="M90 190L185 170L285 140L385 95L490 43"
+    fill="none"
+    stroke="var(--accent)"
+    stroke-dasharray="5 5"
+    stroke-width="2"
+  />
+  <text
+    x="120"
+    y="65"
+  >
+    Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
+  </text>
+  <text
+    x="120"
+    y="230"
+  >
+    Schema della costruzione · n + 1 termini
+  </text>
+</svg>
+
+ ❯ src/__tests__/taylor-plot.test.tsx:95:37
+     93|   fireEvent.change(screen.getByLabelText("Argomento x"), { target: { v…
+     94|   await act(async () => { resolve(new Response(JSON.stringify(canonica…
+     95|   expect(screen.queryByRole("img")).toBeNull();
+       |                                     ^
+     96|   expect(commit.mock.calls.every(([item]) => item === null)).toBe(true…
+     97| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  23:51:13
+   Duration  9.36s (transform 160ms, setup 0ms, import 345ms, tests 6.52s, environment 1.96s)

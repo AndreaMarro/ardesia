@@ -1,0 +1,188 @@
+..F                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_huge_json_integer_prediction_is_422_and_atomic_for_scalar_and_legacy_ratio _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-38/test_huge_json_integer_predict0')
+
+    def test_huge_json_integer_prediction_is_422_and_atomic_for_scalar_and_legacy_ratio(tmp_path):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+        with TestClient(create_app(store.path, demo=True)) as client:
+            client.post('/study/session', json={'token': store.issue_session(student)})
+            experience = client.get('/study/learning-experiences?editionId=fluidi&format=composable').json()['experiences'][0]
+            step = experience['steps'][0]
+            for name, activity_id, parameters, evidence in [
+                ('scalar', step['activityId'], step['parameters'], {'schemaVersion': 2,
+                 'experienceRef': experience['experienceRef'], 'stepId': step['id'],
+                 'prediction': {'kind': 'scalar', 'value': 10**1000, 'unit': 'Pa'}, 'supportUsed': []}),
+                ('legacy', 'poiseuille-v1', {'radiusRatio': 2, 'boundary': 'flow'}, {'schemaVersion': 1,
+                 'experienceId': 'poiseuille-boundary-v1', 'stepId': 'fixed-flow',
+                 'prediction': {'ratio': 10**1000, 'fixedQuantity': 'flow'}, 'supportUsed': []}),
+            ]:
+>               response = client.post('/study/submissions', json={'editionId': 'fluidi', 'activityId': activity_id,
+                    'activityParameters': parameters, 'text': 'Procedimento originale sintetico.', 'activityEvidence': evidence},
+                    headers={'Idempotency-Key': 'huge-integer-' + name})
+
+services/study-api/tests/test_learning_composition_http.py:81:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_client.py:1144: in post
+    return self.request(
+services/study-api/.venv/lib/python3.13/site-packages/starlette/testclient.py:518: in request
+    return super().request(
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_client.py:928: in send
+    raise exc
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_client.py:922: in send
+    response.read()
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_models.py:881: in read
+    self._content = b"".join(self.iter_bytes())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_models.py:897: in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_models.py:951: in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/httpx/_client.py:153: in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/starlette/testclient.py:384: in iter_body
+    exit_stack.close()
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/contextlib.py:627: in close
+    self.__exit__(None, None, None)
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/contextlib.py:619: in __exit__
+    raise exc
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/contextlib.py:604: in __exit__
+    if cb(*exc_details):
+       ^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/starlette/testclient.py:399: in close_app
+    raise exception
+services/study-api/.venv/lib/python3.13/site-packages/anyio/from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/starlette/testclient.py:366: in run_app
+    await self.app(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/applications.py:1163: in __call__
+    await super().__call__(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+services/study-api/study_api/body_admission.py:97: in __call__
+    await self.app(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py:186: in __call__
+    raise exc
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/base.py:203: in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/study_api/app.py:167: in local_boundary
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/base.py:179: in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/base.py:149: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+services/study-api/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/routing.py:678: in __call__
+    await self.middleware_stack(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:2683: in app
+    await route.handle(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:1266: in handle
+    await super().handle(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/routing.py:284: in handle
+    await self.app(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:150: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+services/study-api/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+services/study-api/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:136: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:690: in app
+    raw_response = await run_endpoint_function(
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/routing.py:346: in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/starlette/concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/anyio/to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+services/study-api/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+services/study-api/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+services/study-api/study_api/app.py:466: in submission
+    return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/submissions.py:94: in submit
+    return transact(store,principal,'submission.received',key,payload,apply)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/transactions.py:40: in transact
+    return execute_command(store,principal,operation,key,payload,apply,receipt_recorded=event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/transactions.py:30: in execute_command
+    body=apply(c)
+         ^^^^^^^^
+packages/engine/lessonos/study/submissions.py:56: in apply
+    evidence=freeze_activity_evidence(store,principal,edition_id,activity_id,activity_parameters,activity_evidence,source_refs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/learning_experiences.py:205: in freeze_activity_evidence
+    return _freeze_composable_evidence(store, principal, edition_id, activity_id, parameters, evidence, source_refs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x10ac3d4e0>
+principal = Principal(id='student-01', role='student'), edition_id = 'fluidi'
+activity_id = 'hydrostatic-v1'
+parameters = {'density': 1000, 'g': 9.81, 'depth': 2, 'surfacePressure': 101325, ...}
+evidence = {'schemaVersion': 2, 'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'da8c78300b95c9ca4214...d': 'relative', 'prediction': {'kind': 'scalar', 'value': 100000000000000000...0000000000000000000, 'unit': 'Pa'}, ...}
+source_refs = []
+
+    def _freeze_composable_evidence(store, principal, edition_id, activity_id, parameters, evidence, source_refs):
+        invalid = StudyError('invalid_activity_evidence')
+        required = {'schemaVersion', 'experienceRef', 'stepId', 'prediction', 'supportUsed'}
+        if not required <= set(evidence) or set(evidence) - required - {'lessonPassageRef'}:
+            raise invalid
+        reference = evidence['experienceRef']
+        if (not isinstance(reference, dict) or set(reference) != {'id', 'version', 'sha256'}
+                or not isinstance(reference['id'], str) or type(reference['version']) is not int
+                or not isinstance(reference['sha256'], str)):
+            raise invalid
+        experience = next((item for item in list_experiences(store, principal, edition_id, format='composable')['experiences']
+                           if item['experienceRef'] == reference), None)
+        step = next((item for item in experience['steps'] if item['id'] == evidence['stepId']), None) if experience else None
+        if not step or step['activityId'] != activity_id or canonical(parameters) != canonical(step['parameters']):
+            raise invalid
+        prediction = evidence['prediction']
+        kind = step['prediction']['kind']
+        if kind == 'scalar':
+            if (not isinstance(prediction, dict) or set(prediction) != {'kind', 'value', 'unit'}
+                    or prediction['kind'] != 'scalar' or type(prediction['value']) not in (int, float)
+>                   or not math.isfinite(prediction['value']) or not isinstance(prediction['unit'], str)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    or not 1 <= len(prediction['unit'].strip()) <= 32):
+E                   OverflowError: int too large to convert to float
+
+packages/engine/lessonos/study/learning_experiences.py:287: OverflowError
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /private/tmp/ardesia-r2-20261024/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_learning_composition_http.py::test_huge_json_integer_prediction_is_422_and_atomic_for_scalar_and_legacy_ratio
+1 failed, 2 passed, 1 warning in 4.98s

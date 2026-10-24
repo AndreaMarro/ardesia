@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import {
   courseTitle,
   courseSubject,
@@ -11,13 +11,14 @@ import { PhysicsLab } from "../components/PhysicsLab";
 import { SubmissionPanel } from "../../../studio/src/study/SubmissionPanel";
 import { SourceBoard } from "../components/SourceBoard";
 import { useResourceComposer } from "../components/useResourceComposer";
-import { ErrorNotice } from "../components/Feedback";
+import { ErrorNotice, Loading } from "../components/Feedback";
 import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
 import { QuestionBankReview } from "../components/QuestionBankReview";
 import { PoiseuilleEpisode } from "../components/PoiseuilleEpisode";
+const ScalarExperienceEpisode = lazy(() => import("../components/ScalarExperienceEpisode").then(module => ({default: module.ScalarExperienceEpisode})));
 
 type Props = {
   me: StudyMe;
@@ -38,6 +39,7 @@ function ClassroomScope({
 }: Props) {
   const [commit, setCommit] = useState<ActivityCommit | null>(null);
   const [guidedEpisode, setGuidedEpisode] = useState(false);
+  const [pressureEpisode, setPressureEpisode] = useState(false);
   const [source, setSource] = useState<PostitReference | null>(null);
   const [selectionMessage, setSelectionMessage] = useState("");
   const tutor = me.role === "teacher";
@@ -80,9 +82,10 @@ function ClassroomScope({
       </header>
       {activityId === "poiseuille-v1" && data.enrolled && <div className="episode-entry">
         <div><h2>Una lezione, tre previsioni.</h2><p>Raggio doppio, cambio di vincolo e una nuova prova. Ritrova il passaggio del tutor e conserva il tuo ragionamento.</p></div>
-        <button className="button-primary" aria-expanded={guidedEpisode} onClick={() => setGuidedEpisode(value => !value)}>
+        <button className="button-primary" aria-expanded={guidedEpisode} onClick={() => {setGuidedEpisode(value => !value); setPressureEpisode(false);}}>
           {guidedEpisode ? "Torna al laboratorio libero" : "Apri episodio guidato"}
         </button>
+        <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
         {activityId === "taylor-exp-v1" ? (
@@ -90,6 +93,8 @@ function ClassroomScope({
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
           />
+        ) : activityId === "poiseuille-v1" && data.enrolled && pressureEpisode ? (
+          <Suspense fallback={<Loading>Apro il percorso di pressione…</Loading>}><ScalarExperienceEpisode me={me} data={data} onUpdate={onUpdate} /></Suspense>
         ) : activityId === "poiseuille-v1" && data.enrolled && guidedEpisode ? (
           <PoiseuilleEpisode me={me} data={data} onUpdate={onUpdate} />
         ) : activityId === "poiseuille-v1" ? (
@@ -170,7 +175,7 @@ function ClassroomScope({
               setSelectionMessage("Fonte collegata alla prossima consegna.");
             }}
           />
-          {!tutor && activityId && !guidedEpisode && (
+          {!tutor && activityId && !guidedEpisode && !pressureEpisode && (
             <section className="submission-surface">
               <SubmissionPanel
                 key={`${me.id}:${data.edition.id}`}

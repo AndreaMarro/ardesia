@@ -1,0 +1,237 @@
+{
+  "schema": "ardesia.rea-D.evidence-ledger.v1",
+  "rawDonorLocation": "work only; donor screenshots/source are not product assets",
+  "reaVersion": "6.7.0",
+  "records": [
+    {
+      "file": "D-ohm-controls-evidence.json",
+      "evidenceId": "ev_fb3129e5ab8261a06ac6883bb4018df24b073a5be5cc6efb36f6fa489ccc3df3",
+      "sha256": "e0845e701b75339bbf34b9d59e247e513020d830055bcc006343e2e60f360397",
+      "bytes": 837328,
+      "durationMs": 17327,
+      "steps": 7,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "actions": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "settle",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-circuits",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-basics",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "choose-ohm",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-model-controls",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "D-ohm-parameter-evidence.json",
+      "evidenceId": "ev_116bfa2268d7c888b89b4543f7f0a09b861f458a6350b0ca1b2a7bd86cc23cb1",
+      "sha256": "5354ebf8a02bdc7ccdef4369d846df85691ada404bba9a75df96dcec1ab0c157",
+      "bytes": 2469196,
+      "durationMs": 13576,
+      "steps": 13,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "actions": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "settle",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-circuits",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-basics",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "choose-ohm",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-model-controls",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "set-voltage-midpoint",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-voltage-change",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "keyboard-home",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-keyboard-home",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "keyboard-arrow-right",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-keyboard-arrow",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "D-ohm-mobile-evidence.json",
+      "evidenceId": "ev_216ea741492c13124396a23e394e2a1faa8c18567349756b8e362b83909cf3da",
+      "sha256": "33ba72a3ebd117154a02dcd84015c3cad9877c52ad5c5e1a5735565d23c84192",
+      "bytes": 1254142,
+      "durationMs": 18897,
+      "steps": 11,
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "accessibility",
+          "action",
+          "dom",
+          "screenshot",
+          "url"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "actions": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "settle",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-circuits",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-basics",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "choose-ohm",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "observe-model-controls",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "set-voltage-midpoint",
+          "status": "failed",
+          "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#painel > canvas:nth-of-type(4)')\u001b[22m\n\u001b[2m    - locator resolved to <canvas width=\"128\" height=\"14\"></canvas>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - element is outside of the viewport\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">\u2026</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">\u2026</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  2 \u00d7 retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m  4 \u00d7 retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">\u2026</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">\u2026</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">\u2026</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n"
+        },
+        {
+          "step_id": "observe-voltage-change",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        },
+        {
+          "step_id": "keyboard-home",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        },
+        {
+          "step_id": "observe-keyboard-home",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        }
+      ]
+    }
+  ]
+}

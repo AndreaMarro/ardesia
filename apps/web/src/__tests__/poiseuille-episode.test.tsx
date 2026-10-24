@@ -174,3 +174,76 @@ test("the revised transfer uses the Core visual values and never the ordinary fi
   expect(screen.queryByRole("button", {name: "Guarda la relazione nel grafico"})).toBeNull();
   expect(screen.getAllByText(/η\/η₀ = 2/).length).toBeGreaterThan(0);
 });
+
+test("REA A opens a partial hint before the relation and preserves the attempt and exact source through correction", async () => {
+  const submissions: Record<string, any>[] = [];
+  vi.stubGlobal("fetch", vi.fn(async (path: string, init?: RequestInit) => {
+    if (path.includes("learning-experiences")) return new Response(JSON.stringify({experiences: [experience]}));
+    if (path.endsWith("/submissions")) {
+      const payload = JSON.parse(init!.body as string);
+      submissions.push(payload);
+      return new Response(JSON.stringify({receiptId: "hint-receipt-" + submissions.length,
+        submissionId: "hint-submission-" + submissions.length, revision: 1,
+        activityEvidence: {...payload.activityEvidence,
+          result: {ratio: 16, fixedQuantity: "pressure", calculatedVariable: "Q/Q0"},
+          check: {ratioMatches: false, constraintMatches: false}, assistance: "SUPPORT_REQUESTED"}}));
+    }
+    throw new Error("Unexpected request " + path);
+  }));
+  render(<PoiseuilleEpisode me={me} data={{...data, resources: [passage]}} onUpdate={async () => {}} />);
+  const ratio = await screen.findByLabelText("Rapporto previsto") as HTMLInputElement;
+  const boundary = screen.getByLabelText("Grandezza che resta fissata") as HTMLSelectElement;
+  const procedure = screen.getByLabelText("Spiega il vincolo e il procedimento") as HTMLTextAreaElement;
+  const explanation = "La portata resta costante e confronto il raggio dei due tubi.";
+  fireEvent.change(ratio, {target: {value: "4"}});
+  fireEvent.change(boundary, {target: {value: "flow"}});
+  fireEvent.change(procedure, {target: {value: explanation}});
+  expect(screen.queryByRole("button", {name: "Mostra il secondo aiuto"})).toBeNull();
+  fireEvent.click(screen.getByRole("button", {name: "Un aiuto sul vincolo"}));
+  expect(screen.queryByText(/Parti da Q = π r⁴ Δp/)).toBeNull();
+  expect(screen.queryByTestId("episode-ratio")).toBeNull();
+  expect(submissions).toHaveLength(0);
+  expect(ratio.value).toBe("4"); expect(boundary.value).toBe("flow"); expect(procedure.value).toBe(explanation);
+  fireEvent.click(screen.getByRole("button", {name: "Mostra il secondo aiuto"}));
+  expect(screen.getByText(/Aiuto 2 di 2\. Parti da Q = π r⁴ Δp/)).toBeTruthy();
+  expect(screen.getByRole("button", {name: "Mostra il secondo aiuto"}).getAttribute("aria-expanded")).toBe("true");
+  expect(screen.queryByTestId("episode-ratio")).toBeNull();
+  fireEvent.click(screen.getByRole("button", {name: "Un aiuto sul vincolo"}));
+  expect(ratio.value).toBe("4"); expect(boundary.value).toBe("flow"); expect(procedure.value).toBe(explanation);
+  fireEvent.click(screen.getByRole("button", {name: "Registra previsione e confronta"}));
+  await screen.findByTestId("episode-ratio");
+  fireEvent.click(screen.getByRole("button", {name: "Correggi con il risultato visto"}));
+  expect(ratio.value).toBe("4"); expect(boundary.value).toBe("flow"); expect(procedure.value).toBe(explanation);
+  fireEvent.click(screen.getByRole("button", {name: "Registra previsione e confronta"}));
+  await screen.findByTestId("episode-ratio");
+  expect(submissions).toHaveLength(2);
+  for (const payload of submissions) {
+    expect(payload.activityParameters).toEqual({radiusRatio: 2, boundary: "pressure"});
+    expect(payload.sourceRefs).toEqual([{resourceId: "synthetic-passage", revisionId: "exact-revision"}]);
+    expect(payload.activityEvidence.lessonPassageRef).toEqual({resourceId: "synthetic-passage", revisionId: "exact-revision"});
+    expect(payload.activityEvidence.prediction).toEqual({ratio: 4, fixedQuantity: "flow"});
+    expect(payload.text).toBe("Previsione: 4; grandezza fissata: Q.\n\nProcedimento: " + explanation);
+  }
+  expect(submissions[0].activityEvidence.supportUsed).toEqual(["constraint-hint"]);
+  expect(submissions[1].activityEvidence.supportUsed).toEqual(["constraint-hint", "model-result"]);
+  expect(submissions[1].parentId).toBe("hint-submission-1");
+  fireEvent.click(screen.getByRole("button", {name: "Cambia il vincolo"}));
+  expect(screen.queryByText(/Aiuto 1 di 2/)).toBeNull();
+  expect(screen.queryByText(/Aiuto 2 di 2/)).toBeNull();
+  expect((screen.getByLabelText("Rapporto previsto") as HTMLInputElement).value).toBe("");
+  expect((screen.getByLabelText("Spiega il vincolo e il procedimento") as HTMLTextAreaElement).value).toBe("");
+  expect(document.activeElement).toBe(screen.getByRole("heading", {name: "Raggio doppio, portata fissata"}));
+});
+
+test("the Poiseuille renderer excludes scalar and mixed-activity experiences", async () => {
+  const scalar = {...experience, id: "scalar-first", title: "Pressione idrostatica", steps: [
+    {...experience.steps[0], activityId: "hydrostatic-pressure-v1"},
+  ]};
+  const mixed = {...experience, id: "mixed", title: "Manifest misto", steps: [experience.steps[0], scalar.steps[0]]};
+  vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({experiences: [scalar, mixed, experience]}))));
+  render(<PoiseuilleEpisode me={me} data={data} onUpdate={async () => {}} />);
+  expect(await screen.findByRole("heading", {name: experience.title})).toBeTruthy();
+  expect(screen.queryByRole("heading", {name: "Pressione idrostatica"})).toBeNull();
+  expect(screen.queryByRole("option", {name: "Manifest misto"})).toBeNull();
+  expect(screen.queryByLabelText("Variante del percorso")).toBeNull();
+});

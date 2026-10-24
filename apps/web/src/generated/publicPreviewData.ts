@@ -44,7 +44,7 @@ export const publicPreviewData = {
     "packages/engine/lessonos/study/activities.py": "75da833a014c90142bd75dc03952de4bbf0c26a29551f1b7074148f6b5c0f603",
     "packages/engine/lessonos/study/public_preview.py": "d9840365acb0ecdd1612dc3259b5a825bf1a346e279ed785240336380ff783f1",
     "bin/web/poiseuille-demo.json": "3fa466d4e394549e0e9dd8dd1e11bdf18105429f0a50710907429dce8c82f3b4",
-    "bin/web/export_public_preview.py": "4bd909291ae973c9e1dd3f8daccf4af0138ad59ac05a50034de78f7e84c3e16e"
+    "bin/web/export_public_preview.py": "f4382874b663130fbd2a7cbbc44856b5e3eeaa4b04da7c29e468ecdfabbdfd75"
   },
   "course": {
     "id": "fluidi-public-v1",
@@ -64,6 +64,740 @@ export const publicPreviewData = {
     "min": 0.5,
     "max": 2.0,
     "step": 0.05
+  },
+  "hydrostatic": {
+    "depth": {
+      "min": 0,
+      "max": 4,
+      "step": 0.5
+    },
+    "densities": [
+      1000,
+      800
+    ],
+    "surfacePressure": 101325,
+    "cases": [
+      {
+        "parameters": {
+          "depth": 0.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 0.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 101325.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 0.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 101325.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 4905.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 106230.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 3924.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 0.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 105249.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 9810.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 111135.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 7848.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 109173.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 14715.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 116040.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 11772.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 1.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 113097.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 19620.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 120945.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 15696.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 117021.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 24525.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 125850.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 19620.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 2.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 120945.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 29430.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 130755.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 23544.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 124869.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 34335.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.5,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 135660.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 27468.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 3.5,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 128793.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 4.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 39240.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 4.0,
+          "density": 1000,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 140565.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 4.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "gauge"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 31392.0,
+          "unit": "Pa",
+          "calculatedVariable": "Incremento rispetto alla superficie",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      },
+      {
+        "parameters": {
+          "depth": 4.0,
+          "density": 800,
+          "g": 9.81,
+          "surfacePressure": 101325,
+          "reference": "absolute"
+        },
+        "result": {
+          "activityId": "hydrostatic-v1",
+          "version": 1,
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic",
+          "value": 132717.0,
+          "unit": "Pa",
+          "calculatedVariable": "Pressione assoluta",
+          "fixedQuantity": "densità, g e pressione alla superficie",
+          "domain": "Liquido incomprimibile fermo, densità uniforme, profondità misurata sotto la superficie. Δp = ρgh; p = p_superficie + ρgh."
+        }
+      }
+    ]
   },
   "cases": [
     {"parameters": {"radiusRatio": 0.5, "boundary": "pressure"}, "visual": {"flowRatio": 0.0625, "pressureRatio": 1.0, "meanSpeedRatio": 0.25}, "result": {"activityId": "poiseuille-v1", "version": 1, "ratio": 0.0625, "fixedQuantity": "pressure", "calculatedVariable": "Q/Q0", "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.", "editorialStatus": "DRAFT", "numericalCheck": "deterministic"}},

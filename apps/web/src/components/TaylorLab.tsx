@@ -4,14 +4,7 @@ import type { ActivityCommit } from "../course";
 import { readResourceDraft, writeResourceDraft } from "./sessionDraftCache";
 import { requestKey } from "../api";
 import { ErrorNotice } from "./Feedback";
-type Result = {
-  value: number;
-  degree: number;
-  terms: number;
-  remainderBound: number;
-  domain: string;
-  scientificApproval: "NOT_RUN";
-};
+import { readTaylorResult, TaylorPlot, type TaylorResult } from "./TaylorPlot";
 export function TaylorLab({
   onCommit,
   draftKey,
@@ -31,7 +24,7 @@ export function TaylorLab({
   const [x, setX] = useState(saved.current?.x ?? "0.5"),
     [degree, setDegree] = useState(saved.current?.degree ?? "3"),
     [prediction, setPrediction] = useState(saved.current?.prediction ?? "");
-  const [result, setResult] = useState<Result | null>(null),
+  const [result, setResult] = useState<TaylorResult | null>(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const generation = useRef(0),
@@ -65,6 +58,7 @@ export function TaylorLab({
   function change(update: () => void) {
     update();
     generation.current++;
+    controller.current?.abort();
     setResult(null);
     setError("");
     onCommit(null);
@@ -78,12 +72,13 @@ export function TaylorLab({
     const parameters = { x: Number(x), degree: Number(degree) };
     controller.current = new AbortController();
     try {
-      const value = await studyRequest<Result>(
+      const response = await studyRequest<unknown>(
         "/activities/evaluate",
         { activityId: "taylor-exp-v1", parameters },
         { signal: controller.current.signal },
       );
       if (current !== generation.current || !mounted.current) return;
+      const value = readTaylorResult(response, parameters);
       setResult(value);
       onCommit({
         activityId: "taylor-exp-v1",
@@ -121,38 +116,7 @@ export function TaylorLab({
             <span>Maclaurin di exp</span>
             <span>Centro 0</span>
           </div>
-          <svg
-            viewBox="0 0 560 260"
-            role="img"
-            aria-label="Il polinomio somma i termini da zero al grado scelto"
-          >
-            <path
-              d="M45 200H520M75 225V35"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              opacity=".4"
-            />
-            <path
-              d="M90 190C190 185 265 150 335 105S450 45 500 35"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="M90 190L185 170L285 140L385 95L490 43"
-              fill="none"
-              stroke="var(--accent)"
-              strokeWidth="2"
-              strokeDasharray="5 5"
-            />
-            <text x="120" y="65">
-              Pₙ(x) = 1 + x + x²/2! + … + xⁿ/n!
-            </text>
-            <text x="120" y="230">
-              Schema della costruzione · n + 1 termini
-            </text>
-          </svg>
+          {result && <TaylorPlot result={result} x={Number(x)} />}
           <div className="lab-result" aria-live="polite" aria-busy={busy}>
             {result ? (
               <>
@@ -166,6 +130,7 @@ export function TaylorLab({
                   Maggiorante conservativo |Rₙ| ≤{" "}
                   {format(result.remainderBound)}
                 </p>
+                {result.absoluteError !== undefined && <p>Scarto numerico rispetto a exp del Core: {format(result.absoluteError)}. Il maggiorante resta un controllo distinto.</p>}
                 <p>
                   Controllo numerico DRAFT. Il procedimento e la dimostrazione
                   del limite richiedono la verifica del tutor.
@@ -222,6 +187,10 @@ export function TaylorLab({
               onChange={(event) => change(() => setDegree(event.target.value))}
             />
           </label>
+          <div className="taylor-degree-steps" role="group" aria-label="Costruzione per gradi">
+            <button type="button" disabled={!valid || Number(degree) === 0} onClick={() => change(() => setDegree(String(Number(degree) - 1)))}>Grado precedente</button>
+            <button type="button" disabled={!valid || Number(degree) === 12} onClick={() => change(() => setDegree(String(Number(degree) + 1)))}>Grado successivo</button>
+          </div>
           {!valid && (
             <p role="alert">Scegli x tra −1 e 1 e un grado intero da 0 a 12.</p>
           )}

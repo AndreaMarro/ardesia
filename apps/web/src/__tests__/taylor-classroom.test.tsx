@@ -10,6 +10,9 @@ afterEach(() => {
   history.replaceState(null, "", "/");
 });
 test("the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt", async () => {
+  // Keep this course/receipt assertion independent of the real lazy module's
+  // transform time. The separate loading probe retains Suspense and routing.
+  await import("../features/Classroom");
   history.replaceState(null, "", "/?edition=analysis-2026&view=classroom");
   const cache = new Map<string, string>();
   vi.stubGlobal("localStorage", {

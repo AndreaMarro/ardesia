@@ -1228,6 +1228,18 @@ dd {
 .experience-next p { max-width: 62ch; color: var(--muted); font-size: 14px; }
 .experience-next a { white-space: normal; text-align: center; text-decoration: none; }
 .experience-disclosure { color: var(--muted); font-size: 12px; max-width: 90ch; margin-bottom: 32px; }
+.experience-models { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+.experience-models button { border: 1px solid var(--line); border-radius: 999px; padding: 12px 20px; background: transparent; color: var(--ink); }
+.experience-models button[aria-pressed="true"] { background: #f2e5dc; border-color: var(--accent-text); color: var(--accent-text); }
+.hydrostatic-model { margin: 0; min-width: 0; }
+.hydrostatic-model svg { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; }
+.hydrostatic-model text { font-family: inherit; font-size: 14px; fill: currentColor; }
+@media (max-width: 600px) { .hydrostatic-model text { font-size: 22px; } }
+@media (max-width: 420px) { .hydrostatic-model text { font-size: 24px; } }
+.hydrostatic-model figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); margin: 14px 0; }
+.composition-phases { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; margin: 20px 0; }
+.composition-phases li { padding: 6px 10px; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; }
+.composition-phases li[aria-current="step"] { border-color: var(--accent-text); color: var(--accent-text); }
 .public-experience footer { display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 12px; }
 @media (max-width: 1000px) {
   .public-experience { padding: 0 30px; }

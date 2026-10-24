@@ -1,0 +1,74 @@
+........................FF..                                             [100%]
+=================================== FAILURES ===================================
+_ test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source[change3] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-33/test_composition_preview_rejec3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b92ff00>
+change = {'answer': 19620}
+
+    @pytest.mark.parametrize('change', [
+        {'phases': ['situation', 'model', 'prediction', 'visual', 'explanation', 'source']},
+        {'activityVersion': 2},
+        {'parameters': {'density': 1000, 'depth': 2, 'reference': 'gauge', 'untracked': True}},
+        {'answer': 19620},
+        {'exerciseRef': 'DOES-NOT-EXIST'},
+    ])
+    def test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source(tmp_path, monkeypatch, change):
+        from pathlib import Path
+        from lessonos.study.learning_experiences import list_experiences
+        store, tutor, student, *_ = setup_store(tmp_path)
+        original_read = Path.read_text
+        def malformed(path, *args, **kwargs):
+            raw = original_read(path, *args, **kwargs)
+            if path.name == 'learning-compositions-v1.json':
+                data = json.loads(raw)
+                data['experiences'][0]['steps'][0].update(change)
+                return json.dumps(data)
+            return raw
+        monkeypatch.setattr(Path, 'read_text', malformed)
+>       with pytest.raises(StudyError, match='invalid_experience_composition'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE StudyError
+
+packages/engine/tests/study/test_learning_experiences.py:287: Failed
+_ test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source[change4] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-33/test_composition_preview_rejec4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b97ad50>
+change = {'exerciseRef': 'DOES-NOT-EXIST'}
+
+    @pytest.mark.parametrize('change', [
+        {'phases': ['situation', 'model', 'prediction', 'visual', 'explanation', 'source']},
+        {'activityVersion': 2},
+        {'parameters': {'density': 1000, 'depth': 2, 'reference': 'gauge', 'untracked': True}},
+        {'answer': 19620},
+        {'exerciseRef': 'DOES-NOT-EXIST'},
+    ])
+    def test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source(tmp_path, monkeypatch, change):
+        from pathlib import Path
+        from lessonos.study.learning_experiences import list_experiences
+        store, tutor, student, *_ = setup_store(tmp_path)
+        original_read = Path.read_text
+        def malformed(path, *args, **kwargs):
+            raw = original_read(path, *args, **kwargs)
+            if path.name == 'learning-compositions-v1.json':
+                data = json.loads(raw)
+                data['experiences'][0]['steps'][0].update(change)
+                return json.dumps(data)
+            return raw
+        monkeypatch.setattr(Path, 'read_text', malformed)
+>       with pytest.raises(StudyError, match='invalid_experience_composition'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE StudyError
+
+packages/engine/tests/study/test_learning_experiences.py:287: Failed
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /private/tmp/ardesia-r2-20261024/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source[change3]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composition_preview_rejects_reveal_before_prediction_or_unpinned_source[change4]
+2 failed, 26 passed, 1 warning in 3.00s

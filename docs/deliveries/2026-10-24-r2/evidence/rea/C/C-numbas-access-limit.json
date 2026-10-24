@@ -1,0 +1,14 @@
+{
+  "timeUTC": "2026-10-24T21:23:35.486411+00:00",
+  "target": "https://numbas.mathcentre.ac.uk/exam/34619/explore-mode-demo/",
+  "independentHTTPProbe": {
+    "command": "curl -I --max-time 10 URL",
+    "exitCode": 28,
+    "result": "Connection timed out after10001ms; noHTTPresponse"
+  },
+  "webTool": "TimeoutError",
+  "reaScenario": "Completed with net::ERR_CONNECTION_TIMED_OUT after84458ms; cleanup terminated-owned-process. A later kill attempt returned no such process; it did not cause the captured failure.",
+  "classification": "Access limitation, not an observed applicationvalidationnegative; no authbypass or retryidenticalinput",
+  "previousClaim": "initial navigation did not return; controlled cancellation sent to ownedREAprocess afterboundedinvestigation window",
+  "correctedAtUTC": "2026-10-24T22:00:18.834720+00:00"
+}

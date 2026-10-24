@@ -329,9 +329,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
 
     @app.get('/study/learning-experiences')
-    def learning_experiences(editionId: str, request: Request, store=Depends(store_dependency)):
+    def learning_experiences(editionId: str, request: Request, format: str='legacy', store=Depends(store_dependency)):
         from lessonos.study.learning_experiences import list_experiences
-        return list_experiences(store,authenticate(request,store),editionId)
+        return list_experiences(store,authenticate(request,store),editionId,format=format)
 
     @app.get('/study/coursepack')
     def coursepack(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):

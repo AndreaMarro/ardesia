@@ -1,0 +1,53 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_plot_samples_are_finite_canonical_values_with_independent_error_bound[0] _
+
+degree = 0
+
+    @pytest.mark.parametrize('degree', [0, 3, 8])
+    def test_plot_samples_are_finite_canonical_values_with_independent_error_bound(degree):
+        result = evaluate_activity('taylor-exp-v1', {'x': .5, 'degree': degree})
+>       plot = result['plot']
+               ^^^^^^^^^^^^^^
+E       KeyError: 'plot'
+
+packages/engine/tests/study/test_taylor_plot.py:15: KeyError
+_ test_plot_samples_are_finite_canonical_values_with_independent_error_bound[3] _
+
+degree = 3
+
+    @pytest.mark.parametrize('degree', [0, 3, 8])
+    def test_plot_samples_are_finite_canonical_values_with_independent_error_bound(degree):
+        result = evaluate_activity('taylor-exp-v1', {'x': .5, 'degree': degree})
+>       plot = result['plot']
+               ^^^^^^^^^^^^^^
+E       KeyError: 'plot'
+
+packages/engine/tests/study/test_taylor_plot.py:15: KeyError
+_ test_plot_samples_are_finite_canonical_values_with_independent_error_bound[8] _
+
+degree = 8
+
+    @pytest.mark.parametrize('degree', [0, 3, 8])
+    def test_plot_samples_are_finite_canonical_values_with_independent_error_bound(degree):
+        result = evaluate_activity('taylor-exp-v1', {'x': .5, 'degree': degree})
+>       plot = result['plot']
+               ^^^^^^^^^^^^^^
+E       KeyError: 'plot'
+
+packages/engine/tests/study/test_taylor_plot.py:15: KeyError
+___ test_degree_changes_the_curve_and_the_bound_without_changing_the_domain ____
+
+    def test_degree_changes_the_curve_and_the_bound_without_changing_the_domain():
+        outputs = [evaluate_activity('taylor-exp-v1', {'x': 1, 'degree': n}) for n in (0, 3, 8)]
+>       assert [output['plot']['samples'][-1]['value'] for output in outputs] == [1, 8 / 3, 109601 / 40320]
+                ^^^^^^^^^^^^^^
+E       KeyError: 'plot'
+
+packages/engine/tests/study/test_taylor_plot.py:42: KeyError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_taylor_plot.py::test_plot_samples_are_finite_canonical_values_with_independent_error_bound[0]
+FAILED packages/engine/tests/study/test_taylor_plot.py::test_plot_samples_are_finite_canonical_values_with_independent_error_bound[3]
+FAILED packages/engine/tests/study/test_taylor_plot.py::test_plot_samples_are_finite_canonical_values_with_independent_error_bound[8]
+FAILED packages/engine/tests/study/test_taylor_plot.py::test_degree_changes_the_curve_and_the_bound_without_changing_the_domain
+4 failed in 0.38s

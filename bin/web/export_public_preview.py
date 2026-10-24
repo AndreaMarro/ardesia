@@ -63,6 +63,21 @@ def build_projection():
         'course': public_course(),
         'radius': {'min': RADIUS_MIN, 'max': RADIUS_MAX, 'step': RADIUS_STEP},
         'cases': cases,
+        'hydrostatic': {
+            'depth': {'min': 0, 'max': 4, 'step': .5},
+            'densities': [1000, 800],
+            'surfacePressure': 101325,
+            'cases': [
+                {'parameters': parameters,
+                 'result': evaluate_activity('hydrostatic-v1', parameters)}
+                for depth in range(9)
+                for density in (1000, 800)
+                for reference in ('gauge', 'absolute')
+                for parameters in [{'depth': depth / 2, 'density': density,
+                                    'g': 9.81, 'surfacePressure': 101325,
+                                    'reference': reference}]
+            ],
+        },
     }
 
 
@@ -87,7 +102,7 @@ def main():
         if not OUTPUT.exists() or OUTPUT.read_text() != expected:
             print('STALE public preview: run python3 bin/web/export_public_preview.py', file=sys.stderr)
             return 1
-        print('PASS: public course, all 62 lab states and the distinct transfer match the current Core')
+        print('PASS: public course, 62 Poiseuille + 36 hydrostatic states and the distinct transfer match the current Core')
     else:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(expected)

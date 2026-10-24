@@ -1,0 +1,457 @@
+......FFFFFFFFFFFFFFFF                                                   [100%]
+=================================== FAILURES ===================================
+_ test_composable_projection_pins_pack_model_and_editorial_content_without_solutions _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_projection_pin0')
+
+    def test_composable_projection_pins_pack_model_and_editorial_content_without_solutions(tmp_path):
+        from lessonos.study.learning_experiences import list_experiences
+        store, tutor, student, peer, other = setup_store(tmp_path)
+        before = list_experiences(store, student, 'fluidi')
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:124:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109e46cf0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[relative-19620] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_scalar_prediction_receipt0')
+step_id = 'relative', value = 19620
+
+    @pytest.mark.parametrize('step_id,value', [('relative', 19620), ('absolute', 120945), ('transfer', 114335)])
+    def test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path(tmp_path, step_id, value):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+>       experience, step = composable_step(store, student, step_id)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:146:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x108f096a0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[absolute-120945] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_scalar_prediction_receipt1')
+step_id = 'absolute', value = 120945
+
+    @pytest.mark.parametrize('step_id,value', [('relative', 19620), ('absolute', 120945), ('transfer', 114335)])
+    def test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path(tmp_path, step_id, value):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+>       experience, step = composable_step(store, student, step_id)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:146:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f30250>
+actor = Principal(id='student-01', role='student'), step_id = 'absolute'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[transfer-114335] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_scalar_prediction_receipt2')
+step_id = 'transfer', value = 114335
+
+    @pytest.mark.parametrize('step_id,value', [('relative', 19620), ('absolute', 120945), ('transfer', 114335)])
+    def test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path(tmp_path, step_id, value):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+>       experience, step = composable_step(store, student, step_id)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:146:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f30650>
+actor = Principal(id='student-01', role='student'), step_id = 'transfer'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_____ test_wrong_scalar_value_and_unit_are_preserved_as_prediction_errors ______
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_wrong_scalar_value_and_un0')
+
+    def test_wrong_scalar_value_and_unit_are_preserved_as_prediction_errors(tmp_path):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:166:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f35d60>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change0] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged0')
+change = {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f366c0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change1] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged1')
+change = {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'}}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f23230>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change2] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged2')
+change = {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f50050>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change3] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged3')
+change = {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f3b380>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change4] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged4')
+change = {'result': {'kind': 'scalar', 'value': 19620}}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109e29d90>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change5] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_forged5')
+change = {'assistance': 'NO_SUPPORT_REQUESTED'}
+
+    @pytest.mark.parametrize('change', [
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 999, 'sha256': 'a' * 64}},
+        {'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'b' * 64}},
+        {'prediction': {'kind': 'ratio', 'ratio': 19620, 'fixedQuantity': 'pressure'}},
+        {'prediction': {'kind': 'scalar', 'value': True, 'unit': 'Pa'}},
+        {'result': {'kind': 'scalar', 'value': 19620}},
+        {'assistance': 'NO_SUPPORT_REQUESTED'},
+    ])
+    def test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically(tmp_path, change):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:183:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109e2a2d0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_rejects_parameter_relabelling_and_stale_pack_without_writes __
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_rejects_parame0')
+
+    def test_composable_rejects_parameter_relabelling_and_stale_pack_without_writes(tmp_path):
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:192:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109fb92e0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_available_scalar_result_cannot_be_reset_and_reference_actor_edition_are_isolated _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_available_scalar_result_c0')
+
+    def test_available_scalar_result_cannot_be_reset_and_reference_actor_edition_are_isolated(tmp_path):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:205:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f6b6a0>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_concurrent_scalar_predictions_serialize_result_availability_under_canonical_lease _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_concurrent_scalar_predict0')
+
+    def test_concurrent_scalar_predictions_serialize_result_availability_under_canonical_lease(tmp_path):
+        from concurrent.futures import ThreadPoolExecutor
+        from threading import Barrier
+        from lessonos.study.store import StudyStore
+        store, tutor, student, *_ = setup_store(tmp_path)
+>       experience, step = composable_step(store, student)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_experiences.py:224:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x109f90410>
+actor = Principal(id='student-01', role='student'), step_id = 'relative'
+edition_id = 'fluidi'
+
+    def composable_step(store, actor, step_id='relative', edition_id='fluidi'):
+        from lessonos.study.learning_experiences import list_experiences
+>       data = list_experiences(store, actor, edition_id, format='composable')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: list_experiences() got an unexpected keyword argument 'format'
+
+packages/engine/tests/study/test_learning_experiences.py:103: TypeError
+_ test_composable_http_explicit_format_and_evidence2_preserve_exact_source_and_retry _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_http_explicit_0')
+
+    def test_composable_http_explicit_format_and_evidence2_preserve_exact_source_and_retry(tmp_path):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+        with TestClient(create_app(store.path, demo=True)) as client:
+            assert client.get('/study/learning-experiences?editionId=fluidi&format=composable').status_code == 401
+            client.post('/study/session', json={'token': store.issue_session(tutor)})
+            source = client.post('/study/resources', json={'editionId': 'fluidi', 'kind': 'lesson-passage', 'visibility': 'group',
+                'text': json.dumps({'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': descriptor(),
+                                   'transcript': 'Distingui pressione rispetto alla superficie e pressione assoluta.'})}).json()
+            ref = {'resourceId': source['id'], 'revisionId': source['revisionId']}
+            client.post('/study/session', json={'token': store.issue_session(student)})
+            legacy = client.get('/study/learning-experiences?editionId=fluidi').json()
+            data = client.get('/study/learning-experiences?editionId=fluidi&format=composable').json()
+>           assert data['schemaVersion'] == 2
+E           assert 1 == 2
+
+services/study-api/tests/test_learning_composition_http.py:21: AssertionError
+_ test_composable_http_rejects_other_editions_passage_even_with_correct_experience_pin _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-31/test_composable_http_rejects_o0')
+
+    def test_composable_http_rejects_other_editions_passage_even_with_correct_experience_pin(tmp_path):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+        store.create_edition(tutor, 'other')
+        store.add_test_member(tutor, 'other', student.id)
+        source = store.create_resource(tutor, 'other', 'lesson-passage', json.dumps({
+            'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': descriptor(), 'transcript': 'Fonte di altra edizione.'}), visibility='group')
+        ref = {'resourceId': source['id'], 'revisionId': source['revisionId']}
+        with TestClient(create_app(store.path, demo=True)) as client:
+            client.post('/study/session', json={'token': store.issue_session(student)})
+            experience = client.get('/study/learning-experiences?editionId=fluidi&format=composable').json()['experiences'][0]
+            step = experience['steps'][0]
+            response = client.post('/study/submissions', json={'editionId': 'fluidi', 'activityId': step['activityId'],
+                'activityParameters': step['parameters'], 'text': 'Procedimento originale', 'sourceRefs': [ref],
+>               'activityEvidence': {'schemaVersion': 2, 'experienceRef': experience['experienceRef'], 'stepId': step['id'],
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    'prediction': {'kind': 'scalar', 'value': 19620, 'unit': 'Pa'}, 'supportUsed': ['lesson-passage'], 'lessonPassageRef': ref}},
+                headers={'Idempotency-Key': 'cross-edition'})
+E           KeyError: 'experienceRef'
+
+services/study-api/tests/test_learning_composition_http.py:60: KeyError
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /private/tmp/ardesia-r2-20261024/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_projection_pins_pack_model_and_editorial_content_without_solutions
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[relative-19620]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[absolute-120945]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_scalar_prediction_receipt_uses_independent_si_oracle_and_same_original_path[transfer-114335]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_wrong_scalar_value_and_unit_are_preserved_as_prediction_errors
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change0]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change1]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change2]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change3]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change4]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_forged_pins_prediction_types_and_client_results_atomically[change5]
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_composable_rejects_parameter_relabelling_and_stale_pack_without_writes
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_available_scalar_result_cannot_be_reset_and_reference_actor_edition_are_isolated
+FAILED packages/engine/tests/study/test_learning_experiences.py::test_concurrent_scalar_predictions_serialize_result_availability_under_canonical_lease
+FAILED packages/engine::test_composable_http_explicit_format_and_evidence2_preserve_exact_source_and_retry
+FAILED packages/engine::test_composable_http_rejects_other_editions_passage_even_with_correct_experience_pin
+16 failed, 6 passed, 1 warning in 4.03s

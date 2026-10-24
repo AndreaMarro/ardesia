@@ -1,0 +1,121 @@
+{
+  "scope": "Independent root UI review; no product edits",
+  "initialChecks": [
+    "1440: hydrostatic entry visible, scalar form/result gate",
+    "1440: hints do not reveal value or change the prediction",
+    "1440: no horizontal overflow",
+    "1440: wrong receipt and correction retain written context",
+    "1440: absolute and changed-context transfer complete with actual Core receipts",
+    "390: hydrostatic entry visible, scalar form/result gate",
+    "390: hints do not reveal value or change the prediction",
+    "390: no horizontal overflow",
+    "no page errors"
+  ],
+  "initialFindings": [
+    {
+      "width": 1440,
+      "id": "last-hint-focus",
+      "observed": {
+        "tag": "BODY",
+        "text": "\n    Vai al contenutoaardesia.Il tuo spazioEdizione correnteFisica: relazioni e fluidi \u00b7 fluidiOggiI miei corsiIl mio lavoroProva di fisicaM"
+      },
+      "expected": "last hint action retains keyboard focus or moves intentionally to revealed text"
+    },
+    {
+      "width": 390,
+      "id": "last-hint-focus",
+      "observed": {
+        "tag": "BODY",
+        "text": "\n    Vai al contenutoaardesia.Il tuo spazioEdizione correnteFisica: relazioni e fluidi \u00b7 fluidiOggiI miei corsiIl mio lavoroProva di fisicaM"
+      },
+      "expected": "last hint action retains keyboard focus or moves intentionally to revealed text"
+    }
+  ],
+  "focusFixVerification": {
+    "result": "PASS",
+    "checks": [
+      "1440: hydrostatic entry visible, scalar form/result gate",
+      "1440: hints do not reveal value or change the prediction",
+      "1440: no horizontal overflow",
+      "390: hydrostatic entry visible, scalar form/result gate",
+      "390: hints do not reveal value or change the prediction",
+      "390: no horizontal overflow",
+      "no page errors"
+    ],
+    "findings": [],
+    "sourceBefore": [
+      {
+        "file": "apps/web/src/components/ScalarExperienceEpisode.tsx",
+        "sha256": "752f18d6ed75b672dccc998331ece0490827b3960491500fbb89c003d154de9e"
+      },
+      {
+        "file": "apps/web/src/components/HydrostaticModel.tsx",
+        "sha256": "f7f9419fdffc1d875df81d77b0cf6043a9330bb9c361ee8c5c265ebc02fac22d"
+      },
+      {
+        "file": "apps/web/src/features/Classroom.tsx",
+        "sha256": "577f783e65b78abbc7ab0e611448f34e199c12cf528da2ca2b0224d4d2f3d4c4"
+      }
+    ],
+    "sourceAfter": [
+      {
+        "file": "apps/web/src/components/ScalarExperienceEpisode.tsx",
+        "sha256": "752f18d6ed75b672dccc998331ece0490827b3960491500fbb89c003d154de9e"
+      },
+      {
+        "file": "apps/web/src/components/HydrostaticModel.tsx",
+        "sha256": "f7f9419fdffc1d875df81d77b0cf6043a9330bb9c361ee8c5c265ebc02fac22d"
+      },
+      {
+        "file": "apps/web/src/features/Classroom.tsx",
+        "sha256": "577f783e65b78abbc7ab0e611448f34e199c12cf528da2ca2b0224d4d2f3d4c4"
+      }
+    ],
+    "focusAfterLastHint1440": {
+      "tag": "BUTTON",
+      "text": "Un altro indizio",
+      "disabled": false
+    },
+    "focusAfterLastHint390": {
+      "tag": "BUTTON",
+      "text": "Un altro indizio",
+      "disabled": false
+    }
+  },
+  "privateFigureObserved": {
+    "caption": "Il valore viene dal motore scientifico. Lo schema del liquido indica la posizione, non la distribuzione locale delle forze.",
+    "graphs": 0
+  },
+  "independentUnitProbes": {
+    "count": 2,
+    "result": "PASS",
+    "log": "scalar-probes-final.log",
+    "contracts": [
+      "sourceRefs/lessonPassageRef retain prior revision after resource head changes",
+      "old-edition late receipt does not populate current edition or invoke old refresh"
+    ]
+  },
+  "rootFinal3": [
+    {
+      "file": "apps/web/src/components/ScalarExperienceEpisode.tsx",
+      "bytes": 12988,
+      "sha256": "752f18d6ed75b672dccc998331ece0490827b3960491500fbb89c003d154de9e"
+    },
+    {
+      "file": "apps/web/src/components/HydrostaticModel.tsx",
+      "bytes": 2847,
+      "sha256": "f7f9419fdffc1d875df81d77b0cf6043a9330bb9c361ee8c5c265ebc02fac22d"
+    },
+    {
+      "file": "apps/web/src/features/Classroom.tsx",
+      "bytes": 8860,
+      "sha256": "577f783e65b78abbc7ab0e611448f34e199c12cf528da2ca2b0224d4d2f3d4c4"
+    }
+  ],
+  "publicReview": "Not run by this reviewer; parent assigned separate reviewer; prepared runner unexecuted",
+  "limits": [
+    "No actual source/audio mounted in dev dataset",
+    "No full schema/security audit",
+    "No public artifact/performance claim"
+  ]
+}

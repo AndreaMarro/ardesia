@@ -20,7 +20,8 @@ export function PoiseuilleEpisode({ me, data, onUpdate }: {
     const controller = new AbortController();
     setExperiences(null); setError("");
     void studyRequest<{experiences: LearningExperience[]}>("/learning-experiences?" + new URLSearchParams({editionId: data.edition.id}),
-      undefined, {signal: controller.signal}).then(value => { if (active) setExperiences(value.experiences); })
+      undefined, {signal: controller.signal}).then(value => { if (active) setExperiences(value.experiences.filter(item =>
+        item.steps.length > 0 && item.steps.every(step => step.activityId === "poiseuille-v1"))); })
       .catch(failure => { if (active) setError(describeError(failure, "L’episodio non è disponibile. Puoi riprovare.")); });
     return () => { active = false; controller.abort(); };
   }, [data.edition.id, data.edition.packSha256, reload]);
@@ -87,7 +88,7 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
   const [procedure, setProcedure] = useState("");
   const [support, setSupport] = useState<string[]>(initialSupport);
   const [graph, setGraph] = useState(false), [explore, setExplore] = useState(false);
-  const [hint, setHint] = useState(false);
+  const [hintLevel, setHintLevel] = useState(0);
   const [recovery, setRecovery] = useState(false);
   const [receipt, setReceipt] = useState<Receipt | null>(null);
   const [parentId, setParentId] = useState<string | null>(null);
@@ -157,8 +158,13 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
         </select></label>
         <label>Spiega il vincolo e il procedimento<textarea rows={4} maxLength={8000} value={procedure} disabled={locked} onChange={e => setProcedure(e.target.value)} /></label>
         {!receipt && <button className="button-primary" disabled={busy || !ready}>{busy ? "Invio…" : "Registra previsione e confronta"}</button>}
-        <button type="button" onClick={() => {setHint(true); useSupport("constraint-hint");}}>Un aiuto sul vincolo</button>
-        {hint && <p className="entry-explanation">Parti da Q = π r⁴ Δp / (8 η L). Se Q resta costante, isola Δp: la quarta potenza del raggio è al denominatore. Se Δp resta costante, confronta Q.</p>}
+        <button type="button" aria-expanded={hintLevel > 0} aria-controls={`${step.id}-constraint-hints`}
+          onClick={() => {setHintLevel(level => Math.max(level, 1)); useSupport("constraint-hint");}}>Un aiuto sul vincolo</button>
+        {hintLevel > 0 && <div id={`${step.id}-constraint-hints`} className="entry-explanation" aria-live="polite">
+          <p>Aiuto 1 di 2. Quale grandezza resta costante nella situazione? Rileggi che cosa controlla la pompa e quali parametri cambiano, prima di scegliere la grandezza da calcolare.</p>
+          <button type="button" aria-expanded={hintLevel === 2} onClick={() => {setHintLevel(2); useSupport("constraint-hint");}}>Mostra il secondo aiuto</button>
+          {hintLevel === 2 && <p>Aiuto 2 di 2. Parti da Q = π r⁴ Δp / (8 η L). Se Q resta costante, isola Δp: la quarta potenza del raggio è al denominatore. Se Δp resta costante, confronta Q. Considera anche i rapporti di viscosità e lunghezza indicati nel problema.</p>}
+        </div>}
         <button type="button" onClick={() => {setRecovery(true); if (passage) useSupport("lesson-passage");}}>Recupera il passaggio della lezione</button>
         {recovery && (passage ? <LessonPassageRecovery key={`${passage.resourceId}:${passage.revisionId}`} reference={passage} /> :
           <p>Il tutor non ha ancora collegato un passaggio della lezione. Puoi usare l’aiuto sul vincolo e chiedere il collegamento.</p>)}
