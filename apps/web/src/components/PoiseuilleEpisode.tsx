@@ -4,7 +4,7 @@ import { ErrorNotice, Loading } from "./Feedback";
 import type { ActivityEvidence, ExperienceStep, LearningExperience } from "./experienceTypes";
 import { LessonPassageAuthoring, LessonPassageRecovery } from "./LessonPassage";
 import { readLessonPassage } from "./lessonPassageReference";
-import { PoiseuilleModel } from "./PhysicsLab";
+import { PhysicsLab, PoiseuilleModel } from "./PhysicsLab";
 
 type Receipt = { receiptId: string; submissionId: string; revision: number; activityEvidence: ActivityEvidence };
 export function PoiseuilleEpisode({ me, data, onUpdate }: {
@@ -53,6 +53,7 @@ function EpisodeSequence({experience, data, onUpdate}: {
   const passages = data.resources.filter(resource => resource.editionId === data.edition.id && readLessonPassage(resource));
   const [passageId, setPassageId] = useState(passages[0]?.id ?? "");
   const [passageLocked, setPassageLocked] = useState(false);
+  const [explorationUsed, setExplorationUsed] = useState(false);
   const selectedPassage = passages.find(item => item.id === passageId);
   const step = experience.steps[index];
   return <>
@@ -69,19 +70,22 @@ function EpisodeSequence({experience, data, onUpdate}: {
     </label>}
     <PredictionStep key={step.id} experience={experience} step={step} data={data}
       passage={selectedPassage ? {resourceId: selectedPassage.id, revisionId: selectedPassage.revisionId} : null}
+      initialSupport={explorationUsed ? ["model-result"] : []} onExplore={() => setExplorationUsed(true)}
       onUpdate={onUpdate} onActivity={() => setPassageLocked(true)} next={index + 1 < experience.steps.length ? () => {setIndex(index + 1); setPassageLocked(false);} : undefined} />
   </>;
 }
 
-function PredictionStep({experience, step, data, passage, onUpdate, onActivity, next}: {
+function PredictionStep({experience, step, data, passage, onUpdate, onActivity, initialSupport, onExplore, next}: {
   experience: LearningExperience; step: ExperienceStep; data: Workspace;
   passage: {resourceId: string; revisionId: string} | null;
   onUpdate: () => Promise<void>; onActivity: () => void; next?: () => void;
+  initialSupport: string[]; onExplore: () => void;
 }) {
   const [ratio, setRatio] = useState("");
   const [boundary, setBoundary] = useState("");
   const [procedure, setProcedure] = useState("");
-  const [support, setSupport] = useState<string[]>([]);
+  const [support, setSupport] = useState<string[]>(initialSupport);
+  const [graph, setGraph] = useState(false), [explore, setExplore] = useState(false);
   const [hint, setHint] = useState(false);
   const [recovery, setRecovery] = useState(false);
   const [receipt, setReceipt] = useState<Receipt | null>(null);
@@ -127,7 +131,7 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
     <h3 ref={title} tabIndex={-1}>{step.title}</h3><p>{step.prompt}</p>
     <div className="lab-layout">
       <div className="lab-experiment">
-        <PoiseuilleModel radius={step.parameters.radiusRatio} boundary={step.parameters.boundary} />
+        <PoiseuilleModel radius={step.parameters.radiusRatio} boundary={step.parameters.boundary} revealed={Boolean(evidence)} graph={graph} />
         <p>Stesso fluido e stessa lunghezza. Rapporti senza unità; Q in m³/s, Δp in Pa, r e L in m, η in Pa·s.</p>
         <p className="fine-print">Tubo cilindrico rigido, fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato. Viscosità e lunghezza costanti.</p>
         <div className="lab-result" aria-live="polite">
@@ -155,6 +159,8 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
           <p>Il tutor non ha ancora collegato un passaggio della lezione. Puoi usare l’aiuto sul vincolo e chiedere il collegamento.</p>)}
         {error && <ErrorNotice message={error} />}
         {receipt && <>
+          <button type="button" aria-expanded={graph} onClick={() => {setGraph(value => !value); onExplore();}}>Guarda la relazione nel grafico</button>
+          <button type="button" aria-expanded={explore} onClick={() => {setExplore(value => !value); onExplore();}}>Esplora il raggio e il vincolo</button>
           <button type="button" onClick={() => {
             setParentId(receipt.submissionId); setReceipt(null); setSupport(items => [...new Set([...items, "model-result"])]);
             setMessage(""); setError("");
@@ -166,5 +172,6 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
         <p role="status">{message}</p>
       </form>
     </div>
+    {explore && <section className="episode-exploration"><h3>Fai cambiare il modello.</h3><p>Questa è un’esplorazione con aiuto. La prossima previsione dell’episodio conserverà l’uso del modello.</p><PhysicsLab numericPrediction /></section>}
   </div>;
 }

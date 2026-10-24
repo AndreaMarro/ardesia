@@ -5,12 +5,36 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = ROOT / 'apps/web'
 
 
 class PublicHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        path = unquote(urlsplit(self.path).path)
+        if path == '/':
+            self.send_response(307)
+            self.send_header('Location', '/esperienza/')
+            self.end_headers()
+            return
+        # Serve only real artifact files under the public mount. Never apply a
+        # SPA fallback, expose adjacent directories, or turn API paths into HTML.
+        if not path.startswith('/esperienza/') or any(part in ('.', '..') for part in path.split('/')):
+            self.send_error(404, 'No route in this static preview')
+            return
+        self.path = path.removeprefix('/esperienza')
+        super().do_GET()
+
+    def do_HEAD(self):
+        path = unquote(urlsplit(self.path).path)
+        if not path.startswith('/esperienza/') or any(part in ('.', '..') for part in path.split('/')):
+            self.send_error(404, 'No route in this static preview')
+            return
+        self.path = path.removeprefix('/esperienza')
+        super().do_HEAD()
+
     def end_headers(self):
         for rule in json.loads((WEB / 'vercel.json').read_text())['headers']:
             if rule['source'] == '/(.*)':

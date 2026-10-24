@@ -25,7 +25,7 @@ class ResourceBody(BaseModel):
     visibility: str = 'private'
 
 
-def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
+def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studio_frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
                request_store_limit=16, request_store_wait=.5, calendar_provider=None,
                request_body_budget=128*1024*1024, request_body_wait=.5):
     if not demo:
@@ -524,6 +524,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     from lessonos.study.calendar_mock import MockCalendar
     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
 
+    if studio_frontend:
+        from fastapi.staticfiles import StaticFiles
+        app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')
     if frontend:
         from fastapi.staticfiles import StaticFiles
         app.mount('/', StaticFiles(directory=frontend,html=True),name='studio')

@@ -11,6 +11,7 @@ import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { ReplayEngine } from "./store/ReplayEngine"
 import { loadReplayTimeline, recordingAtTime, resolveReplayTarget, type ReplayTimeline } from "./store/replayTimeline"
 import EmptyState from "./design/EmptyState"
+import ReplayObjectFocus from "./ReplayObjectFocus"
 
 interface ReplayViewProps {
   store: WorkspaceStore
@@ -46,6 +47,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   const [t, setT] = useState<number | null>(null)
   const [apiReady, setApiReady] = useState(false)
   const [audioError, setAudioError] = useState<string | null>(null)
+  const [focusedObjectId, setFocusedObjectId] = useState<string | null>(null)
+  const [viewport, setViewport] = useState({ scrollX: 0, scrollY: 0, zoom: 1 })
 
   const apiRef = useRef<any>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -59,6 +62,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
 
   const engine = useMemo(() => new ReplayEngine(), [])
   const canonicalRecording = timeline && t !== null ? recordingAtTime(timeline.recordings, t) : null
+  const focusedObject = canonicalRecording?.objectRefs.find((ref) => ref.elementId === focusedObjectId) ?? canonicalRecording?.objectRefs[0] ?? null
 
   useEffect(() => {
     let cancelled = false
@@ -73,6 +77,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
         const target = resolveReplayTarget(tl, window.location.search)
         setLoaded({ store, room, timeline: tl, lessonName: meta?.name ?? null, error: null })
         setT(target.epoch)
+        setFocusedObjectId(target.objectId)
       })
       .catch((err: unknown) => {
         if (!cancelled) setLoaded({ store, room, timeline: null, lessonName: null, error: (err as Error).message })
@@ -93,7 +98,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   }, [scene, apiReady])
 
   function fitScene() {
-    apiRef.current?.scrollToContent?.(undefined, { fitToContent: true, animate: false })
+    const selected = focusedObject && scene.find((element) => element.id === focusedObject.elementId && element.version === focusedObject.version)
+    apiRef.current?.scrollToContent?.(selected ? [selected] : undefined, { fitToContent: true, viewportZoomFactor: .85, animate: false })
   }
   useEffect(() => {
     if (!apiReady) return
@@ -209,7 +215,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
           <span className="st-bdot" aria-hidden />
           <span className="st-sub">studio</span>
         </div>
-        <span className="st-chip-student">rivedi la lezione</span>
+        <span className="st-chip-student st-replay-mode">rivedi la lezione</span>
         {lessonName && (
           <span className="st-chip-student st-chip-lesson" title={`Lezione: ${lessonName}`}>
             {lessonName}
@@ -248,12 +254,16 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
 
       {!loading && !error && hasEvents && (
         <>
-          <div style={{ flex: 1, position: "relative" }}>
+          <div className="st-replay-canvas" style={{ flex: 1, position: "relative", minHeight: 0, overflow: "hidden" }}>
             <Excalidraw
               langCode={EXCALIDRAW_CONFIG.langCode}
               theme={EXCALIDRAW_CONFIG.theme}
               aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
               viewModeEnabled
+              onChange={(_elements, appState) => {
+                const next = { scrollX: appState.scrollX, scrollY: appState.scrollY, zoom: appState.zoom.value }
+                setViewport((previous) => previous.scrollX === next.scrollX && previous.scrollY === next.scrollY && previous.zoom === next.zoom ? previous : next)
+              }}
               UIOptions={EXCALIDRAW_CONFIG.UIOptions}
               excalidrawAPI={(eapi) => {
                 apiRef.current = eapi
@@ -264,6 +274,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               // vista in smoke: lavagna vuota finché non si scrubba).
               initialData={{ elements: scene as any, appState: EXCALIDRAW_CONFIG.newRoomAppState }}
             />
+            <ReplayObjectFocus scene={scene} target={focusedObject} viewport={viewport} />
           </div>
           <div
             className="st-replay-controls"
@@ -305,11 +316,17 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               />
             )}
           </div>
-          {timeline.recordings.length > 0 && <div style={{ padding: "8px 16px", display: "flex", flexWrap: "wrap", gap: 8 }}>
+          {timeline.recordings.length > 0 && <div className="st-replay-passages">
             {timeline.recordings.map((recording, index) => <button type="button" className="st-btn" key={recording.recordingId} onClick={() => {
-              setT(recording.startEpoch)
-              if (audioRef.current && audioStartEpochRef.current === recording.startEpoch) audioRef.current.currentTime = 0
+              setFocusedObjectId(recording.objectRefs[0]?.elementId ?? null)
+              setT(recording.endEpoch)
+              if (audioRef.current && audioStartEpochRef.current === recording.startEpoch) audioRef.current.currentTime = recording.durationMs / 1000
             }}>{recording.objectRefs[0]?.label ?? `Registrazione ${index + 1}`}</button>)}
+            {canonicalRecording?.objectRefs.map((ref) => <button className="st-ghost" key={ref.elementId} aria-pressed={focusedObject?.elementId === ref.elementId} onClick={() => {
+              setFocusedObjectId(ref.elementId)
+              const element = scene.find((item) => item.id === ref.elementId && item.version === ref.version)
+              if (element) apiRef.current?.scrollToContent?.([element], { fitToContent: true, viewportZoomFactor: .85, animate: false })
+            }}>Evidenzia {ref.label}</button>)}
             {canonicalRecording?.availability === "available" && <button type="button" className="st-btn" onClick={() => {
               setT(canonicalRecording.startEpoch)
               const audio = audioRef.current

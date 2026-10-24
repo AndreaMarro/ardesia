@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 from study_api.app import create_app
 from test_identity import setup_store
 import json
+import pytest
 
 
 def descriptor():
@@ -17,7 +18,8 @@ def descriptor():
             'replayUrl': 'http://127.0.0.1:5173/?vista=replay&at=2000&recording=00000000-0000-4000-8000-000000000001&object=synthetic-formula&session=synthetic-session&sha=' + 'a' * 64 + '&objectVersion=1#synthetic-room'}
 
 
-def test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary(tmp_path):
+@pytest.mark.parametrize("studio_path", ["/", "/studio/"])
+def test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary(tmp_path, studio_path):
     store, tutor, student, peer, other = setup_store(tmp_path)
     with TestClient(create_app(store.path, demo=True)) as client:
         def login(actor):
@@ -28,7 +30,7 @@ def test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary
             return response.json()
         login(tutor)
         passage = post('resources', {'editionId': 'fluidi', 'kind': 'lesson-passage', 'visibility': 'group',
-            'text': json.dumps({'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': descriptor(),
+            'text': json.dumps({'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': {**descriptor(), 'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':5173' + studio_path)},
                                'transcript': 'Qui il vincolo è Q: isola Δp e confronta il reciproco della quarta potenza.'})}, 'share-passage')
         ref = {'resourceId': passage['id'], 'revisionId': passage['revisionId']}
         login(student)
@@ -98,7 +100,7 @@ def test_passage_reference_rejects_tampered_url_session_digest_and_object_versio
     store, tutor, student, peer, other = setup_store(tmp_path)
     with TestClient(create_app(store.path, demo=True)) as client:
         client.post('/study/session', json={'token': store.issue_session(tutor)})
-        for change in ({'replayUrl': 'javascript:alert(1)'}, {'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':invalid/')}, {'sessionId': 'other-session'},
+        for change in ({'replayUrl': 'javascript:alert(1)'}, {'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':5173/studio/private/')}, {'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':5173/studio/../')}, {'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':invalid/')}, {'sessionId': 'other-session'},
                        {'sha256': 'b' * 64}, {'objectRefs': [{'elementId': 'synthetic-formula', 'version': 2, 'label': 'wrong version'}]}):
             source = client.post('/study/resources', json={'editionId': 'fluidi', 'kind': 'lesson-passage', 'visibility': 'group',
                 'text': json.dumps({'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': {**descriptor(), **change}, 'transcript': 'Un passaggio sintetico.'})}).json()

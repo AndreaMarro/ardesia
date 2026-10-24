@@ -65,6 +65,8 @@ jobs:
         env:
           PYTHONPATH: packages/engine:services/study-api
         run: uv run --project services/study-api python -m pytest packages/engine/tests/study services/study-api/tests -q -rs
+      - name: Local teaching artifact routes and data isolation
+        run: python3 -m unittest discover -s bin/tests -p test_teaching_candidate.py
 
   study-mcp:
     name: study-mcp (official SDK stdio + HTTP)

@@ -8,7 +8,7 @@ export function mathAssets(): Plugin {
   const require = createRequire(import.meta.url);
   const root = dirname(require.resolve("mathlive"));
   const version = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
-  if (version !== "0.110.0") throw Error("Review the MathLive adapter before changing its version.");
+  if (version !== "0.111.1") throw Error("Review the MathLive adapter before changing its version.");
   const prefix = `mathlive/${version}/`;
   const files = new Map<string, Buffer>();
   files.set(prefix + "LICENSE.txt", readFileSync(join(root, "LICENSE.txt")));

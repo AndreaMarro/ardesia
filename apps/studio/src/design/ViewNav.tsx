@@ -2,6 +2,7 @@
 // Le route storiche restano alias interni per non spezzare link e test profondi.
 
 import type { MouseEvent } from "react"
+import { studioHref } from "../store/studioLocation"
 
 export type FounderSurfaceId =
   | "lezione"
@@ -44,14 +45,14 @@ function founderSurfaceFor(id: ArdesiaViewId): FounderSurfaceId | null {
  */
 export function viewHref(id: ArdesiaViewId, currentHash: string = ""): string {
   const hash = currentHash.startsWith("#") ? currentHash : currentHash ? `#${currentHash}` : ""
-  if (id === "lezione" || id === "lavagna") return `/${hash}`
+  if (id === "lezione" || id === "lavagna") return studioHref(hash)
   // "Continuita" puntava al cruscotto docente: un segnaposto, non la
   // superficie di ripresa. Ora cade nel default `/?vista=<id>` e raggiunge
   // ContinuityView. `founderSurfaceFor` continua a mappare anche
   // "cruscotto" su questa superficie, perche' il cruscotto non ha una voce
   // di nav propria e senza quella riga resterebbe senza evidenziazione.
-  if (id === "materiali") return `/?vista=lezioni-salvate${hash}`
-  return `/?vista=${id}${hash}`
+  if (id === "materiali") return studioHref(`?vista=lezioni-salvate${hash}`)
+  return studioHref(`?vista=${id}${hash}`)
 }
 
 export type ViewNavProps = Readonly<{

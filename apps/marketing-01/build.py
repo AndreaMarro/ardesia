@@ -61,7 +61,7 @@ def contact_url(data, course):
     return f"https://wa.me/{data['contact']['whatsapp']}?text={quote(message, safe='')}"
 
 
-def render(data, courses, identity, site_url=None, preview_url=None, examples=()):
+def render(data, courses, identity, site_url=None, preview_url=None, examples=(), interactive_preview=False):
     page = json.loads((HERE / 'page.json').read_text())
     teacher = page['teachers'][data['teacherId']]
     organization = page['organization']
@@ -85,6 +85,8 @@ def render(data, courses, identity, site_url=None, preview_url=None, examples=()
     return template('page.html', subject=text(data['subject']), academic_year=text(data['academicYear']),
                     description=text(description), metadata=metadata, og_image=og_image,
                     meta_csp=text(security['Content-Security-Policy'].replace("; frame-ancestors 'none'", '')),
+                    experience_preview=template('experience.html', arrow=icon('arrow')) if interactive_preview else '',
+                    interactive_action='<a class="experience-hero-link" href="#dentro-la-lezione">Entra in una lezione '+icon('arrow')+'</a>' if interactive_preview else '',
                     hero_title=text(page['hero']['title'].format_map(context)),
                     hero_lead=text(page['hero']['lead'].format_map(context)), availability=text(data['availability']),
                     teacher_name=text(teacher['name']), teacher_first=text(teacher['name'].split()[0]),
@@ -92,7 +94,7 @@ def render(data, courses, identity, site_url=None, preview_url=None, examples=()
                     teacher_links=''.join(external_link(link) for link in teacher['links']),
                     reviews=''.join(review(value) for value in teacher['reviews']), reviews_url=text(organization['reviews']),
                     path_index=''.join(path_link(course, i) for i, course in enumerate(courses, 1)),
-                    course_cards=''.join(course_card(course, i, url, example_link(course, site_url or '/') if any(e['pathId'] == course['id'] for e in examples) else None) for i, (course, url) in enumerate(contacts, 1)),
+                    course_cards=''.join(course_card(course, i, url, example_link(course, site_url or '/') if any(e['pathId'] == course['id'] for e in examples) else None, '/esperienza/?percorso=fluidi-termodinamica' if interactive_preview and course['id'] == 'fluidi-termodinamica' else None) for i, (course, url) in enumerate(contacts, 1)),
                     audience=text(data['audience']), count_word=count_word, reference_url=text(data['reference']['url']),
                     reference_label=text(data['reference']['label']),
                     method_title=text(page['method']['title']), method_intro=text(page['method']['intro']),
@@ -107,7 +109,9 @@ def render(data, courses, identity, site_url=None, preview_url=None, examples=()
                     arrow=icon('arrow'), external=icon('external'))
 
 
-def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', preview_url=None, review_examples=False):
+def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', preview_url=None, review_examples=False, interactive_preview=False):
+    if interactive_preview and (site_url or Path(catalog).resolve() != (HERE / 'catalog.json').resolve()):
+        raise ValueError('interactive_demo_preview_only')
     if site_url:
         parsed = urlsplit(site_url)
         if parsed.scheme != 'https' or not parsed.netloc or parsed.query or parsed.fragment or parsed.username or parsed.password:
@@ -138,7 +142,7 @@ def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', pr
             filename = f'{source.stem}.{digest}{source.suffix}'
             (assets / filename).write_bytes(payload)
             asset_map[source.name] = filename
-    html = render(data, courses, identity, site_url, preview_url, examples)
+    html = render(data, courses, identity, site_url, preview_url, examples, interactive_preview)
     for source, hashed in asset_map.items():
         html = html.replace('assets/' + source, 'assets/' + hashed)
     (output / 'index.html').write_text(html)
@@ -169,7 +173,7 @@ def build(output=HERE / 'dist', site_url=None, catalog=HERE / 'catalog.json', pr
         headers += path + '\n  Cache-Control: public, max-age=0, must-revalidate\n'
     headers += '/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n'
     (output / '_headers').write_text(headers)
-    (output / 'source-manifest.json').write_text(json.dumps({'composition': identity, 'mode': 'production-ready' if site_url else 'preview', 'courseIds': [course['id'] for course in courses], 'assets': asset_map, 'publicBase': site_url or preview_url, 'examples': [{'id': e['id'], 'pathId': e['pathId'], 'contentSHA256': e['contentSHA256'], 'editorialStatus': 'APPROVED' if e['approved'] else 'DRAFT', 'url': 'esempi/' + e['pathId'] + '/'} for e in examples]}, indent=2) + '\n')
+    (output / 'source-manifest.json').write_text(json.dumps({'composition': identity, 'mode': 'production-ready' if site_url else 'preview', 'courseIds': [course['id'] for course in courses], 'assets': asset_map, 'interactiveExperience': '/esperienza/' if interactive_preview else None, 'publicBase': site_url or preview_url, 'examples': [{'id': e['id'], 'pathId': e['pathId'], 'contentSHA256': e['contentSHA256'], 'editorialStatus': 'APPROVED' if e['approved'] else 'DRAFT', 'url': 'esempi/' + e['pathId'] + '/'} for e in examples]}, indent=2) + '\n')
     return output
 
 
@@ -179,6 +183,7 @@ if __name__ == '__main__':
     parser.add_argument('--site-url')
     parser.add_argument('--preview-url', default=os.environ.get('RENDER_EXTERNAL_URL'))
     parser.add_argument('--review-examples', action='store_true', help='Include DRAFT examples only in an editorial preview')
+    parser.add_argument('--interactive-preview', action='store_true', help='Link the separately assembled public lesson demo; preview only')
     parser.add_argument('--catalog', type=Path, default=HERE / 'catalog.json')
     args = parser.parse_args()
-    print(build(args.output, args.site_url, args.catalog, args.preview_url if not args.site_url else None, args.review_examples))
+    print(build(args.output, args.site_url, args.catalog, args.preview_url if not args.site_url else None, args.review_examples, args.interactive_preview))

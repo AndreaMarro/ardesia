@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
+import { lazy, Suspense, useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
 import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, exportToCanvas, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
-import MathComposer from "./MathComposer"
 import { latexToImage } from "./latexToImage"
 import { imageToDataURL, pdfToImages } from "./loadFile"
 import { workspaceStore, type WorkspaceStore } from "./store/WorkspaceStore"
@@ -37,6 +36,9 @@ import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 import { SessionAudioRecorder } from "./store/SessionAudioRecorder"
 import type { AudioObjectReference } from "./store/audioRecording"
 import LessonPassageAuthor from "./LessonPassageAuthor"
+import { wrapPassageAnnotation } from "./store/passageAnnotation"
+
+const MathComposer = lazy(() => import("./MathComposer"))
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -158,6 +160,7 @@ export default function Room({
   const journalRef = useRef<JournalRecorder | null>(null)
   const audioRef = useRef<SessionAudioRecorder | null>(null)
   const [sessionAudio, setSessionAudio] = useState<SessionAudioRecorder | null>(null)
+  const [selectedObjects, setSelectedObjects] = useState<readonly AudioObjectReference[]>([])
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
@@ -225,6 +228,7 @@ export default function Room({
     setSceneData(null)
     setExportAdvice(null)
     setSessionAudio(null)
+    setSelectedObjects([])
     // Le chain in-flight non vengono sganciate: farlo permetterebbe a B di
     // sorpassare A. Gli snapshot canvas riusabili sono stati azzerati sopra;
     // cancellazione/drain dei producer già avviati resta il gate ARD-07.
@@ -471,6 +475,19 @@ export default function Room({
   useEffect(() => {
     document.title = "Ardesia · studio"
   }, [])
+  function fitBoardContent() {
+    apiRef.current?.scrollToContent?.(undefined, { fitToContent: true, viewportZoomFactor: .85, animate: false })
+  }
+  useEffect(() => {
+    let firstFrame = 0
+    let secondFrame = 0
+    const resized = () => {
+      cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame)
+      firstFrame = requestAnimationFrame(() => { secondFrame = requestAnimationFrame(fitBoardContent) })
+    }
+    window.addEventListener("resize", resized)
+    return () => { window.removeEventListener("resize", resized); cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame) }
+  }, [])
 
   /** All'apertura del drawer porta il focus dentro al dialog (bottone chiudi) */
   useEffect(() => {
@@ -543,7 +560,7 @@ export default function Room({
     if (!api || !journal || !text || text.length > 240) throw new Error("Scrivi un'annotazione quando la lavagna è pronta.")
     const current = api.getSceneElements()
     const input = {
-      type: "text", x: 160, y: 120 + current.length * 32, text,
+      type: "text", x: 160, y: 120 + current.length * 32, text: wrapPassageAnnotation(text),
       fontSize: 24, fontFamily: EXCALIDRAW_CONFIG.newRoomAppState.currentItemFontFamily,
     } as const
     // The public exporter waits for the actual scene fonts. Measuring the first
@@ -561,8 +578,31 @@ export default function Room({
     latestAppStateRef.current = api.getAppState?.() ?? EXCALIDRAW_CONFIG.newRoomAppState
     latestFilesRef.current = api.getFiles?.() ?? {}
     await flushPersist()
-    api.scrollToContent?.(elements, { fitToContent: true, animate: false })
+    api.scrollToContent?.(elements, { fitToContent: true, viewportZoomFactor: .85, animate: false })
     return [{ elementId: element.id, version: element.version, label: text }]
+  }
+
+  function boardSelection(elements: readonly any[], appState: any): readonly AudioObjectReference[] {
+    const ids = appState?.selectedElementIds ?? {}
+    return elements.filter((element) => ids[element.id] && !element.isDeleted && Number.isSafeInteger(element.version) && element.version > 0).slice(0, 21).map((element) => ({
+      elementId: element.id, version: element.version,
+      label: String(element.text?.replace(/\s+/g, " ").trim() || ({ rectangle: "Riquadro", ellipse: "Cerchio", freedraw: "Disegno", arrow: "Freccia", image: "Immagine", line: "Linea" } as Record<string, string>)[element.type] || "Oggetto della lavagna").slice(0, 240),
+    }))
+  }
+  async function linkSelectedPassage(): Promise<readonly AudioObjectReference[]> {
+    const api = apiRef.current
+    const journal = journalRef.current
+    if (!api || !journal) throw new Error("Attendi che la lavagna sia pronta.")
+    const elements = api.getSceneElements()
+    const refs = boardSelection(elements, api.getAppState())
+    if (refs.length === 0 || refs.length > 20) throw new Error("Seleziona da uno a venti oggetti sulla lavagna.")
+    journal.recordChange(elements)
+    await journal.flush()
+    latestElementsRef.current = elements
+    latestAppStateRef.current = api.getAppState()
+    latestFilesRef.current = api.getFiles?.() ?? {}
+    await flushPersist()
+    return refs
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -576,6 +616,8 @@ export default function Room({
       apiRef.current.updateScene({ elements: normalized.elements })
       return
     }
+    const selection = boardSelection(elements, appState)
+    setSelectedObjects((previous) => JSON.stringify(previous) === JSON.stringify(selection) ? previous : selection)
     persist(elements, appState, files)
     if (!initialLoadDone.current) return
     journalRef.current?.recordChange(elements)
@@ -877,7 +919,7 @@ export default function Room({
   ) : replayView ? (
     <ReplayView store={actualStore} room={room} />
   ) : (
-    <div style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
+    <div className="st-studio-shell" style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
         <header className="st-bar st-bar-student">
@@ -996,7 +1038,7 @@ export default function Room({
       </header>
       )}
 
-      {!studentView && sessionAudio && <LessonPassageAuthor recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} />}
+      {!studentView && sessionAudio && <LessonPassageAuthor key={sessionAudio.identity.sessionId} recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} selectedObjects={selectedObjects} onLinkSelection={linkSelectedPassage} onFit={fitBoardContent} />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (
@@ -1053,7 +1095,7 @@ export default function Room({
         </div>
       )}
 
-      <div style={{ flex: 1, position: "relative" }}>
+      <div className="st-studio-canvas" style={{ flex: 1, position: "relative", minHeight: 0 }}>
         {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
           <div className="st-student-empty">
@@ -1170,7 +1212,9 @@ export default function Room({
             </WelcomeScreen>
           </Excalidraw>
         )}
-        {mathOn && <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />}
+        {mathOn && <Suspense fallback={<p role="status">Apro l’editor delle formule…</p>}>
+          <MathComposer onClose={() => setMathOn(false)} onInsert={insertMath} />
+        </Suspense>}
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { localExcalidrawFonts } from './build/localExcalidrawFonts'
+import { localMathLiveFonts } from './build/localMathLiveFonts'
 import { assertFullCommitSha } from './src/core/contracts/eventEnvelope.ts'
 
 const GIT_SHA_PROVIDERS = [
@@ -14,6 +15,12 @@ const GIT_SHA_PROVIDERS = [
 ] as const
 
 type BuildEnvironment = Readonly<Record<string, string | undefined>>
+
+export function resolveStudioBase(environment: BuildEnvironment): "/" | "/studio/" {
+  const base = environment.ARDESIA_STUDIO_BASE ?? "/"
+  if (base !== "/" && base !== "/studio/") throw new Error("Ardesia Studio base must be / or /studio/")
+  return base
+}
 
 export function resolveBuildCommitSha(environment: BuildEnvironment, readGitSha: () => unknown): string {
   const providerShas: string[] = []
@@ -70,11 +77,12 @@ const buildCommitSha = resolveBuildCommitSha(process.env, () =>
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: resolveStudioBase(process.env),
   define: {
     __ARDESIA_STUDIO_VERSION__: JSON.stringify(studioPackage.version),
     __ARDESIA_GIT_SHA__: JSON.stringify(buildCommitSha),
   },
-  plugins: [react(), localExcalidrawFonts()],
+  plugins: [react(), localExcalidrawFonts(), localMathLiveFonts()],
   resolve: {
     // Forza UNA sola copia di React (Excalidraw + app): senza, l'optimizer
     // duplica react quando si aggiunge una dep → "Invalid hook call".

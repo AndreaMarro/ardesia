@@ -1,10 +1,13 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { describeError, studyRequest } from "../api";
 import type { ActivityCommit } from "../course";
 import { readResourceDraft, writeResourceDraft } from "./sessionDraftCache";
 import { requestKey } from "../api";
 import { ErrorNotice } from "./Feedback";
-import { publicActivityResult, publicCaseCount, publicRadius } from "../publicPreview";
+import {PoiseuilleModel} from "./PoiseuilleVisual";
+import {PublicLessonDemo} from "./PublicLessonDemo";
+export {PoiseuilleModel} from "./PoiseuilleVisual";
+import { publicActivityResult, publicCaseCount, publicLessonDemo, publicRadius } from "../publicPreview";
 type Result = {
   ratio: number;
   fixedQuantity: string;
@@ -15,10 +18,12 @@ export function PhysicsLab({
   onCommit,
   draftKey,
   publicPreview = false,
+  numericPrediction = false,
 }: {
   onCommit?: (value: ActivityCommit | null) => void;
   draftKey?: string;
   publicPreview?: boolean;
+  numericPrediction?: boolean;
 }) {
   const saved = useRef(
     draftKey
@@ -29,17 +34,22 @@ export function PhysicsLab({
         } | null)
       : null,
   );
-  const [radius, setRadius] = useState(saved.current?.radius ?? 1.5),
+  const [radius, setRadius] = useState(saved.current?.radius ?? (numericPrediction ? 2 : 1.5)),
     [boundary, setBoundary] = useState(saved.current?.boundary ?? "pressure"),
     [prediction, setPrediction] = useState(saved.current?.prediction ?? "");
   const [result, setResult] = useState<Result | null>(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [changed, setChanged] = useState(false);
+  const [graph, setGraph] = useState(false), [help, setHelp] = useState(false), [transfer, setTransfer] = useState(false);
+  const predictionNumber = Number(prediction.replace(",", "."));
+  const predictionReady = prediction.trim() !== "" && (!numericPrediction || (Number.isFinite(predictionNumber) && predictionNumber > 0));
   const pending = useRef(false),
     sequence = useRef(0),
     controller = useRef<AbortController | null>(null),
     mounted = useRef(true),
+    predictionElement = useRef<HTMLInputElement>(null),
+    modelDetails = useRef<HTMLDetailsElement>(null),
     resultElement = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (draftKey)
@@ -67,9 +77,10 @@ export function PhysicsLab({
     setResult(null);
     setChanged(true);
     setError("");
+    setGraph(false);
   }
   async function evaluate() {
-    if (pending.current || (onCommit && !prediction.trim())) return;
+    if (pending.current || !predictionReady) return;
     pending.current = true;
     setBusy(true);
     setError("");
@@ -115,13 +126,14 @@ export function PhysicsLab({
           fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.
         </p>
       </div>
+      {transfer && <p className="transfer-prompt" role="status">Nuovo problema: la pompa mantiene Q, ma il raggio si dimezza.</p>}
       <div className="lab-layout">
         <div className="lab-experiment">
           <div className="lab-caption">
             <span>Un modello, due situazioni</span>
             <span>Poiseuille</span>
           </div>
-          <PoiseuilleModel radius={radius} boundary={boundary} />
+          <PoiseuilleModel radius={radius} boundary={boundary} revealed={Boolean(result)} graph={graph} />
           <p>Schema ideale · fluido newtoniano · moto laminare</p>
           <div
             className="lab-result"
@@ -143,6 +155,10 @@ export function PhysicsLab({
                     ? "La differenza di pressione è fissata. Il rapporto dei raggi compare alla quarta potenza."
                     : "La portata è fissata. Confronta la differenza di pressione necessaria nei due tubi."}
                 </p>
+                {numericPrediction && <p className="prediction-comparison">{Math.abs(predictionNumber - result.ratio) <= Math.max(1e-9, result.ratio * 1e-6)
+                  ? "La previsione coincide con il modello. Ora spiega perché il vincolo fa la differenza."
+                  : result.fixedQuantity === "pressure" ? "Il raggio entra alla quarta potenza: confronta l’effetto sul raggio con quello sulla portata."
+                  : "Q rimane fissata. Isola Δp: la quarta potenza del raggio va al denominatore."}</p>}
               </>
             ) : (
               <>
@@ -164,14 +180,17 @@ export function PhysicsLab({
           }}
         >
           <label>
-            La tua previsione
+            {numericPrediction ? "Rapporto previsto" : "La tua previsione"}
             <input
+              ref={predictionElement}
+              aria-label={numericPrediction ? "Rapporto previsto" : "La tua previsione"}
+              inputMode={numericPrediction ? "decimal" : "text"}
               value={prediction}
               onChange={(e) => {
                 setPrediction(e.target.value);
-                if (onCommit) invalidate();
+                if (onCommit || numericPrediction) invalidate();
               }}
-              placeholder="Che cosa pensi che cambierà?"
+              placeholder={numericPrediction ? (boundary === "pressure" ? "Q/Q₀ = …" : "Δp/Δp₀ = …") : "Che cosa pensi che cambierà?"}
               maxLength={1000}
             />
           </label>
@@ -182,6 +201,7 @@ export function PhysicsLab({
               onChange={(e) => {
                 setBoundary(e.target.value);
                 invalidate();
+                if (numericPrediction) setPrediction("");
               }}
             >
               <option value="pressure">Differenza di pressione Δp</option>
@@ -200,6 +220,7 @@ export function PhysicsLab({
               onChange={(e) => {
                 setRadius(Number(e.target.value));
                 invalidate();
+                if (numericPrediction) setPrediction("");
               }}
             />
             <span className="range-ticks">
@@ -210,14 +231,27 @@ export function PhysicsLab({
           </label>
           <button
             className="button-primary"
-            disabled={busy || Boolean(onCommit && !prediction.trim())}
+            disabled={busy || !predictionReady}
           >
             {busy ? "Calcolo in corso…" : "Metti alla prova"}
           </button>
           {error && <ErrorNotice message={error} />}
-          <details>
+          {result && <div className="discovery-actions">
+            <button type="button" aria-expanded={graph} onClick={() => setGraph(value => !value)}>{graph ? "Nascondi il grafico" : "Guarda il grafico"}</button>
+            <button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>Riprendi il vincolo</button>
+            <button type="button" onClick={() => {invalidate(); setPrediction("");}}>Prova di nuovo</button>
+            <button type="button" className="button-primary" onClick={() => {invalidate(); setRadius(.5); setBoundary("flow"); setPrediction(""); setTransfer(true); setHelp(false); predictionElement.current?.focus();}}>Un problema diverso</button>
+          </div>}
+          {help && <div className="constraint-recovery">
+            <h3>Un passaggio alla volta.</h3>
+            {publicPreview && <PublicLessonDemo onShowFormula={() => {if (modelDetails.current) modelDetails.current.open = true;}} />}
+            <ol><li>Individua ciò che resta costante: Δp oppure Q.</li><li>Parti da Q = π r⁴ Δp / (8 η L). Se Q resta fissa, isola Δp.</li><li>Confronta i rapporti, mantenendo viscosità e lunghezza costanti.</li></ol>
+            <p>Una risposta ottenuta dopo questo aiuto è una risposta assistita. Prova poi una situazione diversa.</p>
+          </div>}
+          {numericPrediction && <button type="button" className="text-link" onClick={() => {invalidate(); setRadius(2); setBoundary("pressure"); setPrediction(""); setTransfer(false); setHelp(false);}}>Ricomincia l’esperimento</button>}
+          <details ref={modelDetails}>
             <summary>Modello e limiti</summary>
-            <p className="formula">Q = π r⁴ Δp / 8 η L</p>
+            <p className="formula" id={publicPreview ? publicLessonDemo.objectId : undefined}>Q = π r⁴ Δp / (8 η L)</p>
             <p>
               {result?.domain ??
                 "Tubo cilindrico rigido, viscosità e lunghezza fissate; fluido incomprimibile, moto laminare stazionario."}
@@ -231,8 +265,8 @@ export function PhysicsLab({
                 Questa anteprima esplora {publicCaseCount} configurazioni: tutti i
                 risultati sono stati calcolati dal motore scientifico di Ardesia
                 durante la preparazione della pagina. Lunghezza e viscosità
-                rimangono costanti. La previsione scritta resta nel browser e non
-                viene valutata automaticamente.
+                rimangono costanti. La previsione resta in questa pagina; nessuna
+                risposta viene inviata a un servizio o salvata come profilo studente.
               </p>
             )}
           </details>
@@ -240,67 +274,4 @@ export function PhysicsLab({
       </div>
     </section>
   );
-}
-
-/** The free laboratory and guided episode share the same geometric view. */
-export function PoiseuilleModel({ radius, boundary }: {radius: number; boundary: string}) {
-  const gridId = useId();
-  return <figure className="poiseuille-model">
-          <svg
-            viewBox="0 0 560 260"
-            role="img"
-            aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}`}
-          >
-            <defs>
-              <pattern
-                id={gridId}
-                width="28"
-                height="28"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M28 0H0V28"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth=".3"
-                />
-              </pattern>
-            </defs>
-            <rect width="560" height="260" fill={`url(#${gridId})`} opacity=".2" />
-            <path d="M25 102H235V158H25Z" className="tube-body" />
-            <path
-              d={`M325 ${130 - radius * 28}H535V${130 + radius * 28}H325Z`}
-              className="tube-body"
-            />
-            <path
-              d="M40 130H220M340 130H520"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <path
-              d="m210 124 10 6-10 6m290-12 10 6-10 6"
-              fill="none"
-              stroke="currentColor"
-            />
-            <path
-              d={`M430 ${130 - radius * 28}V130M130 102V130`}
-              stroke="currentColor"
-              strokeDasharray="4 4"
-            />
-            <text x="444" y={117 - radius * 14}>
-              r
-            </text>
-            <text x="144" y="112">r₀</text>
-            <text x="280" y="225" textAnchor="middle">
-              r / r₀ = {radius.toLocaleString("it-IT")}
-            </text>
-            <text x="130" y="54" textAnchor="middle">
-              riferimento
-            </text>
-            <text x="430" y="54" textAnchor="middle">
-              confronto
-            </text>
-          </svg>
-    <figcaption>{boundary === "flow" ? "Q è costante: la portata non cambia." : "Δp è costante: confronta la portata."}</figcaption>
-  </figure>;
 }

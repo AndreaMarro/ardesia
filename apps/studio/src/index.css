@@ -1,12 +1,86 @@
 @import "./tokens.css";
 
-.st-passage-author { flex: 0 0 auto; padding: 8px 14px; border-bottom: 1px solid var(--m-line); background: var(--m-paper); max-height: 42vh; overflow-y: auto; }
-.st-passage-author summary { cursor: pointer; min-height: 32px; }
-.st-passage-author p { margin: 8px 0; max-width: 80ch; }
-.st-passage-author label { display: block; margin: 8px 0; }
-.st-passage-author input, .st-passage-author textarea { box-sizing: border-box; display: block; width: min(100%, 680px); padding: 8px; font: inherit; }
-.st-passage-author button { min-height: 44px; margin: 4px 8px 4px 0; }
-.st-passage-author :focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; }
+.st-studio-shell, .st-replay { background: var(--study-paper); color: var(--study-ink); }
+.st-studio-shell .st-bar, .st-replay .st-bar { height: 62px; flex-basis: 62px; background: var(--study-paper); gap: 12px; padding-inline: 20px; }
+.st-studio-shell .st-ghost, .st-replay .st-ghost { border-color: var(--study-line); background: var(--study-surface); }
+.st-studio-shell .st-primary { background: var(--study-accent); border-color: var(--study-accent); }
+.st-studio-shell .st-primary:disabled { background: var(--study-control-line); border-color: var(--study-control-line); color: var(--study-muted); }
+.st-studio-shell .excalidraw, .st-replay .excalidraw { --color-primary: var(--study-accent); --color-primary-darker: var(--study-accent); --color-primary-light: var(--study-banner); --island-bg-color: var(--study-surface); }
+.st-studio-canvas { isolation: isolate; }
+.st-passage-author { flex: 0 0 48px; z-index: 300; color: var(--study-ink); }
+.st-passage-strip { height: 48px; display: flex; align-items: center; gap: 18px; padding: 0 20px; border-bottom: 1px solid var(--study-line); background: var(--study-surface); }
+.st-passage-trigger { display: inline-flex; align-items: center; gap: 9px; min-height: 40px; padding: 0; border: 0; color: var(--study-accent); background: transparent; cursor: pointer; font: inherit; font-weight: 600; }
+.st-passage-trigger > span:last-child { font-size: 19px; font-weight: 400; margin-left: 8px; }
+.st-passage-stage, .st-passage-connected { color: var(--study-muted); font-size: 12px; }
+.st-passage-connected { display: inline-flex; gap: 6px; align-items: center; margin-left: auto; color: var(--study-accent); }
+.st-passage-live { color: var(--m-rec); }
+.st-passage-fit { font-size: 11px; min-height: 34px; padding: 5px 10px; }
+@media (min-width: 760px) { .st-studio-shell:has(.st-passage-open) .st-studio-canvas { margin-right: 354px; } }
+.st-passage-panel { position: absolute; right: 18px; top: 128px; bottom: 18px; width: 318px; box-sizing: border-box; overflow-y: auto; overscroll-behavior: contain; padding: 20px; border: 1px solid var(--study-line); border-radius: 16px; background: var(--study-paper); box-shadow: var(--m-shadow-card); scrollbar-gutter: stable; }
+.st-passage-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.st-passage-panel-heading .st-ghost { min-height: 34px; padding: 4px 10px; }
+.st-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--study-muted); }
+.st-passage-step { padding: 22px 0; border-bottom: 1px solid var(--study-line); }
+.st-step-number { display: flex; align-items: center; gap: 10px; font-family: var(--m-font-display); font-size: 18px; color: var(--study-accent); }
+.st-step-number span { font-family: var(--m-font-ui); font-size: 11px; letter-spacing: 1.3px; color: var(--study-muted); }
+.st-passage-step h2 { margin: 14px 0 10px; font: 400 28px/1.12 var(--m-font-display); letter-spacing: -.5px; }
+.st-passage-step h3 { margin: 14px 0 8px; font: 400 23px/1.15 var(--m-font-display); }
+.st-passage-panel p { margin: 8px 0 12px; font-size: 12px; line-height: 1.55; color: var(--study-muted); overflow-wrap: anywhere; }
+.st-passage-panel label { display: block; margin: 12px 0 8px; font-size: 12px; line-height: 1.5; }
+.st-passage-panel textarea { box-sizing: border-box; display: block; width: 100%; resize: vertical; margin-top: 7px; padding: 10px; border: 1px solid var(--study-field-line); border-radius: 8px; color: var(--study-ink); background: var(--study-surface); font: inherit; line-height: 1.5; }
+.st-passage-panel button { min-height: 42px; font-size: 12px; line-height: 1.35; white-space: normal; }
+.st-passage-panel .st-full { width: 100%; justify-content: center; }
+.st-passage-panel button:disabled { cursor: default; opacity: .6; }
+.st-passage-author :focus-visible, .st-replay :focus-visible { outline: 2px solid var(--study-accent); outline-offset: 3px; }
+.st-source-preview { display: flex; flex-direction: column; gap: 7px; margin: 16px 0 10px; padding: 13px; border-left: 2px solid var(--study-accent); background: var(--study-banner); overflow-wrap: anywhere; }
+.st-source-preview span { font-size: 11px; color: var(--study-muted); }
+.st-source-preview strong { font-weight: 500; font-size: 13px; line-height: 1.5; }
+.st-passage-panel .st-linked-source { display: flex; gap: 7px; align-items: flex-start; color: var(--study-accent); }
+.st-linked-source svg { flex: 0 0 14px; margin-top: 2px; }
+.st-passage-panel summary { min-height: 36px; display: list-item; align-content: center; cursor: pointer; font-size: 11px; line-height: 1.5; color: var(--study-muted); }
+.st-annotation-alternative, .st-passage-secondary { margin-top: 12px; }
+.st-audio-controls { margin-top: 14px; }
+.st-audio-controls .st-audio-consent { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+.st-audio-consent input { flex: 0 0 17px; width: 17px; height: 17px; margin: 0; accent-color: var(--study-accent); }
+.st-audio-status { display: flex; gap: 7px; align-items: center; min-height: 34px; font-size: 11px; color: var(--study-muted); }
+.st-audio-controls button { display: inline-flex; align-items: center; gap: 7px; }
+.st-audio-controls .st-audio-recording { background: var(--m-rec); border-color: var(--m-rec); }
+.st-passage-panel .st-passage-footnote { font-size: 11px; margin-top: 24px; }
+.st-passage-history { padding-top: 8px; }
+.st-passage-panel [role="alert"] { color: var(--m-error); }
+@media (max-width: 1100px) {
+  .st-studio-shell .st-menu-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; margin-left: auto; }
+  .st-studio-shell .st-actions { display: none; }
+  .st-studio-shell .st-actions-open { display: flex; position: fixed; top: 68px; right: 12px; width: 250px; flex-wrap: wrap; padding: 14px; border: 1px solid var(--study-line); border-radius: 12px; background: var(--study-paper); box-shadow: var(--m-shadow-card); }
+  .st-studio-shell .st-actions-open .st-view-nav { flex-basis: 100%; }
+  .st-studio-shell .st-bar { overflow: visible; }
+}
+@media (max-width: 600px) {
+  .st-studio-shell .st-bar, .st-replay .st-bar { padding-inline: 12px; gap: 8px; }
+  .st-studio-shell .st-status { display: none; }
+  .st-studio-shell .st-sub { display: none; }
+  .st-studio-shell .st-name { min-width: 0; max-width: none; flex: 1; padding-inline: 3px; font-size: 12px; }
+  .st-studio-shell .st-name-prompt { display: none; }
+  .st-passage-strip { padding-inline: 12px; gap: 8px; }
+  .st-passage-trigger { font-size: 12px; gap: 6px; }
+  .st-passage-stage, .st-passage-connected { display: none; }
+  .st-passage-panel { top: auto; bottom: 12px; right: 12px; left: 12px; width: auto; max-height: 61dvh; padding: 16px; }
+  .st-passage-step { padding-block: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .st-studio-shell *, .st-replay * { scroll-behavior: auto; } }
+.st-replay-object-focus { position: absolute; pointer-events: none; z-index: 2; box-sizing: border-box; border: 2px dashed var(--study-accent); border-radius: 10px; box-shadow: 0 0 0 4px var(--study-banner); }
+.st-replay-passages { flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-height: 150px; overflow-y: auto; padding: 12px 20px; border-top: 1px solid var(--study-line); background: var(--study-paper); }
+.st-replay-passages button { max-width: 320px; min-height: 40px; white-space: normal; text-align: left; overflow-wrap: anywhere; }
+.st-replay-passages [aria-pressed="true"] { color: var(--study-accent); background: var(--study-banner); border-color: var(--study-control-line); }
+.st-replay .st-bar { flex-wrap: wrap; height: auto; min-height: 62px; flex-basis: auto; box-sizing: border-box; padding-block: 10px; }
+.st-replay .st-chip-lesson { max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.st-replay .st-btn { border: 1px solid var(--study-control-line); background: var(--study-surface); color: var(--study-accent); border-radius: 999px; padding: 8px 12px; font: inherit; cursor: pointer; }
+@media (max-width: 600px) {
+  .st-replay .st-replay-mode { display: none; }
+  .st-replay .st-chip-lesson { flex: 1; max-width: 170px; min-width: 0; }
+  .st-replay-passages { padding: 8px 12px; max-height: 130px; }
+  .st-replay-controls { padding: 10px 12px !important; gap: 8px !important; }
+}
 
 /* MAESTRO Studio — carta & inchiostro, un solo accento.
    Zero hex qui: ogni colore passa da var(--m-*) (tokens.css). */

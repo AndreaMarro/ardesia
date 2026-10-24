@@ -34,16 +34,20 @@ export function readPassageDescriptor(text: string): LessonPassageDescriptor | n
           Number.isInteger(ref.version) && ref.version >= 1 && typeof ref.label === "string" && ref.label.length > 0 && ref.label.length <= 500) ||
         typeof d.replayUrl !== "string" || d.replayUrl.length > 2000) return null;
     const url = new URL(d.replayUrl);
+    const pinMatches = (name: string, value: string) => {
+      const values = url.searchParams.getAll(name);
+      return values.length === 1 && values[0] === value;
+    };
     if (!["http:", "https:"].includes(url.protocol) || !["localhost", "127.0.0.1", "[::1]"].includes(url.hostname) ||
-        url.username || url.password || url.pathname !== "/" ||
-        url.searchParams.getAll("vista").join() !== "replay" ||
+        url.username || url.password || !["/", "/studio/"].includes(url.pathname) ||
+        !pinMatches("vista", "replay") ||
         url.searchParams.getAll("at").length !== 1 || !/^\d+$/.test(url.searchParams.get("at") ?? "") ||
         Number(url.searchParams.get("at")) < d.startEpoch || Number(url.searchParams.get("at")) > d.endEpoch ||
-        url.searchParams.getAll("recording").join() !== d.recordingId ||
-        url.searchParams.getAll("object").join() !== d.objectRefs[0].elementId ||
-        url.searchParams.getAll("session").join() !== d.sessionId ||
-        url.searchParams.getAll("sha").join() !== d.sha256 ||
-        url.searchParams.getAll("objectVersion").join() !== String(d.objectRefs[0].version) ||
+        !pinMatches("recording", d.recordingId) ||
+        !pinMatches("object", d.objectRefs[0].elementId) ||
+        !pinMatches("session", d.sessionId) ||
+        !pinMatches("sha", d.sha256) ||
+        !pinMatches("objectVersion", String(d.objectRefs[0].version)) ||
         decodeURIComponent(url.hash.slice(1)) !== d.lessonId) return null;
     return d;
   } catch { return null; }

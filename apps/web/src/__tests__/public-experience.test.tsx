@@ -1,0 +1,54 @@
+// @vitest-environment jsdom
+import {afterEach, expect, test, vi} from "vitest";
+import {cleanup, fireEvent, render, screen} from "@testing-library/react";
+import {PublicExperience} from "../features/PublicExperience";
+afterEach(() => {cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks();});
+test("public experience hides the solution and flow response until a prediction, then supports retry and a new constraint", async () => {
+  const fetch = vi.fn(() => Promise.reject(new Error("Public artifact has no API")));
+  vi.stubGlobal("fetch", fetch);
+  render(<PublicExperience />);
+  expect(screen.queryByTestId("physics-ratio")).toBeNull();
+  expect(screen.queryByTestId("poiseuille-graph")).toBeNull();
+  expect(screen.queryByTestId("flow-measures")).toBeNull();
+  expect(screen.queryByTestId("lesson-demo")).toBeNull();
+  const button = screen.getByRole("button", {name: "Metti alla prova"});
+  expect((button as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.change(screen.getByLabelText("Rapporto previsto"), {target: {value: "4"}});
+  fireEvent.click(button);
+  expect((await screen.findByTestId("physics-ratio")).textContent).toContain("16");
+  expect(screen.getByText(/Il raggio entra alla quarta potenza/)).toBeTruthy();
+  expect(screen.getByTestId("flow-measures").textContent).toContain("16");
+  fireEvent.click(screen.getByRole("button", {name: "Guarda il grafico"}));
+  expect(screen.getByTestId("poiseuille-graph")).toBeTruthy();
+  expect(screen.queryByTestId("lesson-demo")).toBeNull();
+  fireEvent.click(screen.getByRole("button", {name: "Riprendi il vincolo"}));
+  expect(screen.getByTestId("lesson-demo").textContent).toContain("Voce sintetica dimostrativa");
+  expect(screen.getByLabelText("Ascolta il passaggio sul vincolo").getAttribute("preload")).toBe("none");
+  fireEvent.click(screen.getByRole("link", {name: "Ritrova la formula collegata"}));
+  expect(document.getElementById("poiseuille-formula")!.closest("details")!.open).toBe(true);
+  fireEvent.change(screen.getByLabelText("Grandezza fissata"), {target: {value: "flow"}});
+  expect(screen.queryByTestId("physics-ratio")).toBeNull();
+  fireEvent.change(screen.getByLabelText("Rapporto previsto"), {target: {value: "0,0625"}});
+  fireEvent.click(button);
+  expect((await screen.findByTestId("physics-ratio")).textContent).toContain("0,0625");
+  expect(screen.getByTestId("flow-measures").textContent).toContain("Q/Q₀ = 1");
+  fireEvent.click(screen.getByRole("button", {name: "Un problema diverso"}));
+  expect((screen.getByLabelText("Rapporto dei raggi") as HTMLInputElement).value).toBe("0.5");
+  expect(screen.queryByTestId("physics-ratio")).toBeNull();
+  expect((screen.getByLabelText("Rapporto previsto") as HTMLInputElement).value).toBe("");
+  expect(fetch).not.toHaveBeenCalled();
+});
+
+test("the authored audio requires a manual gesture and its failure leaves the full transcript available", async () => {
+  const play = vi.spyOn(HTMLMediaElement.prototype, "play").mockRejectedValue(new Error("Missing local asset"));
+  render(<PublicExperience />);
+  fireEvent.change(screen.getByLabelText("Rapporto previsto"), {target: {value: "4"}});
+  fireEvent.click(screen.getByRole("button", {name: "Metti alla prova"}));
+  await screen.findByTestId("physics-ratio");
+  fireEvent.click(screen.getByRole("button", {name: "Riprendi il vincolo"}));
+  expect(play).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", {name: "Ascolta il passaggio"}));
+  expect((await screen.findByRole("alert")).textContent).toContain("L’audio locale non è disponibile");
+  expect(screen.getByTestId("lesson-demo").textContent).toContain("Ora prova a dimezzare il raggio mantenendo costante la portata.");
+  expect(play).toHaveBeenCalledTimes(1);
+});

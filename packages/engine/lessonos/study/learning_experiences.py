@@ -73,7 +73,7 @@ def validate_lesson_passage(value):
         query = parse_qs(url.query)
         at = query.get('at', [])
         if (url.scheme not in ('http', 'https') or url.hostname not in ('localhost', '127.0.0.1', '::1')
-                or url.username or url.password or url.path not in ('', '/')
+                or url.username or url.password or url.path not in ('', '/', '/studio/')
                 or query.get('vista') != ['replay'] or len(at) != 1 or not at[0].isdigit()
                 or not value['startEpoch'] <= int(at[0]) <= value['endEpoch']
                 or query.get('recording') != [value['recordingId']]
