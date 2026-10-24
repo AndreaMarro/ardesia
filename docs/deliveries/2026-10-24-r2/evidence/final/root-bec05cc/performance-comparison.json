@@ -1,0 +1,241 @@
+{
+  "scope": "Loopback desktop Chromium cold contexts; same host sequential alternating; no CPU/network throttling. Timings descriptive, no causal performance claim or field INP.",
+  "runtime": "v26.5.1",
+  "samples": [
+    {
+      "label": "R1",
+      "run": 1,
+      "requests": 3,
+      "domContentLoaded": 83.2999999821186,
+      "load": 83.39999997615814,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 89.72279200000003,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 1,
+      "requests": 3,
+      "domContentLoaded": 27.400000005960464,
+      "load": 28,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 39.545208,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R1",
+      "run": 2,
+      "requests": 3,
+      "domContentLoaded": 26.69999998807907,
+      "load": 26.69999998807907,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 45.448249999999916,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 2,
+      "requests": 3,
+      "domContentLoaded": 26.30000001192093,
+      "load": 26.30000001192093,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 37.329583000000184,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R1",
+      "run": 3,
+      "requests": 3,
+      "domContentLoaded": 25.69999998807907,
+      "load": 25.69999998807907,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 30.659833000000162,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 3,
+      "requests": 3,
+      "domContentLoaded": 25.400000005960464,
+      "load": 25.5,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 38.10920799999985,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R1",
+      "run": 4,
+      "requests": 3,
+      "domContentLoaded": 26.30000001192093,
+      "load": 26.30000001192093,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 46.10129099999995,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 4,
+      "requests": 3,
+      "domContentLoaded": 26.599999994039536,
+      "load": 26.599999994039536,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 33.055791999999656,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R1",
+      "run": 5,
+      "requests": 3,
+      "domContentLoaded": 27.299999982118607,
+      "load": 27.299999982118607,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 36.97962499999994,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 5,
+      "requests": 3,
+      "domContentLoaded": 31.799999982118607,
+      "load": 31.899999976158142,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 48.43825000000015,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R1",
+      "run": 6,
+      "requests": 3,
+      "domContentLoaded": 27.299999982118607,
+      "load": 27.299999982118607,
+      "resourceBytes": 309801,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 46.7847499999998,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    },
+    {
+      "label": "R2",
+      "run": 6,
+      "requests": 3,
+      "domContentLoaded": 27.900000005960464,
+      "load": 28,
+      "resourceBytes": 334965,
+      "activeAnimations": 0,
+      "overflow": false,
+      "interactionMs": 36.384665999999925,
+      "interactionScope": "Playwright click through visible result; includes automation and paint scheduling, not field INP",
+      "errors": []
+    }
+  ],
+  "assets": [
+    {
+      "label": "R1",
+      "commit": "91219486ddf270582bef1c2e0bda2a66796e6e78",
+      "files": 20,
+      "total": 2570117,
+      "code": [
+        {
+          "path": "public/assets/site.084d55bb702f.js",
+          "bytes": 4986,
+          "gzip": 1862,
+          "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+        },
+        {
+          "path": "public/assets/site.8d2e9d4dd826.css",
+          "bytes": 16996,
+          "gzip": 4441,
+          "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+        },
+        {
+          "path": "public/assets/tokens.a6cbc8d0e277.css",
+          "bytes": 429,
+          "gzip": 290,
+          "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+        },
+        {
+          "path": "public/esperienza/assets/index-B1N3AsGB.js",
+          "bytes": 249666,
+          "gzip": 70094,
+          "sha256": "53a6ad41c4b99534f94ee8a53d6f6bae1ba91a28594cd196a0f5239ad456636a"
+        },
+        {
+          "path": "public/esperienza/assets/index-BWPqF67I.css",
+          "bytes": 60135,
+          "gzip": 12553,
+          "sha256": "29ef81dfa28c39f78c4def55c41f6e66266f49d58e59d37d37c5b1f7f3d19d57"
+        }
+      ]
+    },
+    {
+      "label": "R2",
+      "commit": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0",
+      "files": 20,
+      "total": 2595281,
+      "code": [
+        {
+          "path": "public/assets/site.084d55bb702f.js",
+          "bytes": 4986,
+          "gzip": 1862,
+          "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+        },
+        {
+          "path": "public/assets/site.8d2e9d4dd826.css",
+          "bytes": 16996,
+          "gzip": 4441,
+          "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+        },
+        {
+          "path": "public/assets/tokens.a6cbc8d0e277.css",
+          "bytes": 429,
+          "gzip": 290,
+          "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+        },
+        {
+          "path": "public/esperienza/assets/index-2VcuT-Y3.js",
+          "bytes": 273787,
+          "gzip": 72765,
+          "sha256": "e442271e48b63f77ec8548a35cc440dbf933fd52a1de11c48753c0fb7b6897c5"
+        },
+        {
+          "path": "public/esperienza/assets/index-CZpaTnyo.css",
+          "bytes": 61178,
+          "gzip": 12746,
+          "sha256": "dd4d67dab2f96ddeb8a7e96d640f5793d4223b90c2cbb3fda185a32e30f12f0b"
+        }
+      ]
+    }
+  ],
+  "browser": "148.0.7778.96"
+}

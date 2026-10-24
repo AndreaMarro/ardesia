@@ -1,0 +1,182 @@
+{
+  "schema": "ardesia.replay-viewport-native.v1",
+  "synthetic": true,
+  "commit": "36cdba353401c80b92cc94f256b106238c7610f8",
+  "origin": "http://127.0.0.1:5443",
+  "checks": [
+    {
+      "name": "all source and asset bytes match before native replay",
+      "pass": true
+    },
+    {
+      "name": "Studio exposes the exact committed build",
+      "pass": true
+    },
+    {
+      "name": "replay is meaningful and has no framework overlay",
+      "pass": true
+    },
+    {
+      "name": "linked object auto-fits actual canvas bounds at1440",
+      "pass": true
+    },
+    {
+      "name": "resize does not change replay time at1440",
+      "pass": true
+    },
+    {
+      "name": "linked object auto-fits actual canvas bounds at390",
+      "pass": true
+    },
+    {
+      "name": "resize does not change replay time at390",
+      "pass": true
+    },
+    {
+      "name": "linked object auto-fits actual canvas bounds at820",
+      "pass": true
+    },
+    {
+      "name": "resize does not change replay time at820",
+      "pass": true
+    },
+    {
+      "name": "linked object auto-fits actual canvas bounds at360",
+      "pass": true
+    },
+    {
+      "name": "resize does not change replay time at360",
+      "pass": true
+    },
+    {
+      "name": "linked object auto-fits actual canvas bounds at1440",
+      "pass": true
+    },
+    {
+      "name": "resize does not change replay time at1440",
+      "pass": true
+    },
+    {
+      "name": "direct mobile replay opening automatically fits the pinned object",
+      "pass": true
+    },
+    {
+      "name": "user pan survives a normal render without resize",
+      "pass": true
+    },
+    {
+      "name": "audio progress does not reset the user camera",
+      "pass": true
+    },
+    {
+      "name": "actual imported media bytes remain pinned",
+      "pass": true
+    },
+    {
+      "name": "no page errors",
+      "pass": true
+    },
+    {
+      "name": "no console warnings or errors",
+      "pass": true
+    },
+    {
+      "name": "no failed requests",
+      "pass": true
+    },
+    {
+      "name": "all source and asset bytes match after native replay",
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "rect": {
+        "x": 520.09375,
+        "y": 372.1875,
+        "width": 399.796875,
+        "height": 145.59375
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "rect": {
+        "x": 33.46875,
+        "y": 279.15625,
+        "width": 323.03125,
+        "height": 119.671875
+      }
+    },
+    {
+      "viewport": {
+        "width": 820,
+        "height": 1000
+      },
+      "rect": {
+        "x": 33.46875,
+        "y": 279.15625,
+        "width": 323.03125,
+        "height": 119.671875
+      }
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 844
+      },
+      "rect": {
+        "x": 37.65625,
+        "y": 303.125,
+        "width": 284.65625,
+        "height": 106.71875
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "rect": {
+        "x": 37.65625,
+        "y": 268.125,
+        "width": 284.65625,
+        "height": 106.71875
+      }
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "failedRequests": [],
+  "manualFitClicked": false,
+  "browserPath": "Browser plugin not available; requested Playwright runner reused",
+  "artifact": {
+    "sourceCount": 1608,
+    "assetCount": 759,
+    "sourceTreeSha256": "8a9497d14b2b6d507bce3683452f2cb26fe09915396a423ad148037d8d2d1a42",
+    "manifestSha256": "0aef183a20dea2c85c879cf14b58c54043aeee2d4264a2b0aa76b93f75a20f5c"
+  },
+  "panGesture": {
+    "observed": true,
+    "before": {
+      "x": 520.09375,
+      "y": 372.1875,
+      "width": 399.796875,
+      "height": 145.59375
+    },
+    "panned": {
+      "x": 390.09375,
+      "y": 282.1875,
+      "width": 399.796875,
+      "height": 145.59375
+    }
+  },
+  "mediaSha256": "85769c342eb92696704614518df64343fb7323e86c9aab3a2f6cd7cf49bc8470",
+  "passed": true
+}

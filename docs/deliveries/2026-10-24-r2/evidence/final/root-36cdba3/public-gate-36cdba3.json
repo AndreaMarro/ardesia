@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "technicalStatus": "PASS",
+  "releaseStatus": "BLOCKED",
+  "errors": [],
+  "binding": {
+    "candidateManifestSha256": "651f6b31501f00fb14048607c4529675961821044e568ab3c13bf06af7fa418d",
+    "sourceManifestSha256": "e322eb25e216a34690930e2a3fc35a09dec5ad8e954c13d6bacf4895de759da4",
+    "sourceCommit": "36cdba353401c80b92cc94f256b106238c7610f8",
+    "sourceTreeSha256": "8a9497d14b2b6d507bce3683452f2cb26fe09915396a423ad148037d8d2d1a42",
+    "assetCount": 20
+  },
+  "humanReview": {
+    "status": "PENDING",
+    "scientificReviewer": null,
+    "editorialAuthorizer": null,
+    "decisionReference": null,
+    "approvedAt": null,
+    "draftExamples": [
+      {
+        "id": "ARD-SF26-01-Q01",
+        "contentSHA256": "d06ef1792f1e1328c5fac51a69ac2829f0dfefebc051a2a42573ea6f80d0fe5c"
+      },
+      {
+        "id": "ARD-SF26-02-Q01",
+        "contentSHA256": "7840668f467db8f84d74d51b5c220aebee7d95c25daac8a270cf895940355e36"
+      },
+      {
+        "id": "ARD-SF26-03-Q01",
+        "contentSHA256": "c4b67e206d527338860a632ec4e395720f366d9f30bc5b4dacd8ac959d02b105"
+      },
+      {
+        "id": "ARD-SF26-04-Q01",
+        "contentSHA256": "dfba3a7cd1f546a9cca76247ce21dda8bd5df4d93b31ad03ad9b7a3797f56898"
+      }
+    ],
+    "existingApprovalRegistry": "apps/marketing-01/examples/approvals.json"
+  },
+  "releaseGates": [
+    "exact_scientific_and_editorial_human_review",
+    "draft_examples_exact_digest_approval_or_exclusion",
+    "explicit_target_and_publication_authorization",
+    "verify_real_https_headers_bytes_routes_cta_and_rollback_after_authorized_deploy"
+  ],
+  "privateBeta": "NOT_CERTIFIED_REMOTE",
+  "limits": [
+    "Local hashes establish consistency, not authorship or approval.",
+    "High-confidence credential patterns do not prove the absence of every possible secret or personal datum.",
+    "Exported host rules are configuration, not evidence that a hosting provider applied them."
+  ]
+}
