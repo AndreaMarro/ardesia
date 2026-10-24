@@ -17,6 +17,14 @@ interface ReplayViewProps {
   room: string
 }
 
+interface ReplayLoad {
+  store: WorkspaceStore
+  room: string
+  timeline: ReplayTimeline | null
+  lessonName: string | null
+  error: string | null
+}
+
 /** Formatta ms trascorsi come m:ss (per il contatore della timeline) */
 function formatClock(ms: number): string {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000))
@@ -26,10 +34,14 @@ function formatClock(ms: number): string {
 }
 
 export default function ReplayView({ store, room }: ReplayViewProps) {
-  const [timeline, setTimeline] = useState<ReplayTimeline | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [lessonName, setLessonName] = useState<string | null>(null)
+  const [loaded, setLoaded] = useState<ReplayLoad | null>(null)
+  // Legare il risultato alla fonte nasconde già al primo render di B i dati
+  // di A: il solo reset in useEffect lascerebbe visibile uno stato precedente.
+  const current = loaded?.store === store && loaded.room === room ? loaded : null
+  const timeline = current?.timeline ?? null
+  const loading = current === null
+  const error = current?.error ?? null
+  const lessonName = current?.lessonName ?? null
   /** Tempo journal corrente (epoch ms) — cursore della timeline */
   const [t, setT] = useState<number | null>(null)
   const [apiReady, setApiReady] = useState(false)
@@ -48,22 +60,19 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
+    setApiReady(false)
+    apiRef.current = null
     Promise.all([
-      loadReplayTimeline(store),
+      loadReplayTimeline(store, room),
       store.loadMeta(room).catch(() => null),
     ])
       .then(([tl, meta]) => {
         if (cancelled) return
-        setTimeline(tl)
+        setLoaded({ store, room, timeline: tl, lessonName: meta?.name ?? null, error: null })
         setT(tl.firstEventTime)
-        if (meta?.name) setLessonName(meta.name)
       })
       .catch((err: unknown) => {
-        if (!cancelled) setError((err as Error).message)
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
+        if (!cancelled) setLoaded({ store, room, timeline: null, lessonName: null, error: (err as Error).message })
       })
     return () => { cancelled = true }
   }, [store, room])
@@ -87,8 +96,12 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
    * il tempo audio 0 corrisponde a audioChunks[0].startEpoch.
    */
   useEffect(() => {
+    audioStartEpochRef.current = null
+    pendingSeekSecRef.current = null
     if (!timeline || timeline.audioChunks.length === 0) return
     let cancelled = false
+    let ownedUrl: string | null = null
+    let ownedElement: HTMLAudioElement | null = null
     Promise.all(timeline.audioChunks.map((chunk) => store.read(chunk.path)))
       .then((blobs) => {
         if (cancelled) return
@@ -97,7 +110,9 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
         if (!el || parts.length === 0) return
         const startEpoch = timeline.audioChunks[0].startEpoch
         audioStartEpochRef.current = startEpoch
-        el.src = URL.createObjectURL(new Blob(parts, { type: "audio/webm" }))
+        ownedUrl = URL.createObjectURL(new Blob(parts, { type: "audio/webm" }))
+        ownedElement = el
+        el.src = ownedUrl
         // seek iniziale quando i metadata sono pronti (currentTime prima di
         // loadedmetadata può essere ignorato/azzerato dal browser)
         pendingSeekSecRef.current = Math.max(0, ((tRef.current ?? startEpoch) - startEpoch) / 1000)
@@ -105,16 +120,14 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
       .catch(() => {
         // audio illeggibile: il replay visuale resta pienamente funzionante
       })
-    return () => { cancelled = true }
-  }, [timeline, store])
-
-  /** Revoca l'object URL audio all'unmount */
-  useEffect(() => {
     return () => {
-      const el = audioRef.current
-      if (el?.src) URL.revokeObjectURL(el.src)
+      cancelled = true
+      if (ownedUrl) URL.revokeObjectURL(ownedUrl)
+      // Il ref React può già essere null all'unmount: si rilascia l'elemento
+      // posseduto da questo caricamento, mai quello di una room successiva.
+      ownedElement?.removeAttribute("src")
     }
-  }, [])
+  }, [timeline, store])
 
   /** Metadata pronti: applica l'eventuale seek in sospeso */
   function handleLoadedMetadata() {
@@ -235,7 +248,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               aria-valuetext={`${formatClock((t ?? timeline.firstEventTime!) - timeline.firstEventTime!)} di ${formatClock(timeline.lastEventTime! - timeline.firstEventTime!)}`}
               min={timeline.firstEventTime!}
               max={timeline.lastEventTime!}
-              step={100}
+              step={1}
               value={t ?? timeline.firstEventTime!}
               onChange={handleScrub}
               style={{ flex: 1 }}

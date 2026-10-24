@@ -1,0 +1,819 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-10-24T08:46:16.705Z",
+  "baseURL": "http://127.0.0.1:5197",
+  "browserPath": "/workspace/scratch/6f2994042c33/research/rea-lab/browser-bin/chromium",
+  "baseline": "339ab08f4139da0b37e78bbde81e9fe4e83afea0 + uncommitted replay fix",
+  "syntheticDataOnly": true,
+  "storage": "isolated browser localStorage fallback; not FSA or remote persistence",
+  "fallbackReason": "Browser access requires originating browser context; task explicitly permits Playwright fallback",
+  "flow": "Room A UI drawing -> canonical journal flush -> replay A -> Room B UI drawing -> replay B -> cold reopen A -> empty room with flat legacy distractor -> mobile replay",
+  "console": [
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-BoldItalic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-BoldItalic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "MathLive 0.110.0: The math fonts could not be loaded from \"https://unpkg.com/mathlive/fonts\" {cause: NetworkError: A network error occurred.}",
+      "location": {
+        "url": "http://127.0.0.1:5197/@vite/client",
+        "line": 524,
+        "column": 3,
+        "lineNumber": 524,
+        "columnNumber": 3
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Script-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Typewriter-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size1-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size2-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size3-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size4-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-BoldItalic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "MathLive 0.110.0: The math fonts could not be loaded from \"https://unpkg.com/mathlive/fonts\" {cause: NetworkError: A network error occurred.}",
+      "location": {
+        "url": "http://127.0.0.1:5197/@vite/client",
+        "line": 524,
+        "column": 3,
+        "lineNumber": 524,
+        "columnNumber": 3
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-BoldItalic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Bold.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Italic.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Script-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Typewriter-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size1-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size2-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size3-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size4-Regular.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "location": {
+        "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "requestFailures": [
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-BoldItalic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-BoldItalic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Script-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Typewriter-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size1-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size2-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size3-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size4-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-BoldItalic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Main-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Math-BoldItalic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_AMS-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Fraktur-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Bold.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_SansSerif-Italic.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Script-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Typewriter-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size1-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size2-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size3-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://unpkg.com/mathlive/fonts/KaTeX_Size4-Regular.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "url": "https://esm.sh/@excalidraw/excalidraw@0.18.1/dist/prod/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2",
+      "failure": "net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "checks": [
+    {
+      "label": "audit-replay-a-edit",
+      "pageIdentity": true,
+      "nonblank": true,
+      "noFrameworkOverlay": true,
+      "title": "Ardesia · studio",
+      "url": "http://127.0.0.1:5197/#audit-replay-a"
+    }
+  ],
+  "rooms": {
+    "audit-replay-a": {
+      "room": "audit-replay-a",
+      "journalPath": "raw/audit-replay-a/events.jsonl",
+      "min": 1792831577560,
+      "max": 1792831577965,
+      "eventCount": 6,
+      "schemaVersions": [
+        2
+      ],
+      "eventKinds": [
+        "journal.pointer.down",
+        "journal.pointer.up",
+        "journal.element.add",
+        "journal.element.update"
+      ],
+      "elementIds": [
+        "V4xZ0ZynrDHnOCLuQN_Mj"
+      ],
+      "textElementId": "V4xZ0ZynrDHnOCLuQN_Mj",
+      "text": "LEZIONE A\nPoiseuille: pressione fissata\nr = 2 r0  ->  Q = 16 Q0"
+    }
+  },
+  "screenshots": [
+    "/workspace/scratch/6f2994042c33/research/replay-browser/audit-replay-a-drawing-desktop.png",
+    "/workspace/scratch/6f2994042c33/research/replay-browser/failure.png"
+  ],
+  "limitations": [
+    "Replay route is reached by deep link, not by a claimed visible navigation control.",
+    "No real microphone, audio capture, semantic association, server auth or FSA is tested.",
+    "Synthetic fixture generation/inspection uses the existing DEV harness; drawing uses real mouse and keyboard."
+  ],
+  "chromiumVersion": "153.0.8010.0",
+  "failure": {
+    "message": "expect(locator).toHaveValue(expected) failed\n\nLocator:  getByRole('slider', { name: 'linea del tempo della lezione' })\nExpected: \"1792831577965\"\nReceived: \"1792831577960\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.value\" with timeout 5000ms\n  - waiting for getByRole('slider', { name: 'linea del tempo della lezione' })\n    14 × locator resolved to <input step=\"100\" type=\"range\" min=\"1792831577560\" max=\"1792831577965\" value=\"1792831577960\" aria-valuetext=\"0:00 di 0:00\" aria-label=\"linea del tempo della lezione\"/>\n       - unexpected value \"1792831577960\"\n",
+    "stack": "Error: expect(locator).toHaveValue(expected) failed\n\nLocator:  getByRole('slider', { name: 'linea del tempo della lezione' })\nExpected: \"1792831577965\"\nReceived: \"1792831577960\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.value\" with timeout 5000ms\n  - waiting for getByRole('slider', { name: 'linea del tempo della lezione' })\n    14 × locator resolved to <input step=\"100\" type=\"range\" min=\"1792831577560\" max=\"1792831577965\" value=\"1792831577960\" aria-valuetext=\"0:00 di 0:00\" aria-label=\"linea del tempo della lezione\"/>\n       - unexpected value \"1792831577960\"\n\n    at captureRawStack (/workspace/scratch/6f2994042c33/ardesia/apps/studio/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/workspace/scratch/6f2994042c33/ardesia/apps/studio/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toHaveValue (/workspace/scratch/6f2994042c33/ardesia/apps/studio/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at replay (/workspace/scratch/6f2994042c33/research/studio-replay-browser.cjs:115:26)\n    at async /workspace/scratch/6f2994042c33/research/studio-replay-browser.cjs:131:5"
+  },
+  "failureBody": "Ardesia\nSTUDIO\nrivedi la lezione\nLezione A · Poiseuille\nAzioni sulla Tela\n100%\n0:00 / 0:00",
+  "finishedAt": "2026-10-24T08:46:23.880Z"
+}

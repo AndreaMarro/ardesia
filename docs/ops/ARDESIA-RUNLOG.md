@@ -120,3 +120,93 @@ Composti5b→93a→b37→767 suC7/C8corrente,19file; mergeApp conserva marker co
 ## 2026-10-20 — Consegna finale richiesta dall’utente
 
 L’utente chiede di concludere il lavoro corrente, mettere il lavoro su GitHub e fermare il goal. UI786 composta byte-per-byte in46fda242 su backenddd43:18file, nessuna dipendenza aggiunta. Recheck indipendente pin6PASS/17nonselezionati,571sorgenti congelate; vecchiofinding preservato. OttocheckCI reali dd43SUCCESS, prove finali46fda separate. Il goal globale non è raggiunto: G0NOT_CERTIFIED/G1NOT_READY; nessuna migrazione5 o viaggio10+2 inventati. Il fallback CLI ufficialeVercel64.7.0 è ora installato e verificato, ma inspectGET termina1 per credenziali assenti; nessun reauth/delete/deploy riuscito, preview9e0 e costo restanoUNKNOWN. Il ramo verrà conservato e la PR chiusa senza merge secondo la richiesta di chiusura; ripresa solo su nuova richiesta.
+
+
+## 2026-10-24 — Convergenza: audit, riparazioni Studio e prove sul candidato
+
+**Identità:** commit `49bf90ce782457494fed52c8e1a812bf27ba158b`, branch `pro/ardesia-living-lesson-audio-20261024`, [draft PR #297](https://github.com/AndreaMarro/ardesia/pull/297), base #290 `339ab08f4139da0b37e78bbde81e9fe4e83afea0`. La [consegna](../deliveries/2026-10-24-convergence/README.md) collega canoni, archeologia, prodotto/didattica/economia, contratti multimodali/MCP, ricerca REA e review indipendente. La ricostruzione usa fonti accessibili: non certifica lettura integrale di tutte le chat o di ogni repository storico.
+
+**Esito verificato:** riparati lifecycle audio legacy, errori di persistenza, lettura del journal della room, stato del replay, confine Excalidraw→JSON canonico e ultimo millisecondo del cursore. Studio locale: 2.201 PASS, 5 skip del corpus screenshot storico mancante; typecheck e build PASS, warning bundle dichiarato. Chromium: 20 controlli audio nativo con stream sintetico e store in memoria; 13 controlli lavagna/replay con dati sintetici, due room e cold reopen. REA 6.7.0: analisi e otto azioni sul build marketing, 12 verifiche indipendenti; implementato un verificatore del comportamento esistente, non ricostruita una nuova feature. Prove, limiti e manifest sono in [validation.md](../deliveries/2026-10-24-convergence/validation.md).
+
+**CI riletta via API GitHub il 24 ottobre sullo stesso SHA:** [ci 40080464182](https://github.com/AndreaMarro/ardesia/actions/runs/40080464182), [marketing-static 40080464208](https://github.com/AndreaMarro/ardesia/actions/runs/40080464208) e [studio-preview-readiness 40080464102](https://github.com/AndreaMarro/ardesia/actions/runs/40080464102) risultano completed/success. Sono tre workflow, non tre certificazioni del prodotto. La PR resta una proposta sullo stack: nessun merge o deploy di questo incremento.
+
+**Decisioni e alternative:** conservati Core, sessioni CAS, journal rigoroso e RFC MCP #293. Scartati il fallback globale del replay, l'indebolimento del validator e una seconda gerarchia di correzioni; avrebbero nascosto errori o duplicato autorità. Il primitivo audio è stato corretto senza fingere che un bottone bastasse a collegarlo alla Room.
+
+**Errori e apprendimento:** i test del loader con elementi JSON-validi non rilevavano `customData: undefined` della lavagna nativa; il browser ha prodotto il controesempio e nuovi test RED. Il range a passi di 100 ms impediva di raggiungere l'ultimo update di alcune lezioni; un test di stepping nativo ha riprodotto 1400 invece di 1405. La review audio ha trovato due failure di bytes/marker nascoste da uno stop apparentemente riuscito. Conseguenza per i prossimi incrementi: verificare producer, consumer e gesto effettivo, mantenendo errori, RED e scope delle prove.
+
+**Limiti:** audio non montato in Room/journal v2; export/import multimodale e semantica non provati; MCP ancora con quattro letture e write soltanto specificata. Il browser registra errori font esterni; mobile recupera il contenuto con pan ma taglia il bordo della scena. Nessuna prova di FSA, microfono fisico, altri browser, auth remota, efficacia didattica o redditività. Le verifiche di componenti non chiudono i gate marketing/beta.
+
+### Prossimi task proposti in questa rilevazione
+
+| Priorità / task | Primo passo e dipendenze | Accettazione | Evidenza da usare/produrre |
+| --- | --- | --- | --- |
+| 1 — AUDIO-V2 | Verificare PR/ownership correnti; mappare `runtime.identity`, session CAS e porta storage del recorder. Definire l'evento media coerente con decoder e bundle. | Consenso esplicito, clip breve, due take con pausa, due room, export→store nuovo→import e revoca senza ricomparsa dei byte. | [Contratto del ponte](../deliveries/2026-10-24-convergence/multimodal-mcp-contracts.md#2-ponte-audio-e-lavagna-cosa-manca-realmente), test nativi già conservati e nuova prova completa. |
+| 2 — Episodio Fluidi | Riutilizzare PhysicsLab e valutatore Core; collegare un passaggio della lezione al vincolo pressione/portata. Dipende dal ponte disponibile, dichiarando le parti ancora simulate. | Errore osservato → aiuto motivato → prova diversa senza soluzione già mostrata, fonte/versione risolvibili. | [Scenario Poiseuille](../deliveries/2026-10-24-convergence/multimodal-mcp-contracts.md#3-dimostrazione-unica-il-vincolo-nella-legge-di-poiseuille) e nuovo percorso docente/studente. |
+| 3 — MCP-W01 | Rendere RED revisioni private, autorizzazione, idempotenza e candidate digest sul Core esistente; verificare writer concorrenti. | Gate W01–W18 pertinenti, nessun publish tool e nessuna nota privata visibile allo studente. | [RFC #293](https://github.com/AndreaMarro/ardesia/blob/5a4d89312f6a46e3a0dd435e6c040b3c134ba9f5/docs/product/MCP-CORRECTION-WRITE-CORE-REUSE-RFC-2026-10-24.md), prove Core prima del primo host nominato. |
+| 4 — Replay mobile | Riprodurre il riquadro fuori viewport a 390 px e verificare le opzioni di fit del renderer già presente; separare disponibilità font da geometria. | Contenuto completo recuperabile con tastiera/touch, nessuna perdita di eventi o contaminazione tra room. | [Prove browser e limiti](../deliveries/2026-10-24-convergence/validation.md#browser-percorso-e-screenshot), nuova controprova mobile prima/dopo. |
+
+## 2026-10-24 — Follow-up: memoria cronologica e handoff degli agenti
+
+**Contesto e gap osservato su `49bf90ce`:** l'utente chiede se il mandato sia stato seguito e se una memoria condivisa venga aggiornata e produca proposte per il lavoro successivo. La consegna e AGENTS avevano un ingresso datato, ma questo RUNLOG terminava al 20 ottobre e NEXT-SESSION-PROMPT indicava ancora il 2 luglio, PR #16 e una vecchia slice di onboarding. Il protocollo AgentMemory rinviava inoltre a tre packet/log assenti nel checkout. La salute esterna era soltanto una rilevazione del 2 luglio: stato attuale UNKNOWN, non “operativo” né “ancora guasto”.
+
+**Correzione documentale:** AGENTS richiama lettura iniziale e chiusura della memoria; l'[addendum al protocollo esistente](AGENTMEMORY-SEMANTIC-PROTOCOL.md#addendum-24-ottobre-2026-memoria-git-per-ogni-sessione) assegna autorità a stato generato, prove, canoni, RUNLOG e [handoff corrente](NEXT-SESSION-PROMPT.md). RUNLOG resta append-only; l'handoff può evolvere con storia in Git. Ogni nuova voce sostanziale registra anche scelte scartate, errori/correzioni, un insight specifico e 3–5 task verificabili. Nessun servizio, daemon, scheduler o codice applicativo viene introdotto da questo follow-up.
+
+**Scelta e alternativa scartata:** riusare i registri evita un nuovo “memory system” parallelo. Non riattivare automaticamente il vecchio servizio Mini e non copiare tutte le conversazioni nel repository. Una cache semantica opzionale non deve diventare una dipendenza per capire il progetto.
+
+**Apprendimento e limite:** una consegna ampia non basta se il prossimo agente segue un prompt obsoleto. Migliorare la memoria significa correggere il routing, conservare la prova dell'errore e rendere esplicito il passo successivo. Non è apprendimento automatico garantito: l'agente deve eseguire il protocollo e verificarne l'esito. Suggerimenti e supersessioni documentali non autorizzano merge, produzione o modifica dei dati reali.
+
+**Stato delle prove:** questo follow-up è un delta documentale locale al momento della voce, con verifica e pubblicazione da associare al proprio commit nella PR. I tre workflow success di `49bf90ce` riguardano l'incremento precedente, non il nuovo testo. La copertura del mandato resta distinta per tema: audit, correzioni e documentazione sono consegnati; storia integrale, cinque prototipi completi, audio contestuale, MCP write reale, test degli host e beta integrata non sono tutti completati.
+
+### Prossimi task proposti dopo il follow-up
+
+| Priorità / task | Primo passo e dipendenze | Accettazione | Evidenza da usare/produrre |
+| --- | --- | --- | --- |
+| 1 — AUDIO-V2 | Eseguire l'ingresso previsto da [NEXT-SESSION-PROMPT](NEXT-SESSION-PROMPT.md), verificare il candidato/ownership e scegliere il primo seam sessione→media. | Round-trip sintetico con due take, due room e revoca; nessuna dichiarazione di disponibilità prima del consumer reale. | Contratti e prove della [consegna](../deliveries/2026-10-24-convergence/README.md); RED/GREEN e browser sul nuovo SHA. |
+| 2 — Verifica del passaggio di memoria | Alla prossima sessione ricostruire stato, decisione corrente e primo task dai soli riferimenti del repository; annotare ambiguità concrete. | HEAD e prove correttamente attribuiti, nessuna istruzione luglio applicata come corrente, nuova voce e handoff coerenti con 3–5 task motivati. | Questo RUNLOG, NEXT-SESSION-PROMPT e i cinque controlli del protocollo; esito registrato senza riscrivere questa voce. |
+| 3 — MCP private revision | Riprendere la RFC esistente dopo il verticale prioritario, partendo dai test Core dei conflitti e della visibilità privata. | Una proposta privata versionata; pubblicazione umana vincolata al digest; rifiuti, retry e rilettura verificati. | RFC #293 e relativa matrice W01–W18; scope locale/remoto distinti. |
+| 4 — Preparazione del candidato dimostrabile | Dopo AUDIO-V2 e episodio Fluidi, confrontare il percorso reale con i gate marketing/beta, includendo mobile e font. | Elenco esplicito di capacità dimostrate, simulate e mancanti sul medesimo candidato; nessuna promozione automatica a COMMERCIAL_READY. | [Gate della consegna](../deliveries/2026-10-24-convergence/README.md#5-marketing-gate-del-26-ottobre), screenshot/test attuali e nuovi limiti nel RUNLOG. |
+
+## 2026-10-24 — Esito successivo della CI: gate catalogo riaperto
+
+**Rilevazione successiva al follow-up documentale:** il commit
+`9f738d25dd8a6a2866bf5054d68c59d24ad3cfa2` modifica soltanto cinque Markdown;
+il tree applicativo è invariato rispetto a `49bf90ce`. Nella nuova
+[CI generale 40083426275](https://github.com/AndreaMarro/ardesia/actions/runs/40083426275)
+il job Web ha concluso con FAILURE: typecheck PASS, unit test **293 PASS / 1 FAIL**.
+Il test è “catalog links reopen the exact unit and reject an obsolete composition
+without a fallback”, in `apps/web/src/__tests__/curriculum-catalog.test.tsx:95`.
+Dopo il cambio di catalogVersion e l'evento popstate manca il titolo
+“Riferimento non disponibile”; il DOM conserva il percorso precedente.
+Build e prove browser di quel job non sono state eseguite.
+[Marketing 40083426272](https://github.com/AndreaMarro/ardesia/actions/runs/40083426272)
+e [readiness 40083426297](https://github.com/AndreaMarro/ardesia/actions/runs/40083426297)
+sono SUCCESS. Il vecchio successo di 49bf90ce resta storico, non sostituisce
+questo nuovo esito.
+
+**Analisi indipendente e limite:** il listener popstate è registrato da un
+useEffect; il test usa una lettura asincrona iniziale, poi evento e asserzione
+sincrona. fireEvent è già avvolto da act. Non è ancora distinto un evento prima
+della registrazione dell'effetto da un aggiornamento non ancora committato o da
+un altro difetto. Il tentativo locale non ha eseguito la spec per dipendenze del
+runner Web indisponibili; nessun risultato locale PASS/RED viene rivendicato.
+Nessun file applicativo o test è stato modificato.
+
+**Decisione e alternativa scartata:** mantenere il gate aperto e aggiungere una
+precondizione al mandato successivo. Scartata la modifica getByRole→findByRole
+senza controprova: potrebbe nascondere una causa diversa. Nessun rerun viene
+usato per cancellare il risultato. Un eventuale successo successivo non basta
+da solo a classificare il problema come risolto o a chiamarlo flaky.
+
+**Apprendimento:** anche una modifica documentale può far emergere, eseguendo
+la CI sullo stesso codice, un problema non osservato nel run precedente. La
+memoria deve conservare entrambi gli esiti, attribuiti al candidato e al run,
+e cambiare l'ordine dei task in base alla nuova prova.
+
+### Prossimi task suggeriti dopo il nuovo esito CI
+
+| Priorità / task | Primo passo e dipendenze | Accettazione | Evidenza richiesta |
+| --- | --- | --- | --- |
+| 0 — CI-CATALOG | Leggere il job fallito e riprodurre la spec originale con il runner del lock; distinguere montaggio del listener, commit React ed errore di routing. | Causa riprodotta, correzione minima se necessaria, rifiuto del riferimento obsoleto preservato e CI Web verificata. Se un rerun passa, conservare il RED e la diagnosi ancora aperta. | Run 40083426275, test originale e controprova mirata, senza skip o semplice aumento dei timeout. |
+| 1 — AUDIO-V2 | Dopo il controllo del candidato, mappare sessione CAS, media e consumer. | Due take con pausa, due room, revoca e round-trip export/import effettivi. | Contratti esistenti, test nativi e nuovo gesto UI sullo stesso SHA. |
+| 2 — Episodio Poiseuille e mobile | Riutilizzare Core/PhysicsLab e riferimenti della lezione; verificare font e inquadratura. | Previsione→errore→contesto→nuova prova→vista docente utilizzabili a desktop e 390 px. | Traccia e screenshot dello stesso build, limiti separati dai PASS. |
+| 3 — MCP private revision | Dopo il verticale, riprendere RFC #293 e comandi Core. | Proposta privata, revisione esatta del docente, conflitti/autorizzazioni verificati e primo host nominato. | Gate W01–W18 pertinenti, distinzione fra protocollo testato e host effettivamente collaudato. |

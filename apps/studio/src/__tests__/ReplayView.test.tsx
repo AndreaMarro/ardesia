@@ -7,6 +7,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { ReplayEngine } from "../store/ReplayEngine"
 import { PATHS } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { hasEmoji } from "./emojiGuard"
 
@@ -81,16 +82,17 @@ function journalBlob(events: JournalEvent[]): Blob {
   return new Blob([events.map((e) => JSON.stringify(e)).join("\n") + "\n"])
 }
 
-function makeMockStore(events: JournalEvent[] | null) {
+function makeMockStore(events: JournalEvent[] | null, room = "test-room") {
   const journal = events ? journalBlob(events) : null
+  const paths = roomPaths(room)
   return {
     registerActiveLesson: vi.fn(async (lessonId: string) => {
       const completion = Promise.resolve()
       return { lessonId, release: () => completion }
     }),
     read: vi.fn(async (path: string) => {
-      if (path === PATHS.JOURNAL) return journal
-      if (path.startsWith(PATHS.AUDIO_DIR)) return new Blob([new Uint8Array([1, 2, 3])])
+      if (path === paths.journal) return journal
+      if (path.startsWith(paths.audioDir)) return new Blob([new Uint8Array([1, 2, 3])])
       return null
     }),
     write: vi.fn(async (_path: string, _data: Blob) => {}),
@@ -179,6 +181,88 @@ describe("ReplayView", () => {
     }
   })
 
+  it("uses the selected room journal even when unrelated flat legacy data exists", async () => {
+    const store = makeMockStore(null)
+    store.read.mockImplementation(async (path: string) => {
+      if (path === roomPaths("test-room").journal) return journalBlob(JOURNAL_EVENTS)
+      if (path === PATHS.JOURNAL) return journalBlob([
+        { t: 9999, type: "element.add", element: el("unrelated-legacy") },
+      ])
+      return null
+    })
+    await renderReplayView(store)
+    await vi.waitFor(() => {
+      const range = container.querySelector('input[type="range"]') as HTMLInputElement
+      expect(range.min).toBe("1000")
+      expect(range.max).toBe("3000")
+    })
+    expect(store.read).toHaveBeenCalledWith(roomPaths("test-room").journal)
+    expect(store.read).not.toHaveBeenCalledWith(PATHS.JOURNAL)
+  })
+
+  it("the native range can reach the final event when duration is not a multiple of 100 ms", async () => {
+    const store = makeMockStore([
+      { t: 1000, type: "t0" },
+      { t: 1405, type: "element.add", element: el("final-stroke") },
+    ])
+    await renderReplayView(store)
+    await vi.waitFor(() => expect(capturedApi).not.toBeNull())
+    const range = container.querySelector('input[type="range"]') as HTMLInputElement
+    // Native range stepping clamps to its greatest allowed value, just as End
+    // does in Chromium. A coarse step would leave the final event unreachable.
+    range.stepUp(1000)
+    expect(range.valueAsNumber).toBe(1405)
+    range.dispatchEvent(new Event("input", { bubbles: true }))
+    await vi.waitFor(() => {
+      const scene = capturedApi!.updateScene.mock.calls.at(-1)?.[0].elements as Array<{ id: string }>
+      expect(scene.map((element) => element.id)).toEqual(["final-stroke"])
+    })
+  })
+
+  it("room change hides the previous title and audio while the new journal is pending", async () => {
+    const store = makeMockStore(AUDIO_EVENTS)
+    let finishRead!: (blob: Blob | null) => void
+    const pending = new Promise<Blob | null>((resolve) => { finishRead = resolve })
+    const firstRead = store.read.getMockImplementation()!
+    store.read.mockImplementation((path: string) => (
+      path === roomPaths("room-b").journal ? pending : firstRead(path)
+    ))
+    store.loadMeta.mockImplementation(async () => ({ v: 1, name: "Prima lezione", createdAt: 1 }))
+    const root = await renderReplayView(store)
+    await vi.waitFor(() => expect(container.querySelector("audio")?.src).toBe("blob:replay-test"))
+
+    const { default: ReplayView } = await import("../ReplayView")
+    root.render(<ReplayView store={store as any} room="room-b" />)
+    await vi.waitFor(() => expect(container.textContent).toContain("caricamento"))
+    expect(container.textContent).not.toContain("Prima lezione")
+    expect(container.querySelector("audio")).toBeNull()
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:replay-test")
+
+    finishRead(journalBlob([{ t: 5000, type: "element.add", element: el("only-b") }]))
+    await vi.waitFor(() => {
+      const range = container.querySelector('input[type="range"]') as HTMLInputElement
+      expect(range.min).toBe("5000")
+    })
+    expect(container.querySelector("audio")).toBeNull()
+  })
+
+  it("a previous room read failure cannot hide a later room's valid journal", async () => {
+    const store = makeMockStore(null)
+    store.read.mockImplementation(async (path: string) => {
+      if (path === roomPaths("test-room").journal) throw new Error("synthetic read failure")
+      if (path === roomPaths("room-b").journal) return journalBlob(JOURNAL_EVENTS)
+      return null
+    })
+    const root = await renderReplayView(store)
+    expect(container.textContent).toContain("Registrazione non disponibile")
+    const { default: ReplayView } = await import("../ReplayView")
+    root.render(<ReplayView store={store as any} room="room-b" />)
+    await vi.waitFor(() => {
+      expect(container.querySelector('input[type="range"]')).not.toBeNull()
+    })
+    expect(container.textContent).not.toContain("synthetic read failure")
+  })
+
   it("la timeline copre firstEventTime..lastEventTime", async () => {
     const store = makeMockStore(JOURNAL_EVENTS)
     await renderReplayView(store)
@@ -240,8 +324,8 @@ describe("ReplayView", () => {
     // MediaRecorder con timeslice: solo chunk-0 contiene l'init segment WebM.
     // La sorgente audio deve essere la concatenazione ordinata di tutti i chunk.
     const { store } = await renderWithLoadedAudio()
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-0.webm`)
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-1.webm`)
+    expect(store.read).toHaveBeenCalledWith(`${roomPaths("test-room").audioDir}chunk-0.webm`)
+    expect(store.read).toHaveBeenCalledWith(`${roomPaths("test-room").audioDir}chunk-1.webm`)
     // un solo object URL creato per l'audio (blob unico), non uno per chunk
     const urlCalls = vi.mocked(URL.createObjectURL).mock.calls.length
     expect(urlCalls).toBe(1)
@@ -313,7 +397,7 @@ describe("Room in ?vista=replay", () => {
     const { isReplayView } = await import("../store/isReplayView")
     vi.mocked(isReplayView).mockReturnValue(true)
 
-    const store = makeMockStore(JOURNAL_EVENTS)
+    const store = makeMockStore(JOURNAL_EVENTS, "replay-room-1")
     const { default: Room } = await import("../Room")
     const root = createRoot(container)
     root.render(<Room store={store as any} />)
@@ -326,7 +410,7 @@ describe("Room in ?vista=replay", () => {
     expect(harness.recorder).toBeNull()
     expect(harness.audioRecorder).toBeNull()
     // zero write sul journal durante il replay
-    const journalWrites = store.write.mock.calls.filter(([p]) => p === PATHS.JOURNAL)
+    const journalWrites = store.write.mock.calls.filter(([p]) => p === roomPaths("replay-room-1").journal)
     expect(journalWrites).toHaveLength(0)
     // la vista replay è renderizzata (timeline presente dopo il load)
     await vi.waitFor(() => {
