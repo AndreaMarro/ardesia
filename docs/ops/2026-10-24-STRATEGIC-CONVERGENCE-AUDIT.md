@@ -1,7 +1,7 @@
 # ARDESIA — independent convergence & adversarial audit
-**As-of:** 2026-10-24 ~06:00 Europe/Rome  
-**Status:** PROPOSED; docs-only draft PR, no changes to production, bank or other workers' branches.  
-**Scope:** public `AndreaMarro/ardesia`, linked private `ardesia-knowledge` (read only), current Oct-23 PR chain, REA primary docs, pedagogy, MCP/security and donor licensing.  
+**As-of:** 2026-10-24 ~06:00 Europe/Rome<br>
+**Status:** PROPOSED; docs-only draft PR, no changes to production, bank or other workers' branches.<br>
+**Scope:** public `AndreaMarro/ardesia`, linked private `ardesia-knowledge` (read only), current Oct-23 PR chain, REA primary docs, pedagogy, MCP/security and donor licensing.<br>
 **Method:** direct GitHub connector reads of source files and live PR metadata/workflow-run summaries; read-only Render service/deploy API; primary public documentation research. **No local checkout tests, no REA execution, no live preview/browser test in this run.** The HTTPS page could not be fetched from this environment; this is NOT evidence that the service is down.
 
 ## 1. Snapshot: what was observed, what is only claimed
@@ -179,23 +179,23 @@ Then add adapters: browser, native, ChatGPT Apps/MCP, Claude-compatible MCP, LMS
 
 ### NEXT PRIORITY TASKS
 
-**P1 — Real living-lesson marketing entry**  
+**P1 — Real living-lesson marketing entry**<br>
 Owner: GPT-6.1/Codex. Base: inspect #290 head `339ab08f…` and actual latest relevant Studio branch; do not overwrite either. Scope: one original Physics controlled plugin + one marketing entry/deep link. Gate: predict→manipulate→numeric+visual oracle→timeline event→derived reviewed synthetic study card, stable at 390/1440px; fail if the control is only decorative. Risk: bypassed ToolHost or new duplicated simulator. Stop: keep feature flag off if Core seam is not verified. Value: recognizable product differentiation within two days.
 
-**P2 — Time-aligned board/audio provenance fixture**  
+**P2 — Time-aligned board/audio provenance fixture**<br>
 Owner: GPT-6.1 with independent Astra review. Starting sources: `AudioRecorder.ts`, `JournalRecorder`, `journalBridge.ts`, `eventlog.ts`. Gate: consent off by default, synthetic authorized audio capture/replay seek to exact board revision, revoke/purge and cold reopen; distinguish recorded bytes from transcript and semantic claims. Do **not** promote chunks to knowledge automatically. Risk: PII/retention and event drift. Value: authentic LessonOS foundation.
 
-**P3 — MCP correction write RFC + red security tests (NO production mutation)**  
+**P3 — MCP correction write RFC + red security tests (NO production mutation)**<br>
 Owner: Pro (contract) then Codex (tests/Core). Base: #285 read-only MCP and #284 reviewed-publication guard. Files: new review RFC/test suite, existing Study API ledgers. Gate: wrong tenant, stale digest, repeated/revoked command and hostile document all fail closed; separate draft vs teacher release. Risk: permission escalation/automatic grading. Value: rapid correction of student submissions.
 
-**P4 — REA donor triad closure**  
+**P4 — REA donor triad closure**<br>
 Owner: DeepSeek research isolated from app write paths; Pro/Astra reviews. Donors: BigBlueButton recording, one PhET/Polypad interaction, one Desmos formula↔graph behavior. Artifact: three versioned behavior dossiers with rights, receipts when available, a 20-step behavior spec and exact transfer-ready test cases; zero copied proprietary assets. Gate: each dossier can be converted into a named RED regression test; unknown claims stay unknown. Risk: deep research without implementation. Value: drastically reduce rediscovery/design iteration.
 
-**P5 — Minimal gestionale economics/teacher workflow**  
+**P5 — Minimal gestionale economics/teacher workflow**<br>
 Owner: Pro product spec + Codex narrow delivery. Scope: edition/roster/attendance/submission/review/release/billable activity all via existing Core roles. Gate: synthetic teacher creates and closes one edition with one submission, logs accurate teacher time; independent tutor completes onboarding test. Risk: recreating Moodle and duplicate CRM. Value: direct time saving and measurable sales hypothesis.
 
-**P6 — Kirchhoff/ELAB canonical plugin integration spike**  
+**P6 — Kirchhoff/ELAB canonical plugin integration spike**<br>
 Owner: specialized circuit builder with independent scientific review. Scope: **one** validated circuit + **one** manual page + plugin snapshot, not full port. Gate: solver parity with independent oracle, signature/capabilities honored, save/reopen, exercise evidence to LessonOS. Risk: embed second standalone app and unverified manuals. Value: scientific differentiator and reusable domain architecture.
 
-**P7 — Exact-branch consolidation and trust-plane freshness**  
+**P7 — Exact-branch consolidation and trust-plane freshness**<br>
 Owner: Pro/Astra adjudicator, **not** autonomous Obsidian writer. Scope: produce GitHub DAG from current heads, plan merge/rebase without actions, add dated snapshot and no-duplicate-status guard. Gate: each PR ancestor checked, exact final CI required, generated current state not manually edited, protected knowledge branch unchanged. Risk: stale main and stale generated knowledge interpreted as active product. Value: maintainable, auditable delivery.
