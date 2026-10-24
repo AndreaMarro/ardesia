@@ -27,7 +27,7 @@ test("the tutor explicitly rereads a new delivery and cannot overlap refreshes",
   const refresh = screen.getByRole("button", { name: "Aggiorna consegne" });
   refresh.focus();
   fireEvent.click(refresh);
-  expect((screen.getByRole("button", { name: "Aggiornamento…" }) as HTMLButtonElement).disabled).toBe(true);
+  expect(screen.getByRole("button", { name: "Aggiornamento…" }).getAttribute("aria-disabled")).toBe("true");
   fireEvent.click(refresh);
   expect(read).toHaveBeenCalledTimes(1);
   await act(async () => { finish(); await pending; });

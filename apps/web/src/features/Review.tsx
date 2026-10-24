@@ -63,7 +63,7 @@ export function Review({
           Apri la consegna, ritrova il passaggio e restituisci una spiegazione.
           Il lavoro privato che non è stato consegnato resta privato.
         </p>
-        <button disabled={refreshing} aria-busy={refreshing} onClick={refreshDeliveries}>
+        <button aria-disabled={refreshing} aria-busy={refreshing} onClick={refreshDeliveries}>
           {refreshing ? "Aggiornamento…" : "Aggiorna consegne"}
         </button>
       </header>
