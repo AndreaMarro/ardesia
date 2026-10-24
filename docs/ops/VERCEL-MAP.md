@@ -392,3 +392,8 @@ lavagna -> plugin simulatore -> circuito/blink -> stato salvato -> export/import
 - Non verificato: browser flow di `ardesia-canvas`, `ardesia-workspace`.
 - Non verificato: commit Git servito da `ardesia-canvas`, `ardesia-api-vercel`, `ardesia-workspace`.
 - Non fatto: nessun deploy, nessun dominio, nessuna modifica Vercel.
+
+
+## Accesso connettori — 24 ottobre 2026, 2026-10-24T23:30:57+02:00
+
+Questa è una verifica degli accessi, non un deploy o una nuova rilevazione dei vecchi progetti della mappa. Team atteso `team_23uD0RgdInaTaOPEL0EGltup` / `andreas-projects-6d4e9791`: get_project di ardesia-fisica-preview ancora403; consenso monouso richiesto e consegnato in chat, grant non ancora attestato. CLI presente, autenticazione non ritestata in questo checkpoint. I successiCLI del luglio2026 non attestano l’accesso della connessione corrente. Render MCP risponde a list_workspaces; selezione umana del workspace MyWorkspace ancora pendente. Vedere l’ultima voce RUNLOG e NEXT-SESSION-PROMPT per stato, ID e primo passo; non usare il materiale storico come permesso o readiness corrente. Nessuna configurazione/progetto/alias/DNS modificati.
