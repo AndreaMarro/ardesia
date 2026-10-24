@@ -106,6 +106,8 @@ Teacher opens real controlled local/staging lesson → explicit audio consent & 
 
 Current four GET-only tools are valuable. Add a **separate proposal** for write operations, not an unreviewed change to `ardesia-study-readonly`:
 
+**AI policy conflict to ratify:** root `AGENTS.md` explicitly requires **ZERO-LLM in prodotto**. A production LLM feedback generator is not currently authorized by this audit. Keep authoritative facts, grading oracles and release decisions deterministic, and preserve a manual correction path. The optional AI suggestion stage below is **design-only** until a separately ratified decision sets vendor/privacy/consent/cost and evidence boundaries. This prevents a silent policy change while pursuing AI integration.
+
 - Teacher authorizes reading a student's submitted work at exact `submissionId/revision/digest` with a scoped consent/auth envelope.
 - Deterministic validators and optional LLM produce a **proposed correction draft** with traceable formula/step/source and explicit uncertainty.
 - MCP `correction.create_draft` appends only a private draft, with role/tenant checks, idempotency key, expected version and student-PII minimization.
