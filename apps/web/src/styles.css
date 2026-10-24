@@ -1126,12 +1126,12 @@ dd {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
 }
-.lab-experiment > svg {
+.lab-experiment > svg, .poiseuille-model > svg {
   display: block;
   width: 100%;
   color: #3f5d4d;
 }
-.lab-experiment > svg text {
+.lab-experiment > svg text, .poiseuille-model > svg text {
   font-family: Georgia, serif;
   font-size: 15px;
   fill: #3f5d4d;
@@ -1144,6 +1144,42 @@ dd {
   fill: #e0e9d9;
   stroke: #3f5d4d;
   stroke-width: 1.4;
+}
+.poiseuille-model { margin: 0 0 18px; min-width: 0; }
+.poiseuille-model figcaption { font-size: 12px; color: var(--muted); text-align: center; }
+.episode-entry { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; }
+.episode-entry h2 { font-size: 26px; }
+.episode-entry p { max-width: 65ch; color: var(--muted); font-size: 14px; }
+.episode-entry button { flex-shrink: 0; }
+.poiseuille-episode { padding: 30px; background: var(--surface); border: 1px solid var(--line); }
+.poiseuille-episode .lab-introduction { display: block; }
+.poiseuille-episode .lab-introduction h2 { max-width: none; }
+.poiseuille-episode label { display: grid; gap: 8px; margin-bottom: 18px; font-size: 13px; }
+.poiseuille-episode select, .poiseuille-episode input, .poiseuille-episode textarea { min-width: 0; width: 100%; }
+.poiseuille-episode .lab-controls { display: grid; align-content: start; gap: 12px; }
+.poiseuille-episode .lab-controls label { margin: 0; }
+.episode-progress { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 26px 0; }
+.episode-progress li { padding: 12px; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.episode-progress li[aria-current="step"] { border-color: #3f5d4d; color: #3f5d4d; background: #eef1e7; }
+.episode-progress span { display: block; margin-bottom: 4px; }
+.episode-step > h3 { font-size: 24px; margin-bottom: 8px; }
+.episode-step > p { margin-bottom: 20px; }
+.lesson-passage-authoring, .prediction-evidence { padding: 20px; border: 1px solid var(--line); margin: 22px 0; }
+.lesson-passage-authoring > p, .prediction-evidence > p { font-size: 13px; }
+.lesson-passage-recovery { min-width: 0; }
+.lesson-passage-recovery a { display: inline-block; text-align: center; text-decoration: none; }
+.lesson-passage-recovery dd { margin-left: 0; overflow-wrap: anywhere; font-size: 12px; }
+.lesson-passage-recovery blockquote { margin: 12px 0; white-space: pre-wrap; }
+.episode-teacher-plan { padding-left: 20px; }
+.episode-teacher-plan p { font-size: 14px; }
+@media (max-width: 720px) {
+  .episode-entry { flex-direction: column; align-items: stretch; }
+  .poiseuille-episode { padding: 18px 12px; }
+  .poiseuille-episode .lab-layout { grid-template-columns: 1fr; gap: 24px; }
+  .poiseuille-episode .lab-introduction h2 { font-size: 28px; }
+  .episode-progress { grid-template-columns: 1fr; gap: 6px; }
+  .episode-progress span { display: inline; margin-right: 6px; }
+  .lesson-passage-authoring, .prediction-evidence { padding: 14px; }
 }
 .lab-experiment > p {
   font-size: 10px;

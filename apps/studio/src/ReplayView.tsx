@@ -9,7 +9,7 @@ import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
 import { ReplayEngine } from "./store/ReplayEngine"
-import { loadReplayTimeline, type ReplayTimeline } from "./store/replayTimeline"
+import { loadReplayTimeline, recordingAtTime, resolveReplayTarget, type ReplayTimeline } from "./store/replayTimeline"
 import EmptyState from "./design/EmptyState"
 
 interface ReplayViewProps {
@@ -45,6 +45,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   /** Tempo journal corrente (epoch ms) — cursore della timeline */
   const [t, setT] = useState<number | null>(null)
   const [apiReady, setApiReady] = useState(false)
+  const [audioError, setAudioError] = useState<string | null>(null)
 
   const apiRef = useRef<any>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -57,6 +58,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   tRef.current = t
 
   const engine = useMemo(() => new ReplayEngine(), [])
+  const canonicalRecording = timeline && t !== null ? recordingAtTime(timeline.recordings, t) : null
 
   useEffect(() => {
     let cancelled = false
@@ -68,8 +70,9 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     ])
       .then(([tl, meta]) => {
         if (cancelled) return
+        const target = resolveReplayTarget(tl, window.location.search)
         setLoaded({ store, room, timeline: tl, lessonName: meta?.name ?? null, error: null })
-        setT(tl.firstEventTime)
+        setT(target.epoch)
       })
       .catch((err: unknown) => {
         if (!cancelled) setLoaded({ store, room, timeline: null, lessonName: null, error: (err as Error).message })
@@ -89,6 +92,16 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     apiRef.current?.updateScene({ elements: scene as any })
   }, [scene, apiReady])
 
+  function fitScene() {
+    apiRef.current?.scrollToContent?.(undefined, { fitToContent: true, animate: false })
+  }
+  useEffect(() => {
+    if (!apiReady) return
+    const frame = requestAnimationFrame(fitScene)
+    window.addEventListener("resize", fitScene)
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("resize", fitScene) }
+  }, [apiReady, timeline])
+
   /**
    * Carica l'audio come UNICA sorgente concatenata: con MediaRecorder+timeslice
    * solo chunk-0 contiene l'init segment WebM, i chunk successivi non sono
@@ -98,7 +111,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   useEffect(() => {
     audioStartEpochRef.current = null
     pendingSeekSecRef.current = null
-    if (!timeline || timeline.audioChunks.length === 0) return
+    if (!timeline || timeline.recordings.length > 0 || timeline.audioChunks.length === 0) return
     let cancelled = false
     let ownedUrl: string | null = null
     let ownedElement: HTMLAudioElement | null = null
@@ -129,6 +142,30 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     }
   }, [timeline, store])
 
+  // Each v2 take is its own decodable stream. A pause has no selected media.
+  useEffect(() => {
+    if (!timeline || timeline.recordings.length === 0) return
+    const el = audioRef.current
+    audioStartEpochRef.current = null
+    pendingSeekSecRef.current = null
+    setAudioError(null)
+    if (!el) return
+    el.pause()
+    el.removeAttribute("src")
+    if (!canonicalRecording) return
+    if (canonicalRecording.availability !== "available" || !canonicalRecording.data) return
+    if (!el.canPlayType(canonicalRecording.mimeType)) {
+      setAudioError("Questo browser non supporta il formato della registrazione.")
+      return
+    }
+    const url = URL.createObjectURL(canonicalRecording.data)
+    audioStartEpochRef.current = canonicalRecording.startEpoch
+    pendingSeekSecRef.current = Math.max(0, Math.min(canonicalRecording.durationMs, (tRef.current ?? canonicalRecording.startEpoch) - canonicalRecording.startEpoch)) / 1000
+    el.src = url
+    return () => { el.pause(); el.removeAttribute("src"); URL.revokeObjectURL(url) }
+    // Scrubbing within one recording keeps its source and playback position.
+  }, [timeline, canonicalRecording?.recordingId])
+
   /** Metadata pronti: applica l'eventuale seek in sospeso */
   function handleLoadedMetadata() {
     const audio = audioRef.current
@@ -158,11 +195,11 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     const audio = audioRef.current
     const startEpoch = audioStartEpochRef.current
     if (!audio || startEpoch === null || audio.paused) return
-    setT(startEpoch + audio.currentTime * 1000)
+    setT(Math.min(canonicalRecording?.endEpoch ?? Infinity, timeline?.lastEventTime ?? Infinity, startEpoch + audio.currentTime * 1000))
   }
 
   const hasEvents = timeline !== null && timeline.firstEventTime !== null && timeline.lastEventTime !== null
-  const hasAudio = timeline !== null && timeline.audioChunks.length > 0
+  const hasAudio = timeline !== null && (timeline.audioChunks.length > 0 || timeline.recordings.length > 0)
 
   return (
     <div className="st-replay" style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -178,6 +215,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
             {lessonName}
           </span>
         )}
+        <a className="st-btn" href={`${window.location.pathname}#${encodeURIComponent(room)}`}>Torna alla lavagna</a>
+        <button type="button" className="st-btn" onClick={fitScene}>Inquadra contenuto</button>
       </header>
 
       {loading && (
@@ -230,6 +269,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
             className="st-replay-controls"
             style={{
               display: "flex",
+              flexWrap: "wrap",
               alignItems: "center",
               gap: "16px",
               padding: "12px 24px",
@@ -251,7 +291,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               step={1}
               value={t ?? timeline.firstEventTime!}
               onChange={handleScrub}
-              style={{ flex: 1 }}
+              style={{ flex: "1 1 180px", minWidth: 100 }}
             />
             {hasAudio && (
               <audio
@@ -260,10 +300,32 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
                 aria-label="audio della lezione"
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
-                style={{ height: "32px" }}
+                onError={() => setAudioError("Il browser non riesce a decodificare questa registrazione.")}
+                style={{ height: "32px", maxWidth: "100%" }}
               />
             )}
           </div>
+          {timeline.recordings.length > 0 && <div style={{ padding: "8px 16px", display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {timeline.recordings.map((recording, index) => <button type="button" className="st-btn" key={recording.recordingId} onClick={() => {
+              setT(recording.startEpoch)
+              if (audioRef.current && audioStartEpochRef.current === recording.startEpoch) audioRef.current.currentTime = 0
+            }}>{recording.objectRefs[0]?.label ?? `Registrazione ${index + 1}`}</button>)}
+            {canonicalRecording?.availability === "available" && <button type="button" className="st-btn" onClick={() => {
+              setT(canonicalRecording.startEpoch)
+              const audio = audioRef.current
+              if (audio && audioStartEpochRef.current === canonicalRecording.startEpoch) {
+                audio.currentTime = 0
+                void audio.play().catch(() => setAudioError("Riproduzione audio non riuscita: usa il controllo audio per riprovare."))
+              }
+            }}>Ascolta registrazione dall'inizio</button>}
+            <span role="status" aria-live="polite">{canonicalRecording
+              ? canonicalRecording.availability === "missing" ? "Audio mancante: il passaggio visivo resta disponibile."
+              : canonicalRecording.availability === "corrupt" ? "Audio danneggiato: verifica la copia della lezione."
+              : canonicalRecording.availability === "revoked" ? "Audio revocato e cancellato."
+              : canonicalRecording.objectRefs.length > 0 ? `Passaggio collegato: ${canonicalRecording.objectRefs.map((ref) => ref.label).join(", ")}` : "Registrazione senza un oggetto collegato."
+              : "Pausa fra le registrazioni: nessun audio in questo intervallo."}</span>
+          </div>}
+          {audioError && <p role="alert" style={{ padding: "0 16px" }}>{audioError}</p>}
         </>
       )}
     </div>

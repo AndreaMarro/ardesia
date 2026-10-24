@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "experiences": [
+    {
+      "id": "poiseuille-boundary-v1",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "title": "Il vincolo cambia il risultato",
+      "objective": "Distingui pressione e portata fissata, poi affronta un problema diverso.",
+      "steps": [
+        {"id": "fixed-pressure", "title": "Raggio doppio, pressione fissata", "exerciseRef": "RF-06"},
+        {"id": "fixed-flow", "title": "Raggio doppio, portata fissata", "activityId": "poiseuille-v1", "parameters": {"radiusRatio": 2, "boundary": "flow"}, "prompt": "Il raggio raddoppia. La pompa mantiene la portata Q, mentre viscosità e lunghezza non cambiano. Prevedi il rapporto Δp/Δp₀."},
+        {"id": "transfer", "title": "Un problema diverso", "exerciseRef": "RF-04"}
+      ]
+    },
+    {
+      "id": "poiseuille-nearby-v1",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "title": "Piccole variazioni, stesso modello",
+      "objective": "Riusa lo stesso percorso con rapporti diversi, senza cambiare il modello.",
+      "steps": [
+        {"id": "fixed-pressure", "title": "Raggio aumentato del 20%", "exerciseRef": "RF-02"},
+        {"id": "fixed-flow", "title": "Raggio aumentato del 25%, Q fissata", "exerciseRef": "RF-03"},
+        {"id": "transfer", "title": "Una pompa e una variazione del 10%", "exerciseRef": "TR-A3"}
+      ]
+    }
+  ]
+}

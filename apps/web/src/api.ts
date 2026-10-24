@@ -21,6 +21,7 @@ export type Edition = LegacyEdition & {
 };
 export type Workspace = Omit<LegacyWorkspace, "edition"> & {
   edition: Edition;
+  submissions: (LegacyWorkspace["submissions"][number] & {activityEvidence?: import("./components/experienceTypes").ActivityEvidence})[];
   layoutSaved: boolean;
   layoutVersion: string;
 };

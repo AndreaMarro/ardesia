@@ -157,6 +157,54 @@ ELABTutor può fornire capacità di simulazione e Pack disciplinari con provenie
 
 Il manifest plugin dovrebbe dichiarare schema/versione, capability, risorse, eventi, permessi, dipendenze, contratti didattici, verificatori e compatibilità. Prima estendere il manifest attuale e i suoi test; non introdurre un protocollo parallelo. ToolHost conserva l'autorità del workspace. Un adattatore MCP può esporre alcune capability allowlisted, con limiti e provenienza, senza trasportare automaticamente tutti i comandi interni.
 
+## Addendum AUDIO-V2 — implementazione del 24 ottobre 2026
+
+Sul candidato dipendente dalla head verificata di #297, Studio introduce
+`journal.audio.recording`: envelope canonico **schemaVersion 2**, payload stretto
+**v: 1**, recordingId distinto per ogni start/stop, path sotto
+`sessionPaths(identity).audioDir`, MIME, SHA-256, lunghezza, startEpoch, endEpoch,
+durationMs e objectRefs `{elementId, version, label}`. Il validator rifiuta campi
+estranei, path di altre sessioni e mapping temporali incoerenti. L'associazione
+esplicita deve risolvere una versione effettivamente registrata nel journal.
+
+La prima implementazione persiste **un flusso completo per take** dopo l'ultimo
+dataavailable: soltanto i chunk dello stesso MediaRecorder sono assemblati.
+Readback di bytes/digest precede marker e flush; lo stop completa dopo il marker.
+La durata deriva dal clock monotono; endEpoch = startEpoch + durationMs e il gap
+fra take resta silenzio. Una chiusura tecnica conserva la coda autorizzata;
+la revoca invalida permessi, imposta OFF via CAS e attende purge verificato.
+Il consenso salvato non avvia la cattura alla riapertura.
+
+Nel `.lesson` il contenitore e l'inventario restano schema 1. I bundle con il
+nuovo kind dichiarano **minimumReaderSchemaVersion: 2**; il reader nuovo accetta
+anche i bundle precedenti con minimo 1 e rifiuta requisiti superiori a 2. Non si
+degrada il journal per rendere leggibile l'audio a reader precedenti. I path
+canonici `raw/<lesson>/<session>/session.yaml` e `audio/<recordingId>.<ext>` sono
+conservati identici e inventariati con digest. Il vecchio `raw/session.yaml`
+obbligatorio per FB-5 resta un involucro di compatibilità, mai l'autorità del
+consenso v2. L'export contiene soltanto media referenziati con consenso della
+propria sessione; la nuova istanza importa quelle identità senza fallback flat.
+
+Un OFF locale esplicito prevale su un ON importato anche quando il bundle
+dichiara una revisione più alta: un contatore esterno non autorizza consenso.
+Il boundary WorkspaceStore protegge sessioni e media dentro il lock esistente,
+inclusi stage e backup import. Il rollback conserva una decisione CAS intervenuta
+nel frattempo. La revoca elimina anche le copie di audio controllate dalla
+transazione; una copia già esportata fuori dall'app non è cancellabile
+retroattivamente. Il docente può revocare una sessione storica dopo riapertura
+tramite la stessa autorità CAS.
+
+Replay verifica presenza, digest e consenso per take e rende espliciti media
+mancanti, corrotti, revocati, non supportati o non decodificabili. I link nuovi
+possono fissare recording, session, sha, tempo e oggetto/versione; un mismatch
+fallisce esplicitamente. Il testo storico e la lavagna restano consultabili.
+
+Le prove sintetiche, i RED e i limiti del consumer Engine preesistente sono in
+[AUDIO-V2 evidence](../2026-10-24-audio-v2/evidence/audio/README.md).
+Il reader Python legacy `lessonos/ingest/bundle.py` non supporta già il manifest
+e il journal canonico v2 della base: il round-trip verificato qui è quello di
+Studio, non una dichiarazione di ingest audio/ASR Engine completato.
+
 ## Fonti e prove
 
 - Codice e contratti locali: [Study MCP](../../../services/study-mcp/README.md), [ADR-0004](../../adr/ADR-0004-study-core-and-provider-boundaries.md), `AudioRecorder.ts`, `JournalRecorder.ts`, `WorkspaceStore.ts`, `sessionState.ts`, `feedback.py`, `submissions.py`, `diary.py`, base #290.

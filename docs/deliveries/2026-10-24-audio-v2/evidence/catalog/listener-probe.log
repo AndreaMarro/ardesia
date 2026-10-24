@@ -1,0 +1,20 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/curriculum-catalog.test.tsx -t diagnostic: --reporter=verbose
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ↓ src/__tests__/curriculum-catalog.test.tsx > teacher opens a real curriculum inventory on demand, with content references and separate draft states
+ ↓ src/__tests__/curriculum-catalog.test.tsx > search matches actual topics and announces an empty result without inventing a course
+ ↓ src/__tests__/curriculum-catalog.test.tsx > student never requests private inventory and a late teacher response cannot restore it
+ ↓ src/__tests__/curriculum-catalog.test.tsx > catalog links reopen the exact unit and reject an obsolete composition without a fallback
+stdout | src/__tests__/curriculum-catalog.test.tsx > diagnostic: an event between visible commit and passive listener is lost, registered listener commits synchronously
+CATALOG_DIAGNOSTIC_TRACE [{"phase":"registered","registered":1},{"phase":"visible-before-event","registered":1,"called":0},{"phase":"callback","called":1,"registered":1,"url":"?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=999&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},{"phase":"registered","registered":2,"title":"U4 · Onde meccaniche"},{"phase":"first-event-returned","registered":2,"called":1,"title":"U4 · Onde meccaniche"},{"phase":"settled-without-replay","registered":2,"called":1,"title":"U4 · Onde meccaniche"},{"phase":"findByRole-timed-out-without-event-replay","registered":2,"called":1,"title":"U4 · Onde meccaniche"},{"phase":"callback","called":2,"registered":2,"url":"?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=999&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},{"phase":"callback","called":3,"registered":2,"url":"?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=999&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},{"phase":"second-event-returned","registered":2,"called":3,"title":"Riferimento non disponibile"}]
+
+ ✓ src/__tests__/curriculum-catalog.test.tsx > diagnostic: an event between visible commit and passive listener is lost, registered listener commits synchronously 1461ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 4 skipped (5)
+   Start at  12:15:37
+   Duration  3.74s (transform 336ms, setup 0ms, import 743ms, tests 1.46s, environment 1.11s)

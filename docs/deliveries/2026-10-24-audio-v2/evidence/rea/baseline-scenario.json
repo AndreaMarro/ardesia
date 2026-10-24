@@ -1,0 +1,48 @@
+{
+  "browser": {
+    "mode": "launch",
+    "headless": true,
+    "executable_path": "/Users/andreamarro/Library/Caches/ms-playwright/chromium-1223/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5197/#rea-e3-baseline"
+  },
+  "environment": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "reduced_motion": "reduce"
+  },
+  "actions": [
+    {
+      "step_id": "room-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "[data-view-nav]"
+      },
+      "state": "visible",
+      "timeout_ms": 30000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "url",
+      "dom",
+      "accessibility"
+    ],
+    "at_end": [
+      "url",
+      "screenshot",
+      "dom"
+    ],
+    "events": [
+      "console",
+      "page-errors",
+      "network"
+    ]
+  }
+}

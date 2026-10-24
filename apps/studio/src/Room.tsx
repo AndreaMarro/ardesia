@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
-import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, serializeAsJSON } from "@excalidraw/excalidraw"
+import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, exportToCanvas, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import MathComposer from "./MathComposer"
@@ -34,6 +34,9 @@ import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
+import { SessionAudioRecorder } from "./store/SessionAudioRecorder"
+import type { AudioObjectReference } from "./store/audioRecording"
+import LessonPassageAuthor from "./LessonPassageAuthor"
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
 function getRoomId(): string {
@@ -153,6 +156,8 @@ export default function Room({
   const initialLoadDone = useRef(false)
   // Riferimento al JournalRecorder (creato dopo init store)
   const journalRef = useRef<JournalRecorder | null>(null)
+  const audioRef = useRef<SessionAudioRecorder | null>(null)
+  const [sessionAudio, setSessionAudio] = useState<SessionAudioRecorder | null>(null)
   // Unsubscribe handle per pointer events Excalidraw
   const unsubsRef = useRef<Array<() => void>>([])
   // Runtime LessonOS: event-log persistente + capability snapshot (spec #35 §4)
@@ -177,6 +182,7 @@ export default function Room({
     let openerPromise: Promise<LessonOsSessionHandle> | null = null
     let runtime: LessonOsSessionHandle | null = null
     let journal: JournalRecorder | null = null
+    let audio: SessionAudioRecorder | null = null
     let cleanupPromise: Promise<void> | null = null
     let registrationFailureReported = false
     let openerFailureReported = false
@@ -218,6 +224,7 @@ export default function Room({
     setLoadingRooms(false)
     setSceneData(null)
     setExportAdvice(null)
+    setSessionAudio(null)
     // Le chain in-flight non vengono sganciate: farlo permetterebbe a B di
     // sorpassare A. Gli snapshot canvas riusabili sono stati azzerati sopra;
     // cancellazione/drain dei producer già avviati resta il gate ARD-07.
@@ -239,7 +246,7 @@ export default function Room({
           identity: liveRuntime.identity,
           producer: liveRuntime.producer,
         } : null,
-        audioRecorder: null,
+        audioRecorder: audioRef.current,
         lessonOs: lessonOsRef,
         apiRef,
         ReplayEngine,
@@ -268,6 +275,10 @@ export default function Room({
       }
 
       const ownedJournal = journal
+      const ownedAudio = audio
+      if (ownedAudio && audioRef.current === ownedAudio) audioRef.current = null
+      // dispose requests native stop synchronously, then preserves its tail.
+      const audioClose = ownedAudio?.dispose()
       if (ownedJournal && journalRef.current === ownedJournal) journalRef.current = null
       const runtimeWasPending = runtime === null && openerPromise !== null
       const ownedRuntimeAtCleanup = runtime
@@ -298,6 +309,11 @@ export default function Room({
           }
         }
 
+        try {
+          await audioClose
+        } catch (error) {
+          console.error("Room audio drain failed before session close", error)
+        }
         try {
           await ownedJournal?.flush()
         } catch (error) {
@@ -390,6 +406,17 @@ export default function Room({
             journal = jr
             lessonOsRef.current = runtime
             journalRef.current = jr
+            const sessionRecorder = new SessionAudioRecorder({
+              store: actualStore, identity: runtime.identity, journal: jr, clock,
+            })
+            audio = sessionRecorder
+            await sessionRecorder.initialize()
+            if (cancelled) {
+              await cleanup()
+              return
+            }
+            audioRef.current = sessionRecorder
+            setSessionAudio(sessionRecorder)
             if (runtime.dataLoss) {
               setStorageError("Memoria della lezione non trovata: ripristina dall'export .lesson")
             } else if (runtime.corrupted) {
@@ -505,8 +532,37 @@ export default function Room({
 
   /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
   async function flushLiveLesson(): Promise<void> {
+    await audioRef.current?.stop()
     await flushPersist()
     await journalRef.current?.flush()
+  }
+
+  async function annotatePassage(text: string): Promise<readonly AudioObjectReference[]> {
+    const api = apiRef.current
+    const journal = journalRef.current
+    if (!api || !journal || !text || text.length > 240) throw new Error("Scrivi un'annotazione quando la lavagna è pronta.")
+    const current = api.getSceneElements()
+    const input = {
+      type: "text", x: 160, y: 120 + current.length * 32, text,
+      fontSize: 24, fontFamily: EXCALIDRAW_CONFIG.newRoomAppState.currentItemFontFamily,
+    } as const
+    // The public exporter waits for the actual scene fonts. Measuring the first
+    // annotation with a fallback font would persist a box that clips its glyphs.
+    await exportToCanvas({ elements: convertToExcalidrawElements([input]), files: {} })
+    const elements = convertToExcalidrawElements([input])
+    const element = elements[0]
+    if (!element) throw new Error("Annotazione non creata")
+    const all = [...current, ...elements]
+    api.updateScene({ elements: all, appState: { selectedElementIds: { [element.id]: true } } })
+    // Publish the actual object/version before the audio marker can reference it.
+    journal.recordChange(all)
+    await journal.flush()
+    latestElementsRef.current = all
+    latestAppStateRef.current = api.getAppState?.() ?? EXCALIDRAW_CONFIG.newRoomAppState
+    latestFilesRef.current = api.getFiles?.() ?? {}
+    await flushPersist()
+    api.scrollToContent?.(elements, { fitToContent: true, animate: false })
+    return [{ elementId: element.id, version: element.version, label: text }]
   }
 
   /** Handler composito: salva scena + registra eventi journal */
@@ -939,6 +995,8 @@ export default function Room({
         </div>
       </header>
       )}
+
+      {!studentView && sessionAudio && <LessonPassageAuthor recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (

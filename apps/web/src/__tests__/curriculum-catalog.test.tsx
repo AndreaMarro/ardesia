@@ -22,6 +22,16 @@ const inventory = {
   sharedPrerequisites: [{ label: "Lettura di una formula", entryIds: ["one", "two"] }],
 };
 
+function pathwayFixture() {
+  const coverage = { questionCount: 272, familyCount: 17, unitIds: ["U4"], prerequisites: ["Lettura di una formula"],
+    learningObjectives: ["Confrontare due frequenze"], microareas: ["Interferenza"], countsByAuthoringStatus: { DRAFT: 272 },
+    editorialStatus: "DRAFT", scientificReview: "NOT_ATTESTED", publicationStatus: "EDITION_SCOPED", creatable: false, gaps: ["Sequenza da deliberare"] };
+  return { id: "fixture-composition", version: 2, sha256: "d".repeat(64),
+    bankRef: { bankId: "physics-semestre-2026", bankVersion: 1, bankSha256: "b".repeat(64) },
+    items: [{ ...coverage, id: "fixture-path", title: "Percorso sintetico", units: [{ ...coverage, id: "U4", title: "Onde meccaniche", collectionIds: [inventory.collections[0].id] }] }],
+    coverage, transversalCollectionIds: [] };
+}
+
 afterEach(() => { history.replaceState(null, "", "/"); cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 test("teacher opens a real curriculum inventory on demand, with content references and separate draft states", async () => {
@@ -76,13 +86,7 @@ test("student never requests private inventory and a late teacher response canno
 
 
 test("catalog links reopen the exact unit and reject an obsolete composition without a fallback", async () => {
-  const coverage = { questionCount: 272, familyCount: 17, unitIds: ["U4"], prerequisites: ["Lettura di una formula"],
-    learningObjectives: ["Confrontare due frequenze"], microareas: ["Interferenza"], countsByAuthoringStatus: { DRAFT: 272 },
-    editorialStatus: "DRAFT", scientificReview: "NOT_ATTESTED", publicationStatus: "EDITION_SCOPED", creatable: false, gaps: ["Sequenza da deliberare"] };
-  const pathways = { id: "fixture-composition", version: 2, sha256: "d".repeat(64),
-    bankRef: { bankId: "physics-semestre-2026", bankVersion: 1, bankSha256: "b".repeat(64) },
-    items: [{ ...coverage, id: "fixture-path", title: "Percorso sintetico", units: [{ ...coverage, id: "U4", title: "Onde meccaniche", collectionIds: [inventory.collections[0].id] }] }],
-    coverage, transversalCollectionIds: [] };
+  const pathways = pathwayFixture();
   const url = `/?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=2&catalogSha=${pathways.sha256}`;
   history.replaceState(null, "", url);
   vi.stubGlobal("fetch", vi.fn(async () => json({ items: [], inventory: { ...inventory, pathways, pathwaysError: null } })));
@@ -96,4 +100,32 @@ test("catalog links reopen the exact unit and reject an obsolete composition wit
   expect(screen.queryByRole("article", { name: "Onde meccaniche" })).toBeNull();
   fireEvent.click(screen.getByRole("link", { name: "Tutti i percorsi" }));
   expect(screen.getByRole("article", { name: "Percorso sintetico" })).toBeTruthy();
+});
+
+
+test("a popstate at the first visible unit rejects its obsolete reference before passive effects", async () => {
+  const pathways = pathwayFixture();
+  const url = `/?catalog=pathways&pathway=fixture-path&unit=U4&catalogVersion=2&catalogSha=${pathways.sha256}`;
+  history.replaceState(null, "", url);
+  vi.stubGlobal("fetch", vi.fn(async () => json({ items: [], inventory: { ...inventory, pathways, pathwaysError: null } })));
+  let navigateWhenVisible!: () => void;
+  const navigated = new Promise<void>((resolve) => { navigateWhenVisible = resolve; });
+  // A committed heading can be observed before React runs its passive effects.
+  // Dispatch at that boundary, without delaying or mocking the subscription.
+  const observer = new MutationObserver(() => {
+    if (!screen.queryByRole("heading", { name: "U4 · Onde meccaniche" })) return;
+    observer.disconnect();
+    history.replaceState(null, "", url.replace("catalogVersion=2", "catalogVersion=999"));
+    fireEvent(window, new PopStateEvent("popstate"));
+    navigateWhenVisible();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+  try {
+    render(<Courses me={teacher} {...props} />);
+    await navigated;
+    expect(screen.getByRole("heading", { name: "Riferimento non disponibile" })).toBeTruthy();
+    expect(screen.queryByRole("article", { name: "Onde meccaniche" })).toBeNull();
+  } finally {
+    observer.disconnect();
+  }
 });

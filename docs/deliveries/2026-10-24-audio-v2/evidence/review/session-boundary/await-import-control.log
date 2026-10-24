@@ -1,0 +1,12 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+stdout | ../../docs/deliveries/2026-10-24-audio-v2/evidence/review/session-boundary/await-import-control.test.tsx > diagnostic: awaiting the actual dependency excludes cold import from the rejection assertion budget
+SESSION_BOUNDARY_TRACE {"timeline":[{"phase":"before-render","at":1306.270583},{"phase":"lazy-request-started","at":1341.674708},{"phase":"lazy-request-started","at":1490.331792},{"phase":"original-query-expired-candidate-awaiting-import","at":2337.553625},{"phase":"actual-module-evaluated","at":2533.885458},{"phase":"actual-module-evaluated","at":2533.902792},{"phase":"verified-401-private-ui-cleared","at":2971.591833}],"calls":["/study/me","/study/editions?limit=50","/study/workspace?editionId=fluidi","/study/diary?editionId=fluidi","/study/resources/resource/revisions/revision","/study/course","/study/health"]}
+
+ ✓ ../../docs/deliveries/2026-10-24-audio-v2/evidence/review/session-boundary/await-import-control.test.tsx > diagnostic: awaiting the actual dependency excludes cold import from the rejection assertion budget 1685ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  12:48:58
+   Duration  3.05s (transform 356ms, setup 0ms, import 334ms, tests 1.69s, environment 811ms)

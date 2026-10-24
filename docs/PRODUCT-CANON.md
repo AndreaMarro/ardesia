@@ -36,6 +36,16 @@ La [consegna datata](deliveries/2026-10-24-convergence/README.md) contiene inven
 
 Marketplace aperto, app nativa nuova, copertura universale e correzione autonoma generalista restano fuori dalla beta proposta. Le capacità future non vanno rappresentate da pulsanti che suggeriscono una disponibilità inesistente.
 
+## Verifica successiva — 24 ottobre 2026, AUDIO-V2 e Poiseuille
+
+La [nuova consegna](deliveries/2026-10-24-audio-v2/README.md), successore isolato della head `ae25b93b` di #297, dimostra il ciclo circoscritto docente → fonte della lezione → previsione → recupero → problema diverso → ricevuta/revisione/diario docente. Le precedenti frasi «non ancora dimostrato» e «audio non collegato alla Room» descrivono il candidato della convergenza; questa verifica le supera soltanto nel perimetro locale sintetico dichiarato.
+
+La Room possiede cattura esplicita e sessione CAS; journal v2, media verificati e bundle canonico conservano registrazioni distinte, pause, identità e riferimenti oggetto/versione. Replay e revoca sono raggiungibili dalla UI, anche dopo importazione in un nuovo store. I font sono serviti localmente e il contenuto è stato verificato a 390 px e desktop, con tastiera e movimento ridotto. Un'associazione temporale è un riferimento esplicito dell'autore, senza interpretazione semantica automatica.
+
+L'episodio riusa CoursePack, PhysicsLab, consegne, revisioni e diario Core. Due varianti editoriali usano lo stesso contratto. L'assistenza osservata/dichiarata e i risultati precedenti rimangono nella ricevuta; «nessun aiuto richiesto» non prova assenza di aiuti esterni o apprendimento. Il riferimento Studio richiede lo stesso archivio locale oppure l'importazione del bundle: non costituisce distribuzione remota dei media o autorizzazione cloud. Prove native Chromium sintetiche e review separata non certificano efficacia didattica, microfono fisico, tutti i browser, beta commerciale o il lungo stack integrato. Vedere [validazione e limiti](deliveries/2026-10-24-audio-v2/validation.md).
+
+Il prossimo confine di prodotto è la prima proposta privata MCP sui servizi Core esistenti della RFC #293, dopo controllo del candidato e dei gate. Il consumer Engine ingest legacy dei bundle richiede un incremento distinto; non è dichiarato compatibile con AUDIO-V2.
+
 ## Archivio: canone del 23 giugno 2026
 
 Le sezioni seguenti conservano le decisioni e lo stato osservato allora. I percorsi sorgente, i conteggi e gli stati non sono il rilevamento corrente; per il routing attuale vedere [CANON-INDEX](CANON-INDEX.md).

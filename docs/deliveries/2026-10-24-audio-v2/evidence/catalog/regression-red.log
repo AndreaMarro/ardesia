@@ -1,0 +1,1583 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/curriculum-catalog.test.tsx --reporter=verbose
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ✓ src/__tests__/curriculum-catalog.test.tsx > teacher opens a real curriculum inventory on demand, with content references and separate draft states 324ms
+ ✓ src/__tests__/curriculum-catalog.test.tsx > search matches actual topics and announces an empty result without inventing a course 74ms
+ ✓ src/__tests__/curriculum-catalog.test.tsx > student never requests private inventory and a late teacher response cannot restore it 14ms
+ ✓ src/__tests__/curriculum-catalog.test.tsx > catalog links reopen the exact unit and reject an obsolete composition without a fallback 66ms
+ × src/__tests__/curriculum-catalog.test.tsx > a popstate at the first visible unit rejects its obsolete reference before passive effects 106ms
+   → Unable to find an accessible element with the role "heading" and name "Riferimento non disponibile"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"page-heading"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "I tuoi mini-corsi.":
+  [36m<h1 />[39m
+
+  Name "Le basi dei tuoi prossimi corsi.":
+  [36m<h2 />[39m
+
+  Name "U4 · Onde meccaniche":
+  [36m<h3[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Prerequisiti dichiarati":
+  [36m<h4 />[39m
+
+  Name "Copertura osservata":
+  [36m<h4 />[39m
+
+  Name "Prima dell’erogazione":
+  [36m<h4 />[39m
+
+  Name "Raccolte collegate":
+  [36m<h4 />[39m
+
+  Name "Onde meccaniche":
+  [36m<h3 />[39m
+
+  Name "Argomenti presenti":
+  [36m<h4 />[39m
+
+  Name "Temi":
+  [36m<h4 />[39m
+
+  Name "Compiti cognitivi dichiarati":
+  [36m<h4 />[39m
+
+  Name "Prerequisiti":
+  [36m<h4 />[39m
+
+  Name "Distribuzione dichiarata delle difficoltà":
+  [36m<h4 />[39m
+
+  Name "Da completare":
+  [36m<h4 />[39m
+
+  Name "Riferimenti di esempio":
+  [36m<h4 />[39m
+
+  Name "Dal programma alla prossima edizione.":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"curriculum-counts"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"curriculum-counts"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Catalogo privato del docente":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+    [33mclass[39m=[32m"curriculum-catalog"[39m
+  [36m/>[39m
+
+  Name "Gestione delle edizioni":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+    [33mclass[39m=[32m"edition-manager"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Chiudi catalogo":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"curriculum-content"[39m
+    [33maria-expanded[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Percorsi di Fisica (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Programmi configurati (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Raccolte da progettare (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Nuova edizione":
+  [36m<button[39m
+    [33mclass[39m=[32m"button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Posizione nel catalogo":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+    [33mclass[39m=[32m"pathway-breadcrumb"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Tutti i percorsi":
+  [36m<a[39m
+    [33mhref[39m=[32m"/?catalog=pathways"[39m
+  [36m/>[39m
+
+  Name "Percorso sintetico":
+  [36m<a[39m
+    [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"curriculum-topics"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"pathway-identity"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"curriculum-prerequisites"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "Onde meccaniche":
+  [36m<article[39m
+    [33maria-label[39m=[32m"Onde meccaniche"[39m
+    [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  code:
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mI tuoi mini-corsi.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mUn programma riutilizzabile. Un’edizione con le sue persone e le sue date.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+      [33mclass[39m=[32m"curriculum-catalog"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mPatrimonio didattico[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mLe basi dei tuoi prossimi corsi.[0m
+          [36m</h2>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33maria-controls[39m=[32m"curriculum-content"[39m
+          [33maria-expanded[39m=[32m"true"[39m
+        [36m>[39m
+          [0mChiudi catalogo[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p>[39m
+        [0mProgrammi configurati, contenuti da organizzare e prerequisiti condivisi. Le bozze restano distinte dalle edizioni offerte.[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mid[39m=[32m"curriculum-content"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Tipo di materiale"[39m
+          [33mclass[39m=[32m"curriculum-filters"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mPercorsi di Fisica ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mProgrammi configurati ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mRaccolte da progettare ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"physics-pathways"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+            [33mclass[39m=[32m"pathway-breadcrumb"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/?catalog=pathways"[39m
+            [36m>[39m
+              [0mTutti i percorsi[0m
+            [36m</a>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m>[39m
+              [0m / [0m
+            [36m</span>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+            [36m>[39m
+              [0mPercorso sintetico[0m
+            [36m</a>[39m
+            [36m<span[39m
+              [33maria-current[39m=[32m"page"[39m
+            [36m>[39m
+              [0m / [0m
+              [0mU4[0m
+              [0m · [0m
+              [0mOnde meccaniche[0m
+            [36m</span>[39m
+          [36m</nav>[39m
+          [36m<h3[39m
+            [33mtabindex[39m=[32m"-1"[39m
+          [36m>[39m
+            [0mU4 · Onde meccaniche[0m
+          [36m</h3>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"fine-print"[39m
+          [36m>[39m
+            [0mComposizione editoriale iniziale. Un percorso non stabilisce incontri o calendario e non è un CoursePack erogabile. La pubblicazione dipende da edizione, quesito e revisione.[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"curriculum-counts"[39m
+          [36m>[39m
+            [0m272[0m
+            [0m quesiti · [0m
+            [0m17[0m
+            [0m famiglie[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mStato autoriale: [0m
+            [0mDRAFT: 272[0m
+            [0m. Revisione umana da attestare.[0m
+          [36m</p>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mObiettivi dichiarati nei quesiti ([0m
+              [0m1[0m
+              [0m)[0m
+            [36m</summary>[39m
+            [36m<ul>[39m
+              [36m<li>[39m
+                [0mConfrontare due frequenze[0m
+              [36m</li>[39m
+            [36m</ul>[39m
+          [36m</details>[39m
+          [36m<h4>[39m
+            [0mPrerequisiti dichiarati[0m
+          [36m</h4>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mLettura di una formula[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<h4>[39m
+            [0mCopertura osservata[0m
+          [36m</h4>[39m
+          [36m<p>[39m
+            [0mInterferenza[0m
+          [36m</p>[39m
+          [36m<h4>[39m
+            [0mPrima dell’erogazione[0m
+          [36m</h4>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mSequenza da deliberare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<h4>[39m
+            [0mRaccolte collegate[0m
+          [36m</h4>[39m
+          [36m<article[39m
+            [33maria-label[39m=[32m"Onde meccaniche"[39m
+            [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"curriculum-card-heading"[39m
+            [36m>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"section-meta"[39m
+              [36m>[39m
+                [0mFisica · 2026/2027 · U4[0m
+              [36m</p>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"curriculum-status"[39m
+              [36m>[39m
+                [0mDRAFT[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<h3>[39m
+              [0mOnde meccaniche[0m
+            [36m</h3>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"curriculum-counts"[39m
+            [36m>[39m
+              [0m272[0m
+              [0m quesiti · [0m
+              [0m17[0m
+              [0m famiglie · [0m
+              [0m272[0m
+              [0m soluzioni[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mNon è ancora un programma per un’edizione. È una selezione di contenuti da organizzare e revisionare.[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"fine-print"[39m
+            [36m>[39m
+              [0mRevisione umana da eseguire[0m
+              [0m. I quesiti delle raccolte possono sovrapporsi.[0m
+            [36m</p>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mContenuti, riferimenti e lacune[0m
+              [36m</summary>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mArgomenti presenti[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mInterferenza[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"curriculum-topics"[39m
+              [36m>[39m
+                [36m<summary>[39m
+                  [0mTutti i temi del materiale ([0m
+                  [0m1[0m
+                  [0m)[0m
+                [36m</summary>[39m
+                [36m<div>[39m
+                  [36m<h4>[39m
+                    [0mTemi[0m
+                  [36m</h4>[39m
+                  [36m<ul>[39m
+                    [36m<li>[39m
+                      [0mBattimenti[0m
+                    [36m</li>[39m
+                  [36m</ul>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mCompiti cognitivi dichiarati[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mConfrontare due frequenze[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mPrerequisiti[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mLettura di una formula[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mDistribuzione dichiarata delle difficoltà[0m
+                [36m</h4>[39m
+                [36m<p>[39m
+                  [0mbase: 68 · facile: 68 · medio: 68 · difficile: 68[0m
+                [36m</p>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"fine-print"[39m
+                [36m>[39m
+                  [0mLa difficoltà dichiarata non è una calibrazione su studenti.[0m
+                [36m</p>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mDa completare[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mCoursePack e sequenza incontri assenti[0m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [0mRevisione scientifica/editoriale[0m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [0mCollaudo del percorso[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mRiferimenti di esempio[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [36m<code>[39m
+                      [0mfixture-wave-01[0m
+                    [36m</code>[39m
+                    [0m · v[0m
+                    [0m1[0m
+                    [36m<br />[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"fine-print"[39m
+                    [36m>[39m
+                      [0mSHA-256 contenuto: [0m
+                      [36m<code>[39m
+                        [0mcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc[0m
+                      [36m</code>[39m
+                    [36m</span>[39m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"fine-print"[39m
+              [36m>[39m
+                [0mSelezione riutilizzabile: [0m
+                [36m<code>[39m
+                  [0msf-u4[0m
+                [36m</code>[39m
+                [36m<br />[39m
+                [0mBanca: [0m
+                [36m<code>[39m
+                  [0mphysics-semestre-2026[0m
+                  [0m · v[0m
+                  [0m1[0m
+                [36m</code>[39m
+                [36m<br />[39m
+                [0mSHA-256: [0m
+                [36m<code>[39m
+                  [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+                [36m</code>[39m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</article>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"pathway-identity"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mIdentità e provenienza[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [36m<code>[39m
+                [0mfixture-composition[0m
+                [0m · v[0m
+                [0m2[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [0mSHA-256 composizione: [0m
+              [36m<code>[39m
+                [0mdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [36m<code>[39m
+                [0mphysics-semestre-2026[0m
+                [0m · v[0m
+                [0m1[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [0mSHA-256 banca: [0m
+              [36m<code>[39m
+                [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+              [36m</code>[39m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"fine-print"[39m
+            [36m>[39m
+              [0mQuantità e metadati derivati dai record verificati del Core. Completezza didattica e validazione scientifica non attestate.[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"curriculum-prerequisites"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mPrerequisiti condivisi ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</summary>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"fine-print"[39m
+          [36m>[39m
+            [0mEtichette già presenti in più programmi o raccolte; non attestano che esistano moduli di recupero dedicati.[0m
+          [36m</p>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mLettura di una formula[0m
+              [0m [0m
+              [36m<span[39m
+                [33mclass[39m=[32m"fine-print"[39m
+              [36m>[39m
+                [0m· [0m
+                [0m2[0m
+                [0m riferimenti[0m
+              [36m</span>[39m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+      [33mclass[39m=[32m"edition-manager"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRegia del docente[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mDal programma alla prossima edizione.[0m
+          [36m</h2>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+        [36m>[39m
+          [0mNuova edizione[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p>[39m
+        [0mScegli un programma, prepara le quattro date e rileggi l’offerta. La bozza resta privata finché non la confermi.[0m
+      [36m</p>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/curriculum-catalog.test.tsx > a popstate at the first visible unit rejects its obsolete reference before passive effects
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Riferimento non disponibile"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"page-heading"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "I tuoi mini-corsi.":
+  [36m<h1 />[39m
+
+  Name "Le basi dei tuoi prossimi corsi.":
+  [36m<h2 />[39m
+
+  Name "U4 · Onde meccaniche":
+  [36m<h3[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Prerequisiti dichiarati":
+  [36m<h4 />[39m
+
+  Name "Copertura osservata":
+  [36m<h4 />[39m
+
+  Name "Prima dell’erogazione":
+  [36m<h4 />[39m
+
+  Name "Raccolte collegate":
+  [36m<h4 />[39m
+
+  Name "Onde meccaniche":
+  [36m<h3 />[39m
+
+  Name "Argomenti presenti":
+  [36m<h4 />[39m
+
+  Name "Temi":
+  [36m<h4 />[39m
+
+  Name "Compiti cognitivi dichiarati":
+  [36m<h4 />[39m
+
+  Name "Prerequisiti":
+  [36m<h4 />[39m
+
+  Name "Distribuzione dichiarata delle difficoltà":
+  [36m<h4 />[39m
+
+  Name "Da completare":
+  [36m<h4 />[39m
+
+  Name "Riferimenti di esempio":
+  [36m<h4 />[39m
+
+  Name "Dal programma alla prossima edizione.":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"curriculum-counts"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"curriculum-counts"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"fine-print"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"section-meta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Catalogo privato del docente":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+    [33mclass[39m=[32m"curriculum-catalog"[39m
+  [36m/>[39m
+
+  Name "Gestione delle edizioni":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+    [33mclass[39m=[32m"edition-manager"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Chiudi catalogo":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"curriculum-content"[39m
+    [33maria-expanded[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Percorsi di Fisica (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+  [36m/>[39m
+
+  Name "Programmi configurati (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Raccolte da progettare (1)":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Nuova edizione":
+  [36m<button[39m
+    [33mclass[39m=[32m"button-primary"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Posizione nel catalogo":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+    [33mclass[39m=[32m"pathway-breadcrumb"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Tutti i percorsi":
+  [36m<a[39m
+    [33mhref[39m=[32m"/?catalog=pathways"[39m
+  [36m/>[39m
+
+  Name "Percorso sintetico":
+  [36m<a[39m
+    [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"curriculum-topics"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"pathway-identity"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"curriculum-prerequisites"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "Onde meccaniche":
+  [36m<article[39m
+    [33maria-label[39m=[32m"Onde meccaniche"[39m
+    [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  code:
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  Name "":
+  [36m<code />[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mI tuoi mini-corsi.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mUn programma riutilizzabile. Un’edizione con le sue persone e le sue date.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+      [33mclass[39m=[32m"curriculum-catalog"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mPatrimonio didattico[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mLe basi dei tuoi prossimi corsi.[0m
+          [36m</h2>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33maria-controls[39m=[32m"curriculum-content"[39m
+          [33maria-expanded[39m=[32m"true"[39m
+        [36m>[39m
+          [0mChiudi catalogo[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p>[39m
+        [0mProgrammi configurati, contenuti da organizzare e prerequisiti condivisi. Le bozze restano distinte dalle edizioni offerte.[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mid[39m=[32m"curriculum-content"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Tipo di materiale"[39m
+          [33mclass[39m=[32m"curriculum-filters"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mPercorsi di Fisica ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mProgrammi configurati ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mRaccolte da progettare ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"physics-pathways"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+            [33mclass[39m=[32m"pathway-breadcrumb"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/?catalog=pathways"[39m
+            [36m>[39m
+              [0mTutti i percorsi[0m
+            [36m</a>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m>[39m
+              [0m / [0m
+            [36m</span>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+            [36m>[39m
+              [0mPercorso sintetico[0m
+            [36m</a>[39m
+            [36m<span[39m
+              [33maria-current[39m=[32m"page"[39m
+            [36m>[39m
+              [0m / [0m
+              [0mU4[0m
+              [0m · [0m
+              [0mOnde meccaniche[0m
+            [36m</span>[39m
+          [36m</nav>[39m
+          [36m<h3[39m
+            [33mtabindex[39m=[32m"-1"[39m
+          [36m>[39m
+            [0mU4 · Onde meccaniche[0m
+          [36m</h3>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"fine-print"[39m
+          [36m>[39m
+            [0mComposizione editoriale iniziale. Un percorso non stabilisce incontri o calendario e non è un CoursePack erogabile. La pubblicazione dipende da edizione, quesito e revisione.[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"curriculum-counts"[39m
+          [36m>[39m
+            [0m272[0m
+            [0m quesiti · [0m
+            [0m17[0m
+            [0m famiglie[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mStato autoriale: [0m
+            [0mDRAFT: 272[0m
+            [0m. Revisione umana da attestare.[0m
+          [36m</p>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mObiettivi dichiarati nei quesiti ([0m
+              [0m1[0m
+              [0m)[0m
+            [36m</summary>[39m
+            [36m<ul>[39m
+              [36m<li>[39m
+                [0mConfrontare due frequenze[0m
+              [36m</li>[39m
+            [36m</ul>[39m
+          [36m</details>[39m
+          [36m<h4>[39m
+            [0mPrerequisiti dichiarati[0m
+          [36m</h4>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mLettura di una formula[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<h4>[39m
+            [0mCopertura osservata[0m
+          [36m</h4>[39m
+          [36m<p>[39m
+            [0mInterferenza[0m
+          [36m</p>[39m
+          [36m<h4>[39m
+            [0mPrima dell’erogazione[0m
+          [36m</h4>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mSequenza da deliberare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+          [36m<h4>[39m
+            [0mRaccolte collegate[0m
+          [36m</h4>[39m
+          [36m<article[39m
+            [33maria-label[39m=[32m"Onde meccaniche"[39m
+            [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"curriculum-card-heading"[39m
+            [36m>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"section-meta"[39m
+              [36m>[39m
+                [0mFisica · 2026/2027 · U4[0m
+              [36m</p>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"curriculum-status"[39m
+              [36m>[39m
+                [0mDRAFT[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<h3>[39m
+              [0mOnde meccaniche[0m
+            [36m</h3>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"curriculum-counts"[39m
+            [36m>[39m
+              [0m272[0m
+              [0m quesiti · [0m
+              [0m17[0m
+              [0m famiglie · [0m
+              [0m272[0m
+              [0m soluzioni[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mNon è ancora un programma per un’edizione. È una selezione di contenuti da organizzare e revisionare.[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"fine-print"[39m
+            [36m>[39m
+              [0mRevisione umana da eseguire[0m
+              [0m. I quesiti delle raccolte possono sovrapporsi.[0m
+            [36m</p>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mContenuti, riferimenti e lacune[0m
+              [36m</summary>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mArgomenti presenti[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mInterferenza[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<details[39m
+                [33mclass[39m=[32m"curriculum-topics"[39m
+              [36m>[39m
+                [36m<summary>[39m
+                  [0mTutti i temi del materiale ([0m
+                  [0m1[0m
+                  [0m)[0m
+                [36m</summary>[39m
+                [36m<div>[39m
+                  [36m<h4>[39m
+                    [0mTemi[0m
+                  [36m</h4>[39m
+                  [36m<ul>[39m
+                    [36m<li>[39m
+                      [0mBattimenti[0m
+                    [36m</li>[39m
+                  [36m</ul>[39m
+                [36m</div>[39m
+              [36m</details>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mCompiti cognitivi dichiarati[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mConfrontare due frequenze[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mPrerequisiti[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mLettura di una formula[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mDistribuzione dichiarata delle difficoltà[0m
+                [36m</h4>[39m
+                [36m<p>[39m
+                  [0mbase: 68 · facile: 68 · medio: 68 · difficile: 68[0m
+                [36m</p>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"fine-print"[39m
+                [36m>[39m
+                  [0mLa difficoltà dichiarata non è una calibrazione su studenti.[0m
+                [36m</p>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mDa completare[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [0mCoursePack e sequenza incontri assenti[0m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [0mRevisione scientifica/editoriale[0m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [0mCollaudo del percorso[0m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<div>[39m
+                [36m<h4>[39m
+                  [0mRiferimenti di esempio[0m
+                [36m</h4>[39m
+                [36m<ul>[39m
+                  [36m<li>[39m
+                    [36m<code>[39m
+                      [0mfixture-wave-01[0m
+                    [36m</code>[39m
+                    [0m · v[0m
+                    [0m1[0m
+                    [36m<br />[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"fine-print"[39m
+                    [36m>[39m
+                      [0mSHA-256 contenuto: [0m
+                      [36m<code>[39m
+                        [0mcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc[0m
+                      [36m</code>[39m
+                    [36m</span>[39m
+                  [36m</li>[39m
+                [36m</ul>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"fine-print"[39m
+              [36m>[39m
+                [0mSelezione riutilizzabile: [0m
+                [36m<code>[39m
+                  [0msf-u4[0m
+                [36m</code>[39m
+                [36m<br />[39m
+                [0mBanca: [0m
+                [36m<code>[39m
+                  [0mphysics-semestre-2026[0m
+                  [0m · v[0m
+                  [0m1[0m
+                [36m</code>[39m
+                [36m<br />[39m
+                [0mSHA-256: [0m
+                [36m<code>[39m
+                  [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+                [36m</code>[39m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</article>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"pathway-identity"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mIdentità e provenienza[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [36m<code>[39m
+                [0mfixture-composition[0m
+                [0m · v[0m
+                [0m2[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [0mSHA-256 composizione: [0m
+              [36m<code>[39m
+                [0mdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [36m<code>[39m
+                [0mphysics-semestre-2026[0m
+                [0m · v[0m
+                [0m1[0m
+              [36m</code>[39m
+              [36m<br />[39m
+              [0mSHA-256 banca: [0m
+              [36m<code>[39m
+                [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+              [36m</code>[39m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"fine-print"[39m
+            [36m>[39m
+              [0mQuantità e metadati derivati dai record verificati del Core. Completezza didattica e validazione scientifica non attestate.[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</div>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"curriculum-prerequisites"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mPrerequisiti condivisi ([0m
+            [0m1[0m
+            [0m)[0m
+          [36m</summary>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"fine-print"[39m
+          [36m>[39m
+            [0mEtichette già presenti in più programmi o raccolte; non attestano che esistano moduli di recupero dedicati.[0m
+          [36m</p>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mLettura di una formula[0m
+              [0m [0m
+              [36m<span[39m
+                [33mclass[39m=[32m"fine-print"[39m
+              [36m>[39m
+                [0m· [0m
+                [0m2[0m
+                [0m riferimenti[0m
+              [36m</span>[39m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+      [33mclass[39m=[32m"edition-manager"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"section-title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRegia del docente[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mDal programma alla prossima edizione.[0m
+          [36m</h2>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+        [36m>[39m
+          [0mNuova edizione[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p>[39m
+        [0mScegli un programma, prepara le quattro date e rileggi l’offerta. La bozza resta privata finché non la confermi.[0m
+      [36m</p>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/curriculum-catalog.test.tsx:126:19
+    124|     render(<Courses me={teacher} {...props} />);
+    125|     await navigated;
+    126|     expect(screen.getByRole("heading", { name: "Riferimento non dispon…
+       |                   ^
+    127|     expect(screen.queryByRole("article", { name: "Onde meccaniche" }))…
+    128|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  12:15:03
+   Duration  2.03s (transform 296ms, setup 0ms, import 452ms, tests 585ms, environment 828ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+npm error command failed
+npm error command sh -c vitest run src/__tests__/curriculum-catalog.test.tsx --reporter=verbose
