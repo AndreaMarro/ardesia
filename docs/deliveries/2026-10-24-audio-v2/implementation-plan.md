@@ -23,7 +23,7 @@ Scartati: recorder flat nella Room (isolamento), concatenazione di take WebM (st
 - [x] REA E3 — root: osservazione Room precedente (Evidence `ev_f046b7f17a4ce36ff2a81f96556ea5ae252f970665c8aa1322911c5648735c95`), specifica sopra, implementazione e verifica stesso percorso; costo totale e alternativa diretta senza risparmi inventati.
 - [x] Review indipendente — agente che non ha scritto audio/esperienza: attacca isolamento, revoca, fine audio, round-trip e fonte condivisa. Root verifica e corregge i finding.
 - [x] Gate — typecheck/test/build dei package, gate Studio invariato, suite Core/API e igiene; log originali preservati con scope e SHA/diff.
-- [ ] Consegna — memoria append-only, handoff, draft PR stacked su #297, CI da rileggere sullo SHA finale dopo pubblicazione e prossimo task con dipendenze.
+- [x] Consegna — memoria append-only, handoff, draft PR stacked su #297, CI da rileggere sullo SHA finale dopo pubblicazione e prossimo task con dipendenze.
 
 ## Attacchi prioritari
 
@@ -33,4 +33,4 @@ Permesso dopo revoca; write dopo OFF; riferimento ad altra Room/sessione; clip m
 
 Node 26.5.1/npm 11.17.0, spec originale catalogo 4 PASS. Prima suite Web originale: 285 PASS/9 FAIL in altri cinque file, catalogo PASS; non prova risoluzione. REA baseline è osservazione runtime, identità artefatto non fornita dal provider; il manifest di sorgenti deve fissare separatamente base+diff. Test nativo legacy: 20 controlli su sorgente invariato; non certifica AUDIO-V2.
 
-Chiusura locale: codice, percorsi UI, review e gate completati; la pubblicazione/lettura CI della draft segue nel commit di memoria. Il confronto del costo complessivo REA resta UNKNOWN, come dichiarato nella prova, e non viene segnato come risparmio.
+Chiusura locale: codice, percorsi UI, review e gate completati; la draft #298 è pubblicata e collegata. RUNLOG e handoff sono aggiornati nel commit di memoria; la CI della head finale viene riletta prima della consegna. Il confronto del costo complessivo REA resta UNKNOWN, come dichiarato nella prova, e non viene segnato come risparmio.

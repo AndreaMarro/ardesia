@@ -1,6 +1,6 @@
 # AUDIO-V2 e Poiseuille — incremento utilizzabile locale
 
-24 ottobre 2026, Europe/Rome. Base verificata [#297](https://github.com/AndreaMarro/ardesia/pull/297), head `ae25b93bec826539940e0226da1f0cd8cebff0b1`, base di quella PR `339ab08f4139da0b37e78bbde81e9fe4e83afea0`. #297 è ancora draft e non integrata. Questo incremento è nel ramo isolato `codex/ardesia-audio-v2-poiseuille-20261024`, dipendente da #297. Nessun merge, deploy, acquisto o scheduler.
+24 ottobre 2026, Europe/Rome. Base verificata [#297](https://github.com/AndreaMarro/ardesia/pull/297), head `ae25b93bec826539940e0226da1f0cd8cebff0b1`, base di quella PR `339ab08f4139da0b37e78bbde81e9fe4e83afea0`. #297 è ancora draft e non integrata. Questo incremento è nel ramo isolato `codex/ardesia-audio-v2-poiseuille-20261024`, dipendente da #297. [Draft PR #298](https://github.com/AndreaMarro/ardesia/pull/298), candidato prodotto `e1be6c9ea0a19b90d53a9e4d8a38dac5846c1270`. Il commit successivo aggiorna memoria e attribuzione delle prove mantenendo gli stessi sorgenti runtime. Nessun merge, deploy, acquisto o scheduler.
 
 ## Cosa può fare il docente e cosa vede lo studente
 
@@ -20,7 +20,7 @@ In **Il mio lavoro/Correzioni**, il docente ritrova le stesse ricevute e la font
 
 ## Come riprodurre
 
-Dal checkout del ramo, usando i lock esistenti:
+Dal checkout del ramo, usando i lock esistenti. Il runtime Web previsto dalla CI è Node26.5.1/npm11.17.0; Studio è stato verificato anche con Node22.14.0/npm10.9.2. Python3.13 è fissato tramite uv:
 
 ```sh
 npm ci --no-audit --no-fund

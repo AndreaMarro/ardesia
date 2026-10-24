@@ -16,6 +16,7 @@ Base `ae25b93bec826539940e0226da1f0cd8cebff0b1` più diff identificato nei manif
 | Core/API completo locale | 851 PASS, 30 SKIP espliciti, 1 warning | `core-api.log`; successivo fix budget/porta verificato con 8 test mirati, non riscritto come un secondo full run |
 | Browser Studio finale | 20/20 PASS | `evidence/browser/final/result.json`; source-before=after |
 | Browser Poiseuille finale | 20/20 PASS | `evidence/poiseuille/browser-final/result.json`; source-before=after su586file |
+| Igiene e stato | PASS: NUL, segreti+3test, boundary, workflow+20test, doc claims+11test, stato18+29test/verify e whitespace | `evidence/validation/hygiene.json`; 12 offender boundary storici restano, nessuno nuovo |
 | REA e oracolo | Due Evidence reali, 18/18 asserzioni offline | `evidence/rea/README.md`; costi totali non misurati integralmente |
 
 Il profilo Studio è quello di AGENTS: `--pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000`. I cinque skip dipendono dal corpus screenshot storico assente; nessuno è stato aggiunto per questo incremento. Gli skip Core/API indicano contratti PostgreSQL/Supabase live non configurati: non attestano quel backend. I 27 skip Engine comprendono inoltre provider live senza opt-in/chiavi, corpus reale e checkout legacy assenti; il dettaglio `-rs` è conservato.
@@ -57,3 +58,9 @@ python3 docs/deliveries/2026-10-24-audio-v2/evidence/rea/verify_rea.py
 L'ambiente MCP separato è stato creato con Python3.13 e `services/study-mcp/requirements.lock`, come CI. I log leggibili normalizzano solo whitespace finale: gli originali interessati sono conservati compressi con hash in [log-normalization.json](evidence/validation/log-normalization.json). Nessun risultato negativo viene rimosso. [Verifica privacy indipendente](evidence/validation/trace-privacy-verification.json): sette ZIP e14valori di token sintetici confrontati, zero corrispondenze residue.
 
 La CI remota deve essere riletta sulla head effettiva della draft; i suoi URL e lo SHA sono riportati nella PR e nella consegna finale. Le CI verdi di #297 non attestano questo incremento. Nessun merge o deployment viene eseguito.
+
+## CI del prodotto e memoria
+
+Sul commit prodotto `e1be6c9ea0a19b90d53a9e4d8a38dac5846c1270`, la [CI generale40088667039](https://github.com/AndreaMarro/ardesia/actions/runs/40088667039) è SUCCESS con tutti i sette job SUCCESS, inclusi Web e relativi browser, Studio, Engine, Core/API, MCP, hygiene e golden path advisory. [Marketing40088667042](https://github.com/AndreaMarro/ardesia/actions/runs/40088667042) e [readiness40088667046](https://github.com/AndreaMarro/ardesia/actions/runs/40088667046) sono SUCCESS; quest'ultimo esegue il solo no-deploy-check. [Snapshot API dei job](evidence/validation/ci-implementation.json). Sono risultati di questo SHA; il commit successivo di memoria richiede la propria verifica, riportata nella PR e nella consegna finale.
+
+La [review finale della memoria](evidence/review/memory-review.md) non rileva finding nel perimetro letto. Il [controllo del prefisso storico](evidence/validation/memory-verification.json) conserva tutti i43.210byte precedenti; nuovo handoff e quattro task verificabili, senza scheduler o cache semantica obbligatoria.
