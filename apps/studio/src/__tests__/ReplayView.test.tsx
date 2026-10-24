@@ -13,8 +13,9 @@ import { hasEmoji } from "./emojiGuard"
 
 // --- Mock Excalidraw (pattern Room.integration.test.tsx) ---
 
-let capturedApi: { updateScene: ReturnType<typeof vi.fn> } | null = null
+let capturedApi: { updateScene: ReturnType<typeof vi.fn>; scrollToContent: ReturnType<typeof vi.fn> } | null = null
 let capturedExcalidrawProps: any = null
+let onFit: (() => void) | null = null
 
 vi.mock("@excalidraw/excalidraw", () => {
   return {
@@ -24,12 +25,12 @@ vi.mock("@excalidraw/excalidraw", () => {
         setTimeout(() => {
           capturedApi = {
             updateScene: vi.fn(),
+            scrollToContent: vi.fn(() => onFit?.()),
           }
           props.excalidrawAPI({
             ...capturedApi,
             getSceneElements: vi.fn(() => []),
             addFiles: vi.fn(),
-            scrollToContent: vi.fn(),
           })
           document.body.setAttribute("data-mock-excalidraw-api", "1")
         }, 0)
@@ -116,6 +117,7 @@ describe("ReplayView", () => {
     mountedRoots = []
     capturedApi = null
     capturedExcalidrawProps = null
+    onFit = null
     document.body.removeAttribute("data-mock-excalidraw-api")
     // jsdom non implementa createObjectURL
     URL.createObjectURL = vi.fn(() => "blob:replay-test")
@@ -154,6 +156,124 @@ describe("ReplayView", () => {
     setter.call(range, String(t))
     range.dispatchEvent(new Event("input", { bubbles: true }))
   }
+
+  describe("responsive replay camera", () => {
+    function resizeHarness() {
+      const frames = new Map<number, FrameRequestCallback>()
+      let nextFrame = 0
+      let notifyResize: (() => void) | undefined
+      let width = 1440
+      let height = 600
+      const disconnected = vi.fn()
+      const fittedWidths: number[] = []
+      onFit = () => fittedWidths.push(width)
+      vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
+        frames.set(++nextFrame, callback)
+        return nextFrame
+      })
+      vi.stubGlobal("cancelAnimationFrame", (id: number) => frames.delete(id))
+      vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(() => ({
+        x: 0, y: 0, top: 0, left: 0, right: width, bottom: height,
+        width, height, toJSON: () => ({}),
+      }))
+      vi.stubGlobal("ResizeObserver", class {
+        constructor(callback: ResizeObserverCallback) {
+          notifyResize = () => callback([{ contentRect: { width, height } } as ResizeObserverEntry], this as unknown as ResizeObserver)
+        }
+        observe() {}
+        disconnect() { disconnected() }
+      })
+      return {
+        frames, fittedWidths, disconnected,
+        resize(nextWidth: number, nextHeight = 600) {
+          width = nextWidth; height = nextHeight; notifyResize?.()
+        },
+        flushFrame() {
+          const pending = [...frames.values()]
+          frames.clear()
+          for (const callback of pending) callback(0)
+        },
+        async ready() {
+          await vi.waitFor(() => expect(frames.size).toBeGreaterThan(0))
+          this.flushFrame(); this.flushFrame()
+          fittedWidths.length = 0
+        },
+        dispose() {
+          for (const root of mountedRoots) root.unmount()
+          mountedRoots = []
+          vi.unstubAllGlobals()
+        },
+      }
+    }
+
+    it("fits after the canvas resize settles, instead of centering in the previous viewport", async () => {
+      // Native resize precedes Excalidraw's canvas layout. Fitting synchronously
+      // uses1440px even though the next paint is390px (independent browser RED).
+      const view = resizeHarness()
+      try {
+        const store = makeMockStore(JOURNAL_EVENTS)
+        await renderReplayView(store)
+        await view.ready()
+        window.dispatchEvent(new Event("resize"))
+        view.resize(390)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([390])
+        expect(store.write).not.toHaveBeenCalled()
+        expect(store.saveScene).not.toHaveBeenCalled()
+        expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("1000")
+      } finally { view.dispose() }
+    })
+
+    it("preserves camera gestures and scrubbing when canvas bounds do not change", async () => {
+      const view = resizeHarness()
+      try {
+        await renderReplayView(makeMockStore(JOURNAL_EVENTS))
+        await view.ready()
+        capturedExcalidrawProps.onChange([], { scrollX: -123, scrollY: 42, zoom: { value: 2 } })
+        scrubTo(2600)
+        await vi.waitFor(() => expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("2600"))
+        view.resize(1440)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        const fit = [...container.querySelectorAll("button")].find((button) => button.textContent === "Inquadra contenuto")!
+        fit.click()
+        expect(view.fittedWidths).toEqual([1440])
+      } finally { view.dispose() }
+    })
+
+    it("ignores zero-size bounds and disposes pending fits on a new lesson or unmount", async () => {
+      const view = resizeHarness()
+      try {
+        const store = makeMockStore(JOURNAL_EVENTS)
+        const root = await renderReplayView(store)
+        await view.ready()
+        view.resize(0)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        view.resize(390)
+        view.flushFrame()
+        view.resize(0)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        view.resize(390)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([390])
+        view.fittedWidths.length = 0
+        view.resize(820)
+        view.flushFrame()
+        const { default: ReplayView } = await import("../ReplayView")
+        store.read.mockReturnValue(new Promise<Blob | null>(() => {}))
+        root.render(<ReplayView store={store as any} room="pending-room" />)
+        await vi.waitFor(() => expect(container.textContent).toContain("caricamento"))
+        expect(view.disconnected).toHaveBeenCalled()
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        expect(view.frames.size).toBe(0)
+        root.unmount()
+        mountedRoots = []
+      } finally { view.dispose() }
+    })
+  })
 
   it("scrub a t proietta ESATTAMENTE getSceneAt(events, t) — stessi id, stesso ordine", async () => {
     const store = makeMockStore(JOURNAL_EVENTS)

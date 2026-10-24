@@ -52,6 +52,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
 
   const apiRef = useRef<any>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const canvasRef = useRef<HTMLDivElement>(null)
+  const fitSceneRef = useRef<() => void>(() => {})
   /** startEpoch del primo chunk = origine del tempo audio (sorgente concatenata) */
   const audioStartEpochRef = useRef<number | null>(null)
   /** Seek richiesto prima che i metadata audio siano pronti (applicato a loadedmetadata) */
@@ -101,11 +103,50 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     const selected = focusedObject && scene.find((element) => element.id === focusedObject.elementId && element.version === focusedObject.version)
     apiRef.current?.scrollToContent?.(selected ? [selected] : undefined, { fitToContent: true, viewportZoomFactor: .85, animate: false })
   }
+  // A resize event fires before Excalidraw has applied its new canvas bounds.
+  // Observe the actual container and fit after its layout update. Camera-only
+  // changes (pan/zoom), scrubbing and audio never schedule an automatic fit.
+  useEffect(() => { fitSceneRef.current = fitScene })
   useEffect(() => {
-    if (!apiReady) return
-    const frame = requestAnimationFrame(fitScene)
-    window.addEventListener("resize", fitScene)
-    return () => { cancelAnimationFrame(frame); window.removeEventListener("resize", fitScene) }
+    const canvas = canvasRef.current
+    if (!apiReady || !canvas) return
+    let frame: number | null = null
+    let settledFrame: number | null = null
+    let width = -1
+    let height = -1
+    const cancelFit = () => {
+      if (frame !== null) cancelAnimationFrame(frame)
+      if (settledFrame !== null) cancelAnimationFrame(settledFrame)
+      frame = settledFrame = null
+    }
+    const fitResizedCanvas = () => {
+      const bounds = canvas.getBoundingClientRect()
+      if (bounds.width <= 0 || bounds.height <= 0) {
+        cancelFit()
+        width = height = -1
+        return
+      }
+      if (bounds.width === width && bounds.height === height) return
+      width = bounds.width
+      height = bounds.height
+      cancelFit()
+      frame = requestAnimationFrame(() => {
+        frame = null
+        settledFrame = requestAnimationFrame(() => {
+          settledFrame = null
+          fitSceneRef.current()
+        })
+      })
+    }
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(fitResizedCanvas)
+    observer?.observe(canvas)
+    if (!observer) window.addEventListener("resize", fitResizedCanvas)
+    fitResizedCanvas()
+    return () => {
+      cancelFit()
+      observer?.disconnect()
+      window.removeEventListener("resize", fitResizedCanvas)
+    }
   }, [apiReady, timeline])
 
   /**
@@ -254,7 +295,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
 
       {!loading && !error && hasEvents && (
         <>
-          <div className="st-replay-canvas" style={{ flex: 1, position: "relative", minHeight: 0, overflow: "hidden" }}>
+          <div ref={canvasRef} className="st-replay-canvas" style={{ flex: 1, position: "relative", minHeight: 0, overflow: "hidden" }}>
             <Excalidraw
               langCode={EXCALIDRAW_CONFIG.langCode}
               theme={EXCALIDRAW_CONFIG.theme}

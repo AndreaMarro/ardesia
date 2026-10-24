@@ -8,6 +8,7 @@ export type DiaryThread = {
   threadId: string;
   studentId: string;
   editionId: string;
+  originalExerciseId?: string | null;
   conceptId: string;
   category: string;
   status: string;
@@ -185,7 +186,10 @@ export function Diary({
               key={thread.threadId}
               thread={thread}
               tutor={me.role === "teacher"}
-              activityId={activityId}
+              // Core freezes this ID from the original submission. The course
+              // capability alone cannot select a model for a different thread.
+              activityId={thread.editionId === editionId && thread.originalExerciseId === activityId
+                ? activityId : null}
               onUpdate={refresh}
             />
           ))}
@@ -399,8 +403,9 @@ function DiaryCard({
         )}
       {tutor && thread.status === "CANDIDATE" && activityId === null && (
         <p className="fine-print">
-          La preparazione guidata di una nuova prova non è disponibile per questa attività.
-          L’osservazione e lo storico restano consultabili.
+          Questa osservazione resta da verificare manualmente. La preparazione
+          guidata di una nuova prova non è disponibile per la sua attività
+          d’origine in questa edizione. Fonte e storico restano consultabili.
         </p>
       )}
       {tutor && thread.status === "CANDIDATE" && activityId !== null && (
