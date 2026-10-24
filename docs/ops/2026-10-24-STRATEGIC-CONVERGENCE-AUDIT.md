@@ -19,6 +19,8 @@
 | REA on marketing | reported in #289/#290, **not re-executed today** | #290 lists 17 attempts with 5 selected COMPLETE receipts, 3 INCOMPLETE and 6 ERROR. This supports a selected transfer, **not** full verification of competitor equivalence or product pedagogy. |
 | Science review & artifacts | DRAFT, human editorial approval absent | #290 lists four selected source JSON, twelve TeX sources and twelve referenced PDFs absent; do not market them as final course materials or claim production approval. |
 
+**Stacked PR topology:** `#282 → #284 → #285 → #286 → #287 → #288 → #289 → #290`; the independent RED-only #283 is a sidecar, not an ancestor. An exact GitHub comparison of `main@b124eee0` to `#290@339ab08f` reports **124 commits ahead, 0 behind and 300 changed file paths**. These counts describe accumulated unmerged integration surface across the entire chain, **not 124 defects or the isolated #290 delta**. Releasing requires a fresh whole-stack CI and human merge authorization; single-PR greens are insufficient.
+
 **Change since previously known:** there is a well-tested marketing **surface**, not yet the differentiating audio/board/lesson/material continuity product. Current `main` and the two knowledge-state snapshots are substantially older than the active October PR chain. A green SHA in #290 cannot certify the beta or even imply its features were merged into main.
 
 ### Explicit negative evidence from source files (on #285/#290 branch)
