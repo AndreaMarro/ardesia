@@ -29,7 +29,24 @@ export function Review({
   onDiary: () => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null),
-    [filter, setFilter] = useState("waiting");
+    [filter, setFilter] = useState("waiting"),
+    [refreshing, setRefreshing] = useState(false),
+    [refreshError, setRefreshError] = useState("");
+  const refreshInFlight = useRef(false);
+  async function refreshDeliveries() {
+    if (refreshInFlight.current) return;
+    refreshInFlight.current = true;
+    setRefreshing(true);
+    setRefreshError("");
+    try {
+      await onUpdate();
+    } catch (e) {
+      setRefreshError(describeError(e));
+    } finally {
+      refreshInFlight.current = false;
+      setRefreshing(false);
+    }
+  }
   const visible = data.submissions.filter(
     (s) => filter === "all" || !s.feedback.some((f) => f.review),
   );
@@ -46,7 +63,11 @@ export function Review({
           Apri la consegna, ritrova il passaggio e restituisci una spiegazione.
           Il lavoro privato che non è stato consegnato resta privato.
         </p>
+        <button disabled={refreshing} aria-busy={refreshing} onClick={refreshDeliveries}>
+          {refreshing ? "Aggiornamento…" : "Aggiorna consegne"}
+        </button>
       </header>
+      {refreshError && <ErrorNotice message={refreshError} onRetry={refreshing ? undefined : refreshDeliveries} />}
       <nav className="filter-tabs" aria-label="Filtra le consegne">
         {[
           ["waiting", "Da correggere"],
