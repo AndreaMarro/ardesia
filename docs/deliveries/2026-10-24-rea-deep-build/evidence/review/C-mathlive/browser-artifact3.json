@@ -1,0 +1,469 @@
+{
+  "url": "http://127.0.0.1:5412/studio/#independent-mathlive-3",
+  "artifactSource": {
+    "commit": "375dbe8d50ce46fab1e47704d73e548c797da09c",
+    "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceTreeSha256": "95f3fe6faadd52ac412a8f8de8f065429e6402e743aa935bba9d7c311fa2df92",
+    "sourceFileCount": 1586,
+    "note": "source tree and asset hashes identify the exact build, including uncommitted sources"
+  },
+  "checks": [
+    {
+      "name": "closed composer does not request MathLive fonts",
+      "pass": true
+    },
+    {
+      "name": "closed composer has no math field",
+      "pass": true
+    },
+    {
+      "name": "closed composer does not fetch lazy MathComposer chunk",
+      "pass": true
+    },
+    {
+      "name": "opened composer has actual live field",
+      "pass": true
+    },
+    {
+      "name": "formula chip updates actual field",
+      "pass": true
+    },
+    {
+      "name": "insert closes composer with no storage error",
+      "pass": true
+    },
+    {
+      "name": "reopen creates a usable current field",
+      "pass": true
+    },
+    {
+      "name": "opened font requests exist and all actual bytes match artifact",
+      "pass": true
+    },
+    {
+      "name": "no external MathLive requests",
+      "pass": true
+    },
+    {
+      "name": "only known legacy MathJax external traffic",
+      "pass": true
+    },
+    {
+      "name": "served scripts and document match artifact3",
+      "pass": true
+    },
+    {
+      "name": "no failed requests",
+      "pass": false
+    },
+    {
+      "name": "no page errors",
+      "pass": false
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:5412/studio/",
+    "http://127.0.0.1:5412/studio/assets/index-BZv934Sv.js",
+    "http://127.0.0.1:5412/studio/assets/chunk-BHe-jwch.js",
+    "http://127.0.0.1:5412/studio/assets/index-r6w4tUo0.css",
+    "http://127.0.0.1:5412/studio/assets/Room-jtjpRKFw.js",
+    "http://127.0.0.1:5412/studio/assets/excalidrawConfig-MhR0DoTY.js",
+    "http://127.0.0.1:5412/studio/assets/chunk-SRAX5OIU-Bh82KL8g.js",
+    "http://127.0.0.1:5412/studio/assets/chunk-ZUYEQ4TG-BzFOpW--.js",
+    "http://127.0.0.1:5412/studio/assets/excalidrawConfig-C4z5V1r2.css",
+    "http://127.0.0.1:5412/studio/assets/WorkspaceStore-Zi5GBYir.js",
+    "http://127.0.0.1:5412/studio/assets/indexedDbEventLog-DAFQy8Eu.js",
+    "http://127.0.0.1:5412/studio/assets/ToolCanvasEmbeddable-D307U7YM.js",
+    "http://127.0.0.1:5412/studio/assets/audit-DqHjUw3L.js",
+    "http://127.0.0.1:5412/studio/assets/multiPostitBoardPersistence-WNEl3iVZ.js",
+    "http://127.0.0.1:5412/studio/assets/board-BkqA5KWW.js",
+    "http://127.0.0.1:5412/studio/assets/instance-CsJqOgt0.js",
+    "http://127.0.0.1:5412/studio/assets/postitObject-BeN7zOO4.js",
+    "http://127.0.0.1:5412/studio/assets/EmptyState-Cf9HZQ6l.js",
+    "http://127.0.0.1:5412/studio/assets/ViewNav-3ZKpKEkt.js",
+    "http://127.0.0.1:5412/studio/assets/icons-D_vX4_iA.js",
+    "http://127.0.0.1:5412/studio/assets/materializer-BjCIf21g.js",
+    "http://127.0.0.1:5412/studio/assets/sdk-DNycmZEQ.js",
+    "http://127.0.0.1:5412/studio/assets/ReplayEngine-BjpoG9fP.js",
+    "http://127.0.0.1:5412/studio/favicon.svg",
+    "http://127.0.0.1:5412/studio/assets/file-open-002ab408-BHUWm0Sh.js",
+    "http://127.0.0.1:5412/studio/assets/directory-open-4ed118d0-1i309Asm.js",
+    "http://127.0.0.1:5412/studio/assets/file-save-745eba88-Bwdfz6OZ.js",
+    "http://127.0.0.1:5412/studio/assets/it-IT-JPQ66NNP-gYY6oQPw.js",
+    "http://127.0.0.1:5412/studio/assets/roundRect-D01gJrlt.js",
+    "http://127.0.0.1:5412/studio/assets/Assistant-Regular-DVxZuzxb.woff2",
+    "http://127.0.0.1:5412/studio/assets/Assistant-Bold-gm-uSS1B.woff2",
+    "http://127.0.0.1:5412/studio/assets/Assistant-Medium-DrcxCXg3.woff2",
+    "http://127.0.0.1:5412/studio/excalidraw-assets/fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2",
+    "http://127.0.0.1:5412/studio/assets/MathComposer-Dx8sNnLm.js",
+    "http://127.0.0.1:5412/studio/assets/MathComposer-Dx8sNnLm.js",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Main-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Main-BoldItalic.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Main-Bold.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Main-Italic.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Math-Italic.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Math-BoldItalic.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_AMS-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Caligraphic-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Caligraphic-Bold.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Fraktur-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Fraktur-Bold.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_SansSerif-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_SansSerif-Bold.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_SansSerif-Italic.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Script-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Typewriter-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Size1-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Size2-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Size3-Regular.woff2",
+    "http://127.0.0.1:5412/studio/mathlive-fonts/KaTeX_Size4-Regular.woff2",
+    "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+  ],
+  "fontResponses": [
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Main-Italic.woff2",
+      "status": 200,
+      "bytes": 16988,
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Main-Bold.woff2",
+      "status": 200,
+      "bytes": 25324,
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Math-BoldItalic.woff2",
+      "status": 200,
+      "bytes": 16400,
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Main-Regular.woff2",
+      "status": 200,
+      "bytes": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Main-BoldItalic.woff2",
+      "status": 200,
+      "bytes": 16780,
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Math-Italic.woff2",
+      "status": 200,
+      "bytes": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_AMS-Regular.woff2",
+      "status": 200,
+      "bytes": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Fraktur-Bold.woff2",
+      "status": 200,
+      "bytes": 11348,
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Fraktur-Regular.woff2",
+      "status": 200,
+      "bytes": 11316,
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Caligraphic-Bold.woff2",
+      "status": 200,
+      "bytes": 6912,
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_SansSerif-Regular.woff2",
+      "status": 200,
+      "bytes": 10344,
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Caligraphic-Regular.woff2",
+      "status": 200,
+      "bytes": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_SansSerif-Bold.woff2",
+      "status": 200,
+      "bytes": 12216,
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Script-Regular.woff2",
+      "status": 200,
+      "bytes": 9644,
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Typewriter-Regular.woff2",
+      "status": 200,
+      "bytes": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Size1-Regular.woff2",
+      "status": 200,
+      "bytes": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Size2-Regular.woff2",
+      "status": 200,
+      "bytes": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_SansSerif-Italic.woff2",
+      "status": 200,
+      "bytes": 12028,
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Size3-Regular.woff2",
+      "status": 200,
+      "bytes": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/mathlive-fonts/KaTeX_Size4-Regular.woff2",
+      "status": 200,
+      "bytes": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "manifestMatches": true
+    }
+  ],
+  "errors": [
+    "response read response.body: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:5412/studio/assets/MathComposer-Dx8sNnLm.js",
+      "reason": "net::ERR_ABORTED"
+    }
+  ],
+  "trace": "NOT_CAPTURED",
+  "credentials": "NONE",
+  "servedAssets": [
+    {
+      "path": "/studio/",
+      "status": 200,
+      "bytes": 571,
+      "sha256": "5774c066939d5e0eaf60deece25c324dd67d77f330d09e6c8e3dddea3eca4eb9",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/chunk-BHe-jwch.js",
+      "status": 200,
+      "bytes": 957,
+      "sha256": "e17cabe5e25f3c66777c529f01df0ae562f11671a8506eb583d8799eaceeb149",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/index-BZv934Sv.js",
+      "status": 200,
+      "bytes": 197153,
+      "sha256": "60da71d80d4d36ef2250cbf88082ed42d58f8cf7cbbb313396791892324631d8",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/chunk-ZUYEQ4TG-BzFOpW--.js",
+      "status": 200,
+      "bytes": 1571,
+      "sha256": "d83bcf8b15b3cf059f701ec0206c9cd4a182069ceab46661a070354f34c26af6",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/chunk-SRAX5OIU-Bh82KL8g.js",
+      "status": 200,
+      "bytes": 586,
+      "sha256": "b05bac806cc74c1a8c0be0caa78fc88ca0f0426c5ddef8de9faaf672efc513eb",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/WorkspaceStore-Zi5GBYir.js",
+      "status": 200,
+      "bytes": 161788,
+      "sha256": "90ed5dfbdf5b16bdf92625c24ff788eb41211e09d9f18f548a42fedce9356d42",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/indexedDbEventLog-DAFQy8Eu.js",
+      "status": 200,
+      "bytes": 27827,
+      "sha256": "e34b7cf84fc5ce317980be471b493f08a30d5bb1672469e0d7167e3fff64cf48",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/Room-jtjpRKFw.js",
+      "status": 200,
+      "bytes": 495403,
+      "sha256": "93b18dc96af3c1d2c8a9e6027ef3a7b70046561d2706b621e53dcf7781cf8428",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/ToolCanvasEmbeddable-D307U7YM.js",
+      "status": 200,
+      "bytes": 94278,
+      "sha256": "2e19b44f5f774771e6c1bed5f856a4d1f438f824258d530812dfa7eeddbd3e2a",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/audit-DqHjUw3L.js",
+      "status": 200,
+      "bytes": 82456,
+      "sha256": "8cf0ad20c100580965545e2052bea4443a47e0864b7a467c845e75116a1044b2",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/multiPostitBoardPersistence-WNEl3iVZ.js",
+      "status": 200,
+      "bytes": 71754,
+      "sha256": "27249c2f822832aaa580ce33009fd317662c82881d4a30020d23c1738a7d44fd",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/board-BkqA5KWW.js",
+      "status": 200,
+      "bytes": 3200,
+      "sha256": "bfb5c02685a5f45983b93ce45f2792f1f29145c9c9e53693d90d618bbf0ced79",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/instance-CsJqOgt0.js",
+      "status": 200,
+      "bytes": 144,
+      "sha256": "a9b3361d4cc5b8d811ff7120bbfa10e1f83ffd9e841aaadf30a64c23e4459e62",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/postitObject-BeN7zOO4.js",
+      "status": 200,
+      "bytes": 3480,
+      "sha256": "30ad89bc49a2a18364616952cbbb10029edcd2f3a16d087c8a722f3020600013",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/EmptyState-Cf9HZQ6l.js",
+      "status": 200,
+      "bytes": 997,
+      "sha256": "b72ffe444119cedce57880d6530495f45d402e03123dd82975a039696fb29dff",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/ViewNav-3ZKpKEkt.js",
+      "status": 200,
+      "bytes": 1628,
+      "sha256": "14ab22391f4e774af9af636aa2a60d2397ba5d1400ceb527d8369ad2eb52db99",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/icons-D_vX4_iA.js",
+      "status": 200,
+      "bytes": 1282,
+      "sha256": "2bd47ac0770c1d31cc6658ea8d1309e89c8264fe4176bdc71f1b734f9f75e697",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/materializer-BjCIf21g.js",
+      "status": 200,
+      "bytes": 2529,
+      "sha256": "dd385f696593a5cbcff3ff03dba0f27023965ff56d802394b6c4c1df6cb9f880",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/sdk-DNycmZEQ.js",
+      "status": 200,
+      "bytes": 2511,
+      "sha256": "2650528c07e8399418d791c6f42ce927fd86fbd8f9a50ae1ef52f5c57451617b",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/ReplayEngine-BjpoG9fP.js",
+      "status": 200,
+      "bytes": 2820,
+      "sha256": "2ccf9b4aaf25b158025213448f421a05ab48b121b2a37ce767817516022d1500",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/excalidrawConfig-MhR0DoTY.js",
+      "status": 200,
+      "bytes": 1125992,
+      "sha256": "8f317f546bb70f3833b23aea5c823bb420fe3520740502569b755a2868480c92",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/file-open-002ab408-BHUWm0Sh.js",
+      "status": 200,
+      "bytes": 526,
+      "sha256": "7195c4db61bb3c1aea92ac2e46324f944b23422eb18ba90de9f34e7edd7451df",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/file-save-745eba88-Bwdfz6OZ.js",
+      "status": 200,
+      "bytes": 856,
+      "sha256": "825be96562536c29d1f4dd822e3de5ea754c084dd86b5da8a2ec80faa693c388",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/directory-open-4ed118d0-1i309Asm.js",
+      "status": 200,
+      "bytes": 1515,
+      "sha256": "0c899fdd305a693be8ea2ebf692094f53042cee5dcbf83301c3d389238d61eee",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/it-IT-JPQ66NNP-gYY6oQPw.js",
+      "status": 200,
+      "bytes": 22064,
+      "sha256": "a1a51bacb9b69313b5bdd5cc745f30913d05ba250fdc68902b3a9a8640fb47df",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/roundRect-D01gJrlt.js",
+      "status": 200,
+      "bytes": 2878,
+      "sha256": "28058996d0461b51285da286849da17cab663d7aa4c9931976e3f0d3d09a6ef6",
+      "manifestMatches": true
+    },
+    {
+      "path": "/studio/assets/MathComposer-Dx8sNnLm.js",
+      "status": 200,
+      "bytes": 803870,
+      "sha256": "90008a8f74736a3a4b429ba703ef11920a9a9c3bbab6878d510470a1c9d20f0b",
+      "manifestMatches": true
+    }
+  ],
+  "externalRequests": [
+    "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+  ]
+}

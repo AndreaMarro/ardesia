@@ -1,0 +1,88 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/AudioV2.test.ts (20 tests | 2 failed) 303ms
+     × does not prepare a passage when revocation completes during its journal read 18ms
+     × does not prepare a passage when corruption completes during its journal read 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > does not prepare a passage when revocation completes during its journal read
+AssertionError: promise resolved "{ …(10) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "endEpoch": 1500,
++   "lessonId": "audio-a",
++   "objectRefs": [
++     {
++       "elementId": "selected",
++       "label": "Pressione fissata",
++       "version": 4,
++     },
++   ],
++   "recordingId": "79c15464-6fd7-44b9-ac80-7b99f018dc2e",
++   "replayUrl": "http://127.0.0.1:5197/?vista=replay&at=1500&recording=79c15464-6fd7-44b9-ac80-7b99f018dc2e&object=selected&session=11111111-1111-4111-8111-111111111111&sha=3f0ec3d9eb6fa9bfc0b7d9c85a435a4de7004a17d69d85ca41a20ae52e9fdeac&objectVersion=4#audio-a",
++   "schema": "ardesia.lesson-passage.v1",
++   "sessionId": "11111111-1111-4111-8111-111111111111",
++   "sha256": "3f0ec3d9eb6fa9bfc0b7d9c85a435a4de7004a17d69d85ca41a20ae52e9fdeac",
++   "startEpoch": 1000,
++   "workspaceId": "local-default",
+  }
+
+ ❯ src/__tests__/AudioV2.test.ts:135:27
+    133|     else await h.store.write(saved.assetPath, new Blob(["corrupt bytes…
+    134|     release.resolve()
+    135|     await expect(preparing).rejects.toThrow(/disponibile|revocat|passa…
+       |                           ^
+    136|   })
+    137|   it("accepts a strict recording marker without downgrading its envelo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > does not prepare a passage when corruption completes during its journal read
+AssertionError: promise resolved "{ …(10) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "endEpoch": 1500,
++   "lessonId": "audio-a",
++   "objectRefs": [
++     {
++       "elementId": "selected",
++       "label": "Pressione fissata",
++       "version": 4,
++     },
++   ],
++   "recordingId": "f1197b41-eb5f-4cec-a46a-6c5952ceb04c",
++   "replayUrl": "http://127.0.0.1:5197/?vista=replay&at=1500&recording=f1197b41-eb5f-4cec-a46a-6c5952ceb04c&object=selected&session=11111111-1111-4111-8111-111111111111&sha=3f0ec3d9eb6fa9bfc0b7d9c85a435a4de7004a17d69d85ca41a20ae52e9fdeac&objectVersion=4#audio-a",
++   "schema": "ardesia.lesson-passage.v1",
++   "sessionId": "11111111-1111-4111-8111-111111111111",
++   "sha256": "3f0ec3d9eb6fa9bfc0b7d9c85a435a4de7004a17d69d85ca41a20ae52e9fdeac",
++   "startEpoch": 1000,
++   "workspaceId": "local-default",
+  }
+
+ ❯ src/__tests__/AudioV2.test.ts:135:27
+    133|     else await h.store.write(saved.assetPath, new Blob(["corrupt bytes…
+    134|     release.resolve()
+    135|     await expect(preparing).rejects.toThrow(/disponibile|revocat|passa…
+       |                           ^
+    136|   })
+    137|   it("accepts a strict recording marker without downgrading its envelo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 18 passed (20)
+   Start at  15:36:35
+   Duration  1.76s (transform 229ms, setup 32ms, import 263ms, tests 303ms, environment 976ms)

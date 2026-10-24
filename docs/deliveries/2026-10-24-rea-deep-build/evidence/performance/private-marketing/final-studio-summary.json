@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "measuredAt": "2026-10-24T14:09:33.350Z",
+  "browser": "148.0.7778.96",
+  "node": "v26.5.1",
+  "artifactSource": "95f3fe6faadd52ac412a8f8de8f065429e6402e743aa935bba9d7c311fa2df92",
+  "checks": [
+    {
+      "name": "six cold anonymous Studio contexts completed",
+      "pass": true
+    },
+    {
+      "name": "no page errors",
+      "pass": true
+    },
+    {
+      "name": "no failed requests",
+      "pass": true
+    },
+    {
+      "name": "no HTTP failure statuses",
+      "pass": true
+    },
+    {
+      "name": "all started requests remain on the exact local origin",
+      "pass": true
+    },
+    {
+      "name": "no user Study API requested",
+      "pass": true
+    },
+    {
+      "name": "canvas rendered and current font set loaded",
+      "pass": true
+    },
+    {
+      "name": "no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "final artifact source manifest unchanged",
+      "pass": true
+    }
+  ],
+  "summaries": [
+    {
+      "target": "candidate-studio-final3",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 21.899999991059303,
+      "loadMs": 22.299999997019768,
+      "visibleFontsTwoFrameSnapshotMs": 854.2000000029802,
+      "resourceCount": 31,
+      "initialAllResourceDecodedBytes": 2561804,
+      "lcpObservedMs": 508,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 25,
+        "decodedBytes": 2306195,
+        "encodedBytes": 2306195,
+        "offlineGzipBytes": 714019
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 169721,
+        "encodedBytes": 169721,
+        "offlineGzipBytes": 28257
+      },
+      "woff2": {
+        "initialRequestedCompletedCount": 4,
+        "decodedBytes": 85888,
+        "encodedBytes": 85888,
+        "offlineGzipBytes": 86000
+      }
+    },
+    {
+      "target": "candidate-studio-final3",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 23,
+      "loadMs": 23.099999994039536,
+      "visibleFontsTwoFrameSnapshotMs": 860.9000000059605,
+      "resourceCount": 31,
+      "initialAllResourceDecodedBytes": 2561804,
+      "lcpObservedMs": 440,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 25,
+        "decodedBytes": 2306195,
+        "encodedBytes": 2306195,
+        "offlineGzipBytes": 714019
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 169721,
+        "encodedBytes": 169721,
+        "offlineGzipBytes": 28257
+      },
+      "woff2": {
+        "initialRequestedCompletedCount": 4,
+        "decodedBytes": 85888,
+        "encodedBytes": 85888,
+        "offlineGzipBytes": 86000
+      }
+    }
+  ],
+  "hostAtStart": {
+    "loadAverage": [
+      14.13232421875,
+      12.96875,
+      13.001953125
+    ],
+    "freeBytes": 187465728,
+    "cpuCount": 8
+  },
+  "hostAtEnd": {
+    "loadAverage": [
+      14.36181640625,
+      13.03564453125,
+      13.02490234375
+    ],
+    "freeBytes": 319602688
+  },
+  "limits": "Same three isolated contexts per390/1440 methodology, fonts.ready+two rAF snapshot after Excalidraw is visible. No tokens/user dataset, capture, CPU/network throttle, INP, fps or replay workload. Host shared with root gates; OS/process/font/filesystem caches uncontrolled. Initial assets are completed timing entries, offline gzip is not wire compression. Baseline had external unpinned MathLive fonts; final local pinned fonts are a product change, so load/render timing differences are not a controlled pure-JS comparison. Original24sample FAIL remains intact; this final six-sample set is separate."
+}

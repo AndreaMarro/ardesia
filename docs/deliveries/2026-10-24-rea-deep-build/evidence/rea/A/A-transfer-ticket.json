@@ -1,0 +1,110 @@
+{
+  "targetVersion": {
+    "target": "Mathigon — Circles and Pi / Introduction",
+    "url": "https://mathigon.org/course/circles/introduction",
+    "version": "Public runtime observed 2026-10-24; semver not exposed",
+    "rea": "rea-agents 6.7.0; CLI, no REA MCP tools exposed"
+  },
+  "behavior": "Progression is an explicit action; keyboard reachability and pointer reachability need separate checks. Revealing all steps is a declared choice, not proof of solving the activities.",
+  "observedPath": [
+    "Public lesson loaded without account",
+    "Pointer Continue timed out: another lesson step/footer intercepted pointer; original failure retained",
+    "Enter on the same Continue control completed",
+    "Enter on Reveal all steps exposed the next-section navigation"
+  ],
+  "evidence": {
+    "originalReceipts": [
+      {
+        "localFile": "A-progression-evidence.json",
+        "sha256": "858bdf88afc09db3ec46ce538a2a70eef19511cbe97d6f98c0e8016b5c77d8cb",
+        "evidenceId": "ev_1d5db4b59e65ecb4916c9c418bf4b5fa1e934715a1b2b502753ac5238ba37d72",
+        "error": null
+      },
+      {
+        "localFile": "A-keyboard-evidence.json",
+        "sha256": "76531dd26cc80b8e85a753d6cbc5712168d60003fa0eec2545ded1a79b29f038",
+        "evidenceId": "ev_cf24663a946455796a7c2ef7f1a088f52cbd3df5b7fdb296d17bc7af95251d69",
+        "error": null
+      },
+      {
+        "localFile": "A-mathigon-ready-evidence.json",
+        "sha256": "21c383cfadaf5dbbe0fce05da6042a891a810a2982b1cda44fc3ce2652bf4629",
+        "evidenceId": "ev_fa5d305feec29396e9eb85f6b12c058b78b77427eea14fecdf930c975b149a64",
+        "error": null
+      },
+      {
+        "localFile": "A-course-evidence.json",
+        "sha256": "a3bc862ca405e7e0db2fde8ae10439a06f2c3a09d7197cd4bd5a8f94f574c0c7",
+        "evidenceId": "ev_5da4cdc38ff77556bd8cd214045eda723205cec27f64b64499344777991d9259",
+        "error": null
+      },
+      {
+        "localFile": "A-initial-evidence.json",
+        "sha256": "876e35c66bc564be82e846ea7c00fbad5abc5282dc15d8687c6c43b705f90612",
+        "evidenceId": null,
+        "error": "Browser scenario capture failed"
+      }
+    ],
+    "primaryEvidenceId": "ev_cf24663a946455796a7c2ef7f1a088f52cbd3df5b7fdb296d17bc7af95251d69",
+    "durationMs": 14672,
+    "allActionsCompleted": true,
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    }
+  },
+  "screenshots": [
+    {
+      "file": "A-keyboard-1.png",
+      "sha256": "0f2f1e4dd17e788447d3250dce07ba37b697ae92e35e5cd69b48c797bbbc12de",
+      "distribution": "local observation only"
+    },
+    {
+      "file": "A-keyboard-3.png",
+      "sha256": "8154eaa11de5e4308b9e50e1d17fc1d03deeb60295e6c757f43f55fe336d19ca",
+      "distribution": "local observation only"
+    },
+    {
+      "file": "A-keyboard-4.png",
+      "sha256": "4f1fd645302f1258a89cc9f6155462315940ff051d2b498176827872f903cfce",
+      "distribution": "local observation only"
+    }
+  ],
+  "limits": [
+    "No mathematical exercise was solved and no learning was measured.",
+    "Some outstanding network requests were not finished when capture ended: receipt incomplete for events, not silently promoted to complete.",
+    "No login, personalized course or paid surface observed.",
+    "Polypad landing and canvas controls were inspected, but do not establish a successful variable manipulation."
+  ],
+  "license": {
+    "primarySource": "https://mathigon.org/faqs",
+    "finding": "Mathigon states non-commercial use; commercial licensing is separate. No donor code, images, styles or raw DOM are adopted or redistributed in this repository.",
+    "implementation": "Original Ardesia interaction, canonical Core data and existing native controls."
+  },
+  "ardesiaSpec": "After activating Un problema diverso by keyboard, hide the solution, reset the prediction and move focus to Rapporto previsto. Preserve the new boundary/radius and announce the task through the existing live region. No automatic claim that the student understood.",
+  "reuse": [
+    "Existing PhysicsLab and canonical public Core projection",
+    "Existing native prediction input and live status",
+    "Existing original Poiseuille SVG; no Mathigon renderer copied"
+  ],
+  "implementation": {
+    "path": "apps/web/src/components/PhysicsLab.tsx",
+    "transfer": "Input ref and explicit focus after nextProblem. The broader lesson was built concurrently before this donor progression capture; only this later focus behavior is claimed as the new transfer."
+  },
+  "tests": {
+    "red": "../../poiseuille/rea-a-focus-red.log",
+    "green": "../../poiseuille/rea-a-focus-green.log",
+    "browser": "apps/web/e2e-public/public-preview.spec.ts: Un problema diverso + toBeFocused + solution hidden",
+    "originalVerifier": "verify_observation.py"
+  },
+  "comparison": "Ardesia now makes the next prediction the keyboard destination. This is a focused transfer of an observable progression contract, not a reconstruction of Mathigon or evidence of matching its pedagogical effectiveness.",
+  "totalCost": {
+    "comparison": "UNKNOWN",
+    "measured": "Primary successful scenario 14672 ms. Failed pointer attempt and invalid-schema attempts retained. CLI/runtime preparation, research, implementation, review, tests and agent token costs were not all metered; a controlled direct-method baseline was not run.",
+    "decision": "Retain only the small focus transfer. Do not claim a total productivity saving from capture duration."
+  }
+}

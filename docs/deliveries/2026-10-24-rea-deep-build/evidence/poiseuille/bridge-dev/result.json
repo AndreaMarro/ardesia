@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "name": "teacher launches installed Studio with a single ephemeral channel",
+      "pass": true
+    },
+    {
+      "name": "opening and handshake do not start capture",
+      "pass": true
+    },
+    {
+      "name": "native synthetic track ended on stop",
+      "pass": true
+    },
+    {
+      "name": "capture and annotation have not published a Core source",
+      "pass": true
+    },
+    {
+      "name": "proposal enters the actual Aula as an unshared draft",
+      "pass": true
+    },
+    {
+      "name": "explanation is required before explicit group confirmation",
+      "pass": true
+    },
+    {
+      "name": "teacher explanation remains a draft",
+      "pass": true
+    },
+    {
+      "name": "only the explicit confirmation creates one canonical group source",
+      "pass": true
+    },
+    {
+      "name": "canonical source pins the actual recording and selected object",
+      "pass": true
+    },
+    {
+      "name": "the exact local passage replays media and highlights the pinned object",
+      "pass": true
+    },
+    {
+      "name": "no page errors",
+      "pass": true
+    },
+    {
+      "name": "no failed network requests",
+      "pass": false
+    }
+  ],
+  "errors": [],
+  "failedRequests": [
+    {
+      "url": "http://127.0.0.1:5320/study/me",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:5320/study/learning-experiences?editionId=fluidi",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "consoleMessages": []
+}

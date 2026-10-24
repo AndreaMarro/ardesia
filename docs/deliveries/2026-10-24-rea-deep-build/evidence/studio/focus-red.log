@@ -1,0 +1,60 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/ReplayObjectFocus.test.tsx (3 tests | 2 failed) 107ms
+     × shows the linked object's bounds after pan and zoom without changing the scene 100ms
+     × encloses a rotated object rather than drawing the old unrotated box 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/ReplayObjectFocus.test.tsx > replay object focus follows an exact recorded version > shows the linked object's bounds after pan and zoom without changing the scene
+TestingLibraryElementError: Unable to find an accessible element with the role "img" and name "Oggetto collegato evidenziato: Pressione fissata"
+
+There are no accessible roles. But there might be some inaccessible roles. If you wish to access them, then set the `hidden` option to `true`. Learn more about this here: https://testing-library.com/docs/dom-testing-library/api-queries#byrole
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div />[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/ReplayObjectFocus.test.tsx:11:26
+      9|   it("shows the linked object's bounds after pan and zoom without chan…
+     10|     render(<ReplayObjectFocus scene={[element]} target={target} viewpo…
+     11|     const focus = screen.getByRole("img", { name: "Oggetto collegato e…
+       |                          ^
+     12|     expect(focus.style.left).toBe("152px"); expect(focus.style.top).to…
+     13|     expect(focus.style.width).toBe("176px"); expect(focus.style.height…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/ReplayObjectFocus.test.tsx > replay object focus follows an exact recorded version > encloses a rotated object rather than drawing the old unrotated box
+TestingLibraryElementError: Unable to find an accessible element with the role "img"
+
+There are no accessible roles. But there might be some inaccessible roles. If you wish to access them, then set the `hidden` option to `true`. Learn more about this here: https://testing-library.com/docs/dom-testing-library/api-queries#byrole
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div />[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/ReplayObjectFocus.test.tsx:22:26
+     20|   it("encloses a rotated object rather than drawing the old unrotated …
+     21|     render(<ReplayObjectFocus scene={[{ ...element, angle: Math.PI / 2…
+     22|     const focus = screen.getByRole("img")
+       |                          ^
+     23|     expect(focus.style.left).toBe("122px"); expect(focus.style.top).to…
+     24|     expect(Number.parseFloat(focus.style.width)).toBeCloseTo(36)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  14:54:16
+   Duration  1.25s (transform 34ms, setup 24ms, import 151ms, tests 107ms, environment 844ms)

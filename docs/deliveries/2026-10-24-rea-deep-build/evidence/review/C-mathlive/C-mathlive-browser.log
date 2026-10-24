@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "name": "closed composer does not request MathLive fonts",
+      "pass": true
+    },
+    {
+      "name": "closed composer has no math field",
+      "pass": true
+    },
+    {
+      "name": "closed composer does not fetch lazy MathComposer chunk",
+      "pass": true
+    },
+    {
+      "name": "opened composer has actual live field",
+      "pass": true
+    },
+    {
+      "name": "formula chip updates actual field",
+      "pass": true
+    },
+    {
+      "name": "insert closes composer with no storage error",
+      "pass": true
+    },
+    {
+      "name": "reopen creates a usable current field",
+      "pass": true
+    },
+    {
+      "name": "opened font requests exist and all actual bytes match artifact",
+      "pass": true
+    },
+    {
+      "name": "no external MathLive requests",
+      "pass": true
+    },
+    {
+      "name": "only known legacy MathJax external traffic",
+      "pass": true
+    },
+    {
+      "name": "served scripts and document match artifact3",
+      "pass": true
+    },
+    {
+      "name": "no failed requests",
+      "pass": false
+    },
+    {
+      "name": "no page errors",
+      "pass": false
+    }
+  ],
+  "fontRequests": 20,
+  "errors": [
+    "response read response.body: Protocol error (Network.getResponseBody): No data found for resource with given identifier"
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:5412/studio/assets/MathComposer-Dx8sNnLm.js",
+      "reason": "net::ERR_ABORTED"
+    }
+  ]
+}

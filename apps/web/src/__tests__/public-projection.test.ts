@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { publicActivityResult, publicCaseCount, publicCourse } from "../publicPreview";
+import { publicActivityResult, publicCaseCount, publicCourse, publicVisualState, publicGraphSeries } from "../publicPreview";
 
 test.each([
   [0.5, "pressure", 1 / 16, "Q/Q0"],
@@ -39,4 +39,14 @@ test.each([NaN, Infinity, -Infinity, 0, -1, 0.49, 2.01, 0.575])(
 );
 test("rejects an unknown constraint", () => {
   expect(() => publicActivityResult(1, "temperature")).toThrow(/non disponibile/);
+});
+
+test.each([
+  [2, "pressure", 16, 1, 4], [2, "flow", 1, .0625, .25],
+  [.5, "pressure", .0625, 1, .25], [.5, "flow", 1, 16, 4],
+])("mean transport projection respects Q/A at radius %s and fixed %s", (radius, boundary, flowRatio, pressureRatio, meanSpeedRatio) => {
+  expect(publicVisualState(Number(radius), String(boundary))).toEqual({flowRatio, pressureRatio, meanSpeedRatio});
+  const graph = publicGraphSeries(String(boundary));
+  expect(graph).toHaveLength(31);
+  expect(graph.find(point => point.radius === radius)?.ratio).toBe(boundary === "pressure" ? flowRatio : pressureRatio);
 });

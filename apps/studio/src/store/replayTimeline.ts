@@ -105,7 +105,7 @@ export function resolveReplayTarget(timeline: ReplayTimeline, search: string): R
  * Omettere room è riservato ai consumer legacy espliciti: nessun fallback flat
  * può attribuire a una lezione gli eventi o l'audio di un'altra.
  */
-export async function loadReplayTimeline(store: WorkspaceStore, room?: string): Promise<ReplayTimeline> {
+export async function loadReplayTimeline(store: Pick<WorkspaceStore, "read">, room?: string): Promise<ReplayTimeline> {
   const source = room === undefined ? PATHS.JOURNAL : roomPaths(room).journal
   const blob = await store.read(source)
   if (!blob) return buildReplayTimeline([], room)

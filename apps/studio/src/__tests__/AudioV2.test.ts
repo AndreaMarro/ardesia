@@ -97,6 +97,102 @@ beforeEach(() => {
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks() })
 
 describe("canonical audio recording v2", () => {
+  it("prepares a verified passage for unified /studio and refuses revoked media or a stale object pin before sending", async () => {
+    const h = await harness()
+    h.journal.recordChange([{ id: "selected", version: 4, type: "text", text: "Pressione fissata" }])
+    h.recorder.setObjectRefs([{ elementId: "selected", version: 4, label: "Pressione fissata" }])
+    await h.recorder.start(); h.time(1500, 500)
+    const stop = h.recorder.stop(); h.takes[0]!.finish(); const saved = (await stop)!
+    const { prepareLessonPassage } = await import("../store/lessonPassage")
+    const descriptor = await prepareLessonPassage(h.store, saved, "https://courses.example.test/studio/?courseBridge=unused#audio-a")
+    expect(descriptor).toMatchObject({ schema: "ardesia.lesson-passage.v1", lessonId: "audio-a", sha256: saved.sha256, objectRefs: saved.objectRefs })
+    expect(new URL(descriptor.replayUrl).pathname).toBe("/studio/")
+    await expect(prepareLessonPassage(h.store, { ...saved, objectRefs: [{ elementId: "selected", version: 5, label: "Stale" }] }, "http://127.0.0.1:5197/")).rejects.toThrow(/passaggio|versione|riferimento/i)
+    await h.recorder.revoke()
+    await expect(prepareLessonPassage(h.store, saved, "http://127.0.0.1:5197/")).rejects.toThrow(/disponibile|revocat/i)
+  })
+  it.each(["revocation", "corruption"] as const)("does not prepare a passage when %s completes during its journal read", async (change) => {
+    const h = await harness()
+    h.journal.recordChange([{ id: "selected", version: 4, type: "text", text: "Pressione fissata" }])
+    h.recorder.setObjectRefs([{ elementId: "selected", version: 4, label: "Pressione fissata" }])
+    await h.recorder.start(); h.time(1500, 500)
+    const stop = h.recorder.stop(); h.takes[0]!.finish(); const saved = (await stop)!
+    const entered = deferred<void>(), release = deferred<void>()
+    const read = h.store.read.bind(h.store)
+    let blocked = false
+    vi.spyOn(h.store, "read").mockImplementation(async (path) => {
+      if (path === "raw/audio-a/events.jsonl" && !blocked) {
+        blocked = true; entered.resolve(); await release.promise
+      }
+      return read(path)
+    })
+    const { prepareLessonPassage } = await import("../store/lessonPassage")
+    const preparing = prepareLessonPassage(h.store, saved, "http://127.0.0.1:5197/")
+    await entered.promise
+    if (change === "revocation") await h.recorder.revoke()
+    else await h.store.write(saved.assetPath, new Blob(["corrupt bytes"]))
+    release.resolve()
+    await expect(preparing).rejects.toThrow(/disponibile|revocat|passaggio/i)
+  })
+  it.each(["revocation", "corruption", "object-update", "import"] as const)("rechecks %s committed after preflight before the final passage snapshot", async (change) => {
+    const h = await harness()
+    h.journal.recordChange([{ id: "selected", version: 4, type: "text", text: "Pressione fissata" }])
+    h.recorder.setObjectRefs([{ elementId: "selected", version: 4, label: "Pressione fissata" }])
+    await h.recorder.start(); h.time(1500, 500)
+    const stop = h.recorder.stop(); h.takes[0]!.finish(); const saved = (await stop)!
+    let replacement: Blob | undefined
+    if (change === "import") {
+      const source = await harness()
+      source.journal.recordChange([{ id: "selected", version: 5, type: "text", text: "Nuova versione" }])
+      source.recorder.setObjectRefs([{ elementId: "selected", version: 5, label: "Nuova versione" }])
+      await source.recorder.start(); source.time(1500, 500)
+      const sourceStop = source.recorder.stop(); source.takes[0]!.finish(); await sourceStop
+      replacement = await exportLesson(source.store, "audio-a")
+    }
+    const entered = deferred<void>(), release = deferred<void>()
+    const snapshot = h.store.readLessonSnapshot.bind(h.store)
+    vi.spyOn(h.store, "readLessonSnapshot").mockImplementation(async <T>(lessonId: string, work: (reader: Pick<WorkspaceStore, "read">) => Promise<T>): Promise<T> => {
+      entered.resolve(); await release.promise
+      return snapshot(lessonId, work)
+    })
+    const { prepareLessonPassage } = await import("../store/lessonPassage")
+    const preparing = prepareLessonPassage(h.store, saved, "http://127.0.0.1:5197/")
+    await entered.promise
+    if (change === "revocation") await h.recorder.revoke()
+    if (change === "corruption") await h.store.write(saved.assetPath, new Blob(["corrupt bytes"]))
+    if (change === "object-update") {
+      h.journal.recordChange([{ id: "selected", version: 5, type: "text", text: "Nuova versione" }]); await h.journal.flush()
+    }
+    if (replacement) await importLesson(h.store, replacement)
+    release.resolve()
+    await expect(preparing).rejects.toThrow(/disponibile|revocat|passaggio|versione|riferimento/i)
+  })
+  it("keeps a read-only lesson snapshot coherent while canonical revocation waits for its lease", async () => {
+    const h = await harness()
+    await h.recorder.start(); h.time(1500, 500)
+    const stop = h.recorder.stop(); h.takes[0]!.finish(); await stop
+    const entered = deferred<void>(), release = deferred<void>(), casEntered = deferred<void>()
+    const cas = h.store.updateSessionAudioCAS.bind(h.store)
+    vi.spyOn(h.store, "updateSessionAudioCAS").mockImplementation((...args) => {
+      casEntered.resolve(); return cas(...args)
+    })
+    const snapshot = h.store.readLessonSnapshot("audio-a", async (reader) => {
+      expect(Object.keys(reader)).toEqual(["read"])
+      await expect(reader.read("raw/audio-b/events.jsonl")).rejects.toThrow(/outside/i)
+      await expect(reader.read("raw/audio-a/../audio-b/events.jsonl")).rejects.toThrow(/outside/i)
+      entered.resolve(); await release.promise
+      return loadReplayTimeline(reader, "audio-a")
+    })
+    await entered.promise
+    let revoked = false
+    const revoking = h.recorder.revoke().then(() => { revoked = true })
+    await casEntered.promise
+    expect(revoked).toBe(false)
+    release.resolve()
+    expect((await snapshot).recordings[0]!.availability).toBe("available")
+    await revoking
+    expect((await loadReplayTimeline(h.store, "audio-a")).recordings[0]!.availability).toBe("revoked")
+  })
   it("accepts a strict recording marker without downgrading its envelope", () => {
     expect(() => assertJournalEnvelopeV2(envelope())).not.toThrow()
   })

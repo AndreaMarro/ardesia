@@ -1,0 +1,29 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/studioBase.test.ts (8 tests | 1 failed | 7 skipped) 11ms
+     × keeps the current lesson inside /studio/ when navigating to materials and continuity 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/studioBase.test.ts > isolated Studio release base > keeps the current lesson inside /studio/ when navigating to materials and continuity
+AssertionError: expected '/?vista=lezioni-salvate#aula-test' to be '/studio/?vista=lezioni-salvate#aula-t…' // Object.is equality
+
+Expected: "/studio/?vista=lezioni-salvate#aula-test"
+Received: "/?vista=lezioni-salvate#aula-test"
+
+ ❯ src/__tests__/studioBase.test.ts:16:49
+     14|   it("keeps the current lesson inside /studio/ when navigating to mate…
+     15|     vi.stubEnv("BASE_URL", "/studio/")
+     16|     expect(viewHref("materiali", "#aula-test")).toBe("/studio/?vista=l…
+       |                                                 ^
+     17|     expect(viewHref("continuita", "#aula-test")).toBe("/studio/?vista=…
+     18|     expect(viewHref("lavagna", "#aula-test")).toBe("/studio/#aula-test…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 skipped (8)
+   Start at  15:07:15
+   Duration  311ms (transform 65ms, setup 21ms, import 168ms, tests 11ms, environment 0ms)

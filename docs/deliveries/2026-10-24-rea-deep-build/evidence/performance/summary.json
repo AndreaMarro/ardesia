@@ -1,0 +1,139 @@
+{
+  "requestedPathsAndCurrentHttpBytesMatchArtifact": true,
+  "httpByteChecks": [
+    {
+      "url": "http://127.0.0.1:5414/",
+      "sha256": "59a0c61f2263fc5480098218434c50b5a5eedd4c5c06609bd00898b1e8f1bf55"
+    },
+    {
+      "url": "http://127.0.0.1:5414/assets/andrea.c2ac507d2282.webp",
+      "sha256": "c2ac507d2282020794329fa5d66dbe139ffeb85bf469a379730a7e7b9cb9118a"
+    },
+    {
+      "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+      "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+    },
+    {
+      "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+      "sha256": "4dc1a793db31ba5570958e9a197f6884f4e16d383d416ddd851de64bdc303a98"
+    },
+    {
+      "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+      "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+    },
+    {
+      "url": "http://127.0.0.1:5414/esperienza/",
+      "sha256": "adac92a8ab1e62f4fce844fc6b36288bc9a69d425a2795117aaa818a10c93cc5"
+    },
+    {
+      "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+      "sha256": "25d1c8dab2b1baaab818b590ab33bfd7f822413b93924e1642fc08403b5ab3d7"
+    },
+    {
+      "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+      "sha256": "bf579d22fa6c3e726f82e92630af3595808de5c22aeab32b73ef7c24c214dedf"
+    }
+  ],
+  "medians": [
+    {
+      "target": "baseline-public",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 20.400000005960464,
+      "loadMs": 20.5,
+      "lcpObservedMs": 72.0,
+      "lcpObservedSamples": 2,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "rangeTwoFrameLatencyMs": 32.5
+    },
+    {
+      "target": "baseline-public",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 20.19999998807907,
+      "loadMs": 20.299999997019768,
+      "lcpObservedMs": 68,
+      "lcpObservedSamples": 1,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "rangeTwoFrameLatencyMs": 32.6000000089407
+    },
+    {
+      "target": "candidate-public",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 23.899999991059303,
+      "loadMs": 24.399999991059303,
+      "lcpObservedMs": 70.0,
+      "lcpObservedSamples": 2,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "rangeTwoFrameLatencyMs": 30.099999994039536
+    },
+    {
+      "target": "candidate-public",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 20.299999997019768,
+      "loadMs": 20.399999991059303,
+      "lcpObservedMs": 60,
+      "lcpObservedSamples": 1,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "rangeTwoFrameLatencyMs": 34.5
+    },
+    {
+      "target": "candidate-landing",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 14.700000002980232,
+      "loadMs": 26.600000008940697,
+      "lcpObservedMs": 40,
+      "lcpObservedSamples": 3,
+      "resourceCount": 3,
+      "decodedBodyBytes": 22407,
+      "rangeTwoFrameLatencyMs": null
+    },
+    {
+      "target": "candidate-landing",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 31.100000008940697,
+      "loadMs": 33.6000000089407,
+      "lcpObservedMs": 44,
+      "lcpObservedSamples": 3,
+      "resourceCount": 4,
+      "decodedBodyBytes": 57747,
+      "rangeTwoFrameLatencyMs": null
+    }
+  ],
+  "sizes": [
+    {
+      "target": "baseline-public",
+      "extension": ".js",
+      "rawBytes": 237028,
+      "gzipBytes": 68513
+    },
+    {
+      "target": "baseline-public",
+      "extension": ".css",
+      "rawBytes": 53674,
+      "gzipBytes": 11135
+    },
+    {
+      "target": "candidate-public",
+      "extension": ".js",
+      "rawBytes": 239504,
+      "gzipBytes": 69151
+    },
+    {
+      "target": "candidate-public",
+      "extension": ".css",
+      "rawBytes": 60065,
+      "gzipBytes": 12427
+    }
+  ],
+  "limits": "3 cold isolated local Chromium contexts at390/1440, native load and two animation frames after fonts.ready. Keyboard ArrowRight\u2192two-frame latency including automation transport is a lab proxy, not INP. No CPU/network throttle; shared host and Python servers. Audio preload=none; playback excluded from initial load. Baseline public root vs candidate /esperienza/. LCP observer may not have dispatched by the two-frame snapshot: report number actually observed, missing values remain null. No causal speedup, field INP, battery, fps or physical mobile performance claimed. Later Studio-only revocation guard leaves public assets byte-identical.",
+  "attempts": "First run failed keyboard ArrowRight at max; second used superseded publicJS and failed asset-manifest validation. Both retained. Third sample set has all requested paths present in release; current HTTPbytechecks also match. First summary formatter assumed all LCP samples nonnull and failed; formatter fixed, original measurements unchanged."
+}

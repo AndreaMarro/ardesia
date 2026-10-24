@@ -70,7 +70,7 @@ test("lab invalidates feedback after parameters change and commits once", async 
     target: { value: "La portata aumenta" },
   });
   fireEvent.click(screen.getByRole("button", { name: "Metti alla prova" }));
-  await screen.findByText(/5,0625/);
+  expect((await screen.findByTestId("physics-ratio")).textContent).toBe("Q/Q0 = 5,0625");
   fireEvent.change(screen.getByLabelText("Rapporto dei raggi"), {
     target: { value: "2" },
   });
@@ -135,7 +135,7 @@ test("lab makes no automatic request and guards double commit while pending", as
       }),
     ),
   );
-  await screen.findByText(/5,0625/);
+  expect((await screen.findByTestId("physics-ratio")).textContent).toBe("Q/Q0 = 5,0625");
 });
 
 test("editing during a request rejects the late result and permits a new commit", async () => {
@@ -221,7 +221,7 @@ test("lab retry keeps the prediction and reuses the chosen parameters", async ()
     (screen.getByLabelText("La tua previsione") as HTMLInputElement).value,
   ).toBe("La portata aumenta");
   fireEvent.click(screen.getByRole("button", { name: "Metti alla prova" }));
-  await screen.findByText(/5,0625/);
+  expect((await screen.findByTestId("physics-ratio")).textContent).toBe("Q/Q0 = 5,0625");
   expect(calls).toBe(2);
 });
 

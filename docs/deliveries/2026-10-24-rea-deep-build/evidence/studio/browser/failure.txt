@@ -1,0 +1,8 @@
+locator.evaluate: Error: strict mode violation: getByRole('img') resolved to 2 elements:
+    1) <svg></svg> aka getByRole('img').first()
+    2) <div role="img" class="st-replay-object-focus" aria-label="Oggetto collegato evidenziato: Poiseuille: la differenza di pressione resta fissata. Collego questa formula alla spiegazione del docente, per ritrovare il vincolo prima di affrontare un problema diverso."></div> aka getByRole('img', { name: 'Oggetto collegato evidenziato' })
+
+Call log:
+[2m  - waiting for getByRole('img')[22m
+
+    at /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/docs/deliveries/2026-10-24-rea-deep-build/evidence/studio/run-studio-qa.cjs:87:75

@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // Separate entry: the public artifact does not mount App or its private routes.
 export default defineConfig({
+  base: "/esperienza/",
   plugins: [
     react(),
     {

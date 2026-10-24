@@ -1,0 +1,50 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ ../../../deep-build/review/C-prepare-revoke.test.ts (1 test | 1 failed) 26ms
+   × revocation completed during passage prepare prevents a new descriptor being returned 25ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  ../../../deep-build/review/C-prepare-revoke.test.ts > revocation completed during passage prepare prevents a new descriptor being returned
+AssertionError: promise resolved "{ …(10) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "endEpoch": 1792848583378,
++   "lessonId": "aula-fluidi",
++   "objectRefs": [
++     {
++       "elementId": "5P4g9--TDgoBKS4iydn6n",
++       "label": "Verifica indipendente: pressione fissata, confrontiamo il raggio del tubo.",
++       "version": 2,
++     },
++   ],
++   "recordingId": "8360aea1-14b4-4e0c-b20d-9aa5cdb2349f",
++   "replayUrl": "http://127.0.0.1:5412/studio/?vista=replay&at=1792848583378&recording=8360aea1-14b4-4e0c-b20d-9aa5cdb2349f&object=5P4g9--TDgoBKS4iydn6n&session=fc3fac74-d31e-41c0-b0d8-ff88d16b6623&sha=43fe589dfb77341197c849e241e8b907c2ac0e6d5dabd6bb5d0d5780d2b1cca4&objectVersion=2#aula-fluidi",
++   "schema": "ardesia.lesson-passage.v1",
++   "sessionId": "fc3fac74-d31e-41c0-b0d8-ff88d16b6623",
++   "sha256": "43fe589dfb77341197c849e241e8b907c2ac0e6d5dabd6bb5d0d5780d2b1cca4",
++   "startEpoch": 1792848582358,
++   "workspaceId": "local-default",
+  }
+
+ ❯ ../../../deep-build/review/C-prepare-revoke.test.ts:19:24
+     17|  const preparing=prepareLessonPassage(store,recording,'http://127.0.0.…
+     18|  await revokeStoredAudioSession(store,recordingSession(recording));rel…
+     19|  await expect(preparing).rejects.toThrow(/disponibile|revocat|passaggi…
+       |                        ^
+     20| });
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  15:32:45
+   Duration  404ms (transform 181ms, setup 0ms, import 247ms, tests 26ms, environment 0ms)

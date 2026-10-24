@@ -138,3 +138,16 @@ test("declared passage accepts the last visual instant and rejects mismatched re
     expect(readPassageDescriptor(JSON.stringify({...descriptor, ...changes}))).toBeNull();
   }
 });
+
+test.each(["recording", "session", "object"])("declared passage rejects duplicate %s pins even when their joined text matches an ID", pin => {
+  const changed = structuredClone(descriptor);
+  if (pin === "recording") changed.recordingId = "a,b";
+  if (pin === "session") changed.sessionId = "a,b";
+  if (pin === "object") changed.objectRefs[0].elementId = "a,b";
+  const replay = new URL(changed.replayUrl);
+  replay.searchParams.delete(pin); replay.searchParams.append(pin, "a"); replay.searchParams.append(pin, "b");
+  changed.replayUrl = replay.href;
+  expect(readPassageDescriptor(JSON.stringify(changed))).toBeNull();
+  replay.searchParams.set(pin, "a,b"); changed.replayUrl = replay.href;
+  expect(readPassageDescriptor(JSON.stringify(changed))).not.toBeNull();
+});

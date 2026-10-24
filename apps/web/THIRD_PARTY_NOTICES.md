@@ -1,8 +1,8 @@
 # Componenti del quaderno scientifico
 
-- **MathLive 0.110.0** — Cortex JS, licenza MIT. Editor e compositore di formule
+- **MathLive 0.111.1** — Cortex JS, licenza MIT. Editor e compositore di formule
   caricati su richiesta; font, licenza completa e manifest SHA-256 distribuiti
-  in `/mathlive/0.110.0/`. Sorgente: https://github.com/arnog/mathlive
+  in `/mathlive/0.111.1/`. Sorgente: https://github.com/arnog/mathlive
 - **DOMPurify 3.4.17** — Cure53 e contributori, licenza Apache-2.0 o MPL-2.0.
   Questa integrazione usa l'opzione Apache-2.0. Testo completo distribuito nel
   sorgente: `third-party/DOMPurify-3.4.17-LICENSE.txt`.

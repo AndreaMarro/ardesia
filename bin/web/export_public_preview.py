@@ -23,22 +23,42 @@ OUTPUT = ROOT / 'apps/web/src/generated/publicPreviewData.ts'
 SOURCES = (
     'packages/engine/lessonos/study/activities.py',
     'packages/engine/lessonos/study/public_preview.py',
+    'bin/web/poiseuille-demo.json',
 )
 
 
 def build_projection():
+    demo = json.loads((ROOT / 'bin/web/poiseuille-demo.json').read_text())
+    if (demo.get('schemaVersion') != 1 or demo.get('objectId') != 'poiseuille-formula'
+            or demo.get('audioPath') != 'lesson-demo/poiseuille.wav'
+            or demo.get('syntheticVoice') is not True
+            or not isinstance(demo.get('transcript'), str) or not demo['transcript'].strip()
+            or not isinstance(demo.get('authorship'), str) or not demo['authorship'].strip()):
+        raise ValueError('Invalid authored public demonstration passage')
+    audio = ROOT / 'apps/web/public' / demo['audioPath']
+    demo['audioSha256'] = hashlib.sha256(audio.read_bytes()).hexdigest()
     cases = []
     radius = Decimal(str(RADIUS_MIN))
     while radius <= Decimal(str(RADIUS_MAX)):
         for boundary in ('pressure', 'flow'):
             parameters = {'radiusRatio': float(radius), 'boundary': boundary}
+            result = evaluate_activity('poiseuille-v1', parameters)
+            flow = result['ratio'] if boundary == 'pressure' else 1.0
+            pressure = 1.0 if boundary == 'pressure' else result['ratio']
             cases.append({
                 'parameters': parameters,
-                'result': evaluate_activity('poiseuille-v1', parameters),
+                'result': result,
+                # Continuity Q = mean speed × area, for the schematic renderer.
+                # Derived here from Core results, never another browser solver.
+                'visual': {'flowRatio': flow, 'pressureRatio': pressure,
+                           'meanSpeedRatio': flow / float(radius * radius)},
             })
         radius += Decimal(str(RADIUS_STEP))
     return {
         'schemaVersion': 1,
+        'lessonDemo': demo,
+        'visualModel': {'representation': 'Schematic mean transport speed, not a local velocity profile.',
+                        'derivation': 'Mean speed ratio = Core flow ratio / radius ratio squared; Q = v_mean A.'},
         'sources': {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
                     for path in SOURCES},
         'course': public_course(),

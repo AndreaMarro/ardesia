@@ -31,7 +31,7 @@ export const sanitizeMathHTML = (html: string, editor = false) => sanitizer.sani
     // MathLive's internal keyboard sink needs native beforeinput/composition events.
     // Static formula previews never receive an editable surface.
     ADD_ATTR: editor ? ["contenteditable"] : [] });
-MathfieldElement.fontsDirectory = "/mathlive/0.110.0/fonts";
+MathfieldElement.fontsDirectory = "/mathlive/0.111.1/fonts";
 MathfieldElement.soundsDirectory = null;
 MathfieldElement.computeEngine = null;
 MathfieldElement.createHTML = html => sanitizeMathHTML(html, true);

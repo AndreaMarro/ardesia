@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { describeError, requestKey, studyRequest, type StudyResource } from "../api";
 import { ErrorNotice, Loading } from "./Feedback";
 import { readLessonPassage, readPassageDescriptor } from "./lessonPassageReference";
+import {openLessonStudioBridge} from "./lessonStudioBridge";
+import {validateRoomId} from "../../../studio/src/store/roomPaths";
+import {readResourceDraft, writeResourceDraft} from "./sessionDraftCache";
 
 export function LessonPassageAuthoring({ editionId, onUpdate }: {
   editionId: string; onUpdate: () => Promise<void>;
@@ -11,8 +14,27 @@ export function LessonPassageAuthoring({ editionId, onUpdate }: {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [bridgeMessage, setBridgeMessage] = useState("");
+  const bridge = useRef<{dispose: () => void} | null>(null);
+  useEffect(() => () => bridge.current?.dispose(), []);
   const pending = useRef<{ key: string; text: string } | null>(null);
   const descriptor = readPassageDescriptor(descriptorText);
+  function openStudio() {
+    bridge.current?.dispose();
+    const key = JSON.stringify(["studio-room", editionId]);
+    let room = readResourceDraft(key)?.text || "aula-" + editionId;
+    try {validateRoomId(room);} catch {room = "aula-" + crypto.randomUUID();}
+    writeResourceDraft(key, {text: room, key: requestKey()});
+    bridge.current = openLessonStudioBridge({room,
+      onPassage: value => {
+        if (pending.current) return;
+        setDescriptorText(JSON.stringify(value));
+        setBridgeMessage("Passaggio ricevuto dalla lavagna. Scrivi la spiegazione e conferma la condivisione con il gruppo.");
+      },
+      onState: state => setBridgeMessage({waiting: "La lavagna si sta aprendo…", connected: "Lavagna collegata. Registra e scegli “Invia passaggio all’Aula”.",
+        closed: "La lavagna è stata chiusa. Il passaggio ricevuto resta in bozza qui.", blocked: "Il browser ha bloccato la nuova finestra. Consenti l’apertura della lavagna e riprova."}[state]),
+    });
+  }
   async function share() {
     if (busy || !descriptor || !transcript.trim()) return;
     const attempt = pending.current ?? {
@@ -34,11 +56,13 @@ export function LessonPassageAuthoring({ editionId, onUpdate }: {
   }
   return <section className="lesson-passage-authoring" aria-labelledby="passage-authoring-title">
     <h3 id="passage-authoring-title">Collega la spiegazione della lezione</h3>
-    <p>Nella lavagna registra un segmento, usa “Annota passaggio” e copia il riferimento del passaggio dopo l’arresto. Qui scegli cosa condividere con questo gruppo.</p>
-    <label>Riferimento copiato dalla lavagna
+    <p>Apri la lavagna, annota il vincolo e registra la spiegazione. Riporta il passaggio nell’Aula e scegli cosa condividere con questo gruppo.</p>
+    <button type="button" disabled={busy || Boolean(pending.current)} onClick={openStudio}>Apri la lavagna</button>
+    <p role="status">{bridgeMessage}</p>
+    <details><summary>Usa un riferimento copiato</summary><label>Riferimento copiato dalla lavagna
       <textarea rows={4} value={descriptorText} disabled={busy || Boolean(pending.current)} maxLength={12000}
         onChange={e => { setDescriptorText(e.target.value); setError(""); }} />
-    </label>
+    </label></details>
     {descriptorText && !descriptor && <p role="status">Il riferimento non è valido: servono sessione, registrazione, oggetto, tempi e collegamento coerenti.</p>}
     <label>Trascrizione e spiegazione del passaggio
       <textarea rows={4} maxLength={8000} value={transcript} disabled={busy || Boolean(pending.current)}

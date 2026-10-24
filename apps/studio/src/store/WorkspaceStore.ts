@@ -497,6 +497,23 @@ export class WorkspaceStore {
     return this.driver.read(path)
   }
 
+  /** A read-only lesson snapshot using the same lease as journal/session/media mutations. */
+  readLessonSnapshot<T>(lessonId: string, work: (reader: Pick<WorkspaceStore, "read">) => Promise<T>): Promise<T> {
+    const path = roomPaths(lessonId).journal
+    const prefix = path.slice(0, path.lastIndexOf("/") + 1)
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const driver = this.driver
+      // The callback cannot reacquire a mutation lock through this port.
+      const reader = Object.freeze({ read: (target: string): Promise<Blob | null> => {
+        if (!target.startsWith(prefix) || target.slice(prefix.length).split("/").some((part) => !part || part === "." || part === "..")) {
+          return Promise.reject(new Error("Lesson snapshot read outside its lesson"))
+        }
+        return driver.read(target)
+      } })
+      return work(reader)
+    })
+  }
+
   async write(path: string, data: Blob): Promise<void> {
     await this.mutationCoordinator.withPathMutation(path, async () => {
       if (isAudioWriteFencedPath(path)) await assertAudioWriteAllowed(this.driver, path, data)

@@ -1,0 +1,73 @@
+{
+  "origin": "http://127.0.0.1:5412",
+  "trace": "NOT_CAPTURED",
+  "credentials": "read from local file in memory only; values omitted",
+  "checks": [
+    {
+      "name": "real same-origin popup handshake",
+      "pass": true
+    },
+    {
+      "name": "microphone starts off",
+      "pass": true
+    },
+    {
+      "name": "capture requires explicit consent",
+      "pass": true
+    },
+    {
+      "name": "malformed and stale actual-popup proposals do not enable sharing",
+      "pass": true
+    },
+    {
+      "name": "native stop reaches saved state",
+      "pass": true
+    },
+    {
+      "name": "proposal stays unshared draft",
+      "pass": true
+    },
+    {
+      "name": "explanation alone does not share",
+      "pass": true
+    },
+    {
+      "name": "native recording navigation waits for material surface",
+      "pass": true
+    },
+    {
+      "name": "no implicit Core publication after two takes",
+      "pass": true
+    }
+  ],
+  "ui": [
+    {
+      "width": 360,
+      "height": 800,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false
+    },
+    {
+      "width": 820,
+      "height": 1180,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "overflow": false
+    }
+  ],
+  "resourcePostCount": 0,
+  "privateErrors": [],
+  "localBundle": {
+    "path": "work/deep-build/review/C-independent-native.lesson",
+    "bytes": 23010,
+    "sha256": "e0aa6137db69d3996a90f9131e05dd3ca01cfc9b8a786b9dc267a4e5e295c278"
+  },
+  "exception": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Spazio tutorEsci dall’account/ })\u001b[22m\n"
+}
