@@ -140,4 +140,28 @@ I nomi sono adattati ai documenti già autorevoli, come richiesto dal mandato. Q
 | PRO_ADVERSARIAL_REVIEW_GPT61_2026-10-24 | Percorso esplicito in docs/reviews |
 | MARKETING_48H_AND_BETA_9D | §§5–6 sopra, gate nella validazione |
 | PROJECT_TRUTH | Stato generato CURRENT/project.json; questo snapshot e validation.md |
-| AGENT_HANDOFF_PROTOCOL | AGENTS root, loop esistente e §7 sopra |
+| AGENT_HANDOFF_PROTOCOL | AGENTS root, protocollo di memoria, RUNLOG e NEXT-SESSION-PROMPT; §§7 e 9 |
+
+## 9. Addendum del 24 ottobre — memoria operativa e incarico successivo
+
+Il controllo richiesto dall'utente dopo la consegna ha rilevato un gap: il
+registro generale terminava al 20 ottobre e il prompt generale era ancora lo
+snapshot del 2 luglio. I rapporti sopra contenevano cronologia e handoff, ma il
+ciclo di aggiornamento nei punti d'ingresso degli agenti non era completo.
+
+Sono ora collegati e aggiornati il [registro cronologico](../../ops/ARDESIA-RUNLOG.md),
+il [protocollo di memoria](../../ops/AGENTMEMORY-SEMANTIC-PROTOCOL.md) e il
+[mandato successivo AUDIO-V2/Poiseuille](../../ops/NEXT-SESSION-PROMPT.md).
+AGENTS richiede lettura iniziale e chiusura documentata. Le nuove voci conservano
+prove, errori, decisioni superate e 3–5 suggerimenti prioritizzati con dipendenze
+e criteri di accettazione. Questo è un protocollo eseguito dagli agenti, non un
+servizio in background; lo stato attuale del vecchio AgentMemory esterno non è
+stato verificato. Non sono state create automazioni.
+
+Il codice applicativo verificato resta il commit
+`49bf90ce782457494fed52c8e1a812bf27ba158b`: la CI generale, marketing e readiness
+senza deploy sono state rilette e risultano tutte SUCCESS su quello SHA. Questo
+follow-up modifica documenti e routing, senza promuovere AUDIO-V2 o la beta a
+funzioni completate. Il generatore locale conserva PR/check UNAVAILABLE in
+assenza del relativo accesso; la lettura GitHub è una prova separata, non una
+riscrittura manuale dello stato generato.
