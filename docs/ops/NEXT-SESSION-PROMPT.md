@@ -39,6 +39,24 @@ progettuale aggiornata. Un nuovo rapporto generale o un bottone audio scollegato
 non chiudono il mandato. Fai una breve ricognizione delle dipendenze e poi
 implementa. Prosegui sulle parti autorizzate se incontri un blocco separabile.
 
+### 0. Nuova evidenza CI da risolvere prima del verticale
+
+La CI generale 40083426275 sul commit documentale 9f738d25 ha rilevato un
+fallimento Web nel test curriculum-catalog.test.tsx:95: 293 PASS / 1 FAIL,
+riferimento obsoleto dopo popstate non mostrato come errore. Marketing e
+readiness sono SUCCESS. Il codice applicativo era invariato rispetto a 49bf90ce,
+la cui CI era passata. Leggi la voce finale del RUNLOG e il
+[run fallito](https://github.com/AndreaMarro/ardesia/actions/runs/40083426275).
+
+Prima di AUDIO-V2, riproduci la spec originale nell'ambiente del lock e distingui
+evento precedente al listener, commit React pendente o difetto del routing.
+Non sostituire getByRole con findByRole senza controprova: fireEvent usa già act.
+Non classificare il caso come flaky o risolto dal solo fatto che un rerun passa.
+Correggi soltanto la causa provata, conserva il rifiuto del riferimento obsoleto
+e verifica il job Web. Se la causa resta non riprodotta, rendi esplicito il gate
+aperto nel candidato; puoi proseguire parti indipendenti, senza certificare il
+rilascio. Non ripetere l'audit generale per questo singolo risultato.
+
 ### 1. Stato iniziale e letture necessarie
 
 1. Leggi AGENTS.md e gli AGENTS dei package che toccherai.
@@ -242,6 +260,9 @@ il motivo, senza lasciare come unico risultato un'altra richiesta di pianificazi
 
 ## Prossimi task suggeriti
 
+0. **CI-CATALOG** — primo passo: riprodurre il fallimento del run 40083426275
+   con la spec originale. Accettazione: causa verificata e controllo Web sul
+   candidato; nessuno skip, timeout gonfiato o attesa asincrona senza motivazione.
 1. **AUDIO-V2** — primo passo: verificare session identity/CAS e consumer del
    bundle. Dipende da #297 o equivalente. Accettazione: cattura→persistenza→replay
    →export/import su due Room e revoca verificata.

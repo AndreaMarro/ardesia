@@ -165,3 +165,48 @@ L’utente chiede di concludere il lavoro corrente, mettere il lavoro su GitHub 
 | 2 — Verifica del passaggio di memoria | Alla prossima sessione ricostruire stato, decisione corrente e primo task dai soli riferimenti del repository; annotare ambiguità concrete. | HEAD e prove correttamente attribuiti, nessuna istruzione luglio applicata come corrente, nuova voce e handoff coerenti con 3–5 task motivati. | Questo RUNLOG, NEXT-SESSION-PROMPT e i cinque controlli del protocollo; esito registrato senza riscrivere questa voce. |
 | 3 — MCP private revision | Riprendere la RFC esistente dopo il verticale prioritario, partendo dai test Core dei conflitti e della visibilità privata. | Una proposta privata versionata; pubblicazione umana vincolata al digest; rifiuti, retry e rilettura verificati. | RFC #293 e relativa matrice W01–W18; scope locale/remoto distinti. |
 | 4 — Preparazione del candidato dimostrabile | Dopo AUDIO-V2 e episodio Fluidi, confrontare il percorso reale con i gate marketing/beta, includendo mobile e font. | Elenco esplicito di capacità dimostrate, simulate e mancanti sul medesimo candidato; nessuna promozione automatica a COMMERCIAL_READY. | [Gate della consegna](../deliveries/2026-10-24-convergence/README.md#5-marketing-gate-del-26-ottobre), screenshot/test attuali e nuovi limiti nel RUNLOG. |
+
+## 2026-10-24 — Esito successivo della CI: gate catalogo riaperto
+
+**Rilevazione successiva al follow-up documentale:** il commit
+`9f738d25dd8a6a2866bf5054d68c59d24ad3cfa2` modifica soltanto cinque Markdown;
+il tree applicativo è invariato rispetto a `49bf90ce`. Nella nuova
+[CI generale 40083426275](https://github.com/AndreaMarro/ardesia/actions/runs/40083426275)
+il job Web ha concluso con FAILURE: typecheck PASS, unit test **293 PASS / 1 FAIL**.
+Il test è “catalog links reopen the exact unit and reject an obsolete composition
+without a fallback”, in `apps/web/src/__tests__/curriculum-catalog.test.tsx:95`.
+Dopo il cambio di catalogVersion e l'evento popstate manca il titolo
+“Riferimento non disponibile”; il DOM conserva il percorso precedente.
+Build e prove browser di quel job non sono state eseguite.
+[Marketing 40083426272](https://github.com/AndreaMarro/ardesia/actions/runs/40083426272)
+e [readiness 40083426297](https://github.com/AndreaMarro/ardesia/actions/runs/40083426297)
+sono SUCCESS. Il vecchio successo di 49bf90ce resta storico, non sostituisce
+questo nuovo esito.
+
+**Analisi indipendente e limite:** il listener popstate è registrato da un
+useEffect; il test usa una lettura asincrona iniziale, poi evento e asserzione
+sincrona. fireEvent è già avvolto da act. Non è ancora distinto un evento prima
+della registrazione dell'effetto da un aggiornamento non ancora committato o da
+un altro difetto. Il tentativo locale non ha eseguito la spec per dipendenze del
+runner Web indisponibili; nessun risultato locale PASS/RED viene rivendicato.
+Nessun file applicativo o test è stato modificato.
+
+**Decisione e alternativa scartata:** mantenere il gate aperto e aggiungere una
+precondizione al mandato successivo. Scartata la modifica getByRole→findByRole
+senza controprova: potrebbe nascondere una causa diversa. Nessun rerun viene
+usato per cancellare il risultato. Un eventuale successo successivo non basta
+da solo a classificare il problema come risolto o a chiamarlo flaky.
+
+**Apprendimento:** anche una modifica documentale può far emergere, eseguendo
+la CI sullo stesso codice, un problema non osservato nel run precedente. La
+memoria deve conservare entrambi gli esiti, attribuiti al candidato e al run,
+e cambiare l'ordine dei task in base alla nuova prova.
+
+### Prossimi task suggeriti dopo il nuovo esito CI
+
+| Priorità / task | Primo passo e dipendenze | Accettazione | Evidenza richiesta |
+| --- | --- | --- | --- |
+| 0 — CI-CATALOG | Leggere il job fallito e riprodurre la spec originale con il runner del lock; distinguere montaggio del listener, commit React ed errore di routing. | Causa riprodotta, correzione minima se necessaria, rifiuto del riferimento obsoleto preservato e CI Web verificata. Se un rerun passa, conservare il RED e la diagnosi ancora aperta. | Run 40083426275, test originale e controprova mirata, senza skip o semplice aumento dei timeout. |
+| 1 — AUDIO-V2 | Dopo il controllo del candidato, mappare sessione CAS, media e consumer. | Due take con pausa, due room, revoca e round-trip export/import effettivi. | Contratti esistenti, test nativi e nuovo gesto UI sullo stesso SHA. |
+| 2 — Episodio Poiseuille e mobile | Riutilizzare Core/PhysicsLab e riferimenti della lezione; verificare font e inquadratura. | Previsione→errore→contesto→nuova prova→vista docente utilizzabili a desktop e 390 px. | Traccia e screenshot dello stesso build, limiti separati dai PASS. |
+| 3 — MCP private revision | Dopo il verticale, riprendere RFC #293 e comandi Core. | Proposta privata, revisione esatta del docente, conflitti/autorizzazioni verificati e primo host nominato. | Gate W01–W18 pertinenti, distinzione fra protocollo testato e host effettivamente collaudato. |
