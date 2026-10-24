@@ -169,6 +169,12 @@ Then add adapters: browser, native, ChatGPT Apps/MCP, Claude-compatible MCP, LMS
 | Cost, conversion and external demand | **NOT_RUN** | No measurements collected here. |
 | This audit changes builder branches, private vault, production or main | **PASS: no changes** | Docs-only independent branch proposed; never claim full deployment. |
 
+### 2026-10-24 ~06:26 CEST — independently inspected audio finalization defect (source-level)
+
+**New material finding / issue #292**: in `apps/studio/src/store/AudioRecorder.ts` at #285 head `c43f5b9d`, normal `stop()` changes `_recording=false` before calling `MediaRecorder.stop()`; the `ondataavailable` handler's `handleChunk()` rejects chunks when not recording. Browser MediaRecorder delivers its final partial `dataavailable` on stop (MDN); thus a normal short recording is **likely to lose its final utterance**. Current mock `stop()` triggers `onstop` but not the final `dataavailable`, so tests do not cover the real ordering. This is a **high-confidence code-path finding, not a locally executed RED test**. Details, source links, reproducible RED fixture and consent-revocation requirements: [#292](https://github.com/AndreaMarro/ardesia/issues/292). Treat it as the first subtask of P2. Do not fix by accepting late blobs indiscriminately; normal finish/flush and consent revocation require distinct safe states.
+
+**Audit-branch CI correction:** run `40061302168` on audit SHA `07d556ee` failed only the hygiene job's `git diff --check` due to 10 Markdown trailing double spaces; engine, Studio and advisory E2E jobs succeeded. An independent commit `00b48278` converted those Markdown hard-break spaces to `<br>`. Subsequent exact-SHA CI must still complete successfully before treating the audit PR as green.
+
 ## 9. Prioritization and stop rules
 
 - **Marketing first**: one visually impressive **truthful** preview, not more explanations of why the product will someday be unique.
