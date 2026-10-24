@@ -1,0 +1,88 @@
+{
+  "schema": "ardesia.r1-private-ui.v1",
+  "synthetic": true,
+  "origin": "http://127.0.0.1:5417",
+  "expectedSha": "91219486ddf270582bef1c2e0bda2a66796e6e78",
+  "runtime": "v22.14.0",
+  "studentActor": "student-02",
+  "browserPath": "Browser plugin not available; explicitly requested existing Playwright runner reused.",
+  "capture": "NOT_RUN in this delta; prior c762 native audio evidence remains separate.",
+  "authEvidence": "Fixture login before evidence; no tokens, headers, storageState or network trace retained.",
+  "remoteBeta": "NOT_RUN",
+  "launchAllowed": false,
+  "checks": [
+    {
+      "name": "exact committed artifact and source inventory match before final focus delta",
+      "pass": true
+    },
+    {
+      "name": "actual served Web module matches the new immutable artifact",
+      "pass": true
+    },
+    {
+      "name": "real offline refresh exposes an error without losing selected original or filter",
+      "pass": true
+    },
+    {
+      "name": "retry reads canonical data and retains the same selection without extra submission",
+      "pass": true
+    },
+    {
+      "name": "no page errors or unexpected network/console failures",
+      "pass": true
+    },
+    {
+      "name": "exact committed artifact and source inventory match after final focus delta",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "offline-original-retained-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "name": "retry-original-retained-390.png",
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "failedRequests": [
+    {
+      "actor": "teacher",
+      "expectedOffline": true,
+      "url": "http://127.0.0.1:5417/study/workspace?editionId=fluidi",
+      "error": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "console": [
+    {
+      "actor": "teacher",
+      "expectedOffline": true,
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "fonts": [],
+  "scope": "Refresh, keyboard focus and real offline/retry using one existing canonical receipt; no new submission.",
+  "artifact": {
+    "commit": "91219486ddf270582bef1c2e0bda2a66796e6e78",
+    "manifestSha256": "3251cb61eb10e4513cafceb1e6b8698a92e03ba48ede383f89a1f20581d3ed58",
+    "sourceTreeSha256": "8211844a37af1894dc104955f7389473e7556544f3980469d55be3c24f5a2d4b",
+    "assetCount": 758
+  },
+  "provenanceScope": "New focus commit and immutable served assets; prior A/B and refresh RED remain attributed to their original commits.",
+  "continuationOf": {
+    "directory": "run-refresh-706316f",
+    "sha256": "f8ac8a500696d92a7a2f12ba2f0c26f75c5a41b2fe4b2a53f29b06d139d061fc"
+  },
+  "activeElementAfterRefresh": {
+    "tag": "BUTTON",
+    "text": "Aggiorna consegne"
+  },
+  "keyboardFocusPreserved": true,
+  "offlineRetryPassed": true,
+  "passed": true,
+  "status": "PASS"
+}

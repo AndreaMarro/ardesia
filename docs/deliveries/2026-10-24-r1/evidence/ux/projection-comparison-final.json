@@ -1,0 +1,34 @@
+{
+  "base": "6f19b1956cedbebf36a5cf097af66e47ed8acecd",
+  "candidate": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+  "caseCount": 62,
+  "parametersAndNumericResults": "exactly unchanged",
+  "visualMaxAbsoluteFloatDelta": 4.440892098500626e-16,
+  "visualTolerance": 1e-14,
+  "transferCase": {
+    "id": "viscosity-length-fixed-flow-v1",
+    "parameters": {
+      "radiusRatio": 1,
+      "boundary": "flow",
+      "viscosity": 2,
+      "length": 2
+    },
+    "visual": {
+      "flowRatio": 1.0,
+      "pressureRatio": 4.0,
+      "meanSpeedRatio": 1.0
+    },
+    "result": {
+      "activityId": "poiseuille-v1",
+      "version": 1,
+      "ratio": 4.0,
+      "fixedQuantity": "flow",
+      "calculatedVariable": "Δp/Δp0",
+      "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+      "editorialStatus": "DRAFT",
+      "numericalCheck": "deterministic"
+    }
+  },
+  "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+  "canonicalAudioSha256": "530c78a6075ea26949265a80fe9efc7d23083cf638cb600ec52fb42ddc873989"
+}

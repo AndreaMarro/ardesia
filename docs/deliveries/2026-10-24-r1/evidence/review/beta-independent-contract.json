@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "name": "positive anonymous preflight never becomes readiness or launch",
+      "pass": true
+    },
+    {
+      "name": "exact three GET paths only",
+      "pass": true
+    },
+    {
+      "name": "eleven authenticated/human checks remain NOT_RUN",
+      "pass": true
+    },
+    {
+      "name": "remote body values never echoed",
+      "pass": true
+    },
+    {
+      "name": "redirect fails sanitized preflight",
+      "pass": true
+    },
+    {
+      "name": "duplicate JSON fails sanitized preflight",
+      "pass": true
+    },
+    {
+      "name": "overbudget body fails sanitized preflight",
+      "pass": true
+    },
+    {
+      "name": "unsafe target rejected before any request 7",
+      "pass": true
+    },
+    {
+      "name": "unsafe target rejected before any request 8",
+      "pass": true
+    },
+    {
+      "name": "unsafe target rejected before any request 9",
+      "pass": true
+    },
+    {
+      "name": "unsafe target rejected before any request 10",
+      "pass": true
+    },
+    {
+      "name": "mixed public/multicast DNS rejected as a whole",
+      "pass": true
+    }
+  ],
+  "networkCalls": 0,
+  "scope": "independent pure stub and mocked DNS; no real HTTPS/auth/hosting certification",
+  "source": "services/study-api/study_api/beta_probe.py"
+}

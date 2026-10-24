@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "/.*",
+      "headers": {
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "no-referrer",
+        "X-Robots-Tag": "noindex, nofollow",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Cache-Control": "no-store"
+      },
+      "continue": true
+    },
+    {
+      "src": "/esempi/elettricita\\-magnetismo/?$",
+      "dest": "/esempi/elettricita-magnetismo/index.html"
+    },
+    {
+      "src": "/esempi/fluidi\\-termodinamica/?$",
+      "dest": "/esempi/fluidi-termodinamica/index.html"
+    },
+    {
+      "src": "/esempi/onde\\-ottica\\-radiazioni/?$",
+      "dest": "/esempi/onde-ottica-radiazioni/index.html"
+    },
+    {
+      "src": "/esempi/strumenti\\-meccanica/?$",
+      "dest": "/esempi/strumenti-meccanica/index.html"
+    },
+    {
+      "src": "/esperienza/?$",
+      "dest": "/esperienza/index.html"
+    },
+    {
+      "src": "/$",
+      "dest": "/index.html"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "status": 404,
+      "dest": "/404.html"
+    }
+  ]
+}
