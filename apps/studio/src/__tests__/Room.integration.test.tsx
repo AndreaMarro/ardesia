@@ -3212,8 +3212,8 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 })
 
-describe("Founder Beta: audio fuori perimetro", () => {
-  it("non espone alcuna azione capace di chiedere il permesso microfono", async () => {
+describe("AUDIO-V2: il docente controlla la cattura", () => {
+  it("espone avvio esplicito senza chiedere il microfono al montaggio", async () => {
     const getUserMedia = vi.fn()
     vi.stubGlobal("navigator", { ...navigator, mediaDevices: { getUserMedia } })
     const { store } = await createMockStore()
@@ -3227,8 +3227,8 @@ describe("Founder Beta: audio fuori perimetro", () => {
     }, { timeout: 5000, interval: 10 })
 
     expect(Array.from(document.querySelectorAll("button")).some(
-      (button) => button.textContent?.trim() === "audio",
-    )).toBe(false)
+      (button) => button.textContent?.trim() === "Registra audio",
+    )).toBe(true)
     expect(getUserMedia).not.toHaveBeenCalled()
 
     vi.unstubAllGlobals()

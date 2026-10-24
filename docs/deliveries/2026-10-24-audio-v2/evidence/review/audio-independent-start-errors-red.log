@@ -1,0 +1,48 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+(node:60754) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/AudioV2_independent.test.ts (14 tests | 2 failed) 1492ms
+     × a synchronous native start failure stays visible and leaves dispose drainable 13ms
+     × a failed effective-start CAS cannot be reported as idle success after the tail closes 1009ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2_independent.test.ts > independent recorder adversarial review > a synchronous native start failure stays visible and leaves dispose drainable
+AssertionError: expected 'requesting' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "requesting"
+
+ ❯ src/__tests__/AudioV2_independent.test.ts:296:44
+    294|     await expect(h.recorder.start()).rejects.toThrow(/native start den…
+    295|     expect(h.track.stop).toHaveBeenCalled()
+    296|     expect(h.recorder.getSnapshot().stage).toBe("error")
+       |                                            ^
+    297|     let disposed = false
+    298|     const closing = h.recorder.dispose().then(() => { disposed = true …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/AudioV2_independent.test.ts > independent recorder adversarial review > a failed effective-start CAS cannot be reported as idle success after the tail closes
+AssertionError: expected 'idle' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "idle"
+
+ ❯ src/__tests__/AudioV2_independent.test.ts:313:67
+    311|     await expect(h.recorder.start()).rejects.toThrow(/CAS denied/)
+    312|     h.takes[0]!.finish()
+    313|     await vi.waitFor(() => expect(h.recorder.getSnapshot().stage).toBe…
+       |                                                                   ^
+    314|     expect(h.recorder.getSnapshot().error).toMatch(/CAS denied/)
+    315|     expect((await loadReplayTimeline(h.store, identity.lessonId)).reco…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 12 passed (14)
+   Start at  12:31:20
+   Duration  3.52s (transform 478ms, setup 82ms, import 532ms, tests 1.49s, environment 1.19s)

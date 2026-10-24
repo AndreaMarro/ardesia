@@ -473,3 +473,10 @@ o messaggio esterno. Evidenze: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-
   non eseguito. Nessuna ulteriore modifica al prodotto o al gate in questa fase.
   Gli esiti precedenti restano storici; il commit rende il candidato
   revisionabile e non certifica il completamento di SYS-01 o del programma.
+
+
+## 2026-10-24 — AUDIO-V2 e continuità Poiseuille (candidato isolato)
+
+Base ae25b93bec826539940e0226da1f0cd8cebff0b1, ramo codex/ardesia-audio-v2-poiseuille-20261024. Sessioni CAS/media/journal e CoursePack/ricevute/diario riusati, nessun secondo Core o provider. Studio completo 2232 PASS/5 skip storici, typecheck/build PASS; Core/API locale 851 PASS/30 skip live e fix finali verificati con8test mirati. Browser Studio20/20 e docente/studente20/20 con identità e audio sintetici; review indipendente14/14 dopo RED conservati. Stato finale gate/CI, manifest, comandi e limiti in docs/deliveries/2026-10-24-audio-v2/validation.md dalla root. Nessun merge/deploy; costo agenti non esposto. Engine ingest legacy non supporta ancora bundle canonico reader2, contratto futuro esplicito.
+
+Verifica locale successiva del 24 ottobre sullo stesso prodotto: Web299 PASS; Engine2628 PASS/27 SKIP; MCP23 PASS tramite SDK ufficiale; gate Studio congelato2233 PASS/0 FAIL (2232 unit + replay browser). SHA e CI da rileggere sulla draft; prove nella validazione sopra.

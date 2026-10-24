@@ -164,6 +164,8 @@ function journalEvidence(ev: JournalEvent): EvidenceRef[] {
       return [`manual:page:${ev.page}`]
     case "audio.chunk":
       return [`journal:audio.chunk:${ev.chunkIndex}`]
+    case "audio.recording":
+      return [`asset:${ev.recording.assetPath}#sha256=${ev.recording.sha256}`]
     case "t0":
     case "t1":
       return [`journal:${ev.type}@${ev.t}`]

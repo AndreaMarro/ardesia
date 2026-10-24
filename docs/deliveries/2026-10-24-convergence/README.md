@@ -165,3 +165,7 @@ follow-up modifica documenti e routing, senza promuovere AUDIO-V2 o la beta a
 funzioni completate. Il generatore locale conserva PR/check UNAVAILABLE in
 assenza del relativo accesso; la lettura GitHub è una prova separata, non una
 riscrittura manuale dello stato generato.
+
+## Successore verificato — 24 ottobre, AUDIO-V2 e Poiseuille
+
+La [consegna successiva](../2026-10-24-audio-v2/README.md) implementa il ponte Room/sessione/journal/media e il percorso locale docente/studente. Questo documento conserva lo snapshot della convergenza: le capacità allora mancanti non si trasformano retroattivamente in PASS. La [nuova validazione](../2026-10-24-audio-v2/validation.md) distingue candidati, RED/GREEN, browser, review, REA e limiti. Il mandato originale resta fissato in Git ad `ae25b93b`; l’handoff corrente indica il prossimo lavoro valido.

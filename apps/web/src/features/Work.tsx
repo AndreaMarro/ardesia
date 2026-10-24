@@ -8,6 +8,7 @@ import { AssetPreview } from "../components/AssetPreview";
 import { EmptyState } from "../components/Feedback";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
+import { PredictionEvidence } from "../components/PredictionEvidence";
 type Props = {
   me: StudyMe;
   data: Workspace;
@@ -122,6 +123,7 @@ function Delivery({
         </span>
       </div>
       <p className="original-text">{submission.text}</p>
+      <PredictionEvidence value={submission.activityEvidence} />
       {submission.feedback.map(
         (f) =>
           f.review && (

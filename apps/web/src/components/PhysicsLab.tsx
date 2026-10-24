@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { describeError, studyRequest } from "../api";
 import type { ActivityCommit } from "../course";
 import { readResourceDraft, writeResourceDraft } from "./sessionDraftCache";
@@ -121,61 +121,7 @@ export function PhysicsLab({
             <span>Un modello, due situazioni</span>
             <span>Poiseuille</span>
           </div>
-          <svg
-            viewBox="0 0 560 260"
-            role="img"
-            aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}`}
-          >
-            <defs>
-              <pattern
-                id="lab-grid"
-                width="28"
-                height="28"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M28 0H0V28"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth=".3"
-                />
-              </pattern>
-            </defs>
-            <rect width="560" height="260" fill="url(#lab-grid)" opacity=".2" />
-            <path d="M25 102H235V158H25Z" className="tube-body" />
-            <path
-              d={`M325 ${130 - radius * 28}H535V${130 + radius * 28}H325Z`}
-              className="tube-body"
-            />
-            <path
-              d="M40 130H220M340 130H520"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <path
-              d="m210 124 10 6-10 6m290-12 10 6-10 6"
-              fill="none"
-              stroke="currentColor"
-            />
-            <path
-              d={`M430 ${130 - radius * 28}V130M130 102V130`}
-              stroke="currentColor"
-              strokeDasharray="4 4"
-            />
-            <text x="444" y={117 - radius * 14}>
-              r
-            </text>
-            <text x="144" y="112">r₀</text>
-            <text x="280" y="225" textAnchor="middle">
-              r / r₀ = {radius.toLocaleString("it-IT")}
-            </text>
-            <text x="130" y="54" textAnchor="middle">
-              riferimento
-            </text>
-            <text x="430" y="54" textAnchor="middle">
-              confronto
-            </text>
-          </svg>
+          <PoiseuilleModel radius={radius} boundary={boundary} />
           <p>Schema ideale · fluido newtoniano · moto laminare</p>
           <div
             className="lab-result"
@@ -294,4 +240,67 @@ export function PhysicsLab({
       </div>
     </section>
   );
+}
+
+/** The free laboratory and guided episode share the same geometric view. */
+export function PoiseuilleModel({ radius, boundary }: {radius: number; boundary: string}) {
+  const gridId = useId();
+  return <figure className="poiseuille-model">
+          <svg
+            viewBox="0 0 560 260"
+            role="img"
+            aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}`}
+          >
+            <defs>
+              <pattern
+                id={gridId}
+                width="28"
+                height="28"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M28 0H0V28"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth=".3"
+                />
+              </pattern>
+            </defs>
+            <rect width="560" height="260" fill={`url(#${gridId})`} opacity=".2" />
+            <path d="M25 102H235V158H25Z" className="tube-body" />
+            <path
+              d={`M325 ${130 - radius * 28}H535V${130 + radius * 28}H325Z`}
+              className="tube-body"
+            />
+            <path
+              d="M40 130H220M340 130H520"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="m210 124 10 6-10 6m290-12 10 6-10 6"
+              fill="none"
+              stroke="currentColor"
+            />
+            <path
+              d={`M430 ${130 - radius * 28}V130M130 102V130`}
+              stroke="currentColor"
+              strokeDasharray="4 4"
+            />
+            <text x="444" y={117 - radius * 14}>
+              r
+            </text>
+            <text x="144" y="112">r₀</text>
+            <text x="280" y="225" textAnchor="middle">
+              r / r₀ = {radius.toLocaleString("it-IT")}
+            </text>
+            <text x="130" y="54" textAnchor="middle">
+              riferimento
+            </text>
+            <text x="430" y="54" textAnchor="middle">
+              confronto
+            </text>
+          </svg>
+    <figcaption>{boundary === "flow" ? "Q è costante: la portata non cambia." : "Δp è costante: confronta la portata."}</figcaption>
+  </figure>;
 }

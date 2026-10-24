@@ -91,3 +91,8 @@ I 4 stati possibili di un concetto in un Lesson Capsule. Validati a costruzione 
 4. **No I/O** — entità pure, persistenza separata (store.md)
 
 **Citazione**: lessonos/models/entities.py:1-8 documenta approccio "Plain frozen dataclasses" con "Constrained vocabularies validated at construction so an invalid value fails fast instead of corrupting the graph."
+
+
+## Addendum 24 ottobre 2026 — previsioni senza un secondo ledger
+
+`lessonos/study/submissions.py:34` conserva la previsione come campo opzionale della stessa ricevuta di consegna; `lessonos/study/learning_experiences.py:109` risolve manifest/CoursePack e usa il valutatore esistente, con aiuti precedenti osservabili dal servizio. I riferimenti lezione restano fonti/versioni autorizzate; `learning_experiences.py:38` valida una dichiarazione di collegamento locale, senza certificare disponibilità dei media. Il nuovo tentativo mantiene una fonte privata originale e il budget portabile5riferimenti. Prove e limiti: `docs/deliveries/2026-10-24-audio-v2/validation.md` dalla root del monorepo.

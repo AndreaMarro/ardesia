@@ -1,0 +1,14 @@
+{"submissionAccepted": true, "storedSourceCount": 6}
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/docs/deliveries/2026-10-24-audio-v2/evidence/review/probe-source-budget.py", line 26, in <module>
+    export_notebook(store, student, "fluidi", Path(tmp) / "blobs")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/packages/engine/lessonos/study/portable.py", line 96, in export_notebook
+    for ref in _references(submissions, layout):
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/packages/engine/lessonos/study/portable.py", line 54, in _references
+    for ref in _list(submission, 'source_refs', 5):
+               ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/packages/engine/lessonos/study/portable.py", line 33, in _list
+    raise StudyError('notebook_budget_exceeded')
+lessonos.study.models.StudyError: notebook_budget_exceeded

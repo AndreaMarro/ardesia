@@ -1,0 +1,31 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+(node:57848) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/AudioV2_independent.test.ts (3 tests | 1 failed) 142ms
+     × reports a native recorder error without requiring a second user stop 58ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2_independent.test.ts > independent recorder adversarial review > reports a native recorder error without requiring a second user stop
+AssertionError: expected 'recording' to be 'error' // Object.is equality
+
+Expected: "error"
+Received: "recording"
+
+ ❯ src/__tests__/AudioV2_independent.test.ts:92:44
+     90|     await Promise.resolve()
+     91|     expect(h.track.stop).toHaveBeenCalled()
+     92|     expect(h.recorder.getSnapshot().stage).toBe("error")
+       |                                            ^
+     93|     expect(h.recorder.getSnapshot().error).toMatch(/audio|browser/i)
+     94|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  12:21:58
+   Duration  3.94s (transform 558ms, setup 118ms, import 648ms, tests 142ms, environment 2.54s)

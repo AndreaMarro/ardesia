@@ -18,6 +18,7 @@ import {
   type LessonOsRestoreStatus,
 } from "./lessonBundle"
 import { roomPaths, validateRoomId } from "./roomPaths"
+import { assertAudioWriteAllowed, isAudioWriteFencedPath } from "./audioWriteFence"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   originLessonMutationCoordinator,
@@ -497,7 +498,10 @@ export class WorkspaceStore {
   }
 
   async write(path: string, data: Blob): Promise<void> {
-    await this.mutationCoordinator.withPathMutation(path, () => this.driver.write(path, data))
+    await this.mutationCoordinator.withPathMutation(path, async () => {
+      if (isAudioWriteFencedPath(path)) await assertAudioWriteAllowed(this.driver, path, data)
+      await this.driver.write(path, data)
+    })
   }
 
   async delete(path: string): Promise<void> {

@@ -328,6 +328,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
         from lessonos.study.activities import evaluate_activity
         return evaluate_activity(body.get('activityId'),body.get('parameters',{}))
 
+    @app.get('/study/learning-experiences')
+    def learning_experiences(editionId: str, request: Request, store=Depends(store_dependency)):
+        from lessonos.study.learning_experiences import list_experiences
+        return list_experiences(store,authenticate(request,store),editionId)
+
     @app.get('/study/coursepack')
     def coursepack(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.coursepack import load_coursepack
@@ -458,7 +463,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, secur
     @app.post('/study/submissions')
     def submission(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import submit
-        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'))
+        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'))
 
     @app.get('/study/receipts/{receipt_id}')
     def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):

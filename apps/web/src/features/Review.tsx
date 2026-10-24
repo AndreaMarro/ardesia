@@ -11,6 +11,7 @@ import { baseActivity, courseTitle, type LabActivityId } from "../course";
 import { AssetPreview } from "../components/AssetPreview";
 import { SourceViewer } from "../components/SourceViewer";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
+import { PredictionEvidence } from "../components/PredictionEvidence";
 type Anchor = {
   resourceId: string;
   revisionId: string;
@@ -134,7 +135,7 @@ function SubmissionReview({
   onUpdate,
   onDiary,
 }: {
-  submission: Submission;
+  submission: Workspace["submissions"][number];
   editionId: string;
   activityId: LabActivityId | null;
   onUpdate: () => Promise<void>;
@@ -201,6 +202,7 @@ function SubmissionReview({
           <p className="original-text submission-answer">
             {submission.text || "Consegna tramite originale allegato."}
           </p>
+          <PredictionEvidence value={submission.activityEvidence} />
           {submission.source_refs.length > 1 && (
             <label>
               Fonte collegata

@@ -17,6 +17,7 @@ import { type StudyMe, type Workspace } from "../api";
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
 import { QuestionBankReview } from "../components/QuestionBankReview";
+import { PoiseuilleEpisode } from "../components/PoiseuilleEpisode";
 
 type Props = {
   me: StudyMe;
@@ -36,6 +37,7 @@ function ClassroomScope({
   parentId = null,
 }: Props) {
   const [commit, setCommit] = useState<ActivityCommit | null>(null);
+  const [guidedEpisode, setGuidedEpisode] = useState(false);
   const [source, setSource] = useState<PostitReference | null>(null);
   const [selectionMessage, setSelectionMessage] = useState("");
   const tutor = me.role === "teacher";
@@ -76,12 +78,20 @@ function ClassroomScope({
             : "Organizza le fonti, conserva i passaggi e prepara le domande per il tutor."}
         </p>
       </header>
+      {activityId === "poiseuille-v1" && data.enrolled && <div className="episode-entry">
+        <div><h2>Una lezione, tre previsioni.</h2><p>Raggio doppio, cambio di vincolo e una nuova prova. Ritrova il passaggio del tutor e conserva il tuo ragionamento.</p></div>
+        <button className="button-primary" aria-expanded={guidedEpisode} onClick={() => setGuidedEpisode(value => !value)}>
+          {guidedEpisode ? "Torna al laboratorio libero" : "Apri episodio guidato"}
+        </button>
+      </div>}
       <section className="lab-surface">
         {activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
           />
+        ) : activityId === "poiseuille-v1" && data.enrolled && guidedEpisode ? (
+          <PoiseuilleEpisode me={me} data={data} onUpdate={onUpdate} />
         ) : activityId === "poiseuille-v1" ? (
           <PhysicsLab
             onCommit={setCommit}
@@ -160,7 +170,7 @@ function ClassroomScope({
               setSelectionMessage("Fonte collegata alla prossima consegna.");
             }}
           />
-          {!tutor && activityId && (
+          {!tutor && activityId && !guidedEpisode && (
             <section className="submission-surface">
               <SubmissionPanel
                 key={`${me.id}:${data.edition.id}`}

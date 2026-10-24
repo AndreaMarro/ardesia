@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-24T10:35:25.543907+00:00",
+  "base": "ae25b93bec826539940e0226da1f0cd8cebff0b1",
+  "head": "ae25b93bec826539940e0226da1f0cd8cebff0b1",
+  "identity": "base + working diff; hashes captured immediately after independent14PASS",
+  "environment": "macOS arm64 Node26.5.1/npm11.17.0 locked Studio dependencies, jsdom synthetic media",
+  "sha256": {
+    "apps/studio/src/__tests__/AudioV2_independent.test.ts": "5cbe4a0db25be653f4b92007d7ff9ae26b0db81fa9238403b0584eeef03a95ed",
+    "apps/studio/src/store/SessionAudioRecorder.ts": "9e4ee989824a670ab3ca1e34ad6f1a3227ceb611476f62c919b8864a2e9dc376",
+    "apps/studio/src/store/audioRecording.ts": "471d815f739e5274f581c245be3640b392ce22cd4a630db5491a376b67941683",
+    "apps/studio/src/store/audioWriteFence.ts": "07b81322e62cd98f35027cb0f7d4511508c490f7b2ed381959a725bbcb9fa120",
+    "apps/studio/src/store/WorkspaceStore.ts": "a18d330d38a28e926cd311d3bcceb34aaff1c8324815f66b8706c17fc43044be",
+    "apps/studio/src/store/lessonBundle.ts": "bea7b63c1db28f8f6b2c264dbbfed3f93c327cec414e3468e3f7eef3a1d028e4",
+    "apps/studio/src/store/lessonImportTransaction.ts": "5742ba7772a4a7e8f1d24d3ac1b2d4718bcc7b1f70228588d5e4af857a0d0ce4",
+    "apps/studio/src/store/replayTimeline.ts": "f50f001066501d80bafa9176a0c6bccc30a66596256f5d9992faf427f17ef954",
+    "apps/studio/src/store/JournalRecorder.ts": "e86bdfc0556da434c5747daca3f8e7ec1f2fbc3ab6eaa06cf64f996399a75dde",
+    "apps/studio/src/LessonPassageAuthor.tsx": "13b404269df82842bb3453971c370c53b9a4dd75f8f842ce36b846443dbe9f39",
+    "apps/studio/src/Room.tsx": "6fa0644675c05f2eb5b04834395aad2aa7b177bef93e596da5d672939734abb7",
+    "apps/studio/src/ReplayView.tsx": "ca20e435c4fe4c624ba8442f07e586c590f9371648a66ed6c1060e977893cfcd",
+    "apps/web/src/components/lessonPassageReference.ts": "04ed8f907584906e01d4a289645e4a07508422023c2be5f439757bb6da617dee",
+    "apps/web/src/components/PoiseuilleEpisode.tsx": "9cbadb359658fd9a15449b10c5985cf02b2d5412d11953689e808bf65aa574ee",
+    "packages/engine/lessonos/study/learning_experiences.py": "9f7ec130c07e0f3b9a1335b51a6f512952659acfebd4761026b781743777312d",
+    "packages/engine/lessonos/study/submissions.py": "a89e23b4ed621f458045a7de51927678b2ec66ae57992c715250a007aee2dd6a"
+  },
+  "independentTests": {
+    "passed": 14,
+    "failed": 0,
+    "log": "audio-independent-start-errors-recheck.log"
+  },
+  "scope": "No native microphone/device/codec or remote auth claim; root browser evidence separate.",
+  "finalTypecheck": {
+    "exit": 0,
+    "log": "independent-typecheck-final.log"
+  },
+  "sourceBudget": {
+    "exit": 0,
+    "log": "source-budget-green.log",
+    "fiveInputRefs": "rejected atomically",
+    "fourInputRefs": "accepted as five including original, export success"
+  },
+  "openFindingsWithinScope": []
+}

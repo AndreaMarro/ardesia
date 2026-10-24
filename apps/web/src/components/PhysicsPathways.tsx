@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 
 type Coverage = {
   questionCount: number; familyCount: number; unitIds: string[]; prerequisites: string[];
@@ -36,7 +36,9 @@ export function PhysicsPathways({ data, unavailable, renderCollection }: {
   const [selection, setSelection] = useState(readSelection);
   const heading = useRef<HTMLHeadingElement>(null);
   const previous = useRef(selection);
-  useEffect(() => {
+  // The route must be subscribed as soon as its heading is committed. A passive
+  // effect can miss a popstate between that commit and effect registration.
+  useLayoutEffect(() => {
     const pop = () => setSelection(readSelection());
     addEventListener("popstate", pop);
     return () => removeEventListener("popstate", pop);

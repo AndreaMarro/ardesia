@@ -50,6 +50,7 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); history.replaceState(null, "
 
 async function openDelivery() {
   render(<App />);
+  await import("../features/Work");
   fireEvent.click(await screen.findByRole("button", { name: "Consegne e feedback" }));
   await screen.findByText("PROCEDIMENTO PRIVATO C7");
   const details = screen.getByText("Originali, versione e ricevuta").closest("details")!;
