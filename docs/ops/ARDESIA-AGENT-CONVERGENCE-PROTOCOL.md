@@ -70,6 +70,8 @@ Prioritize **learning-affecting animation** (predict, manipulate, compare, expla
 
 The current Study MCP is a **read-only HTTP adapter**. Do **not** add database writes directly to that MCP server. Propose an additive authorized command layer into the existing Core and the same editorial/submission ledgers.
 
+**Normative AI gate:** root `AGENTS.md` currently says **ZERO-LLM in prodotto**. This proposal does not authorize a hosted LLM or autonomous grading in production. Deterministic Core and evidence contracts remain LLM-independent. Any optional AI draft service must first be proposed and expressly ratified as a scoped change, with source grounding, privacy, costs, provider policy, opt-out and deterministic/manual fallback. Until then correction drafts are teacher-authored or deterministic only.
+
 Candidate commands are separate phases:
 
 - `submission.list_authorized` / `submission.get` (read, bounded scope).
