@@ -1,0 +1,36 @@
+F...                                                                     [100%]
+=================================== FAILURES ===================================
+_______ test_same_origin_candidate_preserves_studio_route_and_core_auth ________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-21/test_same_origin_candidate_pre0')
+
+    def test_same_origin_candidate_preserves_studio_route_and_core_auth(tmp_path):
+        web = tmp_path / 'web'
+        studio = tmp_path / 'studio'
+        web.mkdir(); studio.mkdir()
+        (web / 'index.html').write_text('<h1>Synthetic course shell</h1>')
+        (studio / 'index.html').write_text('<h1>Synthetic teaching board</h1>')
+        (studio / 'assets').mkdir()
+        (studio / 'assets' / 'board.js').write_text('/* synthetic workspace asset */')
+        with TestClient(create_app(tmp_path / 'data' / 'study.sqlite', demo=True, frontend=web, studio_frontend=studio)) as client:
+            assert 'Synthetic course shell' in client.get('/').text
+            assert 'Synthetic teaching board' in client.get('/studio/').text
+            assert 'workspace asset' in client.get('/studio/assets/board.js').text
+            assert client.get('/studio/missing-asset.js').status_code == 404
+            assert client.get('/studio/%2e%2e/data/study.sqlite').status_code == 404
+>           assert client.get('/study/me').status_code == 401
+E           AssertionError: assert 503 == 401
+E            +  where 503 = <Response [503 Service Unavailable]>.status_code
+E            +    where <Response [503 Service Unavailable]> = get('/study/me')
+E            +      where get = <starlette.testclient.TestClient object at 0x10bfadbe0>.get
+
+services/study-api/tests/test_teaching_candidate.py:20: AssertionError
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_teaching_candidate.py::test_same_origin_candidate_preserves_studio_route_and_core_auth
+1 failed, 3 passed, 1 warning in 0.99s

@@ -1,0 +1,108 @@
+[
+  {
+    "receiptId": "469beffff4cd464282aecb9ad543ae81",
+    "submissionId": "e4ab169f96db45d8848ac4c83557a27a",
+    "studentId": "student-01",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792848346.6664178,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v1",
+      "stepId": "fixed-pressure",
+      "prediction": {
+        "ratio": 16,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "c52917ce28bb4d75bec5f22dde96f7ff",
+        "revisionId": "7a25f9c0cbf14a7fa3955b66ad30fcdc"
+      },
+      "exerciseRef": "RF-06",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 16,
+        "fixedQuantity": "pressure",
+        "calculatedVariable": "Q/Q0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic"
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "071d48600d16420a9070a8934ef36981",
+    "submissionId": "e26fd41c6b0c4b5d86abadd711fe52e1",
+    "studentId": "student-01",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792848346.872818,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v1",
+      "stepId": "fixed-flow",
+      "prediction": {
+        "ratio": 16,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "c52917ce28bb4d75bec5f22dde96f7ff",
+        "revisionId": "7a25f9c0cbf14a7fa3955b66ad30fcdc"
+      },
+      "exerciseRef": null,
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 0.0625,
+        "fixedQuantity": "flow",
+        "calculatedVariable": "Δp/Δp0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic"
+      },
+      "check": {
+        "ratioMatches": false,
+        "constraintMatches": false
+      }
+    }
+  }
+]

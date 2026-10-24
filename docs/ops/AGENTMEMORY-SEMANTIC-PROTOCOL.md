@@ -178,3 +178,8 @@ Quando emergono contraddizioni, aggiungere una correzione datata che richiami la
 | Apprendimento | Scelta, alternativa scartata, errore/correzione o assenza di finding e insight concreto registrati. |
 | Prossimo lavoro | Voce conclusa con 3–5 task motivati e verificabili; NEXT-SESSION-PROMPT indica il primo, dipendenze e gate senza duplicare canoni. |
 | Continuità | Link risolvibili, supersessioni datate, storia preservata e pubblicazione dichiarata correttamente; nessuna dipendenza obbligatoria dal servizio AgentMemory esterno. |
+
+
+### Riscontro24ottobre2026 — handoff, prove e revoca
+
+La consegna[REA Deep Build](../deliveries/2026-10-24-rea-deep-build/README.md) aggiunge tre apprendimenti verificati al protocollo, senza cambiare autorità o attivare servizi: (1) dopo un await un descrittore può essere obsoleto, quindi registrare il punto di linearizzazione e la controprova controllata; (2) confrontare bytes/manifest dei file serviti, non solo esito del percorso o nome del ramo; (3) distinguere licenza del tool, diritti dell'asset e cronologia osservazione→implementazione, conservando le correzioni datate. I ticketREA dichiarano confronto successivo quando tale, eventi incompleti e costoUNKNOWN. RUNLOG mantiene il prefisso Git precedente; nessun salvataggio nel servizio esterno rivendicato.

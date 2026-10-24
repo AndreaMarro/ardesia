@@ -1,0 +1,1095 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ❯ src/__tests__/workflows.test.tsx (9 tests | 3 failed) 3366ms
+   × lab invalidates feedback after parameters change and commits once 1111ms
+   × lab makes no automatic request and guards double commit while pending 1025ms
+   × lab retry keeps the prediction and reuses the chosen parameters 1036ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/workflows.test.tsx > lab invalidates feedback after parameters change and commits once
+TestingLibraryElementError: Found multiple elements with the text: /5,0625/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<strong>[39m
+  [0mQ/Q₀ = [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+Ignored nodes: comments, script, style
+[36m<strong[39m
+  [33mdata-testid[39m=[32m"physics-ratio"[39m
+[36m>[39m
+  [0mQ/Q0[0m
+  [0m =[0m
+  [0m [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_0_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_0_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_0_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_0_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_0_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_0_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/workflows.test.tsx:73:16
+     71|   });
+     72|   fireEvent.click(screen.getByRole("button", { name: "Metti alla prova…
+     73|   await screen.findByText(/5,0625/);
+       |                ^
+     74|   fireEvent.change(screen.getByLabelText("Rapporto dei raggi"), {
+     75|     target: { value: "2" },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/__tests__/workflows.test.tsx > lab makes no automatic request and guards double commit while pending
+TestingLibraryElementError: Found multiple elements with the text: /5,0625/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<strong>[39m
+  [0mQ/Q₀ = [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+Ignored nodes: comments, script, style
+[36m<strong[39m
+  [33mdata-testid[39m=[32m"physics-ratio"[39m
+[36m>[39m
+  [0mQ/Q0[0m
+  [0m =[0m
+  [0m [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_1_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_1_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_1_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_1_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_1_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_1_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/workflows.test.tsx:138:16
+    136|     ),
+    137|   );
+    138|   await screen.findByText(/5,0625/);
+       |                ^
+    139| });
+    140|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/__tests__/workflows.test.tsx > lab retry keeps the prediction and reuses the chosen parameters
+TestingLibraryElementError: Found multiple elements with the text: /5,0625/
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<strong>[39m
+  [0mQ/Q₀ = [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+Ignored nodes: comments, script, style
+[36m<strong[39m
+  [33mdata-testid[39m=[32m"physics-ratio"[39m
+[36m>[39m
+  [0mQ/Q0[0m
+  [0m =[0m
+  [0m [0m
+  [0m5,0625[0m
+[36m</strong>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_3_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_3_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_3_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"physics-title"[39m
+      [33mclass[39m=[32m"physics-lab"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-introduction"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"physics-title"[39m
+        [36m>[39m
+          [0mChe cosa tieni fisso?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mConfronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lab-layout"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lab-experiment"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lab-caption"[39m
+          [36m>[39m
+            [36m<span>[39m
+              [0mUn modello, due situazioni[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mPoiseuille[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33mclass[39m=[32m"poiseuille-model discovery-model"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"model-key"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mStesso fluido · stessa lunghezza[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mΔp fissata[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<svg[39m
+              [33maria-label[39m=[32m"Due tubi cilindrici con rapporto dei raggi 1.5. Confronto del trasporto medio."[39m
+              [33mrole[39m=[32m"img"[39m
+              [33mviewBox[39m=[32m"0 0 680 335"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_3_-reference"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"70"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"48"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"_r_3_-comparison"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"105"[39m
+                    [33mwidth[39m=[32m"455"[39m
+                    [33mx[39m=[32m"95"[39m
+                    [33my[39m=[32m"182.5"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclass[39m=[32m"pipe-reference"[39m
+              [36m>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"24"[39m
+                  [33my[39m=[32m"30"[39m
+                [36m>[39m
+                  [0mriferimento[0m
+                [36m</text>[39m
+                [36m<rect[39m
+                  [33mclass[39m=[32m"tube-body"[39m
+                  [33mheight[39m=[32m"70"[39m
+                  [33mwidth[39m=[32m"455"[39m
+                  [33mx[39m=[32m"95"[39m
+                  [33my[39m=[32m"48"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mclass[39m=[32m"pipe-axis"[39m
+                  [33mx1[39m=[32m"95"[39m
+                  [33mx2[39m=[32m"550"[39m
+                  [33my1[39m=[32m"83"[39m
+                  [33my2[39m=[32m"83"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33mclass[39m=[32m"pipe-dimension"[39m
+                  [33md[39m=[32m"M580 48V118M574 48H586M574 118H586"[39m
+                [36m/>[39m
+                [36m<text[39m
+                  [33mx[39m=[32m"596"[39m
+                  [33my[39m=[32m"88"[39m
+                [36m>[39m
+                  [0m2r₀[0m
+                [36m</text>[39m
+                [36m<g[39m
+                  [33mclass[39m=[32m"flow-tracers"[39m
+                  [33mclip-path[39m=[32m"url(#_r_3_-reference)"[39m
+                [36m>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: 0s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -1.6s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -3.2s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -4.8s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"65.5"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -6.4s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -0.5333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<circle[39m
+                    [33mclass[39m=[32m"flow-tracer"[39m
+                    [33mcx[39m=[32m"105"[39m
+                    [33mcy[39m=[32m"83"[39m
+                    [33mr[39m=[32m"3"[39m
+                    [33mstyle[39m=[32m"animation-duration: 8s; animation-delay: -2.1333333333333333s;"[39m
+                  [36m/>[39m
+                  [36m<cir...
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/workflows.test.tsx:224:16
+    222|   ).toBe("La portata aumenta");
+    223|   fireEvent.click(screen.getByRole("button", { name: "Metti alla prova…
+    224|   await screen.findByText(/5,0625/);
+       |                ^
+    225|   expect(calls).toBe(2);
+    226| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 44 passed (45)
+      Tests  3 failed | 303 passed (306)
+   Start at  14:53:59
+   Duration  40.69s (transform 1.07s, setup 0ms, import 3.91s, tests 16.70s, environment 16.04s)

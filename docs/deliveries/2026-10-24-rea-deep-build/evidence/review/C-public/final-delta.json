@@ -1,0 +1,44 @@
+{
+  "url": "http://127.0.0.1:5414/esperienza/",
+  "checks": [
+    {
+      "name": "current voice still not automatic",
+      "pass": true
+    },
+    {
+      "name": "new served voice decodes and plays",
+      "pass": true
+    },
+    {
+      "name": "play accessible pressed state",
+      "pass": true
+    },
+    {
+      "name": "keyboard audio pause observable",
+      "pass": true
+    },
+    {
+      "name": "new problem focuses fresh prediction",
+      "pass": true
+    },
+    {
+      "name": "new problem unrevealed",
+      "pass": true
+    },
+    {
+      "name": "new condition announced",
+      "pass": true
+    },
+    {
+      "name": "voice network failure keeps transcript and retry",
+      "pass": true
+    }
+  ],
+  "audio": {
+    "url": "http://127.0.0.1:5414/esperienza/lesson-demo/poiseuille.wav",
+    "status": 200,
+    "bytes": 1806784,
+    "sha256": "cba509da0fbc7892d2e2ff6f94fa8f040788ffc411cc5be99223e09e0a885508"
+  },
+  "expectedFailure": "Explicit route.abort of local WAV only; transcript/fallback verified. This is not a spontaneous app error."
+}

@@ -1,0 +1,347 @@
+{
+  "targetVersion": {
+    "donorUrl": "https://excalidraw.com/",
+    "observedMainScript": "https://excalidraw.com/assets/index-BboF1hDf.js",
+    "hostedSemanticVersion": "UNAVAILABLE: hosted artifact identity not reported by Evidence; no equality to npm 0.18.1 asserted",
+    "mainScriptSha256": "NOT_CAPTURED: response bodies disabled",
+    "cli": "REA 6.7.0 (root capture)",
+    "browser": {
+      "mode": "launch",
+      "process_ownership": "provider-owned",
+      "cleanup": "terminated-owned-process",
+      "product": "Chromium",
+      "version": "148.0.7778.96"
+    },
+    "environment": {
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "block"
+    },
+    "publicGoodnotesSource": {
+      "url": "https://support.goodnotes.com/hc/en-us/articles/7352688559631-Add-Audio-Recordings-to-your-documents",
+      "accessed": "2026-10-24",
+      "method": "Official help page opened read-only in primary Chrome through cua_repl and corroborated with web.run",
+      "runtimeObserved": false,
+      "installedVersion": "NOT_OBSERVED"
+    }
+  },
+  "behavior": {
+    "observedExcalidraw": "Create actual canvas text; finish editing; select it; ArrowRight changes the visible selected object position; Undo removes the text; Redo restores the finished text image. Undo/Redo enabled states change in accessibility snapshots.",
+    "documentedGoodnotes": "Official help describes notes synchronized to audio, clip selection and timeline controls, plus Spotlight, progressive reveal and static modes. It limits replay modes to iOS/macOS notebook documents. This is documentation, not a Goodnotes runtime capture.",
+    "notClaimed": "No semantic interpretation, understanding, transcript, handwriting recognition, solver result, exact per-keystroke undo granularity, Goodnotes product equivalence or physical-device observation."
+  },
+  "observedPath": [
+    "Navigate to Excalidraw public page; wait for visible body and settle 1500ms",
+    "Text tool → canvas → fill Synthetic lesson: Q stays fixed.",
+    "Escape → Meta+a → ArrowRight",
+    "Undo → Redo; all 11 navigation/action steps complete",
+    "Read public Goodnotes Note Replay help only; no login/account/recording/runtime execution"
+  ],
+  "evidence": [
+    {
+      "file": "B-excalidraw-initial-evidence.json",
+      "id": null,
+      "sha256": "876e35c66bc564be82e846ea7c00fbad5abc5282dc15d8687c6c43b705f90612",
+      "durationMs": null,
+      "completeness": null,
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea",
+      "error": "invalid_request"
+    },
+    {
+      "file": "B-excalidraw-ready-evidence.json",
+      "id": "ev_6bb6864efd6e57fab1588833bc9b690bf266546f5b57f6537f94603cb315bf3e",
+      "sha256": "49ead31a5131ca2abf69d87ab15239871e0dced350ce6fd66232c26621d92b50",
+      "durationMs": 11491,
+      "completeness": "complete",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea",
+      "error": null
+    },
+    {
+      "file": "B-write-evidence.json",
+      "id": null,
+      "sha256": "c1abe2d82d25a2de37da689102f555df92d11f57c6fe39c3e3fb091c32feba0d",
+      "durationMs": null,
+      "completeness": null,
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea",
+      "error": "invalid_request"
+    },
+    {
+      "file": "B-write-valid-evidence.json",
+      "id": "ev_a0db97398a36c5c7ba3fa15144ec92a8607a864c8000a338811b161aa260e871",
+      "sha256": "dfdc506d18bbe49096e49da5fbdaa7e370258673c98a8755561bef4dc5e89695",
+      "durationMs": 11208,
+      "completeness": "complete",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea",
+      "error": null
+    },
+    {
+      "kind": "public-primary-documentation",
+      "url": "https://support.goodnotes.com/hc/en-us/articles/7352688559631-Add-Audio-Recordings-to-your-documents",
+      "runtimeEvidenceId": null,
+      "observation": "Chrome AX page title, Note Replay description, mode/platform limits; no screenshot or document copied into product"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "../../studio/browser-final/author-1440.png",
+      "sha256": "6d9061be6c71bd3ef4811290cf7a723ccacaa3dda0bbab3dcc6bbb85e2fa042f",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/author-360.png",
+      "sha256": "0fef2ab4c120a82b3110a597528f52c716b60769e633ee41fae3f808f4706d74",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/author-390.png",
+      "sha256": "1ad8bdaa725bde3b56cb5dbdddfe82e558145c2271218514bcd617ce67f05f27",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/author-820.png",
+      "sha256": "5e5f71b7de7f3bc87abaef90adfba2f178e33a66cadfcae528481ba0176cba34",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/board-1440.png",
+      "sha256": "913cd310c73f7460db6ee218f8022042b7a89a91866aeeb567c4698abc3831f5",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/board-360.png",
+      "sha256": "b49bd7e4ae8f24944fd9ee15088e2acb9ee96f2b89bbff7cfe3fea3f687ba452",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/board-390.png",
+      "sha256": "a0f9c1a2758401415fdb4d419742c2290680d7058a1e3c28ae0d4dee26d36dec",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/board-820.png",
+      "sha256": "99cc287a2bcf67807d45608d06c8f26993fd22d42bc508e8aa707834f01906cd",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/replay-1440.png",
+      "sha256": "bf009557cf3bff378dbda2316a45fe185a494e8afd0447624a854561ff32f1ce",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/replay-360.png",
+      "sha256": "ad8174b3f5f04a67bb9f949cf08dbc17e84efe464cbfac90965ac5e476e2c802",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/replay-390.png",
+      "sha256": "7d874fc736f671874e0de3d3068c5b069ae283cc90e3a32e2b57e28ef55b0aa9",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    },
+    {
+      "file": "../../studio/browser-final/replay-820.png",
+      "sha256": "9587db64d782dfef3593cbca575820df6a88156ea868fe365b209e7bbc90b011",
+      "subject": "Ardesia Studio recipient, synthetic fixture; not donor"
+    }
+  ],
+  "limits": [
+    "Complete donor observation occurred AFTER the recipient feature implementation. This is a post implementation countercheck, not causal reconstruction evidence; later recipient reruns do not change that chronology.",
+    "Two invalid_request inputs produced no Evidence and no claimed runtime action: unsupported initial action and untyped fill value. Corrected requests retained separately.",
+    "One complete ready-only donor Evidence and one complete writing Evidence; do not count two invalid requests as reconstructions.",
+    "Hosted artifact identity and source bytes unavailable; hosted build is not established as equal to installed npm Excalidraw 0.18.1.",
+    "Goodnotes runtime NOT observed. No Note Replay login, iOS/macOS installation, recording, synchronization, playback, export or deletion was tested.",
+    "No screenshots/code/fonts/icons/styles copied from donor into this delivery or product; raw donor captures remain in local work.",
+    "Studio native UI proof uses a pinned-opener HTML harness, actual MediaRecorder with synthetic AudioContext stream, and local persistence; it does not establish Web/Core publication. Root/poiseuille own integrated candidate proof.",
+    "No physical microphone, student voices, real lesson, multi-user cloud permission or remote auth proof. Audio stays local; descriptor does not contain bytes or credentials.",
+    "Timing pins identify a historical instant; object ID/version is explicit teacher association, not inferred pedagogical semantics.",
+    "No measured end-to-end cost/speedup; capture duration and engineering duration are different scopes.",
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "license": {
+    "excalidraw": "MIT",
+    "primarySourceLicense": "https://github.com/excalidraw/excalidraw/blob/v0.18.1/LICENSE",
+    "existingRecipientPackage": "@excalidraw/excalidraw 0.18.1 (existing dependency, package metadata MIT)",
+    "adoption": "Existing MIT canvas reused through public API; no new donor code or asset copied. Existing attribution/distribution obligations remain. Hosted runtime to tag match NOT_ESTABLISHED.",
+    "goodnotes": "Proprietary product; public documentation consulted only. No source, screenshots, branding, media or UI assets adopted.",
+    "publicationDecision": "Keep donor PNG/base64, DOM, raw evidence and network metadata under work/deep-build/rea. Commit only ticket/digests/verification and screenshots of Ardesia synthetic recipient.",
+    "licenseBytesSha256": "1352d204fdb90d5e482c13139d848bc2c9300a9a7de358a0a558a23e72d0d8be",
+    "licenseBytesSource": "https://raw.githubusercontent.com/excalidraw/excalidraw/v0.18.1/LICENSE"
+  },
+  "ardesiaSpec": {
+    "originalTransfer": "Use actual board selection as an explicit link target; save the exact object/version and real media reference before sending; show that object visibly in replay and offer listening from the start.",
+    "timeBoundary": "Replay is deterministic lesson/media time. The teacher declares an association; no semantic model is introduced.",
+    "captureBoundary": "Explicit teacher-only consent and start; no auto capture from saved consent/bridge; native stop drains before send/navigation. Keep AUDIO-V2 authority, purge fences, canonical descriptor.",
+    "interaction": "Board-dominant paper/ink/sage/terracotta chrome, collapsible right/bottom panel, long text wrapping, keyboard/focus/Escape, reduced motion and 360/390/820/1440.",
+    "courseBoundary": "Explicit Send to Aula over pinned Window + exact origin + UUID channel, then a separate Web/Core publish action. No credential/media transport."
+  },
+  "reuse": {
+    "kind": "Existing canvas capability reused; new original association/replay/transfer UI",
+    "existingArdesiaAuthority": [
+      "apps/studio/src/store/SessionAudioRecorder.ts",
+      "apps/studio/src/store/replayTimeline.ts",
+      "apps/studio/src/store/audioRecording.ts",
+      "apps/studio/src/store/WorkspaceStore.ts",
+      "apps/studio/src/store/lessonBundle.ts"
+    ],
+    "newDependencies": 0,
+    "newSessionAuthority": false,
+    "donorCodeOrAssetsImported": false,
+    "historicalBase": "#298 f456ade218acee1a8b65f5dc24e9220681658b11 AUDIO-V2 retained; no backend rewrite"
+  },
+  "implementation": {
+    "owner": "audio_v2, apps/studio only",
+    "frozen": true,
+    "recipientFiles": [
+      "apps/studio/src/LessonPassageAuthor.tsx",
+      "apps/studio/src/SessionAudioControls.tsx",
+      "apps/studio/src/Room.tsx",
+      "apps/studio/src/ReplayView.tsx",
+      "apps/studio/src/ReplayObjectFocus.tsx",
+      "apps/studio/src/store/coursePassageBridge.ts",
+      "apps/studio/src/store/lessonPassage.ts",
+      "apps/studio/src/store/passageAnnotation.ts",
+      "apps/studio/src/store/studioLocation.ts",
+      "apps/studio/src/index.css",
+      "apps/studio/vite.config.ts"
+    ],
+    "boundary": "No Web/Core/marketing implementation authored by audio_v2. No commit/push."
+  },
+  "tests": {
+    "donor": {
+      "steps": 11,
+      "completed": 11,
+      "evidenceId": "ev_a0db97398a36c5c7ba3fa15144ec92a8607a864c8000a338811b161aa260e871",
+      "providerDurationMs": 11208,
+      "digests": "verification.json"
+    },
+    "recipientFocused": {
+      "filesPassed": 10,
+      "testsPassed": 186,
+      "durationSeconds": 24.58,
+      "log": "../../studio/green-focused.log"
+    },
+    "recipientNative": {
+      "checksPassed": 36,
+      "checksTotal": 36,
+      "pageErrors": 0,
+      "consoleWarningsErrors": 0,
+      "failedRequests": 0,
+      "clipBytes": 17549,
+      "clipDecodedSeconds": 1.0799773242630386,
+      "result": "../../studio/browser-final/result.json",
+      "scope": "Historical native UI run before the later targeted prepare/revocation correction; root owns final unified artifact recheck."
+    },
+    "redGreenTransfer": [
+      "selection-red.log → real selected object callback without duplicate annotation, LessonPassageAuthor.test.tsx",
+      "focus-red.log → exact ID/version viewport overlay, ReplayObjectFocus.test.tsx",
+      "bridge-red.log and passage-red.log → pinned transport and stale/revoked preparation tests",
+      "annotation-red.log → wrap without losing characters",
+      "base-red.log and navigation-base-red.log → /studio/ base allowlist and internal view paths"
+    ],
+    "chronology": "Recipient feature implementation and its initial RED targets already existed before complete donor observation. Later green/native reruns are compatibility counterchecks; no causal reconstruction or acceleration claim.",
+    "fullSuite": {
+      "runtimeNode": "26.5.1",
+      "ciNode": "22 (not run as a second local full)",
+      "filesPassed": 207,
+      "filesSkipped": 1,
+      "testsPassed": 2259,
+      "testsSkipped": 5,
+      "durationSeconds": 165.67,
+      "frozenGate": {
+        "passed": 2260,
+        "failed": 0,
+        "exit": 0
+      },
+      "sourceStable": true,
+      "profile": "../../studio/profile-after.json",
+      "scope": "Historic source before the later prepare/revoke fix. Full/gate logs preserved, not a run of the final source."
+    },
+    "finalTargeted": {
+      "node": "22.14.0",
+      "typecheck": "PASS",
+      "filesPassed": 8,
+      "testsPassed": 197,
+      "durationSeconds": 5.27,
+      "log": "../../studio/prepare-races-final-green.log",
+      "sourceProfile": "../../studio/profile-prepare-fix.json",
+      "red": "Independent completed-revocation probe reproduced; permanent revocation/corruption during journal both RED.",
+      "regression": "Final read-only snapshot under existing lesson lease; completed revocation/corruption/object-version/import before snapshot reject; concurrent CAS waits coherently.",
+      "fullRerun": "No second full at 1 worker; unchanged frozen gate rerun on final source, PASS2267/FAIL0 including native replay1/1, Node26.5.1.",
+      "independentOriginalOracle": {
+        "passed": 1,
+        "total": 1,
+        "testUnchangedSha256": "c4c94c0bbe2df5882070fd9fe6b14bc7f2f5ffe224a9ecf781c22380bfea0eb2",
+        "log": "../../review/C-private/C-prepare-revoke-green.log"
+      },
+      "finalFrozenGate": {
+        "passed": 2267,
+        "failed": 0,
+        "exit": 0,
+        "node": "26.5.1",
+        "sourceDrift": [],
+        "log": "../../studio/gate-prepare-fix-frozen.log",
+        "profile": "../../studio/profile-final-gate.json"
+      }
+    },
+    "finalMathLiveDelta": {
+      "version": "0.111.1 exact, existing dependency upgrade authorized by root",
+      "typecheck": "PASS Node22.14.0",
+      "focusedFiles": 6,
+      "focusedTestsPassed": 115,
+      "log": "../../studio/mathlive-fonts-lazy-green.log",
+      "red": "Font/base CDN and eager composer import; inert-template SSR onload attribute under0.110.0",
+      "fonts": 20,
+      "fontBytes": 259792,
+      "licenses": "MathLive MIT + matching KaTeX MIT notices emitted",
+      "profile": "../../studio/profile-mathlive-fonts.json",
+      "gate": {
+        "passed": 2274,
+        "failed": 0,
+        "exit": 0,
+        "node": "26.5.1",
+        "log": "../../studio/gate-mathlive-fonts-frozen.log",
+        "profile": "../../studio/profile-mathlive-fonts-final-gate.json",
+        "sourceDrift": []
+      },
+      "nativeFinalArtifact": "Root/reviewer owned, pending unique build from product commit",
+      "priorGates": "2259/2260 and2267 preserved as historic before this font/lazy/dependency delta"
+    }
+  },
+  "comparison": {
+    "writingSelection": "Donor has a real selected text outline. Studio keeps its existing Excalidraw selection and connects that exact object/version, without adding a duplicate.",
+    "undoRedo": "Donor native Undo removes text and Redo restores it. Studio delegates native editing/undo/redo to its existing MIT canvas; no new undo implementation or cross-journal undo equivalence claimed.",
+    "audioReplay": "Goodnotes public docs describe synchronized handwriting. Studio provides existing deterministic journal/audio replay plus an explicit exact-version focus outline. No claim to reproduce all Note Replay modes.",
+    "visual": "Studio retains its own paper/ink/sage design and dominant board; donor look/branding not copied. New panels collapse; mobile highlight and actual board text remain in view.",
+    "timing": "Post implementation countercheck, completed with explicit limits."
+  },
+  "totalCost": {
+    "captureRequestsKnown": 4,
+    "validEvidenceObjectsKnown": 2,
+    "invalidInputsBeforeCapture": 2,
+    "completeWritingProviderDurationMs": 11208,
+    "readyProviderDurationMs": 11491,
+    "knownValidProviderTotalMs": 22699,
+    "externalModelApiCalls": 0,
+    "newDependencies": 0,
+    "money": "NOT_MEASURED end-to-end; no purchase, paid model call, deploy or credential operation performed in this mission",
+    "engineeringTime": "NOT_MEASURED end-to-end; work was already implemented before full donor capture. Public-source reading, analysis, correction and verification add cost beyond 11.208s capture.",
+    "savings": "UNKNOWN: no causally comparable direct implementation baseline; no speedup or reduction claimed"
+  }
+}

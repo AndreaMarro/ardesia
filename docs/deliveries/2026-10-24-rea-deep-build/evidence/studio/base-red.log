@@ -1,0 +1,32 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/studioBase.test.ts (7 tests | 1 failed) 6ms
+     × keeps standalone development at root and supports the unified /studio/ artifact 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/studioBase.test.ts > isolated Studio release base > keeps standalone development at root and supports the unified /studio/ artifact
+AssertionError: expected undefined to be '/' // Object.is equality
+
+- Expected:
+"/"
+
++ Received:
+undefined
+
+ ❯ src/__tests__/studioBase.test.ts:5:40
+      3| describe("isolated Studio release base", () => {
+      4|   it("keeps standalone development at root and supports the unified /s…
+      5|     expect(configuration.default.base).toBe("/")
+       |                                        ^
+      6|     expect(configuration.resolveStudioBase({})).toBe("/")
+      7|     expect(configuration.resolveStudioBase({ ARDESIA_STUDIO_BASE: "/st…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  15:05:30
+   Duration  513ms (transform 154ms, setup 28ms, import 322ms, tests 6ms, environment 0ms)
