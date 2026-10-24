@@ -1,0 +1,91 @@
+{
+  "schema": "ardesia.local-logs.provenance.v1",
+  "normalization": "Text view trims trailing whitespace and final blank lines only; original stdout bytes preserved in ZIP",
+  "files": [
+    {
+      "path": "audio-independent-green.log",
+      "original_sha256": "4fd7e4cc4e560a18f96688fd5c506e99277675b6b4c366ef5d69d26419386bcd",
+      "text_view_sha256": "4fd7e4cc4e560a18f96688fd5c506e99277675b6b4c366ef5d69d26419386bcd"
+    },
+    {
+      "path": "audio-independent-red.log",
+      "original_sha256": "49d585f3811dfe7ce5814090942e2e8a70b1ee422439e08cacd087eb0cf05a0e",
+      "text_view_sha256": "d2df8e30bdc688b3fe6c6c9a9cdc2564eda0775a335804d2556faa39a06c4f12"
+    },
+    {
+      "path": "audio-lifecycle-red.log",
+      "original_sha256": "15c57a99236e95892dcdc8ad926b8b5aeca0921fa68cb8915ca80bb31d375239",
+      "text_view_sha256": "2d99ae2cf939e5c0619a371c054324854b1013ca767ef1ea0ee77d1926325b7e"
+    },
+    {
+      "path": "board-boundary-green.log",
+      "original_sha256": "4944811cd857a5f639f78ec996398da32f86ce91a842894dfc2682e6173a1b37",
+      "text_view_sha256": "b2a37b7bed48ac7d6f798392fa2bb300a24ee8dddddfc1929548640ddcd29593"
+    },
+    {
+      "path": "board-boundary-red.log",
+      "original_sha256": "b644dbb3e4bae0b00d54616d3bb524cdead6668ec691ca4be86fdeda25918d2b",
+      "text_view_sha256": "cfc9dac5b5ec90d96a07ec983393348b25889967e0c4d67ab3385766f1ac44a3"
+    },
+    {
+      "path": "board-expanded-suite.log",
+      "original_sha256": "0533283f7f3b86368926f3e587f160b9ddf008fbc025cab022264e96c73fb10f",
+      "text_view_sha256": "0533283f7f3b86368926f3e587f160b9ddf008fbc025cab022264e96c73fb10f"
+    },
+    {
+      "path": "hygiene-initial.log",
+      "original_sha256": "f1835bb04dc51e08cdec1867c9cbd5d0712eaeeff06b1220c70991877db28ded",
+      "text_view_sha256": "261bb535ec239e3bab96a11b9475c440fd67a2fa4f86acae866b6d11a9bb939c"
+    },
+    {
+      "path": "replay-green.log",
+      "original_sha256": "115138e247a7b3fc3d65d250e77dcc52b3a6c22e104d372fc539de9f775c7fe4",
+      "text_view_sha256": "0df91a9ef354c1096b9e13c2e0f6a8db05451dd6c52a6bc234df3308b5ae838c"
+    },
+    {
+      "path": "replay-range-green.log",
+      "original_sha256": "99fb19250fc03ae524e244c6059813509c66ceeaebf7d2190e03d7cfb7e78d57",
+      "text_view_sha256": "74ca7a1087697d67798c31415a5cc245cfd8740da5c62a6f4481aaf7e3847d72"
+    },
+    {
+      "path": "replay-range-red.log",
+      "original_sha256": "7adbf4c461b557a532ef92f46d4b4b84fde7d2a4d838babb86baef71a55f7c5d",
+      "text_view_sha256": "4425b3a98049844000222a78727568cae8ec70c9d6266b72bf0370cd49958a92"
+    },
+    {
+      "path": "replay-red.log",
+      "original_sha256": "c192bd523a1dfff482601e655f73308e7d84e14778282eaf179c1f3013ce27b3",
+      "text_view_sha256": "d4880f1bf24dd835a99e45da22349542ac3c7f25afcc49d61cbf0f509177a28a"
+    },
+    {
+      "path": "replay-scope-red.log",
+      "original_sha256": "2bf56fa2d05defa1aab65536ad4cb6bfcfaa53351e4f7f6cc04bdafbd4326c24",
+      "text_view_sha256": "200521c76b5a94b628d9472668b74e96c0b2f20defe6c7b11836ada993895473"
+    },
+    {
+      "path": "replay-typecheck.log",
+      "original_sha256": "49c195ea5084daea1035f8768ad255b42952b1bb6b5e99b6ba74a4d4326b692d",
+      "text_view_sha256": "09c31a13d5055cba1c0d289d207d081fb891c7c3b5b90d25dd6eb6092a9b38b9"
+    },
+    {
+      "path": "studio-build.log",
+      "original_sha256": "564b26c37e976d37ba5e7afd72f6b30e18ef757fc39cc81f89a207ebbe2f4530",
+      "text_view_sha256": "949c7eb89d877b65e476cca169db0f2549719760e7af6aa3450b1952ea4b202f"
+    },
+    {
+      "path": "studio-full-suite.log",
+      "original_sha256": "40563ab67469b7ec76033a15a104c21291c67e8b4916eea094cae02d5a18e7fe",
+      "text_view_sha256": "d30d0a67e4511af5d38727db3879f7118173c1b5ef5d0b2146da42a97c2a18e3"
+    },
+    {
+      "path": "studio-typecheck.log",
+      "original_sha256": "9c7434f6f8529c3fcaf302b1d5c8352c7af5628d3b56a5270b38cfd326a0cf8d",
+      "text_view_sha256": "09c31a13d5055cba1c0d289d207d081fb891c7c3b5b90d25dd6eb6092a9b38b9"
+    }
+  ],
+  "archive": {
+    "path": "original-logs.zip",
+    "sha256": "83021459b2487037377f0788caf394728b49254f17a19f6ebb56f53c7fc5802f",
+    "bytes": 19171
+  }
+}

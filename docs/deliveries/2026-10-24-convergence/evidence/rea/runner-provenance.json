@@ -1,0 +1,60 @@
+{
+  "schema": "ardesia.rea.portable-runner-provenance.v1",
+  "date": "2026-10-24",
+  "scripts": [
+    {
+      "original": {
+        "archive_path": "original/run_marketing_experiment.py",
+        "sha256": "025df5e194dc4141b1ebdbfdd12c3398ef72962eea3f20d3a61e629c586e6735"
+      },
+      "portable": {
+        "path": "run_marketing_experiment.py",
+        "sha256": "47e448b783951efbce012e73520ea3140d52872e656b068aad2ce391aae595a9"
+      }
+    },
+    {
+      "original": {
+        "archive_path": "original/verify_marketing_evidence.py",
+        "sha256": "a87610130abe07e7e43cea41c58ea8ca2db539ec2a68514eef611676a6dd478f"
+      },
+      "portable": {
+        "path": "verify_marketing_evidence.py",
+        "sha256": "376b5191677e56e2d6007f8e0358db0a89d8eadc397c000962598aeef780474c"
+      }
+    },
+    {
+      "original": {
+        "archive_path": "original/compare_direct_ast.cjs",
+        "sha256": "4cdee104f395b686395e3fab188306e5b996412997edc2b2f90d84babf909e10"
+      },
+      "portable": {
+        "path": "compare_direct_ast.cjs",
+        "sha256": "be1d55939cd8007fe080326acd6066265deb32032333fa8498966e347b6f5cb6"
+      }
+    }
+  ],
+  "originals_unchanged": "Original script bytes retained inside rea-original-evidence.zip; original JSON results refer to original execution",
+  "changes": {
+    "run_marketing_experiment.py": [
+      "repo detection and CLI/browser args or env",
+      "explicit empty fresh output",
+      "build and static plus runtime acquisition in one runner",
+      "no overwrite or rotation of old evidence",
+      "record working tree JS hash and Git HEAD"
+    ],
+    "verify_marketing_evidence.py": [
+      "verify archive and entry hashes offline",
+      "pinned Git source comparison or explicit source-file",
+      "fresh raw-dir mode",
+      "refuse changing archived target identity",
+      "compare derived fields with original result",
+      "new output schema distinguishes packaged verification"
+    ],
+    "compare_direct_ast.cjs": [
+      "explicit target argument",
+      "BABEL_PARSER_MODULE or normal Node resolution",
+      "source SHA256 outside timed parse/query"
+    ]
+  },
+  "validation": "Original archived evidence verifier rerun; syntax checked for portable scripts; no new REA/browser acquisition claimed by packaging"
+}

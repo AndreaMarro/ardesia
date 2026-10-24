@@ -1,0 +1,62 @@
+{
+  "schema": "ardesia.rea.setup-provenance.v1",
+  "date": "2026-10-24",
+  "record_kind": "packaging annotation; original logs remain unchanged in archive",
+  "rea": {
+    "version": "6.7.0",
+    "release_commit": "27dc42d10249f0410904a75c0997842eb03b931c",
+    "installation": "isolated npm prefix, --ignore-scripts --no-audit --no-fund, no global MCP registration",
+    "license": "MIT"
+  },
+  "environment": {
+    "node": "24.22.1",
+    "npm": "11.9.0",
+    "playwright_core": "1.58.2",
+    "chromium": "153.0.8010.0"
+  },
+  "observed_failures": [
+    {
+      "stage": "static analysis under restricted process sandbox",
+      "evidence_prefix": "original/marketing-static-sandbox-denied",
+      "message": "ps: fatal library error, lookup self; capability_unavailable",
+      "resolution": "same scoped command succeeded in environment-approved expanded process permissions"
+    },
+    {
+      "stage": "standard Playwright Chromium download",
+      "url": "https://cdn.playwright.dev/builds/cft/145.0.7632.6/linux64/chrome-headless-shell-linux64.zip",
+      "observed_response": "195-byte HTML Site Unavailable instead of ZIP",
+      "retained_raw_download_log": false,
+      "evidence_kind": "session observation, not a newly manufactured raw log"
+    },
+    {
+      "stage": "@sparticuz/chromium helper extraction",
+      "observed_failure": "chown during extraction; empty /tmp/chromium remained",
+      "retained_raw_helper_log": false,
+      "browser_runtime_json_note": "original/browser-runtime.json is preliminary helper output; executable invalid and suggested args NOT used by successful REA run"
+    },
+    {
+      "stage": "first browser scenario with empty executable",
+      "evidence_prefix": "original/marketing-runtime-initial-failure",
+      "resolution": "manual local Brotli extraction of official @sparticuz/chromium@153.0.0 into isolated directory; standard Playwright/REA launch options"
+    }
+  ],
+  "browser_fallback": {
+    "package": "@sparticuz/chromium",
+    "version": "153.0.0",
+    "metadata": "original/primary-licenses/@sparticuz__chromium.json",
+    "executable_bytes": 209022176,
+    "binary_included": false,
+    "installer_included": false,
+    "final_executable_original_path": "/workspace/scratch/6f2994042c33/research/rea-lab/browser-bin/chromium",
+    "final_scenario": "original/marketing-runtime-scenario.json"
+  },
+  "excluded": [
+    "node_modules",
+    "browser binaries",
+    "installers",
+    "third-party complete sources/documentation",
+    "corpora"
+  ],
+  "target": "owned Ardesia marketing preview, base 339ab08f4139da0b37e78bbde81e9fe4e83afea0",
+  "privacy": "no student data, real microphone, credentials or network writes in experiments"
+}

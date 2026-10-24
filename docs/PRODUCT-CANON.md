@@ -1,4 +1,44 @@
-# ARDESIA — PRODUCT-CANON (23/06/2026)
+# ARDESIA — PRODUCT-CANON
+
+## Addendum di convergenza — 24 ottobre 2026
+
+### Identità
+
+**Ardesia è l'ambiente di lavoro didattico nel quale una lezione conserva il proprio contesto e diventa materiale, pratica, feedback e preparazione della lezione successiva.** Il docente mantiene controllo su fonti, interpretazioni e pubblicazione. Lo studente può ritrovare il passaggio, capire l'errore osservato e affrontare una prova nuova. Questa è la direzione di prodotto: il ciclo completo non è ancora dimostrato nel candidato esaminato.
+
+Ardesia è l'unico prodotto. LessonOS organizza contesto, memoria e proiezioni. Kirchhoff, simulazione, lettura documenti e input matematico sono capacità integrabili. Core/Plugin/Pack/Workflow rimane la classificazione: una specializzazione non porta con sé una seconda identità, autenticazione, memoria studente o contabilità.
+
+### Utenti e prima offerta
+
+Il primo utente è il docente fondatore: deve preparare, insegnare, ritrovare, correggere e seguire gli studenti nello stesso percorso. Il secondo è lo studente, che continua dopo la lezione. Il terzo è un tutor invitato, che deve ottenere valore da un'esperienza piccola prima di affrontare un catalogo o un marketplace.
+
+Il primo prodotto commerciale è un percorso circoscritto di fisica, con obiettivo, incontri, supporto e limiti espliciti. Il catalogo non definisce l'identità del prodotto; la quantità di quesiti non certifica qualità scientifica, apprendimento o disponibilità alla pubblicazione.
+
+### Unità didattica e differenziazione
+
+L'unità editoriale proposta è una sequenza breve: situazione → previsione → manipolazione o esempio → spiegazione → prova autonoma → recupero → trasferimento. È una composizione dei CoursePack e dei riferimenti versionati già presenti, non un nuovo dominio di tentativi. Non tutti gli esercizi richiedono tutti i passaggi.
+
+Il vantaggio da verificare è la continuità **fonte esatta della lezione → evidenza del tentativo → revisione docente → attività successiva**. Audio sincronizzato e una bella lavagna sono ingredienti; da soli non dimostrano unicità. La memoria conserva osservazioni verificabili e ipotesi correggibili, senza convertire pochi clic in diagnosi dello studente.
+
+### Invarianti di esperienza
+
+- Un comando dell'interfaccia e lo stesso comando via agente attraversano le medesime autorizzazioni del Core.
+- Una proposta AI resta privata e separata dal feedback pubblicato; i risultati deterministici e le interpretazioni hanno provenienza distinguibile.
+- La cattura richiede una scelta esplicita della sessione. Consenso storico, riapertura o semplice navigazione non avviano il microfono.
+- Il replay ricostruisce la lezione selezionata. La mancanza di dati non autorizza il recupero silenzioso di un'altra lezione.
+- Fonti, versioni, errori e limiti sono risolvibili; il pannello tecnico resta fuori dal percorso ordinario finché non serve a una decisione.
+- Design, tastiera, touch, stato di caricamento e movimento ridotto fanno parte dell'accettazione della funzione.
+- L'AI esterna può aiutare l'autore; il percorso deterministico deve rimanere utile senza un provider obbligatorio. L'introduzione di inferenza nel runtime richiede una decisione esplicita rispetto all'invariante ZERO-LLM vigente.
+
+### Stato e prossimo incremento
+
+La [consegna datata](deliveries/2026-10-24-convergence/README.md) contiene inventario, cinque journey, progetto visuale, fonti pedagogiche, economia e gate temporali. Il delta applicativo ripara affidabilità audio e isolamento del replay; non annuncia una funzione audio collegata alla Room. Il prossimo incremento è il ponte sessione/journal/media e il suo round-trip, seguito dalla singola esperienza di fluidi già calcolabile nel Core.
+
+Marketplace aperto, app nativa nuova, copertura universale e correzione autonoma generalista restano fuori dalla beta proposta. Le capacità future non vanno rappresentate da pulsanti che suggeriscono una disponibilità inesistente.
+
+## Archivio: canone del 23 giugno 2026
+
+Le sezioni seguenti conservano le decisioni e lo stato osservato allora. I percorsi sorgente, i conteggi e gli stati non sono il rilevamento corrente; per il routing attuale vedere [CANON-INDEX](CANON-INDEX.md).
 
 > Cos'è il prodotto, cosa NON è, e la definizione-di-fatto (reality test) camminata sullo stato REALE. Verificato firsthand. Vedi [ARCHITECTURE-CANON](ARCHITECTURE-CANON.md).
 

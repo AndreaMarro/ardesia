@@ -1,4 +1,27 @@
-# ARDESIA — ARCHITECTURE-CANON (23/06/2026)
+# ARDESIA — ARCHITECTURE-CANON
+
+## Addendum di autorità — 24 ottobre 2026
+
+La fonte corrente del comportamento applicativo è il repository canonico `AndreaMarro/ardesia`, sul commit candidato esplicitamente selezionato. Il routing verso repository separati riportato nel documento di giugno è storico e superato dal cutover monorepo. Il fatto che un repository archivio contenga un'implementazione non la rende consumer del prodotto attuale.
+
+L'[ADR-0004](adr/ADR-0004-study-core-and-provider-boundaries.md) è il riferimento dei confini Study Core/provider. Preservare un modular monolith con servizi di dominio deterministici, API e adattatori sottili. Web, Studio, MCP e future UI condividono identità, autorizzazioni e comandi: nessuna scrittura diretta al database da plugin o server MCP.
+
+| Autorità | Cosa possiede | Cosa non deve diventare |
+| --- | --- | --- |
+| Studio / WorkspaceStore / journal canonico | Evidenze della lezione, oggetti, sessioni e riferimenti media locali secondo il contratto | Un secondo registro di edizioni, incassi o valutazioni |
+| Study Core / LessonOS | Corsi, fonti versionate, consegne, review, diario ed eventi autorizzati | Un orchestratore vincolato a un solo host o modello |
+| Provider e capability specialistiche | Calcolo, estrazione, trascrizione o rendering attraverso porte dichiarate | Autorità sulla pubblicazione o sull'identità dello studente |
+| UI e MCP adapter | Proiezione e invocazione degli stessi servizi | Seconda logica di correzione o copia autonoma della memoria |
+
+L'unificazione non richiede fondere tutti i log fisici: evidenze raw della sessione e transazioni Study hanno ambiti diversi. Richiede identità e riferimenti espliciti, versioni, idempotenza e una regola chiara su quale dominio può dichiarare ciascun fatto. Una proiezione è ricostruibile; il suo risultato non sostituisce la fonte.
+
+Nella base esaminata `339ab08f4139da0b37e78bbde81e9fe4e83afea0`, `AudioRecorder` usa ancora i path legacy; il journal v2 rifiuta audio e Room non istanzia il recorder. Per completare il ponte usare sessioni CAS e path esistenti, aggiungere il contratto di evento con migrazione/decoder espliciti e verificare replay/export/import. Non aggirare il journal retrocedendo gli eventi a un formato precedente.
+
+Il dettaglio delle scoperte, del debito e delle decisioni di riuso è nella [consegna](deliveries/2026-10-24-convergence/README.md). I contratti nuovi sono marcati `SPECIFIED`; il codice corretto e i test sono elencati separatamente. Nessun gate di produzione è implicito in questa proposta.
+
+## Archivio: architettura del 23 giugno 2026
+
+Il contenuto sotto è conservato per la ricostruzione storica. In particolare la «REGOLA DURA #1», i percorsi Mac, le percentuali e la mappa `EXISTS/PARTIAL/MISSING` descrivono giugno; non prevalgono sul routing e sull'ADR indicati sopra.
 
 > Spec architetturale canonica, ricavata dai repo reali e verificata firsthand (workflow `wf_a3b09ee4`, 10 agenti). Ogni claim a file:riga + stato **EXISTS / PARTIAL / MISSING**. NON marketing. Vedi [PRODUCT-CANON](PRODUCT-CANON.md) · [PLUGIN-MARKETPLACE-CANON](PLUGIN-MARKETPLACE-CANON.md) · [ELAB-AS-PLUGIN-CANON](ELAB-AS-PLUGIN-CANON.md).
 

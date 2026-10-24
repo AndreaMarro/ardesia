@@ -7,12 +7,13 @@ import { type WorkspaceStore } from "./WorkspaceStore"
 import { PATHS } from "./types"
 import { deserializeEvents } from "./ReplayEngine"
 import type { JournalEvent } from "./JournalRecorder"
+import { roomPaths } from "./roomPaths"
 
 export interface AudioChunkRef {
   chunkIndex: number
   startEpoch: number
   endEpoch: number
-  /** Path del file nel workspace: raw/audio/chunk-N.webm */
+  /** Path nella room selezionata; flat soltanto per la lettura legacy esplicita. */
   path: string
 }
 
@@ -26,7 +27,8 @@ export interface ReplayTimeline {
 }
 
 /** Costruisce la timeline di replay da un array di eventi journal. Puro. */
-export function buildReplayTimeline(events: JournalEvent[]): ReplayTimeline {
+export function buildReplayTimeline(events: JournalEvent[], room?: string): ReplayTimeline {
+  const audioDir = room === undefined ? PATHS.AUDIO_DIR : roomPaths(room).audioDir
   let firstEventTime: number | null = null
   let lastEventTime: number | null = null
   const audioChunks: AudioChunkRef[] = []
@@ -41,7 +43,7 @@ export function buildReplayTimeline(events: JournalEvent[]): ReplayTimeline {
         chunkIndex: ev.chunkIndex,
         startEpoch: ev.startEpoch,
         endEpoch: ev.endEpoch,
-        path: `${PATHS.AUDIO_DIR}chunk-${ev.chunkIndex}.webm`,
+        path: `${audioDir}chunk-${ev.chunkIndex}.webm`,
       })
     }
   }
@@ -50,10 +52,15 @@ export function buildReplayTimeline(events: JournalEvent[]): ReplayTimeline {
   return { events, firstEventTime, lastEventTime, audioChunks }
 }
 
-/** Legge events.jsonl dal workspace e costruisce la timeline. Journal assente → timeline vuota. */
-export async function loadReplayTimeline(store: WorkspaceStore): Promise<ReplayTimeline> {
-  const blob = await store.read(PATHS.JOURNAL)
-  if (!blob) return buildReplayTimeline([])
+/**
+ * La vista di una lezione legge soltanto il suo journal, anche quando è assente.
+ * Omettere room è riservato ai consumer legacy espliciti: nessun fallback flat
+ * può attribuire a una lezione gli eventi o l'audio di un'altra.
+ */
+export async function loadReplayTimeline(store: WorkspaceStore, room?: string): Promise<ReplayTimeline> {
+  const source = room === undefined ? PATHS.JOURNAL : roomPaths(room).journal
+  const blob = await store.read(source)
+  if (!blob) return buildReplayTimeline([], room)
   const text = await blob.text()
-  return buildReplayTimeline(deserializeEvents(text))
+  return buildReplayTimeline(deserializeEvents(text, source), room)
 }

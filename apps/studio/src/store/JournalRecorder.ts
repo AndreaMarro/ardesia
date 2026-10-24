@@ -169,6 +169,48 @@ function failJournal(reason: string): never {
   throw new Error(`Journal v2: ${reason}`)
 }
 
+/**
+ * Excalidraw uses own `undefined` fields for absent optional metadata. Omit
+ * only those object data fields at capture; the canonical validator stays
+ * strict. Preserve descriptors, array holes and unsupported values so they
+ * are rejected, never coerced by JSON.stringify or erased by structuredClone.
+ */
+function snapshotBoardElement(element: Record<string, unknown>): Record<string, unknown> {
+  const copies = new WeakMap<object, object>()
+  const pending: Array<{ source: object; target: object }> = []
+  const snapshot = (value: unknown): unknown => {
+    if (typeof value !== "object" || value === null) return value
+    const isArray = Array.isArray(value)
+    if (Object.getPrototypeOf(value) !== (isArray ? Array.prototype : Object.prototype)) {
+      return value // Leave non-JSON prototypes for the envelope validator.
+    }
+    const existing = copies.get(value)
+    if (existing) return existing
+    const target = isArray ? [] : {}
+    copies.set(value, target)
+    pending.push({ source: value, target })
+    return target
+  }
+
+  const result = snapshot(element) as Record<string, unknown>
+  // Iterative traversal also preserves cycles for the validator's bounded walk.
+  while (pending.length > 0) {
+    const { source, target } = pending.pop()!
+    for (const key of Reflect.ownKeys(source)) {
+      const descriptor = Object.getOwnPropertyDescriptor(source, key)
+      if (!descriptor) failJournal("board element property changed during capture")
+      if (
+        !Array.isArray(source) && typeof key === "string" &&
+        descriptor.enumerable && "value" in descriptor && descriptor.value === undefined
+      ) continue
+      Object.defineProperty(target, key, "value" in descriptor
+        ? { ...descriptor, value: snapshot(descriptor.value) }
+        : descriptor)
+    }
+  }
+  return result
+}
+
 export function looksLikeJournalEnvelopeV2(value: unknown): boolean {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return false
   return Object.keys(value).some((key) => ENVELOPE_HINT_KEYS.has(key))
@@ -549,7 +591,7 @@ export class JournalRecorder {
 
       if (prevVersion === undefined && !isDeleted) {
         // Nuovo elemento
-        const event: JournalEvent = { t, type: "element.add", element: structuredClone(el) }
+        const event: JournalEvent = { t, type: "element.add", element: snapshotBoardElement(el) }
         stage(event, "journal.element.add", this.verifiedBoardEvidence(`board:${encodeURIComponent(id)}`))
       } else if (prevVersion !== undefined && isDeleted) {
         // Elemento cancellato (isDeleted flag)
@@ -559,7 +601,7 @@ export class JournalRecorder {
         continue
       } else if (prevVersion !== undefined && version > prevVersion && !isDeleted) {
         // Aggiornamento strutturale (non move/restyle)
-        const event: JournalEvent = { t, type: "element.update", element: structuredClone(el) }
+        const event: JournalEvent = { t, type: "element.update", element: snapshotBoardElement(el) }
         stage(event, "journal.element.update", this.verifiedBoardEvidence(`board:${encodeURIComponent(id)}`))
       }
 

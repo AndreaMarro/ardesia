@@ -1,0 +1,306 @@
+{
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "secureContext": true,
+    "supportedOpus": true
+  },
+  "checks": [
+    {
+      "name": "MediaRecorder is the native browser constructor",
+      "pass": true
+    },
+    {
+      "name": "synthetic WebAudio context is running",
+      "pass": true
+    },
+    {
+      "name": "capture entered recording state",
+      "pass": true
+    },
+    {
+      "name": "no timeslice chunk emitted before short stop",
+      "pass": true
+    },
+    {
+      "name": "tracks end synchronously on ordinary stop",
+      "pass": true
+    },
+    {
+      "name": "stop promise waits while native tail storage is pending",
+      "pass": true
+    },
+    {
+      "name": "marker waits while native tail storage is pending",
+      "pass": true
+    },
+    {
+      "name": "native final chunk exists and has nonzero bytes",
+      "pass": true,
+      "detail": 19481
+    },
+    {
+      "name": "single short capture produces one persisted chunk and marker",
+      "pass": true
+    },
+    {
+      "name": "marker observes already persisted audio",
+      "pass": true
+    },
+    {
+      "name": "native dataavailable precedes native stop",
+      "pass": true
+    },
+    {
+      "name": "browser generated trusted final media events",
+      "pass": true
+    },
+    {
+      "name": "storage completes before marker and stop resolves",
+      "pass": true
+    },
+    {
+      "name": "normal stop leaves recorder inactive and tracks ended",
+      "pass": true
+    },
+    {
+      "name": "native final blob decodes to non-silent synthetic audio",
+      "pass": true,
+      "detail": {
+        "duration": 1.1999773242630385,
+        "sampleRate": 44100,
+        "channels": 2,
+        "maxAmplitude": 0.05061917379498482
+      }
+    },
+    {
+      "name": "pending permission fixture supplies live native MediaStream",
+      "pass": true
+    },
+    {
+      "name": "late permission never constructs or starts a MediaRecorder",
+      "pass": true
+    },
+    {
+      "name": "late stream tracks are ended after pending permission revoke",
+      "pass": true
+    },
+    {
+      "name": "pending permission revoke persists no audio and emits no marker",
+      "pass": true
+    },
+    {
+      "name": "pending permission revoke retains consent OFF in session",
+      "pass": true
+    }
+  ],
+  "normal": {
+    "permissionCalls": 1,
+    "nativeConstructed": 1,
+    "chunk": {
+      "file": "raw/audio/chunk-0.webm",
+      "bytes": 19481,
+      "mimeType": "audio/webm;codecs=opus",
+      "signatureHex": "1a45dfa3",
+      "sha256": "3739c4fc38a1e88329d89d3b4fc8ae65492058f8d99b35217b99a04c0a03f4fd"
+    },
+    "markers": [
+      {
+        "index": 0,
+        "from": 1792831525929,
+        "to": 1792831527131,
+        "storedAtEmission": true,
+        "bytesAtEmission": 19481
+      }
+    ],
+    "events": [
+      {
+        "name": "native-start",
+        "time": 223,
+        "trusted": true
+      },
+      {
+        "name": "native-dataavailable",
+        "time": 1363.8999999999069,
+        "trusted": true,
+        "bytes": 19481,
+        "mimeType": "audio/webm;codecs=opus"
+      },
+      {
+        "name": "write-start",
+        "time": 1364.0999999996275,
+        "file": "raw/audio/chunk-0.webm",
+        "bytes": 19481
+      },
+      {
+        "name": "native-stop",
+        "time": 1364.0999999996275,
+        "trusted": true
+      },
+      {
+        "name": "write-complete",
+        "time": 1444.1999999997206,
+        "file": "raw/audio/chunk-0.webm"
+      },
+      {
+        "name": "marker",
+        "time": 1444.3999999999069,
+        "index": 0,
+        "from": 1792831525929,
+        "to": 1792831527131,
+        "storedAtEmission": true,
+        "bytesAtEmission": 19481
+      },
+      {
+        "name": "stop-resolved",
+        "time": 1444.3999999999069
+      }
+    ],
+    "decoded": {
+      "duration": 1.1999773242630385,
+      "sampleRate": 44100,
+      "channels": 2,
+      "maxAmplitude": 0.05061917379498482
+    },
+    "tracksAfterStop": [
+      {
+        "kind": "audio",
+        "readyState": "ended"
+      }
+    ]
+  },
+  "pendingRevoke": {
+    "permissionCalls": 1,
+    "nativeConstructed": 0,
+    "markers": [],
+    "session": {
+      "v": 1,
+      "created": 1792831527236,
+      "audioConsent": false,
+      "audioStartEpoch": 1792831527225
+    },
+    "tracksAfterSettlement": [
+      {
+        "kind": "audio",
+        "readyState": "ended"
+      }
+    ]
+  },
+  "scope": {
+    "MediaRecorder": "native Chromium",
+    "input": "440Hz WebAudio oscillator into MediaStreamDestination; no audio output connected",
+    "replaced": [
+      "getUserMedia permission source",
+      "WorkspaceStore in-memory test implementation"
+    ],
+    "physicalMicrophoneUsed": false,
+    "networkWrites": false,
+    "journalIntegrationVerified": false,
+    "realFilesystemPersistenceVerified": false
+  },
+  "cleanup": {
+    "audioContext": "closed",
+    "everyTrackEnded": true
+  },
+  "browserVersion": "153.0.8010.0",
+  "metadata": {
+    "schema": "ardesia.audio.native-observation.v1",
+    "date": "2026-10-24T08:45:27.296Z",
+    "elapsedMs": 1626,
+    "gitHead": "339ab08f4139da0b37e78bbde81e9fe4e83afea0",
+    "source": "apps/studio/src/store/AudioRecorder.ts",
+    "sourceSha256Before": "6534bc53e1acbc00c7c25dea545d52f942cbff19dbfc4cfa999f82c310d269cd",
+    "sourceSha256After": "6534bc53e1acbc00c7c25dea545d52f942cbff19dbfc4cfa999f82c310d269cd",
+    "scriptSha256": "13e9eaf4e777009511d7908578bcdad4d9020ae9fa133ddd755eca6bd595c90b",
+    "executablePath": "/workspace/scratch/6f2994042c33/research/rea-lab/browser-bin/chromium",
+    "origin": "http://127.0.0.1:5197",
+    "browserClosed": true
+  },
+  "network": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/__audio-native-harness__"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/AudioRecorder.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/WorkspaceStore.ts?t=1792831403460"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/types.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/drivers/localStorage.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/drivers/fsa.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/zipBundle.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/lessonBundle.ts?t=1792831403460"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/roomPaths.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/lessonMutationLock.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/sessionState.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/codec.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/node_modules/.vite/deps/jszip.js?v=da19e4ea"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/AudioRecorder.ts?t=1792831403460"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/lessonos/eventlog.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/lessonos/indexedDbEventLog.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/core/contracts/eventEnvelope.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/JournalRecorder.ts?t=1792831403460"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/lessonBundleManifest.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/src/store/lessonImportTransaction.ts"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:5197/node_modules/.vite/deps/chunk-B4lejLz5.js?v=0d3f6f3b"
+    }
+  ],
+  "pageErrors": [],
+  "passed": true
+}

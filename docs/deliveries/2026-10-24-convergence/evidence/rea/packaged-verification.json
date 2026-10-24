@@ -1,0 +1,82 @@
+{
+  "schema": "ardesia.research.marketing-context-observation.portable-verification.v1",
+  "target_commit": "339ab08f4139da0b37e78bbde81e9fe4e83afea0",
+  "runtime_evidence_id": "ev_eec60a4bf5277a03bdee83bbac5e07d8eb8d8555e19e41c115a5f945ed8ba873",
+  "static_evidence_id": "ev_f4f4897b6c8cbde6f0e13c195e2ac0b6d47a60182a4cf2afe0709d0a15ca7f55",
+  "artifact_sha256": "22ab32c933f637003e770993953991e5d235f1e829b1798008a585b323607a64",
+  "source_js_sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+  "source_identity": {
+    "kind": "pinned-git-object",
+    "object": "339ab08f4139da0b37e78bbde81e9fe4e83afea0:apps/marketing-01/assets/site.js"
+  },
+  "archive_integrity": {
+    "archive_sha256": "caab0e46b8e62600cfbe423ba356b425d500aceef7b60c7a4ccd42483993ff56",
+    "entries_verified": 40
+  },
+  "assertions": [
+    {
+      "criterion": "all eight declared actions completed",
+      "pass": true
+    },
+    {
+      "criterion": "complete capture in its declared scope",
+      "pass": true
+    },
+    {
+      "criterion": "owned browser terminated",
+      "pass": true
+    },
+    {
+      "criterion": "hint does not open the worked solution",
+      "pass": true
+    },
+    {
+      "criterion": "worked solution remains distinct from the error check",
+      "pass": true
+    },
+    {
+      "criterion": "error explanation becomes visible on request",
+      "pass": true
+    },
+    {
+      "criterion": "return retains the canonical course id in URL and anchor",
+      "pass": true
+    },
+    {
+      "criterion": "course selection is actually restored in the DOM",
+      "pass": true
+    },
+    {
+      "criterion": "all captured requests stayed on the local origin",
+      "pass": true
+    },
+    {
+      "criterion": "no captured page error",
+      "pass": true
+    },
+    {
+      "criterion": "preview is visibly an editorial draft",
+      "pass": true
+    },
+    {
+      "criterion": "emitted script equals the canonical source byte-for-byte",
+      "pass": true
+    }
+  ],
+  "observed_scope_limits": {
+    "audio_or_video_elements_in_example": [],
+    "answer_submission_controls_in_example": [],
+    "storage_at_end": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "captured_request_methods": [
+      "GET"
+    ],
+    "graded_attempts_or_student_trace_verified": false,
+    "lesson_audio_alignment_verified": false,
+    "production_access_verified": false
+  },
+  "interpretation": "Offline re-verification of retained evidence; not a new browser run."
+}

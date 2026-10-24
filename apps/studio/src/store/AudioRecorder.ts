@@ -57,9 +57,18 @@ export interface AudioRecorderOptions {
   /** Clock condiviso col journal (stesso riferimento epoch) */
   clock: () => number
   /** Chiamato quando un chunk audio è completato */
-  onChunk?: (chunkIndex: number, startEpoch: number, endEpoch: number) => void
+  onChunk?: (chunkIndex: number, startEpoch: number, endEpoch: number) => void | Promise<void>
   /** Factory MediaRecorder iniettabile per test */
   createMediaRecorder?: (stream: MediaStream) => MediaRecorder
+}
+
+type RecordingTake = {
+  recorder: MediaRecorder
+  stream: MediaStream
+  closed: boolean
+  discard: boolean
+  stopped: Promise<void>
+  resolveStopped: () => void
 }
 
 /**
@@ -78,17 +87,23 @@ export interface AudioRecorderOptions {
 export class AudioRecorder {
   private store: WorkspaceStore
   private clock: () => number
-  private onChunk: ((chunkIndex: number, startEpoch: number, endEpoch: number) => void) | undefined
+  private onChunk: ((chunkIndex: number, startEpoch: number, endEpoch: number) => void | Promise<void>) | undefined
   private _consent: boolean = false
   private _recording: boolean = false
   private _startEpoch: number | null = null
   private _chunkIndex: number = 0
-  private _mediaRecorder: MediaRecorder | null = null
-  private _stream: MediaStream | null = null
+  private _take: RecordingTake | null = null
   private _chunkStartEpoch: number | null = null
   private createMediaRecorder: (stream: MediaStream) => MediaRecorder
   private _lastRevoke: Promise<void> = Promise.resolve()
-  /** Chain di promise per chunk write in volo: stop() le attende prima di fermarsi */
+  private _disposed = false
+  /** A pending permission request belongs to exactly one consent/start lifetime. */
+  private _generation = 0
+  private _starting: { generation: number; promise: Promise<void> } | null = null
+  private _stopping: Promise<void> | null = null
+  private _pendingSessionWrites: Promise<void> = Promise.resolve()
+  private _lastError: Error | null = null
+  /** stop() drains this queue AFTER the recorder's final dataavailable/onstop. */
   private _pendingChunkWrites: Promise<void> = Promise.resolve()
 
   constructor(options: AudioRecorderOptions) {
@@ -110,6 +125,11 @@ export class AudioRecorder {
     return this._startEpoch
   }
 
+  /** Capture/storage failure remains observable even when revocation cleans up. */
+  get lastError(): Error | null {
+    return this._lastError
+  }
+
   /**
    * Imposta il consenso e persiste in session.yaml.
    * Se consent passa da false→true: registra audioStartEpoch in session.yaml.
@@ -117,21 +137,39 @@ export class AudioRecorder {
    * chunk audio (GDPR: revoca = i dati non devono esistere, il filtro in export non basta).
    */
   set consent(val: boolean) {
-    if (this._consent === val) return
+    if (this._disposed || this._consent === val) return
+    this._generation++
     this._consent = val
     if (val) {
       this._startEpoch = this.clock()
       this._chunkStartEpoch = this._startEpoch
       this._chunkIndex = 0
+      this.persistSession().catch(() => {})
+      return
     }
-    // Persiste SEMPRE: ON (audioConsent + startEpoch) e OFF (revoca)
-    this.persistSession().catch(() => {})
-    if (!val) {
-      this._lastRevoke = (async () => {
-        await this.stop()
-        await this.purgeAudioChunks()
-      })()
-    }
+
+    // Revoke synchronously: no later permission/data callback may revive this
+    // take, even if the user grants NEW consent before cleanup finishes.
+    if (this._take) this._take.discard = true
+    const stopped = this.stop()
+    // Observe a capture failure immediately, even if an earlier revoke is
+    // still draining; cleanup below still waits for this exact stop promise.
+    stopped.catch(() => {})
+    const persisted = this.persistSession()
+    // Attach now; cleanup still exposes the original error through lastRevoke.
+    persisted.catch(() => {})
+    const previousRevoke = this._lastRevoke
+    this._lastRevoke = (async () => {
+      // A subsequent revoke can retry a failed purge; a start cannot bypass it.
+      await previousRevoke.catch(() => {})
+      // A failed recording must still be deleted. lastError preserves the
+      // capture failure; lastRevoke reports failure of deletion/persistence.
+      await stopped.catch(() => {})
+      await this._pendingChunkWrites
+      await this.purgeAudioChunks()
+      await persisted
+    })()
+    this._lastRevoke.catch(() => {})
   }
 
   /** Promise dell'ultima revoca (stop + cancellazione chunk) — awaitabile da UI e test */
@@ -161,90 +199,131 @@ export class AudioRecorder {
   }
 
   /** Avvia registrazione (chiede permesso microfono) */
-  async start(): Promise<void> {
-    if (this._recording || !this._consent) return
+  start(): Promise<void> {
+    if (this._disposed || this._recording || !this._consent) return Promise.resolve()
+    const generation = this._generation
+    if (this._starting?.generation === generation) return this._starting.promise
+    const promise = this.startGeneration(generation).finally(() => {
+      if (this._starting?.generation === generation) this._starting = null
+    })
+    this._starting = { generation, promise }
+    return promise
+  }
 
+  private currentGeneration(generation: number): boolean {
+    return !this._disposed && this._consent && generation === this._generation
+  }
+
+  private async startGeneration(generation: number): Promise<void> {
+    let stream: MediaStream | null = null
+    let take: RecordingTake | null = null
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      this._stream = stream
+      // New capture cannot race an old purge, old stop, or consent persistence.
+      await this._lastRevoke
+      await this._stopping
+      await this._pendingChunkWrites
+      await this._pendingSessionWrites
+      if (!this.currentGeneration(generation)) return
+      this._lastError = null
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      if (!this.currentGeneration(generation)) {
+        this.releaseStream(stream)
+        return
+      }
 
       const recorder = this.createMediaRecorder(stream)
-      this._mediaRecorder = recorder
-
-      // Salva chunk ogni 30s
+      let resolveStopped!: () => void
+      const stopped = new Promise<void>((resolve) => { resolveStopped = resolve })
+      take = { recorder, stream, closed: false, discard: false, stopped, resolveStopped }
+      const currentTake = take
+      this._take = take
       recorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          this.handleChunk(event.data).catch(() => {})
-        }
+        if (event.data.size > 0) this.handleChunk(currentTake, event.data)
       }
-
+      recorder.onstop = () => { this.finishTake(currentTake) }
       recorder.onerror = () => {
-        // Rilascia il microfono ANCHE su errore: senza releaseStream il
-        // MediaStream resta attivo dopo un guasto del recorder (HERMES-0816)
-        this.stopInternal()
-        this.releaseStream()
+        if (this._take === currentTake) this.recordFailure(new Error("Audio recording failed"))
+        currentTake.discard = true
+        this.finishTake(currentTake)
       }
-
-      recorder.onstop = () => {
-        this.stopInternal()
-        this.releaseStream()
-      }
-
-      recorder.start(30000) // timeslice = 30s
+      recorder.start(30000)
+      const actualStart = this.clock()
+      this._chunkStartEpoch = actualStart
+      if (this._chunkIndex === 0) this._startEpoch = actualStart
       this._recording = true
-    } catch {
-      // Permesso microfono negato — registrazione non parte, revoca persistita
-      this._consent = false
-      this._recording = false
-      this.persistSession().catch(() => {})
+      await this.persistSession()
+    } catch (error) {
+      if (take) {
+        take.discard = true
+        try { if (take.recorder.state !== "inactive") take.recorder.stop() } catch { /* already stopped */ }
+        this.finishTake(take)
+      } else if (stream) {
+        this.releaseStream(stream)
+      }
+      // An old permission rejection must not revoke a newer consent lifetime.
+      if (this.currentGeneration(generation)) {
+        this.recordFailure(error)
+        this.consent = false
+      }
     }
   }
 
-  /** Ferma registrazione — attende chunk write in volo prima di fermare */
-  async stop(): Promise<void> {
-    if (!this._recording) return
-
-    // Attende che tutti i chunk write in volo siano completati PRIMA di fermare
-    // il recorder e rilasciare lo stream. Critico per la revoca GDPR: senza questo
-    // await, purgeAudioChunks può correre prima che un chunk atterri su store.
-    await this._pendingChunkWrites
-
-    // _recording=false PRIMA di mediaRecorder.stop(): un dataavailable tardivo
-    // (chunk parziale emesso dallo stop) non deve scrivere chunk orfani —
-    // critico nella revoca GDPR, dove la purge corre subito dopo
+  /**
+   * Stop capture immediately, then drain the browser's FINAL dataavailable and
+   * its writes. Normal stop preserves that tail; revocation/dispose discard it.
+   * Cancelling a pending permission prompt cannot abort the browser promise,
+   * but its eventual stream is released without ever constructing a recorder.
+   */
+  stop(): Promise<void> {
+    this._generation++
     this._recording = false
-    const mr = this._mediaRecorder
-    this._mediaRecorder = null
-    if (mr && mr.state !== "inactive") {
+    if (this._stopping) return this._stopping
+    const take = this._take
+    if (!take) return this.drainChunks()
+
+    const stopping = (async () => {
+      await take.stopped
+      await this.drainChunks()
+    })()
+    this._stopping = stopping.finally(() => { this._stopping = null })
+    if (take.recorder.state !== "inactive") {
       try {
-        mr.stop()
-      } catch {
-        // double-stop → InvalidStateError: già fermo, nulla da fare
+        take.recorder.stop()
+      } catch (error) {
+        this.recordFailure(error)
+        take.discard = true
+        this.finishTake(take)
       }
     }
-    this.releaseStream()
+    // Do not keep the microphone alive while waiting for disk writes/events.
+    this.releaseStream(take.stream)
+    return this._stopping
   }
 
   /** Reimposta consenso senza persistere (per caricamento da session.yaml all'avvio) */
   setConsentFromSession(consent: boolean, startEpoch: number | null): void {
+    if (this._disposed) return
     this._consent = consent
     this._startEpoch = startEpoch
   }
 
   /** Persiste session.yaml con stato corrente */
-  private async persistSession(): Promise<void> {
+  private persistSession(): Promise<void> {
     const yaml = serializeSessionYaml({
       v: 1,
       created: this.clock(),
       audioConsent: this._consent,
       audioStartEpoch: this._startEpoch,
     })
-    await this.store.saveSessionYaml(yaml)
+    // Snapshot NOW, serialize writes. A slow ON may never overwrite a later OFF.
+    this._pendingSessionWrites = this._pendingSessionWrites.catch(() => {})
+      .then(() => this.store.saveSessionYaml(yaml))
+    return this._pendingSessionWrites
   }
 
   /** Gestisce un chunk ricevuto da MediaRecorder */
-  private async handleChunk(data: Blob): Promise<void> {
-    if (!this._recording || !this._consent) return
+  private handleChunk(take: RecordingTake, data: Blob): void {
+    if (this._take !== take || take.closed || take.discard || !this._consent || this._disposed) return
     const now = this.clock()
     const chunkStart = this._chunkStartEpoch ?? now
     const index = this._chunkIndex
@@ -254,37 +333,48 @@ export class AudioRecorder {
     this._chunkIndex++
     this._chunkStartEpoch = now
 
-    // Incatena la write sulla _pendingChunkWrites chain: stop() attende
-    // questa promise prima di tornare, garantendo che purgeAudioChunks
-    // NON corra prima che il chunk sia atterrato su store (T2c — write in volo).
-    // Il .catch finale evita che una write fallita blocchi la chain.
     this._pendingChunkWrites = this._pendingChunkWrites
-      .then(() => this.store.write(fileName, data))
-      .then(() => { this.onChunk?.(index, chunkStart, now) })
-      .catch(() => {})
+      .then(async () => {
+        if (take.discard || !this._consent || this._disposed) return
+        await this.store.write(fileName, data)
+        // Revocation may have arrived DURING an unabortable write. Its cleanup
+        // drains this queue before deleting; never publish a post-revoke marker.
+        if (!take.discard && this._consent && !this._disposed) await this.onChunk?.(index, chunkStart, now)
+      })
+      .catch((error: unknown) => { this.recordFailure(error) })
+  }
 
+  private recordFailure(error: unknown): void {
+    this._lastError ??= error instanceof Error ? error : new Error("Audio capture could not be saved", { cause: error })
+  }
+
+  private async drainChunks(): Promise<void> {
     await this._pendingChunkWrites
+    if (this._lastError) throw this._lastError
   }
 
-  private stopInternal(): void {
-    this._recording = false
-    this._mediaRecorder = null
-  }
-
-  private releaseStream(): void {
-    if (this._stream) {
-      for (const track of this._stream.getTracks()) {
-        track.stop()
-      }
-      this._stream = null
+  private finishTake(take: RecordingTake): void {
+    take.closed = true
+    this.releaseStream(take.stream)
+    if (this._take === take) {
+      this._take = null
+      this._recording = false
     }
+    take.resolveStopped()
   }
 
-  /** Rilascia risorse (da chiamare su unmount) */
+  private releaseStream(stream: MediaStream): void {
+    for (const track of stream.getTracks()) track.stop()
+  }
+
+  /**
+   * Terminal close (unmount): cancels pending capture, preserves already
+   * authorized history. Explicit consent=false is the durable revoke/purge.
+   */
   dispose(): void {
-    if (this._recording) {
-      this.stop().catch(() => {})
-    }
+    this._disposed = true
+    if (this._take) this._take.discard = true
+    this.stop().catch(() => {})
     this._consent = false
     this._startEpoch = null
     this._chunkIndex = 0

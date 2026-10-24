@@ -1,0 +1,23 @@
+{
+  "schema": "ardesia.audio.native-runner-provenance.v1",
+  "date": "2026-10-24",
+  "original_script": {
+    "path": "original-run/audio-recorder-native.cjs",
+    "sha256": "13e9eaf4e777009511d7908578bcdad4d9020ae9fa133ddd755eca6bd595c90b"
+  },
+  "portable_script": {
+    "path": "audio-recorder-native.cjs",
+    "sha256": "b5602f3b7e05e1f2dbf252c5c3305ffec258c9b2db6da4c76f41f1e76cdfdcce"
+  },
+  "changes": [
+    "resolve repo from ancestors or ARDESIA_REPO_ROOT",
+    "load Playwright via PLAYWRIGHT_MODULE or normal module resolution",
+    "Chromium executable from CHROMIUM_EXECUTABLE_PATH or Playwright default",
+    "Studio URL from ARDESIA_TEST_ORIGIN, loopback only",
+    "new output via ARDESIA_AUDIO_OUTPUT or a fresh temporary directory; refuse overwrite",
+    "print fresh output path"
+  ],
+  "test_logic": "Native MediaRecorder and both scenarios unchanged from original; portable runner syntax checked; original result belongs to original script hash, not to a new run",
+  "original_results": "original-run/; copied byte-for-byte with original manifest",
+  "original_source_sha256": "6534bc53e1acbc00c7c25dea545d52f942cbff19dbfc4cfa999f82c310d269cd"
+}
