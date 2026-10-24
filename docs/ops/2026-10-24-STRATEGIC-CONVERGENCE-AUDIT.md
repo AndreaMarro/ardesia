@@ -2,7 +2,7 @@
 **As-of:** 2026-10-24 ~06:00 Europe/Rome  
 **Status:** PROPOSED; docs-only draft PR, no changes to production, bank or other workers' branches.  
 **Scope:** public `AndreaMarro/ardesia`, linked private `ardesia-knowledge` (read only), current Oct-23 PR chain, REA primary docs, pedagogy, MCP/security and donor licensing.  
-**Method:** direct GitHub connector reads of source files and live PR metadata/workflow-run summaries; primary public documentation research. **No local checkout tests, no REA execution, no live preview/browser test in this run.** The HTTPS preview could not be fetched from this environment; this is NOT evidence that the service is down.
+**Method:** direct GitHub connector reads of source files and live PR metadata/workflow-run summaries; read-only Render service/deploy API; primary public documentation research. **No local checkout tests, no REA execution, no live preview/browser test in this run.** The HTTPS page could not be fetched from this environment; this is NOT evidence that the service is down.
 
 ## 1. Snapshot: what was observed, what is only claimed
 
@@ -15,7 +15,7 @@
 | Publication guard `#284` | open draft `57c492af2bc391652f8c243107cfe8f00a22820d` | Fixes RED found by independent #283: legacy approval could publish without saved scientific review. The #284 description itself leaves examination of internal `ApprovalGate.approve(..., review_id=None)` callers for the release gate. |
 | Teacher pathways `#285` | open draft `c43f5b9d52fec10d554059be9ae63ed87a4c15aa` | Four versioned Physics pathways (reported distribution 1088/1472/800/640 = 4000 DRAFT), teacher catalog and `catalog.get_teacher` in Study MCP. CI run `39976319049`: completed/success per GitHub API. |
 | Browser runner `#286–#287` | open drafts `8f903a68588a6f616ea3df7110f45008b05ca1ba` and `870b515ef6b598fb8e617b7fbed903561f334fd2` | Real SQLite/Study API Playwright gate; then runner isolation. #286 CI `40000993436` success. Synthetic identity and loopback are not live auth/cloud evidence. |
-| Marketing `#288–#290` | open stacked drafts, #290 head `339ab08f4139da0b37e78bbde81e9fe4e83afea0`, base #289 | Four course pages, WhatsApp contact, hints and worked explanations, build status DRAFT. CI runs `40034887180` and `40034887686` success per GitHub API. Preview URL documented: https://ardesia-golive02-preview.onrender.com/ — independent HTTPS access here **BLOCKED**. Production/DNS not changed. |
+| Marketing `#288–#290` | open stacked drafts, #290 head `339ab08f4139da0b37e78bbde81e9fe4e83afea0`, base #289 | Four course pages, WhatsApp contact, hints and worked explanations, build status DRAFT. CI runs `40034887180` and `40034887686` success per GitHub API. Read-only Render API confirms static service `srv-dbdu1g3l550s738cq3t0`, deploy `dep-dbdu3p7f3r2c73c2ee8g` at this exact SHA with status **live** and autodeploy OFF; https://ardesia-golive02-preview.onrender.com/ . Direct page navigation remains **BLOCKED** from this environment. Production/DNS not changed. |
 | REA on marketing | reported in #289/#290, **not re-executed today** | #290 lists 17 attempts with 5 selected COMPLETE receipts, 3 INCOMPLETE and 6 ERROR. This supports a selected transfer, **not** full verification of competitor equivalence or product pedagogy. |
 | Science review & artifacts | DRAFT, human editorial approval absent | #290 lists four selected source JSON, twelve TeX sources and twelve referenced PDFs absent; do not market them as final course materials or claim production approval. |
 
@@ -155,7 +155,8 @@ Then add adapters: browser, native, ChatGPT Apps/MCP, Claude-compatible MCP, LMS
 | Main and October draft heads distinguished | **PASS** | Exact SHAs read; no assumption of merge. |
 | #290 and #285 CI summaries completed successfully | **PASS (metadata only)** | GitHub Actions workflow-run summaries, not local reproduction. |
 | Scientific approval of four preview questions | **NOT_RUN** | #290 marks DRAFT and human approval pending. |
-| Live preview availability, true browser quality and screenshots | **BLOCKED** | Web fetch disabled and runtime DNS unavailable; no claim that preview is down. |
+| Render preview deploy status | **PASS (metadata only)** | Read-only Render API confirms static preview `live`, exact #290 SHA and autodeploy disabled; not an HTTP/browser correctness test. |
+| Direct page fetch, true browser quality and screenshots | **BLOCKED** | Web fetch disabled and runtime DNS unavailable; no claim that preview is down. |
 | REA new acquisitions on this audit runtime | **NOT_RUN** | Documentation and prior PR receipts analyzed; no REA CLI/browser executed here. |
 | Authentic end-to-end audio+board+LessonOS→personalized pack | **NOT_RUN / NOT ESTABLISHED** | Primitive source files inspected; no exact-session integration browser round-trip. |
 | Current live auth, Supabase RLS and PostgreSQL staging | **NOT_RUN** | Synthetic/local PR checks are not live-cloud authorization tests. |
