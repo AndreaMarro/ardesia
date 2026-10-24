@@ -7,7 +7,7 @@ import { ErrorNotice } from "./Feedback";
 import {PoiseuilleModel} from "./PoiseuilleVisual";
 import {PublicLessonDemo} from "./PublicLessonDemo";
 export {PoiseuilleModel} from "./PoiseuilleVisual";
-import { publicActivityResult, publicCaseCount, publicLessonDemo, publicRadius } from "../publicPreview";
+import { publicActivityDomain, publicActivityResult, publicCaseCount, publicLessonDemo, publicRadius, publicTransferCase } from "../publicPreview";
 type Result = {
   ratio: number;
   fixedQuantity: string;
@@ -42,6 +42,7 @@ export function PhysicsLab({
     [error, setError] = useState(""),
     [changed, setChanged] = useState(false);
   const [graph, setGraph] = useState(false), [help, setHelp] = useState(false), [transfer, setTransfer] = useState(false);
+  const publicTransfer = publicPreview && transfer;
   const predictionNumber = Number(prediction.replace(",", "."));
   const predictionReady = prediction.trim() !== "" && (!numericPrediction || (Number.isFinite(predictionNumber) && predictionNumber > 0));
   const pending = useRef(false),
@@ -79,6 +80,12 @@ export function PhysicsLab({
     setError("");
     setGraph(false);
   }
+  function beginPrediction() {
+    invalidate();
+    setPrediction("");
+    setHelp(false);
+    predictionElement.current?.focus();
+  }
   async function evaluate() {
     if (pending.current || !predictionReady) return;
     pending.current = true;
@@ -87,11 +94,12 @@ export function PhysicsLab({
     const current = ++sequence.current;
     controller.current = new AbortController();
     try {
-      const value = publicPreview ? publicActivityResult(radius, boundary) : await studyRequest<Result>(
+      const parameters = publicTransfer ? publicTransferCase.parameters : {radiusRatio: radius, boundary};
+      const value = publicPreview ? publicActivityResult(radius, boundary, publicTransfer ? publicTransferCase.id : undefined) : await studyRequest<Result>(
         "/activities/evaluate",
         {
           activityId: "poiseuille-v1",
-          parameters: { radiusRatio: radius, boundary },
+          parameters,
         },
         { signal: controller.current.signal },
       );
@@ -99,7 +107,7 @@ export function PhysicsLab({
         setResult(value);
         onCommit?.({
           activityId: "poiseuille-v1",
-          parameters: { radiusRatio: radius, boundary },
+          parameters,
           prediction: prediction.trim(),
         });
         setChanged(false);
@@ -122,18 +130,22 @@ export function PhysicsLab({
       <div className="lab-introduction">
         <h2 id="physics-title">Che cosa tieni fisso?</h2>
         <p>
-          Confronta due tubi cilindrici della stessa lunghezza, con lo stesso
-          fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.
+          {publicTransfer
+            ? "Ora il raggio resta uguale. Confronta un tubo lungo il doppio, attraversato da un fluido con viscosità doppia: la pompa mantiene la stessa portata."
+            : "Confronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo."}
         </p>
       </div>
-      {transfer && <p className="transfer-prompt" role="status">Nuovo problema: la pompa mantiene Q, ma il raggio si dimezza.</p>}
+      {transfer && <p className="transfer-prompt" role="status">{publicTransfer ? "Nuovo problema: Q e raggio restano costanti; viscosità e lunghezza raddoppiano." : "Nuovo problema: la pompa mantiene Q, ma il raggio si dimezza."}</p>}
       <div className="lab-layout">
         <div className="lab-experiment">
           <div className="lab-caption">
             <span>Un modello, due situazioni</span>
             <span>Poiseuille</span>
           </div>
-          <PoiseuilleModel radius={radius} boundary={boundary} revealed={Boolean(result)} graph={graph} />
+          <PoiseuilleModel radius={radius} boundary={boundary} revealed={Boolean(result)} graph={graph}
+            visualState={publicTransfer ? publicTransferCase.visual : undefined}
+            lengthRatio={publicTransfer ? publicTransferCase.parameters.length : 1}
+            viscosityRatio={publicTransfer ? publicTransferCase.parameters.viscosity : 1} />
           <p>Schema ideale · fluido newtoniano · moto laminare</p>
           <div
             className="lab-result"
@@ -157,6 +169,7 @@ export function PhysicsLab({
                 </p>
                 {numericPrediction && <p className="prediction-comparison">{Math.abs(predictionNumber - result.ratio) <= Math.max(1e-9, result.ratio * 1e-6)
                   ? "La previsione coincide con il modello. Ora spiega perché il vincolo fa la differenza."
+                  : publicTransfer ? "Il raggio non cambia: confronta i rapporti di viscosità e lunghezza nell’equazione, mantenendo Q fissata."
                   : result.fixedQuantity === "pressure" ? "Il raggio entra alla quarta potenza: confronta l’effetto sul raggio con quello sulla portata."
                   : "Q rimane fissata. Isola Δp: la quarta potenza del raggio va al denominatore."}</p>}
               </>
@@ -200,6 +213,7 @@ export function PhysicsLab({
               value={boundary}
               onChange={(e) => {
                 setBoundary(e.target.value);
+                setTransfer(false);
                 invalidate();
                 if (numericPrediction) setPrediction("");
               }}
@@ -219,6 +233,7 @@ export function PhysicsLab({
               value={radius}
               onChange={(e) => {
                 setRadius(Number(e.target.value));
+                setTransfer(false);
                 invalidate();
                 if (numericPrediction) setPrediction("");
               }}
@@ -237,24 +252,23 @@ export function PhysicsLab({
           </button>
           {error && <ErrorNotice message={error} />}
           {result && <div className="discovery-actions">
-            <button type="button" aria-expanded={graph} onClick={() => setGraph(value => !value)}>{graph ? "Nascondi il grafico" : "Guarda il grafico"}</button>
+            {!publicTransfer && <button type="button" aria-expanded={graph} onClick={() => setGraph(value => !value)}>{graph ? "Nascondi il grafico" : "Guarda il grafico"}</button>}
             <button type="button" aria-expanded={help} onClick={() => setHelp(value => !value)}>Riprendi il vincolo</button>
-            <button type="button" onClick={() => {invalidate(); setPrediction("");}}>Prova di nuovo</button>
-            <button type="button" className="button-primary" onClick={() => {invalidate(); setRadius(.5); setBoundary("flow"); setPrediction(""); setTransfer(true); setHelp(false); predictionElement.current?.focus();}}>Un problema diverso</button>
+            <button type="button" onClick={beginPrediction}>Prova di nuovo</button>
+            <button type="button" className="button-primary" onClick={() => {beginPrediction(); setRadius(publicPreview ? publicTransferCase.parameters.radiusRatio : .5); setBoundary("flow"); setTransfer(true);}}>Un problema diverso</button>
           </div>}
           {help && <div className="constraint-recovery">
             <h3>Un passaggio alla volta.</h3>
             {publicPreview && <PublicLessonDemo onShowFormula={() => {if (modelDetails.current) modelDetails.current.open = true;}} />}
-            <ol><li>Individua ciò che resta costante: Δp oppure Q.</li><li>Parti da Q = π r⁴ Δp / (8 η L). Se Q resta fissa, isola Δp.</li><li>Confronta i rapporti, mantenendo viscosità e lunghezza costanti.</li></ol>
+            <ol><li>Individua ciò che resta costante: Δp oppure Q.</li><li>Parti da Q = π r⁴ Δp / (8 η L). Se Q resta fissa, isola Δp.</li><li>{publicTransfer ? "Confronta i rapporti di viscosità e lunghezza, mantenendo raggio e portata costanti." : "Confronta i rapporti, mantenendo viscosità e lunghezza costanti."}</li></ol>
             <p>Una risposta ottenuta dopo questo aiuto è una risposta assistita. Prova poi una situazione diversa.</p>
           </div>}
-          {numericPrediction && <button type="button" className="text-link" onClick={() => {invalidate(); setRadius(2); setBoundary("pressure"); setPrediction(""); setTransfer(false); setHelp(false);}}>Ricomincia l’esperimento</button>}
+          {numericPrediction && <button type="button" className="text-link" onClick={() => {beginPrediction(); setRadius(2); setBoundary("pressure"); setTransfer(false);}}>Ricomincia l’esperimento</button>}
           <details ref={modelDetails}>
             <summary>Modello e limiti</summary>
             <p className="formula" id={publicPreview ? publicLessonDemo.objectId : undefined}>Q = π r⁴ Δp / (8 η L)</p>
             <p>
-              {result?.domain ??
-                "Tubo cilindrico rigido, viscosità e lunghezza fissate; fluido incomprimibile, moto laminare stazionario."}
+              {result?.domain ?? publicActivityDomain}
             </p>
             <p className="fine-print">
               Controllo numerico deterministico. Contenuto in revisione
@@ -264,8 +278,8 @@ export function PhysicsLab({
               <p className="fine-print">
                 Questa anteprima esplora {publicCaseCount} configurazioni: tutti i
                 risultati sono stati calcolati dal motore scientifico di Ardesia
-                durante la preparazione della pagina. Lunghezza e viscosità
-                rimangono costanti. La previsione resta in questa pagina; nessuna
+                durante la preparazione della pagina. Nell’esplorazione lunghezza e viscosità
+                rimangono costanti; la nuova prova le varia insieme. Tutti i parametri sono rapporti adimensionali rispetto al tubo di riferimento. La previsione resta in questa pagina; nessuna
                 risposta viene inviata a un servizio o salvata come profilo studente.
               </p>
             )}

@@ -23,6 +23,22 @@ serve = module('candidate_server', 'bin/web/serve_teaching_candidate.py')
 
 
 class CandidateTest(unittest.TestCase):
+    def test_exported_host_policy_supports_the_same_audio_as_the_local_preview(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for name in ('marketing', 'experience'):
+                (root / name).mkdir()
+                (root / name / 'index.html').write_text(name)
+            # The separate marketing site has no media. Its policy cannot be
+            # reused unchanged after composing the lesson with native audio.
+            (root / 'marketing/_headers').write_text("/*\n  Content-Security-Policy: default-src 'none'; media-src 'none'\n")
+            build.assemble(root / 'out', root / 'marketing', root / 'experience')
+            exported = (root / 'out/public/_headers').read_text()
+            self.assertIn("media-src 'self'", exported)
+            self.assertIn("connect-src 'none'", exported)
+            self.assertIn('X-Robots-Tag: noindex, nofollow', exported)
+            self.assertIn('Permissions-Policy: camera=(), microphone=(), geolocation=()', exported)
+
     def test_build_and_isolation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

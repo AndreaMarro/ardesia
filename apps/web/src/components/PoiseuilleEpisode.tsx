@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import {publicActivityDomain} from "../publicPreview";
 import { describeError, requestKey, studyRequest, type StudyMe, type Workspace } from "../api";
 import { ErrorNotice, Loading } from "./Feedback";
 import type { ActivityEvidence, ExperienceStep, LearningExperience } from "./experienceTypes";
@@ -126,20 +127,24 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
     finally { if (mounted.current) setBusy(false); }
   }
   const evidence = receipt?.activityEvidence;
+  const lengthRatio = step.parameters.length ?? 1, viscosityRatio = step.parameters.viscosity ?? 1;
+  const changedMaterial = lengthRatio !== 1 || viscosityRatio !== 1;
   const locked = busy || Boolean(pending.current) || Boolean(receipt);
   return <div className="episode-step">
     <h3 ref={title} tabIndex={-1}>{step.title}</h3><p>{step.prompt}</p>
     <div className="lab-layout">
       <div className="lab-experiment">
-        <PoiseuilleModel radius={step.parameters.radiusRatio} boundary={step.parameters.boundary} revealed={Boolean(evidence)} graph={graph} />
-        <p>Stesso fluido e stessa lunghezza. Rapporti senza unità; Q in m³/s, Δp in Pa, r e L in m, η in Pa·s.</p>
-        <p className="fine-print">Tubo cilindrico rigido, fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato. Viscosità e lunghezza costanti.</p>
+        <PoiseuilleModel radius={step.parameters.radiusRatio} boundary={step.parameters.boundary}
+          revealed={Boolean(evidence) && (!changedMaterial || Boolean(evidence?.result.visual))} graph={graph && !changedMaterial}
+          lengthRatio={lengthRatio} viscosityRatio={viscosityRatio} visualState={evidence?.result.visual} />
+        <p>{changedMaterial ? `η/η₀ = ${viscosityRatio.toLocaleString("it-IT")} · L/L₀ = ${lengthRatio.toLocaleString("it-IT")}.` : "Stesso fluido e stessa lunghezza."} Rapporti senza unità; Q in m³/s, Δp in Pa, r e L in m, η in Pa·s.</p>
+        <p className="fine-print">{evidence?.result.domain ?? publicActivityDomain}</p>
         <div className="lab-result" aria-live="polite">
           {evidence ? <>
             <span>Il modello deterministico restituisce</span>
             <strong data-testid="episode-ratio">{evidence.result.calculatedVariable} = {evidence.result.ratio.toLocaleString("it-IT", {maximumFractionDigits: 6})}</strong>
             <p>{!evidence.check.constraintMatches ? "Hai scambiato il vincolo: rileggi quale grandezza viene mantenuta costante." :
-              !evidence.check.ratioMatches ? "Il vincolo è quello indicato. Ricontrolla la quarta potenza e la grandezza che devi isolare." :
+              !evidence.check.ratioMatches ? "Il vincolo è quello indicato. Ricontrolla il raggio alla quarta potenza, i fattori viscosità e lunghezza e la grandezza da isolare." :
               "Il rapporto e il vincolo coincidono con il modello. Il tutor può ora rivedere il procedimento."}</p>
             <p>{evidence.assistance === "SUPPORT_REQUESTED" ? "Risposta con aiuto richiesto prima della previsione." : "Nessun aiuto richiesto in questo passaggio prima della previsione."}</p>
           </> : <><span>Prima la tua previsione.</span><p>Il risultato compare dopo che previsione e procedimento sono stati ricevuti dal servizio.</p></>}
@@ -159,7 +164,7 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
           <p>Il tutor non ha ancora collegato un passaggio della lezione. Puoi usare l’aiuto sul vincolo e chiedere il collegamento.</p>)}
         {error && <ErrorNotice message={error} />}
         {receipt && <>
-          <button type="button" aria-expanded={graph} onClick={() => {setGraph(value => !value); onExplore();}}>Guarda la relazione nel grafico</button>
+          {!changedMaterial && <button type="button" aria-expanded={graph} onClick={() => {setGraph(value => !value); onExplore();}}>Guarda la relazione nel grafico</button>}
           <button type="button" aria-expanded={explore} onClick={() => {setExplore(value => !value); onExplore();}}>Esplora il raggio e il vincolo</button>
           <button type="button" onClick={() => {
             setParentId(receipt.submissionId); setReceipt(null); setSupport(items => [...new Set([...items, "model-result"])]);
@@ -172,6 +177,6 @@ function PredictionStep({experience, step, data, passage, onUpdate, onActivity, 
         <p role="status">{message}</p>
       </form>
     </div>
-    {explore && <section className="episode-exploration"><h3>Fai cambiare il modello.</h3><p>Questa è un’esplorazione con aiuto. La prossima previsione dell’episodio conserverà l’uso del modello.</p><PhysicsLab numericPrediction /></section>}
+    {explore && <section className="episode-exploration"><h3>Fai cambiare il modello.</h3><p>Questa è un’esplorazione con viscosità e lunghezza costanti, distinta dal problema assegnato. La prossima previsione dell’episodio conserverà l’uso del modello come aiuto.</p><PhysicsLab numericPrediction /></section>}
   </div>;
 }

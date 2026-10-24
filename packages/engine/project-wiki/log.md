@@ -149,3 +149,5 @@ Append-only. 1 riga per modifica.
 - 2026-10-21 — Banca Fisica: snapshot verificato e immutabile, accesso per edizione, proiezioni separate, correzione esatta stateless e simulazioni per profilo. Fonti in physics-question-bank.md.
 
 2026-10-24 — Previsioni Poiseuille e riferimenti audio riusano ricevute, fonti e diario Study; dati manifest, aiuti dichiarati e controllo numerico separati dalla verifica del tutor. Addendum data-model; prove nella consegna AUDIO-V2, solo ambiente sintetico locale.
+
+- 2026-10-24 R1: aggiunte composizioni Poiseuille v2 e continuità dell’assistenza fra revisioni; v1/pack immutati, visuale dal Core e gate umano aperto. Vedi physics-question-bank.md.

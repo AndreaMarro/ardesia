@@ -41,3 +41,7 @@ Fonti: `lessonos/study/content/physics-semestre-2026-bank/manifest.json:1`,
 Il pacchetto editoriale documenta 250 famiglie, le spiegazioni estese, il
 programma 2026/27 e il confronto con i 62 obiettivi delle prove 2025.
 Fonte: `../../packs/semestre-filtro-2026-27/README.md:1`.
+
+## R1 — composizioni Poiseuille versionate, 24 ottobre 2026
+
+Il nuovo transfer combina viscosità e lunghezza usando lo stesso valutatore. Il manifest v2 è aggiuntivo; il v1 e il CoursePack non cambiano. Le ricevute conservano identità editoriali e parametri: `lessonos/study/learning_experiences.py:14` risolve entrambe le revisioni; `lessonos/study/learning_experiences.py:113` congela l’evidenza. La disponibilità di un risultato per lo stesso modello e parametri nella medesima edizione non si cancella cambiando ID editoriale. Le proporzioni di portata, pressione e velocità media nascono nel Core (`lessonos/study/activities.py:48`), senza solver frontend aggiuntivo; il disegno rimane uno schema del trasporto medio. I record e le nuove composizioni restano DRAFT e l’approvazione scientifica umana non è attestata.
