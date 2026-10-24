@@ -1,0 +1,43 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia-r1/apps/web
+
+ ❯ src/__tests__/public-experience.test.tsx (7 tests | 1 failed) 372ms
+   × the public transfer keeps radius and flow fixed while viscosity and length change, with no exploration graph 21ms
+ ❯ src/__tests__/public-projection.test.ts (21 tests | 1 failed) 7ms
+   × the distinct fixed-flow transfer varies viscosity and length with a Core-projected pressure ratio of four 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/public-experience.test.tsx > the public transfer keeps radius and flow fixed while viscosity and length change, with no exploration graph
+AssertionError: expected '0.5' to be '1' // Object.is equality
+
+Expected: "1"
+Received: "0.5"
+
+ ❯ src/__tests__/public-experience.test.tsx:95:83
+     93|   await screen.findByTestId("physics-ratio");
+     94|   fireEvent.click(screen.getByRole("button", {name: "Un problema diver…
+     95|   expect((screen.getByLabelText("Rapporto dei raggi") as HTMLInputElem…
+       |                                                                                   ^
+     96|   expect(screen.getByText(/viscosità e lunghezza raddoppiano/)).toBeTr…
+     97|   expect(screen.queryByTestId("physics-ratio")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/public-projection.test.ts > the distinct fixed-flow transfer varies viscosity and length with a Core-projected pressure ratio of four
+AssertionError: expected undefined to be defined
+ ❯ src/__tests__/public-projection.test.ts:11:20
+      9|     visual: {flowRatio: number; pressureRatio: number; meanSpeedRatio:…
+     10|   }}).transferCase;
+     11|   expect(transfer).toBeDefined();
+       |                    ^
+     12|   expect(transfer!.parameters).toEqual({radiusRatio: 1, boundary: "flo…
+     13|   expect(transfer!.result.ratio).toBe(4);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 26 passed (28)
+   Start at  17:31:40
+   Duration  1.44s (transform 119ms, setup 0ms, import 249ms, tests 379ms, environment 615ms)

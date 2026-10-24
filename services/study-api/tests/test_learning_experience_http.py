@@ -35,7 +35,9 @@ def test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary
         ref = {'resourceId': passage['id'], 'revisionId': passage['revisionId']}
         login(student)
         experiences = client.get('/study/learning-experiences?editionId=fluidi').json()
-        assert len(experiences['experiences']) == 2
+        assert {entry['id'] for entry in experiences['experiences']} == {
+            'poiseuille-boundary-v2', 'poiseuille-nearby-v2',
+            'poiseuille-boundary-v1', 'poiseuille-nearby-v1'}
         assert client.get('/study/resources/' + passage['id'] + '/revisions/' + passage['revisionId']).json()['text'] == passage['text']
         results = []
         for step_id, parameters, ratio, fixed, aids in [

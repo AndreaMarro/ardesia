@@ -3,7 +3,7 @@ import math
 from .models import StudyError
 
 ACTIVITY_ID = 'poiseuille-v1'
-DOMAIN = 'Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido. Modello idealizzato, non previsione clinica.'
+DOMAIN = 'Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.'
 HINTS = (
     'Individua prima quale grandezza rimane fissata: differenza di pressione oppure portata.',
     'Confronta le potenze del raggio: il rapporto compare alla quarta potenza.',
@@ -45,9 +45,18 @@ def _evaluate_physics(activity_id, parameters):
         ratio = 1 / ratio
     if not math.isfinite(ratio):
         raise StudyError('invalid_physical_domain')
+    flow = ratio if boundary == 'pressure' else 1.0
+    pressure = 1.0 if boundary == 'pressure' else ratio
+    mean_speed = flow / (values['radiusRatio'] ** 2)
+    if any(not math.isfinite(value) or value <= 0 for value in (flow, pressure, mean_speed)):
+        raise StudyError('invalid_physical_domain')
     return {'activityId':ACTIVITY_ID,'version':1,'ratio':ratio,'fixedQuantity':boundary,
             'calculatedVariable':'Q/Q0' if boundary=='pressure' else 'Δp/Δp0',
-            'domain':DOMAIN,'editorialStatus':'DRAFT','numericalCheck':'deterministic'}
+            'domain':DOMAIN,'editorialStatus':'DRAFT','numericalCheck':'deterministic',
+            # Continuity at the canonical scientific boundary. The UI receives
+            # the mean-speed ratio, not a second implementation of Poiseuille.
+            'visual': {'flowRatio': flow, 'pressureRatio': pressure,
+                       'meanSpeedRatio': mean_speed}}
 
 
 def _number(parameters,key,default,*,minimum=0,maximum=1e9,zero=False):

@@ -1,0 +1,21 @@
+const {chromium}=require((process.env.UX_REPO||require('node:path').resolve(__dirname,'../../ardesia-r1'))+'/node_modules/playwright');
+const fs=require('node:fs'),path=require('node:path');
+const crypto=require('node:crypto'),sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const origin=process.env.UX_ORIGIN||'http://127.0.0.1:5414';
+const label=process.env.UX_ZOOM_LABEL||'baseline299',artifact=path.resolve(process.env.UX_ARTIFACT||path.join(__dirname,'../base-public'));
+const extension=path.join(__dirname,'zoom-extension'),profile=fs.mkdtempSync(path.join(__dirname,'zoom-profile-'));
+let context;
+(async()=>{
+ context=await chromium.launchPersistentContext(profile,{channel:'chromium',headless:true,viewport:null,args:['--window-size=1440,1100',`--disable-extensions-except=${extension}`,`--load-extension=${extension}`]});
+ const page=await context.newPage();const response=await page.goto(origin+'/esperienza/?percorso=fluidi-termodinamica');
+ const htmlSha256=sha(await response.body()),artifactHtmlSha256=sha(fs.readFileSync(path.join(artifact,'public/esperienza/index.html'))),manifestSha256=sha(fs.readFileSync(path.join(artifact,'candidate-manifest.json')));
+ const before=await page.evaluate(()=>({innerWidth,outerWidth,devicePixelRatio,scale:visualViewport.scale}));
+ const worker=context.serviceWorkers()[0]||await context.waitForEvent('serviceworker');
+ const zoom=await worker.evaluate(async origin=>{const tab=(await chrome.tabs.query({})).find(t=>t.url?.startsWith(origin+'/esperienza/'));if(!tab)throw Error('Owned anonymous tab missing');await chrome.tabs.setZoom(tab.id,2);return chrome.tabs.getZoom(tab.id);},origin);
+ await page.getByLabel('Rapporto previsto',{exact:true}).fill('16');await page.getByRole('button',{name:'Metti alla prova',exact:true}).click();await page.getByTestId('physics-ratio').waitFor();
+ const after=await page.evaluate(()=>({innerWidth,outerWidth,devicePixelRatio,scale:visualViewport.scale,scrollWidth:document.documentElement.scrollWidth,ratio:document.querySelector('[data-testid="physics-ratio"]').textContent}));
+ await page.getByTestId('flow-measures').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(__dirname,`native-zoom2-${label}-1440.png`),fullPage:true});
+ const report={origin,artifact,htmlSha256,artifactHtmlSha256,manifestSha256,browser:context.browser().version(),zoom,before,after,method:'chrome.tabs.setZoom(2) through an ephemeral test extension in an owned anonymous persistent profile, viewport:null and 1440px outer window. This changes actual tab zoom and reflows CSS width; no user profile or installed extension is touched.'};
+ fs.writeFileSync(path.join(__dirname,`native-zoom2-${label}.json`),JSON.stringify(report,null,2));
+ if(htmlSha256!==artifactHtmlSha256||zoom!==2||after.innerWidth>=before.innerWidth||after.scrollWidth>after.innerWidth||after.ratio!=='Q/Q0 = 16')throw Error('Native zoom assertion failed');
+})().catch(e=>{console.error(e);process.exitCode=1;}).finally(async()=>{await context?.close();fs.rmSync(profile,{recursive:true,force:true});});

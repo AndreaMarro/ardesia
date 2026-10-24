@@ -19,9 +19,13 @@ def list_experiences(store, principal, edition_id):
     pack = load_pack(binding['packId'], binding['packVersion'])
     items = {item['id']: item for item in pack['exercises'] +
              [item for group in pack['transferTests'] for item in group['items']]}
-    manifests = json.loads((Path(__file__).parent / 'content' / 'learning-experiences-v1.json').read_text())
     resolved = []
-    for manifest in manifests['experiences']:
+    # Additive editorial revision. Keep old IDs and parameters resolvable for
+    # existing receipts/retries; the new version is the default in the UI.
+    manifests = []
+    for version in (2, 1):
+        manifests.extend(json.loads((Path(__file__).parent / 'content' / f'learning-experiences-v{version}.json').read_text())['experiences'])
+    for manifest in manifests:
         if (manifest['packId'], manifest['packVersion']) != (binding['packId'], binding['packVersion']):
             continue
         steps = []
@@ -136,18 +140,30 @@ def freeze_activity_evidence(store, principal, edition_id, activity_id, paramete
         raise invalid
     # The client can report requested help but cannot erase an earlier result
     # made available by this service by reopening the UI or choosing a new key.
-    store.lock_aggregate(store.connection, 'learning.step', canonical([
-        principal.id, edition_id, evidence['experienceId'], evidence['stepId']]))
+    result = evaluate_activity(activity_id, parameters)
+    def normalized(value):
+        return [float(value.get(key, 1)) for key in ('radiusRatio', 'viscosity', 'length')] + [value.get('boundary', 'pressure')]
+    model_parameters = normalized(parameters)
+    store.lock_aggregate(store.connection, 'learning.model-result', canonical([
+        principal.id, edition_id, activity_id, result['version'], model_parameters]))
     previous = store.connection.execute('''SELECT r.body FROM study_receipts r
         JOIN study_submissions s ON s.receipt_id=r.id
         WHERE s.student_id=? AND s.edition_id=? AND r.operation='submission.received' ''',
         (principal.id, edition_id)).fetchall()
-    result_available = any((prior := json.loads(row['body']).get('activityEvidence', {})).get('experienceId') == evidence['experienceId']
-                           and prior.get('stepId') == evidence['stepId'] for row in previous)
+    def available(row):
+        prior = json.loads(row['body'])
+        prior_evidence = prior.get('activityEvidence', {})
+        if not prior_evidence.get('result'):
+            return False
+        context = prior.get('courseContext', {})
+        return ((prior_evidence.get('experienceId') == evidence['experienceId'] and prior_evidence.get('stepId') == evidence['stepId'])
+                or (context.get('modelId') == activity_id and context.get('modelVersion') == result['version']
+                    and isinstance(context.get('parameters'), dict)
+                    and normalized(context['parameters']) == model_parameters))
+    result_available = any(available(row) for row in previous)
     support = list(support)
     if result_available and 'model-result' not in support:
         support.append('model-result')
-    result = evaluate_activity(activity_id, parameters)
     return {**evidence, 'supportUsed': support, 'exerciseRef': step.get('exerciseRef'),
             'assistance': 'SUPPORT_REQUESTED' if support else 'NO_SUPPORT_REQUESTED',
             'assistanceScope': 'Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.',

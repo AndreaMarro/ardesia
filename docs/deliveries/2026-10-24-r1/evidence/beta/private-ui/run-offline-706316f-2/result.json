@@ -1,0 +1,78 @@
+{
+  "schema": "ardesia.r1-private-ui.v1",
+  "synthetic": true,
+  "origin": "http://127.0.0.1:5417",
+  "expectedSha": "706316f0582f88366cd3cad6c5c1227537a6c419",
+  "runtime": "v22.14.0",
+  "studentActor": "student-02",
+  "browserPath": "Browser plugin not available; explicitly requested existing Playwright runner reused.",
+  "capture": "Native MediaRecorder with a WebAudio tone; no hardware microphone, speech recognition or real learner data.",
+  "authEvidence": "Fixture login before evidence; no tokens, headers, storageState or network trace retained.",
+  "remoteBeta": "NOT_RUN",
+  "launchAllowed": false,
+  "checks": [
+    {
+      "name": "actual served Web module is the immutable706 artifact",
+      "pass": true
+    },
+    {
+      "name": "real offline refresh exposes an error without losing selected original or filter",
+      "pass": true
+    },
+    {
+      "name": "retry reads canonical data and retains the same selection without extra submission",
+      "pass": true
+    },
+    {
+      "name": "no page errors or unexpected network/console failures",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "offline-original-retained-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "name": "retry-original-retained-390.png",
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "failedRequests": [
+    {
+      "actor": "teacher",
+      "expectedOffline": true,
+      "url": "http://127.0.0.1:5417/study/workspace?editionId=fluidi",
+      "error": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "console": [
+    {
+      "actor": "teacher",
+      "expectedOffline": true,
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "fonts": [],
+  "artifact": {
+    "commit": "706316f0582f88366cd3cad6c5c1227537a6c419",
+    "manifestSha256": "1d127951b073265e2f42b7f5748cc563b01b99eaa19352a046dfabf108eebc1f",
+    "sourceTreeSha256": "a60670dfc5de974dbdd1b9b267260d50f77d68f49873570552bc8d54214a7f63"
+  },
+  "provenanceScope": "Immutable served706 assets; current checkout may already contain the separate focus patch. No attribution of new source to706.",
+  "continuationOf": {
+    "directory": "run-refresh-706316f",
+    "sha256": "f8ac8a500696d92a7a2f12ba2f0c26f75c5a41b2fe4b2a53f29b06d139d061fc"
+  },
+  "activeElementAfterRefresh": {
+    "tag": "BODY",
+    "text": ""
+  },
+  "keyboardFocusPreserved": false,
+  "offlineRetryPassed": true,
+  "passed": false,
+  "status": "KNOWN_FOCUS_FAILURE_OFFLINE_RETRY_PASS"
+}

@@ -11,6 +11,10 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'web'))
+from teaching_policy import exported_headers
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED = {'.env', 'demo-access.json', 'study.sqlite'}
@@ -35,6 +39,9 @@ def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path 
     try:
         copy_surface(marketing, destination / 'public')
         copy_surface(experience, destination / 'public/esperienza')
+        # Marketing alone has no audio. Export the policy actually used by the
+        # composed lesson, instead of silently inheriting media-src default none.
+        (destination / 'public/_headers').write_text(exported_headers())
         if web is not None:
             copy_surface(web, destination / 'beta/web')
             copy_surface(studio, destination / 'beta/studio')

@@ -151,3 +151,26 @@ test.each(["recording", "session", "object"])("declared passage rejects duplicat
   replay.searchParams.set(pin, "a,b"); changed.replayUrl = replay.href;
   expect(readPassageDescriptor(JSON.stringify(changed))).not.toBeNull();
 });
+
+test("the revised transfer uses the Core visual values and never the ordinary fixed-material graph", async () => {
+  const transfer = {id: "transfer", title: "Due fattori diversi", prompt: "Il raggio resta uguale; viscosità e lunghezza raddoppiano a Q fissata.",
+    activityId: "poiseuille-v1", parameters: {radiusRatio: 1, boundary: "flow", viscosity: 2, length: 2}};
+  vi.stubGlobal("fetch", vi.fn(async (path: string) => {
+    if (path.includes("learning-experiences")) return new Response(JSON.stringify({experiences: [{...experience, id: "poiseuille-boundary-v2", steps: [transfer]}]}));
+    if (path.endsWith("/submissions")) return new Response(JSON.stringify({receiptId: "r1-receipt", submissionId: "r1-submission", revision: 1,
+      activityEvidence: {result: {ratio: 4, fixedQuantity: "flow", calculatedVariable: "Δp/Δp0",
+        visual: {flowRatio: 1, pressureRatio: 4, meanSpeedRatio: 1}}, check: {ratioMatches: true, constraintMatches: true}, assistance: "NO_SUPPORT_REQUESTED"}}));
+    return new Response(JSON.stringify({resources: []}));
+  }));
+  render(<PoiseuilleEpisode data={data} me={me} onUpdate={async () => {}} />);
+  fireEvent.change(await screen.findByLabelText("Rapporto previsto"), {target: {value: "4"}});
+  fireEvent.change(screen.getByLabelText("Grandezza che resta fissata"), {target: {value: "flow"}});
+  fireEvent.change(screen.getByLabelText("Spiega il vincolo e il procedimento"), {target: {value: "A Q fissata la pressione è proporzionale al prodotto di viscosità e lunghezza: i due fattori si moltiplicano."}});
+  expect(screen.queryByTestId("flow-measures")).toBeNull();
+  fireEvent.click(screen.getByRole("button", {name: "Registra previsione e confronta"}));
+  const measures = await screen.findByTestId("flow-measures");
+  expect(measures.textContent).toContain("Δp/Δp₀ = 4");
+  expect(measures.textContent).toContain("v/v₀ = 1");
+  expect(screen.queryByRole("button", {name: "Guarda la relazione nel grafico"})).toBeNull();
+  expect(screen.getAllByText(/η\/η₀ = 2/).length).toBeGreaterThan(0);
+});

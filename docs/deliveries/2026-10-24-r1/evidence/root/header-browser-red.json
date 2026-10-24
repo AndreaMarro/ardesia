@@ -1,0 +1,13 @@
+{
+  "sourcePolicy": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'",
+  "media": {
+    "played": false,
+    "readyState": 0,
+    "error": "NotSupportedError: The element has no supported sources."
+  },
+  "consoleErrors": [
+    "Loading media from  'http://127.0.0.1:57734/esperienza/lesson-demo/poiseuille.wav' violates the following Content Security Policy directive: \"default-src 'none'\". Note that 'media-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked."
+  ],
+  "pageErrors": [],
+  "passed": false
+}

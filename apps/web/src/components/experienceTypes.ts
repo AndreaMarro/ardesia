@@ -1,6 +1,6 @@
 export type ExperienceStep = {
   id: string; title: string; prompt: string; activityId: string;
-  parameters: { radiusRatio: number; boundary: "pressure" | "flow" };
+  parameters: { radiusRatio: number; boundary: "pressure" | "flow"; viscosity?: number; length?: number };
   exerciseRef?: string;
 };
 export type LearningExperience = {
@@ -14,6 +14,7 @@ export type ActivityEvidence = {
   lessonPassageRef?: {resourceId: string; revisionId: string};
   exerciseRef?: string | null;
   assistance: "NO_SUPPORT_REQUESTED" | "SUPPORT_REQUESTED";
-  result: { ratio: number; fixedQuantity: "pressure" | "flow"; calculatedVariable: string };
+  result: { ratio: number; fixedQuantity: "pressure" | "flow"; calculatedVariable: string; domain?: string;
+    visual?: {flowRatio: number; pressureRatio: number; meanSpeedRatio: number} };
   check: { ratioMatches: boolean; constraintMatches: boolean };
 };

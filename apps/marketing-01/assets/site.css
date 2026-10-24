@@ -44,7 +44,7 @@ a:focus-visible, input:focus-visible, summary:focus-visible, .course-card:focus-
 .path-index h2 { font-size: clamp(1.7rem, 2.5vw, 2.4rem); margin-block-end: 1rem; }
 .path-index ol { list-style: none; padding: 0; margin: 0; counter-reset: none; }
 .path-index li { border-bottom: 1px solid var(--line); }
-.path-index a { display: grid; grid-template-columns: 2rem minmax(0, 1fr) 1.25rem; gap: .8rem; align-items: center; min-height: 4.4rem; padding-block: .9rem; color: var(--ink); text-decoration: none; font: 500 clamp(1.2rem, 1.8vw, 1.65rem)/1.25 var(--serif); letter-spacing: -.025em; }
+.path-index a { display: grid; grid-template-columns: 2rem minmax(0, 1fr) max-content; gap: .8rem; align-items: center; min-height: 4.4rem; padding-block: .9rem; color: var(--ink); text-decoration: none; font: 500 clamp(1.2rem, 1.8vw, 1.65rem)/1.25 var(--serif); letter-spacing: -.025em; }
 .path-index a:hover { color: var(--accent); }
 .index-number { color: var(--accent); background: var(--soft); border-radius: 50%; inline-size: 2rem; block-size: 2rem; display: grid; place-items: center; font: .8rem var(--sans); letter-spacing: 0; }
 @media (min-width: 64rem) { .path-index { border-left: 1px solid var(--line); padding-inline-start: clamp(1.5rem, 4vw, 3.5rem); } }

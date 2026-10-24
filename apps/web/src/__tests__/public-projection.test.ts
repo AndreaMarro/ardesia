@@ -1,5 +1,26 @@
 import { expect, test } from "vitest";
-import { publicActivityResult, publicCaseCount, publicCourse, publicVisualState, publicGraphSeries } from "../publicPreview";
+import { publicActivityResult, publicCaseCount, publicCourse, publicVisualState, publicGraphSeries, publicTransferCase, publicActivityDomain } from "../publicPreview";
+import {publicPreviewData} from "../generated/publicPreviewData";
+
+test("the distinct fixed-flow transfer varies viscosity and length with a Core-projected pressure ratio of four", () => {
+  const transfer = (publicPreviewData as unknown as {transferCase?: {
+    parameters: Record<string, string | number>;
+    result: {ratio: number; calculatedVariable: string};
+    visual: {flowRatio: number; pressureRatio: number; meanSpeedRatio: number};
+  }}).transferCase;
+  expect(transfer).toBeDefined();
+  expect(transfer!.parameters).toEqual({radiusRatio: 1, boundary: "flow", viscosity: 2, length: 2});
+  expect(transfer!.result.ratio).toBe(4);
+  expect(transfer!.result.calculatedVariable).toBe("Δp/Δp0");
+  expect(transfer!.visual).toEqual({flowRatio: 1, pressureRatio: 4, meanSpeedRatio: 1});
+  expect(publicActivityResult(1, "flow", publicTransferCase.id).ratio).toBe(4);
+  expect(publicActivityResult(1, "flow").ratio).toBe(1);
+  expect(publicVisualState(1, "flow", publicTransferCase.id).pressureRatio).toBe(4);
+  expect(() => publicActivityResult(.5, "flow", publicTransferCase.id)).toThrow(/non disponibile/);
+  expect(() => publicActivityResult(1, "pressure", publicTransferCase.id)).toThrow(/non disponibile/);
+  expect(() => publicActivityResult(1, "flow", "unknown")).toThrow(/non disponibile/);
+  expect(publicActivityDomain).toBe(publicTransferCase.result.domain);
+});
 
 test.each([
   [0.5, "pressure", 1 / 16, "Q/Q0"],

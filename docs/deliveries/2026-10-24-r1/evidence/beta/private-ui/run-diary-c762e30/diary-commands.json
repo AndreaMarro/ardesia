@@ -1,0 +1,263 @@
+[
+  {
+    "kind": "existing-observation",
+    "value": {
+      "attemptRevision": 1,
+      "category": "model_selection",
+      "conceptId": "model-selection",
+      "editionId": "fluidi",
+      "observationId": "079c7015a6c04eaa926baf863afd5ce4",
+      "originalExerciseId": "poiseuille-v1",
+      "source": {
+        "end": 164,
+        "quote": "Previsione: 16; grandezza fissata: Δp.\n\nProcedimento: R1 sintesi 1792857545065: scambio il vincolo e penso che la pressione cresca con la quarta potenza del raggio.",
+        "resourceId": "bfbdc8a719fd49f4bd78d5024e416374",
+        "revisionId": "0d18724a04734c3a81b87464d05c733e",
+        "sha256": "76838c4c60c6ccc70208f570982bb72562b5f4cd35440512be586adf638516c1",
+        "start": 0
+      },
+      "studentId": "student-02",
+      "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+      "threadId": "7095abfef8f5426db38f7d8a81283ec7",
+      "verification": "UNVERIFIED",
+      "status": "CANDIDATE",
+      "contested": false,
+      "contestReasons": [],
+      "observations": [],
+      "observedCount": 0,
+      "feedback": null,
+      "transferExercise": null,
+      "attempts": [],
+      "latestVerification": null,
+      "history": [
+        {
+          "seq": 15,
+          "kind": "error.proposed.v1",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857726.0849001
+        }
+      ],
+      "updatedAt": 1792857726.0849001,
+      "verificationState": null,
+      "sourceState": "CURRENT"
+    }
+  },
+  {
+    "kind": "confirm",
+    "value": {
+      "attemptRevision": 1,
+      "category": "model_selection",
+      "conceptId": "model-selection",
+      "editionId": "fluidi",
+      "observationId": "079c7015a6c04eaa926baf863afd5ce4",
+      "originalExerciseId": "poiseuille-v1",
+      "source": {
+        "end": 164,
+        "quote": "Previsione: 16; grandezza fissata: Δp.\n\nProcedimento: R1 sintesi 1792857545065: scambio il vincolo e penso che la pressione cresca con la quarta potenza del raggio.",
+        "resourceId": "bfbdc8a719fd49f4bd78d5024e416374",
+        "revisionId": "0d18724a04734c3a81b87464d05c733e",
+        "sha256": "76838c4c60c6ccc70208f570982bb72562b5f4cd35440512be586adf638516c1",
+        "start": 0
+      },
+      "studentId": "student-02",
+      "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+      "threadId": "7095abfef8f5426db38f7d8a81283ec7",
+      "verification": "REVIEWED_BY_TUTOR",
+      "status": "OPEN",
+      "contested": false,
+      "contestReasons": [],
+      "observations": [
+        {
+          "observationId": "079c7015a6c04eaa926baf863afd5ce4",
+          "reviewerId": "tutor-synthetic",
+          "source": {
+            "end": 164,
+            "quote": "Previsione: 16; grandezza fissata: Δp.\n\nProcedimento: R1 sintesi 1792857545065: scambio il vincolo e penso che la pressione cresca con la quarta potenza del raggio.",
+            "resourceId": "bfbdc8a719fd49f4bd78d5024e416374",
+            "revisionId": "0d18724a04734c3a81b87464d05c733e",
+            "sha256": "76838c4c60c6ccc70208f570982bb72562b5f4cd35440512be586adf638516c1",
+            "start": 0
+          },
+          "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+          "verification": "REVIEWED_BY_TUTOR",
+          "eventSeq": 17,
+          "sourceState": "CURRENT"
+        }
+      ],
+      "observedCount": 1,
+      "feedback": {
+        "explanation": "La previsione scambiava il vincolo pressione con il vincolo portata.",
+        "nextStep": "Affronta il caso con raggio dimezzato a Q fissata.",
+        "reviewerId": "tutor-synthetic",
+        "rubric": {
+          "criterion": "Isola Δp mantenendo Q costante e giustifica la quarta potenza del raggio.",
+          "procedureRequired": true
+        },
+        "verification": "REVIEWED_BY_TUTOR",
+        "state": "CURRENT"
+      },
+      "transferExercise": {
+        "exerciseId": "transfer-7095abfef8f5426db38f7d8a81283ec7",
+        "originalParameters": {
+          "boundary": "flow",
+          "radiusRatio": 2
+        },
+        "parameters": {
+          "boundary": "flow",
+          "radiusRatio": 0.5
+        },
+        "prompt": "Il raggio si dimezza e Q resta costante. Prevedi e giustifica Δp/Δp₀."
+      },
+      "attempts": [],
+      "latestVerification": null,
+      "history": [
+        {
+          "seq": 15,
+          "kind": "error.proposed.v1",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857726.0849001
+        },
+        {
+          "seq": 17,
+          "kind": "error.observed",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857832.106516
+        }
+      ],
+      "updatedAt": 1792857832.106516,
+      "verificationState": null,
+      "sourceState": "CURRENT"
+    }
+  },
+  {
+    "kind": "verify",
+    "value": {
+      "attemptRevision": 1,
+      "category": "model_selection",
+      "conceptId": "model-selection",
+      "editionId": "fluidi",
+      "observationId": "079c7015a6c04eaa926baf863afd5ce4",
+      "originalExerciseId": "poiseuille-v1",
+      "source": {
+        "end": 164,
+        "quote": "Previsione: 16; grandezza fissata: Δp.\n\nProcedimento: R1 sintesi 1792857545065: scambio il vincolo e penso che la pressione cresca con la quarta potenza del raggio.",
+        "resourceId": "bfbdc8a719fd49f4bd78d5024e416374",
+        "revisionId": "0d18724a04734c3a81b87464d05c733e",
+        "sha256": "76838c4c60c6ccc70208f570982bb72562b5f4cd35440512be586adf638516c1",
+        "start": 0
+      },
+      "studentId": "student-02",
+      "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+      "threadId": "7095abfef8f5426db38f7d8a81283ec7",
+      "verification": "REVIEWED_BY_TUTOR",
+      "status": "VERIFIED_RESOLVED",
+      "contested": false,
+      "contestReasons": [],
+      "observations": [
+        {
+          "observationId": "079c7015a6c04eaa926baf863afd5ce4",
+          "reviewerId": "tutor-synthetic",
+          "source": {
+            "end": 164,
+            "quote": "Previsione: 16; grandezza fissata: Δp.\n\nProcedimento: R1 sintesi 1792857545065: scambio il vincolo e penso che la pressione cresca con la quarta potenza del raggio.",
+            "resourceId": "bfbdc8a719fd49f4bd78d5024e416374",
+            "revisionId": "0d18724a04734c3a81b87464d05c733e",
+            "sha256": "76838c4c60c6ccc70208f570982bb72562b5f4cd35440512be586adf638516c1",
+            "start": 0
+          },
+          "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+          "verification": "REVIEWED_BY_TUTOR",
+          "eventSeq": 17,
+          "sourceState": "CURRENT"
+        }
+      ],
+      "observedCount": 1,
+      "feedback": {
+        "explanation": "La previsione scambiava il vincolo pressione con il vincolo portata.",
+        "nextStep": "Affronta il caso con raggio dimezzato a Q fissata.",
+        "reviewerId": "tutor-synthetic",
+        "rubric": {
+          "criterion": "Isola Δp mantenendo Q costante e giustifica la quarta potenza del raggio.",
+          "procedureRequired": true
+        },
+        "verification": "REVIEWED_BY_TUTOR",
+        "state": "CURRENT"
+      },
+      "transferExercise": {
+        "exerciseId": "transfer-7095abfef8f5426db38f7d8a81283ec7",
+        "originalParameters": {
+          "boundary": "flow",
+          "radiusRatio": 2
+        },
+        "parameters": {
+          "boundary": "flow",
+          "radiusRatio": 0.5
+        },
+        "prompt": "Il raggio si dimezza e Q resta costante. Prevedi e giustifica Δp/Δp₀."
+      },
+      "attempts": [
+        {
+          "attemptId": "67312a0f8e6f48218969f1b4b45a4f54",
+          "exerciseId": "transfer-7095abfef8f5426db38f7d8a81283ec7",
+          "parameters": {
+            "boundary": "flow",
+            "radiusRatio": 0.5
+          },
+          "procedure": "R1 sintesi 1792857829780: a Q costante isolo Δp = 8ηLQ/(πr⁴). Dimezzando r, il rapporto Δp/Δp₀ è 16. Assumo valide le condizioni del modello in entrambi i tubi.",
+          "sourceRefs": [
+            {
+              "contextId": "edition-fluidi-student-02",
+              "resourceId": "767bf17faee84abcaf7fb18794187bea",
+              "revisionId": "da327f4d68d64f9f94cb4407cdd006df"
+            }
+          ],
+          "status": "UNVERIFIED",
+          "submissionId": "8ce9e6c5ddb74556b15b7254c917303c",
+          "eventSeq": 20
+        }
+      ],
+      "latestVerification": {
+        "attemptId": "67312a0f8e6f48218969f1b4b45a4f54",
+        "reviewerId": "tutor-synthetic",
+        "rubricEvidence": {
+          "criterion": "Isola Δp mantenendo Q costante e giustifica la quarta potenza del raggio.",
+          "procedureQuote": "R1 sintesi 1792857829780: a Q costante isolo Δp = 8ηLQ/(πr⁴). Dimezzando r, il rapporto Δp/Δp₀ è 16. Assumo valide le condizioni del modello in entrambi i tubi.",
+          "reasoning": "Il procedimento esplicita Q fissata, isola Δp e giustifica il rapporto16. Questa è una verifica umana del solo tentativo indicato.",
+          "variationReason": "Il raggio viene dimezzato anziché raddoppiato."
+        },
+        "scope": "Nuova prova e procedimento secondo la rubrica dichiarata; non padronanza permanente.",
+        "submissionId": "8ce9e6c5ddb74556b15b7254c917303c",
+        "verification": "REVIEWED_BY_TUTOR"
+      },
+      "history": [
+        {
+          "seq": 15,
+          "kind": "error.proposed.v1",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857726.0849001
+        },
+        {
+          "seq": 17,
+          "kind": "error.observed",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857832.106516
+        },
+        {
+          "seq": 20,
+          "kind": "error.transfer_attempted.v1",
+          "actorId": "student-02",
+          "occurredAt": 1792857833.140595
+        },
+        {
+          "seq": 22,
+          "kind": "exercise.completed",
+          "actorId": "tutor-synthetic",
+          "occurredAt": 1792857834.207298
+        }
+      ],
+      "updatedAt": 1792857834.207298,
+      "verificationState": "CURRENT",
+      "sourceState": "CURRENT"
+    }
+  }
+]

@@ -5,8 +5,11 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+import sys
 
-CSP = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from teaching_policy import CSP, HEADERS
+
 
 
 class CandidateHandler(SimpleHTTPRequestHandler):
@@ -34,12 +37,8 @@ class CandidateHandler(SimpleHTTPRequestHandler):
         self.send_error(404, 'No API in this static candidate')
 
     def end_headers(self):
-        self.send_header('Content-Security-Policy', CSP)
-        self.send_header('X-Content-Type-Options', 'nosniff')
-        self.send_header('Referrer-Policy', 'no-referrer')
-        self.send_header('X-Robots-Tag', 'noindex, nofollow')
-        self.send_header('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
-        self.send_header('Cache-Control', 'no-store')
+        for name, value in HEADERS.items():
+            self.send_header(name, value)
         super().end_headers()
 
 

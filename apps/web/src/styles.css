@@ -1200,7 +1200,8 @@ dd {
 .flow-tracer { fill: #b7573e; animation-name: transport-flow; animation-iteration-count: infinite; animation-timing-function: linear; }
 .is-paused .flow-tracer { animation-play-state: paused; }
 @keyframes transport-flow { from {transform: translateX(0);} to {transform: translateX(455px);} }
-.flow-measures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 24px 0 12px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.flow-measures { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 12px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.flow-measures > div { flex: 1 1 max-content; }
 .flow-measures span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 8px; }
 .flow-measures strong { font-family: Georgia, serif; font-weight: 400; font-size: 20px; white-space: nowrap; }
 .flow-motion-control { color: var(--muted); font-size: 12px; padding: 6px 0; border: 0; background: transparent; text-decoration: underline; text-underline-offset: 4px; }
@@ -1225,7 +1226,7 @@ dd {
 .experience-next { padding: 56px 0 32px; display: flex; gap: 30px; align-items: center; justify-content: space-between; }
 .experience-next h2 { font-family: Georgia, serif; font-size: 34px; font-weight: 400; margin-bottom: 12px; }
 .experience-next p { max-width: 62ch; color: var(--muted); font-size: 14px; }
-.experience-next a { white-space: nowrap; text-decoration: none; }
+.experience-next a { white-space: normal; text-align: center; text-decoration: none; }
 .experience-disclosure { color: var(--muted); font-size: 12px; max-width: 90ch; margin-bottom: 32px; }
 .public-experience footer { display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 12px; }
 @media (max-width: 1000px) {
@@ -3744,3 +3745,6 @@ dd {
 .lesson-demo-label {font-size: .76rem; letter-spacing: .07em; text-transform: uppercase; color: var(--sage-deep, #496254); font-weight: 650;}
 .lesson-demo audio {display: block; width: 100%; max-width: 30rem; margin: .8rem 0 1.2rem;}
 .lesson-demo blockquote {margin: 0 0 1rem; padding-left: 1rem; border-left: 2px solid var(--terracotta, #a84f39); line-height: 1.65;}
+
+/* Preserve reflow of long words at enlarged text sizes. */
+.experience-next h2 { overflow-wrap: anywhere; }

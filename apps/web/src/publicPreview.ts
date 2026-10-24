@@ -4,10 +4,21 @@ export const publicCourse = publicPreviewData.course;
 export const publicRadius = publicPreviewData.radius;
 export const publicCaseCount = publicPreviewData.cases.length;
 export const publicLessonDemo = publicPreviewData.lessonDemo;
-export function publicVisualState(radiusRatio: number, boundary: string) {
+export const publicTransferCase = publicPreviewData.transferCase;
+export const publicActivityDomain = publicPreviewData.cases[0].result.domain;
+
+function publicCase(radiusRatio: number, boundary: string, scenario?: string) {
+  if (scenario !== undefined) {
+    if (scenario !== publicTransferCase.id || radiusRatio !== publicTransferCase.parameters.radiusRatio || boundary !== publicTransferCase.parameters.boundary)
+      throw new Error("Configurazione non disponibile in questa anteprima.");
+    return publicTransferCase;
+  }
   const state = publicPreviewData.cases.find(entry => entry.parameters.radiusRatio === radiusRatio && entry.parameters.boundary === boundary);
   if (!state) throw new Error("Configurazione non disponibile in questa anteprima.");
-  return state.visual;
+  return state;
+}
+export function publicVisualState(radiusRatio: number, boundary: string, scenario?: string) {
+  return publicCase(radiusRatio, boundary, scenario).visual;
 }
 export function publicGraphSeries(boundary: string) {
   return publicPreviewData.cases.filter(entry => entry.parameters.boundary === boundary)
@@ -15,11 +26,6 @@ export function publicGraphSeries(boundary: string) {
 }
 
 /** Exact lookup of Core results: never interpolate or accept unsupported inputs. */
-export function publicActivityResult(radiusRatio: number, boundary: string) {
-  const entry = publicPreviewData.cases.find(
-    ({ parameters }) =>
-      parameters.radiusRatio === radiusRatio && parameters.boundary === boundary,
-  );
-  if (!entry) throw new Error("Configurazione non disponibile in questa anteprima.");
-  return entry.result;
+export function publicActivityResult(radiusRatio: number, boundary: string, scenario?: string) {
+  return publicCase(radiusRatio, boundary, scenario).result;
 }

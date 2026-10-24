@@ -13,6 +13,7 @@ Questo indice ordina l'autorità dei documenti; non certifica il deploy corrente
 | Storia, inventario, debito e prove | [Consegna di convergenza](deliveries/2026-10-24-convergence/README.md) | Snapshot fissato alla base e al diff dichiarati; mappa dei documenti richiesti dal mandato |
 | Incremento AUDIO-V2 e Poiseuille | [Consegna utilizzabile locale](deliveries/2026-10-24-audio-v2/README.md), [validazione](deliveries/2026-10-24-audio-v2/validation.md) | Successore di #297: percorso docente/studente sintetico, sessioni/media/bundle canonici; limiti locali e remoti distinti |
 | Candidato continuo e REA Deep Build | [Consegna](deliveries/2026-10-24-rea-deep-build/README.md), [validazione](deliveries/2026-10-24-rea-deep-build/validation.md) | Successore locale di#298: landing/esperienza, ponte Aula–Studio, tre missioni REA e prove; nessuna pubblicazione o beta remota certificata |
+| R1: candidato pubblico e beta distinta | [Consegna](deliveries/2026-10-24-r1/README.md), [validazione](deliveries/2026-10-24-r1/validation.md) | Successore di#299: due transferv2, focus/refresh tutor, policy e gate artefatto; TechnicalPASS pubblico, firma umana e beta remota ancora aperte |
 | Contratto MCP implementato | [Study MCP README](../services/study-mcp/README.md) | Quattro letture; limiti reali del trasporto e delle autorizzazioni |
 | Governance e stato | [AGENTS](../AGENTS.md), [loop a due cardini](ops/ARDESIA-LOOP-TWO-HINGE-2026-07-30.md) | Regole operative e stato generato |
 

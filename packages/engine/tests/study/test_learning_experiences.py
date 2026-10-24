@@ -59,9 +59,14 @@ def test_two_editorial_variants_resolve_the_existing_pack_without_exposing_solut
     from lessonos.study.learning_experiences import list_experiences
     store, tutor, student, peer, other = setup_store(tmp_path)
     result = list_experiences(store, student, 'fluidi')
-    assert len(result['experiences']) == 2
-    assert result['experiences'][0]['steps'][2]['parameters'] == {'radiusRatio': .5, 'boundary': 'flow'}
-    assert result['experiences'][1]['steps'][0]['exerciseRef'] == 'RF-02'
+    variants = {item['id']: item for item in result['experiences']}
+    assert set(variants) == {'poiseuille-boundary-v1', 'poiseuille-nearby-v1',
+                             'poiseuille-boundary-v2', 'poiseuille-nearby-v2'}
+    assert variants['poiseuille-boundary-v1']['steps'][2]['parameters'] == {'radiusRatio': .5, 'boundary': 'flow'}
+    assert variants['poiseuille-nearby-v1']['steps'][0]['exerciseRef'] == 'RF-02'
+    assert result['experiences'][0]['id'] == 'poiseuille-boundary-v2'
+    assert result['experiences'][0]['steps'][2]['parameters'] == {'radiusRatio': 1, 'viscosity': 2, 'length': 2, 'boundary': 'flow'}
+    assert result['experiences'][1]['steps'][2]['parameters'] == {'radiusRatio': 1, 'viscosity': 2, 'length': .5, 'boundary': 'pressure'}
     assert 'answer' not in json.dumps(result)
     with pytest.raises(StudyError):
         list_experiences(store, other, 'fluidi')

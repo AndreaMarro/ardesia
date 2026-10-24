@@ -1,0 +1,151 @@
+{
+  "cases": [
+    {
+      "experience": "poiseuille-boundary-v2",
+      "step": "fixed-pressure",
+      "exerciseRef": "RF-06",
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      },
+      "expectedRatio": 16.0,
+      "actualRatio": 16.0,
+      "expectedVisual": {
+        "flowRatio": 16.0,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 4.0
+      },
+      "actualVisual": {
+        "flowRatio": 16.0,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 4.0
+      },
+      "pass": true
+    },
+    {
+      "experience": "poiseuille-boundary-v2",
+      "step": "fixed-flow",
+      "exerciseRef": null,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      },
+      "expectedRatio": 0.0625,
+      "actualRatio": 0.0625,
+      "expectedVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 0.0625,
+        "meanSpeedRatio": 0.25
+      },
+      "actualVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 0.0625,
+        "meanSpeedRatio": 0.25
+      },
+      "pass": true
+    },
+    {
+      "experience": "poiseuille-boundary-v2",
+      "step": "transfer",
+      "exerciseRef": null,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 2,
+        "boundary": "flow"
+      },
+      "expectedRatio": 4.0,
+      "actualRatio": 4.0,
+      "expectedVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 4.0,
+        "meanSpeedRatio": 1.0
+      },
+      "actualVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 4.0,
+        "meanSpeedRatio": 1.0
+      },
+      "pass": true
+    },
+    {
+      "experience": "poiseuille-nearby-v2",
+      "step": "fixed-pressure",
+      "exerciseRef": "RF-02",
+      "parameters": {
+        "radiusRatio": 1.2,
+        "boundary": "pressure"
+      },
+      "expectedRatio": 2.0736,
+      "actualRatio": 2.0736,
+      "expectedVisual": {
+        "flowRatio": 2.0736,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 1.44
+      },
+      "actualVisual": {
+        "flowRatio": 2.0736,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 1.44
+      },
+      "pass": true
+    },
+    {
+      "experience": "poiseuille-nearby-v2",
+      "step": "fixed-flow",
+      "exerciseRef": "RF-03",
+      "parameters": {
+        "radiusRatio": 1.25,
+        "boundary": "flow"
+      },
+      "expectedRatio": 0.4096,
+      "actualRatio": 0.4096,
+      "expectedVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 0.4096,
+        "meanSpeedRatio": 0.64
+      },
+      "actualVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 0.4096,
+        "meanSpeedRatio": 0.64
+      },
+      "pass": true
+    },
+    {
+      "experience": "poiseuille-nearby-v2",
+      "step": "transfer",
+      "exerciseRef": null,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expectedRatio": 1.0,
+      "actualRatio": 1.0,
+      "expectedVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 1.0
+      },
+      "actualVisual": {
+        "flowRatio": 1.0,
+        "pressureRatio": 1.0,
+        "meanSpeedRatio": 1.0
+      },
+      "pass": true
+    }
+  ],
+  "allSixV2CasesPass": true,
+  "coursePackCanonicalSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+  "coursePackV1Unchanged": true,
+  "legacyExperienceV1BytesUnchanged": true,
+  "currentDomain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+  "sourceHashes": {
+    "packages/engine/lessonos/study/activities.py": "75da833a014c90142bd75dc03952de4bbf0c26a29551f1b7074148f6b5c0f603",
+    "packages/engine/lessonos/study/content/learning-experiences-v2.json": "c3392e0cb62a45ad66d59bb2046a756fbc99f0ddee0f32a55a6333f06da2bc01"
+  },
+  "humanApproval": "PENDING",
+  "buildBinding": "PENDING final artifact"
+}

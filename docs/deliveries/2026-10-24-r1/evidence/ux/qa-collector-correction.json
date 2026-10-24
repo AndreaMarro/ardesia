@@ -1,0 +1,23 @@
+{
+  "firstAttempt": "FAIL retained",
+  "failureFileSha256": "743cfc157bcdbdc3a9be31849b63fc0402acd2ca11392986f1a15e1599cae46b",
+  "checksCompleted": 111,
+  "checksPassed": 110,
+  "failedCheckNames": [
+    "no console/runtime/request/HTTP/private/remote issues"
+  ],
+  "issueKinds": {
+    "requestfailed": 5,
+    "response-body": 18
+  },
+  "causes": [
+    "Root URL mapped to artifact/public directory instead of artifact/public/index.html, causing EISDIR in the collector.",
+    "Rapid document navigation/close before full body capture destroyed the CDP loader and aborted in-flight landing assets."
+  ],
+  "correction": "Only the external runner: exact root index mapping and await static network/body completion before document destruction. No requestfailed filter, changed numerical oracle, product change or enlarged product timeout.",
+  "secondAttempt": "PASS on same c762 product/artifact",
+  "secondResultSha256": "c21ad2fb7cac78d315e90681bb436a21fedaedac40480bd7086bb51c2a188370",
+  "secondChecks": 113,
+  "secondIssues": [],
+  "rawRetention": "Original failure.json, log, DOM and screenshots retained in work/r1/ux/public-qa-1. No donor, secrets, user data or token."
+}

@@ -2,13 +2,17 @@ import {useId, useState} from "react";
 import {publicGraphSeries, publicVisualState} from "../publicPreview";
 
 const number = (value: number) => value.toLocaleString("it-IT", {maximumFractionDigits: 4});
-export function PoiseuilleModel({radius, boundary, revealed = false, graph = false}: {
+export type PoiseuilleVisualState = {flowRatio: number; pressureRatio: number; meanSpeedRatio: number};
+export function PoiseuilleModel({radius, boundary, revealed = false, graph = false, visualState, lengthRatio = 1, viscosityRatio = 1}: {
   radius: number; boundary: string; revealed?: boolean; graph?: boolean;
+  visualState?: PoiseuilleVisualState; lengthRatio?: number; viscosityRatio?: number;
 }) {
   const clip = useId();
   const [moving, setMoving] = useState(true);
-  const visual = revealed ? publicVisualState(radius, boundary) : null;
+  const visual = revealed ? visualState ?? publicVisualState(radius, boundary) : null;
   const height = 35 * radius;
+  const referenceLength = 455 / Math.max(1, lengthRatio), comparisonLength = referenceLength * lengthRatio;
+  const changedMaterial = lengthRatio !== 1 || viscosityRatio !== 1;
   function particles(y: number, halfHeight: number, speed: number, id: string) {
     return <g clipPath={`url(#${id})`} className={moving ? "flow-tracers" : "flow-tracers is-paused"}>
       {[-.5, 0, .5].flatMap((row, lane) => [0, 1, 2, 3, 4].map(index => <circle
@@ -17,28 +21,29 @@ export function PoiseuilleModel({radius, boundary, revealed = false, graph = fal
     </g>;
   }
   return <figure className="poiseuille-model discovery-model">
-    <div className="model-key"><span>Stesso fluido · stessa lunghezza</span><span>{boundary === "flow" ? "Q fissata" : "Δp fissata"}</span></div>
-    <svg viewBox="0 0 680 335" role="img" aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}. ${visual ? "Confronto del trasporto medio." : "Geometria prima della previsione."}`}>
+    <div className="model-key"><span>{changedMaterial ? `η/η₀ = ${number(viscosityRatio)} · L/L₀ = ${number(lengthRatio)}` : "Stesso fluido · stessa lunghezza"}</span><span>{boundary === "flow" ? "Q fissata" : "Δp fissata"}</span></div>
+    <svg viewBox="0 0 680 335" role="img" aria-label={`Due tubi cilindrici con rapporto dei raggi ${radius}. ${changedMaterial ? `Rapporto viscosità ${viscosityRatio}, rapporto lunghezze ${lengthRatio}. ` : ""}${visual ? "Confronto del trasporto medio." : "Geometria prima della previsione."}`}>
       <defs>
-        <clipPath id={clip + "-reference"}><rect x="95" y="48" width="455" height="70" /></clipPath>
-        <clipPath id={clip + "-comparison"}><rect x="95" y={235 - height} width="455" height={height * 2} /></clipPath>
+        <clipPath id={clip + "-reference"}><rect x="95" y="48" width={referenceLength} height="70" /></clipPath>
+        <clipPath id={clip + "-comparison"}><rect x="95" y={235 - height} width={comparisonLength} height={height * 2} /></clipPath>
       </defs>
       <g className="pipe-reference"><text x="24" y="30">riferimento</text>
-        <rect x="95" y="48" width="455" height="70" className="tube-body" />
-        <line x1="95" x2="550" y1="83" y2="83" className="pipe-axis" />
-        <path d="M580 48V118M574 48H586M574 118H586" className="pipe-dimension" />
-        <text x="596" y="88">2r₀</text>
+        <rect x="95" y="48" width={referenceLength} height="70" className="tube-body" />
+        <line x1="95" x2={95 + referenceLength} y1="83" y2="83" className="pipe-axis" />
+        <path d={`M${125 + referenceLength} 48V118M${119 + referenceLength} 48H${131 + referenceLength}M${119 + referenceLength} 118H${131 + referenceLength}`} className="pipe-dimension" />
+        <text x={141 + referenceLength} y="88">2r₀</text>
+        {lengthRatio !== 1 && <text x={95 + referenceLength / 2} y="145" textAnchor="middle">L₀</text>}
         {visual && particles(83, 35, 1, clip + "-reference")}
       </g>
       <g className="pipe-comparison"><text x="24" y="153">confronto</text>
-        <rect x="95" y={235 - height} width="455" height={height * 2} className="tube-body" />
-        <line x1="95" x2="550" y1="235" y2="235" className="pipe-axis" />
-        <path d={`M580 ${235 - height}V${235 + height}M574 ${235 - height}H586M574 ${235 + height}H586`} className="pipe-dimension" />
-        <text x="596" y="240">2r</text>
+        <rect x="95" y={235 - height} width={comparisonLength} height={height * 2} className="tube-body" />
+        <line x1="95" x2={95 + comparisonLength} y1="235" y2="235" className="pipe-axis" />
+        <path d={`M${125 + comparisonLength} ${235 - height}V${235 + height}M${119 + comparisonLength} ${235 - height}H${131 + comparisonLength}M${119 + comparisonLength} ${235 + height}H${131 + comparisonLength}`} className="pipe-dimension" />
+        <text x={141 + comparisonLength} y="240">2r</text>
         {visual && particles(235, height, visual.meanSpeedRatio, clip + "-comparison")}
       </g>
-      <path d="M100 317H550M100 312V322M550 312V322" className="pipe-dimension" />
-      <text x="325" y="331" textAnchor="middle">L costante</text>
+      <path d={`M95 317H${95 + comparisonLength}M95 312V322M${95 + comparisonLength} 312V322`} className="pipe-dimension" />
+      <text x={95 + comparisonLength / 2} y="331" textAnchor="middle">{lengthRatio === 1 ? "L costante" : `L/L₀ = ${number(lengthRatio)}`}</text>
     </svg>
     <figcaption>r / r₀ = {number(radius)} · {boundary === "flow" ? "Q è costante: la portata non cambia." : "Δp è costante: confronta la portata."}</figcaption>
     {visual && <>
@@ -50,7 +55,7 @@ export function PoiseuilleModel({radius, boundary, revealed = false, graph = fal
       <button type="button" className="flow-motion-control" aria-pressed={!moving} onClick={() => setMoving(value => !value)}>{moving ? "Ferma il flusso" : "Anima il flusso"}</button>
       <p className="model-note">I punti rappresentano il trasporto medio, non il profilo locale di velocità. Il loro numero non misura la portata. Q = velocità media × area; a Q fissata il tubo più largo richiede una velocità minore.</p>
     </>}
-    {graph && visual && <PoiseuilleGraph radius={radius} boundary={boundary} />}
+    {graph && visual && !changedMaterial && <PoiseuilleGraph radius={radius} boundary={boundary} />}
   </figure>;
 }
 
