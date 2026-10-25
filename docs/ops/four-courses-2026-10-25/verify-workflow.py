@@ -21,7 +21,7 @@ with tempfile.TemporaryDirectory(prefix='ardesia-four-workflow-') as directory:
  student=store.create_principal('four-flow-student','student')
  peer=store.create_principal('four-flow-peer','student')
  other=store.create_principal('four-flow-other','teacher')
- 
+
  def login(client,p):
   issuer=StudyStore(db);token=issuer.issue_session(p);issuer.close()
   response=client.post('/study/session',json={'token':token});assert response.status_code==200,(response.status_code,response.text)

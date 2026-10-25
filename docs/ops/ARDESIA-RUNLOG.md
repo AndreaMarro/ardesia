@@ -591,6 +591,8 @@ e cambiare l'ordine dei task in base alla nuova prova.
 
 **ChiusuraGit da leggere live.** Il commit di questa memoria precede ilmerge. [RegistroPR306](https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404424520) viene aggiornato con SHArealemain, stato terminale eCIpostmerge dopo esecuzione; nessun esito futuro anticipato in questo testo. I commit dopo05d2toccano solo prove/memoria e mantengono ilsourceinventory applicativo esatto.
 
+**Correzione finale della memoria.** Hygiene sulla head70004fad ha rilevato uno spazio a fine riga24 nel nuovo runner documentale. Il precedente controllo sul working diff non includeva il file ancora untracked: corretto il solo whitespace e il digest del runner nel report, poi controllata la diff completa rispetto alla base e quella staged. Nessun gate indebolito e nessun cambiamento al prodotto pubblicato.
+
 ### NEXT PRIORITY TASKS — quattro corsi ancora da completare
 
 1. **P0 accettazione200target e consumerqualitativo:** primo passo aprire matrice+lessonRefU1-01 e collegare una prova qualitativa ai contrattiCoreesistenti, senza nuovoquiz. Dipendenze docente/editor, pubblicazioneesplicita, contrattoevidence; accettazione per tutti200 spiegazione/pratica/feedback/transferverificati eapprovedreali, conassistito/autonomodistinti. Evidenza schedeperobiettivo, ricevute/revisioni e firma perversione, nessun conteggio di solefamiglie.
