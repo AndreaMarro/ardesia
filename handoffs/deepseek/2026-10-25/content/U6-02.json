@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u6-02",
+  "familyId": "U6-02",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Potenziale elettrico",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U6-02.01",
+    "U6-02.02",
+    "U6-02.03",
+    "U6-02.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Il potenziale elettrico è energia potenziale per unità di carica e si misura in volt,J/C. La differenza di potenzialeΔV=Vf−Vi cambia l’energia potenziale diqΔV. Il lavoro della forza elettrica è−qΔV; se non agiscono altre forze che compiono lavoro,ΔK=−qΔV. Il potenziale è scalare e quello di più cariche si somma algebricamente, mentre i campi sono vettori. Per due cariche puntiformiU=keq1q2/r con zero all’infinito; il segno può essere negativo. Una carica positiva lasciata libera tende a muoversi verso potenziale minore; una negativa può guadagnare energia cinetica muovendosi verso potenziale maggiore. Lo zero convenzionale diV non alteraΔV.",
+  "workedExample": {
+    "prompt": "Una carica+2µC passa da10V a4V, agisce solo il campo elettrico. TrovaΔU eΔK.",
+    "steps": [
+      "ΔV=4−10=−6V.",
+      "ΔU=2·10^-6·(−6)=−12·10^-6J.",
+      "ΔK=−ΔU=+12µJ."
+    ],
+    "result": "ΔU=−12µJ;ΔK=+12µJ."
+  },
+  "practice": {
+    "prompt": "Una carica−1µC passa da0 a5V. Quanto cambiaU?",
+    "answer": "−5µJ",
+    "feedback": "ΔU=qΔV: carica negativa e aumento di potenziale producono diminuzione dell’energia potenziale."
+  },
+  "transfer": {
+    "prompt": "Se aggiungi100V a tutti i potenziali di un circuito, cambiano forze e lavoro fra due punti? Motiva.",
+    "answer": "No, le differenze di potenziale restano identiche.",
+    "feedback": "Il lavoro dipende daΔV; il riferimento assoluto può essere scelto convenzionalmente."
+  },
+  "commonErrors": [
+    "Confondere campo e potenziale",
+    "UsareΔK=qΔV invertendo il segno"
+  ],
+  "hintLadder": [
+    "Scrivi estremi iniziale e finale",
+    "Controlla prima il segno diqΔV"
+  ],
+  "recap": "Il segno della carica decide comeΔV cambiaU eK.",
+  "transcript": "Il potenziale elettrico è energia potenziale per unità di carica e si misura in volt,J/C. La differenza di potenzialeΔV=Vf−Vi cambia l’energia potenziale diqΔV. Il lavoro della forza elettrica è−qΔV; se non agiscono altre forze che compiono lavoro,ΔK=−qΔV. Il potenziale è scalare e quello di più cariche si somma algebricamente, mentre i campi sono vettori. Per due cariche puntiformiU=keq1q2/r con zero all’infinito; il segno può essere negativo. Una carica positiva lasciata libera tende a muoversi verso potenziale minore; una negativa può guadagnare energia cinetica muovendosi verso potenziale maggiore. Lo zero convenzionale diV non alteraΔV. Esempio: Una carica+2µC passa da10V a4V, agisce solo il campo elettrico. TrovaΔU eΔK. ΔV=4−10=−6V. ΔU=2·10^-6·(−6)=−12·10^-6J. ΔK=−ΔU=+12µJ. Risultato: ΔU=−12µJ;ΔK=+12µJ.",
+  "scientificCounterchecks": [
+    "Il segno della carica decide comeΔV cambiaU eK.",
+    "C·V=J.",
+    "ΔU+ΔK=0 nell’esempio senza altri lavori."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

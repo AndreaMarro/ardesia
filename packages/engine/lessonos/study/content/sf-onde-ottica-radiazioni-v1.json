@@ -1,0 +1,2728 @@
+{
+  "id": "sf-onde-ottica-radiazioni-v1",
+  "version": 1,
+  "title": "Onde, ottica e radiazioni",
+  "status": "DRAFT",
+  "reviewer": null,
+  "scope": "Percorso in costruzione. Lezione originale dimostrativa; non è un microcorso completo.",
+  "rights": "Original teaching proposals, no donor assets or private-kit text copied.",
+  "coursePathId": "onde-ottica-radiazioni",
+  "baselineRef": {
+    "id": "physics-curriculum-2026-v1",
+    "sha256": "4dfdbd4b0358d6270521208f5af66e6fc69ff6c3a1c0cb1c64861734a0b7ab7f"
+  },
+  "activities": [
+    {
+      "id": "harmonic-wave-v1",
+      "version": 1,
+      "title": "Frequenza e lunghezza d’onda",
+      "skill": "Frequenza e lunghezza d’onda",
+      "prerequisites": [
+        "unità SI",
+        "proporzioni"
+      ],
+      "parametersRequired": true,
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "original-demo-u4-01-practice",
+      "activityId": "harmonic-wave-v1",
+      "parameters": {
+        "speed": 4,
+        "frequency": 2,
+        "amplitude": 0.1,
+        "phase": 0,
+        "time": 0
+      },
+      "prompt": "Onda nel mezzo uniforme: v=4 m/s e f=2 Hz. Trova λ in m.",
+      "answer": {
+        "value": 2,
+        "unit": "m"
+      },
+      "solution": [
+        "Valore atteso 2 m.",
+        "m/s diviso Hz restituisce m; fT=1."
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "transferTests": [
+    {
+      "id": "original-demo-u4-01-transfer",
+      "items": [
+        {
+          "id": "original-demo-u4-01-transfer-item",
+          "activityId": "harmonic-wave-v1",
+          "parameters": {
+            "speed": 6,
+            "frequency": 4,
+            "amplitude": 0.1,
+            "phase": 0,
+            "time": 0
+          },
+          "prompt": "Onda in un altro mezzo: v=6 m/s e f=4 Hz. Trova λ in m.",
+          "answer": {
+            "value": 1.5,
+            "unit": "m"
+          },
+          "solution": [
+            "Valore atteso 1.5 m.",
+            "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+          ],
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ]
+    }
+  ],
+  "reviewRubric": [
+    "Coprire ogni sotto-obiettivo della baseline prima di dichiarare completezza.",
+    "Revisione scientifica/editoriale umana sulla revisione esatta.",
+    "Continuità remota docente-studente da collaudare."
+  ],
+  "lessons": [
+    {
+      "id": "original-demo-u4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-01.01",
+        "U4-01.02",
+        "U4-01.03",
+        "U4-01.04",
+        "U4-01.05",
+        "U4-01.06",
+        "U4-01.07",
+        "U4-01.08",
+        "U4-01.09",
+        "U4-01.10"
+      ],
+      "title": "Frequenza e lunghezza d’onda",
+      "explanation": [
+        "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse."
+      ],
+      "workedExample": {
+        "prompt": "In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4.",
+        "steps": [
+          "λ=v/f=2 m e T=1/f=0,5 s.",
+          "A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m.",
+          "Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m."
+        ],
+        "answerDisplay": "λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti."
+      },
+      "practice": {
+        "prompt": "Onda nel mezzo uniforme: v=4 m/s e f=2 Hz. Trova λ in m.",
+        "answer": {
+          "value": 2,
+          "unit": "m"
+        },
+        "feedback": [
+          "Valore atteso 2 m.",
+          "m/s diviso Hz restituisce m; fT=1."
+        ],
+        "parameters": {
+          "speed": 4,
+          "frequency": 2,
+          "amplitude": 0.1,
+          "phase": 0,
+          "time": 0
+        }
+      },
+      "transfer": {
+        "prompt": "Onda in un altro mezzo: v=6 m/s e f=4 Hz. Trova λ in m.",
+        "answer": {
+          "value": 1.5,
+          "unit": "m"
+        },
+        "feedback": [
+          "Valore atteso 1.5 m.",
+          "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+        ],
+        "parameters": {
+          "speed": 6,
+          "frequency": 4,
+          "amplitude": 0.1,
+          "phase": 0,
+          "time": 0
+        }
+      },
+      "recap": [
+        "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione."
+      ],
+      "transcript": "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse. Esempio: In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4. λ=v/f=2 m e T=1/f=0,5 s. A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m. Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m. Risultato: λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti.",
+      "scientificEvidence": [
+        "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.",
+        "m/s diviso Hz restituisce m; fT=1.",
+        "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+      ],
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+      "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
+      "releaseScope": "PUBLIC_DEMONSTRATION",
+      "activityId": "harmonic-wave-v1",
+      "provenanceRef": {
+        "authorRole": "DeepSeek content session",
+        "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
+        "status": "DRAFT; original, not copied from private knowledge"
+      },
+      "audioPath": "courses/audio/onde-ottica-radiazioni.wav",
+      "audioTranscript": "La frequenza conta le oscillazioni in un secondo. La lunghezza d’onda misura la distanza fra due punti che oscillano nella stessa fase. A velocità di propagazione fissata, aumentare la frequenza riduce la lunghezza d’onda. Non confondere una fotografia della forma nello spazio con l’oscillazione nel tempo in un punto. Nel nuovo mezzo riparti dalla nuova velocità e dalla nuova frequenza.",
+      "audioStatus": "SYNTHETIC_DEMONSTRATION; listening quality not reviewed"
+    },
+    {
+      "id": "ds-2026-u4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-01.01",
+        "U4-01.02",
+        "U4-01.03",
+        "U4-01.04",
+        "U4-01.05",
+        "U4-01.06",
+        "U4-01.07",
+        "U4-01.08",
+        "U4-01.09",
+        "U4-01.10"
+      ],
+      "familyId": "U4-01",
+      "title": "Onda armonica",
+      "explanation": [
+        "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse."
+      ],
+      "workedExample": {
+        "prompt": "In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4.",
+        "steps": [
+          "λ=v/f=2 m e T=1/f=0,5 s.",
+          "A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m.",
+          "Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m."
+        ],
+        "answerDisplay": "λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti."
+      },
+      "practice": {
+        "prompt": "Un’onda ha v=4 m/s e f=2 Hz. Quanto vale λ?",
+        "answer": {
+          "value": "2 m",
+          "unit": ""
+        },
+        "feedback": [
+          "Dividi velocità per frequenza: (m/s)/(1/s)=m. La frequenza non è la velocità del mezzo."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una perturbazione in un altro mezzo viaggia a 6 m/s con f=4 Hz. Trova λ e T; poi descrivi una perturbazione longitudinale.",
+        "answer": {
+          "value": "λ=1,5 m; T=0,25 s; oscillazione parallela alla propagazione.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il rapporto v/f determina λ. Longitudinale riguarda la direzione del moto locale, non il segno del grafico sinusoidale."
+        ]
+      },
+      "recap": [
+        "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione."
+      ],
+      "transcript": "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse. Esempio: In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4. λ=v/f=2 m e T=1/f=0,5 s. A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m. Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m. Risultato: λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.",
+        "m/s diviso Hz restituisce m; fT=1.",
+        "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U4-01.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u4-02",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-02.01",
+        "U4-02.02"
+      ],
+      "familyId": "U4-02",
+      "title": "Sovrapposizione",
+      "explanation": [
+        "In un mezzo lineare la perturbazione risultante è la somma algebrica degli spostamenti nello stesso punto e istante. Due onde coerenti di stessa frequenza e ampiezzaA, in fase, danno ampiezza2A; in opposizione di fase possono annullarsi localmente. Con fase intermedia l’ampiezza risultante non si ricava sommando i moduli. L’annullamento dello spostamento in un punto non implica sparizione dell’energia di tutto il campo: l’interferenza ridistribuisce l’energia e può generare nodi e ventri. La sovrapposizione del segnale non autorizza a sommare semplicemente le intensità di onde coerenti. Il modello richiede risposta lineare del mezzo."
+      ],
+      "workedExample": {
+        "prompt": "Due onde in fase producono nello stesso punto spostamenti+0,03m e+0,02m. Quale spostamento risultante? E se la seconda è−0,02m?",
+        "steps": [
+          "Somma algebrica dei valori istantanei.",
+          "0,03+0,02=0,05m.",
+          "0,03−0,02=0,01m."
+        ],
+        "answerDisplay": "0,05m e0,01m."
+      },
+      "practice": {
+        "prompt": "Due onde coerenti con ampiezza0,04m sono in opposizione di fase nello stesso punto. Quale ampiezza risultante ideale?",
+        "answer": {
+          "value": "0m",
+          "unit": ""
+        },
+        "feedback": [
+          "I contributi hanno uguale modulo e segno opposto a ogni istante nel punto considerato."
+        ]
+      },
+      "transfer": {
+        "prompt": "Due onde di uguale intensitàI e stessa frequenza arrivano in fase. La loro intensità risultante è2I oppure4I nel modello lineare con stessa impedenza?",
+        "answer": {
+          "value": "4I",
+          "unit": ""
+        },
+        "feedback": [
+          "L’ampiezza raddoppia e l’intensità è proporzionale al quadrato dell’ampiezza. L’energia è ridistribuita nello spazio."
+        ]
+      },
+      "recap": [
+        "La sovrapposizione riguarda la perturbazione, non una somma universale delle intensità."
+      ],
+      "transcript": "In un mezzo lineare la perturbazione risultante è la somma algebrica degli spostamenti nello stesso punto e istante. Due onde coerenti di stessa frequenza e ampiezzaA, in fase, danno ampiezza2A; in opposizione di fase possono annullarsi localmente. Con fase intermedia l’ampiezza risultante non si ricava sommando i moduli. L’annullamento dello spostamento in un punto non implica sparizione dell’energia di tutto il campo: l’interferenza ridistribuisce l’energia e può generare nodi e ventri. La sovrapposizione del segnale non autorizza a sommare semplicemente le intensità di onde coerenti. Il modello richiede risposta lineare del mezzo. Esempio: Due onde in fase producono nello stesso punto spostamenti+0,03m e+0,02m. Quale spostamento risultante? E se la seconda è−0,02m? Somma algebrica dei valori istantanei. 0,03+0,02=0,05m. 0,03−0,02=0,01m. Risultato: 0,05m e0,01m.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La sovrapposizione riguarda la perturbazione, non una somma universale delle intensità.",
+        "0,05−0,01=0,04m, coerente con il cambio di segno di0,02.",
+        "In opposizione perfettaA−A=0."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U4-02.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-03.01",
+        "U4-03.02",
+        "U4-03.03",
+        "U4-03.04"
+      ],
+      "familyId": "U4-03",
+      "title": "Energia e intensità",
+      "explanation": [
+        "L’energia trasportata in un intervallo divisa per il tempo dà la potenzaP; la potenza per area perpendicolare dà intensitàI. Le unità sonoJ,W,W/m². Per una sorgente puntiforme isotropa senza assorbimento, la stessa potenza attraversa sfere di area4πr² eI=P/(4πr²): raddoppiare r divideI per4. Non è una legge per ogni geometria di onda né per un ambiente con riflessioni. In un mezzo lineare fissato, a frequenza fissata, l’intensità di un’onda armonica cresce comeA²; cambiare mezzo o frequenza richiede il modello specifico. Un aumento di potenza non cambia necessariamente velocità di propagazione."
+      ],
+      "workedExample": {
+        "prompt": "Un’onda trasporta12J in3s attraverso area2m² uniforme e perpendicolare. TrovaP eI.",
+        "steps": [
+          "P=12/3=4W.",
+          "I=P/A=4/2=2W/m².",
+          "Il flusso energetico per secondo e metro quadrato è2J/(s m²)."
+        ],
+        "answerDisplay": "4W;2W/m²."
+      },
+      "practice": {
+        "prompt": "Una sorgente puntiforme isotropa produceI=8W/m² a2m. QualeI a4m senza assorbimento?",
+        "answer": {
+          "value": "2W/m²",
+          "unit": ""
+        },
+        "feedback": [
+          "La distanza raddoppia: dividi per quattro."
+        ]
+      },
+      "transfer": {
+        "prompt": "A mezzo e frequenza fissati l’ampiezza passa daA a3A. Come variaI? Se l’area intercettata raddoppia aI fissata, quale potenza riceve?",
+        "answer": {
+          "value": "Intensità9volte; potenza ricevuta2volte.",
+          "unit": ""
+        },
+        "feedback": [
+          "Prima usaI∝A², poiP=I·area. Non confondere l’ampiezza dello spostamento con l’area attraversata."
+        ]
+      },
+      "recap": [
+        "L’intensità è energia per tempo e area, non energia totale."
+      ],
+      "transcript": "L’energia trasportata in un intervallo divisa per il tempo dà la potenzaP; la potenza per area perpendicolare dà intensitàI. Le unità sonoJ,W,W/m². Per una sorgente puntiforme isotropa senza assorbimento, la stessa potenza attraversa sfere di area4πr² eI=P/(4πr²): raddoppiare r divideI per4. Non è una legge per ogni geometria di onda né per un ambiente con riflessioni. In un mezzo lineare fissato, a frequenza fissata, l’intensità di un’onda armonica cresce comeA²; cambiare mezzo o frequenza richiede il modello specifico. Un aumento di potenza non cambia necessariamente velocità di propagazione. Esempio: Un’onda trasporta12J in3s attraverso area2m² uniforme e perpendicolare. TrovaP eI. P=12/3=4W. I=P/A=4/2=2W/m². Il flusso energetico per secondo e metro quadrato è2J/(s m²). Risultato: 4W;2W/m².",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "L’intensità è energia per tempo e area, non energia totale.",
+        "2W/m²·2m²·3s=12J.",
+        "Alla metà della distanza l’intensità isotropa quadruplica."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U4-03.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u4-04",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-04.01",
+        "U4-04.02",
+        "U4-04.03"
+      ],
+      "familyId": "U4-04",
+      "title": "Suono e decibel",
+      "explanation": [
+        "Il suono è una perturbazione meccanica: necessita di un mezzo materiale e nei fluidi è longitudinale. La velocità dipende dalle proprietà del mezzo e dalla temperatura, non dalla sola frequenza emessa. Il livello di intensità sonora èβ=10log10(I/I0), con riferimento dichiaratoI0; non è una misura lineare dell’intensità né una descrizione completa della sensazione soggettiva. Un aumento di10dB corrisponde a intensità per10,20dB a per100. Per sorgenti incoerenti si sommano le intensità prima di calcolare il logaritmo. Frequenza e sensibilità dell’ascoltatore influenzano la percezione, quindi uguali dB non certificano uguale esperienza soggettiva. Il valoreI=0 non ha logaritmo finito."
+      ],
+      "workedExample": {
+        "prompt": "ConI0=10^-12W/m² eI=10^-8W/m² trovaβ.",
+        "steps": [
+          "I/I0=10^4.",
+          "log10(10^4)=4.",
+          "β=10·4=40dB."
+        ],
+        "answerDisplay": "40dB."
+      },
+      "practice": {
+        "prompt": "Il livello passa da40 a60dB con lo stesso riferimento. Qual è il rapporto fra intensità?",
+        "answer": {
+          "value": "100",
+          "unit": ""
+        },
+        "feedback": [
+          "Δβ=20dB implica10^(20/10)=100."
+        ]
+      },
+      "transfer": {
+        "prompt": "Due sorgenti incoerenti uguali, ciascuna a40dB nel punto, agiscono insieme. Quale livello totale approssimato?",
+        "answer": {
+          "value": "43,0103dB",
+          "unit": ""
+        },
+        "feedback": [
+          "L’intensità raddoppia: incremento10log10(2)≈3,0103dB, non40dB aggiuntivi."
+        ]
+      },
+      "recap": [
+        "Il decibel esprime un rapporto logaritmico rispetto a un riferimento."
+      ],
+      "transcript": "Il suono è una perturbazione meccanica: necessita di un mezzo materiale e nei fluidi è longitudinale. La velocità dipende dalle proprietà del mezzo e dalla temperatura, non dalla sola frequenza emessa. Il livello di intensità sonora èβ=10log10(I/I0), con riferimento dichiaratoI0; non è una misura lineare dell’intensità né una descrizione completa della sensazione soggettiva. Un aumento di10dB corrisponde a intensità per10,20dB a per100. Per sorgenti incoerenti si sommano le intensità prima di calcolare il logaritmo. Frequenza e sensibilità dell’ascoltatore influenzano la percezione, quindi uguali dB non certificano uguale esperienza soggettiva. Il valoreI=0 non ha logaritmo finito. Esempio: ConI0=10^-12W/m² eI=10^-8W/m² trovaβ. I/I0=10^4. log10(10^4)=4. β=10·4=40dB. Risultato: 40dB.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Il decibel esprime un rapporto logaritmico rispetto a un riferimento.",
+        "40dB significa rapporto10^4, non40.",
+        "Un aumento di3,0103dB corrisponde al raddoppioI."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U4-04.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U4-05.01",
+        "U4-05.02",
+        "U4-05.03",
+        "U4-05.04"
+      ],
+      "familyId": "U4-05",
+      "title": "Doppler qualitativo",
+      "explanation": [
+        "L’effettoDoppler è una variazione della frequenza ricevuta dovuta al moto relativo di sorgente e osservatore rispetto al mezzo. Quando sorgente e osservatore si avvicinano la frequenza ricevuta aumenta; quando si allontanano diminuisce, nel regime usuale subsonico. Una sorgente in moto comprime le distanze fra fronti davanti a sé e le dilata dietro; un osservatore in moto incontra più o meno fronti per unità di tempo. La velocità dell’onda rispetto al mezzo non aumenta perché si muove la sorgente. Il syllabus qui chiede una descrizione qualitativa: non occorre introdurre una formula quantitativa senza ipotesi e convenzioni. Nel passaggio davanti all’osservatore cambia la componente del moto lungo la linea di vista."
+      ],
+      "workedExample": {
+        "prompt": "Un’ambulanza con tono emesso costante si avvicina a un osservatore fermo e poi si allontana. Descrivi il suono ricevuto rispetto alla frequenza emessa.",
+        "steps": [
+          "In avvicinamento i fronti arrivano più ravvicinati nel tempo.",
+          "La frequenza ricevuta è maggiore prima del passaggio.",
+          "In allontanamento i fronti arrivano più distanziati e la frequenza è minore."
+        ],
+        "answerDisplay": "Più acuto in avvicinamento, più grave in allontanamento."
+      },
+      "practice": {
+        "prompt": "Un osservatore va incontro a una sorgente sonora ferma nel mezzo. Riceve frequenza maggiore o minore?",
+        "answer": {
+          "value": "Maggiore nel regime usuale.",
+          "unit": ""
+        },
+        "feedback": [
+          "L’osservatore incontra più fronti d’onda per unità di tempo."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una sorgente si allontana ma alza la potenza mantenendo frequenza emessa costante. Un suono più intenso annulla necessariamente lo spostamentoDoppler?",
+        "answer": {
+          "value": "No.",
+          "unit": ""
+        },
+        "feedback": [
+          "Intensità e frequenza sono grandezze diverse. Aumentare la potenza non elimina il cambiamento nel ritmo di arrivo dei fronti."
+        ]
+      },
+      "recap": [
+        "Il Doppler modifica la frequenza ricevuta; non va confuso con attenuazione."
+      ],
+      "transcript": "L’effettoDoppler è una variazione della frequenza ricevuta dovuta al moto relativo di sorgente e osservatore rispetto al mezzo. Quando sorgente e osservatore si avvicinano la frequenza ricevuta aumenta; quando si allontanano diminuisce, nel regime usuale subsonico. Una sorgente in moto comprime le distanze fra fronti davanti a sé e le dilata dietro; un osservatore in moto incontra più o meno fronti per unità di tempo. La velocità dell’onda rispetto al mezzo non aumenta perché si muove la sorgente. Il syllabus qui chiede una descrizione qualitativa: non occorre introdurre una formula quantitativa senza ipotesi e convenzioni. Nel passaggio davanti all’osservatore cambia la componente del moto lungo la linea di vista. Esempio: Un’ambulanza con tono emesso costante si avvicina a un osservatore fermo e poi si allontana. Descrivi il suono ricevuto rispetto alla frequenza emessa. In avvicinamento i fronti arrivano più ravvicinati nel tempo. La frequenza ricevuta è maggiore prima del passaggio. In allontanamento i fronti arrivano più distanziati e la frequenza è minore. Risultato: Più acuto in avvicinamento, più grave in allontanamento.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Il Doppler modifica la frequenza ricevuta; non va confuso con attenuazione.",
+        "Se non c’è moto relativo rispetto al mezzo nel caso descritto, non c’è spostamentoDoppler.",
+        "Il problema è qualitativo: nessun numero inventato."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U4-05.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-01.01",
+        "U7-01.02",
+        "U7-01.03",
+        "U7-01.04",
+        "U7-01.05"
+      ],
+      "familyId": "U7-01",
+      "title": "Radiazione elettromagnetica",
+      "explanation": [
+        "Un’onda elettromagnetica piana nel vuoto ha campi elettrico e magnetico oscillanti fra loro perpendicolari e perpendicolari alla direzione di propagazione; trasporta energia senza richiedere un mezzo materiale. La velocità nel vuoto èc=299792458m/s e valec=λf. In un mezzo la velocità può essere diversa e si usa la relazionev=λf con il modello del mezzo. L’ampiezza del campo e la frequenza sono grandezze distinte: nel modello lineare fissato l’intensità media cresce con il quadrato dell’ampiezza, mentre l’energia per fotone dipende dalla frequenza. Aumentare la luminosità a frequenza fissa non rende automaticamente la radiazione più energetica per singolo fotone."
+      ],
+      "workedExample": {
+        "prompt": "Nel vuoto una radiazione haf=3·10^8Hz. Usa c=299792458m/s e trovaλ.",
+        "steps": [
+          "λ=c/f.",
+          "299792458/(3·10^8)=0,9993081933m.",
+          "Il valore è circa1m; l’approssimazione c≈3·10^8m/s darebbe1m esatto."
+        ],
+        "answerDisplay": "λ≈0,9993081933m."
+      },
+      "practice": {
+        "prompt": "In un mezzo non dispersivo la velocità è2·10^8m/s ef=5·10^14Hz. Trovaλ.",
+        "answer": {
+          "value": "4·10^-7m =400nm",
+          "unit": ""
+        },
+        "feedback": [
+          "La relazione usa la velocità nel mezzo, nonc nel vuoto."
+        ]
+      },
+      "transfer": {
+        "prompt": "A frequenza e mezzo fissati l’ampiezza del campo elettrico raddoppia. Come varia l’intensità? Cambia la frequenza?",
+        "answer": {
+          "value": "Intensità quadruplica; frequenza invariata.",
+          "unit": ""
+        },
+        "feedback": [
+          "Ampiezza e ritmo di oscillazione sono parametri indipendenti del modello."
+        ]
+      },
+      "recap": [
+        "Le ondeEM propagano campi e energia; ampiezza non è energia del singolo fotone."
+      ],
+      "transcript": "Un’onda elettromagnetica piana nel vuoto ha campi elettrico e magnetico oscillanti fra loro perpendicolari e perpendicolari alla direzione di propagazione; trasporta energia senza richiedere un mezzo materiale. La velocità nel vuoto èc=299792458m/s e valec=λf. In un mezzo la velocità può essere diversa e si usa la relazionev=λf con il modello del mezzo. L’ampiezza del campo e la frequenza sono grandezze distinte: nel modello lineare fissato l’intensità media cresce con il quadrato dell’ampiezza, mentre l’energia per fotone dipende dalla frequenza. Aumentare la luminosità a frequenza fissa non rende automaticamente la radiazione più energetica per singolo fotone. Esempio: Nel vuoto una radiazione haf=3·10^8Hz. Usa c=299792458m/s e trovaλ. λ=c/f. 299792458/(3·10^8)=0,9993081933m. Il valore è circa1m; l’approssimazione c≈3·10^8m/s darebbe1m esatto. Risultato: λ≈0,9993081933m.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Le ondeEM propagano campi e energia; ampiezza non è energia del singolo fotone.",
+        "m/s divisoHz=m.",
+        "Nel vuotoE,B e direzione di propagazione sono ortogonali nel modello piano."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-01.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-02.01",
+        "U7-02.02",
+        "U7-02.03",
+        "U7-02.04",
+        "U7-02.05",
+        "U7-02.06",
+        "U7-02.07",
+        "U7-02.08"
+      ],
+      "familyId": "U7-02",
+      "title": "Spettro",
+      "explanation": [
+        "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità."
+      ],
+      "workedExample": {
+        "prompt": "Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto.",
+        "steps": [
+          "Nel vuoto f eλ sono inversamente proporzionali.",
+          "Frequenza: microonde<infrarosso<raggiX.",
+          "Lunghezza: raggiX<infrarosso<microonde."
+        ],
+        "answerDisplay": "Ordini opposti per frequenza e lunghezza d’onda."
+      },
+      "practice": {
+        "prompt": "Fra luce rossa e violetta nel vuoto, quale ha frequenza maggiore e qualeλ maggiore?",
+        "answer": {
+          "value": "Violetta:f maggiore; rossa:λ maggiore.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il violetto è verso l’estremo di frequenza maggiore del visibile."
+        ]
+      },
+      "transfer": {
+        "prompt": "Due radiazioni nel vuoto hannoλ1=2λ2. Quale rapporto f1/f2 ed energia per fotoneE1/E2?",
+        "answer": {
+          "value": "1/2 per entrambi.",
+          "unit": ""
+        },
+        "feedback": [
+          "f=c/λ edE=hf: raddoppiareλ dimezza frequenza ed energia per fotone."
+        ]
+      },
+      "recap": [
+        "Nel vuoto la frequenza crescente corrisponde aλ decrescente."
+      ],
+      "transcript": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità. Esempio: Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto. Nel vuoto f eλ sono inversamente proporzionali. Frequenza: microonde<infrarosso<raggiX. Lunghezza: raggiX<infrarosso<microonde. Risultato: Ordini opposti per frequenza e lunghezza d’onda.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Nel vuoto la frequenza crescente corrisponde aλ decrescente.",
+        "λ1f1=λ2f2=c.",
+        "Radio e gamma sono entrambe radiazioniEM, ma con scale di frequenza molto diverse."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-02.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-03",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-03.01",
+        "U7-03.02"
+      ],
+      "familyId": "U7-03",
+      "title": "Fotoni",
+      "explanation": [
+        "La radiazione scambia energia in quanti chiamati fotoni. Un fotone di frequenzaf ha energiaE=hf, conh=6,62607015·10^-34J s. Nel vuotoE=hc/λ. Il joule e l’elettronvolt sono unità di energia:1eV=1,602176634·10^-19J. La potenza di un fascio monocromatico, se tutti i fotoni considerati hanno la stessa energia, è il numero di fotoni per secondo moltiplicato perE. Intensità maggiore a frequenza fissata significa più energia per tempo e area, non fotoni individuali più energetici. Un fotone non è una piccola onda meccanica che richiede un mezzo materiale."
+      ],
+      "workedExample": {
+        "prompt": "Un fotone haf=5·10^14Hz. CalcolaE usandoh SI preciso.",
+        "steps": [
+          "E=6,62607015·10^-34·5·10^14.",
+          "Coefficienti:33,13035075; esponente10^-20.",
+          "Normalizza:E=3,313035075·10^-19J≈2,06783eV."
+        ],
+        "answerDisplay": "3,313035075·10^-19J."
+      },
+      "practice": {
+        "prompt": "Raddoppiaf a parità di numero di fotoni. Come cambia l’energia totale?",
+        "answer": {
+          "value": "Raddoppia.",
+          "unit": ""
+        },
+        "feedback": [
+          "Ogni fotone ha energia lineare inf; il numero resta uguale."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una sorgente monocromatica emette10^12fotoni/s da2eV ciascuno. TrovaP con1eV=1,602176634·10^-19J.",
+        "answer": {
+          "value": "3,204353268·10^-7W",
+          "unit": ""
+        },
+        "feedback": [
+          "Energia per fotone3,204353268·10^-19J, moltiplicata per10^12s^-1. Non è un’energia totale senza durata."
+        ]
+      },
+      "recap": [
+        "Frequenza determina energia per fotone; il flusso di fotoni determina la potenza a frequenza fissata."
+      ],
+      "transcript": "La radiazione scambia energia in quanti chiamati fotoni. Un fotone di frequenzaf ha energiaE=hf, conh=6,62607015·10^-34J s. Nel vuotoE=hc/λ. Il joule e l’elettronvolt sono unità di energia:1eV=1,602176634·10^-19J. La potenza di un fascio monocromatico, se tutti i fotoni considerati hanno la stessa energia, è il numero di fotoni per secondo moltiplicato perE. Intensità maggiore a frequenza fissata significa più energia per tempo e area, non fotoni individuali più energetici. Un fotone non è una piccola onda meccanica che richiede un mezzo materiale. Esempio: Un fotone haf=5·10^14Hz. CalcolaE usandoh SI preciso. E=6,62607015·10^-34·5·10^14. Coefficienti:33,13035075; esponente10^-20. Normalizza:E=3,313035075·10^-19J≈2,06783eV. Risultato: 3,313035075·10^-19J.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Frequenza determina energia per fotone; il flusso di fotoni determina la potenza a frequenza fissata.",
+        "J s·Hz=J.",
+        "Nel vuoto raddoppiareλ dimezzaE."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-03.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-04.01",
+        "U7-04.02",
+        "U7-04.03",
+        "U7-04.04"
+      ],
+      "familyId": "U7-04",
+      "title": "Assorbimento",
+      "explanation": [
+        "Nel modello diLambert-Beer per fascio collimato monocromatico in mezzo omogeneo l’intensità trasmessa èI(x)=I0 exp(−μx), conμ≥0 in m^-1 ex≥0 in m. La trasmissioneI/I0 è adimensionale; il prodottoμx deve esserlo. Strati successivi indipendenti sommano gli spessori o le profondità ottiche, non le percentuali attenuate. La forma spettrofotometrica con logaritmo decimaleA=log10(I0/I)=εcl usa coefficienti definiti per quella base: non confondereμ conε senza conversione. Il modello non include in modo generale diffusione multipla, fascio policromatico o variazioni del mezzo. x=0 implicaI=I0 e un coefficiente positivo non può aumentareI."
+      ],
+      "workedExample": {
+        "prompt": "Un materiale haμ=ln2m^-1 e spessore1m. Quale frazione del fascio è trasmessa?",
+        "steps": [
+          "μx=ln2.",
+          "I/I0=exp(−ln2)=1/2.",
+          "Trasmissione50%; attenuazione50%."
+        ],
+        "answerDisplay": "I=I0/2."
+      },
+      "practice": {
+        "prompt": "Due strati,ciascuno conμ=ln2m^-1 e spessore1m,sono sovrapposti. ConI=I0exp(−μx),quale trasmissione totale?",
+        "answer": {
+          "value": "1/4=25%",
+          "unit": ""
+        },
+        "feedback": [
+          "Moltiplica le trasmissioni1/2·1/2; non sottrarre due volte50% dell’intensità iniziale."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un campione haI/I0=0,01. Qual èA decimale? Se lo spessore raddoppia nello stesso modello lineare ottico?",
+        "answer": {
+          "value": "A=2;A raddoppia a4 e trasmissione diventa10^-4.",
+          "unit": ""
+        },
+        "feedback": [
+          "A=−log10(0,01). La profondità ottica cresce linearmente con il cammino, l’intensità no."
+        ]
+      },
+      "recap": [
+        "La trasmissione esponenziale di strati si moltiplica."
+      ],
+      "transcript": "Nel modello diLambert-Beer per fascio collimato monocromatico in mezzo omogeneo l’intensità trasmessa èI(x)=I0 exp(−μx), conμ≥0 in m^-1 ex≥0 in m. La trasmissioneI/I0 è adimensionale; il prodottoμx deve esserlo. Strati successivi indipendenti sommano gli spessori o le profondità ottiche, non le percentuali attenuate. La forma spettrofotometrica con logaritmo decimaleA=log10(I0/I)=εcl usa coefficienti definiti per quella base: non confondereμ conε senza conversione. Il modello non include in modo generale diffusione multipla, fascio policromatico o variazioni del mezzo. x=0 implicaI=I0 e un coefficiente positivo non può aumentareI. Esempio: Un materiale haμ=ln2m^-1 e spessore1m. Quale frazione del fascio è trasmessa? μx=ln2. I/I0=exp(−ln2)=1/2. Trasmissione50%; attenuazione50%. Risultato: I=I0/2.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La trasmissione esponenziale di strati si moltiplica.",
+        "A=0 aI=I0;μ=0 non attenua.",
+        "Perμ,x≥0 la trasmissione è compresa fra0e1."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-04.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-05.01",
+        "U7-05.02",
+        "U7-05.03",
+        "U7-05.04",
+        "U7-05.05",
+        "U7-05.06"
+      ],
+      "familyId": "U7-05",
+      "title": "Radioattività",
+      "explanation": [
+        "Isotopi dello stesso elemento hanno uguale numero di protoni e diverso numero di neutroni; alcuni nuclei instabili decadono spontaneamente. Il numero medio di nuclei non decaduti segueN=N0 exp(−λt), conλ>0 e attivitàA=λN inBq, cioè decadimenti al secondo. L’emivitaT1/2=ln2/λ dimezzaN eA a ogni intervallo uguale; non indica che ogni singolo nucleo decada dopo lo stesso tempo. Il decadimentoα riduce numero di massaA di4 e numero atomicoZ di2;β− conservaA e aumentaZ di1,β+ conservaA e riduceZ di1;γ cambia lo stato energetico senza cambiareA oZ. Gli eventi sono stocastici; la legge esponenziale descrive valori medi di insiemi. Attività non coincide con dose assorbita o rischio biologico."
+      ],
+      "workedExample": {
+        "prompt": "Un campione ha attività800Bq ed emivita2h. Quale attività media dopo6h, senza produzione di nuovi nuclei?",
+        "steps": [
+          "6h corrispondono a3emivite.",
+          "A=800·(1/2)^3.",
+          "A=100Bq."
+        ],
+        "answerDisplay": "100Bq."
+      },
+      "practice": {
+        "prompt": "Un nucleo conA=226,Z=88 emetteα. QualiA eZ ha il nucleo figlio?",
+        "answer": {
+          "value": "A=222,Z=86",
+          "unit": ""
+        },
+        "feedback": [
+          "Sottrai4nucleoni e2protoni. Non usare il simboloA dell’attività nello stesso passaggio senza distinguere i significati."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un nucleo conA=14,Z=6 subisceβ− e poiγ. Come cambianoA eZ? Dopo un’altra emivita cosa succede all’attività100Bq?",
+        "answer": {
+          "value": "Dopoβ−:A=14,Z=7;γ non li cambia. Attività media50Bq.",
+          "unit": ""
+        },
+        "feedback": [
+          "Ilβ− converte un neutrone in protone con emissione degli altri prodotti. Gamma rilassa l’energia del nucleo."
+        ]
+      },
+      "recap": [
+        "Decadimento è probabilistico; attività e numero di nuclei dimezzano insieme."
+      ],
+      "transcript": "Isotopi dello stesso elemento hanno uguale numero di protoni e diverso numero di neutroni; alcuni nuclei instabili decadono spontaneamente. Il numero medio di nuclei non decaduti segueN=N0 exp(−λt), conλ>0 e attivitàA=λN inBq, cioè decadimenti al secondo. L’emivitaT1/2=ln2/λ dimezzaN eA a ogni intervallo uguale; non indica che ogni singolo nucleo decada dopo lo stesso tempo. Il decadimentoα riduce numero di massaA di4 e numero atomicoZ di2;β− conservaA e aumentaZ di1,β+ conservaA e riduceZ di1;γ cambia lo stato energetico senza cambiareA oZ. Gli eventi sono stocastici; la legge esponenziale descrive valori medi di insiemi. Attività non coincide con dose assorbita o rischio biologico. Esempio: Un campione ha attività800Bq ed emivita2h. Quale attività media dopo6h, senza produzione di nuovi nuclei? 6h corrispondono a3emivite. A=800·(1/2)^3. A=100Bq. Risultato: 100Bq.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Decadimento è probabilistico; attività e numero di nuclei dimezzano insieme.",
+        "800→400→200→100 in3intervalli.",
+        "Bq=s^-1;λN ha questa unità."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-05.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-06.01",
+        "U7-06.02",
+        "U7-06.03",
+        "U7-06.04"
+      ],
+      "familyId": "U7-06",
+      "title": "Ionizzazione",
+      "explanation": [
+        "Ionizzare significa rimuovere un elettrone da un atomo o molecola e richiede energia rispetto a una soglia specifica. Per assorbimento di un singolo fotone si confrontaE=hf con quella soglia; non esiste una soglia numerica identica per ogni materiale. Radio,microonde e infrarosso sono esempi usuali non ionizzanti per singolo fotone;raggiX e gamma sono tipicamente ionizzanti. L’ultravioletto copre energie diverse e la classificazione richiede frequenza e specie considerata. Un fascio molto intenso di fotoni sotto soglia non aumenta l’energia del singolo fotone; può comunque produrre riscaldamento e altri effetti. Non ionizzante non significa innocuo. Effetti multifotonici o ad altissimo campo richiedono modelli ulteriori e sono esclusi dal confronto elementare."
+      ],
+      "workedExample": {
+        "prompt": "Un atomo ha soglia di ionizzazione10eV nel modello a singolo fotone. Confronta fotoni da3eV e12eV.",
+        "steps": [
+          "3eV è inferiore a10eV: insufficiente per quella ionizzazione a singolo fotone.",
+          "12eV supera la soglia.",
+          "Se assorbito per ionizzare, restano fino a2eV per l’energia cinetica nel modello ideale."
+        ],
+        "answerDisplay": "3eV insufficiente;12eV energeticamente sufficiente."
+      },
+      "practice": {
+        "prompt": "Raddoppiare il numero di fotoni da3eV rende ciascuno da6eV?",
+        "answer": {
+          "value": "No.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il numero aumenta l’energia totale del fascio, non l’energia individuale che dipende da frequenza."
+        ]
+      },
+      "transfer": {
+        "prompt": "Due specie hanno soglie5eV e9eV. Un fotone da7eV è sopra soglia per entrambe? Un’esposizione non ionizzante è sempre senza effetti?",
+        "answer": {
+          "value": "Sopra soglia solo per la prima; no, può produrre effetti come riscaldamento.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il confronto è specifico della specie. La classificazione fisica non è da sola un giudizio di sicurezza sanitaria."
+        ]
+      },
+      "recap": [
+        "La soglia è specifica del sistema e il confronto elementare è per singolo fotone."
+      ],
+      "transcript": "Ionizzare significa rimuovere un elettrone da un atomo o molecola e richiede energia rispetto a una soglia specifica. Per assorbimento di un singolo fotone si confrontaE=hf con quella soglia; non esiste una soglia numerica identica per ogni materiale. Radio,microonde e infrarosso sono esempi usuali non ionizzanti per singolo fotone;raggiX e gamma sono tipicamente ionizzanti. L’ultravioletto copre energie diverse e la classificazione richiede frequenza e specie considerata. Un fascio molto intenso di fotoni sotto soglia non aumenta l’energia del singolo fotone; può comunque produrre riscaldamento e altri effetti. Non ionizzante non significa innocuo. Effetti multifotonici o ad altissimo campo richiedono modelli ulteriori e sono esclusi dal confronto elementare. Esempio: Un atomo ha soglia di ionizzazione10eV nel modello a singolo fotone. Confronta fotoni da3eV e12eV. 3eV è inferiore a10eV: insufficiente per quella ionizzazione a singolo fotone. 12eV supera la soglia. Se assorbito per ionizzare, restano fino a2eV per l’energia cinetica nel modello ideale. Risultato: 3eV insufficiente;12eV energeticamente sufficiente.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La soglia è specifica del sistema e il confronto elementare è per singolo fotone.",
+        "12−10=2eV disponibili nel modello ideale.",
+        "Un aumento di intensità non cambiaf."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-06.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveIds": [
+        "U7-07.01",
+        "U7-07.02",
+        "U7-07.03",
+        "U7-07.04",
+        "U7-07.05",
+        "U7-07.06"
+      ],
+      "familyId": "U7-07",
+      "title": "Ottica geometrica",
+      "explanation": [
+        "Nella riflessione l’angolo riflesso uguaglia l’angolo incidente, misurati dalla normale. Nella rifrazione n1 sinθ1=n2 sinθ2 e n=c/v; entrando in un mezzo con indice maggiore il raggio si avvicina alla normale. La frequenza resta fissata dalla sorgente, mentre velocità e lunghezza d’onda cambiano. Per una lente convergente sottile scegliamo f>0 e oggetto reale a distanza p>0; 1/f=1/p+1/q. Una soluzione q>0 descrive un’immagine reale dall’altro lato, q<0 un’immagine virtuale sul lato dell’oggetto. L’ingrandimento trasversale è m=−q/p. A p=f i raggi emergono paralleli e l’immagine non è a distanza finita. Per p<f l’immagine è virtuale, diritta e ingrandita: una lente convergente non forma sempre un’immagine reale. Tutte queste leggi richiedono il modello geometrico, lente sottile e raggi vicini all’asse."
+      ],
+      "workedExample": {
+        "prompt": "Una lente convergente ha f=10 cm; un oggetto è posto a p=30 cm. Determina q e m.",
+        "steps": [
+          "1/q=1/10−1/30=1/15 cm^-1.",
+          "q=15 cm>0: immagine reale oltre la lente.",
+          "m=−15/30=−0,5: immagine capovolta e alta metà dell’oggetto."
+        ],
+        "answerDisplay": "q=15 cm; m=−0,5; immagine reale e capovolta."
+      },
+      "practice": {
+        "prompt": "Una lente convergente sottile ha f=10cm e oggetto reale a5cm: calcolaq em.",
+        "answer": {
+          "value": "q=−10 cm; m=+2",
+          "unit": ""
+        },
+        "feedback": [
+          "L’oggetto è dentro il fuoco: il segno negativo di q indica immagine virtuale sul lato dell’oggetto, non una distanza fisica impossibile."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un raggio passa dall’aria n=1 a vetro n=1,5 con θi=30°. Quanto vale sinθt e quale angolo ha il raggio riflesso? Cambia la frequenza?",
+        "answer": {
+          "value": "sinθt=1/3; θriflesso=30°; frequenza invariata.",
+          "unit": ""
+        },
+        "feedback": [
+          "Snell usa gli angoli dalla normale. Il vetro riduce velocità e lunghezza d’onda, non la frequenza."
+        ]
+      },
+      "recap": [
+        "La natura dell’immagine richiede segno di q e ingrandimento, non il solo tipo di lente."
+      ],
+      "transcript": "Nella riflessione l’angolo riflesso uguaglia l’angolo incidente, misurati dalla normale. Nella rifrazione n1 sinθ1=n2 sinθ2 e n=c/v; entrando in un mezzo con indice maggiore il raggio si avvicina alla normale. La frequenza resta fissata dalla sorgente, mentre velocità e lunghezza d’onda cambiano. Per una lente convergente sottile scegliamo f>0 e oggetto reale a distanza p>0; 1/f=1/p+1/q. Una soluzione q>0 descrive un’immagine reale dall’altro lato, q<0 un’immagine virtuale sul lato dell’oggetto. L’ingrandimento trasversale è m=−q/p. A p=f i raggi emergono paralleli e l’immagine non è a distanza finita. Per p<f l’immagine è virtuale, diritta e ingrandita: una lente convergente non forma sempre un’immagine reale. Tutte queste leggi richiedono il modello geometrico, lente sottile e raggi vicini all’asse. Esempio: Una lente convergente ha f=10 cm; un oggetto è posto a p=30 cm. Determina q e m. 1/q=1/10−1/30=1/15 cm^-1. q=15 cm>0: immagine reale oltre la lente. m=−15/30=−0,5: immagine capovolta e alta metà dell’oggetto. Risultato: q=15 cm; m=−0,5; immagine reale e capovolta.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La natura dell’immagine richiede segno di q e ingrandimento, non il solo tipo di lente.",
+        "1/10=1/30+1/15 in cm^-1.",
+        "p=f è caso degenere senza q finita; per p→∞, q→f."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U7-07.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    }
+  ],
+  "courseRequirements": {
+    "diagnostic": "DRAFT_PRESENT; independent of final problems",
+    "finalAssessment": "DRAFT_PRESENT; human review/calibration pending",
+    "recap": "DRAFT_PRESENT",
+    "remoteTeacherStudent": "NOT_CERTIFIED",
+    "humanApproval": false,
+    "transcripts": "DRAFT_PRESENT",
+    "audio": "ABSENT_TRANSCRIPTS_AVAILABLE"
+  },
+  "authoredFamilyCount": 12,
+  "finalAssessment": [
+    {
+      "id": "final-U4-01.01",
+      "objectiveId": "U4-01.01",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "mezzo materiale",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un’onda sonora può propagarsi nel vuoto del modello classico elementare?",
+      "answer": "No:è meccanica e richiede mezzo materiale.",
+      "feedback": "No:è meccanica e richiede mezzo materiale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-02.01",
+      "objectiveId": "U4-02.01",
+      "familyId": "U4-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "principio sovrapposizione",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Due spostamenti istantanei−2mm e+5mm nello stesso punto di un mezzo lineare danno quale risultante?",
+      "answer": "+3mm;la somma è algebrica.",
+      "feedback": "+3mm;la somma è algebrica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-03.01",
+      "objectiveId": "U4-03.01",
+      "familyId": "U4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "energia onda",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Una sorgente trasferisce0,8J in un impulso. Qual è l’energia dell’impulso e si può dedurre la potenza senza durata?",
+      "answer": "0,8J;no,serve l’intervallo temporale.",
+      "feedback": "0,8J;no,serve l’intervallo temporale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-04.01",
+      "objectiveId": "U4-04.01",
+      "familyId": "U4-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "mezzi e velocità suono",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Il passaggio del suono da aria ad acqua permette di mantenere sempre la stessa velocità?",
+      "answer": "No:la velocità dipende dalle proprietà del mezzo;la frequenza di una sorgente invariata resta la stessa all’interfaccia stazionaria.",
+      "feedback": "No:la velocità dipende dalle proprietà del mezzo;la frequenza di una sorgente invariata resta la stessa all’interfaccia stazionaria.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-05.01",
+      "objectiveId": "U4-05.01",
+      "familyId": "U4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "avvicinamento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Nel regime subsonico usuale,un osservatore va incontro alla sorgente sonora:la frequenza ricevuta aumenta o diminuisce?",
+      "answer": "Aumenta.",
+      "feedback": "Aumenta.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.01",
+      "objectiveId": "U7-01.01",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "campi elettrico e magnetico perpendicolari",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "In un’ondaEM piana nel vuoto,E eB sono paralleli fra loro?",
+      "answer": "No:sono perpendicolari fra loro e alla direzione di propagazione.",
+      "feedback": "No:sono perpendicolari fra loro e alla direzione di propagazione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.01",
+      "objectiveId": "U7-02.01",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "radio",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Fra onde radio e luce visibile,quali hanno frequenza minore nel vuoto?",
+      "answer": "Le onde radio.",
+      "feedback": "Le onde radio.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-03.01",
+      "objectiveId": "U7-03.01",
+      "familyId": "U7-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "quantizzazione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un fotone rappresenta un quanto di quale grandezza legata alla radiazione?",
+      "answer": "Energia scambiata dalla radiazione,conE=hf;non una quantità di carica elettrica.",
+      "feedback": "Energia scambiata dalla radiazione,conE=hf;non una quantità di carica elettrica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-04.01",
+      "objectiveId": "U7-04.01",
+      "familyId": "U7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "Lambert-Beer",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "PerLambert-Beer conμ>0,come varia l’intensità al crescere del cammino in un mezzo omogeneo?",
+      "answer": "Decresce esponenzialmente:I=I0exp(−μx).",
+      "feedback": "Decresce esponenzialmente:I=I0exp(−μx).",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.01",
+      "objectiveId": "U7-05.01",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "nuclei instabili e isotopi",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Due isotopi del medesimo elemento hanno quale numero uguale e quale diverso?",
+      "answer": "Uguale numero di protoniZ;diverso numero di neutroni,quindi diverso numero di massa.",
+      "feedback": "Uguale numero di protoniZ;diverso numero di neutroni,quindi diverso numero di massa.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-06.01",
+      "objectiveId": "U7-06.01",
+      "familyId": "U7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "soglia atomica",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Una soglia di ionizzazione è identica per tutte le specie atomiche?",
+      "answer": "No:dipende dal sistema e dallo stato considerato.",
+      "feedback": "No:dipende dal sistema e dallo stato considerato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.01",
+      "objectiveId": "U7-07.01",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "riflessione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un raggio arriva a40° dalla normale e si riflette specularmente. Quale angolo riflesso dalla normale?",
+      "answer": "40°.",
+      "feedback": "40°.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "atomicFinalAssessment": [
+    {
+      "id": "final-U4-01.01",
+      "objectiveId": "U4-01.01",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "mezzo materiale",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un’onda sonora può propagarsi nel vuoto del modello classico elementare?",
+      "answer": "No:è meccanica e richiede mezzo materiale.",
+      "feedback": "No:è meccanica e richiede mezzo materiale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.02",
+      "objectiveId": "U4-01.02",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "propagazione energia",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Una cresta attraversa una corda:gli elementi della corda devono viaggiare con essa fino all’estremo?",
+      "answer": "No:oscillano localmente mentre perturbazione ed energia si propagano.",
+      "feedback": "No:oscillano localmente mentre perturbazione ed energia si propagano.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.03",
+      "objectiveId": "U4-01.03",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "oscillatore armonico",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Per un oscillatore armonico l’intervallo positivo minimo per tornare allo stesso stato di posizione e velocità è0,2s. Che cosa rappresenta?",
+      "answer": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.",
+      "feedback": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.04",
+      "objectiveId": "U4-01.04",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "frequenza",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un oscillatore compie15cicli in3s. Qual èf?",
+      "answer": "5Hz.",
+      "feedback": "5Hz.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.05",
+      "objectiveId": "U4-01.05",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "periodo",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Se f=8Hz,quanto valeT?",
+      "answer": "0,125s.",
+      "feedback": "0,125s.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.06",
+      "objectiveId": "U4-01.06",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "pulsazione",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Per f=3Hz quale pulsazione?",
+      "answer": "6πrad/s,poichéω=2πf.",
+      "feedback": "6πrad/s,poichéω=2πf.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.07",
+      "objectiveId": "U4-01.07",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "lunghezza onda",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Come si riconosceλ su un profilo spaziale sinusoidale a tempo fisso?",
+      "answer": "Distanza fra due punti consecutivi in fase,per esempio due creste.",
+      "feedback": "Distanza fra due punti consecutivi in fase,per esempio due creste.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.08",
+      "objectiveId": "U4-01.08",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "velocità",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Conλ=0,4m ef=5Hz quale velocità di propagazione?",
+      "answer": "2m/s.",
+      "feedback": "2m/s.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.09",
+      "objectiveId": "U4-01.09",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "legge onda",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "La forma sin(kx−ωt) conk,ωpositivi viaggia verso quale direzione? Perché?",
+      "answer": "+x; a fase costantex=(ω/k)t+costante cresce nel tempo.",
+      "feedback": "+x; a fase costantex=(ω/k)t+costante cresce nel tempo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-01.10",
+      "objectiveId": "U4-01.10",
+      "familyId": "U4-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "trasversale e longitudinale",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "In un’onda trasversale lo spostamento locale è parallelo o perpendicolare alla propagazione? E in una longitudinale?",
+      "answer": "Perpendicolare nella trasversale,parallelo nella longitudinale.",
+      "feedback": "Perpendicolare nella trasversale,parallelo nella longitudinale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-02.01",
+      "objectiveId": "U4-02.01",
+      "familyId": "U4-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "principio sovrapposizione",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Due spostamenti istantanei−2mm e+5mm nello stesso punto di un mezzo lineare danno quale risultante?",
+      "answer": "+3mm;la somma è algebrica.",
+      "feedback": "+3mm;la somma è algebrica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-02.02",
+      "objectiveId": "U4-02.02",
+      "familyId": "U4-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "interferenza costruttiva e distruttiva",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Due onde uguali possono annullare lo spostamento localmente senza distruggere l’energia di tutto il campo?",
+      "answer": "Sì:l’interferenza distruttiva locale è compatibile con ridistribuzione energetica e nodi.",
+      "feedback": "Sì:l’interferenza distruttiva locale è compatibile con ridistribuzione energetica e nodi.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-03.01",
+      "objectiveId": "U4-03.01",
+      "familyId": "U4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "energia onda",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Una sorgente trasferisce0,8J in un impulso. Qual è l’energia dell’impulso e si può dedurre la potenza senza durata?",
+      "answer": "0,8J;no,serve l’intervallo temporale.",
+      "feedback": "0,8J;no,serve l’intervallo temporale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-03.02",
+      "objectiveId": "U4-03.02",
+      "familyId": "U4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "potenza",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un’onda trasferisce0,8J in0,2s. Quale potenza media?",
+      "answer": "4W.",
+      "feedback": "4W.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-03.03",
+      "objectiveId": "U4-03.03",
+      "familyId": "U4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "intensità",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Potenza10W attraversa uniformemente area5m² perpendicolare. Quale intensità?",
+      "answer": "2W/m².",
+      "feedback": "2W/m².",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-03.04",
+      "objectiveId": "U4-03.04",
+      "familyId": "U4-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "inverso quadrato distanza",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Per sorgente isotropa senza assorbimento,I=18W/m² a1m. Quanto vale a3m?",
+      "answer": "2W/m²;area sferica cresce di9.",
+      "feedback": "2W/m²;area sferica cresce di9.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-04.01",
+      "objectiveId": "U4-04.01",
+      "familyId": "U4-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "mezzi e velocità suono",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Il passaggio del suono da aria ad acqua permette di mantenere sempre la stessa velocità?",
+      "answer": "No:la velocità dipende dalle proprietà del mezzo;la frequenza di una sorgente invariata resta la stessa all’interfaccia stazionaria.",
+      "feedback": "No:la velocità dipende dalle proprietà del mezzo;la frequenza di una sorgente invariata resta la stessa all’interfaccia stazionaria.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-04.02",
+      "objectiveId": "U4-04.02",
+      "familyId": "U4-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "intensità fisica e percezione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Due suoni con stessa intensità ma frequenze diverse sono necessariamente percepiti come ugualmente forti?",
+      "answer": "No:la percezione dipende anche dalla frequenza e dall’ascoltatore.",
+      "feedback": "No:la percezione dipende anche dalla frequenza e dall’ascoltatore.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-04.03",
+      "objectiveId": "U4-04.03",
+      "familyId": "U4-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "decibel",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "ConI/I0=10^7,quale livello di intensità?",
+      "answer": "70dB.",
+      "feedback": "70dB.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-05.01",
+      "objectiveId": "U4-05.01",
+      "familyId": "U4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "avvicinamento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Nel regime subsonico usuale,un osservatore va incontro alla sorgente sonora:la frequenza ricevuta aumenta o diminuisce?",
+      "answer": "Aumenta.",
+      "feedback": "Aumenta.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-05.02",
+      "objectiveId": "U4-05.02",
+      "familyId": "U4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "allontanamento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una sorgente sonora si allontana dall’osservatore fermo:il periodo fra fronti ricevuti cresce o diminuisce?",
+      "answer": "Cresce;la frequenza ricevuta diminuisce.",
+      "feedback": "Cresce;la frequenza ricevuta diminuisce.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-05.03",
+      "objectiveId": "U4-05.03",
+      "familyId": "U4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "sorgente e osservatore",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Muovere sorgente o osservatore ha lo stesso meccanismo geometrico rispetto ai fronti nel mezzo?",
+      "answer": "No:la sorgente modifica la spaziatura dei fronti,l’osservatore ne modifica il ritmo di incontro.",
+      "feedback": "No:la sorgente modifica la spaziatura dei fronti,l’osservatore ne modifica il ritmo di incontro.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U4-05.04",
+      "objectiveId": "U4-05.04",
+      "familyId": "U4-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "frequenza ricevuta",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "IlDoppler è un cambiamento necessario della frequenza emessa dalla sorgente?",
+      "answer": "No:può cambiare solo quella ricevuta a frequenza emessa invariata.",
+      "feedback": "No:può cambiare solo quella ricevuta a frequenza emessa invariata.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.01",
+      "objectiveId": "U7-01.01",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "campi elettrico e magnetico perpendicolari",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "In un’ondaEM piana nel vuoto,E eB sono paralleli fra loro?",
+      "answer": "No:sono perpendicolari fra loro e alla direzione di propagazione.",
+      "feedback": "No:sono perpendicolari fra loro e alla direzione di propagazione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.02",
+      "objectiveId": "U7-01.02",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "frequenza e lunghezza",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Se la frequenza di un’ondaEM nel vuoto triplica,come cambiaλ?",
+      "answer": "Si riduce a1/3,poichéc=λf.",
+      "feedback": "Si riduce a1/3,poichéc=λf.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.03",
+      "objectiveId": "U7-01.03",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "velocità",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "La velocità della luce in un mezzo con indice2 è quale frazione dic nel modello indicato?",
+      "answer": "c/2.",
+      "feedback": "c/2.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.04",
+      "objectiveId": "U7-01.04",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "ampiezza",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Raddoppiare l’ampiezza del campo elettrico in un’ondaEM cambia necessariamente la frequenza?",
+      "answer": "No:sono parametri distinti.",
+      "feedback": "No:sono parametri distinti.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-01.05",
+      "objectiveId": "U7-01.05",
+      "familyId": "U7-01",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "intensità",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Nello stesso mezzo lineare a frequenza fissata,triplicare l’ampiezza comporta quale intensità?",
+      "answer": "Nove volte l’intensità.",
+      "feedback": "Nove volte l’intensità.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.01",
+      "objectiveId": "U7-02.01",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "radio",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Fra onde radio e luce visibile,quali hanno frequenza minore nel vuoto?",
+      "answer": "Le onde radio.",
+      "feedback": "Le onde radio.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.02",
+      "objectiveId": "U7-02.02",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "microonde",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Le microonde si collocano tra radio e quale altra regione a frequenze crescenti?",
+      "answer": "Infrarosso.",
+      "feedback": "Infrarosso.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.03",
+      "objectiveId": "U7-02.03",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "infrarosso",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Fra infrarosso e ultravioletto quale regione si trova?",
+      "answer": "Visibile.",
+      "feedback": "Visibile.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.04",
+      "objectiveId": "U7-02.04",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "visibile",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Nel visibile,il violetto haλ maggiore o minore del rosso nel vuoto?",
+      "answer": "Minore.",
+      "feedback": "Minore.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.05",
+      "objectiveId": "U7-02.05",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "ultravioletto",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "L’ultravioletto ha frequenze maggiori o minori del visibile?",
+      "answer": "Maggiori nel consueto ordinamento spettrale.",
+      "feedback": "Maggiori nel consueto ordinamento spettrale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.06",
+      "objectiveId": "U7-02.06",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "raggi X",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Fra raggiX e microonde,quali hanno fotoni più energetici nel consueto spettro?",
+      "answer": "RaggiX,per frequenza maggiore.",
+      "feedback": "RaggiX,per frequenza maggiore.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.07",
+      "objectiveId": "U7-02.07",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "gamma",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Confronta raggiγ e luce visibile nel consueto spettro per frequenza e lunghezza d’onda nel vuoto. Perché la distinzioneX/γ non è soltanto una soglia energetica universale?",
+      "answer": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.",
+      "feedback": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-02.08",
+      "objectiveId": "U7-02.08",
+      "familyId": "U7-02",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "ordine frequenza e lunghezza",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Se la frequenza aumenta in vuoto,cosa accade aλ? Elenca l’ordine delle regioni a frequenza crescente.",
+      "answer": "λ diminuisce:radio,microonde,infrarosso,visibile,ultravioletto,X,gamma,con confini convenzionali e possibili sovrapposizioniX/γ.",
+      "feedback": "λ diminuisce:radio,microonde,infrarosso,visibile,ultravioletto,X,gamma,con confini convenzionali e possibili sovrapposizioniX/γ.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-03.01",
+      "objectiveId": "U7-03.01",
+      "familyId": "U7-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "quantizzazione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un fotone rappresenta un quanto di quale grandezza legata alla radiazione?",
+      "answer": "Energia scambiata dalla radiazione,conE=hf;non una quantità di carica elettrica.",
+      "feedback": "Energia scambiata dalla radiazione,conE=hf;non una quantità di carica elettrica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-03.02",
+      "objectiveId": "U7-03.02",
+      "familyId": "U7-03",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "energia e frequenza",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Se la frequenza passa daf a4f,come varia l’energia per fotone?",
+      "answer": "Quadruplica,daE=hf.",
+      "feedback": "Quadruplica,daE=hf.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-04.01",
+      "objectiveId": "U7-04.01",
+      "familyId": "U7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "Lambert-Beer",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "PerLambert-Beer conμ>0,come varia l’intensità al crescere del cammino in un mezzo omogeneo?",
+      "answer": "Decresce esponenzialmente:I=I0exp(−μx).",
+      "feedback": "Decresce esponenzialmente:I=I0exp(−μx).",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-04.02",
+      "objectiveId": "U7-04.02",
+      "familyId": "U7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "coefficiente",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Quale unità deve avereμ se x è in cm?",
+      "answer": "cm^-1,cosìμx è adimensionale.",
+      "feedback": "cm^-1,cosìμx è adimensionale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-04.03",
+      "objectiveId": "U7-04.03",
+      "familyId": "U7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "cammino",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Due strati della stessa sostanza hanno spessori2cm e3cm. Quale cammino totale e come si combinano le trasmissioni?",
+      "answer": "5cm;le trasmissioni si moltiplicano.",
+      "feedback": "5cm;le trasmissioni si moltiplicano.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-04.04",
+      "objectiveId": "U7-04.04",
+      "familyId": "U7-04",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "trasmissione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un campione trasmette20% della luce incidente. Quale rapportoI/I0 e quale attenuazione percentuale?",
+      "answer": "0,2;attenuazione80% nel modello senza altri canali separati.",
+      "feedback": "0,2;attenuazione80% nel modello senza altri canali separati.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.01",
+      "objectiveId": "U7-05.01",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "nuclei instabili e isotopi",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Due isotopi del medesimo elemento hanno quale numero uguale e quale diverso?",
+      "answer": "Uguale numero di protoniZ;diverso numero di neutroni,quindi diverso numero di massa.",
+      "feedback": "Uguale numero di protoniZ;diverso numero di neutroni,quindi diverso numero di massa.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.02",
+      "objectiveId": "U7-05.02",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "attività",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un campione registra in media300decadimenti/s. Quale attività?",
+      "answer": "300Bq;non una dose assorbita.",
+      "feedback": "300Bq;non una dose assorbita.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.03",
+      "objectiveId": "U7-05.03",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "decadimento",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Nella leggeN=N0exp(−λt),quali unità haλ e quale segno fisico?",
+      "answer": "s^-1 se t in s;λ>0 per decadimento spontaneo del modello.",
+      "feedback": "s^-1 se t in s;λ>0 per decadimento spontaneo del modello.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.04",
+      "objectiveId": "U7-05.04",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "emivita",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Campione iniziale640Bq,T1/2=3h. Quale attività dopo12h?",
+      "answer": "40Bq,dopo4emivite.",
+      "feedback": "40Bq,dopo4emivite.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.05",
+      "objectiveId": "U7-05.05",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "alfa beta gamma",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Indica le variazioni diA eZ perα,β− eγ.",
+      "answer": "α:A−4,Z−2;β−:Ainvariata,Z+1;γ:AeZinvariati.",
+      "feedback": "α:A−4,Z−2;β−:Ainvariata,Z+1;γ:AeZinvariati.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-05.06",
+      "objectiveId": "U7-05.06",
+      "familyId": "U7-05",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "trasformazioni nucleari",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un nucleo conA=40,Z=19 subisceβ+. QualiA eZ finali?",
+      "answer": "A=40,Z=18,con gli altri prodotti del decadimento.",
+      "feedback": "A=40,Z=18,con gli altri prodotti del decadimento.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-06.01",
+      "objectiveId": "U7-06.01",
+      "familyId": "U7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "soglia atomica",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Una soglia di ionizzazione è identica per tutte le specie atomiche?",
+      "answer": "No:dipende dal sistema e dallo stato considerato.",
+      "feedback": "No:dipende dal sistema e dallo stato considerato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-06.02",
+      "objectiveId": "U7-06.02",
+      "familyId": "U7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "ionizzanti e non ionizzanti",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un fotone da11eV incontra soglia8eV:è energeticamente sufficiente nel modello a singolo fotone? Uno da6eV?",
+      "answer": "11eVsì,6eVno;essere sopra soglia non implica assorbimento certo.",
+      "feedback": "11eVsì,6eVno;essere sopra soglia non implica assorbimento certo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-06.03",
+      "objectiveId": "U7-06.03",
+      "familyId": "U7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "esempi",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Indica esempi usuali diEM non ionizzanti e ionizzanti per singolo fotone.",
+      "answer": "Radio,microonde,infrarosso non ionizzanti;raggiX eγ tipicamente ionizzanti,con soglia del sistema esplicita.",
+      "feedback": "Radio,microonde,infrarosso non ionizzanti;raggiX eγ tipicamente ionizzanti,con soglia del sistema esplicita.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-06.04",
+      "objectiveId": "U7-06.04",
+      "familyId": "U7-06",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "energia singolo fotone e intensità",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un fascio raddoppia intensità a frequenza fissa. Cambia l’energia del singolo fotone o il flusso energetico?",
+      "answer": "Cambia il flusso energetico;E=hf del singolo fotone resta uguale.",
+      "feedback": "Cambia il flusso energetico;E=hf del singolo fotone resta uguale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.01",
+      "objectiveId": "U7-07.01",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "riflessione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un raggio arriva a40° dalla normale e si riflette specularmente. Quale angolo riflesso dalla normale?",
+      "answer": "40°.",
+      "feedback": "40°.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.02",
+      "objectiveId": "U7-07.02",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "rifrazione",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Passando da indice1 a indice1,3,un raggio obliquo si avvicina o allontana dalla normale?",
+      "answer": "Si avvicina,nel regime trasmesso usuale.",
+      "feedback": "Si avvicina,nel regime trasmesso usuale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.03",
+      "objectiveId": "U7-07.03",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "indice",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un mezzo ha velocitàc/1,25. Qual è l’indice?",
+      "answer": "1,25,adimensionale.",
+      "feedback": "1,25,adimensionale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.04",
+      "objectiveId": "U7-07.04",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "Snell",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Da n1=1,n2=2,sinθ1=0,6. Quanto vale sinθ2?",
+      "answer": "0,3 daSnell.",
+      "feedback": "0,3 daSnell.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.05",
+      "objectiveId": "U7-07.05",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "lenti convergenti sottili",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Lente convergente sottile:f=12cm,p=24cm. Quali q e ingrandimento?",
+      "answer": "q=24cm,m=−1;immagine reale e capovolta.",
+      "feedback": "q=24cm,m=−1;immagine reale e capovolta.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U7-07.06",
+      "objectiveId": "U7-07.06",
+      "familyId": "U7-07",
+      "courseId": "onde-ottica-radiazioni",
+      "targetLabel": "immagini e punti coniugati",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Una lente convergente ha oggetto reale dentro il fuoco. Quale natura e orientazione dell’immagine nel modello paraxiale?",
+      "answer": "Virtuale,diritta e ingrandita;per p=f l’immagine non è a distanza finita.",
+      "feedback": "Virtuale,diritta e ingrandita;per p=f l’immagine non è a distanza finita.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "diagnostic": [
+    {
+      "id": "diag-onde-ottica-radiazioni-cycle-rate",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveId": "U4-01.04",
+      "prompt": "Un sensore registra7oscillazioni complete in2s di un segnale periodico. Determina la frequenza.",
+      "answer": {
+        "value": 3.5,
+        "unit": "Hz"
+      },
+      "feedback": "f=N/Δt=7/2=3,5Hz. Il periodo sarebbe2/7s,una grandezza diversa.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U4-01.04",
+        "lessonId": "ds-2026-u4-01"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-onde-ottica-radiazioni-wavelength",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveId": "U4-01.07",
+      "prompt": "In un mezzo uniforme un’onda viaggia a10m/s con frequenza8Hz. Trova la distanza fra due creste consecutive.",
+      "answer": {
+        "value": 1.25,
+        "unit": "m"
+      },
+      "feedback": "λ=v/f=10/8=1,25m. Le creste consecutive sono punti in fase a un istante fissato.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U4-01.07",
+        "lessonId": "ds-2026-u4-01"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-onde-ottica-radiazioni-half-life",
+      "courseId": "onde-ottica-radiazioni",
+      "objectiveId": "U7-05.04",
+      "prompt": "Un campione ha attività iniziale960Bq ed emivita4h. Senza produzione di nuovi nuclei,quale attività media è attesa dopo8h?",
+      "answer": {
+        "value": 240.0,
+        "unit": "Bq"
+      },
+      "feedback": "Sono due emivite:960→480→240Bq. È un valore medio di attività,non una dose.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U7-05.04",
+        "lessonId": "ds-2026-u7-05"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    }
+  ],
+  "formulaSheet": [
+    {
+      "name": "Onda",
+      "expression": "v=λf; T=1/f; ω=2πf; y=A sin(kx−ωt+φ)",
+      "domain": "v,f>0;direzione+x;modello armonico uniforme"
+    },
+    {
+      "name": "Intensità",
+      "expression": "I=P/area; Iisotropa=P/(4πr²)",
+      "domain": "area>0;r>0;sorgente puntiforme isotropa senza assorbimento"
+    },
+    {
+      "name": "Decibel",
+      "expression": "β=10log10(I/I0)",
+      "domain": "I,I0>0;somma intensità incoerenti prima del logaritmo"
+    },
+    {
+      "name": "Fotone",
+      "expression": "E=hf; c=λf nel vuoto",
+      "domain": "h=6,62607015·10^-34J s;c=299792458m/s"
+    },
+    {
+      "name": "Assorbimento",
+      "expression": "I=I0exp(−μx)",
+      "domain": "μ≥0,x≥0;μx adimensionale;modello omogeneo monocromatico"
+    },
+    {
+      "name": "Decadimento",
+      "expression": "N=N0exp(−λt); attività=λN; T1/2=ln2/λ",
+      "domain": "λ>0;valori medi;Bq non è dose"
+    },
+    {
+      "name": "Ottica",
+      "expression": "n1sinθ1=n2sinθ2; 1/f=1/p+1/q; m=−q/p",
+      "domain": "angoli dalla normale;f>0,p>0;virtuale q<0;p=f degenere"
+    }
+  ],
+  "recoveryTargets": [
+    {
+      "itemId": "final-U4-01.01",
+      "objectiveId": "U4-01.01",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "No:è meccanica e richiede mezzo materiale."
+    },
+    {
+      "itemId": "final-U4-01.02",
+      "objectiveId": "U4-01.02",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "No:oscillano localmente mentre perturbazione ed energia si propagano."
+    },
+    {
+      "itemId": "final-U4-01.03",
+      "objectiveId": "U4-01.03",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo."
+    },
+    {
+      "itemId": "final-U4-01.04",
+      "objectiveId": "U4-01.04",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "5Hz."
+    },
+    {
+      "itemId": "final-U4-01.05",
+      "objectiveId": "U4-01.05",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "0,125s."
+    },
+    {
+      "itemId": "final-U4-01.06",
+      "objectiveId": "U4-01.06",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "6πrad/s,poichéω=2πf."
+    },
+    {
+      "itemId": "final-U4-01.07",
+      "objectiveId": "U4-01.07",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "Distanza fra due punti consecutivi in fase,per esempio due creste."
+    },
+    {
+      "itemId": "final-U4-01.08",
+      "objectiveId": "U4-01.08",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "2m/s."
+    },
+    {
+      "itemId": "final-U4-01.09",
+      "objectiveId": "U4-01.09",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "+x; a fase costantex=(ω/k)t+costante cresce nel tempo."
+    },
+    {
+      "itemId": "final-U4-01.10",
+      "objectiveId": "U4-01.10",
+      "lessonId": "ds-2026-u4-01",
+      "feedback": "Perpendicolare nella trasversale,parallelo nella longitudinale."
+    },
+    {
+      "itemId": "final-U4-02.01",
+      "objectiveId": "U4-02.01",
+      "lessonId": "ds-2026-u4-02",
+      "feedback": "+3mm;la somma è algebrica."
+    },
+    {
+      "itemId": "final-U4-02.02",
+      "objectiveId": "U4-02.02",
+      "lessonId": "ds-2026-u4-02",
+      "feedback": "Sì:l’interferenza distruttiva locale è compatibile con ridistribuzione energetica e nodi."
+    },
+    {
+      "itemId": "final-U4-03.01",
+      "objectiveId": "U4-03.01",
+      "lessonId": "ds-2026-u4-03",
+      "feedback": "0,8J;no,serve l’intervallo temporale."
+    },
+    {
+      "itemId": "final-U4-03.02",
+      "objectiveId": "U4-03.02",
+      "lessonId": "ds-2026-u4-03",
+      "feedback": "4W."
+    },
+    {
+      "itemId": "final-U4-03.03",
+      "objectiveId": "U4-03.03",
+      "lessonId": "ds-2026-u4-03",
+      "feedback": "2W/m²."
+    },
+    {
+      "itemId": "final-U4-03.04",
+      "objectiveId": "U4-03.04",
+      "lessonId": "ds-2026-u4-03",
+      "feedback": "2W/m²;area sferica cresce di9."
+    },
+    {
+      "itemId": "final-U4-04.01",
+      "objectiveId": "U4-04.01",
+      "lessonId": "ds-2026-u4-04",
+      "feedback": "No:la velocità dipende dalle proprietà del mezzo;la frequenza di una sorgente invariata resta la stessa all’interfaccia stazionaria."
+    },
+    {
+      "itemId": "final-U4-04.02",
+      "objectiveId": "U4-04.02",
+      "lessonId": "ds-2026-u4-04",
+      "feedback": "No:la percezione dipende anche dalla frequenza e dall’ascoltatore."
+    },
+    {
+      "itemId": "final-U4-04.03",
+      "objectiveId": "U4-04.03",
+      "lessonId": "ds-2026-u4-04",
+      "feedback": "70dB."
+    },
+    {
+      "itemId": "final-U4-05.01",
+      "objectiveId": "U4-05.01",
+      "lessonId": "ds-2026-u4-05",
+      "feedback": "Aumenta."
+    },
+    {
+      "itemId": "final-U4-05.02",
+      "objectiveId": "U4-05.02",
+      "lessonId": "ds-2026-u4-05",
+      "feedback": "Cresce;la frequenza ricevuta diminuisce."
+    },
+    {
+      "itemId": "final-U4-05.03",
+      "objectiveId": "U4-05.03",
+      "lessonId": "ds-2026-u4-05",
+      "feedback": "No:la sorgente modifica la spaziatura dei fronti,l’osservatore ne modifica il ritmo di incontro."
+    },
+    {
+      "itemId": "final-U4-05.04",
+      "objectiveId": "U4-05.04",
+      "lessonId": "ds-2026-u4-05",
+      "feedback": "No:può cambiare solo quella ricevuta a frequenza emessa invariata."
+    },
+    {
+      "itemId": "final-U7-01.01",
+      "objectiveId": "U7-01.01",
+      "lessonId": "ds-2026-u7-01",
+      "feedback": "No:sono perpendicolari fra loro e alla direzione di propagazione."
+    },
+    {
+      "itemId": "final-U7-01.02",
+      "objectiveId": "U7-01.02",
+      "lessonId": "ds-2026-u7-01",
+      "feedback": "Si riduce a1/3,poichéc=λf."
+    },
+    {
+      "itemId": "final-U7-01.03",
+      "objectiveId": "U7-01.03",
+      "lessonId": "ds-2026-u7-01",
+      "feedback": "c/2."
+    },
+    {
+      "itemId": "final-U7-01.04",
+      "objectiveId": "U7-01.04",
+      "lessonId": "ds-2026-u7-01",
+      "feedback": "No:sono parametri distinti."
+    },
+    {
+      "itemId": "final-U7-01.05",
+      "objectiveId": "U7-01.05",
+      "lessonId": "ds-2026-u7-01",
+      "feedback": "Nove volte l’intensità."
+    },
+    {
+      "itemId": "final-U7-02.01",
+      "objectiveId": "U7-02.01",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Le onde radio."
+    },
+    {
+      "itemId": "final-U7-02.02",
+      "objectiveId": "U7-02.02",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Infrarosso."
+    },
+    {
+      "itemId": "final-U7-02.03",
+      "objectiveId": "U7-02.03",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Visibile."
+    },
+    {
+      "itemId": "final-U7-02.04",
+      "objectiveId": "U7-02.04",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Minore."
+    },
+    {
+      "itemId": "final-U7-02.05",
+      "objectiveId": "U7-02.05",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Maggiori nel consueto ordinamento spettrale."
+    },
+    {
+      "itemId": "final-U7-02.06",
+      "objectiveId": "U7-02.06",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "RaggiX,per frequenza maggiore."
+    },
+    {
+      "itemId": "final-U7-02.07",
+      "objectiveId": "U7-02.07",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi."
+    },
+    {
+      "itemId": "final-U7-02.08",
+      "objectiveId": "U7-02.08",
+      "lessonId": "ds-2026-u7-02",
+      "feedback": "λ diminuisce:radio,microonde,infrarosso,visibile,ultravioletto,X,gamma,con confini convenzionali e possibili sovrapposizioniX/γ."
+    },
+    {
+      "itemId": "final-U7-03.01",
+      "objectiveId": "U7-03.01",
+      "lessonId": "ds-2026-u7-03",
+      "feedback": "Energia scambiata dalla radiazione,conE=hf;non una quantità di carica elettrica."
+    },
+    {
+      "itemId": "final-U7-03.02",
+      "objectiveId": "U7-03.02",
+      "lessonId": "ds-2026-u7-03",
+      "feedback": "Quadruplica,daE=hf."
+    },
+    {
+      "itemId": "final-U7-04.01",
+      "objectiveId": "U7-04.01",
+      "lessonId": "ds-2026-u7-04",
+      "feedback": "Decresce esponenzialmente:I=I0exp(−μx)."
+    },
+    {
+      "itemId": "final-U7-04.02",
+      "objectiveId": "U7-04.02",
+      "lessonId": "ds-2026-u7-04",
+      "feedback": "cm^-1,cosìμx è adimensionale."
+    },
+    {
+      "itemId": "final-U7-04.03",
+      "objectiveId": "U7-04.03",
+      "lessonId": "ds-2026-u7-04",
+      "feedback": "5cm;le trasmissioni si moltiplicano."
+    },
+    {
+      "itemId": "final-U7-04.04",
+      "objectiveId": "U7-04.04",
+      "lessonId": "ds-2026-u7-04",
+      "feedback": "0,2;attenuazione80% nel modello senza altri canali separati."
+    },
+    {
+      "itemId": "final-U7-05.01",
+      "objectiveId": "U7-05.01",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "Uguale numero di protoniZ;diverso numero di neutroni,quindi diverso numero di massa."
+    },
+    {
+      "itemId": "final-U7-05.02",
+      "objectiveId": "U7-05.02",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "300Bq;non una dose assorbita."
+    },
+    {
+      "itemId": "final-U7-05.03",
+      "objectiveId": "U7-05.03",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "s^-1 se t in s;λ>0 per decadimento spontaneo del modello."
+    },
+    {
+      "itemId": "final-U7-05.04",
+      "objectiveId": "U7-05.04",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "40Bq,dopo4emivite."
+    },
+    {
+      "itemId": "final-U7-05.05",
+      "objectiveId": "U7-05.05",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "α:A−4,Z−2;β−:Ainvariata,Z+1;γ:AeZinvariati."
+    },
+    {
+      "itemId": "final-U7-05.06",
+      "objectiveId": "U7-05.06",
+      "lessonId": "ds-2026-u7-05",
+      "feedback": "A=40,Z=18,con gli altri prodotti del decadimento."
+    },
+    {
+      "itemId": "final-U7-06.01",
+      "objectiveId": "U7-06.01",
+      "lessonId": "ds-2026-u7-06",
+      "feedback": "No:dipende dal sistema e dallo stato considerato."
+    },
+    {
+      "itemId": "final-U7-06.02",
+      "objectiveId": "U7-06.02",
+      "lessonId": "ds-2026-u7-06",
+      "feedback": "11eVsì,6eVno;essere sopra soglia non implica assorbimento certo."
+    },
+    {
+      "itemId": "final-U7-06.03",
+      "objectiveId": "U7-06.03",
+      "lessonId": "ds-2026-u7-06",
+      "feedback": "Radio,microonde,infrarosso non ionizzanti;raggiX eγ tipicamente ionizzanti,con soglia del sistema esplicita."
+    },
+    {
+      "itemId": "final-U7-06.04",
+      "objectiveId": "U7-06.04",
+      "lessonId": "ds-2026-u7-06",
+      "feedback": "Cambia il flusso energetico;E=hf del singolo fotone resta uguale."
+    },
+    {
+      "itemId": "final-U7-07.01",
+      "objectiveId": "U7-07.01",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "40°."
+    },
+    {
+      "itemId": "final-U7-07.02",
+      "objectiveId": "U7-07.02",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "Si avvicina,nel regime trasmesso usuale."
+    },
+    {
+      "itemId": "final-U7-07.03",
+      "objectiveId": "U7-07.03",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "1,25,adimensionale."
+    },
+    {
+      "itemId": "final-U7-07.04",
+      "objectiveId": "U7-07.04",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "0,3 daSnell."
+    },
+    {
+      "itemId": "final-U7-07.05",
+      "objectiveId": "U7-07.05",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "q=24cm,m=−1;immagine reale e capovolta."
+    },
+    {
+      "itemId": "final-U7-07.06",
+      "objectiveId": "U7-07.06",
+      "lessonId": "ds-2026-u7-07",
+      "feedback": "Virtuale,diritta e ingrandita;per p=f l’immagine non è a distanza finita."
+    }
+  ],
+  "editorialHandoffCommit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3"
+}

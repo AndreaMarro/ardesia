@@ -14,7 +14,7 @@ PROJECT = 'prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8'
 TEAM = 'team_23uD0RgdInaTaOPEL0EGltup'
 
 
-def prepare(directory):
+def prepare(directory,protected_review=False):
     directory = Path(directory)
     receipt = json.loads((directory / 'preview-manifest.json').read_text())
     output = directory / '.vercel/output'
@@ -35,6 +35,10 @@ def prepare(directory):
     marketing = json.loads((static / 'source-manifest.json').read_text())
     if marketing['examples'] or any(p.startswith(('esempi/', 'studio/', 'beta/', 'study/')) for p in actual):
         raise ValueError('unreleased_editorial_or_private_content')
+    course_marker=static/'courses-manifest.json'
+    scope=json.loads(course_marker.read_text()).get('releaseScope') if course_marker.is_file() else 'PUBLIC_DEMONSTRATION'
+    if scope not in ('PUBLIC_DEMONSTRATION','PRIVATE_EDITORIAL_REVIEW') or (scope=='PRIVATE_EDITORIAL_REVIEW' and not protected_review):
+        raise ValueError('protected_editorial_preview_required')
     files = [{'file': 'public/' + name, 'data': base64.b64encode((static / name).read_bytes()).decode(),
               'encoding': 'base64'} for name in actual]
     # The source-file API consumes vercel.json v2; v3 is reserved for prebuilt
@@ -45,11 +49,11 @@ def prepare(directory):
         'projectSettings': {'framework': None, 'rootDirectory': None, 'buildCommand': '',
                             'installCommand': '', 'outputDirectory': 'public', 'nodeVersion': '24.x'},
         'gitMetadata': {'commitSha': receipt['binding']['sourceCommit'],
-                        'commitRef': 'codex/ardesia-public-demo-20261025',
+                        'commitRef': 'codex/a-four-courses-20261025',
                         'remoteUrl': 'https://github.com/AndreaMarro/ardesia.git'},
         'meta': {'candidateManifestSha256': receipt['binding']['candidateManifestSha256'],
                  'sourceTreeSha256': receipt['binding']['sourceTreeSha256'],
-                 'scope': 'original-public-demo-no-editorial-bank-no-private-beta'},
+                 'scope': scope},
     }}
 
 
@@ -57,8 +61,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--prepared', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--protected-editorial-review',action='store_true',help='Permit original draft-course preview upload, target remains Preview; never set production')
     args = parser.parse_args()
-    payload = prepare(args.prepared)
+    payload = prepare(args.prepared,args.protected_editorial_review)
     with args.output.open('x') as target:
         json.dump(payload, target, separators=(',', ':'))
     print(f'Prepared {len(payload["requestBody"]["files"])} source files for {PROJECT}; no deployment')

@@ -41,6 +41,7 @@ type Props = {
   prediction?: string;
   activityReady?: boolean;
   requireProcedure?: boolean;
+  parentScopeStrict?: boolean;
 };
 export function SubmissionPanel({
   me,
@@ -53,6 +54,7 @@ export function SubmissionPanel({
   prediction,
   activityReady = true,
   requireProcedure = false,
+  parentScopeStrict = false,
 }: Props) {
   const textLimit =
     20000 -
@@ -142,12 +144,12 @@ export function SubmissionPanel({
   }
   useEffect(() => {
     if (
-      parentId !== null &&
+      (parentScopeStrict || parentId !== null) &&
       current.current.parentId !== parentId &&
       !current.current.pending
     )
       update((value) => ({ ...value, parentId, key: requestKey() }));
-  }, [parentId]);
+  }, [parentId, parentScopeStrict]);
   async function upload(files: FileList | null) {
     if (!files?.length || uploading.current || pending.current) return;
     uploading.current = true;

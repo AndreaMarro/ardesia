@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "actor": "anonymous",
+      "route": "coursepack",
+      "status": 401
+    },
+    {
+      "actor": "anonymous",
+      "route": "course-learning",
+      "status": 401
+    },
+    {
+      "actor": "student",
+      "route": "coursepack",
+      "status": 200,
+      "visibleLessons": 1,
+      "editorialMaterials": false
+    },
+    {
+      "actor": "student",
+      "route": "course-learning",
+      "status": 200,
+      "visibleLessons": 1,
+      "editorialMaterials": false
+    },
+    {
+      "actor": "revoked_student",
+      "route": "coursepack",
+      "status": 401
+    },
+    {
+      "actor": "revoked_student",
+      "route": "course-learning",
+      "status": 401
+    },
+    {
+      "actor": "other_teacher",
+      "route": "coursepack",
+      "status": 403
+    },
+    {
+      "actor": "other_teacher",
+      "route": "course-learning",
+      "status": 403
+    },
+    {
+      "actor": "owning_teacher",
+      "route": "coursepack",
+      "status": 200,
+      "draftFinals": 33
+    },
+    {
+      "actor": "owning_teacher",
+      "route": "course-learning",
+      "status": 200,
+      "draftFinals": 33
+    }
+  ],
+  "sourceSha256": {
+    "packages/engine/lessonos/study/four_courses.py": "b0dafdd6bfd9cdccbb3c7f66be43479ce1bb96dcba00f101e346ce66897beadf",
+    "services/study-api/study_api/app.py": "47648a531f56f52af17e53b10cca28cab7852914dcfce5d6d3cf6d3065aa8bc0"
+  },
+  "scope": "Local synthetic HTTP/Core retest; not remote staging or human editorial approval"
+}

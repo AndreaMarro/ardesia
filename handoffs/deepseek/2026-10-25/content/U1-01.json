@@ -1,0 +1,63 @@
+{
+  "id": "ds-2026-u1-01",
+  "familyId": "U1-01",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U1",
+  "title": "Notazione scientifica",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U1-01.01",
+    "U1-01.02",
+    "U1-01.03"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Distingui arrotondamento a una cifra significativa e ordine di grandezza espresso come potenza di10. Qui per l’ordine di grandezza scegliamo la potenza più vicina sulla scala logaritmica:fra10^n e10^(n+1) la soglia è√10·10^n. La convenzione va dichiarata e non aggiunge precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine.",
+  "workedExample": {
+    "prompt": "Calcola (3,0·10^-3 m)(2,0·10^4 m).",
+    "steps": [
+      "Moltiplica coefficienti: 3·2=6.",
+      "Somma esponenti: −3+4=1.",
+      "Moltiplica unità: m·m=m²."
+    ],
+    "result": "6,0·10^1 m² = 60 m²."
+  },
+  "practice": {
+    "prompt": "Calcola 2·10^-3 m + 5·10^-4 m.",
+    "answer": "2,5·10^-3 m",
+    "feedback": "5·10^-4=0,5·10^-3: somma i coefficienti dopo aver uniformato gli esponenti."
+  },
+  "transfer": {
+    "prompt": "Un segnale dura 4·10^-6 s e si ripete dopo 2·10^-3 s. Qual è il rapporto durata/intervallo?",
+    "answer": "2·10^-3, adimensionale",
+    "feedback": "Dividi coefficienti e sottrai esponenti: (4/2)·10^(-6+3). Non è una durata."
+  },
+  "commonErrors": [
+    "Sommare esponenti nelle addizioni",
+    "Scambiare esponente negativo con segno negativo"
+  ],
+  "hintLadder": [
+    "Uniforma la potenza nelle somme",
+    "Controlla la scala con un numero decimale"
+  ],
+  "recap": "Normalizzare una potenza non cambia il valore.",
+  "transcript": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Distingui arrotondamento a una cifra significativa e ordine di grandezza espresso come potenza di10. Qui per l’ordine di grandezza scegliamo la potenza più vicina sulla scala logaritmica:fra10^n e10^(n+1) la soglia è√10·10^n. La convenzione va dichiarata e non aggiunge precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine. Esempio: Calcola (3,0·10^-3 m)(2,0·10^4 m). Moltiplica coefficienti: 3·2=6. Somma esponenti: −3+4=1. Moltiplica unità: m·m=m². Risultato: 6,0·10^1 m² = 60 m².",
+  "scientificCounterchecks": [
+    "Normalizzare una potenza non cambia il valore.",
+    "0,003·20000=60.",
+    "Il rapporto fra durate è adimensionale."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

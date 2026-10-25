@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u3-01",
+  "familyId": "U3-01",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U3",
+  "title": "Pressione e densità",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U3-01.01",
+    "U3-01.02",
+    "U3-01.03",
+    "U3-01.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Un fluido in equilibrio non sostiene uno sforzo tangenziale statico senza deformarsi continuamente; un solido può sostenere taglio. Densitàρ=m/V e pressione p=Fperpendicolare/A sono grandezze intensive nel modello omogeneo. La pressione non coincide con una forza: la stessa pressione su aree diverse produce forze diverse. L’unità Pa è N/m². La pressione assoluta si riferisce al vuoto; quella manometrica è la differenza rispetto all’ambiente. La densità collega massa e volume ma da sola non determina la pressione senza informazioni su quota, moto e condizioni al contorno. In un fluido fermo la pressione in un punto è isotropa; in moto non usare automaticamente la sola legge idrostatica.",
+  "workedExample": {
+    "prompt": "Una forza perpendicolare di30N agisce su un’area di2·10^-4m². Trova la pressione.",
+    "steps": [
+      "p=F/A.",
+      "30/(2·10^-4)=1,5·10^5.",
+      "N/m²=Pa."
+    ],
+    "result": "150000Pa."
+  },
+  "practice": {
+    "prompt": "Un campione ha massa0,8kg e volume1L. Trovaρ.",
+    "answer": "800kg/m³",
+    "feedback": "1L=0,001m³:ρ=0,8/0,001."
+  },
+  "transfer": {
+    "prompt": "La stessa pressione viene applicata a un’area tripla. Cambia la forza? E la densità duplicando un campione omogeneo?",
+    "answer": "Forza tripla; densità invariata.",
+    "feedback": "F=pA mentreρ=m/V: duplicando il campione raddoppiano sia massa sia volume."
+  },
+  "commonErrors": [
+    "Usare un’area in cm² come m²",
+    "Trattare pressione e forza come sinonimi"
+  ],
+  "hintLadder": [
+    "Converti le aree",
+    "Distingui proprietà del campione e carico applicato"
+  ],
+  "recap": "Pressione e densità richiedono definizioni e unità differenti.",
+  "transcript": "Un fluido in equilibrio non sostiene uno sforzo tangenziale statico senza deformarsi continuamente; un solido può sostenere taglio. Densitàρ=m/V e pressione p=Fperpendicolare/A sono grandezze intensive nel modello omogeneo. La pressione non coincide con una forza: la stessa pressione su aree diverse produce forze diverse. L’unità Pa è N/m². La pressione assoluta si riferisce al vuoto; quella manometrica è la differenza rispetto all’ambiente. La densità collega massa e volume ma da sola non determina la pressione senza informazioni su quota, moto e condizioni al contorno. In un fluido fermo la pressione in un punto è isotropa; in moto non usare automaticamente la sola legge idrostatica. Esempio: Una forza perpendicolare di30N agisce su un’area di2·10^-4m². Trova la pressione. p=F/A. 30/(2·10^-4)=1,5·10^5. N/m²=Pa. Risultato: 150000Pa.",
+  "scientificCounterchecks": [
+    "Pressione e densità richiedono definizioni e unità differenti.",
+    "150000Pa·0,0002m²=30N.",
+    "ρV restituisce kg; pA restituisce N."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

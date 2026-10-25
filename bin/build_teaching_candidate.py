@@ -15,6 +15,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / 'web'))
 from teaching_policy import exported_headers
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'packages/engine'))
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED = {'.env', 'demo-access.json', 'study.sqlite'}
@@ -30,7 +31,7 @@ def copy_surface(source: Path, destination: Path) -> None:
 
 
 def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path | None = None,
-             studio: Path | None = None, source: dict | None = None) -> dict:
+             studio: Path | None = None, source: dict | None = None, course_manifest: dict | None = None) -> dict:
     if destination.exists():
         raise ValueError('fresh_output_directory_required')
     if (web is None) != (studio is None):
@@ -39,6 +40,15 @@ def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path 
     try:
         copy_surface(marketing, destination / 'public')
         copy_surface(experience, destination / 'public/esperienza')
+        # Four stable course paths reuse the same public app; private routes keep404.
+        # Only valid course IDs receive an entry, with no catch-all SPA fallback.
+        for route in ('corsi', 'corsi/strumenti-meccanica', 'corsi/fluidi-termodinamica',
+                      'corsi/elettricita-magnetismo', 'corsi/onde-ottica-radiazioni'):
+            folder=destination/'public'/route
+            folder.mkdir(parents=True)
+            shutil.copy2(experience/'index.html',folder/'index.html')
+        if course_manifest is not None:
+            (destination/'public/courses-manifest.json').write_text(json.dumps(course_manifest,indent=2)+'\n')
         # Marketing alone has no audio. Export the policy actually used by the
         # composed lesson, instead of silently inheriting media-src default none.
         (destination / 'public/_headers').write_text(exported_headers())
@@ -51,6 +61,7 @@ def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path 
                     'publicEntry': '/', 'experienceEntry': '/esperienza/?percorso=fluidi-termodinamica',
                     'commercialAction': 'manifestazione di interesse; nessuna iscrizione, account o pagamento',
                     'privateBeta': web is not None, 'privateDataIncluded': False,
+                    'requiresProtectedPreview':bool(course_manifest and course_manifest.get('releaseScope')=='PRIVATE_EDITORIAL_REVIEW'),
                     'source': source or {}, 'assetsSha256': assets}
         (destination / 'candidate-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
         return manifest
@@ -81,6 +92,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--include-private', action='store_true')
+    parser.add_argument('--editorial-review', action='store_true',help='Full original DRAFT material; PROTECTED PREVIEW ONLY, never public release')
     parser.add_argument('--review-examples', action='store_true',
                         help='Opt in to private editorial preview examples; excluded from the public demo by default')
     args = parser.parse_args()
@@ -95,7 +107,18 @@ def main() -> None:
         if args.review_examples:
             marketing_command.append('--review-examples')
         run(marketing_command)
-        run(['npm', 'run', 'build:web:public'])
+        review_env=dict(os.environ)
+        if args.editorial_review:
+            review_file=Path(scratch)/'course-review-data.ts'
+            run(['python3','bin/web/export_course_learning.py','--review','--output',str(review_file)])
+            review_env['ARDESIA_COURSE_REVIEW_DATA']=str(review_file)
+        run(['npm', 'run', 'build:web:public'],env=review_env)
+        from lessonos.study.four_courses import course_projection
+        course_data=course_projection(review=args.editorial_review)
+        course_manifest={'schemaVersion':1,'releaseScope':course_data['releaseScope'],
+                         'requiredObjectives':course_data['baseline']['requiredObjectives'],
+                         'courses':[{'pathId':c['pathId'],'completedObjectives':c['completedObjectives'],'requiredObjectives':c['requiredObjectives'],
+                                     'packRef':c['packRef'],'lessons':[l['lessonRef'] for l in c['lessons']]} for c in course_data['courses']]}
         if args.include_private:
             run(['npm', 'run', 'build:web'])
             run(['npm', '--prefix', 'apps/studio', 'run', 'build'], env={**os.environ, 'ARDESIA_STUDIO_BASE': '/studio/'})
@@ -105,6 +128,7 @@ def main() -> None:
         manifest = assemble(output, marketing, ROOT / 'apps/web/dist-public',
                             web=ROOT / 'apps/web/dist' if args.include_private else None,
                             studio=ROOT / 'apps/studio/dist' if args.include_private else None,
+                            course_manifest=course_manifest,
                             source={'commit': head, 'trackedDiffSha256': hashlib.sha256(diff).hexdigest(),
                                     'sourceTreeSha256': inventory['sha256'], 'sourceFileCount': len(inventory['files']),
                                     'note': 'source tree and asset hashes identify the exact build, including uncommitted sources'})

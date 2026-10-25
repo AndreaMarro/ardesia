@@ -1,0 +1,22 @@
+.scientific-model {margin: 0; min-width: 0; overflow-wrap: anywhere;}
+.scientific-model svg {display: block; width: 100%; height: auto; max-width: 560px; margin: 12px auto; overflow: visible;}
+.scientific-model svg text {font-family: inherit; font-size: 15px; fill: currentColor;}
+.scientific-model svg rect {fill: var(--surface, Canvas); stroke: currentColor; stroke-width: 3;}
+.scientific-model .scientific-readings {display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0;}
+.scientific-model .scientific-readings > div {flex: 1 1 140px;}
+.scientific-model dt {font-size: .9em;}
+.scientific-model dd {margin: 4px 0 0; font-weight: 600;}
+.scientific-model .scientific-view-controls {display: flex; flex-wrap: wrap; gap: 8px;}
+.scientific-model .scientific-view-controls button {min-height: 44px; padding: 8px 12px; color: inherit; background: var(--surface, Canvas); border: 1px solid var(--line, currentColor); border-radius: 8px; font: inherit; cursor: pointer;}
+.scientific-model .scientific-view-controls button[aria-pressed="true"] {outline: 2px solid var(--accent-text, currentColor); outline-offset: -2px; font-weight: 600;}
+.scientific-model .scientific-view-controls button:focus-visible {outline: 3px solid var(--accent-text, currentColor); outline-offset: 3px;}
+.scientific-model .scientific-table-wrap {max-width: 100%; overflow-x: auto; margin: 12px 0;}
+.scientific-model table {width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums;}
+.scientific-model th, .scientific-model td {padding: 8px 6px; text-align: start; border-bottom: 1px solid var(--line, currentColor);}
+.scientific-model summary {cursor: pointer; min-height: 44px; padding: 10px 0;}
+.scientific-model summary:focus-visible {outline: 2px solid var(--accent-text, currentColor); outline-offset: 4px;}
+.scientific-model figcaption {font-size: .875em; line-height: 1.6; margin-top: 12px;}
+@media (max-width: 480px) {
+  .scientific-model svg text {font-size: 18px;}
+  .scientific-model th, .scientific-model td {padding: 7px 3px; font-size: .875em;}
+}

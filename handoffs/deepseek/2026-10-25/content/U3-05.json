@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u3-05",
+  "familyId": "U3-05",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U3",
+  "title": "Superfici e capillarità",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U3-05.01",
+    "U3-05.02",
+    "U3-05.03",
+    "U3-05.04",
+    "U3-05.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La tensione superficialeγ misura la forza per lunghezza lungo un’interfaccia e, in forma equivalente, il costo energetico per area creata. La superficie tende a ridurre area; su piccole gocce il suo effetto può competere con la gravità. La capillarità dipende da tensione, bagnabilità, geometria e gravità: un liquido che bagna una parete può risalire in un tubo stretto mentre un liquido non bagnante può deprimersi. La pressione attraverso un’interfaccia curva differisce fra i due lati; qualitativamente, a pariγ, maggiore curvatura richiede maggiore salto di pressione. Un’interfaccia piana ideale non ha contributo di pressione da curvatura. Per il syllabus la legge diLaplace va interpretata qualitativamente; formule quantitative diverse per gocce e bolle non vanno introdotte senza dichiarare le superfici e fornire la legge.",
+  "workedExample": {
+    "prompt": "Due gocce sferiche dello stesso liquido hanno raggi r e2r. Senza usare coefficienti numerici diLaplace, quale richiede maggior salto di pressione e perché?",
+    "steps": [
+      "La goccia più piccola ha maggiore curvatura.",
+      "Aγ uguale il salto di pressione cresce con la curvatura.",
+      "La goccia di raggio r richiede salto maggiore."
+    ],
+    "result": "La goccia più piccola."
+  },
+  "practice": {
+    "prompt": "Un liquido bagna due capillari uguali salvo raggio, r e2r. In quale la risalita è maggiore, a parità delle altre condizioni?",
+    "answer": "Nel capillare di raggio r.",
+    "feedback": "Nel modello statico usuale la risalita cresce restringendo il tubo; bagnabilità e menisco sono ipotesi essenziali."
+  },
+  "transfer": {
+    "prompt": "Una pellicola aumenta l’area di0,002m² aγ=0,05J/m², con una sola interfaccia dichiarata. Quale energia superficiale aggiuntiva?",
+    "answer": "0,0001J",
+    "feedback": "La legge fornita èΔE=γΔA. Una pellicola con due facce richiederebbe contare entrambe; qui il testo ne specifica una."
+  },
+  "commonErrors": [
+    "Confondere goccia e bolla a due superfici",
+    "Attribuire sempre risalita senza bagnabilità"
+  ],
+  "hintLadder": [
+    "Identifica il numero di interfacce",
+    "Confronta curvatura e raggio"
+  ],
+  "recap": "Curvatura, bagnabilità e numero di superfici determinano il modello.",
+  "transcript": "La tensione superficialeγ misura la forza per lunghezza lungo un’interfaccia e, in forma equivalente, il costo energetico per area creata. La superficie tende a ridurre area; su piccole gocce il suo effetto può competere con la gravità. La capillarità dipende da tensione, bagnabilità, geometria e gravità: un liquido che bagna una parete può risalire in un tubo stretto mentre un liquido non bagnante può deprimersi. La pressione attraverso un’interfaccia curva differisce fra i due lati; qualitativamente, a pariγ, maggiore curvatura richiede maggiore salto di pressione. Un’interfaccia piana ideale non ha contributo di pressione da curvatura. Per il syllabus la legge diLaplace va interpretata qualitativamente; formule quantitative diverse per gocce e bolle non vanno introdotte senza dichiarare le superfici e fornire la legge. Esempio: Due gocce sferiche dello stesso liquido hanno raggi r e2r. Senza usare coefficienti numerici diLaplace, quale richiede maggior salto di pressione e perché? La goccia più piccola ha maggiore curvatura. Aγ uguale il salto di pressione cresce con la curvatura. La goccia di raggio r richiede salto maggiore. Risultato: La goccia più piccola.",
+  "scientificCounterchecks": [
+    "Curvatura, bagnabilità e numero di superfici determinano il modello.",
+    "J/m²=N/m.",
+    "Un’interfaccia piana ha curvatura nulla, non necessariamente pressione assoluta nulla."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

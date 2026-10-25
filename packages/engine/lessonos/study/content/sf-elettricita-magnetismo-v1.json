@@ -1,0 +1,1686 @@
+{
+  "id": "sf-elettricita-magnetismo-v1",
+  "version": 1,
+  "title": "Elettricità e magnetismo",
+  "status": "DRAFT",
+  "reviewer": null,
+  "scope": "Percorso in costruzione. Lezione originale dimostrativa; non è un microcorso completo.",
+  "rights": "Original teaching proposals, no donor assets or private-kit text copied.",
+  "coursePathId": "elettricita-magnetismo",
+  "baselineRef": {
+    "id": "physics-curriculum-2026-v1",
+    "sha256": "4dfdbd4b0358d6270521208f5af66e6fc69ff6c3a1c0cb1c64861734a0b7ab7f"
+  },
+  "activities": [
+    {
+      "id": "dc-resistance-v1",
+      "version": 1,
+      "title": "Corrente e potenza in una rete",
+      "skill": "Corrente e potenza in una rete",
+      "prerequisites": [
+        "unità SI",
+        "proporzioni"
+      ],
+      "parametersRequired": true,
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "original-demo-u6-04-practice",
+      "activityId": "dc-resistance-v1",
+      "parameters": {
+        "voltage": 12,
+        "resistance1": 4,
+        "resistance2": 8,
+        "topology": "series"
+      },
+      "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in serie. Trova la corrente totale in A.",
+      "answer": {
+        "value": 1,
+        "unit": "A"
+      },
+      "solution": [
+        "Valore atteso 1 A.",
+        "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite."
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "transferTests": [
+    {
+      "id": "original-demo-u6-04-transfer",
+      "items": [
+        {
+          "id": "original-demo-u6-04-transfer-item",
+          "activityId": "dc-resistance-v1",
+          "parameters": {
+            "voltage": 12,
+            "resistance1": 4,
+            "resistance2": 8,
+            "topology": "parallel"
+          },
+          "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in parallelo. Trova la corrente totale in A.",
+          "answer": {
+            "value": 4.5,
+            "unit": "A"
+          },
+          "solution": [
+            "Valore atteso 4.5 A.",
+            "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+          ],
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ]
+    }
+  ],
+  "reviewRubric": [
+    "Coprire ogni sotto-obiettivo della baseline prima di dichiarare completezza.",
+    "Revisione scientifica/editoriale umana sulla revisione esatta.",
+    "Continuità remota docente-studente da collaudare."
+  ],
+  "lessons": [
+    {
+      "id": "original-demo-u6-04",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-04.01",
+        "U6-04.02",
+        "U6-04.03",
+        "U6-04.04",
+        "U6-04.05",
+        "U6-04.06",
+        "U6-04.07"
+      ],
+      "title": "Corrente e potenza in una rete",
+      "explanation": [
+        "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza."
+      ],
+      "workedExample": {
+        "prompt": "Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze.",
+        "steps": [
+          "Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A.",
+          "I totale=4,5 A; R equivalente=12/4,5=8/3 Ω.",
+          "P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W."
+        ],
+        "answerDisplay": "I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W."
+      },
+      "practice": {
+        "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in serie. Trova la corrente totale in A.",
+        "answer": {
+          "value": 1,
+          "unit": "A"
+        },
+        "feedback": [
+          "Valore atteso 1 A.",
+          "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite."
+        ],
+        "parameters": {
+          "voltage": 12,
+          "resistance1": 4,
+          "resistance2": 8,
+          "topology": "series"
+        }
+      },
+      "transfer": {
+        "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in parallelo. Trova la corrente totale in A.",
+        "answer": {
+          "value": 4.5,
+          "unit": "A"
+        },
+        "feedback": [
+          "Valore atteso 4.5 A.",
+          "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+        ],
+        "parameters": {
+          "voltage": 12,
+          "resistance1": 4,
+          "resistance2": 8,
+          "topology": "parallel"
+        }
+      },
+      "recap": [
+        "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa."
+      ],
+      "transcript": "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza. Esempio: Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze. Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A. I totale=4,5 A; R equivalente=12/4,5=8/3 Ω. P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W. Risultato: I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W.",
+      "scientificEvidence": [
+        "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa.",
+        "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite.",
+        "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+      ],
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+      "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
+      "releaseScope": "PUBLIC_DEMONSTRATION",
+      "activityId": "dc-resistance-v1",
+      "provenanceRef": {
+        "authorRole": "DeepSeek content session",
+        "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
+        "status": "DRAFT; original, not copied from private knowledge"
+      },
+      "audioPath": "courses/audio/elettricita-magnetismo.wav",
+      "audioTranscript": "Per prima cosa riconosci il collegamento. In serie la stessa corrente attraversa entrambi i resistori e le differenze di potenziale si sommano. In parallelo i rami condividono la differenza di potenziale e le correnti si sommano. Il generatore ideale mantiene la tensione. Prima di calcolare, prevedi come cambia la corrente totale. La potenza dissipata dai resistori resta non negativa.",
+      "audioStatus": "SYNTHETIC_DEMONSTRATION; listening quality not reviewed"
+    },
+    {
+      "id": "ds-2026-u6-01",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-01.01",
+        "U6-01.02",
+        "U6-01.03",
+        "U6-01.04",
+        "U6-01.05",
+        "U6-01.06"
+      ],
+      "familyId": "U6-01",
+      "title": "Carica e campo",
+      "explanation": [
+        "La carica elettrica è una proprietà conservata nei processi del sistema isolato e si misura in coulomb. Cariche dello stesso segno si respingono, di segno opposto si attraggono. Coulomb per cariche puntiformi ferme dà moduloF=ke|q1q2|/r²; il campo è forza per carica di prova positiva,E=F/q. Le linee escono dalle cariche positive ed entrano nelle negative e indicano la direzione locale, non traiettorie obbligate. Il campo totale di più cariche è la somma vettoriale dei campi. In un campo elettrico uniforme una carica libera subisce forzaqE e accelerazioneqE/m; una carica negativa accelera in verso opposto aE. Il modello esclude il punto sorgente r=0 ed effetti di auto-interazione della carica di prova."
+      ],
+      "workedExample": {
+        "prompt": "Due cariche+1µC a distanza0,30m sono ferme. Usa ke=9·10^9N m²/C². TrovaF e verso.",
+        "steps": [
+          "q1q2=10^-12C² e r²=0,09m².",
+          "F=9·10^9·10^-12/0,09=0,1N.",
+          "Segni uguali: forza repulsiva lungo la congiungente."
+        ],
+        "answerDisplay": "0,1N repulsiva."
+      },
+      "practice": {
+        "prompt": "Una carica−2µC è in campo uniforme+300N/C lungo x. TrovaFx.",
+        "answer": {
+          "value": "−0,0006N",
+          "unit": ""
+        },
+        "feedback": [
+          "F=qE conserva il segno della carica. La direzione del campo si definisce con una carica di prova positiva."
+        ]
+      },
+      "transfer": {
+        "prompt": "Due cariche positive uguali sono ai lati opposti di un punto medio. Campo nullo significa assenza di cariche? Se raddoppia la distanza da una singola carica, come variaE?",
+        "answer": {
+          "value": "No: i campi si cancellano per simmetria; E della singola carica diventa1/4.",
+          "unit": ""
+        },
+        "feedback": [
+          "La sovrapposizione è vettoriale. Una misura nulla può derivare da contributi non nulli."
+        ]
+      },
+      "recap": [
+        "Campo e forza sono diversi: la seconda dipende anche dalla carica di prova."
+      ],
+      "transcript": "La carica elettrica è una proprietà conservata nei processi del sistema isolato e si misura in coulomb. Cariche dello stesso segno si respingono, di segno opposto si attraggono. Coulomb per cariche puntiformi ferme dà moduloF=ke|q1q2|/r²; il campo è forza per carica di prova positiva,E=F/q. Le linee escono dalle cariche positive ed entrano nelle negative e indicano la direzione locale, non traiettorie obbligate. Il campo totale di più cariche è la somma vettoriale dei campi. In un campo elettrico uniforme una carica libera subisce forzaqE e accelerazioneqE/m; una carica negativa accelera in verso opposto aE. Il modello esclude il punto sorgente r=0 ed effetti di auto-interazione della carica di prova. Esempio: Due cariche+1µC a distanza0,30m sono ferme. Usa ke=9·10^9N m²/C². TrovaF e verso. q1q2=10^-12C² e r²=0,09m². F=9·10^9·10^-12/0,09=0,1N. Segni uguali: forza repulsiva lungo la congiungente. Risultato: 0,1N repulsiva.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Campo e forza sono diversi: la seconda dipende anche dalla carica di prova.",
+        "N/C·C=N.",
+        "A distanza doppiaF edE puntiformi si dividono per4."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-01.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-02",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-02.01",
+        "U6-02.02",
+        "U6-02.03",
+        "U6-02.04"
+      ],
+      "familyId": "U6-02",
+      "title": "Potenziale elettrico",
+      "explanation": [
+        "Il potenziale elettrico è energia potenziale per unità di carica e si misura in volt,J/C. La differenza di potenzialeΔV=Vf−Vi cambia l’energia potenziale diqΔV. Il lavoro della forza elettrica è−qΔV; se non agiscono altre forze che compiono lavoro,ΔK=−qΔV. Il potenziale è scalare e quello di più cariche si somma algebricamente, mentre i campi sono vettori. Per due cariche puntiformiU=keq1q2/r con zero all’infinito; il segno può essere negativo. Una carica positiva lasciata libera tende a muoversi verso potenziale minore; una negativa può guadagnare energia cinetica muovendosi verso potenziale maggiore. Lo zero convenzionale diV non alteraΔV."
+      ],
+      "workedExample": {
+        "prompt": "Una carica+2µC passa da10V a4V, agisce solo il campo elettrico. TrovaΔU eΔK.",
+        "steps": [
+          "ΔV=4−10=−6V.",
+          "ΔU=2·10^-6·(−6)=−12·10^-6J.",
+          "ΔK=−ΔU=+12µJ."
+        ],
+        "answerDisplay": "ΔU=−12µJ;ΔK=+12µJ."
+      },
+      "practice": {
+        "prompt": "Una carica−1µC passa da0 a5V. Quanto cambiaU?",
+        "answer": {
+          "value": "−5µJ",
+          "unit": ""
+        },
+        "feedback": [
+          "ΔU=qΔV: carica negativa e aumento di potenziale producono diminuzione dell’energia potenziale."
+        ]
+      },
+      "transfer": {
+        "prompt": "Se aggiungi100V a tutti i potenziali di un circuito, cambiano forze e lavoro fra due punti? Motiva.",
+        "answer": {
+          "value": "No, le differenze di potenziale restano identiche.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il lavoro dipende daΔV; il riferimento assoluto può essere scelto convenzionalmente."
+        ]
+      },
+      "recap": [
+        "Il segno della carica decide comeΔV cambiaU eK."
+      ],
+      "transcript": "Il potenziale elettrico è energia potenziale per unità di carica e si misura in volt,J/C. La differenza di potenzialeΔV=Vf−Vi cambia l’energia potenziale diqΔV. Il lavoro della forza elettrica è−qΔV; se non agiscono altre forze che compiono lavoro,ΔK=−qΔV. Il potenziale è scalare e quello di più cariche si somma algebricamente, mentre i campi sono vettori. Per due cariche puntiformiU=keq1q2/r con zero all’infinito; il segno può essere negativo. Una carica positiva lasciata libera tende a muoversi verso potenziale minore; una negativa può guadagnare energia cinetica muovendosi verso potenziale maggiore. Lo zero convenzionale diV non alteraΔV. Esempio: Una carica+2µC passa da10V a4V, agisce solo il campo elettrico. TrovaΔU eΔK. ΔV=4−10=−6V. ΔU=2·10^-6·(−6)=−12·10^-6J. ΔK=−ΔU=+12µJ. Risultato: ΔU=−12µJ;ΔK=+12µJ.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Il segno della carica decide comeΔV cambiaU eK.",
+        "C·V=J.",
+        "ΔU+ΔK=0 nell’esempio senza altri lavori."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-02.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-03",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-03.01",
+        "U6-03.02"
+      ],
+      "familyId": "U6-03",
+      "title": "Conduttori e dielettrici",
+      "explanation": [
+        "In un conduttore le cariche libere possono ridistribuirsi. In equilibrio elettrostatico il campo all’interno del materiale conduttore è nullo e il conduttore è equipotenziale; eventuale carica in eccesso si dispone sulla superficie. Avvicinare una carica esterna può separare cariche nel conduttore senza cambiare la carica totale: è induzione elettrostatica. Il collegamento a terra permette invece scambio di carica e va dichiarato. Un dielettrico ha cariche legate che possono spostarsi leggermente o orientarsi: la polarizzazione crea dipoli e modifica il campo senza implicare un flusso libero permanente attraverso l’isolante. Un corpo neutro può essere attratto da una carica per ridistribuzione; neutro non significa assenza di cariche."
+      ],
+      "workedExample": {
+        "prompt": "Una sfera metallica isolata e neutra viene avvicinata, senza contatto, a una bacchetta positiva. Quali cariche si trovano sul lato vicino e qual è la carica totale?",
+        "steps": [
+          "Gli elettroni mobili sono attratti verso il lato vicino.",
+          "Il lato lontano resta con eccesso relativo di carica positiva.",
+          "Senza contatto o terra la carica totale della sfera resta zero."
+        ],
+        "answerDisplay": "Lato vicino negativo; totale zero."
+      },
+      "practice": {
+        "prompt": "In un dielettrico neutro i dipoli si orientano in un campo esterno. È necessario che passino elettroni da un capo all’altro del campione?",
+        "answer": {
+          "value": "No.",
+          "unit": ""
+        },
+        "feedback": [
+          "La polarizzazione può coinvolgere spostamenti locali di cariche legate o orientamento dei dipoli, senza corrente libera macroscopica permanente."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una sfera conduttrice viene collegata a terra mentre la bacchetta è vicina. Si può dedurre che la carica finale resti necessariamente zero?",
+        "answer": {
+          "value": "No: la terra può fornire o assorbire cariche; conta l’ordine delle operazioni.",
+          "unit": ""
+        },
+        "feedback": [
+          "L’isolamento era un’ipotesi essenziale del primo esempio. Specificare stacco da terra e rimozione della bacchetta è necessario per il risultato finale."
+        ]
+      },
+      "recap": [
+        "Separazione locale e carica totale sono concetti distinti."
+      ],
+      "transcript": "In un conduttore le cariche libere possono ridistribuirsi. In equilibrio elettrostatico il campo all’interno del materiale conduttore è nullo e il conduttore è equipotenziale; eventuale carica in eccesso si dispone sulla superficie. Avvicinare una carica esterna può separare cariche nel conduttore senza cambiare la carica totale: è induzione elettrostatica. Il collegamento a terra permette invece scambio di carica e va dichiarato. Un dielettrico ha cariche legate che possono spostarsi leggermente o orientarsi: la polarizzazione crea dipoli e modifica il campo senza implicare un flusso libero permanente attraverso l’isolante. Un corpo neutro può essere attratto da una carica per ridistribuzione; neutro non significa assenza di cariche. Esempio: Una sfera metallica isolata e neutra viene avvicinata, senza contatto, a una bacchetta positiva. Quali cariche si trovano sul lato vicino e qual è la carica totale? Gli elettroni mobili sono attratti verso il lato vicino. Il lato lontano resta con eccesso relativo di carica positiva. Senza contatto o terra la carica totale della sfera resta zero. Risultato: Lato vicino negativo; totale zero.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Separazione locale e carica totale sono concetti distinti.",
+        "L’esempio conserva la carica netta della sfera.",
+        "Einterno=0 vale nel materiale conduttore in equilibrio elettrostatico."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-03.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-04",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-04.01",
+        "U6-04.02",
+        "U6-04.03",
+        "U6-04.04",
+        "U6-04.05",
+        "U6-04.06",
+        "U6-04.07"
+      ],
+      "familyId": "U6-04",
+      "title": "Corrente e circuiti",
+      "explanation": [
+        "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza."
+      ],
+      "workedExample": {
+        "prompt": "Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze.",
+        "steps": [
+          "Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A.",
+          "I totale=4,5 A; R equivalente=12/4,5=8/3 Ω.",
+          "P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W."
+        ],
+        "answerDisplay": "I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W."
+      },
+      "practice": {
+        "prompt": "Un generatore ideale12V alimenta resistori4Ω e8Ω in serie: trovaI,V1,V2 ePtotale.",
+        "answer": {
+          "value": "1 A; 4 V; 8 V; 12 W",
+          "unit": ""
+        },
+        "feedback": [
+          "La serie ha 12 Ω. La stessa corrente percorre entrambi e le due cadute sommano 12 V."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un filo ohmico raddoppia lunghezza e area, a ρ costante. Cambiano R e P a tensione fissata? Se invece raddoppia solo L?",
+        "answer": {
+          "value": "R invariata e P invariata nel primo caso; R raddoppia e P si dimezza nel secondo.",
+          "unit": ""
+        },
+        "feedback": [
+          "Usa R=ρL/A e poi P=V²/R. A corrente fissata la conclusione sulla potenza sarebbe diversa."
+        ]
+      },
+      "recap": [
+        "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa."
+      ],
+      "transcript": "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza. Esempio: Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze. Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A. I totale=4,5 A; R equivalente=12/4,5=8/3 Ω. P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W. Risultato: I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa.",
+        "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite.",
+        "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-04.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-05",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-05.01",
+        "U6-05.02",
+        "U6-05.03",
+        "U6-05.04",
+        "U6-05.05"
+      ],
+      "familyId": "U6-05",
+      "title": "Condensatori",
+      "explanation": [
+        "La capacitàC=Q/ΔV misura quanta carica di un’armatura è associata alla tensione fra le armature; l’unità èF=C/V. Un condensatore piano ideale haC=εA/d trascurando effetti di bordo. Un dielettrico aumentaε e quindiC a geometria fissa. L’energia immagazzinata èU=CV²/2=Q²/(2C). In parallelo le capacità si sommano perché la tensione è comune; in serie si sommano i reciproci perché le cariche delle armature interne isolate si bilanciano e la tensione si ripartisce. Inserire un dielettrico a tensione fissata dal generatore non è uguale al farlo con condensatore isolato e carica fissata: nel primo casoU cresce, nel secondo diminuisce. Nessun transitorioRC quantitativo è richiesto qui."
+      ],
+      "workedExample": {
+        "prompt": "Due condensatori2µF e3µF sono collegati in parallelo a10V. TrovaCeq,Qtot eU.",
+        "steps": [
+          "Ceq=5µF.",
+          "Qtot=CeqV=50µC.",
+          "U=CeqV²/2=250µJ."
+        ],
+        "answerDisplay": "5µF;50µC;250µJ."
+      },
+      "practice": {
+        "prompt": "Due condensatori2µF e3µF sono collegati in serie. Quanto valeCeq?",
+        "answer": {
+          "value": "1,2µF",
+          "unit": ""
+        },
+        "feedback": [
+          "Ceq=C1C2/(C1+C2)=6/5µF. È minore della capacità più piccola."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un condensatore isolato mantieneQ e raddoppiaC con un dielettrico. Come cambianoV eU?",
+        "answer": {
+          "value": "Entrambe si dimezzano.",
+          "unit": ""
+        },
+        "feedback": [
+          "V=Q/C eU=Q²/(2C). A tensione mantenuta da generatore la conclusione energetica cambierebbe."
+        ]
+      },
+      "recap": [
+        "Le condizioni al contorno determinano la variazione dell’energia del condensatore."
+      ],
+      "transcript": "La capacitàC=Q/ΔV misura quanta carica di un’armatura è associata alla tensione fra le armature; l’unità èF=C/V. Un condensatore piano ideale haC=εA/d trascurando effetti di bordo. Un dielettrico aumentaε e quindiC a geometria fissa. L’energia immagazzinata èU=CV²/2=Q²/(2C). In parallelo le capacità si sommano perché la tensione è comune; in serie si sommano i reciproci perché le cariche delle armature interne isolate si bilanciano e la tensione si ripartisce. Inserire un dielettrico a tensione fissata dal generatore non è uguale al farlo con condensatore isolato e carica fissata: nel primo casoU cresce, nel secondo diminuisce. Nessun transitorioRC quantitativo è richiesto qui. Esempio: Due condensatori2µF e3µF sono collegati in parallelo a10V. TrovaCeq,Qtot eU. Ceq=5µF. Qtot=CeqV=50µC. U=CeqV²/2=250µJ. Risultato: 5µF;50µC;250µJ.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Le condizioni al contorno determinano la variazione dell’energia del condensatore.",
+        "5·10^-6·100/2=250·10^-6J.",
+        "Ceqserie<2µF eCeqparallelo>3µF."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-05.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-06",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-06.01",
+        "U6-06.02",
+        "U6-06.03",
+        "U6-06.04",
+        "U6-06.05"
+      ],
+      "familyId": "U6-06",
+      "title": "Campo magnetico",
+      "explanation": [
+        "L’esperimento diOersted mostra che una corrente genera un campo magnetico; il verso si collega alla direzione della corrente con la mano destra. Una carica in moto subisceF=q v×B: il modulo è|q|vBsinθ, la forza è perpendicolare alla velocità e il campo magnetico statico da solo non compie lavoro sulla carica puntiforme. Una carica ferma o in moto parallelo aB non subisce questa forza. Su un filo rettilineo con corrente in campo uniforme agisceF=I L×B. Sev è perpendicolare aB, la carica segue un moto circolare di raggio r=mv/(|q|B) nel modello non relativistico; la frequenza e il verso dipendono dai parametri e dal segno. Cariche opposte con uguale velocità curvano in versi opposti."
+      ],
+      "workedExample": {
+        "prompt": "Carica+2µC con v=3m/s lungo+x in campoB=0,5T lungo+y. TrovaF e verso.",
+        "steps": [
+          "v×B punta lungo+z.",
+          "F=2·10^-6·3·0,5=3·10^-6N.",
+          "q positiva conserva il verso del prodotto vettoriale."
+        ],
+        "answerDisplay": "3µN lungo+z."
+      },
+      "practice": {
+        "prompt": "Un filo lungo0,2m porta3A perpendicolarmente aB=0,5T. Trova il modulo della forza.",
+        "answer": {
+          "value": "0,3N",
+          "unit": ""
+        },
+        "feedback": [
+          "F=ILB=3·0,2·0,5. Se il filo fosse parallelo al campo il risultato sarebbezero."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una particella non relativistica in moto perpendicolare aB raddoppia la velocità con massa,carica eB fissi. Come variano r eK? Il soloB statico può produrre tale aumento?",
+        "answer": {
+          "value": "r raddoppia;K quadruplica;B statico da solo non può aumentareK.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il raggio è lineare inv mentreK∝v². La forza magnetica resta perpendicolare allo spostamento istantaneo."
+        ]
+      },
+      "recap": [
+        "La forza magnetica può cambiare direzione del moto senza cambiarne l’energia cinetica."
+      ],
+      "transcript": "L’esperimento diOersted mostra che una corrente genera un campo magnetico; il verso si collega alla direzione della corrente con la mano destra. Una carica in moto subisceF=q v×B: il modulo è|q|vBsinθ, la forza è perpendicolare alla velocità e il campo magnetico statico da solo non compie lavoro sulla carica puntiforme. Una carica ferma o in moto parallelo aB non subisce questa forza. Su un filo rettilineo con corrente in campo uniforme agisceF=I L×B. Sev è perpendicolare aB, la carica segue un moto circolare di raggio r=mv/(|q|B) nel modello non relativistico; la frequenza e il verso dipendono dai parametri e dal segno. Cariche opposte con uguale velocità curvano in versi opposti. Esempio: Carica+2µC con v=3m/s lungo+x in campoB=0,5T lungo+y. TrovaF e verso. v×B punta lungo+z. F=2·10^-6·3·0,5=3·10^-6N. q positiva conserva il verso del prodotto vettoriale. Risultato: 3µN lungo+z.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La forza magnetica può cambiare direzione del moto senza cambiarne l’energia cinetica.",
+        "C·m/s·T=N.",
+        "Perθ=0 la forza èzero; perq<0 il verso si inverte."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-06.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u6-07",
+      "courseId": "elettricita-magnetismo",
+      "objectiveIds": [
+        "U6-07.01",
+        "U6-07.02",
+        "U6-07.03",
+        "U6-07.04"
+      ],
+      "familyId": "U6-07",
+      "title": "Induzione",
+      "explanation": [
+        "Il flusso magnetico attraverso una superficie piana in campo uniforme èΦ=BAcosθ conθ fraB e normale alla superficie. Una variazione del flusso concatenato genera fem:ε=−NΔΦ/Δt nella forma media. Il segno diLenz indica che l’effetto della corrente indotta si oppone alla variazione del flusso, non necessariamente al campo presente. Un flusso costante, anche grande, non induce fem nel circuito fermo ideale. Possono variareB,area o orientazione. In un circuito chiuso resistivo la fem può produrre corrente; in uno aperto una fem non implica corrente di conduzione completa. Il verso va determinato dopo aver scelto normale e orientazione del circuito."
+      ],
+      "workedExample": {
+        "prompt": "Una bobina di100spire, area0,01m², normale concorde aB, vedeB salire da0 a0,2T in0,1s. Trova il modulo della fem media.",
+        "steps": [
+          "ΔΦ per spira=AΔB=0,002Wb.",
+          "NΔΦ=0,2Wb concatenati.",
+          "|ε|=0,2/0,1=2V."
+        ],
+        "answerDisplay": "2V; verso tale da opporsi all’aumento del flusso."
+      },
+      "practice": {
+        "prompt": "Con la stessa bobinaB resta costante e area/orientazione non cambiano. Qual è la fem indotta ideale?",
+        "answer": {
+          "value": "0V",
+          "unit": ""
+        },
+        "feedback": [
+          "Il valore del flusso non basta: serve una variazione nel tempo."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un campo entrante nel foglio diminuisce. Quale verso ha il campo prodotto dalla corrente indotta e quale corrente vista frontalmente?",
+        "answer": {
+          "value": "Campo entrante; corrente oraria.",
+          "unit": ""
+        },
+        "feedback": [
+          "La corrente cerca di mantenere il flusso entrante che sta diminuendo. Opporsi alla variazione non significa creare sempre campo opposto aB."
+        ]
+      },
+      "recap": [
+        "Faraday quantifica la fem eLenz ne determina il verso."
+      ],
+      "transcript": "Il flusso magnetico attraverso una superficie piana in campo uniforme èΦ=BAcosθ conθ fraB e normale alla superficie. Una variazione del flusso concatenato genera fem:ε=−NΔΦ/Δt nella forma media. Il segno diLenz indica che l’effetto della corrente indotta si oppone alla variazione del flusso, non necessariamente al campo presente. Un flusso costante, anche grande, non induce fem nel circuito fermo ideale. Possono variareB,area o orientazione. In un circuito chiuso resistivo la fem può produrre corrente; in uno aperto una fem non implica corrente di conduzione completa. Il verso va determinato dopo aver scelto normale e orientazione del circuito. Esempio: Una bobina di100spire, area0,01m², normale concorde aB, vedeB salire da0 a0,2T in0,1s. Trova il modulo della fem media. ΔΦ per spira=AΔB=0,002Wb. NΔΦ=0,2Wb concatenati. |ε|=0,2/0,1=2V. Risultato: 2V; verso tale da opporsi all’aumento del flusso.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Faraday quantifica la fem eLenz ne determina il verso.",
+        "Wb/s=V.",
+        "RaddoppiareΔt a stessaΔΦ dimezza la fem media."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U6-07.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    }
+  ],
+  "courseRequirements": {
+    "diagnostic": "DRAFT_PRESENT; independent of final problems",
+    "finalAssessment": "DRAFT_PRESENT; human review/calibration pending",
+    "recap": "DRAFT_PRESENT",
+    "remoteTeacherStudent": "NOT_CERTIFIED",
+    "humanApproval": false,
+    "transcripts": "DRAFT_PRESENT",
+    "audio": "ABSENT_TRANSCRIPTS_AVAILABLE"
+  },
+  "authoredFamilyCount": 7,
+  "finalAssessment": [
+    {
+      "id": "final-U6-01.01",
+      "objectiveId": "U6-01.01",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "carica e unità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Qual è l’unitàSI della carica e quale segno assegna il verso convenzionale del campo?",
+      "answer": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
+      "feedback": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-02.01",
+      "objectiveId": "U6-02.01",
+      "familyId": "U6-02",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "energia potenziale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Il potenziale sceltozero in un punto impone energia potenziale nulla per qualunque riferimento?",
+      "answer": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
+      "feedback": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-03.01",
+      "objectiveId": "U6-03.01",
+      "familyId": "U6-03",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "induzione elettrostatica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una sfera conduttrice neutra isolata,senza contatto,si polarizza per induzione. Deve acquisire carica netta?",
+      "answer": "No:può separare cariche mantenendo totalezero.",
+      "feedback": "No:può separare cariche mantenendo totalezero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.01",
+      "objectiveId": "U6-04.01",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "DC",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Che cosa significaDC nel modello elementare e quale grandezza non cambia segno periodicamente?",
+      "answer": "Corrente continua;il flusso di carica mantiene direzione nel modello stazionario.",
+      "feedback": "Corrente continua;il flusso di carica mantiene direzione nel modello stazionario.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.01",
+      "objectiveId": "U6-05.01",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "capacità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un condensatore haQ=24µC a6V. QualeC?",
+      "answer": "4µF.",
+      "feedback": "4µF.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.01",
+      "objectiveId": "U6-06.01",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Oersted",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Quale osservazione dell’esperimento diOersted collega corrente e magnetismo?",
+      "answer": "Una corrente devia un ago magnetico vicino,mostrando un campo associato al filo.",
+      "feedback": "Una corrente devia un ago magnetico vicino,mostrando un campo associato al filo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-07.01",
+      "objectiveId": "U6-07.01",
+      "familyId": "U6-07",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "flusso",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "CampoB parallelo al piano di una superficie:qual è il flusso uniforme attraverso essa?",
+      "answer": "Zero,perchéB è perpendicolare alla normale e cos90°=0.",
+      "feedback": "Zero,perchéB è perpendicolare alla normale e cos90°=0.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "atomicFinalAssessment": [
+    {
+      "id": "final-U6-01.01",
+      "objectiveId": "U6-01.01",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "carica e unità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Qual è l’unitàSI della carica e quale segno assegna il verso convenzionale del campo?",
+      "answer": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
+      "feedback": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-01.02",
+      "objectiveId": "U6-01.02",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "conservazione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Due corpi isolati si scambiano elettroni:deve conservarsi la carica di ciascuno o quella totale?",
+      "answer": "Quella totale;le cariche dei singoli corpi possono cambiare.",
+      "feedback": "Quella totale;le cariche dei singoli corpi possono cambiare.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-01.03",
+      "objectiveId": "U6-01.03",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Coulomb",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Per cariche puntiformi uguali a distanza tripla,quale rapporto della forza diCoulomb rispetto a prima?",
+      "answer": "1/9,a cariche fissate.",
+      "feedback": "1/9,a cariche fissate.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-01.04",
+      "objectiveId": "U6-01.04",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "campo e linee",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Le linee di campo sono necessariamente le traiettorie di una carica lanciata con velocità iniziale qualsiasi?",
+      "answer": "No:indicano il vettore campo locale,non vincolano una traiettoria arbitraria.",
+      "feedback": "No:indicano il vettore campo locale,non vincolano una traiettoria arbitraria.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-01.05",
+      "objectiveId": "U6-01.05",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "sovrapposizione cariche",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Due cariche positive uguali generano campi opposti al punto medio. Quale campo totale e quale regola si usa?",
+      "answer": "Campo nullo;somma vettoriale per sovrapposizione.",
+      "feedback": "Campo nullo;somma vettoriale per sovrapposizione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-01.06",
+      "objectiveId": "U6-01.06",
+      "familyId": "U6-01",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "moto in campo uniforme",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Carica+0,002C,massa0,01kg,inE=50N/C uniforme,unica forza. Quale accelerazione?",
+      "answer": "10m/s² lungoE,da a=qE/m.",
+      "feedback": "10m/s² lungoE,da a=qE/m.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-02.01",
+      "objectiveId": "U6-02.01",
+      "familyId": "U6-02",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "energia potenziale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Il potenziale sceltozero in un punto impone energia potenziale nulla per qualunque riferimento?",
+      "answer": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
+      "feedback": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-02.02",
+      "objectiveId": "U6-02.02",
+      "familyId": "U6-02",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "potenziale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Quale unità haV=U/q e quale grandezza fisica esprime?",
+      "answer": "Volt=J/C;energia potenziale per unità di carica di prova.",
+      "feedback": "Volt=J/C;energia potenziale per unità di carica di prova.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-02.03",
+      "objectiveId": "U6-02.03",
+      "familyId": "U6-02",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "differenza potenziale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una carica+3C passa da2V a7V. QualeΔU?",
+      "answer": "+15J,da qΔV.",
+      "feedback": "+15J,da qΔV.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-02.04",
+      "objectiveId": "U6-02.04",
+      "familyId": "U6-02",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "conservazione energia carica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Se solo la forza elettrica compie lavoro eΔU=−0,4J,qualeΔK?",
+      "answer": "+0,4J per conservazione energetica.",
+      "feedback": "+0,4J per conservazione energetica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-03.01",
+      "objectiveId": "U6-03.01",
+      "familyId": "U6-03",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "induzione elettrostatica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una sfera conduttrice neutra isolata,senza contatto,si polarizza per induzione. Deve acquisire carica netta?",
+      "answer": "No:può separare cariche mantenendo totalezero.",
+      "feedback": "No:può separare cariche mantenendo totalezero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-03.02",
+      "objectiveId": "U6-03.02",
+      "familyId": "U6-03",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "polarizzazione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un dielettrico polarizzato richiede movimento libero di tutte le cariche attraverso l’intero materiale?",
+      "answer": "No:orientazione o spostamenti locali di cariche legate possono produrre polarizzazione.",
+      "feedback": "No:orientazione o spostamenti locali di cariche legate possono produrre polarizzazione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.01",
+      "objectiveId": "U6-04.01",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "DC",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Che cosa significaDC nel modello elementare e quale grandezza non cambia segno periodicamente?",
+      "answer": "Corrente continua;il flusso di carica mantiene direzione nel modello stazionario.",
+      "feedback": "Corrente continua;il flusso di carica mantiene direzione nel modello stazionario.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.02",
+      "objectiveId": "U6-04.02",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "intensità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "In0,5s passano0,2C. Quale corrente media?",
+      "answer": "0,4A.",
+      "feedback": "0,4A.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.03",
+      "objectiveId": "U6-04.03",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "generatore ideale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un generatore ideale di tensione12V mantiene che cosa se cambia il carico?",
+      "answer": "La differenza di potenziale12V;la corrente dipende dal carico ideale.",
+      "feedback": "La differenza di potenziale12V;la corrente dipende dal carico ideale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.04",
+      "objectiveId": "U6-04.04",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Ohm",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Resistore ohmico15Ω a3V:qualeI?",
+      "answer": "0,2A.",
+      "feedback": "0,2A.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.05",
+      "objectiveId": "U6-04.05",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "resistività",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un filo triplicaL aρ eA fisse. Come variaR?",
+      "answer": "Triplica,daR=ρL/A.",
+      "feedback": "Triplica,daR=ρL/A.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.06",
+      "objectiveId": "U6-04.06",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Joule",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Resistore8Ω percorso da0,5A per4s:qualiP ed energia dissipata?",
+      "answer": "2W e8J;P=I²R,energia=Pt.",
+      "feedback": "2W e8J;P=I²R,energia=Pt.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-04.07",
+      "objectiveId": "U6-04.07",
+      "familyId": "U6-04",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "serie e parallelo",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Resistori6Ω e3Ω in serie e parallelo:qualiReq?",
+      "answer": "9Ω in serie;2Ω in parallelo.",
+      "feedback": "9Ω in serie;2Ω in parallelo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.01",
+      "objectiveId": "U6-05.01",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "capacità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un condensatore haQ=24µC a6V. QualeC?",
+      "answer": "4µF.",
+      "feedback": "4µF.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.02",
+      "objectiveId": "U6-05.02",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "condensatore piano",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un condensatore piano ideale raddoppia l’area e la distanza tra armature. Come variaC aεfissa?",
+      "answer": "Resta uguale,poichéC=εA/d.",
+      "feedback": "Resta uguale,poichéC=εA/d.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.03",
+      "objectiveId": "U6-05.03",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "dielettrico",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Inserendo dielettrico con costante relativa3 in geometria fissa,come variaC nel modello ideale?",
+      "answer": "Triplica.",
+      "feedback": "Triplica.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.04",
+      "objectiveId": "U6-05.04",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "energia",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un condensatore2µF a20V immagazzina quale energia?",
+      "answer": "400µJ,daCV²/2.",
+      "feedback": "400µJ,daCV²/2.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-05.05",
+      "objectiveId": "U6-05.05",
+      "familyId": "U6-05",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "serie e parallelo",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Capacità4µF e4µF in serie e parallelo:qualiCeq?",
+      "answer": "2µF in serie;8µF in parallelo.",
+      "feedback": "2µF in serie;8µF in parallelo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.01",
+      "objectiveId": "U6-06.01",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Oersted",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Quale osservazione dell’esperimento diOersted collega corrente e magnetismo?",
+      "answer": "Una corrente devia un ago magnetico vicino,mostrando un campo associato al filo.",
+      "feedback": "Una corrente devia un ago magnetico vicino,mostrando un campo associato al filo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.02",
+      "objectiveId": "U6-06.02",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "campo da correnti",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Invertire la corrente in un filo inverte il verso del campo magnetico circolare intorno ad esso?",
+      "answer": "Sì,con geometria invariata,secondo la mano destra.",
+      "feedback": "Sì,con geometria invariata,secondo la mano destra.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.03",
+      "objectiveId": "U6-06.03",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Lorentz su carica",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Una carica si muove parallela a un campo magnetico uniforme. Quale forza magnetica?",
+      "answer": "Zero,poichév×B=0.",
+      "feedback": "Zero,poichév×B=0.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.04",
+      "objectiveId": "U6-06.04",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "forza su filo",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Filo lungo0,5m,corrente2A,perpendicolare aB=0,4T. Quale forza?",
+      "answer": "0,4N;il verso è quello diL×B per corrente convenzionale.",
+      "feedback": "0,4N;il verso è quello diL×B per corrente convenzionale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-06.05",
+      "objectiveId": "U6-06.05",
+      "familyId": "U6-06",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "moto circolare carica",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Se la carica ha velocità perpendicolare aB e nessun’altra forza,che cosa resta costante e com’è la traiettoria non relativistica?",
+      "answer": "Modulo della velocità eK costanti;traiettoria circolare conr=mv/(|q|B).",
+      "feedback": "Modulo della velocità eK costanti;traiettoria circolare conr=mv/(|q|B).",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-07.01",
+      "objectiveId": "U6-07.01",
+      "familyId": "U6-07",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "flusso",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "CampoB parallelo al piano di una superficie:qual è il flusso uniforme attraverso essa?",
+      "answer": "Zero,perchéB è perpendicolare alla normale e cos90°=0.",
+      "feedback": "Zero,perchéB è perpendicolare alla normale e cos90°=0.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-07.02",
+      "objectiveId": "U6-07.02",
+      "familyId": "U6-07",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "fem indotta",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Perché una bobina ferma in campo uniforme costante non ha necessariamente fem indotta?",
+      "answer": "Il flusso concatenato non varia nel tempo;il suo valore non nullo non basta.",
+      "feedback": "Il flusso concatenato non varia nel tempo;il suo valore non nullo non basta.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-07.03",
+      "objectiveId": "U6-07.03",
+      "familyId": "U6-07",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "Faraday-Neumann-Lenz",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Una bobina20spire vede per spiraΔΦ=0,003Wb in0,1s. Quale modulo della fem media?",
+      "answer": "0,6V.",
+      "feedback": "0,6V.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U6-07.04",
+      "objectiveId": "U6-07.04",
+      "familyId": "U6-07",
+      "courseId": "elettricita-magnetismo",
+      "targetLabel": "verso corrente",
+      "sourcePages": [
+        5
+      ],
+      "prompt": "Un flusso uscente dal foglio cresce. Quale verso deve avere il campo indotto e la corrente vista frontalmente?",
+      "answer": "Campo entrante e corrente oraria,per opporsi all’aumento del flusso.",
+      "feedback": "Campo entrante e corrente oraria,per opporsi all’aumento del flusso.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "diagnostic": [
+    {
+      "id": "diag-elettricita-magnetismo-charge-rate",
+      "courseId": "elettricita-magnetismo",
+      "objectiveId": "U6-04.02",
+      "prompt": "Attraverso una sezione di filo passano0,45C in1,5s con verso convenzionale fissato. Qual è la corrente media?",
+      "answer": {
+        "value": 0.3,
+        "unit": "A"
+      },
+      "feedback": "I=Δq/Δt=0,45/1,5=0,3A. Un ampere è un coulomb al secondo.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U6-04.02",
+        "lessonId": "ds-2026-u6-04"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-elettricita-magnetismo-ohmic-load",
+      "courseId": "elettricita-magnetismo",
+      "objectiveId": "U6-04.04",
+      "prompt": "Un resistore ohmico ideale da18Ω è collegato a9V costanti. Qual è la corrente?",
+      "answer": {
+        "value": 0.5,
+        "unit": "A"
+      },
+      "feedback": "I=V/R=9/18=0,5A. Il valore riguarda il solo resistore e le condizioni ohmiche dichiarate.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U6-04.04",
+        "lessonId": "ds-2026-u6-04"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-elettricita-magnetismo-stored-charge",
+      "courseId": "elettricita-magnetismo",
+      "objectiveId": "U6-05.01",
+      "prompt": "Un condensatore ideale da3µF è mantenuto alla tensione8V. Quale modulo di carica ha ciascuna armatura in µC?",
+      "answer": {
+        "value": 24.0,
+        "unit": "µC"
+      },
+      "feedback": "Q=CV=3µF·8V=24µC,con segni opposti sulle due armature e carica totale del condensatore ideale nulla.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U6-05.01",
+        "lessonId": "ds-2026-u6-05"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    }
+  ],
+  "formulaSheet": [
+    {
+      "name": "Campo",
+      "expression": "F=ke|q1q2|/r²; E=F/qtest",
+      "domain": "r>0; campo vettoriale;segni per direzioni"
+    },
+    {
+      "name": "Potenziale",
+      "expression": "ΔU=qΔV; ΔK=−qΔV",
+      "domain": "seconda relazione solo se unico lavoro elettrico"
+    },
+    {
+      "name": "Resistori",
+      "expression": "V=RI; R=ρL/A; P=VI=I²R=V²/R",
+      "domain": "ohmico,stazionario;R>0;condizioni al contorno dichiarate"
+    },
+    {
+      "name": "Reti",
+      "expression": "Rserie=ΣR; 1/Rpar=Σ1/R",
+      "domain": "corrente comune in serie,tensione comune in parallelo"
+    },
+    {
+      "name": "Condensatori",
+      "expression": "C=Q/V; Cpiano=εA/d; U=CV²/2",
+      "domain": "bordo trascurato;Qfissa eVfissa distinti"
+    },
+    {
+      "name": "Magnetismo",
+      "expression": "F=q v×B; Ffilo=I L×B; r=mv/(|q|B)",
+      "domain": "circolare solo vperpendicolare aB e regime non relativistico"
+    },
+    {
+      "name": "Induzione",
+      "expression": "Φ=BAcosθ; εmedia=−NΔΦ/Δt",
+      "domain": "θ dalla normale;Lenz oppone variazione del flusso"
+    }
+  ],
+  "recoveryTargets": [
+    {
+      "itemId": "final-U6-01.01",
+      "objectiveId": "U6-01.01",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "Coulomb;il campo è definito tramite forza su carica di prova positiva."
+    },
+    {
+      "itemId": "final-U6-01.02",
+      "objectiveId": "U6-01.02",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "Quella totale;le cariche dei singoli corpi possono cambiare."
+    },
+    {
+      "itemId": "final-U6-01.03",
+      "objectiveId": "U6-01.03",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "1/9,a cariche fissate."
+    },
+    {
+      "itemId": "final-U6-01.04",
+      "objectiveId": "U6-01.04",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "No:indicano il vettore campo locale,non vincolano una traiettoria arbitraria."
+    },
+    {
+      "itemId": "final-U6-01.05",
+      "objectiveId": "U6-01.05",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "Campo nullo;somma vettoriale per sovrapposizione."
+    },
+    {
+      "itemId": "final-U6-01.06",
+      "objectiveId": "U6-01.06",
+      "lessonId": "ds-2026-u6-01",
+      "feedback": "10m/s² lungoE,da a=qE/m."
+    },
+    {
+      "itemId": "final-U6-02.01",
+      "objectiveId": "U6-02.01",
+      "lessonId": "ds-2026-u6-02",
+      "feedback": "No:lo zero è convenzionale;le differenze hanno significato dinamico."
+    },
+    {
+      "itemId": "final-U6-02.02",
+      "objectiveId": "U6-02.02",
+      "lessonId": "ds-2026-u6-02",
+      "feedback": "Volt=J/C;energia potenziale per unità di carica di prova."
+    },
+    {
+      "itemId": "final-U6-02.03",
+      "objectiveId": "U6-02.03",
+      "lessonId": "ds-2026-u6-02",
+      "feedback": "+15J,da qΔV."
+    },
+    {
+      "itemId": "final-U6-02.04",
+      "objectiveId": "U6-02.04",
+      "lessonId": "ds-2026-u6-02",
+      "feedback": "+0,4J per conservazione energetica."
+    },
+    {
+      "itemId": "final-U6-03.01",
+      "objectiveId": "U6-03.01",
+      "lessonId": "ds-2026-u6-03",
+      "feedback": "No:può separare cariche mantenendo totalezero."
+    },
+    {
+      "itemId": "final-U6-03.02",
+      "objectiveId": "U6-03.02",
+      "lessonId": "ds-2026-u6-03",
+      "feedback": "No:orientazione o spostamenti locali di cariche legate possono produrre polarizzazione."
+    },
+    {
+      "itemId": "final-U6-04.01",
+      "objectiveId": "U6-04.01",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "Corrente continua;il flusso di carica mantiene direzione nel modello stazionario."
+    },
+    {
+      "itemId": "final-U6-04.02",
+      "objectiveId": "U6-04.02",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "0,4A."
+    },
+    {
+      "itemId": "final-U6-04.03",
+      "objectiveId": "U6-04.03",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "La differenza di potenziale12V;la corrente dipende dal carico ideale."
+    },
+    {
+      "itemId": "final-U6-04.04",
+      "objectiveId": "U6-04.04",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "0,2A."
+    },
+    {
+      "itemId": "final-U6-04.05",
+      "objectiveId": "U6-04.05",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "Triplica,daR=ρL/A."
+    },
+    {
+      "itemId": "final-U6-04.06",
+      "objectiveId": "U6-04.06",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "2W e8J;P=I²R,energia=Pt."
+    },
+    {
+      "itemId": "final-U6-04.07",
+      "objectiveId": "U6-04.07",
+      "lessonId": "ds-2026-u6-04",
+      "feedback": "9Ω in serie;2Ω in parallelo."
+    },
+    {
+      "itemId": "final-U6-05.01",
+      "objectiveId": "U6-05.01",
+      "lessonId": "ds-2026-u6-05",
+      "feedback": "4µF."
+    },
+    {
+      "itemId": "final-U6-05.02",
+      "objectiveId": "U6-05.02",
+      "lessonId": "ds-2026-u6-05",
+      "feedback": "Resta uguale,poichéC=εA/d."
+    },
+    {
+      "itemId": "final-U6-05.03",
+      "objectiveId": "U6-05.03",
+      "lessonId": "ds-2026-u6-05",
+      "feedback": "Triplica."
+    },
+    {
+      "itemId": "final-U6-05.04",
+      "objectiveId": "U6-05.04",
+      "lessonId": "ds-2026-u6-05",
+      "feedback": "400µJ,daCV²/2."
+    },
+    {
+      "itemId": "final-U6-05.05",
+      "objectiveId": "U6-05.05",
+      "lessonId": "ds-2026-u6-05",
+      "feedback": "2µF in serie;8µF in parallelo."
+    },
+    {
+      "itemId": "final-U6-06.01",
+      "objectiveId": "U6-06.01",
+      "lessonId": "ds-2026-u6-06",
+      "feedback": "Una corrente devia un ago magnetico vicino,mostrando un campo associato al filo."
+    },
+    {
+      "itemId": "final-U6-06.02",
+      "objectiveId": "U6-06.02",
+      "lessonId": "ds-2026-u6-06",
+      "feedback": "Sì,con geometria invariata,secondo la mano destra."
+    },
+    {
+      "itemId": "final-U6-06.03",
+      "objectiveId": "U6-06.03",
+      "lessonId": "ds-2026-u6-06",
+      "feedback": "Zero,poichév×B=0."
+    },
+    {
+      "itemId": "final-U6-06.04",
+      "objectiveId": "U6-06.04",
+      "lessonId": "ds-2026-u6-06",
+      "feedback": "0,4N;il verso è quello diL×B per corrente convenzionale."
+    },
+    {
+      "itemId": "final-U6-06.05",
+      "objectiveId": "U6-06.05",
+      "lessonId": "ds-2026-u6-06",
+      "feedback": "Modulo della velocità eK costanti;traiettoria circolare conr=mv/(|q|B)."
+    },
+    {
+      "itemId": "final-U6-07.01",
+      "objectiveId": "U6-07.01",
+      "lessonId": "ds-2026-u6-07",
+      "feedback": "Zero,perchéB è perpendicolare alla normale e cos90°=0."
+    },
+    {
+      "itemId": "final-U6-07.02",
+      "objectiveId": "U6-07.02",
+      "lessonId": "ds-2026-u6-07",
+      "feedback": "Il flusso concatenato non varia nel tempo;il suo valore non nullo non basta."
+    },
+    {
+      "itemId": "final-U6-07.03",
+      "objectiveId": "U6-07.03",
+      "lessonId": "ds-2026-u6-07",
+      "feedback": "0,6V."
+    },
+    {
+      "itemId": "final-U6-07.04",
+      "objectiveId": "U6-07.04",
+      "lessonId": "ds-2026-u6-07",
+      "feedback": "Campo entrante e corrente oraria,per opporsi all’aumento del flusso."
+    }
+  ],
+  "editorialHandoffCommit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3"
+}

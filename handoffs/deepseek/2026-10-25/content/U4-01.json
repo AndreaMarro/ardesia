@@ -1,0 +1,72 @@
+{
+  "id": "ds-2026-u4-01",
+  "familyId": "U4-01",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U4",
+  "title": "Onda armonica",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U4-01.01",
+    "U4-01.02",
+    "U4-01.03",
+    "U4-01.04",
+    "U4-01.05",
+    "U4-01.06",
+    "U4-01.07",
+    "U4-01.08",
+    "U4-01.09",
+    "U4-01.10"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse.",
+  "workedExample": {
+    "prompt": "In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4.",
+    "steps": [
+      "λ=v/f=2 m e T=1/f=0,5 s.",
+      "A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m.",
+      "Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m."
+    ],
+    "result": "λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti."
+  },
+  "practice": {
+    "prompt": "Un’onda ha v=4 m/s e f=2 Hz. Quanto vale λ?",
+    "answer": "2 m",
+    "feedback": "Dividi velocità per frequenza: (m/s)/(1/s)=m. La frequenza non è la velocità del mezzo."
+  },
+  "transfer": {
+    "prompt": "Una perturbazione in un altro mezzo viaggia a 6 m/s con f=4 Hz. Trova λ e T; poi descrivi una perturbazione longitudinale.",
+    "answer": "λ=1,5 m; T=0,25 s; oscillazione parallela alla propagazione.",
+    "feedback": "Il rapporto v/f determina λ. Longitudinale riguarda la direzione del moto locale, non il segno del grafico sinusoidale."
+  },
+  "commonErrors": [
+    "Confondere ampiezza e lunghezza d’onda",
+    "Usare λ=f/v",
+    "Dire che le particelle viaggiano con la cresta"
+  ],
+  "hintLadder": [
+    "Specifica se guardi spazio o tempo",
+    "Scrivi v=λf con unità",
+    "Segui un punto a fase costante per stabilire la direzione"
+  ],
+  "recap": "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.",
+  "transcript": "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse. Esempio: In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4. λ=v/f=2 m e T=1/f=0,5 s. A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m. Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m. Risultato: λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti.",
+  "scientificCounterchecks": [
+    "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.",
+    "m/s diviso Hz restituisce m; fT=1.",
+    "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

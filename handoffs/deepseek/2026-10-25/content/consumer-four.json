@@ -1,0 +1,249 @@
+[
+  {
+    "id": "original-demo-u2-02",
+    "courseId": "strumenti-meccanica",
+    "objectiveIds": [
+      "U2-02.01",
+      "U2-02.02",
+      "U2-02.03",
+      "U2-02.04",
+      "U2-02.05",
+      "U2-02.06",
+      "U2-02.07",
+      "U2-02.08",
+      "U2-02.09"
+    ],
+    "title": "Molla, forze ed equilibrio",
+    "explanation": [
+      "La prima legge dice che risultante nulla implica velocità costante, anche diversa da zero. La seconda usa la somma vettoriale delle forze sul medesimo corpo: ΣF=ma in un riferimento inerziale. Le forze di azione e reazione agiscono su corpi diversi e non si cancellano nel diagramma di un solo corpo. Vicino alla Terra il peso è mg; in generale l’attrazione fra masse segue GmM/r². La normale è perpendicolare al contatto e non è sempre uguale al peso. La tensione segue il filo ideale. L’attrito statico si adatta fino a μsN; quello dinamico ha modulo approssimato μdN e si oppone allo scorrimento relativo. Una molla ideale esercita forza di richiamo −kx: in equilibrio sotto una forza esterna F il modulo dell’allungamento è F/k, purché si resti nel regime elastico. Un equilibrio statico impone accelerazione nulla, non assenza di forze."
+    ],
+    "workedExample": {
+      "prompt": "Una molla ideale di costante 20 N/m è tirata staticamente con forza 4 N. Qual è l’allungamento?",
+      "steps": [
+        "Disegna la forza esterna e quella elastica sul corpo.",
+        "In equilibrio i moduli si uguagliano: kx=F.",
+        "x=4/20=0,2 m, pari a 20 cm."
+      ],
+      "answerDisplay": "x=0,2 m."
+    },
+    "practice": {
+      "prompt": "Molla ideale: forza statica 4 N e k=20 N/m. Qual è l’allungamento in metri?",
+      "answer": {
+        "value": 0.2,
+        "unit": "m"
+      },
+      "feedback": [
+        "Valore atteso 0.2 m.",
+        "N/m diviso al denominatore restituisce metri per F/k."
+      ]
+    },
+    "transfer": {
+      "prompt": "Un’altra molla ha k=80 N/m e forza statica 6 N. Trova l’allungamento in metri.",
+      "answer": {
+        "value": 0.075,
+        "unit": "m"
+      },
+      "feedback": [
+        "Valore atteso 0.075 m.",
+        "F=0 implica x=0 per molla non precaricata; raddoppiare k dimezza x a F fissata."
+      ]
+    },
+    "recap": [
+      "Un diagramma delle forze corretto precede l’equazione del moto."
+    ],
+    "transcript": "La prima legge dice che risultante nulla implica velocità costante, anche diversa da zero. La seconda usa la somma vettoriale delle forze sul medesimo corpo: ΣF=ma in un riferimento inerziale. Le forze di azione e reazione agiscono su corpi diversi e non si cancellano nel diagramma di un solo corpo. Vicino alla Terra il peso è mg; in generale l’attrazione fra masse segue GmM/r². La normale è perpendicolare al contatto e non è sempre uguale al peso. La tensione segue il filo ideale. L’attrito statico si adatta fino a μsN; quello dinamico ha modulo approssimato μdN e si oppone allo scorrimento relativo. Una molla ideale esercita forza di richiamo −kx: in equilibrio sotto una forza esterna F il modulo dell’allungamento è F/k, purché si resti nel regime elastico. Un equilibrio statico impone accelerazione nulla, non assenza di forze. Esempio: Una molla ideale di costante 20 N/m è tirata staticamente con forza 4 N. Qual è l’allungamento? Disegna la forza esterna e quella elastica sul corpo. In equilibrio i moduli si uguagliano: kx=F. x=4/20=0,2 m, pari a 20 cm. Risultato: x=0,2 m.",
+    "scientificEvidence": [
+      "Un diagramma delle forze corretto precede l’equazione del moto.",
+      "N/m diviso al denominatore restituisce metri per F/k.",
+      "F=0 implica x=0 per molla non precaricata; raddoppiare k dimezza x a F fissata."
+    ],
+    "editorialStatus": "DRAFT",
+    "humanApproval": false,
+    "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+    "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified."
+  },
+  {
+    "id": "original-demo-u5-01",
+    "courseId": "fluidi-termodinamica",
+    "objectiveIds": [
+      "U5-01.01",
+      "U5-01.02",
+      "U5-01.03",
+      "U5-01.04",
+      "U5-01.05"
+    ],
+    "title": "Stato termodinamico e gas ideale",
+    "explanation": [
+      "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio."
+    ],
+    "workedExample": {
+      "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
+      "steps": [
+        "Isola il volume: V=nRT/p.",
+        "Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J.",
+        "V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L."
+      ],
+      "answerDisplay": "V=0,02494338785445972 m³."
+    },
+    "practice": {
+      "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+      "answer": {
+        "value": 0.02494338785445972,
+        "unit": "m³"
+      },
+      "feedback": [
+        "Valore atteso 0.02494338785445972 m³.",
+        "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L."
+      ]
+    },
+    "transfer": {
+      "prompt": "Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+      "answer": {
+        "value": 0.00831446261815324,
+        "unit": "m³"
+      },
+      "feedback": [
+        "Valore atteso 0.00831446261815324 m³.",
+        "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+      ]
+    },
+    "recap": [
+      "pV=nRT richiede unità coerenti e temperatura assoluta."
+    ],
+    "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J. V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L. Risultato: V=0,02494338785445972 m³.",
+    "scientificEvidence": [
+      "pV=nRT richiede unità coerenti e temperatura assoluta.",
+      "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
+      "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+    ],
+    "editorialStatus": "DRAFT",
+    "humanApproval": false,
+    "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+    "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified."
+  },
+  {
+    "id": "original-demo-u6-04",
+    "courseId": "elettricita-magnetismo",
+    "objectiveIds": [
+      "U6-04.01",
+      "U6-04.02",
+      "U6-04.03",
+      "U6-04.04",
+      "U6-04.05",
+      "U6-04.06",
+      "U6-04.07"
+    ],
+    "title": "Corrente e potenza in una rete",
+    "explanation": [
+      "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza."
+    ],
+    "workedExample": {
+      "prompt": "Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze.",
+      "steps": [
+        "Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A.",
+        "I totale=4,5 A; R equivalente=12/4,5=8/3 Ω.",
+        "P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W."
+      ],
+      "answerDisplay": "I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W."
+    },
+    "practice": {
+      "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in serie. Trova la corrente totale in A.",
+      "answer": {
+        "value": 1,
+        "unit": "A"
+      },
+      "feedback": [
+        "Valore atteso 1 A.",
+        "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite."
+      ]
+    },
+    "transfer": {
+      "prompt": "Generatore ideale 12 V, resistori 4 Ω e 8 Ω in parallelo. Trova la corrente totale in A.",
+      "answer": {
+        "value": 4.5,
+        "unit": "A"
+      },
+      "feedback": [
+        "Valore atteso 4.5 A.",
+        "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+      ]
+    },
+    "recap": [
+      "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa."
+    ],
+    "transcript": "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza. Esempio: Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze. Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A. I totale=4,5 A; R equivalente=12/4,5=8/3 Ω. P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W. Risultato: I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W.",
+    "scientificEvidence": [
+      "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa.",
+      "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite.",
+      "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+    ],
+    "editorialStatus": "DRAFT",
+    "humanApproval": false,
+    "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+    "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified."
+  },
+  {
+    "id": "original-demo-u4-01",
+    "courseId": "onde-ottica-radiazioni",
+    "objectiveIds": [
+      "U4-01.01",
+      "U4-01.02",
+      "U4-01.03",
+      "U4-01.04",
+      "U4-01.05",
+      "U4-01.06",
+      "U4-01.07",
+      "U4-01.08",
+      "U4-01.09",
+      "U4-01.10"
+    ],
+    "title": "Frequenza e lunghezza d’onda",
+    "explanation": [
+      "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse."
+    ],
+    "workedExample": {
+      "prompt": "In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4.",
+      "steps": [
+        "λ=v/f=2 m e T=1/f=0,5 s.",
+        "A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m.",
+        "Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m."
+      ],
+      "answerDisplay": "λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti."
+    },
+    "practice": {
+      "prompt": "Onda nel mezzo uniforme: v=4 m/s e f=2 Hz. Trova λ in m.",
+      "answer": {
+        "value": 2,
+        "unit": "m"
+      },
+      "feedback": [
+        "Valore atteso 2 m.",
+        "m/s diviso Hz restituisce m; fT=1."
+      ]
+    },
+    "transfer": {
+      "prompt": "Onda in un altro mezzo: v=6 m/s e f=4 Hz. Trova λ in m.",
+      "answer": {
+        "value": 1.5,
+        "unit": "m"
+      },
+      "feedback": [
+        "Valore atteso 1.5 m.",
+        "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+      ]
+    },
+    "recap": [
+      "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione."
+    ],
+    "transcript": "Un’onda meccanica propaga una perturbazione e trasporta energia attraverso un mezzo; non implica trasporto netto del mezzo lungo l’intero percorso. Un oscillatore armonico locale ripete il moto con periodo T; frequenza f=1/T e pulsazione ω=2πf. La distanza fra punti consecutivi in fase è λ; la velocità di propagazione in un mezzo uniforme non dispersivo è v=λf. La funzione y=A sin(2πx/λ−2πft+φ) descrive un’onda che avanza verso +x: i punti di fase costante si spostano di +λ in un periodo. Il segno opposto davanti al termine temporale invertirebbe la direzione. L’ampiezza A è lo spostamento massimo del mezzo e non la lunghezza d’onda. Su una corda lo spostamento può essere trasversale, perpendicolare alla propagazione; un’onda sonora nel fluido è longitudinale, con compressioni e rarefazioni. Il grafico a tempo fissato e quello di un singolo punto nel tempo rispondono a domande diverse. Esempio: In un mezzo uniforme v=4 m/s e f=2 Hz. Trova λ e T. Con A=0,1 m e φ=0 trova y a x=λ/4,t=0 e a x=0,t=T/4. λ=v/f=2 m e T=1/f=0,5 s. A un quarto di lunghezza d’onda la fase è π/2 e y=+0,1 m. Alla sonda x=0 dopo un quarto di periodo la fase è −π/2 e y=−0,1 m. Risultato: λ=2 m; T=0,5 s; +0,1 m e −0,1 m nei due punti richiesti.",
+    "scientificEvidence": [
+      "Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.",
+      "m/s diviso Hz restituisce m; fT=1.",
+      "A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase."
+    ],
+    "editorialStatus": "DRAFT",
+    "humanApproval": false,
+    "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+    "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified."
+  }
+]

@@ -1,0 +1,142 @@
+{
+  "base": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app",
+  "browser": "Chromium",
+  "syntheticDataOnly": true,
+  "humanListening": "NOT_RUN",
+  "cases": [
+    {
+      "id": "strumenti-meccanica",
+      "status": "PASS",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "correct-accessible-label",
+        "play-progress",
+        "finite-duration",
+        "pause",
+        "resume",
+        "natural-ended-at-8x",
+        "ended-button-reset",
+        "close-context-pauses-audio"
+      ],
+      "mediaResponses": [
+        {
+          "url": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app/esperienza/courses/audio/strumenti-meccanica.wav",
+          "status": 206
+        }
+      ],
+      "pageErrors": [],
+      "duration": 41.766213,
+      "seekable": [
+        [
+          0,
+          41.766213
+        ]
+      ]
+    },
+    {
+      "id": "fluidi-termodinamica",
+      "status": "PASS",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "correct-accessible-label",
+        "play-progress",
+        "finite-duration",
+        "pause",
+        "resume",
+        "natural-ended-at-8x",
+        "ended-button-reset",
+        "close-context-pauses-audio"
+      ],
+      "mediaResponses": [
+        {
+          "url": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app/esperienza/courses/audio/fluidi-termodinamica.wav",
+          "status": 206
+        }
+      ],
+      "pageErrors": [],
+      "duration": 43.442449,
+      "seekable": [
+        [
+          0,
+          43.442449
+        ]
+      ]
+    },
+    {
+      "id": "elettricita-magnetismo",
+      "status": "PASS",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "correct-accessible-label",
+        "play-progress",
+        "finite-duration",
+        "pause",
+        "resume",
+        "natural-ended-at-8x",
+        "ended-button-reset",
+        "close-context-pauses-audio"
+      ],
+      "mediaResponses": [
+        {
+          "url": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app/esperienza/courses/audio/elettricita-magnetismo.wav",
+          "status": 206
+        }
+      ],
+      "pageErrors": [],
+      "duration": 45.42449,
+      "seekable": [
+        [
+          0,
+          45.42449
+        ]
+      ]
+    },
+    {
+      "id": "onde-ottica-radiazioni",
+      "status": "PASS",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "correct-accessible-label",
+        "play-progress",
+        "finite-duration",
+        "pause",
+        "resume",
+        "natural-ended-at-8x",
+        "ended-button-reset",
+        "close-context-pauses-audio"
+      ],
+      "mediaResponses": [
+        {
+          "url": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app/esperienza/courses/audio/onde-ottica-radiazioni.wav",
+          "status": 206
+        }
+      ],
+      "pageErrors": [],
+      "duration": 45.293787,
+      "seekable": [
+        [
+          0,
+          45.293787
+        ]
+      ]
+    },
+    {
+      "id": "missing-audio-fallback",
+      "status": "PASS",
+      "checks": [
+        "blocked-audio-readable-fallback",
+        "transcript-preserved",
+        "retry-button-enabled"
+      ]
+    }
+  ],
+  "status": "PASS"
+}

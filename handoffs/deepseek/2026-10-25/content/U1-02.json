@@ -1,0 +1,66 @@
+{
+  "id": "ds-2026-u1-02",
+  "familyId": "U1-02",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U1",
+  "title": "Grandezze e unità",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U1-02.01",
+    "U1-02.02",
+    "U1-02.03",
+    "U1-02.04",
+    "U1-02.05",
+    "U1-02.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Una grandezza fisica è associata a un valore e un’unità; la dimensione descrive il tipo fisico indipendentemente dalla scelta dell’unità. Nel SI lunghezza, massa e tempo usano m, kg e s; una forza ha dimensione MLT^-2 e unità N. Si possono sommare soltanto grandezze omogenee. Le conversioni di aree e volumi elevano al quadrato o al cubo anche il fattore di scala. Una grandezza estensiva, come massa o volume, si somma unendo sistemi compatibili; una intensiva, come densità e temperatura uniforme, non raddoppia duplicando il campione. Scalari come energia hanno un valore con segno ma nessuna direzione spaziale; vettori come spostamento richiedono direzione e verso. L’ordine di grandezza è una stima dichiarata, non un risultato esatto.",
+  "workedExample": {
+    "prompt": "Converti 2 cm³ in m³ e 1,2 g/cm³ in kg/m³.",
+    "steps": [
+      "1 cm=10^-2 m implica 1 cm³=10^-6 m³.",
+      "2 cm³=2·10^-6 m³.",
+      "1 g/cm³=10^-3 kg /10^-6 m³=1000 kg/m³."
+    ],
+    "result": "2·10^-6 m³; 1200 kg/m³."
+  },
+  "practice": {
+    "prompt": "Si uniscono due campioni uguali di acqua alla stessa temperatura. Quali raddoppiano fra massa, volume, densità e temperatura?",
+    "answer": "Massa e volume raddoppiano; densità e temperatura restano uguali nel modello senza scambi.",
+    "feedback": "Le prime due sono estensive. Densità e temperatura sono intensive nelle condizioni dichiarate."
+  },
+  "transfer": {
+    "prompt": "Una velocità è 72 km/h. Esprimila in m/s e confronta dimensionalmente v² con un’accelerazione.",
+    "answer": "20 m/s; v² ha m²/s², accelerazione m/s², quindi dimensioni diverse.",
+    "feedback": "72·1000/3600=20. L’uguaglianza di qualche esponente non basta a rendere omogenee le grandezze."
+  },
+  "commonErrors": [
+    "Convertire cm³ con un solo fattore100",
+    "Confondere scalare negativo con vettore"
+  ],
+  "hintLadder": [
+    "Scrivi il fattore con le unità che si cancellano",
+    "Controlla gli esponenti delle dimensioni"
+  ],
+  "recap": "Le unità sono parte del risultato, non un’aggiunta cosmetica.",
+  "transcript": "Una grandezza fisica è associata a un valore e un’unità; la dimensione descrive il tipo fisico indipendentemente dalla scelta dell’unità. Nel SI lunghezza, massa e tempo usano m, kg e s; una forza ha dimensione MLT^-2 e unità N. Si possono sommare soltanto grandezze omogenee. Le conversioni di aree e volumi elevano al quadrato o al cubo anche il fattore di scala. Una grandezza estensiva, come massa o volume, si somma unendo sistemi compatibili; una intensiva, come densità e temperatura uniforme, non raddoppia duplicando il campione. Scalari come energia hanno un valore con segno ma nessuna direzione spaziale; vettori come spostamento richiedono direzione e verso. L’ordine di grandezza è una stima dichiarata, non un risultato esatto. Esempio: Converti 2 cm³ in m³ e 1,2 g/cm³ in kg/m³. 1 cm=10^-2 m implica 1 cm³=10^-6 m³. 2 cm³=2·10^-6 m³. 1 g/cm³=10^-3 kg /10^-6 m³=1000 kg/m³. Risultato: 2·10^-6 m³; 1200 kg/m³.",
+  "scientificCounterchecks": [
+    "Le unità sono parte del risultato, non un’aggiunta cosmetica.",
+    "2 cm³ ha massa 2,4 g alla densità data.",
+    "1200 kg/m³·2·10^-6 m³=0,0024 kg."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

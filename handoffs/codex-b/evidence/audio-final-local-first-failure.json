@@ -1,0 +1,102 @@
+{
+  "base": "http://127.0.0.1:55483/",
+  "browser": "Chromium",
+  "syntheticDataOnly": true,
+  "humanListening": "NOT_RUN",
+  "cases": [
+    {
+      "id": "strumenti-meccanica",
+      "status": "FAIL",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "play-progress",
+        "finite-duration",
+        "pause"
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:55483/esperienza/courses/audio/strumenti-meccanica.wav",
+          "status": 200
+        }
+      ],
+      "pageErrors": [],
+      "duration": 41.766213,
+      "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 8000ms exceeded while waiting on the predicate\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBe (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-b-evidence-20261025/qa-audio.cjs:44:70"
+    },
+    {
+      "id": "fluidi-termodinamica",
+      "status": "FAIL",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "play-progress",
+        "finite-duration",
+        "pause"
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:55483/esperienza/courses/audio/fluidi-termodinamica.wav",
+          "status": 200
+        }
+      ],
+      "pageErrors": [],
+      "duration": 43.442449,
+      "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 8000ms exceeded while waiting on the predicate\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBe (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-b-evidence-20261025/qa-audio.cjs:44:70"
+    },
+    {
+      "id": "elettricita-magnetismo",
+      "status": "FAIL",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "play-progress",
+        "finite-duration",
+        "pause"
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:55483/esperienza/courses/audio/elettricita-magnetismo.wav",
+          "status": 200
+        }
+      ],
+      "pageErrors": [],
+      "duration": 45.42449,
+      "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 8000ms exceeded while waiting on the predicate\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBe (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-b-evidence-20261025/qa-audio.cjs:44:70"
+    },
+    {
+      "id": "onde-ottica-radiazioni",
+      "status": "FAIL",
+      "checks": [
+        "synthetic-label",
+        "correct-course-transcript",
+        "no-autoplay",
+        "play-progress",
+        "finite-duration",
+        "pause"
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:55483/esperienza/courses/audio/onde-ottica-radiazioni.wav",
+          "status": 200
+        }
+      ],
+      "pageErrors": [],
+      "duration": 45.293787,
+      "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 8000ms exceeded while waiting on the predicate\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBe (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-b-evidence-20261025/qa-audio.cjs:44:70"
+    },
+    {
+      "id": "missing-audio-fallback",
+      "status": "PASS",
+      "checks": [
+        "blocked-audio-readable-fallback",
+        "transcript-preserved",
+        "retry-button-enabled"
+      ]
+    }
+  ],
+  "status": "FAIL"
+}

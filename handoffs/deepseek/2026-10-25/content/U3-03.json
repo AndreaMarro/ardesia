@@ -1,0 +1,66 @@
+{
+  "id": "ds-2026-u3-03",
+  "familyId": "U3-03",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U3",
+  "title": "Continuità e Bernoulli",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U3-03.01",
+    "U3-03.02",
+    "U3-03.03",
+    "U3-03.04",
+    "U3-03.05",
+    "U3-03.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La portata volumetrica è Q=ΔV/Δt=Avmedia; per fluido incomprimibile in moto stazionario senza diramazioni Av è costante. Più in generale si conserva la portata di massaρAv. Stazionario significa campi invariati nel tempo in ogni posizione e non implica velocità uguale ovunque; laminare significa flusso ordinato, mentre turbolento presenta fluttuazioni e rimescolamento. Bernoulli lungo una linea di corrente ideale lega p+ρv²/2+ρgh costante, in regime stazionario incomprimibile senza dissipazione o pompe. In un restringimento alla stessa quota il modello predice velocità maggiore e pressione statica minore. Nel tratto dilatato avviene il contrario. Sangue e vasi reali sono viscosi, pulsanti e deformabili: il risultato ideale non è una diagnosi clinica.",
+  "workedExample": {
+    "prompt": "Acqua in tubo orizzontale: A1=4cm²,A2=2cm²,v1=1m/s,ρ=1000kg/m³. Trova v2 ep2−p1 con Bernoulli ideale.",
+    "steps": [
+      "Continuità:v2=A1v1/A2=2m/s.",
+      "p2−p1=ρ(v1²−v2²)/2.",
+      "1000(1−4)/2=−1500Pa."
+    ],
+    "result": "v2=2m/s; p2−p1=−1500Pa."
+  },
+  "practice": {
+    "prompt": "Un flusso è2L/min. Quanto volume passa in30s?",
+    "answer": "1L =0,001m³",
+    "feedback": "30s è mezzo minuto: volume=portata per tempo."
+  },
+  "transfer": {
+    "prompt": "In un aneurisma idealizzato l’area raddoppia a quota invariata. A portata costante, come cambiano velocità e pressione statica nel modello ideale?",
+    "answer": "Velocità si dimezza; pressione statica aumenta.",
+    "feedback": "Continuità prima, Bernoulli dopo. Non estendere il risultato a un vaso reale senza considerare perdite e pulsazioni."
+  },
+  "commonErrors": [
+    "Dire che stazionario significa velocità uniforme",
+    "ApplicareBernoulli senza perdite a qualunque circuito"
+  ],
+  "hintLadder": [
+    "CalcolaQ prima della pressione",
+    "Elenca le ipotesi del modello"
+  ],
+  "recap": "Continuità conserva massa; Bernoulli conserva energia meccanica nel modello ideale.",
+  "transcript": "La portata volumetrica è Q=ΔV/Δt=Avmedia; per fluido incomprimibile in moto stazionario senza diramazioni Av è costante. Più in generale si conserva la portata di massaρAv. Stazionario significa campi invariati nel tempo in ogni posizione e non implica velocità uguale ovunque; laminare significa flusso ordinato, mentre turbolento presenta fluttuazioni e rimescolamento. Bernoulli lungo una linea di corrente ideale lega p+ρv²/2+ρgh costante, in regime stazionario incomprimibile senza dissipazione o pompe. In un restringimento alla stessa quota il modello predice velocità maggiore e pressione statica minore. Nel tratto dilatato avviene il contrario. Sangue e vasi reali sono viscosi, pulsanti e deformabili: il risultato ideale non è una diagnosi clinica. Esempio: Acqua in tubo orizzontale: A1=4cm²,A2=2cm²,v1=1m/s,ρ=1000kg/m³. Trova v2 ep2−p1 con Bernoulli ideale. Continuità:v2=A1v1/A2=2m/s. p2−p1=ρ(v1²−v2²)/2. 1000(1−4)/2=−1500Pa. Risultato: v2=2m/s; p2−p1=−1500Pa.",
+  "scientificCounterchecks": [
+    "Continuità conserva massa; Bernoulli conserva energia meccanica nel modello ideale.",
+    "A1v1=4·10^-4m³/s=A2v2.",
+    "Pa eρv² hanno la stessa unità."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

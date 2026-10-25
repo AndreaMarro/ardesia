@@ -1,0 +1,68 @@
+{
+  "id": "ds-2026-u7-02",
+  "familyId": "U7-02",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Spettro",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-02.01",
+    "U7-02.02",
+    "U7-02.03",
+    "U7-02.04",
+    "U7-02.05",
+    "U7-02.06",
+    "U7-02.07",
+    "U7-02.08"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità.",
+  "workedExample": {
+    "prompt": "Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto.",
+    "steps": [
+      "Nel vuoto f eλ sono inversamente proporzionali.",
+      "Frequenza: microonde<infrarosso<raggiX.",
+      "Lunghezza: raggiX<infrarosso<microonde."
+    ],
+    "result": "Ordini opposti per frequenza e lunghezza d’onda."
+  },
+  "practice": {
+    "prompt": "Fra luce rossa e violetta nel vuoto, quale ha frequenza maggiore e qualeλ maggiore?",
+    "answer": "Violetta:f maggiore; rossa:λ maggiore.",
+    "feedback": "Il violetto è verso l’estremo di frequenza maggiore del visibile."
+  },
+  "transfer": {
+    "prompt": "Due radiazioni nel vuoto hannoλ1=2λ2. Quale rapporto f1/f2 ed energia per fotoneE1/E2?",
+    "answer": "1/2 per entrambi.",
+    "feedback": "f=c/λ edE=hf: raddoppiareλ dimezza frequenza ed energia per fotone."
+  },
+  "commonErrors": [
+    "Ordinare nello stesso versoλ ef",
+    "Confondere i nomi delle regioni con soglie assolute universali"
+  ],
+  "hintLadder": [
+    "Scrivi la sequenza per frequenza",
+    "Inverti l’ordine soltanto quando passi aλ"
+  ],
+  "recap": "Nel vuoto la frequenza crescente corrisponde aλ decrescente.",
+  "transcript": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità. Esempio: Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto. Nel vuoto f eλ sono inversamente proporzionali. Frequenza: microonde<infrarosso<raggiX. Lunghezza: raggiX<infrarosso<microonde. Risultato: Ordini opposti per frequenza e lunghezza d’onda.",
+  "scientificCounterchecks": [
+    "Nel vuoto la frequenza crescente corrisponde aλ decrescente.",
+    "λ1f1=λ2f2=c.",
+    "Radio e gamma sono entrambe radiazioniEM, ma con scale di frequenza molto diverse."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

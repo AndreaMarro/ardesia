@@ -15,6 +15,17 @@ _PACKS = {
 }
 
 
+# Additive original DRAFT packs; old revisions/hashes are unchanged.
+for _path,_title,_entry_id in (
+    ('strumenti-meccanica','Strumenti e meccanica','hooke-v1'),
+    ('fluidi-termodinamica','Fluidi e termodinamica','ideal-gas-v1'),
+    ('elettricita-magnetismo','Elettricità e magnetismo','dc-resistance-v1'),
+    ('onde-ottica-radiazioni','Onde, ottica e radiazioni','harmonic-wave-v1'),
+):
+    _id='sf-'+_path+'-v1'
+    _PACKS[(_id,1)]=(_id+'.json',_path,_title,'fisica','Durata non deliberata; percorso DRAFT',_entry_id,())
+
+
 def _entry(pack_id, version):
     if not isinstance(pack_id, str) or type(version) is not int or (pack_id, version) not in _PACKS:
         raise StudyError('invalid_coursepack')

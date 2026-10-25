@@ -1,0 +1,2546 @@
+{
+  "id": "sf-fluidi-termodinamica-v1",
+  "version": 1,
+  "title": "Fluidi e termodinamica",
+  "status": "DRAFT",
+  "reviewer": null,
+  "scope": "Percorso in costruzione. Lezione originale dimostrativa; non è un microcorso completo.",
+  "rights": "Original teaching proposals, no donor assets or private-kit text copied.",
+  "coursePathId": "fluidi-termodinamica",
+  "baselineRef": {
+    "id": "physics-curriculum-2026-v1",
+    "sha256": "4dfdbd4b0358d6270521208f5af66e6fc69ff6c3a1c0cb1c64861734a0b7ab7f"
+  },
+  "activities": [
+    {
+      "id": "ideal-gas-v1",
+      "version": 1,
+      "title": "Stato termodinamico e gas ideale",
+      "skill": "Stato termodinamico e gas ideale",
+      "prerequisites": [
+        "unità SI",
+        "proporzioni"
+      ],
+      "parametersRequired": true,
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "original-demo-u5-01-practice",
+      "activityId": "ideal-gas-v1",
+      "parameters": {
+        "moles": 1,
+        "temperatureK": 300,
+        "pressurePa": 100000
+      },
+      "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+      "answer": {
+        "value": 0.02494338785445972,
+        "unit": "m³"
+      },
+      "solution": [
+        "Valore atteso 0.02494338785446 m³.",
+        "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L."
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "transferTests": [
+    {
+      "id": "original-demo-u5-01-transfer",
+      "items": [
+        {
+          "id": "original-demo-u5-01-transfer-item",
+          "activityId": "ideal-gas-v1",
+          "parameters": {
+            "moles": 0.5,
+            "temperatureK": 400,
+            "pressurePa": 200000
+          },
+          "prompt": "Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+          "answer": {
+            "value": 0.00831446261815324,
+            "unit": "m³"
+          },
+          "solution": [
+            "Valore atteso 0.008314462618153 m³.",
+            "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+          ],
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ]
+    }
+  ],
+  "reviewRubric": [
+    "Coprire ogni sotto-obiettivo della baseline prima di dichiarare completezza.",
+    "Revisione scientifica/editoriale umana sulla revisione esatta.",
+    "Continuità remota docente-studente da collaudare."
+  ],
+  "lessons": [
+    {
+      "id": "original-demo-u5-01",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-01.01",
+        "U5-01.02",
+        "U5-01.03",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "title": "Stato termodinamico e gas ideale",
+      "explanation": [
+        "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio."
+      ],
+      "workedExample": {
+        "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
+        "steps": [
+          "Isola il volume: V=nRT/p.",
+          "Il numeratore vale 1·8,31446261815324·300=2494,2 J.",
+          "V=2494,2/100000=0,02494338785446 m³, cioè 24,942 L."
+        ],
+        "answerDisplay": "V=0,02494338785446 m³."
+      },
+      "practice": {
+        "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+        "answer": {
+          "value": 0.02494338785445972,
+          "unit": "m³"
+        },
+        "feedback": [
+          "Valore atteso 0.02494338785446 m³.",
+          "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L."
+        ],
+        "parameters": {
+          "moles": 1,
+          "temperatureK": 300,
+          "pressurePa": 100000
+        }
+      },
+      "transfer": {
+        "prompt": "Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
+        "answer": {
+          "value": 0.00831446261815324,
+          "unit": "m³"
+        },
+        "feedback": [
+          "Valore atteso 0.008314462618153 m³.",
+          "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+        ],
+        "parameters": {
+          "moles": 0.5,
+          "temperatureK": 400,
+          "pressurePa": 200000
+        }
+      },
+      "recap": [
+        "pV=nRT richiede unità coerenti e temperatura assoluta."
+      ],
+      "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,2 J. V=2494,2/100000=0,02494338785446 m³, cioè 24,942 L. Risultato: V=0,02494338785446 m³.",
+      "scientificEvidence": [
+        "pV=nRT richiede unità coerenti e temperatura assoluta.",
+        "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
+        "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+      ],
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+      "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
+      "releaseScope": "PUBLIC_DEMONSTRATION",
+      "activityId": "ideal-gas-v1",
+      "authorCorrection": "A25October2026: use SI R=NA*kB and recompute oracles; old handoff assumed roundedR8.314. Not a human approval.",
+      "provenanceRef": {
+        "authorRole": "DeepSeek content session",
+        "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
+        "status": "DRAFT; original, not copied from private knowledge"
+      },
+      "audioPath": "courses/audio/fluidi-termodinamica.wav",
+      "audioTranscript": "La temperatura nell’equazione del gas ideale è assoluta e si misura in kelvin. Anche la pressione deve essere assoluta. A quantità di sostanza e temperatura fissate, raddoppiare la pressione dimezza il volume. Un solo stato non dice quanto calore è stato scambiato. Nel problema diverso cambia la quantità di sostanza e riparti dai dati in unità del Sistema Internazionale.",
+      "audioStatus": "SYNTHETIC_DEMONSTRATION; listening quality not reviewed"
+    },
+    {
+      "id": "ds-2026-u3-01",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U3-01.01",
+        "U3-01.02",
+        "U3-01.03",
+        "U3-01.04"
+      ],
+      "familyId": "U3-01",
+      "title": "Pressione e densità",
+      "explanation": [
+        "Un fluido in equilibrio non sostiene uno sforzo tangenziale statico senza deformarsi continuamente; un solido può sostenere taglio. Densitàρ=m/V e pressione p=Fperpendicolare/A sono grandezze intensive nel modello omogeneo. La pressione non coincide con una forza: la stessa pressione su aree diverse produce forze diverse. L’unità Pa è N/m². La pressione assoluta si riferisce al vuoto; quella manometrica è la differenza rispetto all’ambiente. La densità collega massa e volume ma da sola non determina la pressione senza informazioni su quota, moto e condizioni al contorno. In un fluido fermo la pressione in un punto è isotropa; in moto non usare automaticamente la sola legge idrostatica."
+      ],
+      "workedExample": {
+        "prompt": "Una forza perpendicolare di30N agisce su un’area di2·10^-4m². Trova la pressione.",
+        "steps": [
+          "p=F/A.",
+          "30/(2·10^-4)=1,5·10^5.",
+          "N/m²=Pa."
+        ],
+        "answerDisplay": "150000Pa."
+      },
+      "practice": {
+        "prompt": "Un campione ha massa0,8kg e volume1L. Trovaρ.",
+        "answer": {
+          "value": "800kg/m³",
+          "unit": ""
+        },
+        "feedback": [
+          "1L=0,001m³:ρ=0,8/0,001."
+        ]
+      },
+      "transfer": {
+        "prompt": "La stessa pressione viene applicata a un’area tripla. Cambia la forza? E la densità duplicando un campione omogeneo?",
+        "answer": {
+          "value": "Forza tripla; densità invariata.",
+          "unit": ""
+        },
+        "feedback": [
+          "F=pA mentreρ=m/V: duplicando il campione raddoppiano sia massa sia volume."
+        ]
+      },
+      "recap": [
+        "Pressione e densità richiedono definizioni e unità differenti."
+      ],
+      "transcript": "Un fluido in equilibrio non sostiene uno sforzo tangenziale statico senza deformarsi continuamente; un solido può sostenere taglio. Densitàρ=m/V e pressione p=Fperpendicolare/A sono grandezze intensive nel modello omogeneo. La pressione non coincide con una forza: la stessa pressione su aree diverse produce forze diverse. L’unità Pa è N/m². La pressione assoluta si riferisce al vuoto; quella manometrica è la differenza rispetto all’ambiente. La densità collega massa e volume ma da sola non determina la pressione senza informazioni su quota, moto e condizioni al contorno. In un fluido fermo la pressione in un punto è isotropa; in moto non usare automaticamente la sola legge idrostatica. Esempio: Una forza perpendicolare di30N agisce su un’area di2·10^-4m². Trova la pressione. p=F/A. 30/(2·10^-4)=1,5·10^5. N/m²=Pa. Risultato: 150000Pa.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Pressione e densità richiedono definizioni e unità differenti.",
+        "150000Pa·0,0002m²=30N.",
+        "ρV restituisce kg; pA restituisce N."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U3-01.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u3-02",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U3-02.01",
+        "U3-02.02",
+        "U3-02.03",
+        "U3-02.04",
+        "U3-02.05",
+        "U3-02.06"
+      ],
+      "familyId": "U3-02",
+      "title": "Idrostatica",
+      "explanation": [
+        "Stevino dà p=p0+ρgh per fluido omogeneo fermo: h è profondità positiva eρgh è un incremento, non sempre la pressione assoluta. Pascal descrive la trasmissione di un incremento di pressione in fluido incomprimibile confinato, base della pressa idraulica. Archimede dà una spinta verso l’alto pari al peso del fluido spostato,ρfluido gVimmerso. Un corpo galleggiante in equilibrio ha spinta uguale al peso e frazione immersaρcorpo/ρfluido se omogeneo; un corpo più denso del fluido non può galleggiare liberamente. Nel barometro di Torricelli la colonna equilibra la pressione esterna rispetto al vuoto approssimato sopra il liquido. Un manometro confronta pressioni attraverso differenze di livelli; conta densità e dislivello verticale, non lunghezza del tubo."
+      ],
+      "workedExample": {
+        "prompt": "Acquaρ=1000kg/m³,g=10m/s²,h=2m,p0=100000Pa. Trova incremento e pressione assoluta.",
+        "steps": [
+          "Δp=1000·10·2=20000Pa.",
+          "p=p0+Δp.",
+          "100000+20000=120000Pa."
+        ],
+        "answerDisplay": "Δp=20000Pa;p=120000Pa."
+      },
+      "practice": {
+        "prompt": "Un corpo omogeneoρ=600kg/m³ galleggia in acquaρ=1000. Quale frazione è immersa?",
+        "answer": {
+          "value": "0,6 =60%",
+          "unit": ""
+        },
+        "feedback": [
+          "Uguagliaρacqua gVimmerso aρcorpo gVtotale. g eVtotale si semplificano."
+        ]
+      },
+      "transfer": {
+        "prompt": "Pressa idraulica: pistoni di1cm² e20cm², stessa quota, perdite trascurate. Applico10N sul piccolo. Quale forza sul grande e quale spostamento relativo?",
+        "answer": {
+          "value": "200N; lo spostamento del grande è1/20 del piccolo.",
+          "unit": ""
+        },
+        "feedback": [
+          "Stessa pressione e conservazione volume: il guadagno di forza non crea energia."
+        ]
+      },
+      "recap": [
+        "La spinta dipende dal fluido spostato e la pressione dalla profondità verticale."
+      ],
+      "transcript": "Stevino dà p=p0+ρgh per fluido omogeneo fermo: h è profondità positiva eρgh è un incremento, non sempre la pressione assoluta. Pascal descrive la trasmissione di un incremento di pressione in fluido incomprimibile confinato, base della pressa idraulica. Archimede dà una spinta verso l’alto pari al peso del fluido spostato,ρfluido gVimmerso. Un corpo galleggiante in equilibrio ha spinta uguale al peso e frazione immersaρcorpo/ρfluido se omogeneo; un corpo più denso del fluido non può galleggiare liberamente. Nel barometro di Torricelli la colonna equilibra la pressione esterna rispetto al vuoto approssimato sopra il liquido. Un manometro confronta pressioni attraverso differenze di livelli; conta densità e dislivello verticale, non lunghezza del tubo. Esempio: Acquaρ=1000kg/m³,g=10m/s²,h=2m,p0=100000Pa. Trova incremento e pressione assoluta. Δp=1000·10·2=20000Pa. p=p0+Δp. 100000+20000=120000Pa. Risultato: Δp=20000Pa;p=120000Pa.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "La spinta dipende dal fluido spostato e la pressione dalla profondità verticale.",
+        "120000−100000=20000Pa.",
+        "Fgrande/Fpiccola=Agrande/Apiccola=20; bilancio lavoro ideale conservato."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U3-02.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u3-03",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U3-03.01",
+        "U3-03.02",
+        "U3-03.03",
+        "U3-03.04",
+        "U3-03.05",
+        "U3-03.06"
+      ],
+      "familyId": "U3-03",
+      "title": "Continuità e Bernoulli",
+      "explanation": [
+        "La portata volumetrica è Q=ΔV/Δt=Avmedia; per fluido incomprimibile in moto stazionario senza diramazioni Av è costante. Più in generale si conserva la portata di massaρAv. Stazionario significa campi invariati nel tempo in ogni posizione e non implica velocità uguale ovunque; laminare significa flusso ordinato, mentre turbolento presenta fluttuazioni e rimescolamento. Bernoulli lungo una linea di corrente ideale lega p+ρv²/2+ρgh costante, in regime stazionario incomprimibile senza dissipazione o pompe. In un restringimento alla stessa quota il modello predice velocità maggiore e pressione statica minore. Nel tratto dilatato avviene il contrario. Sangue e vasi reali sono viscosi, pulsanti e deformabili: il risultato ideale non è una diagnosi clinica."
+      ],
+      "workedExample": {
+        "prompt": "Acqua in tubo orizzontale: A1=4cm²,A2=2cm²,v1=1m/s,ρ=1000kg/m³. Trova v2 ep2−p1 con Bernoulli ideale.",
+        "steps": [
+          "Continuità:v2=A1v1/A2=2m/s.",
+          "p2−p1=ρ(v1²−v2²)/2.",
+          "1000(1−4)/2=−1500Pa."
+        ],
+        "answerDisplay": "v2=2m/s; p2−p1=−1500Pa."
+      },
+      "practice": {
+        "prompt": "Un flusso è2L/min. Quanto volume passa in30s?",
+        "answer": {
+          "value": "1L =0,001m³",
+          "unit": ""
+        },
+        "feedback": [
+          "30s è mezzo minuto: volume=portata per tempo."
+        ]
+      },
+      "transfer": {
+        "prompt": "In un aneurisma idealizzato l’area raddoppia a quota invariata. A portata costante, come cambiano velocità e pressione statica nel modello ideale?",
+        "answer": {
+          "value": "Velocità si dimezza; pressione statica aumenta.",
+          "unit": ""
+        },
+        "feedback": [
+          "Continuità prima, Bernoulli dopo. Non estendere il risultato a un vaso reale senza considerare perdite e pulsazioni."
+        ]
+      },
+      "recap": [
+        "Continuità conserva massa; Bernoulli conserva energia meccanica nel modello ideale."
+      ],
+      "transcript": "La portata volumetrica è Q=ΔV/Δt=Avmedia; per fluido incomprimibile in moto stazionario senza diramazioni Av è costante. Più in generale si conserva la portata di massaρAv. Stazionario significa campi invariati nel tempo in ogni posizione e non implica velocità uguale ovunque; laminare significa flusso ordinato, mentre turbolento presenta fluttuazioni e rimescolamento. Bernoulli lungo una linea di corrente ideale lega p+ρv²/2+ρgh costante, in regime stazionario incomprimibile senza dissipazione o pompe. In un restringimento alla stessa quota il modello predice velocità maggiore e pressione statica minore. Nel tratto dilatato avviene il contrario. Sangue e vasi reali sono viscosi, pulsanti e deformabili: il risultato ideale non è una diagnosi clinica. Esempio: Acqua in tubo orizzontale: A1=4cm²,A2=2cm²,v1=1m/s,ρ=1000kg/m³. Trova v2 ep2−p1 con Bernoulli ideale. Continuità:v2=A1v1/A2=2m/s. p2−p1=ρ(v1²−v2²)/2. 1000(1−4)/2=−1500Pa. Risultato: v2=2m/s; p2−p1=−1500Pa.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Continuità conserva massa; Bernoulli conserva energia meccanica nel modello ideale.",
+        "A1v1=4·10^-4m³/s=A2v2.",
+        "Pa eρv² hanno la stessa unità."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U3-03.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u3-04",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04",
+        "U3-04.05"
+      ],
+      "familyId": "U3-04",
+      "title": "Viscosità e Poiseuille",
+      "explanation": [
+        "La viscosità descrive la resistenza allo scorrimento fra strati. Nel modello newtoniano lo sforzo tangenziale è proporzionale al gradiente di velocità. In tubo cilindrico lungo e rigido con flusso stazionario laminare, fluido incomprimibile newtoniano e aderenza alle pareti, il profilo è parabolico: velocità nulla sulla parete e massima sull’asse, doppia della media. Poiseuille dà Q=πr^4Δp/(8ηL) e resistenza idraulica Rh=Δp/Q. In serie le resistenze si sommano; in parallelo si sommano le conduttanze1/Rh. AΔp fissata raddoppiare r moltiplicaQ per16; aQ fissata invece cambia la pressione necessaria. Non confondere un profilo ideale con previsione quantitativa per sangue in ogni vaso o moto turbolento."
+      ],
+      "workedExample": {
+        "prompt": "Due tubi identici hanno ciascuno resistenza idraulicaR=10^8Pa s/m³. ConΔp=100Pa trovaQ equivalente in serie e parallelo.",
+        "steps": [
+          "Serie:Req=2·10^8Pa s/m³,Q=100/Req.",
+          "Parallelo:Req=R/2=5·10^7Pa s/m³.",
+          "Qserie=5·10^-7m³/s;Qparallelo=2·10^-6m³/s."
+        ],
+        "answerDisplay": "0,5mL/s in serie;2mL/s in parallelo."
+      },
+      "practice": {
+        "prompt": "AΔp,η,L fissati il raggio si dimezza. Quale rapporto Qnuova/Qvecchia?",
+        "answer": {
+          "value": "1/16",
+          "unit": ""
+        },
+        "feedback": [
+          "La dipendenza è sulla quarta potenza del raggio, non sulla sola area."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un flusso laminare ha velocità media0,03m/s. Nel modello diPoiseuille quale massima sull’asse? Se raddoppiaη aΔp fissata?",
+        "answer": {
+          "value": "0,06m/s; portata dimezzata.",
+          "unit": ""
+        },
+        "feedback": [
+          "Per il profilo parabolico vmax=2vmedia eQ è inversamente proporzionale alla viscosità."
+        ]
+      },
+      "recap": [
+        "Poiseuille ha un dominio fisico preciso e una forte sensibilità geometrica."
+      ],
+      "transcript": "La viscosità descrive la resistenza allo scorrimento fra strati. Nel modello newtoniano lo sforzo tangenziale è proporzionale al gradiente di velocità. In tubo cilindrico lungo e rigido con flusso stazionario laminare, fluido incomprimibile newtoniano e aderenza alle pareti, il profilo è parabolico: velocità nulla sulla parete e massima sull’asse, doppia della media. Poiseuille dà Q=πr^4Δp/(8ηL) e resistenza idraulica Rh=Δp/Q. In serie le resistenze si sommano; in parallelo si sommano le conduttanze1/Rh. AΔp fissata raddoppiare r moltiplicaQ per16; aQ fissata invece cambia la pressione necessaria. Non confondere un profilo ideale con previsione quantitativa per sangue in ogni vaso o moto turbolento. Esempio: Due tubi identici hanno ciascuno resistenza idraulicaR=10^8Pa s/m³. ConΔp=100Pa trovaQ equivalente in serie e parallelo. Serie:Req=2·10^8Pa s/m³,Q=100/Req. Parallelo:Req=R/2=5·10^7Pa s/m³. Qserie=5·10^-7m³/s;Qparallelo=2·10^-6m³/s. Risultato: 0,5mL/s in serie;2mL/s in parallelo.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Poiseuille ha un dominio fisico preciso e una forte sensibilità geometrica.",
+        "Qparallelo/Qserie=4 per due resistenze identiche.",
+        "Pa/(Pa s/m³)=m³/s."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U3-04.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u3-05",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U3-05.01",
+        "U3-05.02",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "familyId": "U3-05",
+      "title": "Superfici e capillarità",
+      "explanation": [
+        "La tensione superficialeγ misura la forza per lunghezza lungo un’interfaccia e, in forma equivalente, il costo energetico per area creata. La superficie tende a ridurre area; su piccole gocce il suo effetto può competere con la gravità. La capillarità dipende da tensione, bagnabilità, geometria e gravità: un liquido che bagna una parete può risalire in un tubo stretto mentre un liquido non bagnante può deprimersi. La pressione attraverso un’interfaccia curva differisce fra i due lati; qualitativamente, a pariγ, maggiore curvatura richiede maggiore salto di pressione. Un’interfaccia piana ideale non ha contributo di pressione da curvatura. Per il syllabus la legge diLaplace va interpretata qualitativamente; formule quantitative diverse per gocce e bolle non vanno introdotte senza dichiarare le superfici e fornire la legge."
+      ],
+      "workedExample": {
+        "prompt": "Due gocce sferiche dello stesso liquido hanno raggi r e2r. Senza usare coefficienti numerici diLaplace, quale richiede maggior salto di pressione e perché?",
+        "steps": [
+          "La goccia più piccola ha maggiore curvatura.",
+          "Aγ uguale il salto di pressione cresce con la curvatura.",
+          "La goccia di raggio r richiede salto maggiore."
+        ],
+        "answerDisplay": "La goccia più piccola."
+      },
+      "practice": {
+        "prompt": "Un liquido bagna due capillari uguali salvo raggio, r e2r. In quale la risalita è maggiore, a parità delle altre condizioni?",
+        "answer": {
+          "value": "Nel capillare di raggio r.",
+          "unit": ""
+        },
+        "feedback": [
+          "Nel modello statico usuale la risalita cresce restringendo il tubo; bagnabilità e menisco sono ipotesi essenziali."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una pellicola aumenta l’area di0,002m² aγ=0,05J/m², con una sola interfaccia dichiarata. Quale energia superficiale aggiuntiva?",
+        "answer": {
+          "value": "0,0001J",
+          "unit": ""
+        },
+        "feedback": [
+          "La legge fornita èΔE=γΔA. Una pellicola con due facce richiederebbe contare entrambe; qui il testo ne specifica una."
+        ]
+      },
+      "recap": [
+        "Curvatura, bagnabilità e numero di superfici determinano il modello."
+      ],
+      "transcript": "La tensione superficialeγ misura la forza per lunghezza lungo un’interfaccia e, in forma equivalente, il costo energetico per area creata. La superficie tende a ridurre area; su piccole gocce il suo effetto può competere con la gravità. La capillarità dipende da tensione, bagnabilità, geometria e gravità: un liquido che bagna una parete può risalire in un tubo stretto mentre un liquido non bagnante può deprimersi. La pressione attraverso un’interfaccia curva differisce fra i due lati; qualitativamente, a pariγ, maggiore curvatura richiede maggiore salto di pressione. Un’interfaccia piana ideale non ha contributo di pressione da curvatura. Per il syllabus la legge diLaplace va interpretata qualitativamente; formule quantitative diverse per gocce e bolle non vanno introdotte senza dichiarare le superfici e fornire la legge. Esempio: Due gocce sferiche dello stesso liquido hanno raggi r e2r. Senza usare coefficienti numerici diLaplace, quale richiede maggior salto di pressione e perché? La goccia più piccola ha maggiore curvatura. Aγ uguale il salto di pressione cresce con la curvatura. La goccia di raggio r richiede salto maggiore. Risultato: La goccia più piccola.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Curvatura, bagnabilità e numero di superfici determinano il modello.",
+        "J/m²=N/m.",
+        "Un’interfaccia piana ha curvatura nulla, non necessariamente pressione assoluta nulla."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U3-05.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u5-01",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-01.01",
+        "U5-01.02",
+        "U5-01.03",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "familyId": "U5-01",
+      "title": "Stato e gas ideale",
+      "explanation": [
+        "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio."
+      ],
+      "workedExample": {
+        "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
+        "steps": [
+          "Isola il volume: V=nRT/p.",
+          "Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J.",
+          "V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L."
+        ],
+        "answerDisplay": "V=0,02494338785445972 m³."
+      },
+      "practice": {
+        "prompt": "Con n=1 mol e p=100000 Pa la temperatura passa da 300 K a 600 K. Quanto vale il nuovo volume? R=8,31446261815324.",
+        "answer": {
+          "value": "0,04988677570891944 m³",
+          "unit": ""
+        },
+        "feedback": [
+          "A pressione e moli costanti il volume è proporzionale alla temperatura assoluta, quindi raddoppia."
+        ]
+      },
+      "transfer": {
+        "prompt": "Un campione di 0,5 mol è a 400 K e 200000 Pa. Trova V con R=8,31446261815324.",
+        "answer": {
+          "value": "0,00831446261815324 m³",
+          "unit": ""
+        },
+        "feedback": [
+          "nT=200 mol K e nRT=1662,892523630648 J. La divisione per 200000 Pa dà circa 8,31446 L."
+        ]
+      },
+      "recap": [
+        "pV=nRT richiede unità coerenti e temperatura assoluta."
+      ],
+      "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J. V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L. Risultato: V=0,02494338785445972 m³.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "pV=nRT richiede unità coerenti e temperatura assoluta.",
+        "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
+        "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U5-01.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u5-02",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.04",
+        "U5-02.05",
+        "U5-02.06",
+        "U5-02.07"
+      ],
+      "familyId": "U5-02",
+      "title": "Calore e calorimetria",
+      "explanation": [
+        "Il calore è energia trasferita per differenza di temperatura e non una sostanza contenuta nel corpo. Senza cambiamenti di stato, Q=mcΔT=CΔT per calore specifico c e capacità termica C=mc nelle condizioni dichiarate. Nei gas ideali c e capacità dipendono dal vincolo: a pressione costante parte del calore serve al lavoro di espansione, quindi Cp>Cv e per una mole Cp−Cv=R. In una transizione di fase ideale a pressione fissata l’energia Q=mL può cambiare la fase senza cambiare T. Fusione ed evaporazione assorbono energia, condensazione e solidificazione la cedono. In calorimetria isolata la somma dei calori scambiati è zero includendo recipiente e transizioni se rilevanti. La media aritmetica delle temperature vale solo per uguali capacità senza cambiamenti di stato."
+      ],
+      "workedExample": {
+        "prompt": "Una massa0,2kg, c=4200J/(kg K), si scalda da20a30°C senza transizioni. TrovaQ.",
+        "steps": [
+          "ΔT=10K, stesso intervallo di10°C.",
+          "C=0,2·4200=840J/K.",
+          "Q=840·10=8400J."
+        ],
+        "answerDisplay": "8400J assorbiti."
+      },
+      "practice": {
+        "prompt": "Masse uguali di acqua a20e60°C sono miscelate in recipiente isolato di capacità trascurabile. TrovaTf.",
+        "answer": {
+          "value": "40°C",
+          "unit": ""
+        },
+        "feedback": [
+          "Uguali masse e stesso c: (Tf−20)+(Tf−60)=0. Non estendere la media a capacità differenti."
+        ]
+      },
+      "transfer": {
+        "prompt": "Per fondere0,05kg a temperatura di fusione usaL=334000J/kg. QuantoQ? Una successiva condensazione dello stesso materiale libera o assorbe calore?",
+        "answer": {
+          "value": "16700J; la condensazione libera calore.",
+          "unit": ""
+        },
+        "feedback": [
+          "Q=mL per la fusione data. Il valore numerico del calore di condensazione non è fornito e non coincide necessariamente conLfusione."
+        ]
+      },
+      "recap": [
+        "Capacità termica e calore specifico hanno unità diverse."
+      ],
+      "transcript": "Il calore è energia trasferita per differenza di temperatura e non una sostanza contenuta nel corpo. Senza cambiamenti di stato, Q=mcΔT=CΔT per calore specifico c e capacità termica C=mc nelle condizioni dichiarate. Nei gas ideali c e capacità dipendono dal vincolo: a pressione costante parte del calore serve al lavoro di espansione, quindi Cp>Cv e per una mole Cp−Cv=R. In una transizione di fase ideale a pressione fissata l’energia Q=mL può cambiare la fase senza cambiare T. Fusione ed evaporazione assorbono energia, condensazione e solidificazione la cedono. In calorimetria isolata la somma dei calori scambiati è zero includendo recipiente e transizioni se rilevanti. La media aritmetica delle temperature vale solo per uguali capacità senza cambiamenti di stato. Esempio: Una massa0,2kg, c=4200J/(kg K), si scalda da20a30°C senza transizioni. TrovaQ. ΔT=10K, stesso intervallo di10°C. C=0,2·4200=840J/K. Q=840·10=8400J. Risultato: 8400J assorbiti.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Capacità termica e calore specifico hanno unità diverse.",
+        "8400J/(840J/K)=10K.",
+        "Un calore di condensazione ha segno negativo per il sistema che condensa."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U5-02.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u5-03",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "familyId": "U5-03",
+      "title": "Trasmissione calore",
+      "explanation": [
+        "La conduzione trasferisce energia attraverso interazioni microscopiche senza trasporto macroscopico di materia; nel modello piano stazionario P=kAΔT/L. La convezione trasferisce energia con il moto del fluido e può essere naturale o forzata. L’irraggiamento trasferisce energia tramite onde elettromagnetiche e può avvenire nel vuoto. La direzione netta spontanea è dal corpo più caldo al più freddo, pur essendoci emissione in entrambe le direzioni. Una superficie non smette di emettere perché l’ambiente ha uguale temperatura: si annulla lo scambio netto. Non è necessario usare leggi quantitative non fornite per riconoscere il meccanismo dominante; nei sistemi reali i tre meccanismi possono coesistere."
+      ],
+      "workedExample": {
+        "prompt": "Parete piana: k=0,5W/(m K),A=2m²,ΔT=10K,L=0,1m. La legge fornita èP=kAΔT/L. TrovaP.",
+        "steps": [
+          "Il prodotto kAΔT vale10W m.",
+          "Dividi per0,1m.",
+          "P=100W dal lato caldo al freddo."
+        ],
+        "answerDisplay": "100W."
+      },
+      "practice": {
+        "prompt": "Il calore del Sole raggiunge un oggetto nello spazio vuoto. Quale meccanismo può agire attraverso il vuoto?",
+        "answer": {
+          "value": "Irraggiamento.",
+          "unit": ""
+        },
+        "feedback": [
+          "Conduzione e convezione necessitano di materia lungo il tragitto; la radiazione elettromagnetica no."
+        ]
+      },
+      "transfer": {
+        "prompt": "Una parete ha k=0,5W/(m K),A=2m²,ΔT=10K eL=0,2m. UsaP=kAΔT/L; trovaP e descrivi come una ventola cambia il trasporto nell’aria.",
+        "answer": {
+          "value": "50W; la ventola aumenta il moto del fluido e favorisce convezione forzata.",
+          "unit": ""
+        },
+        "feedback": [
+          "La conduzione ideale è inversa aL. Il trasferimento nell’aria richiede un modello convettivo diverso, senza attribuirgli lo stesso kAΔT/L."
+        ]
+      },
+      "recap": [
+        "I tre meccanismi richiedono modelli e ipotesi distinti."
+      ],
+      "transcript": "La conduzione trasferisce energia attraverso interazioni microscopiche senza trasporto macroscopico di materia; nel modello piano stazionario P=kAΔT/L. La convezione trasferisce energia con il moto del fluido e può essere naturale o forzata. L’irraggiamento trasferisce energia tramite onde elettromagnetiche e può avvenire nel vuoto. La direzione netta spontanea è dal corpo più caldo al più freddo, pur essendoci emissione in entrambe le direzioni. Una superficie non smette di emettere perché l’ambiente ha uguale temperatura: si annulla lo scambio netto. Non è necessario usare leggi quantitative non fornite per riconoscere il meccanismo dominante; nei sistemi reali i tre meccanismi possono coesistere. Esempio: Parete piana: k=0,5W/(m K),A=2m²,ΔT=10K,L=0,1m. La legge fornita èP=kAΔT/L. TrovaP. Il prodotto kAΔT vale10W m. Dividi per0,1m. P=100W dal lato caldo al freddo. Risultato: 100W.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "I tre meccanismi richiedono modelli e ipotesi distinti.",
+        "W/(mK)·m²·K/m=W.",
+        "ΔT=0 annulla il flusso netto del modello di conduzione."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U5-03.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u5-04",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08"
+      ],
+      "familyId": "U5-04",
+      "title": "Primo principio e trasformazioni",
+      "explanation": [
+        "Scegliamo come sistema un gas chiuso e usiamo ΔU=Q−W: Q è positivo se entra calore e W se il gas compie lavoro sull’ambiente. Energia interna U è funzione di stato; Q e W descrivono trasferimenti e dipendono dal percorso. Per un gas ideale U dipende dalla temperatura. In un’isocora il volume resta fermo e W=0. In un’isobara quasi statica W=p(Vf−Vi), area sotto il grafico p-V. In un’isoterma ideale ΔU=0, quindi Q=W; non significa Q=0. In un’adiabatica Q=0 e un’espansione con W>0 riduce U e T. Un processo reversibile è un limite ideale che può essere invertito senza variazioni nette di sistema e ambiente; attrito e passaggi con differenze finite producono irreversibilità. La sola forma di un grafico non certifica reversibilità. Prima di usare l’area p-V occorre sapere che la pressione esterna coincide con quella del gas nel limite quasi statico."
+      ],
+      "workedExample": {
+        "prompt": "Un gas si espande quasi staticamente a 100 kPa da 2 L a 5 L e riceve 500 J di calore. Trova W e ΔU.",
+        "steps": [
+          "Converti: 100 kPa=100000 Pa e ΔV=3 L=0,003 m³.",
+          "Lavoro fatto dal gas: W=pΔV=300 J.",
+          "Bilancio: ΔU=500−300=200 J. Il gas conserva internamente parte del calore ricevuto."
+        ],
+        "answerDisplay": "W=+300 J; ΔU=+200 J."
+      },
+      "practice": {
+        "prompt": "Un gas in recipiente rigido cede 80 J. Quanto valgono W e ΔU con la convenzione dichiarata?",
+        "answer": {
+          "value": "W=0 J; ΔU=−80 J",
+          "unit": ""
+        },
+        "feedback": [
+          "Volume costante annulla il lavoro p dV. Il calore uscente ha Q negativo."
+        ]
+      },
+      "transfer": {
+        "prompt": "In una compressione adiabatica vengono compiuti 120 J sul gas ideale. Trova Q,W,ΔU e il verso della variazione di T.",
+        "answer": {
+          "value": "Q=0 J; W=−120 J; ΔU=+120 J; T aumenta.",
+          "unit": ""
+        },
+        "feedback": [
+          "Il lavoro sul gas è negativo nella convenzione del lavoro fatto dal gas. Un’adiabatica non è necessariamente isoterma."
+        ]
+      },
+      "recap": [
+        "Dichiara sempre sistema, segni e ipotesi prima del bilancio."
+      ],
+      "transcript": "Scegliamo come sistema un gas chiuso e usiamo ΔU=Q−W: Q è positivo se entra calore e W se il gas compie lavoro sull’ambiente. Energia interna U è funzione di stato; Q e W descrivono trasferimenti e dipendono dal percorso. Per un gas ideale U dipende dalla temperatura. In un’isocora il volume resta fermo e W=0. In un’isobara quasi statica W=p(Vf−Vi), area sotto il grafico p-V. In un’isoterma ideale ΔU=0, quindi Q=W; non significa Q=0. In un’adiabatica Q=0 e un’espansione con W>0 riduce U e T. Un processo reversibile è un limite ideale che può essere invertito senza variazioni nette di sistema e ambiente; attrito e passaggi con differenze finite producono irreversibilità. La sola forma di un grafico non certifica reversibilità. Prima di usare l’area p-V occorre sapere che la pressione esterna coincide con quella del gas nel limite quasi statico. Esempio: Un gas si espande quasi staticamente a 100 kPa da 2 L a 5 L e riceve 500 J di calore. Trova W e ΔU. Converti: 100 kPa=100000 Pa e ΔV=3 L=0,003 m³. Lavoro fatto dal gas: W=pΔV=300 J. Bilancio: ΔU=500−300=200 J. Il gas conserva internamente parte del calore ricevuto. Risultato: W=+300 J; ΔU=+200 J.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Dichiara sempre sistema, segni e ipotesi prima del bilancio.",
+        "Pa·m³=J; 10^5·3·10^-3=300.",
+        "Q=ΔU+W=200+300=500 J; in un ciclo ΔU totale è zero, non necessariamente Q e W."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U5-04.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    },
+    {
+      "id": "ds-2026-u5-05",
+      "courseId": "fluidi-termodinamica",
+      "objectiveIds": [
+        "U5-05.01",
+        "U5-05.02",
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05",
+        "U5-05.06",
+        "U5-05.07",
+        "U5-05.08"
+      ],
+      "familyId": "U5-05",
+      "title": "Secondo principio ed entropia",
+      "explanation": [
+        "Il secondo principio limita i processi possibili: un motore ciclico non può convertire integralmente in lavoro il calore preso da una sola sorgente e il calore non passa spontaneamente da freddo a caldo senza altri effetti. Un ciclo riporta lo stato iniziale, quindiΔUciclo=0; non annulla calore e lavoro netti. Il rendimento di una macchina termica èWnetto/Qcalda=1−|Qfredda|/Qcalda. Carnot fornisce il massimo ideale fra due termostati:ηC=1−Tfredda/Tcalda con temperature in kelvin. L’entropia è funzione di stato: per uno scambio reversibile dS=δQrev/T, mentre nell’universo isolatoΔStot≥0. Irreversibilità produce entropia; quella di un solo sottosistema può diminuire esportandola. L’interpretazione statistica collega entropia al numero di configurazioni microscopiche compatibili, non a un giudizio generico di disordine."
+      ],
+      "workedExample": {
+        "prompt": "Motore ideale fra600K e300K assorbe1000J dalla sorgente calda per ciclo. Trova rendimento massimo e lavoro massimo.",
+        "steps": [
+          "ηC=1−300/600=0,5.",
+          "Wmax=0,5·1000=500J.",
+          "Almeno500J sono ceduti al termostato freddo nel ciclo reversibile limite."
+        ],
+        "answerDisplay": "50%;500J."
+      },
+      "practice": {
+        "prompt": "Un motore assorbe800J e cede600J ogni ciclo. TrovaW eη.",
+        "answer": {
+          "value": "200J;0,25=25%",
+          "unit": ""
+        },
+        "feedback": [
+          "ΔUciclo=0 quindiW=800−600. Il rendimento usa il calore assorbito, non la somma dei moduli."
+        ]
+      },
+      "transfer": {
+        "prompt": "200J passano spontaneamente da400K a300K, termostati ideali. CalcolaΔStot.",
+        "answer": {
+          "value": "1/6J/K≈0,166667J/K",
+          "unit": ""
+        },
+        "feedback": [
+          "ΔSfredda=200/300;ΔScalda=−200/400; somma positiva. Il calore è uguale nei due scambi, l’entropia no."
+        ]
+      },
+      "recap": [
+        "Secondo principio e primo principio sono vincoli distinti."
+      ],
+      "transcript": "Il secondo principio limita i processi possibili: un motore ciclico non può convertire integralmente in lavoro il calore preso da una sola sorgente e il calore non passa spontaneamente da freddo a caldo senza altri effetti. Un ciclo riporta lo stato iniziale, quindiΔUciclo=0; non annulla calore e lavoro netti. Il rendimento di una macchina termica èWnetto/Qcalda=1−|Qfredda|/Qcalda. Carnot fornisce il massimo ideale fra due termostati:ηC=1−Tfredda/Tcalda con temperature in kelvin. L’entropia è funzione di stato: per uno scambio reversibile dS=δQrev/T, mentre nell’universo isolatoΔStot≥0. Irreversibilità produce entropia; quella di un solo sottosistema può diminuire esportandola. L’interpretazione statistica collega entropia al numero di configurazioni microscopiche compatibili, non a un giudizio generico di disordine. Esempio: Motore ideale fra600K e300K assorbe1000J dalla sorgente calda per ciclo. Trova rendimento massimo e lavoro massimo. ηC=1−300/600=0,5. Wmax=0,5·1000=500J. Almeno500J sono ceduti al termostato freddo nel ciclo reversibile limite. Risultato: 50%;500J.",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "releaseScope": "PRIVATE_EDITORIAL_REVIEW",
+      "scientificEvidence": [
+        "Secondo principio e primo principio sono vincoli distinti.",
+        "1000=500+500J nel ciclo ideale.",
+        "200/300−200/400=2/3−1/2=1/6."
+      ],
+      "provenanceRef": {
+        "commit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3",
+        "path": "handoffs/deepseek/2026-10-25/content/U5-05.json",
+        "originalProposal": true
+      },
+      "coverageWarning": "Testo e prove proposti per la famiglia; i singoli sotto-obiettivi non sono ancora tutti verificati."
+    }
+  ],
+  "courseRequirements": {
+    "diagnostic": "DRAFT_PRESENT; independent of final problems",
+    "finalAssessment": "DRAFT_PRESENT; human review/calibration pending",
+    "recap": "DRAFT_PRESENT",
+    "remoteTeacherStudent": "NOT_CERTIFIED",
+    "humanApproval": false,
+    "transcripts": "DRAFT_PRESENT",
+    "audio": "ABSENT_TRANSCRIPTS_AVAILABLE"
+  },
+  "authoredFamilyCount": 10,
+  "finalAssessment": [
+    {
+      "id": "final-U3-01.01",
+      "objectiveId": "U3-01.01",
+      "familyId": "U3-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "fluido e solido",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Che cosa distingue la risposta statica di un fluido da quella di un solido a uno sforzo tangenziale?",
+      "answer": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
+      "feedback": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.01",
+      "objectiveId": "U3-02.01",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Stevino",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Olioρ=800kg/m³,g=10m/s²,profondità0,5m. Qual è l’incremento di pressione?",
+      "answer": "4000Pa,da aggiungere alla pressione sulla superficie.",
+      "feedback": "4000Pa,da aggiungere alla pressione sulla superficie.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.01",
+      "objectiveId": "U3-03.01",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "flusso e portata",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "In2s attraversano un tubo6L. Qual è la portata volumetrica?",
+      "answer": "3L/s=0,003m³/s.",
+      "feedback": "3L/s=0,003m³/s.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.01",
+      "objectiveId": "U3-04.01",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "fluidi reali",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Perché un fluido reale può richiedere differenza di pressione per mantenere portata in tubo orizzontale?",
+      "answer": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+      "feedback": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.01",
+      "objectiveId": "U3-05.01",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "tensione superficiale",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Quali unità equivalenti ha la tensione superficiale?",
+      "answer": "N/m eJ/m².",
+      "feedback": "N/m eJ/m².",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.01",
+      "objectiveId": "U5-01.01",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "sistema e ambiente",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Analizzi un gas dentro un cilindro:come chiami il gas e il resto con cui può scambiare energia?",
+      "answer": "Gas=sistema;resto=ambiente,con confine dichiarato.",
+      "feedback": "Gas=sistema;resto=ambiente,con confine dichiarato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.01",
+      "objectiveId": "U5-02.01",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calore come trasferimento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un corpo ha energia interna:è corretto chiamarla calore contenuto?",
+      "answer": "No:calore è energia trasferita per differenza di temperatura.",
+      "feedback": "No:calore è energia trasferita per differenza di temperatura.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-03.01",
+      "objectiveId": "U5-03.01",
+      "familyId": "U5-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "conduzione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una sbarra metallica trasferisce energia dal capo caldo al freddo senza moto macroscopico del materiale. Quale meccanismo?",
+      "answer": "Conduzione.",
+      "feedback": "Conduzione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.01",
+      "objectiveId": "U5-04.01",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "energia interna",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una funzioneU torna allo stesso valore dopo un ciclo termodinamico. Quanto valeΔUciclo?",
+      "answer": "0,perché l’energia interna è funzione di stato.",
+      "feedback": "0,perché l’energia interna è funzione di stato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.01",
+      "objectiveId": "U5-05.01",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Kelvin-Planck e Clausius",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un motore ciclico assorbe calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale principio lo esclude?",
+      "answer": "Secondo principio,enunciato diKelvin-Planck;Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+      "feedback": "Secondo principio,enunciato diKelvin-Planck;Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "atomicFinalAssessment": [
+    {
+      "id": "final-U3-01.01",
+      "objectiveId": "U3-01.01",
+      "familyId": "U3-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "fluido e solido",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Che cosa distingue la risposta statica di un fluido da quella di un solido a uno sforzo tangenziale?",
+      "answer": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
+      "feedback": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-01.02",
+      "objectiveId": "U3-01.02",
+      "familyId": "U3-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "pressione",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Una forza normale16N agisce su0,004m². Trova la pressione.",
+      "answer": "4000Pa.",
+      "feedback": "4000Pa.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-01.03",
+      "objectiveId": "U3-01.03",
+      "familyId": "U3-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "densità",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Massa1,5kg in volume0,002m³: quale densità?",
+      "answer": "750kg/m³.",
+      "feedback": "750kg/m³.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-01.04",
+      "objectiveId": "U3-01.04",
+      "familyId": "U3-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "statica e dinamica",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "La legge p=p0+ρgh vale automaticamente in un tubo con veloce flusso dissipativo?",
+      "answer": "No: è una relazione idrostatica; il moto richiede considerare energia e perdite appropriate.",
+      "feedback": "No: è una relazione idrostatica; il moto richiede considerare energia e perdite appropriate.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.01",
+      "objectiveId": "U3-02.01",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Stevino",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Olioρ=800kg/m³,g=10m/s²,profondità0,5m. Qual è l’incremento di pressione?",
+      "answer": "4000Pa,da aggiungere alla pressione sulla superficie.",
+      "feedback": "4000Pa,da aggiungere alla pressione sulla superficie.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.02",
+      "objectiveId": "U3-02.02",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Pascal",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un aumento di pressione di2000Pa raggiunge un pistone di0,01m². Quale aumento di forza ideale?",
+      "answer": "20N,per Pascal eF=ΔpA.",
+      "feedback": "20N,per Pascal eF=ΔpA.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.03",
+      "objectiveId": "U3-02.03",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Archimede",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un volume immerso0,002m³ sposta fluidoρ=900kg/m³,g=10. Qual è la spinta?",
+      "answer": "18N verso l’alto.",
+      "feedback": "18N verso l’alto.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.04",
+      "objectiveId": "U3-02.04",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "galleggiamento",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un corpo omogeneoρ=750 galleggia in fluidoρ=1000kg/m³. Quale frazione immersa?",
+      "answer": "0,75=75%.",
+      "feedback": "0,75=75%.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.05",
+      "objectiveId": "U3-02.05",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Torricelli",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Perché in un barometro ideale una colonna di liquido può misurare la pressione atmosferica?",
+      "answer": "La differenza di pressione fra atmosfera e spazio superiore quasi vuoto equilibraρgh.",
+      "feedback": "La differenza di pressione fra atmosfera e spazio superiore quasi vuoto equilibraρgh.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-02.06",
+      "objectiveId": "U3-02.06",
+      "familyId": "U3-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "manometro",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un manometro conρ=1000kg/m³,g=10,dislivello0,03m misura quale differenza di pressione?",
+      "answer": "300Pa; conta il dislivello verticale.",
+      "feedback": "300Pa; conta il dislivello verticale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.01",
+      "objectiveId": "U3-03.01",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "flusso e portata",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "In2s attraversano un tubo6L. Qual è la portata volumetrica?",
+      "answer": "3L/s=0,003m³/s.",
+      "feedback": "3L/s=0,003m³/s.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.02",
+      "objectiveId": "U3-03.02",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "stazionario e turbolento",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee?",
+      "answer": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
+      "feedback": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.03",
+      "objectiveId": "U3-03.03",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "laminare",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Quale struttura del moto caratterizza il flusso laminare ideale in un tubo?",
+      "answer": "Strati ordinati con velocità che varia regolarmente,senza rimescolamento turbolento.",
+      "feedback": "Strati ordinati con velocità che varia regolarmente,senza rimescolamento turbolento.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.04",
+      "objectiveId": "U3-03.04",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "conservazione massa",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Fluido incomprimibile:A1=6cm²,v1=2m/s,A2=3cm². Qual èv2?",
+      "answer": "4m/s; portata conservata.",
+      "feedback": "4m/s; portata conservata.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.05",
+      "objectiveId": "U3-03.05",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Bernoulli",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "In flusso ideale orizzontaleρ=1000,la velocità passa da2a3m/s. Qual èp2−p1?",
+      "answer": "−2500Pa daBernoulli.",
+      "feedback": "−2500Pa daBernoulli.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-03.06",
+      "objectiveId": "U3-03.06",
+      "familyId": "U3-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "stenosi e aneurisma",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "In un restringimento e una dilatazione ideali allo stesso flusso e quota,come si confrontano velocità e pressione statica?",
+      "answer": "Nel restringimento velocità maggiore e pressione minore; nella dilatazione l’opposto,senza estendere questo a una diagnosi reale.",
+      "feedback": "Nel restringimento velocità maggiore e pressione minore; nella dilatazione l’opposto,senza estendere questo a una diagnosi reale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.01",
+      "objectiveId": "U3-04.01",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "fluidi reali",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Perché un fluido reale può richiedere differenza di pressione per mantenere portata in tubo orizzontale?",
+      "answer": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+      "feedback": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.02",
+      "objectiveId": "U3-04.02",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "profilo parabolico",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Nel profilo parabolico laminare in tubo qual è il rapporto velocità massima/media?",
+      "answer": "2,con aderenza alla parete e ipotesi diPoiseuille.",
+      "feedback": "2,con aderenza alla parete e ipotesi diPoiseuille.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.03",
+      "objectiveId": "U3-04.03",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "gradiente velocità",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Che cosa misura il gradiente di velocità fra due strati vicini?",
+      "answer": "La variazione della velocità per distanza trasversale;nel fluido newtoniano collega sforzo tangenziale e viscosità.",
+      "feedback": "La variazione della velocità per distanza trasversale;nel fluido newtoniano collega sforzo tangenziale e viscosità.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.04",
+      "objectiveId": "U3-04.04",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Poiseuille",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "AΔp,L eη fissati,il raggio aumenta del fattore3. Quale rapporto di portata ideale?",
+      "answer": "81,poichéQ∝r^4.",
+      "feedback": "81,poichéQ∝r^4.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-04.05",
+      "objectiveId": "U3-04.05",
+      "familyId": "U3-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "resistenze idrauliche serie e parallelo",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Due resistenze idraulicheR e3R in serie e parallelo: quali equivalenti?",
+      "answer": "4R in serie;3R/4 in parallelo,nel modello lineare.",
+      "feedback": "4R in serie;3R/4 in parallelo,nel modello lineare.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.01",
+      "objectiveId": "U3-05.01",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "tensione superficiale",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Quali unità equivalenti ha la tensione superficiale?",
+      "answer": "N/m eJ/m².",
+      "feedback": "N/m eJ/m².",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.02",
+      "objectiveId": "U3-05.02",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "piccole gocce",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "A parità di tensione superficiale,perché una goccia piccola può mostrare effetti di superficie più importanti rispetto al peso?",
+      "answer": "Il rapporto superficie/volume cresce riducendo la dimensione;il peso scala col volume.",
+      "feedback": "Il rapporto superficie/volume cresce riducendo la dimensione;il peso scala col volume.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.03",
+      "objectiveId": "U3-05.03",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "capillarità",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "La risalita capillare avviene per ogni coppia liquido-parete?",
+      "answer": "No:dipende anche dalla bagnabilità;un menisco non bagnante può produrre depressione.",
+      "feedback": "No:dipende anche dalla bagnabilità;un menisco non bagnante può produrre depressione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.04",
+      "objectiveId": "U3-05.04",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "interfacce piane e curve",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Una superficie piana ideale possiede salto di pressione dovuto alla sola curvatura?",
+      "answer": "No:la curvatura è nulla;non ne segue che la pressione assoluta siazero.",
+      "feedback": "No:la curvatura è nulla;non ne segue che la pressione assoluta siazero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U3-05.05",
+      "objectiveId": "U3-05.05",
+      "familyId": "U3-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Laplace qualitativa",
+      "sourcePages": [
+        3
+      ],
+      "prompt": "Fra due gocce dello stesso liquido con raggi3mm e6mm,quale ha maggior salto di pressione qualitativo perLaplace?",
+      "answer": "Quella da3mm,con curvatura maggiore.",
+      "feedback": "Quella da3mm,con curvatura maggiore.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.01",
+      "objectiveId": "U5-01.01",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "sistema e ambiente",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Analizzi un gas dentro un cilindro:come chiami il gas e il resto con cui può scambiare energia?",
+      "answer": "Gas=sistema;resto=ambiente,con confine dichiarato.",
+      "feedback": "Gas=sistema;resto=ambiente,con confine dichiarato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.02",
+      "objectiveId": "U5-01.02",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "pressione volume temperatura",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Per un gas in equilibrio quali variabili descrivono pressione,volume e temperatura e con quali unitàSI?",
+      "answer": "p inPa,V in m³,T inK,insieme alla quantità di sostanza.",
+      "feedback": "p inPa,V in m³,T inK,insieme alla quantità di sostanza.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.03",
+      "objectiveId": "U5-01.03",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "stato e funzioni stato",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Il calore scambiato è una funzione di stato come l’energia interna?",
+      "answer": "No:Q dipende dal percorso;U è funzione di stato.",
+      "feedback": "No:Q dipende dal percorso;U è funzione di stato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.04",
+      "objectiveId": "U5-01.04",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "scale termometriche",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Converti−20°C in kelvin.",
+      "answer": "253,15K.",
+      "feedback": "253,15K.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-01.05",
+      "objectiveId": "U5-01.05",
+      "familyId": "U5-01",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "gas ideale",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Gas ideale:n=2mol,T=250K,p=100000Pa,R=8,31446261815324J/(mol K). QualeV?",
+      "answer": "0,0415723130907662m³;usa pressione assoluta e kelvin.",
+      "feedback": "0,0415723130907662m³;usa pressione assoluta e kelvin.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.01",
+      "objectiveId": "U5-02.01",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calore come trasferimento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un corpo ha energia interna:è corretto chiamarla calore contenuto?",
+      "answer": "No:calore è energia trasferita per differenza di temperatura.",
+      "feedback": "No:calore è energia trasferita per differenza di temperatura.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.02",
+      "objectiveId": "U5-02.02",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "capacità termica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una capacità termica40J/K riceve120J senza transizioni. Quanto cresceT?",
+      "answer": "3K.",
+      "feedback": "3K.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.03",
+      "objectiveId": "U5-02.03",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calore specifico",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Massa0,5kg,c=800J/(kg K). Quale capacità termica?",
+      "answer": "400J/K.",
+      "feedback": "400J/K.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.04",
+      "objectiveId": "U5-02.04",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "gas ideali",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Per una mole di gas ideale quanto valeCp−Cv e perchéCp è maggiore?",
+      "answer": "R; a pressione costante parte del calore sostiene il lavoro di espansione.",
+      "feedback": "R; a pressione costante parte del calore sostiene il lavoro di espansione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.05",
+      "objectiveId": "U5-02.05",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "fusione evaporazione condensazione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Durante fusione ideale a pressione fissata,con due fasi in equilibrio,aggiungere calore cambia necessariamenteT?",
+      "answer": "No:può cambiare la frazione di fase a temperatura costante.",
+      "feedback": "No:può cambiare la frazione di fase a temperatura costante.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.06",
+      "objectiveId": "U5-02.06",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calore latente",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "ConL=2·10^5J/kg,quale calore assorbito per trasformare0,03kg nella fase che richiede quelL?",
+      "answer": "6000J;la legge e il segno del processo vanno dichiarati.",
+      "feedback": "6000J;la legge e il segno del processo vanno dichiarati.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-02.07",
+      "objectiveId": "U5-02.07",
+      "familyId": "U5-02",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calorimetria",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Due corpi isolati dal resto scambiano caloreQ1=+70J. Quanto valeQ2 se il recipiente è trascurabile e non ci sono altri scambi?",
+      "answer": "−70J;somma dei calori ugualezero.",
+      "feedback": "−70J;somma dei calori ugualezero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-03.01",
+      "objectiveId": "U5-03.01",
+      "familyId": "U5-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "conduzione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una sbarra metallica trasferisce energia dal capo caldo al freddo senza moto macroscopico del materiale. Quale meccanismo?",
+      "answer": "Conduzione.",
+      "feedback": "Conduzione.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-03.02",
+      "objectiveId": "U5-03.02",
+      "familyId": "U5-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "convezione",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità. Quale meccanismo di trasporto?",
+      "answer": "Convezione naturale.",
+      "feedback": "Convezione naturale.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-03.03",
+      "objectiveId": "U5-03.03",
+      "familyId": "U5-03",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "irraggiamento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Due superfici alla stessa temperatura emettono radiazione? Com’è lo scambio netto nel modello di equilibrio?",
+      "answer": "Sì,emettono entrambe;lo scambio netto èzero.",
+      "feedback": "Sì,emettono entrambe;lo scambio netto èzero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.01",
+      "objectiveId": "U5-04.01",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "energia interna",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una funzioneU torna allo stesso valore dopo un ciclo termodinamico. Quanto valeΔUciclo?",
+      "answer": "0,perché l’energia interna è funzione di stato.",
+      "feedback": "0,perché l’energia interna è funzione di stato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.02",
+      "objectiveId": "U5-04.02",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "calore e lavoro",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un gas riceveQ=+90J e compieW=+40J sull’ambiente. Dichiara i segni e trovaΔU.",
+      "answer": "Q entrante,W fatto dal gas:ΔU=Q−W=+50J.",
+      "feedback": "Q entrante,W fatto dal gas:ΔU=Q−W=+50J.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.03",
+      "objectiveId": "U5-04.03",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "primo principio",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "La leggeΔU=Q−W permette a energia di scomparire?",
+      "answer": "No:esprime il bilancio fra energia interna e trasferimenti attraverso il confine.",
+      "feedback": "No:esprime il bilancio fra energia interna e trasferimenti attraverso il confine.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.04",
+      "objectiveId": "U5-04.04",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "reversibilità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un processo con attrito può essere invertito lasciando sistema e ambiente esattamente come prima senza altri effetti?",
+      "answer": "No:è irreversibile;invertire solo il moto non annulla la produzione di entropia.",
+      "feedback": "No:è irreversibile;invertire solo il moto non annulla la produzione di entropia.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.05",
+      "objectiveId": "U5-04.05",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "isoterma",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Per un gas ideale in isoterma,ΔU=0 implicaQ=0?",
+      "answer": "No:Q=W;calore e lavoro possono essere entrambi non nulli.",
+      "feedback": "No:Q=W;calore e lavoro possono essere entrambi non nulli.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.06",
+      "objectiveId": "U5-04.06",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "isocora",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "In una trasformazione isocora quasi statica quale lavoro di espansione?",
+      "answer": "0J perchéΔV=0.",
+      "feedback": "0J perchéΔV=0.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.07",
+      "objectiveId": "U5-04.07",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "isobara",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un gas si espande quasi staticamente a2·10^5Pa di0,001m³. Quale lavoro fatto dal gas?",
+      "answer": "+200J.",
+      "feedback": "+200J.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-04.08",
+      "objectiveId": "U5-04.08",
+      "familyId": "U5-04",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "adiabatica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Una compressione adiabatica ideale con60J di lavoro fatto sul gas ha qualeQ eΔU?",
+      "answer": "Q=0;Wfatto dal gas=−60J;ΔU=+60J.",
+      "feedback": "Q=0;Wfatto dal gas=−60J;ΔU=+60J.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.01",
+      "objectiveId": "U5-05.01",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Kelvin-Planck e Clausius",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un motore ciclico assorbe calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale principio lo esclude?",
+      "answer": "Secondo principio,enunciato diKelvin-Planck;Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+      "feedback": "Secondo principio,enunciato diKelvin-Planck;Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.02",
+      "objectiveId": "U5-05.02",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "irreversibilità",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un processo spontaneo può conservare energia ed essere comunque irreversibile?",
+      "answer": "Sì:conservazione energetica non impone reversibilità né entropia totale costante.",
+      "feedback": "Sì:conservazione energetica non impone reversibilità né entropia totale costante.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.03",
+      "objectiveId": "U5-05.03",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "ciclo",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Che cosa definisce un ciclo e quanto cambia una funzione di stato al termine?",
+      "answer": "Ritorno allo stato iniziale;variazione netta della funzione di statozero.",
+      "feedback": "Ritorno allo stato iniziale;variazione netta della funzione di statozero.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.04",
+      "objectiveId": "U5-05.04",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "macchina termica e rendimento",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Macchina assorbe1000J e cede700J in un ciclo. Quale rendimento?",
+      "answer": "0,3=30%;W=300J.",
+      "feedback": "0,3=30%;W=300J.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.05",
+      "objectiveId": "U5-05.05",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "Carnot",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Fra termostati500K e400K,quale limite diCarnot?",
+      "answer": "20%,conηC=1−400/500.",
+      "feedback": "20%,conηC=1−400/500.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.06",
+      "objectiveId": "U5-05.06",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "entropia funzione stato",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un sottosistema cede entropia all’ambiente e diminuisceS. Questo viola sempre il secondo principio?",
+      "answer": "No:si deve valutareΔStotale di sistema e ambiente;deve essere non negativa per l’universo isolato.",
+      "feedback": "No:si deve valutareΔStotale di sistema e ambiente;deve essere non negativa per l’universo isolato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.07",
+      "objectiveId": "U5-05.07",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "interpretazione statistica",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Nell’interpretazione statistica,più configurazioni microscopiche compatibili con un macro-stato tendono a quale entropia?",
+      "answer": "Maggiore entropia,conS collegata al logaritmo del numero di microstati nel modello appropriato.",
+      "feedback": "Maggiore entropia,conS collegata al logaritmo del numero di microstati nel modello appropriato.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    },
+    {
+      "id": "final-U5-05.08",
+      "objectiveId": "U5-05.08",
+      "familyId": "U5-05",
+      "courseId": "fluidi-termodinamica",
+      "targetLabel": "direzione processi",
+      "sourcePages": [
+        4
+      ],
+      "prompt": "Un flusso spontaneo di100J da500K a250K aumenta o diminuisce l’entropia totale dei due termostati? Quanto?",
+      "answer": "Aumenta di0,2J/K:100/250−100/500.",
+      "feedback": "Aumenta di0,2J/K:100/250−100/500.",
+      "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
+      "assessmentType": "original_short_answer_review_item",
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery."
+    }
+  ],
+  "diagnostic": [
+    {
+      "id": "diag-fluidi-termodinamica-density",
+      "courseId": "fluidi-termodinamica",
+      "objectiveId": "U3-01.03",
+      "prompt": "Un liquido omogeneo ha massa1,08kg e volume0,0009m³. Determina la densità in unità SI.",
+      "answer": {
+        "value": 1200.0,
+        "unit": "kg/m³"
+      },
+      "feedback": "ρ=m/V=1,08/0,0009=1200kg/m³. La densità non si ottiene moltiplicando massa e volume.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U3-01.03",
+        "lessonId": "ds-2026-u3-01"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-fluidi-termodinamica-hydrostatic",
+      "courseId": "fluidi-termodinamica",
+      "objectiveId": "U3-02.01",
+      "prompt": "In un fluido fermo di densità850kg/m³ si scende di0,4m. Con g=10m/s²,quanto aumenta la pressione rispetto al punto di partenza?",
+      "answer": {
+        "value": 3400.0,
+        "unit": "Pa"
+      },
+      "feedback": "Δp=ρgΔh=850·10·0,4=3400Pa. È un incremento,non la pressione assoluta.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U3-02.01",
+        "lessonId": "ds-2026-u3-02"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    },
+    {
+      "id": "diag-fluidi-termodinamica-gas-state",
+      "courseId": "fluidi-termodinamica",
+      "objectiveId": "U5-01.05",
+      "prompt": "Un gas ideale ha n=0,25mol,T=350K e pressione assoluta80000Pa. ConR=8,31446261815324J/(mol K),trova il volume in m³.",
+      "answer": {
+        "value": 0.009093943488605106,
+        "unit": "m³"
+      },
+      "feedback": "V=nRT/p≈0,009093943488605106m³. Usa kelvin e pressione assoluta; il risultato è circa9,094L.",
+      "use": "diagnostic_without_score_claim",
+      "recoveryTarget": {
+        "objectiveId": "U5-01.05",
+        "lessonId": "ds-2026-u5-01"
+      },
+      "scientificStatus": "AI_CHECKED",
+      "editorialStatus": "DRAFT",
+      "humanApproval": false,
+      "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+      "suitability": "NEEDS_HUMAN_REVIEW"
+    }
+  ],
+  "formulaSheet": [
+    {
+      "name": "Fluido",
+      "expression": "ρ=m/V; p=Fn/A",
+      "domain": "V,A>0; pressione assoluta distinta da differenziale"
+    },
+    {
+      "name": "Idrostatica",
+      "expression": "p=p0+ρgh; F_A=ρfluido gVimmerso",
+      "domain": "fluido fermo omogeneo;h profondità"
+    },
+    {
+      "name": "Continuità",
+      "expression": "ρAv=costante",
+      "domain": "moto stazionario senza diramazioni; incomprimibile→Av=costante"
+    },
+    {
+      "name": "Bernoulli",
+      "expression": "p+ρv²/2+ρgh=costante",
+      "domain": "lungo linea di corrente; ideale stazionario incomprimibile,senza pompe/perdite"
+    },
+    {
+      "name": "Poiseuille",
+      "expression": "Q=πr^4Δp/(8ηL); Rh=Δp/Q",
+      "domain": "tubo lungo cilindrico;laminare,newtoniano,rigido,no-slip"
+    },
+    {
+      "name": "Gas ideale",
+      "expression": "pV=nRT; R=8,31446261815324J/(mol K)",
+      "domain": "p assoluta>0,T inK>0; gas ideale in equilibrio"
+    },
+    {
+      "name": "Calore",
+      "expression": "Q=mcΔT; Qtransizione=mL",
+      "domain": "condizioni e fase dichiarate; gasCp eCv distinti"
+    },
+    {
+      "name": "Bilancio",
+      "expression": "ΔU=Q−W",
+      "domain": "Qentrante,Wfatto dal gas; non cambiare convenzione"
+    },
+    {
+      "name": "Carnot ed entropia",
+      "expression": "ηC=1−Tf/Tc; ΔS=∫δQrev/T",
+      "domain": "temperatureK;Carnot limite reversibile;ΔStot≥0 per universo isolato"
+    }
+  ],
+  "recoveryTargets": [
+    {
+      "itemId": "final-U3-01.01",
+      "objectiveId": "U3-01.01",
+      "lessonId": "ds-2026-u3-01",
+      "feedback": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo."
+    },
+    {
+      "itemId": "final-U3-01.02",
+      "objectiveId": "U3-01.02",
+      "lessonId": "ds-2026-u3-01",
+      "feedback": "4000Pa."
+    },
+    {
+      "itemId": "final-U3-01.03",
+      "objectiveId": "U3-01.03",
+      "lessonId": "ds-2026-u3-01",
+      "feedback": "750kg/m³."
+    },
+    {
+      "itemId": "final-U3-01.04",
+      "objectiveId": "U3-01.04",
+      "lessonId": "ds-2026-u3-01",
+      "feedback": "No: è una relazione idrostatica; il moto richiede considerare energia e perdite appropriate."
+    },
+    {
+      "itemId": "final-U3-02.01",
+      "objectiveId": "U3-02.01",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "4000Pa,da aggiungere alla pressione sulla superficie."
+    },
+    {
+      "itemId": "final-U3-02.02",
+      "objectiveId": "U3-02.02",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "20N,per Pascal eF=ΔpA."
+    },
+    {
+      "itemId": "final-U3-02.03",
+      "objectiveId": "U3-02.03",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "18N verso l’alto."
+    },
+    {
+      "itemId": "final-U3-02.04",
+      "objectiveId": "U3-02.04",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "0,75=75%."
+    },
+    {
+      "itemId": "final-U3-02.05",
+      "objectiveId": "U3-02.05",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "La differenza di pressione fra atmosfera e spazio superiore quasi vuoto equilibraρgh."
+    },
+    {
+      "itemId": "final-U3-02.06",
+      "objectiveId": "U3-02.06",
+      "lessonId": "ds-2026-u3-02",
+      "feedback": "300Pa; conta il dislivello verticale."
+    },
+    {
+      "itemId": "final-U3-03.01",
+      "objectiveId": "U3-03.01",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "3L/s=0,003m³/s."
+    },
+    {
+      "itemId": "final-U3-03.02",
+      "objectiveId": "U3-03.02",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo."
+    },
+    {
+      "itemId": "final-U3-03.03",
+      "objectiveId": "U3-03.03",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "Strati ordinati con velocità che varia regolarmente,senza rimescolamento turbolento."
+    },
+    {
+      "itemId": "final-U3-03.04",
+      "objectiveId": "U3-03.04",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "4m/s; portata conservata."
+    },
+    {
+      "itemId": "final-U3-03.05",
+      "objectiveId": "U3-03.05",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "−2500Pa daBernoulli."
+    },
+    {
+      "itemId": "final-U3-03.06",
+      "objectiveId": "U3-03.06",
+      "lessonId": "ds-2026-u3-03",
+      "feedback": "Nel restringimento velocità maggiore e pressione minore; nella dilatazione l’opposto,senza estendere questo a una diagnosi reale."
+    },
+    {
+      "itemId": "final-U3-04.01",
+      "objectiveId": "U3-04.01",
+      "lessonId": "ds-2026-u3-04",
+      "feedback": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite."
+    },
+    {
+      "itemId": "final-U3-04.02",
+      "objectiveId": "U3-04.02",
+      "lessonId": "ds-2026-u3-04",
+      "feedback": "2,con aderenza alla parete e ipotesi diPoiseuille."
+    },
+    {
+      "itemId": "final-U3-04.03",
+      "objectiveId": "U3-04.03",
+      "lessonId": "ds-2026-u3-04",
+      "feedback": "La variazione della velocità per distanza trasversale;nel fluido newtoniano collega sforzo tangenziale e viscosità."
+    },
+    {
+      "itemId": "final-U3-04.04",
+      "objectiveId": "U3-04.04",
+      "lessonId": "ds-2026-u3-04",
+      "feedback": "81,poichéQ∝r^4."
+    },
+    {
+      "itemId": "final-U3-04.05",
+      "objectiveId": "U3-04.05",
+      "lessonId": "ds-2026-u3-04",
+      "feedback": "4R in serie;3R/4 in parallelo,nel modello lineare."
+    },
+    {
+      "itemId": "final-U3-05.01",
+      "objectiveId": "U3-05.01",
+      "lessonId": "ds-2026-u3-05",
+      "feedback": "N/m eJ/m²."
+    },
+    {
+      "itemId": "final-U3-05.02",
+      "objectiveId": "U3-05.02",
+      "lessonId": "ds-2026-u3-05",
+      "feedback": "Il rapporto superficie/volume cresce riducendo la dimensione;il peso scala col volume."
+    },
+    {
+      "itemId": "final-U3-05.03",
+      "objectiveId": "U3-05.03",
+      "lessonId": "ds-2026-u3-05",
+      "feedback": "No:dipende anche dalla bagnabilità;un menisco non bagnante può produrre depressione."
+    },
+    {
+      "itemId": "final-U3-05.04",
+      "objectiveId": "U3-05.04",
+      "lessonId": "ds-2026-u3-05",
+      "feedback": "No:la curvatura è nulla;non ne segue che la pressione assoluta siazero."
+    },
+    {
+      "itemId": "final-U3-05.05",
+      "objectiveId": "U3-05.05",
+      "lessonId": "ds-2026-u3-05",
+      "feedback": "Quella da3mm,con curvatura maggiore."
+    },
+    {
+      "itemId": "final-U5-01.01",
+      "objectiveId": "U5-01.01",
+      "lessonId": "ds-2026-u5-01",
+      "feedback": "Gas=sistema;resto=ambiente,con confine dichiarato."
+    },
+    {
+      "itemId": "final-U5-01.02",
+      "objectiveId": "U5-01.02",
+      "lessonId": "ds-2026-u5-01",
+      "feedback": "p inPa,V in m³,T inK,insieme alla quantità di sostanza."
+    },
+    {
+      "itemId": "final-U5-01.03",
+      "objectiveId": "U5-01.03",
+      "lessonId": "ds-2026-u5-01",
+      "feedback": "No:Q dipende dal percorso;U è funzione di stato."
+    },
+    {
+      "itemId": "final-U5-01.04",
+      "objectiveId": "U5-01.04",
+      "lessonId": "ds-2026-u5-01",
+      "feedback": "253,15K."
+    },
+    {
+      "itemId": "final-U5-01.05",
+      "objectiveId": "U5-01.05",
+      "lessonId": "ds-2026-u5-01",
+      "feedback": "0,0415723130907662m³;usa pressione assoluta e kelvin."
+    },
+    {
+      "itemId": "final-U5-02.01",
+      "objectiveId": "U5-02.01",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "No:calore è energia trasferita per differenza di temperatura."
+    },
+    {
+      "itemId": "final-U5-02.02",
+      "objectiveId": "U5-02.02",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "3K."
+    },
+    {
+      "itemId": "final-U5-02.03",
+      "objectiveId": "U5-02.03",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "400J/K."
+    },
+    {
+      "itemId": "final-U5-02.04",
+      "objectiveId": "U5-02.04",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "R; a pressione costante parte del calore sostiene il lavoro di espansione."
+    },
+    {
+      "itemId": "final-U5-02.05",
+      "objectiveId": "U5-02.05",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "No:può cambiare la frazione di fase a temperatura costante."
+    },
+    {
+      "itemId": "final-U5-02.06",
+      "objectiveId": "U5-02.06",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "6000J;la legge e il segno del processo vanno dichiarati."
+    },
+    {
+      "itemId": "final-U5-02.07",
+      "objectiveId": "U5-02.07",
+      "lessonId": "ds-2026-u5-02",
+      "feedback": "−70J;somma dei calori ugualezero."
+    },
+    {
+      "itemId": "final-U5-03.01",
+      "objectiveId": "U5-03.01",
+      "lessonId": "ds-2026-u5-03",
+      "feedback": "Conduzione."
+    },
+    {
+      "itemId": "final-U5-03.02",
+      "objectiveId": "U5-03.02",
+      "lessonId": "ds-2026-u5-03",
+      "feedback": "Convezione naturale."
+    },
+    {
+      "itemId": "final-U5-03.03",
+      "objectiveId": "U5-03.03",
+      "lessonId": "ds-2026-u5-03",
+      "feedback": "Sì,emettono entrambe;lo scambio netto èzero."
+    },
+    {
+      "itemId": "final-U5-04.01",
+      "objectiveId": "U5-04.01",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "0,perché l’energia interna è funzione di stato."
+    },
+    {
+      "itemId": "final-U5-04.02",
+      "objectiveId": "U5-04.02",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "Q entrante,W fatto dal gas:ΔU=Q−W=+50J."
+    },
+    {
+      "itemId": "final-U5-04.03",
+      "objectiveId": "U5-04.03",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "No:esprime il bilancio fra energia interna e trasferimenti attraverso il confine."
+    },
+    {
+      "itemId": "final-U5-04.04",
+      "objectiveId": "U5-04.04",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "No:è irreversibile;invertire solo il moto non annulla la produzione di entropia."
+    },
+    {
+      "itemId": "final-U5-04.05",
+      "objectiveId": "U5-04.05",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "No:Q=W;calore e lavoro possono essere entrambi non nulli."
+    },
+    {
+      "itemId": "final-U5-04.06",
+      "objectiveId": "U5-04.06",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "0J perchéΔV=0."
+    },
+    {
+      "itemId": "final-U5-04.07",
+      "objectiveId": "U5-04.07",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "+200J."
+    },
+    {
+      "itemId": "final-U5-04.08",
+      "objectiveId": "U5-04.08",
+      "lessonId": "ds-2026-u5-04",
+      "feedback": "Q=0;Wfatto dal gas=−60J;ΔU=+60J."
+    },
+    {
+      "itemId": "final-U5-05.01",
+      "objectiveId": "U5-05.01",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "Secondo principio,enunciato diKelvin-Planck;Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti."
+    },
+    {
+      "itemId": "final-U5-05.02",
+      "objectiveId": "U5-05.02",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "Sì:conservazione energetica non impone reversibilità né entropia totale costante."
+    },
+    {
+      "itemId": "final-U5-05.03",
+      "objectiveId": "U5-05.03",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "Ritorno allo stato iniziale;variazione netta della funzione di statozero."
+    },
+    {
+      "itemId": "final-U5-05.04",
+      "objectiveId": "U5-05.04",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "0,3=30%;W=300J."
+    },
+    {
+      "itemId": "final-U5-05.05",
+      "objectiveId": "U5-05.05",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "20%,conηC=1−400/500."
+    },
+    {
+      "itemId": "final-U5-05.06",
+      "objectiveId": "U5-05.06",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "No:si deve valutareΔStotale di sistema e ambiente;deve essere non negativa per l’universo isolato."
+    },
+    {
+      "itemId": "final-U5-05.07",
+      "objectiveId": "U5-05.07",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "Maggiore entropia,conS collegata al logaritmo del numero di microstati nel modello appropriato."
+    },
+    {
+      "itemId": "final-U5-05.08",
+      "objectiveId": "U5-05.08",
+      "lessonId": "ds-2026-u5-05",
+      "feedback": "Aumenta di0,2J/K:100/250−100/500."
+    }
+  ],
+  "editorialHandoffCommit": "d4d15d1fcae650c98239bc3e50be349061e2c6b3"
+}

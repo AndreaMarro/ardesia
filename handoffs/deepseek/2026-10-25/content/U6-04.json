@@ -1,0 +1,69 @@
+{
+  "id": "ds-2026-u6-04",
+  "familyId": "U6-04",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Corrente e circuiti",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U6-04.01",
+    "U6-04.02",
+    "U6-04.03",
+    "U6-04.04",
+    "U6-04.05",
+    "U6-04.06",
+    "U6-04.07"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza.",
+  "workedExample": {
+    "prompt": "Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze.",
+    "steps": [
+      "Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A.",
+      "I totale=4,5 A; R equivalente=12/4,5=8/3 Ω.",
+      "P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W."
+    ],
+    "result": "I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W."
+  },
+  "practice": {
+    "prompt": "Un generatore ideale12V alimenta resistori4Ω e8Ω in serie: trovaI,V1,V2 ePtotale.",
+    "answer": "1 A; 4 V; 8 V; 12 W",
+    "feedback": "La serie ha 12 Ω. La stessa corrente percorre entrambi e le due cadute sommano 12 V."
+  },
+  "transfer": {
+    "prompt": "Un filo ohmico raddoppia lunghezza e area, a ρ costante. Cambiano R e P a tensione fissata? Se invece raddoppia solo L?",
+    "answer": "R invariata e P invariata nel primo caso; R raddoppia e P si dimezza nel secondo.",
+    "feedback": "Usa R=ρL/A e poi P=V²/R. A corrente fissata la conclusione sulla potenza sarebbe diversa."
+  },
+  "commonErrors": [
+    "Sommare resistenze in parallelo",
+    "Pensare che una corrente negativa dia potenza Joule negativa",
+    "Confondere potenza ed energia"
+  ],
+  "hintLadder": [
+    "Identifica i nodi equipotenziali",
+    "Scrivi quale grandezza è uguale sui due resistori",
+    "Verifica somma correnti e bilancio potenze"
+  ],
+  "recap": "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa.",
+  "transcript": "La corrente convenzionale è carica netta per unità di tempo: ampere significa coulomb al secondo. Un generatore ideale mantiene la differenza di potenziale assegnata. Per un resistore ohmico a condizioni materiali costanti vale V=RI; per un filo uniforme R=ρL/A, dove la resistività ρ ha unità Ω m. In serie i resistori condividono la corrente e le cadute si sommano. In parallelo condividono la tensione e le correnti si sommano. La potenza dissipata è P=VI=I²R=V²/R, positiva per un resistore passivo anche invertendo la polarità. L’energia dissipata in tempo costante è Pt e si misura in joule, non watt. Passare da serie a parallelo cambia il circuito: non basta guardare la vicinanza delle forme nel disegno. Il modello a due resistori non comprende resistenza interna del generatore, riscaldamento o limiti reali di potenza. Esempio: Un generatore ideale da 12 V alimenta resistori da 4 Ω e 8 Ω in parallelo. Trova correnti e potenze. Ogni ramo ha 12 V: I1=12/4=3 A; I2=12/8=1,5 A. I totale=4,5 A; R equivalente=12/4,5=8/3 Ω. P1=36 W; P2=18 W; totale=54 W. Controlla VI totale=12·4,5=54 W. Risultato: I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W.",
+  "scientificCounterchecks": [
+    "Una rete passiva deve rispettare continuità della corrente e potenza dissipata non negativa.",
+    "In parallelo R equivalente è minore di 4 Ω: 8/3 Ω soddisfa il limite.",
+    "Invertendo V tutte le correnti cambiano segno e le potenze restano positive."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

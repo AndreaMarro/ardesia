@@ -1,0 +1,512 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/course-learning.test.tsx
+
+
+ RUN  v4.1.8 /private/tmp/ardesia-a-four-courses-20261025/apps/web
+
+ ❯ src/__tests__/course-learning.test.tsx (11 tests | 2 failed) 675ms
+   × editorial qualitative problem preserves its authored prompt and feedback 14ms
+   × opening assistance invalidates a previously prepared unassisted submission 33ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/course-learning.test.tsx > editorial qualitative problem preserves its authored prompt and feedback
+TestingLibraryElementError: Unable to find an element with the text: Spiega perché il vincolo cambia il risultato.. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"course-overview"[39m
+    [36m>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"section-meta"[39m
+      [36m>[39m
+        [0mU1 + U2[0m
+        [0m · percorso in costruzione[0m
+      [36m</p>[39m
+      [36m<h1>[39m
+        [0mStrumenti e meccanica[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mUn passaggio originale da studiare e provare. Completezza del corso: [0m
+        [0m0[0m
+        [0m/[0m
+        [0m52[0m
+        [0m sotto-obiettivi con tutte le prove richieste. Stato editoriale DRAFT, senza approvazione umana attestata.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Sequenza delle lezioni"[39m
+      [33mclass[39m=[32m"course-sequence"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-pressed[39m=[32m"true"[39m
+      [36m>[39m
+        [0m1[0m
+        [0m. [0m
+        [0mMolla, forze ed equilibrio[0m
+      [36m</button>[39m
+    [36m</nav>[39m
+    [36m<article[39m
+      [33maria-labelledby[39m=[32m"course-lesson-title"[39m
+      [33mclass[39m=[32m"course-lesson"[39m
+    [36m>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"section-meta"[39m
+      [36m>[39m
+        [0mLezione originale · [0m
+        [0mesempio pubblico delimitato[0m
+      [36m</p>[39m
+      [36m<h2[39m
+        [33mid[39m=[32m"course-lesson-title"[39m
+      [36m>[39m
+        [0mMolla, forze ed equilibrio[0m
+      [36m</h2>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"course-situation"[39m
+      [36m>[39m
+        [0mPrevedi il risultato per i parametri attualmente selezionati. La domanda di partenza è un caso di confronto, non la soluzione della nuova configurazione.[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"course-workspace"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Oggetto scientifico della lezione"[39m
+          [33mclass[39m=[32m"course-model"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mQuesto passaggio usa il ragionamento e la soluzione commentata; non ha ancora un oggetto interattivo.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"course-controls"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mLa tua risposta o il tuo ragionamento[0m
+            [36m<input[39m
+              [33minputmode[39m=[32m"text"[39m
+              [33mmaxlength[39m=[32m"2000"[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<p>[39m
+            [0mUnità richiesta: [0m
+            [0mragionamento[0m
+            [0m. Prima ragiona, poi confronta.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mConfronta la previsione[0m
+          [36m</button>[39m
+          [36m<p>[39m
+            [0mNessun aiuto richiesto in questa bozza; questo dato non prova comprensione autonoma.[0m
+          [36m</p>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"course-support"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+        [36m>[39m
+          [0mApri la spiegazione[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+        [36m>[39m
+          [0mUn esempio ragionato[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+        [36m>[39m
+          [0mRitrova il passaggio spiegato[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-expanded[39m=[32m"false"[39m
+        [36m>[39m
+          [0mRipasso e formulario[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p>[39m
+        [0mLa previsione può essere consegnata con il modulo del corso qui sotto. Note, ricevute e revisione usano il Core; questo laboratorio non crea un altro diario.[0m
+      [36m</p>[39m
+    [36m</article>[39m
+    [36m<details[39m
+      [33mclass[39m=[32m"course-gaps"[39m
+    [36m>[39m
+      [36m<summary>[39m
+        [0mChe cosa manca al corso completo[0m
+      [36m</summary>[39m
+      [36m<ul>[39m
+        [36m<li>[39m
+          [0mCopertura e prove per ciascuno dei 52 sotto-obiettivi da certificare.[0m
+        [36m</li>[39m
+        [36m<li>[39m
+          [0mApprovazione scientifica/editoriale umana assente.[0m
+        [36m</li>[39m
+        [36m<li>[39m
+          [0mContinuità remota docente-studente non certificata.[0m
+        [36m</li>[39m
+      [36m</ul>[39m
+      [36m<p>[39m
+        [0mDiagnostica, valutazione finale e ripresa fra docente e studente sono criteri distinti: la bozza locale non li sostituisce.[0m
+      [36m</p>[39m
+      [36m<ol>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU1-01[0m
+            [0m · [0m
+            [0mNotazione scientifica[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mpotenze di dieci[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0moperazioni[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mordine di grandezza[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU1-02[0m
+            [0m · [0m
+            [0mGrandezze e unità[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mdimensioni[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mSI[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mconversioni[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mstime[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mestensive e intensive[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mscalari e vettori[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU1-03[0m
+            [0m · [0m
+            [0mTrigonometria[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mseno[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mcoseno[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mtangente[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mangoli e componenti[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU1-04[0m
+            [0m · [0m
+            [0mOperazioni vettoriali[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mcomponenti[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0msomma[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mdifferenza[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mprodotto scalare[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mprodotto vettoriale[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU2-01[0m
+            [0m · [0m
+            [0mCinematica[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mposizione e spostamento[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mtraiettoria e legge oraria[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mvelocità media e istantanea[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0maccelerazione media e istantanea[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mMRU[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mmoto uniformemente accelerato[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mcaduta libera[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mlancio parabolico[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mmoto circolare e accelerazione centripeta[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU2-02[0m
+            [0m · [0m
+            [0mDinamica e forze[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0minerzia[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mrisultante e accelerazione[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mazione e reazione[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mequilibrio traslazionale[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mpeso e gravitazione[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mcontatto e normale[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mattrito statico e dinamico[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mtensione[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mHooke[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU2-03[0m
+            [0m · [0m
+            [0mLavoro ed energia[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mlavoro[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mpotenza[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mteorema energia cinetica[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mforze conservative e dissipative[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0menergia potenziale gravitazionale ed elastica[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mconservazione energia meccanica[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU2-04[0m
+            [0m · [0m
+            [0mImpulso e quantità di moto[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mquantità di moto[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mimpulso[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0msistema isolato[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mconservazione negli urti[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+        [36m<li>[39m
+          [36m<strong>[39m
+            [0mU2-05[0m
+            [0m · [0m
+            [0mSistemi e leve[0m
+          [36m</strong>[39m
+          [36m<ul>[39m
+            [36m<li>[39m
+              [0mcentro di massa[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mmoto del centro di massa[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mcorpo rigido[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mmomento torcente[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mequilibrio rotazionale[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [0mleve nel corpo umano[0m
+              [0m · da verificare[0m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</li>[39m
+      [36m</ol>[39m
+    [36m</details>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"button-primary course-contact"[39m
+      [33mhref[39m=[32m"/?percorso=strumenti-meccanica#contatto"[39m
+    [36m>[39m
+      [0mChiedi informazioni su questo percorso[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../../ardesia-r2-20261024/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../ardesia-r2-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../ardesia-r2-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../ardesia-r2-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/course-learning.test.tsx:68:16
+     66|  const course={...original,lessons:[lesson]};
+     67|  render(<CourseScope course={course} allowLocalDrafts={false}/>);
+     68|  expect(screen.getByText(lesson.practice.prompt)).toBeTruthy();
+       |                ^
+     69|  fireEvent.change(screen.getByLabelText('La tua risposta o il tuo ragi…
+     70|  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/course-learning.test.tsx > opening assistance invalidates a previously prepared unassisted submission
+AssertionError: expected { Object (activityId, parameters, ...) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "activityId": "dc-resistance-v1",
+  "parameters": {
+    "resistance1": 4,
+    "resistance2": 8,
+    "topology": "series",
+    "voltage": 12,
+  },
+  "prediction": "1 [Nessun aiuto richiesto in questa sessione; non prova autonomia]",
+}
+
+ ❯ src/__tests__/course-learning.test.tsx:81:40
+     79|  expect(commit.mock.calls.at(-1)?.[0]).toMatchObject({activityId:'dc-r…
+     80|  fireEvent.click(screen.getByRole('button',{name:'Apri la spiegazione'…
+     81|  expect(commit.mock.calls.at(-1)?.[0]).toBeNull();
+       |                                        ^
+     82| });
+     83|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  23:00:38
+   Duration  2.20s (transform 482ms, setup 0ms, import 647ms, tests 675ms, environment 734ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/ardesia-a-four-courses-20261025/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /private/tmp/ardesia-a-four-courses-20261025/apps/web
+npm error command failed
+npm error command sh -c vitest run src/__tests__/course-learning.test.tsx

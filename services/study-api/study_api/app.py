@@ -333,10 +333,21 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         from lessonos.study.learning_experiences import list_experiences
         return list_experiences(store,authenticate(request,store),editionId,format=format)
 
+    @app.get('/study/course-learning')
+    def course_learning(editionId:str,request:Request,store=Depends(store_dependency)):
+        from lessonos.study.four_courses import course_projection_for_edition
+        return course_projection_for_edition(store,authenticate(request,store),editionId)
+
     @app.get('/study/coursepack')
     def coursepack(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
         from lessonos.study.coursepack import load_coursepack
         from lessonos.study.editions import public_edition
+        from lessonos.study.catalog import edition_pack
+        store.get_edition(editionId)  # Keep the existing404 contract before binding validation.
+        binding=edition_pack(store,editionId)
+        if binding['packId'].startswith('sf-'):
+            from lessonos.study.four_courses import coursepack_for_edition
+            return coursepack_for_edition(store,authenticate(request,store),editionId)
         edition=public_edition(store,editionId,authenticate(request,store) if request.cookies.get('study_session') else None)
         return load_coursepack(edition['packId'],edition['packVersion'])
 

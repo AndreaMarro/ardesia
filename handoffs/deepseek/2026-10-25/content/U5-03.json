@@ -1,0 +1,63 @@
+{
+  "id": "ds-2026-u5-03",
+  "familyId": "U5-03",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U5",
+  "title": "Trasmissione calore",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U5-03.01",
+    "U5-03.02",
+    "U5-03.03"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La conduzione trasferisce energia attraverso interazioni microscopiche senza trasporto macroscopico di materia; nel modello piano stazionario P=kAΔT/L. La convezione trasferisce energia con il moto del fluido e può essere naturale o forzata. L’irraggiamento trasferisce energia tramite onde elettromagnetiche e può avvenire nel vuoto. La direzione netta spontanea è dal corpo più caldo al più freddo, pur essendoci emissione in entrambe le direzioni. Una superficie non smette di emettere perché l’ambiente ha uguale temperatura: si annulla lo scambio netto. Non è necessario usare leggi quantitative non fornite per riconoscere il meccanismo dominante; nei sistemi reali i tre meccanismi possono coesistere.",
+  "workedExample": {
+    "prompt": "Parete piana: k=0,5W/(m K),A=2m²,ΔT=10K,L=0,1m. La legge fornita èP=kAΔT/L. TrovaP.",
+    "steps": [
+      "Il prodotto kAΔT vale10W m.",
+      "Dividi per0,1m.",
+      "P=100W dal lato caldo al freddo."
+    ],
+    "result": "100W."
+  },
+  "practice": {
+    "prompt": "Il calore del Sole raggiunge un oggetto nello spazio vuoto. Quale meccanismo può agire attraverso il vuoto?",
+    "answer": "Irraggiamento.",
+    "feedback": "Conduzione e convezione necessitano di materia lungo il tragitto; la radiazione elettromagnetica no."
+  },
+  "transfer": {
+    "prompt": "Una parete ha k=0,5W/(m K),A=2m²,ΔT=10K eL=0,2m. UsaP=kAΔT/L; trovaP e descrivi come una ventola cambia il trasporto nell’aria.",
+    "answer": "50W; la ventola aumenta il moto del fluido e favorisce convezione forzata.",
+    "feedback": "La conduzione ideale è inversa aL. Il trasferimento nell’aria richiede un modello convettivo diverso, senza attribuirgli lo stesso kAΔT/L."
+  },
+  "commonErrors": [
+    "Confondere convezione con conduzione",
+    "Dire che in equilibrio termico non c’è emissione"
+  ],
+  "hintLadder": [
+    "Individua se si muove materia",
+    "Distingui flusso emesso e netto"
+  ],
+  "recap": "I tre meccanismi richiedono modelli e ipotesi distinti.",
+  "transcript": "La conduzione trasferisce energia attraverso interazioni microscopiche senza trasporto macroscopico di materia; nel modello piano stazionario P=kAΔT/L. La convezione trasferisce energia con il moto del fluido e può essere naturale o forzata. L’irraggiamento trasferisce energia tramite onde elettromagnetiche e può avvenire nel vuoto. La direzione netta spontanea è dal corpo più caldo al più freddo, pur essendoci emissione in entrambe le direzioni. Una superficie non smette di emettere perché l’ambiente ha uguale temperatura: si annulla lo scambio netto. Non è necessario usare leggi quantitative non fornite per riconoscere il meccanismo dominante; nei sistemi reali i tre meccanismi possono coesistere. Esempio: Parete piana: k=0,5W/(m K),A=2m²,ΔT=10K,L=0,1m. La legge fornita èP=kAΔT/L. TrovaP. Il prodotto kAΔT vale10W m. Dividi per0,1m. P=100W dal lato caldo al freddo. Risultato: 100W.",
+  "scientificCounterchecks": [
+    "I tre meccanismi richiedono modelli e ipotesi distinti.",
+    "W/(mK)·m²·K/m=W.",
+    "ΔT=0 annulla il flusso netto del modello di conduzione."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

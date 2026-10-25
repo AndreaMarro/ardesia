@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u2-04",
+  "familyId": "U2-04",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U2",
+  "title": "Impulso e quantità di moto",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U2-04.01",
+    "U2-04.02",
+    "U2-04.03",
+    "U2-04.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La quantità di moto p=mv è vettoriale e si misura in kg m/s. L’impulso della risultante esterna è Δp: se la forza è costante J=FΔt. La quantità di moto totale si conserva quando l’impulso esterno sul sistema è nullo o trascurabile nell’intervallo considerato. In un urto le forze interne di interazione non cambiano la quantità di moto totale ma possono convertire energia cinetica in energia interna. Un urto elastico conserva anche l’energia cinetica; un urto completamente anelastico fa proseguire insieme i corpi e di norma dissipa parte diK. Un sistema isolato non richiede che ogni singolo corpo mantenga la propria velocità. I segni delle velocità devono riferirsi a un unico asse.",
+  "workedExample": {
+    "prompt": "Un carrello di2kg a3m/s urta un carrello di1kg fermo. Restano uniti; impulso esterno trascurabile. Trova velocità finale eK persa.",
+    "steps": [
+      "piniziale=2·3=6kg m/s.",
+      "Mtotale=3kg: vf=6/3=2m/s.",
+      "Ki=9J,Kf=6J;3J convertiti in energia interna."
+    ],
+    "result": "vf=2m/s;Kpersa=3J."
+  },
+  "practice": {
+    "prompt": "Una massa di0,2kg cambia velocità da+5 a−5m/s. Qual è l’impulso?",
+    "answer": "−2kg m/s = −2N s",
+    "feedback": "Δp=0,2(−5−5)=−2. Sottrarre i soli moduli darebbe erroneamente zero."
+  },
+  "transfer": {
+    "prompt": "Su un sistema inizialmente fermo agisce una forza esterna di4N per0,5s. La quantità di moto si conserva? Quanto diventa?",
+    "answer": "No;Δp=+2kg m/s nella direzione della forza.",
+    "feedback": "L’impulso esterno è diverso da zero. Le forze interne non eliminano il contributo della forza esterna."
+  },
+  "commonErrors": [
+    "Conservare sempre l’energia cinetica negli urti",
+    "Sommare moduli invece di componenti"
+  ],
+  "hintLadder": [
+    "Scrivi l’impulso esterno",
+    "Scegli sistema e asse",
+    "Controlla separatamentep eK"
+  ],
+  "recap": "Conservazione dip ed energia cinetica sono condizioni diverse.",
+  "transcript": "La quantità di moto p=mv è vettoriale e si misura in kg m/s. L’impulso della risultante esterna è Δp: se la forza è costante J=FΔt. La quantità di moto totale si conserva quando l’impulso esterno sul sistema è nullo o trascurabile nell’intervallo considerato. In un urto le forze interne di interazione non cambiano la quantità di moto totale ma possono convertire energia cinetica in energia interna. Un urto elastico conserva anche l’energia cinetica; un urto completamente anelastico fa proseguire insieme i corpi e di norma dissipa parte diK. Un sistema isolato non richiede che ogni singolo corpo mantenga la propria velocità. I segni delle velocità devono riferirsi a un unico asse. Esempio: Un carrello di2kg a3m/s urta un carrello di1kg fermo. Restano uniti; impulso esterno trascurabile. Trova velocità finale eK persa. piniziale=2·3=6kg m/s. Mtotale=3kg: vf=6/3=2m/s. Ki=9J,Kf=6J;3J convertiti in energia interna. Risultato: vf=2m/s;Kpersa=3J.",
+  "scientificCounterchecks": [
+    "Conservazione dip ed energia cinetica sono condizioni diverse.",
+    "6kg m/s prima e dopo.",
+    "Ns=kg m/s; perditaK non è perdita di energia totale."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

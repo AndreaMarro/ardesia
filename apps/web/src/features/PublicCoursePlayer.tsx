@@ -1,0 +1,87 @@
+import {useRef,useState} from 'react';
+import {PublicLessonDemo} from '../components/PublicLessonDemo';
+import {ScientificKinematicsModel,type KinematicsResult} from '../components/ScientificKinematicsModel';
+import {learningCourses,readCourseDraft,saveCourseDraft,eraseCourseDraft,type CourseRecord,type CourseLesson,type ModelResult} from '../courseLearning';
+import {ScientificElectricalModel,type ElectricalResult} from '../components/ScientificElectricalModel';
+import {ScientificWaveModel,type WaveResult} from '../components/ScientificWaveModel';
+import {PublicSpringModel} from '../components/PublicSpringModel';
+import './PublicCoursePlayer.css';
+import type {ActivityCommit} from '../course';
+
+const labels:Record<string,string>={force:'Forza applicata [N]',stiffness:'Rigidità [N/m]',moles:'Quantità di sostanza [mol]',temperatureK:'Temperatura assoluta [K]',pressurePa:'Pressione assoluta [Pa]',voltage:'Tensione [V]',resistance1:'Resistenza R₁ [Ω]',resistance2:'Resistenza R₂ [Ω]',topology:'Collegamento',speed:'Velocità di propagazione [m/s]',frequency:'Frequenza [Hz]',positionX:'Posizione iniziale x₀ [m]',velocityX:'Velocità iniziale vₓ₀ [m/s]',time:'Tempo di simulazione [s]'};
+const fmt=(value:number)=>value.toLocaleString('it-IT',{maximumFractionDigits:6});
+export function PublicCoursePlayer(){
+ const query=new URLSearchParams(location.search),slug=location.pathname.split('/')[2]||query.get('percorso');
+ const course=learningCourses.courses.find(c=>c.pathId===slug);
+ if(slug&&!course)return <main className="course-learning"><h1>Percorso non disponibile</h1><a href="/corsi/">Tutti i percorsi</a></main>;
+ return <div className="public-experience"><header className="experience-header"><a className="wordmark" href="/">ardesia.</a><a href="/corsi/">Quattro percorsi di Fisica</a></header><main className="course-learning">
+  {!course?<><p className="section-meta">Semestre aperto · Fisica</p><h1>Quattro percorsi.<br/>Una lezione che continua.</h1><p>Il catalogo si costruisce sul programma verificato: 200 sotto-obiettivi di lavoro derivati, distribuiti in sette unità. Qui puoi provare i primi passaggi originali; i quattro corsi completi sono ancora in costruzione.</p><div className="course-path-grid">{learningCourses.courses.map(c=><article key={c.pathId}><p>{c.unitIds.join(' + ')} · In costruzione</p><h2>{c.title}</h2><p>{c.availableLessons} {c.availableLessons===1?'lezione disponibile':'lezioni disponibili'} in questa versione · {c.completedObjectives}/{c.requiredObjectives} sotto-obiettivi con accettazione completa.</p><a className="button-primary" href={'/corsi/'+c.pathId+'/'}>Apri {c.title}</a></article>)}</div></>:
+  <CourseScope key={course.pathId} course={course}/>}
+  <details className="course-baseline"><summary>Programma, copertura e provenienza</summary><p>Baseline {learningCourses.baseline.year}: {learningCourses.baseline.familyCount} famiglie editoriali e {learningCourses.baseline.requiredObjectives} sotto-obiettivi. Una famiglia non vale un singolo obiettivo e una demo non equivale a un corso completo.</p><p>Fonte universitaria verificata, accesso diretto al PDF MUR non riuscito; nessuna uguaglianza dei byte con il file ministeriale attestata.</p><p><a href={learningCourses.baseline.source.pdf} target="_blank" rel="noreferrer">Syllabus ospitato dall’università</a> · <a href={learningCourses.baseline.source.crosscheck} target="_blank" rel="noreferrer">Programma universitario 2026/27</a></p></details>
+ </main><footer><a href="/#contatto">Informazioni sui microcorsi</a><span>Ardesia · Fisica da capire.</span></footer></div>;
+}
+export function CourseScope({course,allowLocalDrafts=true,onCommit,initialActivityId}:{course:CourseRecord;allowLocalDrafts?:boolean;onCommit?:(value:ActivityCommit|null)=>void;initialActivityId?:string}){
+ const [cached]=useState<ReturnType<typeof readCourseDraft>>(()=>allowLocalDrafts?readCourseDraft(course):{kind:'none'});
+ const query=new URLSearchParams(location.search),scoped=allowLocalDrafts||query.get('courseLessonPath')===course.pathId,requested=scoped?query.get(allowLocalDrafts?'lezione':'courseLesson'):null;
+ const retryLesson=initialActivityId?course.lessons.find(l=>l.activityId===initialActivityId):undefined;
+ const initial=retryLesson||course.lessons.find(l=>l.id===(requested||(cached.kind==='current'?cached.data.lessonId:'')))||course.lessons[0];
+ const [selected,setSelected]=useState(initial?.id);
+ const lesson=course.lessons.find(l=>l.id===selected);
+ if(!lesson)return <><h1>Materiali in preparazione</h1><p>Nessuna lezione rilasciata per questo percorso.</p></>;
+ const revision=scoped&&!retryLesson?query.get(allowLocalDrafts?'rev':'courseRev'):null;
+ if((!retryLesson&&requested&&!course.lessons.some(l=>l.id===requested))||(revision&&revision!==lesson.lessonRef.sha256))return <><h1>Riferimento non disponibile</h1><p>La revisione richiesta non è disponibile. Non la sostituiamo con un’altra lezione.</p><a href={'/corsi/'+course.pathId+'/'}>Apri la versione corrente</a></>;
+ return <><div className="course-overview"><p className="section-meta">{course.unitIds.join(' + ')} · percorso in costruzione</p><h1>{course.title}</h1><p>Un passaggio originale da studiare e provare. Completezza del corso: {course.completedObjectives}/{course.requiredObjectives} sotto-obiettivi con tutte le prove richieste. Stato editoriale DRAFT, senza approvazione umana attestata.</p></div>
+ <nav className="course-sequence" aria-label="Sequenza delle lezioni">{course.lessons.map((l,i)=><button key={l.id} aria-pressed={l.id===selected} onClick={()=>{setSelected(l.id);onCommit?.(null);const u=new URL(location.href);u.searchParams.set(allowLocalDrafts?'lezione':'courseLesson',l.id);u.searchParams.delete(allowLocalDrafts?'rev':'courseRev');if(!allowLocalDrafts)u.searchParams.set('courseLessonPath',course.pathId);history.replaceState(null,'',u);}}>{i+1}. {l.title}</button>)}</nav>
+ <Lesson key={lesson.id} course={course} lesson={lesson} allowLocalDrafts={allowLocalDrafts} onCommit={onCommit}/>
+ {course.editorialMaterials&&<EditorialMaterials course={course}/>}
+ <details className="course-gaps"><summary>Che cosa manca al corso completo</summary><ul>{course.gaps.map(g=><li key={g}>{g}</li>)}</ul><p>Diagnostica, valutazione finale e ripresa fra docente e studente sono criteri distinti: la bozza locale non li sostituisce.</p><ol>{course.objectiveFamilies.map(f=><li key={f.id}><strong>{f.id} · {f.title}</strong><ul>{f.subtargets.map(s=><li key={s.id}>{s.label} · da verificare</li>)}</ul></li>)}</ol></details>
+ <a className="button-primary course-contact" href={'/?percorso='+course.pathId+'#contatto'}>Chiedi informazioni su questo percorso</a></>;
+}
+function Lesson({course,lesson,allowLocalDrafts,onCommit}:{course:CourseRecord;lesson:CourseLesson;allowLocalDrafts:boolean;onCommit?:(value:ActivityCommit|null)=>void}){
+ const [cached]=useState<ReturnType<typeof readCourseDraft>>(()=>allowLocalDrafts?readCourseDraft(course,lesson.id):{kind:'none'});
+ const previous=cached.kind==='current'&&cached.data.lessonId===lesson.id?cached.data:null;
+ const [phase,setPhase]=useState<'practice'|'transfer'>(previous?.phase||'practice');
+ const [parameters,setParameters]=useState(previous?.parameters||lesson.practice.parameters||{});
+ const [prediction,setPrediction]=useState(previous?.prediction||''),[note,setNote]=useState(previous?.note||'');
+ const [support,setSupport]=useState<string[]>(previous?.supportUsed||[]),[opened,setOpened]=useState<string[]>([]);
+ const [revealed,setRevealed]=useState(false),[notice,setNotice]=useState('');
+ const input=useRef<HTMLInputElement>(null);
+ const scenario=lesson[phase];
+ const selected=lesson.modelCases?.find(c=>Object.entries(c.parameters).every(([k,v])=>parameters[k]===v));
+ const result=revealed?(selected?.result||null):null;
+ const originalParameters=!scenario.parameters||Object.entries(scenario.parameters).every(([k,v])=>parameters[k]===v);
+ const numeric=Number(prediction.replace(',','.')),valid=prediction.trim()!==''&&(!lesson.modelCases||Number.isFinite(numeric));
+ function open(kind:string){onCommit?.(null);setOpened(v=>v.includes(kind)?v.filter(x=>x!==kind):[...v,kind]);setSupport(v=>v.includes(kind)?v:[...v,kind]);}
+ function reset(){onCommit?.(null);setRevealed(false);setPrediction('');input.current?.focus();}
+ return <article className="course-lesson" aria-labelledby="course-lesson-title"><p className="section-meta">Lezione originale · {lesson.releaseScope==='PRIVATE_EDITORIAL_REVIEW'?'preview editoriale protetta':'esempio pubblico delimitato'}</p><h2 id="course-lesson-title">{lesson.title}</h2>
+ <p className="course-situation">{originalParameters?scenario.prompt:'Prevedi il risultato per i parametri attualmente selezionati. La domanda di partenza è un caso di confronto, non la soluzione della nuova configurazione.'}</p><div className="course-workspace"><section className="course-model" aria-label="Oggetto scientifico della lezione">
+  {lesson.activityId==='dc-resistance-v1'?<ScientificElectricalModel result={result as unknown as ElectricalResult|null}/>:
+   lesson.activityId==='harmonic-wave-v1'?<ScientificWaveModel result={result as unknown as WaveResult|null}/>:
+   lesson.activityId==='hooke-v1'?<PublicSpringModel force={Number(parameters.force)} result={result as unknown as {value:number;elasticEnergyJ:number}|null} maxExtension={.5} points={lesson.modelCases?.filter(c=>c.parameters.stiffness===parameters.stiffness).map(c=>({force:Number(c.parameters.force),extension:c.result.value}))||[]}/>:
+   lesson.activityId==='kinematics-v1'?<ScientificKinematicsModel result={result as unknown as KinematicsResult|null}/>:lesson.activityId==='ideal-gas-v1'?<GasModel result={result}/>:<p>Questo passaggio usa il ragionamento e la soluzione commentata; non ha ancora un oggetto interattivo.</p>}
+  {result&&<div className="lab-result" data-testid="course-result"><p>Valore del modello</p><strong>{fmt(result.value)} {result.unit}</strong><p>Confronta con la tua previsione: {prediction}. Il confronto non è un voto.</p></div>}
+ </section><form className="course-controls" onSubmit={e=>{e.preventDefault();if(valid){setRevealed(true);if(selected&&lesson.activityId)onCommit?.({activityId:lesson.activityId,parameters,prediction:prediction+(support.length?' [Assistenza richiesta: '+support.join(', ')+']':' [Nessun aiuto richiesto in questa sessione; non prova autonomia]')});}}}>
+  {lesson.controls&&Object.entries(lesson.controls).filter(([,values])=>values.length>1).map(([key,values])=><label key={key}>{labels[key]||key}<select value={parameters[key]} onChange={e=>{const next=values.find(v=>String(v)===e.target.value)!;setParameters({...parameters,[key]:next});setRevealed(false);setPrediction('');setPhase('practice');onCommit?.(null);}}>{values.map(v=><option key={v} value={v}>{v==='series'?'Serie':v==='parallel'?'Parallelo':String(v)}</option>)}</select></label>)}
+  <label>{lesson.modelCases?'La tua previsione numerica':'La tua risposta o il tuo ragionamento'}<input ref={input} inputMode={lesson.modelCases?'decimal':'text'} maxLength={lesson.modelCases?40:2000} value={prediction} onChange={e=>{setPrediction(e.target.value);setRevealed(false);onCommit?.(null);}}/></label><p>Unità richiesta: {scenario.answer.unit}. Prima ragiona, poi confronta.</p>
+  <button className="button-primary" disabled={!valid}>Confronta la previsione</button>
+  {revealed&&<div className="course-feedback"><h3>{selected?'Confronto e recupero':'Soluzione editoriale in revisione'}</h3>{!selected&&<p>Risposta proposta: {String(scenario.answer.value)} {scenario.answer.unit}. Non verificata da un modello automatico in questa pagina.</p>}{(originalParameters?scenario.feedback:['Controlla prima le unità e il vincolo. Confronta il tuo ragionamento con il risultato del modello della configurazione selezionata.']).map((x,i)=><p key={i}>{x}</p>)}<button type="button" onClick={()=>{setParameters(lesson.transfer.parameters||parameters);setPhase('transfer');reset();}}>Un problema diverso</button><button type="button" onClick={reset}>Riprova</button></div>}
+  <p>{support.length?'Assistenza richiesta: una risposta dopo questi aiuti non va considerata autonoma.':'Nessun aiuto richiesto in questa bozza; questo dato non prova comprensione autonoma.'}</p>
+ </form></div>
+ <div className="course-support"><button aria-expanded={opened.includes('explanation')} onClick={()=>open('explanation')}>Apri la spiegazione</button>{opened.includes('explanation')&&<section>{lesson.explanation.map((p,i)=><p key={i}>{p}</p>)}</section>}
+ <button aria-expanded={opened.includes('example')} onClick={()=>open('example')}>Un esempio ragionato</button>{opened.includes('example')&&<section><h3>{lesson.workedExample.prompt}</h3><ol>{lesson.workedExample.steps.map((p,i)=><li key={i}>{p}</li>)}</ol><p>{lesson.workedExample.answerDisplay}</p></section>}
+ <button aria-expanded={opened.includes('transcript')} onClick={()=>open('transcript')}>Ritrova il passaggio spiegato</button>{opened.includes('transcript')&&<section><p>{lesson.transcript}</p>{lesson.audioPath&&lesson.audioTranscript?<PublicLessonDemo onShowFormula={()=>{}} lesson={{audioPath:lesson.audioPath,transcript:lesson.audioTranscript,authorship:'Passaggio originale Ardesia; voce sintetica, non registrazione del docente'}}/>:<p>Audio non disponibile per questo passaggio. La trascrizione è completa.</p>}<a href={(()=>{const u=new URL(location.href);u.searchParams.set(allowLocalDrafts?'lezione':'courseLesson',lesson.id);u.searchParams.set(allowLocalDrafts?'rev':'courseRev',lesson.lessonRef.sha256);if(!allowLocalDrafts)u.searchParams.set('courseLessonPath',course.pathId);u.hash='course-lesson-title';return u.pathname+u.search+u.hash;})()}>Collegamento a questa revisione della lezione</a></section>}
+ <button aria-expanded={opened.includes('recap')} onClick={()=>open('recap')}>Ripasso e formulario</button>{opened.includes('recap')&&<ul>{lesson.recap.map((p,i)=><li key={i}>{p}</li>)}</ul>}</div>
+ {allowLocalDrafts?<section className="course-notebook"><h3>Il quaderno della lezione</h3><label>Il tuo quaderno: ragionamento e domande<textarea maxLength={4000} rows={4} value={note} onChange={e=>setNote(e.target.value)}/></label><p>Salvataggio facoltativo solo in questo browser. Nessuna consegna, sincronizzazione docente o iscrizione è creata.</p><button onClick={()=>setNotice(saveCourseDraft(course,{lessonId:lesson.id,prediction,note,supportUsed:support,parameters,phase},lesson)?'Bozza salvata solo su questo browser.':'Il browser non consente il salvataggio.')}>Salva bozza su questo browser</button><button onClick={()=>setNotice(eraseCourseDraft(course.pathId,lesson.id)?'Bozza cancellata. Il testo aperto resta qui fino a quando lasci la pagina.':'Cancellazione non disponibile.')}>Cancella bozza locale</button>{notice&&<p role="status">{notice}</p>}{cached.kind==='stale'&&<details><summary>Bozza di una revisione precedente, solo testo</summary><p>Il vecchio testo resta leggibile ma non è associato al modello aggiornato.</p><pre>{cached.note}</pre></details>}</section>:<p>La previsione può essere consegnata con il modulo del corso qui sotto. Note, ricevute e revisione usano il Core; questo laboratorio non crea un altro diario.</p>}
+ </article>;
+}
+function GasModel({result}:{result:ModelResult|null}){
+ const points=(result?.pvSamples||[]) as {pressurePa:number;volumeM3:number}[];
+ const maxVolume=Math.max(1,...points.map(p=>p.volumeM3*1000))*1.1;
+ const maxPressure=Math.max(1,...points.map(p=>p.pressurePa))*1.1;
+ return <figure className="course-gas-model"><svg viewBox="0 0 480 300" role="img" aria-label="Volume e pressione di un gas ideale a temperatura fissata"><path d="M65 30V250H450" fill="none" stroke="currentColor"/><text x="10" y="25">p [kPa]</text><text x="190" y="285">Volume V [L]</text>{result&&<>{points.map(p=><circle key={p.pressurePa} cx={65+p.volumeM3*1000/maxVolume*350} cy={250-p.pressurePa/maxPressure*200} r="5" fill="var(--accent-text)"><title>{fmt(p.volumeM3*1000)} L; {fmt(p.pressurePa/1000)} kPa</title></circle>)}<text x="75" y="35">{fmt(Number(result.volumeL))} L</text><text x="75" y="70">n e T restano fissati in questa curva.</text></>}</svg><figcaption>{result?result.domain:'I punti della trasformazione e il volume compaiono dopo la previsione. La pressione è assoluta e la temperatura in kelvin.'}</figcaption></figure>;
+}
+
+function EditorialMaterials({course}:{course:CourseRecord}){
+ const labels:Record<string,string>={diagnostic:'Diagnostica iniziale proposta',formulaSheet:'Formulario con domini',finalAssessment:'Valutazione finale compatta',atomicFinalAssessment:'Prove per tutti i sotto-obiettivi',recoveryTargets:'Da errore a recupero'};
+ return <section className="course-editorial"><h2>Materiali del corso in revisione</h2><p>Proposte DRAFT. Nessuna risposta qui genera un voto o un’approvazione del corso.</p>{Object.entries(course.editorialMaterials||{}).map(([key,items])=><details key={key}><summary>{labels[key]||key} · {items.length}</summary>{items.map((value,index)=>{const item=(typeof value==='string'?{text:value}:value) as Record<string,unknown>;return <article key={index}><h3>{String(item.id||item.objectiveId||index+1)}</h3>{Object.entries(item).filter(([,v])=>typeof v==='string').map(([k,v])=><p key={k}><strong>{k}: </strong>{String(v)}</p>)}</article>;})}</details>)}</section>;
+}

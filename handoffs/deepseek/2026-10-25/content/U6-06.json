@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u6-06",
+  "familyId": "U6-06",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Campo magnetico",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U6-06.01",
+    "U6-06.02",
+    "U6-06.03",
+    "U6-06.04",
+    "U6-06.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "L’esperimento diOersted mostra che una corrente genera un campo magnetico; il verso si collega alla direzione della corrente con la mano destra. Una carica in moto subisceF=q v×B: il modulo è|q|vBsinθ, la forza è perpendicolare alla velocità e il campo magnetico statico da solo non compie lavoro sulla carica puntiforme. Una carica ferma o in moto parallelo aB non subisce questa forza. Su un filo rettilineo con corrente in campo uniforme agisceF=I L×B. Sev è perpendicolare aB, la carica segue un moto circolare di raggio r=mv/(|q|B) nel modello non relativistico; la frequenza e il verso dipendono dai parametri e dal segno. Cariche opposte con uguale velocità curvano in versi opposti.",
+  "workedExample": {
+    "prompt": "Carica+2µC con v=3m/s lungo+x in campoB=0,5T lungo+y. TrovaF e verso.",
+    "steps": [
+      "v×B punta lungo+z.",
+      "F=2·10^-6·3·0,5=3·10^-6N.",
+      "q positiva conserva il verso del prodotto vettoriale."
+    ],
+    "result": "3µN lungo+z."
+  },
+  "practice": {
+    "prompt": "Un filo lungo0,2m porta3A perpendicolarmente aB=0,5T. Trova il modulo della forza.",
+    "answer": "0,3N",
+    "feedback": "F=ILB=3·0,2·0,5. Se il filo fosse parallelo al campo il risultato sarebbezero."
+  },
+  "transfer": {
+    "prompt": "Una particella non relativistica in moto perpendicolare aB raddoppia la velocità con massa,carica eB fissi. Come variano r eK? Il soloB statico può produrre tale aumento?",
+    "answer": "r raddoppia;K quadruplica;B statico da solo non può aumentareK.",
+    "feedback": "Il raggio è lineare inv mentreK∝v². La forza magnetica resta perpendicolare allo spostamento istantaneo."
+  },
+  "commonErrors": [
+    "Attribuire lavoro alla forza magnetica statica sulla carica",
+    "Dimenticare il segno della carica"
+  ],
+  "hintLadder": [
+    "Disegna v eB",
+    "Applica mano destra alla carica positiva e poi correggi il segno"
+  ],
+  "recap": "La forza magnetica può cambiare direzione del moto senza cambiarne l’energia cinetica.",
+  "transcript": "L’esperimento diOersted mostra che una corrente genera un campo magnetico; il verso si collega alla direzione della corrente con la mano destra. Una carica in moto subisceF=q v×B: il modulo è|q|vBsinθ, la forza è perpendicolare alla velocità e il campo magnetico statico da solo non compie lavoro sulla carica puntiforme. Una carica ferma o in moto parallelo aB non subisce questa forza. Su un filo rettilineo con corrente in campo uniforme agisceF=I L×B. Sev è perpendicolare aB, la carica segue un moto circolare di raggio r=mv/(|q|B) nel modello non relativistico; la frequenza e il verso dipendono dai parametri e dal segno. Cariche opposte con uguale velocità curvano in versi opposti. Esempio: Carica+2µC con v=3m/s lungo+x in campoB=0,5T lungo+y. TrovaF e verso. v×B punta lungo+z. F=2·10^-6·3·0,5=3·10^-6N. q positiva conserva il verso del prodotto vettoriale. Risultato: 3µN lungo+z.",
+  "scientificCounterchecks": [
+    "La forza magnetica può cambiare direzione del moto senza cambiarne l’energia cinetica.",
+    "C·m/s·T=N.",
+    "Perθ=0 la forza èzero; perq<0 il verso si inverte."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

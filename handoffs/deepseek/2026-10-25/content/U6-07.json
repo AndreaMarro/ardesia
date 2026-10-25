@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u6-07",
+  "familyId": "U6-07",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Induzione",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U6-07.01",
+    "U6-07.02",
+    "U6-07.03",
+    "U6-07.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Il flusso magnetico attraverso una superficie piana in campo uniforme èΦ=BAcosθ conθ fraB e normale alla superficie. Una variazione del flusso concatenato genera fem:ε=−NΔΦ/Δt nella forma media. Il segno diLenz indica che l’effetto della corrente indotta si oppone alla variazione del flusso, non necessariamente al campo presente. Un flusso costante, anche grande, non induce fem nel circuito fermo ideale. Possono variareB,area o orientazione. In un circuito chiuso resistivo la fem può produrre corrente; in uno aperto una fem non implica corrente di conduzione completa. Il verso va determinato dopo aver scelto normale e orientazione del circuito.",
+  "workedExample": {
+    "prompt": "Una bobina di100spire, area0,01m², normale concorde aB, vedeB salire da0 a0,2T in0,1s. Trova il modulo della fem media.",
+    "steps": [
+      "ΔΦ per spira=AΔB=0,002Wb.",
+      "NΔΦ=0,2Wb concatenati.",
+      "|ε|=0,2/0,1=2V."
+    ],
+    "result": "2V; verso tale da opporsi all’aumento del flusso."
+  },
+  "practice": {
+    "prompt": "Con la stessa bobinaB resta costante e area/orientazione non cambiano. Qual è la fem indotta ideale?",
+    "answer": "0V",
+    "feedback": "Il valore del flusso non basta: serve una variazione nel tempo."
+  },
+  "transfer": {
+    "prompt": "Un campo entrante nel foglio diminuisce. Quale verso ha il campo prodotto dalla corrente indotta e quale corrente vista frontalmente?",
+    "answer": "Campo entrante; corrente oraria.",
+    "feedback": "La corrente cerca di mantenere il flusso entrante che sta diminuendo. Opporsi alla variazione non significa creare sempre campo opposto aB."
+  },
+  "commonErrors": [
+    "Usareθ rispetto al piano anziché alla normale",
+    "ApplicareLenz come opposizione al campo anziché alla variazione"
+  ],
+  "hintLadder": [
+    "Scegli la normale",
+    "Stabilisci se il flusso aumenta o diminuisce",
+    "Usa la mano destra per il verso della corrente"
+  ],
+  "recap": "Faraday quantifica la fem eLenz ne determina il verso.",
+  "transcript": "Il flusso magnetico attraverso una superficie piana in campo uniforme èΦ=BAcosθ conθ fraB e normale alla superficie. Una variazione del flusso concatenato genera fem:ε=−NΔΦ/Δt nella forma media. Il segno diLenz indica che l’effetto della corrente indotta si oppone alla variazione del flusso, non necessariamente al campo presente. Un flusso costante, anche grande, non induce fem nel circuito fermo ideale. Possono variareB,area o orientazione. In un circuito chiuso resistivo la fem può produrre corrente; in uno aperto una fem non implica corrente di conduzione completa. Il verso va determinato dopo aver scelto normale e orientazione del circuito. Esempio: Una bobina di100spire, area0,01m², normale concorde aB, vedeB salire da0 a0,2T in0,1s. Trova il modulo della fem media. ΔΦ per spira=AΔB=0,002Wb. NΔΦ=0,2Wb concatenati. |ε|=0,2/0,1=2V. Risultato: 2V; verso tale da opporsi all’aumento del flusso.",
+  "scientificCounterchecks": [
+    "Faraday quantifica la fem eLenz ne determina il verso.",
+    "Wb/s=V.",
+    "RaddoppiareΔt a stessaΔΦ dimezza la fem media."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

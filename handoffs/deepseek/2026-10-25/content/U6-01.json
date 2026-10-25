@@ -1,0 +1,66 @@
+{
+  "id": "ds-2026-u6-01",
+  "familyId": "U6-01",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Carica e campo",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U6-01.01",
+    "U6-01.02",
+    "U6-01.03",
+    "U6-01.04",
+    "U6-01.05",
+    "U6-01.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La carica elettrica è una proprietà conservata nei processi del sistema isolato e si misura in coulomb. Cariche dello stesso segno si respingono, di segno opposto si attraggono. Coulomb per cariche puntiformi ferme dà moduloF=ke|q1q2|/r²; il campo è forza per carica di prova positiva,E=F/q. Le linee escono dalle cariche positive ed entrano nelle negative e indicano la direzione locale, non traiettorie obbligate. Il campo totale di più cariche è la somma vettoriale dei campi. In un campo elettrico uniforme una carica libera subisce forzaqE e accelerazioneqE/m; una carica negativa accelera in verso opposto aE. Il modello esclude il punto sorgente r=0 ed effetti di auto-interazione della carica di prova.",
+  "workedExample": {
+    "prompt": "Due cariche+1µC a distanza0,30m sono ferme. Usa ke=9·10^9N m²/C². TrovaF e verso.",
+    "steps": [
+      "q1q2=10^-12C² e r²=0,09m².",
+      "F=9·10^9·10^-12/0,09=0,1N.",
+      "Segni uguali: forza repulsiva lungo la congiungente."
+    ],
+    "result": "0,1N repulsiva."
+  },
+  "practice": {
+    "prompt": "Una carica−2µC è in campo uniforme+300N/C lungo x. TrovaFx.",
+    "answer": "−0,0006N",
+    "feedback": "F=qE conserva il segno della carica. La direzione del campo si definisce con una carica di prova positiva."
+  },
+  "transfer": {
+    "prompt": "Due cariche positive uguali sono ai lati opposti di un punto medio. Campo nullo significa assenza di cariche? Se raddoppia la distanza da una singola carica, come variaE?",
+    "answer": "No: i campi si cancellano per simmetria; E della singola carica diventa1/4.",
+    "feedback": "La sovrapposizione è vettoriale. Una misura nulla può derivare da contributi non nulli."
+  },
+  "commonErrors": [
+    "Sommare i moduli dei campi senza direzioni",
+    "Usarer=0 nella formula puntiforme"
+  ],
+  "hintLadder": [
+    "Disegna segni e vettori",
+    "ConvertiµC inC"
+  ],
+  "recap": "Campo e forza sono diversi: la seconda dipende anche dalla carica di prova.",
+  "transcript": "La carica elettrica è una proprietà conservata nei processi del sistema isolato e si misura in coulomb. Cariche dello stesso segno si respingono, di segno opposto si attraggono. Coulomb per cariche puntiformi ferme dà moduloF=ke|q1q2|/r²; il campo è forza per carica di prova positiva,E=F/q. Le linee escono dalle cariche positive ed entrano nelle negative e indicano la direzione locale, non traiettorie obbligate. Il campo totale di più cariche è la somma vettoriale dei campi. In un campo elettrico uniforme una carica libera subisce forzaqE e accelerazioneqE/m; una carica negativa accelera in verso opposto aE. Il modello esclude il punto sorgente r=0 ed effetti di auto-interazione della carica di prova. Esempio: Due cariche+1µC a distanza0,30m sono ferme. Usa ke=9·10^9N m²/C². TrovaF e verso. q1q2=10^-12C² e r²=0,09m². F=9·10^9·10^-12/0,09=0,1N. Segni uguali: forza repulsiva lungo la congiungente. Risultato: 0,1N repulsiva.",
+  "scientificCounterchecks": [
+    "Campo e forza sono diversi: la seconda dipende anche dalla carica di prova.",
+    "N/C·C=N.",
+    "A distanza doppiaF edE puntiformi si dividono per4."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

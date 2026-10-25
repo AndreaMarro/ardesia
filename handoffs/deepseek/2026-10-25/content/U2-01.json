@@ -1,0 +1,71 @@
+{
+  "id": "ds-2026-u2-01",
+  "familyId": "U2-01",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U2",
+  "title": "Cinematica",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U2-01.01",
+    "U2-01.02",
+    "U2-01.03",
+    "U2-01.04",
+    "U2-01.05",
+    "U2-01.06",
+    "U2-01.07",
+    "U2-01.08",
+    "U2-01.09"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La posizione x(t) dipende dal riferimento; lo spostamento è xf−xi e può essere nullo anche se il cammino percorso non lo è. La velocità media è Δx/Δt, l’istantanea è la pendenza locale di x(t); l’accelerazione è la pendenza di v(t). Il MRU ha x=x0+vt. Con accelerazione costante x=x0+v0t+at²/2 e v=v0+at. Nella caduta libera vicino alla Terra, trascurando l’aria, l’accelerazione è g verso il basso indipendentemente dalla massa. Nel lancio parabolico i moti orizzontale uniforme e verticale accelerato condividono il tempo. Nel moto circolare uniforme la velocità cambia direzione pur avendo modulo costante: a centripeta=v²/r verso il centro. Le componenti e i segni dipendono dagli assi scelti. L’accelerazione media non può essere ottenuta sottraendo soltanto i moduli delle velocità se cambia direzione.",
+  "workedExample": {
+    "prompt": "Un corpo parte da fermo e si muove lungo +x con a=2 m/s² per 3 s. Trova v e Δx.",
+    "steps": [
+      "v=0+2·3=6 m/s.",
+      "Δx=0+2·3²/2=9 m.",
+      "La velocità media è (0+6)/2=3 m/s: in3s percorre9m."
+    ],
+    "result": "v=6 m/s; Δx=9 m."
+  },
+  "practice": {
+    "prompt": "Un corpo torna al punto di partenza dopo 10 s e 20 m di cammino. Qual è la velocità media? Un punto su cerchio r=2 m ha v=4 m/s: quale a?",
+    "answer": "0 m/s; accelerazione centripeta 8 m/s².",
+    "feedback": "Velocità media usa spostamento nullo; sul cerchio a=16/2 e il vettore punta al centro."
+  },
+  "transfer": {
+    "prompt": "Lancio orizzontale a 3 m/s da altezza 20 m, g=10 m/s², aria trascurata. Trova tempo di caduta e spostamento orizzontale.",
+    "answer": "2 s; 6 m",
+    "feedback": "20=gt²/2 dà t=2 s. La coordinata orizzontale evolve con x=3t; i due moti non hanno tempi separati."
+  },
+  "commonErrors": [
+    "Usare cammino al posto dello spostamento",
+    "Porre a=0 nel circolare uniforme",
+    "Far dipendere la caduta ideale dalla massa"
+  ],
+  "hintLadder": [
+    "Scegli gli assi",
+    "Distingui pendenza media e istantanea",
+    "Separa componenti ma conserva lo stesso tempo"
+  ],
+  "recap": "Modulo costante della velocità non implica accelerazione nulla.",
+  "transcript": "La posizione x(t) dipende dal riferimento; lo spostamento è xf−xi e può essere nullo anche se il cammino percorso non lo è. La velocità media è Δx/Δt, l’istantanea è la pendenza locale di x(t); l’accelerazione è la pendenza di v(t). Il MRU ha x=x0+vt. Con accelerazione costante x=x0+v0t+at²/2 e v=v0+at. Nella caduta libera vicino alla Terra, trascurando l’aria, l’accelerazione è g verso il basso indipendentemente dalla massa. Nel lancio parabolico i moti orizzontale uniforme e verticale accelerato condividono il tempo. Nel moto circolare uniforme la velocità cambia direzione pur avendo modulo costante: a centripeta=v²/r verso il centro. Le componenti e i segni dipendono dagli assi scelti. L’accelerazione media non può essere ottenuta sottraendo soltanto i moduli delle velocità se cambia direzione. Esempio: Un corpo parte da fermo e si muove lungo +x con a=2 m/s² per 3 s. Trova v e Δx. v=0+2·3=6 m/s. Δx=0+2·3²/2=9 m. La velocità media è (0+6)/2=3 m/s: in3s percorre9m. Risultato: v=6 m/s; Δx=9 m.",
+  "scientificCounterchecks": [
+    "Modulo costante della velocità non implica accelerazione nulla.",
+    "9m/3s=3m/s è la media, non la velocità finale.",
+    "Il lancio di20m impiega2s anche se cambia la velocità orizzontale."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

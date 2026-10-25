@@ -1,0 +1,66 @@
+{
+  "id": "ds-2026-u3-02",
+  "familyId": "U3-02",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U3",
+  "title": "Idrostatica",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U3-02.01",
+    "U3-02.02",
+    "U3-02.03",
+    "U3-02.04",
+    "U3-02.05",
+    "U3-02.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Stevino dà p=p0+ρgh per fluido omogeneo fermo: h è profondità positiva eρgh è un incremento, non sempre la pressione assoluta. Pascal descrive la trasmissione di un incremento di pressione in fluido incomprimibile confinato, base della pressa idraulica. Archimede dà una spinta verso l’alto pari al peso del fluido spostato,ρfluido gVimmerso. Un corpo galleggiante in equilibrio ha spinta uguale al peso e frazione immersaρcorpo/ρfluido se omogeneo; un corpo più denso del fluido non può galleggiare liberamente. Nel barometro di Torricelli la colonna equilibra la pressione esterna rispetto al vuoto approssimato sopra il liquido. Un manometro confronta pressioni attraverso differenze di livelli; conta densità e dislivello verticale, non lunghezza del tubo.",
+  "workedExample": {
+    "prompt": "Acquaρ=1000kg/m³,g=10m/s²,h=2m,p0=100000Pa. Trova incremento e pressione assoluta.",
+    "steps": [
+      "Δp=1000·10·2=20000Pa.",
+      "p=p0+Δp.",
+      "100000+20000=120000Pa."
+    ],
+    "result": "Δp=20000Pa;p=120000Pa."
+  },
+  "practice": {
+    "prompt": "Un corpo omogeneoρ=600kg/m³ galleggia in acquaρ=1000. Quale frazione è immersa?",
+    "answer": "0,6 =60%",
+    "feedback": "Uguagliaρacqua gVimmerso aρcorpo gVtotale. g eVtotale si semplificano."
+  },
+  "transfer": {
+    "prompt": "Pressa idraulica: pistoni di1cm² e20cm², stessa quota, perdite trascurate. Applico10N sul piccolo. Quale forza sul grande e quale spostamento relativo?",
+    "answer": "200N; lo spostamento del grande è1/20 del piccolo.",
+    "feedback": "Stessa pressione e conservazione volume: il guadagno di forza non crea energia."
+  },
+  "commonErrors": [
+    "SostituireVtotale aVimmerso in ogni caso",
+    "Chiamareρgh pressione assoluta senzap0"
+  ],
+  "hintLadder": [
+    "Disegna quote e superfici libere",
+    "Scrivi equilibrio delle forze e volumi"
+  ],
+  "recap": "La spinta dipende dal fluido spostato e la pressione dalla profondità verticale.",
+  "transcript": "Stevino dà p=p0+ρgh per fluido omogeneo fermo: h è profondità positiva eρgh è un incremento, non sempre la pressione assoluta. Pascal descrive la trasmissione di un incremento di pressione in fluido incomprimibile confinato, base della pressa idraulica. Archimede dà una spinta verso l’alto pari al peso del fluido spostato,ρfluido gVimmerso. Un corpo galleggiante in equilibrio ha spinta uguale al peso e frazione immersaρcorpo/ρfluido se omogeneo; un corpo più denso del fluido non può galleggiare liberamente. Nel barometro di Torricelli la colonna equilibra la pressione esterna rispetto al vuoto approssimato sopra il liquido. Un manometro confronta pressioni attraverso differenze di livelli; conta densità e dislivello verticale, non lunghezza del tubo. Esempio: Acquaρ=1000kg/m³,g=10m/s²,h=2m,p0=100000Pa. Trova incremento e pressione assoluta. Δp=1000·10·2=20000Pa. p=p0+Δp. 100000+20000=120000Pa. Risultato: Δp=20000Pa;p=120000Pa.",
+  "scientificCounterchecks": [
+    "La spinta dipende dal fluido spostato e la pressione dalla profondità verticale.",
+    "120000−100000=20000Pa.",
+    "Fgrande/Fpiccola=Agrande/Apiccola=20; bilancio lavoro ideale conservato."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

@@ -14,7 +14,13 @@ HINTS = (
 def evaluate_activity(activity_id, parameters, attempt=None):
     from .taylor import evaluate_exp_taylor
     from .spring import evaluate_static_spring
-    handlers = {'taylor-exp-v1': evaluate_exp_taylor, 'hooke-v1': evaluate_static_spring}
+    from .electrical import evaluate_dc_circuit
+    from .waves import evaluate_harmonic_wave
+    from .thermodynamics import evaluate_ideal_gas
+    from .kinematics import evaluate_kinematics
+    handlers = {'taylor-exp-v1': evaluate_exp_taylor, 'hooke-v1': evaluate_static_spring,
+                'dc-resistance-v1': evaluate_dc_circuit, 'harmonic-wave-v1': evaluate_harmonic_wave,
+                'ideal-gas-v1': evaluate_ideal_gas, 'kinematics-v1': evaluate_kinematics}
     if isinstance(activity_id, str) and activity_id in handlers:
         return handlers[activity_id](parameters)
     return _evaluate_physics(activity_id, parameters)

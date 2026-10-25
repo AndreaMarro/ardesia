@@ -1,0 +1,42 @@
+{
+  "package": {
+    "name": "rea-agents",
+    "version": "6.7.0",
+    "build_commit": null
+  },
+  "server": {
+    "name": "rea",
+    "version": "6.7.0"
+  },
+  "sdk": {
+    "server": "2.3.1",
+    "client_test": "2.3.1",
+    "core": "2.3.1"
+  },
+  "catalog": {
+    "counts": {
+      "cli_commands": 153,
+      "mcp_tools": 207,
+      "mcp_prompts": 6
+    },
+    "digests": {
+      "tools_sha256": "af39310c9591bb981893ec0d2188b1bcf6e9cc8ba3ac513d5bbefc8ddcb85639",
+      "prompts_sha256": "7152916ab48bd2a9677a5ad9cdbde0a51dc53c113934952ad096e93f5f18aa7e",
+      "combined_sha256": "96d8f6e6ea1b1ba13557216624a3461c738729d53c79b4b0100d1f3a3a32441c"
+    }
+  },
+  "sessionOpen": false,
+  "targetAnalysisPerformed": false,
+  "skillExpectedVersion": "42",
+  "inspectPlistAttempt": {
+    "status": "FAILED",
+    "code": "target_unavailable",
+    "path": "/Applications/Goodnotes.app/Contents/Info.plist",
+    "noRetryViaBinaryOpen": true
+  },
+  "fallback": {
+    "tool": "macOS plutil",
+    "scope": "four non-personal Info.plist fields only"
+  },
+  "costTotal": "UNKNOWN"
+}

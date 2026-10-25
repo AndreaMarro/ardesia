@@ -1,0 +1,67 @@
+{
+  "id": "ds-2026-u5-01",
+  "familyId": "U5-01",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U5",
+  "title": "Stato e gas ideale",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U5-01.01",
+    "U5-01.02",
+    "U5-01.03",
+    "U5-01.04",
+    "U5-01.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio.",
+  "workedExample": {
+    "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
+    "steps": [
+      "Isola il volume: V=nRT/p.",
+      "Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J.",
+      "V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L."
+    ],
+    "result": "V=0,02494338785445972 m³."
+  },
+  "practice": {
+    "prompt": "Con n=1 mol e p=100000 Pa la temperatura passa da 300 K a 600 K. Quanto vale il nuovo volume? R=8,31446261815324.",
+    "answer": "0,04988677570891944 m³",
+    "feedback": "A pressione e moli costanti il volume è proporzionale alla temperatura assoluta, quindi raddoppia."
+  },
+  "transfer": {
+    "prompt": "Un campione di 0,5 mol è a 400 K e 200000 Pa. Trova V con R=8,31446261815324.",
+    "answer": "0,00831446261815324 m³",
+    "feedback": "nT=200 mol K e nRT=1662,892523630648 J. La divisione per 200000 Pa dà circa 8,31446 L."
+  },
+  "commonErrors": [
+    "Usare °C in pV=nRT",
+    "Inserire pressione manometrica come assoluta",
+    "Confondere m³ e L"
+  ],
+  "hintLadder": [
+    "Riconosci il sistema e lo stato di equilibrio",
+    "Converti a kelvin e pressione assoluta",
+    "Isola la variabile e verifica la proporzionalità"
+  ],
+  "recap": "pV=nRT richiede unità coerenti e temperatura assoluta.",
+  "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J. V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L. Risultato: V=0,02494338785445972 m³.",
+  "scientificCounterchecks": [
+    "pV=nRT richiede unità coerenti e temperatura assoluta.",
+    "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
+    "Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

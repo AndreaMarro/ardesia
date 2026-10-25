@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u7-04",
+  "familyId": "U7-04",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Assorbimento",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-04.01",
+    "U7-04.02",
+    "U7-04.03",
+    "U7-04.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Nel modello diLambert-Beer per fascio collimato monocromatico in mezzo omogeneo l’intensità trasmessa èI(x)=I0 exp(−μx), conμ≥0 in m^-1 ex≥0 in m. La trasmissioneI/I0 è adimensionale; il prodottoμx deve esserlo. Strati successivi indipendenti sommano gli spessori o le profondità ottiche, non le percentuali attenuate. La forma spettrofotometrica con logaritmo decimaleA=log10(I0/I)=εcl usa coefficienti definiti per quella base: non confondereμ conε senza conversione. Il modello non include in modo generale diffusione multipla, fascio policromatico o variazioni del mezzo. x=0 implicaI=I0 e un coefficiente positivo non può aumentareI.",
+  "workedExample": {
+    "prompt": "Un materiale haμ=ln2m^-1 e spessore1m. Quale frazione del fascio è trasmessa?",
+    "steps": [
+      "μx=ln2.",
+      "I/I0=exp(−ln2)=1/2.",
+      "Trasmissione50%; attenuazione50%."
+    ],
+    "result": "I=I0/2."
+  },
+  "practice": {
+    "prompt": "Due strati,ciascuno conμ=ln2m^-1 e spessore1m,sono sovrapposti. ConI=I0exp(−μx),quale trasmissione totale?",
+    "answer": "1/4=25%",
+    "feedback": "Moltiplica le trasmissioni1/2·1/2; non sottrarre due volte50% dell’intensità iniziale."
+  },
+  "transfer": {
+    "prompt": "Un campione haI/I0=0,01. Qual èA decimale? Se lo spessore raddoppia nello stesso modello lineare ottico?",
+    "answer": "A=2;A raddoppia a4 e trasmissione diventa10^-4.",
+    "feedback": "A=−log10(0,01). La profondità ottica cresce linearmente con il cammino, l’intensità no."
+  },
+  "commonErrors": [
+    "Sommare percentuali successive",
+    "Inserirecm conμ in m^-1"
+  ],
+  "hintLadder": [
+    "Controllaμx adimensionale",
+    "Distingui assorbimento e trasmissione"
+  ],
+  "recap": "La trasmissione esponenziale di strati si moltiplica.",
+  "transcript": "Nel modello diLambert-Beer per fascio collimato monocromatico in mezzo omogeneo l’intensità trasmessa èI(x)=I0 exp(−μx), conμ≥0 in m^-1 ex≥0 in m. La trasmissioneI/I0 è adimensionale; il prodottoμx deve esserlo. Strati successivi indipendenti sommano gli spessori o le profondità ottiche, non le percentuali attenuate. La forma spettrofotometrica con logaritmo decimaleA=log10(I0/I)=εcl usa coefficienti definiti per quella base: non confondereμ conε senza conversione. Il modello non include in modo generale diffusione multipla, fascio policromatico o variazioni del mezzo. x=0 implicaI=I0 e un coefficiente positivo non può aumentareI. Esempio: Un materiale haμ=ln2m^-1 e spessore1m. Quale frazione del fascio è trasmessa? μx=ln2. I/I0=exp(−ln2)=1/2. Trasmissione50%; attenuazione50%. Risultato: I=I0/2.",
+  "scientificCounterchecks": [
+    "La trasmissione esponenziale di strati si moltiplica.",
+    "A=0 aI=I0;μ=0 non attenua.",
+    "Perμ,x≥0 la trasmissione è compresa fra0e1."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u1-03",
+  "familyId": "U1-03",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U1",
+  "title": "Trigonometria",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U1-03.01",
+    "U1-03.02",
+    "U1-03.03",
+    "U1-03.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "In un triangolo rettangolo seno e coseno sono rapporti tra cateti e ipotenusa: sinθ=opposto/ipotenusa, cosθ=adiacente/ipotenusa; tanθ=sinθ/cosθ dove cosθ non è nullo. Se θ è misurato dall’asse x positivo, le componenti di un vettore di modulo F sono Fx=F cosθ e Fy=F sinθ. Il quadrante stabilisce i segni. L’identità sin²θ+cos²θ=1 permette un controllo del modulo. Gradi e radianti rappresentano lo stesso angolo con scale diverse: π rad=180°. Specificare la modalità della calcolatrice evita di trattare 30 rad come 30°. La tangente non è definita per angoli con coseno nullo.",
+  "workedExample": {
+    "prompt": "Una forza di 10 N forma 30° con +x. Trova le componenti usando sin30°=1/2 e cos30°=√3/2.",
+    "steps": [
+      "Fx=10√3/2=5√3 N.",
+      "Fy=10/2=5 N.",
+      "Il modulo è √(75+25)=10 N."
+    ],
+    "result": "Fx=5√3 N≈8,660 N; Fy=5 N."
+  },
+  "practice": {
+    "prompt": "Una forza di modulo10N è diretta a150° da+x. Quali sono i segni e le componenti?",
+    "answer": "Fx=−5√3 N; Fy=+5 N",
+    "feedback": "Nel secondo quadrante il coseno è negativo e il seno positivo."
+  },
+  "transfer": {
+    "prompt": "Un segmento ha componenti 3 cm e 4 cm positive. Trova modulo, seno e tangente dell’angolo da +x.",
+    "answer": "5 cm; sinθ=4/5; tanθ=4/3",
+    "feedback": "Identifica il cateto opposto all’angolo, quindi usa Pitagora e i rapporti."
+  },
+  "commonErrors": [
+    "Scambiare seno e coseno senza dichiarare asse di riferimento",
+    "Ignorare il quadrante"
+  ],
+  "hintLadder": [
+    "Disegna il triangolo delle componenti",
+    "Controlla Fx²+Fy²=F²"
+  ],
+  "recap": "Un angolo deve sempre avere asse di riferimento e unità dichiarati.",
+  "transcript": "In un triangolo rettangolo seno e coseno sono rapporti tra cateti e ipotenusa: sinθ=opposto/ipotenusa, cosθ=adiacente/ipotenusa; tanθ=sinθ/cosθ dove cosθ non è nullo. Se θ è misurato dall’asse x positivo, le componenti di un vettore di modulo F sono Fx=F cosθ e Fy=F sinθ. Il quadrante stabilisce i segni. L’identità sin²θ+cos²θ=1 permette un controllo del modulo. Gradi e radianti rappresentano lo stesso angolo con scale diverse: π rad=180°. Specificare la modalità della calcolatrice evita di trattare 30 rad come 30°. La tangente non è definita per angoli con coseno nullo. Esempio: Una forza di 10 N forma 30° con +x. Trova le componenti usando sin30°=1/2 e cos30°=√3/2. Fx=10√3/2=5√3 N. Fy=10/2=5 N. Il modulo è √(75+25)=10 N. Risultato: Fx=5√3 N≈8,660 N; Fy=5 N.",
+  "scientificCounterchecks": [
+    "Un angolo deve sempre avere asse di riferimento e unità dichiarati.",
+    "75+25=100 N².",
+    "A90° Fx=0 e Fy=F; tan90° non è finita."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

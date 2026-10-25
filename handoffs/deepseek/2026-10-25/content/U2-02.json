@@ -1,0 +1,71 @@
+{
+  "id": "ds-2026-u2-02",
+  "familyId": "U2-02",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U2",
+  "title": "Dinamica e forze",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U2-02.01",
+    "U2-02.02",
+    "U2-02.03",
+    "U2-02.04",
+    "U2-02.05",
+    "U2-02.06",
+    "U2-02.07",
+    "U2-02.08",
+    "U2-02.09"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La prima legge dice che risultante nulla implica velocità costante, anche diversa da zero. La seconda usa la somma vettoriale delle forze sul medesimo corpo: ΣF=ma in un riferimento inerziale. Le forze di azione e reazione agiscono su corpi diversi e non si cancellano nel diagramma di un solo corpo. Vicino alla Terra il peso è mg; in generale l’attrazione fra masse segue GmM/r². La normale è perpendicolare al contatto e non è sempre uguale al peso. La tensione segue il filo ideale. L’attrito statico si adatta fino a μsN; quello dinamico ha modulo approssimato μdN e si oppone allo scorrimento relativo. Una molla ideale esercita forza di richiamo −kx: in equilibrio sotto una forza esterna F il modulo dell’allungamento è F/k, purché si resti nel regime elastico. Un equilibrio statico impone accelerazione nulla, non assenza di forze.",
+  "workedExample": {
+    "prompt": "Una molla ideale di costante 20 N/m è tirata staticamente con forza 4 N. Qual è l’allungamento?",
+    "steps": [
+      "Disegna la forza esterna e quella elastica sul corpo.",
+      "In equilibrio i moduli si uguagliano: kx=F.",
+      "x=4/20=0,2 m, pari a 20 cm."
+    ],
+    "result": "x=0,2 m."
+  },
+  "practice": {
+    "prompt": "Una massa di 2 kg su piano orizzontale ha μs=0,4; g=10 m/s². Una forza orizzontale di 3 N la mette in moto?",
+    "answer": "No; attrito statico 3 N, limite 8 N.",
+    "feedback": "N=20 N. La forza richiesta per l’equilibrio è sotto μsN: l’attrito non vale automaticamente 8 N."
+  },
+  "transfer": {
+    "prompt": "Una molla con k=80 N/m è sottoposta a 6 N; poi un corpo di 2 kg subisce risultante 6 N. Trova x e a, distinguendo i modelli.",
+    "answer": "x=0,075 m; a=3 m/s².",
+    "feedback": "Hooke descrive l’equilibrio elastico; Newton descrive la variazione di velocità quando la risultante non è nulla."
+  },
+  "commonErrors": [
+    "Applicare μsN come forza sempre presente",
+    "Cancellare azione e reazione sullo stesso corpo",
+    "Porre sempre N=mg"
+  ],
+  "hintLadder": [
+    "Scegli il corpo del diagramma",
+    "Distingui risultante e singola forza",
+    "Controlla equilibrio e regime elastico"
+  ],
+  "recap": "Un diagramma delle forze corretto precede l’equazione del moto.",
+  "transcript": "La prima legge dice che risultante nulla implica velocità costante, anche diversa da zero. La seconda usa la somma vettoriale delle forze sul medesimo corpo: ΣF=ma in un riferimento inerziale. Le forze di azione e reazione agiscono su corpi diversi e non si cancellano nel diagramma di un solo corpo. Vicino alla Terra il peso è mg; in generale l’attrazione fra masse segue GmM/r². La normale è perpendicolare al contatto e non è sempre uguale al peso. La tensione segue il filo ideale. L’attrito statico si adatta fino a μsN; quello dinamico ha modulo approssimato μdN e si oppone allo scorrimento relativo. Una molla ideale esercita forza di richiamo −kx: in equilibrio sotto una forza esterna F il modulo dell’allungamento è F/k, purché si resti nel regime elastico. Un equilibrio statico impone accelerazione nulla, non assenza di forze. Esempio: Una molla ideale di costante 20 N/m è tirata staticamente con forza 4 N. Qual è l’allungamento? Disegna la forza esterna e quella elastica sul corpo. In equilibrio i moduli si uguagliano: kx=F. x=4/20=0,2 m, pari a 20 cm. Risultato: x=0,2 m.",
+  "scientificCounterchecks": [
+    "Un diagramma delle forze corretto precede l’equazione del moto.",
+    "N/m diviso al denominatore restituisce metri per F/k.",
+    "F=0 implica x=0 per molla non precaricata; raddoppiare k dimezza x a F fissata."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}
