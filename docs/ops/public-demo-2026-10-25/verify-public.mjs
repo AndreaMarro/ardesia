@@ -1,6 +1,6 @@
 /** Read-only public UI QA. Header values are read from the environment and never written. */
 import {createRequire} from "node:module";
-import {mkdir, writeFile} from "node:fs/promises";
+import {mkdir, readFile, writeFile} from "node:fs/promises";
 import {resolve, join} from "node:path";
 import {performance} from "node:perf_hooks";
 
@@ -23,6 +23,17 @@ const report = {origin: base.origin, viewports: [360, 390, 820, 1440], browser: 
 try {
   for (const width of report.viewports) {
     const context = await browser.newContext({viewport: {width, height: 1000}, reducedMotion: "reduce", extraHTTPHeaders: headers});
+    if (process.env.ARDESIA_PUBLIC_QA_ACCESS_FILE) {
+      const access = JSON.parse(await readFile(process.env.ARDESIA_PUBLIC_QA_ACCESS_FILE, "utf8"));
+      const accessUrl = new URL(access.url);
+      if (accessUrl.origin !== base.origin || !accessUrl.searchParams.has("_vercel_share")) throw new Error("Invalid temporary access destination");
+      // Share links set a scoped cookie; they are not automation bypass headers.
+      // Keep cookies only in this context, with no storageState, HAR or trace.
+      try {
+        const response = await context.request.get(accessUrl.href);
+        if (response.status() !== 200) throw new Error("Access failed");
+      } catch { throw new Error("Temporary preview access failed; private URL omitted"); }
+    }
     const page = await context.newPage();
     for (const model of scenarios) {
       const started = performance.now(), errors = [], unexpected = [], failed = [];
@@ -31,7 +42,8 @@ try {
         const url = new URL(request.url());
         if (url.origin !== base.origin || !url.pathname.startsWith("/esperienza/")) unexpected.push(url.origin + url.pathname);
       };
-      const onFailed = request => failed.push(new URL(request.url()).pathname);
+      const onFailed = request => failed.push({path: new URL(request.url()).pathname,
+        reason: request.failure()?.errorText || "UNKNOWN"});
       page.on("pageerror", onError); page.on("request", onRequest); page.on("requestfailed", onFailed);
       const result = {model: model.id, width, height: 1000, passed: false};
       try {
@@ -57,21 +69,25 @@ try {
         await page.getByLabel(model.input, {exact: true}).fill(model.newValue);
         await page.getByRole("button", {name: "Salva una bozza in questo browser", exact: true}).click();
         await expect(page.getByText(/Bozza salvata solo in questo browser/)).toBeVisible();
+        await page.waitForLoadState("networkidle");
         await page.reload();
         await expect(page.getByLabel(model.input, {exact: true})).toHaveValue(model.newValue);
         await expect(page.getByTestId(model.result)).toHaveCount(0);
         await page.getByRole("button", {name: model.compare, exact: true}).click();
         await expect(page.getByTestId(model.result)).toHaveText(model.newExpected);
         await page.getByRole("button", {name: "Cancella la bozza locale", exact: true}).click();
+        await page.waitForLoadState("networkidle");
         await page.reload();
         await expect(page.getByLabel(model.input, {exact: true})).toHaveValue("");
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        await page.waitForLoadState("networkidle");
         expect(errors).toEqual([]); expect(unexpected).toEqual([]); expect(failed).toEqual([]);
         Object.assign(result, {passed: true, checks: ["page-identity", "visible-app", "prediction-before-output", "Core-oracle", "graph", "fresh-transfer", "local-reload", "local-erase", "keyboard-focus", "no-horizontal-overflow", "no-page-errors", "static-network"], elapsedMs: Math.round(performance.now() - started)});
         console.log(`PASS ${model.id} ${width}px`);
       } catch (error) {
         result.error = String(error.message).replace(/https?:\/\/[^\s)"']+/g, "[URL omitted]");
         result.pageErrors = errors.map(message => message.replace(/https?:\/\/[^\s)"']+/g, "[URL omitted]"));
+        result.failedRequests = failed;
         await page.screenshot({path: join(output, `FAIL-${model.id}-${width}.png`), fullPage: true}).catch(() => {});
         console.log(`FAIL ${model.id} ${width}px`);
       } finally {
