@@ -1,0 +1,10 @@
+export type LessonRef={id:string;version:number;sha256:string};
+export type DraftScope={actor:string;edition:string;session:string;revision:string;lesson:string;phase:string};
+export type Answer={value:number;unit:string;reasoning:string};
+export type Receipt={receiptId:string;submissionId:string;revision:number;state:string};
+export type Attempt={receipt:Receipt;phase:string;answer:Answer;feedback:{numericCorrect:boolean;message:string;expectedValue:number;unit:string;reasoningStatus:string;mastery:string;assistance:{observed:string[];external:string};rubric:string[]}};
+export type StudyState={id:string;revisionId:string;editionId:string;lessonRef:LessonRef;sourceRef:{resourceId:string;revisionId:string;sha256:string};title:string;phase:string;phases:string[];cycle:number;diagnostic:string;
+ task?:{prompt:string;parameters:Record<string,string|number>;unit:string};source?:{explanation:string[];recap:string[]};simulation?:{parameters:Record<string,string|number>;controls:Record<string,(string|number)[]>;activityId:string;result?:{value:number;unit:string;domain:string;[key:string]:unknown}};
+ hints?:string[];hintLevel:number;phaseSupport:string[];attempts:Attempt[];prerequisites:string[];reviewAt:number|null;reviewReason:string;mastery:string;
+ tutorRequest:{text:string;status:string}|null;dispute:{text:string;status:string}|null;pendingAttempt:{key:string;revisionId:string;answer:Answer}|null};
+export type StudyCatalog={objectives:{title:string;objectiveIds:string[];lessonRef:LessonRef;prerequisites:string[]}[];sessions:{id:string;lessonRef:LessonRef;phase:string;reviewAt:number|null;reason:string}[];reason:string;coverageWarning:string};
