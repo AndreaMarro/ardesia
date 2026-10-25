@@ -105,3 +105,7 @@
  .product-shell .course-selector {grid-template-columns:minmax(0,1fr);gap:3px}
  .product-shell .sidebar .primary-navigation {grid-row:2}
 }
+/* A short viewport scrolls the dialog, retaining a usable results window. */
+.ps-command {overflow-y:auto}
+.ps-command-results {min-height:88px}
+@media (max-height:600px) { .ps-command {top:8px;max-height:calc(100dvh - 16px);padding:16px} .ps-command .ps-command-help {font-size:10px} }

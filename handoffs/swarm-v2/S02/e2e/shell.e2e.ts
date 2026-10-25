@@ -77,3 +77,16 @@ test("teacher command destinations remain distinct from student and logout remov
   await page.keyboard.press("ControlOrMeta+k");
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
+
+test("command results remain reachable in a short viewport with large text", async ({page}) => {
+  await page.setViewportSize({width:390,height:320});
+  await page.goto("/?view=today&edition=fluidi");
+  await page.getByRole("button",{name:/Cerca nello spazio/}).click();
+  await page.addStyleTag({content:'.ps-command {font-size:20px} .ps-command > p {font-size:18px}'});
+  const results=page.locator('.ps-command-results');
+  expect((await results.boundingBox())!.height).toBeGreaterThan(48);
+  await page.getByRole('searchbox').press('ArrowDown');
+  await page.keyboard.press('End');
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});

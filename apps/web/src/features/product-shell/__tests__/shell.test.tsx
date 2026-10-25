@@ -50,3 +50,21 @@ test("search selects only an edition supplied by the existing API projection", (
   fireEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: /Relazioni e fluidi/ }));
   expect(select).toHaveBeenCalledWith("fluidi");
 });
+
+test("IME confirmation and composition arrows do not navigate away from the search", () => {
+  const navigate = vi.fn();
+  render(<Shell me={me} view="today" onView={navigate} onLogout={() => {}}>Contenuto</Shell>);
+  fireEvent.click(screen.getByRole("button", { name: /Cerca nello spazio/ }));
+  const search=screen.getByRole("searchbox");
+  search.focus();
+  fireEvent.compositionStart(search);
+  fireEvent.keyDown(search, {key:"ArrowDown",isComposing:true});
+  expect(document.activeElement).toBe(search);
+  fireEvent.keyDown(search, {key:"Enter",keyCode:229,isComposing:true});
+  fireEvent.compositionEnd(search);
+  fireEvent.submit(screen.getByRole("search"));
+  expect(navigate).not.toHaveBeenCalled();
+  fireEvent.keyDown(search, {key:"Enter"});
+  fireEvent.submit(screen.getByRole("search"));
+  expect(navigate).toHaveBeenCalledWith("today");
+});

@@ -11,8 +11,9 @@ export function CommandSearch({ items, editions, onView, onEdition, loading = fa
   const [query, setQuery] = useState("");
   const trigger = useRef<HTMLButtonElement>(null), input = useRef<HTMLInputElement>(null), list = useRef<HTMLDivElement>(null);
   const navigated = useRef(false);
+  const composing = useRef(false), suppressSubmit = useRef(false);
   function changeOpen(value: boolean) {
-    if (value) { setQuery(""); navigated.current = false; }
+    if (value) { setQuery(""); navigated.current = false; composing.current = false; suppressSubmit.current = false; }
     setOpen(value);
   }
   useEffect(() => {
@@ -20,7 +21,7 @@ export function CommandSearch({ items, editions, onView, onEdition, loading = fa
       if ((event.metaKey || event.ctrlKey) && !event.altKey && !event.isComposing && !event.repeat && event.key.toLowerCase() === "k") {
         event.preventDefault();
         setOpen(value => {
-          if (!value) { setQuery(""); navigated.current = false; }
+          if (!value) { setQuery(""); navigated.current = false; composing.current = false; suppressSubmit.current = false; }
           return !value;
         });
       }
@@ -45,8 +46,18 @@ export function CommandSearch({ items, editions, onView, onEdition, loading = fa
       }}>
         <div className="ps-command-heading"><Dialog.Title>Dove vuoi andare?</Dialog.Title><Dialog.Close aria-label="Chiudi ricerca">×</Dialog.Close></div>
         <Dialog.Description>Cerca una sezione o un’edizione di questa pagina. Le autorizzazioni restano quelle del tuo account.</Dialog.Description>
-        <form role="search" onSubmit={event => { event.preventDefault(); list.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.click(); }}>
-          <label className="ps-search-label">Cerca una destinazione<input ref={input} type="search" value={query} autoComplete="off" maxLength={160} onChange={event => setQuery(event.target.value)} onKeyDown={event => {
+        <form role="search" onSubmit={event => {
+          event.preventDefault();
+          if (composing.current || suppressSubmit.current) return;
+          list.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.click();
+        }}>
+          <label className="ps-search-label">Cerca una destinazione<input ref={input} type="search" value={query} autoComplete="off" maxLength={160} onChange={event => setQuery(event.target.value)} onCompositionStart={() => {composing.current = true;}} onCompositionEnd={() => {composing.current = false;}} onKeyDown={event => {
+            if (composing.current || event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229) {
+              // Some browsers end composition before the resulting submit event.
+              if (event.key === "Enter" || event.nativeEvent.keyCode === 229) suppressSubmit.current = true;
+              return;
+            }
+            suppressSubmit.current = false;
             if (event.key === "ArrowDown" || event.key === "ArrowUp") {
               const buttons = list.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
               if (buttons?.length) { event.preventDefault(); buttons[event.key === "ArrowDown" ? 0 : buttons.length - 1].focus(); }
