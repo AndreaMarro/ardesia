@@ -85,6 +85,7 @@ test.each([
   {activityId: "dc-resistance-v1", version: 99},
   {...electrical, ivSamples: []}, {...electrical, branches: []},
   {...electrical, currentA: Number.NaN}, {...electrical, ivSamples: [{voltageV: 0, currentA: Infinity, totalPowerW: 0}]},
+  {...electrical, ivSamples: [{voltageV: -1e308, currentA: -1e308, totalPowerW: 0}, {voltageV: 1e308, currentA: 1e308, totalPowerW: 1e308}]},
 ])("corrupt or incompatible circuit data leave a readable fallback without executing a substitute model", async bad => {
   const {ScientificElectricalModel} = await import("../components/ScientificElectricalModel");
   render(<ScientificElectricalModel result={bad as typeof electrical} />);
@@ -96,6 +97,7 @@ test.each([
   {...wave, version: 2}, {...wave, spatialSamples: []}, {...wave, temporalSamples: []},
   {...wave, wavelengthM: 0}, {...wave, probeDisplacementM: Infinity},
   {...wave, spatialSamples: [{xM: 0, displacementM: NaN}]},
+  {...wave, spatialSamples: [{xM: -1e308, displacementM: 0}, {xM: 1e308, displacementM: 0}]},
 ])("corrupt wave samples and unknown versions have a readable fallback", async bad => {
   const {ScientificWaveModel} = await import("../components/ScientificWaveModel");
   render(<ScientificWaveModel result={bad} />);

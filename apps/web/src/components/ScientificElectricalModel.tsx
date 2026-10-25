@@ -8,7 +8,9 @@ export type ElectricalResult = {
   ivSamples: {voltageV: number; currentA: number; totalPowerW: number}[];
 };
 
-const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
+// All outputs of the bounded Core model are below 10^15 in SI. A finite but
+// corrupt 1e308 sample would overflow pixel-range subtraction; reject it too.
+const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && Math.abs(value) <= 1e15;
 const fmt = (value: number) => (Object.is(value, -0) ? 0 : value).toLocaleString("it-IT", {
   maximumSignificantDigits: 6, notation: Math.abs(value) > 0 && (Math.abs(value) < .001 || Math.abs(value) >= 1e6) ? "scientific" : "standard",
 }).replace(/^-/, "−");

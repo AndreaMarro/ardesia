@@ -8,7 +8,9 @@ export type WaveResult = {
   temporalSamples: {timeS: number; displacementM: number}[];
 };
 
-const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value);
+// Bounds above the Core's SI domain also keep corrupt finite values from
+// overflowing SVG range subtraction. This is data validation, not wave physics.
+const finite = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && Math.abs(value) <= 1e15;
 const fmt = (value: number) => (Object.is(value, -0) ? 0 : value).toLocaleString("it-IT", {
   maximumSignificantDigits: 6, notation: Math.abs(value) > 0 && (Math.abs(value) < .001 || Math.abs(value) >= 1e6) ? "scientific" : "standard",
 }).replace(/^-/, "−");
