@@ -1,0 +1,39 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+______ test_diary_career_does_not_leak_suggestions_across_edition_filter _______
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-89/test_diary_career_does_not_lea0')
+
+    def test_diary_career_does_not_leak_suggestions_across_edition_filter(tmp_path):
+        from test_error_diary import opened
+        store,tutor,student,*_=opened(tmp_path)
+        store.create_edition(tutor,'second-edition')
+        store.add_test_member(tutor,'second-edition',student.id)
+>       assert dashboard(store,student,'second-edition')['suggestions'] == []
+E       AssertionError: assert [{'threadId':...509ce'}, ...}] == []
+E         
+E         Left contains one more item: {'threadId': 'ea6b13a535da4f0f953cbbdf95cf3813', 'category': 'model_selection', 'status': 'OPEN', 'sourceRef': {'resourceId': 'cb09892d4c6a48aaa512dc655b2934ed', 'revisionId': 'b3de57ef04b24bb0853cdbac930509ce'}, ...}
+E         Use -v to get more diff
+
+packages/engine/tests/study/test_learning_insights.py:197: AssertionError
+__________ test_clock_skew_cannot_replay_withdrawn_consent_generation __________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-89/test_clock_skew_cannot_replay_0')
+
+    def test_clock_skew_cannot_replay_withdrawn_consent_generation(tmp_path):
+        store,_,student,_,_,receipt=enabled(tmp_path)
+        proposed=event(receipt,at=1050)
+        ingest(store,student,'fluidi',[proposed],notice=NOTICE)
+        store.clock=lambda:1001
+        set_preferences(store,student,'fluidi',False,None,notice=NOTICE)
+        store.clock=lambda:1002
+        set_preferences(store,student,'fluidi',True,NOTICE['version'],notice=NOTICE)
+>       with pytest.raises(StudyError,match='event_outside_consent_window'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE StudyError
+
+packages/engine/tests/study/test_learning_insights.py:208: Failed
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_insights.py::test_diary_career_does_not_leak_suggestions_across_edition_filter
+FAILED packages/engine/tests/study/test_learning_insights.py::test_clock_skew_cannot_replay_withdrawn_consent_generation
+2 failed, 16 deselected in 4.28s
