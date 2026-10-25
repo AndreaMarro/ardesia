@@ -268,3 +268,9 @@ Le firme scientifiche/editoriali/audio e i DRAFT restano gate distinti.
 Il layout ha P2 dichiarati (CTA iniziale sotto fold, recupero mobile lungo),
 non una certificazione WCAG o di qualità visuale globale. Nessun nuovo plugin,
 MCP writer, beta remota, produzione o claim di apprendimento automatico.
+
+## Addendum — 25 ottobre 2026, nuovo mandato adottato e convergenza effettiva
+
+Il proprietario ha adottato esplicitamente PROMPT_CODEX_ARDESIA.md come mandato: policy single-maintainer con PR/check obbligatori, nessuna approvazione umana obbligatoria; pubblicazione autonoma della sola demo originale verificata. Questa direttiva supera i precedenti blocchi OPERATIVI descritti qui; non ratifica banca DRAFT, private beta o licenze donor. [Confronto amministrativo](public-demo-2026-10-25/policy-change.json): solo tre campi review modificati, tutte le altre protection identiche, nessun ruleset toccato o bypass.
+
+#304 realmente MERGED in `51023fc5f0e3df5cee52b40bbe3f7d47028bca5a`, CI post-merge40228899033 SUCCESS. GitHub ha riconosciuto30PR con head ancestor comeMERGED; le sei offchain ancora aperte sono chiuse con motivazione, #264 era già respinta. [Snapshot37esiti](public-demo-2026-10-25/pr-outcomes.json):30MERGED,5CLOSED_SUPERSEDED,2CLOSED_REJECTED,0aperte. Non chiamare le chiusure senza merge integrazioni complete; adapter/scanner e documenti selezionati hanno provenienza, i restanti probe/protocolli non sono adottati in blocco. Il nuovo incremento e le prove remote sono nel [registro di consegna](public-demo-2026-10-25/README.md).

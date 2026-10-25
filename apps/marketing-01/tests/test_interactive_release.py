@@ -1,3 +1,4 @@
+import json
 import sys
 import tempfile
 import unittest
@@ -12,6 +13,12 @@ class InteractiveReleaseTests(unittest.TestCase):
             html = (target / 'index.html').read_text()
             self.assertIn('/esperienza/?percorso=fluidi-termodinamica', html)
             self.assertIn('id="dentro-la-lezione"', html)
+            self.assertIn('/esperienza/?percorso=strumenti-meccanica', html)
+            self.assertIn('/esperienza/?modello=molla', html)
+            self.assertIn('/esperienza/?modello=idrostatica', html)
+            self.assertEqual(json.loads((target / 'source-manifest.json').read_text())['examples'], [])
+            self.assertFalse((target / 'esempi').exists())
+            self.assertNotIn('/esempi/', html)
             self.assertIn('manifestazione d’interesse', html)
             self.assertIn('nessun account richiesto', html)
             self.assertIn('noindex, nofollow', html)

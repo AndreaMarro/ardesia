@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import SessionAudioControls from "./SessionAudioControls"
 import { revokeStoredAudioSession, type SessionAudioRecorder } from "./store/SessionAudioRecorder"
-import { recordingSession, type AudioObjectReference, type AudioRecordingRef } from "./store/audioRecording"
+import { recordingSession, type AudioObjectReference } from "./store/audioRecording"
 import type { WorkspaceStore } from "./store/WorkspaceStore"
 import { loadReplayTimeline } from "./store/replayTimeline"
 import type { LessonSessionIdentityV1 } from "./store/sessionState"
@@ -22,7 +22,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
   const [open, setOpen] = useState(() => new URLSearchParams(window.location.search).has("courseBridge"))
   const [text, setText] = useState("")
   const [refs, setRefs] = useState<readonly AudioObjectReference[]>([])
-  const [saved, setSaved] = useState<AudioRecordingRef | null>(null)
+  const saved = audio.lastRecording
   const [reference, setReference] = useState("")
   const [notice, setNotice] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -60,7 +60,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
     }).catch((cause) => { if (active) setError("Archivio audio non leggibile: " + (cause as Error).message) })
     return () => { active = false }
   }, [store, recorder, saved, historyVersion])
-  const handleSaved = useCallback((recording: AudioRecordingRef) => { setSaved(recording); setReference(""); setNotice(null) }, [])
+  useEffect(() => { setReference(""); setNotice(null) }, [recorder, saved?.recordingId])
   function close() { setOpen(false); triggerRef.current?.focus() }
   async function revokePrevious(identity: LessonSessionIdentityV1) {
     setBusy(true); setError(null)
@@ -86,6 +86,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
     setBusy(true); setError(null); setNotice(null)
     try {
       const descriptor = await prepareLessonPassage(store, saved, window.location.href)
+      if (recorder.getSnapshot().lastRecording?.recordingId !== saved.recordingId) return
       if (copy) {
         const serialized = JSON.stringify(descriptor, null, 2)
         setReference(serialized)
@@ -103,7 +104,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
       <button ref={triggerRef} className="st-passage-trigger" aria-expanded={open} aria-controls="lesson-passage-panel" onClick={() => setOpen((value) => !value)}>
         <IconMic /><span>Registra e collega un passaggio</span><span aria-hidden>{open ? "−" : "+"}</span>
       </button>
-      <span className={`st-passage-stage${recording ? " st-passage-live" : ""}`}>{recording ? "Microfono attivo" : saved ? "Passaggio salvato" : "La lavagna resta il tuo spazio"}</span>
+      <span className={`st-passage-stage${recording ? " st-passage-live" : ""}`}>{recording ? "Microfono attivo" : audio.stage === "saving" ? "Salvataggio audio…" : audio.stage === "revoking" ? "Cancellazione audio…" : saved ? "Passaggio salvato" : refs.length ? "Contesto collegato · audio da registrare" : "La lavagna resta il tuo spazio"}</span>
       {connected && <span className="st-passage-connected"><IconLink /> Aula collegata</span>}
       {onFit && <button className="st-passage-fit st-ghost" aria-label="Inquadra lavagna" onClick={onFit}>Inquadra</button>}
     </div>
@@ -129,7 +130,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
       </div>
       <div className="st-passage-step">
         <span className="st-step-number">02 <span>LA TUA VOCE</span></span>
-        <SessionAudioControls recorder={recorder} objectRefs={refs} onSaved={handleSaved} />
+        <SessionAudioControls recorder={recorder} objectRefs={refs} />
       </div>
       <div className="st-passage-step">
         <span className="st-step-number">03 <span>IL RITORNO AL CORSO</span></span>
@@ -141,7 +142,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
         <details className="st-passage-secondary"><summary>Altri modi di trasferire il passaggio</summary>
           <button className="st-ghost" disabled={!saved?.objectRefs.length || busy} onClick={() => void sendPassage(true)}>Copia passaggio per il corso</button>
           <p className="st-quiet">Il collegamento usa i media di questo archivio locale. Per un altro archivio trasferisci prima il file .lesson.</p>
-          {reference && <label>Riferimento da incollare nel corso<textarea aria-label="Riferimento del passaggio" value={reference} readOnly rows={5} onFocus={(event) => event.target.select()} /></label>}
+          {saved && reference && <label>Riferimento da incollare nel corso<textarea aria-label="Riferimento del passaggio" value={reference} readOnly rows={5} onFocus={(event) => event.target.select()} /></label>}
         </details>
       </div>
       {history.length > 0 && <details className="st-passage-secondary st-passage-history">

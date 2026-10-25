@@ -81,6 +81,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--include-private', action='store_true')
+    parser.add_argument('--review-examples', action='store_true',
+                        help='Opt in to private editorial preview examples; excluded from the public demo by default')
     args = parser.parse_args()
     output = args.output.resolve()
     if output.exists():
@@ -89,7 +91,10 @@ def main() -> None:
     import tempfile
     with tempfile.TemporaryDirectory(prefix='ardesia-candidate-') as scratch:
         marketing = Path(scratch) / 'marketing'
-        run(['python3', 'apps/marketing-01/build.py', '--review-examples', '--interactive-preview', '--output', str(marketing)])
+        marketing_command = ['python3', 'apps/marketing-01/build.py', '--interactive-preview', '--output', str(marketing)]
+        if args.review_examples:
+            marketing_command.append('--review-examples')
+        run(marketing_command)
         run(['npm', 'run', 'build:web:public'])
         if args.include_private:
             run(['npm', 'run', 'build:web'])

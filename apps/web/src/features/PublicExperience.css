@@ -1,0 +1,17 @@
+.public-spring-model {margin: 0; min-width: 0;}
+.public-spring-model svg {display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto;}
+.public-spring-model text {font-family: inherit; font-size: 16px; fill: currentColor;}
+.public-spring-model figcaption {font-size: 13px; line-height: 1.6; color: var(--muted); margin: 14px 0;}
+.public-local-draft {border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 10px; grid-column: 1 / -1;}
+.public-local-draft p {font-size: 12px; line-height: 1.6; margin: 0; color: var(--muted);}
+.public-local-draft button {min-height: 44px; width: 100%; padding: 10px 12px; white-space: normal; text-align: left; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink);}
+.public-local-draft [role="status"] {color: var(--ink);}
+.public-spring-lab .lab-result strong {display: block;}
+@media (max-width: 600px) {
+  .public-spring-model text {font-size: 22px;}
+  .public-experience .experience-models {gap: 8px;}
+  .public-experience .experience-models button {font-size: 13px; padding: 10px 14px;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-spring-model * {animation: none !important; transition: none !important;}
+}

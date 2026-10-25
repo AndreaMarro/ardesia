@@ -41,10 +41,11 @@ export const publicPreviewData = {
     "derivation": "Mean speed ratio = Core flow ratio / radius ratio squared; Q = v_mean A."
   },
   "sources": {
-    "packages/engine/lessonos/study/activities.py": "75da833a014c90142bd75dc03952de4bbf0c26a29551f1b7074148f6b5c0f603",
+    "packages/engine/lessonos/study/activities.py": "89b9028102bbf430f6ea0e629097d7e9d550ea7436430870c58579385b520951",
+    "packages/engine/lessonos/study/spring.py": "9b4838c4474de7189077630d86195504b8951a584340e571e1bdd566162f54a7",
     "packages/engine/lessonos/study/public_preview.py": "d9840365acb0ecdd1612dc3259b5a825bf1a346e279ed785240336380ff783f1",
     "bin/web/poiseuille-demo.json": "3fa466d4e394549e0e9dd8dd1e11bdf18105429f0a50710907429dce8c82f3b4",
-    "bin/web/export_public_preview.py": "f4382874b663130fbd2a7cbbc44856b5e3eeaa4b04da7c29e468ecdfabbdfd75"
+    "bin/web/export_public_preview.py": "d0b2eeadab7ba13a2de6c49f460fc3c2cd9ab7b6d03c66764472aed23b378ff2"
   },
   "course": {
     "id": "fluidi-public-v1",
@@ -798,6 +799,1225 @@ export const publicPreviewData = {
         }
       }
     ]
+  },
+  "spring": {
+    "force": {
+      "min": 0,
+      "max": 10,
+      "step": 0.5
+    },
+    "stiffnesses": [
+      20,
+      40,
+      80
+    ],
+    "maxExtension": 0.5,
+    "cases": [
+      {
+        "parameters": {
+          "force": 0.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0,
+          "unit": "m",
+          "elasticEnergyJ": 0.0,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 0.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0,
+          "unit": "m",
+          "elasticEnergyJ": 0.0,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 0.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0,
+          "unit": "m",
+          "elasticEnergyJ": 0.0,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 0.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.025,
+          "unit": "m",
+          "elasticEnergyJ": 0.00625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 0.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0125,
+          "unit": "m",
+          "elasticEnergyJ": 0.003125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 0.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.00625,
+          "unit": "m",
+          "elasticEnergyJ": 0.0015625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.05,
+          "unit": "m",
+          "elasticEnergyJ": 0.025,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.025,
+          "unit": "m",
+          "elasticEnergyJ": 0.0125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0125,
+          "unit": "m",
+          "elasticEnergyJ": 0.00625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.075,
+          "unit": "m",
+          "elasticEnergyJ": 0.056249999999999994,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0375,
+          "unit": "m",
+          "elasticEnergyJ": 0.028124999999999997,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 1.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.01875,
+          "unit": "m",
+          "elasticEnergyJ": 0.014062499999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1,
+          "unit": "m",
+          "elasticEnergyJ": 0.1,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.05,
+          "unit": "m",
+          "elasticEnergyJ": 0.05,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.025,
+          "unit": "m",
+          "elasticEnergyJ": 0.025,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.125,
+          "unit": "m",
+          "elasticEnergyJ": 0.15625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0625,
+          "unit": "m",
+          "elasticEnergyJ": 0.078125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 2.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.03125,
+          "unit": "m",
+          "elasticEnergyJ": 0.0390625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.15,
+          "unit": "m",
+          "elasticEnergyJ": 0.22499999999999998,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.075,
+          "unit": "m",
+          "elasticEnergyJ": 0.11249999999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0375,
+          "unit": "m",
+          "elasticEnergyJ": 0.056249999999999994,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.175,
+          "unit": "m",
+          "elasticEnergyJ": 0.30624999999999997,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0875,
+          "unit": "m",
+          "elasticEnergyJ": 0.15312499999999998,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 3.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.04375,
+          "unit": "m",
+          "elasticEnergyJ": 0.07656249999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.2,
+          "unit": "m",
+          "elasticEnergyJ": 0.4,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1,
+          "unit": "m",
+          "elasticEnergyJ": 0.2,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.05,
+          "unit": "m",
+          "elasticEnergyJ": 0.1,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.225,
+          "unit": "m",
+          "elasticEnergyJ": 0.50625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1125,
+          "unit": "m",
+          "elasticEnergyJ": 0.253125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 4.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.05625,
+          "unit": "m",
+          "elasticEnergyJ": 0.1265625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.25,
+          "unit": "m",
+          "elasticEnergyJ": 0.625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.125,
+          "unit": "m",
+          "elasticEnergyJ": 0.3125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0625,
+          "unit": "m",
+          "elasticEnergyJ": 0.15625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.275,
+          "unit": "m",
+          "elasticEnergyJ": 0.7562500000000001,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1375,
+          "unit": "m",
+          "elasticEnergyJ": 0.37812500000000004,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 5.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.06875,
+          "unit": "m",
+          "elasticEnergyJ": 0.18906250000000002,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.3,
+          "unit": "m",
+          "elasticEnergyJ": 0.8999999999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.15,
+          "unit": "m",
+          "elasticEnergyJ": 0.44999999999999996,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.075,
+          "unit": "m",
+          "elasticEnergyJ": 0.22499999999999998,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.325,
+          "unit": "m",
+          "elasticEnergyJ": 1.0562500000000001,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1625,
+          "unit": "m",
+          "elasticEnergyJ": 0.5281250000000001,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 6.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.08125,
+          "unit": "m",
+          "elasticEnergyJ": 0.26406250000000003,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.35,
+          "unit": "m",
+          "elasticEnergyJ": 1.2249999999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.175,
+          "unit": "m",
+          "elasticEnergyJ": 0.6124999999999999,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.0875,
+          "unit": "m",
+          "elasticEnergyJ": 0.30624999999999997,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.375,
+          "unit": "m",
+          "elasticEnergyJ": 1.40625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1875,
+          "unit": "m",
+          "elasticEnergyJ": 0.703125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 7.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.09375,
+          "unit": "m",
+          "elasticEnergyJ": 0.3515625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.4,
+          "unit": "m",
+          "elasticEnergyJ": 1.6,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.2,
+          "unit": "m",
+          "elasticEnergyJ": 0.8,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1,
+          "unit": "m",
+          "elasticEnergyJ": 0.4,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.425,
+          "unit": "m",
+          "elasticEnergyJ": 1.80625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.2125,
+          "unit": "m",
+          "elasticEnergyJ": 0.903125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 8.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.10625,
+          "unit": "m",
+          "elasticEnergyJ": 0.4515625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.45,
+          "unit": "m",
+          "elasticEnergyJ": 2.025,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.225,
+          "unit": "m",
+          "elasticEnergyJ": 1.0125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.1125,
+          "unit": "m",
+          "elasticEnergyJ": 0.50625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.5,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.475,
+          "unit": "m",
+          "elasticEnergyJ": 2.25625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.5,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.2375,
+          "unit": "m",
+          "elasticEnergyJ": 1.128125,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 9.5,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.11875,
+          "unit": "m",
+          "elasticEnergyJ": 0.5640625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 10.0,
+          "stiffness": 20
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.5,
+          "unit": "m",
+          "elasticEnergyJ": 2.5,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 10.0,
+          "stiffness": 40
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.25,
+          "unit": "m",
+          "elasticEnergyJ": 1.25,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      },
+      {
+        "parameters": {
+          "force": 10.0,
+          "stiffness": 80
+        },
+        "result": {
+          "activityId": "hooke-v1",
+          "version": 1,
+          "value": 0.125,
+          "unit": "m",
+          "elasticEnergyJ": 0.625,
+          "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
+          "fixedQuantity": "forza applicata e rigidità della molla",
+          "maxExtension": 0.5,
+          "domain": "Molla ideale lineare in equilibrio statico, forza applicata lungo il suo asse. Si considera solo la trazione: F ≥ 0, k > 0, x = F/k; energia elastica U = kx²/2. Massa della molla, attrito, oscillazioni e deformazioni permanenti sono trascurati. Intervallo ammesso nella demo: 0 ≤ x ≤ 0,5 m; non è il limite elastico misurato di una molla reale.",
+          "editorialStatus": "DRAFT",
+          "numericalCheck": "deterministic"
+        }
+      }
+    ]
+  },
+  "demonstration": {
+    "provenance": "DEMO",
+    "authorship": "Original Ardesia educational scenarios, independent of the question bank.",
+    "numericalVerification": "Deterministic canonical Core; independent SI oracle tests.",
+    "humanEditorialApproval": false,
+    "meaning": "Numerical verification is separate from human scientific/editorial approval."
   },
   "cases": [
     {"parameters": {"radiusRatio": 0.5, "boundary": "pressure"}, "visual": {"flowRatio": 0.0625, "pressureRatio": 1.0, "meanSpeedRatio": 0.25}, "result": {"activityId": "poiseuille-v1", "version": 1, "ratio": 0.0625, "fixedQuantity": "pressure", "calculatedVariable": "Q/Q0", "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.", "editorialStatus": "DRAFT", "numericalCheck": "deterministic"}},

@@ -6,6 +6,8 @@ import { requestKey } from "../api";
 import { ErrorNotice } from "./Feedback";
 import {PoiseuilleModel} from "./PoiseuilleVisual";
 import {PublicLessonDemo} from "./PublicLessonDemo";
+import {PublicDraftControls} from "./PublicDraftControls";
+import {readPublicDraft} from "../publicDraft";
 export {PoiseuilleModel} from "./PoiseuilleVisual";
 import { publicActivityDomain, publicActivityResult, publicCaseCount, publicLessonDemo, publicRadius, publicTransferCase } from "../publicPreview";
 type Result = {
@@ -19,12 +21,15 @@ export function PhysicsLab({
   draftKey,
   publicPreview = false,
   numericPrediction = false,
+  publicPersistence = false,
 }: {
   onCommit?: (value: ActivityCommit | null) => void;
   draftKey?: string;
   publicPreview?: boolean;
   numericPrediction?: boolean;
+  publicPersistence?: boolean;
 }) {
+  const [localSaved] = useState(() => publicPreview && publicPersistence ? readPublicDraft("poiseuille") : null);
   const saved = useRef(
     draftKey
       ? (JSON.parse(readResourceDraft(draftKey)?.text ?? "null") as {
@@ -34,14 +39,14 @@ export function PhysicsLab({
         } | null)
       : null,
   );
-  const [radius, setRadius] = useState(saved.current?.radius ?? (numericPrediction ? 2 : 1.5)),
-    [boundary, setBoundary] = useState(saved.current?.boundary ?? "pressure"),
-    [prediction, setPrediction] = useState(saved.current?.prediction ?? "");
+  const [radius, setRadius] = useState(saved.current?.radius ?? localSaved?.radius ?? (numericPrediction ? 2 : 1.5)),
+    [boundary, setBoundary] = useState(saved.current?.boundary ?? localSaved?.boundary ?? "pressure"),
+    [prediction, setPrediction] = useState(saved.current?.prediction ?? localSaved?.prediction ?? "");
   const [result, setResult] = useState<Result | null>(null),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [changed, setChanged] = useState(false);
-  const [graph, setGraph] = useState(false), [help, setHelp] = useState(false), [transfer, setTransfer] = useState(false);
+  const [graph, setGraph] = useState(false), [help, setHelp] = useState(false), [transfer, setTransfer] = useState(localSaved?.transfer ?? false);
   const publicTransfer = publicPreview && transfer;
   const predictionNumber = Number(prediction.replace(",", "."));
   const predictionReady = prediction.trim() !== "" && (!numericPrediction || (Number.isFinite(predictionNumber) && predictionNumber > 0));
@@ -204,7 +209,7 @@ export function PhysicsLab({
                 if (onCommit || numericPrediction) invalidate();
               }}
               placeholder={numericPrediction ? (boundary === "pressure" ? "Q/Q₀ = …" : "Δp/Δp₀ = …") : "Che cosa pensi che cambierà?"}
-              maxLength={1000}
+              maxLength={publicPreview && publicPersistence ? 40 : 1000}
             />
           </label>
           <label>
@@ -264,6 +269,7 @@ export function PhysicsLab({
             <p>Una risposta ottenuta dopo questo aiuto è una risposta assistita. Prova poi una situazione diversa.</p>
           </div>}
           {numericPrediction && <button type="button" className="text-link" onClick={() => {beginPrediction(); setRadius(2); setBoundary("pressure"); setTransfer(false);}}>Ricomincia l’esperimento</button>}
+          {publicPreview && publicPersistence && <PublicDraftControls model="poiseuille" data={{radius, boundary, prediction, transfer}} />}
           <details ref={modelDetails}>
             <summary>Modello e limiti</summary>
             <p className="formula" id={publicPreview ? publicLessonDemo.objectId : undefined}>Q = π r⁴ Δp / (8 η L)</p>
@@ -279,8 +285,8 @@ export function PhysicsLab({
                 Questa anteprima esplora {publicCaseCount} configurazioni: tutti i
                 risultati sono stati calcolati dal motore scientifico di Ardesia
                 durante la preparazione della pagina. Nell’esplorazione lunghezza e viscosità
-                rimangono costanti; la nuova prova le varia insieme. Tutti i parametri sono rapporti adimensionali rispetto al tubo di riferimento. La previsione resta in questa pagina; nessuna
-                risposta viene inviata a un servizio o salvata come profilo studente.
+                rimangono costanti; la nuova prova le varia insieme. Tutti i parametri sono rapporti adimensionali rispetto al tubo di riferimento. {publicPersistence ? "La bozza può essere salvata facoltativamente solo in questo browser; nessuna" : "La previsione resta in questa pagina; nessuna"}
+                {" "}risposta viene inviata a un servizio o salvata come profilo studente. Scenario originale DEMO: il controllo numerico è separato dall’approvazione editoriale umana.
               </p>
             )}
           </details>
