@@ -97,3 +97,60 @@ test("the last scalar hint retains keyboard focus and cannot reveal further hint
   fireEvent.click(trigger);
   expect(screen.getAllByText("Separa i due contributi alla pressione.")).toHaveLength(1);
 });
+
+
+// Cold reopens must use existing Core receipts rather than silently asking the
+// student to submit the same already-accepted step again.
+function storedStep(id: string, studentId: string, activityEvidence: ActivityEvidenceV2): Workspace["submissions"][number] {
+  return {
+    id, student_id: studentId, activity_id: "hydrostatic-v1", revision: 1,
+    parent_id: null, text: "Saved prediction and procedure",
+    asset_refs: [], source_refs: [], receipt_id: "receipt-" + id,
+    state: "received", feedback: [], activityEvidence,
+  };
+}
+function storedExperience(steps: Workspace["submissions"]): Workspace {
+  return {...data, submissions: steps};
+}
+function stubComposition() {
+  vi.stubGlobal("fetch", vi.fn(async (path: string) =>
+    new Response(JSON.stringify(path.includes("learning-experiences") ? {schemaVersion: 2, experiences: [experience]} : {error: "unexpected_request"}))));
+}
+
+test("cold reopen resumes the first unsubmitted scalar step from exact Core receipt", async () => {
+  stubComposition();
+  render(<ScalarExperienceEpisode me={me}
+    data={storedExperience([storedStep("first", me.id, evidence())])}
+    onUpdate={async () => {}} />);
+  await screen.findByRole("heading", {name: "Stesso punto, pressione assoluta"});
+  expect(screen.queryByRole("heading", {name: "Pressione dovuta alla profondità"})).toBeNull();
+  expect((screen.getByLabelText("Pressione prevista in Pa") as HTMLInputElement).value).toBe("");
+});
+
+test("cold reopen does not borrow a foreign student's receipt or a stale experience digest", async () => {
+  stubComposition();
+  const foreign = storedStep("foreign", "another-student", evidence());
+  const stale = storedStep("stale", me.id, {
+    ...evidence(), experienceRef: {...experience.experienceRef, sha256: "f".repeat(64)},
+  });
+  render(<ScalarExperienceEpisode me={me}
+    data={storedExperience([foreign, stale])} onUpdate={async () => {}} />);
+  await screen.findByRole("heading", {name: "Pressione dovuta alla profondità"});
+  expect(screen.queryByRole("heading", {name: "Stesso punto, pressione assoluta"})).toBeNull();
+});
+
+test("cold reopen of all completed scalar steps shows a receipt-based summary, not a fresh duplicate attempt", async () => {
+  stubComposition();
+  const second: ActivityEvidenceV2 = {
+    ...evidence(), stepId: "absolute",
+    result: {...evidence().result, value: 120945, calculatedVariable: "Pressione assoluta"},
+    prediction: {kind: "scalar", value: 120945, unit: "Pa"},
+    check: {kind: "scalar", valueMatches: true, unitMatches: true},
+  };
+  render(<ScalarExperienceEpisode me={me} data={storedExperience([
+    storedStep("first", me.id, evidence()), storedStep("second", me.id, second),
+  ])} onUpdate={async () => {}} />);
+  await screen.findByText(/Percorso già consegnato con ricevute del Core/);
+  expect(screen.queryByLabelText("Pressione prevista in Pa")).toBeNull();
+  expect(screen.queryByRole("button", {name: "Registra previsione e confronta"})).toBeNull();
+});
