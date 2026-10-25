@@ -1,0 +1,34 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+(node:60340) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/AudioV2_independent.test.ts (10 tests | 1 failed) 440ms
+     × an untrusted higher imported revision cannot override an existing explicit OFF 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2_independent.test.ts > independent recorder adversarial review > an untrusted higher imported revision cannot override an existing explicit OFF
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/AudioV2_independent.test.ts:248:91
+    246|     await importing
+    247|     const current = await h.store.read(sessionPaths(identity).session)
+    248|     expect(parseSessionYamlV2(new Uint8Array(await current!.arrayBuffe…
+       |                                                                                           ^
+    249|     expect(await h.store.list(sessionPaths(identity).audioDir)).toEqua…
+    250|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  12:28:44
+   Duration  3.00s (transform 534ms, setup 51ms, import 676ms, tests 440ms, environment 1.56s)

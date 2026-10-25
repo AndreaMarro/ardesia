@@ -1,0 +1,165 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R2",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-109"
+  ],
+  "target_kind": "EXTERNAL_OPEN_SOURCE",
+  "authorization_basis": "Pacchetto OSS DoenetML non modificato eseguito localmente in profilo dedicato con fixture Poiseuille originale. Nessun login, acquisto, account o quiz proprietario. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation. Newf438: normal read-only browser with existing authorized synthetic sessions from private environment refs; no new account/revoke/layout/data write.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "@doenet/doenetml0.7.27; tag v0.7.27 -> eed95cd1ce266d9082c68e7ca0d823c9394f1a70; own local fixture5352. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits. New own-product f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd immutable runtime5324PID60961; donor/a3/2a/5cb references remain historical.",
+  "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "created_at": "2026-10-20T08:53:51.774047+00:00",
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/components/PhysicsLab.tsx",
+      "apps/web/src/features/Work.tsx",
+      "packages/engine/lessonos/study/activities.py",
+      "packages/engine/lessonos/study/submissions.py"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_physics_activity.py::test_demo_accepts_only_synthetic_contact_with_consent",
+      "packages/engine/tests/study/test_physics_activity.py::test_fixed_quantity_changes_result_and_description",
+      "packages/engine/tests/study/test_physics_activity.py::test_interest_contact_is_scoped_to_edition_tutor",
+      "packages/engine/tests/study/test_physics_activity.py::test_interest_survives_reopen_and_retry_does_not_duplicate",
+      "packages/engine/tests/study/test_physics_activity.py::test_invalid_physical_domain_is_rejected",
+      "packages/engine/tests/study/test_physics_variations.py::test_huge_integer_is_rejected_before_float_conversion",
+      "packages/engine/tests/study/test_physics_variations.py::test_poiseuille_varies_length_and_viscosity_with_the_declared_constraint",
+      "packages/engine/tests/study/test_physics_variations.py::test_unrepresentable_ratios_fail_validation_instead_of_division_by_zero",
+      "packages/engine/tests/study/test_submissions.py::test_failure_before_commit_never_returns_receipt",
+      "packages/engine/tests/study/test_submissions.py::test_malformed_or_oversize_upload_is_not_accepted",
+      "packages/engine/tests/study/test_submissions.py::test_peer_asset_rejected_and_private_submission_is_not_listed",
+      "packages/engine/tests/study/test_submissions.py::test_private_image_pdf_and_original_bytes_survive_reopen",
+      "packages/engine/tests/study/test_submissions.py::test_retry_after_commit_returns_one_receipt_and_one_event",
+      "packages/engine/tests/study/test_submissions.py::test_ten_concurrent_submissions_have_distinct_authority_and_receipts",
+      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
+      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
+      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
+      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state",
+      "apps/web/src/__tests__/course-submission.test.tsx :: Taylor sends course-specific frozen parameters and retry retains the original human procedure after a switch",
+      "apps/web/src/__tests__/course-submission.test.tsx :: an upload acknowledged after switching course updates only its original draft"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Currentf438 observations are read-only Courses configuration/four-session display, persisted SourceBoard exact pins/provenance/context, and Diary prior explanation/exact source/context/history. No current create/configure/preview-confirm, GUI move/resize/detach, new graded attempt/review/contest/transfer, notebook file upload/export, or session revocation was performed by this researcher.",
+    "All four current browser scenarios are globally INCOMPLETE/equality_eligible:false due to missing events. Completed steps and ordinary HTTP GET sidecars do not fill missing network observations.",
+    "Both current inspections are attach_limited/policy_filtered. Target/frame attribution and excluded scripts remain bounded; current export identifies13 script occurrences, not a complete runtime inventory.",
+    "REA application comparison5cb→f438 reports0unchanged/7changed/363UNKNOWN. Selected file scope expanded17→24, so counts are not a comparable coverage benchmark. Historical190UNKNOWN remains historical and unresolved; it is not replaced with unchanged facts.",
+    "REA Courses comparison is CHANGED with five aligned steps, eight artifact differences, no literal normalization; global network incompleteness prevents whole-system equality. Viewport and actual state/data differences are retained rather than normalized.",
+    "Current session-source reconciliation has13runtime scripts/0matched/13unmatched/4UNKNOWN/31staticUNKNOWN. TS source digests and compiled JS digests differ; no source-map, source-to-bundle semantic equivalence or absence of functionality is claimed. The auxiliary two-layer observation used a cache label for authored source and is diagnostic only; corrected selected proof uses one application layer.",
+    "Main source graph24files151205B/21940AST has0parse failures but6000semantic-node ceiling;660nodes/518relations/194unknown in separate three-file session graph. endStudySession trace finds1seed/1node/0relations/1UNKNOWN, not full propagation proof. Runtime behavior of rejection is supported separately by root tests/browser proof, not inferred from this trace.",
+    "Git Engine tree equals5cb, but Web, Studio and API trees changed;9of24selected file bytes changed. No oldWeb81 byte-equivalence argument is applied to current110Web. Current source inventory and test collection name verification execute zero test bodies.",
+    "Nominal Web inventory contains16files/87literal declarations/2dynamic-name declarationsUNKNOWN. It is AST nomination, not110 individual execution records. Separate root serial log proves110passes/16files; nominal Python collection543 is separate from actual root543pass0skip log.",
+    "Documents FileProvider marked original files compressed,dataless; normal reads hitErr60. Public Foundation startDownloadingUbiquitousItem was requested only for our new artifacts, then exact JSON/id/byte/hash copies were checked in temporary storage. Zero-byte failed copies were rejected; no originals re-emitted or retagged. Initial cleanup timed out; subsequent PID absence/profile removal is separate proof.",
+    "Historical5cb/donor scope, not current replay: Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "Historical5cb/donor scope, not current replay: All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Historical5cb/donor scope, not current replay: Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Historical5cb/donor scope, not current replay: Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Historical5cb/donor scope, not current replay: Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "Historical5cb/donor scope, not current replay: First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Audio/ASR and a new complete a3 lab browser interaction were not observed in this replay. Scientific approval of teaching material and human transfer/mastery are not inferred from numerical correctness."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSAL ONLY: statusPASS is a proposed scoped receipt for independent root review and original unchanged gate; no canonical receipt/state/gate installed by this preparer. GlobalG0 remainsNOTCERTIFIED and GlobalG1 remainsNOTREADY.",
+    "Attestation synthetic:false means genuine REA observations and actual root test executions. Teaching dataset, test actors and deterministic model responses are synthetic:true; apiSpendUsd0. No real students, new accounts, charges, invites or study-data writes by this replay.",
+    "Productf4384eed61e87510cbb7e29b9e7f9ff6d6fecebd is bound to immutable /tmp/ardesia-primary-f4384eed, runtime5324/PID60961/dataId05f4a05edde66bab. MetadataHEAD is recorded separately and never substituted for the product. Cookie existence/body size are ordinary sidecars, not REA provider evidence.",
+    "External donor and baseline/a3/2a/5cb envelopes retain their original source versions, origins and hashes. No new external visit or donor-code integration is implied by the current own-product replay. Full139entry access is not139deep investigations; research map remains a depth map with open gaps.",
+    "Historical root-corrected names, R0 activeClassroom mapping and accepted R4TARGET097alternative are retained. R1 GUI drag/resize is historical2a; current110Web executes SourceBoard unit regressions, while the new REA GUI replay is read-only.",
+    "No GPL/AGPL donor code/manual/quiz bank/vendor assets supplied as product code. MathLive081, PDF.js082/adapter and Tiptap116 remain separately frozen research and prospective contracts, not newly installed dependencies or additional product proof. No benchmark or numerical time saving measured."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents an answer from appearing correct for parameters different from those actually evaluated or recorded in the submission.",
+    "time_saved_minutes": null,
+    "measurement_method": "Actual current root543Core/API and110Web executions, separate exact nominal collection/AST; fresh current REA read-only capture/compare/reconcile. Qualitative benefit only; no time/throughput benchmark."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/connect-capture.json",
+      "sha256": "d2f08bcd9d6089c0843bc77295795bc0a6de837da984b52377a0e9604b1d75c0",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/attempt-graph.json",
+      "sha256": "867da9aa6ad2a72c37dc94f301ac06bbe7c727faabe3bea482407cfebe03a12f",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/feature-trace.json",
+      "sha256": "cf2fac4d3b18a2600f80649b449a59eecf25b2e05bc953681e2839b0c55b808a",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/semantic-state-trace.json",
+      "sha256": "dfcf1e075d72536f8bf2d479a6725efc887769dbe6ff5b6cc077a8b3e77df7f5",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/inspect-v3.json",
+      "sha256": "2ba1020de9f915eb6600323cdcd9ebe0d96ccf1d9e0736daea1283ad0cae5651",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/export-evidence.json",
+      "sha256": "bc40eb22be0a3835b87c3bcb66cb02179d88ef377d2d1fa4b1c4a0ab489e5055",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/runtime-module-graph.json",
+      "sha256": "6bccaf14cb37a6c42cb047878fa65af0b11947053a8be96c2833ccd22d9f8654",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/reconcile.json",
+      "sha256": "36b3a8651c9c769b96c483357786ecc8ccd203c3f2f9db033bbb14886b1651ee",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/wrong-capture-v2.json",
+      "sha256": "0e10ec83e6a7b5ae37aaff6f4f7d87af3ed24e62c89727a1513fa7c56ef9b6c3",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/correct-capture-v2.json",
+      "sha256": "a7dca2f84162c08198337b9bead3b2719b3011e16e63b23c04dd89cd803137e8",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R2/comparison-v2.json",
+      "sha256": "9c79d658e2aee582a4298a9e3234803d5d35cdc608541b9d9ef2584b0f05b8c7",
+      "kind": "comparison"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-f4384eed/contracts/R2-f438-assimilation.md",
+      "sha256": "d3d047dc5c0702951ee564c75f187c05b141c9e47182f787e26b6a1e58977e2c"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-f4384eed/tests/R2-f438-tests.json",
+      "sha256": "b42f87766b6fe43b88712055d330635b0fd42cb53b4367c7a6504ce6082629a8"
+    }
+  ]
+}

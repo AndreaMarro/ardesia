@@ -1,0 +1,140 @@
+[
+  {
+    "modelId": "U4-wave-energy-through-area",
+    "serial": 2,
+    "reasoningTask": "qualitative_coverage_u4-wave-energy-through-area",
+    "objective": "Spiegare la propagazione del suono in gas, liquidi e solidi senza attribuire una velocità universale",
+    "prompt": "Quale affermazione sulla propagazione delle onde sonore nei mezzi materiali è corretta?",
+    "answer": {
+      "kind": "text",
+      "exact": "Il suono può propagarsi in gas, liquidi e solidi; la velocità dipende dalle proprietà elastiche e dall’inerzia del mezzo",
+      "unit": "1"
+    },
+    "options": [
+      "Il suono può propagarsi in gas, liquidi e solidi; la velocità dipende dalle proprietà elastiche e dall’inerzia del mezzo",
+      "Il suono si propaga soltanto nei gas perché i liquidi non possono essere compressi neppure di poco",
+      "La velocità del suono è identica in ogni mezzo materiale e coincide con quella della luce",
+      "Il suono può propagarsi nei solidi soltanto se tutte le particelle viaggiano insieme alla perturbazione",
+      "Cambiare mezzo cambia sempre la frequenza imposta da una sorgente periodica ferma"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Suono nei diversi mezzi",
+    "microarea": "Propagazione acustica",
+    "explanation": "Il suono nasce dalla propagazione di una perturbazione meccanica. Una regione del mezzo viene deformata o compressa e, attraverso le forze interne, modifica la regione vicina. Per questo meccanismo servono sia proprietà elastiche, che producono la risposta alla deformazione, sia inerzia, che determina quanto rapidamente la materia può rispondere. Gas, liquidi e solidi possiedono queste proprietà e possono trasmettere onde sonore, anche se con caratteristiche diverse. La velocità non è una costante universale come quella della luce nel vuoto: dipende dal materiale e dalle sue condizioni. Non basta considerare soltanto la densità per stabilire quale mezzo sia più veloce, perché anche la rigidità conta. Nel passaggio fra mezzi fermi, una sorgente periodica continua a imporre la stessa frequenza; se la velocità cambia, cambia la lunghezza d’onda. Le particelle oscillano localmente e non devono accompagnare la perturbazione fino al ricevitore. Parlare di liquido quasi incomprimibile è un’approssimazione utile in certi problemi di fluidostatica, ma non elimina la piccola compressibilità responsabile della propagazione acustica reale.",
+    "steps": [
+      {
+        "title": "Individuare il meccanismo",
+        "explanation": "La trasmissione richiede forze fra parti vicine del materiale. La deformazione di una parte genera una risposta nelle altre."
+      },
+      {
+        "title": "Considerare due proprietà",
+        "explanation": "La risposta elastica e l’inerzia intervengono insieme. Non si può dedurre una velocità universale dal solo fatto che il mezzo sia gassoso, liquido o solido."
+      },
+      {
+        "title": "Collegare velocità, frequenza e lunghezza d’onda",
+        "explanation": "Per la sorgente ferma la frequenza resta quella imposta dalla vibrazione. La relazione v = fλ spiega perché un diverso valore di v comporta un diverso valore di λ."
+      }
+    ]
+  },
+  {
+    "modelId": "U4-sound-decibel",
+    "serial": 2,
+    "reasoningTask": "qualitative_coverage_u4-sound-decibel",
+    "objective": "Separare intensità fisica, livello in decibel e percezione sonora",
+    "prompt": "Due toni puri di frequenze diverse arrivano all’orecchio con la stessa intensità fisica in W/m². È necessariamente uguale anche la sensazione di intensità sonora percepita?",
+    "answer": {
+      "kind": "text",
+      "exact": "No: la percezione dipende anche dalla frequenza e dalla sensibilità dell’ascoltatore",
+      "unit": "1"
+    },
+    "options": [
+      "No: la percezione dipende anche dalla frequenza e dalla sensibilità dell’ascoltatore",
+      "Sì: intensità fisica e percezione soggettiva sono per definizione la stessa grandezza",
+      "Sì: tutte le frequenze udibili hanno necessariamente la stessa sensibilità uditiva",
+      "No: a parità di intensità il suono più acuto deve essere sempre impercettibile",
+      "No: il suono più grave deve avere necessariamente intensità fisica nulla"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Intensità acustica e percezione",
+    "microarea": "Intensità e sensazione sonora",
+    "explanation": "L’intensità acustica è una grandezza fisica: esprime la potenza sonora che attraversa una superficie per unità di area. Il livello di intensità in decibel si ricava da un rapporto fra intensità fisiche e, scegliendo lo stesso riferimento, due intensità uguali danno lo stesso livello. La sensazione uditiva è invece una risposta dell’ascoltatore. Questa risposta varia con la frequenza, con le caratteristiche dell’apparato uditivo e con le condizioni di ascolto. Perciò l’uguaglianza delle intensità fisiche non obbliga a un’uguaglianza della sensazione. Non occorre assegnare una maggiore sonorità al tono più acuto o a quello più grave senza altri dati: una regola del genere sarebbe troppo generale. Il punto è distinguere ciò che si misura nel campo acustico da come quel campo viene percepito. Anche l’espressione comune «volume del suono» può nascondere questa distinzione. Il quesito usa intenzionalmente W/m² per identificare una proprietà oggettiva del campo, e domanda se basti da sola a determinare una risposta soggettiva; la risposta corretta è che non basta.",
+    "steps": [
+      {
+        "title": "Riconoscere il dato fisico",
+        "explanation": "La stessa potenza per unità di area significa uguale intensità I. Con il medesimo I₀, anche 10 log₁₀(I/I₀) ha lo stesso valore."
+      },
+      {
+        "title": "Distinguere il sistema che riceve il suono",
+        "explanation": "L’orecchio non risponde allo stesso modo a ogni frequenza. La sensazione non è definita soltanto dal numero di watt che attraversano un metro quadrato."
+      },
+      {
+        "title": "Evitare una conclusione non giustificata",
+        "explanation": "Non possiamo ordinare la sonorità dei due toni senza conoscere frequenze e condizioni. Possiamo però escludere che l’uguaglianza fisica implichi necessariamente uguaglianza percettiva."
+      }
+    ]
+  },
+  {
+    "modelId": "U6-force-uniform-electric-field",
+    "serial": 2,
+    "reasoningTask": "qualitative_coverage_u6-force-uniform-electric-field",
+    "objective": "Distinguere polarizzazione per induzione e acquisizione di carica netta in un conduttore isolato",
+    "prompt": "Un corpo con carica positiva viene avvicinato, senza contatto, a una sfera metallica inizialmente neutra, isolata da terra. Dopo il riequilibrio elettrostatico, quale descrizione è corretta?",
+    "answer": {
+      "kind": "text",
+      "exact": "Gli elettroni si redistribuiscono verso il lato vicino al corpo; il lato lontano resta con carica positiva e la carica totale della sfera è zero",
+      "unit": "1"
+    },
+    "options": [
+      "Gli elettroni si redistribuiscono verso il lato vicino al corpo; il lato lontano resta con carica positiva e la carica totale della sfera è zero",
+      "La sfera acquista necessariamente carica totale positiva anche senza alcuno scambio di carica",
+      "Tutti i protoni del metallo migrano liberamente verso il lato vicino",
+      "La sfera rimane priva di qualsiasi separazione di carica perché era inizialmente neutra",
+      "La carica negativa compare senza compensazione positiva sul resto della sfera"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono le condizioni specificate nella domanda."
+    ],
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "scope": "syllabus_core",
+    "topic": "Conduttori e induzione elettrostatica qualitativa",
+    "microarea": "Induzione elettrostatica",
+    "explanation": "In un metallo gli elettroni di conduzione possono muoversi all’interno del materiale. Il corpo positivo esterno li attrae e provoca una redistribuzione: la regione vicina acquista un eccesso di elettroni, mentre altre regioni presentano un difetto relativo di elettroni e risultano positive. Questo fenomeno è l’induzione elettrostatica. La sfera è però isolata e non c’è contatto: non è stato fornito alcun percorso attraverso cui entra o esce carica netta. La sua carica totale resta quindi nulla. Una distribuzione non uniforme non equivale a una carica totale diversa da zero. Gli ioni del reticolo non migrano liberamente come gli elettroni di conduzione; attribuire il processo allo spostamento di tutti i protoni descriverebbe un meccanismo errato. Il riequilibrio termina quando il campo interno al metallo è nullo, nella situazione elettrostatica considerata. Se la sfera fosse collegata a terra cambierebbe il vincolo, perché allora sarebbe possibile scambiare carica con l’esterno. La specificazione «isolata da terra» serve proprio a conservare la carica totale mentre consente la separazione locale.",
+    "steps": [
+      {
+        "title": "Identificare le cariche mobili",
+        "explanation": "Gli elettroni di conduzione sono attratti dalla sorgente positiva e si spostano verso il lato più vicino. Il reticolo ionico resta sostanzialmente fisso."
+      },
+      {
+        "title": "Applicare la conservazione",
+        "explanation": "Assenza di contatto e di collegamento a terra significa nessun trasferimento netto verso la sfera. Le cariche locali indotte devono sommarsi a zero."
+      },
+      {
+        "title": "Verificare l’equilibrio",
+        "explanation": "La redistribuzione produce un campo che annulla quello totale nel metallo. Ciò non richiede che ogni punto della superficie abbia carica nulla."
+      }
+    ]
+  }
+]

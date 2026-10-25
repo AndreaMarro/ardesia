@@ -1,0 +1,53 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/web
+
+ ❯ src/__tests__/public-hydrostatic.test.tsx (3 tests | 1 failed) 322ms
+   × the final public hint keeps its focused trigger while reporting completion 30ms
+ ❯ src/__tests__/scalar-experience.test.tsx (4 tests | 1 failed) 246ms
+   × the last scalar hint retains keyboard focus and cannot reveal further hints 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/public-hydrostatic.test.tsx > the final public hint keeps its focused trigger while reporting completion
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/public-hydrostatic.test.tsx:59:51
+     57|   const trigger = screen.getByRole("button", {name: "Un indizio sul ri…
+     58|   trigger.focus(); fireEvent.click(trigger); fireEvent.click(trigger);
+     59|   expect((trigger as HTMLButtonElement).disabled).toBe(false);
+       |                                                   ^
+     60|   expect(trigger.getAttribute("aria-disabled")).toBe("true");
+     61|   expect(document.activeElement).toBe(trigger);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/scalar-experience.test.tsx > the last scalar hint retains keyboard focus and cannot reveal further hints
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/scalar-experience.test.tsx:94:51
+     92|   const trigger = await screen.findByRole("button", {name: "Un indizio…
+     93|   trigger.focus(); fireEvent.click(trigger); fireEvent.click(trigger);
+     94|   expect((trigger as HTMLButtonElement).disabled).toBe(false);
+       |                                                   ^
+     95|   expect(trigger.getAttribute("aria-disabled")).toBe("true");
+     96|   expect(document.activeElement).toBe(trigger);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 5 passed (7)
+   Start at  00:06:01
+   Duration  2.40s (transform 195ms, setup 0ms, import 392ms, tests 569ms, environment 1.18s)

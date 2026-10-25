@@ -1,0 +1,214 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "D8510C6D333B0CBC3D6E37A84FC0B51A"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5352/"
+  },
+  "actions": [
+    {
+      "step_id": "activity-ready",
+      "action": "wait_for",
+      "timeout_ms": 60000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "state": "attached"
+    },
+    {
+      "step_id": "predict-linear",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "key": "2"
+    },
+    {
+      "step_id": "submit-first",
+      "action": "click",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction button"
+      }
+    },
+    {
+      "step_id": "incorrect-observed",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction .check-work-incorrect"
+      },
+      "state": "visible"
+    },
+    {
+      "step_id": "help",
+      "action": "click",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#help .hint-title"
+      }
+    },
+    {
+      "step_id": "help-observed",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#help:has-text(\"fourth power\")"
+      },
+      "state": "visible"
+    },
+    {
+      "step_id": "radius-select",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#r_input"
+      },
+      "key": "Meta+a"
+    },
+    {
+      "step_id": "radius-double",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#r_input"
+      },
+      "key": "2"
+    },
+    {
+      "step_id": "manipulation-commit",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#r_input"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "reason",
+      "action": "fill",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#reason_input"
+      },
+      "value": {
+        "source": "literal",
+        "value": "At fixed pressure Q scales as radius to the fourth power, so doubling gives sixteen."
+      }
+    },
+    {
+      "step_id": "revise-select",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "key": "Meta+a"
+    },
+    {
+      "step_id": "revise-clear",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "key": "Backspace"
+    },
+    {
+      "step_id": "revise-first-digit",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "key": "1"
+    },
+    {
+      "step_id": "revise-second-digit",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction textarea"
+      },
+      "key": "6"
+    },
+    {
+      "step_id": "submit-retry",
+      "action": "click",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction button"
+      }
+    },
+    {
+      "step_id": "correct-observed",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction .check-work-correct"
+      },
+      "state": "visible"
+    },
+    {
+      "step_id": "allow-local-state-flush",
+      "action": "wait_for_timeout",
+      "duration_ms": 2000
+    },
+    {
+      "step_id": "reopen",
+      "action": "goto",
+      "timeout_ms": 20000,
+      "destination": {
+        "url": "http://127.0.0.1:5352/"
+      },
+      "wait_until": "domcontentloaded"
+    },
+    {
+      "step_id": "restored-correct",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "#prediction .check-work-correct"
+      },
+      "state": "visible"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  },
+  "environment": {
+    "service_workers": "allow"
+  }
+}

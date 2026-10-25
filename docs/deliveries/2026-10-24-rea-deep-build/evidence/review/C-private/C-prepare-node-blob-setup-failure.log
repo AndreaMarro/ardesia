@@ -1,0 +1,27 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ ../../../deep-build/review/C-prepare-revoke.test.ts (1 test | 1 failed) 31ms
+   × revocation completed during passage prepare prevents a new descriptor being returned 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  ../../../deep-build/review/C-prepare-revoke.test.ts > revocation completed during passage prepare prevents a new descriptor being returned
+Error: Can't read the data of 'the loaded zip file'. Is it in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?
+ ❯ node_modules/jszip/lib/utils.js:479:17
+ ❯ runLessonImport src/store/lessonBundle.ts:478:15
+    476|     ? null
+    477|     : validateRoomId(options.destinationLessonId)
+    478|   const zip = await JSZip.loadAsync(blob)
+       |               ^
+    479|
+    480|   // Prima passata: valida ogni path e raccoglie le letture, senza I/O…
+ ❯ ../../../deep-build/review/C-prepare-revoke.test.ts:13:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  15:32:18
+   Duration  1.50s (transform 681ms, setup 0ms, import 948ms, tests 31ms, environment 0ms)

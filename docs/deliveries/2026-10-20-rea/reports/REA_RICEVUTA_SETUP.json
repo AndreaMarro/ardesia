@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Europe/Rome",
+  "status": "SETUP_AND_ARCHIVE_MCP_SMOKE_VERIFIED",
+  "rea_version": "6.7.0",
+  "node_version": "24.19.0",
+  "setup_requested": "npx -y rea-agents@latest setup --client codex --yes",
+  "initial_failure": "Default Node 22.14.0 below supported engine range; first setup made no changes",
+  "repair": "Used existing bundled Node 24.19.0; persisted a server-specific PATH",
+  "configuration": {
+    "path": "/Users/andreamarro/.codex/config.toml",
+    "backup": "/Users/andreamarro/.codex/config.toml.rea.backup",
+    "unrelated_configuration_unchanged": true,
+    "package_pinned": "rea-agents@6.7.0"
+  },
+  "mcp": {
+    "transport": "stdio",
+    "client": "codex-rea-workspace-verification",
+    "protocol": "2025-03-26",
+    "tool_count": 207,
+    "methods": [
+      "initialize",
+      "notifications/initialized",
+      "tools/list",
+      "tools/call"
+    ],
+    "tools_called": [
+      "binary_session",
+      "open_binary",
+      "inspect_artifact",
+      "export_evidence_bundle",
+      "close_binary"
+    ],
+    "all_calls_successful": true,
+    "direct_tools_loaded_in_running_chat": false,
+    "verification_process_closed": true
+  },
+  "archive": {
+    "filename": "ARDESIA_V4_3_REA_MAX_DESIGN_ITALIANO_2026-10-20.zip",
+    "sha256": "a7a4f2df707387d3834f49c2719447e0d34052e22e0ed40654d994c3a8b74465",
+    "members": 41,
+    "checksum_entries_verified": 39,
+    "checksum_mismatches": 0,
+    "evidence_id": "ev_f778e97bbc3439dbc6aa55d14f297606a54db6f0c3ece5fa42ff86d7e59773a1",
+    "inspection_limitations": [
+      "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+      "ZIP inventory lists central-directory entries only. Non-entry bytes, including an APK Signing Block before the central directory or a ZIP comment after it, are not occurrences."
+    ],
+    "application_source_present": false
+  },
+  "scope": {
+    "application_target": "AWAITING_USER_SELECTION",
+    "application_browser_capture": "NOT_RUN",
+    "application_reconstruction": "NOT_STARTED",
+    "application_design_review": "NOT_RUN",
+    "native_decompilers": "NOT_CONFIGURED"
+  },
+  "evidence_file": "REA_ARCHIVIO_EVIDENZE.json",
+  "evidence_sha256": "fce3d2eb932eef3e61574c6b889bd1ae853d3156b673276299e613a559187e63",
+  "operating_instructions": "/Users/andreamarro/Documents/Codex/2026-10-20/direttiva-operativa-per-lo-sviluppo-e/AGENTS.md"
+}

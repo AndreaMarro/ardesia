@@ -1,0 +1,69 @@
+{
+  "artifact": "Studio synthetic journal/replay browser QA",
+  "executed_at_utc": {
+    "start": "2026-10-24T08:50:57.355Z",
+    "finish": "2026-10-24T08:51:04.441Z"
+  },
+  "status": "PASS_WITH_EXTERNAL_FONT_ERRORS",
+  "base_commit": "339ab08f4139da0b37e78bbde81e9fe4e83afea0",
+  "working_tree": "Uncommitted fixes existed during execution; source hashes below identify observed files.",
+  "sources": [
+    {
+      "path": "apps/studio/src/store/JournalRecorder.ts",
+      "sha256": "fe873456050f44b8af0930d13bd1ca9524d4481d20c2223d38fff8e69e00d949"
+    },
+    {
+      "path": "apps/studio/src/store/replayTimeline.ts",
+      "sha256": "48b75b08ac03bb500029b9dcb21230fd13a99f009b08819e72b2fbfda8e9bafd"
+    },
+    {
+      "path": "apps/studio/src/ReplayView.tsx",
+      "sha256": "03d3ee08001ac21d521110c5b0ad773501fe3c252ffc4b957ad34f194412949a"
+    },
+    {
+      "path": "apps/studio/src/Room.tsx",
+      "sha256": "ca0ef504e2c04898d838109fc3cc0bff20af56016be86b5f93f82ee0aa51eade"
+    }
+  ],
+  "runtime": {
+    "node": "v24.22.1",
+    "playwright": "1.60.0",
+    "chromium": "153.0.8010.0",
+    "chromium_sha256": "53a15d6c3a3d27dfb54c4ba60278b1683136f70cf1e67e989da7dfbd3d451ef0"
+  },
+  "original_executed_runner": {
+    "path": "runner-original.cjs",
+    "sha256": "4f300ac103a4b4c6f00d5a04c266204d241295872fb3b277f19d2e421fbd98e7",
+    "byte_identical_to": "/workspace/scratch/6f2994042c33/research/studio-replay-browser.cjs"
+  },
+  "portable_runner": {
+    "path": "runner.cjs",
+    "sha256": "3ac0e5fa0406348f86c54459bd249e11c500788eb669eba5f82385c3499ea879",
+    "validation": "node --check passed; path configuration adapted after historical run; browser flow not rerun using this copy"
+  },
+  "observed": {
+    "journal_event_counts": {
+      "audit-replay-a": 23,
+      "audit-replay-b": 23
+    },
+    "check_records": 13,
+    "screenshots_in_final_run": 8,
+    "pageerrors": 0,
+    "console_warnings": 0,
+    "external_font_console_errors": 155,
+    "failed_network_requests": 148,
+    "mobile_viewport": {
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "height": 844
+    },
+    "mobile_initial_content_outside_viewport": true
+  },
+  "storage": "Isolated localStorage test fallback; mobile context receives copied synthetic storage state, not remote sync.",
+  "known_visual_limitations": [
+    "Initial mobile scene outside viewport; visible recover-content control required a tap.",
+    "Recovered mobile frame cropped at right edge; text legible in inspected screenshot.",
+    "CDN font requests failed TLS authority validation; intended font rendering not verified."
+  ]
+}

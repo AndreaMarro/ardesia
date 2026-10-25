@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "name": "shadow raw-attribute shape markup",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "65d2be86bbd606637a5d19da925bca9459031fad02500ca87b68dd270369e048"
+    },
+    {
+      "name": "shadow raw-attribute shape mathml",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "bb1343a9f09097433158de1c39c4c58efa3fde32a52ee73d010b79fd14c0e323"
+    },
+    {
+      "name": "shadow invalid length markup",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "65d2be86bbd606637a5d19da925bca9459031fad02500ca87b68dd270369e048"
+    },
+    {
+      "name": "shadow invalid length mathml",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "bb1343a9f09097433158de1c39c4c58efa3fde32a52ee73d010b79fd14c0e323"
+    },
+    {
+      "name": "single quote htmlData markup",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "7a6b9a8e06ada4df9b8b409bfd23f75d1cab3fd8edc84eae854ff67d42dcdd07"
+    },
+    {
+      "name": "single quote htmlData mathml",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "7c153c8a592d30e58353fd9e92e9736bfb7a581b09fdcfa2970c0af68a508151"
+    },
+    {
+      "name": "MathML unknown notation markup",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "459a516abc400b5e7894806f69f9d374bd2a9a102f4e397379700f96ed8081ea"
+    },
+    {
+      "name": "MathML unknown notation mathml",
+      "pass": true,
+      "unsafeAttributes": [],
+      "outputSha256": "7ea0aeffaf4f4f7487d6e41254c02b83cdcd060129686ecb95378e7344538ced"
+    },
+    {
+      "name": "benign fraction and integral produce visible math",
+      "pass": true
+    }
+  ],
+  "installed": {
+    "node_modules/mathlive": {
+      "version": "0.111.1",
+      "ssrSha256": "ec695799ba6194c71e5cad3c166c666549fd6dd0673314eb8c25aba78c561a80"
+    },
+    "apps/studio/node_modules/mathlive": {
+      "version": "0.111.1",
+      "ssrSha256": "ec695799ba6194c71e5cad3c166c666549fd6dd0673314eb8c25aba78c561a80"
+    }
+  },
+  "execution": "inert templates in jsdom; scripts and network not enabled, no payload executed",
+  "scope": "current 0.111.1 defense counterchecks only; author owns preserved 0.110.0 RED; these independent checks do not cover the complete advisory matrix"
+}

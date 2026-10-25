@@ -1,0 +1,224 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R8",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-048"
+  ],
+  "target_kind": "THIRD_PARTY_AUTHORIZED",
+  "authorization_basis": "PrairieLearn public homepage demonstration anonima, ricerca reversibile autorizzata, nessun account/trial/costo o estrazione quiz-bank. Nessun bypass di Passify. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Current own a3 scoped UI observed with existing synthetic test actors; no production use. New writes limited to one owned synthetic test edition and read-only notebook inspection. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation. Newf438: normal read-only browser with existing authorized synthetic sessions from private environment refs; no new account/revoke/layout/data write.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Public deployed Next build RztiPvUyKo2_kLoWEdEK_, observed2026-10-20; source commit UNKNOWN. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits. New own-product f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd immutable runtime5324PID60961; donor/a3/2a/5cb references remain historical.",
+  "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "created_at": "2026-10-20T08:53:51.774047+00:00",
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "services/study-api/study_api/diary_routes.py",
+      "apps/web/src/features/Diary.tsx",
+      "apps/web/src/features/Work.tsx",
+      "packages/engine/lessonos/study/diary.py",
+      "packages/engine/lessonos/study/submissions.py",
+      "packages/engine/lessonos/study/context.py"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_error_diary.py::test_ai_proposal_is_not_confirmed_debt_and_replays_after_restart",
+      "packages/engine/tests/study/test_error_diary.py::test_ambiguous_question_requires_source_check_before_confirming",
+      "packages/engine/tests/study/test_error_diary.py::test_confirm_is_tutor_only_source_bound_and_idempotent",
+      "packages/engine/tests/study/test_error_diary.py::test_contest_and_dismiss_preserve_reason_and_exclude_false_positive",
+      "packages/engine/tests/study/test_error_diary.py::test_diary_receipt_and_event_roll_back_together",
+      "packages/engine/tests/study/test_error_diary.py::test_identical_source_observation_with_new_key_reuses_one_thread",
+      "packages/engine/tests/study/test_error_diary.py::test_json_input_boundaries_raise_validation_errors",
+      "packages/engine/tests/study/test_error_diary.py::test_malformed_error_category_is_validation_error_without_writing",
+      "packages/engine/tests/study/test_error_diary.py::test_new_receipt_cannot_recycle_an_earlier_transfer_source",
+      "packages/engine/tests/study/test_error_diary.py::test_old_verified_transfer_cannot_close_a_later_recurrence",
+      "packages/engine/tests/study/test_error_diary.py::test_parameter_change_is_required_even_when_tutor_uses_new_exercise_label",
+      "packages/engine/tests/study/test_error_diary.py::test_practice_cannot_relabel_a_submission_from_original_activity",
+      "packages/engine/tests/study/test_error_diary.py::test_recurrence_requires_new_evidence_after_verification_and_preserves_history",
+      "packages/engine/tests/study/test_error_diary.py::test_repeating_original_or_forging_plan_does_not_count_as_transfer",
+      "packages/engine/tests/study/test_error_diary.py::test_replay_scopes_private_events_before_decoding_other_learners",
+      "packages/engine/tests/study/test_error_diary.py::test_revoked_transfer_source_hides_procedure_and_verification_even_on_retry",
+      "packages/engine/tests/study/test_error_diary.py::test_source_anchor_must_belong_to_submitted_revision",
+      "packages/engine/tests/study/test_error_diary.py::test_source_checked_accepts_only_a_boolean",
+      "packages/engine/tests/study/test_error_diary.py::test_source_revision_change_stales_feedback_and_revocation_hides_original",
+      "packages/engine/tests/study/test_error_diary.py::test_student_diary_persists_between_courses_without_granting_new_tutor_history",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_needs_distinct_submission_exact_reasoning_and_human_review",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_receipt_for_another_thread_cannot_be_relabelled",
+      "packages/engine/tests/study/test_error_diary.py::test_transfer_submission_cannot_reuse_the_error_source",
+      "packages/engine/tests/study/test_transfer_submission.py::test_a_student_cannot_submit_someone_elses_transfer_or_an_unassigned_exercise",
+      "packages/engine/tests/study/test_transfer_submission.py::test_every_base_activity_in_the_current_draft_pack_is_submittable",
+      "packages/engine/tests/study/test_transfer_submission.py::test_transfer_assignment_cannot_cross_an_edition_boundary",
+      "packages/engine/tests/study/test_transfer_submission.py::test_transfer_receipt_freezes_the_assigned_problem_and_parameters",
+      "packages/engine/tests/study/test_transfer_submission.py::test_unregistered_submission_from_before_recurrence_is_not_new_evidence",
+      "services/study-api/tests/test_diary_http.py::test_diary_http_private_error_review_new_problem_and_transfer",
+      "services/study-api/tests/test_submission_http.py::test_http_commit_failure_never_claims_success",
+      "services/study-api/tests/test_submission_http.py::test_malformed_payloads_fail_closed_as_client_errors",
+      "apps/web/src/__tests__/workflows.test.tsx :: source viewer resolves the submitted revision and never substitutes the head",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab invalidates feedback after parameters change and commits once",
+      "apps/web/src/__tests__/workflows.test.tsx :: failed source request offers an explicit retry without rendering another revision",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab makes no automatic request and guards double commit while pending",
+      "apps/web/src/__tests__/workflows.test.tsx :: editing during a request rejects the late result and permits a new commit",
+      "apps/web/src/__tests__/workflows.test.tsx :: lab retry keeps the prediction and reuses the chosen parameters",
+      "apps/web/src/__tests__/workflows.test.tsx :: unmount cancels the pending numerical request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a transfer partially received by the service stays frozen and retries the same request",
+      "apps/web/src/__tests__/workflows.test.tsx :: a diary load failure can be retried without leaving a permanent loading state",
+      "apps/web/src/__tests__/course-submission.test.tsx :: Taylor sends course-specific frozen parameters and retry retains the original human procedure after a switch",
+      "apps/web/src/__tests__/course-submission.test.tsx :: an upload acknowledged after switching course updates only its original draft"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Currentf438 observations are read-only Courses configuration/four-session display, persisted SourceBoard exact pins/provenance/context, and Diary prior explanation/exact source/context/history. No current create/configure/preview-confirm, GUI move/resize/detach, new graded attempt/review/contest/transfer, notebook file upload/export, or session revocation was performed by this researcher.",
+    "All four current browser scenarios are globally INCOMPLETE/equality_eligible:false due to missing events. Completed steps and ordinary HTTP GET sidecars do not fill missing network observations.",
+    "Both current inspections are attach_limited/policy_filtered. Target/frame attribution and excluded scripts remain bounded; current export identifies13 script occurrences, not a complete runtime inventory.",
+    "REA application comparison5cb→f438 reports0unchanged/7changed/363UNKNOWN. Selected file scope expanded17→24, so counts are not a comparable coverage benchmark. Historical190UNKNOWN remains historical and unresolved; it is not replaced with unchanged facts.",
+    "REA Courses comparison is CHANGED with five aligned steps, eight artifact differences, no literal normalization; global network incompleteness prevents whole-system equality. Viewport and actual state/data differences are retained rather than normalized.",
+    "Current session-source reconciliation has13runtime scripts/0matched/13unmatched/4UNKNOWN/31staticUNKNOWN. TS source digests and compiled JS digests differ; no source-map, source-to-bundle semantic equivalence or absence of functionality is claimed. The auxiliary two-layer observation used a cache label for authored source and is diagnostic only; corrected selected proof uses one application layer.",
+    "Main source graph24files151205B/21940AST has0parse failures but6000semantic-node ceiling;660nodes/518relations/194unknown in separate three-file session graph. endStudySession trace finds1seed/1node/0relations/1UNKNOWN, not full propagation proof. Runtime behavior of rejection is supported separately by root tests/browser proof, not inferred from this trace.",
+    "Git Engine tree equals5cb, but Web, Studio and API trees changed;9of24selected file bytes changed. No oldWeb81 byte-equivalence argument is applied to current110Web. Current source inventory and test collection name verification execute zero test bodies.",
+    "Nominal Web inventory contains16files/87literal declarations/2dynamic-name declarationsUNKNOWN. It is AST nomination, not110 individual execution records. Separate root serial log proves110passes/16files; nominal Python collection543 is separate from actual root543pass0skip log.",
+    "Documents FileProvider marked original files compressed,dataless; normal reads hitErr60. Public Foundation startDownloadingUbiquitousItem was requested only for our new artifacts, then exact JSON/id/byte/hash copies were checked in temporary storage. Zero-byte failed copies were rejected; no originals re-emitted or retagged. Initial cleanup timed out; subsequent PID absence/profile removal is separate proof.",
+    "Historical5cb/donor scope, not current replay: Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "Historical5cb/donor scope, not current replay: All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Historical5cb/donor scope, not current replay: Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Historical5cb/donor scope, not current replay: Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Historical5cb/donor scope, not current replay: Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "Historical5cb/donor scope, not current replay: First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: PrairieLearn remote source commit and exact primary license bytes for the observed deployment remain UNKNOWN; behavioral assimilation only. The current read-only replay does not create a new review, contest, source revocation or full transfer journey; current Core499 tests cover those separate contracts."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSAL ONLY: statusPASS is a proposed scoped receipt for independent root review and original unchanged gate; no canonical receipt/state/gate installed by this preparer. GlobalG0 remainsNOTCERTIFIED and GlobalG1 remainsNOTREADY.",
+    "Attestation synthetic:false means genuine REA observations and actual root test executions. Teaching dataset, test actors and deterministic model responses are synthetic:true; apiSpendUsd0. No real students, new accounts, charges, invites or study-data writes by this replay.",
+    "Productf4384eed61e87510cbb7e29b9e7f9ff6d6fecebd is bound to immutable /tmp/ardesia-primary-f4384eed, runtime5324/PID60961/dataId05f4a05edde66bab. MetadataHEAD is recorded separately and never substituted for the product. Cookie existence/body size are ordinary sidecars, not REA provider evidence.",
+    "External donor and baseline/a3/2a/5cb envelopes retain their original source versions, origins and hashes. No new external visit or donor-code integration is implied by the current own-product replay. Full139entry access is not139deep investigations; research map remains a depth map with open gaps.",
+    "Historical root-corrected names, R0 activeClassroom mapping and accepted R4TARGET097alternative are retained. R1 GUI drag/resize is historical2a; current110Web executes SourceBoard unit regressions, while the new REA GUI replay is read-only.",
+    "No GPL/AGPL donor code/manual/quiz bank/vendor assets supplied as product code. MathLive081, PDF.js082/adapter and Tiptap116 remain separately frozen research and prospective contracts, not newly installed dependencies or additional product proof. No benchmark or numerical time saving measured."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents AI suggestions or one isolated correct response from being recorded as permanent mastery, and prevents cross-course retrieval from leaking private work.",
+    "time_saved_minutes": null,
+    "measurement_method": "Actual current root543Core/API and110Web executions, separate exact nominal collection/AST; fresh current REA read-only capture/compare/reconcile. Qualitative benefit only; no time/throughput benchmark."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/passify-access.evidence.json",
+      "sha256": "bdb38ad2aad5a112e8058aae572ab16704595f21c20d830811093946ff2278a8",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/numbas-access.evidence.json",
+      "sha256": "aa78bbe37bf6cda85a3276ea7bb365f7aebcec0bb692379a5aa92f4dfef5f348",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-error-retry.evidence.json",
+      "sha256": "deb0ebafb960256ae681b3d213e3e4e8aea70c18f92e7d3b8ceb2b912a49f411",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-inspection.evidence.json",
+      "sha256": "4fca1d8b08f3e222410163d6abb88b48b267f6967281ff56f3c8590b8cd30f0f",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-script-export.evidence.json",
+      "sha256": "643e9122ba1decda37210d8e92d0037cf0ede2ed5311281fe7e2e67d718de647",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-feature-application.evidence.json",
+      "sha256": "a1c0b23086c0dc1795879a6152e484be59f85e6973d89b9e5dba55dd253ba265",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-module-feature-trace.evidence.json",
+      "sha256": "9d511936e259677a81c2ca1abc3603e06f8f88ce531c0d86bed17718ed6e35f4",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/newvariant-provenance.evidence.json",
+      "sha256": "ebad97b2cb5410492dbe1ead37645a29915970ac56da0ab25f75ee62c51c5385",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/grade-provenance.evidence.json",
+      "sha256": "14227f0f1fe6d40c88a701b92e3e84264c09c829974540da14298d0bddd74e5d",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/feedback-provenance.evidence.json",
+      "sha256": "c09f4f75b49a9fa9d83b9892e3cb8ebaa17a8519f32c59a2633b5bba9e59ebd0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/before-variant.evidence.json",
+      "sha256": "88281f696329e50596c648df91defbaacbfaf2ed7b352f1aeae2395506565517",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/after-variant.evidence.json",
+      "sha256": "6deac5d15e8f33217acd94f1cfefd535cec9332a9b6ef2b4b859fae3587d9c31",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/variant-comparison-fixed.evidence.json",
+      "sha256": "b09b083e7246444569ba229c489f1832d8bc92219bc0663b2e31d73f1c308070",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R8/prairie-runtime-reconciliation.evidence.json",
+      "sha256": "8fa270cd668a6442693139f91c525b43ad035acd2087bfca03030c8e699e50c4",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-open-capture.evidence.json",
+      "sha256": "49376f375235d72ee798fc33d8330bd51b8760796ce25f558114e7bb11c57b55",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-resume-capture.evidence.json",
+      "sha256": "eec3c06ca136b7b6ef1f3edc0a7d77ede47744cf62bf6418781f492b77d4f405",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-reopen-capture.evidence.json",
+      "sha256": "c7bcfc271efb88158b1f5db61d5517ea082c37692d31f29c10032949562a4bb0",
+      "kind": "browser"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "64a8177c6dc24227c80c29d0447b8a4586ac80ba823d58e94b2e0aa0a63ad557"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "67d2cb1eb0324f0e033faf1435b591ef1bdff3d7032c85c937a4e451428233fe"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-f4384eed/contracts/R8-f438-assimilation.md",
+      "sha256": "a74e8d9820a5aac652f53dfa2c6c244ea774e8d19de0cbd2423de19bbede5f1d"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-f4384eed/tests/R8-f438-tests.json",
+      "sha256": "bc7dcfc714e132452ba15ae1559d60ce8f18826f176f659a300e78f9ee51ce15"
+    }
+  ]
+}

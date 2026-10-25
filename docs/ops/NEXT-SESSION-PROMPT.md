@@ -1,101 +1,23 @@
-# NEXT-SESSION-PROMPT - ARDESIA Monorepo Integration
+# ARDESIA — integrare il candidato unico prima di nuove feature
 
-## Active Context
+Stato di questa consegna: convergenza su `main@b124eee04acc8062c27284f23c5d9108e3767c27`, riuso della PR #304 (precedente head `1898b633e26f99710535c94e25fa28241f0f45b3`), nessuna nuova PR. Leggi la head live, non questo riferimento come stato futuro. [Registro](PROJECT-CONVERGENCE.md), [inventario](convergence-2026-10-25/matrix.md), [esiti effettivi](convergence-2026-10-25/pr-outcomes.json), ultima voce RUNLOG.
 
-Date: 2026-07-02
+Prima genera lo stato con `python3 bin/state/project_state.py`; leggi AGENTS/package, CANON-INDEX, PRODUCT/ARCHITECTURE-CANON, ADR-0004, memoria e ultimi addenda RUNLOG. Verifica head/base/CI/review, ownership concorrenti e build esatto. Gli snapshot non assegnano automaticamente lavoro e non certificano future head.
 
-You are Codex on Andrea's Mac, working in:
+La direttiva umana del **25 ottobre** autorizza la convergenza e il merge tecnico attraverso gate e protection reali: supera il precedente divieto operativo generico. Main richiede però una review indipendente sull'ultimo push, enforceAdmins, check strict e conversazioni risolte. Non aggirare tale guardia o usare l'account dell'autore per simulare un altro reviewer. Se manca la review, chiedere una sola azione concreta sull'ultima head (#304, collaboratori idonei rilevati `daniilmastrangeli`/`progettibelli-go`). Nessun messaggio a terzi senza autorizzazione. Lo stato temporaneo è BLOCKED_HUMAN_DECISION, non DONE.
 
-```text
-/Users/andreamarro/VOLUME 3/ardesia
-```
+**Primo incarico:** portare #304 a MERGED dopo review valida e CI sulla base aggiornata, poi verificare SHA/main/CI post-merge e percorso docente–studente. Chiudere come CLOSED_SUPERSEDED le PR effettivamente integrate e verificare lo stato delle altre una per una. L'inventario iniziale contiene 37 PR, 30 ancestor esatte e sette esterne. #264 è realmente CLOSED_REJECTED con motivo tecnico; 36 restano open, zero merge al momento della prima voce di convergenza. Non chiudere la catena solo perché è ancestor di un branch non integrato. Non creare un'altra draft/branch impilata per prolungare il task.
 
-Goal: continue ARDESIA monorepo integration with small, verified PRs. Do not add new product ideas.
+Il candidato preserva Core/Study/PhysicsLab/CoursePack, esperienze Poiseuille e Idrostatica, Taylor, ricevute/diario/review e fonte leggibile/cold reopen della #302–#304. Il nuovo incremento corregge la **revoca audio fra viste/schede**, con cancellazione degli intenti precedenti e nessun avvio automatico da consenso salvato. Se arriva una revoca concorrente, richiede un nuovo gesto esplicito. FSA live e browser senza coordinamento mostrano indisponibilità prima del consenso; storico/replay/import/revoca rimangono disponibili. Non rimuovere il fail-closed senza una prova cross-realm della stessa cartella. `node bin/qa/audio-cross-view.mjs /private/tmp` usa due schede con dispositivo sintetico, Web Locks/BC/MediaRecorder reali; non certifica hardware o UI.
 
-## Current State
+Scanner #265 e inbox QA #271 sono riusati con prove e provenance; le proposte #293/#295/#296 restano storiche/DRAFT, non MCP write o approvazione editoriale. AGENTS definisce DoD e workflow PR; il gate metadati legge il body GitHub corrente e pinna head, ma non certifica test/approval/merge. Non introdurre Core, autorità sessione, ledger, auth, quiz o pubblicazione paralleli. Le integrazioni Kirchhoff/LessonOS restano subordinate ai consumer e ai contratti esistenti.
 
-- PR #8 merged: Vercel demo live evidence for board -> plugin -> Run -> export/import.
-- PR #13 merged: ELAB Vol.1 cap.6 esp.1 context packet.
-- PR #14 merged: canonical fixture plus drift guard.
-- PR #15 merged: adapter contract.
-- PR #16 is open, draft, and mergeable: board payload / embeddable contract for ELAB Vol.1 cap.6 esp.1.
-- PR #6 remains dirty; ignore it.
-- AgentMemory remains degraded; do not mutate it.
-- Vercel demo exists, but it is MVP live smoke evidence, not product-ready.
+Separare **integrazione tecnica, preview protetta, firma scientifica/editoriale e lancio pubblico**. `vercel.json` root e Web disabilitano auto-deploy Git; non rimettere main in auto-produzione come effetto del merge. Vercel team `team_23uD0RgdInaTaOPEL0EGltup`, Render My Workspace `tea-d4gouafdiees73b2m8f0` già autorizzati/verificati. Non chiedere nuovamente chiavi/workspace né modificare progetti estranei. La preview R2 protetta mantiene il proprio SHA; nessuna beta remota Auth/Storage/inviti/restore o hardware certificata. Nessun pagamento/API acquistata, produzione/DNS/merge bypass o attività programmata.
 
-## Just Completed
+Prima del lancio microcorsi, docente/editor deve approvare o escludere voce e quattro DRAFT per digest, verificare artefatto e funnel distinguendo interesse da iscrizione/account/accesso/pagamento. Lo scopo commerciale immediato resta farsi conoscere con un'esperienza autentica, senza falsa copertura o padronanza. Timestamp/oggetto/associazione docente non sono comprensione semantica; risposta assistita e autonoma restano distinte.
 
-Track A was selected for the current monorepo sprint: safe root command surface.
+Solo dopo integrazione scegli il prossimo bisogno oltre i fluidi dai CoursePack e dagli errori reali. Riusa [mandato R2B plugin/risorse](../deliveries/2026-10-24-r2/prompts/MANDATO-R2B-PLUGIN-RISORSE.md) e [testo guida](../deliveries/2026-10-24-r2/prompts/GUIDA-CHAT-ARDESIA.txt), senza reimplementare Idrostatica/Taylor o fare un nuovo marketplace. Prima consumer/contratto/versioni/capability/portabilità, poi producer o distribuzione. ZERO-LLM in prodotto resta vigente; MCP private write è proposta, non tool implementato.
 
-This PR adds:
-- `package.json`
-- `bin/monorepo.sh`
-- `docs/ops/MONOREPO-COMMAND-SURFACE-COV.md`
-- this updated `docs/ops/NEXT-SESSION-PROMPT.md`
+REA MCP è ora esposto. Verifica la distribuzione effettiva: l'installata6.7.0 ha manifest `^22.19.0 || ^24.11.0 || >=26.0.0`, diverso dal main GitHub letto nella nota PRO; la conclusione precedente “Node26.5.1 incompatibile” non si applica a quel manifest installato. Nuove capture CLI su Node24.22.1, Evidence/digest e limiti in convergence-2026-10-25. Nessun cambio globale di registrazione. Controlled replay del nostro prodotto non è un nuovo transfer donor o prova di efficacia. Costo totale REA/metodo diretto UNKNOWN; non inventare risparmi.
 
-Why Track A:
-- #16 was still draft, so no new Simulation/ELAB feature should start.
-- The expected `docs/ops/VOLUME3-GITHUB-*.md/tsv` inventory filenames were not present on `origin/main`.
-- Root command surface files existed locally as a small P0 candidate and were safe to import.
-
-## Hard Rules
-
-- No production deploy.
-- No AgentMemory mutation.
-- No launchd/scheduler changes.
-- No PR #6.
-- No mass import from Volume 3.
-- No secrets, personal data, logs, dumps, cache, dependency directories, large assets, or unauthorized PDFs.
-- No broad runtime refactor.
-- Keep each PR to five files or fewer unless Andrea explicitly approves otherwise.
-- Use COV for claims and verification.
-
-## Immediate Next Action
-
-1. Resolve PR #16 before starting another Simulation/ELAB micro-slice.
-2. If #16 is still draft, either review it again or work only on monorepo docs/command-surface/onboarding.
-3. If #16 is merged, the next Simulation/ELAB micro-slice may start only with Andrea's explicit direction.
-
-## Suggested Next Monorepo Slice
-
-If the command-surface PR is merged and #16 remains unresolved, use Track B:
-
-```text
-docs(ops): add monorepo collaborator onboarding
-```
-
-Target files, max three:
-- `docs/ops/MONOREPO-WORKBOARD.md`
-- `docs/ops/COLLABORATOR-ONBOARDING.md`
-- `docs/ops/MONOREPO-NAVIGATION.md`
-
-Keep it factual:
-- what ARDESIA is;
-- where apps/packages/plugins/docs/ops live;
-- which PRs are merged;
-- what not to touch;
-- how to pick a micro-task;
-- how to write COV;
-- Codex vs Claude division;
-- AgentMemory and Vercel status;
-- Simulation/ELAB status.
-
-## Verification Pattern
-
-Before any commit:
-
-```bash
-git status -sb
-git diff --check
-git diff --stat
-```
-
-For command surface changes:
-
-```bash
-npm run --silent
-bash -n bin/monorepo.sh
-bash bin/monorepo.sh status
-```
-
-Run targeted tests if code changes. Do not run production deploys.
+Prima di terminare appendi risultati, base/SHA, decisioni/motivi/alternative, errori/correzioni e limiti al RUNLOG preservando il prefisso storico; termina con3–5task dotati di primo passo, dipendenze, accettazione ed evidenza. Aggiorna questo handoff e gli indici. AgentMemory esterno è cache opzionale, non garanzia di memoria aggiornata.

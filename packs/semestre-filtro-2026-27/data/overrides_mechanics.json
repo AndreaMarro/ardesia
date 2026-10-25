@@ -1,0 +1,233 @@
+[
+  {
+    "modelId": "U1-vector-sum",
+    "serial": 5,
+    "title": "Posizione finale e spostamento complessivo",
+    "reasoningTask": "distinguish_position_from_displacement",
+    "objective": "Comporre due spostamenti e conservare la coordinata iniziale",
+    "context": "Un asse rettilineo è orientato verso est. Una persona parte dalla coordinata −2 m e compie due spostamenti consecutivi: 3 m verso est, poi altri 4 m verso est.",
+    "assumptions": ["Le coordinate sono orientate; i moduli dei due spostamenti sono positivi.", "L’origine e il verso positivo dell’asse rimangono gli stessi durante il percorso."],
+    "replaceStandardExposition": true,
+    "prompt": "Qual è la coordinata finale della persona, espressa in metri?",
+    "answer": {"kind": "rational", "exact": "5", "unit": "m"},
+    "options": ["5", "7", "9", "1", "−5"],
+    "correctIndex": 0,
+    "verification": {"expression": "-2+3+4", "expected": "5"},
+    "steps": [
+      {"title": "Distinguere il punto di partenza dal movimento", "explanation": "La coordinata iniziale −2 m indica che la persona si trova due metri a ovest dell’origine. Non è una lunghezza negativa del percorso. La domanda chiede dove si trova alla fine rispetto alla stessa origine, quindi il dato iniziale deve comparire nel calcolo."},
+      {"title": "Attribuire il segno ai due spostamenti", "explanation": "Il verso positivo è est e entrambi i movimenti sono verso est. Le due variazioni di posizione sono quindi +3 m e +4 m. Possiamo sommarle perché sono espresse nella medesima unità e sulla stessa retta orientata.", "math": "Δs = (+3 m) + (+4 m) = +7 m"},
+      {"title": "Aggiungere lo spostamento alla coordinata iniziale", "explanation": "Uno spostamento dice quanto cambia la coordinata. Per ottenere la nuova coordinata sommiamo questa variazione alla coordinata precedente. Partendo da −2 m e avanzando di 7 m si oltrepassa l’origine e si raggiunge il punto di coordinata +5 m.", "math": "s_finale = s_iniziale + Δs = −2 m + 7 m = 5 m"},
+      {"title": "Controllare passando per il punto intermedio", "explanation": "Dopo il primo tratto la coordinata è −2+3=1 m; dopo il secondo diventa 1+4=5 m. Questo secondo percorso di calcolo conferma il risultato. Rispondere 7 m significherebbe confondere lo spostamento totale con la posizione finale, dimenticando l’origine iniziale."}
+    ]
+  },
+  {
+    "modelId": "U1-vector-perpendicular",
+    "serial": 5,
+    "title": "Distanza percorsa e modulo dello spostamento",
+    "reasoningTask": "compare_path_length_and_resultant",
+    "objective": "Distinguere la lunghezza di un percorso ad angolo retto dal modulo del suo spostamento",
+    "context": "Una persona percorre 3 m verso est e poi 4 m verso nord. I due tratti sono rettilinei e perpendicolari.",
+    "assumptions": ["Le distanze dei due tratti sono esatte.", "Lo spostamento congiunge direttamente il punto iniziale e il punto finale."],
+    "replaceStandardExposition": true,
+    "prompt": "Di quanti metri la distanza effettivamente percorsa supera il modulo dello spostamento complessivo?",
+    "answer": {"kind": "rational", "exact": "2", "unit": "m"},
+    "options": ["2", "7", "5", "1", "12"],
+    "correctIndex": 0,
+    "verification": {"expression": "3+4-sqrt(3**2+4**2)", "expected": "2"},
+    "steps": [
+      {"title": "Calcolare quanto cammino è stato percorso", "explanation": "La distanza percorsa tiene conto di tutti i tratti del cammino, senza cancellazioni fra direzioni diverse. La persona ha camminato per 3 m e poi per altri 4 m: la lunghezza complessiva del percorso è quindi 7 m.", "math": "d_percorsa = 3 m + 4 m = 7 m"},
+      {"title": "Riconoscere il triangolo dello spostamento", "explanation": "Lo spostamento non segue l’angolo del percorso: va dal punto iniziale direttamente al punto finale. Le componenti verso est e verso nord formano i cateti di un triangolo rettangolo. Il suo modulo è l’ipotenusa, perciò si usa il teorema di Pitagora."},
+      {"title": "Eseguire il calcolo senza approssimazioni", "explanation": "Il quadrato di 3 è 9 e quello di 4 è 16. La loro somma è 25, il cui quadrato perfetto ha radice positiva 5. Scegliamo la radice positiva perché un modulo non può essere negativo.", "math": "|Δr| = √(3²+4²) m = √25 m = 5 m"},
+      {"title": "Confrontare le due grandezze richieste", "explanation": "Il testo chiede di quanto il cammino supera lo spostamento, quindi sottraiamo 5 da 7, mantenendo questo ordine. Il risultato di 2 m ha senso: il percorso spezzato è più lungo del collegamento diretto. Le due grandezze hanno entrambe unità di lunghezza, ma descrivono aspetti diversi del movimento.", "math": "d_percorsa − |Δr| = 7 m − 5 m = 2 m"}
+    ]
+  },
+  {
+    "modelId": "U1-scalar-product",
+    "serial": 5,
+    "title": "Informazioni contenute in un prodotto scalare",
+    "reasoningTask": "test_identifiability_with_counterexamples",
+    "objective": "Capire perché il prodotto di due moduli non determina separatamente entrambi",
+    "context": "Due vettori adimensionali A e B sono paralleli e concordi. I loro moduli a e b sono positivi. L’unico dato numerico disponibile è il prodotto scalare A·B=6.",
+    "assumptions": ["Non è noto separatamente nessuno dei due moduli.", "Non è assegnato alcun rapporto o altro vincolo fra a e b."],
+    "replaceStandardExposition": true,
+    "prompt": "Quale conclusione sui due moduli è giustificata dal dato disponibile?",
+    "answer": {"kind": "text", "exact": "Non sono determinati univocamente: più coppie positive hanno prodotto 6", "unit": "1"},
+    "options": ["Non sono determinati univocamente: più coppie positive hanno prodotto 6", "Devono necessariamente valere a=2 e b=3", "Devono necessariamente essere entrambi uguali a 6", "La loro somma deve essere uguale a 6", "Uno dei due deve essere nullo"],
+    "correctIndex": 0,
+    "verification": {"examples": [{"a": "2", "b": "3", "product": "6"}, {"a": "1", "b": "6", "product": "6"}]},
+    "steps": [
+      {"title": "Tradurre la misura in un’equazione", "explanation": "Per vettori paralleli e concordi l’angolo è zero e il suo coseno vale uno. Il prodotto scalare è pertanto il prodotto dei moduli: il dato disponibile impone soltanto ab=6. Non fornisce direttamente né a né b.", "math": "A·B = ab cos0° = ab = 6"},
+      {"title": "Cercare due possibilità compatibili", "explanation": "Per stabilire che la coppia non è unica basta trovare due coppie diverse che rispettino tutte le ipotesi. I valori a=2, b=3 sono positivi e hanno prodotto 6. Anche a=1, b=6 sono positivi e hanno lo stesso prodotto.", "math": "2×3=6; 1×6=6"},
+      {"title": "Capire quale informazione manca", "explanation": "La misura distingue il prodotto, ma non il contributo dei due fattori. Un modulo più piccolo può essere compensato da un altro più grande. Per ricostruirli separatamente servirebbe un’informazione indipendente, come il valore di uno dei moduli o un rapporto assegnato fra essi."},
+      {"title": "Escludere le conclusioni non autorizzate", "explanation": "La coppia 2 e 3 è un esempio possibile, non una conclusione necessaria. La somma dei moduli non è il prodotto scalare. Due moduli entrambi uguali a 6 darebbero 36, mentre un modulo nullo darebbe zero. La risposta corretta riconosce esattamente il limite dei dati, senza inventare un vincolo aggiuntivo."}
+    ]
+  },
+  {
+    "modelId": "U1-vector-product",
+    "serial": 5,
+    "title": "Segno dopo lo scambio dell’ordine vettoriale",
+    "reasoningTask": "apply_cross_product_orientation",
+    "objective": "Distinguere il modulo del prodotto vettoriale dalla sua componente orientata",
+    "context": "In un sistema cartesiano destrorso gli assi x e y giacciono nel foglio e l’asse z positivo esce verso chi legge. Il vettore adimensionale A vale 2 e_x e il vettore B vale 3 e_y; e_x ed e_y sono versori.",
+    "assumptions": ["La terna è orientata in modo che e_x×e_y=e_z.", "Si chiede una componente con segno, non un modulo."],
+    "replaceStandardExposition": true,
+    "prompt": "Quanto vale la componente lungo z del prodotto B×A?",
+    "answer": {"kind": "rational", "exact": "-6", "unit": "1"},
+    "options": ["−6", "6", "0", "−3", "3"],
+    "correctIndex": 0,
+    "verification": {"expression": "-2*3", "expected": "-6"},
+    "steps": [
+      {"title": "Calcolare prima il modulo", "explanation": "A e B sono perpendicolari perché sono diretti lungo due assi cartesiani diversi. Nel modulo del prodotto vettoriale compare il seno dell’angolo. Il seno di 90° vale uno, quindi il modulo è il prodotto dei moduli, cioè 2×3=6.", "math": "|A×B| = 2×3×sin90° = 6"},
+      {"title": "Usare l’orientamento indicato", "explanation": "La terna è destrorsa: il prodotto e_x×e_y punta lungo e_z. Di conseguenza A×B=6 e_z avrebbe componente z positiva. Questa informazione riguarda però l’ordine A seguito da B, che non è quello richiesto nella domanda."},
+      {"title": "Scambiare l’ordine correttamente", "explanation": "Il prodotto vettoriale cambia segno quando si scambiano i suoi due fattori. Il modulo rimane uguale, mentre il verso si inverte. Perciò B×A è diretto lungo −e_z, cioè entra nel foglio.", "math": "B×A = −(A×B) = −6 e_z"},
+      {"title": "Rispondere con la componente, non con il modulo", "explanation": "La componente z è il numero che moltiplica e_z: vale quindi −6. Rispondere 6 darebbe soltanto il modulo e perderebbe l’orientamento richiesto. Una componente negativa è perfettamente compatibile con moduli dei vettori positivi; il segno descrive il verso rispetto all’asse."}
+    ]
+  },
+  {
+    "modelId": "U2-roundtrip-average",
+    "serial": 5,
+    "title": "Peso temporale del tratto più lento",
+    "reasoningTask": "recover_time_weights_of_equal_distances",
+    "objective": "Calcolare la quota del tempo totale trascorsa nel tratto più lento",
+    "context": "Un percorso di andata e ritorno comprende due tratti di 6 m ciascuno. La rapidità costante è 3 m/s all’andata e 2 m/s al ritorno.",
+    "assumptions": ["Non ci sono soste fra i due tratti.", "Le rapidità indicate sono moduli positivi."],
+    "replaceStandardExposition": true,
+    "prompt": "Quale frazione del tempo totale viene impiegata nel tratto di ritorno?",
+    "answer": {"kind": "rational", "exact": "3/5", "unit": "1"},
+    "options": ["3/5", "2/5", "1/2", "3/2", "2/3"],
+    "correctIndex": 0,
+    "verification": {"expression": "(6/2)/(6/3+6/2)", "expected": "3/5"},
+    "steps": [
+      {"title": "Ricavare la durata dell’andata", "explanation": "Nel moto a rapidità costante il tempo si ottiene dividendo la lunghezza del tratto per la rapidità. All’andata si percorrono 6 m a 3 m/s: ogni secondo copre 3 m, quindi per completare il tratto occorrono 2 s.", "math": "t_andata = (6 m)/(3 m/s) = 2 s"},
+      {"title": "Ricavare la durata del ritorno", "explanation": "Il ritorno ha la stessa distanza, ma una rapidità minore. Dividendo 6 m per 2 m/s si ottengono 3 s. Uguali distanze non implicano uguali durate: proprio il tratto più lento occupa una parte maggiore del tempo complessivo.", "math": "t_ritorno = (6 m)/(2 m/s) = 3 s"},
+      {"title": "Costruire il tempo totale", "explanation": "Le durate si sommano perché i due tratti sono consecutivi e non ci sono soste da aggiungere. Il tempo totale è 2+3=5 s. Il denominatore richiesto è questo totale, non la sola durata dell’andata.", "math": "t_totale = 2 s + 3 s = 5 s"},
+      {"title": "Formare la frazione richiesta", "explanation": "La quota temporale del ritorno è il rapporto fra il suo tempo e il tempo complessivo: 3/5. Le unità di secondo si cancellano. Il risultato è maggiore di un mezzo, coerentemente con il fatto che il ritorno è più lento e dura più dell’andata.", "math": "t_ritorno/t_totale = 3/5"}
+    ]
+  },
+  {
+    "modelId": "U2-equal-time-average",
+    "serial": 5,
+    "title": "Quota di spazio in intervalli uguali",
+    "reasoningTask": "recover_distance_weights_of_equal_times",
+    "objective": "Distinguere l’uguaglianza delle durate dall’uguaglianza degli spazi",
+    "context": "Un oggetto si muove lungo una retta nel verso positivo. Nel primo intervallo di durata τ ha velocità 2 m/s; nel secondo intervallo, della stessa durata τ, ha velocità 6 m/s.",
+    "assumptions": ["τ è positivo e ha lo stesso valore nei due intervalli.", "In ciascun intervallo la velocità è costante; non ci sono inversioni di moto."],
+    "replaceStandardExposition": true,
+    "prompt": "Quale frazione dello spazio complessivo viene percorsa nel secondo intervallo?",
+    "answer": {"kind": "rational", "exact": "3/4", "unit": "1"},
+    "options": ["3/4", "1/4", "1/2", "3", "2/3"],
+    "correctIndex": 0,
+    "verification": {"expression": "6/(2+6)", "expected": "3/4"},
+    "steps": [
+      {"title": "Esprimere i due spazi con la stessa durata", "explanation": "A velocità costante lo spazio percorso è velocità per tempo. Non serve conoscere numericamente τ: possiamo mantenerlo come fattore comune. Il primo spazio vale (2 m/s)τ e il secondo vale (6 m/s)τ.", "math": "s₁ = (2 m/s)τ; s₂ = (6 m/s)τ"},
+      {"title": "Sommare i contributi al percorso", "explanation": "L’oggetto si muove sempre nel medesimo verso, quindi il percorso complessivo è la somma dei due spazi positivi. Raccogliendo τ, si ottiene s_totale=(2+6)(m/s)τ=8(m/s)τ. Il secondo intervallo percorre più spazio anche se dura quanto il primo."},
+      {"title": "Eliminare il fattore comune nel rapporto", "explanation": "La frazione richiesta ha al numeratore lo spazio del secondo intervallo e al denominatore quello totale. Il fattore positivo τ e l’unità m/s compaiono in entrambi e si semplificano. Non abbiamo attribuito a τ un valore arbitrario: abbiamo usato il fatto che è lo stesso.", "math": "s₂/s_totale = 6τ/(8τ) = 6/8 = 3/4"},
+      {"title": "Controllare l’interpretazione", "explanation": "Il secondo intervallo ha una velocità tripla e percorre quindi uno spazio triplo del primo. Dividendo il percorso totale in quattro parti uguali, una appartiene al primo intervallo e tre al secondo. La risposta un mezzo descriverebbe la quota di tempo, non la quota di spazio."}
+    ]
+  },
+  {
+    "modelId": "U2-parallel-springs",
+    "serial": 5,
+    "title": "Ripartizione della forza fra molle in parallelo",
+    "reasoningTask": "parallel_springs_load_sharing",
+    "objective": "Usare la deformazione comune per ripartire una forza totale",
+    "context": "Due molle ideali, di costanti k₁=1 N/m e k₂=2 N/m, sono montate in parallelo. Una forza totale di 6 N mantiene il sistema deformato in equilibrio.",
+    "assumptions": ["Le molle subiscono la medesima deformazione positiva.", "Le forze elastiche delle due molle contribuiscono nello stesso verso a equilibrare la forza totale."],
+    "replaceStandardExposition": true,
+    "prompt": "Qual è il modulo della forza esercitata dalla prima molla, quella con k₁=1 N/m, in newton?",
+    "answer": {"kind": "rational", "exact": "2", "unit": "N"},
+    "options": ["2", "4", "3", "6", "1"],
+    "correctIndex": 0,
+    "verification": {"expression": "1*6/(1+2)", "expected": "2"},
+    "steps": [
+      {"title": "Individuare il vincolo del parallelo", "explanation": "Nel montaggio in parallelo entrambe le molle cambiano lunghezza della stessa quantità ℓ. La legge di Hooke dà F₁=k₁ℓ e F₂=k₂ℓ. Le due forze non devono essere uguali: a parità di deformazione la molla più rigida esercita la forza maggiore."},
+      {"title": "Ricavare la deformazione comune", "explanation": "L’equilibrio richiede F₁+F₂=6 N. Sostituendo le due leggi elastiche, la costante equivalente è k₁+k₂=3 N/m. Dividiamo quindi 6 N per 3 N/m e troviamo una deformazione comune di 2 m.", "math": "ℓ = F_totale/(k₁+k₂) = (6 N)/(3 N/m) = 2 m"},
+      {"title": "Calcolare il contributo della prima molla", "explanation": "La domanda riguarda soltanto la prima molla. Applichiamo alla deformazione appena ottenuta la sua costante k₁=1 N/m. Moltiplicando, il metro al denominatore si cancella con quello della deformazione e resta una forza di 2 N.", "math": "F₁ = k₁ℓ = (1 N/m)(2 m) = 2 N"},
+      {"title": "Controllare la somma delle forze", "explanation": "La seconda molla, due volte più rigida, esercita 4 N. La somma 2+4 restituisce i 6 N assegnati. Dividere semplicemente la forza totale a metà sarebbe corretto soltanto se le due costanti elastiche fossero uguali, condizione che qui non è soddisfatta."}
+    ]
+  },
+  {
+    "modelId": "U2-series-springs",
+    "serial": 5,
+    "title": "Ripartizione delle deformazioni in serie",
+    "reasoningTask": "series_springs_extension_sharing",
+    "objective": "Usare la forza comune per confrontare gli allungamenti",
+    "context": "Due molle ideali di costanti k₁=2 N/m e k₂=4 N/m sono collegate in serie. In equilibrio quasistatico entrambe trasmettono una forza di modulo 4 N.",
+    "assumptions": ["Si trascurano le masse delle molle e del collegamento.", "Gli allungamenti ℓ₁ e ℓ₂ sono positivi e misurati rispetto alle rispettive lunghezze naturali."],
+    "replaceStandardExposition": true,
+    "prompt": "Quanto vale il rapporto ℓ₁/ℓ₂ fra l’allungamento della prima molla e quello della seconda?",
+    "answer": {"kind": "rational", "exact": "2", "unit": "1"},
+    "options": ["2", "1/2", "1", "3/2", "4"],
+    "correctIndex": 0,
+    "verification": {"expression": "(4/2)/(4/4)", "expected": "2"},
+    "steps": [
+      {"title": "Riconoscere la grandezza comune", "explanation": "Nel collegamento in serie, in equilibrio e con collegamenti senza massa, la stessa forza attraversa entrambe le molle. Non è invece imposto che le deformazioni siano uguali. La molla meno rigida si allunga maggiormente quando riceve la stessa forza."},
+      {"title": "Isolare l’allungamento nella legge di Hooke", "explanation": "Per ogni molla la legge dei moduli è F=kℓ. Dividendo per la costante elastica positiva si ottiene ℓ=F/k. Applichiamo questa relazione alla prima molla: 4 N diviso 2 N/m restituisce 2 m.", "math": "ℓ₁ = (4 N)/(2 N/m) = 2 m"},
+      {"title": "Calcolare la seconda deformazione", "explanation": "La forza rimane 4 N, mentre la seconda costante vale 4 N/m. Il secondo allungamento è dunque 1 m. Non sommiamo le costanti come nel parallelo: qui il vincolo fisico è la forza uguale, non la deformazione uguale.", "math": "ℓ₂ = (4 N)/(4 N/m) = 1 m"},
+      {"title": "Conservare l’ordine del rapporto", "explanation": "Al numeratore va ℓ₁ e al denominatore ℓ₂, come richiesto dal testo. Il rapporto è 2 m/1 m=2 e non ha unità. La prima molla ha metà rigidità e il doppio allungamento, confermando la proporzionalità inversa fra allungamento e costante a forza fissata.", "math": "ℓ₁/ℓ₂ = 2/1 = 2"}
+    ]
+  },
+  {
+    "modelId": "U2-center-mass-equal",
+    "serial": 5,
+    "title": "Centro di massa e cambio dell’origine",
+    "reasoningTask": "transform_center_of_mass_coordinates",
+    "objective": "Distinguere la posizione fisica del centro di massa dalla sua coordinata",
+    "context": "Due masse puntiformi uguali hanno coordinate 4 m e 8 m lungo un asse orientato verso destra. Senza muovere le masse, si sceglie una nuova origine posta 3 m a destra della precedente; il verso positivo rimane lo stesso.",
+    "assumptions": ["Il cambiamento riguarda soltanto il riferimento delle coordinate.", "Le masse sono uguali e rimangono ferme nei medesimi punti fisici."],
+    "replaceStandardExposition": true,
+    "prompt": "Qual è la coordinata del centro di massa rispetto alla nuova origine, in metri?",
+    "answer": {"kind": "rational", "exact": "3", "unit": "m"},
+    "options": ["3", "6", "9", "2", "5"],
+    "correctIndex": 0,
+    "verification": {"expression": "(4+8)/2-3", "expected": "3"},
+    "steps": [
+      {"title": "Localizzare il centro nel riferimento iniziale", "explanation": "Con masse uguali il centro di massa è il punto medio delle coordinate. La massa comune si semplifica nella media pesata: (m·4+m·8)/(2m)=(4+8)/2. Nel riferimento originale il centro si trova quindi alla coordinata 6 m.", "math": "X = (4 m + 8 m)/2 = 6 m"},
+      {"title": "Interpretare lo spostamento dell’origine", "explanation": "L’origine nuova è 3 m più vicina, verso destra, a tutti i punti considerati. Le loro nuove coordinate si ottengono sottraendo 3 m dalle precedenti. Nessuna massa si è spostata fisicamente: cambia il punto da cui misuriamo le posizioni."},
+      {"title": "Applicare la trasformazione al centro di massa", "explanation": "Il centro era 6 m a destra dell’origine vecchia; l’origine nuova è a 3 m nella stessa direzione. Il centro rimane quindi 3 m a destra dell’origine nuova. Sommare 3 m descriverebbe il cambiamento d’origine nel verso opposto.", "math": "X′ = X − 3 m = 6 m − 3 m = 3 m"},
+      {"title": "Verificare attraverso le singole masse", "explanation": "Le nuove coordinate delle masse sono 4−3=1 m e 8−3=5 m. Il loro punto medio è (1+5)/2=3 m, lo stesso risultato. La posizione fisica relativa alle due masse non cambia: il centro resta a metà strada fra esse."}
+    ]
+  },
+  {
+    "modelId": "U2-atwood",
+    "serial": 5,
+    "title": "Tensione e accelerazione della massa leggera",
+    "reasoningTask": "isolate_tension_from_newtons_second_law",
+    "objective": "Distinguere la tensione dal peso in una macchina di Atwood accelerata",
+    "context": "Due masse di 3 kg e 1 kg sono collegate da una fune ideale su una carrucola senza massa e senza attrito. La massa di 1 kg accelera verso l’alto con accelerazione misurata 5 m/s². Si assume g=10 m/s².",
+    "assumptions": ["La fune è tesa e la sua tensione ha il medesimo modulo sui due lati.", "Il riferimento è inerziale."],
+    "replaceStandardExposition": true,
+    "prompt": "Qual è il modulo della tensione della fune, in newton?",
+    "answer": {"kind": "rational", "exact": "15", "unit": "N"},
+    "options": ["15", "10", "5", "30", "20"],
+    "correctIndex": 0,
+    "verification": {"expression": "1*(10+5)", "expected": "15"},
+    "steps": [
+      {"title": "Scegliere il corpo e il verso positivo", "explanation": "Consideriamo la massa di 1 kg e scegliamo il verso positivo verso l’alto, cioè quello della sua accelerazione. Su questa massa agiscono due forze verticali: la tensione T verso l’alto e il peso mg verso il basso. Non sono forze di azione e reazione fra loro."},
+      {"title": "Applicare il secondo principio", "explanation": "La somma orientata delle forze deve essere uguale a massa per accelerazione. Con il verso scelto la tensione è positiva e il peso negativo: T−mg=ma. Poiché la massa accelera verso l’alto, la tensione deve superare il peso.", "math": "T − mg = ma"},
+      {"title": "Isolare la tensione e sostituire", "explanation": "Aggiungiamo mg a entrambi i membri per ottenere T=m(g+a). La somma delle accelerazioni vale 10+5=15 m/s². Moltiplicando per 1 kg otteniamo 15 N, perché kg·m/s² è l’unità newton.", "math": "T = (1 kg)(10+5) m/s² = 15 N"},
+      {"title": "Controllare con la massa più pesante", "explanation": "La massa di 3 kg scende con lo stesso modulo di accelerazione. Il suo peso è 30 N e la tensione è 15 N verso l’alto: la risultante verso il basso è 15 N. Dividendo per 3 kg si ritrovano 5 m/s². Una tensione uguale al peso della massa leggera implicherebbe invece accelerazione nulla."}
+    ]
+  },
+  {
+    "modelId": "U2-projectile-range",
+    "serial": 5,
+    "title": "Posizione orizzontale all’apice",
+    "reasoningTask": "combine_vertical_apex_time_with_horizontal_motion",
+    "objective": "Collegare il tempo di salita verticale allo spostamento orizzontale",
+    "context": "Un proiettile viene lanciato con componente orizzontale iniziale 4 m/s e componente verticale iniziale 5 m/s verso l’alto. Si assume g=10 m/s² e si trascura la resistenza dell’aria.",
+    "assumptions": ["L’accelerazione orizzontale è nulla.", "L’accelerazione verticale ha modulo g e punta verso il basso."],
+    "replaceStandardExposition": true,
+    "prompt": "Quanti metri in orizzontale percorre il proiettile prima di raggiungere la massima altezza?",
+    "answer": {"kind": "rational", "exact": "2", "unit": "m"},
+    "options": ["2", "4", "1", "5", "1/2"],
+    "correctIndex": 0,
+    "verification": {"expression": "4*(5/10)", "expected": "2"},
+    "steps": [
+      {"title": "Individuare la condizione all’apice", "explanation": "Alla massima altezza si annulla soltanto la componente verticale della velocità. Il proiettile continua a muoversi orizzontalmente. Non bisogna quindi porre a zero l’intero vettore velocità o confondere l’apice con l’arresto completo del corpo."},
+      {"title": "Ricavare il tempo necessario a salire", "explanation": "Con il verso verticale positivo verso l’alto, la componente verticale segue v_y=5−10t nelle unità SI. All’apice imponiamo v_y=0: da 10t=5 si trova t=5/10=1/2 s. La frazione esatta rende superflua ogni approssimazione.", "math": "t_apice = (5 m/s)/(10 m/s²) = 1/2 s"},
+      {"title": "Usare lo stesso tempo per il moto orizzontale", "explanation": "Le due componenti del moto appartengono allo stesso proiettile e condividono il medesimo tempo. Orizzontalmente non agiscono accelerazioni, quindi la componente di velocità rimane 4 m/s. Lo spostamento è quella velocità moltiplicata per il tempo appena trovato.", "math": "Δx = (4 m/s)(1/2 s) = 2 m"},
+      {"title": "Distinguere l’apice dall’intero volo", "explanation": "La risposta è 2 m fino all’apice. Se il proiettile tornasse alla quota di lancio, in assenza d’aria il tempo di discesa sarebbe uguale a quello di salita e la gittata complessiva sarebbe 4 m. Usare tale gittata risponderebbe a una domanda diversa."}
+    ]
+  }
+]

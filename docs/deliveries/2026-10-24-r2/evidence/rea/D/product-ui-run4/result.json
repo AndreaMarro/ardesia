@@ -1,0 +1,250 @@
+{
+  "schema": "ardesia.r2-taylor-ui.v1",
+  "scope": "Development runtime; real canonical HTTP, synthetic student-02 only. Not final artifact, remote beta, human scientific approval or course submission.",
+  "origin": "http://127.0.0.1:5440",
+  "sourceHead": "cc6223c6a156b5868013184e91231206d8708cc0",
+  "sourceFiles": {
+    "apps/web/src/components/TaylorLab.tsx": "045a707c8614ada0b5395d4f9e813eb446a4923c4de8beb0a2af88328c94f58f",
+    "apps/web/src/components/TaylorPlot.tsx": "399436c871b85d782952d93dc70927c6aa9cfba2006ed04ae31e1c74e359b8e6",
+    "apps/web/src/components/TaylorPlot.css": "44c4041a49431dd361d5551ec16de34b9449d7cb0964696117c39c01b85e9ad9",
+    "packages/engine/lessonos/study/taylor.py": "af513414377075096487ee204e09fb2846c7fd9e62550aa2b1937217145d73a1"
+  },
+  "node": "v26.5.1",
+  "checks": [
+    {
+      "name": "UI login uses authorized synthetic student-02",
+      "pass": true
+    },
+    {
+      "name": "no automatic evaluation before prediction",
+      "pass": true
+    },
+    {
+      "name": "no schematic curve before comparison",
+      "pass": true
+    },
+    {
+      "name": "Core degree 0 has 41 bounded samples",
+      "pass": true
+    },
+    {
+      "name": "SVG degree 0 uses 41 canonical points",
+      "pass": true
+    },
+    {
+      "name": "degree edit clears the graph and does not call automatically",
+      "pass": true
+    },
+    {
+      "name": "Core degree 3 has 41 bounded samples",
+      "pass": true
+    },
+    {
+      "name": "SVG degree 3 uses 41 canonical points",
+      "pass": true
+    },
+    {
+      "name": "degree 0 and 3 have distinct returned geometry",
+      "pass": true
+    },
+    {
+      "name": "native keyboard changes one degree without an API call",
+      "pass": true
+    },
+    {
+      "name": "Core degree 8 has 41 bounded samples",
+      "pass": true
+    },
+    {
+      "name": "SVG degree 8 uses 41 canonical points",
+      "pass": true
+    },
+    {
+      "name": "degree 3 and 8 have distinct returned geometry",
+      "pass": true
+    },
+    {
+      "name": "Taylor responsive 360",
+      "pass": true
+    },
+    {
+      "name": "Taylor responsive 390",
+      "pass": true
+    },
+    {
+      "name": "Taylor responsive 820",
+      "pass": true
+    },
+    {
+      "name": "Taylor responsive 1440",
+      "pass": true
+    },
+    {
+      "name": "out-of-domain x clears result and disables comparison",
+      "pass": true
+    },
+    {
+      "name": "fractional degree is rejected without a fourth request",
+      "pass": true
+    },
+    {
+      "name": "no scientific approval inferred",
+      "pass": true
+    },
+    {
+      "name": "no Taylor page errors",
+      "pass": true
+    },
+    {
+      "name": "no Taylor console errors or warnings",
+      "pass": true
+    },
+    {
+      "name": "source unchanged apps/web/src/components/TaylorLab.tsx",
+      "pass": true
+    },
+    {
+      "name": "source unchanged apps/web/src/components/TaylorPlot.tsx",
+      "pass": true
+    },
+    {
+      "name": "source unchanged apps/web/src/components/TaylorPlot.css",
+      "pass": true
+    },
+    {
+      "name": "source unchanged packages/engine/lessonos/study/taylor.py",
+      "pass": true
+    }
+  ],
+  "evaluations": [
+    {
+      "parameters": {
+        "x": 0.5,
+        "degree": 0
+      },
+      "result": {
+        "value": 1,
+        "remainderBound": 1.5000000000000002,
+        "referenceValue": 1.6487212707001282,
+        "absoluteError": 0.6487212707001282,
+        "terms": 1
+      },
+      "sampleCount": 41,
+      "responseSha256": "2aa78334d6601648f18cafc2c0225b7c55b90fec8f665bc6b45e06448422952f",
+      "pathSha256": "a4bf54bf805dc8fae7436f56dc1effe769bd1fe2a5c4777f2c7117adf8bdb025"
+    },
+    {
+      "parameters": {
+        "x": 0.5,
+        "degree": 3
+      },
+      "result": {
+        "value": 1.6458333333333333,
+        "remainderBound": 0.007812500000000076,
+        "referenceValue": 1.6487212707001282,
+        "absoluteError": 0.002887937366794935,
+        "terms": 4
+      },
+      "sampleCount": 41,
+      "responseSha256": "7406fb27924631e0b92373abea909a6affe8d50ae158cba51547214a5cd49c12",
+      "pathSha256": "c609535c3ca58cb9d994d3ca63b8c88096568d6837e401fcedfcbdd817aa51de"
+    },
+    {
+      "parameters": {
+        "x": 0.5,
+        "degree": 8
+      },
+      "result": {
+        "value": 1.6487212650359624,
+        "remainderBound": 1.614686682232698e-8,
+        "referenceValue": 1.6487212707001282,
+        "absoluteError": 5.6641658030542885e-9,
+        "terms": 9
+      },
+      "sampleCount": 41,
+      "responseSha256": "5300ddd6d63c31f529e3efbaf940eb56ebdd8ef0e5c49cb0e7a5e01ced29f3bb",
+      "pathSha256": "fcd9f49eed09dd9ed2b0086a6d0800e5fd6f556499c545da430b68ce843df067"
+    }
+  ],
+  "viewport": [
+    {
+      "width": 360,
+      "overflow": false,
+      "graphWidth": 284,
+      "labWidth": 324,
+      "reducedMotion": true,
+      "animations": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "graphWidth": 314,
+      "labWidth": 354,
+      "reducedMotion": true,
+      "animations": 0
+    },
+    {
+      "width": 820,
+      "overflow": false,
+      "graphWidth": 355.140625,
+      "labWidth": 764,
+      "reducedMotion": true,
+      "animations": 0
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "graphWidth": 559.5625,
+      "labWidth": 1106,
+      "reducedMotion": true,
+      "animations": 0
+    }
+  ],
+  "errors": [],
+  "console": [
+    {
+      "phase": "login-prelude",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    }
+  ],
+  "failedRequests": [
+    {
+      "phase": "login-prelude",
+      "url": "http://127.0.0.1:5440/study/me",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "login-prelude",
+      "url": "http://127.0.0.1:5440/study/workspace?editionId=analisi",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "login-prelude",
+      "url": "http://127.0.0.1:5440/study/me",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "phase": "login-prelude",
+      "url": "http://127.0.0.1:5440/study/me",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "taylor-360.png",
+      "sha256": "67ad1e96dd4297b464c324f0050a504913e2cb7694783ee5e3d77ab1f005e667"
+    },
+    {
+      "name": "taylor-1440.png",
+      "sha256": "5958e94654ec0c12979b54809d400c5c0f3d69dc4bf809ef7712966d6f04ac23"
+    }
+  ],
+  "runtime": {
+    "synthetic": true,
+    "persistence": "sqlite",
+    "dataId": "f86e1d8f109d3ecc"
+  },
+  "status": "PASS",
+  "evaluationRequests": 3
+}

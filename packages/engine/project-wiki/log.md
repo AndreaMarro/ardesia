@@ -139,3 +139,15 @@ Append-only. 1 riga per modifica.
 - **2026-06-17T15:36:24Z — MCP grounded-memory wrapper integrato + test end-to-end su lezione campione (commit 347a9c6, gate 2018/0, +3).** Nuovo modulo `lessonos/mcp/` — server JSON-RPC 2.0 / MCP in-process che espone `grounded_memory_recall` come tool teacher-scoped con re-verifica grounding (`verify_citation`) su ogni item emesso. `lessonos/mcp/grounded_memory.py` (231 righe), `tests/test_mcp_grounded_memory.py` (318 righe, 22 test: handshake, recall, grounding guard, error surface + 3 nuovi end-to-end `TestMultiSegmentLesson` su lezione 3-segmenti 2-teacher). Verbatim provenance verificata, cross-teacher isolation confermata.
 
 - **2026-06-17T19:10Z — 3° tool MCP `grounded_memory_prerequisites` (commit cd3ac84 + f16164d, gate 2041/0, +14).** Serve la `PrerequisiteChain` PERSISTITA per teacher via grounding-guard: `_grounded_prerequisites` → `build_teacher_book` (ZERO-LLM, da depends_on edges + prereq dichiarati nei capsule) → guard. Guard estratto in `_ground_concept` condiviso con progression (comportamento preservato): ownership di ogni `chain.lesson_ids` + citazione VERIFICATA del concetto dipendente (`is_verified_excerpt`+`verify_citation` same-lesson posseduta + concept-tie `content_tokens`); chain non grounded droppate+dichiarate. `TestGroundedPrerequisites` (e2e: derivata SERVITO, energia DROPPATO) + `TestPrerequisitesGroundingGuard` (7 casi avversari). SELF-ADV (code-reviewer decorrelato): 2 MAJOR coverage-gap su `_ground_citation` condiviso (whitespace excerpt + ownership a livello citazione) NON pinnati → +4 test mutation-verified RED, su entrambi i tool.
+
+- 2026-10-20T13:37:37.203197+00:00: original-assets — descrittore autorizzato, identità binaria e collegamento alle prove del lettore PDF; SYS-01 resta aperto.
+
+- 2026-10-20T14:18:42.653655+00:00 — Quaderno scientifico: binding PDF, snapshot per revisione, CAS/export/erasure; aggiornato riferimento route originali. Evidenze REA e limiti in scientific-notebook.md.
+
+- 2026-10-20T17:34:53.185345+00:00 — Quaderno scientifico: documentati byte JSON originali, lettore portabile locale dopo ispezione online e confine di integrità; verifiche nel report SCIENTIFIC-NOTEBOOK-PORTABLE.
+
+- 2026-10-21 — Banca Fisica: snapshot verificato e immutabile, accesso per edizione, proiezioni separate, correzione esatta stateless e simulazioni per profilo. Fonti in physics-question-bank.md.
+
+2026-10-24 — Previsioni Poiseuille e riferimenti audio riusano ricevute, fonti e diario Study; dati manifest, aiuti dichiarati e controllo numerico separati dalla verifica del tutor. Addendum data-model; prove nella consegna AUDIO-V2, solo ambiente sintetico locale.
+
+- 2026-10-24 R1: aggiunte composizioni Poiseuille v2 e continuità dell’assistenza fra revisioni; v1/pack immutati, visuale dal Core e gate umano aperto. Vedi physics-question-bank.md.

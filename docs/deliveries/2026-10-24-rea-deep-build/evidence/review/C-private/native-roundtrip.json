@@ -1,0 +1,81 @@
+{
+  "checks": [
+    {
+      "name": "native stopped take and navigation-drained take both exported",
+      "pass": true,
+      "detail": {
+        "recordingCount": 2,
+        "mediaCount": 2
+      }
+    },
+    {
+      "name": "reader 2 explicit",
+      "pass": true
+    },
+    {
+      "name": "both native byte digests match markers",
+      "pass": true
+    },
+    {
+      "name": "fresh-store actual UI import completed",
+      "pass": true
+    },
+    {
+      "name": "import does not ask microphone",
+      "pass": true
+    },
+    {
+      "name": "actual historical object version highlighted",
+      "pass": true
+    },
+    {
+      "name": "cold replay does not autoplay",
+      "pass": true
+    },
+    {
+      "name": "native browser decodes imported drained tail",
+      "pass": true
+    },
+    {
+      "name": "revocation survives reopen and blocks playback",
+      "pass": true
+    },
+    {
+      "name": "stale ON bundle cannot reverse durable OFF",
+      "pass": true
+    },
+    {
+      "name": "fresh import and reopen never start microphone",
+      "pass": true
+    },
+    {
+      "name": "no runtime errors",
+      "pass": true
+    }
+  ],
+  "trace": "NOT_CAPTURED",
+  "credentials": "none used in this fresh context",
+  "events": [],
+  "bundleSha256": "e0aa6137db69d3996a90f9131e05dd3ca01cfc9b8a786b9dc267a4e5e295c278",
+  "nativeMedia": [
+    {
+      "bytes": 8967,
+      "sha256": "43fe589dfb77341197c849e241e8b907c2ac0e6d5dabd6bb5d0d5780d2b1cca4",
+      "declaredShaMatches": true,
+      "durationMs": 1020
+    },
+    {
+      "bytes": 3823,
+      "sha256": "e27ecea483398701addef340604178c691d12e98e5f4d9e0c8c3ed381f8fd9fb",
+      "declaredShaMatches": true,
+      "durationMs": 730
+    }
+  ],
+  "revokedState": [
+    {
+      "srcAttribute": null,
+      "currentSrc": "",
+      "paused": true
+    }
+  ]
+}

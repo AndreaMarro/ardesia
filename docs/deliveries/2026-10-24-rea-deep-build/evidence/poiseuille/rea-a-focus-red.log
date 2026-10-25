@@ -1,0 +1,313 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ❯ src/__tests__/rea-interaction-transfer.test.tsx (1 test | 1 failed) 229ms
+   × REA A: advancing to a different problem hides the solution and focuses the next prediction 228ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/rea-interaction-transfer.test.tsx > REA A: advancing to a different problem hides the solution and focuses the next prediction
+AssertionError: expected <body><div>…(1)</div></body> to be <input …(5)></input> // Object.is equality
+
+- Expected
++ Received
+
++ <body>
++   <div>
++     <section
++       aria-labelledby="physics-title"
++       class="physics-lab"
++     >
++       <div
++         class="lab-introduction"
++       >
++         <h2
++           id="physics-title"
++         >
++           Che cosa tieni fisso?
++         </h2>
++         <p>
++           Confronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.
++         </p>
++       </div>
++       <p
++         class="transfer-prompt"
++         role="status"
++       >
++         Nuovo problema: la pompa mantiene Q, ma il raggio si dimezza.
++       </p>
++       <div
++         class="lab-layout"
++       >
++         <div
++           class="lab-experiment"
++         >
++           <div
++             class="lab-caption"
++           >
++             <span>
++               Un modello, due situazioni
++             </span>
++             <span>
++               Poiseuille
++             </span>
++           </div>
++           <figure
++             class="poiseuille-model discovery-model"
++           >
++             <div
++               class="model-key"
++             >
++               <span>
++                 Stesso fluido · stessa lunghezza
++               </span>
++               <span>
++                 Q fissata
++               </span>
++             </div>
++             <svg
++               aria-label="Due tubi cilindrici con rapporto dei raggi 0.5. Geometria prima della previsione."
++               role="img"
++               viewBox="0 0 680 335"
++             >
++               <defs>
++                 <clippath
++                   id="_r_0_-reference"
++                 >
++                   <rect
++                     height="70"
++                     width="455"
++                     x="95"
++                     y="48"
++                   />
++                 </clippath>
++                 <clippath
++                   id="_r_0_-comparison"
++                 >
++                   <rect
++                     height="35"
++                     width="455"
++                     x="95"
++                     y="217.5"
++                   />
++                 </clippath>
++               </defs>
++               <g
++                 class="pipe-reference"
++               >
++                 <text
++                   x="24"
++                   y="30"
++                 >
++                   riferimento
++                 </text>
++                 <rect
++                   class="tube-body"
++                   height="70"
++                   width="455"
++                   x="95"
++                   y="48"
++                 />
++                 <line
++                   class="pipe-axis"
++                   x1="95"
++                   x2="550"
++                   y1="83"
++                   y2="83"
++                 />
++                 <path
++                   class="pipe-dimension"
++                   d="M580 48V118M574 48H586M574 118H586"
++                 />
++                 <text
++                   x="596"
++                   y="88"
++                 >
++                   2r₀
++                 </text>
++               </g>
++               <g
++                 class="pipe-comparison"
++               >
++                 <text
++                   x="24"
++                   y="153"
++                 >
++                   confronto
++                 </text>
++                 <rect
++                   class="tube-body"
++                   height="35"
++                   width="455"
++                   x="95"
++                   y="217.5"
++                 />
++                 <line
++                   class="pipe-axis"
++                   x1="95"
++                   x2="550"
++                   y1="235"
++                   y2="235"
++                 />
++                 <path
++                   class="pipe-dimension"
++                   d="M580 217.5V252.5M574 217.5H586M574 252.5H586"
++                 />
++                 <text
++                   x="596"
++                   y="240"
++                 >
++                   2r
++                 </text>
++               </g>
++               <path
++                 class="pipe-dimension"
++                 d="M100 317H550M100 312V322M550 312V322"
++               />
++               <text
++                 text-anchor="middle"
++                 x="325"
++                 y="331"
++               >
++                 L costante
++               </text>
++             </svg>
++             <figcaption>
++               r / r₀ =
++               0,5
++                ·
++               Q è costante: la portata non cambia.
++             </figcaption>
++           </figure>
++           <p>
++             Schema ideale · fluido newtoniano · moto laminare
++           </p>
++           <div
++             aria-busy="false"
++             aria-live="polite"
++             class="lab-result"
++           >
++             <span>
++               Parametri cambiati. Metti di nuovo alla prova la previsione.
++             </span>
++             <p>
++               Il risultato compare quando scegli di calcolare.
++             </p>
++           </div>
++         </div>
++         <form
++           class="lab-controls"
++         >
++           <label>
++             Rapporto previsto
+              <input
+                aria-label="Rapporto previsto"
+                inputmode="decimal"
+                maxlength="1000"
+                placeholder="Δp/Δp₀ = …"
+                value=""
+              />
++           </label>
++           <label>
++             Grandezza fissata
++             <select>
++               <option
++                 value="pressure"
++               >
++                 Differenza di pressione Δp
++               </option>
++               <option
++                 value="flow"
++               >
++                 Portata Q
++               </option>
++             </select>
++           </label>
++           <label
++             class="range-label"
++           >
++             Rapporto dei raggi
++             <output>
++               0,5
++             </output>
++             <input
++               aria-label="Rapporto dei raggi"
++               max="2"
++               min="0.5"
++               step="0.05"
++               type="range"
++               value="0.5"
++             />
++             <span
++               class="range-ticks"
++             >
++               <span>
++                 0,5 ×
++               </span>
++               <span>
++                 1 ×
++               </span>
++               <span>
++                 2 ×
++               </span>
++             </span>
++           </label>
++           <button
++             class="button-primary"
++             disabled=""
++           >
++             Metti alla prova
++           </button>
++           <button
++             class="text-link"
++             type="button"
++           >
++             Ricomincia l’esperimento
++           </button>
++           <details>
++             <summary>
++               Modello e limiti
++             </summary>
++             <p
++               class="formula"
++               id="poiseuille-formula"
++             >
++               Q = π r⁴ Δp / (8 η L)
++             </p>
++             <p>
++               Tubo cilindrico rigido, viscosità e lunghezza fissate; fluido incomprimibile, moto laminare stazionario.
++             </p>
++             <p
++               class="fine-print"
++             >
++               Controllo numerico deterministico. Contenuto in revisione scientifica prima del pilot.
++             </p>
++             <p
++               class="fine-print"
++             >
++               Questa anteprima esplora
++               62
++                configurazioni: tutti i risultati sono stati calcolati dal motore scientifico di Ardesia durante la preparazione della pagina. Lunghezza e viscosità rimangono costanti. La previsione resta in questa pagina; nessuna risposta viene inviata a un servizio o salvata come profilo studente.
++             </p>
++           </details>
++         </form>
++       </div>
++     </section>
++   </div>
++ </body>
+
+ ❯ src/__tests__/rea-interaction-transfer.test.tsx:19:34
+     17|   expect((screen.getByLabelText("Grandezza fissata") as HTMLSelectElem…
+     18|   expect(screen.getByText("Nuovo problema: la pompa mantiene Q, ma il …
+     19|   expect(document.activeElement).toBe(prediction);
+       |                                  ^
+     20| });
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  15:15:00
+   Duration  1.47s (transform 119ms, setup 0ms, import 281ms, tests 229ms, environment 776ms)

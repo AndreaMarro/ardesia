@@ -1,0 +1,129 @@
+{
+  "schema": "ardesia.r1-private-ui.v1",
+  "synthetic": true,
+  "origin": "http://127.0.0.1:5417",
+  "expectedSha": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+  "runtime": "v22.14.0",
+  "studentActor": "student-02",
+  "browserPath": "Browser plugin not available; explicitly requested existing Playwright runner reused.",
+  "capture": "Native MediaRecorder with a WebAudio tone; no hardware microphone, speech recognition or real learner data.",
+  "authEvidence": "Fixture login before evidence; no tokens, headers, storageState or network trace retained.",
+  "remoteBeta": "NOT_RUN",
+  "launchAllowed": false,
+  "checks": [
+    {
+      "name": "exact committed artifact and source inventory match before review continuation",
+      "pass": true
+    },
+    {
+      "name": "fresh contexts read the same immutable A/B receipts and original source",
+      "pass": true
+    },
+    {
+      "name": "existing tutor feedback and diary quote pin the delivered original exactly",
+      "pass": true
+    },
+    {
+      "name": "student submission cannot verify its own diary",
+      "pass": true
+    },
+    {
+      "name": "human tutor command alone verifies the exact canonical new procedure",
+      "pass": true
+    },
+    {
+      "name": "every A/B receipt preserves the exact shared lesson revision",
+      "pass": true
+    },
+    {
+      "name": "all screenshots fit the viewport",
+      "pass": true
+    },
+    {
+      "name": "no runtime page errors",
+      "pass": true
+    },
+    {
+      "name": "no failed network requests",
+      "pass": true
+    },
+    {
+      "name": "no console errors or warnings",
+      "pass": true
+    },
+    {
+      "name": "observed font requests are successful and local",
+      "pass": true
+    },
+    {
+      "name": "exact committed artifact and source inventory match after browser",
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "teacher-diary-confirmed-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "name": "student-diary-practising-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "name": "teacher-human-verification-1440.png",
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "console": [],
+  "fonts": [],
+  "artifact": {
+    "commit": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+    "manifestSha256": "ea3b747337f83a7a4b99de4082a883826f42f12579ce62e5db881f9c5feaa853",
+    "sourceTreeSha256": "f5af01464d4e0c5afd22947513bbc8abb262846f6ff8782bd92a3d5349ba0f6e",
+    "assetCount": 758
+  },
+  "continuationOf": {
+    "directory": "run-final-c762e30-3",
+    "resultSha256": "bcb5edf8aaf72a818cec7e9a432cb9ce2a135d689e0909c948454c455775b432",
+    "receiptsSha256": "66b8aa22e87f6ffd2ec57613cd9e3566242fc5f66ba0f6bb6a36d966cfd36f95",
+    "reason": "Teacher workspace loaded before student submissions; ordinary fresh page required. A/B are not rerun or recounted."
+  },
+  "lessonRef": {
+    "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+    "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+  },
+  "descriptor": {
+    "schema": "ardesia.lesson-passage.v1",
+    "workspaceId": "local-default",
+    "lessonId": "aula-fluidi",
+    "sessionId": "921b24ea-d002-4227-b754-813d1478f262",
+    "recordingId": "173a3dec-d3de-4e25-81da-7d47d2d50402",
+    "startEpoch": 1792857548371,
+    "endEpoch": 1792857549481,
+    "sha256": "3aace2921434682866915fbb63cafdb1739ce90954187217a2ea64cfba0940a5",
+    "objectRefs": [
+      {
+        "elementId": "zEcspVtw08s9MGO_4XWRi",
+        "version": 2,
+        "label": "Q resta costante: isoliamo Δp nella legge di Poiseuille. R1 sintesi 1792857545065"
+      }
+    ],
+    "replayUrl": "http://127.0.0.1:5417/studio/?vista=replay&at=1792857549481&recording=173a3dec-d3de-4e25-81da-7d47d2d50402&object=zEcspVtw08s9MGO_4XWRi&session=921b24ea-d002-4227-b754-813d1478f262&sha=3aace2921434682866915fbb63cafdb1739ce90954187217a2ea64cfba0940a5&objectVersion=2#aula-fluidi"
+  },
+  "localStore": {
+    "dataId": "0df5d585b8380dff",
+    "persistence": "sqlite"
+  },
+  "reviewContinuationOf": {
+    "directory": "run-review-c762e30",
+    "resultSha256": "d02efeefa85c62608cae7c95fa66023805618831abec3fc900b96d5c1611c592",
+    "reason": "Observation was saved; harness compared an additional contextId field. Resume existing canonical thread, no duplicated publication."
+  },
+  "diaryThreadId": "7095abfef8f5426db38f7d8a81283ec7",
+  "passed": true
+}

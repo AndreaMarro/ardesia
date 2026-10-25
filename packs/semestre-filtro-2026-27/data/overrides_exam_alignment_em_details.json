@@ -1,0 +1,369 @@
+[
+  {
+    "modelId": "U6-joule-power",
+    "serial": 7,
+    "reasoningTask": "exam_alignment_p1q9",
+    "objective": "Confrontare le correnti tramite la potenza assorbita",
+    "title": "Confrontare le correnti tramite la potenza assorbita",
+    "topic": "Potenza elettrica a tensione comune",
+    "microarea": "Circuiti in corrente continua",
+    "prompt": "Due utilizzatori A e B sono collegati in parallelo allo stesso generatore ideale da 12 V. Nelle condizioni considerate assorbono rispettivamente 18 W e 6 W. Quanto vale il rapporto I_A/I_B fra le correnti assorbite?",
+    "answer": {
+      "kind": "rational",
+      "exact": "3",
+      "unit": "1"
+    },
+    "options": [
+      "3",
+      "9",
+      "1/3",
+      "√3",
+      "1"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "P = VI",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Il collegamento in parallelo impone la stessa differenza di potenziale ai due utilizzatori. La potenza assorbita da ciascuno è il prodotto della tensione ai suoi morsetti per la corrente che lo attraversa. Con tensione comune, dunque, una potenza tre volte maggiore corrisponde a una corrente tre volte maggiore. Non si può applicare la relazione P = I²R fingendo che anche R sia uguale nei due rami: il testo non assegna resistenze uguali e le potenze diverse alla stessa tensione indicherebbero proprio comportamenti elettrici diversi. La relazione P = VI permette di usare direttamente il vincolo fornito. Fare il rapporto evita inoltre di calcolare separatamente le correnti, anche se il controllo con 18/12 e 6/12 è semplice. Il primo ramo assorbe un ampere e mezzo, il secondo mezzo ampere: tre mezzi diviso un mezzo vale tre. Il confronto riguarda i rami nelle condizioni descritte, senza fare ipotesi su come un utilizzatore si comporterebbe a un’altra tensione.",
+    "steps": [
+      {
+        "title": "Usare la tensione comune",
+        "explanation": "In parallelo entrambi i rami hanno 12 V ai morsetti. Questa è la quantità che può essere cancellata nel rapporto.",
+        "math": "I_A = P_A/V; I_B = P_B/V"
+      },
+      {
+        "title": "Confrontare le potenze",
+        "explanation": "Il rapporto delle correnti è uguale al rapporto delle potenze, perché numeratore e denominatore sono entrambi divisi per lo stesso V.",
+        "math": "I_A/I_B = P_A/P_B = 18/6 = 3"
+      },
+      {
+        "title": "Controllare con le correnti",
+        "explanation": "Diciotto dodicesimi di ampere equivalgono a 3/2 A, mentre sei dodicesimi equivalgono a 1/2 A. Il rapporto restituisce tre.",
+        "math": "(3/2)/(1/2) = 3"
+      }
+    ],
+    "examAlignment": [
+      "P1Q9"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "(18/12)/(6/12)-3",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U6-point-electric-potential",
+    "serial": 7,
+    "reasoningTask": "exam_alignment_p2q8",
+    "objective": "Identificare una superficie equipotenziale sferica",
+    "title": "Identificare una superficie equipotenziale sferica",
+    "topic": "Superfici equipotenziali di una carica puntiforme",
+    "microarea": "Potenziale elettrostatico",
+    "prompt": "Una carica puntiforme positiva isolata produce potenziale V = kQ/d, con zero all’infinito. Il potenziale vale 12 V alla distanza r. Qual è l’insieme dei punti in cui il potenziale vale 6 V?",
+    "answer": {
+      "kind": "text",
+      "exact": "Una superficie sferica di raggio 2r centrata sulla carica",
+      "unit": "1"
+    },
+    "options": [
+      "Una superficie sferica di raggio 2r centrata sulla carica",
+      "Una superficie sferica di raggio r/2 centrata sulla carica",
+      "Un solo punto lungo una direzione privilegiata, perché il potenziale è un vettore",
+      "Tutto il volume interno alla sfera di raggio r",
+      "Una superficie piana indipendente dalla distanza dalla carica"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "V(d) = kQ/d",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Il potenziale di una carica puntiforme isolata dipende soltanto dalla distanza dalla carica, non dalla direzione. Tutti i punti alla medesima distanza hanno quindi lo stesso potenziale. In tre dimensioni, l’insieme dei punti a distanza fissata da un centro è una superficie sferica. Il valore del potenziale è inversamente proporzionale alla distanza: per passare da dodici volt a sei volt, cioè dimezzarlo, bisogna raddoppiare la distanza. Il termine «equipotenziale» significa proprio stesso valore del potenziale su tutti i punti della superficie. Non significa che il campo elettrico sia nullo sulla superficie: il campo di questa carica è radiale e perpendicolare alle sfere equipotenziali. Un disegno bidimensionale può rappresentare tali superfici come circonferenze, ma queste sono sezioni delle sfere nello spazio. La soluzione richiede quindi due passaggi distinti: trovare la distanza mediante la dipendenza 1/d e poi riconoscere la geometria dei punti che condividono quella distanza.",
+    "steps": [
+      {
+        "title": "Confrontare i valori del potenziale",
+        "explanation": "Se V si dimezza e kQ resta costante, il denominatore d deve raddoppiare.",
+        "math": "6/12 = r/d = 1/2; d = 2r"
+      },
+      {
+        "title": "Tradurre la distanza in geometria",
+        "explanation": "Tutte le direzioni sono equivalenti per una carica puntiforme isolata. I punti a distanza 2r sono una sfera, non un punto singolo."
+      },
+      {
+        "title": "Distinguere potenziale e campo",
+        "explanation": "Il potenziale è scalare. Il campo è invece un vettore radiale e non si annulla semplicemente perché una superficie contiene punti allo stesso potenziale."
+      }
+    ],
+    "examAlignment": [
+      "P2Q8"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "12/2-6",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U6-plane-capacitance",
+    "serial": 7,
+    "reasoningTask": "exam_alignment_p2q11",
+    "objective": "Determinare modulo e verso del campo fra armature",
+    "title": "Determinare modulo e verso del campo fra armature",
+    "topic": "Campo elettrico nel condensatore piano",
+    "microarea": "Campi uniformi e linee di campo",
+    "prompt": "Le armature piane parallele di un condensatore sono distanti 2 cm. La piastra a sinistra è a +40 V e quella a destra a 0 V. Trascurando gli effetti di bordo, qual è il campo elettrico nello spazio interno?",
+    "answer": {
+      "kind": "text",
+      "exact": "Un campo uniforme di 2×10³ V/m, perpendicolare alle piastre e diretto da sinistra a destra",
+      "unit": "1"
+    },
+    "options": [
+      "Un campo uniforme di 2×10³ V/m, perpendicolare alle piastre e diretto da sinistra a destra",
+      "Un campo uniforme di 2×10³ V/m, perpendicolare alle piastre e diretto da destra a sinistra",
+      "Un campo parallelo alle piastre di 20 V/m",
+      "Un campo nullo perché la carica totale delle due armature può essere zero",
+      "Un campo di 80 V/m che cresce da sinistra a destra"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "E = |ΔV|/d; il campo è diretto verso potenziale decrescente.",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Fra armature piane parallele molto estese rispetto alla separazione, il campo lontano dai bordi si approssima uniforme. Le linee sono perpendicolari alle armature e il verso del campo va dal potenziale maggiore a quello minore. Un’eventuale carica positiva di prova sarebbe spinta proprio in quel verso. Il modulo si ricava dividendo la differenza di potenziale per la distanza. Per ottenere volt al metro, la distanza deve essere espressa in metri: due centimetri sono due centesimi di metro. Il risultato di duemila volt al metro non indica una tensione di duemila volt fra le piastre, perché la separazione è solo 0,02 m. Moltiplicando campo per distanza si ricostruiscono infatti i quaranta volt assegnati. La possibile neutralità complessiva delle due armature non implica campo nullo fra esse: i campi prodotti dalle cariche opposte si sommano proprio nella regione interna. La domanda specifica di ignorare i bordi per rendere valida l’ipotesi di uniformità.",
+    "steps": [
+      {
+        "title": "Convertire la distanza",
+        "explanation": "Un centimetro è un centesimo di metro. Pertanto 2 cm corrispondono a 2/100 m.",
+        "math": "d = 0,02 m"
+      },
+      {
+        "title": "Ricavare il modulo",
+        "explanation": "La differenza di potenziale è 40−0 = 40 V. Dividere per 0,02 equivale a moltiplicare per 50.",
+        "math": "E = 40/0,02 = 2000 V/m"
+      },
+      {
+        "title": "Determinare la direzione e il verso",
+        "explanation": "Nel modello piano le linee sono ortogonali alle piastre. Il potenziale diminuisce andando da sinistra verso destra, che è quindi il verso del campo."
+      },
+      {
+        "title": "Controllare la tensione",
+        "explanation": "Il prodotto del campo per 0,02 m deve restituire 40 V. Il controllo impedisce di confondere V e V/m.",
+        "math": "2000·0,02 = 40 V"
+      }
+    ],
+    "examAlignment": [
+      "P2Q11"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "2000*(2/100)-40",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U6-work-potential-difference",
+    "serial": 7,
+    "reasoningTask": "exam_alignment_p2q16",
+    "objective": "Calcolare energia cinetica e segno per un elettrone",
+    "title": "Calcolare energia cinetica e segno per un elettrone",
+    "topic": "Energia di una carica e unità elettronvolt",
+    "microarea": "Lavoro elettrico e segni",
+    "prompt": "Un elettrone, di carica −e con e positivo, parte da fermo da un punto a −2 kV e arriva a un punto a +3 kV sotto la sola forza elettrostatica. Ricorda che 1 eV = e·1 V. Qual è la sua energia cinetica finale in keV?",
+    "answer": {
+      "kind": "rational",
+      "exact": "5",
+      "unit": "keV"
+    },
+    "options": [
+      "5 keV",
+      "−5 keV",
+      "1 keV",
+      "2 keV",
+      "3 keV"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "ΔU = q(V_f−V_i); ΔK = −ΔU; 1 eV = e·1 V",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Per risolvere il problema bisogna distinguere il segno della carica dal segno della differenza di potenziale. Il punto finale è a potenziale maggiore: la variazione V_finale−V_iniziale è positiva e vale cinque kilovolt. L’elettrone ha carica negativa, perciò la sua variazione di energia potenziale qΔV è negativa. La perdita di energia potenziale diventa aumento di energia cinetica, poiché non agiscono altre forze. Non è corretto affermare che una carica debba sempre scendere di potenziale per accelerare: questa frase vale per una carica positiva, mentre una negativa può aumentare energia cinetica andando verso potenziale maggiore. L’unità elettronvolt permette di evitare la conversione in joule. Il prodotto e per cinque kilovolt corrisponde a cinque kiloelettronvolt. Qui e indica il modulo positivo della carica elementare, quindi il valore dell’energia cinetica finale è positivo. Partendo da fermo, tutta la variazione di energia cinetica coincide con il valore finale cercato.",
+    "steps": [
+      {
+        "title": "Calcolare la variazione di potenziale",
+        "explanation": "Sottrarre un valore negativo equivale ad aggiungerne il modulo. La variazione è quindi 3−(−2) = 5 kV.",
+        "math": "ΔV = +5 kV"
+      },
+      {
+        "title": "Inserire il segno della carica",
+        "explanation": "La variazione di energia potenziale è qΔV. Per q = −e risulta una diminuzione di cinque keV.",
+        "math": "ΔU = (−e)(5 kV) = −5 keV"
+      },
+      {
+        "title": "Applicare la conservazione dell’energia",
+        "explanation": "Il lavoro del campo è opposto alla variazione di energia potenziale. L’energia cinetica aumenta di cinque keV.",
+        "math": "ΔK = −ΔU = +5 keV"
+      },
+      {
+        "title": "Usare la condizione iniziale",
+        "explanation": "L’elettrone parte da fermo, quindi K_iniziale = 0. L’energia finale è direttamente 5 keV e non richiede una massa o una velocità.",
+        "math": "K_finale = 5 keV"
+      }
+    ],
+    "examAlignment": [
+      "P2Q16"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "-(-1)*(3-(-2))-5",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U4-sound-decibel",
+    "serial": 7,
+    "reasoningTask": "exam_alignment_p2q6",
+    "objective": "Interpretare un livello di zero decibel",
+    "title": "Interpretare un livello di zero decibel",
+    "topic": "Significato dello zero del livello sonoro",
+    "microarea": "Livelli logaritmici",
+    "prompt": "Il livello di intensità sonora è definito da L = 10 log₁₀(I/I₀), con intensità di riferimento I₀ positiva. Se L = 0 dB, quanto vale il rapporto I/I₀?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1",
+      "unit": "1"
+    },
+    "options": [
+      "1",
+      "0",
+      "10",
+      "−1",
+      "100"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "L = 10 log₁₀(I/I₀)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Il decibel descrive un confronto logaritmico con un riferimento. Un livello pari a zero non significa che l’intensità fisica sia zero: significa che il rapporto con l’intensità di riferimento è uno. Il logaritmo in base dieci risponde alla domanda «a quale esponente devo elevare dieci per ottenere il rapporto?». Per ottenere logaritmo zero, il rapporto deve essere dieci elevato a zero, cioè uno. Il riferimento è dichiarato positivo, quindi anche l’intensità trovata è positiva. Inserire I = 0 nella formula sarebbe scorretto, perché il logaritmo di zero non è definito come numero reale finito. La distinzione è simile alla scelta di uno zero di confronto: la grandezza esiste anche quando la misura relativa prende valore zero. Inoltre, lo zero in decibel non determina da solo una specifica sensazione uditiva per ogni ascoltatore e ogni frequenza; la formula qui riguarda esclusivamente il rapporto fra due intensità fisiche.",
+    "steps": [
+      {
+        "title": "Eliminare il fattore dieci",
+        "explanation": "Se dieci volte un numero è zero, quel numero deve essere zero. Quindi log₁₀(I/I₀) = 0.",
+        "math": "log₁₀(I/I₀) = 0"
+      },
+      {
+        "title": "Applicare la definizione di logaritmo",
+        "explanation": "Il rapporto deve coincidere con dieci elevato a zero. Ogni base positiva non nulla elevata a zero vale uno.",
+        "math": "I/I₀ = 10⁰ = 1"
+      },
+      {
+        "title": "Interpretare il risultato",
+        "explanation": "I = I₀ e I₀ è positivo. Esiste quindi un’intensità sonora non nulla anche se il livello relativo è zero.",
+        "math": "I = I₀ > 0"
+      }
+    ],
+    "examAlignment": [
+      "P2Q6"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "10*log(1,10)",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U4-wave-phase-time",
+    "serial": 2,
+    "reasoningTask": "exam_alignment_p1q24",
+    "objective": "Convertire un periodo in frequenza",
+    "title": "Convertire un periodo in frequenza",
+    "topic": "Frequenza e periodo",
+    "microarea": "Grandezze periodiche",
+    "prompt": "Un’oscillazione si ripete identica ogni 2/5 di secondo. Qual è la sua frequenza in hertz?",
+    "answer": {
+      "kind": "rational",
+      "exact": "5/2",
+      "unit": "Hz"
+    },
+    "options": [
+      "5/2 Hz",
+      "2/5 Hz",
+      "5 Hz",
+      "10 Hz",
+      "1/2 Hz"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le condizioni indicati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "f = 1/T",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Il periodo è il tempo necessario per completare una singola oscillazione e ritrovare la stessa fase del moto. La frequenza conta invece quante oscillazioni vengono completate nell’unità di tempo. Le due grandezze sono reciproche: se un ciclo dura poco, in un secondo ne entrano molti; se dura molto, ne entrano pochi. Nel problema ogni ciclo dura due quinti di secondo. Per sapere il numero di cicli al secondo si deve dividere un secondo per questa durata. Dividere per una frazione equivale a moltiplicare per il suo reciproco, quindi il risultato è cinque mezzi. Una frequenza non intera è perfettamente sensata: non significa che un ciclo debba interrompersi fisicamente a metà, ma che la quantità media di cicli in un intervallo di un secondo può includere una frazione di ciclo. In due secondi, infatti, avvengono esattamente cinque cicli completi. L’unità hertz equivale all’inverso del secondo e identifica un ritmo di ripetizione.",
+    "steps": [
+      {
+        "title": "Riconoscere il periodo",
+        "explanation": "La frase «si ripete ogni 2/5 di secondo» assegna il periodo T, non direttamente la frequenza.",
+        "math": "T = 2/5 s"
+      },
+      {
+        "title": "Usare la relazione reciproca",
+        "explanation": "La frequenza è uno diviso il periodo. Il reciproco di 2/5 è 5/2.",
+        "math": "f = 1/T = 1/(2/5) = 5/2 Hz"
+      },
+      {
+        "title": "Controllare su un intervallo semplice",
+        "explanation": "Cinque periodi da 2/5 s durano due secondi. Cinque cicli in due secondi equivalgono proprio a 5/2 cicli al secondo.",
+        "math": "5·(2/5 s) = 2 s"
+      }
+    ],
+    "examAlignment": [
+      "P1Q24"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "(5/2)*(2/5)-1",
+        "residual": "0"
+      }
+    ]
+  }
+]

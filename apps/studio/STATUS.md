@@ -367,3 +367,130 @@ Prossima task: **T3 bundle .lesson**.
 
 - **2026-07-23 — ARD-06-A schema + projector puro.** Nuovo `src/lessonos/continuityProjection.ts` (368+ righe): tipi `Continuity*V1` estratti verbatim dal design §5.1/§5.4/§6, `validateContinuityScopeV1` senza default (`roomId===lessonId`, UUID canonico, zero I/O prima del gate), `projectContinuityV1` puro. Precedenza phase `corrupt>degraded>ready|empty` con normalizzazione corrupt che azzera i fatti di contenuto e mette Simulation a `unavailable/source-corrupt`. Open loop per seq append-only con riapertura e count cumulativo, ordine `lastObserved seq DESC → errorId codepoint ASC` (RED-06-04). Simulation fail-closed: G2 non accepted ⇒ `ready`/`error-open` **irraggiungibili per costruzione**, verificato da un test che itera tutte le fixture (RED-06-06). `nextAction` singola con required set §9.1 e ordine P0 totale §9.2; permutation oracle 3! + 100 shuffle seeded byte-identico, verde al primo run (RED-06-05). Fixture `@ts-expect-error` congelano 5 stati impossibili al typecheck: allargando la union tsc fallisce con 5 TS2578 (verificato, poi union ripristinata byte per byte). **Gate: vitest 32/32 focused, typecheck exit 0.** Nessun I/O, nessun import di `TeacherDashboardView`/`projectTeacherDashboard`, zero `readAll`/flat path. Prossima: **ARD-06-B0 indice composto**, poi **ARD-06-B loader**.
 - **2026-07-23 — ARD-06-B0 indice composto lesson+session.** `indexedDbEventLog.ts`: `DB_VERSION` 1→2, indice additivo `by_lesson_session_seq` keyPath `['lessonId','sessionId','seq']`; `readEnvelopesBySession` legge il key-range `[l,s,0]..[l,s,MAX_SAFE_INTEGER]` invece di `readAllEnvelopes()` + filtro. devDependency `fake-indexeddb@^6.2.5`: il fake in-file tollera la migration (`indexNames.contains` → false, `createIndex` no-op) ma non implementa `index()` né `IDBKeyRange`, quindi non puo' provare un key-range; 2 asserzioni `readEnvelopesBySession` migrate sul blocco IDB reale. Controprova: ripristinando scan-then-filter il test anti-scan fallisce. **Gate: file 49/49, suite 1938/0, tsc 0, gate.sh 1939/0, verify 0.** File tracked 6 (2 funzionali/test, 2 manifest, 2 ledger). Prossima: ARD-06-B loader.
+
+
+## 2026-10-20 — REA / originali autorizzati e lettore PDF nel corso
+
+Descrittore canonico consegnato con i byte autorizzati, controllo dimensione e
+SHA-256, trasporto condiviso con invalidazione di sessione. La review indipendente
+ha trovato il limite legacy 256: corretto a8192 codepoint. Il client precedente
+read_asset/studyBlob resta compatibile. Web:173 test; API:216; Engine:2461 passati,
+25 skipped. Typecheck e build Web/pubblico verdi. Le prime esecuzioni errate o
+contese sono conservate nella ricevuta, non trattate come verdi.
+
+PDF.js6.4.299 è una dipendenza esatta del solo workspace Web, necessaria per
+recuperare il motore PDF completo. Worker, font, CMaps, ICC, Wasm e licenze sono
+locali; import del motore solo all'apertura. Un503 reale ha mostrato che il
+fallback PDF.js memorizzato non recuperava: adattatore con porta fresca, cleanup
+limitato e retry verificato. Browser390/820/1440, zoom200%, focus, CSP candidata,
+scan4,8MP, download, permessi V1/V2 e logout verificati.
+
+SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
+riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
+nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
+`docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.
+
+
+## 2026-10-20 — REA / editor del quaderno scientifico nel corso
+
+PDF, note, evidenziazioni e formule sono ora integrati nella stessa superficie
+Web, in Aula e nel lavoro privato. Undo isolato, coordinate dal PageViewport,
+CAS e retry idempotente, riapertura della head, consegna con PDF esatto e lettura
+della revisione consegnata al tutor. SubmissionPanel condiviso verifica la
+fonte prima del primo invio e permette la rimozione locale degli allegati.
+
+Nuove dipendenze Web esatte: MathLive 0.110.0 per editing matematico strutturato
+e DOMPurify 3.4.17 per markup non fidato, con macro HTML inerti e filtro CSS.
+Compute Engine transitive installato ma disattivato a runtime; font e licenze
+locali. Chunk matematico differito ~833 kB / 231 kB gzip: warning Vite conservato.
+Nessun LLM in prodotto. Licenze in apps/web/THIRD_PARTY_NOTICES.md.
+
+REA 6.7.0 via MCP: pacchetto MathLive statico, grafo incompleto; scenario nuovo
+editor 25 azioni completate, DOM/accessibilità/screenshot e 168 eventi. Corpi
+rete parziali: completezza globale incomplete/events. Tentativi falliti dello
+scenario e limiti preservati. Review separata: tre finding riprodotti, corretti
+e riprovati; delta finali letti, senza rivendicare nuovi probe. Wrapper esterno
+review.sh assente.
+
+Verifiche: 191 test Web in 29 file; dopo l’ultima aggiunta del ruolo ARIA al
+viewport, 9 test mirati, typecheck/build Web e pubblico, browser/axe ripetuti.
+Gate Studio congelato finale: {"passed":2158,"failed":0,"exit":0}, incluso
+replay. Chrome locale e API SQLite: risposta persa/retry senza duplicato,
+riapertura esatta, PDF con stesso fingerprint separati per SHA, consegna V1 e
+head privata V2 negata al tutor, logout. Responsive 390/820/1440, zoom 200%,
+focus visibile, input MathLive e primo Cmd+Z, zero errori console/page/CSP.
+Axe: zero violazioni, 25 passati; contrasto parzialmente incompleto su simboli
+e testo sul PDF. Non è una certificazione completa di accessibilità.
+
+Le bozze non salvate restano in memoria, con avviso d’uscita ed export, senza
+recupero da reload/crash. Penna/touch, screen reader, altri browser, 200 formule,
+PostgreSQL live, workflow equivalente esterno e G0/G1 restano da verificare.
+SYS-01 e lo sviluppo complessivo Ardesia restano aperti. Nessun push o deploy.
+Dettagli: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-EDITOR.md.
+
+
+## 2026-10-20 — quaderno portabile, lettura delle revisioni esportate
+
+Il pannello condiviso conserva gli snapshot scientifici e i byte JSON originali
+per export e ispezione. Il Web inietta il lettore locale: PDF, formule statiche,
+note e versioni consegnate; Studio autonomo mantiene testo/download. Nessun
+lookup della head, comando di scrittura o fiducia canonica desunta dal file.
+Verifica Core online richiesta; byte/SHA e pagine sono controllati prima del
+rendering. Sessione, file e selezione invalidano i risultati asincroni precedenti.
+
+Nessuna nuova dipendenza. PDF.js, MathLive e DOMPurify già fissati; zero LLM in
+prodotto. REA 6.7.0 via MCP: AFFiNE guest nota/persistenza/menu Export, ciclo PDF
+esterno incompleto; osservazione passiva del lettore locale con bundle completo
+delle tre Evidence e limiti di attach/rete. Nessun setup ripetuto.
+
+Verifiche: 239 test Web in 31 file, build Web finale con typecheck. Build pubblica
+riuscita prima della sola correzione CSS del lettore, non importata dall'entry
+pubblica. Gate Studio congelato finale: {"passed": 2156, "failed": 1, "exit": 1, "replay": "not run because Vitest failed"}; replay non eseguito.
+Prima esecuzione: 2155/2, file non modificati; 11 test isolati passati, causa
+non accertata. Nessun gate indebolito. Review UI (4 probe), parser separato,
+CSS finale solo lettura. Wrapper review.sh non disponibile, non rivendicato.
+
+Chrome/API SQLite reali: export studente/tutor, chiusura e riavvio, riapertura
+V1 senza sostituzione con V2 privata, nessun GET Core, byte JSON esatti e file
+alterati rifiutati. Il primo harness export richiese SIGTERM dopo il report e
+chiusura browser; riapertura finale exit 0. Overflow SHA a 390 px corretto e
+riprovato; 390/820/1440, zoom CSS 200%, focus e cleanup. Axe: zero violazioni,
+22 controlli passati, ARIA/contrasto parzialmente incompleti. Non è una
+certificazione di accessibilità o UI perfetta. Altri browser, screen reader,
+touch/penna, carico con 200 formule, offline e workflow esterno restano aperti.
+
+Secondo gate fallito in no-emoji.test.ts con STACK_TRACE_ERROR, senza lista
+di caratteri responsabili. Causa non accertata; esito isolato in verification.json.
+Dopo due fallimenti, stop del ciclo secondo AGENTS Studio §5. Nessun terzo
+gate o modifica delle soglie. Incremento non committato; checkpoint di review.
+SYS-01 e il programma complessivo rimangono aperti. Nessun push, merge, deploy
+o messaggio esterno. Evidenze: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-PORTABLE.md.
+
+- **2026-10-20 — pubblicazione del checkpoint REA autorizzata dall'utente.**
+  La richiesta diretta «metti tutto su github in modo ultra ordinato» autorizza
+  commit e pubblicazione del candidato conservato dopo i due gate falliti.
+  Il checkpoint rimane **GATE_STUDIO_FAILED**: 2156 passati, 1 fallito, replay
+  non eseguito. Nessuna ulteriore modifica al prodotto o al gate in questa fase.
+  Gli esiti precedenti restano storici; il commit rende il candidato
+  revisionabile e non certifica il completamento di SYS-01 o del programma.
+
+
+## 2026-10-24 — AUDIO-V2 e continuità Poiseuille (candidato isolato)
+
+Base ae25b93bec826539940e0226da1f0cd8cebff0b1, ramo codex/ardesia-audio-v2-poiseuille-20261024. Sessioni CAS/media/journal e CoursePack/ricevute/diario riusati, nessun secondo Core o provider. Studio completo 2232 PASS/5 skip storici, typecheck/build PASS; Core/API locale 851 PASS/30 skip live e fix finali verificati con8test mirati. Browser Studio20/20 e docente/studente20/20 con identità e audio sintetici; review indipendente14/14 dopo RED conservati. Stato finale gate/CI, manifest, comandi e limiti in docs/deliveries/2026-10-24-audio-v2/validation.md dalla root. Nessun merge/deploy; costo agenti non esposto. Engine ingest legacy non supporta ancora bundle canonico reader2, contratto futuro esplicito.
+
+Verifica locale successiva del 24 ottobre sullo stesso prodotto: Web299 PASS; Engine2628 PASS/27 SKIP; MCP23 PASS tramite SDK ufficiale; gate Studio congelato2233 PASS/0 FAIL (2232 unit + replay browser). SHA e CI da rileggere sulla draft; prove nella validazione sopra.
+
+
+## 2026-10-24 — Convergence / REA Deep Build
+
+Base draft#298 f456ade218acee1a8b65f5dc24e9220681658b11, branch codex/ardesia-convergence-rea-deep-20261024. Demo landing→Poiseuille→recupero→problema diverso→interesse e ponte Aula–Studio su una origine; nessuna seconda autorità di sessione o Core. Review indipendente riproduce e chiude revoca durante prepare tramite lease canonica di sola lettura, pin duplicati e proposta ciclica. Core/API854 PASS/30 SKIP, Engine2628 PASS/27 SKIP, MCP23 PASS. Il gate Studio2267/0 precede l'ultimo delta font/lazy/MathLive: esito conclusivo, source hash, browser e CI sono distinti nella consegna docs/deliveries/2026-10-24-rea-deep-build/validation.md dalla root.
+
+Il controllo dei font ha trovato il CDN MathLive preesistente; i font ora provengono dalla dipendenza bloccata e il compositore è caricato al gesto. Solo MathLive aggiornato a0.111.1 per advisory ufficiale renderer/editor, con RED riproducibile e regressione. Nessuna nuova libreria o formula scientifica. La dipendenza legacy MathJax via CDN per conversione formula→immagine resta conforme all'istruzione del package e fuori dal percorso Poiseuille collaudato. Costo totale degli agenti/REA UNKNOWN; nessun provider o acquisto API, merge/deploy, dato reale o scheduler.
+
+
+## 2026-10-25 — R2: replay e viewport del dispositivo
+
+Base prodotto bec05cc8172393b153b7d8ea56ae48f1afa95ef0, branch codex/ardesia-r2-experiences-20261024, unica draft #301. Il percorso reale ha riprodotto un oggetto collegato fuori schermo passando da1440 a390. ResizeObserver sul contenitore effettivo e doppioRAF cancellabile riusano il fit esistente dopo layout; zero-size annulla il fit e riarma il ritorno visibile. Camera/pan/zoom/scrub stabili non ricentrano; nessuna scrittura a scena/journal o avvio audio.
+
+Review indipendente sul delta e due RED/GREEN (viewport precedente e resize→zero→stesso resize). Focused33PASS e typecheck; gate congelato originale con VITEST_MAX_WORKERS=1:2277PASS/0FAIL/exit0, incluso replay browser. Nessun SKIP_REPLAY, modifica al gate o nuova dipendenza. Il wrapper review.sh punta a uno sibling personale non disponibile; review separata affidata ad agente non autore e prove nel delivery R2. Il nuovo candidato e il percorso audio/import completo sono costruiti dopo questo commit: leggere identità/esiti finali nella consegna, non dedurli dal gate.

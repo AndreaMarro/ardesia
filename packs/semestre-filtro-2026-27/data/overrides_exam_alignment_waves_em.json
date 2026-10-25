@@ -1,0 +1,424 @@
+[
+  {
+    "modelId": "U7-optical-depth",
+    "serial": 2,
+    "reasoningTask": "exam_alignment_p1q2",
+    "objective": "Ricavare un indice dalla legge fornita",
+    "title": "Ricavare un indice dalla legge fornita",
+    "topic": "Indice e proprietà elettromagnetiche del mezzo",
+    "microarea": "Propagazione elettromagnetica",
+    "prompt": "Per un mezzo ideale trasparente viene fornita la relazione n = √(εᵣμᵣ), dove εᵣ e μᵣ sono rispettivamente permittività e permeabilità relative, entrambe adimensionali. Se εᵣ = 9 e μᵣ = 1, quanto vale l’indice n?",
+    "answer": {
+      "kind": "rational",
+      "exact": "3",
+      "unit": "1"
+    },
+    "options": [
+      "3",
+      "9",
+      "10",
+      "1/3",
+      "81"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "provided_law_extension",
+    "law": "n = √(εᵣμᵣ)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "L’indice di rifrazione è un rapporto fra velocità: confronta la velocità della luce nel vuoto con quella della fase dell’onda nel mezzo considerato. In questo esercizio si fornisce anche la relazione che collega tale indice a due proprietà elettromagnetiche relative del materiale. Le quantità relative sono rapporti rispetto ai valori nel vuoto e non hanno unità. Il passaggio richiesto è quindi un prodotto seguito da una radice quadrata, non la somma dei due parametri. La radice da scegliere è quella positiva, perché il testo usa il modello elementare di un mezzo ordinario trasparente con indice positivo. Il valore tre non significa che l’onda si muova tre volte più rapidamente nel mezzo: essendo n = c/v, significa una velocità pari a un terzo di c. Questa conseguenza permette di controllare il significato fisico del risultato. La legge fra indice, permittività e permeabilità è fornita come approfondimento e non richiede che lo studente la ricavi dalle equazioni elettromagnetiche.",
+    "steps": [
+      {
+        "title": "Calcolare il prodotto",
+        "explanation": "La permeabilità relativa vale uno: moltiplicare 9 per 1 lascia 9. Non vanno aggiunte unità di permittività assoluta.",
+        "math": "εᵣμᵣ = 9·1 = 9"
+      },
+      {
+        "title": "Estrarre la radice",
+        "explanation": "La radice quadrata positiva di 9 è il numero che moltiplicato per sé stesso dà 9. Questo numero è 3.",
+        "math": "n = √9 = 3"
+      },
+      {
+        "title": "Interpretare e verificare",
+        "explanation": "Il quadrato del risultato ricostruisce il prodotto assegnato. Poiché n = c/v, al valore 3 corrisponde v = c/3.",
+        "math": "n² = 3² = 9"
+      }
+    ],
+    "examAlignment": [
+      "P1Q2"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "3**2-9*1",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U4-oscillator-energy",
+    "serial": 2,
+    "reasoningTask": "exam_alignment_p1q20",
+    "objective": "Spiegare la diminuzione dell’ampiezza per smorzamento",
+    "title": "Spiegare la diminuzione dell’ampiezza per smorzamento",
+    "topic": "Oscillazioni smorzate",
+    "microarea": "Energia e dissipazione",
+    "prompt": "Una massa oscilla su una molla reale con attrito debole e non riceve energia da una forza esterna. L’ampiezza delle oscillazioni diminuisce progressivamente. Quale bilancio energetico spiega questo comportamento?",
+    "answer": {
+      "kind": "text",
+      "exact": "Una parte dell’energia meccanica viene trasferita in energia interna attraverso le forze dissipative",
+      "unit": "1"
+    },
+    "options": [
+      "Una parte dell’energia meccanica viene trasferita in energia interna attraverso le forze dissipative",
+      "L’energia meccanica resta costante e l’ampiezza diminuisce senza modificare alcuna grandezza energetica",
+      "L’energia totale scompare perché la conservazione dell’energia non vale in presenza di attrito",
+      "La molla deve necessariamente aumentare la massa del corpo a ogni oscillazione",
+      "La frequenza della forza esterna aumenta continuamente anche se nessuna forza esterna alimenta il moto"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "provided_law_extension",
+    "law": "All’estremo della corsa, E_meccanica = kA²/2; l’attrito trasferisce energia ad altre forme.",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Lo smorzamento descrive una progressiva riduzione dell’ampiezza di un’oscillazione. In assenza di alimentazione esterna, le forze dissipative sottraggono energia al moto meccanico organizzato. L’energia non viene distrutta: viene trasferita soprattutto in energia interna dei corpi e dell’ambiente, ed eventualmente in altre forme come onde sonore. Per questo l’energia meccanica dell’oscillatore non si conserva, mentre il bilancio energetico totale di un sistema sufficientemente ampio continua a valere. In un oscillatore elastico, a ogni posizione di arresto istantaneo l’energia meccanica coincide con l’energia elastica kA²/2, se A indica l’allontanamento dall’equilibrio. Una minore energia disponibile comporta dunque una minore ampiezza. Non serve postulare una variazione della massa o una misteriosa scomparsa dell’energia. La domanda riguarda il significato fisico dello smorzamento; non chiede di conoscere la legge temporale esponenziale dell’ampiezza né una formula della frequenza smorzata.",
+    "steps": [
+      {
+        "title": "Scegliere il sistema e la forma di energia",
+        "explanation": "Si osserva l’energia meccanica della massa e della molla. L’attrito trasferisce una parte di questa energia ad altre forme, quindi tale quota diminuisce."
+      },
+      {
+        "title": "Collegare energia e ampiezza",
+        "explanation": "All’estremo dell’oscillazione la velocità è istantaneamente nulla e la molla immagazzina kA²/2. Per k costante, un’ampiezza più piccola significa minore energia meccanica.",
+        "math": "E_estremo = kA²/2"
+      },
+      {
+        "title": "Conservare l’energia totale",
+        "explanation": "Per recuperare il bilancio completo bisogna includere energia interna e ambiente. La dissipazione non annulla la conservazione dell’energia."
+      }
+    ],
+    "examAlignment": [
+      "P1Q20"
+    ],
+    "verification": []
+  },
+  {
+    "modelId": "U4-wave-amplitude-energy",
+    "serial": 5,
+    "reasoningTask": "exam_alignment_p2q9",
+    "objective": "Confrontare potenze a spostamento massimo costante",
+    "title": "Confrontare potenze a spostamento massimo costante",
+    "topic": "Intensità acustica e frequenza",
+    "microarea": "Energia trasportata dal suono",
+    "prompt": "Per un’onda sonora piana si fornisce I = K f² A², dove A è l’ampiezza dello spostamento delle particelle e K resta costante nel mezzo considerato. Due onde attraversano la stessa area: la seconda ha frequenza pari a 3/2 della prima e lo stesso A. Quanto vale P₂/P₁?",
+    "answer": {
+      "kind": "rational",
+      "exact": "9/4",
+      "unit": "1"
+    },
+    "options": [
+      "9/4",
+      "3/2",
+      "2/3",
+      "4/9",
+      "1"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "provided_law_extension",
+    "law": "I = K f² A²; P = IS",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Il testo precisa quale ampiezza viene mantenuta: è lo spostamento massimo delle particelle del mezzo. Non è l’ampiezza di pressione, che avrebbe una diversa relazione con frequenza e intensità. Usando la legge fornita, l’intensità è proporzionale al quadrato della frequenza quando K e A non cambiano. Il rapporto di frequenze deve quindi essere elevato al quadrato. La potenza che attraversa una superficie perpendicolare è intensità per area; poiché anche l’area è la stessa nei due casi, il rapporto delle potenze coincide con quello delle intensità. Il metodo dei rapporti elimina tutti i valori assoluti non necessari: non occorre conoscere né K né l’ampiezza né la potenza iniziale. Il risultato maggiore di uno è coerente con l’aumento della frequenza a spostamento massimo fissato. Questa dipendenza non va trasformata in una regola senza condizioni: se si cambiasse la grandezza tenuta costante, andrebbe riconsiderata la relazione fra le onde confrontate.",
+    "steps": [
+      {
+        "title": "Scrivere il rapporto delle intensità",
+        "explanation": "K e A² sono identici e si cancellano. Restano soltanto i quadrati delle frequenze.",
+        "math": "I₂/I₁ = (f₂/f₁)²"
+      },
+      {
+        "title": "Eseguire il quadrato di una frazione",
+        "explanation": "Si elevano al quadrato separatamente numeratore e denominatore: tre al quadrato è nove, due al quadrato è quattro.",
+        "math": "(3/2)² = 9/4"
+      },
+      {
+        "title": "Passare dalle intensità alle potenze",
+        "explanation": "P = IS e la superficie S è la stessa. Anche S si cancella, quindi il rapporto richiesto è 9/4.",
+        "math": "P₂/P₁ = I₂/I₁ = 9/4"
+      }
+    ],
+    "examAlignment": [
+      "P2Q9"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "(3/2)**2-9/4",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U7-snell-refracted-sine",
+    "serial": 5,
+    "reasoningTask": "exam_alignment_p2q14",
+    "objective": "Seguire due rifrazioni attraverso una lastra",
+    "title": "Seguire due rifrazioni attraverso una lastra",
+    "topic": "Rifrazione in una lastra a facce parallele",
+    "microarea": "Ottica geometrica",
+    "prompt": "Una lastra trasparente ha facce piane parallele ed è circondata dall’aria, con n_aria = 1. L’indice della lastra è 3/2. Un raggio entra con sinθ_in = 3/5, dove l’angolo è misurato dalla normale. Il raggio attraversa la lastra ed esce dalla faccia opposta. Quanto vale sinθ_out in aria?",
+    "answer": {
+      "kind": "rational",
+      "exact": "3/5",
+      "unit": "1"
+    },
+    "options": [
+      "3/5",
+      "2/5",
+      "9/10",
+      "1/5",
+      "1"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "n₁ sinθ₁ = n₂ sinθ₂",
+    "derivation": [],
+    "traps": [],
+    "explanation": "La lastra introduce due rifrazioni consecutive. Al primo passaggio il raggio entra in un mezzo con indice maggiore e si avvicina alla normale. Al secondo passaggio ritorna nel mezzo iniziale, quindi la seconda rifrazione compensa la variazione di direzione introdotta dalla prima. La condizione geometrica decisiva è che le facce siano parallele: le loro normali sono parallele e l’angolo interno rispetto alla seconda normale è lo stesso ottenuto rispetto alla prima. Il raggio emergente risulta così parallelo al raggio incidente, pur potendo essere spostato lateralmente. Non si deve confondere l’assenza di deviazione angolare totale con l’assenza di ogni effetto della lastra. Nei dati forniti il seno dell’angolo interno è minore del seno dell’angolo limite per l’uscita, quindi il passaggio finale è possibile. Il procedimento usa soltanto rapporti fra seni già assegnati e non richiede di calcolare gli angoli con funzioni inverse.",
+    "steps": [
+      {
+        "title": "Applicare Snell all’ingresso",
+        "explanation": "Il prodotto indice per seno dell’angolo è lo stesso sui due lati. Dividendo 3/5 per 3/2 si trova il seno interno.",
+        "math": "sinθ_int = (3/5)/(3/2) = 2/5"
+      },
+      {
+        "title": "Usare le facce parallele",
+        "explanation": "Il raggio incontra la seconda superficie con lo stesso angolo interno. All’uscita verso l’aria, Snell moltiplica il seno interno per 3/2.",
+        "math": "sinθ_out = (3/2)·(2/5) = 3/5"
+      },
+      {
+        "title": "Controllare la possibilità di uscita",
+        "explanation": "Per il passaggio lastra-aria il seno limite vale 1/(3/2) = 2/3. Il seno interno 2/5 è inferiore a 2/3: non si verifica riflessione totale.",
+        "math": "2/5 < 2/3"
+      },
+      {
+        "title": "Interpretare l’angolo finale",
+        "explanation": "Nell’intervallo degli angoli considerati lo stesso seno significa lo stesso angolo dalla normale. Il raggio torna alla direzione iniziale, con eventuale spostamento laterale.",
+        "math": "θ_out = θ_in"
+      }
+    ],
+    "examAlignment": [
+      "P2Q14"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "(3/2)*((3/5)/(3/2))-3/5",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U6-magnetic-flux",
+    "serial": 2,
+    "reasoningTask": "exam_alignment_p2q18",
+    "objective": "Riconoscere la continuità delle linee magnetiche",
+    "title": "Riconoscere la continuità delle linee magnetiche",
+    "topic": "Linee del campo magnetico",
+    "microarea": "Geometria del campo magnetico",
+    "prompt": "Nel modello elementare del campo di un magnete a barra, come si completano le linee del campo magnetico quando si considerano sia lo spazio esterno sia l’interno del magnete?",
+    "answer": {
+      "kind": "text",
+      "exact": "Formano linee chiuse: all’esterno vanno dal polo nord al sud e all’interno proseguono dal sud al nord",
+      "unit": "1"
+    },
+    "options": [
+      "Formano linee chiuse: all’esterno vanno dal polo nord al sud e all’interno proseguono dal sud al nord",
+      "Nascono definitivamente dal polo nord e terminano definitivamente nel polo sud, senza continuare nel materiale",
+      "Ogni linea termina appena entra nell’aria perché il campo magnetico richiede un mezzo materiale",
+      "Sono traiettorie obbligatorie percorse da qualsiasi particella carica che si muova vicino al magnete",
+      "Devono incrociarsi in ogni punto in cui il campo è intenso"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Le linee del campo magnetico rappresentano la direzione del vettore B nei diversi punti. Nel modello elementare del magnete a barra, seguire una linea non porta a un punto iniziale o finale isolato: le linee si chiudono passando anche attraverso il materiale del magnete. La convenzione assegna all’esterno il verso dal polo nord al polo sud; all’interno il percorso prosegue nel verso dal sud al nord. I disegni che mostrano soltanto la regione esterna possono far sembrare che le linee finiscano sulla superficie, ma si tratta di una parte del percorso. Non sono fili materiali e non sono necessariamente traiettorie di particelle cariche. La forza magnetica dipende anche dalla velocità della particella, quindi la sua traiettoria non si ricava semplicemente seguendo una linea di campo. Inoltre, in un punto con campo non nullo la direzione del vettore è unica: linee diverse non si incrociano attribuendo due direzioni differenti al medesimo campo.",
+    "steps": [
+      {
+        "title": "Seguire il percorso completo",
+        "explanation": "Bisogna includere anche il campo dentro il magnete, non soltanto le curve spesso disegnate all’esterno. In tal modo il percorso si chiude."
+      },
+      {
+        "title": "Associare il verso corretto",
+        "explanation": "All’esterno il verso convenzionale è nord-sud. Per completare la linea, all’interno è sud-nord."
+      },
+      {
+        "title": "Escludere interpretazioni materiali",
+        "explanation": "La linea descrive il vettore B e non una corda né la traiettoria universale di una carica. La forma del percorso di una particella richiede anche le sue condizioni di moto."
+      }
+    ],
+    "examAlignment": [
+      "P2Q18"
+    ],
+    "verification": []
+  },
+  {
+    "modelId": "U4-beats-envelope",
+    "serial": 15,
+    "reasoningTask": "exam_alignment_p2q31",
+    "objective": "Ricavare la frequenza emessa da due osservazioni Doppler",
+    "title": "Ricavare la frequenza emessa da due osservazioni Doppler",
+    "topic": "Doppler quantitativo con legge fornita",
+    "microarea": "Acustica e moto relativo",
+    "prompt": "Una sorgente sonora emette sempre la stessa frequenza f₀. Un osservatore fermo misura 600 Hz quando la sorgente si avvicina e 400 Hz quando si allontana con lo stesso modulo v della velocità. Si forniscono f_avv = f₀c/(c−v) e f_all = f₀c/(c+v), con 0 < v < c. Qual è f₀ in Hz?",
+    "answer": {
+      "kind": "rational",
+      "exact": "480",
+      "unit": "Hz"
+    },
+    "options": [
+      "480 Hz",
+      "500 Hz",
+      "450 Hz",
+      "600 Hz",
+      "400 Hz"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "provided_law_extension",
+    "law": "f_avv = f₀/(1−v/c); f_all = f₀/(1+v/c)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Le due frequenze osservate si trovano su lati opposti della frequenza emessa, ma non sono simmetriche rispetto ad essa. Per una sorgente in moto, infatti, la velocità compare nei denominatori delle due formule con segni opposti. Fare semplicemente la media aritmetica 500 Hz non tiene conto di questa struttura. Conviene introdurre il rapporto r = v/c, che misura la velocità della sorgente come frazione della velocità del suono. Le formule diventano 600 = f₀/(1−r) e 400 = f₀/(1+r). Si ottengono così due espressioni della stessa frequenza propria e si può eliminare f₀ o r. Il calcolo richiede soltanto somme e prodotti di numeri interi semplici. Le leggi quantitative sono fornite perché il programma richiede il Doppler qualitativo; questo quesito è un approfondimento guidato. Il valore finale deve stare fra 400 e 600 Hz e deve ricostruire entrambe le osservazioni usando un unico valore di r.",
+    "steps": [
+      {
+        "title": "Isolare la stessa frequenza nelle due formule",
+        "explanation": "Si moltiplica ciascuna frequenza osservata per il suo denominatore ridotto. Entrambe le espressioni devono valere f₀.",
+        "math": "f₀ = 600(1−r) = 400(1+r)"
+      },
+      {
+        "title": "Determinare il rapporto di velocità",
+        "explanation": "Sviluppando i prodotti, 600−600r = 400+400r. Portando i termini noti a sinistra e quelli con r a destra si ottiene 200 = 1000r.",
+        "math": "r = 1/5"
+      },
+      {
+        "title": "Ricavare la frequenza emessa",
+        "explanation": "Nella formula dell’avvicinamento, 1−r = 4/5. Quattro quinti di 600 equivalgono a quattro volte 120.",
+        "math": "f₀ = 600·4/5 = 480 Hz"
+      },
+      {
+        "title": "Controllare la misura in allontanamento",
+        "explanation": "Il denominatore è 1+r = 6/5. Dividere 480 per 6/5 equivale a moltiplicare per 5/6: il risultato è 400 Hz, quindi il secondo dato è rispettato.",
+        "math": "480/(6/5) = 400 Hz"
+      },
+      {
+        "title": "Spiegare perché la media aritmetica fallisce",
+        "explanation": "La differenza 600−480 è 120 Hz, mentre 480−400 è 80 Hz. Le variazioni non sono uguali proprio perché i due denominatori sono diversi."
+      }
+    ],
+    "examAlignment": [
+      "P2Q31"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "480/(1-1/5)-600",
+        "residual": "0"
+      },
+      {
+        "kind": "independent_substitution",
+        "expression": "480/(1+1/5)-400",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U7-wavelength-in-medium",
+    "serial": 3,
+    "reasoningTask": "exam_alignment_p1q14",
+    "objective": "Calcolare la velocità della luce nel mezzo",
+    "title": "Calcolare la velocità della luce nel mezzo",
+    "topic": "Velocità della luce e indice di rifrazione",
+    "microarea": "Propagazione nei mezzi",
+    "prompt": "Per un mezzo trasparente l’indice di rifrazione è n = 3/2. Assumendo c = 3×10⁸ m/s, qual è la velocità di fase v della luce nel mezzo, secondo la definizione n = c/v?",
+    "answer": {
+      "kind": "rational",
+      "exact": "200000000",
+      "unit": "m/s"
+    },
+    "options": [
+      "2×10⁸ m/s",
+      "4,5×10⁸ m/s",
+      "3×10⁸ m/s",
+      "1,5×10⁸ m/s",
+      "6×10⁸ m/s"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono esclusivamente i dati e le ipotesi specificati nel testo."
+    ],
+    "scope": "syllabus_core",
+    "law": "n = c/v; v = c/n",
+    "derivation": [],
+    "traps": [],
+    "explanation": "L’indice di rifrazione confronta la velocità della luce nel vuoto con la velocità di fase della luce nel mezzo. Il rapporto è scritto c/v: il valore nel vuoto sta al numeratore e il valore nel materiale al denominatore. Per ricavare v, si può prima moltiplicare entrambi i membri per v e poi dividere per n, ottenendo v = c/n. L’indice non ha unità, quindi il risultato conserva l’unità m/s della velocità c. Dividere per tre mezzi equivale a moltiplicare per due terzi, un passaggio che evita qualunque approssimazione decimale. Il fattore tre del numeratore si semplifica e rimane due per dieci alla otto. Poiché l’indice assegnato è maggiore di uno, la velocità trovata deve essere inferiore a c: questo controllo elimina immediatamente la risposta ottenuta moltiplicando c per n. La frequenza di un’onda trasmessa attraverso un’interfaccia ferma non deve cambiare per il solo cambiamento di velocità; la lunghezza d’onda si adatta di conseguenza.",
+    "steps": [
+      {
+        "title": "Isolare la velocità",
+        "explanation": "Dalla definizione si ottiene prima nv = c e quindi si divide per n.",
+        "math": "v = c/n"
+      },
+      {
+        "title": "Dividere per la frazione",
+        "explanation": "Il reciproco di 3/2 è 2/3. Il fattore 3 si cancella senza modificare la potenza di dieci.",
+        "math": "v = 3×10⁸·2/3 = 2×10⁸ m/s"
+      },
+      {
+        "title": "Controllare l’indice ricostruito",
+        "explanation": "Il rapporto fra 3×10⁸ e 2×10⁸ è 3/2: le potenze di dieci si cancellano. Il dato iniziale è quindi riprodotto.",
+        "math": "c/v = 3/2"
+      }
+    ],
+    "examAlignment": [
+      "P1Q14"
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "300000000/(3/2)-200000000",
+        "residual": "0"
+      }
+    ]
+  }
+]

@@ -341,6 +341,47 @@ const originBroker: MutationLockBroker = browserLocks
   ? createWebLocksMutationLockBroker(browserLocks)
   : localOnlyBroker
 
+/** Capture lifetime is a separate namespace: never acquire it under a mutation lease. */
+export type AudioCaptureLease = Readonly<{ release(): Promise<void> }>
+export const originAudioCaptureSafety: MutationSafety = originBroker.safety
+
+function audioCaptureBackendLock(scope: string): string {
+  if (!/^[a-zA-Z0-9-]{1,100}$/.test(scope)) throw new Error("Audio capture scope invalid")
+  return `ardesia:audio-capture:backend:${scope}`
+}
+function audioCaptureSessionLock(scope: string, lessonId: string, sessionId: string): string {
+  return `${audioCaptureBackendLock(scope)}:session:${validateRoomId(lessonId)}:${sessionId}`
+}
+export async function registerAudioCaptureLease(scope: string, lessonId: string, sessionId: string): Promise<AudioCaptureLease> {
+  let releaseHold!: () => void
+  let grant!: (lease: AudioCaptureLease) => void
+  let fail!: (error: unknown) => void
+  const held = new Promise<void>((resolve) => { releaseHold = resolve })
+  const acquired = new Promise<AudioCaptureLease>((resolve, reject) => { grant = resolve; fail = reject })
+  let released = false
+  const completion = originBroker.request(audioCaptureBackendLock(scope), { mode: "shared" }, () => (
+    originBroker.request(audioCaptureSessionLock(scope, lessonId, sessionId), { mode: "shared" }, async () => {
+      grant({ release: () => { if (!released) { released = true; releaseHold() }; return completion } })
+      await held
+    })
+  ))
+  void completion.catch(fail)
+  return acquired
+}
+export function withDrainedAudioCaptureLeases<T>(scope: string, lessonId: string, sessionId: string, work: () => Promise<T>): Promise<T> {
+  return originBroker.request(audioCaptureSessionLock(scope, lessonId, sessionId), { mode: "exclusive" }, work)
+}
+/** Short ON/start transitions release before permission prompts; OFF holds through purge. */
+export function withAudioCaptureTransition<T>(scope: string, lessonId: string, sessionId: string, mode: MutationLockMode, work: () => Promise<T>): Promise<T> {
+  return originBroker.request(`${audioCaptureSessionLock(scope, lessonId, sessionId)}:transition`, { mode }, work)
+}
+/** Switching a store while recording would move canonical reads to another backend. */
+export async function withNoAudioCaptures<T>(scope: string, work: () => Promise<T>): Promise<T> {
+  const result = await originBroker.tryRequest(audioCaptureBackendLock(scope), { mode: "exclusive" }, work)
+  if (!result.acquired) throw new Error("Termina la registrazione audio prima di cambiare archivio")
+  return result.value
+}
+
 export function createLessonMutationCoordinator(
   broker: MutationLockBroker = originBroker,
 ): LessonMutationCoordinator {

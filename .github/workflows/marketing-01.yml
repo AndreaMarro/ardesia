@@ -1,0 +1,36 @@
+name: marketing-static
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  marketing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 26.5.1
+          cache: npm
+      - run: python3 -m unittest discover -s apps/marketing-01/tests -v
+      - run: python3 apps/marketing-01/build.py --review-examples
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Static interest journey in a real browser
+        env:
+          MARKETING_ENGINES: chromium,firefox,webkit
+          MARKETING_REQUIRE_EXAMPLES: "1"
+          MARKETING_QA_OUTPUT: ${{ runner.temp }}/marketing-qa
+        run: node apps/marketing-01/tests/browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ardesia-marketing-preview-${{ github.sha }}
+          path: |
+            apps/marketing-01/dist/
+            ${{ runner.temp }}/marketing-qa/
+          if-no-files-found: warn
+          retention-days: 14

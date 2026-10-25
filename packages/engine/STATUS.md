@@ -1080,3 +1080,186 @@ Pin: "test che tutte le query retrieval CRM (students_for_class, classes_for_stu
 - gate: **2041/0 VERDE** (ri-eseguito ORA). Criteri [VERIFICATO] gia documentati nell'entry precedente di STATUS (3° tool esposto, PrerequisiteChain persistita via build_teacher_book, grounding-guard 3-livelli, e2e + 7 avversari, additivo zero-regressioni).
 - `promote_pin lessonos` = **cap giornaliero raggiunto (12/12)** → driver bloccato sulla rotazione (gridlock cap-bound). Chiusura scritta in NEEDS-CLAUDE per rotazione manuale supervisore a ROADMAP riga 18 (grounded_memory_fundamentals). Builder non edita la riga PROSSIMA TASK.
 - SELF-ADV: 0/0 (NOOP, nessun diff codice). cost_usd: ~$0 (gate + verifica ancestry/criteri, ZERO LLM).
+
+
+## 2026-10-20 — REA / originali autorizzati e lettore PDF nel corso
+
+Descrittore canonico consegnato con i byte autorizzati, controllo dimensione e
+SHA-256, trasporto condiviso con invalidazione di sessione. La review indipendente
+ha trovato il limite legacy 256: corretto a8192 codepoint. Il client precedente
+read_asset/studyBlob resta compatibile. Web:173 test; API:216; Engine:2461 passati,
+25 skipped. Typecheck e build Web/pubblico verdi. Le prime esecuzioni errate o
+contese sono conservate nella ricevuta, non trattate come verdi.
+
+PDF.js6.4.299 è una dipendenza esatta del solo workspace Web, necessaria per
+recuperare il motore PDF completo. Worker, font, CMaps, ICC, Wasm e licenze sono
+locali; import del motore solo all'apertura. Un503 reale ha mostrato che il
+fallback PDF.js memorizzato non recuperava: adattatore con porta fresca, cleanup
+limitato e retry verificato. Browser390/820/1440, zoom200%, focus, CSP candidata,
+scan4,8MP, download, permessi V1/V2 e logout verificati.
+
+SYS-01 non concluso: annotazioni, formule, binding canonico, Undo, persistenza e
+riapertura integrati nell'aula restano il prossimo lavoro. Nessun push o deploy;
+nessuna certificazione G0/G1 o suite Studio completa. Dettaglio e prove:
+`docs/ops/rea-deep/TARGET-082/CORE-READER-INTEGRATION.md`.
+
+
+## 2026-10-20 — REA / Core del quaderno scientifico
+
+Binding immutabile risorsa→PDF, stato annotato per revisione, CAS/idempotenza,
+V1 consegnata/V2 privata ed export con originale. Schema 6 additivo; collisioni
+legacy esplicite, nessuna migrazione durante le richieste HTTP. Core e API
+riusano archivio, ricevute, revisioni ed erasure ledger esistenti.
+
+REA MCP sullo Studio originale conferma apertura compositore/integrale; il
+flusso successivo registra un errore non-JSON nel journal e timeout di Undo.
+Redo e riapertura non eseguiti: causalità non provata e flusso non certificato.
+
+Review Codex separata: quattro P2 riprodotti e corretti (coordinate enormi, MIME
+assente, originali incoerenti tra revisioni, surrogati nelle identità/CAS).
+Otto regressioni rosse prima del fix; 31 test mirati verdi; Engine 2473 passati,
+25 skipped; API 235 passati. Due probe indipendenti ripetuti verdi. Tre warning
+Engine riguardano fixture class-scoped legacy deprecate. PostgreSQL live e
+frontend non verificati in questo incremento; nessun gate indebolito.
+
+SYS-01 resta aperto: editor visuale, Undo isolato, geometria interattiva,
+salva/chiudi/riapri browser e confronto equivalente autorizzato ancora richiesti.
+Nessun push/merge/deploy. Dettaglio: docs/ops/rea-deep/TARGET-082/SCIENTIFIC-NOTEBOOK-CORE.md.
+
+
+## 2026-10-21 — Banca Fisica semestre filtro: 4.000 quesiti e integrazione Study
+
+Banca originale completa: 1.000 base, 1.000 facili, 1.000 medi, 1.000 difficili;
+27 shard JSON, schema, catalogo CSV, fonti e mappe dei 147 argomenti editoriali
+del programma 2026/27 e dei 62 obiettivi delle due prove 2025. Le 250 famiglie
+articolano compiti diversi; parentela, limiti dei controlli semantici e 179
+approfondimenti con legge fornita sono dichiarati. Spiegazioni 213–1129 parole.
+
+Integrazione additiva: banca collegata alle edizioni di Fisica, CoursePack e SHA
+esistenti conservati, API autenticata, proiezioni senza soluzioni, correzione
+esatta senza eval/CAS/LLM a runtime, cache immutabile, filtri e allenamenti in Aula.
+I tentativi sono stateless e non confluiscono nel diario. Le simulazioni 2026
+usano 21 scelte multiple e 10 completamenti, 50minuti, sole domande core,31 lawFamily.
+
+Verifica completa: 2738 test Python passati, 27 saltati con motivi registrati;
+243 test web, TypeScript e build verdi. Schema/proiezione/correzione su 4.000 record;
+100 prove campionate su 2 profili e 5 selezioni di livello ; 40 pagine senza salti.
+Wheel verificato con manifest,schema e tutti i 27 shard, hash coincidenti e caricamento
+dei 4.000 quesiti da distribuzione estratta. Nessun gate esistente indebolito.
+
+Review assistita incrociata: corretti collisioni di simboli, unità e domini,
+ambiguità delle inverse e casi esponenziali con radici perse dal risolutore.
+Reviewer umano: null; stato: DRAFT; calibrazione difficoltà su studenti:NOT_RUN.
+Il wrapper storico review.sh dipende da CLI assenti; non è dichiarata una review
+Claude. La suite frozen è eseguita direttamente nel checkout perché il wrapper
+usa un percorso storico. L’utente ha richiesto la pubblicazione GitHub: ramo
+dedicato e PR in bozza sul ramo minicorsi; nessun merge o deploy autorizzato/eseguito.
+
+Rapporti: packs/semestre-filtro-2026-27/README.md e docs/INTEGRATION-VALIDATION-2026-10-21.md
+nel medesimo pacchetto; manifest SHA-256
+15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896.
+Costo sessione non esposto dal runtime, nessuna cifra inventata.
+
+### Pubblicazione e conformità alla struttura del repository
+
+Pubblicata la PR in bozza #270, ramo codex/physics-bank-4000-20261021,
+con base nel ramo minicorsi codex/ardesia-public-rea-20261020. Verificati su
+GitHub manifest e tutti i 27 shard della banca completa. Il primo run CI ha
+superato engine, study-api, study-mcp, web, studio e golden path e2e advisory.
+
+Il controllo hygiene ha individuato i percorsi authoring sotto packs: spostati
+gli strumenti in bin/content/physics_bank e i JSON editoriali in data, con
+aggiornamento dei riferimenti. Tutti i 17 JSON spostati conservano i byte
+originali. Gate e baseline invariati; boundary ora verde sull’index completo.
+Il CSV usa LF, con identiche 4.000 righe interpretate. Nuova esecuzione di
+assembler e validatore completa e verde, manifest e corpus invariati.
+Dettagli riproducibili nel rapporto INTEGRATION-VALIDATION-2026-10-21.md.
+
+
+## 2026-10-21 — Gate P0 di pubblicazione della banca Fisica
+
+Default deny per edizione: nessun quesito della banca di 4.000 raggiunge uno
+studente senza un'approvazione scientifica/editoriale persistita, legata alla
+versione esatta e allo SHA-256 del contenuto autoriale. Il corpus resta
+immutabile e DRAFT; l'approvazione vive in schema 7
+(`study_question_bank_approvals`, eventi append-only, revoca come transizione).
+Solo il docente proprietario dell'edizione approva, rifiuta, revoca e legge
+l'audit. La pagina studente, il dettaglio, l'esame e il tentativo sono filtrati;
+un esame senza famiglie sufficienti fallisce con 409, senza composizioni parziali.
+Ripristino backup conserva le approvazioni; l'erasure di uno studente non tocca
+le decisioni editoriali. Concorrenza e idempotenza provate su SQLite.
+
+Verifica: validatore del produttore verde su 4.000 record (manifest SHA-256
+15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896, revisione
+umana NOT_RUN); suite Study 714 passati, 18 saltati (contratti Supabase live
+senza env file); 11 test engine e 7 HTTP dedicati al gate. Probe indipendente
+sulla banca reale: 0 approvazioni iniziali, pagina studente vuota, esame 409,
+una approvazione esatta pubblica un solo quesito, revoca lo ritira lasciando
+una riga e due eventi. Il probe #271 originale non è stato modificato: il suo
+primo test è verde, il secondo presuppone la baseline vulnerabile (esame 200
+senza approvazioni) e ora diverge in modo atteso.
+
+PostgreSQL live non verificato: nessun runtime disponibile; migrazione e RLS
+restano da collaudare prima del deploy. Nessuna approvazione reale dei 4.000,
+nessun merge o deploy. Ramo codex/physics-bank-approval-gate-20261021; PR in bozza #272, base
+codex/physics-bank-4000-20261021. Dettaglio in
+docs/study/QUESTION-BANK-PUBLICATION-GATE-2026-10-21.md.
+
+## 2026-10-21 — Convergenza schemi Study (#272 + #269)
+
+Risolto il conflitto reale fra gate editoriale e esame persistente: entrambe le
+PR dichiaravano schema 7 e la stessa migrazione `20261021120000`. Sequenza
+canonica: v6 → v7 approvals (#272 invariata) → v8 exam (#269 rinumerata come
+`20261021130000_study_exam_attempts.sql`). `CURRENT_SCHEMA=8`. La forma v7
+"solo esame" è accettata solo come upgrade additivo, mai come forma canonica in
+sola lettura; un v7 parziale fallisce senza scritture. Il corpus, il gate e i
+4.000 quesiti non sono stati modificati nel merito.
+
+Verifica: engine 2529 passati, 25 saltati; API 248 passati; typecheck e build web
+verdi. La suite web completa ha un flake pre-esistente in
+`session-boundary.test.tsx`, presente anche sul HEAD #272 e non disabilitato.
+PostgreSQL live, trigger e RLS: NOT_RUN per assenza runtime e
+`ARDESIA_SUPABASE_ENV_FILE`. Restano incompatibili la forma MCQ (4 opzioni
+intere vs 5 opzioni A–E), il pack fisso e l'autosalvataggio; nessuna
+integrazione semantica dichiarata. Ramo
+`codex/study-schema-convergence-20261021`, PR in bozza #273 con base #272
+(head `baafe1cfbafbfcd74cbbf4ba26458bff347407c1`); tutti i job CI verdi.
+Dettaglio in `docs/study/SCHEMA-CONVERGENCE-2026-10-21.md`. Nessun merge o
+deploy.
+
+## 2026-10-21 — PostgreSQL reale: convergenza e trigger d'esame
+
+Riprodotto su PostgreSQL 16.15 il blocco della #273: su un database v7
+"legacy" con la vecchia #269 già applicata, la migrazione `20261021130000`
+tentava di ricreare `study_exam_attempts` e falliva con `DuplicateTable`.
+Corrette entrambe le migrazioni in modo additivo e idempotente: la tabella
+esistente non viene ricreata, le colonne vengono validate, indici/policy/trigger
+mancanti vengono installati e il marker passa a 8. Aggiunto
+`study_exam_attempt_guard` (identità immutabile, nessun update dopo la consegna,
+transizione chiusa con risultato completo, DELETE negato).
+
+Verifica: 8 test reali su database temporanei PostgreSQL (nuovo, v6 con dati, v7
+canonico, v7 legacy exam-only, parziale con retry, rollback su tabella
+incompatibile, RLS approvazioni, RLS/tentativi chiusi). Restano NOT_RUN Auth,
+PostgREST e Storage Supabase. Dettaglio in
+docs/study/POSTGRES-CONVERGENCE-2026-10-21.md. Nessun dato o corpus reale
+modificato; nessun merge o deploy.
+
+
+## 2026-10-24 — AUDIO-V2 e continuità Poiseuille (candidato isolato)
+
+Base ae25b93bec826539940e0226da1f0cd8cebff0b1, ramo codex/ardesia-audio-v2-poiseuille-20261024. Sessioni CAS/media/journal e CoursePack/ricevute/diario riusati, nessun secondo Core o provider. Studio completo 2232 PASS/5 skip storici, typecheck/build PASS; Core/API locale 851 PASS/30 skip live e fix finali verificati con8test mirati. Browser Studio20/20 e docente/studente20/20 con identità e audio sintetici; review indipendente14/14 dopo RED conservati. Stato finale gate/CI, manifest, comandi e limiti in docs/deliveries/2026-10-24-audio-v2/validation.md dalla root. Nessun merge/deploy; costo agenti non esposto. Engine ingest legacy non supporta ancora bundle canonico reader2, contratto futuro esplicito.
+
+Verifica locale successiva del 24 ottobre sullo stesso prodotto: Web299 PASS; Engine2628 PASS/27 SKIP; MCP23 PASS tramite SDK ufficiale; gate Studio congelato2233 PASS/0 FAIL (2232 unit + replay browser). SHA e CI da rileggere sulla draft; prove nella validazione sopra.
+
+
+## 2026-10-24 — Convergence / REA Deep Build
+
+Base draft#298 f456ade218acee1a8b65f5dc24e9220681658b11, branch codex/ardesia-convergence-rea-deep-20261024. Demo landing→Poiseuille→recupero→problema diverso→interesse e ponte Aula–Studio su una origine; nessuna seconda autorità di sessione o Core. Review indipendente riproduce e chiude revoca durante prepare tramite lease canonica di sola lettura, pin duplicati e proposta ciclica. Core/API854 PASS/30 SKIP, Engine2628 PASS/27 SKIP, MCP23 PASS. Il gate Studio2267/0 precede l'ultimo delta font/lazy/MathLive: esito conclusivo, source hash, browser e CI sono distinti nella consegna docs/deliveries/2026-10-24-rea-deep-build/validation.md dalla root.
+
+Il controllo dei font ha trovato il CDN MathLive preesistente; i font ora provengono dalla dipendenza bloccata e il compositore è caricato al gesto. Solo MathLive aggiornato a0.111.1 per advisory ufficiale renderer/editor, con RED riproducibile e regressione. Nessuna nuova libreria o formula scientifica. La dipendenza legacy MathJax via CDN per conversione formula→immagine resta conforme all'istruzione del package e fuori dal percorso Poiseuille collaudato. Costo totale degli agenti/REA UNKNOWN; nessun provider o acquisto API, merge/deploy, dato reale o scheduler.
+
+
+## 2026-10-24 — R1: revisione scientifica e transfer versionato
+
+Base #299 6f19b195, branch codex/ardesia-r1-marketing-beta-20261024. Nuove composizioni v2 con variazione di viscosità/lunghezza; CoursePack e manifest v1 conservati. Visualizzazione derivata nel Core tramite Q/area e vincolo effettivo; ipotesi esplicite e risultato visuale non finito rifiutato. Il risultato precedente resta assistenza osservata anche passando da v1 a v2: stesso attore/edizione/modello/versione/parametri, eventi e ricevute esistenti, nessun nuovo ledger. Review indipendente SQLite seriale e concorrente9/9; PG remoto NOT_RUN. Web322 PASS; Core/API920 PASS/30SKIP e Engine2628 PASS/27SKIP precedono il guard estremo finale, verificato separatamente4/4; CI futura esatta e artefatto nella consegna R1. Nessuna approvazione scientifica umana attribuita ai test. Primo run Engine errato dalla root:14FAIL di fixture relative al cwd e1assert delle vecchie varianti; corretto cwd e mantenuti i vincoli v1 nel test. Fonti e memoria restano in docs/ops; costi complessivi UNKNOWN. Nessun merge, deploy, nuova risorsa cloud o scheduler.

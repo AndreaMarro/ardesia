@@ -1,0 +1,770 @@
+{
+  "schema": "ardesia.acceptance/4",
+  "criteria": [
+    {
+      "id": "AC-001",
+      "task": "T01",
+      "gate": "G0",
+      "test": "baseline",
+      "assertion": "SHA e branch recuperati; build/gate esistenti con fallimenti e skip conservati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-002",
+      "task": "T01",
+      "gate": "G0",
+      "test": "rea-discovery",
+      "assertion": "REA presente nella versione realmente compatibile, doctor + tools/list + lettura dei contratti ufficiali attestati; BLOCKED/NOT_RUN non valgono PASS e impediscono G0 se non risolti.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-003",
+      "task": "T02",
+      "gate": "G0",
+      "test": "postit-identity",
+      "assertion": "Muovere/ridimensionare post-it non cambia ResourceRef né policy",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-004",
+      "task": "T02",
+      "gate": "G0",
+      "test": "postit-children",
+      "assertion": "Detach/archive dei figli mantiene provenienza e revisioni",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-005",
+      "task": "T02",
+      "gate": "G0",
+      "test": "contracts",
+      "assertion": "DTO malformati e revisioni sconosciute respinti senza dati parziali",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-006",
+      "task": "T03",
+      "gate": "G0",
+      "test": "tenant-boundary",
+      "assertion": "Studente A non legge oggetti di B o altra organizzazione, anche conoscendo ID",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-007",
+      "task": "T03",
+      "gate": "G0",
+      "test": "private-draft",
+      "assertion": "Tutor non vede bozza personale non condivisa",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-008",
+      "task": "T03",
+      "gate": "G0",
+      "test": "teacher-scope",
+      "assertion": "Tutor assegnato vede consegna; altro tutor e admin commerciale no",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-009",
+      "task": "T03",
+      "gate": "G0",
+      "test": "storage-policy",
+      "assertion": "Bucket privato e signed URL disponibili solo dopo autorizzazione",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-010",
+      "task": "T03",
+      "gate": "G0",
+      "test": "upload-truncated",
+      "assertion": "File incompleto, firma incompatibile e limiti rifiutati con errore utile",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-011",
+      "task": "T03",
+      "gate": "G0",
+      "test": "idempotent-finalize",
+      "assertion": "Retry dopo commit conserva una sola risorsa/ricevuta",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-012",
+      "task": "T04",
+      "gate": "G0",
+      "test": "capacity-race",
+      "assertion": "Due richieste sull’ultimo posto producono un’iscrizione e un’attesa/rifiuto",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-013",
+      "task": "T04",
+      "gate": "G0",
+      "test": "eleventh-seat",
+      "assertion": "Mai undici enrolled/hold validi per capienza10",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-014",
+      "task": "T04",
+      "gate": "G0",
+      "test": "expired-hold",
+      "assertion": "Scadenza e pagamento tardivo non causano overbooking o doppio incasso",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-015",
+      "task": "T04",
+      "gate": "G0",
+      "test": "four-dates",
+      "assertion": "Abbinamento considera tutte le date e non solo la prima",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-016",
+      "task": "T04",
+      "gate": "G0",
+      "test": "commerce-states",
+      "assertion": "Interesse, riserva, pagato e presenza restano distinti",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-017",
+      "task": "T05",
+      "gate": "G0",
+      "test": "mixed-input",
+      "assertion": "Immagine/PDF/audio/testo raggiungono la stessa assegnazione con originale preservato",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-018",
+      "task": "T05",
+      "gate": "G0",
+      "test": "offline-receipt",
+      "assertion": "Offline produce bozza locale, non falsa ricevuta al tutor",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-019",
+      "task": "T05",
+      "gate": "G0",
+      "test": "source-transcript",
+      "assertion": "Correzione della trascrizione non muta i bytes della fonte",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-020",
+      "task": "T05",
+      "gate": "G0",
+      "test": "shared-class",
+      "assertion": "Aula comune e spazi individuali non pubblicano implicitamente i tentativi",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-021",
+      "task": "T06",
+      "gate": "G0",
+      "test": "poiseuille-fixed-pressure",
+      "assertion": "r×2 con Δp fissa e Lcostante produce Q×16",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-022",
+      "task": "T06",
+      "gate": "G0",
+      "test": "poiseuille-fixed-flow",
+      "assertion": "r×2 L×2 con Qfissa produce Δp/8",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-023",
+      "task": "T06",
+      "gate": "G0",
+      "test": "units",
+      "assertion": "Area/volume e unitàlineari non hanno la stessa scala di conversione",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-024",
+      "task": "T06",
+      "gate": "G0",
+      "test": "transfer",
+      "assertion": "Manipolare slider non conta come risposta corretta; esiste problema nuovo",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-025",
+      "task": "T06",
+      "gate": "G0",
+      "test": "analysis-extension",
+      "assertion": "Secondo packTaylor usa lo stesso lifecycle senza nuovo database",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-026",
+      "task": "T06",
+      "gate": "G0",
+      "test": "legacy-scoring",
+      "assertion": "Punteggio con penalità ha assessment_version distinta dal correct_count storico",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-027",
+      "task": "T07",
+      "gate": "G0",
+      "test": "stale-feedback",
+      "assertion": "Feedback per revisione superata è marcato STALE e non restituito come corrente",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-028",
+      "task": "T07",
+      "gate": "G0",
+      "test": "review-provenance",
+      "assertion": "AI e controlloscientifico non diventano approvazione umana",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-029",
+      "task": "T07",
+      "gate": "G0",
+      "test": "resubmit",
+      "assertion": "Un nuovo tentativo conserva i precedenti e relativo feedback",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-030",
+      "task": "T07",
+      "gate": "G0",
+      "test": "ai-unavailable",
+      "assertion": "Flusso utile e revisionemanuale disponibili a provider spento",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-031",
+      "task": "T07",
+      "gate": "G0",
+      "test": "cost-limit",
+      "assertion": "Costo sconosciuto o budget esaurito non genera chiamate automatiche pagate",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-032",
+      "task": "T08",
+      "gate": "G0",
+      "test": "recall-acl",
+      "assertion": "Retrieval filtra accessi prima di mostrare estratti",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-033",
+      "task": "T08",
+      "gate": "G0",
+      "test": "unattributed-event",
+      "assertion": "Errore della classe senza autore non diventa errore personale",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-034",
+      "task": "T08",
+      "gate": "G0",
+      "test": "source-erasure",
+      "assertion": "Rimozione/revoca fonte invalida cache e accessi ai derivati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-035",
+      "task": "T08",
+      "gate": "G0",
+      "test": "cold-reopen",
+      "assertion": "Browser e server riavviati ritrovano contesto e versioni persistite",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-036",
+      "task": "T08",
+      "gate": "G0",
+      "test": "morphism-laws",
+      "assertion": "Roundtrip preserva solo la proiezione dichiarata e non espande permessi",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-037",
+      "task": "T09",
+      "gate": "G0",
+      "test": "calendar-mock",
+      "assertion": "Retry/pushduplicate/sync410 non duplicano né cancellano sessioni",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-038",
+      "task": "T09",
+      "gate": "G0",
+      "test": "timezone",
+      "assertion": "Ora Europe/Rome e altra timezone corrette al cambioDST",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-039",
+      "task": "T09",
+      "gate": "G0",
+      "test": "mcp-scopes",
+      "assertion": "ClientMCP non può accedere a altrotenant o strumenti della fabbrica",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-040",
+      "task": "T09",
+      "gate": "G0",
+      "test": "mcp-ui-fallback",
+      "assertion": "Host senza UI riceve testo/dati autorizzati e loss/unsupported dichiarati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-041",
+      "task": "T10",
+      "gate": "G0",
+      "test": "public-projection",
+      "assertion": "Scheda condivisibile non contiene nomi iscritti/compiti/errori",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-042",
+      "task": "T10",
+      "gate": "G0",
+      "test": "accessible-path",
+      "assertion": "Keyboard/focus/label e controlli automatici accessibilità sulle viste critiche",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-043",
+      "task": "T10",
+      "gate": "G0",
+      "test": "mobile-path",
+      "assertion": "Schermo stretto permette consegna e review senza overflow irrecuperabile",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-044",
+      "task": "T10",
+      "gate": "G0",
+      "test": "bundle-budget",
+      "assertion": "Bundle e LCPproxy misurati; strumenti pesanti non caricati sulla home",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-045",
+      "task": "T11",
+      "gate": "G1",
+      "test": "remote-identity",
+      "assertion": "Due account distinti su staging remoto dimostrano isolamento e sessioni",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-046",
+      "task": "T11",
+      "gate": "G1",
+      "test": "worker-restart",
+      "assertion": "Crash dopo calcolo/commit non pubblica due risultati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-047",
+      "task": "T11",
+      "gate": "G1",
+      "test": "backup-restore",
+      "assertion": "Ripristino DB e oggetti privati provato in ambiente separato",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-048",
+      "task": "T11",
+      "gate": "G1",
+      "test": "deployment-scope",
+      "assertion": "Repo/root/SHA/domain/regioni e costi sono effettivamente confermati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-049",
+      "task": "T09",
+      "gate": "G1",
+      "test": "calendar-authorized",
+      "assertion": "Prova Google su calendario autorizzato oppure capability pubblicamente disabilitata e limite riportato",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-050",
+      "task": "T09",
+      "gate": "G1",
+      "test": "mcp-real-host",
+      "assertion": "Almeno host/scopo dichiarato realmente testato; gli altri restano non certificati",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-051",
+      "task": "T12",
+      "gate": "G0",
+      "test": "full-course",
+      "assertion": "Tutor+10studenti+2interessati attraversano tutti gli stati con dati sintetici e API vere",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-052",
+      "task": "T12",
+      "gate": "G1",
+      "test": "human-review",
+      "assertion": "Tutor approva contenuti, offerta, quattrodate e modalitàsupporto; non un accountsynthetic",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-053",
+      "task": "T12",
+      "gate": "G1",
+      "test": "human-ux",
+      "assertion": "Prova d’uso reale documenta ostacoli; automation non viene venduta come UXperfetta",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-054",
+      "task": "T12",
+      "gate": "G2",
+      "test": "real-cohort",
+      "assertion": "Partecipanti veri e prima lezione effettiva, non lead o fixture",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-055",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-ai-candidate",
+      "assertion": "Una osservazione AI senza verifica resta CANDIDATE; non entra nei conteggi degli errori confermati.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-056",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-source-anchor",
+      "assertion": "Ogni osservazione ha fonte, revisione, posizione/passo ed evento realmente risolvibili per l’attore autorizzato.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-057",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-tutor-confirm",
+      "assertion": "Conferma tutor con rubrica registrata apre un thread una sola volta anche dopo retry.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-058",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-transfer-not-lucky",
+      "assertion": "Risposta corretta casuale o ripetizione stessa domanda non risolvono il thread senza prova nuova adeguata.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-059",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-recurrence",
+      "assertion": "Errore confermato dopo VERIFIED_RESOLVED riapre RECURRED conservando le prove precedenti.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-060",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-contestation",
+      "assertion": "OCR/ASR errato o item ambiguo possono essere contestati e DISMISSED con motivazione e storico.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-061",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-no-double-truth",
+      "assertion": "Stati derivati da eventi canonici LessonOS e rigenerabili; cache del diario non diventa seconda fonte.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-062",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-privacy",
+      "assertion": "Studente B non vede diario o feedback di A tramite UI, API, ricerca, signed URL e MCP.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-063",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-cross-course",
+      "assertion": "Lo studente A conserva il diario passando Fisica→Analisi; un nuovo tutor non riceve automaticamente la vecchia cronologia.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-064",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-source-revoked",
+      "assertion": "Revoca o modifica della fonte invalida ogni derivato rilevante e non mostra come validi i vecchi estratti.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-065",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-group-summary",
+      "assertion": "Il tutor assegnato distingue trend confermati e proposte; la vista condivisa non identifica i singoli studenti.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-066",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "diary-offline-idempotent",
+      "assertion": "Diario e correzione restano disponibili con AI spenta; retry non crea due osservazioni né due thread.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-067",
+      "task": "T01",
+      "gate": "G0",
+      "test": "rea-r0-observed",
+      "assertion": "R0 ha una ricevuta REA PASS con prova browser sul baseline Ardesia, artefatti hash e test collegato allo SHA.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-068",
+      "task": "T02",
+      "gate": "G0",
+      "test": "rea-r1-external",
+      "assertion": "R1 ha un target esterno autorizzato realmente osservato con REA, contratto di identità/post-it e test integrato.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-069",
+      "task": "T06",
+      "gate": "G0",
+      "test": "rea-r2-external",
+      "assertion": "R2 ha un esempio didattico esterno realmente studiato con REA, decisione esplicita e laboratorio con test.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-070",
+      "task": "T04",
+      "gate": "G0",
+      "test": "rea-r3-external",
+      "assertion": "R3 ha un prodotto gestione corsi autorizzato realmente studiato con REA, decisione e test di capienza e calendario.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-071",
+      "task": "T07B",
+      "gate": "G0",
+      "test": "rea-r8-error-journal",
+      "assertion": "R8 ha scenario esterno REA di errore/ripasso o donor equivalente, decisione e diario implementato con test.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-072",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-r6-comparison",
+      "assertion": "R6 confronta con REA nuova app e baseline usando prove compatibili, indicando coverage e limitazioni.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-073",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-to-code-chain",
+      "assertion": "Ogni ricevuta obbligatoria collega target/versione→Evidence→contratto→file implementato→test eseguito sullo SHA.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-074",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-no-block-pass",
+      "assertion": "Nessuna missione mancante, bloccata o solo documentale soddisfa G0; il validator fallisce senza receipt o prove.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-075",
+      "task": "T08",
+      "gate": "G1",
+      "test": "rea-r4-memory",
+      "assertion": "R4 documenta memoria/ripresa con Evidence e test sul proprio percorso; eventuali fonti chiuse limitate non sono dichiarate analizzate.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-076",
+      "task": "T09",
+      "gate": "G1",
+      "test": "rea-r5-interop",
+      "assertion": "R5 prova almeno due adapter ufficiali con contratti/permessi/perdite; REA usato soltanto se tecnicamente pertinente.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-077",
+      "task": "T12",
+      "gate": "G0",
+      "test": "rea-measured-usefulness",
+      "assertion": "Il report R0→R6 indica comportamenti acquisiti, difetti trovati o risparmi stimati con metodo; UNKNOWN è ammesso, numeri inventati no.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-078",
+      "task": "T02",
+      "gate": "G0",
+      "test": "rea-fallback-decision",
+      "assertion": "Ogni vendor esterno REA non accessibile porta a due alternative comparate, target scelto equivalente per il workflow, Evidence REA autentica e test; blocco non è PASS.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-079",
+      "task": "T01",
+      "gate": "G0",
+      "test": "trial-ledger-no-charge",
+      "assertion": "Ogni trial autorizzato risulta interamente gratuito, senza carta/rinnovo/addebito possibile e registrato con termini/scadenza; trial non conforme rifiutato.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-080",
+      "task": "T12",
+      "gate": "G0",
+      "test": "marketing-preview-truth",
+      "assertion": "La pagina Fisica e il laboratorio funzionano realmente, form richiesta con ricevuta reale e distinzione MARKETING_PREVIEW_READY vs G0/G1; se non pronti, non pubblicizzare come pronti.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-081",
+      "task": "T12",
+      "gate": "G0",
+      "test": "staging-smoke-and-rollback",
+      "assertion": "Preview/staging Vercel collegata a SHA e test reale desktop/mobile, con rollback e nessun rischio per prod o dati privati.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-082",
+      "task": "T12",
+      "gate": "G0",
+      "test": "github-shared-handoff",
+      "assertion": "RUNLOG/STATE/DECISIONS/TRIALS sanificati pubblicati su branch/PR GH; monitor ChatGPT orario documentato, findings triagati con SHA e test.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-083",
+      "task": "T04",
+      "gate": "G0",
+      "test": "online-autonomy-no-billing",
+      "assertion": "Operazioni online autorizzate non creano nuove fatturazioni; prova su policy e saldo; nessuna conversione o acquisto automatico.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-084",
+      "task": "T01",
+      "gate": "G0",
+      "test": "public-repo-license-scan",
+      "assertion": "Prima di cambiare visibilità repo o condividere build, licenze, segreti, manuali e asset auditati; altrimenti repo privato e preview sanificata.",
+      "status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "AC-085",
+      "task": "T12",
+      "gate": "G0",
+      "test": "wed-21-readiness-receipt",
+      "assertion": "Checkpoint mercoledì 21 ottobre 2026 sera con stato marketing, link funzionanti, test, blocchi, prossimo passo; scadenza non converte NOT_RUN in PASS.",
+      "status": "NOT_RUN",
+      "evidence": null
+    }
+  ]
+}

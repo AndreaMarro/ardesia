@@ -1,0 +1,25 @@
+{
+  "schema": "ardesia.rea-gate-policy/4",
+  "status": "POLICY_NOT_EXECUTED",
+  "G0": {
+    "required_missions": ["R0", "R1", "R2", "R3", "R8", "R6"],
+    "external_missions": ["R1", "R2", "R3", "R8"],
+    "expected_evidence_kinds": ["browser", "structure", "contract", "test"],
+    "comparison_mission": "R6",
+    "rule": "Every required mission must show real REA evidence, a decision and implementation code/test on same final SHA; BLOCKED is not PASS. When a closed vendor is inaccessible, use an authorized functional alternative."
+  },
+  "G1": {
+    "inherits": "G0",
+    "additional_required_missions": ["R4"],
+    "note": "Calendar/MCP R5 is tested as official adapter contracts and authorization in G1 acceptance, rather than REA ritual without informational value."
+  },
+  "P2_KIRCHHOFF": {
+    "required_missions": ["R7"],
+    "note": "Run after the mini-course pilot and scoped circuit expansion, not a gate on Fisica/Analisi."
+  },
+  "rejected_as_completion": ["MISSING", "NOT_RUN", "BLOCKED", "FAIL", "DOCS_ONLY", "SCREENSHOT_ONLY", "SYNTHETIC_ONLY"],
+  "required_operational_tool_steps": ["capture_browser_scenario", "inspect_web_page"],
+  "required_deep_tool_steps_any": ["analyze_javascript_application", "analyze_web_bundle", "trace_application_feature", "trace_javascript_semantics", "reconcile_javascript_runtime", "compare_application_versions", "compare_source_to_bundle", "export_web_scripts"],
+  "output_receipts_folder": "state/rea-receipts",
+  "product_verification_status": "NOT_RUN"
+}

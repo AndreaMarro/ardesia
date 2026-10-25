@@ -1,0 +1,17 @@
+.taylor-plot { margin: 14px 0 0; min-width: 0; }
+.taylor-plot svg { display: block; width: 100%; height: auto; color: #3f5d4d; }
+.taylor-plot svg text { font: 12px system-ui, sans-serif; fill: currentColor; }
+.taylor-plot figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); overflow-wrap: anywhere; }
+.taylor-plot-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; color: var(--ink); }
+.taylor-plot details { margin-top: 12px; font-size: 13px; }
+.taylor-plot summary { cursor: pointer; padding: 8px 0; }
+.taylor-samples-scroll { max-width: 100%; overflow-x: auto; }
+.taylor-plot table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+.taylor-plot th, .taylor-plot td { text-align: right; padding: 7px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.taylor-plot caption { text-align: left; padding: 8px 0; }
+.taylor-plot-unavailable { font-size: 13px; line-height: 1.6; padding: 16px 0; color: var(--muted); }
+.taylor-degree-steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 16px; }
+.taylor-degree-steps button { min-height: 44px; padding: 8px 12px; }
+.taylor-lab .lab-controls { min-width: 0; }
+.taylor-lab .lab-controls input, .taylor-lab .lab-controls textarea { width: 100%; max-width: 100%; box-sizing: border-box; }
+.taylor-lab .lab-controls > button { width: 100%; white-space: normal; overflow-wrap: anywhere; }

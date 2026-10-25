@@ -1,0 +1,34 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/MathLiveSecurity.test.ts (1 test | 1 failed) 62ms
+   × does not turn an untrusted enclose shadow value into an SVG event handler 62ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/MathLiveSecurity.test.ts > does not turn an untrusted enclose shadow value into an SVG event handler
+AssertionError: expected [ 'onload' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "onload",
++ ]
+
+ ❯ src/__tests__/MathLiveSecurity.test.ts:13:27
+     11|   const eventAttributes = [...template.content.querySelectorAll("*")].…
+     12|     [...element.attributes].filter((attribute) => /^on/i.test(attribut…
+     13|   expect(eventAttributes).toEqual([])
+       |                           ^
+     14| })
+     15|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  15:58:15
+   Duration  1.87s (transform 41ms, setup 50ms, import 30ms, tests 62ms, environment 1.54s)

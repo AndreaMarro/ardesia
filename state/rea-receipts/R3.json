@@ -1,0 +1,333 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R3",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-052"
+  ],
+  "target_kind": "THIRD_PARTY_AUTHORIZED",
+  "authorization_basis": "Moodle official sandbox con identità demo ufficiali e dati originali, autorizzato dalla superficie demo e dall’utente. Nessun account inventato, invito/email/pagamento reale o trial. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Current own a3 scoped UI observed with existing synthetic test actors; no production use. New writes limited to one owned synthetic test edition and read-only notebook inspection. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation. Newf438: normal read-only browser with existing authorized synthetic sessions from private environment refs; no new account/revoke/layout/data write.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Moodle sandbox UI5.3; remote commit UNKNOWN. Separate source b7260e59a83124d6311c0217df3ba27ef6b9a7b0. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits. New own-product f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd immutable runtime5324PID60961; donor/a3/2a/5cb references remain historical.",
+  "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "alternative_justification": "Official public demo permitted original synthetic administration without creating an account or adding hosted infrastructure. Method-local enrollment cap was observed and deliberately not adopted as a global invariant.",
+  "created_at": "2026-10-20T08:53:51.774047+00:00",
+  "implementation": {
+    "decision": "ADAPT",
+    "source_files": [
+      "apps/web/src/features/Courses.tsx",
+      "apps/web/src/features/Classroom.tsx",
+      "services/study-api/study_api/app.py",
+      "packages/engine/lessonos/study/groups.py",
+      "packages/engine/lessonos/study/store.py",
+      "packages/engine/lessonos/study/interests.py",
+      "packages/engine/lessonos/study/feedback.py",
+      "apps/web/src/components/EditionManager.tsx",
+      "apps/web/src/components/EditionNavigation.tsx",
+      "apps/web/src/editionAdmin.ts",
+      "apps/web/src/useCourseWorkspace.ts",
+      "packages/engine/lessonos/study/editions.py",
+      "packages/engine/lessonos/study/catalog.py"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_edition_admin.py::test_a_conflict_in_the_fourth_date_is_rejected_and_published_edits_require_reconfirmation",
+      "packages/engine/tests/study/test_edition_admin.py::test_aba_and_same_revision_concurrency_cannot_approve_a_stale_offer",
+      "packages/engine/tests/study/test_edition_admin.py::test_core_invalid_admin_parameters_cannot_write",
+      "packages/engine/tests/study/test_edition_admin.py::test_create_is_idempotent_immutable_binding_owned_and_not_a_sale",
+      "packages/engine/tests/study/test_edition_admin.py::test_dst_gap_ambiguous_fold_and_elapsed_duration_are_resolved_by_core",
+      "packages/engine/tests/study/test_edition_admin.py::test_legacy_lessonos_without_any_study_table_can_bootstrap",
+      "packages/engine/tests/study/test_edition_admin.py::test_legacy_null_binding_cannot_confirm_but_completed_membership_is_preserved",
+      "packages/engine/tests/study/test_edition_admin.py::test_missing_schema_marker_with_study_tables_fails_without_recreating_metadata",
+      "packages/engine/tests/study/test_edition_admin.py::test_noop_representation_and_idempotent_retries_do_not_advance_revision",
+      "packages/engine/tests/study/test_edition_admin.py::test_preview_expiry_false_tamper_foreign_and_double_confirm_fail_closed",
+      "packages/engine/tests/study/test_edition_admin.py::test_same_actor_create_key_race_creates_one_class_edition_and_binding",
+      "packages/engine/tests/study/test_edition_admin.py::test_schema4_missing_hold_binding_or_calendar_table_is_not_repaired",
+      "packages/engine/tests/study/test_edition_admin.py::test_shared_schema_contract_rejects_unknown_or_incomplete_features",
+      "packages/engine/tests/study/test_edition_admin.py::test_version3_upgrade_preserves_members_and_version4_loss_fails_without_repair",
+      "packages/engine/tests/study/test_edition_listing.py::test_corrupt_foreign_nonmember_waitlist_and_hold_rows_are_never_decoded",
+      "packages/engine/tests/study/test_edition_listing.py::test_cursor_is_exclusive_stable_and_has_no_duplicates",
+      "packages/engine/tests/study/test_edition_listing.py::test_default_page_is_bounded_to_fifty_and_does_not_decode_the_lookahead",
+      "packages/engine/tests/study/test_edition_listing.py::test_every_in_scope_binding_is_validated_even_after_same_pack_was_resolved",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_edition_filter_is_authorized_and_never_returns_a_cursor",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_filter_accepts_complete_authorized_legacy_identifier",
+      "packages/engine/tests/study/test_edition_listing.py::test_exact_filter_and_after_are_mutually_exclusive",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_core_cursors_fail_as_domain_errors",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_core_limits_fail_as_domain_errors_before_listing",
+      "packages/engine/tests/study/test_edition_listing.py::test_invalid_exact_filter_fails_before_page_query",
+      "packages/engine/tests/study/test_edition_listing.py::test_legacy_identifier_is_a_reusable_cursor_across_two_complete_pages",
+      "packages/engine/tests/study/test_edition_listing.py::test_new_edition_identifier_budget_rejects_invalid_ids_without_new_rows",
+      "packages/engine/tests/study/test_edition_listing.py::test_new_identifiers_at_one_and_128_are_accepted",
+      "packages/engine/tests/study/test_edition_listing.py::test_pack_file_is_rechecked_on_each_page_without_global_cache_or_canonical_mutation",
+      "packages/engine/tests/study/test_edition_listing.py::test_page_uses_one_scoped_query_and_one_real_read_parse_hash_per_distinct_pack",
+      "packages/engine/tests/study/test_edition_listing.py::test_persisted_principal_is_verified_before_discovery",
+      "packages/engine/tests/study/test_edition_listing.py::test_scope_and_limit_apply_before_json_decode_or_descriptor_resolution",
+      "packages/engine/tests/study/test_edition_listing.py::test_student_lists_own_memberships_only_across_teachers_not_waitlist_holds_or_legacy_projection",
+      "packages/engine/tests/study/test_edition_listing.py::test_teacher_lists_only_owned_editions_and_descriptor",
+      "packages/engine/tests/study/test_edition_listing.py::test_unusable_legacy_cursor_fails_explicitly_without_truncating_or_skipping",
+      "packages/engine/tests/study/test_edition_listing.py::test_valid_cursor_bounds_are_parameterized_and_never_expand_scope",
+      "packages/engine/tests/study/test_groups.py::test_calendar_conflict_and_confirmed_date_change_require_reconfirmation",
+      "packages/engine/tests/study/test_groups.py::test_expired_hold_does_not_consume_seat_or_confirm_late_payment",
+      "packages/engine/tests/study/test_groups.py::test_matching_requires_every_date_and_explains_exclusion",
+      "packages/engine/tests/study/test_groups.py::test_peer_hold_cannot_be_confirmed_and_changed_payload_conflicts",
+      "packages/engine/tests/study/test_groups.py::test_twelve_requests_never_overbook_and_retry_is_idempotent",
+      "packages/engine/tests/study/test_groups.py::test_two_people_racing_for_last_seat_only_one_hold",
+      "packages/engine/tests/study/test_postgres_edition_admin.py::test_pg_management_anonymous_schema_guard_owner_write_and_student_row_lock",
+      "packages/engine/tests/study/test_postgres_edition_listing.py::test_postgres_discovery_scopes_authenticated_teacher_and_members_before_decode",
+      "services/study-api/tests/test_access_http.py::test_body_budget_preserves_unicode_notes_and_notebook_attachment_contract",
+      "services/study-api/tests/test_access_http.py::test_invitation_cookie_revocation_and_payload_limit",
+      "services/study-api/tests/test_access_http.py::test_login_abuse_is_limited_without_blocking_read_only_course",
+      "services/study-api/tests/test_access_http.py::test_tutor_can_manage_only_own_member_invites_and_ops_health",
+      "services/study-api/tests/test_admin_http.py::test_admin_dto_ownership_draft_visibility_and_revocation_fail_closed",
+      "services/study-api/tests/test_admin_http.py::test_teacher_creates_configures_previews_and_explicitly_offers_without_charging",
+      "services/study-api/tests/test_draft_privacy_http.py::test_private_draft_is_hidden_from_tutor_workspace_export_and_bytes",
+      "services/study-api/tests/test_editions_http.py::test_authenticated_editions_roundtrip_membership_and_pack_descriptors",
+      "services/study-api/tests/test_editions_http.py::test_exact_discovery_is_membership_scoped_before_decode_and_after_revocation",
+      "services/study-api/tests/test_editions_http.py::test_http_invalid_page_bounds_are_422_without_loading_editions",
+      "services/study-api/tests/test_editions_http.py::test_http_legacy_129_cursor_roundtrip_and_new_creation_guard",
+      "services/study-api/tests/test_editions_http.py::test_http_legacy_identifier_beyond_cursor_budget_fails_409_without_partial_page",
+      "services/study-api/tests/test_editions_http.py::test_invalid_exact_discovery_is_422_without_metadata",
+      "services/study-api/tests/test_editions_http.py::test_revoked_cookie_cannot_discover_even_with_other_actor_query",
+      "services/study-api/tests/test_group_access_http.py::test_tutor_sees_persisted_waiting_list_and_students_cannot_read_roster",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: URL edition and pagination select only authorized courses; late workspace cannot replace the selected course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: changing actor removes the previous workspace before the next listing resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: an empty authorized list never requests an arbitrary authenticated workspace",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: management refresh re-fetches the authorized listing before selecting a created edition",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a preferred id absent from the fresh authorized listing is never selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: discovery failure retries discovery even when no edition was selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a deep URL needs one exact authorized lookup, without fetching every page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: page changes keep the selected workspace and load only the requested page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a membership revoked between discovery and workspace clears cached course data",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a created preference survives a failed exact lookup and uses a fresh listing on retry",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: %s: a new principal cannot request the previous course before its discovery resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a scoped denial %s still permits another independently listed course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a known session 401 from %s clears all cached courses until reauthentication",
+      "apps/web/src/__tests__/edition-management.test.tsx :: an empty tutor workspace creates a private draft, preserving fields and key after a failed request",
+      "apps/web/src/__tests__/edition-management.test.tsx :: four wall dates reach Core unchanged; preview needs a deliberate checkbox before confirmation",
+      "apps/web/src/__tests__/edition-management.test.tsx :: a late creation ACK after actor change cannot select a course or expose tutor controls",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: login offers invitation codes only after the runtime explicitly supports them",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: real Supabase runtime shows account access without promising unavailable invitations",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: supported invitation login uses its dedicated endpoint and server identity",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: access panel shows persisted roster and waitlist without unsupported invitation actions",
+      "apps/web/src/__tests__/access-capabilities.test.tsx :: unknown capability never creates an invitation promise and access loading can be retried",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[revoked-False]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[revoked-True]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[expired-False]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[expired-True]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_public_entry_itself_can_reject_and_clear_the_cookie",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_cookie_failure_before_or_after_open_is_deleted_and_closed[rejected-open]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_cookie_failure_before_or_after_open_is_deleted_and_closed[rejected-principal]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_real_runtime_token_bound_rejects_cookie_before_any_auth_or_pg_io",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_provider_failure_does_not_invent_cookie_rejection",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_bad_login_body_does_not_delete_an_existing_valid_cookie[local]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_bad_login_body_does_not_delete_an_existing_valid_cookie[explicit_fake_supabase]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_absent_cookie_and_valid_peer_denial_do_not_set_deletion_cookies[local]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_absent_cookie_and_valid_peer_denial_do_not_set_deletion_cookies[explicit_fake_supabase]"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Currentf438 observations are read-only Courses configuration/four-session display, persisted SourceBoard exact pins/provenance/context, and Diary prior explanation/exact source/context/history. No current create/configure/preview-confirm, GUI move/resize/detach, new graded attempt/review/contest/transfer, notebook file upload/export, or session revocation was performed by this researcher.",
+    "All four current browser scenarios are globally INCOMPLETE/equality_eligible:false due to missing events. Completed steps and ordinary HTTP GET sidecars do not fill missing network observations.",
+    "Both current inspections are attach_limited/policy_filtered. Target/frame attribution and excluded scripts remain bounded; current export identifies13 script occurrences, not a complete runtime inventory.",
+    "REA application comparison5cb→f438 reports0unchanged/7changed/363UNKNOWN. Selected file scope expanded17→24, so counts are not a comparable coverage benchmark. Historical190UNKNOWN remains historical and unresolved; it is not replaced with unchanged facts.",
+    "REA Courses comparison is CHANGED with five aligned steps, eight artifact differences, no literal normalization; global network incompleteness prevents whole-system equality. Viewport and actual state/data differences are retained rather than normalized.",
+    "Current session-source reconciliation has13runtime scripts/0matched/13unmatched/4UNKNOWN/31staticUNKNOWN. TS source digests and compiled JS digests differ; no source-map, source-to-bundle semantic equivalence or absence of functionality is claimed. The auxiliary two-layer observation used a cache label for authored source and is diagnostic only; corrected selected proof uses one application layer.",
+    "Main source graph24files151205B/21940AST has0parse failures but6000semantic-node ceiling;660nodes/518relations/194unknown in separate three-file session graph. endStudySession trace finds1seed/1node/0relations/1UNKNOWN, not full propagation proof. Runtime behavior of rejection is supported separately by root tests/browser proof, not inferred from this trace.",
+    "Git Engine tree equals5cb, but Web, Studio and API trees changed;9of24selected file bytes changed. No oldWeb81 byte-equivalence argument is applied to current110Web. Current source inventory and test collection name verification execute zero test bodies.",
+    "Nominal Web inventory contains16files/87literal declarations/2dynamic-name declarationsUNKNOWN. It is AST nomination, not110 individual execution records. Separate root serial log proves110passes/16files; nominal Python collection543 is separate from actual root543pass0skip log.",
+    "Documents FileProvider marked original files compressed,dataless; normal reads hitErr60. Public Foundation startDownloadingUbiquitousItem was requested only for our new artifacts, then exact JSON/id/byte/hash copies were checked in temporary storage. Zero-byte failed copies were rejected; no originals re-emitted or retagged. Initial cleanup timed out; subsequent PID absence/profile removal is separate proof.",
+    "Historical5cb/donor scope, not current replay: Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "Historical5cb/donor scope, not current replay: All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Historical5cb/donor scope, not current replay: Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Historical5cb/donor scope, not current replay: Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Historical5cb/donor scope, not current replay: Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "Historical5cb/donor scope, not current replay: First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: No scientific sign-off, real payment, invitations or launch is attested. Our four future dates are synthetic and scientifically NOT_ATTESTED. Fresh HTTP last-seat proof records200/409 but wireOverlapMeasured:false. Moodle capacity is per enrolment method, not proof of Ardesia global capacity.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Own REA listing had9 prior editions, so next-page behavior comes from the independent root actual52-draft report, not this capture. Legacy collecting/approve compatibility remains limited as stated by current Core tests; no claim of a complete legacy management migration is made."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSAL ONLY: statusPASS is a proposed scoped receipt for independent root review and original unchanged gate; no canonical receipt/state/gate installed by this preparer. GlobalG0 remainsNOTCERTIFIED and GlobalG1 remainsNOTREADY.",
+    "Attestation synthetic:false means genuine REA observations and actual root test executions. Teaching dataset, test actors and deterministic model responses are synthetic:true; apiSpendUsd0. No real students, new accounts, charges, invites or study-data writes by this replay.",
+    "Productf4384eed61e87510cbb7e29b9e7f9ff6d6fecebd is bound to immutable /tmp/ardesia-primary-f4384eed, runtime5324/PID60961/dataId05f4a05edde66bab. MetadataHEAD is recorded separately and never substituted for the product. Cookie existence/body size are ordinary sidecars, not REA provider evidence.",
+    "External donor and baseline/a3/2a/5cb envelopes retain their original source versions, origins and hashes. No new external visit or donor-code integration is implied by the current own-product replay. Full139entry access is not139deep investigations; research map remains a depth map with open gaps.",
+    "Historical root-corrected names, R0 activeClassroom mapping and accepted R4TARGET097alternative are retained. R1 GUI drag/resize is historical2a; current110Web executes SourceBoard unit regressions, while the new REA GUI replay is read-only.",
+    "No GPL/AGPL donor code/manual/quiz bank/vendor assets supplied as product code. MathLive081, PDF.js082/adapter and Tiptap116 remain separately frozen research and prospective contracts, not newly installed dependencies or additional product proof. No benchmark or numerical time saving measured."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents a stale calendar preview from offering altered dates, a foreign edition from being selected from URL, unbounded listing/pack work, or the last seat being allocated twice.",
+    "time_saved_minutes": null,
+    "measurement_method": "Actual current root543Core/API and110Web executions, separate exact nominal collection/AST; fresh current REA read-only capture/compare/reconcile. Qualitative benefit only; no time/throughput benchmark."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/vendor-capture.json",
+      "sha256": "00615b86c7feac64c9a014b6675bf17bc30f4fb99bd029dfb3a670af59b60d71",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/course-connect-capture.json",
+      "sha256": "51f051a06489aadb47640680f9e97790ff4abf78758e5b3639618fe2a559a7ae",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/capacity-capture.json",
+      "sha256": "5846a9cb056f16cfe587c5e8b43f769c2717d8b0afb743fba01bff4ddd149e9e",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/dates-capture-v4.json",
+      "sha256": "e990b49161229905dd6a37477364edef469ce8908a9c3a3ec761061a0e9a1f1b",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/four-dates-capture.json",
+      "sha256": "861e7fc9f8b0eadaf0291b0d6efaa1d0f82ca9ea4f90dc934782b308689d77e1",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/assignment-capture-v4.json",
+      "sha256": "c93e8147086ab800476803f593fd7d79bef0531528b2ac2317a4701605daa841",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/inspect-v3.json",
+      "sha256": "f3feb74cac00ab938bee2981a67eaf339a27e4fdaff88f82bd5cce4be6d66ede",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/export-evidence-v2.json",
+      "sha256": "ac48a638e07e7fcd85e5af9025d06ae6e4ff7767dbf4fddce0f98be6c2e0e1dd",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/source-graph.json",
+      "sha256": "df0928600716c61e20f1319f8b39b19e96978c4ea7ae99d96e968dccc66948bf",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/feature-trace.json",
+      "sha256": "2172189a427e3f28d1f06e59425e1c4a1b4f1a44dd6fb2beceec42ea52018208",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R3/semantic-influence.json",
+      "sha256": "51480de5556a4258398fd0246b298e85e464914503e32832a6eeaf8f3c277b8d",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-capture.evidence.json",
+      "sha256": "e458a5890d70e11fa7dd2de665f2caba8604bd2ed308b105f103654eaab72914",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-capture.evidence.json",
+      "sha256": "9b6243af1379444f6a95f359812b546935527b0a362609e76b069ecb6b6b08e9",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-v2-capture.evidence.json",
+      "sha256": "d0dfeb66adffe4735c27a49fdb8eea35261601b90d098ad991db4fb27f01fdc6",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/configure-preview-capture.evidence.json",
+      "sha256": "1fa2279149ad6ad1c87aad9a6b1a34fbf4be502c9fbd06392aacfe1b4c376351",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/confirm-offer-capture.evidence.json",
+      "sha256": "5b2916601ca22d312add294ec1dfc64ef7c18f5d70235bcccb39d0e9fc0e7193",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-runtime-inspect.evidence.json",
+      "sha256": "d9d748d4463da196d0a8e511b9ebf943ec87b4f86d94bac9af8cce66ca0bf97e",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/source.application.evidence.json",
+      "sha256": "79290423694e995b2bb602b9a97a39b77f8c8ecb1a5333e3001445c30b728995",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.feature.evidence.json",
+      "sha256": "8edc18f28d1c5d95ba9435a68d8c8688a46a464450694c76a36c5743ce76824e",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.semantic-v2.evidence.json",
+      "sha256": "2efb7396d8076304a8c1b1a3792c57dbc9c0cb59719d49e06aec98981a113a61",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management-create.semantic.evidence.json",
+      "sha256": "78f15c612b1e9b9649b3cf562f38583aee36ebe0eb8eda6909fa675bd024f0d0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/built-courses.application.evidence.json",
+      "sha256": "3af16aa5ed0e683ebc51408172730daf723220896fa87cf0a3969f27fc879b9c",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-reconcile-v2.evidence.json",
+      "sha256": "8c65c22eaa28e0e3747728f3a3728763252c4ccbebc30e204949fa195f59a9c9",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-after.compare.evidence.json",
+      "sha256": "0d60a70641da9db61a0b2c4eeb0b34b7b403774109b6ef2d7ccf967eed999d11",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/peer-mine-only-capture.evidence.json",
+      "sha256": "15db697ddfa5e34029bcee88c344bb5cd5f9407c664cb6079d59ef5dcd1f70f3",
+      "kind": "browser"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/courses-readonly-capture.evidence.json",
+      "sha256": "da38a07fab7aa5cd7f09ccd203b8fb2091b29240002fe226595d4730829997d4"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/source.application.evidence.json",
+      "sha256": "7da69cbd7267c00d1aaa7e8d5f7afb01e2af97301617265ba106967139eebf0f"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/courses-readonly-capture.evidence.json",
+      "sha256": "af30bcfcf560b3ab68ca11e8ac95f84390383be4577e471cf320be23b6d95831"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/source.application.evidence.json",
+      "sha256": "c0b09b30c8cad0013cfb12e9488713c4e9cc631e61bd100199ee4d93ac2067de"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-f4384eed/contracts/R3-f438-assimilation.md",
+      "sha256": "488588c74862ece8f7b49ce91f13607b5f0c4cf7697bd9a64c71f39134de643c"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-f4384eed/tests/R3-f438-tests.json",
+      "sha256": "1e9a12433c2a87ed24204becdcabbe651666fc62cfc31f1ce77d08f8a35818e3"
+    }
+  ]
+}

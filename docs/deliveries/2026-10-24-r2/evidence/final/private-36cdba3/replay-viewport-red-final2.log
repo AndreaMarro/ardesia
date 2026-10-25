@@ -1,0 +1,34 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/studio
+
+(node:47521) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/ReplayView.test.tsx (17 tests | 1 failed) 1125ms
+     × fits after the canvas resize settles, instead of centering in the previous viewport 127ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/ReplayView.test.tsx > ReplayView > fits after the canvas resize settles, instead of centering in the previous viewport
+AssertionError: expected 1440 to be 390 // Object.is equality
+
+- Expected
++ Received
+
+- 390
++ 1440
+
+ ❯ src/__tests__/ReplayView.test.tsx:200:35
+    198|       notifyResize?.()
+    199|       flushFrame(); flushFrame()
+    200|       expect(fittedWidths.at(-1)).toBe(390)
+       |                                   ^
+    201|       expect(store.write).not.toHaveBeenCalled()
+    202|       expect(store.saveScene).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  00:43:05
+   Duration  2.25s (transform 611ms, setup 31ms, import 275ms, tests 1.12s, environment 705ms)

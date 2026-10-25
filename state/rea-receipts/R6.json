@@ -1,0 +1,716 @@
+{
+  "schema": "ardesia.rea-execution-receipt/4",
+  "mission_id": "R6",
+  "status": "PASS",
+  "synthetic": false,
+  "target_ids": [
+    "TARGET-094",
+    "TARGET-095"
+  ],
+  "target_kind": "OWN_ARDESIA",
+  "authorization_basis": "Confronto fra repository/runtime Ardesia propri con fixture sintetiche e attori di test autorizzati. Questa preparazione non apre sessioni o servizi. Dataset pedagogico synthetic:true; REA e test reali, nessun account studente reale. Successor5cb: authorized normal read-only browser replay with existing14synthetic sessions through environment secret refs; no create/write/revoke/account operation. Newf438: normal read-only browser with existing authorized synthetic sessions from private environment refs; no new account/revoke/layout/data write.",
+  "rea_version": "6.7.0",
+  "rea_operations": [
+    "analyze_javascript_application",
+    "capture_browser_scenario",
+    "capture_web_screenshot",
+    "compare_application_versions",
+    "compare_web_captures",
+    "export_web_scripts",
+    "inspect_web_page",
+    "observe_web_execution",
+    "reconcile_javascript_runtime",
+    "trace_application_feature",
+    "trace_javascript_semantics"
+  ],
+  "source_commit_or_version": "Own baseline cc0f37ba47c4a40bfaa67d0f19a6338f4c98a228 runtime5309; C2a6646e7d58892afee624b89f68c6ba694f4aea9f runtime5321; frozenfe9995cae36c4c17cf47d31aac84baee0bef2be7 and actual final2a6548797e300e465abb554c949db740521b8352 runtime5323. Original versions/origins retained. Current own Ardesia a3cdf6ba8e6ad9b0bed98b212e3783a7b1f30119, origin5324/PID34531. Historical origins/version fields are unchanged. Successor ownArdesia5cbafd072504cb4603bf0daa903472fa0f528247/runtime5324PID43753; old donor/a3 origin/version remain historical, not new visits. New own-product f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd immutable runtime5324PID60961; donor/a3/2a/5cb references remain historical.",
+  "product_commit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "coverage": "PARTIAL_WITH_DECLARED_UNKNOWN",
+  "created_at": "2026-10-20T08:53:51.774047+00:00",
+  "implementation": {
+    "decision": "REPLACE",
+    "source_files": [
+      "apps/web/src/components/SourceBoard.tsx",
+      "apps/web/src/components/SourceViewer.tsx",
+      "apps/web/src/features/Materials.tsx",
+      "apps/studio/src/study/NotebookPanel.tsx",
+      "packages/engine/lessonos/study/portable.py",
+      "packages/engine/lessonos/study/store.py",
+      "packages/engine/lessonos/study/view_layout.py",
+      "apps/studio/src/study/notebookPreview.ts",
+      "apps/web/src/useCourseWorkspace.ts",
+      "apps/web/src/components/useResourceComposer.ts",
+      "apps/web/src/components/sessionDraftCache.ts",
+      "apps/web/src/components/TaylorLab.tsx",
+      "services/study-api/study_api/app.py",
+      "services/study-api/study_api/body_admission.py",
+      "apps/studio/src/study/sessionBoundary.ts",
+      "apps/studio/src/study/apiClient.ts",
+      "apps/web/src/App.tsx"
+    ],
+    "test_names": [
+      "packages/engine/tests/study/test_portable_budget.py::test_encoded_refusal_precedes_attachment_decode",
+      "packages/engine/tests/study/test_portable_budget.py::test_export_refuses_legal450_snapshot_49mib_fixture_without_dropping_pins",
+      "packages/engine/tests/study/test_portable_budget.py::test_inspect_exact_compact_utf8_boundary_and_one_byte_over",
+      "packages/engine/tests/study/test_portable_budget.py::test_real96mib_inspection_boundary_is_inclusive_and_next_byte_is_refused",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_checks_snapshot_hashes_even_when_outer_digest_is_recomputed",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_duplicate_revision_identity_cannot_resolve_to_different_content",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_legacy_v1_does_not_claim_history_reference_completeness",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_dangling_exact_revision_references_with_a_valid_bundle_digest",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_rejects_malformed_loss_metadata",
+      "packages/engine/tests/study/test_portable_history.py::test_inspect_revision_budget_and_bad_base64_fail_as_domain_errors",
+      "packages/engine/tests/study/test_portable_history.py::test_owner_export_contains_old_exact_pin_and_current_source_without_unreferenced_history",
+      "packages/engine/tests/study/test_portable_history.py::test_tutor_export_preserves_only_submitted_revision_and_does_not_export_private_head",
+      "packages/engine/tests/study/test_portable_history.py::test_unavailable_revision_has_only_known_reference_ids_and_explicit_loss",
+      "packages/engine/tests/study/test_portable_history.py::test_unsigned_consistently_rehashed_content_is_not_claimed_canonical_or_authorized",
+      "services/study-api/tests/test_layout_http.py::test_huge_integer_layout_coordinates_fail_422_without_changing_saved_view",
+      "services/study-api/tests/test_layout_http.py::test_layout_cas_detects_another_tab_and_preserves_explicit_empty_layout",
+      "services/study-api/tests/test_layout_http.py::test_layout_pin_is_an_exact_authorized_resource_revision_pair",
+      "services/study-api/tests/test_layout_http.py::test_malformed_layout_members_fail_as_domain_errors",
+      "services/study-api/tests/test_layout_http.py::test_nonpositive_view_dimensions_are_rejected",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_export_is_the_explicit_stable_compact_representation_and_budget_error_is_atomic",
+      "services/study-api/tests/test_notebook_budget_http.py::test_http_inspect_accepts_exact_boundary_and_refuses_one_extra_byte",
+      "services/study-api/tests/test_notebook_http.py::test_http_notebook_old_pin_roundtrip_respects_exact_revision_permission",
+      "apps/web/src/__tests__/source-board.test.tsx :: classroom restores two independent views of the pinned original rather than substituting the current resource head",
+      "apps/web/src/__tests__/source-board.test.tsx :: portable notebook exports the requested edition instead of a hardcoded course",
+      "apps/web/src/__tests__/source-board.test.tsx :: duplicating and keyboard moving persist two instance identities with one exact source and no new resource",
+      "apps/web/src/__tests__/source-board.test.tsx :: failed layout save preserves views and retries the same snapshot without a false saved message",
+      "apps/web/src/__tests__/source-board.test.tsx :: a late save acknowledgement never marks edits made during that request as saved",
+      "apps/web/src/__tests__/source-board.test.tsx :: detaching the last view persists an empty board and reopening never recreates the source",
+      "apps/web/src/__tests__/source-board.test.tsx :: a stale pin keeps its old text and refresh changes only the selected view reference",
+      "apps/web/src/__tests__/source-board.test.tsx :: a layout conflict preserves the draft until explicit discard and server reload",
+      "apps/web/src/__tests__/source-board.test.tsx :: a tutor reopens an authorized submitted revision when the student's private head is absent",
+      "apps/web/src/__tests__/source-board.test.tsx :: reopening an inaccessible revision does not add an empty or substituted view",
+      "apps/web/src/__tests__/source-board.test.tsx :: keyboard resizing changes the selected view dimensions without moving its duplicate",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: within-budget ASCII fields and a 68MiB base64 retain the constant-time fast path",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: an oversized astral source stops counting at the first excess codepoint",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: portable preview renders exact historical and current pairs; never substitutes a current head for a submitted pin",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: a Core-sized astral source reaches inspect and renders intact after upload",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: a tutor artifact with no readable current head still renders the submitted historical snapshot",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: malformed presentation fields are rejected even when an internal-integrity inspect could accept them",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: legacy reference scope and declared missing revisions remain explicit; no head is opened to fill the gap",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: declared losses and unsigned authenticity are visible without granting imported access",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: unsupported artifacts never enter the preview or the inspect API",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: source text stays escaped and file sizes above the old75MiB ceiling reach the96MiB inspect boundary",
+      "apps/web/src/__tests__/notebook-preview.test.tsx :: download uses the same compact JSON representation that the inspect client sends",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: late context A cannot appear under source B and query uses the canonical parameter",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: a stale context error cannot replace the new source context",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: unmount cancels a pending context request",
+      "apps/web/src/__tests__/source-context-identity.test.tsx :: historical context is identified without presenting it as the current source",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: URL edition and pagination select only authorized courses; late workspace cannot replace the selected course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: changing actor removes the previous workspace before the next listing resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: an empty authorized list never requests an arbitrary authenticated workspace",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: management refresh re-fetches the authorized listing before selecting a created edition",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a preferred id absent from the fresh authorized listing is never selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: discovery failure retries discovery even when no edition was selected",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a deep URL needs one exact authorized lookup, without fetching every page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: page changes keep the selected workspace and load only the requested page",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a membership revoked between discovery and workspace clears cached course data",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a created preference survives a failed exact lookup and uses a fresh listing on retry",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: %s: a new principal cannot request the previous course before its discovery resolves",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a scoped denial %s still permits another independently listed course",
+      "apps/web/src/__tests__/course-workspace.test.tsx :: a known session 401 from %s clears all cached courses until reauthentication",
+      "apps/web/src/__tests__/course-drafts.test.tsx :: unsent notes remain course-scoped and a late create ACK tombstones only its origin draft; another actor gets no draft",
+      "apps/web/src/__tests__/course-drafts.test.tsx :: Taylor requires a human prediction, validates bounded inputs, invalidates feedback, and ignores a late result",
+      "apps/web/src/__tests__/course-drafts.test.tsx :: returning to a course restores its physics prediction without treating a cached result as a fresh commit",
+      "apps/web/src/__tests__/resource-composer.test.tsx :: a confirmed creation remains saved when the subsequent course reload fails",
+      "apps/web/src/__tests__/taylor-classroom.test.tsx :: the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt",
+      "services/study-api/tests/test_body_admission_http.py::test_second_notebook_is_rejected_before_receive_or_auth_while_first_body_is_held",
+      "services/study-api/tests/test_body_admission_http.py::test_small_body_progresses_while_a_large_body_waits_for_free_capacity",
+      "services/study-api/tests/test_body_admission_http.py::test_large_and_asset_fit_together_but_second_asset_does_not",
+      "services/study-api/tests/test_body_admission_http.py::test_cancellation_of_active_body_returns_the_reservation",
+      "services/study-api/tests/test_body_admission_http.py::test_cancellation_of_waiter_cannot_consume_later_capacity",
+      "services/study-api/tests/test_body_admission_http.py::test_disconnect_returns_capacity",
+      "services/study-api/tests/test_body_admission_http.py::test_reservation_remains_until_final_response_send_finishes",
+      "services/study-api/tests/test_body_admission_http.py::test_denial_precedence_health_and_explicit_logout_cookie_semantics[False]",
+      "services/study-api/tests/test_body_admission_http.py::test_denial_precedence_health_and_explicit_logout_cookie_semantics[True]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_budget-0]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_budget-True]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_budget-100663295]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_budget-inf]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_wait-0]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_wait-True]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_wait-nan]",
+      "services/study-api/tests/test_body_admission_http.py::test_invalid_configuration_fails_before_any_store_open[request_body_wait-inf]",
+      "services/study-api/tests/test_body_admission_http.py::test_unicode_byte_boundary_success_413_422_all_release",
+      "services/study-api/tests/test_body_admission_http.py::test_budget_stays_owned_through_worker_cleanup_even_on_cancellation[False]",
+      "services/study-api/tests/test_body_admission_http.py::test_budget_stays_owned_through_worker_cleanup_even_on_cancellation[True]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[finish-auth_open]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[finish-ingress_receive]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[send_error-auth_open]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[send_error-ingress_receive]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[cancel-auth_open]",
+      "services/study-api/tests/test_body_admission_http.py::test_body_budget_covers_unhandled_outer_500_response[cancel-ingress_receive]",
+      "services/study-api/tests/test_body_admission_http.py::test_outer_budget_preserves_fastapi_surface_custom_middleware_and_500_handler",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[revoked-False]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[revoked-True]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[expired-False]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_rejected_cookie_is_deleted_without_private_fallback_and_public_recovers[expired-True]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_local_public_entry_itself_can_reject_and_clear_the_cookie",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_cookie_failure_before_or_after_open_is_deleted_and_closed[rejected-open]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_cookie_failure_before_or_after_open_is_deleted_and_closed[rejected-principal]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_real_runtime_token_bound_rejects_cookie_before_any_auth_or_pg_io",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_explicit_fake_runtime_provider_failure_does_not_invent_cookie_rejection",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_bad_login_body_does_not_delete_an_existing_valid_cookie[local]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_bad_login_body_does_not_delete_an_existing_valid_cookie[explicit_fake_supabase]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_absent_cookie_and_valid_peer_denial_do_not_set_deletion_cookies[local]",
+      "services/study-api/tests/test_rejected_cookie_http.py::test_absent_cookie_and_valid_peer_denial_do_not_set_deletion_cookies[explicit_fake_supabase]",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: a verified child %s 401 (%s) removes the private application and opens access",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: an untrusted child %s preserves the private application",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: an anonymous initial authentication boundary remains public without opening access",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: explicit logout clears the private application even when server revocation is unconfirmed",
+      "apps/web/src/__tests__/session-boundary.test.tsx :: a late rejection from the previous session cannot clear a newly authenticated actor",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: the legacy application also removes its private surface after a verified missing session",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: legacy explicit logout also clears locally and preserves the unconfirmed revocation warning",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: a login completed after the legacy application unmounts cannot activate a session",
+      "apps/web/src/__tests__/session-legacy.test.tsx :: a new login aborts previous requests before its exchange",
+      "apps/web/src/__tests__/session-transport.test.ts :: HTTP idempotency survives every supported HeadersInit representation",
+      "apps/web/src/__tests__/session-transport.test.ts :: concurrent verified rejections end one session once and cancel its other pending requests",
+      "apps/web/src/__tests__/session-transport.test.ts :: a successful body decoded after a new login cannot return old private data",
+      "apps/web/src/__tests__/session-transport.test.ts :: status%s and marker%s cannot end an established session",
+      "apps/web/src/__tests__/session-transport.test.ts :: an original upload uses the same trusted session boundary as JSON and binary reads",
+      "apps/web/src/__tests__/session-transport.test.ts :: changing session while reading an upload never sends the old file under the new actor",
+      "apps/web/src/__tests__/session-transport.test.ts :: a failed exchange aborts tracked old requests without invalidating an established session",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: public and private brand links retain the complete visible name",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: skip links target a main that can receive focus without joining the tab order",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: two editions of the same course are articles rather than indistinguishable region landmarks",
+      "apps/web/src/__tests__/accessibility-semantics.test.tsx :: deliveries progress from the page heading to each attempt and then its feedback",
+      "services/study-api/tests/test_session_boundary_signal.py::test_verified_cookie_rejection_and_missing_cookie_have_distinct_boundary_signals[local]",
+      "services/study-api/tests/test_session_boundary_signal.py::test_verified_cookie_rejection_and_missing_cookie_have_distinct_boundary_signals[runtime_open]",
+      "services/study-api/tests/test_session_boundary_signal.py::test_verified_cookie_rejection_and_missing_cookie_have_distinct_boundary_signals[runtime_principal]",
+      "services/study-api/tests/test_session_boundary_signal.py::test_login_body_and_handler_401_and_provider_503_do_not_signal_cookie_rejection"
+    ],
+    "test_outcome": "PASS"
+  },
+  "unknowns": [
+    "Currentf438 observations are read-only Courses configuration/four-session display, persisted SourceBoard exact pins/provenance/context, and Diary prior explanation/exact source/context/history. No current create/configure/preview-confirm, GUI move/resize/detach, new graded attempt/review/contest/transfer, notebook file upload/export, or session revocation was performed by this researcher.",
+    "All four current browser scenarios are globally INCOMPLETE/equality_eligible:false due to missing events. Completed steps and ordinary HTTP GET sidecars do not fill missing network observations.",
+    "Both current inspections are attach_limited/policy_filtered. Target/frame attribution and excluded scripts remain bounded; current export identifies13 script occurrences, not a complete runtime inventory.",
+    "REA application comparison5cb→f438 reports0unchanged/7changed/363UNKNOWN. Selected file scope expanded17→24, so counts are not a comparable coverage benchmark. Historical190UNKNOWN remains historical and unresolved; it is not replaced with unchanged facts.",
+    "REA Courses comparison is CHANGED with five aligned steps, eight artifact differences, no literal normalization; global network incompleteness prevents whole-system equality. Viewport and actual state/data differences are retained rather than normalized.",
+    "Current session-source reconciliation has13runtime scripts/0matched/13unmatched/4UNKNOWN/31staticUNKNOWN. TS source digests and compiled JS digests differ; no source-map, source-to-bundle semantic equivalence or absence of functionality is claimed. The auxiliary two-layer observation used a cache label for authored source and is diagnostic only; corrected selected proof uses one application layer.",
+    "Main source graph24files151205B/21940AST has0parse failures but6000semantic-node ceiling;660nodes/518relations/194unknown in separate three-file session graph. endStudySession trace finds1seed/1node/0relations/1UNKNOWN, not full propagation proof. Runtime behavior of rejection is supported separately by root tests/browser proof, not inferred from this trace.",
+    "Git Engine tree equals5cb, but Web, Studio and API trees changed;9of24selected file bytes changed. No oldWeb81 byte-equivalence argument is applied to current110Web. Current source inventory and test collection name verification execute zero test bodies.",
+    "Nominal Web inventory contains16files/87literal declarations/2dynamic-name declarationsUNKNOWN. It is AST nomination, not110 individual execution records. Separate root serial log proves110passes/16files; nominal Python collection543 is separate from actual root543pass0skip log.",
+    "Documents FileProvider marked original files compressed,dataless; normal reads hitErr60. Public Foundation startDownloadingUbiquitousItem was requested only for our new artifacts, then exact JSON/id/byte/hash copies were checked in temporary storage. Zero-byte failed copies were rejected; no originals re-emitted or retagged. Initial cleanup timed out; subsequent PID absence/profile removal is separate proof.",
+    "Historical5cb/donor scope, not current replay: Current5cb capture scope is read-only: Courses configuration display, persisted SourceBoard pins/provenance/context, Diary exact original/prior explanation/history. Create/configure/confirm, GUI move/resize, gradedlab, newreview/contest/transfer and notebookfileexport/large/Unicode are NOT newly replayed here; their original source pins remain historical.",
+    "Historical5cb/donor scope, not current replay: All current network-enabled scenario captures are globally incomplete/equality_eligible:false with missing events. Individual completed steps and ordinary HTTP sidecars do not complete unknown network sections.",
+    "Historical5cb/donor scope, not current replay: Current inspections are attach_limited/policy_filtered;25unattributed scripts and unapproved sections remain excluded. No complete runtime inventory or source→bundle/control-flow equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Actual REA compare_application_versions reports0unchanged/0changed/190UNKNOWN, despite155exactidentity+18contentdigest+17module-sourcedigest matches and same graph/root hashes. This is scoped matching, NOT semantic equality or proof of absence.",
+    "Historical5cb/donor scope, not current replay: Git apps/web and packages/engine trees equal a3; services/study-api tree changed in4files. Current debugger script bytes match11of13 previously retained runtime occurrences; useResourceComposer/Classroom lack previous retained byte copies in this research subset. Their Git source equality does not invent a past runtime-byte observation.",
+    "Historical5cb/donor scope, not current replay: Web81 execution and TypeScript AST inventory belong to a3; exact Web tree/file equality is verified to5cb. They are not newly executed Web tests. Pytest collection539 is nomination/path verification only; actual Core/API539pass0skip is a separate root execution log.",
+    "Historical5cb/donor scope, not current replay: First version-comparison input assembly hit Documents readTimeout and produced a no-evidence CLI input error. It remains preserved. V2 reads the verified byte-identical a3 canonical ignored artifact; neither old envelope nor origin was modified.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: REA global network/event completeness remains UNKNOWN for the a3 captures. Scoped static graphs, semantic traces and reconciliation retain unmatched/unknown nodes; missing seeds or excluded chunks do not prove feature absence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The live a3 browser observation belongs to runtime5324 PID34531. Root cold restart 34531→37977 is a separate subsequent proof, not a rewritten origin of these captures.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: 2a5323 versus a35324 compare retains capture_context_mismatch. Global captures remain incomplete;5changed/548unknown in version compare reflect differently scoped inventories, not548 removed implementations. Partial semantic traces do not prove control-flow equivalence.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Five Unicode boundary and79,756,209-byte large UI replays were performed on2a, not rerun on a3; exact inspected source-byte equality and current Core499/Web81 tests are separately documented. The obsolete79,756,325-byte planning witness is not a new actual file.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: a3 tutor file contains both exact old revisions and no current head entry; the private v3 head existence/body match and404/403 denial family were directly probed historically on2a, not reprobed after a3 live freeze. No asset playback or complete notebook byte equality is claimed.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: Native file chooser/download retention use declared Playwright/CDP sidecars because REA6.7 lacks those actions. Two download retention failures are preserved before the genuine UI Blob capture succeeds. Ordinary sidecars are not represented as provider operations.",
+    "Historical5cb/donor scope, not current replay: Historical/a3 scope retained: The first a3 V8 observation ended document_changed on scenario reload and is retained as failed/UNKNOWN. The corrected context execution used an explicitly declared ordinary click while REA observed a stable8-second window; compiled function execution count is not HTTP request count."
+  ],
+  "limitations": [
+    "PRIVATE PROPOSAL ONLY: statusPASS is a proposed scoped receipt for independent root review and original unchanged gate; no canonical receipt/state/gate installed by this preparer. GlobalG0 remainsNOTCERTIFIED and GlobalG1 remainsNOTREADY.",
+    "Attestation synthetic:false means genuine REA observations and actual root test executions. Teaching dataset, test actors and deterministic model responses are synthetic:true; apiSpendUsd0. No real students, new accounts, charges, invites or study-data writes by this replay.",
+    "Productf4384eed61e87510cbb7e29b9e7f9ff6d6fecebd is bound to immutable /tmp/ardesia-primary-f4384eed, runtime5324/PID60961/dataId05f4a05edde66bab. MetadataHEAD is recorded separately and never substituted for the product. Cookie existence/body size are ordinary sidecars, not REA provider evidence.",
+    "External donor and baseline/a3/2a/5cb envelopes retain their original source versions, origins and hashes. No new external visit or donor-code integration is implied by the current own-product replay. Full139entry access is not139deep investigations; research map remains a depth map with open gaps.",
+    "Historical root-corrected names, R0 activeClassroom mapping and accepted R4TARGET097alternative are retained. R1 GUI drag/resize is historical2a; current110Web executes SourceBoard unit regressions, while the new REA GUI replay is read-only.",
+    "No GPL/AGPL donor code/manual/quiz bank/vendor assets supplied as product code. MathLive081, PDF.js082/adapter and Tiptap116 remain separately frozen research and prospective contracts, not newly installed dependencies or additional product proof. No benchmark or numerical time saving measured."
+  ],
+  "benefit": {
+    "defect_avoided": "Prevents historical source bodies disappearing during portable export, false imported authority, and an export that cannot be reopened by the same product.",
+    "time_saved_minutes": null,
+    "measurement_method": "Actual current root543Core/API and110Web executions, separate exact nominal collection/AST; fresh current REA read-only capture/compare/reconcile. Qualitative benefit only; no time/throughput benchmark."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-after-detach-v3-capture.json",
+      "sha256": "f76dcd70f05a21e84ad8003e5a6fb51dea7d6c212f4154fd6d39bcc74e0f012c",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-before-after-comparison.json",
+      "sha256": "750674e30234a6c1b53b71fb02860f90955f1e91011453cc9eee094b4fb58493",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-before-detach-capture.json",
+      "sha256": "84eab593dbed83e783802fd45b95e9dfabf2f5cea30a6103cb71a3e23435390f",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-before-detach-v2-capture.json",
+      "sha256": "479ae52abd6f98ba1788b3425ff2be53fa2b80264970f9710f933bc0d2f15a56",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-before-detach-v3-capture.json",
+      "sha256": "e257a8b783ed0f90de96fe3a1076fabcb35e1874a856ec1593a1df807b0e2365",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-detach-notebook-capture.json",
+      "sha256": "33a66e5dd9cd8d0f783a032a2e7bb7b6833f5c9c2ac251d21d4397b384bbe895",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-feature-trace.json",
+      "sha256": "5c729ee058eccb131c65621eb407314808e98c3755cdb3bffc3a521e9eada8f2",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-historical-source-capture.json",
+      "sha256": "3f1f8966a7998a3671e8105b5bba4853300c07c88473992ffa0a1bb9a52770ff",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-lazy-graph.json",
+      "sha256": "3f944ab47ad1a06bf678998b391888af4d3f6d854289fd86c8f78db1d254479a",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-login-tutor-fresh-capture.json",
+      "sha256": "6bf106b97325daf23eddf45ec44b493bd90d9d763a06eb5e4dbd6adaf8068d5b",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-notebook-execution.json",
+      "sha256": "6b97d62c90ece8185520881c96b6b94b03fc829d04a3f7296a115468e0da1cc8",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-r0-context-comparison.json",
+      "sha256": "315dc8cf8a677e14e4e59c06a75e2f403fe6fa51a6c29b07cc2e4002afc09f49",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-reconcile.json",
+      "sha256": "d4843550918bf087345fc1b5fa1b97ff4e78faaf4515ed2b6596f0987dd54b3c",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-runtime-export-evidence.json",
+      "sha256": "7a06c4a6a1c368d5df3a8537d857597c16620abedd893a7d13fad0a191ae101f",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-runtime-inspection.json",
+      "sha256": "e927e6e008eec00b59202bbce3715c813103454bf0a63e5c0715f2d5a10f6268",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-semantic-provenance.json",
+      "sha256": "c80e6790a304a245b42ab8def4463824712e3230fdc39ef52884f2984ad3ba53",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-semantic-trace.json",
+      "sha256": "7579c15a6b079e5beb764a797c74ec9c7c07abb457809ada501368148bd282a2",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-source-graph.json",
+      "sha256": "476bdff604c138fafb0c6beb7242a3f7478038937f2387c5ef47e4662c83cee0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-source-layout-capture.json",
+      "sha256": "3dab15003de53b0f79b5add982a6deeea65b88854f2d7613e4c1a3516d44ba8d",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-two-views-settled-capture.json",
+      "sha256": "fed82c86f343a6f9b37eb60a57d9e2ecfceaadfe43f0e528d5e8d7c2517b1ad7",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/candidate2-version-comparison.json",
+      "sha256": "feb917e9d9b40ac9975b3aa7a39354e3c064690e18694d9893a2798f79f1284f",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/built.application.evidence.json",
+      "sha256": "8276037b110b44f6a7df290d006e11c89d7a7a99ad27646d200bad594d42f352",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/fe-final-notebook.compare.evidence.json",
+      "sha256": "4630602075713f91359b315a1e91e8e9134b6a73553bc3f53f07c765f8490138",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/fe-final-versions.compare.evidence.json",
+      "sha256": "29b852ffeae26639147d11bab7d3d41b042e96eace98d1b589eb1d22eba3ef5a",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/history-runtime-export.evidence.json",
+      "sha256": "0a84b2beeb1583e3a1ca0f96108d2cb1df0abce74bd6888455f8eaca075694a0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/history-runtime-inspect.evidence.json",
+      "sha256": "a784e5a85b6849ce2bb7d92e7471b4bc072383738df7dac1c73a4fd40fd168e6",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/history-two-revisions-pixels.evidence.json",
+      "sha256": "da0a0ee1156697ec1ab803845601a9afc47a39585b05b57b85935207f1fc31ff",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/large-final-cdp-v2-capture.evidence.json",
+      "sha256": "b62e62a980d43b8b388f0897380cd9a3c03f30e78747b62ed6948a0752e43507",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/notebook.feature.evidence.json",
+      "sha256": "5b8f21fac2e749276c91f2b8a2c0baf56fce3d0c41827df035bf39ace5c501f2",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/notebook.semantic.evidence.json",
+      "sha256": "b226956d13b7c957c0519803b357bfde4f267049a2e004e93850a251715517f2",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/runtime-reconcile.evidence.json",
+      "sha256": "bd025a6cb07bb95c4c6367139cd010c6c4f5514db357d42d035c147c67ce2038",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/source.application.evidence.json",
+      "sha256": "8325a533d7d0a4b2de7f6808fdd880a674fc51f0336612b49134a42369d906a0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/tutor-synthetic-fluidi-final-reopen-capture.evidence.json",
+      "sha256": "27a7c0537ffc13a31c291f631966a4c3e2d4129386ff55fcbe6b4c09708f2092",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/unicode-astral-10001-capture.evidence.json",
+      "sha256": "521b6873aa35b359e9dbcbcf388b990768790c7c7d21f08b6e16dae1e3271ec7",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/unicode-astral-20000-capture.evidence.json",
+      "sha256": "eeaac635c16e09429686e633946d4ea3c7e77e1f86cf0a4761d4dfb0e6c2f9f7",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/unicode-astral-20001-capture.evidence.json",
+      "sha256": "7d0f3c6c75643877804e1c7271e5e9725838c12d4872d2f2912d8df6c8993761",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/unicode-mixed-20000-capture.evidence.json",
+      "sha256": "ae36d5b1ca84080a421f7014a1e1e13af01c3e8f469bd6378656e7d2054062c2",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/historical/final-2a654879/raw/R6/final-2a654879/unicode-mixed-20001-capture.evidence.json",
+      "sha256": "2d029057c45810d4c245fe338da9e0411e28227643fa631b7709b8d4006f6552",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/2a-g1-tutor-reopen.compare.evidence.json",
+      "sha256": "e5e8d8d560aa16dde98ffc598badad6a5d15eaaa4e96f33841ef4fb01608ca09",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/2a-g1-versions.evidence.json",
+      "sha256": "dba73eeb913788c75b05afc579a32dccfa2a4554756e3619818eacc0bca5b1a6",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/built-courses.application.evidence.json",
+      "sha256": "3af16aa5ed0e683ebc51408172730daf723220896fa87cf0a3969f27fc879b9c",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/built-memory.application.evidence.json",
+      "sha256": "32ecffac4ab0aad6aa732a8886cdb4bb1e386c6a92fb656f6ca4a0bf8cdae994",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/configure-preview-capture.evidence.json",
+      "sha256": "1fa2279149ad6ad1c87aad9a6b1a34fbf4be502c9fbd06392aacfe1b4c376351",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/confirm-offer-capture.evidence.json",
+      "sha256": "5b2916601ca22d312add294ec1dfc64ef7c18f5d70235bcccb39d0e9fc0e7193",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/context-execution.evidence.json",
+      "sha256": "12ba5bb54c80af2c24cc8d37599d4096ddeac913feee65f9cdeda490fdb2eff6",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-after.compare.evidence.json",
+      "sha256": "0d60a70641da9db61a0b2c4eeb0b34b7b403774109b6ef2d7ccf967eed999d11",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-before-capture.evidence.json",
+      "sha256": "e458a5890d70e11fa7dd2de665f2caba8604bd2ed308b105f103654eaab72914",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-reconcile-v2.evidence.json",
+      "sha256": "8c65c22eaa28e0e3747728f3a3728763252c4ccbebc30e204949fa195f59a9c9",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-runtime-export.evidence.json",
+      "sha256": "32d6dedd67b64dcb70eef4d532e4cebc439f0e82539cd6234b588205167cd395",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/courses-runtime-inspect.evidence.json",
+      "sha256": "d9d748d4463da196d0a8e511b9ebf943ec87b4f86d94bac9af8cce66ca0bf97e",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-capture.evidence.json",
+      "sha256": "9b6243af1379444f6a95f359812b546935527b0a362609e76b069ecb6b6b08e9",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/create-one-v2-capture.evidence.json",
+      "sha256": "d0dfeb66adffe4735c27a49fdb8eea35261601b90d098ad991db4fb27f01fdc6",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management-create.semantic.evidence.json",
+      "sha256": "78f15c612b1e9b9649b3cf562f38583aee36ebe0eb8eda6909fa675bd024f0d0",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.feature.evidence.json",
+      "sha256": "8edc18f28d1c5d95ba9435a68d8c8688a46a464450694c76a36c5743ce76824e",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/management.semantic-v2.evidence.json",
+      "sha256": "2efb7396d8076304a8c1b1a3792c57dbc9c0cb59719d49e06aec98981a113a61",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/memory-execution.evidence.json",
+      "sha256": "088d3243fcb4fd492ae857a6f8cdb587bceb2dc59fdd711bce43f0985a5c1843",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/memory-reconcile.evidence.json",
+      "sha256": "92e24af706a94677bb37247021844be154cc79220ce4314232d821b300cb6157",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/memory-reopen.compare.evidence.json",
+      "sha256": "e82384d1cfc95509fa895aa34eb2c89ee286179db40a0bbead0edf8fc044aad6",
+      "kind": "comparison"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/memory-runtime-export.evidence.json",
+      "sha256": "6577c0cc77f3a414041ec3caf6decec7c5a4521214ab76959a516d760562516a",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/memory-runtime-inspect.evidence.json",
+      "sha256": "078d1693eaa4ebbe5009041ac3cef43aab22c771e4ccc483fac280728f8d24a2",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/peer-mine-only-capture.evidence.json",
+      "sha256": "15db697ddfa5e34029bcee88c344bb5cd5f9407c664cb6079d59ef5dcd1f70f3",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/source-context.semantic.evidence.json",
+      "sha256": "96530572dfb21ef0c97eab07f5c393f3225c4d0a034a3f0536dbf02d903d6e90",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/source.application.evidence.json",
+      "sha256": "79290423694e995b2bb602b9a97a39b77f8c8ecb1a5333e3001445c30b728995",
+      "kind": "structure"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-open-capture.evidence.json",
+      "sha256": "49376f375235d72ee798fc33d8330bd51b8760796ce25f558114e7bb11c57b55",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-reopen-capture.evidence.json",
+      "sha256": "c7bcfc271efb88158b1f5db61d5517ea082c37692d31f29c10032949562a4bb0",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/student-memory-resume-capture.evidence.json",
+      "sha256": "eec3c06ca136b7b6ef1f3edc0a7d77ede47744cf62bf6418781f492b77d4f405",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-export-capture.evidence.json",
+      "sha256": "34109d0b035af4c1bdaccabc3ff6982ea70b4ee037a7c51d8345cbbaa919489c",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-export-v2-capture.evidence.json",
+      "sha256": "4372d0461e94839145a64a4af9a9d32f04afefa4cd7f7792ff96e4477332b158",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-export-v3-capture.evidence.json",
+      "sha256": "45bf93f556e97588fdc6a0938b79d258f404f9e8f9fa41a60f879b4b0373a664",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-notebook-reopen-capture.evidence.json",
+      "sha256": "8dadf07f737ef6ce632f89c4bebddd78710f6bfb39bb2e85779fff513fad42cc",
+      "kind": "browser"
+    },
+    {
+      "path": "artifacts/rea-evidence/g1-a3cdf6ba/raw/current/tutor-sourceboard-capture.evidence.json",
+      "sha256": "33ee2541fd4727ab25cbc2f76856f0a09f4182946118ee8f89adc84c9364f3bc",
+      "kind": "browser"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/memory-export.evidence.json",
+      "sha256": "0392fb314ec2595d9a87e80a3ceb6ceffc8a865e5330bcb2e6d8b75ca9e49c4e"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/courses-readonly-capture.evidence.json",
+      "sha256": "da38a07fab7aa5cd7f09ccd203b8fb2091b29240002fe226595d4730829997d4"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/a3-5cb-versions-v2.evidence.json",
+      "sha256": "c5934b65aaa2d680da176d9b4edab124e06eeb05d85ff75012d87feb7edfd775"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/memory-inspect.evidence.json",
+      "sha256": "49e8843cc15978205c08cdcb21fef9f3524b06114afce7f014a79f30560631f2"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/sources-export.evidence.json",
+      "sha256": "5be345060c754360640f6e78ef8995bc642a44a6bdb0bb57cfc96ffae2020a93"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/sources-inspect.evidence.json",
+      "sha256": "50e1ce7e92012765a6525eb78111e392f106f8bb937577f6f143322404d51148"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/courses-before-capture.evidence.json",
+      "sha256": "bfe235a88362ead3632dd10b73eaeb83b310fb5dace8b56c18de0c9053ba73ed"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "64a8177c6dc24227c80c29d0447b8a4586ac80ba823d58e94b2e0aa0a63ad557"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/source.application.evidence.json",
+      "sha256": "7da69cbd7267c00d1aaa7e8d5f7afb01e2af97301617265ba106967139eebf0f"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-5cb/raw/tutor-sourceboard-capture.evidence.json",
+      "sha256": "10bce7906ca33c256dfe97bb2a08acb1dd2e6ad3ca43aaead0b39aba4ab1d94a"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/courses-before-capture.evidence.json",
+      "sha256": "1d7b60e92552d1df8ac73bd992509af14ba36ffe87ab66573fe8c9b27c93e270"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/courses-readonly-capture.evidence.json",
+      "sha256": "af30bcfcf560b3ab68ca11e8ac95f84390383be4577e471cf320be23b6d95831"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/tutor-sourceboard-capture.evidence.json",
+      "sha256": "9fdf538f5336066615ba97fd2b02688db09550cfddfe3e9eccab1d513bbbfb27"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/student-memory-reopen-capture.evidence.json",
+      "sha256": "67d2cb1eb0324f0e033faf1435b591ef1bdff3d7032c85c937a4e451428233fe"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/sources-inspect.evidence.json",
+      "sha256": "79c7e0aa9cb05964dc2231a74773064adcf5ddce8f2f43cdcce39c46724eb1ec"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/sources-export.evidence.json",
+      "sha256": "8be8358421272eefdddbea9086609a24653f1d0ed201ade018cab47e71c0ffda"
+    },
+    {
+      "kind": "browser",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/memory-inspect.evidence.json",
+      "sha256": "f7251bd83ef5440b968486004441beccb1cc987d61c500232bdcec93326fe05d"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/memory-export.evidence.json",
+      "sha256": "9281281dbd5a9e88d773856ecc5fb63f67f191994e47511b60dfe7d300fbe9d5"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/source.application.evidence.json",
+      "sha256": "c0b09b30c8cad0013cfb12e9488713c4e9cc631e61bd100199ee4d93ac2067de"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/source-session.application.evidence.json",
+      "sha256": "2f01d5c680d99551061f768d8fb6564a365601908a39d62b4001425e1ff638df"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/session.semantic.evidence.json",
+      "sha256": "5024b2843acff0b8614b0163302cb7eb67bdf3a640dbc1b8bb72c1d225d4a7a3"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/session.feature.evidence.json",
+      "sha256": "859bdaed35d6c3c60d5f75eea05badc91ffdb793eb6b43bd313930ecfab32c89"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/5cb-f438-versions.evidence.json",
+      "sha256": "f155f67f586de7d5f9754a7660e2c36c3a1e4cf236b646b39a193aae94a99555"
+    },
+    {
+      "kind": "comparison",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/courses.compare.v3.evidence.json",
+      "sha256": "b6fcd50b17fc89b988290badf83424a8e0fd0d68e28d1607849141eab292c0b8"
+    },
+    {
+      "kind": "structure",
+      "path": "artifacts/rea-evidence/successor-f4384eed/raw/runtime.reconcile.v4.evidence.json",
+      "sha256": "f559cb638f94ad1c14b13a719a86e877e1e26d0925459c10eb07fca693c8ab4d"
+    },
+    {
+      "kind": "contract",
+      "path": "artifacts/rea-evidence/successor-f4384eed/contracts/R6-f438-assimilation.md",
+      "sha256": "d56fa5df365a07c8b50d4b44236971c3939c82685c8dde8e12337cf58faedaa7"
+    },
+    {
+      "kind": "test",
+      "path": "artifacts/rea-evidence/successor-f4384eed/tests/R6-f438-tests.json",
+      "sha256": "5d6f4544466ec4bb24418c6a1e065088d64e2d231b5d2832fe25b3d5227c7d35"
+    }
+  ]
+}

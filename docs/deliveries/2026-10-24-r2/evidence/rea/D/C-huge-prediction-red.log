@@ -1,0 +1,69 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____ test_composable_scalar_huge_json_integer_is_validation_not_overflow ______
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-37/test_composable_scalar_huge_js0')
+
+    def test_composable_scalar_huge_json_integer_is_validation_not_overflow(tmp_path):
+        store,_,actor,*_=setup_store(tmp_path)
+        e=list_experiences(store,actor,'fluidi',format='composable')['experiences'][0];s=e['steps'][0]
+        with pytest.raises(StudyError) as error:
+>           submit(store,actor,'fluidi',s['activityId'],[],'Procedimento sintetico indipendente.','huge-scalar',
+                activity_parameters=s['parameters'],activity_evidence={'schemaVersion':2,'experienceRef':e['experienceRef'],
+                'stepId':s['id'],'prediction':{'kind':'scalar','value':10**1000,'unit':'Pa'},'supportUsed':[]})
+
+/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r2/rea/D/test_C_huge_prediction.py:12:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+packages/engine/lessonos/study/submissions.py:94: in submit
+    return transact(store,principal,'submission.received',key,payload,apply)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/transactions.py:40: in transact
+    return execute_command(store,principal,operation,key,payload,apply,receipt_recorded=event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/transactions.py:30: in execute_command
+    body=apply(c)
+         ^^^^^^^^
+packages/engine/lessonos/study/submissions.py:56: in apply
+    evidence=freeze_activity_evidence(store,principal,edition_id,activity_id,activity_parameters,activity_evidence,source_refs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/learning_experiences.py:205: in freeze_activity_evidence
+    return _freeze_composable_evidence(store, principal, edition_id, activity_id, parameters, evidence, source_refs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x106d58ad0>
+principal = Principal(id='student-01', role='student'), edition_id = 'fluidi'
+activity_id = 'hydrostatic-v1'
+parameters = {'density': 1000, 'g': 9.81, 'depth': 2, 'surfacePressure': 101325, ...}
+evidence = {'schemaVersion': 2, 'experienceRef': {'id': 'hydrostatic-reference-v1', 'version': 1, 'sha256': 'da8c78300b95c9ca4214...d': 'relative', 'prediction': {'kind': 'scalar', 'value': 100000000000000000...0000000000000000000, 'unit': 'Pa'}, ...}
+source_refs = []
+
+    def _freeze_composable_evidence(store, principal, edition_id, activity_id, parameters, evidence, source_refs):
+        invalid = StudyError('invalid_activity_evidence')
+        required = {'schemaVersion', 'experienceRef', 'stepId', 'prediction', 'supportUsed'}
+        if not required <= set(evidence) or set(evidence) - required - {'lessonPassageRef'}:
+            raise invalid
+        reference = evidence['experienceRef']
+        if (not isinstance(reference, dict) or set(reference) != {'id', 'version', 'sha256'}
+                or not isinstance(reference['id'], str) or type(reference['version']) is not int
+                or not isinstance(reference['sha256'], str)):
+            raise invalid
+        experience = next((item for item in list_experiences(store, principal, edition_id, format='composable')['experiences']
+                           if item['experienceRef'] == reference), None)
+        step = next((item for item in experience['steps'] if item['id'] == evidence['stepId']), None) if experience else None
+        if not step or step['activityId'] != activity_id or canonical(parameters) != canonical(step['parameters']):
+            raise invalid
+        prediction = evidence['prediction']
+        kind = step['prediction']['kind']
+        if kind == 'scalar':
+            if (not isinstance(prediction, dict) or set(prediction) != {'kind', 'value', 'unit'}
+                    or prediction['kind'] != 'scalar' or type(prediction['value']) not in (int, float)
+>                   or not math.isfinite(prediction['value']) or not isinstance(prediction['unit'], str)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    or not 1 <= len(prediction['unit'].strip()) <= 32):
+E                   OverflowError: int too large to convert to float
+
+packages/engine/lessonos/study/learning_experiences.py:287: OverflowError
+=========================== short test summary info ============================
+FAILED ../../../Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r2/rea/D/test_C_huge_prediction.py::test_composable_scalar_huge_json_integer_is_validation_not_overflow
+1 failed in 1.64s

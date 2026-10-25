@@ -1,0 +1,98 @@
+{
+  "schema": "ardesia.rea-alternative-decision/1",
+  "decisions": [
+    {
+      "mission": "R3",
+      "primary_target": "TARGET-021",
+      "primary_access": "Teachworks registration observed; internal scheduler not accessed; no trial activated",
+      "scope": "Course, four dates, capacity setting and assignment lifecycle, not a completed remote tutor review",
+      "selected_target": "TARGET-052",
+      "selected_name": "Moodle official sandbox",
+      "candidates": [
+        {
+          "name": "Moodle official demo",
+          "url": "https://sandbox.moodledemo.net/",
+          "target_id": "TARGET-052",
+          "scores_0_to_5": {
+            "functional_equivalence": 5,
+            "rea_observability": 5,
+            "license_transferability": 3,
+            "test_quality": 5,
+            "cost_risk": 5
+          },
+          "runtime_observed": true,
+          "license_transfer": "GPL3-or-later source inspected; no GPL code incorporated"
+        },
+        {
+          "name": "Frappe Learning",
+          "url": "https://github.com/frappe/lms",
+          "target_id": null,
+          "scores_0_to_5": {
+            "functional_equivalence": 5,
+            "rea_observability": 3,
+            "license_transferability": 3,
+            "test_quality": 3,
+            "cost_risk": 4
+          },
+          "runtime_observed": false,
+          "license_transfer": "AGPL3-or-later; documentation comparison only; no code copied"
+        }
+      ],
+      "reason": "Official public demo permitted original synthetic administration without creating an account or adding hosted infrastructure. Method-local enrollment cap was observed and deliberately not adopted as a global invariant.",
+      "evidence_report": "factory/rea/research/R3.md",
+      "evidence_report_sha256": "2d20d9b544bbf5acc018e978334d73d4a4e446a9d8c4f1bd7042349b9cedc689",
+      "status": "OBSERVED_FINAL_SHA_INTEGRATION_RECEIPT_PENDING"
+    },
+    {
+      "mission": "R8",
+      "primary_target": "TARGET-042",
+      "primary_access": "Normal public Passify route returned Internal Server Error; personal notebook was not observed",
+      "scope": "Incorrect numeric attempt, feedback, distinct parameter variant, new attempt; no competitor spaced-recall or persistent diary claim",
+      "selected_target": "TARGET-048",
+      "selected_name": "PrairieLearn public demo",
+      "candidates": [
+        {
+          "name": "PrairieLearn public demo",
+          "url": "https://www.prairielearn.com/",
+          "target_id": "TARGET-048",
+          "scores_0_to_5": {
+            "functional_equivalence": 4,
+            "rea_observability": 5,
+            "license_transferability": 3,
+            "test_quality": 5,
+            "cost_risk": 5
+          },
+          "runtime_observed": true,
+          "license_transfer": "Mixed repository licenses including AGPL client; only behavior adapted with original code"
+        },
+        {
+          "name": "Numbas embedded demo",
+          "url": "https://numbas.mathcentre.ac.uk/exam/1973/numbas-website-demo/embed/",
+          "target_id": "TARGET-047",
+          "scores_0_to_5": {
+            "functional_equivalence": 4,
+            "rea_observability": 2,
+            "license_transferability": 5,
+            "test_quality": 2,
+            "cost_risk": 5
+          },
+          "runtime_observed": false,
+          "license_transfer": "Apache2.0 source; captured iframe did not prove interactive feedback"
+        }
+      ],
+      "reason": "Actual anonymous Grade and New variant interactions were observable without a new account. The chosen workflow supplies distinct-attempt behavior; tutor verification, provenance and the permanent diary are original Core requirements.",
+      "evidence_report": "factory/rea/research/R8.md",
+      "evidence_report_sha256": "c3f2c1589bdb06cbb3da78eca6f96a49bd5ac2e7cd517193a24198186c394b7d",
+      "status": "OBSERVED_FINAL_SHA_INTEGRATION_RECEIPT_PENDING"
+    }
+  ],
+  "criteria": [
+    "functional_equivalence",
+    "rea_observability",
+    "license_transferability",
+    "test_quality",
+    "cost_risk"
+  ],
+  "min_per_functional_equivalence": 4,
+  "source": "A blocked target does not pass a gate; candidates must be real and authorized; scores evidence-based."
+}

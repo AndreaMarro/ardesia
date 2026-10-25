@@ -99,12 +99,16 @@ vi.mock("@excalidraw/excalidraw", () => {
 vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
 // Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
 let capturedOnInsert: ((latex: string) => void) | null = null
-vi.mock("../MathComposer", () => ({
+const composerModuleState = vi.hoisted(() => ({ loads: 0 }))
+vi.mock("../MathComposer", () => {
+  composerModuleState.loads += 1
+  return ({
   default: (props: { onInsert: (latex: string) => void }) => {
     capturedOnInsert = props.onInsert
     return "mock-math-composer"
   },
-}))
+  })
+})
 vi.mock("../latexToImage", () => ({ latexToImage: vi.fn() }))
 vi.mock("../loadFile", () => ({ imageToDataURL: vi.fn(), pdfToImages: vi.fn() }))
 vi.mock("../store/studentView", () => ({ isStudentView: vi.fn(() => false) }))
@@ -224,6 +228,21 @@ beforeEach(() => {
 })
 
 describe("Room ↔ WorkspaceStore integration", () => {
+  it("loads the formula editor only when the teacher explicitly opens it", async () => {
+    const { store } = await createMockStore()
+    const root = createRoot(document.getElementById("root")!)
+    try {
+      const RoomModule = await import("../Room")
+      expect(composerModuleState.loads).toBe(0)
+      root.render(<RoomModule.default store={store} />)
+      await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+      expect(composerModuleState.loads).toBe(0)
+      Array.from(document.querySelectorAll("button")).find((button) => button.textContent?.trim() === "formula")!.click()
+      await vi.waitFor(() => expect(document.body.textContent).toContain("mock-math-composer"))
+      expect(composerModuleState.loads).toBe(1)
+      expect(capturedOnInsert).toBeTypeOf("function")
+    } finally { root.unmount() }
+  })
   it("chiama store.init() e store.loadScene() al mount", async () => {
     const { store } = await createMockStore()
     const initSpy = vi.spyOn(store, "init")
@@ -3212,8 +3231,8 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
   })
 })
 
-describe("Founder Beta: audio fuori perimetro", () => {
-  it("non espone alcuna azione capace di chiedere il permesso microfono", async () => {
+describe("AUDIO-V2: il docente controlla la cattura", () => {
+  it("espone avvio esplicito senza chiedere il microfono al montaggio", async () => {
     const getUserMedia = vi.fn()
     vi.stubGlobal("navigator", { ...navigator, mediaDevices: { getUserMedia } })
     const { store } = await createMockStore()
@@ -3226,9 +3245,14 @@ describe("Founder Beta: audio fuori perimetro", () => {
       expect(document.body.textContent).toContain("mock-excalidraw")
     }, { timeout: 5000, interval: 10 })
 
+    expect(getUserMedia).not.toHaveBeenCalled()
+    const passageTrigger = document.querySelector<HTMLButtonElement>('button[aria-controls="lesson-passage-panel"]')
+    expect(passageTrigger).not.toBeNull()
+    passageTrigger!.click()
+    await vi.waitFor(() => expect(document.querySelector('#lesson-passage-panel')).not.toBeNull())
     expect(Array.from(document.querySelectorAll("button")).some(
-      (button) => button.textContent?.trim() === "audio",
-    )).toBe(false)
+      (button) => button.textContent?.trim() === "Registra audio",
+    )).toBe(true)
     expect(getUserMedia).not.toHaveBeenCalled()
 
     vi.unstubAllGlobals()

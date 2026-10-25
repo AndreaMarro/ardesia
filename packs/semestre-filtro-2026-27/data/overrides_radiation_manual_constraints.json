@@ -1,0 +1,200 @@
+[
+  {
+    "modelId": "U7-beer-transmitted-intensity",
+    "serial": 15,
+    "reasoningTask": "attenuazione_due_percorsi_e_media_areale",
+    "objective": "attenuazione due percorsi e media areale",
+    "prompt": "Un fascio uniforme di intensità 64 mW/m² attraversa una lastra dello stesso materiale, con μ = ln2 cm⁻¹. Metà dell’area del fascio attraversa uno spessore d, l’altra metà uno spessore d + 1 cm. Un rivelatore che raccoglie tutta l’area misura intensità media trasmessa di 6 mW/m². Trascurando riflessione e mescolamento laterale, quanto vale d in cm?",
+    "answer": {
+      "kind": "rational",
+      "exact": "3",
+      "unit": "cm"
+    },
+    "options": [
+      "3 cm",
+      "2 cm",
+      "4 cm",
+      "6 cm",
+      "1 cm"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono i dati e le condizioni esplicitati nel testo."
+    ],
+    "law": "I_media = [64·2^(−d)+64·2^(−d−1)]/2 = 48·2^(−d)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "I due tratti della lastra sono affiancati: il fascio si divide in due porzioni di area uguale e non attraversa i due spessori in successione. Ogni porzione subisce quindi la propria attenuazione di Lambert-Beer. Il centimetro aggiuntivo della seconda metà dimezza ulteriormente l’intensità che sarebbe stata trasmessa attraverso il solo spessore d. Il rivelatore raccoglie potenza da entrambe le metà e la divide per l’area totale, perciò misura una media aritmetica delle due intensità. Il ragionamento richiede di distinguere attenuazione lungo un percorso e combinazione di percorsi affiancati. La funzione risultante diminuisce strettamente con d, quindi il valore trovato è unico: non si sta risolvendo una relazione non monotona con una radice scelta arbitrariamente.",
+    "steps": [
+      {
+        "title": "Calcolare la prima metà",
+        "explanation": "Ogni centimetro dimezza l’intensità. Dopo d centimetri l’intensità nella prima metà è il valore iniziale diviso per 2^d.",
+        "math": "I₁ = 64·2^(−d)"
+      },
+      {
+        "title": "Usare il centimetro aggiuntivo",
+        "explanation": "La seconda metà ha un centimetro in più dello stesso materiale, quindi la sua intensità è metà della prima.",
+        "math": "I₂ = 64·2^(−d−1) = 32·2^(−d)"
+      },
+      {
+        "title": "Imporre la media corretta",
+        "explanation": "Le aree sono uguali, quindi ciascuna intensità pesa metà nel risultato. Si sommano i due contributi prima di dividere per due.",
+        "math": "6 = (I₁+I₂)/2 = 48·2^(−d)"
+      },
+      {
+        "title": "Riconoscere la potenza di due",
+        "explanation": "Dall’equazione segue 2^d = 48/6 = 8. Poiché 8 = 2³, lo spessore cercato è tre centimetri.",
+        "math": "d = 3 cm"
+      },
+      {
+        "title": "Verificare entrambi i percorsi",
+        "explanation": "Tre centimetri trasmettono 64/8 = 8 mW/m² e quattro centimetri trasmettono 64/16 = 4 mW/m². La loro media è (8+4)/2 = 6 mW/m², esattamente il dato.",
+        "math": "(8+4)/2 = 6"
+      }
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "48*2**(-3)-6",
+        "residual": "0"
+      },
+      {
+        "kind": "uniqueness",
+        "evidence": "48*2**(-d) is strictly decreasing for real d; direct inverse d=log2(8)=3."
+      }
+    ]
+  },
+  {
+    "modelId": "U7-radioactive-survivors",
+    "serial": 15,
+    "reasoningTask": "ricavare_emivita_e_popolazione_iniziale",
+    "objective": "ricavare emivita e popolazione iniziale",
+    "prompt": "Un campione contiene un solo radionuclide di emivita sconosciuta e non riceve nuovi nuclei. Dopo 1 h contiene in media 48 milioni di nuclei genitori; dopo 3 h ne contiene 12 milioni. La legge di decadimento è esponenziale. Quanti milioni di nuclei genitori erano presenti all’istante iniziale t = 0?",
+    "answer": {
+      "kind": "rational",
+      "exact": "96",
+      "unit": "10⁶ nuclei"
+    },
+    "options": [
+      "96 milioni",
+      "48 milioni",
+      "72 milioni",
+      "192 milioni",
+      "24 milioni"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono i dati e le condizioni esplicitati nel testo."
+    ],
+    "law": "N(t) = N₀ 2^(−t/T½); N(3)/N(1) = 2^(−2/T½)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Le due misure non forniscono direttamente la popolazione iniziale, perché entrambe sono successive all’istante zero. Prima si deve usare il rapporto fra le popolazioni per ricavare il ritmo del decadimento. Una riduzione a un quarto corrisponde a due dimezzamenti. L’intervallo fra le misure è di due ore, quindi ciascun dimezzamento richiede un’ora. Solo dopo aver determinato l’emivita si può risalire dalla prima misura alla popolazione presente un’ora prima. L’esponenziale ha qui una dipendenza monotona e il confronto avviene tramite potenze esatte di due; non compaiono equazioni nelle quali la stessa variabile moltiplica anche il proprio esponenziale. Il risultato è un valore medio della popolazione, coerente con la natura statistica del decadimento.",
+    "steps": [
+      {
+        "title": "Confrontare le due popolazioni",
+        "explanation": "Il secondo conteggio è un quarto del primo: 12/48 = 1/4. Due dimezzamenti consecutivi producono proprio un quarto.",
+        "math": "N(3 h)/N(1 h) = 1/4 = 2⁻²"
+      },
+      {
+        "title": "Usare l’intervallo fra le misure",
+        "explanation": "Fra 1 h e 3 h trascorrono due ore, non tre. In quelle due ore avvengono due emivite.",
+        "math": "T½ = (3−1) h / 2 = 1 h"
+      },
+      {
+        "title": "Tornare all’istante iniziale",
+        "explanation": "La misura di 48 milioni avviene un’emivita dopo l’inizio. Tornando indietro di un’emivita il numero va raddoppiato.",
+        "math": "N₀ = 2·48 = 96 milioni"
+      },
+      {
+        "title": "Controllare entrambe le osservazioni",
+        "explanation": "Con N₀ = 96 milioni ed emivita di un’ora, dopo un’ora rimangono 48 milioni e dopo tre ore 96/8 = 12 milioni. Entrambi i dati sono riprodotti.",
+        "math": "96/2 = 48; 96/2³ = 12"
+      }
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "96/2-48",
+        "residual": "0"
+      },
+      {
+        "kind": "independent_substitution",
+        "expression": "96/2**3-12",
+        "residual": "0"
+      }
+    ]
+  },
+  {
+    "modelId": "U7-infer-attenuation-coefficient",
+    "serial": 15,
+    "reasoningTask": "attenuazione_con_fondo_costante_da_tre_spessori",
+    "objective": "attenuazione con fondo costante da tre spessori",
+    "prompt": "Un rivelatore legge S(d) = I₀e^(−μd) + B, dove I₀ e il fondo B sono costanti ignoti. I coefficienti di taratura sono già coerenti e tutte le letture hanno la stessa unità. Per spessori d = 1, 2, 3 cm si leggono rispettivamente 24, 16, 12. Qual è a = μ/(ln2), espresso in cm⁻¹?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1",
+      "unit": "cm⁻¹"
+    },
+    "options": [
+      "1 cm⁻¹",
+      "2 cm⁻¹",
+      "1/2 cm⁻¹",
+      "3 cm⁻¹",
+      "4 cm⁻¹"
+    ],
+    "correctIndex": 0,
+    "standalone": true,
+    "context": "",
+    "assumptions": [
+      "Valgono i dati e le condizioni esplicitati nel testo."
+    ],
+    "law": "r = [S(2)−S(3)]/[S(1)−S(2)] = e^(−μ·1 cm)",
+    "derivation": [],
+    "traps": [],
+    "explanation": "Le letture comprendono un fondo costante oltre alla radiazione trasmessa. Fare direttamente il rapporto fra letture consecutive non eliminerebbe questo termine e non darebbe la vera attenuazione. Le differenze fra letture, invece, cancellano il fondo. Poiché gli spessori crescono ogni volta dello stesso centimetro, la componente fisica viene moltiplicata a ogni passaggio per lo stesso fattore r = e^(−μ·1 cm). Anche le differenze consecutive hanno quindi rapporto r. Il metodo usa tre misure per separare un decadimento esponenziale da un contributo additivo costante. Tutti i rapporti risultano semplici e il coefficiente viene riconosciuto mediante un dimezzamento, senza approssimare logaritmi.",
+    "steps": [
+      {
+        "title": "Eliminare il fondo",
+        "explanation": "Si sottraggono le letture consecutive. Il medesimo B compare in entrambe e si cancella. Le due differenze sono 8 e 4.",
+        "math": "D₁ = 24−16 = 8; D₂ = 16−12 = 4"
+      },
+      {
+        "title": "Scrivere il fattore di un centimetro",
+        "explanation": "Ponendo r = e^(−μ·1 cm), le componenti trasmesse a 1, 2, 3 cm sono I₀r, I₀r², I₀r³.",
+        "math": "D₁ = I₀r(1−r); D₂ = I₀r²(1−r)"
+      },
+      {
+        "title": "Ricavare il rapporto indipendente dal fondo",
+        "explanation": "Il rapporto D₂/D₁ cancella I₀ e il fattore 1−r. Resta r = 4/8 = 1/2.",
+        "math": "r = D₂/D₁ = 1/2"
+      },
+      {
+        "title": "Tradurre il dimezzamento nel coefficiente",
+        "explanation": "Se un centimetro introduce il fattore 1/2, allora μ·1 cm = ln2. Pertanto μ = ln2 cm⁻¹ e a = μ/(ln2) = 1 cm⁻¹.",
+        "math": "a = 1 cm⁻¹"
+      },
+      {
+        "title": "Ricostruire un controllo completo",
+        "explanation": "Con r = 1/2, dalla differenza 8 = I₀(1/2)(1/2) si trova I₀ = 32. Poi B = 24−32/2 = 8. Le tre letture diventano 16+8, 8+8 e 4+8: 24,16,12.",
+        "math": "I₀ = 32; B = 8"
+      }
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "(16-12)/(24-16)-1/2",
+        "residual": "0"
+      },
+      {
+        "kind": "independent_substitution",
+        "expression": "32/2**3+8-12",
+        "residual": "0"
+      }
+    ]
+  }
+]

@@ -1,0 +1,415 @@
+[
+  {
+    "receiptId": "39e9edcd0808463d834d47a645003a7f",
+    "submissionId": "5821c29e693a43f58e3e127666e19de8",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857553.123188,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v2",
+      "stepId": "fixed-pressure",
+      "prediction": {
+        "ratio": 16,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": "RF-06",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 16,
+        "fixedQuantity": "pressure",
+        "calculatedVariable": "Q/Q0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 16,
+          "pressureRatio": 1,
+          "meanSpeedRatio": 4
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "a2ed5ea256224a7cbdb3d2990780c89f",
+    "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857553.23422,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v2",
+      "stepId": "fixed-flow",
+      "prediction": {
+        "ratio": 16,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": null,
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 0.0625,
+        "fixedQuantity": "flow",
+        "calculatedVariable": "Δp/Δp0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 1,
+          "pressureRatio": 0.0625,
+          "meanSpeedRatio": 0.25
+        }
+      },
+      "check": {
+        "ratioMatches": false,
+        "constraintMatches": false
+      }
+    }
+  },
+  {
+    "receiptId": "dd406cbbac9f495aa41206fe9564c3e5",
+    "submissionId": "aae765f5131e4b66b69ffcd4db3b298f",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 2,
+    "parentId": "d7cb933535af4ffcb74bba43eca5653b",
+    "receivedAt": 1792857556.671478,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v2",
+      "stepId": "fixed-flow",
+      "prediction": {
+        "ratio": 0.0625,
+        "fixedQuantity": "flow"
+      },
+      "supportUsed": [
+        "lesson-passage",
+        "model-result"
+      ],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": null,
+      "assistance": "SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 0.0625,
+        "fixedQuantity": "flow",
+        "calculatedVariable": "Δp/Δp0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 1,
+          "pressureRatio": 0.0625,
+          "meanSpeedRatio": 0.25
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "3f334d98b90a4ca7907eff37002d1890",
+    "submissionId": "2bc932ed0d5541aab33015cbe1b5c30d",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857556.768179,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 2,
+        "boundary": "flow"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-boundary-v2",
+      "stepId": "transfer",
+      "prediction": {
+        "ratio": 4,
+        "fixedQuantity": "flow"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": null,
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 4,
+        "fixedQuantity": "flow",
+        "calculatedVariable": "Δp/Δp0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 1,
+          "pressureRatio": 4,
+          "meanSpeedRatio": 1
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "23c8b16b5d2b4c08941bbd355f9a4f6f",
+    "submissionId": "59d8bd1090d644948dca201da518f2ad",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857557.118557,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 1.2,
+        "boundary": "pressure"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-nearby-v2",
+      "stepId": "fixed-pressure",
+      "prediction": {
+        "ratio": 2.0736,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": "RF-02",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 2.0736,
+        "fixedQuantity": "pressure",
+        "calculatedVariable": "Q/Q0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 2.0736,
+          "pressureRatio": 1,
+          "meanSpeedRatio": 1.44
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "7f7c387762d34954a5b65cb2e41b6bf9",
+    "submissionId": "f8f2d8c72ca54124b2df7eba52295f5e",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857557.218274,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 1.25,
+        "boundary": "flow"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-nearby-v2",
+      "stepId": "fixed-flow",
+      "prediction": {
+        "ratio": 0.4096,
+        "fixedQuantity": "flow"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": "RF-03",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 0.4096,
+        "fixedQuantity": "flow",
+        "calculatedVariable": "Δp/Δp0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 1,
+          "pressureRatio": 0.4096,
+          "meanSpeedRatio": 0.64
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  },
+  {
+    "receiptId": "f450697d5dac4fbd973024100f5e03a6",
+    "submissionId": "bcb90aea5db84213a576ac0ae6c3b572",
+    "studentId": "student-02",
+    "activityId": "poiseuille-v1",
+    "revision": 1,
+    "parentId": null,
+    "receivedAt": 1792857557.3014662,
+    "state": "received",
+    "courseContext": {
+      "courseId": "fisica-fluidi",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f",
+      "modelId": "poiseuille-v1",
+      "modelVersion": 1,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 0.5,
+        "boundary": "pressure"
+      }
+    },
+    "activityEvidence": {
+      "schemaVersion": 1,
+      "experienceId": "poiseuille-nearby-v2",
+      "stepId": "transfer",
+      "prediction": {
+        "ratio": 1,
+        "fixedQuantity": "pressure"
+      },
+      "supportUsed": [],
+      "lessonPassageRef": {
+        "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+        "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+      },
+      "exerciseRef": null,
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "assistanceScope": "Aiuti richiesti dichiarati dal client e risultati precedenti disponibili nel servizio; aiuti esterni non osservati.",
+      "result": {
+        "activityId": "poiseuille-v1",
+        "version": 1,
+        "ratio": 1,
+        "fixedQuantity": "pressure",
+        "calculatedVariable": "Q/Q0",
+        "domain": "Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.",
+        "editorialStatus": "DRAFT",
+        "numericalCheck": "deterministic",
+        "visual": {
+          "flowRatio": 1,
+          "pressureRatio": 1,
+          "meanSpeedRatio": 1
+        }
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      }
+    }
+  }
+]

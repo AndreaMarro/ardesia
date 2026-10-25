@@ -1,0 +1,14 @@
+Il gate REA originale è PASS sul candidato `2a6548797e300e465abb554c949db740521b8352`: sei ricevute, schema e condizioni invariati,176 file originali copiati con verifica hash in artifact privati ignorati da Git. Tutte le ricevute dichiarano copertura parziale e limiti osservati. Il dataset didattico è sintetico; `synthetic:false` attesta l’esecuzione reale REA.
+
+| Missione | Comportamento o difetto | Metodo |
+| --- | --- | --- |
+| R0 | Distinguere la ripresa portabile in lettura dal vecchio journal evita di dichiarare ricostruite sessioni o contenuti non rappresentati. | Confronto del baseline reale con il nuovo Classroom; export e riapertura reali, hash e limiti espliciti. |
+| R1 | Identità indipendenti delle viste e pin esatti impediscono che duplicare una vista duplichi l’originale o lo sostituisca con la head corrente. | REA AFFiNE e scenario SourceBoard finale: due viste, geometria indipendente, CAS, refresh esplicito e conservazione dei riferimenti. |
+| R2 | La previsione registrata e la ricevuta congelata impediscono che una modifica successiva dei parametri sia presentata come il tentativo già consegnato. | Donor Doenet osservato; test finali di commit, invalidazione del risultato e ricevute esatte. Nessuna misura del tempo risparmiato. |
+| R3 | Capienza globale dell’edizione e serializzazione dell’ultimo posto impediscono l’undicesima iscrizione nel perimetro verificato. | Distinzione dal limite per metodo di Moodle; gara HTTP finale indipendente con esiti409/200, dieci confermati, due in attesa. I gap legacy restano aperti. |
+| R8 | Una risposta numerica corretta o una vecchia prova riutilizzata non chiudono automaticamente un errore: serve evidenza distinta e review del tutor. | Scenario esterno errore/nuovo tentativo; regressioni su riuso, ricorrenza, assegnazione e autorizzazioni, più percorso browser reale. |
+| R6 | I sei difetti riprodotti su consumer, revisioni storiche, budget e Unicode sono corretti nel candidato, senza attribuire autenticità canonica a file non firmati. | Witness RED conservati; test418, browser, cinque confini Unicode, V1/V2 consegnate con V3 privata e apertura reale del nuovo export da79.756.209byte. Confronti REA parziali e UNKNOWN conservati. |
+
+Tempo risparmiato: UNKNOWN in ogni ricevuta. Non sono misurati risparmi economici o equivalenza globale tra applicazioni. R3 conserva i gap del gestionale tutor e delle prenotazioni legacy; R6 conserva eventi non catturati, disallineamenti di contesto e fatti strutturali UNKNOWN. L’export grande finale è un nuovo artifact di 79.756.209 byte, non il file storico eliminato.
+
+Audit di 85 criteri originali invariati: 49 PROVED_SCOPED, 26 PARTIAL, 6 NOT_RUN, 4 BLOCKED. G0 non certificato e lancio disabilitato. Vercel resta sul fallback locale approvato; restore completo, approvazioni umane e checkpoint futuro rimangono aperti. Il PASS del gate REA non supera questi controlli.

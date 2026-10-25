@@ -1,0 +1,118 @@
+{
+  "browser": {
+    "mode": "launch",
+    "headless": true,
+    "executable_path": "/Users/andreamarro/Library/Caches/ms-playwright/chromium-1223/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5442/esperienza/?percorso=fluidi-termodinamica"
+  },
+  "environment": {
+    "viewport": {
+      "width": 360,
+      "height": 1000
+    },
+    "locale": "it-IT",
+    "reduced_motion": "reduce"
+  },
+  "actions": [
+    {
+      "step_id": "open-hydrostatic",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Pressione e profondit\u00e0"
+      }
+    },
+    {
+      "step_id": "enter-first-prediction",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "19620"
+      }
+    },
+    {
+      "step_id": "reveal-first-result",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "first-transfer",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Cambia fluido: una nuova prova"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "enter-transfer-prediction",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "23544"
+      }
+    },
+    {
+      "step_id": "reveal-transfer-result",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "second-transfer-unchanged",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Cambia fluido: una nuova prova"
+      },
+      "key": "Enter"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "url",
+      "dom",
+      "accessibility",
+      "screenshot"
+    ],
+    "at_end": [
+      "url",
+      "screenshot",
+      "dom"
+    ],
+    "events": [
+      "console",
+      "page-errors",
+      "network"
+    ],
+    "network": {
+      "request_body": false,
+      "response_body": false,
+      "header_values": false
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "status": "FAIL",
+  "startedAt": "2026-10-24T08:40:17.826Z",
+  "baseURL": "http://127.0.0.1:5197",
+  "browserPath": "/workspace/scratch/6f2994042c33/research/rea-lab/browser-bin/chromium",
+  "baseline": "339ab08f4139da0b37e78bbde81e9fe4e83afea0 + uncommitted replay fix",
+  "syntheticDataOnly": true,
+  "storage": "isolated browser localStorage fallback; not FSA or remote persistence",
+  "fallbackReason": "Browser access requires originating browser context; task explicitly permits Playwright fallback",
+  "flow": "Room A UI drawing -> canonical journal flush -> replay A -> Room B UI drawing -> replay B -> cold reopen A -> empty room with flat legacy distractor -> mobile replay",
+  "console": [
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "MathLive 0.110.0: The math fonts could not be loaded from \"https://unpkg.com/mathlive/fonts\" {cause: NetworkError: A network error occurred.}"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    },
+    {
+      "label": "desktop",
+      "type": "pageerror",
+      "text": "EventEnvelope v2: payload.element.customData contains a non-JSON value of type undefined"
+    },
+    {
+      "label": "desktop",
+      "type": "warning",
+      "text": "%s\n\n%s\n An error occurred in the <_App> component. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+    },
+    {
+      "label": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    }
+  ],
+  "checks": [
+    {
+      "label": "audit-replay-a-edit",
+      "pageIdentity": true,
+      "nonblank": true,
+      "noFrameworkOverlay": true,
+      "title": "Ardesia · studio",
+      "url": "http://127.0.0.1:5197/#audit-replay-a"
+    }
+  ],
+  "rooms": {},
+  "screenshots": [
+    "/workspace/scratch/6f2994042c33/research/replay-browser/failure.png"
+  ],
+  "limitations": [
+    "Replay route is reached by deep link, not by a claimed visible navigation control.",
+    "No real microphone, audio capture, semantic association, server auth or FSA is tested.",
+    "Synthetic fixture generation/inspection uses the existing DEV harness; drawing uses real mouse and keyboard."
+  ],
+  "chromiumVersion": "153.0.8010.0",
+  "failure": {
+    "message": "page.waitForFunction: Timeout 10000ms exceeded.",
+    "stack": "page.waitForFunction: Timeout 10000ms exceeded.\n    at makeRoom (/workspace/scratch/6f2994042c33/research/studio-replay-browser.cjs:66:14)\n    at async /workspace/scratch/6f2994042c33/research/studio-replay-browser.cjs:129:15"
+  },
+  "failureBody": "Ardesia\nSTUDIO\naudit-replay-a\ndai un nome\nsolo in questo browser —\nscegli cartella…\nLezione\nContinuità\nMateriali\nformula\nmedia\nsim\nlezioni\nArdesia\nSTUDIO\nLa lavagna che ricorda la tua lezione\n\nTutto quello che scrivi si salva da solo, qui sul tuo computer.\n\nPer le formule premi «formula», per slide e immagini «media».\n\nIl simulatore integrato è l'unico plugin disponibile in questa beta.\n\nScegli una penna e inizia\n\nPer spostare la tela, tieni premuta la rotellina del mouse o la barra spaziatrice mentre trascini oppure usa lo strumento mano\nForme\n1\n2\n3\n4\n5\n6\n7\n8\n0\nLibreria\nAzioni sulla Tela\n100%",
+  "finishedAt": "2026-10-24T08:40:29.524Z"
+}

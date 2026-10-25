@@ -1,0 +1,280 @@
+{
+  "schema": "ardesia.r1-private-ui-ledger.v1",
+  "commit": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+  "runtime": "v22.14.0",
+  "origin": "http://127.0.0.1:5417",
+  "synthetic": true,
+  "singleContinuousGreenRun": false,
+  "learningJourneyVerified": true,
+  "workspaceRefreshAtThisCommit": "MANUAL_RELOAD_REQUIRED",
+  "refreshDelta": "PENDING_SEPARATE_COMMIT",
+  "remoteBeta": "NOT_RUN",
+  "launchAllowed": false,
+  "scientificHumanApproval": "NOT_ATTESTED",
+  "artifact": {
+    "commit": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+    "manifestSha256": "ea3b747337f83a7a4b99de4082a883826f42f12579ce62e5db881f9c5feaa853",
+    "sourceTreeSha256": "f5af01464d4e0c5afd22947513bbc8abb262846f6ff8782bd92a3d5349ba0f6e",
+    "assetCount": 758
+  },
+  "studentActor": "student-02",
+  "sourceRef": {
+    "resourceId": "7fdcd657b7ef4ad69b3fc9ccae1086e1",
+    "revisionId": "3f976ba5b1b147709320433cd1064b9c"
+  },
+  "diaryThreadId": "7095abfef8f5426db38f7d8a81283ec7",
+  "segments": [
+    {
+      "path": "run-final-c762e30",
+      "resultSha256": "f80511fee19599bf3c4e78fd0bf25b32d78624b694ae209cc855d4494826f7d6",
+      "passed": false,
+      "reason": "Harness Materiali locator; no student submission"
+    },
+    {
+      "path": "run-final-c762e30-2",
+      "resultSha256": "5592d62a56595a584b04f86089f0ef3e00270b222d18ab4d70be156c297e6b12",
+      "passed": false,
+      "reason": "Harness error-state heading locator; student01 partial receipts excluded"
+    },
+    {
+      "path": "run-final-c762e30-3",
+      "resultSha256": "bcb5edf8aaf72a818cec7e9a432cb9ce2a135d689e0909c948454c455775b432",
+      "passed": false,
+      "reason": "Seven student02 A/B predictions, audio/source/visual proof; tutor workspace refresh finding"
+    },
+    {
+      "path": "run-review-c762e30",
+      "resultSha256": "d02efeefa85c62608cae7c95fa66023805618831abec3fc900b96d5c1611c592",
+      "passed": false,
+      "reason": "Persisted feedback and observation; harness compared additional contextId"
+    },
+    {
+      "path": "run-diary-c762e30",
+      "resultSha256": "bf08915477df6f89342fe3a70bf27c4b827e070ed671fb5e59724110a3a7d1e2",
+      "passed": true,
+      "reason": "Existing thread completed with explicit reload and human verification"
+    }
+  ],
+  "predictions": [
+    {
+      "receiptId": "39e9edcd0808463d834d47a645003a7f",
+      "submissionId": "5821c29e693a43f58e3e127666e19de8",
+      "experience": "poiseuille-boundary-v2",
+      "step": "fixed-pressure",
+      "ratio": 16,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      },
+      "visual": {
+        "flowRatio": 16,
+        "pressureRatio": 1,
+        "meanSpeedRatio": 4
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    },
+    {
+      "receiptId": "a2ed5ea256224a7cbdb3d2990780c89f",
+      "submissionId": "d7cb933535af4ffcb74bba43eca5653b",
+      "experience": "poiseuille-boundary-v2",
+      "step": "fixed-flow",
+      "ratio": 0.0625,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      },
+      "visual": {
+        "flowRatio": 1,
+        "pressureRatio": 0.0625,
+        "meanSpeedRatio": 0.25
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    },
+    {
+      "receiptId": "dd406cbbac9f495aa41206fe9564c3e5",
+      "submissionId": "aae765f5131e4b66b69ffcd4db3b298f",
+      "experience": "poiseuille-boundary-v2",
+      "step": "fixed-flow",
+      "ratio": 0.0625,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      },
+      "visual": {
+        "flowRatio": 1,
+        "pressureRatio": 0.0625,
+        "meanSpeedRatio": 0.25
+      },
+      "assistance": "SUPPORT_REQUESTED",
+      "supportUsed": [
+        "lesson-passage",
+        "model-result"
+      ]
+    },
+    {
+      "receiptId": "3f334d98b90a4ca7907eff37002d1890",
+      "submissionId": "2bc932ed0d5541aab33015cbe1b5c30d",
+      "experience": "poiseuille-boundary-v2",
+      "step": "transfer",
+      "ratio": 4,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 2,
+        "boundary": "flow"
+      },
+      "visual": {
+        "flowRatio": 1,
+        "pressureRatio": 4,
+        "meanSpeedRatio": 1
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    },
+    {
+      "receiptId": "23c8b16b5d2b4c08941bbd355f9a4f6f",
+      "submissionId": "59d8bd1090d644948dca201da518f2ad",
+      "experience": "poiseuille-nearby-v2",
+      "step": "fixed-pressure",
+      "ratio": 2.0736,
+      "parameters": {
+        "radiusRatio": 1.2,
+        "boundary": "pressure"
+      },
+      "visual": {
+        "flowRatio": 2.0736,
+        "pressureRatio": 1,
+        "meanSpeedRatio": 1.44
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    },
+    {
+      "receiptId": "7f7c387762d34954a5b65cb2e41b6bf9",
+      "submissionId": "f8f2d8c72ca54124b2df7eba52295f5e",
+      "experience": "poiseuille-nearby-v2",
+      "step": "fixed-flow",
+      "ratio": 0.4096,
+      "parameters": {
+        "radiusRatio": 1.25,
+        "boundary": "flow"
+      },
+      "visual": {
+        "flowRatio": 1,
+        "pressureRatio": 0.4096,
+        "meanSpeedRatio": 0.64
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    },
+    {
+      "receiptId": "f450697d5dac4fbd973024100f5e03a6",
+      "submissionId": "bcb90aea5db84213a576ac0ae6c3b572",
+      "experience": "poiseuille-nearby-v2",
+      "step": "transfer",
+      "ratio": 1,
+      "parameters": {
+        "radiusRatio": 1,
+        "viscosity": 2,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "visual": {
+        "flowRatio": 1,
+        "pressureRatio": 1,
+        "meanSpeedRatio": 1
+      },
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "supportUsed": []
+    }
+  ],
+  "consoleAndNetwork": {
+    "main": {
+      "errors": [],
+      "failedRequests": [],
+      "console": []
+    },
+    "diary": {
+      "errors": [],
+      "failedRequests": [],
+      "console": []
+    }
+  },
+  "fontResponsesObserved": 17,
+  "screenshots": [
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "teacher-native-replay-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-a-before-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-exact-source-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "fresh-context-no-local-media-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "fresh-context-imported-replay-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-a-transfer-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-a-transfer-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-b-compensation-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-final-c762e30-3",
+      "name": "student-b-compensation-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "segment": "run-diary-c762e30",
+      "name": "teacher-diary-confirmed-1440.png",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "segment": "run-diary-c762e30",
+      "name": "student-diary-practising-390.png",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "segment": "run-diary-c762e30",
+      "name": "teacher-human-verification-1440.png",
+      "width": 1440,
+      "overflow": false
+    }
+  ]
+}

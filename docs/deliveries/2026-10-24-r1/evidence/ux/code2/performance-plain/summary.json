@@ -1,0 +1,144 @@
+{
+  "status": "PASS",
+  "label": "code2-plain",
+  "origin": "http://127.0.0.1:5416",
+  "artifact": "/private/tmp/ardesia-r1-marketing-release",
+  "manifestSha": "d34b3c364de8aff829a365a77e09a14f0f5e36fee2b2ffefbd74d193cbac80d1",
+  "sourceManifestSha": "c2b98ea25fc98e6de45f4f271cd5a5a5475daba0bc4c7bfe2a12924a41b81916",
+  "node": "v26.5.1",
+  "browser": "148.0.7778.96",
+  "host": {
+    "loadAverage": [
+      18.89208984375,
+      15.14892578125,
+      14.76123046875
+    ],
+    "cpuCount": 8
+  },
+  "checks": [
+    {
+      "name": "390/0/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/0/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/0/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "candidate manifest unchanged",
+      "pass": true
+    },
+    {
+      "name": "source manifest unchanged",
+      "pass": true
+    }
+  ],
+  "summaries": [
+    {
+      "width": 390,
+      "profile": "plain-loopback",
+      "samples": 3,
+      "domContentLoadedMs": 18.100000008940697,
+      "loadMs": 18.100000008940697,
+      "visibleFontsTwoFramesMs": 60.80000001192093,
+      "evaluateToTwoFramesMs": 40.6000000089407,
+      "radiusToTwoFramesMs": 19.900000005960464,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3801892,
+      "taskDeltaMs": 48.891999999999996
+    },
+    {
+      "width": 1440,
+      "profile": "plain-loopback",
+      "samples": 3,
+      "domContentLoadedMs": 17.900000005960464,
+      "loadMs": 18.400000005960464,
+      "visibleFontsTwoFramesMs": 61.20000000298023,
+      "evaluateToTwoFramesMs": 39.70000000298023,
+      "radiusToTwoFramesMs": 20.200000002980232,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3781768,
+      "taskDeltaMs": 46.831
+    }
+  ],
+  "configuredProfiles": [
+    {
+      "name": "plain-loopback",
+      "cpu": 1,
+      "network": null
+    }
+  ],
+  "limits": "Shared host. Three new anonymous contexts per width/configured profile with cache disabled; OS/JIT/filesystem caches not reset. See configuredProfiles and each raw row for the exact throttle actually applied; no physical mobile/field INP/fps. Event-to-two-rAF proxy includes two frames and is not INP. CDP task/script/layout duration and JS heap are observed browser metrics, not OS CPU percent or a leak diagnosis. Fontready is current font set. Completed resource bytes differ from full artifact. No private API, token, user data, microphone, external model, contact submission or deploy."
+}

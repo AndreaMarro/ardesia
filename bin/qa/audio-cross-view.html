@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="UTF-8"><title>Ardesia synthetic audio boundary probe</title></head><body>
+<script type="module">
+import {WorkspaceStore} from '/@fs__STUDIO_FS_PATH__/src/store/WorkspaceStore.ts';
+import {JournalRecorder} from '/@fs__STUDIO_FS_PATH__/src/store/JournalRecorder.ts';
+import {SessionAudioRecorder,revokeStoredAudioSession} from '/@fs__STUDIO_FS_PATH__/src/store/SessionAudioRecorder.ts';
+import {sessionPaths,parseSessionYamlV2} from '/@fs__STUDIO_FS_PATH__/src/store/sessionState.ts';
+const identity={lessonId:'native-synthetic-cross-view',sessionId:'11111111-1111-4111-8111-111111111111'};
+const nativeGet=navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+const tracks=[];
+let waitPermission=false,releasePermission=null,permissionEntered=false,nativeCreates=0;
+navigator.mediaDevices.getUserMedia=async options=>{
+  permissionEntered=true;
+  if(waitPermission) await new Promise(resolve=>{releasePermission=resolve});
+  const stream=await nativeGet(options);tracks.push(...stream.getTracks());return stream;
+};
+const store=new WorkspaceStore();await store.init();
+const journal=new JournalRecorder({store,journalPath:`raw/${identity.lessonId}/events.jsonl`,identity:{...identity,actor:{type:'teacher',id:'synthetic-teacher'}},
+  producer:{id:'com.github.andreamarro.ardesia.studio',version:'0.1.0',commitSha:'__PRODUCER_SHA__'}});
+const recorder=new SessionAudioRecorder({store,identity,journal,createMediaRecorder:stream=>{nativeCreates++;return new MediaRecorder(stream)}});
+await recorder.initialize();
+await store.saveScene(identity.lessonId,JSON.stringify({type:'excalidraw',elements:[]}));
+window.probe={store,identity,recorder,sessionPaths,parseSessionYamlV2,tracks,
+  async revoke(other=identity){return revokeStoredAudioSession(store,other)},
+  async status(){const raw=await store.read(sessionPaths(identity).session);return {state:recorder.getSnapshot(),tracks:tracks.map(track=>track.readyState),nativeCreates,
+    files:(await store.list(sessionPaths(identity).audioDir)).length,session:parseSessionYamlV2(new Uint8Array(await raw.arrayBuffer()))}},
+  delayNext(){waitPermission=true;permissionEntered=false},get permissionEntered(){return permissionEntered},
+  releasePermission(){waitPermission=false;releasePermission?.();releasePermission=null},
+  async otherLesson(){const other={...identity,lessonId:'native-other-lesson'};await store.createSessionOnce(other,{created:Date.now()});return revokeStoredAudioSession(store,other)},
+};
+</script></body></html>

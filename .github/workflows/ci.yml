@@ -13,6 +13,92 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  web:
+    name: web (typecheck + test + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - name: E2E runner safety self-test (sentinel containers)
+        run: bin/ci/web-e2e-physics-pathways.sh --self-test
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 26.5.1
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck:web
+      - run: npm run test:web
+      - run: npm run build:web
+      - name: Public static build (all cases must match Core)
+        run: npm run build:web:public
+      - name: Install browser for the backend-free public preview
+        run: npx playwright install --with-deps chromium
+      - name: Public preview in a real browser, with no API
+        run: npm run e2e:public --workspace @ardesia/web
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install the disposable Study API environment
+        run: uv sync --project services/study-api --frozen --python 3.13
+      - name: Teacher physics pathways in a real browser, on disposable SQLite
+        env:
+          ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: bin/ci/web-e2e-physics-pathways.sh
+      - name: Teacher-path evidence on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-physics-pathways-${{ github.sha }}
+          path: apps/web/test-results/physics-pathways.*
+          if-no-files-found: warn
+          retention-days: 14
+
+  study-api:
+    name: study-api (HTTP + shared Core)
+    runs-on: ubuntu-latest
+    # Disposable synthetic databases only; no Supabase/production credentials.
+    services:
+      postgres:
+        image: postgres:16.15@sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97
+        env:
+          POSTGRES_USER: ardesia_fixture
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U ardesia_fixture -d postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: HTTP and domain contracts (live Supabase skip explicit)
+        env:
+          PYTHONPATH: packages/engine:services/study-api
+          ARDESIA_TEST_POSTGRES_URL: postgresql://ardesia_fixture@127.0.0.1:5432/postgres
+        run: uv run --project services/study-api python -m pytest packages/engine/tests/study services/study-api/tests -q -rs
+      - name: Local teaching artifact routes and data isolation
+        run: python3 -m unittest discover -s bin/tests -p 'test_teaching*.py'
+
+  study-mcp:
+    name: study-mcp (official SDK stdio + HTTP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install separate API and MCP environments
+        run: |
+          uv sync --project services/study-api --frozen --python 3.13
+          uv venv --python 3.13 .mcp-ci-venv
+          uv pip install --python .mcp-ci-venv/bin/python -r services/study-mcp/requirements.lock
+      - name: Read-only boundaries and actual official stdio to disposable Core
+        env:
+          PYTHONPATH: services/study-mcp
+          ARDESIA_MCP_TEST_API_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: .mcp-ci-venv/bin/python -m unittest discover -s services/study-mcp/tests -v
+
   studio:
     name: studio (typecheck + test + build)
     runs-on: ubuntu-latest
@@ -35,6 +121,10 @@ jobs:
           npx vitest run
           --pool=threads --maxWorkers=1 --no-file-parallelism
           --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+      - name: Install Chromium for real cross-tab audio revocation
+        run: npx playwright install --with-deps chromium
+      - name: Synthetic native audio — MediaRecorder, Web Locks and BroadcastChannel
+        run: node ../../bin/qa/audio-cross-view.mjs "$RUNNER_TEMP"
       - run: npm run build
 
   engine:
@@ -48,9 +138,10 @@ jobs:
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
-      # -rs stampa ogni skip con la sua ragione: il check resta verde solo con
-      # lo skip DICHIARATO nel log, mai con una copertura sparita in silenzio.
-      - name: pytest (skip dei test live esplicito senza API key)
+      # Live model tests require a separate explicit invocation, even when a
+      # developer environment happens to contain provider credentials.
+      # -rs keeps every skipped contract visible in the CI evidence.
+      - name: pytest (live models require explicit opt-in)
         run: uv run pytest -q -rs
 
   # Lane ADVISORY, non richiesta: esegue il solo golden path, che e' l'obiettivo
@@ -130,6 +221,10 @@ jobs:
         run: python3 bin/ci/doc_claims_gate.py
       - name: doc claims gate tests
         run: python3 bin/ci/doc_claims_gate.py --self-test
+      - name: Adopted source and artifact inventory contracts
+        run: python3 bin/audit/test_legacy_inventory.py
+      - name: Immutable question inbox QA contracts
+        run: python3 bin/pro-regia/test_question_inbox_adapter.py
       # Stato corrente generato a macchina (F0-1). `--verify` gira OFFLINE e
       # asserisce che il generatore legga l'HEAD REALE del repo: se restituisse
       # una costante o un valore memorizzato, questa asserzione fallirebbe al

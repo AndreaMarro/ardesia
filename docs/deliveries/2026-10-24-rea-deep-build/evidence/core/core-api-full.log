@@ -1,0 +1,44 @@
+........................................................................ [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 24%]
+........................................................................ [ 32%]
+........................................................................ [ 40%]
+...............ssssssss.ssssssssssssssssssssss.......................... [ 48%]
+........................................................................ [ 57%]
+........................................................................ [ 65%]
+........................................................................ [ 73%]
+........................................................................ [ 81%]
+........................................................................ [ 89%]
+........................................................................ [ 97%]
+....................                                                     [100%]
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] packages/engine/tests/study/test_postgres_admin_registers.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_calendar.py:10: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:50: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:61: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:73: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:94: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:99: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:119: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:152: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:193: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:230: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:247: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:280: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:316: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:361: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_course_bindings.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_edition_admin.py:8: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_edition_listing.py:11: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:33: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied
+SKIPPED [8] packages/engine/tests/study/test_postgres_schema_convergence.py:52: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:74: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:305: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied
+SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:366: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied
+854 passed, 30 skipped, 1 warning in 69.10s (0:01:09)

@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 1,
+  "browser": "148.0.7778.96",
+  "measuredAt": "2026-10-24T13:36:40.534Z",
+  "baselineCommit": "f456ade218acee1a8b65f5dc24e9220681658b11",
+  "method": "3 cold isolated local Chromium contexts at390/1440, native load and two animation frames after fonts.ready. Keyboard ArrowRight→two-frame latency including automation transport is a lab proxy, not INP. No CPU/network throttle; shared host and Python servers. Audio preload=none; playback excluded from initial load. Baseline public root vs candidate /esperienza/.",
+  "rows": [
+    {
+      "target": "baseline-public",
+      "width": 390,
+      "sample": 0,
+      "domContentLoadedMs": 96.1000000089407,
+      "loadMs": 96.1000000089407,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 44.1000000089407,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "baseline-public",
+      "width": 390,
+      "sample": 1,
+      "domContentLoadedMs": 19.69999998807907,
+      "loadMs": 20.299999997019768,
+      "lcpObservedMs": 72,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 30.799999997019768,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "baseline-public",
+      "width": 390,
+      "sample": 2,
+      "domContentLoadedMs": 20.400000005960464,
+      "loadMs": 20.5,
+      "lcpObservedMs": 72,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 32.5,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 390,
+      "sample": 0,
+      "domContentLoadedMs": 23.899999991059303,
+      "loadMs": 24.399999991059303,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 31.299999997019768,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 390,
+      "sample": 1,
+      "domContentLoadedMs": 26.100000008940697,
+      "loadMs": 26.100000008940697,
+      "lcpObservedMs": 76,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 30.099999994039536,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 390,
+      "sample": 2,
+      "domContentLoadedMs": 22.5,
+      "loadMs": 22.600000008940697,
+      "lcpObservedMs": 64,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 29.599999994039536,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 390,
+      "sample": 0,
+      "domContentLoadedMs": 14.700000002980232,
+      "loadMs": 36.79999999701977,
+      "lcpObservedMs": 52,
+      "resourceCount": 3,
+      "decodedBodyBytes": 22407,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 390,
+      "sample": 1,
+      "domContentLoadedMs": 26,
+      "loadMs": 26.600000008940697,
+      "lcpObservedMs": 36,
+      "resourceCount": 3,
+      "decodedBodyBytes": 22407,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 390,
+      "sample": 2,
+      "domContentLoadedMs": 8.899999991059303,
+      "loadMs": 23.19999998807907,
+      "lcpObservedMs": 40,
+      "resourceCount": 3,
+      "decodedBodyBytes": 22407,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "baseline-public",
+      "width": 1440,
+      "sample": 0,
+      "domContentLoadedMs": 17.700000002980232,
+      "loadMs": 17.700000002980232,
+      "lcpObservedMs": 68,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 32.69999998807907,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "baseline-public",
+      "width": 1440,
+      "sample": 1,
+      "domContentLoadedMs": 20.900000005960464,
+      "loadMs": 20.900000005960464,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 32.6000000089407,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "baseline-public",
+      "width": 1440,
+      "sample": 2,
+      "domContentLoadedMs": 20.19999998807907,
+      "loadMs": 20.299999997019768,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 290702,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 29.200000002980232,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5415/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-Q5_v2Mkg.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5415/assets/index-iICbgCi7.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 1440,
+      "sample": 0,
+      "domContentLoadedMs": 21,
+      "loadMs": 21,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 29.900000005960464,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 1440,
+      "sample": 1,
+      "domContentLoadedMs": 20.299999997019768,
+      "loadMs": 20.399999991059303,
+      "lcpObservedMs": 60,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 35,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-public",
+      "width": 1440,
+      "sample": 2,
+      "domContentLoadedMs": 20,
+      "loadMs": 20.099999994039536,
+      "lcpObservedMs": null,
+      "resourceCount": 2,
+      "decodedBodyBytes": 299569,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": 34.5,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-Ch1O3QyZ.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 1440,
+      "sample": 0,
+      "domContentLoadedMs": 31.100000008940697,
+      "loadMs": 33.6000000089407,
+      "lcpObservedMs": 44,
+      "resourceCount": 4,
+      "decodedBodyBytes": 57747,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/andrea.c2ac507d2282.webp",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 1440,
+      "sample": 1,
+      "domContentLoadedMs": 39,
+      "loadMs": 40.29999999701977,
+      "lcpObservedMs": 48,
+      "resourceCount": 4,
+      "decodedBodyBytes": 57747,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/andrea.c2ac507d2282.webp",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "target": "candidate-landing",
+      "width": 1440,
+      "sample": 2,
+      "domContentLoadedMs": 29,
+      "loadMs": 30.400000005960464,
+      "lcpObservedMs": 40,
+      "resourceCount": 4,
+      "decodedBodyBytes": 57747,
+      "horizontalOverflow": false,
+      "rangeTwoFrameLatencyMs": null,
+      "errors": [],
+      "failures": [],
+      "requests": [
+        {
+          "url": "http://127.0.0.1:5414/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/andrea.c2ac507d2282.webp",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

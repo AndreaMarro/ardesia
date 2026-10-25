@@ -1,0 +1,179 @@
+{
+  "id": "taylor-exp-v1",
+  "version": 1,
+  "title": "Taylor di exp: polinomio e resto — banco originale per revisione",
+  "status": "DRAFT",
+  "reviewer": null,
+  "scope": "Maclaurin di exp reale, centro 0, x in [-1,1], grado 0–12; controllo numerico e bound conservativo. Limiti e procedimento richiedono review. Non è un corso completo di Analisi 1.",
+  "rights": "Proposta originale da sottoporre all’owner per revisione scientifica, editoriale e condizioni d’uso. Nessun testo privato o quesito proprietario incorporato.",
+  "activities": [
+    {
+      "id": "taylor-exp-v1",
+      "version": 1,
+      "title": "Grado, fattoriale e resto",
+      "model": "P_n(x)=Σ x^k/k!, k=0…n",
+      "domain": "Exp reale, centro 0, -1≤x≤1, grado intero 0–12.",
+      "skill": "Controllare fattoriale, numero di termini e maggiorante del resto prima di concludere.",
+      "conceptId": "taylor-exp-remainder",
+      "parameters": [
+        "x",
+        "degree"
+      ],
+      "parametersRequired": true,
+      "prerequisites": [
+        "potenze",
+        "fattoriale",
+        "derivate",
+        "limiti"
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "TA-01",
+      "activityId": "taylor-exp-v1",
+      "prompt": "Costruisci P₃(1/2) mostrando i fattoriali. Fornisci un maggiorante del resto sul segmento da 0 a 1/2.",
+      "parameters": {
+        "x": 0.5,
+        "degree": 3
+      },
+      "answer": {
+        "value": 1.6458333333333333,
+        "unit": "1"
+      },
+      "solution": "P₃=79/48; il bound conservativo M=3 dà 1/128.",
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "TA-02",
+      "activityId": "taylor-exp-v1",
+      "prompt": "Costruisci P₃(-1/2). Spiega i segni e perché M=1 è sufficiente sul segmento negativo.",
+      "parameters": {
+        "x": -0.5,
+        "degree": 3
+      },
+      "answer": {
+        "value": 0.6041666666666666,
+        "unit": "1"
+      },
+      "solution": "P₃=29/48; M=1 dà 1/384. Il resto assoluto non è un termine con segno negativo.",
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "TA-03",
+      "activityId": "taylor-exp-v1",
+      "prompt": "Approssima exp(1) con grado 5. Conta i termini e dimostra un limite superiore per l’errore usando e<3.",
+      "parameters": {
+        "x": 1,
+        "degree": 5
+      },
+      "answer": {
+        "value": 2.716666666666667,
+        "unit": "1"
+      },
+      "solution": "Sei termini danno 163/60. Il resto analitico è al più 3/6!=1/240.",
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "TA-04",
+      "activityId": "taylor-exp-v1",
+      "prompt": "Valuta il polinomio di grado zero in x=0. Quali errori restano?",
+      "parameters": {
+        "x": 0,
+        "degree": 0
+      },
+      "answer": {
+        "value": 1,
+        "unit": "1"
+      },
+      "solution": "P₀(0)=1=exp(0), resto nullo; non serve dividere per x.",
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "transferTests": [
+    {
+      "id": "TT-01",
+      "title": "Dal budget di errore al grado",
+      "instructions": "Un problema inverso: giustifica il grado, non limitarti a cambiare uno slider.",
+      "items": [
+        {
+          "id": "TT-01",
+          "activityId": "taylor-exp-v1",
+          "parameters": {
+            "x": 1,
+            "degree": 6
+          },
+          "prompt": "Con il bound M=3, trova il minimo grado che garantisce errore ≤10⁻³ in x=1; calcola poi quel polinomio. Il minimo richiesto è relativo a questo bound, non all’errore effettivo.",
+          "answer": {
+            "value": 2.7180555555555554,
+            "unit": "1"
+          },
+          "solution": "Il grado 5 dà 1/240>10⁻³; il grado 6 dà 1/1680<10⁻³ e P₆(1)=1957/720. Per |x|≤1 la maggiorazione decresce col grado.",
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "TT-02",
+      "title": "Dal resto a un limite con cancellazione",
+      "instructions": "La dimostrazione del limite richiede una review manuale; il solo controllo numerico non la certifica.",
+      "items": [
+        {
+          "id": "TT-02",
+          "activityId": "taylor-exp-v1",
+          "parameters": {
+            "x": 0.125,
+            "degree": 2
+          },
+          "prompt": "Calcola P₂(1/8) come esempio. Poi dimostra lim(t→0)[exp(t)-1-t]/t²=1/2 usando il resto, senza dedurlo da sottrazioni numeriche vicino a zero.",
+          "answer": {
+            "value": 1.1328125,
+            "unit": "1"
+          },
+          "solution": "P₂(1/8)=145/128, bound dell’esempio 1/1024. Per t≠0: [exp(t)-1-t]/t²=1/2+R₂(t)/t² e |R₂(t)/t²|≤3|t|/6→0. La prova non è un plot float.",
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "verificationCapabilities": [
+    "polynomial_numeric",
+    "conservative_lagrange_bound",
+    "written_reasoning_manual_review"
+  ],
+  "sources": [
+    {
+      "url": "https://dlmf.nist.gov/4.2.E19",
+      "scope": "Formula della serie exp; esercizi originali."
+    },
+    {
+      "url": "https://openstax.org/books/calculus-volume-2/pages/6-3-taylor-and-maclaurin-series",
+      "scope": "Teorema con resto di Lagrange; nessuna riproduzione di esercizi."
+    }
+  ],
+  "reviewRubric": [
+    "Grado, fattoriale e numero di termini corretti",
+    "Ipotesi, intervallo e maggiorante espliciti",
+    "Distinguere resto, errore numerico e procedimento",
+    "Nuova prova con procedimento diverso, senza mastery automatica",
+    "Testo accessibile, originalità e diritti",
+    "Revisione scientifica umana da eseguire"
+  ],
+  "hints": [
+    "Individua il centro zero, il grado e l’intervallo prima di approssimare.",
+    "Il grado n contiene n+1 termini; il denominatore del termine k è il fattoriale k!, non k.",
+    "Distingui P_n dal resto: sul segmento usa M=1 se x≤0, M=3 se x>0 e B=M|x|^(n+1)/(n+1)!. Un limite richiede giustificare il resto dopo la divisione, non leggere un plot."
+  ]
+}

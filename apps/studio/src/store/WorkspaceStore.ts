@@ -4,8 +4,8 @@
 // La fonte di verità è la cartella FSA (o il bundle .lesson). localStorage è CACHE.
 
 import { type WorkspaceDriver, type FileEntry, PATHS, type StorageMode, type StorageUsage, type LessonMeta, type RoomInfo } from "./types"
-import { localStorageDriver, type LocalStorageDriver } from "./drivers/localStorage"
-import { createFSADriver } from "./drivers/fsa"
+import { localStorageDriver, LocalStorageDriver } from "./drivers/localStorage"
+import { createFSADriver, FSADriver } from "./drivers/fsa"
 import { createBundleBlob, parseBundleBlob } from "./zipBundle"
 import {
   exportLesson as buildLessonExport,
@@ -18,6 +18,7 @@ import {
   type LessonOsRestoreStatus,
 } from "./lessonBundle"
 import { roomPaths, validateRoomId } from "./roomPaths"
+import { assertAudioWriteAllowed, isAudioWriteFencedPath } from "./audioWriteFence"
 import type { EventLogStore } from "../lessonos/eventlog"
 import {
   originLessonMutationCoordinator,
@@ -25,6 +26,7 @@ import {
   type InactiveLessonProbe,
   type LessonMutationCoordinator,
   type MutationSafety,
+  withNoAudioCaptures,
 } from "./lessonMutationLock"
 import {
   parseSessionYamlV2,
@@ -421,6 +423,13 @@ export class WorkspaceStore {
     return this.mutationCoordinator.safety
   }
 
+  /** Technical coordination identity only; it never carries consent or a role. */
+  audioCaptureCoordinationBackend(): Readonly<{ kind: "local-storage" }> | Readonly<{ kind: "filesystem" }> | Readonly<{ kind: "local-only"; identity: object }> {
+    if (this.driver instanceof LocalStorageDriver) return { kind: "local-storage" }
+    if (this.driver instanceof FSADriver) return { kind: "filesystem" }
+    return { kind: "local-only", identity: this.driver }
+  }
+
   registerActiveLesson(lessonId: string): Promise<ActiveLessonRegistration> {
     return this.mutationCoordinator.registerActiveLesson(lessonId)
   }
@@ -462,7 +471,7 @@ export class WorkspaceStore {
 
     const connection = initialization.then(async (ok) => {
       if (!ok) return false
-      return this.mutationCoordinator.withWorkspaceExclusive(async () => {
+      return withNoAudioCaptures("local-storage", () => this.mutationCoordinator.withWorkspaceExclusive(async () => {
         if (this._mode === "fsa") return true
 
         // Migra i dati esistenti da localStorage → FSA. La porta driver resta
@@ -480,7 +489,7 @@ export class WorkspaceStore {
         this.driver = fsa
         this._mode = "fsa"
         return true
-      })
+      }))
     })
     this.pendingFolderConnection = connection
     void connection.then(
@@ -496,8 +505,28 @@ export class WorkspaceStore {
     return this.driver.read(path)
   }
 
+  /** A read-only lesson snapshot using the same lease as journal/session/media mutations. */
+  readLessonSnapshot<T>(lessonId: string, work: (reader: Pick<WorkspaceStore, "read">) => Promise<T>): Promise<T> {
+    const path = roomPaths(lessonId).journal
+    const prefix = path.slice(0, path.lastIndexOf("/") + 1)
+    return this.mutationCoordinator.withPathMutation(path, () => {
+      const driver = this.driver
+      // The callback cannot reacquire a mutation lock through this port.
+      const reader = Object.freeze({ read: (target: string): Promise<Blob | null> => {
+        if (!target.startsWith(prefix) || target.slice(prefix.length).split("/").some((part) => !part || part === "." || part === "..")) {
+          return Promise.reject(new Error("Lesson snapshot read outside its lesson"))
+        }
+        return driver.read(target)
+      } })
+      return work(reader)
+    })
+  }
+
   async write(path: string, data: Blob): Promise<void> {
-    await this.mutationCoordinator.withPathMutation(path, () => this.driver.write(path, data))
+    await this.mutationCoordinator.withPathMutation(path, async () => {
+      if (isAudioWriteFencedPath(path)) await assertAudioWriteAllowed(this.driver, path, data)
+      await this.driver.write(path, data)
+    })
   }
 
   async delete(path: string): Promise<void> {

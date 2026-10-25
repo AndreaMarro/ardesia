@@ -1,0 +1,109 @@
+{
+  "scope": "Only six root-authorized files. No stage/commit/ref/remote/workflow change by inventory agent.",
+  "adoption": [
+    {
+      "pr": 265,
+      "sourceHead": "4117382b0a9bd4666e848d49d7ef6beaf5258741",
+      "sourcePath": "bin/audit/legacy_inventory.py",
+      "sourceBlob": "ce57650f72fd0e81df2d1f588455be14e6a7b8e9",
+      "sourceSha256": "c7a381661a18024dc96056b2540dac983d792e312c109a89ae915a32133086d4",
+      "adoptedSha256": "c7a381661a18024dc96056b2540dac983d792e312c109a89ae915a32133086d4",
+      "adoptedBlob": "ce57650f72fd0e81df2d1f588455be14e6a7b8e9",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "pr": 265,
+      "sourceHead": "4117382b0a9bd4666e848d49d7ef6beaf5258741",
+      "sourcePath": "bin/audit/test_legacy_inventory.py",
+      "sourceBlob": "7ee0f6006faf9e57470a90b7e050dec9dcf898a2",
+      "sourceSha256": "7051f772c12cb2925cc55afdfd070942bee057851d88bc0297063d94a142f6b7",
+      "adoptedSha256": "d71b19620d92a67bfa6f24404c9d78df146233b299f0cddefdcebd80b8181153",
+      "adoptedBlob": "e215f258c705bdf50d42ca37457eef81858e4a51",
+      "sourceBytesUnchanged": false
+    },
+    {
+      "pr": 265,
+      "sourceHead": "4117382b0a9bd4666e848d49d7ef6beaf5258741",
+      "sourcePath": "docs/ops/PROJECT-CONVERGENCE.md",
+      "sourceBlob": "c1d8263bf0a85203c53bf0af3a096cacabed4ac0",
+      "sourceSha256": "dd5ab594693b34d9bb1e676164b8fe8985f3b09fb7221843ef798a375695b9b0",
+      "adoptedSha256": "bd4a6a14b4ad411416e5f836de8ed37e99dcd30e756dd15c9397122fa87c4a0c",
+      "adoptedBlob": "a86b3473edd2690f4fc92a59f9759d9e7e060369",
+      "sourceBytesUnchanged": false
+    },
+    {
+      "pr": 271,
+      "sourceHead": "fe245fd803aaf072721d3f27beeea3bf9f9da9d5",
+      "sourcePath": "bin/pro-regia/question_inbox_adapter.py",
+      "sourceBlob": "9447f07eb92438550d464c1887473258051e3edb",
+      "sourceSha256": "e2cfd9dbd5b70c363447444829ebd3a2295fc03ecad13275c82f865a420c6c34",
+      "adoptedSha256": "e270d1b956f2ca504d683e224f6641853d8ab4dee87f88639508a000dac116bc",
+      "adoptedBlob": "d29f92ed96f29513f6ff14d65a93b7b98c0aa78f",
+      "sourceBytesUnchanged": false
+    },
+    {
+      "pr": 271,
+      "sourceHead": "fe245fd803aaf072721d3f27beeea3bf9f9da9d5",
+      "sourcePath": "bin/pro-regia/test_question_inbox_adapter.py",
+      "sourceBlob": "62b611be00751eb5a0c68352b8f8d077cb289226",
+      "sourceSha256": "48b33a6ca102efd1f4321fd966c056ef280c7c3f595d6d9e0e3ffd803f7ab984",
+      "adoptedSha256": "b009011300e7aeb3d3c3645a021dd107f74b4e90b226c824dbbc746ba7e544bf",
+      "adoptedBlob": "ddf030882d1dd1bb3e2944fdda15ae8272f8e342",
+      "sourceBytesUnchanged": false
+    },
+    {
+      "pr": 271,
+      "sourceHead": "fe245fd803aaf072721d3f27beeea3bf9f9da9d5",
+      "sourcePath": "bin/pro-regia/README.md",
+      "sourceBlob": "f1de45d59e539ddde6fa54849f61f752d85a899e",
+      "sourceSha256": "f866dcfa037442862beac4174f323dc04dd50c79f188b4f7217b8f975ffa0f49",
+      "adoptedSha256": "feb573dce6a681f2608ec5638de79aaff9feeea029cdb1c717c41c28d7ddbe3e",
+      "adoptedBlob": "3621b21ad4b0aba842891ba5e95fcfeb15e459dc",
+      "sourceBytesUnchanged": false
+    }
+  ],
+  "validation": {
+    "scannerOriginalMac": "15 tests run, 4 errors from default /var temporary path symlink; preserved in logs/pr265-original-mac-red.log",
+    "scannerImportedPortable": "15/15 PASS, original symlink security guard unchanged; only fixture canonicalized",
+    "adapterOriginal": "5/5 original tests retained unchanged",
+    "adapterImported": "11/11 PASS (original 5 plus 6 ref/digest/path/CLI cases)",
+    "bankCommitted304": {
+      "contract": "ardesia.question-inbox.v1",
+      "observedAt": "2026-10-25T12:50:33.867902+00:00",
+      "sourceCommit": "1898b633e26f99710535c94e25fa28241f0f45b3",
+      "requestedRef": "1898b633e26f99710535c94e25fa28241f0f45b3",
+      "sourceReadMode": "GIT_COMMITTED_BLOBS",
+      "manifestSHA256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896",
+      "sourceBytesMatchCommit": true,
+      "shardsVerified": 27,
+      "receivedRecords": 4000,
+      "uniqueRevisionIdentities": 4000,
+      "losslessRoundTrips": 4000,
+      "levels": {
+        "base": 1000,
+        "facile": 1000,
+        "medio": 1000,
+        "difficile": 1000
+      },
+      "errors": [],
+      "status": "PASS",
+      "scope": "Lossless private intake only; this is not a canonical database import or publication",
+      "pipelineStateCreatedInMemory": "QUESTION_INBOX",
+      "scientificApprovalsIssued": 0,
+      "editorialApprovalsIssued": 0,
+      "canonicalDatabaseImports": 0,
+      "publications": 0,
+      "sourceRecordsWritten": 0,
+      "runtimeCompatibility": {
+        "status": "NOT_CHECKED",
+        "reason": "This QA intake checks source identity and lossless private envelopes, not runtime exam schemas, scientific correctness or publication authority"
+      }
+    },
+    "candidateSourceInventory": "Source-only tracked dirty worktree inventory; artifact NOT_RUN, not a release artifact or HEAD-build claim"
+  },
+  "notChecked": [
+    "Whole integrated candidate CI and protected branch review, owned by root",
+    "Scientific/editorial content approval, audio hardware, remote publication",
+    "Source inventory artifact until exact committed candidate build is available"
+  ]
+}

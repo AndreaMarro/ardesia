@@ -1,0 +1,62 @@
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+_ test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary[/studio/] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-18/test_episode_http_preserves_ex1')
+studio_path = '/studio/'
+
+    @pytest.mark.parametrize("studio_path", ["/", "/studio/"])
+    def test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary(tmp_path, studio_path):
+        store, tutor, student, peer, other = setup_store(tmp_path)
+        with TestClient(create_app(store.path, demo=True)) as client:
+            def login(actor):
+                assert client.post('/study/session', json={'token': store.issue_session(actor)}).status_code == 200
+            def post(path, body, key):
+                response = client.post('/study/' + path, json=body, headers={'Idempotency-Key': key})
+                assert response.status_code == 200, response.text
+                return response.json()
+            login(tutor)
+            passage = post('resources', {'editionId': 'fluidi', 'kind': 'lesson-passage', 'visibility': 'group',
+                'text': json.dumps({'schema': 'ardesia.lesson-passage-source.v1', 'descriptor': {**descriptor(), 'replayUrl': descriptor()['replayUrl'].replace(':5173/', ':5173' + studio_path)},
+                                   'transcript': 'Qui il vincolo è Q: isola Δp e confronta il reciproco della quarta potenza.'})}, 'share-passage')
+            ref = {'resourceId': passage['id'], 'revisionId': passage['revisionId']}
+            login(student)
+            experiences = client.get('/study/learning-experiences?editionId=fluidi').json()
+            assert len(experiences['experiences']) == 2
+            assert client.get('/study/resources/' + passage['id'] + '/revisions/' + passage['revisionId']).json()['text'] == passage['text']
+            results = []
+            for step_id, parameters, ratio, fixed, aids in [
+                ('fixed-pressure', {'radiusRatio': 2, 'boundary': 'pressure'}, 4, 'pressure', []),
+                ('fixed-flow', {'radiusRatio': 2, 'boundary': 'flow'}, 16, 'pressure', ['lesson-passage']),
+                ('transfer', {'radiusRatio': .5, 'boundary': 'flow'}, 16, 'flow', []),
+            ]:
+>               results.append(post('submissions', {'editionId': 'fluidi', 'activityId': 'poiseuille-v1',
+                    'activityParameters': parameters, 'text': 'Prevedo il rapporto ' + str(ratio) + ' e dichiaro il vincolo ' + fixed + '.',
+                    'sourceRefs': [ref], 'activityEvidence': {'schemaVersion': 1, 'experienceId': 'poiseuille-boundary-v1',
+                        'stepId': step_id, 'prediction': {'ratio': ratio, 'fixedQuantity': fixed},
+                        'supportUsed': aids, 'lessonPassageRef': ref}}, 'prediction-' + step_id))
+
+services/study-api/tests/test_learning_experience_http.py:46:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = 'submissions'
+body = {'editionId': 'fluidi', 'activityId': 'poiseuille-v1', 'activityParameters': {'radiusRatio': 2, 'boundary': 'pressure'}, 'text': 'Prevedo il rapporto 4 e dichiaro il vincolo pressure.', ...}
+key = 'prediction-fixed-pressure'
+
+    def post(path, body, key):
+        response = client.post('/study/' + path, json=body, headers={'Idempotency-Key': key})
+>       assert response.status_code == 200, response.text
+E       AssertionError: {"error":"invalid_lesson_passage"}
+E       assert 422 == 200
+E        +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+
+services/study-api/tests/test_learning_experience_http.py:29: AssertionError
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_learning_experience_http.py::test_episode_http_preserves_exact_passage_and_uses_existing_review_and_diary[/studio/]
+1 failed, 2 passed, 1 warning in 0.88s

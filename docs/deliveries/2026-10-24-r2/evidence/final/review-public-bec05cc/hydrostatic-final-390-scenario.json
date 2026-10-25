@@ -1,0 +1,251 @@
+{
+  "browser": {
+    "mode": "launch",
+    "headless": true,
+    "executable_path": "/Users/andreamarro/Library/Caches/ms-playwright/chromium-1223/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5442/esperienza/?percorso=fluidi-termodinamica"
+  },
+  "environment": {
+    "viewport": {
+      "width": 390,
+      "height": 3400
+    },
+    "locale": "it-IT",
+    "reduced_motion": "reduce"
+  },
+  "actions": [
+    {
+      "step_id": "open-hydrostatic",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Pressione e profondit\u00e0"
+      }
+    },
+    {
+      "step_id": "invalid-overflow-prediction",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "1e309"
+      }
+    },
+    {
+      "step_id": "wrong-zero-prediction",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "0"
+      }
+    },
+    {
+      "step_id": "reveal-wrong-gauge",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "change-absolute-clears-result",
+      "action": "select_option",
+      "locator": {
+        "kind": "role",
+        "role": "combobox",
+        "name": "Riferimento della pressione"
+      },
+      "value": {
+        "source": "literal",
+        "value": "absolute"
+      }
+    },
+    {
+      "step_id": "enter-absolute",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "120945"
+      }
+    },
+    {
+      "step_id": "reveal-absolute",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "depth-home-zero",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "slider",
+        "name": "Profondit\u00e0 della sonda"
+      },
+      "key": "Home"
+    },
+    {
+      "step_id": "enter-absolute-at-surface",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "101325"
+      }
+    },
+    {
+      "step_id": "reveal-absolute-at-surface",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "first-transfer",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Cambia fluido: una nuova prova"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "enter-first-transfer",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "23544"
+      }
+    },
+    {
+      "step_id": "reveal-first-transfer",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "second-transfer-different",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Cambia fluido: una nuova prova"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "enter-second-transfer",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Pressione prevista in Pa"
+      },
+      "value": {
+        "source": "literal",
+        "value": "116040"
+      }
+    },
+    {
+      "step_id": "reveal-second-transfer",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Confronta la pressione"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "first-hint",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Un indizio sul riferimento"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "second-hint",
+      "action": "press",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Un altro indizio"
+      },
+      "key": "Enter"
+    },
+    {
+      "step_id": "open-assumptions",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": ".hydrostatic-lab summary"
+      }
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "url",
+      "dom",
+      "accessibility",
+      "screenshot"
+    ],
+    "at_end": [
+      "url",
+      "screenshot",
+      "dom"
+    ],
+    "events": [
+      "console",
+      "page-errors",
+      "network"
+    ],
+    "network": {
+      "request_body": false,
+      "response_body": false,
+      "header_values": false
+    }
+  }
+}

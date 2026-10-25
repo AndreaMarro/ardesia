@@ -1,0 +1,78 @@
+{
+  "targetId": "TARGET-082",
+  "status": "DEEP_OBSERVED_WITH_LIMITS",
+  "productCommit": null,
+  "receipt": false,
+  "decision": {
+    "functionalContract": "ADAPT",
+    "libraryInstallation": "DEFER_UNTIL_INLINE_PDF_NEED_ASSET_LICENSE_WORKER_CSP_BUDGETS_VERIFIED"
+  },
+  "sourcePins": {
+    "npmRelease": "pdfjs-dist@6.4.299",
+    "npmCommit": "d0991a0d53f3bb3a7307e3b83f279c1d117aafb3",
+    "actualRuntimeVersion": "6.5.260",
+    "runtimeReportedBuild": "33734f1fd",
+    "resolvedGitCommit": "33734f1fdf1b8987c656c0a5f67b4e2cc57e9d13",
+    "completeSourceToBundleEquality": "UNKNOWN",
+    "singleMethodExact": "ViewHistory.setMultiple191B executed matches selected pin"
+  },
+  "license": "Apache-2.0 selected code; docs CC-BY-SA2.5 separate; asset/transitive inventory not cleared",
+  "integrationBoundary": {
+    "proposedConsumer": "Existing SourceViewer/SourceBoard with exact Core resource revision authority",
+    "rendererInput": "Only Core authorized Blob/bytes matching expected source digest; no arbitrary URL authority",
+    "anchor": [
+      "resourceId",
+      "revisionId",
+      "assetSha256",
+      "pageNumber",
+      "optionalNormalizedRectangle"
+    ],
+    "scopeKey": [
+      "actor",
+      "role",
+      "course",
+      "resourceId",
+      "revisionId"
+    ],
+    "viewState": "Consultative UI projection; no new canonical memory store",
+    "sourceOfTruth": "Existing Core exact source/revision ACL",
+    "lateAck": "Discard renderer result if current actor/course/exact revision differs",
+    "revocation": "Dispose renderer/worker/objectURLs and clear context",
+    "mobile": "Readable text quotation tied to exact source plus original fixed layout PDF",
+    "outOfScope": [
+      "PDF editing/signature",
+      "new canonical memory store",
+      "client permission authority"
+    ]
+  },
+  "actualFinding": "Same permanent PDF fingerprint across distinct byte revisions inherits view state; actual renderer data hashes and explanation text remain distinct. Fingerprint cannot be a cryptographic revision or ACL key.",
+  "actualCaptureScope": {
+    "attachedHistory": "Own profile fresh-document same-file reopen; no OS/process restart claim",
+    "isolatedLaunch1440": "8steps complete/globalcomplete",
+    "isolatedLaunch390": "8steps complete/globalcomplete; small fixed-layout text remains UX limitation",
+    "networkAndCompare": "Earlier attachcaptures incomplete; compare CHANGED not full equality",
+    "reconcile": "0matched2unmatched3unknown27staticunknown"
+  },
+  "reuseState": "NO_PRODUCT_CODE_OR_ASSET_COPIED",
+  "unknown": [
+    "Transitive assets/font/worker license clearance",
+    "Full source-to-bundle semantic equivalence",
+    "Out-of-scope worker execution",
+    "Attached screenshot viewport fidelity/post-disconnect geometry",
+    "OS/cloud persistence",
+    "Actual Core adapter performance/accessibility/pedagogic benefit"
+  ],
+  "testsNecessaryNotExecuted": [
+    "same fingerprint distinct exact revisions",
+    "historical pin with private new head",
+    "actor/course revocation and late ACK cleanup",
+    "malformed/page bounds/pixel memory timeout budget",
+    "stable anchor under zoom rotation",
+    "mobile readable text and keyboard focus",
+    "worker cancel/dispose",
+    "download exact hash and no crosscourse cache",
+    "parser error vs source unavailable"
+  ],
+  "report": "RESEARCH.md",
+  "rawManifest": "manifest.json"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "scope": "30 historical outputs plus the original user reference ZIP, recursively inspected including archive members",
+  "recursiveArtifactScan": {
+    "filesIncludingArchiveMembers": 762,
+    "highConfidenceMatches": [],
+    "forbiddenMembers": []
+  },
+  "credentialFieldReview": {
+    "status": "REVIEWED_SYNTHETIC_FIXTURE",
+    "matches": 15,
+    "interpretation": "All assigned-credential hits are the literal invalid cookie study_session=untrusted in test_public_preview.py or cumulative patch copies. No bearer-token match. High-confidence scan is recorded separately."
+  },
+  "trackedSourceHygiene": {
+    "secret_scan": "PASS; no high-confidence secret patterns",
+    "nul_scan": "PASS; no NUL bytes in tracked text files",
+    "git_diff_check": "PASS",
+    "doc_claims_gate": "PASS for configured repository documents and the new delivery README",
+    "elab_boundary_gate": "PASS; 12 existing baseline offenders, none added",
+    "workflow_trigger_gate": "PASS; 2 workflows, semantic YAML mode",
+    "navigation": "PASS; all local Markdown links in new README and INVENTORY resolve"
+  },
+  "productGate": "STUDIO_FAILED_2156_PASS_1_FAIL_REPLAY_NOT_RUN",
+  "productTestsRepeatedForPublication": false,
+  "limitations": [
+    "Pattern scans are not an exhaustive confidentiality audit.",
+    "The prior product verification belongs to the recorded source snapshots.",
+    "The PR CI is independent of the two failed local Studio gates."
+  ]
+}

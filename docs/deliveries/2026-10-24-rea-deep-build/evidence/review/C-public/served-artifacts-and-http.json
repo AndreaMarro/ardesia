@@ -1,0 +1,122 @@
+{
+  "surfaces": [
+    {
+      "url": "http://127.0.0.1:5413/esperienza/",
+      "status": 200,
+      "sha256": "b7b3dfd70dcfa010317d5fa493b2085fee61a22da9f449af3b600841d237937e",
+      "headers": {
+        "Cache-Control": null,
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "Permissions-Policy": null
+      },
+      "assets": [
+        {
+          "url": "http://127.0.0.1:5413/esperienza/assets/index-CmUM_SUj.js",
+          "bytes": 239504,
+          "sha256": "494453c35fcf6198bc5033376162e74a9e0f05d6c29a104b0fd51637d172b2e1"
+        },
+        {
+          "url": "http://127.0.0.1:5413/esperienza/assets/index-DC_tSqfi.css",
+          "bytes": 60065,
+          "sha256": "bf579d22fa6c3e726f82e92630af3595808de5c22aeab32b73ef7c24c214dedf"
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5414/",
+      "status": 200,
+      "sha256": "59a0c61f2263fc5480098218434c50b5a5eedd4c5c06609bd00898b1e8f1bf55",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "assets": [
+        {
+          "url": "http://127.0.0.1:5414/assets/tokens.a6cbc8d0e277.css",
+          "bytes": 429,
+          "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.4dc1a793db31.css",
+          "bytes": 16992,
+          "sha256": "4dc1a793db31ba5570958e9a197f6884f4e16d383d416ddd851de64bdc303a98"
+        },
+        {
+          "url": "http://127.0.0.1:5414/assets/site.084d55bb702f.js",
+          "bytes": 4986,
+          "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5414/esperienza/",
+      "status": 200,
+      "sha256": "b7b3dfd70dcfa010317d5fa493b2085fee61a22da9f449af3b600841d237937e",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "assets": [
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-CmUM_SUj.js",
+          "bytes": 239504,
+          "sha256": "494453c35fcf6198bc5033376162e74a9e0f05d6c29a104b0fd51637d172b2e1"
+        },
+        {
+          "url": "http://127.0.0.1:5414/esperienza/assets/index-DC_tSqfi.css",
+          "bytes": 60065,
+          "sha256": "bf579d22fa6c3e726f82e92630af3595808de5c22aeab32b73ef7c24c214dedf"
+        }
+      ]
+    }
+  ],
+  "privateReadOnlyHttp": [
+    {
+      "path": "/study/me",
+      "originAttack": false,
+      "status": 401,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "path": "/study/me",
+      "originAttack": true,
+      "status": 401,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "path": "/studio/",
+      "originAttack": false,
+      "status": 200,
+      "cacheControl": "no-store",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/studio/assets/missing.js",
+      "originAttack": false,
+      "status": 404,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "path": "/study.sqlite",
+      "originAttack": false,
+      "status": 404,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "path": "/demo-access.json",
+      "originAttack": false,
+      "status": 404,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    }
+  ]
+}

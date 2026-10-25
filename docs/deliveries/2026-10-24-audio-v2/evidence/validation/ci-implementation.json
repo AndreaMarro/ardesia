@@ -1,0 +1,88 @@
+{
+  "commit": "e1be6c9ea0a19b90d53a9e4d8a38dac5846c1270",
+  "source": "GitHub connector: commit workflow runs, followed by latest-attempt job metadata",
+  "scope": "Implementation commit; final memory commit requires its own CI read.",
+  "runs": [
+    {
+      "id": 40088667039,
+      "name": "ci",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40088667039",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 120856671468,
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671569,
+          "name": "study-api (HTTP + shared Core)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671584,
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671595,
+          "name": "studio (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671598,
+          "name": "web (typecheck + test + build)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671599,
+          "name": "e2e golden path (advisory)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 120856671606,
+          "name": "engine (pytest)",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 40088667042,
+      "name": "marketing-static",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40088667042",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 120856670997,
+          "name": "marketing",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 40088667046,
+      "name": "studio-preview-readiness",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40088667046",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 120856671246,
+          "name": "no-deploy-check",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

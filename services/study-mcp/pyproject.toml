@@ -1,0 +1,13 @@
+[project]
+name = "ardesia-study-mcp"
+version = "0.1.0"
+description = "Read-only stdio MCP adapter over the authorized Study HTTP API"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp==2.3.0",
+    "httpx2==2.15.1",
+    "pydantic==2.14.1",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,43 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.8 /workspace/scratch/6f2994042c33/ardesia/apps/studio
+
+ ❯ src/__tests__/ReplayView.test.tsx (15 tests | 2 failed | 13 skipped) 1197ms
+     × room change hides the previous title and audio while the new journal is pending 181ms
+     × a previous room read failure cannot hide a later room's valid journal 1015ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/ReplayView.test.tsx > ReplayView > room change hides the previous title and audio while the new journal is pending
+AssertionError: expected 'Ardesiastudiorivedi la lezionePrima l…' not to contain 'Prima lezione'
+
+Expected: "Prima lezione"
+Received: "Ardesiastudiorivedi la lezionePrima lezionecaricamento…"
+
+ ❯ src/__tests__/ReplayView.test.tsx:218:39
+    216|     root.render(<ReplayView store={store as any} room="room-b" />)
+    217|     await vi.waitFor(() => expect(container.textContent).toContain("ca…
+    218|     expect(container.textContent).not.toContain("Prima lezione")
+       |                                       ^
+    219|     expect(container.querySelector("audio")).toBeNull()
+    220|     expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:replay-test…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/ReplayView.test.tsx > ReplayView > a previous room read failure cannot hide a later room's valid journal
+AssertionError: expected null not to be null
+ ❯ src/__tests__/ReplayView.test.tsx:242:66
+    240|     root.render(<ReplayView store={store as any} room="room-b" />)
+    241|     await vi.waitFor(() => {
+    242|       expect(container.querySelector('input[type="range"]')).not.toBeN…
+       |                                                                  ^
+    243|     })
+    244|     expect(container.textContent).not.toContain("synthetic read failur…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 13 skipped (15)
+   Start at  10:34:02
+   Duration  2.06s (transform 200ms, setup 31ms, import 246ms, tests 1.20s, environment 468ms)

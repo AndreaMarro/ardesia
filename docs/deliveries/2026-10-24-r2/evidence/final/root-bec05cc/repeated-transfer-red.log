@@ -1,0 +1,29 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/web
+
+ ❯ src/__tests__/public-hydrostatic.test.tsx (3 tests | 1 failed) 362ms
+   × a different hydrostatic problem changes density as well as depth, hides the solution and focuses a fresh prediction 73ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/public-hydrostatic.test.tsx > a different hydrostatic problem changes density as well as depth, hides the solution and focuses a fresh prediction
+AssertionError: expected '800' to be '1000' // Object.is equality
+
+Expected: "1000"
+Received: "800"
+
+ ❯ src/__tests__/public-hydrostatic.test.tsx:50:85
+     48|   expect((await screen.findByTestId("hydrostatic-result")).textContent…
+     49|   fireEvent.click(screen.getByRole("button", {name: "Cambia fluido: un…
+     50|   expect((screen.getByLabelText("Densità del liquido") as HTMLSelectEl…
+       |                                                                                     ^
+     51|   expect((screen.getByLabelText("Profondità della sonda") as HTMLInput…
+     52|   expect((screen.getByLabelText("Riferimento della pressione") as HTML…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  00:11:48
+   Duration  1.69s (transform 208ms, setup 0ms, import 353ms, tests 362ms, environment 782ms)

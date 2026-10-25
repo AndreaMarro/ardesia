@@ -1,0 +1,805 @@
+{
+  "schema": "ardesia.r2-final-ci.v1",
+  "pullRequest": 301,
+  "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0",
+  "checkoutMergeSha": "638f3465078bcdf39502f4ef5fc4f6f1a79ec644",
+  "treeSha": "ae21331acbf30c5e73f9db8a870bb44f5283bb9e",
+  "mergeTreeIdenticalToHead": true,
+  "mergeParents": [
+    "6a81d870fd1f390444ef5acbe6bc42203104fa63",
+    "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+  ],
+  "runs": [
+    {
+      "runId": 40137915671,
+      "name": "ci",
+      "conclusion": "success",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671"
+    },
+    {
+      "runId": 40137915753,
+      "name": "marketing-static",
+      "conclusion": "success",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915753"
+    }
+  ],
+  "jobs": [
+    {
+      "runId": 40137915671,
+      "jobId": 121003279274,
+      "name": "e2e golden path (advisory)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279274",
+      "startedAt": "2026-10-24T22:17:31Z",
+      "completedAt": "2026-10-24T22:18:48Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279379,
+      "name": "engine (pytest)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279379",
+      "startedAt": "2026-10-24T22:17:31Z",
+      "completedAt": "2026-10-24T22:19:17Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279421,
+      "name": "study-mcp (official SDK stdio + HTTP)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279421",
+      "startedAt": "2026-10-24T22:17:31Z",
+      "completedAt": "2026-10-24T22:18:09Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279437,
+      "name": "hygiene (NUL + secrets + boundary + whitespace)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279437",
+      "startedAt": "2026-10-24T22:17:31Z",
+      "completedAt": "2026-10-24T22:18:06Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279477,
+      "name": "web (typecheck + test + build)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279477",
+      "startedAt": "2026-10-24T22:17:32Z",
+      "completedAt": "2026-10-24T22:19:34Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279491,
+      "name": "studio (typecheck + test + build)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279491",
+      "startedAt": "2026-10-24T22:17:32Z",
+      "completedAt": "2026-10-24T22:20:26Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915671,
+      "jobId": 121003279541,
+      "name": "study-api (HTTP + shared Core)",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915671/job/121003279541",
+      "startedAt": "2026-10-24T22:17:31Z",
+      "completedAt": "2026-10-24T22:19:29Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    },
+    {
+      "runId": 40137915753,
+      "jobId": 121003279389,
+      "name": "marketing",
+      "conclusion": "success",
+      "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40137915753/job/121003279389",
+      "startedAt": "2026-10-24T22:17:32Z",
+      "completedAt": "2026-10-24T22:20:42Z",
+      "headSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0"
+    }
+  ],
+  "counts": {
+    "Web": {
+      "job": "web (typecheck + test + build)",
+      "passed": 346,
+      "failed": 0,
+      "skipped": 0,
+      "testFilesPassed": 52,
+      "runtime": "Node26.5.1",
+      "evidence": [
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 332,
+          "text": "2026-10-24T22:18:26.0916650Z       Tests  346 passed (346)"
+        }
+      ]
+    },
+    "Studio": {
+      "job": "studio (typecheck + test + build)",
+      "passed": 2273,
+      "failed": 0,
+      "skipped": 5,
+      "testFilesPassed": 210,
+      "testFilesSkipped": 1,
+      "runtime": "Node22.23.3",
+      "profile": "threads;maxWorkers1;no-file-parallelism;test/hook/teardownTimeout30000",
+      "evidence": [
+        {
+          "file": "40137915671/normalized/1_studio (typecheck + test + build).txt",
+          "line": 1102,
+          "text": "2026-10-24T22:20:11.8033227Z       Tests  2273 passed | 5 skipped (2278)"
+        }
+      ],
+      "skipCaveat": "5 shots.test.ts visual-smoke checks skip because the clean CI runner has no local screenshot directory; they are not browser PASS."
+    },
+    "Engine": {
+      "job": "engine (pytest)",
+      "passed": 2654,
+      "failed": 0,
+      "skipped": 29,
+      "runtime": "CPython3.12.3",
+      "evidence": [
+        {
+          "file": "40137915671/normalized/5_engine (pytest).txt",
+          "line": 305,
+          "text": "2026-10-24T22:19:14.8597519Z 2654 passed, 29 skipped in 86.79s (0:01:26)"
+        }
+      ],
+      "skipCategories": {
+        "postgresDriverMissing": 2,
+        "localSupabaseNotConfigured": 18,
+        "liveLLMNotConfigured": 4,
+        "siblingCanonicalRepoAbsent": 2,
+        "filesystemAliasContracts": 2,
+        "realDispenseCorpusAbsent": 1
+      }
+    },
+    "API_and_shared_Core": {
+      "job": "study-api (HTTP + shared Core)",
+      "passed": 951,
+      "failed": 0,
+      "skipped": 30,
+      "warnings": 1,
+      "runtime": "CPython3.12.3",
+      "evidence": [
+        {
+          "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+          "line": 270,
+          "text": "2026-10-24T22:19:25.6474366Z 951 passed, 30 skipped, 1 warning in 99.17s (0:01:39)"
+        }
+      ],
+      "skipCategories": {
+        "localSupabaseNotConfigured": 18,
+        "realPostgresNotConfigured": 12
+      },
+      "warning": "StarletteDeprecationWarning: httpx/TestClient deprecation; retained, not hidden.",
+      "separateTeachingArtifactUnittest": {
+        "passed": 12,
+        "evidence": [
+          {
+            "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+            "line": 291,
+            "text": "2026-10-24T22:19:27.1315677Z Ran 12 tests in 0.610s"
+          }
+        ]
+      }
+    },
+    "MCP": {
+      "job": "study-mcp (official SDK stdio + HTTP)",
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "runtime": "CPython3.13.17",
+      "scope": "official SDK stdio plus actual HTTP to disposable Core; no remote PostgreSQL claim",
+      "evidence": [
+        {
+          "file": "40137915671/normalized/4_study-mcp (official SDK stdio + HTTP).txt",
+          "line": 327,
+          "text": "2026-10-24T22:18:07.0656395Z Ran 23 tests in 17.880s"
+        }
+      ]
+    },
+    "Marketing_unit": {
+      "job": "marketing",
+      "runId": 40137915753,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "runtime": "Node26.5.1 for browser; systemPython3 for unittest",
+      "evidence": [
+        {
+          "file": "40137915753/normalized/0_marketing.txt",
+          "line": 214,
+          "text": "2026-10-24T22:17:50.1910938Z Ran 9 tests in 0.042s"
+        }
+      ]
+    }
+  },
+  "browser": {
+    "publicWeb": {
+      "job": "web (typecheck + test + build)",
+      "step": "Public preview in a real browser, with no API",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 930,
+          "text": "2026-10-24T22:19:04.6932917Z   ✓  1 e2e-public/public-preview.spec.ts:4:3 › public experiment at 360px predicts, discovers, recovers and transfers with zero API traffic (1.6s)"
+        },
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 935,
+          "text": "2026-10-24T22:19:05.8716007Z   ✓  2 e2e-public/public-preview.spec.ts:4:3 › public experiment at 390px predicts, discovers, recovers and transfers with zero API traffic (1.2s)"
+        },
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 940,
+          "text": "2026-10-24T22:19:07.0524884Z   ✓  3 e2e-public/public-preview.spec.ts:4:3 › public experiment at 820px predicts, discovers, recovers and transfers with zero API traffic (1.2s)"
+        },
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 945,
+          "text": "2026-10-24T22:19:08.2188167Z   ✓  4 e2e-public/public-preview.spec.ts:4:3 › public experiment at 1440px predicts, discovers, recovers and transfers with zero API traffic (1.2s)"
+        },
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 980,
+          "text": "2026-10-24T22:19:08.5079931Z   ✓  5 e2e-public/public-preview.spec.ts:92:1 › public mount preserves course context, exact files and a closed static network policy (276ms)"
+        },
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 984,
+          "text": "2026-10-24T22:19:09.6229432Z   ✓  6 e2e-public/public-preview.spec.ts:112:1 › mean-transport motion pauses exactly, resumes, and reset returns to an unrevealed experiment (1.1s)"
+        }
+      ]
+    },
+    "teacherPhysics": {
+      "job": "web (typecheck + test + build)",
+      "step": "Teacher physics pathways in a real browser, on disposable SQLite",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "file": "40137915671/normalized/2_web (typecheck + test + build).txt",
+          "line": 1087,
+          "text": "2026-10-24T22:19:18.6818004Z [1/1] apps/web/e2e/physics-pathways.spec.ts:4:1 › teacher navigates pinned pathways, units and collections; back, reload and keyboard survive at three widths"
+        }
+      ],
+      "limit": "Disposable SQLite, not a remote authenticated beta."
+    },
+    "studioGoldenPath": {
+      "job": "e2e golden path (advisory)",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "runtime": "Node22.23.3",
+      "cases": [
+        {
+          "file": "40137915671/normalized/6_e2e golden path (advisory).txt",
+          "line": 915,
+          "text": "2026-10-24T22:18:34.7288999Z [1/1] e2e/golden-path.spec.ts:68:1 › golden path: lezione → chiusura → Continuità → export → import → riapertura a freddo → ripresa"
+        }
+      ],
+      "advisory": true,
+      "continueOnError": true,
+      "limit": "Advisory result is not a blocking browser gate and is not eval/gate.sh/replay-check.sh. Studio CI normal job runs deterministic Vitest/typecheck/build, not frozen replay gate."
+    },
+    "marketing": {
+      "job": "marketing",
+      "runId": 40137915753,
+      "step": "Static interest journey in a real browser",
+      "viewportChecksPassed": 36,
+      "widths": [
+        320,
+        360,
+        375,
+        390,
+        430,
+        580,
+        768,
+        820,
+        1024,
+        1280,
+        1440,
+        1920
+      ],
+      "engineCompletions": 3,
+      "engines": {
+        "chromium": "148.0.7778.96",
+        "firefox": "150.0.2",
+        "webkit": "26.4"
+      },
+      "evidence": [
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 9,
+          "text": "2026-10-24T22:18:54.3463571Z chromium width 320 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 10,
+          "text": "2026-10-24T22:18:54.8155670Z chromium width 360 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 11,
+          "text": "2026-10-24T22:18:55.2465424Z chromium width 375 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 12,
+          "text": "2026-10-24T22:18:55.6981126Z chromium width 390 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 13,
+          "text": "2026-10-24T22:18:56.1159419Z chromium width 430 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 14,
+          "text": "2026-10-24T22:18:56.8480644Z chromium width 580 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 15,
+          "text": "2026-10-24T22:18:57.7131880Z chromium width 768 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 16,
+          "text": "2026-10-24T22:18:58.4015960Z chromium width 820 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 17,
+          "text": "2026-10-24T22:18:58.8632017Z chromium width 1024 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 18,
+          "text": "2026-10-24T22:18:59.3304071Z chromium width 1280 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 19,
+          "text": "2026-10-24T22:18:59.7784398Z chromium width 1440 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 20,
+          "text": "2026-10-24T22:19:00.2620875Z chromium width 1920 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 21,
+          "text": "2026-10-24T22:19:13.2651421Z chromium PASS 148.0.7778.96"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 22,
+          "text": "2026-10-24T22:19:15.9977956Z firefox width 320 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 23,
+          "text": "2026-10-24T22:19:16.8074889Z firefox width 360 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 24,
+          "text": "2026-10-24T22:19:17.6268795Z firefox width 375 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 25,
+          "text": "2026-10-24T22:19:18.4238497Z firefox width 390 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 26,
+          "text": "2026-10-24T22:19:19.2367357Z firefox width 430 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 27,
+          "text": "2026-10-24T22:19:20.0442387Z firefox width 580 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 28,
+          "text": "2026-10-24T22:19:20.8428794Z firefox width 768 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 29,
+          "text": "2026-10-24T22:19:21.6404578Z firefox width 820 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 30,
+          "text": "2026-10-24T22:19:22.5200281Z firefox width 1024 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 31,
+          "text": "2026-10-24T22:19:23.3441424Z firefox width 1280 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 32,
+          "text": "2026-10-24T22:19:24.1624061Z firefox width 1440 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 33,
+          "text": "2026-10-24T22:19:25.1148153Z firefox width 1920 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 34,
+          "text": "2026-10-24T22:19:56.6479321Z firefox PASS 150.0.2"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 35,
+          "text": "2026-10-24T22:20:00.6363217Z webkit width 320 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 36,
+          "text": "2026-10-24T22:20:02.2317481Z webkit width 360 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 37,
+          "text": "2026-10-24T22:20:04.1125091Z webkit width 375 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 38,
+          "text": "2026-10-24T22:20:05.6251206Z webkit width 390 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 39,
+          "text": "2026-10-24T22:20:07.1987161Z webkit width 430 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 40,
+          "text": "2026-10-24T22:20:08.7833626Z webkit width 580 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 41,
+          "text": "2026-10-24T22:20:10.4439321Z webkit width 768 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 42,
+          "text": "2026-10-24T22:20:12.1158750Z webkit width 820 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 43,
+          "text": "2026-10-24T22:20:13.5947758Z webkit width 1024 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 44,
+          "text": "2026-10-24T22:20:14.9319502Z webkit width 1280 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 45,
+          "text": "2026-10-24T22:20:16.0929766Z webkit width 1440 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 46,
+          "text": "2026-10-24T22:20:17.3943069Z webkit width 1920 PASS"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 47,
+          "text": "2026-10-24T22:20:36.2434937Z webkit PASS 26.4"
+        },
+        {
+          "file": "40137915753/normalized/marketing/8_Static interest journey in a real browser.txt",
+          "line": 48,
+          "text": "2026-10-24T22:20:36.4413986Z {\"status\":\"PASS\",\"widths\":[320,360,375,390,430,580,768,820,1024,1280,1440,1920],\"engines\":[\"chromium\",\"firefox\",\"webkit\"]}"
+        }
+      ],
+      "limit": "Custom runner reports36width checks plus3engine completions, not39independent test cases; other internal assertions have no published numeric total."
+    }
+  },
+  "skipDetails": {
+    "Engine": [
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 276,
+        "text": "2026-10-24T22:19:14.8563779Z SKIPPED [1] tests/study/test_postgres_question_reviews.py:8: could not import 'psycopg': No module named 'psycopg'"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 277,
+        "text": "2026-10-24T22:19:14.8565830Z SKIPPED [1] tests/study/test_postgres_schema_convergence.py:15: could not import 'psycopg': No module named 'psycopg'"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 278,
+        "text": "2026-10-24T22:19:14.8568622Z SKIPPED [1] tests/study/test_postgres_admin_registers.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 279,
+        "text": "2026-10-24T22:19:14.8570976Z SKIPPED [1] tests/study/test_postgres_calendar.py:10: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 280,
+        "text": "2026-10-24T22:19:14.8572455Z SKIPPED [1] tests/study/test_postgres_concurrency.py:50: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 281,
+        "text": "2026-10-24T22:19:14.8573679Z SKIPPED [1] tests/study/test_postgres_concurrency.py:61: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 282,
+        "text": "2026-10-24T22:19:14.8574889Z SKIPPED [1] tests/study/test_postgres_concurrency.py:73: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 283,
+        "text": "2026-10-24T22:19:14.8576111Z SKIPPED [1] tests/study/test_postgres_concurrency.py:94: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 284,
+        "text": "2026-10-24T22:19:14.8577291Z SKIPPED [1] tests/study/test_postgres_contract.py:99: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 285,
+        "text": "2026-10-24T22:19:14.8578723Z SKIPPED [1] tests/study/test_postgres_contract.py:119: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 286,
+        "text": "2026-10-24T22:19:14.8579915Z SKIPPED [1] tests/study/test_postgres_contract.py:152: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 287,
+        "text": "2026-10-24T22:19:14.8581085Z SKIPPED [1] tests/study/test_postgres_contract.py:193: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 288,
+        "text": "2026-10-24T22:19:14.8582142Z SKIPPED [1] tests/study/test_postgres_contract.py:230: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 289,
+        "text": "2026-10-24T22:19:14.8583435Z SKIPPED [1] tests/study/test_postgres_contract.py:247: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 290,
+        "text": "2026-10-24T22:19:14.8584316Z SKIPPED [1] tests/study/test_postgres_contract.py:280: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 291,
+        "text": "2026-10-24T22:19:14.8585184Z SKIPPED [1] tests/study/test_postgres_contract.py:316: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 292,
+        "text": "2026-10-24T22:19:14.8586035Z SKIPPED [1] tests/study/test_postgres_contract.py:361: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 293,
+        "text": "2026-10-24T22:19:14.8586938Z SKIPPED [1] tests/study/test_postgres_course_bindings.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 294,
+        "text": "2026-10-24T22:19:14.8587904Z SKIPPED [1] tests/study/test_postgres_edition_admin.py:8: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 295,
+        "text": "2026-10-24T22:19:14.8589253Z SKIPPED [1] tests/study/test_postgres_edition_listing.py:11: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 296,
+        "text": "2026-10-24T22:19:14.8590398Z SKIPPED [1] tests/test_cli_eval_real.py:189: no DEEPSEEK/KIMI key available (env or .env) — live eval would raise"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 297,
+        "text": "2026-10-24T22:19:14.8591243Z SKIPPED [1] tests/test_cli_eval_real.py:223: no DEEPSEEK/KIMI key available (env or .env) — live eval would raise"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 298,
+        "text": "2026-10-24T22:19:14.8592372Z SKIPPED [1] tests/test_engine_sync_guard.py:225: Canonical lessonos repo not found (set LESSONOS_REPO or provide a sibling '../lessonos' checkout) — skipping drift integration check."
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 299,
+        "text": "2026-10-24T22:19:14.8593644Z SKIPPED [1] tests/test_engine_sync_guard.py:254: Canonical lessonos repo not found (set LESSONOS_REPO or provide a sibling '../lessonos' checkout) — skipping drift integration check."
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 300,
+        "text": "2026-10-24T22:19:14.8594519Z SKIPPED [1] tests/test_llm_kimi.py:44: no KIMI_API_KEY: live Moonshot call skipped (wiring only)"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 301,
+        "text": "2026-10-24T22:19:14.8595162Z SKIPPED [1] tests/test_obsidian_vault.py:685: case-sensitive filesystem: RAW is not an alias of raw"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 302,
+        "text": "2026-10-24T22:19:14.8595820Z SKIPPED [1] tests/test_obsidian_vault.py:724: normalization-sensitive filesystem: NFD is not an alias"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 303,
+        "text": "2026-10-24T22:19:14.8596492Z SKIPPED [1] tests/test_realtime_eval.py: KIMI_API_KEY not set — live LLM eval skipped"
+      },
+      {
+        "file": "40137915671/normalized/5_engine (pytest).txt",
+        "line": 304,
+        "text": "2026-10-24T22:19:14.8597064Z SKIPPED [1] tests/test_style.py:350: real dispense corpus absent (only on the Mini, not in CI)"
+      }
+    ],
+    "API": [
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 247,
+        "text": "2026-10-24T22:19:25.6439574Z SKIPPED [1] packages/engine/tests/study/test_postgres_admin_registers.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 248,
+        "text": "2026-10-24T22:19:25.6441501Z SKIPPED [1] packages/engine/tests/study/test_postgres_calendar.py:10: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 249,
+        "text": "2026-10-24T22:19:25.6442949Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:50: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 250,
+        "text": "2026-10-24T22:19:25.6444382Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:61: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 251,
+        "text": "2026-10-24T22:19:25.6446044Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:73: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 252,
+        "text": "2026-10-24T22:19:25.6447479Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:94: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 253,
+        "text": "2026-10-24T22:19:25.6449114Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:99: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 254,
+        "text": "2026-10-24T22:19:25.6450520Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:119: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 255,
+        "text": "2026-10-24T22:19:25.6451897Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:152: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 256,
+        "text": "2026-10-24T22:19:25.6453261Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:193: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 257,
+        "text": "2026-10-24T22:19:25.6454638Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:230: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 258,
+        "text": "2026-10-24T22:19:25.6456228Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:247: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 259,
+        "text": "2026-10-24T22:19:25.6457730Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:280: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 260,
+        "text": "2026-10-24T22:19:25.6459261Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:316: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 261,
+        "text": "2026-10-24T22:19:25.6460824Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:361: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 262,
+        "text": "2026-10-24T22:19:25.6462371Z SKIPPED [1] packages/engine/tests/study/test_postgres_course_bindings.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 263,
+        "text": "2026-10-24T22:19:25.6464017Z SKIPPED [1] packages/engine/tests/study/test_postgres_edition_admin.py:8: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 264,
+        "text": "2026-10-24T22:19:25.6465824Z SKIPPED [1] packages/engine/tests/study/test_postgres_edition_listing.py:11: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 265,
+        "text": "2026-10-24T22:19:25.6467350Z SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:33: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 266,
+        "text": "2026-10-24T22:19:25.6468860Z SKIPPED [8] packages/engine/tests/study/test_postgres_schema_convergence.py:52: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 267,
+        "text": "2026-10-24T22:19:25.6470341Z SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:74: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 268,
+        "text": "2026-10-24T22:19:25.6471834Z SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:305: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+      },
+      {
+        "file": "40137915671/normalized/0_study-api (HTTP + shared Core).txt",
+        "line": 269,
+        "text": "2026-10-24T22:19:25.6473329Z SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:366: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+      }
+    ]
+  },
+  "caveats": [
+    "Counts are per invocation; API/sharedCore and Engine overlap and must not be added as unique coverage.",
+    "7ci jobs and1marketing job SUCCESS; failure-only evidence-upload step skipped is not a skipped test.",
+    "Golden path is advisory continue-on-error, not gated Studio browser proof.",
+    "No tests, deploy, commit, source or repository docs mutation performed by this archive task.",
+    "Original GitHub ZIPs preserved; each107original entry also gzipped byte-for-byte, with separate ANSI-free normalized text.",
+    "No auth/environment dump requested or printed; GitHub’s original logs are preserved as supplied (including GitHub masking)."
+  ],
+  "review": "review-status.json: existing independent review read; Core0open findings,6/6reviewed file hashes match final source, huge-integer P2 closed by immutable RED→GREEN.",
+  "archivedAtUtc": "2026-10-24T22:36:20.149165+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "doubled": 58,
+  "state": {
+    "width": 360,
+    "scrollWidth": 366,
+    "quantities": [
+      {
+        "text": "PortataQ/Q₀ = 16",
+        "columnRight": 126.328125,
+        "textRight": 177.5,
+        "overflowsColumn": true
+      },
+      {
+        "text": "Differenza ΔpΔp/Δp₀ = 1",
+        "columnRight": 227.65625,
+        "textRight": 291.9375,
+        "overflowsColumn": true
+      },
+      {
+        "text": "Velocità mediav/v₀ = 4",
+        "columnRight": 329,
+        "textRight": 350.53125,
+        "overflowsColumn": true
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "text200 has no horizontal page overflow",
+      "pass": false
+    },
+    {
+      "name": "text200 quantities fit their columns",
+      "pass": false
+    }
+  ],
+  "method": "Browser computed text sizes doubled through inline style in an isolated anonymous context; no source edit. This is a CSS text-resize simulation, not a browser preference or physical-device measure."
+}

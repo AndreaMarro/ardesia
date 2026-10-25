@@ -1,0 +1,80 @@
+{
+  "synthetic": true,
+  "examples": [
+    {
+      "kind": "resource_version",
+      "ref": {
+        "resource_id": "res-synthetic-1",
+        "revision_id": "rev-1",
+        "organization_id": "org-synthetic-a",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "visibility": "learner_private",
+      "media_type": "image/png"
+    },
+    {
+      "kind": "learning_event",
+      "event_id": "event-synthetic-1",
+      "organization_id": "org-synthetic-a",
+      "actor_id": "user-synthetic-1",
+      "student_id": "user-synthetic-1",
+      "edition_id": "edition-synthetic-1",
+      "event_type": "submission.created",
+      "occurred_at": "2026-10-20T08:00:00Z",
+      "evidence": [
+        {
+          "resource_id": "res-synthetic-1",
+          "revision_id": "rev-1",
+          "organization_id": "org-synthetic-a",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "kind": "adapter_result",
+      "source": {
+        "resource_id": "res-synthetic-1",
+        "revision_id": "rev-1",
+        "organization_id": "org-synthetic-a",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "target_capability": "pdf.readonly",
+      "status": "PARTIAL",
+      "preserved": [
+        "text",
+        "static_diagram",
+        "source_reference"
+      ],
+      "losses": [
+        {
+          "field": "interactive_controls",
+          "reason": "PDF statico senza interazione"
+        },
+        {
+          "field": "revocable_access_after_download",
+          "reason": "La copia scaricata non è revocabile"
+        }
+      ],
+      "receipt_id": "receipt-synthetic-1"
+    },
+    {
+      "kind": "error_observation",
+      "observation_id": "error-synthetic-1",
+      "organization_id": "org-synthetic-a",
+      "student_id": "user-synthetic-1",
+      "concept_id": "units.area-conversion",
+      "category": "units",
+      "verification": "PROPOSED_AI",
+      "source": {
+        "resource_id": "res-synthetic-1",
+        "revision_id": "rev-1",
+        "organization_id": "org-synthetic-a",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "attempt_revision_id": "attempt-synthetic-v1",
+      "actor_id": "model-proposal-synthetic",
+      "occurred_at": "2026-10-20T08:05:00Z",
+      "anchor": "page:1;line:3"
+    }
+  ]
+}

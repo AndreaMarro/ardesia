@@ -1,0 +1,8 @@
+{
+  "schema": "ardesia.rea-original-fixture/1",
+  "is_rea_cli_request": false,
+  "engine": "@doenet/doenetml@0.7.27",
+  "fixture_author": "ARDESIA original research",
+  "doenetML": "<title>Original Poiseuille prediction</title>\n<p>Keep pressure difference, viscosity, and length fixed. Predict the flow ratio after doubling radius.</p>\n<answer name=\"prediction\">16</answer>\n<hint name=\"help\"><title>Use the exponent</title><p>The radius occurs to the fourth power. Compare the new radius with the original.</p></hint>\n<p>Explore a radius ratio: <mathInput name=\"r\" prefill=\"1\" /></p>\n<p>Calculated flow ratio: <math simplify>$r^4</math></p>\n<graph xmin=\"0\" xmax=\"3\" ymin=\"0\" ymax=\"20\"><function>x^4</function><point name=\"P\">($r,$r^4)</point></graph>\n<p>Explain your reasoning: <textInput name=\"reason\" expanded /></p>",
+  "note": "Original educational text only; no donor source bundled. Runtime initialization is documented in R2.md."
+}

@@ -1,0 +1,243 @@
+{
+  "status": "PASS",
+  "label": "candidateR1",
+  "origin": "http://127.0.0.1:5416",
+  "artifact": "/private/tmp/ardesia-r1-candidate-c762e30",
+  "manifestSha": "ea3b747337f83a7a4b99de4082a883826f42f12579ce62e5db881f9c5feaa853",
+  "sourceManifestSha": "fe84993da8a25fcbfc88dd6b6476b6b82f15eb9a721818aeece34b8596cf8c0e",
+  "node": "v26.5.1",
+  "browser": "148.0.7778.96",
+  "host": {
+    "loadAverage": [
+      11.23681640625,
+      14.38720703125,
+      16.07958984375
+    ],
+    "cpuCount": 8
+  },
+  "checks": [
+    {
+      "name": "390/0/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/0/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/0/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/0/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/0/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/0/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/1/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/1/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/1/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/1/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/2/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "390/2/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "390/2/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "390/2/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/0/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/0/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/0/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/0/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/1/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/1/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/1/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/1/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/2/plain-loopback: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "1440/2/browser-simulated-limited: exact HTTP artifact bytes",
+      "pass": true
+    },
+    {
+      "name": "1440/2/browser-simulated-limited: local requests, no private API or automatic audio",
+      "pass": true
+    },
+    {
+      "name": "1440/2/browser-simulated-limited: no runtime/network/HTTP error or overflow",
+      "pass": true
+    },
+    {
+      "name": "candidate manifest unchanged",
+      "pass": true
+    },
+    {
+      "name": "source manifest unchanged",
+      "pass": true
+    }
+  ],
+  "summaries": [
+    {
+      "width": 390,
+      "profile": "plain-loopback",
+      "samples": 3,
+      "domContentLoadedMs": 22,
+      "loadMs": 22,
+      "visibleFontsTwoFramesMs": 90.40000000596046,
+      "evaluateToTwoFramesMs": 38.5,
+      "radiusToTwoFramesMs": 22.5,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3802940,
+      "taskDeltaMs": 77.60100000000003
+    },
+    {
+      "width": 390,
+      "profile": "browser-simulated-limited",
+      "samples": 3,
+      "domContentLoadedMs": 1925,
+      "loadMs": 1925.1000000089407,
+      "visibleFontsTwoFramesMs": 2119.2999999970198,
+      "evaluateToTwoFramesMs": 50,
+      "radiusToTwoFramesMs": 23,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3797624,
+      "taskDeltaMs": 116.433
+    },
+    {
+      "width": 1440,
+      "profile": "plain-loopback",
+      "samples": 3,
+      "domContentLoadedMs": 18.299999997019768,
+      "loadMs": 18.299999997019768,
+      "visibleFontsTwoFramesMs": 75.20000000298023,
+      "evaluateToTwoFramesMs": 41,
+      "radiusToTwoFramesMs": 18.700000002980232,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3793016,
+      "taskDeltaMs": 48.91499999999999
+    },
+    {
+      "width": 1440,
+      "profile": "browser-simulated-limited",
+      "samples": 3,
+      "domContentLoadedMs": 1926,
+      "loadMs": 1926,
+      "visibleFontsTwoFramesMs": 2123.9000000059605,
+      "evaluateToTwoFramesMs": 54.30000001192093,
+      "radiusToTwoFramesMs": 17.799999997019768,
+      "jsBytes": 249666,
+      "cssBytes": 60135,
+      "initialResources": 2,
+      "initialRequests": 3,
+      "interactionRequests": 0,
+      "jsHeapUsedBytes": 3782800,
+      "taskDeltaMs": 118.399
+    }
+  ],
+  "limits": "Shared host. Three new anonymous contexts per width/profile with cache disabled; OS/JIT/filesystem caches not reset. Browser-only CPU4 and explicit 150ms/200000Bps-down/93750Bps-up network simulation, distinct from loopback; no physical mobile/field INP/fps. Event-to-two-rAF proxy includes two frames and is not INP. CDP task/script/layout duration and JS heap are observed browser metrics, not OS CPU percent or a leak diagnosis. Fontready is current font set. Completed resource bytes differ from full artifact. No private API, token, user data, microphone, external model, contact submission or deploy."
+}

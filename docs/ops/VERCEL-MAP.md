@@ -392,3 +392,25 @@ lavagna -> plugin simulatore -> circuito/blink -> stato salvato -> export/import
 - Non verificato: browser flow di `ardesia-canvas`, `ardesia-workspace`.
 - Non verificato: commit Git servito da `ardesia-canvas`, `ardesia-api-vercel`, `ardesia-workspace`.
 - Non fatto: nessun deploy, nessun dominio, nessuna modifica Vercel.
+
+
+## Accesso connettori — 24 ottobre 2026, 2026-10-24T23:30:57+02:00
+
+Questa è una verifica degli accessi, non un deploy o una nuova rilevazione dei vecchi progetti della mappa. Team atteso `team_23uD0RgdInaTaOPEL0EGltup` / `andreas-projects-6d4e9791`: get_project di ardesia-fisica-preview ancora403; consenso monouso richiesto e consegnato in chat, grant non ancora attestato. CLI presente, autenticazione non ritestata in questo checkpoint. I successiCLI del luglio2026 non attestano l’accesso della connessione corrente. Render MCP risponde a list_workspaces; selezione umana del workspace MyWorkspace ancora pendente. Vedere l’ultima voce RUNLOG e NEXT-SESSION-PROMPT per stato, ID e primo passo; non usare il materiale storico come permesso o readiness corrente. Nessuna configurazione/progetto/alias/DNS modificati.
+
+
+## Conferma Render e limite Vercel — 24 ottobre 2026, 2026-10-24T23:38:26+02:00
+
+L’utente ha confermato «Usa My Workspace»: Render workspace `tea-d4gouafdiees73b2m8f0`, da passare esplicitamente alle chiamate successive. list_services, get_service e list_deploys riusciti. La preview https://ardesia-golive02-preview.onrender.com è il servizio statico `srv-dbdu1g3l550s738cq3t0`, branch pro/ardesia-golive-02-20261024, autoDeploy=no; ultimo deploy live `dep-dbdu3p7f3r2c73c2ee8g`, SHA339ab08f4139da0b37e78bbde81e9fe4e83afea0. È uno snapshot precedente, non distribuzione del candidatoR1/R2. Vercel get_project sul team/progetto già indicato resta403; consenso umano e successiva lettura positiva ancora necessari. Nessun deploy o modifica remota effettuati per questo controllo; nessun link monouso o credenziale memorizzato. Questa nota supera lo stato Render pendente precedente, conservando il resto della storia.
+
+
+## Accesso Vercel riuscito — 24 ottobre 2026, 2026-10-24T23:41:42+02:00
+
+Controprova positiva sulla stessa connessione dopo il precedente403: get_project ardesia-fisica-preview sul team `team_23uD0RgdInaTaOPEL0EGltup` riuscito; progetto `prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`. list_projects(search=ardesia) riesce con7progetti; get_deployment legge `dpl_6Ee5hXwDuQsDPeAaF9G8pfxAGSiE`, READY, target=null, URL https://ardesia-fisica-preview-cv49dagv8-andreas-projects-6d4e9791.vercel.app. SHA/branch non restituiti, non dedotti. ProtezioneSSO delle preview mantenuta; nessuna modifica/deploy eseguiti. Questa prova supera il bloccoVercel delle note precedenti, senza cancellarle. Anche Render è accessibile nel workspace confermato tea-d4gouafdiees73b2m8f0. Riutilizzare team/workspace e connessioni nelle operazioni autorizzate; connessione non equivale a beta o approvazione di pubblicazione.
+
+
+## 25 ottobre 2026 — R2 protetta verificata su Vercel
+
+Prodotto36cdba353401c80b92cc94f256b106238c7610f8, draft#301. Preview finale `dpl_DFzshU93DT5N746XiPYr26dyjpcx`, progetto `prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`/team `team_23uD0RgdInaTaOPEL0EGltup`: https://ardesia-fisica-preview-p4t6b0w96-andreas-projects-6d4e9791.vercel.app. targetnull=preview, SSOpreview attiva prima/dopo, domini assenti; nessuna promozione a produzione. Solo20file pubblici, senzaAPI/Studio/database/accessfile. HTTPS100/100check,20asset byte/SHA esatti,6path privati/ignoti404 e headerCSP/media-self/noindex/no-store applicati; anonimo302/accesso autorizzato200. Link temporanei e cookie non conservati inGit.
+
+La prima previewR2 `dpl_EiocJ3vy9RVLJG3fJXk7xHU4GQoa` sul prodotto bec05cc rimane una prova datata; tutti20byte pubblici sono identici nel successore36cdba3. Nuovi artifact/source manifest e prova fisica del nuovo host in [validazioneR2](../deliveries/2026-10-24-r2/validation.md). Review scientifica/editoriale/voce ed esempiDRAFT non approvati: releaseBLOCKED distinta dal gate tecnico e dalla preview protetta. BetaAuth/Storage/inviti e rollback operativo remoti non attestati. Render letto nel workspaceMyWorkspace già confermato, servizio storico/autoDeployoff mantenuti. NessunDNS, acquisto o produzione.

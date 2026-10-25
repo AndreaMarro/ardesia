@@ -1,0 +1,58 @@
+{
+  "observedAt": "2026-10-25T13:13:58.282596+00:00",
+  "scope": "Root-authorized four PR contract paths only; no stage, commit or remote mutation by inventory agent.",
+  "files": [
+    {
+      "path": "bin/ci/pr_contract_gate.py",
+      "sha256": "cdec3373359c5e83065d37327426b23276c27837efc82c307b03e40225b0e443",
+      "blob": "b56549e3b01a180c0825206fee9b9ee2897d7e0b",
+      "whitespacePass": true
+    },
+    {
+      "path": "bin/ci/test_pr_contract_gate.py",
+      "sha256": "62165e8f354ac0d7984dd17feba491e25166a9b2df0ee21dd8b8fb3488e4f2b0",
+      "blob": "58eaf93ad41462efd8179c290a90b1e3490c4a09",
+      "whitespacePass": true
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "ba77541b75efd0f6aa52d38b12e95321e4e163d3fcc8e900656640a96fb45e3e",
+      "blob": "ec06d8623daa1c0135aad2b239d65fe9ec51d213",
+      "whitespacePass": true
+    },
+    {
+      "path": ".github/workflows/pr-contract.yml",
+      "sha256": "af24dc4d4853b231805925b707b04b26a4fa69cad93a3cfe5127928cf7f79e05",
+      "blob": "56a8bd293701e9c2c56164169154eec71bb59f90",
+      "whitespacePass": true
+    }
+  ],
+  "validation": {
+    "contractUnitTests": {
+      "passed": 23,
+      "failed": 0,
+      "transport": "mocked; no live token/network invoked"
+    },
+    "workflowTriggerTests": {
+      "passed": 20,
+      "failed": 0
+    },
+    "previousFindings": "Fixed stale event body and @OWNER/consecutive-hyphen owner validation."
+  },
+  "behavior": {
+    "currentMode": "Reads validated current-repository GitHub API only; compares current PR number and head to event, validates current body. Refuses redirects and fails closed on network/JSON/size errors without token/body reflection.",
+    "bounds": {
+      "requestTimeoutSeconds": 10,
+      "responseBytes": 1048576,
+      "eventBytes": 2097152,
+      "bodyCharacters": 65536,
+      "workflowTimeoutMinutes": 3
+    },
+    "offlineMode": "Explicitly labelled event-snapshot-only; no freshness claim.",
+    "authority": "Assurance is metadata at fetch instant; later edits require another check. No execution, human approval, scientific readiness, integration or merge authority is granted."
+  },
+  "notChecked": [
+    "Actual new GitHub workflow run and current API permissions after candidate push",
+    "Integrated root candidate CI and protected-branch approval"
+  ]
+}

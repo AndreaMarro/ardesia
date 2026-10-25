@@ -1,0 +1,434 @@
+{
+  "toolVersion": "6.7.0",
+  "target": "https://app.affine.pro/",
+  "acquired": "2026-10-20",
+  "observed": [
+    "guest local workspace",
+    "original note created",
+    "note/title persist through navigation",
+    "Export menu present"
+  ],
+  "notVerified": [
+    "PDF import through REA",
+    "exported artifact download",
+    "artifact reimport",
+    "full equivalent PDF annotation workflow"
+  ],
+  "limitations": [
+    "capture_browser_scenario 6.7.0 advertises no file-upload action",
+    "last focused export submenu capture failed CDP discovery timeout; retained as error",
+    "network capture incomplete; no initiator stacks or full frontend logic reconstruction"
+  ],
+  "records": [
+    {
+      "file": "affine-create-v2.json",
+      "sha256": "b9c7963a2aeb93bc1cd1035218bea8de033ab7fed1bddc0cea1dd83ba0e57f23",
+      "bytes": 1658573,
+      "evidenceId": "ev_99d41f502aea51d30b85028ea7bf8051231d58b4ef62ec4c1dc293f612f7ce41",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "new-doc",
+          "status": "completed"
+        },
+        {
+          "id": "settle",
+          "status": "completed"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "scenario_start",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/RpPqQUGzsw",
+          "sha256": {
+            "accessibility": "a28e82ab2113d55ed9ae45a1f886600e2b7bc18b16bc56493ec1f1d2ec0e5832"
+          }
+        },
+        {
+          "step": "new-doc",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "ce519d2e222584902dcf3a5f4921f8fdfbb6484eec35fd4a843e60183bf979a4"
+          }
+        },
+        {
+          "step": "settle",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "screenshot": "cc2cb6f2bca7056684120a65faddaac6f423ea409e3b63953851c55f1348b1ea",
+            "dom": "af3ce9dc1f197b265e8257706ece2ce12d8e8dfe47488d057b1935a2910b875c",
+            "accessibility": "ce519d2e222584902dcf3a5f4921f8fdfbb6484eec35fd4a843e60183bf979a4"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-create.json",
+      "sha256": "17ea9dfa167081016829dd438d1c5398e25eaef5f023bf42341e9ea1705813f4",
+      "bytes": 493893,
+      "evidenceId": "ev_47767082f71324f1c4e10922420bb971cccf1afa4436d14e436af55cc0ee8e89",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "dismiss",
+          "status": "failed"
+        },
+        {
+          "id": "new-doc",
+          "status": "cancelled"
+        },
+        {
+          "id": "settle",
+          "status": "cancelled"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "accessibility",
+          "action",
+          "dom",
+          "events",
+          "screenshot",
+          "url"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "scenario_start",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/RpPqQUGzsw",
+          "sha256": {
+            "accessibility": "a28e82ab2113d55ed9ae45a1f886600e2b7bc18b16bc56493ec1f1d2ec0e5832"
+          }
+        },
+        {
+          "step": "dismiss",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/RpPqQUGzsw",
+          "sha256": {
+            "accessibility": "03cde3a1b69cb81ec11104cd449fcfe7794cf5990d80ac357e23c1b880f2bcb3"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-export-menu.json",
+      "sha256": "412f8361e503a0fbaedbc711c4571410a9c851f14b2576e12112c298aa04e73c",
+      "bytes": 1674097,
+      "evidenceId": "ev_07717ea0909b56aa348a5f279c8fdc74a1d3386b0efd740f83553251d5e024c1",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "menu",
+          "status": "completed"
+        },
+        {
+          "id": "settle",
+          "status": "completed"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "scenario_start",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "a28e82ab2113d55ed9ae45a1f886600e2b7bc18b16bc56493ec1f1d2ec0e5832"
+          }
+        },
+        {
+          "step": "menu",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "71e638ae00cc1b0a118f089b41340ce1b87eca3b9d65d71d5258d700611ff2b8"
+          }
+        },
+        {
+          "step": "settle",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "screenshot": "5855f5fd5d23c3c7e9752c7ad9f3587c5c50df498e4d61c59e5a8896f3ad4133",
+            "dom": "3d08dca1303c6703d614a12d34e0346fee232f151d15e97fb525f2e21e4118bb",
+            "accessibility": "a4c8f57e6d89c21accfc222dc7dddfd556715ddb31dac1a3c0b4513d5872d0ed"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-export-options.json",
+      "sha256": "610971e65cea52dfd17d479141102987efac7fa1878c22ce2948aa6e0e81b3e5",
+      "bytes": 1759541,
+      "evidenceId": "ev_194ae12c7303a11ccbc7705e129dda8593437b9a518c9cc5162ba3a64e3543fb",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "menu",
+          "status": "completed"
+        },
+        {
+          "id": "export",
+          "status": "completed"
+        },
+        {
+          "id": "settle",
+          "status": "completed"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "scenario_start",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "a28e82ab2113d55ed9ae45a1f886600e2b7bc18b16bc56493ec1f1d2ec0e5832"
+          }
+        },
+        {
+          "step": "menu",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "a4c8f57e6d89c21accfc222dc7dddfd556715ddb31dac1a3c0b4513d5872d0ed"
+          }
+        },
+        {
+          "step": "export",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "500fa4a34730d7adce6e9246643f46db582ce9b15328f73de8d3082c69ee6645"
+          }
+        },
+        {
+          "step": "settle",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "screenshot": "5855f5fd5d23c3c7e9752c7ad9f3587c5c50df498e4d61c59e5a8896f3ad4133",
+            "dom": "81d28116f2214bd2d08875106df1010f0d379a45317b22944c231b7b91dcabe0",
+            "accessibility": "a4c8f57e6d89c21accfc222dc7dddfd556715ddb31dac1a3c0b4513d5872d0ed"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-export-submenu.json",
+      "sha256": "f9c06930a0f464e66a8ddf097d30c0852618d436c6c095666a1e43f96bdd2f47",
+      "bytes": 541,
+      "evidenceId": null,
+      "isError": true,
+      "steps": [],
+      "completeness": null,
+      "browser": null,
+      "snapshots": []
+    },
+    {
+      "file": "affine-initial.json",
+      "sha256": "809e70b8c5a66f403f77f7e957e78a5520cc9b39753c7b69067a36e7d20aa0e4",
+      "bytes": 2052667,
+      "evidenceId": "ev_d0f132f87cf57b56301d831544bdc09fa30b7d5039bf892970e9b752debff00f",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "settle",
+          "status": "completed"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "settle",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/RpPqQUGzsw",
+          "sha256": {
+            "screenshot": "ee119d373cbf22395a808366532a28b4175c4665e188864a53d3985518d2d39b",
+            "dom": "c7af45dad27f67f7e589c3f95026ac46dbac4505c3d1dc176340faf07e0f9526",
+            "accessibility": "8579e14e07153b1d97b81f39e2fc8d108a47de129b1f08ab4fa96af0ba8d3f95"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-own-note.json",
+      "sha256": "5ffe6aa22b692e0cd5f4cb39c7d0e11a1ba5544699ec92e3b5539377b92002f7",
+      "bytes": 1636860,
+      "evidenceId": "ev_7f7adbb82dfb690383fe9acd3cbfea1669f5b4a37636b46ef7c990df79e56dfc",
+      "isError": false,
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "title",
+          "status": "completed"
+        },
+        {
+          "id": "note",
+          "status": "completed"
+        },
+        {
+          "id": "settle",
+          "status": "completed"
+        },
+        {
+          "id": "share",
+          "status": "completed"
+        }
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "browser": {
+        "mode": "connect",
+        "process_ownership": "external",
+        "cleanup": "disconnected-external",
+        "product": "Chromium",
+        "version": "155.0.8059.85"
+      },
+      "snapshots": [
+        {
+          "step": "scenario_start",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "a28e82ab2113d55ed9ae45a1f886600e2b7bc18b16bc56493ec1f1d2ec0e5832"
+          }
+        },
+        {
+          "step": "title",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "33ddd1ca985c361d4a9b575debfd76492ca8996244b568da413396e32dead7b6"
+          }
+        },
+        {
+          "step": "note",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "c96db7d243e2530cf97635c1e8d920e5f7672216ae433443d729bc7807ddd599"
+          }
+        },
+        {
+          "step": "settle",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "accessibility": "c96db7d243e2530cf97635c1e8d920e5f7672216ae433443d729bc7807ddd599"
+          }
+        },
+        {
+          "step": "share",
+          "url": "https://app.affine.pro/workspace/ZsvKcwNyhrv9KmExNJiAX/CjvR9ejpL8gbmc_hIG8PI",
+          "sha256": {
+            "screenshot": "504b2df525f3a59d207561a2e88e25abded0ad78223a1d411b014ea12db7adfe",
+            "dom": "0c156d12878f87e5e48ce429b70d462702388172d8c841af4aaaa002f1305394",
+            "accessibility": "c96db7d243e2530cf97635c1e8d920e5f7672216ae433443d729bc7807ddd599"
+          }
+        }
+      ]
+    },
+    {
+      "file": "affine-targets.json",
+      "sha256": "c52bfcf3680a06dc7fb7157373da9e122805aba5b51d390d1d0844b704c8ae48",
+      "bytes": 4373,
+      "evidenceId": "ev_531c83a83fc6b2ee8b2b7360e027a0b56b6ec76a81d261d85736d66e0fea6125",
+      "isError": false,
+      "steps": [],
+      "completeness": null,
+      "browser": {
+        "product": "Chrome/155.0.8059.85",
+        "protocol_version": "1.3",
+        "revision": "537.36 (@0e66b94549a8bd85f03fbdf189b752d6e7b63c32)",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+        "js_version": "15.5.35.25"
+      },
+      "snapshots": []
+    }
+  ],
+  "targetVersion": "Deployed version not exposed in the captured guest UI; the guide references stable 0.27.4 separately."
+}

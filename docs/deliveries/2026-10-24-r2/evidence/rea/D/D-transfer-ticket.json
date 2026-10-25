@@ -1,0 +1,353 @@
+{
+  "targetVersion": {
+    "target": "CircuitJS Ohm’s Law parameter control",
+    "url": "https://www.falstad.com/circuit/circuitjs.html",
+    "observedModule": "circuitjs113/circuitjs-Bn3AlnOM.js",
+    "identityLimit": "Module URL observed; module bytes and upstream commit not bound. No runtime/source equivalence asserted.",
+    "tool": "REA6.7.0 offline cache, Node26.5.1, provider-owned Chromium148.0.7778.96"
+  },
+  "behavior": "Changing the Voltage control from5V to2.5V updates both branch currents and their scene labels:50→25mA for100Ω;5→2.5mA for1kΩ. This is parameter/visual coherence, not an observed Taylor or learning feature.",
+  "observedPath": [
+    "Open real runtime",
+    "Circuits > Basics > Ohm’s Law (setup, not a new transfer)",
+    "Observe5V/50mA/5mA",
+    "Click centre of Voltage canvas",
+    "Observe2.5V/25mA/2.5mA",
+    "Home and ArrowRight declared actions complete without changing2.5V",
+    "390px replay: Voltage click cannot complete because control is outside viewport/intercepted; remaining actions cancelled"
+  ],
+  "evidence": {
+    "records": [
+      {
+        "file": "D-ohm-controls-evidence.json",
+        "evidenceId": "ev_fb3129e5ab8261a06ac6883bb4018df24b073a5be5cc6efb36f6fa489ccc3df3",
+        "sha256": "e0845e701b75339bbf34b9d59e247e513020d830055bcc006343e2e60f360397",
+        "bytes": 837328,
+        "durationMs": 17327,
+        "steps": 7,
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "actions": [
+          {
+            "step_id": "scenario_start",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "ready",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "settle",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-circuits",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-basics",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "choose-ohm",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-model-controls",
+            "status": "completed",
+            "error": null
+          }
+        ]
+      },
+      {
+        "file": "D-ohm-parameter-evidence.json",
+        "evidenceId": "ev_116bfa2268d7c888b89b4543f7f0a09b861f458a6350b0ca1b2a7bd86cc23cb1",
+        "sha256": "5354ebf8a02bdc7ccdef4369d846df85691ada404bba9a75df96dcec1ab0c157",
+        "bytes": 2469196,
+        "durationMs": 13576,
+        "steps": 13,
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "actions": [
+          {
+            "step_id": "scenario_start",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "ready",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "settle",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-circuits",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-basics",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "choose-ohm",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-model-controls",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "set-voltage-midpoint",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-voltage-change",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "keyboard-home",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-keyboard-home",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "keyboard-arrow-right",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-keyboard-arrow",
+            "status": "completed",
+            "error": null
+          }
+        ]
+      },
+      {
+        "file": "D-ohm-mobile-evidence.json",
+        "evidenceId": "ev_216ea741492c13124396a23e394e2a1faa8c18567349756b8e362b83909cf3da",
+        "sha256": "33ba72a3ebd117154a02dcd84015c3cad9877c52ad5c5e1a5735565d23c84192",
+        "bytes": 1254142,
+        "durationMs": 18897,
+        "steps": 11,
+        "completeness": {
+          "status": "incomplete",
+          "equality_eligible": false,
+          "missing_sections": [
+            "accessibility",
+            "action",
+            "dom",
+            "screenshot",
+            "url"
+          ],
+          "truncated_sections": []
+        },
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "actions": [
+          {
+            "step_id": "scenario_start",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "ready",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "settle",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-circuits",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "open-basics",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "choose-ohm",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "observe-model-controls",
+            "status": "completed",
+            "error": null
+          },
+          {
+            "step_id": "set-voltage-midpoint",
+            "status": "failed",
+            "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#painel > canvas:nth-of-type(4)')\u001b[22m\n\u001b[2m    - locator resolved to <canvas width=\"128\" height=\"14\"></canvas>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - element is outside of the viewport\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m  4 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - element is outside of the viewport\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <canvas width=\"390\" height=\"774\"></canvas> from <div class=\"canvasWrapper\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n"
+          },
+          {
+            "step_id": "observe-voltage-change",
+            "status": "cancelled",
+            "error": "not executed after an earlier action failure"
+          },
+          {
+            "step_id": "keyboard-home",
+            "status": "cancelled",
+            "error": "not executed after an earlier action failure"
+          },
+          {
+            "step_id": "observe-keyboard-home",
+            "status": "cancelled",
+            "error": "not executed after an earlier action failure"
+          }
+        ]
+      }
+    ],
+    "rawRetention": "All raw donor Evidence/DOM/accessibility/PNG stay in local work/r2/rea/D. Product uses no donor asset.",
+    "observedVsInference": "The voltage/current labels are pixel observations. Association to the bounded Taylor graph is an original design inference, agreed before implementation. No Taylor/series/invalid numeric entry behavior was observed in CircuitJS."
+  },
+  "screenshots": {
+    "recipient": [
+      "product-ui-run4/taylor-360.png",
+      "product-ui-run4/taylor-1440.png"
+    ],
+    "donor": "Retained only in work; not redistributed as Ardesia assets.",
+    "baseline": "TaylorLab at sourceHeadcc6223c had two hardcoded SVG paths independent of parameters; source diff retained by Git, no fabricated baseline screenshot."
+  },
+  "limits": [
+    "Donor desktop parameter click observed; keyboard no-change is limited to Home/ArrowRight on this canvas, not every shortcut or screen reader.",
+    "Mobile Evidence is incomplete and is a failed control interaction, not mobile success.",
+    "Reference exp is floating-point numerical data from Core, not a symbolic proof. The Lagrange bound is computed independently with polynomial rounding.",
+    "Plot connects41 canonical points with straight segments; the rendered band is an interpolation between sampled bounds, not a certified continuous enclosure.",
+    "Runtime UI proof is a dev server with synthetic student-02 and real HTTP, not a committed/static final artifact or remote beta.",
+    "No physical touch device, human learning outcome, remote concurrency, PG path, INP/fps or total engineering cost measured.",
+    "ScientificApproval remains NOT_RUN/DRAFT; no new authority, solver, API, DB, authentication or ledger."
+  ],
+  "license": {
+    "officialRuntime": "https://www.falstad.com/circuit/",
+    "officialLinkedSource": "https://github.com/pfalstad/circuitjs1",
+    "licenseSource": "https://github.com/pfalstad/circuitjs1/blob/master/COPYING.txt",
+    "sourceLicense": "GPL-2.0 badge/COPYINGv2; exact runtime commit not verified. No stronger runtime licensing equivalence asserted.",
+    "adoptedSourceOrAsset": false,
+    "decision": "Observe interaction only; original Ardesia implementation over existing Core. No donor solver/code, visual asset or screenshot shipped."
+  },
+  "ardesiaSpec": {
+    "agreement": "contract-approved.md records the prior coordinator agreement; file itself was written after first implementation and is not backdated.",
+    "parameters": "Existing taylor-exp-v1, x[-1,1], degree integer0..12.",
+    "canonicalProjection": "Same Fraction polynomial/bound authority for scalar and41 plot samples. New referenceValue/absoluteError are numeric Core exp difference only.",
+    "interaction": "Prediction before explicit comparison; degree±1 edits invalidate graph/commit without automatic request. Input edit aborts/fences stale request.",
+    "legacy": "Missing plot keeps valid numeric result committable and declares graph unavailable; malformed plot is rejected, never replaced with a schematic.",
+    "accessibility": "Native inputs/buttons, SVG description, legend and sample table. No animation. Bounds/scatter are not labelled scientific approval.",
+    "keepChangeDiscard": {
+      "keep": "Coherence of changed parameter, numeric quantities and visual state.",
+      "change": "Replace inaccessible canvas control with native controls and responsive layout; use explicit prediction/confirmation instead of live auto-evaluation.",
+      "discard": "Circuit solver/code/assets, reset already transferredR1, menu switching as new value, auto-run animation, hypothetical Taylor donor behavior."
+    }
+  },
+  "reuse": [
+    "Existing TaylorLab prediction/onCommit/draft cache and canonical /activities/evaluate",
+    "Existing Fraction-based bounded Maclaurin model and Lagrange bound",
+    "Existing authorized Analisi pack, classroom submission and immutable receipts remain unchanged",
+    "New TaylorPlot receives plain validated Core projection and can be reused by another authorized Taylor microcourse without solver duplication"
+  ],
+  "implementation": {
+    "sourceHead": "cc6223c6a156b5868013184e91231206d8708cc0",
+    "files": {
+      "apps/web/src/components/TaylorLab.tsx": "045a707c8614ada0b5395d4f9e813eb446a4923c4de8beb0a2af88328c94f58f",
+      "apps/web/src/components/TaylorPlot.tsx": "399436c871b85d782952d93dc70927c6aa9cfba2006ed04ae31e1c74e359b8e6",
+      "apps/web/src/components/TaylorPlot.css": "44c4041a49431dd361d5551ec16de34b9449d7cb0964696117c39c01b85e9ad9",
+      "apps/web/src/__tests__/taylor-plot.test.tsx": "d8dbc31b286a166b0f7415a11f1a51ab0bdba02bf2686401804ac1e3a10df817",
+      "packages/engine/lessonos/study/taylor.py": "af513414377075096487ee204e09fb2846c7fd9e62550aa2b1937217145d73a1",
+      "packages/engine/tests/study/test_taylor_plot.py": "646250dd9bb688ed8bec3368e601bcf2a374dc5195d953f6d200f116a120848c"
+    },
+    "excludedOwnership": [
+      "experienceTypes",
+      "PoiseuilleEpisode",
+      "activities.py",
+      "Core composition",
+      "Classroom",
+      "global styles.css",
+      "memory/canons",
+      "auth/store"
+    ],
+    "authority": "No new solver: backend helper retains original Fraction algorithm. Frontend performs validation and coordinate projection only."
+  },
+  "tests": {
+    "coreRed": "taylor-core-red.log:4FAIL (plot missing)",
+    "uiRed": "taylor-ui-red.log:9FAIL (static curve, unavailable fallback, malformed/stale acceptance)",
+    "coreGreen": "taylor-core-green.log:90PASS (4new+86existing)",
+    "uiGreen": "taylor-ui-final.log:13PASS (12new+classroom1); taylor-typecheck-final.log PASS",
+    "browser": "product-ui-run4/result.json:26/26PASS, source4file hashes unchanged;3 real canonical evaluations for degree0/3/8; native keyboard, invalids, responsive360/390/820/1440, reduced motion, no Taylor page/console errors.",
+    "harnessHistory": "run1 waits for Classroom after login intentionally navigates Today; run2 login502 during coordinator-controlled API restart; run3 has19PASS then reads text in closed details. Corrected only runner; all earlier records preserved. Login-prelude401/aborted navigations remain explicitly separate in run4; not filtered into a zero-global-error claim.",
+    "scope": "Focused only; root owns full suites/final artifact and independent Taylor review."
+  },
+  "comparison": {
+    "before": "Hardcoded schematic SVG irrespective of degree/x; no authoritative curve samples.",
+    "after": "41-point canonical exp/Pn curves and conservative sampled bound, selected x, numeric reference difference, table and explicit legacy unavailability.",
+    "benchmark": {
+      "baseMedianMs": 0.122329666,
+      "finalMedianMs": 1.942262792,
+      "ratio": 15.877283536439966,
+      "baseCompactJsonBytes": 539,
+      "finalCompactJsonBytes": 6784,
+      "method": "7trials×1000evaluations, x=.5 degree8, same local Python; evaluator CPU only, not HTTP/productivity/USD.",
+      "files": [
+        "taylor-benchmark-base.json",
+        "taylor-benchmark-final.json"
+      ]
+    }
+  },
+  "totalCost": {
+    "captureInvocations": 3,
+    "providerDurationMs": 49800,
+    "newDependencies": 0,
+    "newModelProviderInvocations": 0,
+    "tokensUSD": "UNKNOWN: account/model metering and comparable direct-method baseline unavailable. Local capture/evaluation duration is not a money or productivity saving."
+  }
+}

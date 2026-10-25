@@ -1,0 +1,429 @@
+{
+  "scope": "Exact JSON observations preserved from original independent RED and subsequent GREEN; source phases remain explicit, no raw credentials/vendor binaries/private dataset copied. Scripts in selection reproduce discriminating cases; all original files/logs remain outside repository.",
+  "records": [
+    {
+      "id": "release-checker-attacks-red",
+      "original": "release-checker-attacks-red.json",
+      "sha256": "01187f2caa12a9b604d5f2aeef2b244aafbe19467f306a139b35204da8d1c382",
+      "observation": {
+        "checks": [
+          {
+            "case": "independent control fixture",
+            "technicalStatus": "PASS",
+            "releaseStatus": "BLOCKED",
+            "humanStatus": "PENDING"
+          },
+          {
+            "case": "credential inside untrusted draft metadata",
+            "technicalStatus": "FAIL",
+            "errors": [
+              "credential_pattern:public/source-manifest.json:github-token"
+            ],
+            "credentialValueEchoedInResult": true
+          },
+          {
+            "case": "rejected symlink special metadata still read outside candidate",
+            "technicalStatus": "FAIL",
+            "errors": [
+              "asset_inventory_mismatch",
+              "linked_asset:public/source-manifest.json"
+            ],
+            "outsideSentinelEchoedInResult": true
+          },
+          {
+            "case": "malformed manifest assets array",
+            "uncaughtException": "AttributeError"
+          }
+        ],
+        "scope": "derived from retained initial stdout log; actual original RED fields, no secret values"
+      }
+    },
+    {
+      "id": "release-checker-attacks-green",
+      "original": "release-checker-attacks-green.json",
+      "sha256": "bd4c9a86eae7e234fee764421d379d28690c719eb09df24202c05ef59505840a",
+      "observation": {
+        "checks": [
+          {
+            "case": "independent control fixture",
+            "technicalStatus": "PASS",
+            "releaseStatus": "BLOCKED",
+            "humanStatus": "PENDING"
+          },
+          {
+            "case": "credential inside untrusted draft metadata",
+            "technicalStatus": "FAIL",
+            "errors": [
+              "credential_pattern:public/source-manifest.json:github-token"
+            ],
+            "credentialValueEchoedInResult": false
+          },
+          {
+            "case": "rejected symlink special metadata still read outside candidate",
+            "technicalStatus": "FAIL",
+            "errors": [
+              "asset_inventory_mismatch",
+              "linked_asset:public/source-manifest.json"
+            ],
+            "outsideSentinelEchoedInResult": false
+          },
+          {
+            "case": "malformed manifest assets array",
+            "uncaughtException": "ValueError"
+          }
+        ],
+        "scope": "synthetic local fixture, no real credentials; any token output recorded only as a boolean, not copied"
+      }
+    },
+    {
+      "id": "vercel-prepare-race-red",
+      "original": "vercel-prepare-race-red.json",
+      "sha256": "d0bd10718f210976a0e371e30d467b263f60d44557a0cb5a79bb86e552f646ae",
+      "observation": {
+        "scope": "Synthetic local controlled scheduling between verification and copy; no external service, credentials or deployment.",
+        "codeSha256": "f27f62458e93fb2221c830b8cdf2f0fbbba2f782d0fefc60978868783acb0165",
+        "control": {
+          "prepared": true,
+          "releaseStatus": "BLOCKED",
+          "privateBetaIncluded": false
+        },
+        "mutationRejected": false,
+        "errorType": null,
+        "outputExists": true,
+        "unverifiedPrivateDatabaseCopied": true,
+        "receiptBoundToOldManifest": true,
+        "currentManifestDiffersFromReceipt": true,
+        "postMutationCheckerStatus": "FAIL",
+        "postMutationCheckerErrors": [
+          "database_bytes:public/study/private.sqlite",
+          "private_file:public/study/private.sqlite",
+          "private_route_in_public:public/study/private.sqlite"
+        ]
+      }
+    },
+    {
+      "id": "vercel-prepare-race-green",
+      "original": "vercel-prepare-race-green.json",
+      "sha256": "3d0b016f73c0307834405ac2d3d2f447574a455780ff28b181b3d26579bc3f74",
+      "observation": {
+        "scope": "Synthetic local controlled scheduling between verification and copy; no external service, credentials or deployment.",
+        "codeSha256": "68ad36714fbb3286afc39cd468385e5f8615b2be2a301572d5dcff1700a54932",
+        "control": {
+          "prepared": true,
+          "releaseStatus": "BLOCKED",
+          "privateBetaIncluded": false
+        },
+        "mutationRejected": true,
+        "errorType": "ValueError",
+        "outputExists": false,
+        "unverifiedPrivateDatabaseCopied": false,
+        "receiptBoundToOldManifest": false,
+        "currentManifestDiffersFromReceipt": false,
+        "postMutationCheckerStatus": "FAIL",
+        "postMutationCheckerErrors": [
+          "database_bytes:public/study/private.sqlite",
+          "private_file:public/study/private.sqlite",
+          "private_route_in_public:public/study/private.sqlite"
+        ]
+      }
+    },
+    {
+      "id": "core-visual-overflow-red",
+      "original": "core-visual-overflow-red.json",
+      "sha256": "332980aa3647b444c1cd85a0699f6af2e608a17f9fafeccbc7c47d879f6e3da9",
+      "observation": {
+        "parameters": {
+          "radiusRatio": 0.0001,
+          "viscosity": "5e-324",
+          "length": 1,
+          "boundary": "pressure"
+        },
+        "ratioFinite": true,
+        "ratio": 2.0240225330731066e+307,
+        "meanSpeedFinite": false,
+        "meanSpeedRepresentation": "inf",
+        "canonicalSerialization": "ValueError nonfinite result"
+      }
+    },
+    {
+      "id": "core-visual-overflow-final",
+      "original": "core-visual-overflow-final.json",
+      "sha256": "3845b6264fd5cee44b70e55bf8d35979c61713e16be5605b6a558a04d5071dfc",
+      "observation": {
+        "rejected": true,
+        "code": "invalid_physical_domain",
+        "sourceCommit": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+        "activitySourceSha256": "75da833a014c90142bd75dc03952de4bbf0c26a29551f1b7074148f6b5c0f603"
+      }
+    },
+    {
+      "id": "beta-multicast-probe-red",
+      "original": "beta-multicast-probe-red.json",
+      "sha256": "425b9e9d648a418f2e9be85f816efbfa3ab5a48bc9c92f138b07a582ec003367",
+      "observation": {
+        "python": "3.13.2 (v3.13.2:4f8bb3947cf, Feb  4 2025, 11:51:10) [Clang 15.0.0 (clang-1500.3.9.4)]",
+        "networkCalls": 0,
+        "cases": [
+          {
+            "address": "224.0.0.1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "224.0.0.1"
+            ]
+          },
+          {
+            "address": "239.255.255.250",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "239.255.255.250"
+            ]
+          },
+          {
+            "address": "ff02::1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "ff02::1"
+            ]
+          },
+          {
+            "address": "ff05::1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "ff05::1"
+            ]
+          },
+          {
+            "address": "93.184.216.34",
+            "is_global": true,
+            "is_multicast": false,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "93.184.216.34"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "beta-multicast-probe-green",
+      "original": "beta-multicast-probe-green.json",
+      "sha256": "77d009817116ff37f7069fb91ba5a8f21f4ef36fe0906ebcad1c01d67350c84f",
+      "observation": {
+        "python": "3.13.2 (v3.13.2:4f8bb3947cf, Feb  4 2025, 11:51:10) [Clang 15.0.0 (clang-1500.3.9.4)]",
+        "networkCalls": 0,
+        "cases": [
+          {
+            "address": "224.0.0.1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": false,
+            "approvedNameDNSAccepted": false,
+            "destinations": []
+          },
+          {
+            "address": "239.255.255.250",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": false,
+            "approvedNameDNSAccepted": false,
+            "destinations": []
+          },
+          {
+            "address": "ff02::1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": false,
+            "approvedNameDNSAccepted": false,
+            "destinations": []
+          },
+          {
+            "address": "ff05::1",
+            "is_global": true,
+            "is_multicast": true,
+            "originAccepted": false,
+            "approvedNameDNSAccepted": false,
+            "destinations": []
+          },
+          {
+            "address": "93.184.216.34",
+            "is_global": true,
+            "is_multicast": false,
+            "originAccepted": true,
+            "approvedNameDNSAccepted": true,
+            "destinations": [
+              "93.184.216.34"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "public-visual-stress-text200-first",
+      "original": "public-visual-stress-text200-first.json",
+      "sha256": "2dbacee5fed510842d0d2cc8cc275caf1fcd71528703491631a3d8d6e47a7c53",
+      "observation": {
+        "scope": "Independent public local visual checks; 200% text stress uses computed font sizes doubled, not native browser zoom certification.",
+        "checks": [
+          {
+            "name": "360:keyboard skip exposed and focusable",
+            "pass": true,
+            "detail": {
+              "focused": true,
+              "visible": "none",
+              "outline": "3px",
+              "rect": {
+                "x": 8,
+                "y": 8,
+                "width": 164.640625,
+                "height": 48.75,
+                "top": 8,
+                "right": 172.640625,
+                "bottom": 56.75,
+                "left": 8
+              }
+            }
+          },
+          {
+            "name": "360:prediction keyboard focus present",
+            "pass": true,
+            "detail": {
+              "outline": "rgb(203, 101, 72) solid 3px",
+              "outlineColor": "rgb(203, 101, 72)",
+              "border": "rgb(205, 210, 200)"
+            }
+          },
+          {
+            "name": "360:long prediction contained",
+            "pass": true
+          },
+          {
+            "name": "360:reference labels have full opacity",
+            "pass": true,
+            "detail": [
+              {
+                "text": "riferimento",
+                "fill": "rgb(63, 93, 77)",
+                "opacity": "1",
+                "parentOpacity": "1"
+              },
+              {
+                "text": "2r₀",
+                "fill": "rgb(63, 93, 77)",
+                "opacity": "1",
+                "parentOpacity": "1"
+              }
+            ]
+          },
+          {
+            "name": "360:/ 200% text stress document reflows",
+            "pass": false,
+            "detail": {
+              "viewport": 360,
+              "width": 372
+            }
+          }
+        ],
+        "screenshots": [
+          "r1-hero-360.png",
+          "r1-contact-360.png",
+          "r1-graph-360.png"
+        ],
+        "status": "FAIL",
+        "error": "Error: 360:/ 200% text stress document reflows\n    at mark (/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r1/review/public_visual_stress.cjs:4:104)\n    at /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r1/review/public_visual_stress.cjs:11:478"
+      }
+    },
+    {
+      "id": "text200-counterfactual",
+      "original": "text200-counterfactual.json",
+      "sha256": "ae9bfcfbb836de311d74ed7c2346c941dc25ca3624d10d43f622257bc79a003b",
+      "observation": {
+        "before": {
+          "width": 372,
+          "overflow": [
+            {
+              "parent": "<a href=\"?percorso=strumenti-meccanica#strumenti-meccanica\" style=\"font-size: 38.4px;\"><span class=\"index-number\" style=\"font-size: 25.6px;\">01</span><span style=\"font-size: 38.4px;\">Strumenti e meccanica</span><svg class=\"icon icon-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>",
+              "grandParentClass": "",
+              "grid": "32px 250.406px 20px",
+              "iconWidth": "48px",
+              "rect": {
+                "x": 324,
+                "y": 1961.140625,
+                "width": 48,
+                "height": 48,
+                "top": 1961.140625,
+                "right": 372,
+                "bottom": 2009.140625,
+                "left": 324
+              }
+            },
+            {
+              "parent": "<a href=\"?percorso=fluidi-termodinamica#fluidi-termodinamica\" style=\"font-size: 38.4px;\"><span class=\"index-number\" style=\"font-size: 25.6px;\">02</span><span style=\"font-size: 38.4px;\">Fluidi e termodinamica</span><svg class=\"icon icon-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>",
+              "grandParentClass": "",
+              "grid": "32px 250.406px 20px",
+              "iconWidth": "48px",
+              "rect": {
+                "x": 324,
+                "y": 2086.921875,
+                "width": 48,
+                "height": 48,
+                "top": 2086.921875,
+                "right": 372,
+                "bottom": 2134.921875,
+                "left": 324
+              }
+            },
+            {
+              "parent": "<a href=\"?percorso=elettricita-magnetismo#elettricita-magnetismo\" style=\"font-size: 38.4px;\"><span class=\"index-number\" style=\"font-size: 25.6px;\">03</span><span style=\"font-size: 38.4px;\">Elettricità e magnetismo</span><svg class=\"icon icon-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>",
+              "grandParentClass": "",
+              "grid": "32px 250.406px 20px",
+              "iconWidth": "48px",
+              "rect": {
+                "x": 324,
+                "y": 2212.703125,
+                "width": 48,
+                "height": 48,
+                "top": 2212.703125,
+                "right": 372,
+                "bottom": 2260.703125,
+                "left": 324
+              }
+            },
+            {
+              "parent": "<a href=\"?percorso=onde-ottica-radiazioni#onde-ottica-radiazioni\" style=\"font-size: 38.4px;\"><span class=\"index-number\" style=\"font-size: 25.6px;\">04</span><span style=\"font-size: 38.4px;\">Onde, ottica e radiazioni</span><svg class=\"icon icon-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>",
+              "grandParentClass": "",
+              "grid": "32px 250.406px 20px",
+              "iconWidth": "48px",
+              "rect": {
+                "x": 324,
+                "y": 2338.484375,
+                "width": 48,
+                "height": 48,
+                "top": 2338.484375,
+                "right": 372,
+                "bottom": 2386.484375,
+                "left": 324
+              }
+            }
+          ]
+        },
+        "after": {
+          "width": 360,
+          "overflow": []
+        }
+      }
+    }
+  ]
+}

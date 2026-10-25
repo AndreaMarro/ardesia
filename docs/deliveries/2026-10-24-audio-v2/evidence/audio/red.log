@@ -1,0 +1,141 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/AudioV2.test.ts (15 tests | 10 failed) 29ms
+     × accepts a strict recording marker without downgrading its envelope 12ms
+     × persists the short final tail before its durable marker and stop completion 5ms
+     × keeps independent takes, a silent pause and the last visual instant 1ms
+     × round-trips A through a new store with identity, bytes and explicit object version, excluding B and hostile flat audio 2ms
+     × reports missing media explicitly without flat fallback 1ms
+     × reports corrupt media explicitly without flat fallback 1ms
+     × reports revoked media explicitly without flat fallback 0ms
+     × releases a late permission stream after revoke without constructing a take 1ms
+     × waits for a pending media write during revoke and never publishes its marker 1ms
+     × dispose preserves the authorized tail while an empty native tail rejects stop 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > accepts a strict recording marker without downgrading its envelope
+AssertionError: expected [Function] to not throw an error but 'Error: Journal v2: unsupported kind j…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"Error: Journal v2: unsupported kind journal.audio.recording"
+
+ ❯ src/__tests__/AudioV2.test.ts:100:59
+     98| describe("canonical audio recording v2", () => {
+     99|   it("accepts a strict recording marker without downgrading its envelo…
+    100|     expect(() => assertJournalEnvelopeV2(envelope())).not.toThrow()
+       |                                                           ^
+    101|   })
+    102|   it.each([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > persists the short final tail before its durable marker and stop completion
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:111:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > keeps independent takes, a silent pause and the last visual instant
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:138:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > round-trips A through a new store with identity, bytes and explicit object version, excluding B and hostile flat audio
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:154:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > reports missing media explicitly without flat fallback
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > reports corrupt media explicitly without flat fallback
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > reports revoked media explicitly without flat fallback
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:178:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > releases a late permission stream after revoke without constructing a take
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:188:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > waits for a pending media write during revoke and never publishes its marker
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:200:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > dispose preserves the authorized tail while an empty native tail rejects stop
+Error: AUDIO-V2 capture is not implemented
+ ❯ SessionAudioRecorder.initialize src/store/SessionAudioRecorder.ts:4:45
+      2| export class SessionAudioRecorder {
+      3|   constructor(_options: unknown) {}
+      4|   async initialize(): Promise<void> { throw new Error("AUDIO-V2 captur…
+       |                                             ^
+      5| }
+      6|
+ ❯ harness src/__tests__/AudioV2.test.ts:83:18
+ ❯ src/__tests__/AudioV2.test.ts:217:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 5 passed (15)
+   Start at  12:15:05
+   Duration  1.68s (transform 203ms, setup 29ms, import 252ms, tests 29ms, environment 1.19s)

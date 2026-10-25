@@ -1,0 +1,501 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia-r1/apps/web
+
+ ❯ src/__tests__/public-experience.test.tsx (6 tests | 4 failed) 818ms
+   × Prova di nuovo returns to a focused prediction and closes the previous recovery 117ms
+   × Ricomincia l’esperimento returns to a focused prediction and closes the previous recovery 129ms
+   × changing radius leaves the prescribed task instead of retaining a contradictory instruction 50ms
+   × changing boundary leaves the prescribed task instead of retaining a contradictory instruction 46ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/public-experience.test.tsx > Prova di nuovo returns to a focused prediction and closes the previous recovery
+AssertionError: expected <body><div>…(1)</div></body> to be <input …(5)></input> // Object.is equality
+
+- Expected
++ Received
+
++ <body>
++   <div>
++     <div
++       class="public-experience"
++     >
++       <a
++         class="skip-link"
++         href="#esperimento"
++       >
++         Vai all’esperimento
++       </a>
++       <header
++         class="experience-header"
++       >
++         <a
++           class="wordmark"
++           href="/"
++         >
++           ardesia.
++         </a>
++         <a
++           href="/?percorso=fluidi-termodinamica#contatto"
++         >
++           Torna al percorso
++         </a>
++       </header>
++       <main
++         id="esperimento"
++         tabindex="-1"
++       >
++         <div
++           class="experience-heading"
++         >
++           <p>
++             Una lezione da provare
++           </p>
++           <h1>
++             Un tubo più largo.
++             <br />
++             Che cosa cambia?
++           </h1>
++           <p>
++             Prima un’idea, poi un esperimento. Cambia il raggio e scopri perché il vincolo conta.
++           </p>
++         </div>
++         <section
++           aria-labelledby="physics-title"
++           class="physics-lab"
++         >
++           <div
++             class="lab-introduction"
++           >
++             <h2
++               id="physics-title"
++             >
++               Che cosa tieni fisso?
++             </h2>
++             <p>
++               Confronta due tubi cilindrici della stessa lunghezza, con lo stesso fluido. Se cambia il raggio, la portata aumenta sempre? Parti dal vincolo.
++             </p>
++           </div>
++           <div
++             class="lab-layout"
++           >
++             <div
++               class="lab-experiment"
++             >
++               <div
++                 class="lab-caption"
++               >
++                 <span>
++                   Un modello, due situazioni
++                 </span>
++                 <span>
++                   Poiseuille
++                 </span>
++               </div>
++               <figure
++                 class="poiseuille-model discovery-model"
++               >
++                 <div
++                   class="model-key"
++                 >
++                   <span>
++                     Stesso fluido · stessa lunghezza
++                   </span>
++                   <span>
++                     Δp fissata
++                   </span>
++                 </div>
++                 <svg
++                   aria-label="Due tubi cilindrici con rapporto dei raggi 2. Geometria prima della previsione."
++                   role="img"
++                   viewBox="0 0 680 335"
++                 >
++                   <defs>
++                     <clippath
++                       id="_r_2_-reference"
++                     >
++                       <rect
++                         height="70"
++                         width="455"
++                         x="95"
++                         y="48"
++                       />
++                     </clippath>
++                     <clippath
++                       id="_r_2_-comparison"
++                     >
++                       <rect
++                         height="140"
++                         width="455"
++                         x="95"
++                         y="165"
++                       />
++                     </clippath>
++                   </defs>
++                   <g
++                     class="pipe-reference"
++                   >
++                     <text
++                       x="24"
++                       y="30"
++                     >
++                       riferimento
++                     </text>
++                     <rect
++                       class="tube-body"
++                       height="70"
++                       width="455"
++                       x="95"
++                       y="48"
++                     />
++                     <line
++                       class="pipe-axis"
++                       x1="95"
++                       x2="550"
++                       y1="83"
++                       y2="83"
++                     />
++                     <path
++                       class="pipe-dimension"
++                       d="M580 48V118M574 48H586M574 118H586"
++                     />
++                     <text
++                       x="596"
++                       y="88"
++                     >
++                       2r₀
++                     </text>
++                   </g>
++                   <g
++                     class="pipe-comparison"
++                   >
++                     <text
++                       x="24"
++                       y="153"
++                     >
++                       confronto
++                     </text>
++                     <rect
++                       class="tube-body"
++                       height="140"
++                       width="455"
++                       x="95"
++                       y="165"
++                     />
++                     <line
++                       class="pipe-axis"
++                       x1="95"
++                       x2="550"
++                       y1="235"
++                       y2="235"
++                     />
++                     <path
++                       class="pipe-dimension"
++                       d="M580 165V305M574 165H586M574 305H586"
++                     />
++                     <text
++                       x="596"
++                       y="240"
++                     >
++                       2r
++                     </text>
++                   </g>
++                   <path
++                     class="pipe-dimension"
++                     d="M100 317H550M100 312V322M550 312V322"
++                   />
++                   <text
++                     text-anchor="middle"
++                     x="325"
++                     y="331"
++                   >
++                     L costante
++                   </text>
++                 </svg>
++                 <figcaption>
++                   r / r₀ =
++                   2
++                    ·
++                   Δp è costante: confronta la portata.
++                 </figcaption>
++               </figure>
++               <p>
++                 Schema ideale · fluido newtoniano · moto laminare
++               </p>
++               <div
++                 aria-busy="false"
++                 aria-live="polite"
++                 class="lab-result"
++               >
++                 <span>
++                   Parametri cambiati. Metti di nuovo alla prova la previsione.
++                 </span>
++                 <p>
++                   Il risultato compare quando scegli di calcolare.
++                 </p>
++               </div>
++             </div>
++             <form
++               class="lab-controls"
++             >
++               <label>
++                 Rapporto previsto
+                  <input
+                    aria-label="Rapporto previsto"
+                    inputmode="decimal"
+                    maxlength="1000"
+                    placeholder="Q/Q₀ = …"
+                    value=""
+                  />
++               </label>
++               <label>
++                 Grandezza fissata
++                 <select>
++                   <option
++                     value="pressure"
++                   >
++                     Differenza di pressione Δp
++                   </option>
++                   <option
++                     value="flow"
++                   >
++                     Portata Q
++                   </option>
++                 </select>
++               </label>
++               <label
++                 class="range-label"
++               >
++                 Rapporto dei raggi
++                 <output>
++                   2
++                 </output>
++                 <input
++                   aria-label="Rapporto dei raggi"
++                   max="2"
++                   min="0.5"
++                   step="0.05"
++                   type="range"
++                   value="2"
++                 />
++                 <span
++                   class="range-ticks"
++                 >
++                   <span>
++                     0,5 ×
++                   </span>
++                   <span>
++                     1 ×
++                   </span>
++                   <span>
++                     2 ×
++                   </span>
++                 </span>
++               </label>
++               <button
++                 class="button-primary"
++                 disabled=""
++               >
++                 Metti alla prova
++               </button>
++               <div
++                 class="constraint-recovery"
++               >
++                 <h3>
++                   Un passaggio alla volta.
++                 </h3>
++                 <div
++                   class="lesson-demo"
++                   data-testid="lesson-demo"
++                 >
++                   <p
++                     class="lesson-demo-label"
++                   >
++                     Voce sintetica dimostrativa
++                   </p>
++                   <button
++                     aria-pressed="false"
++                     type="button"
++                   >
++                     Ascolta il passaggio
++                   </button>
++                   <audio
++                     aria-label="Ascolta il passaggio sul vincolo"
++                     controls=""
++                     preload="none"
++                     src="/lesson-demo/poiseuille.wav"
++                   />
++                   <blockquote>
++                     Prima scegli che cosa resta costante. A differenza di pressione fissata, se il raggio raddoppia la portata diventa sedici volte maggiore. A portata fissata, invece, la differenza di pressione necessaria si riduce a un sedicesimo. Non cambia la legge: cambia il vincolo. Ora prova a dimezzare il raggio mantenendo costante la portata.
++                   </blockquote>
++                   <p
++                     class="fine-print"
++                   >
++                     Spiegazione originale per la demo Ardesia
++                     .
++                     <a
++                       href="#poiseuille-formula"
++                     >
++                       Ritrova la formula collegata
++                     </a>
++                     .
++                   </p>
++                 </div>
++                 <ol>
++                   <li>
++                     Individua ciò che resta costante: Δp oppure Q.
++                   </li>
++                   <li>
++                     Parti da Q = π r⁴ Δp / (8 η L). Se Q resta fissa, isola Δp.
++                   </li>
++                   <li>
++                     Confronta i rapporti, mantenendo viscosità e lunghezza costanti.
++                   </li>
++                 </ol>
++                 <p>
++                   Una risposta ottenuta dopo questo aiuto è una risposta assistita. Prova poi una situazione diversa.
++                 </p>
++               </div>
++               <button
++                 class="text-link"
++                 type="button"
++               >
++                 Ricomincia l’esperimento
++               </button>
++               <details>
++                 <summary>
++                   Modello e limiti
++                 </summary>
++                 <p
++                   class="formula"
++                   id="poiseuille-formula"
++                 >
++                   Q = π r⁴ Δp / (8 η L)
++                 </p>
++                 <p>
++                   Tubo cilindrico rigido, viscosità e lunghezza fissate; fluido incomprimibile, moto laminare stazionario.
++                 </p>
++                 <p
++                   class="fine-print"
++                 >
++                   Controllo numerico deterministico. Contenuto in revisione scientifica prima del pilot.
++                 </p>
++                 <p
++                   class="fine-print"
++                 >
++                   Questa anteprima esplora
++                   62
++                    configurazioni: tutti i risultati sono stati calcolati dal motore scientifico di Ardesia durante la preparazione della pagina. Lunghezza e viscosità rimangono costanti. La previsione resta in questa pagina; nessuna risposta viene inviata a un servizio o salvata come profilo studente.
++                 </p>
++               </details>
++             </form>
++           </div>
++         </section>
++         <section
++           class="experience-next"
++         >
++           <div>
++             <h2>
++               Riparti dal ragionamento.
++             </h2>
++             <p>
++               Questa esperienza esplora un modello di fluidi. Nel mini-corso il tutor riprende i passaggi con te e propone una prova diversa.
++             </p>
++           </div>
++           <a
++             class="button-primary"
++             href="/?percorso=fluidi-termodinamica#contatto"
++           >
++             Chiedi disponibilità
++           </a>
++         </section>
++         <p
++           class="experience-disclosure"
++         >
++           Demo pubblica · nessun account richiesto. Il risultato numerico è un controllo del modello; non è un voto né una valutazione del tuo apprendimento. Contenuti in revisione scientifica.
++         </p>
++       </main>
++       <footer>
++         <a
++           href="/?percorso=fluidi-termodinamica#contatto"
++         >
++           Programma e informazioni sul percorso
++         </a>
++         <span>
++           Ardesia · uno spazio per capire.
++         </span>
++       </footer>
++     </div>
++   </div>
++ </body>
+
+ ❯ src/__tests__/public-experience.test.tsx:67:34
+     65|   restart.focus();
+     66|   fireEvent.click(restart);
+     67|   expect(document.activeElement).toBe(prediction);
+       |                                  ^
+     68|   expect((prediction as HTMLInputElement).value).toBe("");
+     69|   expect(screen.queryByTestId("physics-ratio")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/__tests__/public-experience.test.tsx > Ricomincia l’esperimento returns to a focused prediction and closes the previous recovery
+AssertionError: expected <button type="button" …(1)></button> to be <input …(5)></input> // Object.is equality
+
+- Expected
++ Received
+
+- <input
+-   aria-label="Rapporto previsto"
+-   inputmode="decimal"
+-   maxlength="1000"
+-   placeholder="Q/Q₀ = …"
+-   value=""
+- />
++ <button
++   class="text-link"
++   type="button"
++ >
++   Ricomincia l’esperimento
++ </button>
+
+ ❯ src/__tests__/public-experience.test.tsx:67:34
+     65|   restart.focus();
+     66|   fireEvent.click(restart);
+     67|   expect(document.activeElement).toBe(prediction);
+       |                                  ^
+     68|   expect((prediction as HTMLInputElement).value).toBe("");
+     69|   expect(screen.queryByTestId("physics-ratio")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/__tests__/public-experience.test.tsx > changing radius leaves the prescribed task instead of retaining a contradictory instruction
+ FAIL  src/__tests__/public-experience.test.tsx > changing boundary leaves the prescribed task instead of retaining a contradictory instruction
+AssertionError: expected <p class="transfer-prompt" …(1)></p> to be null
+
+- Expected:
+null
+
++ Received:
+<p
+  class="transfer-prompt"
+  role="status"
+>
+  Nuovo problema: la pompa mantiene Q, ma il raggio si dimezza.
+</p>
+
+ ❯ src/__tests__/public-experience.test.tsx:84:36
+     82|   if (parameter === "radius") fireEvent.change(screen.getByLabelText("…
+     83|   else fireEvent.change(screen.getByLabelText("Grandezza fissata"), {t…
+     84|   expect(screen.queryByText(task)).toBeNull();
+       |                                    ^
+     85|   expect(screen.queryByTestId("physics-ratio")).toBeNull();
+     86|   expect(screen.getByText("Parametri cambiati. Metti di nuovo alla pro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 2 passed (6)
+   Start at  17:22:00
+   Duration  2.49s (transform 230ms, setup 0ms, import 357ms, tests 818ms, environment 1.08s)

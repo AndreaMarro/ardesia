@@ -1,0 +1,1607 @@
+{
+  "schema": "ardesia.r2-product-final-ci.v1",
+  "archivedAtUtc": "2026-10-24T23:00:45.202555+00:00",
+  "pullRequest": 301,
+  "productHeadSha": "36cdba353401c80b92cc94f256b106238c7610f8",
+  "checkoutMergeSha": "7ec8e6fa5e7de56085379940c1bce93996df7c81",
+  "treeSha": "f3896074fa0323cb4b88fe7ce361913574bcc45d",
+  "mergeTreeIdenticalToHead": true,
+  "mergeParents": [
+    "6a81d870fd1f390444ef5acbe6bc42203104fa63",
+    "36cdba353401c80b92cc94f256b106238c7610f8"
+  ],
+  "runs": [
+    {
+      "id": 40140273151,
+      "name": "ci",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151",
+      "run_attempt": 1,
+      "created_at": "2026-10-24T22:50:42Z",
+      "updated_at": "2026-10-24T22:57:00Z"
+    },
+    {
+      "id": 40140273173,
+      "name": "studio-preview-readiness",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273173",
+      "run_attempt": 1,
+      "created_at": "2026-10-24T22:50:43Z",
+      "updated_at": "2026-10-24T22:54:32Z"
+    },
+    {
+      "id": 40140273245,
+      "name": "marketing-static",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273245",
+      "run_attempt": 1,
+      "created_at": "2026-10-24T22:50:43Z",
+      "updated_at": "2026-10-24T22:53:39Z"
+    }
+  ],
+  "jobs": [
+    {
+      "runId": 40140273151,
+      "id": 121010359037,
+      "name": "studio (typecheck + test + build)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359037",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:54:26Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359149,
+      "name": "study-api (HTTP + shared Core)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359149",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:52:45Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359159,
+      "name": "engine (pytest)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359159",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:52:29Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359162,
+      "name": "e2e golden path (advisory)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359162",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:51:37Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359175,
+      "name": "hygiene (NUL + secrets + boundary + whitespace)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359175",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:51:10Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359197,
+      "name": "web (typecheck + test + build)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359197",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:56:59Z"
+    },
+    {
+      "runId": 40140273151,
+      "id": 121010359246,
+      "name": "study-mcp (official SDK stdio + HTTP)",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273151/job/121010359246",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:51:22Z"
+    },
+    {
+      "runId": 40140273173,
+      "id": 121010359011,
+      "name": "no-deploy-check",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273173/job/121010359011",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:54:31Z"
+    },
+    {
+      "runId": 40140273245,
+      "id": 121010359103,
+      "name": "marketing",
+      "head_sha": "36cdba353401c80b92cc94f256b106238c7610f8",
+      "conclusion": "success",
+      "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40140273245/job/121010359103",
+      "started_at": "2026-10-24T22:50:45Z",
+      "completed_at": "2026-10-24T22:53:38Z"
+    }
+  ],
+  "testCounts": {
+    "Web": {
+      "runId": 40140273151,
+      "job": "web (typecheck + test + build)",
+      "passed": 354,
+      "skipped": 0,
+      "filesPassed": 53,
+      "runtime": "Node26.5.1",
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 347,
+          "text": "2026-10-24T22:51:46.4344752Z       Tests  354 passed (354)"
+        }
+      ]
+    },
+    "StudioCI": {
+      "runId": 40140273151,
+      "job": "studio (typecheck + test + build)",
+      "passed": 2276,
+      "skipped": 5,
+      "filesPassed": 210,
+      "filesSkipped": 1,
+      "runtime": "Node22.23.3",
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "6_studio (typecheck + test + build).txt",
+          "normalizedLine": 1141,
+          "text": "2026-10-24T22:54:09.2939592Z       Tests  2276 passed | 5 skipped (2281)"
+        }
+      ],
+      "skipReason": "shots.test.ts5checks require existing local screenshot files, absent in clean runner."
+    },
+    "StudioReadiness": {
+      "runId": 40140273173,
+      "job": "no-deploy-check",
+      "passed": 2276,
+      "skipped": 5,
+      "runtime": "Node22.12.0",
+      "evidence": [
+        {
+          "zip": "40140273173.logs.original.zip",
+          "entry": "0_no-deploy-check.txt",
+          "normalizedLine": 1250,
+          "text": "2026-10-24T22:54:14.7517031Z       Tests  2276 passed | 5 skipped (2281)"
+        }
+      ],
+      "caveat": "Repeated Studio suite at another runtime; do not add to unique test coverage. No deployment."
+    },
+    "Engine": {
+      "runId": 40140273151,
+      "job": "engine (pytest)",
+      "passed": 2654,
+      "skipped": 29,
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 311,
+          "text": "2026-10-24T22:52:26.4290886Z 2654 passed, 29 skipped in 84.96s (0:01:24)"
+        }
+      ],
+      "skipDetails": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 282,
+          "text": "2026-10-24T22:52:26.4259735Z SKIPPED [1] tests/study/test_postgres_question_reviews.py:8: could not import 'psycopg': No module named 'psycopg'"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 283,
+          "text": "2026-10-24T22:52:26.4261027Z SKIPPED [1] tests/study/test_postgres_schema_convergence.py:15: could not import 'psycopg': No module named 'psycopg'"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 284,
+          "text": "2026-10-24T22:52:26.4262706Z SKIPPED [1] tests/study/test_postgres_admin_registers.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 285,
+          "text": "2026-10-24T22:52:26.4264624Z SKIPPED [1] tests/study/test_postgres_calendar.py:10: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 286,
+          "text": "2026-10-24T22:52:26.4267008Z SKIPPED [1] tests/study/test_postgres_concurrency.py:50: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 287,
+          "text": "2026-10-24T22:52:26.4268840Z SKIPPED [1] tests/study/test_postgres_concurrency.py:61: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 288,
+          "text": "2026-10-24T22:52:26.4270228Z SKIPPED [1] tests/study/test_postgres_concurrency.py:73: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 289,
+          "text": "2026-10-24T22:52:26.4271360Z SKIPPED [1] tests/study/test_postgres_concurrency.py:94: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 290,
+          "text": "2026-10-24T22:52:26.4272461Z SKIPPED [1] tests/study/test_postgres_contract.py:99: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 291,
+          "text": "2026-10-24T22:52:26.4273483Z SKIPPED [1] tests/study/test_postgres_contract.py:119: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 292,
+          "text": "2026-10-24T22:52:26.4274327Z SKIPPED [1] tests/study/test_postgres_contract.py:152: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 293,
+          "text": "2026-10-24T22:52:26.4275128Z SKIPPED [1] tests/study/test_postgres_contract.py:193: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 294,
+          "text": "2026-10-24T22:52:26.4275912Z SKIPPED [1] tests/study/test_postgres_contract.py:230: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 295,
+          "text": "2026-10-24T22:52:26.4277392Z SKIPPED [1] tests/study/test_postgres_contract.py:247: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 296,
+          "text": "2026-10-24T22:52:26.4278375Z SKIPPED [1] tests/study/test_postgres_contract.py:280: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 297,
+          "text": "2026-10-24T22:52:26.4279179Z SKIPPED [1] tests/study/test_postgres_contract.py:316: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 298,
+          "text": "2026-10-24T22:52:26.4279971Z SKIPPED [1] tests/study/test_postgres_contract.py:361: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 299,
+          "text": "2026-10-24T22:52:26.4280779Z SKIPPED [1] tests/study/test_postgres_course_bindings.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 300,
+          "text": "2026-10-24T22:52:26.4281614Z SKIPPED [1] tests/study/test_postgres_edition_admin.py:8: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 301,
+          "text": "2026-10-24T22:52:26.4282449Z SKIPPED [1] tests/study/test_postgres_edition_listing.py:11: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 302,
+          "text": "2026-10-24T22:52:26.4283526Z SKIPPED [1] tests/test_cli_eval_real.py:189: no DEEPSEEK/KIMI key available (env or .env) — live eval would raise"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 303,
+          "text": "2026-10-24T22:52:26.4284322Z SKIPPED [1] tests/test_cli_eval_real.py:223: no DEEPSEEK/KIMI key available (env or .env) — live eval would raise"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 304,
+          "text": "2026-10-24T22:52:26.4285408Z SKIPPED [1] tests/test_engine_sync_guard.py:225: Canonical lessonos repo not found (set LESSONOS_REPO or provide a sibling '../lessonos' checkout) — skipping drift integration check."
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 305,
+          "text": "2026-10-24T22:52:26.4286957Z SKIPPED [1] tests/test_engine_sync_guard.py:254: Canonical lessonos repo not found (set LESSONOS_REPO or provide a sibling '../lessonos' checkout) — skipping drift integration check."
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 306,
+          "text": "2026-10-24T22:52:26.4287855Z SKIPPED [1] tests/test_llm_kimi.py:44: no KIMI_API_KEY: live Moonshot call skipped (wiring only)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 307,
+          "text": "2026-10-24T22:52:26.4288485Z SKIPPED [1] tests/test_obsidian_vault.py:685: case-sensitive filesystem: RAW is not an alias of raw"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 308,
+          "text": "2026-10-24T22:52:26.4289158Z SKIPPED [1] tests/test_obsidian_vault.py:724: normalization-sensitive filesystem: NFD is not an alias"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 309,
+          "text": "2026-10-24T22:52:26.4289843Z SKIPPED [1] tests/test_realtime_eval.py: KIMI_API_KEY not set — live LLM eval skipped"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "2_engine (pytest).txt",
+          "normalizedLine": 310,
+          "text": "2026-10-24T22:52:26.4290426Z SKIPPED [1] tests/test_style.py:350: real dispense corpus absent (only on the Mini, not in CI)"
+        }
+      ]
+    },
+    "API_and_shared_Core": {
+      "runId": 40140273151,
+      "job": "study-api (HTTP + shared Core)",
+      "passed": 951,
+      "skipped": 30,
+      "warnings": 1,
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 276,
+          "text": "2026-10-24T22:52:42.2642866Z 951 passed, 30 skipped, 1 warning in 102.25s (0:01:42)"
+        }
+      ],
+      "separateTeachingUnittest": {
+        "passed": 12,
+        "evidence": [
+          {
+            "zip": "40140273151.logs.original.zip",
+            "entry": "5_study-api (HTTP + shared Core).txt",
+            "normalizedLine": 297,
+            "text": "2026-10-24T22:52:43.4985895Z Ran 12 tests in 0.114s"
+          }
+        ]
+      },
+      "skipDetails": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 253,
+          "text": "2026-10-24T22:52:42.2617938Z SKIPPED [1] packages/engine/tests/study/test_postgres_admin_registers.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 254,
+          "text": "2026-10-24T22:52:42.2619652Z SKIPPED [1] packages/engine/tests/study/test_postgres_calendar.py:10: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 255,
+          "text": "2026-10-24T22:52:42.2620814Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:50: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 256,
+          "text": "2026-10-24T22:52:42.2622304Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:61: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 257,
+          "text": "2026-10-24T22:52:42.2623484Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:73: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 258,
+          "text": "2026-10-24T22:52:42.2624666Z SKIPPED [1] packages/engine/tests/study/test_postgres_concurrency.py:94: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 259,
+          "text": "2026-10-24T22:52:42.2625827Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:99: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 260,
+          "text": "2026-10-24T22:52:42.2626999Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:119: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 261,
+          "text": "2026-10-24T22:52:42.2628160Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:152: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 262,
+          "text": "2026-10-24T22:52:42.2629290Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:193: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 263,
+          "text": "2026-10-24T22:52:42.2630211Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:230: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 264,
+          "text": "2026-10-24T22:52:42.2631486Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:247: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 265,
+          "text": "2026-10-24T22:52:42.2632412Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:280: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 266,
+          "text": "2026-10-24T22:52:42.2633328Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:316: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 267,
+          "text": "2026-10-24T22:52:42.2634257Z SKIPPED [1] packages/engine/tests/study/test_postgres_contract.py:361: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 268,
+          "text": "2026-10-24T22:52:42.2635186Z SKIPPED [1] packages/engine/tests/study/test_postgres_course_bindings.py:12: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 269,
+          "text": "2026-10-24T22:52:42.2636125Z SKIPPED [1] packages/engine/tests/study/test_postgres_edition_admin.py:8: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 270,
+          "text": "2026-10-24T22:52:42.2637076Z SKIPPED [1] packages/engine/tests/study/test_postgres_edition_listing.py:11: live local Supabase contract: ARDESIA_SUPABASE_ENV_FILE not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 271,
+          "text": "2026-10-24T22:52:42.2638038Z SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:33: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 272,
+          "text": "2026-10-24T22:52:42.2639017Z SKIPPED [8] packages/engine/tests/study/test_postgres_schema_convergence.py:52: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 273,
+          "text": "2026-10-24T22:52:42.2639974Z SKIPPED [1] packages/engine/tests/study/test_postgres_question_reviews.py:74: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 274,
+          "text": "2026-10-24T22:52:42.2641215Z SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:305: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "normalizedLine": 275,
+          "text": "2026-10-24T22:52:42.2642196Z SKIPPED [1] packages/engine/tests/study/test_postgres_schema_convergence.py:366: real PostgreSQL convergence: ARDESIA_TEST_POSTGRES_URL not supplied"
+        }
+      ]
+    },
+    "MCP": {
+      "runId": 40140273151,
+      "job": "study-mcp (official SDK stdio + HTTP)",
+      "passed": 23,
+      "skipped": 0,
+      "runtime": "CPython3.13.17",
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "0_study-mcp (official SDK stdio + HTTP).txt",
+          "normalizedLine": 333,
+          "text": "2026-10-24T22:51:20.5035617Z Ran 23 tests in 17.998s"
+        }
+      ]
+    },
+    "MarketingUnit": {
+      "runId": 40140273245,
+      "job": "marketing",
+      "passed": 9,
+      "skipped": 0,
+      "evidence": [
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 220,
+          "text": "2026-10-24T22:51:02.2574712Z Ran 9 tests in 0.042s"
+        }
+      ]
+    }
+  },
+  "browser": {
+    "publicWeb": {
+      "runId": 40140273151,
+      "job": "web (typecheck + test + build)",
+      "passed": 6,
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 945,
+          "text": "2026-10-24T22:56:29.6655329Z   ✓  1 e2e-public/public-preview.spec.ts:4:3 › public experiment at 360px predicts, discovers, recovers and transfers with zero API traffic (1.4s)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 950,
+          "text": "2026-10-24T22:56:30.8946879Z   ✓  2 e2e-public/public-preview.spec.ts:4:3 › public experiment at 390px predicts, discovers, recovers and transfers with zero API traffic (1.2s)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 955,
+          "text": "2026-10-24T22:56:32.2576921Z   ✓  3 e2e-public/public-preview.spec.ts:4:3 › public experiment at 820px predicts, discovers, recovers and transfers with zero API traffic (1.3s)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 960,
+          "text": "2026-10-24T22:56:33.6592055Z   ✓  4 e2e-public/public-preview.spec.ts:4:3 › public experiment at 1440px predicts, discovers, recovers and transfers with zero API traffic (1.4s)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 995,
+          "text": "2026-10-24T22:56:33.9812109Z   ✓  5 e2e-public/public-preview.spec.ts:92:1 › public mount preserves course context, exact files and a closed static network policy (307ms)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 999,
+          "text": "2026-10-24T22:56:35.1130440Z   ✓  6 e2e-public/public-preview.spec.ts:112:1 › mean-transport motion pauses exactly, resumes, and reset returns to an unrevealed experiment (1.1s)"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 1001,
+          "text": "2026-10-24T22:56:35.1777092Z   6 passed (9.2s)"
+        }
+      ]
+    },
+    "teacherPathway": {
+      "runId": 40140273151,
+      "job": "web (typecheck + test + build)",
+      "passed": 1,
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 1102,
+          "text": "2026-10-24T22:56:44.8442905Z [1/1] apps/web/e2e/physics-pathways.spec.ts:4:1 › teacher navigates pinned pathways, units and collections; back, reload and keyboard survive at three widths"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "1_web (typecheck + test + build).txt",
+          "normalizedLine": 1103,
+          "text": "2026-10-24T22:56:55.5860138Z   1 passed (11.7s)"
+        }
+      ],
+      "scope": "Real API on disposable SQLite; not remote beta."
+    },
+    "studioGoldenPath": {
+      "runId": 40140273151,
+      "job": "e2e golden path (advisory)",
+      "passed": 1,
+      "advisory": true,
+      "continueOnError": true,
+      "evidence": [
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "4_e2e golden path (advisory).txt",
+          "normalizedLine": 907,
+          "text": "2026-10-24T22:51:26.4191214Z [1/1] e2e/golden-path.spec.ts:68:1 › golden path: lezione → chiusura → Continuità → export → import → riapertura a freddo → ripresa"
+        },
+        {
+          "zip": "40140273151.logs.original.zip",
+          "entry": "4_e2e golden path (advisory).txt",
+          "normalizedLine": 908,
+          "text": "2026-10-24T22:51:34.6761467Z   1 passed (10.4s)"
+        }
+      ],
+      "caveat": "Not a blocking browser check and not the local frozen replay gate."
+    },
+    "marketing": {
+      "runId": 40140273245,
+      "job": "marketing",
+      "viewportChecksPassed": 36,
+      "widths": [
+        320,
+        360,
+        375,
+        390,
+        430,
+        580,
+        768,
+        820,
+        1024,
+        1280,
+        1440,
+        1920
+      ],
+      "engineCompletions": 3,
+      "engines": {
+        "chromium": "148.0.7778.96",
+        "firefox": "150.0.2",
+        "webkit": "26.4"
+      },
+      "evidence": [
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1507,
+          "text": "2026-10-24T22:51:50.3819332Z chromium width 320 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1508,
+          "text": "2026-10-24T22:51:50.8192288Z chromium width 360 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1509,
+          "text": "2026-10-24T22:51:51.2509889Z chromium width 375 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1510,
+          "text": "2026-10-24T22:51:51.6674170Z chromium width 390 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1511,
+          "text": "2026-10-24T22:51:52.0827996Z chromium width 430 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1512,
+          "text": "2026-10-24T22:51:52.7641451Z chromium width 580 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1513,
+          "text": "2026-10-24T22:51:53.4450154Z chromium width 768 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1514,
+          "text": "2026-10-24T22:51:54.6982744Z chromium width 820 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1515,
+          "text": "2026-10-24T22:51:55.1440615Z chromium width 1024 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1516,
+          "text": "2026-10-24T22:51:55.6311987Z chromium width 1280 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1517,
+          "text": "2026-10-24T22:51:56.0631111Z chromium width 1440 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1518,
+          "text": "2026-10-24T22:51:56.5522550Z chromium width 1920 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1519,
+          "text": "2026-10-24T22:52:09.1179941Z chromium PASS 148.0.7778.96"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1520,
+          "text": "2026-10-24T22:52:11.6837410Z firefox width 320 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1521,
+          "text": "2026-10-24T22:52:12.4955661Z firefox width 360 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1522,
+          "text": "2026-10-24T22:52:13.2979283Z firefox width 375 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1523,
+          "text": "2026-10-24T22:52:14.1116907Z firefox width 390 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1524,
+          "text": "2026-10-24T22:52:14.9283726Z firefox width 430 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1525,
+          "text": "2026-10-24T22:52:15.7291194Z firefox width 580 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1526,
+          "text": "2026-10-24T22:52:16.5274365Z firefox width 768 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1527,
+          "text": "2026-10-24T22:52:17.3106407Z firefox width 820 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1528,
+          "text": "2026-10-24T22:52:18.1104523Z firefox width 1024 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1529,
+          "text": "2026-10-24T22:52:18.8958832Z firefox width 1280 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1530,
+          "text": "2026-10-24T22:52:19.7101147Z firefox width 1440 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1531,
+          "text": "2026-10-24T22:52:20.6380478Z firefox width 1920 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1532,
+          "text": "2026-10-24T22:52:51.8798318Z firefox PASS 150.0.2"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1533,
+          "text": "2026-10-24T22:53:00.2818167Z webkit width 320 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1534,
+          "text": "2026-10-24T22:53:01.8406462Z webkit width 360 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1535,
+          "text": "2026-10-24T22:53:03.6720479Z webkit width 375 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1536,
+          "text": "2026-10-24T22:53:05.5852856Z webkit width 390 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1537,
+          "text": "2026-10-24T22:53:07.0941190Z webkit width 430 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1538,
+          "text": "2026-10-24T22:53:08.5886963Z webkit width 580 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1539,
+          "text": "2026-10-24T22:53:10.1841425Z webkit width 768 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1540,
+          "text": "2026-10-24T22:53:11.7874833Z webkit width 820 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1541,
+          "text": "2026-10-24T22:53:13.5842157Z webkit width 1024 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1542,
+          "text": "2026-10-24T22:53:14.7345044Z webkit width 1280 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1543,
+          "text": "2026-10-24T22:53:15.8625028Z webkit width 1440 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1544,
+          "text": "2026-10-24T22:53:16.9703097Z webkit width 1920 PASS"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1545,
+          "text": "2026-10-24T22:53:35.5489951Z webkit PASS 26.4"
+        },
+        {
+          "zip": "40140273245.logs.original.zip",
+          "entry": "0_marketing.txt",
+          "normalizedLine": 1546,
+          "text": "2026-10-24T22:53:35.7390001Z {\"status\":\"PASS\",\"widths\":[320,360,375,390,430,580,768,820,1024,1280,1440,1920],\"engines\":[\"chromium\",\"firefox\",\"webkit\"]}"
+        }
+      ],
+      "caveat": "36widthchecks+3enginecompletions are custom-runner outputs, not39independent test cases."
+    }
+  },
+  "localFrozenGate": {
+    "passed": 2277,
+    "failed": 0,
+    "exit": 0,
+    "decomposition": "2276unit+1replay",
+    "evidence": [
+      {
+        "file": "work/r2/qa/studio-postfix-gate.log",
+        "sha256": "5044239ad4406069c217ef93f5ba9fa3f4cd778b0939f98c11ab67ebbbf8a6eb",
+        "evidence": [
+          "{\"passed\":2277,\"failed\":0,\"exit\":0}"
+        ]
+      },
+      {
+        "file": "work/r2/qa/studio-postfix-replay.log",
+        "sha256": "476104c686a8cbd1cff5e35bba0e761ef6d83ffa90176eacb825b629acfa1533",
+        "evidence": [
+          "  ✓  1 eval/replay-kill-test.spec.ts:9:1 › replay kill-test: da journal reale ricostruisce scena equivalente a board.excalidraw (5.2s)",
+          "  1 passed (7.0s)",
+          "[replay-check] Test completato con codice 0"
+        ]
+      }
+    ],
+    "rerunByArchiveTask": false,
+    "caveat": "Separate local recorded gate, not CIStudio2276 and not advisoryGoldenPath."
+  },
+  "archives": [
+    {
+      "runId": 40140273151,
+      "zip": "40140273151.logs.original.zip",
+      "entryCount": 93,
+      "uncompressedBytes": 1121394,
+      "entries": [
+        {
+          "entry": "0_study-mcp (official SDK stdio + HTTP).txt",
+          "bytes": 30040,
+          "sha256": "34dbe87511fef7338ee09459f0a90b1d4695a51c8e06ff31f6aa78447ca79110"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/system.txt",
+          "bytes": 576,
+          "sha256": "21699e50ef7d032dc5843167da35b4213d93816a7beed1a6bd3d36a3244440ee"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/1_Set up job.txt",
+          "bytes": 2127,
+          "sha256": "f672736e3dc9ec29abcbc977e7c25dafe35163627165d8e81777a0127c475748"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "975f59aabdbb54a349eae8148fe4e2c07d79eccb51d1d0ceb1b1ad8e9d57aa15"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/3_Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 3660,
+          "sha256": "0245abc4dc7ada552c1b6042731dd13e77e1ae66cc482f0e7d53b95f6b2a4d0a"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/4_Install separate API and MCP environments.txt",
+          "bytes": 5092,
+          "sha256": "89f24325a8b743b68e6cf58422f33b3164fa0a07ab2fd73eab84d44e85e0053e"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/5_Read-only boundaries and actual official stdio to disposable Core.txt",
+          "bytes": 6003,
+          "sha256": "7ad34dd9e1242cc31012bc946c72be0201f467ee355e07c0f0ec4dbd7f98c129"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/9_Post Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 487,
+          "sha256": "756b681cd041b5ad9a921483b1d6f1d3fca1499c233b4f91ba03c3294ac32a43"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/10_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "5bfe9cccea000182c2acc56072e0e6e38304f9b064b1b2c9dccb0aea86e33dc7"
+        },
+        {
+          "entry": "study-mcp (official SDK stdio + HTTP)/11_Complete job.txt",
+          "bytes": 447,
+          "sha256": "55533bef570b4810b028ce20b8229aec25d812df6aaa76860ef0ae9f4040de30"
+        },
+        {
+          "entry": "1_web (typecheck + test + build).txt",
+          "bytes": 112829,
+          "sha256": "c9cacbaf4c893a153f1ca6b8d67c42c893c4ec8fe0208b3bf654614be7ae45a1"
+        },
+        {
+          "entry": "web (typecheck + test + build)/system.txt",
+          "bytes": 570,
+          "sha256": "96a8dfdb653be16642236d6abf5274b5a3dd9407959826c4b877e3cfe5c687c3"
+        },
+        {
+          "entry": "web (typecheck + test + build)/1_Set up job.txt",
+          "bytes": 2417,
+          "sha256": "60e135a0c5659ec39b1e8573dc25922c8279bc2418a5096bc49d2a37ef458c3b"
+        },
+        {
+          "entry": "web (typecheck + test + build)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "189a1199f88e27e5226f5cc4297166f2d7c57e5751c0127a8b33efa6153f9f29"
+        },
+        {
+          "entry": "web (typecheck + test + build)/3_E2E runner safety self-test (sentinel containers).txt",
+          "bytes": 1672,
+          "sha256": "c2f5e5e0974d800b5ffb6ecc15ca246068e0b0e582f5f074b2314771339cf69c"
+        },
+        {
+          "entry": "web (typecheck + test + build)/4_Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 2687,
+          "sha256": "4cdcf29c9ec45dad984550612967b33810a7734ed862ddd3281c64247ea7f537"
+        },
+        {
+          "entry": "web (typecheck + test + build)/5_Run npm ci --no-audit --no-fund.txt",
+          "bytes": 324,
+          "sha256": "3eebe924545315f8b0e0798709d755e945111d4f84b267d62b8ae27f3b1ab2a2"
+        },
+        {
+          "entry": "web (typecheck + test + build)/6_Run npm run typecheckweb.txt",
+          "bytes": 597,
+          "sha256": "a1ba3c225771180e5330f696221b1929f4b02d179cff00aa3d5293a11dd404a7"
+        },
+        {
+          "entry": "web (typecheck + test + build)/7_Run npm run testweb.txt",
+          "bytes": 14854,
+          "sha256": "38ce77a101da5a26e3136fc62b643e800b6834353b90af8e6c998284fd3d5582"
+        },
+        {
+          "entry": "web (typecheck + test + build)/8_Run npm run buildweb.txt",
+          "bytes": 31033,
+          "sha256": "2db1d221e0a24da97dec993c36fcf4e9d99414f4c55a455501e257b556afa5e4"
+        },
+        {
+          "entry": "web (typecheck + test + build)/9_Public static build (all cases must match Core).txt",
+          "bytes": 1537,
+          "sha256": "d359e136c4a0404a76ce8f2eb949436ee70c072792ac85e1c8a6af2834058b07"
+        },
+        {
+          "entry": "web (typecheck + test + build)/10_Install browser for the backend-free public preview.txt",
+          "bytes": 26631,
+          "sha256": "05ea43effcf4044be5be977db0705392a3aea69a6cf9fb2ee2445f84a6f44613"
+        },
+        {
+          "entry": "web (typecheck + test + build)/11_Public preview in a real browser, with no API.txt",
+          "bytes": 9252,
+          "sha256": "7e5048580837d60154952617972134d8b626f65b8f4e481023a717c5af799967"
+        },
+        {
+          "entry": "web (typecheck + test + build)/12_Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 3659,
+          "sha256": "47b6b8db6a6ff63fa5e52a51eab8c0cefa55f94a52ba20099bbb432ef65a04fd"
+        },
+        {
+          "entry": "web (typecheck + test + build)/13_Install the disposable Study API environment.txt",
+          "bytes": 2906,
+          "sha256": "f81659728c01774eb74e716a882fa2d7c01764ac858be8f1f9a857a8c875f399"
+        },
+        {
+          "entry": "web (typecheck + test + build)/14_Teacher physics pathways in a real browser, on disposable SQLite.txt",
+          "bytes": 1590,
+          "sha256": "c82b6f2d97286469b861c7671fe034123c391c661a88c87067feec3be74e8093"
+        },
+        {
+          "entry": "web (typecheck + test + build)/28_Post Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 487,
+          "sha256": "18f5bc04460b29003417092d288764bd36cd2f2d9ad93139675f4cfa957a4ff9"
+        },
+        {
+          "entry": "web (typecheck + test + build)/29_Post Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 481,
+          "sha256": "61ea46abff94801130c17089b30e92124d7626ab1bdddd2a6842694291934b9a"
+        },
+        {
+          "entry": "web (typecheck + test + build)/30_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "9610d10a421040b20a209f7c401ceb6db4b5206320cbdbebb0f12dc68b14c41e"
+        },
+        {
+          "entry": "web (typecheck + test + build)/31_Complete job.txt",
+          "bytes": 508,
+          "sha256": "7cacdb34e5304e41cd422593e3e372f0c009f06ef18f588390f2575b28e92360"
+        },
+        {
+          "entry": "2_engine (pytest).txt",
+          "bytes": 29535,
+          "sha256": "347149a0a7108e94cb2e2c138ff08adccbae80db0ad6b617e7b1715f203186b3"
+        },
+        {
+          "entry": "engine (pytest)/system.txt",
+          "bytes": 573,
+          "sha256": "f8472e24d99e0661a08f2be73bcb3498c60bc191e0a97f9a0993ead1578232fd"
+        },
+        {
+          "entry": "engine (pytest)/1_Set up job.txt",
+          "bytes": 2104,
+          "sha256": "a3809b31727d0b4591d397ff8a8c55fd44c2bc3eaa834da7e14ff97e0d3465cd"
+        },
+        {
+          "entry": "engine (pytest)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "f396dd5a855541b37802ee37057a47aa35360b57834cf48332a1837cd431e071"
+        },
+        {
+          "entry": "engine (pytest)/3_Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 3660,
+          "sha256": "b1e5da58e7400a17b0b57af8dcfd0e5989942507e6382b2f5634b01638181ac5"
+        },
+        {
+          "entry": "engine (pytest)/4_pytest (live models require explicit opt-in).txt",
+          "bytes": 10610,
+          "sha256": "73895128e9b2aa43eec892217a7755564f864dec32c448bbd64b672f46ab60fd"
+        },
+        {
+          "entry": "engine (pytest)/7_Post Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 487,
+          "sha256": "e5eceac4ac2e3434d848dcda191871b368ff0b19e109cdb5128653767417b3a8"
+        },
+        {
+          "entry": "engine (pytest)/8_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "5d1d12f035777c3a0491a0893b6167bcc96d52d00ff00d8b7731d9dbd0d4002f"
+        },
+        {
+          "entry": "engine (pytest)/9_Complete job.txt",
+          "bytes": 447,
+          "sha256": "fca2ea26481c1396d262f917223ec51283081407a45834115feb138f69f51105"
+        },
+        {
+          "entry": "3_hygiene (NUL + secrets + boundary + whitespace).txt",
+          "bytes": 71318,
+          "sha256": "236c6097b87a7562818d40316e70f864f0fa5009f72892f30fd1c0ef398b4571"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/system.txt",
+          "bytes": 574,
+          "sha256": "5c414117ec4321aa06a331e45ce70712408ca063a7317a0eb50e4c733b1ecde1"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/1_Set up job.txt",
+          "bytes": 2106,
+          "sha256": "5547473130c6c0cdc61c970274c012c935f3855be92b95e532c96919cf4c096c"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 57663,
+          "sha256": "895260f8380828d465412cc49bcd776c41b17334b50ed40a468842f6abcaa193"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/3_NUL scan (tracked text files).txt",
+          "bytes": 317,
+          "sha256": "240d3212c86dc3012cad38cbbe7fa47e6e00c723cecedd77288daaea0c95804c"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/4_secret scan (high-confidence patterns).txt",
+          "bytes": 326,
+          "sha256": "f44fffb5c1b0e4a9d53264713f0c46ead3148a3bf1507c66f7942aa3a66a8317"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/5_secret scan tests.txt",
+          "bytes": 500,
+          "sha256": "153e7ec739f2c8682741cea603931a11e200bc53b567b3edf492ec81508cef69"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/6_ELAB standalone boundary (ratchet).txt",
+          "bytes": 367,
+          "sha256": "3c07410d29ed98dc6d62b684f8e9e7d845770d8507c6cfe15cff1bbbcf3c1a3e"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/7_workflow trigger gate (copertura indipendente dalla base).txt",
+          "bytes": 386,
+          "sha256": "3b774ee7624702cf87f2fe39ed4a2ecb9ef687139138fe350781ea9c3c9dd3fc"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/8_workflow trigger gate tests.txt",
+          "bytes": 552,
+          "sha256": "c79252d6ac7bf4e8e85287d86e2a9a833e8e1f703c7fde4ca7660756e1b5069c"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/9_doc claims gate (un documento non afferma cio' che il repo smentisce).txt",
+          "bytes": 380,
+          "sha256": "a1842f8581a87923befd7ffdb87ddec83a457d95af99840b5c58137e13687b1f"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/10_doc claims gate tests.txt",
+          "bytes": 531,
+          "sha256": "fc8fc92f97f95732d5c6783c402a7d3752a8c1f527c87604253738bd48701989"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/11_project state — funzioni pure.txt",
+          "bytes": 344,
+          "sha256": "b55fc544da0bf6aef3640c13501ecee837b9e53185ae0bf27e21527f70999265"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/12_project state — test.txt",
+          "bytes": 308,
+          "sha256": "d1c54cf9f6488e4315ed9aab99efa643c96e011ff4848f6bf2b6b28497ea3aeb"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/13_project state — legge il repo reale (offline).txt",
+          "bytes": 369,
+          "sha256": "436a8a96293bda64bb525a8be41a66c7530b6a0d238171096c391bbc2ad93494"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/14_project state — genera lo stato di QUESTO SHA.txt",
+          "bytes": 779,
+          "sha256": "173e281baa48d6cda0a8f26619f765cbe8428059a672b3ce5e3b4576db92bc6a"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/15_project state — pubblica l'artifact.txt",
+          "bytes": 2418,
+          "sha256": "2bf1d315ad00ad379c16574fbbbeec076ae43c1b227a27df47f12d59bd84d372"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/16_whitespace errors (git diff --check).txt",
+          "bytes": 2081,
+          "sha256": "50ab86441e6a5f3b44a8bd0df0884197c6772f61360e7915257e1a983068c8e8"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/32_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "3d5aa053dcedd806609a55b4f972e69eda18d990c7d4b9bd46003b1446812185"
+        },
+        {
+          "entry": "hygiene (NUL + secrets + boundary + whitespace)/33_Complete job.txt",
+          "bytes": 414,
+          "sha256": "7427d2710be014e1459ab59a95e0f0506a5ef42c6ec748c5a3093577f8f65883"
+        },
+        {
+          "entry": "4_e2e golden path (advisory).txt",
+          "bytes": 87980,
+          "sha256": "d3b2e2752aeecfbbb75d603fc01635faa185c0efe2fc7f2d5fafc7cb8ae7a5e2"
+        },
+        {
+          "entry": "e2e golden path (advisory)/system.txt",
+          "bytes": 582,
+          "sha256": "817a0f5420a7b2c09d09c7afc3eaaffc64e6c243ae853b9a86f3e247b2301ec9"
+        },
+        {
+          "entry": "e2e golden path (advisory)/1_Set up job.txt",
+          "bytes": 2250,
+          "sha256": "916bf320a30ff540a2cac01a28c6737eaa6fdffecbb84396196b87ec08f4b106"
+        },
+        {
+          "entry": "e2e golden path (advisory)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 9787,
+          "sha256": "a71da931ac7dbc5cdb75cb45b8dceef19274666b2475b123cdd167f7892d8fd8"
+        },
+        {
+          "entry": "e2e golden path (advisory)/3_Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 2232,
+          "sha256": "2c0d8e2464f87cc8f587a8f90e98e1507c5bd31348137b0a6050ac0aae2d172c"
+        },
+        {
+          "entry": "e2e golden path (advisory)/4_Run npm ci --no-audit --no-fund.txt",
+          "bytes": 43003,
+          "sha256": "7b56c36f279c55875943a85a656120f2fbf71ef29ed36276222d1d6252ac85c1"
+        },
+        {
+          "entry": "e2e golden path (advisory)/5_Run npx playwright install --with-deps chromium.txt",
+          "bytes": 26627,
+          "sha256": "3986872a4bda810a68791a67cd9d0ac7dc75865c37fb0efc69c63669b31024f0"
+        },
+        {
+          "entry": "e2e golden path (advisory)/6_golden path (l'obiettivo, come exit code).txt",
+          "bytes": 663,
+          "sha256": "7cd4da8998e96eb6f497729da4aadda8bc33a245ccf929988c5389b61d007017"
+        },
+        {
+          "entry": "e2e golden path (advisory)/7_Run actions_upload-artifact@v4.txt",
+          "bytes": 961,
+          "sha256": "cba5ce30015332ac82a828250f07cd89450e011b999d477e395cd77ed5e1ef23"
+        },
+        {
+          "entry": "e2e golden path (advisory)/13_Post Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 481,
+          "sha256": "08753c93c2f9e609d6f919148fadcf69a050b8bfc4e1b6377a7e378939ffd25a"
+        },
+        {
+          "entry": "e2e golden path (advisory)/14_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "815626664de7b4458a3e60efa121bd1554f54fb25ebb7287e94fb78b5bfc1094"
+        },
+        {
+          "entry": "e2e golden path (advisory)/15_Complete job.txt",
+          "bytes": 475,
+          "sha256": "619d950c994d77356b0db88bcb1c1a321077b40f734afe72a841782adee3791f"
+        },
+        {
+          "entry": "5_study-api (HTTP + shared Core).txt",
+          "bytes": 28841,
+          "sha256": "f8d9eacd2bf567c92d6ee87495bfdda6dc4145ebf7f54f0a0d34c703d66290b0"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/system.txt",
+          "bytes": 576,
+          "sha256": "b4a2decf576eec65ecfbb975ec60dfb62f7519eeceac273e8a6be475428b5da0"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/1_Set up job.txt",
+          "bytes": 2119,
+          "sha256": "b7e8672666eb5d2a94870ec2399c3b3516696e55bb1f91d3354772ed0b7c4f89"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "313ccb575a7364163f521966143648c723dd536142b6615112ffe3ee1c6344b5"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/3_Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 3660,
+          "sha256": "2c5ca65e446b78a46ed26e985b31fa115fd8ed9662165c129eb7467e26900ac3"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/4_HTTP and domain contracts (live Supabase skip explicit).txt",
+          "bytes": 7906,
+          "sha256": "87511f26b10cf72a84119fca0d03c0fb620acdb532b184a0577e67624f79f84f"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/5_Local teaching artifact routes and data isolation.txt",
+          "bytes": 1998,
+          "sha256": "bd967d9b1e9599c8ff68eb7af993e38ee51730489f0a3936a8df25ea1d7a5120"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/9_Post Run astral-sh_setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86.txt",
+          "bytes": 487,
+          "sha256": "319707bceb81edd68d98f0c9abd3571710f8a9a3b88da4b61dac50d0994050b6"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/10_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "ad3732f5cfb2c41b0ed8f617d111952b37c3af45a048af67aa5fb4dda40e46a1"
+        },
+        {
+          "entry": "study-api (HTTP + shared Core)/11_Complete job.txt",
+          "bytes": 447,
+          "sha256": "d92461d8cac997551f2988ad8183e619bda3cd9fc6208d3150a975e749ae48f6"
+        },
+        {
+          "entry": "6_studio (typecheck + test + build).txt",
+          "bytes": 198034,
+          "sha256": "78b21af9bd27d9c19ff05763fb23f4f23a2f39f5eafb78048a26775be895c1f2"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/system.txt",
+          "bytes": 573,
+          "sha256": "10693841a4c223693dbbbc221c7407e3d58350b858e5a7752dd2febd7719dbba"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/1_Set up job.txt",
+          "bytes": 2130,
+          "sha256": "3c6555bb0afbde80c913062157b4dc2bba1021bfa30fd2c5b452b0f959a21192"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "6eaf77f4026d70e307e0d7f176e23be83bb216a7f735cb2b4f2a62f42499e0c7"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/3_Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 2232,
+          "sha256": "7af9431788cb0ef0a76bf9784f65891fdd1dec19ff5ae2ec4984b45f3ab18501"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/4_Run npm ci --no-audit --no-fund.txt",
+          "bytes": 43004,
+          "sha256": "18739bbbb78f423ed700fe704519a5a0deaacd1c97ad64c3ccbefdcd81431cee"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/5_Run npm run typecheck.txt",
+          "bytes": 381,
+          "sha256": "814c0f9639f7aae990d07ba5e65fcb79293d20a4634a78d34de19a4c559765f5"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/6_vitest (deterministic profile).txt",
+          "bytes": 64587,
+          "sha256": "60b2fa9c28b97d7e2bd24de52bc31f9c72ce2422cdac1c02d9495bb8261e9b96"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/7_Run npm run build.txt",
+          "bytes": 72554,
+          "sha256": "8f69d7e607046497c632fa9be50e3467a88ed95fa754b085ca609bff8fc68173"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/13_Post Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 481,
+          "sha256": "c6880da9a327a928933354004f40b3689239f2393f0fa53231f9564f7f95a6cf"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/14_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "8905574b598a713d8caa8bf4deeacba080192d236765a25105966d84e75f7ca4"
+        },
+        {
+          "entry": "studio (typecheck + test + build)/15_Complete job.txt",
+          "bytes": 447,
+          "sha256": "3c6f0f78c43eee6950e76152f90574667aea74b9aa681ce21c886746f7df552c"
+        }
+      ]
+    },
+    {
+      "runId": 40140273173,
+      "zip": "40140273173.logs.original.zip",
+      "entryCount": 11,
+      "uncompressedBytes": 414962,
+      "entries": [
+        {
+          "entry": "0_no-deploy-check.txt",
+          "bytes": 207167,
+          "sha256": "df430899e250284074eee5d3dd14563ca129307739bbcb9a8767d884243d4283"
+        },
+        {
+          "entry": "no-deploy-check/system.txt",
+          "bytes": 604,
+          "sha256": "40e237a3af4eab10f08291bf1ceb1f5f8e6635f836b7d51b1600f41a4096d87e"
+        },
+        {
+          "entry": "no-deploy-check/1_Set up job.txt",
+          "bytes": 2104,
+          "sha256": "90ea758a3954bc0dd9edaea91c8253fcc0ed1b5c3a00a0e60953be1ff9ae7e1b"
+        },
+        {
+          "entry": "no-deploy-check/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "6f17d028bea6178185e2e4a6a837ea3fa785ebd16b291dab56308c56fed700e1"
+        },
+        {
+          "entry": "no-deploy-check/3_Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 2629,
+          "sha256": "b53094ef57f84830434b8a5cb94b6709318848441cdd9afaacfaf9e7ec7685fd"
+        },
+        {
+          "entry": "no-deploy-check/4_Run bash -n bin_monorepo.sh.txt",
+          "bytes": 232,
+          "sha256": "a2a086755d5bddb7df94c715d1b24c2251579d5b632705ed98ad4a60427de24b"
+        },
+        {
+          "entry": "no-deploy-check/5_Run npm --prefix apps_studio ci.txt",
+          "bytes": 48557,
+          "sha256": "e746bc8e976c2d2be818d79e869442bec4c05c756c7fa2dfb8ce7f787b3a9d86"
+        },
+        {
+          "entry": "no-deploy-check/6_Run npm run previewstudiocheck.txt",
+          "bytes": 140496,
+          "sha256": "432f9254d87cbc9739fe1c78133354f5d9cb76d0c461df8bb5c3e860cc98a98b"
+        },
+        {
+          "entry": "no-deploy-check/11_Post Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 481,
+          "sha256": "33aa453a6346b673d1ac816e269b36a7638cd4bf96b75986615797cf32e4da2e"
+        },
+        {
+          "entry": "no-deploy-check/12_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "14f4aa5e645149654f24219b896b9715957138e02358d8759aba7b65045ebaf3"
+        },
+        {
+          "entry": "no-deploy-check/13_Complete job.txt",
+          "bytes": 447,
+          "sha256": "597403239544e233c9bd181f704e721796f2d246f6420018b18d6be1984874cd"
+        }
+      ]
+    },
+    {
+      "runId": 40140273245,
+      "zip": "40140273245.logs.original.zip",
+      "entryCount": 14,
+      "uncompressedBytes": 311693,
+      "entries": [
+        {
+          "entry": "0_marketing.txt",
+          "bytes": 155537,
+          "sha256": "c321c26fe6fc4608ccdb6407dcda96e5d221891a153b20b9ebbf4414583fae30"
+        },
+        {
+          "entry": "marketing/system.txt",
+          "bytes": 586,
+          "sha256": "db5a557fd5be0b039cb3d3e385db56aa24ed59575ef66944370f1c431ecb6103"
+        },
+        {
+          "entry": "marketing/1_Set up job.txt",
+          "bytes": 2230,
+          "sha256": "ccb2b21a5049c27b111b18b14563be0d281a1fde7182d2d97b5eee6394603f8c"
+        },
+        {
+          "entry": "marketing/2_Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 10717,
+          "sha256": "22970170b895393fd21036c84f441840c4c5b5dc40c2ed150dd8d2882d55eccf"
+        },
+        {
+          "entry": "marketing/3_Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 2535,
+          "sha256": "4240a83a5c40693711214f929b9cef8f2f096d0cf7b1bb01ab8852e567f79134"
+        },
+        {
+          "entry": "marketing/4_Run python3 -m unittest discover -s apps_marketing-01_tests -v.txt",
+          "bytes": 2281,
+          "sha256": "5a066889ed092edd4c03f89633ea20091fe2214d461713e5e232a42c033af9e4"
+        },
+        {
+          "entry": "marketing/5_Run python3 apps_marketing-01_build.py --review-examples.txt",
+          "bytes": 376,
+          "sha256": "e7ee3b4ee0fb38073bbf9a6dbc01414874c0c02784917d51718d0a3fb9cda193"
+        },
+        {
+          "entry": "marketing/6_Run npm ci --no-audit --no-fund.txt",
+          "bytes": 324,
+          "sha256": "133e7c88ac96c0bea98e3bdce9c93576996f58534b7544a927a7b01fe84440ee"
+        },
+        {
+          "entry": "marketing/7_Run npx playwright install --with-deps chromium firefox webkit.txt",
+          "bytes": 129395,
+          "sha256": "e3a8521f82a32d554d8127b4ae61a2d7347bfdcfd50e27a2d60f194b230d6d3a"
+        },
+        {
+          "entry": "marketing/8_Static interest journey in a real browser.txt",
+          "bytes": 2713,
+          "sha256": "056c2a0ff39e84df4f570a43d1457a01d291ed70c15351d8fb0b43db0df8c4b2"
+        },
+        {
+          "entry": "marketing/9_Run actions_upload-artifact@v4.txt",
+          "bytes": 2514,
+          "sha256": "099b795050e3aaa239ea0bfe4a5c54d024652fc53ee6d678bba493af3f28158f"
+        },
+        {
+          "entry": "marketing/17_Post Run actions_setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020.txt",
+          "bytes": 482,
+          "sha256": "0cfed4ed76807026a84a024f898d3e82062879ec9a0acae4c1d6b91c925a43df"
+        },
+        {
+          "entry": "marketing/18_Post Run actions_checkout@34e114876b0b11c390a56381ad16ebd13914f8d5.txt",
+          "bytes": 1528,
+          "sha256": "43c7bb7d7f6bcf2f6c5190fa36056867f36a9f484afbf0f010ff3a7192487c30"
+        },
+        {
+          "entry": "marketing/19_Complete job.txt",
+          "bytes": 475,
+          "sha256": "529f4f8d4c0b72712a94c52774055a1b550b97c1c3432c98fb854c7dcc2f86c5"
+        }
+      ]
+    }
+  ],
+  "workflowPolicies": {
+    ".github/workflows/ci.yml": {
+      "sha256": "faab461745ee46219949676ca2671d47978fa119ddb5bb11079ea94153f8546d",
+      "ref": "36cdba353401c80b92cc94f256b106238c7610f8"
+    },
+    ".github/workflows/studio-preview-readiness.yml": {
+      "sha256": "6a85e01d5273a52d0f32174eac1d6b93a85a8b7f270286210e1b84a18b4621ce",
+      "ref": "36cdba353401c80b92cc94f256b106238c7610f8"
+    },
+    ".github/workflows/marketing-01.yml": {
+      "sha256": "f1bce32891acfb56d8cc49e6ed12181e22b73c6bd826631947fdfc3458666683",
+      "ref": "36cdba353401c80b92cc94f256b106238c7610f8"
+    },
+    "apps/studio/eval/gate.sh": {
+      "sha256": "46dbf3e019cb4fd89c39148d5336752ade34cf1dc4449ecc136c6ac9829f69f3",
+      "ref": "36cdba353401c80b92cc94f256b106238c7610f8"
+    }
+  },
+  "normalizationForQuotedLines": "Decode UTF8 with replacement; strip ANSI/OSC/CSI; CRLF/CR to LF. Quoted normalized lines are derived in memory from complete original ZIPs; no duplicate107logfiles selected.",
+  "caveats": [
+    "No product tests, deploy, commit or source edits performed by this task.",
+    "All9jobs in3runs SUCCESS at attempt1 for product head36cdba3; later docs-head CI is separate.",
+    "API/sharedCore overlaps Engine; readiness repeats Studio and must not be added as unique coverage.",
+    "Studio5skip are local visual-smoke files absent; API30PG/Supabase and Engine29live/environment skips retained. No PG/live/cloud-beta guarantee.",
+    "The golden-path job is advisory with continue-on-error; ordinary CIStudio job runs Vitest/typecheck/build, not eval/gate.sh/replay-check.sh.",
+    "Original GitHub ZIP bytes preserved including all job/step logs; masked GitHubenvironment/auth output is not dumped in this report."
+  ]
+}

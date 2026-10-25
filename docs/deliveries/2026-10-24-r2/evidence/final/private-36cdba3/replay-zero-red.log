@@ -1,0 +1,36 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/studio
+
+(node:47993) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/ReplayView.test.tsx (19 tests | 1 failed | 18 skipped) 166ms
+       × ignores zero-size bounds and disposes pending fits on a new lesson or unmount 164ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/ReplayView.test.tsx > ReplayView > responsive replay camera > ignores zero-size bounds and disposes pending fits on a new lesson or unmount
+AssertionError: expected [ +0 ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   0,
++ ]
+
+ ❯ src/__tests__/ReplayView.test.tsx:257:35
+    255|         view.resize(0)
+    256|         view.flushFrame(); view.flushFrame()
+    257|         expect(view.fittedWidths).toEqual([])
+       |                                   ^
+    258|         view.resize(390)
+    259|         view.flushFrame(); view.flushFrame()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 skipped (19)
+   Start at  00:46:23
+   Duration  1.66s (transform 327ms, setup 34ms, import 430ms, tests 166ms, environment 888ms)

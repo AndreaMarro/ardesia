@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "experiences": [
+    {
+      "id": "poiseuille-boundary-v2",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "title": "Il vincolo cambia il risultato · revisione 2",
+      "objective": "Distingui pressione e portata fissata, poi combina viscosità e lunghezza in una nuova situazione.",
+      "steps": [
+        {"id": "fixed-pressure", "title": "Raggio doppio, pressione fissata", "exerciseRef": "RF-06"},
+        {"id": "fixed-flow", "title": "Raggio doppio, portata fissata", "activityId": "poiseuille-v1", "parameters": {"radiusRatio": 2, "boundary": "flow"}, "prompt": "Il raggio raddoppia. La pompa mantiene la portata Q, mentre viscosità e lunghezza non cambiano. Prevedi il rapporto Δp/Δp₀."},
+        {"id": "transfer", "title": "Stesso raggio, due fattori diversi", "activityId": "poiseuille-v1", "parameters": {"radiusRatio": 1, "viscosity": 2, "length": 2, "boundary": "flow"}, "prompt": "La pompa mantiene Q. Il raggio resta uguale, ma il nuovo tubo è lungo il doppio e il fluido ha viscosità doppia. Nel modello ideale, prevedi Δp/Δp₀ e spiega separatamente il contributo di ciascun cambiamento. η/η₀ = 2 e L/L₀ = 2 sono rapporti senza unità; il regime laminare va verificato in entrambe le situazioni."}
+      ]
+    },
+    {
+      "id": "poiseuille-nearby-v2",
+      "packId": "relazioni-fluidi-v1",
+      "packVersion": 1,
+      "title": "Piccole variazioni e compensazione · revisione 2",
+      "objective": "Confronta i vincoli e riconosci quando due modifiche si compensano.",
+      "steps": [
+        {"id": "fixed-pressure", "title": "Raggio aumentato del 20%", "exerciseRef": "RF-02"},
+        {"id": "fixed-flow", "title": "Raggio aumentato del 25%, Q fissata", "exerciseRef": "RF-03"},
+        {"id": "transfer", "title": "Un cambiamento compensa l’altro?", "activityId": "poiseuille-v1", "parameters": {"radiusRatio": 1, "viscosity": 2, "length": 0.5, "boundary": "pressure"}, "prompt": "Mantieni la differenza di pressione e il raggio. Il fluido ha viscosità doppia, mentre il tubo è lungo la metà. La portata deve diminuire? Prevedi Q/Q₀ e giustifica il ruolo dei due fattori. η/η₀ = 2 e L/L₀ = 0,5 sono rapporti senza unità; assumi valide le condizioni del modello in entrambi i tubi."}
+      ]
+    }
+  ]
+}

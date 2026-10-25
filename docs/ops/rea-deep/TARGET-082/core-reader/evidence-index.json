@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "observations": [
+    {
+      "file": "donor-source-analysis.json",
+      "fileSha256": "d104e18d0de5b9b8377265eab3b0ce417b785837e1fb160b5977dbb8bdf0c1e0",
+      "evidenceId": "ev_51a706c6a7ff3d3da174161f9264dd9610e6e775bab7c5ed5823c3d55eef1c72",
+      "operation": "inspect_analysis_view",
+      "limitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 5 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "completeness": null,
+      "steps": []
+    },
+    {
+      "file": "donor-getpage-trace.json",
+      "fileSha256": "4cff2aeac4153ed9caf2b9a17ea264bed44a31d84693878bbf50b5ca5afb3454",
+      "evidenceId": "ev_5f0be3c651afae6c1f505fc52f8662eabe744d1d2f970d70b5d8483561565d81",
+      "operation": "trace_javascript_semantics",
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Relevant dynamic, unsupported, incomplete, or ambiguous semantics remain unknown.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Semantic graph reachability is a static inference and does not prove runtime execution.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation."
+      ]
+    },
+    {
+      "file": "donor-runtime.json",
+      "fileSha256": "9b88209f716aac765412745bcb592921a19a9e021194b9355ed580fb15aff380",
+      "evidenceId": "ev_4531d8adb2957894b981a531ae2f94dc495cc26e3eaca2faba59804c9eb0944c",
+      "operation": "capture_browser_scenario",
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason.",
+        "Browser host platform and architecture were not observed."
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "v1-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "next",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page2",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "v2",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "v2-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "wrong-hash",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "rejected",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "retry",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "recovered",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "integrated-runtime-final.json",
+      "fileSha256": "531b933c1a441ffdbeab630c73f397c53a920bdf97285f1fa00579c89297418c",
+      "evidenceId": "ev_e75d64866131f6753278fea65baded8c53a314a6dfd7286bbf83df9f5f9a0c2d",
+      "operation": "capture_browser_scenario",
+      "limitations": [
+        "Artifact identity is unavailable for this observation.",
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason.",
+        "Browser host platform and architecture were not observed."
+      ],
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "deliveries",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "original-details",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "open-pdf",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-one",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "next",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-two",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "text",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "rotate",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "rotated-page",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "zoom",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "zoomed-page",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

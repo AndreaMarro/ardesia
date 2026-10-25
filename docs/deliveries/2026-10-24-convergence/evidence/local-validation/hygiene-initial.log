@@ -1,0 +1,72 @@
+
+COMMAND ["python3", "bin/ci/nul_scan.py"]
+nul_scan: OK (no NUL bytes in tracked text files)
+
+COMMAND ["python3", "bin/ci/secret_scan.py"]
+secret_scan: OK (no high-confidence secret patterns)
+
+COMMAND ["python3", "bin/ci/test_secret_scan.py"]
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+
+COMMAND ["python3", "bin/ci/elab_boundary_gate.py"]
+elab_boundary_gate: OK (12 baseline offenders remain, none added; packs/ clean)
+
+COMMAND ["python3", "bin/ci/workflow_trigger_gate.py"]
+workflow trigger gate ok: 3 workflow, nessun filtro di base [modo: semantico (PyYAML 6.0.3)]
+
+COMMAND ["python3", "bin/ci/workflow_trigger_gate.py", "--self-test"]
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.003s
+
+OK
+
+COMMAND ["python3", "bin/ci/doc_claims_gate.py"]
+doc claims gate ok: 1 documento/i, 4 controlli [da 16 finding avversariali misurati il 2026-07-30]
+
+COMMAND ["python3", "bin/ci/doc_claims_gate.py", "--self-test"]
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.007s
+
+OK
+
+COMMAND ["python3", "bin/state/project_state.py", "--self-test"]
+self-test: 18 controlli, tutti verdi
+
+COMMAND ["python3", "bin/state/test_project_state.py"]
+VERDE  29 test
+
+COMMAND ["python3", "bin/state/project_state.py", "--verify"]
+verify: head_sha 339ab08f letto dal repo reale; CURRENT.md 57 righe
+
+COMMAND ["python3", "bin/state/project_state.py"]
+scritto artifacts/state/project.json
+scritto docs/ops/CURRENT.md
+  repo: MEASURED
+  pull_requests: UNAVAILABLE
+  required_checks: UNAVAILABLE
+  deploy: MEASURED
+  certification: MEASURED
+  e2e: MEASURED
+
+COMMAND ["git", "diff", "--cached", "--check"]
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/audio-independent-red.log:44: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/audio-lifecycle-red.log:202: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/board-boundary-green.log:14: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/board-boundary-red.log:109: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-green.log:10: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-range-green.log:14: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-range-red.log:38: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-red.log:151: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-scope-red.log:44: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/replay-typecheck.log:5: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/studio-build.log:209: trailing whitespace.
++[plugin builtin:vite-reporter]
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/studio-full-suite.log:18: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/evidence/local-validation/studio-typecheck.log:5: new blank line at EOF.
+docs/deliveries/2026-10-24-convergence/product-pedagogy-economics.md:305: new blank line at EOF.

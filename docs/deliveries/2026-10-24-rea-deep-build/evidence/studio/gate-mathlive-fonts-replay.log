@@ -1,0 +1,24 @@
+[replay-check] Avvio Vite dev server...
+[replay-check] Attesa Vite su :5173...
+
+  VITE v8.0.16  ready in 344 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+[replay-check] Vite pronto (tentativo 3)
+[replay-check] Esecuzione test Playwright...
+4:06:02 PM [vite] (client) [optimizer] bundling dependencies...
+(node:93923) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:93929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:93929) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:93929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 eval/replay-kill-test.spec.ts:9:1 › replay kill-test: da journal reale ricostruisce scena equivalente a board.excalidraw (6.5s)
+
+  1 passed (8.7s)
+[replay-check] Test completato con codice 0

@@ -1,0 +1,65 @@
+# ARDESIA execution decisions
+
+- Use V4.1 as the current supplied execution specification; retain V4 gate semantics. Existing Study/Engine/Studio are the baseline. No parallel memory or solver.
+- Fix monitor P1 before broadening the application: an assigned tutor is not authorized to read a learner draft. Submission grants access only to exact referenced versions and immutable uploaded originals.
+- The user explicitly requests autonomous execution; existing supplied specs and plan are the approved design. Do not introduce repeated design approval prompts for routine implementation.
+- Ruling: replace the historical assertion granting tutor draft access with a stronger denial assertion after reproducing the regression independently; it contradicts the V4 privacy specification. Existing frozen evaluator scripts remain unchanged.
+- Local Supabase infrastructure is not present: Docker, postgres and Supabase CLI unavailable. External projects are unrelated or inactive; do not repurpose or reactivate them. Explore an isolated no-cost runtime.
+- Python documentation fetch failed TLS certificate validation. curl with TLS verification succeeded for 20/20 REA documents. No TLS bypass. REA 6.7.0 installed project-locally; Node 26.5.1 meets its engines.
+- Capabilities: mem.obsidian-git, tool.rg-filesystem, GitHub CLI, PCE, executing-plans, TDD, systematic-debugging, pdf and supabase. Actual model inherited/unknown, no fabricated quota allocation or capability promotion.
+
+- User clarified a product reset with preserved engines, not a restyled Studio. Introduce apps/web as the course-first surface; reuse Study/Engine and source/version contracts. A single canonical Core, no duplicate login/store/solver. Thin React/Vite matches the existing component boundary and permits a separately lazy-loaded classroom. Next.js remains a later SSR option, not a migration prerequisite. New web workspace uses the root npm lockfile; historical Studio manifests remain unchanged until a separately proved migration. Visual design is original and derived from real REA interaction/anatomy observations as the user explicitly prioritizes; no generated raster mockup is needed for code-native UI.
+
+- Current user V4.1 scope and explicit permissions supersede historical M0-only/no-push scope in package instructions. Preserve invariant gates, privacy and human merge authorization. No model identity or spend fabricated. Existing independent subagent review is recorded with findings, fixes and remaining risk; unavailable historical CLI review is not represented as performed.
+- Keep a modular monolith and one canonical database. BlobRepository is the storage port; PostgresStudyStore adapts persistence while commands, authorization and event projection stay shared. UI is a client of the same API, never a second memory/solver. Use per-aggregate/database row locks rather than a global request mutex. This supports independent requests; it is not a measured capacity claim.
+- Supabase mode reports invitationCodes=false until a real invitation adapter is implemented, and PostgreSQL operational health refuses backup readiness until a restore is verified. Provider limitations must remain visible. Vercel Pro billing is not a zero-cost guarantee; continue locally under the user-approved fallback.
+
+- HTTP original upload requires a nonempty bounded Idempotency-Key. Direct Core calls without a key remain only a compatibility/fixture surface and do not certify HTTP retry semantics. Actor+key+payload hash binds a durable intent and immutable receipt; no global cross-student content deduplication. Unfinished external work is reconciled through its committed intent, not a memory-only job.
+- Layout updates carry an optimistic content version. New UI always supplies it and preserves the draft on409. The historical layout client may omit it for compatibility; that path cannot claim protection against competing legacy edits. Removing a view does not delete its source. Historical context must name the exact authorized resource/revision, never infer access to a new private head.
+- Existing hourly monitor delivery is only proven by its actual GitHub comment at00:04Z and the handoff; no matching local automation.toml was found in this environment. Do not invent subsequent hourly runs or change/create a duplicate automation. Continue reading PR feedback directly.
+
+- C3 change tolerance: immutable edition/pack/version/hash registry and authenticated keyset course discovery reuse one lifecycle for Fisica and Analisi. Source context/export resolves exact resource/revision pairs; unsigned internal hash is not canonical authenticity. No implicit private-head fallback.
+- Per-app store admission is separate from worker dispatch, before Auth/DB open, held through cleanup. Deployment connection budgets must multiply by process count and include administrative/background users. No unlimited-scale, throughput or body-memory claim.
+- Calendar projection uses dedicated additive typed tables/indices/RLS rather than storing provider mapping/cursors in the pedagogical journal. Canonical sessions remain the only course-date authority; Google remains NOT_CONFIGURED and mock evidence is labeled.
+- Restored synthetic fixture naming does not authorize deleting or silently excluding missing originals. Keep restore PARTIAL until reconciliation and isolated service restore are actually proved. Preserve future AC-085 as NOT_RUN until the dated checkpoint.
+
+<!-- C4_METADATA_ROOT_REVIEW_a3cdf6ba -->
+
+- G1 edition management is a revision-bound Core workflow, not a privileged UI state transition. Durable preview, expected management revision, expiration and explicit confirmation are mandatory. Preserve concluded membership/receipt facts; do not infer offer consent for legacy NULL-bound holds. Material changes with members/active holds require the supported review path rather than silently changing accepted terms.
+- Course discovery is keyset-paged at50 plus at most one authorized selected item. Scope SQL before decode; batch one principal check and one joined page query, validate every immutable pin, cache each distinct descriptor only for that invocation. Preserve a missing binding as an integrity failure, never silently omit it. Index count/query-count evidence is not an optimizer or latency benchmark.
+- UI ownership includes actor, role, edition and request generation. An observed401 invalidates all private cached work; a scoped403/404 removes only the denied edition. Pagination cannot implicitly select or overwrite the current draft. Invalid-cookie deletion belongs only to a verified cookie-auth rejection, not a token submitted in the login body or an arbitrary handler401; C5 implements that later boundary and retains explicit logout semantics separately.
+- Store schema recognition is a shared capability contract. Schema4 must have its required structures; Calendar recognizes its schema3 features through the current recognized maximum. Unknown future versions and persisted Study tables without a marker fail closed. This does not attest arbitrary corruption repair or complete integrity coverage for every legacy schema1/2 case.
+- Existing provider credentials and .env discovery are not authorization to run live inference in a test. Require explicit opt-in and a minimal environment for ordinary checks. Earlier CLI provider cost remains UNKNOWN; product health apiSpendUsd=0 is not an account-wide billing audit.
+- Keep new attendance and commercial facts distinct from pedagogical error events, membership and payment-provider claims. The prepared attendance/ledger design is not implemented. Extend transaction/receipt infrastructure through a shared internal executor if required; avoid a second Core or a new service solely for this function.
+- Preserve the historical2a evidence and its actual gate outcome separately from C4. New metadata, an SDK host test, screenshots or aggregate test counts do not relabel historical executions. A scoped REA subgate cannot certify global G0/G1, scientific approval, human usability, remote zero-cost staging or a future dated checkpoint.
+
+- C6 body admission reserves route maxima before first receive, independent of Content-Length and store slots, and holds ownership around the complete framework stack. Delegate stack assembly to FastAPI super(); do not duplicate500handlers or wrap away the FastAPI interface. Preserve the original failed freeze/review. Test automatic/custom500, send/cancel/background cleanup, small work under heavy wait, cookie/error boundaries and real TCP before broadening capacity claims. This is an encoded per-app budget, not an RSS/global/throughput promise.
+
+
+## 2026-10-20 — REA successore5cb e copertura verificata
+
+Le sette missioni R0/R1/R2/R3/R8/R6/R4 hanno ricevute accettate dal root dopo revisione indipendente. I checker originali G0 e G1 sono PASS: **sono subgate REA, non certificazione globale G0/G1**.
+
+10 nuovi envelope autentici, 24 GET di sola lettura, 70 file nuovi e 148 envelope storici ricalcolati. Il confronto conserva 190 UNKNOWN. Le prove di scrittura/GUI/Notebook restano attribuite alle rispettive fonti storiche; 139 tentativi di accesso non equivalgono a 139 reverse engineering completi.
+
+Il prodotto rimane `5cbafd072504cb4603bf0daa903472fa0f528247`. Report e verifiche separano 539 test Core/API eseguiti su PostgreSQL/Auth/Storage reali, raccolta nominale dei test, Web storico byte-identico e CI attuale. I raw privati sono esclusi.
+
+## 2026-10-20 — C7-R1: scadenza reale e interfaccia privata
+
+Il probe Chrome→HTTP/Auth/PG su5cb osserva200 prima della scadenza, poi401 sulla fonte e cookie eliminato, ma conserva17consegne già caricate nella shell privata. FindingP2 aperto; nessun nuovo accesso server negato aggirato, nessuna scrittura didattica o revoca nel probe. Riaccesso dei14account sintetici solo dopo il probe. Correzione condivisa del confine sessione da implementare e provare; binary401/logout503 ancora NOT_RUN. REA subgate PASS non chiude questo difetto né G0globale.
+
+## 2026-10-20 — Restore S ripetuto e verificato dal root
+
+Input sintetico nuovo e completo:3assetCore/3Storage/3file. DB/Auth/Storage ripristinati in cluster/servizi/volumi distinti;83tabelle+ruoli/policy prima dello startup; source spenta. Quattro fasi con43assert e quattro raw proiezioni byte-identici. Clone intenzionalmente3/2 risponde503, poi nuova ricostruzione torna3/3/3. Root ricalcola39hash e tre payload del tar; non dichiara un nuovo replayHTTP. Cleanup solo2namespace nuovi, original5running. AC047PROVED_SCOPED perS; debitoH15missing restaOPEN e G0/G1globali non certificati. Nessun cloud/spesa/providerlive.
+
+## 2026-10-20 — Audit26viste e REA profonda081
+
+Axe4.14/Chrome/Auth/PG su5cb:26stati,1440/390px,72GET,0pageerror/overflow;3regole semantiche aperte e focusDOMskiplink da provare. ModalTab/Escape/restore verificati. LCPproxy locale692/284ms, un solo scriptindex sulla home; non performance produzione o testmutante consegna/review. C7 e C8 procedono su file disgiunti da5cb, un solo integratore.
+
+REA081:16envelope autentici,99file/24.529.964B ricalcolati dal root;843924B V8 del widget uguali al tarballNPMMathLive0.111.1/SHA512 verificato, MITcore primaria. Input→undo→redo e APIsetValue/resetUndo reali derivano un contratto per isolamento draft/history; nessuna ACLfuga vendor dichiarata. ContrattoADAPT, libreriaDEFER fino a bisogno misurato/licenze asset/a11y/budget. Nessuna nuova dipendenza o testprodotto per081. Mappa139 resta snapshot storico.
+
+## 2026-10-20 — C8 integrato dopo replica Auth/PG reale
+
+C8 origine334e4cc8, integrazione8f184320; sette alberi prodotto identici verificati, senza rietichettare i run. Builder86Web/16focused, baselineimmutabile12FAIL/4PASS,6Chromiummock. Root replica con quattro identità restaurate e una seconda bozza viaAPI reale: baseline26viste riproduce3regole; candidato26viste1440/390 conAxeidentico0violazioni/overflow/pageerror, skipfocusMAIN e modaltrap/Escape/restore. Tutte le richieste audit sonoGET. Primary5324 rimane5cb fino alla sostituzione combinataC7; nuovo5369 isolato. Nessuna dipendenza/schema/CoreAPI modificati, REA corrente ancora5cb e rebindpending.
+
+- 2026-10-20: il confine sessione è condiviso tra JSON/blob/upload e avanza prima dell’exchange. Il browser resta autorità del cookie: una prova nativa con relay è separata dai mock di epoch. Runtime locale da source/frontend immutabili per impedire drift durante sviluppo; medesimo Core e database. C7scopedPASS non certifica cross-tab o G0. Registro presenze/incassi in sviluppo separato, senza transizioni implicite fra corsie né nuovo store.

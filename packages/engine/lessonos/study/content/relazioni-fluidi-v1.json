@@ -1,0 +1,1000 @@
+{
+  "id": "relazioni-fluidi-v1",
+  "version": 1,
+  "title": "Relazioni e fluidi — banco originale per revisione",
+  "status": "DRAFT",
+  "reviewer": null,
+  "scope": "Sottoinsieme originale: conversioni geometriche, pressione, galleggiamento, proporzioni nel modello viscoso. Non copre l’intero syllabus o una simulazione ufficiale.",
+  "rights": "Materiale originale da sottoporre all’owner per approvazione editoriale e condizioni d’uso. Nessuna fonte privata o quesito proprietario incorporato.",
+  "activities": [
+    {
+      "id": "poiseuille-v1",
+      "title": "Che cosa tieni fisso?",
+      "model": "Q = π r⁴ Δp / (8ηL)",
+      "domain": "Moto laminare stazionario e sviluppato, fluido newtoniano incomprimibile, tubo cilindrico rigido. Modello non clinico.",
+      "skill": "Riconoscere il vincolo prima della proporzione",
+      "prerequisites": [
+        "potenze",
+        "rapporti"
+      ],
+      "parameters": [
+        "radiusRatio",
+        "boundary"
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "units-v1",
+      "title": "Cambiare unità senza cambiare oggetto",
+      "model": "valore finale = valore iniziale × (scala iniziale / scala finale)^dimensione",
+      "domain": "Conversioni geometriche tra m, cm e mm per aree e volumi.",
+      "skill": "Applicare il fattore lineare alla dimensione corretta",
+      "prerequisites": [
+        "potenze di dieci"
+      ],
+      "parameters": [
+        "value",
+        "fromUnit",
+        "toUnit",
+        "dimension"
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "hydrostatic-v1",
+      "title": "Da quale pressione parti?",
+      "model": "Δp = ρgh; p = p_superficie + ρgh",
+      "domain": "Liquido fermo incomprimibile, densità e g uniformi; h sotto la superficie.",
+      "skill": "Separare incremento e pressione assoluta",
+      "prerequisites": [
+        "unità SI",
+        "prodotto"
+      ],
+      "parameters": [
+        "density",
+        "depth",
+        "g",
+        "surfacePressure",
+        "reference"
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "buoyancy-v1",
+      "title": "Quanto deve immergersi?",
+      "model": "F_A = ρ_liquido g V_immerso; peso = ρ_corpo g V",
+      "domain": "Corpo omogeneo rigido libero da vincoli, liquido uniforme; trascurare aria e tensione superficiale.",
+      "skill": "Confrontare spinta massima e peso prima di imporre equilibrio",
+      "prerequisites": [
+        "densità",
+        "forze"
+      ],
+      "parameters": [
+        "liquidDensity",
+        "objectDensity",
+        "volume",
+        "g"
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "exercises": [
+    {
+      "id": "RF-01",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 0.8 r₀. Δp, viscosità e lunghezza restano fissate. Quanto vale Q/Q₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 0.8,
+        "boundary": "pressure"
+      },
+      "answer": {
+        "value": 0.4096,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Δp fissata si ottiene Q/Q₀ = 0.4096. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-02",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 1.2 r₀. Δp, viscosità e lunghezza restano fissate. Quanto vale Q/Q₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 1.2,
+        "boundary": "pressure"
+      },
+      "answer": {
+        "value": 2.0736,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Δp fissata si ottiene Q/Q₀ = 2.0736. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-03",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 1.25 r₀. Q, viscosità e lunghezza restano fissate. Quanto vale Δp/Δp₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 1.25,
+        "boundary": "flow"
+      },
+      "answer": {
+        "value": 0.4096,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Q fissata si ottiene Δp/Δp₀ = 0.4096. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-04",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 0.5 r₀. Q, viscosità e lunghezza restano fissate. Quanto vale Δp/Δp₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 0.5,
+        "boundary": "flow"
+      },
+      "answer": {
+        "value": 16,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Q fissata si ottiene Δp/Δp₀ = 16. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-05",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 1.5 r₀. Δp, viscosità e lunghezza restano fissate. Quanto vale Q/Q₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 1.5,
+        "boundary": "pressure"
+      },
+      "answer": {
+        "value": 5.0625,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Δp fissata si ottiene Q/Q₀ = 5.0625. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-06",
+      "activityId": "poiseuille-v1",
+      "session": 4,
+      "prompt": "Un tubo ideale passa da r₀ a 2 r₀. Δp, viscosità e lunghezza restano fissate. Quanto vale Q/Q₀? Dichiarare il regime richiesto.",
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      },
+      "answer": {
+        "value": 16,
+        "unit": "1",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Nel modello laminare il raggio compare alla quarta potenza. A Δp fissata si ottiene Q/Q₀ = 16. Il rapporto è adimensionale.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "A portata fissata occorre invertire la quarta potenza."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-07",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 1.2 m². Esprimila in cm² senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 1.2,
+        "fromUnit": "m",
+        "toUnit": "cm",
+        "dimension": 2
+      },
+      "answer": {
+        "value": 12000,
+        "unit": "cm²",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 2. Risultato: 12000 cm². Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-08",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 720 cm². Esprimila in m² senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 720,
+        "fromUnit": "cm",
+        "toUnit": "m",
+        "dimension": 2
+      },
+      "answer": {
+        "value": 0.072,
+        "unit": "m²",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 2. Risultato: 0.072 m². Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-09",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 2e-06 m³. Esprimila in mm³ senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 2e-06,
+        "fromUnit": "m",
+        "toUnit": "mm",
+        "dimension": 3
+      },
+      "answer": {
+        "value": 2000,
+        "unit": "mm³",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 3. Risultato: 2000 mm³. Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-10",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 1250 mm³. Esprimila in cm³ senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 1250,
+        "fromUnit": "mm",
+        "toUnit": "cm",
+        "dimension": 3
+      },
+      "answer": {
+        "value": 1.25,
+        "unit": "cm³",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 3. Risultato: 1.25 cm³. Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-11",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 320 cm³. Esprimila in m³ senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 320,
+        "fromUnit": "cm",
+        "toUnit": "m",
+        "dimension": 3
+      },
+      "answer": {
+        "value": 0.00032,
+        "unit": "m³",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 3. Risultato: 0.00032 m³. Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-12",
+      "activityId": "units-v1",
+      "session": 1,
+      "prompt": "Una misura geometrica vale 84 mm². Esprimila in cm² senza cambiare la grandezza fisica.",
+      "parameters": {
+        "value": 84,
+        "fromUnit": "mm",
+        "toUnit": "cm",
+        "dimension": 2
+      },
+      "answer": {
+        "value": 0.84,
+        "unit": "cm²",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Il fattore di conversione delle lunghezze va elevato a 2. Risultato: 0.84 cm². Cambia il numero con la sua unità, non l’oggetto.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Non applicare soltanto il fattore lineare."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-13",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=998 kg/m³, h=0.75 m, g=9.81 m/s², p alla superficie=100000 Pa. Calcola pressione assoluta.",
+      "parameters": {
+        "density": 998,
+        "depth": 0.75,
+        "g": 9.81,
+        "surfacePressure": 100000,
+        "reference": "absolute"
+      },
+      "answer": {
+        "value": 107342.785,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Aggiungi la pressione alla superficie. Risultato 107342.785 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-14",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=800 kg/m³, h=1.2 m, g=10 m/s², p alla superficie=101325 Pa. Calcola incremento di pressione rispetto alla superficie.",
+      "parameters": {
+        "density": 800,
+        "depth": 1.2,
+        "g": 10,
+        "surfacePressure": 101325,
+        "reference": "gauge"
+      },
+      "answer": {
+        "value": 9600,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Non sommare la pressione alla superficie al solo incremento. Risultato 9600 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-15",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=1000 kg/m³, h=0 m, g=9.81 m/s², p alla superficie=101000 Pa. Calcola pressione assoluta.",
+      "parameters": {
+        "density": 1000,
+        "depth": 0,
+        "g": 9.81,
+        "surfacePressure": 101000,
+        "reference": "absolute"
+      },
+      "answer": {
+        "value": 101000,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Aggiungi la pressione alla superficie. Risultato 101000 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-16",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=1200 kg/m³, h=0.5 m, g=9.8 m/s², p alla superficie=101325 Pa. Calcola incremento di pressione rispetto alla superficie.",
+      "parameters": {
+        "density": 1200,
+        "depth": 0.5,
+        "g": 9.8,
+        "surfacePressure": 101325,
+        "reference": "gauge"
+      },
+      "answer": {
+        "value": 5880,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Non sommare la pressione alla superficie al solo incremento. Risultato 5880 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-17",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=1000 kg/m³, h=3 m, g=9.81 m/s², p alla superficie=130000 Pa. Calcola pressione assoluta.",
+      "parameters": {
+        "density": 1000,
+        "depth": 3,
+        "g": 9.81,
+        "surfacePressure": 130000,
+        "reference": "absolute"
+      },
+      "answer": {
+        "value": 159430,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Aggiungi la pressione alla superficie. Risultato 159430 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-18",
+      "activityId": "hydrostatic-v1",
+      "session": 2,
+      "prompt": "Liquido fermo: ρ=1020 kg/m³, h=2.5 m, g=9.8 m/s², p alla superficie=101325 Pa. Calcola incremento di pressione rispetto alla superficie.",
+      "parameters": {
+        "density": 1020,
+        "depth": 2.5,
+        "g": 9.8,
+        "surfacePressure": 101325,
+        "reference": "gauge"
+      },
+      "answer": {
+        "value": 24990,
+        "unit": "Pa",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "Calcola prima Δp=ρgh. Non sommare la pressione alla superficie al solo incremento. Risultato 24990 Pa.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Scrivi separatamente p e Δp."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {}
+    },
+    {
+      "id": "RF-19",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=600 kg/m³, volume=0.001 m³; liquido ρ=1000 kg/m³; g=9.81 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 1000,
+        "objectDensity": 600,
+        "volume": 0.001,
+        "g": 9.81
+      },
+      "answer": {
+        "value": 9.81,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 9.81 N. Il peso si equilibra con frazione immersa 0.6; la spinta effettiva al galleggiamento è il peso, inferiore alla spinta massima.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "floating",
+        "immersedFraction": 0.6
+      }
+    },
+    {
+      "id": "RF-20",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=1000 kg/m³, volume=0.002 m³; liquido ρ=800 kg/m³; g=10 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 800,
+        "objectDensity": 1000,
+        "volume": 0.002,
+        "g": 10
+      },
+      "answer": {
+        "value": 16,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 16 N. Peso maggiore della spinta massima: il corpo affonda, nessuna frazione di equilibrio ≤1.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "sinking",
+        "immersedFraction": null
+      }
+    },
+    {
+      "id": "RF-21",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=1200 kg/m³, volume=0.0005 m³; liquido ρ=1200 kg/m³; g=9.8 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 1200,
+        "objectDensity": 1200,
+        "volume": 0.0005,
+        "g": 9.8
+      },
+      "answer": {
+        "value": 5.88,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 5.88 N. Densità uguali: equilibrio indifferente completamente immerso.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "neutral",
+        "immersedFraction": 1
+      }
+    },
+    {
+      "id": "RF-22",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=200 kg/m³, volume=0.003 m³; liquido ρ=1000 kg/m³; g=10 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 1000,
+        "objectDensity": 200,
+        "volume": 0.003,
+        "g": 10
+      },
+      "answer": {
+        "value": 30,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 30 N. Il peso si equilibra con frazione immersa 0.2; la spinta effettiva al galleggiamento è il peso, inferiore alla spinta massima.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "floating",
+        "immersedFraction": 0.2
+      }
+    },
+    {
+      "id": "RF-23",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=450 kg/m³, volume=0.004 m³; liquido ρ=900 kg/m³; g=9.81 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 900,
+        "objectDensity": 450,
+        "volume": 0.004,
+        "g": 9.81
+      },
+      "answer": {
+        "value": 35.316,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 35.316 N. Il peso si equilibra con frazione immersa 0.5; la spinta effettiva al galleggiamento è il peso, inferiore alla spinta massima.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "floating",
+        "immersedFraction": 0.5
+      }
+    },
+    {
+      "id": "RF-24",
+      "activityId": "buoyancy-v1",
+      "session": 3,
+      "prompt": "Corpo omogeneo libero: ρ corpo=1300 kg/m³, volume=0.0015 m³; liquido ρ=1100 kg/m³; g=9.8 m/s². Calcola la spinta massima a immersione completa. Può restare in equilibrio libero? Se galleggia, quale frazione è immersa?",
+      "parameters": {
+        "liquidDensity": 1100,
+        "objectDensity": 1300,
+        "volume": 0.0015,
+        "g": 9.8
+      },
+      "answer": {
+        "value": 16.17,
+        "unit": "N",
+        "relativeTolerance": 1e-09,
+        "absoluteTolerance": 1e-09
+      },
+      "solution": "La spinta massima è ρ liquido × g × V = 16.17 N. Peso maggiore della spinta massima: il corpo affonda, nessuna frazione di equilibrio ≤1.",
+      "hints": [
+        "Identifica prima grandezze fissate e unità.",
+        "Distingui spinta massima e spinta nell’equilibrio reale."
+      ],
+      "rubric": [
+        "Esplicita modello e ipotesi.",
+        "Scrivi una relazione con unità coerenti.",
+        "Calcola e controlla plausibilità e vincolo."
+      ],
+      "status": "DRAFT",
+      "reviewer": null,
+      "provenance": "Originale ARDESIA, preparato in questa sessione; nessun quesito di editore o prova ufficiale copiato.",
+      "checks": {
+        "regime": "sinking",
+        "immersedFraction": null
+      }
+    }
+  ],
+  "transferTests": [
+    {
+      "id": "TR-A",
+      "title": "Trasferimento A — riferimenti e vincoli",
+      "instructions": "Senza aiuti: scrivi vincolo, relazione e controllo delle unità. Nessun voto o soglia di ammissione.",
+      "items": [
+        {
+          "id": "TR-A1",
+          "activityId": "units-v1",
+          "prompt": "Una finestra ha area 4,3 cm². Quanti mm²? Spiega perché non basta moltiplicare per 10.",
+          "parameters": {
+            "value": 4.3,
+            "fromUnit": "cm",
+            "toUnit": "mm",
+            "dimension": 2
+          },
+          "answer": {
+            "value": 430,
+            "unit": "mm²"
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        },
+        {
+          "id": "TR-A2",
+          "activityId": "hydrostatic-v1",
+          "prompt": "Liquido ρ=980 kg/m³; profondità 1,8 m; g=10 m/s². Quanto aumenta la pressione rispetto alla superficie?",
+          "parameters": {
+            "density": 980,
+            "depth": 1.8,
+            "g": 10,
+            "reference": "gauge"
+          },
+          "answer": {
+            "value": 17640,
+            "unit": "Pa"
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        },
+        {
+          "id": "TR-A3",
+          "activityId": "poiseuille-v1",
+          "prompt": "Una pompa mantiene Q. Il raggio aumenta del 10%, η e L fissate. Rapporto delle differenze di pressione? Dichiarare il dominio.",
+          "parameters": {
+            "radiusRatio": 1.1,
+            "boundary": "flow"
+          },
+          "answer": {
+            "value": 0.6830134553650706,
+            "unit": "1"
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    },
+    {
+      "id": "TR-B",
+      "title": "Trasferimento B — scegliere il modello",
+      "instructions": "Problemi nuovi, senza aiuti. Motiva scelta del modello e limiti; non usare una sola risposta numerica come prova di comprensione.",
+      "items": [
+        {
+          "id": "TR-B1",
+          "activityId": "units-v1",
+          "prompt": "Un volume di 1250000 mm³ deve essere riportato in m³. Quale fattore usi?",
+          "parameters": {
+            "value": 1250000,
+            "fromUnit": "mm",
+            "toUnit": "m",
+            "dimension": 3
+          },
+          "answer": {
+            "value": 0.00125,
+            "unit": "m³"
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        },
+        {
+          "id": "TR-B2",
+          "activityId": "hydrostatic-v1",
+          "prompt": "ρ=1250 kg/m³, h=0,4 m, g=9,81 m/s², pressione superficiale 99000 Pa. Qual è la pressione assoluta?",
+          "parameters": {
+            "density": 1250,
+            "depth": 0.4,
+            "g": 9.81,
+            "surfacePressure": 99000,
+            "reference": "absolute"
+          },
+          "answer": {
+            "value": 103905,
+            "unit": "Pa"
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        },
+        {
+          "id": "TR-B3",
+          "activityId": "buoyancy-v1",
+          "prompt": "Corpo omogeneo ρ=680 kg/m³, V=0,006 m³ in liquido ρ=850 kg/m³, g=10 m/s². Spinta massima e frazione di equilibrio?",
+          "parameters": {
+            "liquidDensity": 850,
+            "objectDensity": 680,
+            "volume": 0.006,
+            "g": 10
+          },
+          "answer": {
+            "value": 51,
+            "unit": "N"
+          },
+          "checks": {
+            "regime": "floating",
+            "immersedFraction": 0.8
+          },
+          "status": "DRAFT",
+          "reviewer": null
+        }
+      ],
+      "status": "DRAFT",
+      "reviewer": null
+    }
+  ],
+  "reviewRubric": [
+    "Correttezza scientifica e unità",
+    "Ipotesi e limiti espliciti",
+    "Testo non ambiguo e accessibile",
+    "Soluzione e varianti corrette",
+    "Originalità e diritti",
+    "Adeguatezza didattica da prova umana"
+  ]
+}

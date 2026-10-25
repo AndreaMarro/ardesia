@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "coursePackRef": {
+    "packId": "relazioni-fluidi-v1",
+    "packVersion": 1,
+    "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f"
+  },
+  "experiences": [
+    {
+      "compositionVersion": 1,
+      "id": "hydrostatic-reference-v1",
+      "version": 1,
+      "title": "La pressione rispetto a quale riferimento?",
+      "objective": "Separare pressione relativa e assoluta e trasferire il ragionamento quando cambiano superficie e profondità.",
+      "steps": [
+        {
+          "id": "relative",
+          "title": "Pressione dovuta alla profondità",
+          "prompt": "Acqua ideale ferma: densità 1000 kg/m³, g = 9,81 m/s², profondità 2 m, pressione alla superficie 101325 Pa. Prevedi la pressione relativa alla superficie in Pa e spiega il riferimento scelto.",
+          "activityId": "hydrostatic-v1",
+          "activityVersion": 1,
+          "parameters": {
+            "density": 1000,
+            "g": 9.81,
+            "depth": 2,
+            "surfacePressure": 101325,
+            "reference": "gauge"
+          },
+          "prediction": {
+            "kind": "scalar",
+            "unit": "Pa"
+          },
+          "phases": [
+            "situation",
+            "prediction",
+            "model",
+            "visual",
+            "explanation",
+            "source"
+          ],
+          "hints": [
+            "Individua il livello di riferimento: qui conta solo l’incremento rispetto alla superficie.",
+            "Distingui il contributo della colonna di liquido dalla pressione già presente in superficie."
+          ],
+          "advanceWhen": "receipt-confirmed"
+        },
+        {
+          "id": "absolute",
+          "title": "Stesso punto, pressione assoluta",
+          "prompt": "Acqua ideale ferma: densità 1000 kg/m³, g = 9,81 m/s², profondità 2 m, pressione alla superficie 101325 Pa. Prevedi la pressione assoluta in Pa e spiega il riferimento scelto.",
+          "activityId": "hydrostatic-v1",
+          "activityVersion": 1,
+          "parameters": {
+            "density": 1000,
+            "g": 9.81,
+            "depth": 2,
+            "surfacePressure": 101325,
+            "reference": "absolute"
+          },
+          "prediction": {
+            "kind": "scalar",
+            "unit": "Pa"
+          },
+          "phases": [
+            "situation",
+            "prediction",
+            "model",
+            "visual",
+            "explanation",
+            "source"
+          ],
+          "hints": [
+            "La profondità non cambia: chiediti quale contributo mancava nella pressione relativa.",
+            "La pressione assoluta comprende la pressione alla superficie oltre all’incremento della colonna."
+          ],
+          "advanceWhen": "receipt-confirmed"
+        },
+        {
+          "id": "transfer",
+          "title": "Cambia la superficie e la profondità",
+          "prompt": "Acqua ideale ferma: densità 1000 kg/m³, g = 9,81 m/s², profondità 3,5 m, pressione alla superficie 80000 Pa. Prevedi la pressione assoluta in Pa e spiega il riferimento scelto.",
+          "activityId": "hydrostatic-v1",
+          "activityVersion": 1,
+          "parameters": {
+            "density": 1000,
+            "g": 9.81,
+            "depth": 3.5,
+            "surfacePressure": 80000,
+            "reference": "absolute"
+          },
+          "prediction": {
+            "kind": "scalar",
+            "unit": "Pa"
+          },
+          "phases": [
+            "situation",
+            "transfer",
+            "prediction",
+            "model",
+            "visual",
+            "explanation",
+            "source"
+          ],
+          "hints": [
+            "Qui cambiano due dati: separa il contributo della superficie da quello della profondità.",
+            "Ricostruisci la pressione assoluta senza moltiplicare fra loro i due contributi."
+          ],
+          "advanceWhen": "receipt-confirmed"
+        }
+      ],
+      "coursePackRef": {
+        "packId": "relazioni-fluidi-v1",
+        "packVersion": 1,
+        "packSha256": "3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f"
+      },
+      "editorialStatus": "DRAFT",
+      "scientificApproval": "NOT_ATTESTED",
+      "experienceRef": {
+        "id": "hydrostatic-reference-v1",
+        "version": 1,
+        "sha256": "da8c78300b95c9ca4214ab72c7d5c592201ae8b830e9cd07d338e44ad94fd224"
+      }
+    }
+  ]
+}

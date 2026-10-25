@@ -1,0 +1,55 @@
+{
+  "schema": "ardesia.qa.trace-redaction.v1",
+  "scope": "Authentication header/cookie values redacted; these copies are not byte-identical raw traces.",
+  "traces": [
+    {
+      "file": "import-trace.zip",
+      "rawSha256": "38c4d41773cc9389ff84bce9873179c0b63d0916bf1f2ce196ae20eb762c44fb",
+      "sanitizedSha256": "09bde138b24f7fa3a2f769f535784564e3c6322e373e6275e544b63339708642",
+      "redactedAuthenticationEntries": 0,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "mobile-keyboard-trace.zip",
+      "rawSha256": "0afa4ff10cb778ac6f9cb191949583d9fd18e5df9e3f144e073136b9a76a4847",
+      "sanitizedSha256": "3e8436d42a64572183ab066d87a8b73d803e2ccad76760a3f5a788cc0c4badd8",
+      "redactedAuthenticationEntries": 70,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "student-diary-trace.zip",
+      "rawSha256": "8a279c4ddc9d7755df9a4e67745160d927022139307443473531b69bae119c08",
+      "sanitizedSha256": "082cbe757597c4fc52410a10d4e3d3701bcc49de1ca9cad5b9fb7f2e9d7c7fbb",
+      "redactedAuthenticationEntries": 58,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "student-episode-trace.zip",
+      "rawSha256": "f4ca2587ad7c8bc05f1d4541a63d1d39eedcfbef327355d30989dcb640a70bae",
+      "sanitizedSha256": "e329434dfea4984cb570f0cff398c93c68e37571149d2ca08218001eaafcb9e2",
+      "redactedAuthenticationEntries": 364,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "teacher-author-trace.zip",
+      "rawSha256": "3448b84d451b1e95ab4f250c700a55e6574c4141789f967baecb951849312d8f",
+      "sanitizedSha256": "f40d8278ceb542ce5c12abe767251a5207f1903045eefee41affe1283f3859b2",
+      "redactedAuthenticationEntries": 70,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "teacher-review-trace.zip",
+      "rawSha256": "898b195fb860683cb8d6c689ed7af92bb379033be422dac7b705c1801eb9dd59",
+      "sanitizedSha256": "19afd8d20ec63e8375e5d4664f103b00089b68a0b5c60fe99d534650d7a6f5eb",
+      "redactedAuthenticationEntries": 182,
+      "observedCredentialsRemaining": 0
+    },
+    {
+      "file": "teacher-verification-trace.zip",
+      "rawSha256": "fe875a308ed068b42d3f6e6f6d524cc4aae3bfb07a711a51bb06dae0b8f69e55",
+      "sanitizedSha256": "a73f66b0c11aecf480bb022192217d67536242a159f8d1ded2ac6b5f9632814c",
+      "redactedAuthenticationEntries": 56,
+      "observedCredentialsRemaining": 0
+    }
+  ]
+}
