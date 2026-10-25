@@ -6,8 +6,8 @@ _____________ test_elastic_collision_conserves_momentum_and_energy _____________
 >       r = evaluate('collision-1d-v1', {'mass1': 2, 'mass2': 1, 'velocity1': 3, 'velocity2': 0})
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:15: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -18,7 +18,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -34,8 +34,8 @@ ___ test_restitution_loss_and_common_velocity_are_distinct_from_elastic_case ___
 >       partial = evaluate('collision-1d-v1', {**p, 'restitution': .5})
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:25: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -46,7 +46,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -62,8 +62,8 @@ ______ test_galilean_shift_preserves_relative_speed_and_dissipated_energy ______
 >       a = evaluate('collision-1d-v1', p)
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:37: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:37:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,7 +74,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -90,8 +90,8 @@ _________ test_bernoulli_links_continuity_pressure_and_energy_density __________
 >       r = evaluate('bernoulli-v1', p)
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:49: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:49:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -102,7 +102,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -117,8 +117,8 @@ ______ test_point_charge_signs_inverse_powers_and_force_are_not_confused _______
 >       r = evaluate('point-charge-v1', {'charge': 1e-9, 'position': .3, 'testCharge': 2e-9})
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:61: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:61:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,7 +129,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -151,8 +151,8 @@ f = 0.1, u = 0.3, h = 0.005, image = 0.15, magnification = -0.5, kind = 'real'
 >       r = evaluate('thin-lens-v1', {'focalLength': f, 'objectDistance': u, 'objectHeight': h})
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:83: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,7 +163,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -186,8 +186,8 @@ kind = 'virtual'
 >       r = evaluate('thin-lens-v1', {'focalLength': f, 'objectDistance': u, 'objectHeight': h})
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:83: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -198,7 +198,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -220,8 +220,8 @@ f = 0.1, u = 0.05, h = 0.001, image = -0.1, magnification = 2, kind = 'virtual'
 >       r = evaluate('thin-lens-v1', {'focalLength': f, 'objectDistance': u, 'objectHeight': h})
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:83: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:83:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -232,7 +232,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -251,8 +251,8 @@ capability = 'collision-1d-v1'
 >       r = evaluate(capability, p)
             ^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:93: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:93:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -263,7 +263,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -282,8 +282,8 @@ capability = 'bernoulli-v1'
 >       r = evaluate(capability, p)
             ^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:93: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:93:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -294,7 +294,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -313,8 +313,8 @@ capability = 'point-charge-v1'
 >       r = evaluate(capability, p)
             ^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:93: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:93:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -325,7 +325,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -344,8 +344,8 @@ capability = 'thin-lens-v1'
 >       r = evaluate(capability, p)
             ^^^^^^^^^^^^^^^^^^^^^^^
 
-packages/engine/tests/study/test_science_library_models.py:93: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:93:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +356,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -387,8 +387,8 @@ capability = 'collision-1d-v1', p = {'mass1': 0}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -399,7 +399,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -430,8 +430,8 @@ capability = 'collision-1d-v1', p = {'mass2': -1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -442,7 +442,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -473,8 +473,8 @@ capability = 'collision-1d-v1', p = {'restitution': 1.1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -485,7 +485,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -516,8 +516,8 @@ capability = 'collision-1d-v1', p = {'restitution': -0.1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -528,7 +528,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -559,8 +559,8 @@ capability = 'collision-1d-v1', p = {'velocity1': 0, 'velocity2': 1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -571,7 +571,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -602,8 +602,8 @@ capability = 'bernoulli-v1', p = {'area2': 0}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -614,7 +614,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -645,8 +645,8 @@ capability = 'bernoulli-v1', p = {'density': -1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -657,7 +657,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -688,8 +688,8 @@ capability = 'bernoulli-v1', p = {'area2': 0.001, 'pressure1': 1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -700,7 +700,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -731,8 +731,8 @@ capability = 'point-charge-v1', p = {'position': 0}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -743,7 +743,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -774,8 +774,8 @@ capability = 'point-charge-v1', p = {'position': 1e-10}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -786,7 +786,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -817,8 +817,8 @@ capability = 'thin-lens-v1', p = {'focalLength': 0}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -829,7 +829,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -860,8 +860,8 @@ capability = 'thin-lens-v1', p = {'focalLength': 0.1, 'objectDistance': 0.1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -872,7 +872,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -904,8 +904,8 @@ p = {'focalLength': 0.1, 'objectDistance': 0.100000000001}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -916,7 +916,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -947,8 +947,8 @@ capability = 'thin-lens-v1', p = {'objectDistance': -1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -959,7 +959,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -990,8 +990,8 @@ capability = 'thin-lens-v1', p = {'objectHeight': 1}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1002,7 +1002,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1033,8 +1033,8 @@ capability = 'collision-1d-v1', p = {'mass1': True}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1045,7 +1045,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1076,8 +1076,8 @@ capability = 'bernoulli-v1', p = {'density': nan}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1088,7 +1088,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1119,8 +1119,8 @@ capability = 'point-charge-v1', p = {'charge': inf}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1131,7 +1131,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1163,8 +1163,8 @@ p = {'focalLength': 100000000000000000...0000000000000000000}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1175,7 +1175,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1206,8 +1206,8 @@ capability = 'collision-1d-v1', p = {'restituion': 0.5}
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1218,7 +1218,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1249,8 +1249,8 @@ capability = 'bernoulli-v1', p = None
         with pytest.raises(StudyError) as error:
 >           evaluate(capability, p)
 
-packages/engine/tests/study/test_science_library_models.py:120: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:120:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1261,7 +1261,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
@@ -1276,8 +1276,8 @@ _______________ test_unknown_capability_is_not_silently_replaced _______________
         with pytest.raises(StudyError) as error:
 >           evaluate('unknown-v999', {})
 
-packages/engine/tests/study/test_science_library_models.py:126: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_models.py:126:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     return importlib.import_module('lessonos.study.science_library').evaluate(capability, parameters)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1288,7 +1288,7 @@ packages/engine/tests/study/test_science_library_models.py:11: in evaluate
     ???
 <frozen importlib._bootstrap>:1360: in _find_and_load
     ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 name = 'lessonos.study.science_library'
 import_ = <function _gcd_import at 0x1034c44a0>
