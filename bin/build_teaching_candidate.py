@@ -61,7 +61,7 @@ def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path 
                     'publicEntry': '/', 'experienceEntry': '/esperienza/?percorso=fluidi-termodinamica',
                     'commercialAction': 'manifestazione di interesse; nessuna iscrizione, account o pagamento',
                     'privateBeta': web is not None, 'privateDataIncluded': False,
-                    'requiresProtectedPreview':bool(course_manifest and course_manifest.get('releaseScope')=='PRIVATE_EDITORIAL_REVIEW'),
+                    'requiresProtectedPreview':web is not None or bool(course_manifest and course_manifest.get('releaseScope')=='PRIVATE_EDITORIAL_REVIEW'),
                     'source': source or {}, 'assetsSha256': assets}
         (destination / 'candidate-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
         return manifest

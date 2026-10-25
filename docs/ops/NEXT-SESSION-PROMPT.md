@@ -1,5 +1,35 @@
 # Prossimo incarico: completare i quattro microcorsi di Fisica
 
+## Addendum operativo corrente — S00, 26 ottobre 2026
+
+Il proprietario ha adottato esplicitamente «Esegui S00 in questa A». La306 è
+MERGED su `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`, CI post-merge40242587363
+e readiness40242587350 SUCCESS: non rifare quella convergenza. Il mandato V2
+prevede12 stream concorrenti, una PR implementativa attiva per stream, nessun
+limite globale di3. S00 integra/distribuisce e aggiorna RUNLOG/NEXT; S02 shell,
+S10 API/auth/schema/storage. Non creare nuove chat dalla sessione S00.
+
+Leggere [handoff S00](../../handoffs/swarm-v2/S00/README.md) e registro dei writer,
+poi rendezvous [commenti306](https://github.com/AndreaMarro/ardesia/pull/306).
+I ruoli proposti non provano che tutte le chat abbiano START osservato. Rileggere
+PR307/308/309 e successive sulla head effettiva, senza ereditarne il verde.
+Room è temporaneamente di S07 per l'adapter opzionale; Courses di S09 per il mount
+tutor; RootApp resta S00. Deleghe e coda sono nei commenti6404992331/6405061639.
+Host8GiB: un solo slot pesante alla volta, niente processi altrui terminati.
+
+Primo batch S00: export **privato esplicito** Web `/`+Studio `/studio/`, registro
+operatore `/ops/release/`; pubblico e review editoriale restano separati. Il
+backend non configurato risponde503, non un finto login. La CSP privata richiede
+MathJax locale dal lock esistente. Stato corrente e prove terminali vanno letti
+nell'handoff/PR: implementazione e26 test pipeline non equivalgono a integrazione
+o beta remota. SSO Vercel resta un gate operatore distinto dai permessi Core.
+
+Il prossimo risultato deve collegare consumer pronti alla main attraverso check
+del merge-tree, poi CI post-merge e preview protetta effettiva. «Studia da solo»
+richiede contratto S06/S10, fonti esatte, submit/receipt/feedback e cold/revoca;
+nessun nuovo ledger. Mantieni espliciti0/52,0/57,0/33,0/58 completamenti e gli
+obiettivi validi sotto. Il vecchio conteggio0PR era storico, non stato attuale.
+
 Aggiornato il 25 ottobre 2026. #304 e#305 sono integrate: non ripartire dal vecchio blocco review. L’incremento corrente è nella sola [PR306](https://github.com/AndreaMarro/ardesia/pull/306), prodotto `05d2bc9911aff3862906ac5a71769bc726dfbcea`; i commit successivi aggiungono prove e memoria. Prima di lavorare leggere il [registro con esito terminale e CI post-merge](https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404424520), verificare main/PR/Vercel attuali e rigenerare `python3 bin/state/project_state.py`. Una consegna datata non certifica il presente.
 
 Leggere [consegna e rollback](four-courses-2026-10-25/README.md), [matrice dei quattro corsi](../../matrici/QUATTRO_CORSI.md), [200 schede](four-courses-2026-10-25/objective-evidence.json), ultimo RUNLOG, AGENTS, CANON-INDEX, ADR-0004 e protocollo memoria. Conservare il denominatore 52/57/33/58: **zero obiettivi con accettazione completa**. Le43 lezioni e38 famiglie DRAFT nella review protetta e i5 esempi pubblici non sono quattro corsi completi.

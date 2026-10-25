@@ -7,7 +7,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 // rifiutato (onerror) -> ogni chiamata successiva ereditava il reject
 // e l'utente non poteva piu inserire formule senza ricaricare la pagina.
 
-describe("latexToImage — resiliente al fallimento di rete del CDN", () => {
+describe("latexToImage — renderer locale e retry", () => {
   let scripts: HTMLScriptElement[]
 
   beforeEach(() => {
@@ -24,6 +24,7 @@ describe("latexToImage — resiliente al fallimento di rete del CDN", () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
+    vi.unstubAllEnvs()
     delete (window as unknown as { MathJax?: unknown }).MathJax
   })
 
@@ -34,7 +35,7 @@ describe("latexToImage — resiliente al fallimento di rete del CDN", () => {
     const p1 = latexToImage("x^2")
     expect(scripts).toHaveLength(1)
     scripts[0].onerror?.(new Event("error"))
-    await expect(p1).rejects.toThrow(/MathJax CDN/)
+    await expect(p1).rejects.toThrow(/MathJax.*load failed/)
 
     // Secondo tentativo: la cache deve essere stata azzerata, quindi
     // loadMathJax crea un NUOVO <script>. Se il CDN risponde, risolve.
@@ -56,5 +57,18 @@ describe("latexToImage — resiliente al fallimento di rete del CDN", () => {
     expect(out.dataURL).toContain("data:image/svg+xml;base64,")
     expect(out.width).toBeGreaterThan(0)
     expect(out.height).toBeGreaterThan(0)
+  })
+
+  it.each(["/", "/studio/"])("ancora il bundle al base di build %s anche senza slash nella pagina", async (base) => {
+    vi.stubEnv("BASE_URL", base)
+    const previous = location.href
+    history.replaceState(null, "", base === "/" ? "/" : "/studio")
+    try {
+      const { latexToImage } = await import("../latexToImage")
+      const loading = latexToImage("x^2")
+      expect(scripts[0].src).toBe(`${location.origin}${base}mathjax/tex-svg-full.js`)
+      scripts[0].onerror?.(new Event("error"))
+      await expect(loading).rejects.toThrow(/load failed/)
+    } finally { history.replaceState(null, "", previous) }
   })
 })
