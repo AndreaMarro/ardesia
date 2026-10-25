@@ -1,0 +1,416 @@
+{
+  "environment": "This MacBook, Chromium headless, 1440x950, reduced motion; no CPU/network emulation; fresh browser context per navigation",
+  "comparison": "The first two groups use the same URL path/query. The third route is a new feature and is separate.",
+  "capacityClaim": false,
+  "groups": [
+    {
+      "id": "old-same-route",
+      "origin": "https://ardesia-fisica-preview.vercel.app",
+      "route": "/esperienza/?modello=molla",
+      "runs": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 29.700000017881393,
+          "DCLms": 257.7999999821186,
+          "FCPms": 384,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "kind": "js",
+              "encodedBodySize": 78663,
+              "transferSize": 78963
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            }
+          ],
+          "jsEncodedBytes": 78663,
+          "cssEncodedBytes": 14476
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 23.900000005960464,
+          "DCLms": 159.5,
+          "FCPms": 216,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            },
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "kind": "js",
+              "encodedBodySize": 78663,
+              "transferSize": 78963
+            }
+          ],
+          "jsEncodedBytes": 78663,
+          "cssEncodedBytes": 14476
+        },
+        {
+          "attempt": 3,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 21.099999994039536,
+          "DCLms": 145.5,
+          "FCPms": 204,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-B2RMxUfj.js",
+              "kind": "js",
+              "encodedBodySize": 78663,
+              "transferSize": 78963
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            }
+          ],
+          "jsEncodedBytes": 78663,
+          "cssEncodedBytes": 14476
+        }
+      ],
+      "medians": {
+        "TTFBms": 23.900000005960464,
+        "DCLms": 159.5,
+        "FCPms": 216,
+        "jsEncodedBytes": 78663,
+        "cssEncodedBytes": 14476
+      }
+    },
+    {
+      "id": "new-same-route",
+      "origin": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app",
+      "route": "/esperienza/?modello=molla",
+      "runs": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 23.30000001192093,
+          "DCLms": 149.19999998807907,
+          "FCPms": 212,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            }
+          ],
+          "jsEncodedBytes": 79515,
+          "cssEncodedBytes": 14476
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 24.5,
+          "DCLms": 154.90000000596046,
+          "FCPms": 244,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            }
+          ],
+          "jsEncodedBytes": 79515,
+          "cssEncodedBytes": 14476
+        },
+        {
+          "attempt": 3,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 24.19999998807907,
+          "DCLms": 160.59999999403954,
+          "FCPms": 216,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            }
+          ],
+          "jsEncodedBytes": 79515,
+          "cssEncodedBytes": 14476
+        }
+      ],
+      "medians": {
+        "TTFBms": 24.19999998807907,
+        "DCLms": 154.90000000596046,
+        "FCPms": 216,
+        "jsEncodedBytes": 79515,
+        "cssEncodedBytes": 14476
+      }
+    },
+    {
+      "id": "new-course-route",
+      "origin": "https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app",
+      "route": "/corsi/strumenti-meccanica/",
+      "runs": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 24.599999994039536,
+          "DCLms": 235.59999999403954,
+          "FCPms": 260,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "kind": "js",
+              "encodedBodySize": 36196,
+              "transferSize": 36496
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "kind": "css",
+              "encodedBodySize": 1564,
+              "transferSize": 1864
+            }
+          ],
+          "jsEncodedBytes": 115711,
+          "cssEncodedBytes": 16040
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 21.5,
+          "DCLms": 163.2000000178814,
+          "FCPms": 188,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "kind": "js",
+              "encodedBodySize": 36196,
+              "transferSize": 36496
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "kind": "css",
+              "encodedBodySize": 1564,
+              "transferSize": 1864
+            }
+          ],
+          "jsEncodedBytes": 115711,
+          "cssEncodedBytes": 16040
+        },
+        {
+          "attempt": 3,
+          "status": "PASS",
+          "contentEncodings": [
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "encoding": "br"
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "encoding": "br"
+            }
+          ],
+          "title": "Ardesia Fisica — Semestre Filtro · Anteprima",
+          "TTFBms": 21.599999994039536,
+          "DCLms": 140.7999999821186,
+          "FCPms": 160,
+          "resources": [
+            {
+              "path": "/esperienza/assets/index-DOSamxXe.js",
+              "kind": "js",
+              "encodedBodySize": 79515,
+              "transferSize": 79815
+            },
+            {
+              "path": "/esperienza/assets/index-BaGEeozC.css",
+              "kind": "css",
+              "encodedBodySize": 14476,
+              "transferSize": 14776
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-BlhUaRr7.js",
+              "kind": "js",
+              "encodedBodySize": 36196,
+              "transferSize": 36496
+            },
+            {
+              "path": "/esperienza/assets/PublicCoursePlayer-Ce8DJkm1.css",
+              "kind": "css",
+              "encodedBodySize": 1564,
+              "transferSize": 1864
+            }
+          ],
+          "jsEncodedBytes": 115711,
+          "cssEncodedBytes": 16040
+        }
+      ],
+      "medians": {
+        "TTFBms": 21.599999994039536,
+        "DCLms": 163.2000000178814,
+        "FCPms": 188,
+        "jsEncodedBytes": 115711,
+        "cssEncodedBytes": 16040
+      }
+    }
+  ],
+  "status": "PASS"
+}

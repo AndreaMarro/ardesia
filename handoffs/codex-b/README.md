@@ -293,3 +293,57 @@ JS/CSS e hash scaricati dall'URL effettivo. Sono viewport emulate Chromium
 headless su questo MacBook, non prove su telefoni fisici. Il corso ora carica
 un chunk separato PublicCoursePlayer; dimensioni/tempi locali nel report,
 nessun budget di carico multiutente dedotto.
+
+## Preview Vercel effettive — source05d2bc99
+
+A ha prodotto due preview protette dalla source
+`05d2bc9911aff3862906ac5a71769bc726dfbcea`; B ha verificato metadata Vercel
+READY/SHA e, separatamente, comportamento browser via accesso ufficiale
+fornito da A. Nessun access link, cookie, token, HAR o storageState conservato.
+Tutti i browser B sono chiusi; A può revocare gli accessi temporanei.
+
+- Pubblico ammissibile: `dpl_6sdaKh2borKNRb1k4Pwhzh87uU93`,
+  https://ardesia-fisica-preview-c3nguujrt-andreas-projects-6d4e9791.vercel.app
+  **15/15 PASS,192 controlli**, quattro corsi e cinematica a390/820/1440;
+  previsione/parametri/rappresentazioni/CTA/bozze/revisione esatta.
+- Audio sullo stesso deployment: **5/5 PASS,47 controlli**, incluse label
+  accessibile corretta, play/pausa/ripresa/fine naturale8x/unmount e fallback.
+  Vercel espone intervalli seekable completi per le quattro clip, a differenza
+  del server locale. Non provato il trascinamento dei controlli nativi;
+  ascolto e qualità umana restano NOT_RUN.
+- Review editoriale: `dpl_4tSUVdLjeyQpVqY6eNKF9G1abXp7`,
+  https://ardesia-fisica-preview-t4tqijqvx-andreas-projects-6d4e9791.vercel.app
+  **43/43 lezioni PASS,415 controlli**:5 con modello e38 qualitative.
+  Queste38 accettano testo fino a2000 caratteri e mostrano risposta proposta
+  DRAFT senza modello o voto automatico; nuovo problema nasconde il feedback.
+  Transcript/fallback audio e link di revisione esatti per tutte le43.
+  Espansi e contati12 diagnostici e200 finali (52/57/33/58).
+  Nessuna approvazione umana o completamento dedotti dalla raggiungibilità.
+
+Nessun pageError, HTTP>=400 o warning/error console nei due percorsi funzionali.
+Ispezionata anche una cattura reale della review. Finding P2 residuo: su una
+risposta qualitativa senza unità appare «Unità richiesta: .»; comunicato ad A
+come miglioramento del testo, distinto dai gate scientifici e di accesso.
+Le38 lezioni senza modello restano senza consegna Core automatica; manca inoltre
+la provenienza tipizzata lessonRef/fase nella ricevuta del modello, già
+segnalata. Restano0/52,0/57,0/33,0/58 accettazioni complete.
+
+Ultime controprove DeepSeek d4d15d1f rieseguite da B contro A: **317 PASS**,
+report con hash in evidence/independent-science-final.json. Il precedente279
+resta una ricevuta storica distinta, non si somma a317 o pytest/vitest.
+
+Misure browser richieste da A:9 navigazioni,3 contesti nuovi per gruppo,
+Chromium headless1440x950/reduced-motion su questo MacBook/rete, senza
+throttling. Confronto stesso `/esperienza/?modello=molla` vecchio/nuovo:
+mediane TTFB23,9/24,2 ms,DCL159,5/154,9 ms,FCP216/216 ms;
+JS compressi78663/79515 byte,CSS14476/14476 byte.
+Separata la nuova route `/corsi/strumenti-meccanica/`:
+TTFB21,6 ms,DCL163,2 ms,FCP188 ms,JS115711/CSS16040 byte.
+Report contiene ogni campione e codifica; nessuna inferenza di capacità,
+smartphone, efficacia didattica o risparmio attribuito a REA.
+
+PR #306 ancora OPEN all'osservazione, source05d2: Web e tutti i job ci,
+readiness e contratto PASS; marketing ancora IN_PROGRESS. La produzione
+restava il deployment precedente8aUF/9fe durante questa QA. A possiede merge,
+promozione, RUNLOG/NEXT e prova dell'alias finale. Questi PASS non autorizzano
+B a dichiarare la PR integrata o la produzione aggiornata.
