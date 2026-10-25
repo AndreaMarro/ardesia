@@ -11,6 +11,25 @@ type Receipt = {receiptId: string; submissionId: string; revision: number; activ
 const phaseNames = {situation: "Situazione", prediction: "Previsione", model: "Modello", visual: "Rappresentazione", explanation: "Spiegazione", source: "Lezione", transfer: "Nuova prova"};
 type HydroStep = Extract<ComposableExperienceStep, {activityId: "hydrostatic-v1"}>;
 
+// Restore only from server-issued evidence for this student, exact experience digest and step.
+// Never infer mastery from a numeric comparison; this merely prevents duplicate submissions.
+function nextUnsubmittedStep(experience: ComposableExperience, data: Workspace, studentId: string): number {
+  const stored = data.submissions ?? [];
+  const pending = experience.steps.findIndex(step => !stored.some(submission => {
+    const evidence = submission.activityEvidence;
+    return submission.student_id === studentId &&
+      submission.activity_id === step.activityId &&
+      evidence?.schemaVersion === 2 &&
+      evidence.experienceRef.id === experience.experienceRef.id &&
+      evidence.experienceRef.version === experience.experienceRef.version &&
+      evidence.experienceRef.sha256 === experience.experienceRef.sha256 &&
+      evidence.stepId === step.id &&
+      evidence.result.kind === "scalar";
+  }));
+  return pending < 0 ? experience.steps.length : pending;
+}
+
+
 export function ScalarExperienceEpisode({me, data, onUpdate}: {me: StudyMe; data: Workspace; onUpdate: () => Promise<void>}) {
   const [items, setItems] = useState<ComposableExperience[] | null>(null), [error, setError] = useState("");
   const [reload, setReload] = useState(0), [selected, setSelected] = useState("");
@@ -33,16 +52,17 @@ export function ScalarExperienceEpisode({me, data, onUpdate}: {me: StudyMe; data
       <LessonPassageAuthoring editionId={data.edition.id} onUpdate={onUpdate} />
       <ol className="episode-teacher-plan">{experience.steps.map(step => <li key={step.id}><strong>{step.title}</strong><p>{step.prompt}</p><p>Passi: {step.phases.map(phase => phaseNames[phase]).join(" → ")}. Avanzamento dopo ricevuta, senza approvazione automatica del procedimento.</p></li>)}</ol>
       <p>Le tre previsioni arrivano nelle consegne del corso. Da “Correzioni” ritrovi originale, fonte esatta e aiuti; il diario conserva le osservazioni verificate dal tutor.</p>
-    </> : <ScalarSequence key={JSON.stringify(experience.experienceRef)} experience={experience} data={data} onUpdate={onUpdate} />}
+    </> : <ScalarSequence key={JSON.stringify(experience.experienceRef)} experience={experience} studentId={me.id} data={data} onUpdate={onUpdate} />}
     <p className="fine-print">Contenuto DRAFT, revisione scientifica non attestata. Il confronto numerico non valuta il ragionamento. Il riferimento alla lezione è dichiarato dal docente.</p>
   </section>;
 }
 
-function ScalarSequence({experience, data, onUpdate}: {experience: ComposableExperience; data: Workspace; onUpdate: () => Promise<void>}) {
-  const [index, setIndex] = useState(0), [locked, setLocked] = useState(false);
+function ScalarSequence({experience, studentId, data, onUpdate}: {experience: ComposableExperience; studentId: string; data: Workspace; onUpdate: () => Promise<void>}) {
+  const [index, setIndex] = useState(() => nextUnsubmittedStep(experience, data, studentId)), [locked, setLocked] = useState(false);
   const sources = data.resources.filter(resource => resource.editionId === data.edition.id && readLessonPassage(resource));
   const [source, setSource] = useState<Reference | null>(() => sources[0] ? {resourceId: sources[0].id, revisionId: sources[0].revisionId} : null);
   const sourceValue = source ? JSON.stringify(source) : "";
+  if (index === experience.steps.length) return <p className="success-notice" role="status">Percorso già consegnato con ricevute del Core. Ritrovi risposte e feedback in “Il mio lavoro”; il tutor verifica il ragionamento e propone una nuova prova.</p>;
   return <>
     <ol className="episode-progress" aria-label="Passi del percorso di pressione">{experience.steps.map((step, i) => <li key={step.id} aria-current={i === index ? "step" : undefined}><span>{i + 1}</span>{step.title}</li>)}</ol>
     {(sources.length > 0 || source) && <label>Passaggio della lezione collegato<select value={sourceValue} disabled={locked} onChange={e => setSource(e.target.value ? JSON.parse(e.target.value) : null)}>
