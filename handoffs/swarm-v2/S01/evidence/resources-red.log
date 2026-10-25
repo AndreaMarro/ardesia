@@ -1,0 +1,163 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_private_configuration_and_note_reopen_in_a_new_store_without_revealing_result _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-88/test_private_configuration_and0')
+
+    def test_private_configuration_and_note_reopen_in_a_new_store_without_revealing_result(tmp_path):
+        store, teacher, student, peer, other = setup_store(tmp_path)
+>       saved = api().save(store, student, 'fluidi', state(), 'save-1')
+                ^^^^^
+
+packages/engine/tests/study/test_science_library_resources.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_resources.py:12: in api
+    return importlib.import_module('lessonos.study.science_library.resources')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1395: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'lessonos.study.science_library.resources'
+import_ = <function _gcd_import at 0x10539c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'lessonos.study.science_library.resources'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_________ test_cas_update_retry_exact_history_and_idempotency_conflict _________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-88/test_cas_update_retry_exact_hi0')
+
+    def test_cas_update_retry_exact_history_and_idempotency_conflict(tmp_path):
+        store, teacher, student, *_ = setup_store(tmp_path)
+>       a = api().save(store, student, 'fluidi', state('Prima'), 'create')
+            ^^^^^
+
+packages/engine/tests/study/test_science_library_resources.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_resources.py:12: in api
+    return importlib.import_module('lessonos.study.science_library.resources')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1395: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'lessonos.study.science_library.resources'
+import_ = <function _gcd_import at 0x10539c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'lessonos.study.science_library.resources'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_ test_unknown_version_or_changed_implementation_retains_readable_notes_without_execution _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-88/test_unknown_version_or_change0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10ad01480>
+
+    def test_unknown_version_or_changed_implementation_retains_readable_notes_without_execution(tmp_path, monkeypatch):
+        store, _, student, *_ = setup_store(tmp_path)
+>       snapshot = state('Il quaderno resta leggibile')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_science_library_resources.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_resources.py:16: in state
+    return api().new_snapshot('collision-1d-v1', {'mass1': 2}, note=note)
+           ^^^^^
+packages/engine/tests/study/test_science_library_resources.py:12: in api
+    return importlib.import_module('lessonos.study.science_library.resources')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1395: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'lessonos.study.science_library.resources'
+import_ = <function _gcd_import at 0x10539c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'lessonos.study.science_library.resources'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_ test_saved_state_requires_prediction_to_compare_and_does_not_trust_a_stored_result _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-88/test_saved_state_requires_pred0')
+
+    def test_saved_state_requires_prediction_to_compare_and_does_not_trust_a_stored_result(tmp_path):
+        store, _, student, *_ = setup_store(tmp_path)
+>       saved = api().save(store, student, 'fluidi', state(), 'save')
+                ^^^^^
+
+packages/engine/tests/study/test_science_library_resources.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_resources.py:12: in api
+    return importlib.import_module('lessonos.study.science_library.resources')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1395: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'lessonos.study.science_library.resources'
+import_ = <function _gcd_import at 0x10539c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'lessonos.study.science_library.resources'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+________ test_update_cannot_rebind_to_another_edition_or_resource_kind _________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-88/test_update_cannot_rebind_to_a0')
+
+    def test_update_cannot_rebind_to_another_edition_or_resource_kind(tmp_path):
+        store, teacher, student, *_ = setup_store(tmp_path)
+>       saved = api().save(store, student, 'fluidi', state(), 'create')
+                ^^^^^
+
+packages/engine/tests/study/test_science_library_resources.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+packages/engine/tests/study/test_science_library_resources.py:12: in api
+    return importlib.import_module('lessonos.study.science_library.resources')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1395: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'lessonos.study.science_library.resources'
+import_ = <function _gcd_import at 0x10539c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'lessonos.study.science_library.resources'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_science_library_resources.py::test_private_configuration_and_note_reopen_in_a_new_store_without_revealing_result
+FAILED packages/engine/tests/study/test_science_library_resources.py::test_cas_update_retry_exact_history_and_idempotency_conflict
+FAILED packages/engine/tests/study/test_science_library_resources.py::test_unknown_version_or_changed_implementation_retains_readable_notes_without_execution
+FAILED packages/engine/tests/study/test_science_library_resources.py::test_saved_state_requires_prediction_to_compare_and_does_not_trust_a_stored_result
+FAILED packages/engine/tests/study/test_science_library_resources.py::test_update_cannot_rebind_to_another_edition_or_resource_kind
+5 failed in 7.14s
