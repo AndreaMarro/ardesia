@@ -254,3 +254,42 @@ Altri residui funzionali segnalati ad A per soluzione o perimetro esplicito:
 Nessun secondo ledger proposto e nessuna modifica B ai file condivisi. Questi
 residui impediscono claim di quattro corsi completi; i test sulle cinque scene
 originali non li cancellano.
+
+## Candidato finale pubblico — verifica locale B
+
+Artefatto A `candidate-final-public`, source commit
+`3efea7f9787c5b47b5bad1ce872b6f31c83b1c72`, tracked diff vuoto,
+servito da A su `http://127.0.0.1:55483/`: **15/15 scenari browser PASS,
+192 controlli**. Quattro corsi ×390/820/1440 più cinematica alle stesse
+larghezze. CTA raggiunge #contatto col percorso giusto senza invio;
+cinematica x=6 m, v=(3;0) m/s, vista velocità da tastiera, transfer
+x₀=5 m/vₓ=−2 m/s/t=4 s →−3 m; quaderni molla/cinematica separati e
+risultato nascosto alla riapertura. Nessun pageError, HTTP>=400 o console
+warning/error. I sette file B modello/renderer/CSS coincidono per SHA-256
+con i sorgenti A osservati. Questa prova include ora la cinematica nel consumer.
+
+Audio: **5/5 scenari PASS,43 controlli**, quattro clip sintetiche diverse,
+41,77–45,42 s; label/provenienza/trascrizione per corso, niente autoplay,
+play/progresso/pausa/ripresa, fine naturale a8x con reset del pulsante,
+chiusura del contesto che mette in pausa. Rete .wav bloccata: messaggio
+leggibile, testo conservato e retry abilitato. **Ascolto/qualità umana NOT_RUN**;
+nessun evento ended sintetico. Il primo run è FAIL4/5 e conservato:
+seekable=[0,0] sul server locale, assegnare currentTime vicino alla fine
+riporta a0. Non è stata provata una regressione UI. Ripetuto con playbackRate8;
+seek remoto/native controls resta da verificare su Vercel.
+
+PR A #306 su3efea7f ancora OPEN: CI Web418unit/60file PASS,
+proiezione checked e11golden PASS; E2E teacher fallisce sul vecchio label
+Programmi configurati(2). A aggiorna a6 pack, conserva2edizioni effettive
+ed aggiunge6article, senza cambiare i gate. Questo candidato non è ancora
+main né la produzione Vercel. Label audio troppo specifico segnalato ad A;
+correzione da verificare nella successiva head. I report versionati sono
+in evidence; screenshot/script completi nella consegna B. Non trasferire
+questi PASS alla prossima build senza confronto degli asset o nuova prova.
+
+Ispezione visuale reale: catture360 (ingresso/modello),390,820e1440 lette;
+nessun overflow orizzontale registrato. Report visuale360:4/4PASS, con risorse
+JS/CSS e hash scaricati dall'URL effettivo. Sono viewport emulate Chromium
+headless su questo MacBook, non prove su telefoni fisici. Il corso ora carica
+un chunk separato PublicCoursePlayer; dimensioni/tempi locali nel report,
+nessun budget di carico multiutente dedotto.
