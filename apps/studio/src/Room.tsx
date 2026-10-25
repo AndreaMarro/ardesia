@@ -38,6 +38,10 @@ import type { AudioObjectReference } from "./store/audioRecording"
 import LessonPassageAuthor from "./LessonPassageAuthor"
 import { wrapPassageAnnotation } from "./store/passageAnnotation"
 
+import type { RoomInkAdapter } from "./collaboration-v2/RoomCollaboration"
+import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types"
+
+const RoomCollaboration = lazy(() => import("./collaboration-v2/RoomCollaboration").then(module => ({ default: module.RoomCollaboration })))
 const MathComposer = lazy(() => import("./MathComposer"))
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -95,15 +99,27 @@ function withSurfaceFlushTimeout(operation: Promise<void>): Promise<void> {
 
 export default function Room({
   store,
+  collaboration,
   lessonOsOpener = openLessonOsSession,
   navigate = navigateDocument,
 }: {
   store?: WorkspaceStore
+  collaboration?: RoomInkAdapter
   lessonOsOpener?: LessonOsSessionOpener
   navigate?: (href: string) => void
 }) {
   const actualStore = store ?? workspaceStore
+  const [collaborationApi, setCollaborationApi] = useState<ExcalidrawImperativeAPI | null>(null)
+  const [collaborationRevoked, setCollaborationRevoked] = useState(false)
+  useEffect(() => {
+    if (!collaboration) { setCollaborationRevoked(false); return }
+    const revoked = () => setCollaborationRevoked(true)
+    setCollaborationRevoked(collaboration.signal.aborted)
+    collaboration.signal.addEventListener("abort", revoked, { once: true })
+    return () => collaboration.signal.removeEventListener("abort", revoked)
+  }, [collaboration])
   const [room] = useState(getRoomId)
+  const collaborativeWriting = !!collaboration && collaboration.roomId === room && !collaborationRevoked
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
@@ -919,7 +935,7 @@ export default function Room({
   ) : replayView ? (
     <ReplayView store={actualStore} room={room} />
   ) : (
-    <div className="st-studio-shell" style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
+    <div className="st-studio-shell" data-ink-room={collaboration?.roomId} style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
         <header className="st-bar st-bar-student">
@@ -1095,6 +1111,10 @@ export default function Room({
         </div>
       )}
 
+      {collaboration && collaboration.roomId === room && <Suspense fallback={<p role="status">Apertura layer…</p>}>
+        <RoomCollaboration adapter={collaboration} api={collaborationApi} store={actualStore} />
+      </Suspense>}
+      {collaboration && collaboration.roomId !== room && <p role="alert">Il layer appartiene a un’altra lezione.</p>}
       <div className="st-studio-canvas" style={{ flex: 1, position: "relative", minHeight: 0 }}>
         {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
@@ -1110,10 +1130,11 @@ export default function Room({
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
             aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
-            viewModeEnabled={studentView}
+            viewModeEnabled={collaboration ? !collaborativeWriting : studentView}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
+              if (collaboration) setCollaborationApi(current => current === eapi ? current : eapi)
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
@@ -1152,7 +1173,7 @@ export default function Room({
                 : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
             }
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
-            onChange={studentView ? undefined : handleChange}
+            onChange={studentView && !collaborativeWriting ? undefined : handleChange}
             validateEmbeddable={/^maestro-tool:\/\//}
             // Host per i tool embed (slice 4): write-back dei piazzamenti nello
             // state dell'embed → la persistenza segue quella della scena. In
