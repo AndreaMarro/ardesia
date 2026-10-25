@@ -134,3 +134,54 @@ rollback e disposizione PR rimangono ricevute da verificare con A.
    l'intera unità e la firma umana non può essere sostituita dai test.
 5. Completare il ciclo plugin scientifico dinamico solo sul consumer e host
    effettivi, preservando le note e usando l'installer già presente.
+
+## Riscontro successivo — consumer reale e review DRAFT
+
+A ha confermato l'importazione di modelli, UI e handoff nella propria head
+`82ebdf36aac8b9a0527e605c831b709fc07279e7`. Non è main né una release.
+Il fix aggiuntivo B `55dcc3d689db342c11c28c083d939f4d6ad7b413` riduce il numero
+di cicli prima di moltiplicare per 2π: al limite accettato f=1 Hz, t=10⁶ s e
+A=1000 m, un periodo intero non crea più lo spostamento spurio 2,0145·10⁻⁷ m.
+Controprova RED riprodotta, poi **63 test Core PASS**. A lo ha importato come
+`ed391243` e deve rigenerare gli artefatti prima della release.
+
+Browser plugin non disponibile; usato Playwright del repository, un solo
+Chromium e contesti sequenziali. Build di sviluppo reale servita da A su
+`http://127.0.0.1:55481`, quattro percorsi × viewport 390/820/1440:
+**12/12 PASS, 138 check registrati**, nessun pageError, HTTP >=400 o warning/error
+console. Verificati previsione prima del risultato, DC a18 V →1,5 A, onda
+f=4 Hz/v=4 m/s →λ=1 m, prompt coerente, viste da tastiera, zero overflow,
+contesto reduced-motion, note e assistenza conservate alla riapertura,
+risultato nascosto, collegamento alla revisione e rifiuto di una revisione999.
+Sei screenshot reali. Nessun invio contatti, account, pagamento o microfono.
+
+L'entry JS del corso effettivamente testato è
+`/esperienza/assets/index-D_bLJhm1.js`, 330365 byte, SHA-256
+`0b8d59b08073b1416175102f8fa5552b8b85c477a349b15dc6f74374b541a26e`.
+È **candidate-dev2**, non la SHA/CI finale, non Vercel e non include ancora il
+consumer della cinematica. Le prove remote/finali restano da eseguire.
+Report e script in `browser-dev2-r2/report.json` e `qa-consumer.cjs` nella
+cartella evidenze B. Il primo run resta FAIL: 6 PASS e 6 timeout del selettore
+`getByLabel(..., exact:true)` perché il testo del label include le option.
+Corretto solo l'harness; il secondo run passa. Non cancellare quel risultato
+né attribuire la correzione al prodotto.
+
+Review read-only delle spiegazioni, esempi, practice e transfer di **tutte le
+38 famiglie**: nessun errore numerico o di segni rilevato nei valori riportati.
+Questo è un controllo AI, non approvazione umana né certificazione dei200
+sotto-obiettivi. Finding editoriale: practice U1-03, U6-04, U6-05, U7-07,
+transfer U5-03 e practice U7-04 richiedevano i dati di esempi chiusi. Aprire un
+aiuto per leggere dati indispensabili altera la distinzione autonomia/assistenza.
+DeepSeek ha corretto i sei prompt nel commit `2b0f5850`; stato
+`FIXED_SOURCE / PENDING_INTEGRATION`, da chiudere sui byte A importati.
+Segnalato ad A anche input decimal/maxLength40 per risposte qualitative:
+verificare tastiera testuale e spazio adeguato nel consumer protetto.
+
+Le risorse template DC e onda coincidono con gli esatti modelCases compilati
+nel consumer A osservato: prova di collegamento dati separata dal browser,
+in `resource-consumer-match.json`. Baseline del solo calcolo Python3.13.14,
+200 chiamate calde ciascuno: mediane DC0,00325 ms, onda0,023125 ms,
+cinematica0,031417 ms; JSON compatti1442/7601/10189 byte. Nessuna inferenza su
+latenza UI, smartphone o carico multiutente. Il report indipendente DeepSeek
+è stato rieseguito da B dopo il fix fase:279 PASS sui nuovi digest; i suoi
+successivi281/292 check sono ricevute distinte, non sommati a questi numeri.
