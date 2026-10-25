@@ -67,6 +67,14 @@ def test_periodic_replay_and_json_roundtrip_preserve_exact_resource_parameters()
         [p['displacementM'] for p in first['spatialSamples']], abs=1e-14)
 
 
+def test_exact_cycle_at_the_accepted_time_boundary_does_not_create_a_false_displacement():
+    # One million complete periods at 1 Hz is exactly the original phase, not
+    # a small fictitious displacement amplified by a large allowed amplitude.
+    result = evaluate({'speed': 4, 'frequency': 1, 'amplitude': 1000, 'time': 1000000})
+    assert result['probeDisplacementM'] == pytest.approx(0, abs=1e-12)
+    assert result['spatialSamples'][8]['displacementM'] == pytest.approx(1000, abs=1e-12)
+
+
 @pytest.mark.parametrize('parameters', [
     None, [], 'wave', {'speed': 0}, {'frequency': 0}, {'frequency': -2},
     {'speed': True}, {'frequency': '2'}, {'amplitude': -1}, {'amplitude': float('nan')},

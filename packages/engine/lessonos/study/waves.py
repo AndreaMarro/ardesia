@@ -37,7 +37,10 @@ def evaluate_harmonic_wave(parameters):
     wavelength = values['speed'] / frequency
     period = 1 / frequency
     # Evaluate normalized coordinates directly, avoiding huge x/lambda ratios.
-    current_phase = math.remainder(phase - math.tau * (frequency * time), math.tau)
+    # Reduce completed cycles BEFORE multiplying by 2pi. Otherwise an exactly
+    # integral cycle count near the accepted limit gains a cancellation residue.
+    cycles = math.remainder(frequency * time, 1)
+    current_phase = math.remainder(phase - math.tau * cycles, math.tau)
     spatial = [
         {'xM': wavelength * index / 32,
          'displacementM': amplitude * math.sin(math.tau * index / 32 + current_phase)}
