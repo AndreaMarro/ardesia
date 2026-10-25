@@ -226,3 +226,45 @@ sulla head finale da un collaboratore idoneo diverso da autore/ultimo pusher
 Nessuna review è simulata, richiesta a terzi o aggirata. Ottenuta l'approvazione,
 riverificare main/head/CI, fare il merge attraverso GitHub, eseguire i gate sulla
 main effettiva e soltanto allora chiudere le PR sostituite con provenienza esatta.
+
+
+## Verifica del prodotto40567cd e percorso riproducibile
+
+Il prodotto finale di codice è `40567cd7ccb56e7c5353a5f7c507c98dfa9eb4bb`.
+[CI](https://github.com/AndreaMarro/ardesia/actions/runs/40199528487),
+metadati, marketing e readiness sono SUCCESS su quella head: Studio2303PASS/
+5SKIP più audio nativo8/8, Engine2654PASS/29SKIP, API963PASS/18SKIP conPG,
+Web361PASS, MCP23PASS. Gate originale locale Studio2304PASS incluso replay.
+I commit documentali successivi richiedono la propria CI: non trasferire questo
+verde né dichiarare main integrata. I sette required checks sono stati promossi
+solo dopo un loro successo reale; review/last-push/enforceAdmins conservati.
+
+Il [journey Web attuale](../../apps/web/e2e/journey.spec.ts) passa4/4 con API
+reale: laboratorio/interesse, revisione→diario→nuova prova→verifica docente e
+lettura della fonte originale. Preparazione della membership e prima consegna
+del caso di revisione sono fixture esplicite, non prove di invito/iscrizione.
+Il [cold15/15](convergence-2026-10-25/cold-after.json) riapre dopo un nuovo
+processo server, senza reseed e con tre profili puliti: hash delle fonti/esiti
+identici, ricevute rileggibili e studente2 isolato.
+
+Il [probe dei controlli audio visibili](convergence-2026-10-25/audio-visible-ui.json)
+passa5/5: annotazione e prima take, nuova vista senza microfono automatico,
+seconda take, revoca nell'altra vista con track ended prima del successo e
+riferimento revocato non copiabile. Screenshot e video sintetici conservati;
+nessuna prova hardware. P2 noto: il titolo «Passaggio salvato» può restare
+visibile dopo revoca esterna; il microfono si ferma e la copia è rifiutata con
+alert. Non è attestata disponibilità di quei byte.
+
+La [riproduzione](convergence-2026-10-25/repro/README.md) usa solo componenti
+esistenti, loopback e dati sintetici. La vecchia M1 Studio non è dichiarata
+verde: dopo il funnel corretto cerca un bottone sostituito intenzionalmente dal
+flusso Mini-corsi con preview/hash/revisione. Nessun bypass dell'offerta viene
+ripristinato per far passare una spec obsoleta. Il cold attuale usa le ricevute
+prodotte dal journey Web, non dati impliciti del vecchio M1.
+
+L'artefatto pubblico di40567cd ha20asset byte-identici al pubblico17eebd0:
+[TechnicalPASS, releaseBLOCKED](convergence-2026-10-25/candidate-check-40567cd.json).
+Le firme scientifiche/editoriali/audio e i DRAFT restano gate distinti.
+Il layout ha P2 dichiarati (CTA iniziale sotto fold, recupero mobile lungo),
+non una certificazione WCAG o di qualità visuale globale. Nessun nuovo plugin,
+MCP writer, beta remota, produzione o claim di apprendimento automatico.
