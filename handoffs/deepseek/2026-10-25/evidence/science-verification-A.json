@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-25T21:44:43.715529+00:00",
+  "observedAt": "2026-10-25T21:51:37.742535+00:00",
   "checks": [
     {
       "id": "content/families",
@@ -1052,6 +1052,150 @@
       "status": "PASS"
     },
     {
+      "id": "diagnostic/unit-speed/value",
+      "actual": 5.0,
+      "expected": 5.0,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/unit-speed/unit",
+      "actual": "m/s",
+      "expected": "m/s",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/vector-sum/value",
+      "actual": "(2,5)",
+      "expected": "(2,5)",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/vector-sum/unit",
+      "actual": "N",
+      "expected": "N",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/newton/value",
+      "actual": 2.5,
+      "expected": 2.5,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/newton/unit",
+      "actual": "m/s²",
+      "expected": "m/s²",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/density/value",
+      "actual": 1200.0,
+      "expected": 1200.0,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/density/unit",
+      "actual": "kg/m³",
+      "expected": "kg/m³",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/hydrostatic/value",
+      "actual": 3400.0,
+      "expected": 3400.0,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/hydrostatic/unit",
+      "actual": "Pa",
+      "expected": "Pa",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/gas-state/value",
+      "actual": 0.009093943488605106,
+      "expected": 0.009093943488605106,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/gas-state/unit",
+      "actual": "m³",
+      "expected": "m³",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/charge-rate/value",
+      "actual": 0.3,
+      "expected": 0.3,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/charge-rate/unit",
+      "actual": "A",
+      "expected": "A",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/ohmic-load/value",
+      "actual": 0.5,
+      "expected": 0.5,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/ohmic-load/unit",
+      "actual": "A",
+      "expected": "A",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/stored-charge/value",
+      "actual": 24.0,
+      "expected": 24,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/stored-charge/unit",
+      "actual": "µC",
+      "expected": "µC",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/cycle-rate/value",
+      "actual": 3.5,
+      "expected": 3.5,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/cycle-rate/unit",
+      "actual": "Hz",
+      "expected": "Hz",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/wavelength/value",
+      "actual": 1.25,
+      "expected": 1.25,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/wavelength/unit",
+      "actual": "m",
+      "expected": "m",
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/half-life/value",
+      "actual": 240.0,
+      "expected": 240.0,
+      "status": "PASS"
+    },
+    {
+      "id": "diagnostic/half-life/unit",
+      "actual": "Bq",
+      "expected": "Bq",
+      "status": "PASS"
+    },
+    {
       "id": "series/1/R",
       "actual": 12,
       "expected": 12.0,
@@ -1787,7 +1931,7 @@
       "expected": "StudyError"
     }
   ],
-  "count": 292,
+  "count": 316,
   "status": "PASS",
   "engineSourceHashes": {
     "lessonos.study.electrical": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819",

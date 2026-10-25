@@ -150,6 +150,19 @@ def verify_content():
       ('U7/power',1e12*2*1.602176634e-19,3.204353268e-7),('U7/beer',math.exp(-math.log(2)),.5),
       ('U7/decay',800*2**(-6/2),100),('U7/lens',1/(1/10-1/30),15),('U7/lens_virtual',1/(1/10-1/5),-10)]
     for name,a,e in cases:check('arithmetic/'+name,a,e)
+    diagnostics=json.loads((HERE/'content/diagnostic-12.json').read_text())['courses']
+    expected_diagnostics={
+      'unit-speed':(18/3.6,'m/s'),'vector-sum':('(2,5)','N'),'newton':(10/4,'m/s²'),
+      'density':(1.08/.0009,'kg/m³'),'hydrostatic':(850*10*.4,'Pa'),
+      'gas-state':(float(r*Decimal('.25')*Decimal(350)/Decimal(80000)),'m³'),
+      'charge-rate':(.45/1.5,'A'),'ohmic-load':(9/18,'A'),'stored-charge':(3*8,'µC'),
+      'cycle-rate':(7/2,'Hz'),'wavelength':(10/8,'m'),'half-life':(960/4,'Bq')}
+    for group in diagnostics:
+        for d in group['diagnostic']:
+            suffix=d['id'].removeprefix('diag-'+group['pathId']+'-')
+            value,unit=expected_diagnostics[suffix]
+            check('diagnostic/'+suffix+'/value',d['answer']['value'],value)
+            check('diagnostic/'+suffix+'/unit',d['answer']['unit'],unit)
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--engine-root',type=Path);ap.add_argument('--report',type=Path,default=HERE/'evidence/science-verification.json');a=ap.parse_args()

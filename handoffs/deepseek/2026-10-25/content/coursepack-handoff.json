@@ -1781,64 +1781,67 @@
       ],
       "diagnostic": [
         {
-          "id": "final-U1-01.01",
-          "objectiveId": "U1-01.01",
-          "familyId": "U1-01",
+          "id": "diag-strumenti-meccanica-unit-speed",
           "courseId": "strumenti-meccanica",
-          "targetLabel": "potenze di dieci",
-          "sourcePages": [
-            2
-          ],
-          "prompt": "Normalizza 0,00072 usando una sola cifra non nulla prima della virgola.",
-          "answer": "7,2·10^-4.",
-          "feedback": "7,2·10^-4.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U1-02.03",
+          "prompt": "Un nastro trasportatore avanza a18km/h. Converti questa velocità in m/s prima di usarla in un’equazione SI.",
+          "answer": {
+            "value": 5.0,
+            "unit": "m/s"
+          },
+          "feedback": "18·1000/3600=5m/s. Il fattore include sia la lunghezza sia il tempo.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U1-02.03",
+            "lessonId": "ds-2026-u1-02"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U1-02.01",
-          "objectiveId": "U1-02.01",
-          "familyId": "U1-02",
+          "id": "diag-strumenti-meccanica-vector-sum",
           "courseId": "strumenti-meccanica",
-          "targetLabel": "dimensioni",
-          "sourcePages": [
-            2
-          ],
-          "prompt": "Una formula somma una velocità e un’accelerazione senza un fattore temporale. È dimensionalmente omogenea?",
-          "answer": "No: L/T e L/T² non sono dimensioni sommabili.",
-          "feedback": "No: L/T e L/T² non sono dimensioni sommabili.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U1-04.02",
+          "prompt": "Due forze hanno componenti F1=(4,−1)N e F2=(−2,6)N nello stesso riferimento. Scrivi la risultante per componenti.",
+          "answer": {
+            "value": "(2,5)",
+            "unit": "N"
+          },
+          "feedback": "Somma separatamente4−2 e−1+6: risultante(2,5)N,non la somma dei moduli.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U1-04.02",
+            "lessonId": "ds-2026-u1-04"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U1-03.01",
-          "objectiveId": "U1-03.01",
-          "familyId": "U1-03",
+          "id": "diag-strumenti-meccanica-newton",
           "courseId": "strumenti-meccanica",
-          "targetLabel": "seno",
-          "sourcePages": [
-            2
-          ],
-          "prompt": "Un triangolo rettangolo ha cateto opposto3 e ipotenusa5. Quanto vale il seno dell’angolo considerato?",
-          "answer": "3/5; rapporto adimensionale.",
-          "feedback": "3/5; rapporto adimensionale.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U2-02.02",
+          "prompt": "Un carrello di massa4kg subisce una forza risultante orizzontale10N. Qual è l’accelerazione in un riferimento inerziale?",
+          "answer": {
+            "value": 2.5,
+            "unit": "m/s²"
+          },
+          "feedback": "a=F/m=10/4=2,5m/s²,nel verso della risultante.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U2-02.02",
+            "lessonId": "ds-2026-u2-02"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         }
       ],
       "formulaSheet": [
@@ -4151,64 +4154,67 @@
       ],
       "diagnostic": [
         {
-          "id": "final-U3-01.01",
-          "objectiveId": "U3-01.01",
-          "familyId": "U3-01",
+          "id": "diag-fluidi-termodinamica-density",
           "courseId": "fluidi-termodinamica",
-          "targetLabel": "fluido e solido",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "Che cosa distingue la risposta statica di un fluido da quella di un solido a uno sforzo tangenziale?",
-          "answer": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
-          "feedback": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua,il solido può sostenerlo.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U3-01.03",
+          "prompt": "Un liquido omogeneo ha massa1,08kg e volume0,0009m³. Determina la densità in unità SI.",
+          "answer": {
+            "value": 1200.0,
+            "unit": "kg/m³"
+          },
+          "feedback": "ρ=m/V=1,08/0,0009=1200kg/m³. La densità non si ottiene moltiplicando massa e volume.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U3-01.03",
+            "lessonId": "ds-2026-u3-01"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U3-02.01",
+          "id": "diag-fluidi-termodinamica-hydrostatic",
+          "courseId": "fluidi-termodinamica",
           "objectiveId": "U3-02.01",
-          "familyId": "U3-02",
-          "courseId": "fluidi-termodinamica",
-          "targetLabel": "Stevino",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "Olioρ=800kg/m³,g=10m/s²,profondità0,5m. Qual è l’incremento di pressione?",
-          "answer": "4000Pa,da aggiungere alla pressione sulla superficie.",
-          "feedback": "4000Pa,da aggiungere alla pressione sulla superficie.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "prompt": "In un fluido fermo di densità850kg/m³ si scende di0,4m. Con g=10m/s²,quanto aumenta la pressione rispetto al punto di partenza?",
+          "answer": {
+            "value": 3400.0,
+            "unit": "Pa"
+          },
+          "feedback": "Δp=ρgΔh=850·10·0,4=3400Pa. È un incremento,non la pressione assoluta.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U3-02.01",
+            "lessonId": "ds-2026-u3-02"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U3-03.01",
-          "objectiveId": "U3-03.01",
-          "familyId": "U3-03",
+          "id": "diag-fluidi-termodinamica-gas-state",
           "courseId": "fluidi-termodinamica",
-          "targetLabel": "flusso e portata",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "In2s attraversano un tubo6L. Qual è la portata volumetrica?",
-          "answer": "3L/s=0,003m³/s.",
-          "feedback": "3L/s=0,003m³/s.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U5-01.05",
+          "prompt": "Un gas ideale ha n=0,25mol,T=350K e pressione assoluta80000Pa. ConR=8,31446261815324J/(mol K),trova il volume in m³.",
+          "answer": {
+            "value": 0.009093943488605106,
+            "unit": "m³"
+          },
+          "feedback": "V=nRT/p≈0,009093943488605106m³. Usa kelvin e pressione assoluta; il risultato è circa9,094L.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U5-01.05",
+            "lessonId": "ds-2026-u5-01"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         }
       ],
       "formulaSheet": [
@@ -5837,64 +5843,67 @@
       ],
       "diagnostic": [
         {
-          "id": "final-U6-01.01",
-          "objectiveId": "U6-01.01",
-          "familyId": "U6-01",
+          "id": "diag-elettricita-magnetismo-charge-rate",
           "courseId": "elettricita-magnetismo",
-          "targetLabel": "carica e unità",
-          "sourcePages": [
-            4
-          ],
-          "prompt": "Qual è l’unitàSI della carica e quale segno assegna il verso convenzionale del campo?",
-          "answer": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
-          "feedback": "Coulomb;il campo è definito tramite forza su carica di prova positiva.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U6-04.02",
+          "prompt": "Attraverso una sezione di filo passano0,45C in1,5s con verso convenzionale fissato. Qual è la corrente media?",
+          "answer": {
+            "value": 0.3,
+            "unit": "A"
+          },
+          "feedback": "I=Δq/Δt=0,45/1,5=0,3A. Un ampere è un coulomb al secondo.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U6-04.02",
+            "lessonId": "ds-2026-u6-04"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U6-02.01",
-          "objectiveId": "U6-02.01",
-          "familyId": "U6-02",
+          "id": "diag-elettricita-magnetismo-ohmic-load",
           "courseId": "elettricita-magnetismo",
-          "targetLabel": "energia potenziale",
-          "sourcePages": [
-            4
-          ],
-          "prompt": "Il potenziale sceltozero in un punto impone energia potenziale nulla per qualunque riferimento?",
-          "answer": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
-          "feedback": "No:lo zero è convenzionale;le differenze hanno significato dinamico.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U6-04.04",
+          "prompt": "Un resistore ohmico ideale da18Ω è collegato a9V costanti. Qual è la corrente?",
+          "answer": {
+            "value": 0.5,
+            "unit": "A"
+          },
+          "feedback": "I=V/R=9/18=0,5A. Il valore riguarda il solo resistore e le condizioni ohmiche dichiarate.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U6-04.04",
+            "lessonId": "ds-2026-u6-04"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U6-03.01",
-          "objectiveId": "U6-03.01",
-          "familyId": "U6-03",
+          "id": "diag-elettricita-magnetismo-stored-charge",
           "courseId": "elettricita-magnetismo",
-          "targetLabel": "induzione elettrostatica",
-          "sourcePages": [
-            4
-          ],
-          "prompt": "Una sfera conduttrice neutra isolata,senza contatto,si polarizza per induzione. Deve acquisire carica netta?",
-          "answer": "No:può separare cariche mantenendo totalezero.",
-          "feedback": "No:può separare cariche mantenendo totalezero.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U6-05.01",
+          "prompt": "Un condensatore ideale da3µF è mantenuto alla tensione8V. Quale modulo di carica ha ciascuna armatura in µC?",
+          "answer": {
+            "value": 24.0,
+            "unit": "µC"
+          },
+          "feedback": "Q=CV=3µF·8V=24µC,con segni opposti sulle due armature e carica totale del condensatore ideale nulla.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U6-05.01",
+            "lessonId": "ds-2026-u6-05"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         }
       ],
       "formulaSheet": [
@@ -8265,64 +8274,67 @@
       ],
       "diagnostic": [
         {
-          "id": "final-U4-01.01",
-          "objectiveId": "U4-01.01",
-          "familyId": "U4-01",
+          "id": "diag-onde-ottica-radiazioni-cycle-rate",
           "courseId": "onde-ottica-radiazioni",
-          "targetLabel": "mezzo materiale",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "Un’onda sonora può propagarsi nel vuoto del modello classico elementare?",
-          "answer": "No:è meccanica e richiede mezzo materiale.",
-          "feedback": "No:è meccanica e richiede mezzo materiale.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U4-01.04",
+          "prompt": "Un sensore registra7oscillazioni complete in2s di un segnale periodico. Determina la frequenza.",
+          "answer": {
+            "value": 3.5,
+            "unit": "Hz"
+          },
+          "feedback": "f=N/Δt=7/2=3,5Hz. Il periodo sarebbe2/7s,una grandezza diversa.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U4-01.04",
+            "lessonId": "ds-2026-u4-01"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U4-02.01",
-          "objectiveId": "U4-02.01",
-          "familyId": "U4-02",
+          "id": "diag-onde-ottica-radiazioni-wavelength",
           "courseId": "onde-ottica-radiazioni",
-          "targetLabel": "principio sovrapposizione",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "Due spostamenti istantanei−2mm e+5mm nello stesso punto di un mezzo lineare danno quale risultante?",
-          "answer": "+3mm;la somma è algebrica.",
-          "feedback": "+3mm;la somma è algebrica.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U4-01.07",
+          "prompt": "In un mezzo uniforme un’onda viaggia a10m/s con frequenza8Hz. Trova la distanza fra due creste consecutive.",
+          "answer": {
+            "value": 1.25,
+            "unit": "m"
+          },
+          "feedback": "λ=v/f=10/8=1,25m. Le creste consecutive sono punti in fase a un istante fissato.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U4-01.07",
+            "lessonId": "ds-2026-u4-01"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         },
         {
-          "id": "final-U4-03.01",
-          "objectiveId": "U4-03.01",
-          "familyId": "U4-03",
+          "id": "diag-onde-ottica-radiazioni-half-life",
           "courseId": "onde-ottica-radiazioni",
-          "targetLabel": "energia onda",
-          "sourcePages": [
-            3
-          ],
-          "prompt": "Una sorgente trasferisce0,8J in un impulso. Qual è l’energia dell’impulso e si può dedurre la potenza senza durata?",
-          "answer": "0,8J;no,serve l’intervallo temporale.",
-          "feedback": "0,8J;no,serve l’intervallo temporale.",
-          "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
-          "assessmentType": "original_short_answer_review_item",
+          "objectiveId": "U7-05.04",
+          "prompt": "Un campione ha attività iniziale960Bq ed emivita4h. Senza produzione di nuovi nuclei,quale attività media è attesa dopo8h?",
+          "answer": {
+            "value": 240.0,
+            "unit": "Bq"
+          },
+          "feedback": "Sono due emivite:960→480→240Bq. È un valore medio di attività,non una dose.",
+          "use": "diagnostic_without_score_claim",
+          "recoveryTarget": {
+            "objectiveId": "U7-05.04",
+            "lessonId": "ds-2026-u7-05"
+          },
           "scientificStatus": "AI_CHECKED",
           "editorialStatus": "DRAFT",
           "humanApproval": false,
-          "validationLimit": "No learner calibration or human editorial signature. Mapping coverage is structural, not evidence of mastery.",
-          "use": "diagnostic_without_score_claim"
+          "provenance": "Original entry diagnostic authored after leakage finding; distinct data/prompt from final and shown cases.",
+          "suitability": "NEEDS_HUMAN_REVIEW"
         }
       ],
       "formulaSheet": [

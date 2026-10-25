@@ -6,8 +6,8 @@ Destinatari: Codex A (integrazione e deploy) e Codex B (strumenti e plugin). Que
 
 - Baseline verificata sul PDF universitario Unicz, 306024 byte, SHA256 `2650dee32028c3414d67952c4be63db511fa184b10395b921caa9b76adb4c60f`, confrontata col programma UniBo2026/27. PDF MUR diretto HTTP403: nessuna uguaglianza dei byte ministeriali attestata.
 - 38 famiglie editoriali, 200 sotto-obiettivi dichiarati, 38 lezioni originali DRAFT: spiegazione, esempio svolto, pratica, trasferimento diverso, feedback, indizi, errori, riepilogo e trascrizione.
-- 200 domande finali originali, una per sotto-obiettivo; 38 selezionate per il finale compatto. Dati raggruppati per i quattro CoursePack, con diagnostica, formulario e recupero item→obiettivo→lezione.
-- 292 controlli PASS contro i file del worktree A: aritmetica selezionata, gate dei dati e controprove indipendenti su circuiti, onde, cinematica e gas ideale. Rapporto con hash dei sorgenti effettivamente eseguiti. Non equivale a 292 esercizi o 200 obiettivi certificati.
+- 200 domande finali originali, una per sotto-obiettivo; 38 selezionate per il finale compatto. Dati raggruppati per i quattro CoursePack, con12diagnostici originali distinti, formulario e recupero item→obiettivo→lezione.
+- 316 controlli PASS contro i file del worktree A: aritmetica selezionata, gate dei dati e controprove indipendenti su circuiti, onde, cinematica e gas ideale; inclusi valori e unità dei12nuovi diagnostici. Rapporto con hash dei sorgenti effettivamente eseguiti. Non equivale a316esercizi o200obiettivi certificati.
 - Fixture Goodnotes originale di4pagine, link e outline controllati, rendering ispezionato; copione sintetico non registrato. Inventario di30scenari con stato e criterio riproducibile.
 
 ## Stato esplicito dei quattro corsi
@@ -39,6 +39,8 @@ Gli oracoli DC usano numeri derivati a mano: serie12V/4Ω/8Ω→1A/12W; parallel
 Per l’onda si verificano direzione+x, quarto di lunghezza d’onda positivo, quarto di periodo negativo, ampiezza nulla e limite di un milione di periodi. B ha trovato e corretto la perdita di fase a lungo tempo; la controprova è stata ripetuta sui byte corretti, senza attribuire il finding a questa chat. Per cinematica sono distinti8m di spostamento e10m di cammino nel caso con inversione. Il gas usa R SI precisa, derivata indipendentemente da NA·kB; non è stata modificata la costante Core per adattarla ai dati.
 
 La review di B ha rilevato sei prompt che richiedevano i dati dell’esempio chiuso. Sono stati riscritti con tutti i dati nel testo, mantenendo risposte e problemi diversi. Il commit correttivo è `2b0f5850`; la chiusura del finding sul consumer richiede l’import della versione corretta e la prova UI di A/B. È stata inoltre chiarita la differenza fra stazionarietà statistica e campo istantaneo invariato.
+
+A ha poi individuato che la prima diagnostica riusava tre domande del finale per percorso. Il difetto è stato riprodotto: la vecchia diagnostica non consentiva un finale autonomo sugli stessi item. La nuova versione contiene12problemi originali con id`diag-*`,dati e prompt distinti dai200finali e dai114prompt di esempio/pratica/trasferimento. Cinque test verificano il caso corrente e rifiutano copia del finale anche con id nuovo,copia mascherata da punteggiatura e duplicazione interna. Il RED e il GREEN sono conservati. La normalizzazione confronta testo,non garantisce da sola tutta l’indipendenza semantica o la validità pedagogica. Import e consumer corretti vanno ancora verificati da A.
 
 ## Goodnotes e REA: fatti e limiti
 

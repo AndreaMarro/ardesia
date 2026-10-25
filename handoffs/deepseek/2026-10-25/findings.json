@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T21:47:41.811265+00:00",
+  "updatedAt": "2026-10-25T21:51:37.797262+00:00",
   "findings": [
     {
       "id": "DS-01",
@@ -68,6 +68,16 @@
       "reportedBy": "DeepSeek",
       "status": "OBSERVED_VERSION_LIMIT",
       "remaining": "Active app mode and actual30local flows remain not observed."
+    },
+    {
+      "id": "DS-08",
+      "severity": "P1",
+      "finding": "Initial diagnostics reused the first final prompts,leaking the proposed final assessment",
+      "reportedBy": "CodexA",
+      "status": "FIXED_SOURCE_PENDING_OWNER_IMPORT_AND_CONSUMER_VERIFICATION",
+      "fix": "Twelve original diagnostic prompts/ids/data,three per course,distinct from200final items and114shown lesson prompts.",
+      "proof": "evidence/diagnostic-separation-red.log then green.log;5tests include final-copy and punctuation-disguise negatives.",
+      "remaining": "Text normalization detects duplicates,not all semantic teaching leakage; human suitability review remains pending."
     }
   ],
   "humanApproval": false

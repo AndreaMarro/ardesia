@@ -1,0 +1,43 @@
+E.FF
+======================================================================
+ERROR: test_current_diagnostics_are_new_cases (__main__.SeparationTest.test_current_diagnostics_are_new_cases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-10-25/leggi-il-mandato-precedente-insieme-all-2/work/ardesia-deepseek/handoffs/deepseek/2026-10-25/test_editorial_separation.py", line 38, in test_current_diagnostics_are_new_cases
+    self.assertTrue(check_separation(self.courses))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/andreamarro/Documents/Codex/2026-10-25/leggi-il-mandato-precedente-insieme-all-2/work/ardesia-deepseek/handoffs/deepseek/2026-10-25/test_editorial_separation.py", line 23, in check_separation
+    if len(set(ids))!=12 or not all(i.startswith('diag-') for i in ids):raise ValueError('new_diagnostic_ids_required')
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: new_diagnostic_ids_required
+
+======================================================================
+FAIL: test_punctuation_only_disguise_is_rejected (__main__.SeparationTest.test_punctuation_only_disguise_is_rejected)
+----------------------------------------------------------------------
+ValueError: new_diagnostic_ids_required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-10-25/leggi-il-mandato-precedente-insieme-all-2/work/ardesia-deepseek/handoffs/deepseek/2026-10-25/test_editorial_separation.py", line 46, in test_punctuation_only_disguise_is_rejected
+    with self.assertRaisesRegex(ValueError,'diagnostic_leaks_final_or_shown_case'):check_separation(c)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "diagnostic_leaks_final_or_shown_case" does not match "new_diagnostic_ids_required"
+
+======================================================================
+FAIL: test_reused_final_is_rejected_even_with_a_fresh_id (__main__.SeparationTest.test_reused_final_is_rejected_even_with_a_fresh_id)
+----------------------------------------------------------------------
+ValueError: new_diagnostic_ids_required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/andreamarro/Documents/Codex/2026-10-25/leggi-il-mandato-precedente-insieme-all-2/work/ardesia-deepseek/handoffs/deepseek/2026-10-25/test_editorial_separation.py", line 42, in test_reused_final_is_rejected_even_with_a_fresh_id
+    with self.assertRaisesRegex(ValueError,'diagnostic_leaks_final_or_shown_case'):check_separation(c)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "diagnostic_leaks_final_or_shown_case" does not match "new_diagnostic_ids_required"
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.043s
+
+FAILED (failures=2, errors=1)

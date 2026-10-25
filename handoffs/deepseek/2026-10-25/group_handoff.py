@@ -2,6 +2,8 @@
 import hashlib
 import json
 from build_content import ROOT,dump
+from diagnostics import diagnostics_for
+from test_editorial_separation import check_separation
 
 FORMULAS={
  'strumenti-meccanica':[
@@ -50,7 +52,7 @@ def main():
         lessons=[json.loads((ROOT/'content'/f"{f['id']}.json").read_text()) for f in families]
         atomic=[x for x in items if x['courseId']==path]
         compact=[next(x for x in atomic if x['familyId']==f['id']) for f in families]
-        diagnostics=[{**x,'use':'diagnostic_without_score_claim'} for x in compact[:3]]
+        diagnostics=diagnostics_for(path)
         groups.append({'pathId':path,'editorialStatus':'DRAFT','humanApproval':False,'courseComplete':False,
           'lessons':lessons,'finalAssessment':compact,'atomicFinalAssessment':atomic,'diagnostic':diagnostics,
           'formulaSheet':[{'name':n,'expression':e,'domain':d} for n,e,d in formulas],
@@ -77,9 +79,11 @@ def main():
     assert not ({x['prompt'] for x in items}&source_prompts)
     for g in groups:
         assert not g['humanApproval'] and not g['courseComplete']
-    dump('evidence/coverage-validation.json',{'status':'PASS','assertions':7,'families':38,'atomicItems':200,'uniqueFinalPrompts':200,
+    check_separation(groups)
+    dump('evidence/coverage-validation.json',{'status':'PASS','assertions':8,'families':38,'atomicItems':200,'uniqueFinalPrompts':200,
       'finalPromptEqualsWorkedPracticeTransfer':0,'compactFinalCount':sum(len(g['finalAssessment']) for g in groups),'humanApproval':False,'completedObjectives':0,
-      'limits':'Structural traceability and exact text separation only, not comprehensive scientific or pedagogical validation.'})
+      'diagnosticCount':12,'diagnosticFinalOrShownNormalizedPromptCollisions':0,'diagnosticFinalIdCollisions':0,
+      'limits':'Structural traceability and normalized text separation only, not comprehensive scientific or pedagogical validation.'})
     print('4 courses;38 families;200 targets/final prompts; compact final38; no completed target claim')
 
 if __name__=='__main__':main()
