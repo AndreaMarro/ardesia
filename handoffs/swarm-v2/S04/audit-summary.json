@@ -1,0 +1,398 @@
+{
+  "auditVersion": "s04-quality-1",
+  "bankSha256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896",
+  "editorialBaseline": {
+    "total": 200,
+    "meaning": "internal_editorial_subobjectives",
+    "delta": 0
+  },
+  "summary": {
+    "records": 4000,
+    "distinctRecords": 4000,
+    "templateFamilies": 250,
+    "quarantined": 23,
+    "verifiedNumeric": 495,
+    "unverifiedNumeric": 2151,
+    "failedNumeric": 0,
+    "notApplicableNumeric": 1354
+  },
+  "courses": [
+    {
+      "id": "strumenti-meccanica",
+      "title": "Strumenti e meccanica",
+      "unitIds": [
+        "U1",
+        "U2"
+      ],
+      "requiredObjectives": 52,
+      "records": 1088,
+      "quarantined": 0
+    },
+    {
+      "id": "fluidi-termodinamica",
+      "title": "Fluidi e termodinamica",
+      "unitIds": [
+        "U3",
+        "U5"
+      ],
+      "requiredObjectives": 57,
+      "records": 1472,
+      "quarantined": 0
+    },
+    {
+      "id": "elettricita-magnetismo",
+      "title": "Elettricità e magnetismo",
+      "unitIds": [
+        "U6"
+      ],
+      "requiredObjectives": 33,
+      "records": 800,
+      "quarantined": 10
+    },
+    {
+      "id": "onde-ottica-radiazioni",
+      "title": "Onde, ottica e radiazioni",
+      "unitIds": [
+        "U4",
+        "U7"
+      ],
+      "requiredObjectives": 58,
+      "records": 640,
+      "quarantined": 13
+    }
+  ],
+  "issueCounts": {
+    "missing_solution_steps": 23,
+    "unsupported_check": 2151
+  },
+  "limitations": [
+    "Controprova aritmetica distinta dal generatore; modello fisico non certificato.",
+    "I controlli non supportati non sono verificati; nessuna approvazione umana implicita.",
+    "I parametri strutturati non sono estratti dal testo: allineamento ai dati del problema da rivedere.",
+    "Duplicati testuali normalizzati, non prova di unicità semantica.",
+    "Famiglie di generazione, record e sotto-obiettivi editoriali sono conteggi distinti."
+  ],
+  "items": [
+    {
+      "id": "u4-beats-envelope-16",
+      "version": 1,
+      "title": "Ricavare la frequenza emessa da due osservazioni Doppler",
+      "unitId": "U4",
+      "familyId": "U4-beats-envelope",
+      "contentSha256": "ac11808038e062421259cb8983fd88242eac81a2d18b6b2596ca690758262fb6",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-coherent-constructive-06",
+      "version": 1,
+      "title": "Collegare il cambiamento della fase relativa alla variazione dell’intensità",
+      "unitId": "U4",
+      "familyId": "U4-coherent-constructive",
+      "contentSha256": "49f1405a7dd29984cec582134a9ffbd7b744547fe33bbf960db1f199d54033bc",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-incoherent-sound-sum-06",
+      "version": 1,
+      "title": "Distinguere intensità rimasta e intensità rimossa per ricavare un rapporto fra sorgenti",
+      "unitId": "U4",
+      "familyId": "U4-incoherent-sound-sum",
+      "contentSha256": "87fffb63a5bc239ecd7d9507e7d4e60546f547deb84472ce2c145a8b537ec377",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-oscillator-energy-03",
+      "version": 1,
+      "title": "Spiegare la diminuzione dell’ampiezza per smorzamento",
+      "unitId": "U4",
+      "familyId": "U4-oscillator-energy",
+      "contentSha256": "090f28d350b40bf19e8d2b82493ac2bb30e0452a1c588344bedb8f094b9b2be3",
+      "numericStatus": "NOT_APPLICABLE",
+      "issues": [
+        "missing_solution_steps"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-sound-decibel-08",
+      "version": 1,
+      "title": "Interpretare un livello di zero decibel",
+      "unitId": "U4",
+      "familyId": "U4-sound-decibel",
+      "contentSha256": "82dc65b9bf5b645912b61417931e052f213e0c7a65fc2699e447517404313636",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-wave-amplitude-energy-06",
+      "version": 1,
+      "title": "Confrontare potenze a spostamento massimo costante",
+      "unitId": "U4",
+      "familyId": "U4-wave-amplitude-energy",
+      "contentSha256": "3d38979622a78b1d5b705e5a7adc88a42d7a066f15963c10110f37e59223738b",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u4-wave-phase-time-03",
+      "version": 1,
+      "title": "Convertire un periodo in frequenza",
+      "unitId": "U4",
+      "familyId": "U4-wave-phase-time",
+      "contentSha256": "d786f71b71c96866da23113e8936b60cf6221ff42987387a05e39144f415a087",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-joule-power-08",
+      "version": 1,
+      "title": "Confrontare le correnti tramite la potenza assorbita",
+      "unitId": "U6",
+      "familyId": "U6-joule-power",
+      "contentSha256": "bc259876f29cb3f5b503a2dd7f28209b7d4ca370c860716ded6b535d2e5d2e54",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-orthogonal-electric-fields-06",
+      "version": 1,
+      "title": "Ricavare la direzione della risultante da componenti ortogonali uguali",
+      "unitId": "U6",
+      "familyId": "U6-orthogonal-electric-fields",
+      "contentSha256": "7295220a8142f6237e27c6b254a7cd23dc22c262ddbec03b0c1a9a61417b94e7",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-parallel-capacitors-06",
+      "version": 1,
+      "title": "Applicare la conservazione algebrica della carica nel collegamento di condensatori",
+      "unitId": "U6",
+      "familyId": "U6-parallel-capacitors",
+      "contentSha256": "b0b1c93d96726cdc75b2f103b09ba1a363982b838d650566c010f890d75e2903",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-plane-capacitance-08",
+      "version": 1,
+      "title": "Determinare modulo e verso del campo fra armature",
+      "unitId": "U6",
+      "familyId": "U6-plane-capacitance",
+      "contentSha256": "72b4665bccb6481ef83474bc509293915dcb7c5350a376cfdb3856c7d6703028",
+      "numericStatus": "NOT_APPLICABLE",
+      "issues": [
+        "missing_solution_steps"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-point-electric-potential-08",
+      "version": 1,
+      "title": "Identificare una superficie equipotenziale sferica",
+      "unitId": "U6",
+      "familyId": "U6-point-electric-potential",
+      "contentSha256": "6443ee349e8c3ccb01f106f5dc720f255ea3e6798b3e9930d5e30fd14aa0125c",
+      "numericStatus": "NOT_APPLICABLE",
+      "issues": [
+        "missing_solution_steps"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-series-capacitors-06",
+      "version": 1,
+      "title": "Confrontare la capacità equivalente degli stessi componenti in due topologie",
+      "unitId": "U6",
+      "familyId": "U6-series-capacitors",
+      "contentSha256": "f3f0a90993b08e14c95cd3a727acaf8634809d4ea78d0974b5a314313dfbf1c9",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-symmetric-electric-potential-06",
+      "version": 1,
+      "title": "Cambiare lo zero del potenziale mantenendo invariate le differenze fisiche",
+      "unitId": "U6",
+      "familyId": "U6-symmetric-electric-potential",
+      "contentSha256": "b51000eeff8cbedc7acf9e23ec5b8ef560986079e70cf986846e7774511dabd3",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-two-parallel-resistors-06",
+      "version": 1,
+      "title": "Collegare la rimozione di un ramo alla corrente totale a tensione fissata",
+      "unitId": "U6",
+      "familyId": "U6-two-parallel-resistors",
+      "contentSha256": "db93293dd7228f7bdf120ad8a7588d489c26e12109e06d5abb277b8303b0be3b",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-two-series-resistors-06",
+      "version": 1,
+      "title": "Riconoscere l’effetto di un collegamento ideale che bypassa un resistore",
+      "unitId": "U6",
+      "familyId": "U6-two-series-resistors",
+      "contentSha256": "9f6cdfd918026b711e161ef92b081dbffe16e565cc5df0b81f49d8b4193c4e85",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u6-work-potential-difference-08",
+      "version": 1,
+      "title": "Calcolare energia cinetica e segno per un elettrone",
+      "unitId": "U6",
+      "familyId": "U6-work-potential-difference",
+      "contentSha256": "022b310a3b42309bfd23f544fe9b842afc5b0df97dd1f0bc7f0f577e27a789ed",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-beer-transmitted-intensity-16",
+      "version": 1,
+      "title": "attenuazione due percorsi e media areale",
+      "unitId": "U7",
+      "familyId": "U7-beer-transmitted-intensity",
+      "contentSha256": "691fce3148149bbcaa97b5eec49876fb50f790b307fbfef4c1baf0a72f4198b2",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-infer-attenuation-coefficient-16",
+      "version": 1,
+      "title": "attenuazione con fondo costante da tre spessori",
+      "unitId": "U7",
+      "familyId": "U7-infer-attenuation-coefficient",
+      "contentSha256": "965b159b9a4852a9c4ec0d1075b05c22ae4a84e7005c74c31140c435fb0233a6",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-optical-depth-03",
+      "version": 1,
+      "title": "Ricavare un indice dalla legge fornita",
+      "unitId": "U7",
+      "familyId": "U7-optical-depth",
+      "contentSha256": "1c753d70026ec01a6062b895327efc004fb02178ce1f5ca874bfdd88befdd6df",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-radioactive-survivors-16",
+      "version": 1,
+      "title": "ricavare emivita e popolazione iniziale",
+      "unitId": "U7",
+      "familyId": "U7-radioactive-survivors",
+      "contentSha256": "edd71b5e48025d864a146ef1b6cdb3a29dc2ab9de9af61c365014069565b0479",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-snell-refracted-sine-06",
+      "version": 1,
+      "title": "Seguire due rifrazioni attraverso una lastra",
+      "unitId": "U7",
+      "familyId": "U7-snell-refracted-sine",
+      "contentSha256": "8a2f13403e253e2ac935cc53e04c33114613ea46e8100a0ddb9df9adce5b7255",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    },
+    {
+      "id": "u7-wavelength-in-medium-04",
+      "version": 1,
+      "title": "Calcolare la velocità della luce nel mezzo",
+      "unitId": "U7",
+      "familyId": "U7-wavelength-in-medium",
+      "contentSha256": "d32bb0c6e634a8bd2c33d4936fa6ceeac4ae7302233a89840608a86bc1d22bd8",
+      "numericStatus": "NOT_VERIFIED",
+      "issues": [
+        "missing_solution_steps",
+        "unsupported_check"
+      ],
+      "quarantined": true
+    }
+  ],
+  "fullReportSha256": "bf0987f71bd1c9ddb2993ea2035d35483710eae7c9bd954866fc50ffb56050a1",
+  "fullReportRecords": 4000
+}

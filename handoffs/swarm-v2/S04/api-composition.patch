@@ -1,0 +1,13 @@
+diff --git a/services/study-api/study_api/app.py b/services/study-api/study_api/app.py
+index 38736058..df6a0c68 100644
+--- a/services/study-api/study_api/app.py
++++ b/services/study-api/study_api/app.py
+@@ -531,6 +531,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
+     install_diary_routes(app, store_dependency, authenticate)
+     from .question_bank_routes import install_question_bank_routes
+     install_question_bank_routes(app, store_dependency, authenticate)
++    from lessonos.study.assessment_quality.routes import install_assessment_quality_routes
++    install_assessment_quality_routes(app, store_dependency, authenticate)
+     from .calendar_routes import install_calendar_routes
+     from lessonos.study.calendar_mock import MockCalendar
+     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
