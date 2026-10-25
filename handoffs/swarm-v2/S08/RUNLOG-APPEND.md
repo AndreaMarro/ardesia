@@ -12,7 +12,7 @@ Errori/correzioni: la review tecnica di un secondo agente ha riprodotto il cue p
 
 Apprendimento: il timestamp di una registrazione e l’istante di esistenza di una versione oggetto sono riferimenti diversi. Un consumer deve mantenere entrambi solo quando l’associazione è verificata; cambiare un numero nell’URL può invalidare un legame autentico. Un esito ignoto del comando richiede retry immutabile, mentre un GET fallito prima della scrittura deve lasciare correggibile la bozza.
 
-Prove finali/SHA/PR e stato integrato o meno: vedere README e manifest della consegna S08. Nessun merge/deploy compiuto da S08. Ascolto umano, Safari fisico, efficacia didattica e remoto restano separati dai test sintetici.
+Suite Web completa finale427/427PASS,62file; buildPASS,9nuovi test e23/23controprove precedenti distinti e non sommati. PR313in bozza, prodotto0568864314026715263f12332d87c10f203cab19, commit successivi solo prove/handoff. Prove finali/SHA/PR e stato integrato o meno: vedere README e manifest della consegna S08. Nessun merge/deploy compiuto da S08. Ascolto umano, Safari fisico, efficacia didattica e remoto restano separati dai test sintetici.
 
 ## Tre prossimi batch
 

@@ -1,5 +1,7 @@
 # S08 — catalogo registrazioni e replay contestuale
 
+PR in bozza: [313](https://github.com/AndreaMarro/ardesia/pull/313). Commit implementativo0568864314026715263f12332d87c10f203cab19; i commit successivi riguardano soltanto prove/handoff.
+
 Stato dell'incremento: IMPLEMENTATO / TESTATO LOCALMENTE, integrazione e distribuzione non eseguite da S08. La validazione completa e l'esito PR sono da leggere insieme alla SHA della consegna; una PR aperta non è DONE. Il mandato video/remoto complessivo resta incompleto.
 
 ## Risultato utilizzabile
@@ -10,7 +12,7 @@ Il comando principale apre il player Studio sulla scena canonica verificata con 
 
 WebVTT manuale preparato dopo rilettura della fonte e dell'indice dal Core; fonte ritirata blocca export/player. Le revisioni precedenti rimangono esplicite. La vista di fonti/allegati ricontrolla i permessi della revisione. Non registra eventi “guardato=imparato”.
 
-Build Web,9nuovi test Web,18test dominio/regressioni e1testHTTP: PASS. Chromium desktop/mobile finale: PASS;12controlli funzionali, nessun erroreJS/console inatteso. La suite Web ampia locale ha fallimenti conservati, non è verde: [dettagli e comandi](VALIDATION.md).
+Build Web,9nuovi test Web,18test dominio/regressioni e1testHTTP: PASS. Chromium desktop/mobile finale: PASS;12controlli funzionali, nessun erroreJS/console inatteso. La suite Web completa finale è427/427PASS; i primi tentativi falliti restano conservati: [dettagli e comandi](VALIDATION.md).
 
 ## Codice, proprietà e compatibilità
 
