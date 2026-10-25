@@ -50,7 +50,8 @@ test("lesson source reader renders the declared transcript while preserving the 
   expect(await screen.findByText(transcript)).toBeTruthy();
   expect(screen.getByText("R2 · Pressione relativa e assoluta")).toBeTruthy();
   expect(document.querySelector(".source-viewer")?.textContent).not.toContain('"schema"');
-  expect(screen.getByText(/Revisione revision-/)).toBeTruthy();
+  // The compact header shows only a short revision prefix; the exact ID lives in provenance.
+  expect(screen.getByText(resource.revisionId)).toBeTruthy();
 });
 
 test("invalid lesson passage fails closed with a readable title and no raw JSON display", async () => {
