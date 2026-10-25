@@ -20,15 +20,16 @@ export function PublicCoursePlayer(){
   <details className="course-baseline"><summary>Programma, copertura e provenienza</summary><p>Baseline {learningCourses.baseline.year}: {learningCourses.baseline.familyCount} famiglie editoriali e {learningCourses.baseline.requiredObjectives} sotto-obiettivi. Una famiglia non vale un singolo obiettivo e una demo non equivale a un corso completo.</p><p>Fonte universitaria verificata, accesso diretto al PDF MUR non riuscito; nessuna uguaglianza dei byte con il file ministeriale attestata.</p><p><a href={learningCourses.baseline.source.pdf} target="_blank" rel="noreferrer">Syllabus ospitato dall’università</a> · <a href={learningCourses.baseline.source.crosscheck} target="_blank" rel="noreferrer">Programma universitario 2026/27</a></p></details>
  </main><footer><a href="/#contatto">Informazioni sui microcorsi</a><span>Ardesia · Fisica da capire.</span></footer></div>;
 }
-export function CourseScope({course,allowLocalDrafts=true,onCommit}:{course:CourseRecord;allowLocalDrafts?:boolean;onCommit?:(value:ActivityCommit|null)=>void}){
+export function CourseScope({course,allowLocalDrafts=true,onCommit,initialActivityId}:{course:CourseRecord;allowLocalDrafts?:boolean;onCommit?:(value:ActivityCommit|null)=>void;initialActivityId?:string}){
  const [cached]=useState<ReturnType<typeof readCourseDraft>>(()=>allowLocalDrafts?readCourseDraft(course):{kind:'none'});
  const query=new URLSearchParams(location.search),scoped=allowLocalDrafts||query.get('courseLessonPath')===course.pathId,requested=scoped?query.get(allowLocalDrafts?'lezione':'courseLesson'):null;
- const initial=course.lessons.find(l=>l.id===(requested||(cached.kind==='current'?cached.data.lessonId:'')))||course.lessons[0];
+ const retryLesson=initialActivityId?course.lessons.find(l=>l.activityId===initialActivityId):undefined;
+ const initial=retryLesson||course.lessons.find(l=>l.id===(requested||(cached.kind==='current'?cached.data.lessonId:'')))||course.lessons[0];
  const [selected,setSelected]=useState(initial?.id);
  const lesson=course.lessons.find(l=>l.id===selected);
  if(!lesson)return <><h1>Materiali in preparazione</h1><p>Nessuna lezione rilasciata per questo percorso.</p></>;
- const revision=scoped?query.get(allowLocalDrafts?'rev':'courseRev'):null;
- if((requested&&!course.lessons.some(l=>l.id===requested))||(revision&&revision!==lesson.lessonRef.sha256))return <><h1>Riferimento non disponibile</h1><p>La revisione richiesta non è disponibile. Non la sostituiamo con un’altra lezione.</p><a href={'/corsi/'+course.pathId+'/'}>Apri la versione corrente</a></>;
+ const revision=scoped&&!retryLesson?query.get(allowLocalDrafts?'rev':'courseRev'):null;
+ if((!retryLesson&&requested&&!course.lessons.some(l=>l.id===requested))||(revision&&revision!==lesson.lessonRef.sha256))return <><h1>Riferimento non disponibile</h1><p>La revisione richiesta non è disponibile. Non la sostituiamo con un’altra lezione.</p><a href={'/corsi/'+course.pathId+'/'}>Apri la versione corrente</a></>;
  return <><div className="course-overview"><p className="section-meta">{course.unitIds.join(' + ')} · percorso in costruzione</p><h1>{course.title}</h1><p>Un passaggio originale da studiare e provare. Completezza del corso: {course.completedObjectives}/{course.requiredObjectives} sotto-obiettivi con tutte le prove richieste. Stato editoriale DRAFT, senza approvazione umana attestata.</p></div>
  <nav className="course-sequence" aria-label="Sequenza delle lezioni">{course.lessons.map((l,i)=><button key={l.id} aria-pressed={l.id===selected} onClick={()=>{setSelected(l.id);onCommit?.(null);const u=new URL(location.href);u.searchParams.set(allowLocalDrafts?'lezione':'courseLesson',l.id);u.searchParams.delete(allowLocalDrafts?'rev':'courseRev');if(!allowLocalDrafts)u.searchParams.set('courseLessonPath',course.pathId);history.replaceState(null,'',u);}}>{i+1}. {l.title}</button>)}</nav>
  <Lesson key={lesson.id} course={course} lesson={lesson} allowLocalDrafts={allowLocalDrafts} onCommit={onCommit}/>

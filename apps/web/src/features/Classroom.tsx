@@ -49,10 +49,11 @@ function ClassroomScope({
   const draftScope = courseScope(me, data.edition);
   // A parent's selection may arrive before its own course-change effect clears
   // it. Never seed a destination draft with a retry from another course/activity.
-  const retryParentId = parentId && data.submissions.some(submission =>
-    submission.id === parentId && submission.student_id === me.id &&
-    submission.activity_id === activityId,
-  ) ? parentId : null;
+  const retrySubmission = parentId ? data.submissions.find(submission =>
+    submission.id === parentId && submission.student_id === me.id,
+  ) : undefined;
+  const retryParentId = retrySubmission?.activity_id === (commit?.activityId || activityId)
+    ? retrySubmission.id : null;
   const composer = useResourceComposer({
     actorId: me.id,
     editionId: data.edition.id,
@@ -90,7 +91,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit}/></Suspense>) : activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
@@ -187,6 +188,7 @@ function ClassroomScope({
                 prediction={commit?.prediction}
                 activityReady={commit!==null}
                 requireProcedure
+                parentScopeStrict={data.edition.packId?.startsWith("sf-")}
                 me={me}
                 source={source}
                 parentId={retryParentId}

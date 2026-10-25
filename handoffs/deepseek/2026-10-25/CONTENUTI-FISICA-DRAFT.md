@@ -1815,4 +1815,3 @@ Risposta proposta: q=24cm,m=−1;immagine reale e capovolta.
 **U7-07.06** Una lente convergente ha oggetto reale dentro il fuoco. Quale natura e orientazione dell’immagine nel modello paraxiale?
 
 Risposta proposta: Virtuale,diritta e ingrandita;per p=f l’immagine non è a distanza finita.
-

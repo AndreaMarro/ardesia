@@ -1,0 +1,21 @@
+..127.0.0.1 - - [25/Oct/2026 23:11:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2026 23:11:22] "GET /esperienza/?percorso=fluidi-termodinamica HTTP/1.1" 200 -
+127.0.0.1 - - [25/Oct/2026 23:11:22] code 404, message No route in this static candidate
+127.0.0.1 - - [25/Oct/2026 23:11:22] "GET /study/me HTTP/1.1" 404 -
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'No route in this static candidate'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+127.0.0.1 - - [25/Oct/2026 23:11:22] code 404, message No route in this static candidate
+127.0.0.1 - - [25/Oct/2026 23:11:22] "GET /assets/ HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2026 23:11:22] code 404, message No route in this static candidate
+127.0.0.1 - - [25/Oct/2026 23:11:22] "GET /%2e%2e/secret HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2026 23:11:22] code 404, message No route in this static candidate
+127.0.0.1 - - [25/Oct/2026 23:11:22] "GET /esperienza/unknown HTTP/1.1" 404 -
+127.0.0.1 - - [25/Oct/2026 23:11:22] code 404, message No API in this static candidate
+127.0.0.1 - - [25/Oct/2026 23:11:22] "POST /study/login HTTP/1.1" 404 -
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'No API in this static candidate'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+...............
+----------------------------------------------------------------------
+Ran 17 tests in 0.937s
+
+OK

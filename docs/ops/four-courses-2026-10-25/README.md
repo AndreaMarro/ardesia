@@ -40,3 +40,9 @@ Errori corretti: costanteR arrotondata vsCoreSI esplicitata/corretta; diagnostic
 Il vecchio `packages/engine/bin/review.sh` usa account/token ladder e `--dangerously-skip-permissions`: non eseguito, in conflitto col perimetro corrente. Review separataB + root e controprove sostituiscono il meccanismo legacy; non costituiscono approvazione scientifica/editoriale umana.
 
 ReviewB ha riprodotto l’esposizione DRAFT tramite coursepack raw anonimo e course-learning studente; entrambi corretti sul server,4path RED→GREEN. Revoca usa tutte le sessioni del principal, compreso il cookie emesso dallo scambio. Nessuna sicurezza delegata al solo filtroUI.
+
+## Correzioni prima della seconda CI
+
+Retry cinematica→Hooke verificato col vero editor di consegna: parent del modello originale conservato per retry e rimosso cambiando modello. Pendingimmutabile conserva retry esatto. I38passaggi qualitativi sono consultabili, non ancora consegne canoniche dedicate; lessonRef/fase non sono ancora activityEvidence tipizzata (la ricevuta identifica pack/model/parametri). Questi limiti impediscono COMPLETE.
+
+CIiniziale: Engine/Studio/MCP/marketingverdi; problemi veri metadata/login, whitespacePDF/log e dueassertregistry2→6corretti. Ripristinato404coursepackmissing, regredito a409dal binding anticipato. ExportcheckUbuntu ha rilevato differenza; local3.13/3.14/hashseed identici, causa nonstabilita. TrasportoUI esplicito12cifre/sub1e-14→0 con9hashsourceesatti, nessuna modifica della precisioneCore/HTTP; confronto byte rimane esatto. Nuovi17contrattiPASS e4HTTPprivilegiriprodotti indipendentementeB. Non si elimina il gate quando segnala stale.

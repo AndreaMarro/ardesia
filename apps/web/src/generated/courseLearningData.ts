@@ -499,7 +499,7 @@ export const courseLearningData = {
               "version": 1,
               "value": 0.075,
               "unit": "m",
-              "elasticEnergyJ": 0.22499999999999998,
+              "elasticEnergyJ": 0.225,
               "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
               "fixedQuantity": "forza applicata e rigidità della molla",
               "maxExtension": 0.5,
@@ -661,7 +661,7 @@ export const courseLearningData = {
                 "version": 1,
                 "value": 0.3,
                 "unit": "m",
-                "elasticEnergyJ": 0.8999999999999999,
+                "elasticEnergyJ": 0.9,
                 "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
                 "fixedQuantity": "forza applicata e rigidità della molla",
                 "maxExtension": 0.5,
@@ -680,7 +680,7 @@ export const courseLearningData = {
                 "version": 1,
                 "value": 0.15,
                 "unit": "m",
-                "elasticEnergyJ": 0.44999999999999996,
+                "elasticEnergyJ": 0.45,
                 "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
                 "fixedQuantity": "forza applicata e rigidità della molla",
                 "maxExtension": 0.5,
@@ -699,7 +699,7 @@ export const courseLearningData = {
                 "version": 1,
                 "value": 0.075,
                 "unit": "m",
-                "elasticEnergyJ": 0.22499999999999998,
+                "elasticEnergyJ": 0.225,
                 "calculatedVariable": "Allungamento rispetto alla lunghezza a riposo",
                 "fixedQuantity": "forza applicata e rigidità della molla",
                 "maxExtension": 0.5,
@@ -841,7 +841,7 @@ export const courseLearningData = {
               "value": 6.0,
               "unit": "m",
               "speedMS": 3.0,
-              "displacementM": 7.211102550927978,
+              "displacementM": 7.21110255093,
               "samples": [
                 {
                   "timeS": 0.0,
@@ -1477,7 +1477,7 @@ export const courseLearningData = {
               "accelerationYMS2": -2,
               "value": -3.0,
               "unit": "m",
-              "speedMS": 4.47213595499958,
+              "speedMS": 4.472135955,
               "displacementM": 8.0,
               "samples": [
                 {
@@ -2124,7 +2124,7 @@ export const courseLearningData = {
                 "value": -4.0,
                 "unit": "m",
                 "speedMS": 2.0,
-                "displacementM": 5.656854249492381,
+                "displacementM": 5.65685424949,
                 "samples": [
                   {
                     "timeS": 0.0,
@@ -2752,7 +2752,7 @@ export const courseLearningData = {
                 "accelerationYMS2": -2,
                 "value": -8.0,
                 "unit": "m",
-                "speedMS": 4.47213595499958,
+                "speedMS": 4.472135955,
                 "displacementM": 8.0,
                 "samples": [
                   {
@@ -3382,7 +3382,7 @@ export const courseLearningData = {
                 "value": 6.0,
                 "unit": "m",
                 "speedMS": 3.0,
-                "displacementM": 7.211102550927978,
+                "displacementM": 7.21110255093,
                 "samples": [
                   {
                     "timeS": 0.0,
@@ -4640,7 +4640,7 @@ export const courseLearningData = {
                 "value": 1.0,
                 "unit": "m",
                 "speedMS": 2.0,
-                "displacementM": 5.656854249492381,
+                "displacementM": 5.65685424949,
                 "samples": [
                   {
                     "timeS": 0.0,
@@ -5268,7 +5268,7 @@ export const courseLearningData = {
                 "accelerationYMS2": -2,
                 "value": -3.0,
                 "unit": "m",
-                "speedMS": 4.47213595499958,
+                "speedMS": 4.472135955,
                 "displacementM": 8.0,
                 "samples": [
                   {
@@ -5898,7 +5898,7 @@ export const courseLearningData = {
                 "value": 11.0,
                 "unit": "m",
                 "speedMS": 3.0,
-                "displacementM": 7.211102550927978,
+                "displacementM": 7.21110255093,
                 "samples": [
                   {
                     "timeS": 0.0,
@@ -7644,7 +7644,7 @@ export const courseLearningData = {
           "practice": {
             "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
             "answer": {
-              "value": 0.02494338785445972,
+              "value": 0.0249433878545,
               "unit": "m³"
             },
             "feedback": [
@@ -7664,10 +7664,10 @@ export const courseLearningData = {
                 "temperatureK": 300,
                 "pressurePa": 100000
               },
-              "value": 0.02494338785445972,
+              "value": 0.0249433878545,
               "unit": "m³",
-              "volumeM3": 0.02494338785445972,
-              "volumeL": 24.94338785445972,
+              "volumeM3": 0.0249433878545,
+              "volumeL": 24.9433878545,
               "calculatedVariable": "Volume del gas ideale",
               "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
               "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7676,19 +7676,19 @@ export const courseLearningData = {
               "pvSamples": [
                 {
                   "pressurePa": 50000,
-                  "volumeM3": 0.04988677570891944
+                  "volumeM3": 0.0498867757089
                 },
                 {
                   "pressurePa": 100000,
-                  "volumeM3": 0.02494338785445972
+                  "volumeM3": 0.0249433878545
                 },
                 {
                   "pressurePa": 150000,
-                  "volumeM3": 0.01662892523630648
+                  "volumeM3": 0.0166289252363
                 },
                 {
                   "pressurePa": 200000,
-                  "volumeM3": 0.01247169392722986
+                  "volumeM3": 0.0124716939272
                 }
               ]
             }
@@ -7696,7 +7696,7 @@ export const courseLearningData = {
           "transfer": {
             "prompt": "Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
             "answer": {
-              "value": 0.00831446261815324,
+              "value": 0.00831446261815,
               "unit": "m³"
             },
             "feedback": [
@@ -7716,10 +7716,10 @@ export const courseLearningData = {
                 "temperatureK": 400,
                 "pressurePa": 200000
               },
-              "value": 0.00831446261815324,
+              "value": 0.00831446261815,
               "unit": "m³",
-              "volumeM3": 0.00831446261815324,
-              "volumeL": 8.31446261815324,
+              "volumeM3": 0.00831446261815,
+              "volumeL": 8.31446261815,
               "calculatedVariable": "Volume del gas ideale",
               "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
               "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7728,19 +7728,19 @@ export const courseLearningData = {
               "pvSamples": [
                 {
                   "pressurePa": 50000,
-                  "volumeM3": 0.03325785047261296
+                  "volumeM3": 0.0332578504726
                 },
                 {
                   "pressurePa": 100000,
-                  "volumeM3": 0.01662892523630648
+                  "volumeM3": 0.0166289252363
                 },
                 {
                   "pressurePa": 150000,
-                  "volumeM3": 0.011085950157537654
+                  "volumeM3": 0.0110859501575
                 },
                 {
                   "pressurePa": 200000,
-                  "volumeM3": 0.00831446261815324
+                  "volumeM3": 0.00831446261815
                 }
               ]
             }
@@ -7789,10 +7789,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 50000
                 },
-                "value": 0.0207861565453831,
+                "value": 0.0207861565454,
                 "unit": "m³",
-                "volumeM3": 0.0207861565453831,
-                "volumeL": 20.7861565453831,
+                "volumeM3": 0.0207861565454,
+                "volumeL": 20.7861565454,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7801,19 +7801,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.006928718848461034
+                    "volumeM3": 0.00692871884846
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.005196539136345775
+                    "volumeM3": 0.00519653913635
                   }
                 ]
               }
@@ -7832,10 +7832,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 100000
                 },
-                "value": 0.01039307827269155,
+                "value": 0.0103930782727,
                 "unit": "m³",
-                "volumeM3": 0.01039307827269155,
-                "volumeL": 10.39307827269155,
+                "volumeM3": 0.0103930782727,
+                "volumeL": 10.3930782727,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7844,19 +7844,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.006928718848461034
+                    "volumeM3": 0.00692871884846
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.005196539136345775
+                    "volumeM3": 0.00519653913635
                   }
                 ]
               }
@@ -7875,10 +7875,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 200000
                 },
-                "value": 0.005196539136345775,
+                "value": 0.00519653913635,
                 "unit": "m³",
-                "volumeM3": 0.005196539136345775,
-                "volumeL": 5.196539136345775,
+                "volumeM3": 0.00519653913635,
+                "volumeL": 5.19653913635,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7887,19 +7887,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.006928718848461034
+                    "volumeM3": 0.00692871884846
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.005196539136345775
+                    "volumeM3": 0.00519653913635
                   }
                 ]
               }
@@ -7918,10 +7918,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 50000
                 },
-                "value": 0.02494338785445972,
+                "value": 0.0249433878545,
                 "unit": "m³",
-                "volumeM3": 0.02494338785445972,
-                "volumeL": 24.94338785445972,
+                "volumeM3": 0.0249433878545,
+                "volumeL": 24.9433878545,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7930,19 +7930,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00623584696361493
+                    "volumeM3": 0.00623584696361
                   }
                 ]
               }
@@ -7961,10 +7961,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 100000
                 },
-                "value": 0.01247169392722986,
+                "value": 0.0124716939272,
                 "unit": "m³",
-                "volumeM3": 0.01247169392722986,
-                "volumeL": 12.47169392722986,
+                "volumeM3": 0.0124716939272,
+                "volumeL": 12.4716939272,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -7973,19 +7973,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00623584696361493
+                    "volumeM3": 0.00623584696361
                   }
                 ]
               }
@@ -8004,10 +8004,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 200000
                 },
-                "value": 0.00623584696361493,
+                "value": 0.00623584696361,
                 "unit": "m³",
-                "volumeM3": 0.00623584696361493,
-                "volumeL": 6.23584696361493,
+                "volumeM3": 0.00623584696361,
+                "volumeL": 6.23584696361,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8016,19 +8016,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00623584696361493
+                    "volumeM3": 0.00623584696361
                   }
                 ]
               }
@@ -8047,10 +8047,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 50000
                 },
-                "value": 0.03325785047261296,
+                "value": 0.0332578504726,
                 "unit": "m³",
-                "volumeM3": 0.03325785047261296,
-                "volumeL": 33.25785047261296,
+                "volumeM3": 0.0332578504726,
+                "volumeL": 33.2578504726,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8059,19 +8059,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.011085950157537654
+                    "volumeM3": 0.0110859501575
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   }
                 ]
               }
@@ -8090,10 +8090,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 100000
                 },
-                "value": 0.01662892523630648,
+                "value": 0.0166289252363,
                 "unit": "m³",
-                "volumeM3": 0.01662892523630648,
-                "volumeL": 16.62892523630648,
+                "volumeM3": 0.0166289252363,
+                "volumeL": 16.6289252363,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8102,19 +8102,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.011085950157537654
+                    "volumeM3": 0.0110859501575
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   }
                 ]
               }
@@ -8133,10 +8133,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 200000
                 },
-                "value": 0.00831446261815324,
+                "value": 0.00831446261815,
                 "unit": "m³",
-                "volumeM3": 0.00831446261815324,
-                "volumeL": 8.31446261815324,
+                "volumeM3": 0.00831446261815,
+                "volumeL": 8.31446261815,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8145,19 +8145,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.011085950157537654
+                    "volumeM3": 0.0110859501575
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.00831446261815324
+                    "volumeM3": 0.00831446261815
                   }
                 ]
               }
@@ -8176,10 +8176,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 50000
                 },
-                "value": 0.0415723130907662,
+                "value": 0.0415723130908,
                 "unit": "m³",
-                "volumeM3": 0.0415723130907662,
-                "volumeL": 41.5723130907662,
+                "volumeM3": 0.0415723130908,
+                "volumeL": 41.5723130908,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8188,19 +8188,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0415723130907662
+                    "volumeM3": 0.0415723130908
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.013857437696922067
+                    "volumeM3": 0.0138574376969
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   }
                 ]
               }
@@ -8219,10 +8219,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 100000
                 },
-                "value": 0.0207861565453831,
+                "value": 0.0207861565454,
                 "unit": "m³",
-                "volumeM3": 0.0207861565453831,
-                "volumeL": 20.7861565453831,
+                "volumeM3": 0.0207861565454,
+                "volumeL": 20.7861565454,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8231,19 +8231,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0415723130907662
+                    "volumeM3": 0.0415723130908
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.013857437696922067
+                    "volumeM3": 0.0138574376969
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   }
                 ]
               }
@@ -8262,10 +8262,10 @@ export const courseLearningData = {
                   "temperatureK": 250,
                   "pressurePa": 200000
                 },
-                "value": 0.01039307827269155,
+                "value": 0.0103930782727,
                 "unit": "m³",
-                "volumeM3": 0.01039307827269155,
-                "volumeL": 10.39307827269155,
+                "volumeM3": 0.0103930782727,
+                "volumeL": 10.3930782727,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8274,19 +8274,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.0415723130907662
+                    "volumeM3": 0.0415723130908
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.0207861565453831
+                    "volumeM3": 0.0207861565454
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.013857437696922067
+                    "volumeM3": 0.0138574376969
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01039307827269155
+                    "volumeM3": 0.0103930782727
                   }
                 ]
               }
@@ -8305,10 +8305,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 50000
                 },
-                "value": 0.04988677570891944,
+                "value": 0.0498867757089,
                 "unit": "m³",
-                "volumeM3": 0.04988677570891944,
-                "volumeL": 49.88677570891944,
+                "volumeM3": 0.0498867757089,
+                "volumeL": 49.8867757089,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8317,19 +8317,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.04988677570891944
+                    "volumeM3": 0.0498867757089
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   }
                 ]
               }
@@ -8348,10 +8348,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 100000
                 },
-                "value": 0.02494338785445972,
+                "value": 0.0249433878545,
                 "unit": "m³",
-                "volumeM3": 0.02494338785445972,
-                "volumeL": 24.94338785445972,
+                "volumeM3": 0.0249433878545,
+                "volumeL": 24.9433878545,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8360,19 +8360,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.04988677570891944
+                    "volumeM3": 0.0498867757089
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   }
                 ]
               }
@@ -8391,10 +8391,10 @@ export const courseLearningData = {
                   "temperatureK": 300,
                   "pressurePa": 200000
                 },
-                "value": 0.01247169392722986,
+                "value": 0.0124716939272,
                 "unit": "m³",
-                "volumeM3": 0.01247169392722986,
-                "volumeL": 12.47169392722986,
+                "volumeM3": 0.0124716939272,
+                "volumeL": 12.4716939272,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8403,19 +8403,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.04988677570891944
+                    "volumeM3": 0.0498867757089
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.02494338785445972
+                    "volumeM3": 0.0249433878545
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01247169392722986
+                    "volumeM3": 0.0124716939272
                   }
                 ]
               }
@@ -8434,10 +8434,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 50000
                 },
-                "value": 0.06651570094522592,
+                "value": 0.0665157009452,
                 "unit": "m³",
-                "volumeM3": 0.06651570094522592,
-                "volumeL": 66.51570094522592,
+                "volumeM3": 0.0665157009452,
+                "volumeL": 66.5157009452,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8446,19 +8446,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.06651570094522592
+                    "volumeM3": 0.0665157009452
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.022171900315075307
+                    "volumeM3": 0.0221719003151
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   }
                 ]
               }
@@ -8477,10 +8477,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 100000
                 },
-                "value": 0.03325785047261296,
+                "value": 0.0332578504726,
                 "unit": "m³",
-                "volumeM3": 0.03325785047261296,
-                "volumeL": 33.25785047261296,
+                "volumeM3": 0.0332578504726,
+                "volumeL": 33.2578504726,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8489,19 +8489,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.06651570094522592
+                    "volumeM3": 0.0665157009452
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.022171900315075307
+                    "volumeM3": 0.0221719003151
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   }
                 ]
               }
@@ -8520,10 +8520,10 @@ export const courseLearningData = {
                   "temperatureK": 400,
                   "pressurePa": 200000
                 },
-                "value": 0.01662892523630648,
+                "value": 0.0166289252363,
                 "unit": "m³",
-                "volumeM3": 0.01662892523630648,
-                "volumeL": 16.62892523630648,
+                "volumeM3": 0.0166289252363,
+                "volumeL": 16.6289252363,
                 "calculatedVariable": "Volume del gas ideale",
                 "fixedQuantity": "quantità di sostanza, temperatura e pressione selezionate",
                 "domain": "Gas ideale in equilibrio, temperatura assoluta in kelvin e pressione assoluta. pV=nRT; n costante durante i confronti. Modello diluito, nessuna transizione di fase, calore/lavoro o gas reale dedotti dalla sola equazione di stato. Intervalli demo:1≤T≤2000K,1≤p≤10⁸Pa,10⁻⁶≤n≤10mol.",
@@ -8532,19 +8532,19 @@ export const courseLearningData = {
                 "pvSamples": [
                   {
                     "pressurePa": 50000,
-                    "volumeM3": 0.06651570094522592
+                    "volumeM3": 0.0665157009452
                   },
                   {
                     "pressurePa": 100000,
-                    "volumeM3": 0.03325785047261296
+                    "volumeM3": 0.0332578504726
                   },
                   {
                     "pressurePa": 150000,
-                    "volumeM3": 0.022171900315075307
+                    "volumeM3": 0.0221719003151
                   },
                   {
                     "pressurePa": 200000,
-                    "volumeM3": 0.01662892523630648
+                    "volumeM3": 0.0166289252363
                   }
                 ]
               }
@@ -9022,7 +9022,7 @@ export const courseLearningData = {
               "value": 4.5,
               "unit": "A",
               "currentA": 4.5,
-              "equivalentResistanceOhm": 2.6666666666666665,
+              "equivalentResistanceOhm": 2.66666666667,
               "totalPowerW": 54.0,
               "branches": [
                 {
@@ -9233,7 +9233,7 @@ export const courseLearningData = {
                 "value": 2.25,
                 "unit": "A",
                 "currentA": 2.25,
-                "equivalentResistanceOhm": 2.6666666666666665,
+                "equivalentResistanceOhm": 2.66666666667,
                 "totalPowerW": 13.5,
                 "branches": [
                   {
@@ -9503,25 +9503,25 @@ export const courseLearningData = {
                   "resistance2": 8,
                   "topology": "series"
                 },
-                "value": 0.42857142857142855,
+                "value": 0.428571428571,
                 "unit": "A",
-                "currentA": 0.42857142857142855,
+                "currentA": 0.428571428571,
                 "equivalentResistanceOhm": 14,
-                "totalPowerW": 2.571428571428571,
+                "totalPowerW": 2.57142857143,
                 "branches": [
                   {
                     "id": "R1",
                     "resistanceOhm": 6,
-                    "currentA": 0.42857142857142855,
-                    "voltageV": 2.571428571428571,
-                    "powerW": 1.1020408163265305
+                    "currentA": 0.428571428571,
+                    "voltageV": 2.57142857143,
+                    "powerW": 1.10204081633
                   },
                   {
                     "id": "R2",
                     "resistanceOhm": 8,
-                    "currentA": 0.42857142857142855,
-                    "voltageV": 3.4285714285714284,
-                    "powerW": 1.4693877551020407
+                    "currentA": 0.428571428571,
+                    "voltageV": 3.42857142857,
+                    "powerW": 1.4693877551
                   }
                 ],
                 "ivSamples": [
@@ -9532,33 +9532,33 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 0.75,
-                    "currentA": 0.05357142857142857,
-                    "totalPowerW": 0.04017857142857143
+                    "currentA": 0.0535714285714,
+                    "totalPowerW": 0.0401785714286
                   },
                   {
                     "voltageV": 1.5,
-                    "currentA": 0.10714285714285714,
-                    "totalPowerW": 0.16071428571428573
+                    "currentA": 0.107142857143,
+                    "totalPowerW": 0.160714285714
                   },
                   {
                     "voltageV": 2.25,
-                    "currentA": 0.16071428571428573,
-                    "totalPowerW": 0.36160714285714285
+                    "currentA": 0.160714285714,
+                    "totalPowerW": 0.361607142857
                   },
                   {
                     "voltageV": 3.0,
-                    "currentA": 0.21428571428571427,
-                    "totalPowerW": 0.6428571428571429
+                    "currentA": 0.214285714286,
+                    "totalPowerW": 0.642857142857
                   },
                   {
                     "voltageV": 3.75,
-                    "currentA": 0.26785714285714285,
-                    "totalPowerW": 1.0044642857142858
+                    "currentA": 0.267857142857,
+                    "totalPowerW": 1.00446428571
                   },
                   {
                     "voltageV": 4.5,
-                    "currentA": 0.32142857142857145,
-                    "totalPowerW": 1.4464285714285714
+                    "currentA": 0.321428571429,
+                    "totalPowerW": 1.44642857143
                   },
                   {
                     "voltageV": 5.25,
@@ -9567,8 +9567,8 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 6.0,
-                    "currentA": 0.42857142857142855,
-                    "totalPowerW": 2.5714285714285716
+                    "currentA": 0.428571428571,
+                    "totalPowerW": 2.57142857143
                   }
                 ],
                 "calculatedVariable": "Corrente totale fornita dal generatore",
@@ -9597,7 +9597,7 @@ export const courseLearningData = {
                 "value": 1.75,
                 "unit": "A",
                 "currentA": 1.75,
-                "equivalentResistanceOhm": 3.4285714285714284,
+                "equivalentResistanceOhm": 3.42857142857,
                 "totalPowerW": 10.5,
                 "branches": [
                   {
@@ -9685,25 +9685,25 @@ export const courseLearningData = {
                   "resistance2": 12,
                   "topology": "series"
                 },
-                "value": 0.3333333333333333,
+                "value": 0.333333333333,
                 "unit": "A",
-                "currentA": 0.3333333333333333,
+                "currentA": 0.333333333333,
                 "equivalentResistanceOhm": 18,
                 "totalPowerW": 2.0,
                 "branches": [
                   {
                     "id": "R1",
                     "resistanceOhm": 6,
-                    "currentA": 0.3333333333333333,
+                    "currentA": 0.333333333333,
                     "voltageV": 2.0,
-                    "powerW": 0.6666666666666666
+                    "powerW": 0.666666666667
                   },
                   {
                     "id": "R2",
                     "resistanceOhm": 12,
-                    "currentA": 0.3333333333333333,
+                    "currentA": 0.333333333333,
                     "voltageV": 4.0,
-                    "powerW": 1.3333333333333333
+                    "powerW": 1.33333333333
                   }
                 ],
                 "ivSamples": [
@@ -9714,12 +9714,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 0.75,
-                    "currentA": 0.041666666666666664,
+                    "currentA": 0.0416666666667,
                     "totalPowerW": 0.03125
                   },
                   {
                     "voltageV": 1.5,
-                    "currentA": 0.08333333333333333,
+                    "currentA": 0.0833333333333,
                     "totalPowerW": 0.125
                   },
                   {
@@ -9729,12 +9729,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 3.0,
-                    "currentA": 0.16666666666666666,
+                    "currentA": 0.166666666667,
                     "totalPowerW": 0.5
                   },
                   {
                     "voltageV": 3.75,
-                    "currentA": 0.20833333333333334,
+                    "currentA": 0.208333333333,
                     "totalPowerW": 0.78125
                   },
                   {
@@ -9744,12 +9744,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 5.25,
-                    "currentA": 0.2916666666666667,
+                    "currentA": 0.291666666667,
                     "totalPowerW": 1.53125
                   },
                   {
                     "voltageV": 6.0,
-                    "currentA": 0.3333333333333333,
+                    "currentA": 0.333333333333,
                     "totalPowerW": 2.0
                   }
                 ],
@@ -9961,7 +9961,7 @@ export const courseLearningData = {
                 "value": 4.5,
                 "unit": "A",
                 "currentA": 4.5,
-                "equivalentResistanceOhm": 2.6666666666666665,
+                "equivalentResistanceOhm": 2.66666666667,
                 "totalPowerW": 54.0,
                 "branches": [
                   {
@@ -10231,25 +10231,25 @@ export const courseLearningData = {
                   "resistance2": 8,
                   "topology": "series"
                 },
-                "value": 0.8571428571428571,
+                "value": 0.857142857143,
                 "unit": "A",
-                "currentA": 0.8571428571428571,
+                "currentA": 0.857142857143,
                 "equivalentResistanceOhm": 14,
-                "totalPowerW": 10.285714285714285,
+                "totalPowerW": 10.2857142857,
                 "branches": [
                   {
                     "id": "R1",
                     "resistanceOhm": 6,
-                    "currentA": 0.8571428571428571,
-                    "voltageV": 5.142857142857142,
-                    "powerW": 4.408163265306122
+                    "currentA": 0.857142857143,
+                    "voltageV": 5.14285714286,
+                    "powerW": 4.40816326531
                   },
                   {
                     "id": "R2",
                     "resistanceOhm": 8,
-                    "currentA": 0.8571428571428571,
-                    "voltageV": 6.857142857142857,
-                    "powerW": 5.877551020408163
+                    "currentA": 0.857142857143,
+                    "voltageV": 6.85714285714,
+                    "powerW": 5.87755102041
                   }
                 ],
                 "ivSamples": [
@@ -10260,33 +10260,33 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 1.5,
-                    "currentA": 0.10714285714285714,
-                    "totalPowerW": 0.16071428571428573
+                    "currentA": 0.107142857143,
+                    "totalPowerW": 0.160714285714
                   },
                   {
                     "voltageV": 3.0,
-                    "currentA": 0.21428571428571427,
-                    "totalPowerW": 0.6428571428571429
+                    "currentA": 0.214285714286,
+                    "totalPowerW": 0.642857142857
                   },
                   {
                     "voltageV": 4.5,
-                    "currentA": 0.32142857142857145,
-                    "totalPowerW": 1.4464285714285714
+                    "currentA": 0.321428571429,
+                    "totalPowerW": 1.44642857143
                   },
                   {
                     "voltageV": 6.0,
-                    "currentA": 0.42857142857142855,
-                    "totalPowerW": 2.5714285714285716
+                    "currentA": 0.428571428571,
+                    "totalPowerW": 2.57142857143
                   },
                   {
                     "voltageV": 7.5,
-                    "currentA": 0.5357142857142857,
-                    "totalPowerW": 4.017857142857143
+                    "currentA": 0.535714285714,
+                    "totalPowerW": 4.01785714286
                   },
                   {
                     "voltageV": 9.0,
-                    "currentA": 0.6428571428571429,
-                    "totalPowerW": 5.785714285714286
+                    "currentA": 0.642857142857,
+                    "totalPowerW": 5.78571428571
                   },
                   {
                     "voltageV": 10.5,
@@ -10295,8 +10295,8 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 12.0,
-                    "currentA": 0.8571428571428571,
-                    "totalPowerW": 10.285714285714286
+                    "currentA": 0.857142857143,
+                    "totalPowerW": 10.2857142857
                   }
                 ],
                 "calculatedVariable": "Corrente totale fornita dal generatore",
@@ -10325,7 +10325,7 @@ export const courseLearningData = {
                 "value": 3.5,
                 "unit": "A",
                 "currentA": 3.5,
-                "equivalentResistanceOhm": 3.4285714285714284,
+                "equivalentResistanceOhm": 3.42857142857,
                 "totalPowerW": 42.0,
                 "branches": [
                   {
@@ -10413,25 +10413,25 @@ export const courseLearningData = {
                   "resistance2": 12,
                   "topology": "series"
                 },
-                "value": 0.6666666666666666,
+                "value": 0.666666666667,
                 "unit": "A",
-                "currentA": 0.6666666666666666,
+                "currentA": 0.666666666667,
                 "equivalentResistanceOhm": 18,
                 "totalPowerW": 8.0,
                 "branches": [
                   {
                     "id": "R1",
                     "resistanceOhm": 6,
-                    "currentA": 0.6666666666666666,
+                    "currentA": 0.666666666667,
                     "voltageV": 4.0,
-                    "powerW": 2.6666666666666665
+                    "powerW": 2.66666666667
                   },
                   {
                     "id": "R2",
                     "resistanceOhm": 12,
-                    "currentA": 0.6666666666666666,
+                    "currentA": 0.666666666667,
                     "voltageV": 8.0,
-                    "powerW": 5.333333333333333
+                    "powerW": 5.33333333333
                   }
                 ],
                 "ivSamples": [
@@ -10442,12 +10442,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 1.5,
-                    "currentA": 0.08333333333333333,
+                    "currentA": 0.0833333333333,
                     "totalPowerW": 0.125
                   },
                   {
                     "voltageV": 3.0,
-                    "currentA": 0.16666666666666666,
+                    "currentA": 0.166666666667,
                     "totalPowerW": 0.5
                   },
                   {
@@ -10457,12 +10457,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 6.0,
-                    "currentA": 0.3333333333333333,
+                    "currentA": 0.333333333333,
                     "totalPowerW": 2.0
                   },
                   {
                     "voltageV": 7.5,
-                    "currentA": 0.4166666666666667,
+                    "currentA": 0.416666666667,
                     "totalPowerW": 3.125
                   },
                   {
@@ -10472,12 +10472,12 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 10.5,
-                    "currentA": 0.5833333333333334,
+                    "currentA": 0.583333333333,
                     "totalPowerW": 6.125
                   },
                   {
                     "voltageV": 12.0,
-                    "currentA": 0.6666666666666666,
+                    "currentA": 0.666666666667,
                     "totalPowerW": 8.0
                   }
                 ],
@@ -10689,7 +10689,7 @@ export const courseLearningData = {
                 "value": 6.75,
                 "unit": "A",
                 "currentA": 6.75,
-                "equivalentResistanceOhm": 2.6666666666666665,
+                "equivalentResistanceOhm": 2.66666666667,
                 "totalPowerW": 121.5,
                 "branches": [
                   {
@@ -10959,25 +10959,25 @@ export const courseLearningData = {
                   "resistance2": 8,
                   "topology": "series"
                 },
-                "value": 1.2857142857142858,
+                "value": 1.28571428571,
                 "unit": "A",
-                "currentA": 1.2857142857142858,
+                "currentA": 1.28571428571,
                 "equivalentResistanceOhm": 14,
-                "totalPowerW": 23.142857142857146,
+                "totalPowerW": 23.1428571429,
                 "branches": [
                   {
                     "id": "R1",
                     "resistanceOhm": 6,
-                    "currentA": 1.2857142857142858,
-                    "voltageV": 7.714285714285715,
-                    "powerW": 9.918367346938778
+                    "currentA": 1.28571428571,
+                    "voltageV": 7.71428571429,
+                    "powerW": 9.91836734694
                   },
                   {
                     "id": "R2",
                     "resistanceOhm": 8,
-                    "currentA": 1.2857142857142858,
-                    "voltageV": 10.285714285714286,
-                    "powerW": 13.22448979591837
+                    "currentA": 1.28571428571,
+                    "voltageV": 10.2857142857,
+                    "powerW": 13.2244897959
                   }
                 ],
                 "ivSamples": [
@@ -10988,33 +10988,33 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 2.25,
-                    "currentA": 0.16071428571428573,
-                    "totalPowerW": 0.36160714285714285
+                    "currentA": 0.160714285714,
+                    "totalPowerW": 0.361607142857
                   },
                   {
                     "voltageV": 4.5,
-                    "currentA": 0.32142857142857145,
-                    "totalPowerW": 1.4464285714285714
+                    "currentA": 0.321428571429,
+                    "totalPowerW": 1.44642857143
                   },
                   {
                     "voltageV": 6.75,
-                    "currentA": 0.48214285714285715,
-                    "totalPowerW": 3.2544642857142856
+                    "currentA": 0.482142857143,
+                    "totalPowerW": 3.25446428571
                   },
                   {
                     "voltageV": 9.0,
-                    "currentA": 0.6428571428571429,
-                    "totalPowerW": 5.785714285714286
+                    "currentA": 0.642857142857,
+                    "totalPowerW": 5.78571428571
                   },
                   {
                     "voltageV": 11.25,
-                    "currentA": 0.8035714285714286,
-                    "totalPowerW": 9.040178571428571
+                    "currentA": 0.803571428571,
+                    "totalPowerW": 9.04017857143
                   },
                   {
                     "voltageV": 13.5,
-                    "currentA": 0.9642857142857143,
-                    "totalPowerW": 13.017857142857142
+                    "currentA": 0.964285714286,
+                    "totalPowerW": 13.0178571429
                   },
                   {
                     "voltageV": 15.75,
@@ -11023,8 +11023,8 @@ export const courseLearningData = {
                   },
                   {
                     "voltageV": 18.0,
-                    "currentA": 1.2857142857142858,
-                    "totalPowerW": 23.142857142857142
+                    "currentA": 1.28571428571,
+                    "totalPowerW": 23.1428571429
                   }
                 ],
                 "calculatedVariable": "Corrente totale fornita dal generatore",
@@ -11053,7 +11053,7 @@ export const courseLearningData = {
                 "value": 5.25,
                 "unit": "A",
                 "currentA": 5.25,
-                "equivalentResistanceOhm": 3.4285714285714284,
+                "equivalentResistanceOhm": 3.42857142857,
                 "totalPowerW": 94.5,
                 "branches": [
                   {
@@ -11893,31 +11893,31 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 0.0625,
-                  "displacementM": 0.019509032201612826
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 0.125,
-                  "displacementM": 0.03826834323650898
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 0.1875,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 0.25,
-                  "displacementM": 0.07071067811865475
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 0.3125,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 0.375,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 0.4375,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 0.5,
@@ -11925,63 +11925,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 0.5625,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 0.625,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 0.6875,
-                  "displacementM": 0.08314696123025454
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 0.75,
-                  "displacementM": 0.07071067811865477
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 0.8125,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 0.875,
-                  "displacementM": 0.03826834323650899
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 0.9375,
-                  "displacementM": 0.01950903220161286
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 1.0,
-                  "displacementM": 1.2246467991473533e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 1.0625,
-                  "displacementM": -0.019509032201612837
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 1.125,
-                  "displacementM": -0.03826834323650897
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 1.1875,
-                  "displacementM": -0.0555570233019602
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 1.25,
-                  "displacementM": -0.07071067811865475
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 1.3125,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 1.375,
-                  "displacementM": -0.09238795325112865
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 1.4375,
-                  "displacementM": -0.09807852804032303
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 1.5,
@@ -11989,63 +11989,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 1.5625,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 1.625,
-                  "displacementM": -0.09238795325112867
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 1.6875,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 1.75,
-                  "displacementM": -0.07071067811865477
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 1.8125,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 1.875,
-                  "displacementM": -0.038268343236509045
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 1.9375,
-                  "displacementM": -0.019509032201612875
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 2.0,
-                  "displacementM": -2.4492935982947065e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 2.0625,
-                  "displacementM": 0.019509032201612826
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 2.125,
-                  "displacementM": 0.038268343236508996
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 2.1875,
-                  "displacementM": 0.05555702330196019
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 2.25,
-                  "displacementM": 0.07071067811865474
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 2.3125,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 2.375,
-                  "displacementM": 0.09238795325112865
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 2.4375,
-                  "displacementM": 0.09807852804032303
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 2.5,
@@ -12053,63 +12053,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 2.5625,
-                  "displacementM": 0.09807852804032308
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 2.625,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 2.6875,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 2.75,
-                  "displacementM": 0.07071067811865485
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 2.8125,
-                  "displacementM": 0.05555702330196023
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 2.875,
-                  "displacementM": 0.03826834323650905
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 2.9375,
-                  "displacementM": 0.0195090322016128
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 3.0,
-                  "displacementM": 3.6739403974420595e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 3.0625,
-                  "displacementM": -0.019509032201612726
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 3.125,
-                  "displacementM": -0.03826834323650899
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 3.1875,
-                  "displacementM": -0.055557023301960176
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 3.25,
-                  "displacementM": -0.0707106781186548
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 3.3125,
-                  "displacementM": -0.08314696123025452
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 3.375,
-                  "displacementM": -0.09238795325112864
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 3.4375,
-                  "displacementM": -0.09807852804032306
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 3.5,
@@ -12117,35 +12117,35 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 3.5625,
-                  "displacementM": -0.09807852804032308
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 3.625,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 3.6875,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 3.75,
-                  "displacementM": -0.07071067811865485
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 3.8125,
-                  "displacementM": -0.055557023301960246
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 3.875,
-                  "displacementM": -0.038268343236509066
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 3.9375,
-                  "displacementM": -0.01950903220161281
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 4.0,
-                  "displacementM": -4.898587196589413e-17
+                  "displacementM": 0.0
                 }
               ],
               "temporalSamples": [
@@ -12155,31 +12155,31 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.015625,
-                  "displacementM": -0.019509032201612826
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.03125,
-                  "displacementM": -0.03826834323650898
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.046875,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.0625,
-                  "displacementM": -0.07071067811865475
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.078125,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.09375,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.109375,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.125,
@@ -12187,63 +12187,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.140625,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.15625,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.171875,
-                  "displacementM": -0.08314696123025454
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.1875,
-                  "displacementM": -0.07071067811865477
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.203125,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.21875,
-                  "displacementM": -0.03826834323650899
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.234375,
-                  "displacementM": -0.01950903220161286
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.25,
-                  "displacementM": -1.2246467991473533e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.265625,
-                  "displacementM": 0.019509032201612837
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.28125,
-                  "displacementM": 0.03826834323650897
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.296875,
-                  "displacementM": 0.0555570233019602
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.3125,
-                  "displacementM": 0.07071067811865475
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.328125,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.34375,
-                  "displacementM": 0.09238795325112865
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.359375,
-                  "displacementM": 0.09807852804032303
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.375,
@@ -12251,63 +12251,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.390625,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.40625,
-                  "displacementM": 0.09238795325112867
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.421875,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.4375,
-                  "displacementM": 0.07071067811865477
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.453125,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.46875,
-                  "displacementM": 0.038268343236509045
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.484375,
-                  "displacementM": 0.019509032201612875
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.5,
-                  "displacementM": 2.4492935982947065e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.515625,
-                  "displacementM": -0.019509032201612826
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.53125,
-                  "displacementM": -0.038268343236508996
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.546875,
-                  "displacementM": -0.05555702330196019
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.5625,
-                  "displacementM": -0.07071067811865474
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.578125,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.59375,
-                  "displacementM": -0.09238795325112865
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.609375,
-                  "displacementM": -0.09807852804032303
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.625,
@@ -12315,63 +12315,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.640625,
-                  "displacementM": -0.09807852804032308
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.65625,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.671875,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.6875,
-                  "displacementM": -0.07071067811865485
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.703125,
-                  "displacementM": -0.05555702330196023
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.71875,
-                  "displacementM": -0.03826834323650905
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.734375,
-                  "displacementM": -0.0195090322016128
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.75,
-                  "displacementM": -3.6739403974420595e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.765625,
-                  "displacementM": 0.019509032201612726
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.78125,
-                  "displacementM": 0.03826834323650899
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.796875,
-                  "displacementM": 0.055557023301960176
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.8125,
-                  "displacementM": 0.0707106781186548
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.828125,
-                  "displacementM": 0.08314696123025452
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.84375,
-                  "displacementM": 0.09238795325112864
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.859375,
-                  "displacementM": 0.09807852804032306
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.875,
@@ -12379,35 +12379,35 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.890625,
-                  "displacementM": 0.09807852804032308
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.90625,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.921875,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.9375,
-                  "displacementM": 0.07071067811865485
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.953125,
-                  "displacementM": 0.055557023301960246
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.96875,
-                  "displacementM": 0.038268343236509066
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.984375,
-                  "displacementM": 0.01950903220161281
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 1.0,
-                  "displacementM": 4.898587196589413e-17
+                  "displacementM": 0.0
                 }
               ],
               "calculatedVariable": "Lunghezza d’onda",
@@ -12456,31 +12456,31 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 0.046875,
-                  "displacementM": 0.019509032201612826
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 0.09375,
-                  "displacementM": 0.03826834323650898
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 0.140625,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 0.1875,
-                  "displacementM": 0.07071067811865475
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 0.234375,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 0.28125,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 0.328125,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 0.375,
@@ -12488,63 +12488,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 0.421875,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 0.46875,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 0.515625,
-                  "displacementM": 0.08314696123025454
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 0.5625,
-                  "displacementM": 0.07071067811865477
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 0.609375,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 0.65625,
-                  "displacementM": 0.03826834323650899
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 0.703125,
-                  "displacementM": 0.01950903220161286
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 0.75,
-                  "displacementM": 1.2246467991473533e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 0.796875,
-                  "displacementM": -0.019509032201612837
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 0.84375,
-                  "displacementM": -0.03826834323650897
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 0.890625,
-                  "displacementM": -0.0555570233019602
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 0.9375,
-                  "displacementM": -0.07071067811865475
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 0.984375,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 1.03125,
-                  "displacementM": -0.09238795325112865
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 1.078125,
-                  "displacementM": -0.09807852804032303
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 1.125,
@@ -12552,63 +12552,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 1.171875,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 1.21875,
-                  "displacementM": -0.09238795325112867
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 1.265625,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 1.3125,
-                  "displacementM": -0.07071067811865477
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 1.359375,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 1.40625,
-                  "displacementM": -0.038268343236509045
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 1.453125,
-                  "displacementM": -0.019509032201612875
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 1.5,
-                  "displacementM": -2.4492935982947065e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 1.546875,
-                  "displacementM": 0.019509032201612826
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 1.59375,
-                  "displacementM": 0.038268343236508996
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 1.640625,
-                  "displacementM": 0.05555702330196019
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 1.6875,
-                  "displacementM": 0.07071067811865474
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 1.734375,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 1.78125,
-                  "displacementM": 0.09238795325112865
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 1.828125,
-                  "displacementM": 0.09807852804032303
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 1.875,
@@ -12616,63 +12616,63 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 1.921875,
-                  "displacementM": 0.09807852804032308
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "xM": 1.96875,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "xM": 2.015625,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "xM": 2.0625,
-                  "displacementM": 0.07071067811865485
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "xM": 2.109375,
-                  "displacementM": 0.05555702330196023
+                  "displacementM": 0.055557023302
                 },
                 {
                   "xM": 2.15625,
-                  "displacementM": 0.03826834323650905
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "xM": 2.203125,
-                  "displacementM": 0.0195090322016128
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "xM": 2.25,
-                  "displacementM": 3.6739403974420595e-17
+                  "displacementM": 0.0
                 },
                 {
                   "xM": 2.296875,
-                  "displacementM": -0.019509032201612726
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 2.34375,
-                  "displacementM": -0.03826834323650899
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 2.390625,
-                  "displacementM": -0.055557023301960176
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 2.4375,
-                  "displacementM": -0.0707106781186548
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 2.484375,
-                  "displacementM": -0.08314696123025452
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 2.53125,
-                  "displacementM": -0.09238795325112864
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 2.578125,
-                  "displacementM": -0.09807852804032306
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 2.625,
@@ -12680,35 +12680,35 @@ export const courseLearningData = {
                 },
                 {
                   "xM": 2.671875,
-                  "displacementM": -0.09807852804032308
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "xM": 2.71875,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "xM": 2.765625,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "xM": 2.8125,
-                  "displacementM": -0.07071067811865485
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "xM": 2.859375,
-                  "displacementM": -0.055557023301960246
+                  "displacementM": -0.055557023302
                 },
                 {
                   "xM": 2.90625,
-                  "displacementM": -0.038268343236509066
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "xM": 2.953125,
-                  "displacementM": -0.01950903220161281
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "xM": 3.0,
-                  "displacementM": -4.898587196589413e-17
+                  "displacementM": 0.0
                 }
               ],
               "temporalSamples": [
@@ -12718,31 +12718,31 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.0078125,
-                  "displacementM": -0.019509032201612826
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.015625,
-                  "displacementM": -0.03826834323650898
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.0234375,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.03125,
-                  "displacementM": -0.07071067811865475
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.0390625,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.046875,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.0546875,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.0625,
@@ -12750,63 +12750,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.0703125,
-                  "displacementM": -0.09807852804032305
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.078125,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.0859375,
-                  "displacementM": -0.08314696123025454
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.09375,
-                  "displacementM": -0.07071067811865477
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.1015625,
-                  "displacementM": -0.05555702330196022
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.109375,
-                  "displacementM": -0.03826834323650899
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.1171875,
-                  "displacementM": -0.01950903220161286
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.125,
-                  "displacementM": -1.2246467991473533e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.1328125,
-                  "displacementM": 0.019509032201612837
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.140625,
-                  "displacementM": 0.03826834323650897
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.1484375,
-                  "displacementM": 0.0555570233019602
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.15625,
-                  "displacementM": 0.07071067811865475
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.1640625,
-                  "displacementM": 0.08314696123025453
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.171875,
-                  "displacementM": 0.09238795325112865
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.1796875,
-                  "displacementM": 0.09807852804032303
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.1875,
@@ -12814,63 +12814,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.1953125,
-                  "displacementM": 0.09807852804032305
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.203125,
-                  "displacementM": 0.09238795325112867
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.2109375,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.21875,
-                  "displacementM": 0.07071067811865477
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.2265625,
-                  "displacementM": 0.05555702330196022
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.234375,
-                  "displacementM": 0.038268343236509045
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.2421875,
-                  "displacementM": 0.019509032201612875
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.25,
-                  "displacementM": 2.4492935982947065e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.2578125,
-                  "displacementM": -0.019509032201612826
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.265625,
-                  "displacementM": -0.038268343236508996
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.2734375,
-                  "displacementM": -0.05555702330196019
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.28125,
-                  "displacementM": -0.07071067811865474
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.2890625,
-                  "displacementM": -0.08314696123025453
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.296875,
-                  "displacementM": -0.09238795325112865
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.3046875,
-                  "displacementM": -0.09807852804032303
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.3125,
@@ -12878,63 +12878,63 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.3203125,
-                  "displacementM": -0.09807852804032308
+                  "displacementM": -0.0980785280403
                 },
                 {
                   "timeS": 0.328125,
-                  "displacementM": -0.09238795325112868
+                  "displacementM": -0.0923879532511
                 },
                 {
                   "timeS": 0.3359375,
-                  "displacementM": -0.08314696123025456
+                  "displacementM": -0.0831469612303
                 },
                 {
                   "timeS": 0.34375,
-                  "displacementM": -0.07071067811865485
+                  "displacementM": -0.0707106781187
                 },
                 {
                   "timeS": 0.3515625,
-                  "displacementM": -0.05555702330196023
+                  "displacementM": -0.055557023302
                 },
                 {
                   "timeS": 0.359375,
-                  "displacementM": -0.03826834323650905
+                  "displacementM": -0.0382683432365
                 },
                 {
                   "timeS": 0.3671875,
-                  "displacementM": -0.0195090322016128
+                  "displacementM": -0.0195090322016
                 },
                 {
                   "timeS": 0.375,
-                  "displacementM": -3.6739403974420595e-17
+                  "displacementM": 0.0
                 },
                 {
                   "timeS": 0.3828125,
-                  "displacementM": 0.019509032201612726
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.390625,
-                  "displacementM": 0.03826834323650899
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.3984375,
-                  "displacementM": 0.055557023301960176
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.40625,
-                  "displacementM": 0.0707106781186548
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.4140625,
-                  "displacementM": 0.08314696123025452
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.421875,
-                  "displacementM": 0.09238795325112864
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.4296875,
-                  "displacementM": 0.09807852804032306
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.4375,
@@ -12942,35 +12942,35 @@ export const courseLearningData = {
                 },
                 {
                   "timeS": 0.4453125,
-                  "displacementM": 0.09807852804032308
+                  "displacementM": 0.0980785280403
                 },
                 {
                   "timeS": 0.453125,
-                  "displacementM": 0.09238795325112868
+                  "displacementM": 0.0923879532511
                 },
                 {
                   "timeS": 0.4609375,
-                  "displacementM": 0.08314696123025456
+                  "displacementM": 0.0831469612303
                 },
                 {
                   "timeS": 0.46875,
-                  "displacementM": 0.07071067811865485
+                  "displacementM": 0.0707106781187
                 },
                 {
                   "timeS": 0.4765625,
-                  "displacementM": 0.055557023301960246
+                  "displacementM": 0.055557023302
                 },
                 {
                   "timeS": 0.484375,
-                  "displacementM": 0.038268343236509066
+                  "displacementM": 0.0382683432365
                 },
                 {
                   "timeS": 0.4921875,
-                  "displacementM": 0.01950903220161281
+                  "displacementM": 0.0195090322016
                 },
                 {
                   "timeS": 0.5,
-                  "displacementM": 4.898587196589413e-17
+                  "displacementM": 0.0
                 }
               ],
               "calculatedVariable": "Lunghezza d’onda",
@@ -13039,31 +13039,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.5,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.0,
@@ -13071,63 +13071,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.5,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.0,
@@ -13135,63 +13135,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.5,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.25,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.375,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 4.625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 4.75,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.0,
@@ -13199,63 +13199,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 5.125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 5.5,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 5.75,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 5.875,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 6.125,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 6.25,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 6.5,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 6.625,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 6.875,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 7.0,
@@ -13263,35 +13263,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 7.25,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 7.375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 7.5,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 7.625,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 7.75,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 8.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -13301,31 +13301,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.0625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.25,
@@ -13333,63 +13333,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -13397,63 +13397,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -13461,63 +13461,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -13525,35 +13525,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -13585,23 +13585,23 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 4.0,
                 "periodS": 1.0,
-                "probeDisplacementM": -0.07071067811865475,
+                "probeDisplacementM": -0.0707106781187,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.5,
@@ -13609,31 +13609,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.0,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.5,
@@ -13641,63 +13641,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": -0.03826834323650893
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.5,
@@ -13705,63 +13705,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 4.0,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 4.25,
-                    "displacementM": -0.03826834323650896
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 4.375,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 4.625,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.75,
-                    "displacementM": 0.03826834323650891
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 5.0,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 5.125,
-                    "displacementM": 0.08314696123025447
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": 0.0923879532511287
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.5,
@@ -13769,63 +13769,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.75,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 6.125,
-                    "displacementM": 0.055557023301960384
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 6.25,
-                    "displacementM": 0.038268343236508885
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 6.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 6.625,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": -0.03826834323650882
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 6.875,
-                    "displacementM": -0.05555702330196032
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 7.0,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 7.25,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 7.375,
-                    "displacementM": -0.09807852804032302
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 7.5,
@@ -13833,37 +13833,37 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 7.625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 7.75,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 8.0,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.25,
@@ -13871,63 +13871,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -13935,63 +13935,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0923879532511287
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.03826834323650896
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.03826834323650891
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -13999,63 +13999,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.055557023301960384
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.038268343236508885
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650882
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.05555702330196032
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -14063,51 +14063,51 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.0555570233019604
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236508906
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 2.03125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 2.0625,
-                    "displacementM": -0.03826834323650881
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 2.09375,
-                    "displacementM": -0.05555702330196031
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 2.125,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -14147,31 +14147,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.5,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.0,
@@ -14179,31 +14179,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.0,
@@ -14211,63 +14211,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.5,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.5,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 4.0,
@@ -14275,63 +14275,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 4.25,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 4.375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 4.625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 4.75,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 5.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 5.125,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 5.375,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 5.5,
-                    "displacementM": 0.07071067811865467
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 5.75,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 6.0,
@@ -14339,63 +14339,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 6.125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 6.25,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 6.5,
-                    "displacementM": 0.07071067811865471
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 6.625,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 6.875,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 7.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 7.25,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 7.375,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 7.5,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 7.625,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 7.75,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 8.0,
@@ -14409,63 +14409,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -14473,63 +14473,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -14537,63 +14537,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.07071067811865465
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -14601,63 +14601,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865472
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 2.03125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 2.0625,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 2.09375,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 2.125,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 2.15625,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 2.1875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 2.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 2.25,
@@ -14701,31 +14701,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.5,
@@ -14733,63 +14733,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.5,
@@ -14797,63 +14797,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.1875,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.3125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.5,
@@ -14861,63 +14861,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.5625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.6875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.9375,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.0625,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.3125,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.4375,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.5,
@@ -14925,35 +14925,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.6875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.8125,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -14963,31 +14963,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.015625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.046875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.0625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.078125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.125,
@@ -14995,63 +14995,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -15059,63 +15059,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -15123,63 +15123,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -15187,35 +15187,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -15255,31 +15255,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.5,
@@ -15287,31 +15287,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.0,
@@ -15319,63 +15319,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.0,
@@ -15383,63 +15383,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.1875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.3125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.5625,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.6875,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": 0.07071067811865467
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.9375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.0,
@@ -15447,63 +15447,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.0625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": 0.07071067811865471
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.3125,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 3.4375,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.6875,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.8125,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 4.0,
@@ -15517,63 +15517,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -15581,63 +15581,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -15645,63 +15645,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.07071067811865465
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -15709,63 +15709,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865472
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.015625,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.046875,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.078125,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.125,
@@ -15801,39 +15801,39 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 2.0,
                 "periodS": 0.5,
-                "probeDisplacementM": -1.2246467991473533e-17,
+                "probeDisplacementM": 0.0,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.25,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.5,
@@ -15841,31 +15841,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": -0.05555702330196021
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.019509032201612847
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.0,
@@ -15873,31 +15873,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": 0.019509032201612847
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.25,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.5,
@@ -15905,63 +15905,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.75,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.125,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.1875,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.3125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.5,
@@ -15969,63 +15969,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.5625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.6875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.75,
-                    "displacementM": -0.07071067811865483
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.875,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.9375,
-                    "displacementM": -0.019509032201612788
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.0625,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.125,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 3.25,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.3125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 3.4375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.5,
@@ -16033,69 +16033,69 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 3.6875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.8125,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 3.875,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -16103,63 +16103,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -16167,63 +16167,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -16231,63 +16231,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.015625,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.046875,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.078125,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.125,
@@ -16295,35 +16295,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.140625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.171875,
-                    "displacementM": -0.08314696123025457
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.07071067811865486
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.203125,
-                    "displacementM": -0.05555702330196025
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.03826834323650907
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.234375,
-                    "displacementM": -0.019509032201612823
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.25,
-                    "displacementM": -6.123233995736766e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -16363,31 +16363,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.03125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.15625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.21875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.25,
@@ -16395,63 +16395,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.34375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.40625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.53125,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.59375,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.71875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.75,
@@ -16459,63 +16459,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.78125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.90625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.96875,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.09375,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.15625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.25,
@@ -16523,63 +16523,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.28125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.34375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.46875,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.53125,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.65625,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.71875,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.75,
@@ -16587,35 +16587,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.84375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.90625,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -16625,31 +16625,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.0078125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.015625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.0234375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.0390625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.046875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.0546875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.0625,
@@ -16657,63 +16657,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.0703125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.078125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.0859375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.1015625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.109375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.1171875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.125,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.1328125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.1484375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.1640625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.1796875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.1875,
@@ -16721,63 +16721,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.1953125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.2109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.2265625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.2421875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -16785,63 +16785,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -16849,35 +16849,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -16909,39 +16909,39 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 1.0,
                 "periodS": 0.25,
-                "probeDisplacementM": -1.2246467991473533e-17,
+                "probeDisplacementM": 0.0,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.03125,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.15625,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.25,
@@ -16949,31 +16949,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.40625,
-                    "displacementM": -0.05555702330196021
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": -0.019509032201612847
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.5,
@@ -16981,31 +16981,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.53125,
-                    "displacementM": 0.019509032201612847
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.59375,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.71875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.75,
@@ -17013,63 +17013,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.96875,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.09375,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.25,
@@ -17077,63 +17077,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.28125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": -0.07071067811865483
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.46875,
-                    "displacementM": -0.019509032201612788
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.53125,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.71875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.75,
@@ -17141,69 +17141,69 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.90625,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.125,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.1328125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.1484375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.1640625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.1796875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.1875,
@@ -17211,63 +17211,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.1953125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.2109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.2265625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.2421875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -17275,63 +17275,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -17339,63 +17339,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.5078125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.5234375,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.5390625,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5546875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.5625,
@@ -17403,35 +17403,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.5703125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5859375,
-                    "displacementM": -0.08314696123025457
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.07071067811865486
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.6015625,
-                    "displacementM": -0.05555702330196025
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.03826834323650907
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.6171875,
-                    "displacementM": -0.019509032201612823
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": -6.123233995736766e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -17471,31 +17471,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.03125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.0625,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.15625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.21875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.25,
@@ -17503,63 +17503,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.3125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.34375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.40625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.4375,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.53125,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.59375,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.6875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.71875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.75,
@@ -17567,63 +17567,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.78125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.8125,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.90625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.96875,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.0625,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.09375,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.15625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.1875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.25,
@@ -17631,63 +17631,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.28125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.34375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.4375,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.46875,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.53125,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5625,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.625,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.65625,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.71875,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.75,
@@ -17695,35 +17695,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.8125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.84375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.90625,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.9375,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -17733,31 +17733,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -17765,63 +17765,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -17829,63 +17829,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.5078125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.5234375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.5390625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5546875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.5625,
@@ -17893,63 +17893,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.5703125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5859375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.6015625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.6171875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.6328125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.6484375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.6640625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.6796875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.6875,
@@ -17957,35 +17957,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.6953125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.7109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.7265625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.7421875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -18025,31 +18025,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.5,
@@ -18057,63 +18057,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 4.5,
@@ -18121,63 +18121,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 6.1875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 6.5625,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 6.9375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 7.3125,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 7.5,
@@ -18185,63 +18185,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 7.6875,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 8.0625,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 8.25,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 8.4375,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 8.625,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 8.8125,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 9.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 9.1875,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 9.375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 9.5625,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 9.75,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 9.9375,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 10.125,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 10.3125,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 10.5,
@@ -18249,35 +18249,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 10.6875,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 10.875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 11.0625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 11.25,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 11.4375,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 11.625,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 11.8125,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 12.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -18287,31 +18287,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.0625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.25,
@@ -18319,63 +18319,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -18383,63 +18383,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -18447,63 +18447,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -18511,35 +18511,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -18571,23 +18571,23 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 6.0,
                 "periodS": 1.0,
-                "probeDisplacementM": -0.07071067811865475,
+                "probeDisplacementM": -0.0707106781187,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.75,
@@ -18595,31 +18595,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.25,
@@ -18627,63 +18627,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": -0.03826834323650893
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 5.25,
@@ -18691,63 +18691,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 6.1875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": -0.03826834323650896
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 6.5625,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 6.9375,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": 0.03826834323650891
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 7.3125,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 7.5,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 7.6875,
-                    "displacementM": 0.08314696123025447
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": 0.0923879532511287
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 8.0625,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 8.25,
@@ -18755,63 +18755,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 8.4375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 8.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 8.8125,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 9.0,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 9.1875,
-                    "displacementM": 0.055557023301960384
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 9.375,
-                    "displacementM": 0.038268343236508885
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 9.5625,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 9.75,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 9.9375,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 10.125,
-                    "displacementM": -0.03826834323650882
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 10.3125,
-                    "displacementM": -0.05555702330196032
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 10.5,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 10.6875,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 10.875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 11.0625,
-                    "displacementM": -0.09807852804032302
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 11.25,
@@ -18819,37 +18819,37 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 11.4375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 11.625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 11.8125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 12.0,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.25,
@@ -18857,63 +18857,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -18921,63 +18921,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0923879532511287
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.03826834323650896
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.03826834323650891
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -18985,63 +18985,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.055557023301960384
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.038268343236508885
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650882
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.05555702330196032
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -19049,51 +19049,51 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.0555570233019604
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236508906
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 2.03125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 2.0625,
-                    "displacementM": -0.03826834323650881
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 2.09375,
-                    "displacementM": -0.05555702330196031
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 2.125,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -19133,31 +19133,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5,
@@ -19165,31 +19165,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.0,
@@ -19197,63 +19197,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 6.0,
@@ -19261,63 +19261,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 6.1875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 6.375,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 6.5625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 6.75,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 6.9375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 7.125,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 7.3125,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 7.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 7.6875,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 7.875,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 8.0625,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 8.25,
-                    "displacementM": 0.07071067811865467
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 8.4375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 8.625,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 8.8125,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 9.0,
@@ -19325,63 +19325,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 9.1875,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 9.375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 9.5625,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 9.75,
-                    "displacementM": 0.07071067811865471
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 9.9375,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 10.125,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 10.3125,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 10.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 10.6875,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 10.875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 11.0625,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 11.25,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 11.4375,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 11.625,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 11.8125,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 12.0,
@@ -19395,63 +19395,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.75,
@@ -19459,63 +19459,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.25,
@@ -19523,63 +19523,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.28125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.3125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.34375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.40625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.4375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.46875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.5,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.53125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.5625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.59375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.625,
-                    "displacementM": 0.07071067811865465
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.65625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.6875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.71875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.75,
@@ -19587,63 +19587,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.78125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 1.8125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 1.84375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 1.875,
-                    "displacementM": 0.07071067811865472
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 1.90625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 1.9375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 1.96875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 2.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 2.03125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 2.0625,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 2.09375,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 2.125,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 2.15625,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 2.1875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 2.21875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 2.25,
@@ -19687,31 +19687,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.75,
@@ -19719,63 +19719,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.25,
@@ -19783,63 +19783,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.09375,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 3.28125,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 3.46875,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 3.65625,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.75,
@@ -19847,63 +19847,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.84375,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 4.03125,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 4.21875,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.40625,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 4.59375,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 4.78125,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 4.96875,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.15625,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 5.25,
@@ -19911,35 +19911,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 5.34375,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.53125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 5.71875,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 5.90625,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -19949,31 +19949,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.015625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.046875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.0625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.078125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.125,
@@ -19981,63 +19981,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -20045,63 +20045,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -20109,63 +20109,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -20173,35 +20173,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -20241,31 +20241,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.75,
@@ -20273,31 +20273,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.5,
@@ -20305,63 +20305,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.0,
@@ -20369,63 +20369,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.09375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.28125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.46875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.65625,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.75,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.84375,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.03125,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": 0.07071067811865467
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 4.21875,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 4.40625,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 4.5,
@@ -20433,63 +20433,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 4.59375,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 4.78125,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": 0.07071067811865471
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 4.96875,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 5.15625,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 5.25,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 5.34375,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 5.53125,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 5.71875,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 5.90625,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 6.0,
@@ -20503,63 +20503,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.1875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -20567,63 +20567,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -20631,63 +20631,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.07071067811865465
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -20695,63 +20695,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865472
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.015625,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.046875,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.07071067811865465
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.078125,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.125,
@@ -20787,39 +20787,39 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 3.0,
                 "periodS": 0.5,
-                "probeDisplacementM": -1.2246467991473533e-17,
+                "probeDisplacementM": 0.0,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.75,
@@ -20827,31 +20827,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": -0.05555702330196021
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": -0.019509032201612847
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5,
@@ -20859,31 +20859,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": 0.019509032201612847
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.875,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.25,
@@ -20891,63 +20891,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.625,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 3.09375,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.1875,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 3.28125,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 3.375,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 3.46875,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 3.5625,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 3.65625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.75,
@@ -20955,63 +20955,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 3.84375,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 3.9375,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 4.03125,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 4.125,
-                    "displacementM": -0.07071067811865483
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 4.21875,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 4.3125,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 4.40625,
-                    "displacementM": -0.019509032201612788
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 4.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 4.59375,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 4.6875,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 4.78125,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 4.875,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 4.96875,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 5.0625,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.15625,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.25,
@@ -21019,69 +21019,69 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 5.34375,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 5.4375,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 5.53125,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 5.625,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 5.71875,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 5.8125,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 5.90625,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 6.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.25,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.3125,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.375,
@@ -21089,63 +21089,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.4375,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.5625,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.625,
@@ -21153,63 +21153,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.6875,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.765625,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.78125,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.796875,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.8125,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.828125,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.84375,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.859375,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.875,
@@ -21217,63 +21217,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.890625,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.90625,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.921875,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.9375,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.953125,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.96875,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.984375,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 1.0,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 1.015625,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.03125,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.046875,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.0625,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.078125,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.09375,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.109375,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.125,
@@ -21281,35 +21281,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 1.140625,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 1.15625,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 1.171875,
-                    "displacementM": -0.08314696123025457
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 1.1875,
-                    "displacementM": -0.07071067811865486
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 1.203125,
-                    "displacementM": -0.05555702330196025
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 1.21875,
-                    "displacementM": -0.03826834323650907
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 1.234375,
-                    "displacementM": -0.019509032201612823
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 1.25,
-                    "displacementM": -6.123233995736766e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -21349,31 +21349,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.046875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.140625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.234375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.328125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.375,
@@ -21381,63 +21381,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.421875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.515625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.609375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.703125,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.796875,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.890625,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.984375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.078125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.125,
@@ -21445,63 +21445,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.171875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.265625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.359375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.453125,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.546875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.640625,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.734375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.828125,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.875,
@@ -21509,63 +21509,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.921875,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.015625,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.109375,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.203125,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.296875,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.390625,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.484375,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.578125,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.625,
@@ -21573,35 +21573,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.671875,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.765625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.859375,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.953125,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -21611,31 +21611,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.0078125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.015625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.0234375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.03125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.0390625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.046875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.0546875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.0625,
@@ -21643,63 +21643,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.0703125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.078125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.0859375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.09375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.1015625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.109375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.1171875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.125,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.1328125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.1484375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.1640625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.1796875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.1875,
@@ -21707,63 +21707,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.1953125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.2109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.2265625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.2421875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -21771,63 +21771,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -21835,35 +21835,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -21895,39 +21895,39 @@ export const courseLearningData = {
                 "unit": "m",
                 "wavelengthM": 1.5,
                 "periodS": 0.25,
-                "probeDisplacementM": -1.2246467991473533e-17,
+                "probeDisplacementM": 0.0,
                 "spatialSamples": [
                   {
                     "xM": 0.0,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.046875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.140625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.234375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.328125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.375,
@@ -21935,31 +21935,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.421875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 0.515625,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.609375,
-                    "displacementM": -0.05555702330196021
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.703125,
-                    "displacementM": -0.019509032201612847
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.75,
@@ -21967,31 +21967,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.796875,
-                    "displacementM": 0.019509032201612847
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.890625,
-                    "displacementM": 0.05555702330196021
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.984375,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.078125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.125,
@@ -21999,63 +21999,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.171875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.265625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.359375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": 0.03826834323650903
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.453125,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.546875,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": -0.03826834323650901
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.640625,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.734375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.828125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.875,
@@ -22063,63 +22063,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.921875,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.015625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": -0.07071067811865483
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.109375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.203125,
-                    "displacementM": -0.019509032201612788
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.296875,
-                    "displacementM": 0.019509032201612736
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.390625,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.484375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.578125,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.625,
@@ -22127,69 +22127,69 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.671875,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.765625,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.859375,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.953125,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
                   {
                     "timeS": 0.125,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.1328125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.140625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.1484375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.15625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.1640625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.171875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.1796875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.1875,
@@ -22197,63 +22197,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.1953125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.203125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.2109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.21875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.2265625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.234375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.2421875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.25,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -22261,63 +22261,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032302
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -22325,63 +22325,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.5078125,
-                    "displacementM": -0.019509032201612715
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.038268343236508975
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.5234375,
-                    "displacementM": -0.05555702330196016
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.07071067811865478
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.5390625,
-                    "displacementM": -0.0831469612302545
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5546875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.5625,
@@ -22389,35 +22389,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.5703125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.0923879532511287
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5859375,
-                    "displacementM": -0.08314696123025457
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.07071067811865486
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.6015625,
-                    "displacementM": -0.05555702330196025
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.03826834323650907
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.6171875,
-                    "displacementM": -0.019509032201612823
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": -6.123233995736766e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -22457,31 +22457,31 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.046875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.09375,
-                    "displacementM": 0.03826834323650898
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.140625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.1875,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.234375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.28125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.328125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.375,
@@ -22489,63 +22489,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 0.421875,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 0.46875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 0.515625,
-                    "displacementM": 0.08314696123025454
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 0.5625,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 0.609375,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 0.65625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 0.703125,
-                    "displacementM": 0.01950903220161286
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 0.75,
-                    "displacementM": 1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 0.796875,
-                    "displacementM": -0.019509032201612837
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 0.84375,
-                    "displacementM": -0.03826834323650897
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 0.890625,
-                    "displacementM": -0.0555570233019602
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 0.9375,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 0.984375,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.03125,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.078125,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.125,
@@ -22553,63 +22553,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.171875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 1.21875,
-                    "displacementM": -0.09238795325112867
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 1.265625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 1.3125,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 1.359375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 1.40625,
-                    "displacementM": -0.038268343236509045
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 1.453125,
-                    "displacementM": -0.019509032201612875
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 1.5,
-                    "displacementM": -2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 1.546875,
-                    "displacementM": 0.019509032201612826
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 1.59375,
-                    "displacementM": 0.038268343236508996
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 1.640625,
-                    "displacementM": 0.05555702330196019
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 1.6875,
-                    "displacementM": 0.07071067811865474
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 1.734375,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 1.78125,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 1.828125,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.875,
@@ -22617,63 +22617,63 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 1.921875,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "xM": 1.96875,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "xM": 2.015625,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "xM": 2.0625,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "xM": 2.109375,
-                    "displacementM": 0.05555702330196023
+                    "displacementM": 0.055557023302
                   },
                   {
                     "xM": 2.15625,
-                    "displacementM": 0.03826834323650905
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "xM": 2.203125,
-                    "displacementM": 0.0195090322016128
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "xM": 2.25,
-                    "displacementM": 3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "xM": 2.296875,
-                    "displacementM": -0.019509032201612726
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 2.34375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.390625,
-                    "displacementM": -0.055557023301960176
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.4375,
-                    "displacementM": -0.0707106781186548
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.484375,
-                    "displacementM": -0.08314696123025452
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.53125,
-                    "displacementM": -0.09238795325112864
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.578125,
-                    "displacementM": -0.09807852804032306
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.625,
@@ -22681,35 +22681,35 @@ export const courseLearningData = {
                   },
                   {
                     "xM": 2.671875,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "xM": 2.71875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "xM": 2.765625,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "xM": 2.8125,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "xM": 2.859375,
-                    "displacementM": -0.055557023301960246
+                    "displacementM": -0.055557023302
                   },
                   {
                     "xM": 2.90625,
-                    "displacementM": -0.038268343236509066
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "xM": 2.953125,
-                    "displacementM": -0.01950903220161281
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "xM": 3.0,
-                    "displacementM": -4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "temporalSamples": [
@@ -22719,31 +22719,31 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.2578125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.265625,
-                    "displacementM": -0.03826834323650898
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.2734375,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.28125,
-                    "displacementM": -0.07071067811865475
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.2890625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.296875,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3046875,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.3125,
@@ -22751,63 +22751,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.3203125,
-                    "displacementM": -0.09807852804032305
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.328125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.3359375,
-                    "displacementM": -0.08314696123025454
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.34375,
-                    "displacementM": -0.07071067811865477
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.3515625,
-                    "displacementM": -0.05555702330196022
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.359375,
-                    "displacementM": -0.03826834323650899
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.3671875,
-                    "displacementM": -0.01950903220161286
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.375,
-                    "displacementM": -1.2246467991473533e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.3828125,
-                    "displacementM": 0.019509032201612837
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.390625,
-                    "displacementM": 0.03826834323650897
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.3984375,
-                    "displacementM": 0.0555570233019602
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.40625,
-                    "displacementM": 0.07071067811865475
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4140625,
-                    "displacementM": 0.08314696123025453
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.421875,
-                    "displacementM": 0.09238795325112865
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4296875,
-                    "displacementM": 0.09807852804032303
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.4375,
@@ -22815,63 +22815,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.4453125,
-                    "displacementM": 0.09807852804032305
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.453125,
-                    "displacementM": 0.09238795325112867
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.4609375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.46875,
-                    "displacementM": 0.07071067811865477
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.4765625,
-                    "displacementM": 0.05555702330196022
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.484375,
-                    "displacementM": 0.038268343236509045
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.4921875,
-                    "displacementM": 0.019509032201612875
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.5,
-                    "displacementM": 2.4492935982947065e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.5078125,
-                    "displacementM": -0.019509032201612826
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.515625,
-                    "displacementM": -0.038268343236508996
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.5234375,
-                    "displacementM": -0.05555702330196019
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.53125,
-                    "displacementM": -0.07071067811865474
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.5390625,
-                    "displacementM": -0.08314696123025453
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.546875,
-                    "displacementM": -0.09238795325112865
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5546875,
-                    "displacementM": -0.09807852804032303
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.5625,
@@ -22879,63 +22879,63 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.5703125,
-                    "displacementM": -0.09807852804032308
+                    "displacementM": -0.0980785280403
                   },
                   {
                     "timeS": 0.578125,
-                    "displacementM": -0.09238795325112868
+                    "displacementM": -0.0923879532511
                   },
                   {
                     "timeS": 0.5859375,
-                    "displacementM": -0.08314696123025456
+                    "displacementM": -0.0831469612303
                   },
                   {
                     "timeS": 0.59375,
-                    "displacementM": -0.07071067811865485
+                    "displacementM": -0.0707106781187
                   },
                   {
                     "timeS": 0.6015625,
-                    "displacementM": -0.05555702330196023
+                    "displacementM": -0.055557023302
                   },
                   {
                     "timeS": 0.609375,
-                    "displacementM": -0.03826834323650905
+                    "displacementM": -0.0382683432365
                   },
                   {
                     "timeS": 0.6171875,
-                    "displacementM": -0.0195090322016128
+                    "displacementM": -0.0195090322016
                   },
                   {
                     "timeS": 0.625,
-                    "displacementM": -3.6739403974420595e-17
+                    "displacementM": 0.0
                   },
                   {
                     "timeS": 0.6328125,
-                    "displacementM": 0.019509032201612726
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.640625,
-                    "displacementM": 0.03826834323650899
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.6484375,
-                    "displacementM": 0.055557023301960176
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.65625,
-                    "displacementM": 0.0707106781186548
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.6640625,
-                    "displacementM": 0.08314696123025452
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.671875,
-                    "displacementM": 0.09238795325112864
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.6796875,
-                    "displacementM": 0.09807852804032306
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.6875,
@@ -22943,35 +22943,35 @@ export const courseLearningData = {
                   },
                   {
                     "timeS": 0.6953125,
-                    "displacementM": 0.09807852804032308
+                    "displacementM": 0.0980785280403
                   },
                   {
                     "timeS": 0.703125,
-                    "displacementM": 0.09238795325112868
+                    "displacementM": 0.0923879532511
                   },
                   {
                     "timeS": 0.7109375,
-                    "displacementM": 0.08314696123025456
+                    "displacementM": 0.0831469612303
                   },
                   {
                     "timeS": 0.71875,
-                    "displacementM": 0.07071067811865485
+                    "displacementM": 0.0707106781187
                   },
                   {
                     "timeS": 0.7265625,
-                    "displacementM": 0.055557023301960246
+                    "displacementM": 0.055557023302
                   },
                   {
                     "timeS": 0.734375,
-                    "displacementM": 0.038268343236509066
+                    "displacementM": 0.0382683432365
                   },
                   {
                     "timeS": 0.7421875,
-                    "displacementM": 0.01950903220161281
+                    "displacementM": 0.0195090322016
                   },
                   {
                     "timeS": 0.75,
-                    "displacementM": 4.898587196589413e-17
+                    "displacementM": 0.0
                   }
                 ],
                 "calculatedVariable": "Lunghezza d’onda",
@@ -23027,5 +23027,16 @@ export const courseLearningData = {
       ]
     }
   ],
-  "bankIncluded": false
+  "bankIncluded": false,
+  "coreSourcesSha256": {
+    "activities.py": "cc6bd930284544bcd8cb43328b14769f1c6e642efa7eef1e55bfc111e7a375bb",
+    "catalog.py": "b075c151175fd2a227fcad23a4e15906384fe379c0cc3c8b990e3777f104f518",
+    "four_courses.py": "b0dafdd6bfd9cdccbb3c7f66be43479ce1bb96dcba00f101e346ce66897beadf",
+    "course_models.py": "4a93deaca52bb36f7d6eb08a1f1360e4f860580ebaf121f6340b638fa92988fe",
+    "electrical.py": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819",
+    "waves.py": "bdc7af2e860dd1b48519294eaef2a6536f87c2e1064dfc0259b05f2228e50add",
+    "kinematics.py": "5bde268b1f20d4e2a56cb695caa2840129573b1a119eade82fc0005df79809fc",
+    "thermodynamics.py": "2a9511986c2f6089f82430cfda07a51a9a8521ebf03455ce5ad69c375cec5500",
+    "spring.py": "9b4838c4474de7189077630d86195504b8951a584340e571e1bdd566162f54a7"
+  }
 };

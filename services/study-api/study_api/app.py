@@ -343,6 +343,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         from lessonos.study.coursepack import load_coursepack
         from lessonos.study.editions import public_edition
         from lessonos.study.catalog import edition_pack
+        store.get_edition(editionId)  # Keep the existing404 contract before binding validation.
         binding=edition_pack(store,editionId)
         if binding['packId'].startswith('sf-'):
             from lessonos.study.four_courses import coursepack_for_edition

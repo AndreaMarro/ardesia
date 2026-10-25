@@ -79,7 +79,7 @@ def test_pathway_pins_and_unavailable_state_are_explicit_metadata(tmp_path, monk
             assert result.status_code == 200
             assert result.json()['inventory']['pathways'] is None
             assert result.json()['inventory']['pathwaysError'] == 'curriculum_pathways_unavailable'
-            assert len(result.json()['inventory']['programmes']) == 2
+            assert len(result.json()['inventory']['programmes']) == 6
         for table in ('study_editions','study_question_bank_reviews','study_question_bank_approvals'):
             assert store.connection.execute('SELECT COUNT(*) FROM '+table).fetchone()[0] == 0
     finally:
