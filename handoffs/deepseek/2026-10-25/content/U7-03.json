@@ -1,0 +1,62 @@
+{
+  "id": "ds-2026-u7-03",
+  "familyId": "U7-03",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Fotoni",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-03.01",
+    "U7-03.02"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La radiazione scambia energia in quanti chiamati fotoni. Un fotone di frequenzaf ha energiaE=hf, conh=6,62607015·10^-34J s. Nel vuotoE=hc/λ. Il joule e l’elettronvolt sono unità di energia:1eV=1,602176634·10^-19J. La potenza di un fascio monocromatico, se tutti i fotoni considerati hanno la stessa energia, è il numero di fotoni per secondo moltiplicato perE. Intensità maggiore a frequenza fissata significa più energia per tempo e area, non fotoni individuali più energetici. Un fotone non è una piccola onda meccanica che richiede un mezzo materiale.",
+  "workedExample": {
+    "prompt": "Un fotone haf=5·10^14Hz. CalcolaE usandoh SI preciso.",
+    "steps": [
+      "E=6,62607015·10^-34·5·10^14.",
+      "Coefficienti:33,13035075; esponente10^-20.",
+      "Normalizza:E=3,313035075·10^-19J≈2,06783eV."
+    ],
+    "result": "3,313035075·10^-19J."
+  },
+  "practice": {
+    "prompt": "Raddoppiaf a parità di numero di fotoni. Come cambia l’energia totale?",
+    "answer": "Raddoppia.",
+    "feedback": "Ogni fotone ha energia lineare inf; il numero resta uguale."
+  },
+  "transfer": {
+    "prompt": "Una sorgente monocromatica emette10^12fotoni/s da2eV ciascuno. TrovaP con1eV=1,602176634·10^-19J.",
+    "answer": "3,204353268·10^-7W",
+    "feedback": "Energia per fotone3,204353268·10^-19J, moltiplicata per10^12s^-1. Non è un’energia totale senza durata."
+  },
+  "commonErrors": [
+    "EsprimereE inHz",
+    "Equiparare più fotoni a maggiore energia per fotone"
+  ],
+  "hintLadder": [
+    "Scrivi primaE=hf",
+    "Conserva J s·s^-1"
+  ],
+  "recap": "Frequenza determina energia per fotone; il flusso di fotoni determina la potenza a frequenza fissata.",
+  "transcript": "La radiazione scambia energia in quanti chiamati fotoni. Un fotone di frequenzaf ha energiaE=hf, conh=6,62607015·10^-34J s. Nel vuotoE=hc/λ. Il joule e l’elettronvolt sono unità di energia:1eV=1,602176634·10^-19J. La potenza di un fascio monocromatico, se tutti i fotoni considerati hanno la stessa energia, è il numero di fotoni per secondo moltiplicato perE. Intensità maggiore a frequenza fissata significa più energia per tempo e area, non fotoni individuali più energetici. Un fotone non è una piccola onda meccanica che richiede un mezzo materiale. Esempio: Un fotone haf=5·10^14Hz. CalcolaE usandoh SI preciso. E=6,62607015·10^-34·5·10^14. Coefficienti:33,13035075; esponente10^-20. Normalizza:E=3,313035075·10^-19J≈2,06783eV. Risultato: 3,313035075·10^-19J.",
+  "scientificCounterchecks": [
+    "Frequenza determina energia per fotone; il flusso di fotoni determina la potenza a frequenza fissata.",
+    "J s·Hz=J.",
+    "Nel vuoto raddoppiareλ dimezzaE."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

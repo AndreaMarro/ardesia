@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u7-06",
+  "familyId": "U7-06",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Ionizzazione",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-06.01",
+    "U7-06.02",
+    "U7-06.03",
+    "U7-06.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Ionizzare significa rimuovere un elettrone da un atomo o molecola e richiede energia rispetto a una soglia specifica. Per assorbimento di un singolo fotone si confrontaE=hf con quella soglia; non esiste una soglia numerica identica per ogni materiale. Radio,microonde e infrarosso sono esempi usuali non ionizzanti per singolo fotone;raggiX e gamma sono tipicamente ionizzanti. L’ultravioletto copre energie diverse e la classificazione richiede frequenza e specie considerata. Un fascio molto intenso di fotoni sotto soglia non aumenta l’energia del singolo fotone; può comunque produrre riscaldamento e altri effetti. Non ionizzante non significa innocuo. Effetti multifotonici o ad altissimo campo richiedono modelli ulteriori e sono esclusi dal confronto elementare.",
+  "workedExample": {
+    "prompt": "Un atomo ha soglia di ionizzazione10eV nel modello a singolo fotone. Confronta fotoni da3eV e12eV.",
+    "steps": [
+      "3eV è inferiore a10eV: insufficiente per quella ionizzazione a singolo fotone.",
+      "12eV supera la soglia.",
+      "Se assorbito per ionizzare, restano fino a2eV per l’energia cinetica nel modello ideale."
+    ],
+    "result": "3eV insufficiente;12eV energeticamente sufficiente."
+  },
+  "practice": {
+    "prompt": "Raddoppiare il numero di fotoni da3eV rende ciascuno da6eV?",
+    "answer": "No.",
+    "feedback": "Il numero aumenta l’energia totale del fascio, non l’energia individuale che dipende da frequenza."
+  },
+  "transfer": {
+    "prompt": "Due specie hanno soglie5eV e9eV. Un fotone da7eV è sopra soglia per entrambe? Un’esposizione non ionizzante è sempre senza effetti?",
+    "answer": "Sopra soglia solo per la prima; no, può produrre effetti come riscaldamento.",
+    "feedback": "Il confronto è specifico della specie. La classificazione fisica non è da sola un giudizio di sicurezza sanitaria."
+  },
+  "commonErrors": [
+    "Definire una soglia unica per ogni atomo",
+    "Dire non ionizzante quindi innocuo"
+  ],
+  "hintLadder": [
+    "Confronta energie nella stessa unità",
+    "Separa singolo fotone e energia totale"
+  ],
+  "recap": "La soglia è specifica del sistema e il confronto elementare è per singolo fotone.",
+  "transcript": "Ionizzare significa rimuovere un elettrone da un atomo o molecola e richiede energia rispetto a una soglia specifica. Per assorbimento di un singolo fotone si confrontaE=hf con quella soglia; non esiste una soglia numerica identica per ogni materiale. Radio,microonde e infrarosso sono esempi usuali non ionizzanti per singolo fotone;raggiX e gamma sono tipicamente ionizzanti. L’ultravioletto copre energie diverse e la classificazione richiede frequenza e specie considerata. Un fascio molto intenso di fotoni sotto soglia non aumenta l’energia del singolo fotone; può comunque produrre riscaldamento e altri effetti. Non ionizzante non significa innocuo. Effetti multifotonici o ad altissimo campo richiedono modelli ulteriori e sono esclusi dal confronto elementare. Esempio: Un atomo ha soglia di ionizzazione10eV nel modello a singolo fotone. Confronta fotoni da3eV e12eV. 3eV è inferiore a10eV: insufficiente per quella ionizzazione a singolo fotone. 12eV supera la soglia. Se assorbito per ionizzare, restano fino a2eV per l’energia cinetica nel modello ideale. Risultato: 3eV insufficiente;12eV energeticamente sufficiente.",
+  "scientificCounterchecks": [
+    "La soglia è specifica del sistema e il confronto elementare è per singolo fotone.",
+    "12−10=2eV disponibili nel modello ideale.",
+    "Un aumento di intensità non cambiaf."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

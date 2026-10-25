@@ -1,0 +1,62 @@
+{
+  "id": "ds-2026-u4-02",
+  "familyId": "U4-02",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U4",
+  "title": "Sovrapposizione",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U4-02.01",
+    "U4-02.02"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "In un mezzo lineare la perturbazione risultante è la somma algebrica degli spostamenti nello stesso punto e istante. Due onde coerenti di stessa frequenza e ampiezzaA, in fase, danno ampiezza2A; in opposizione di fase possono annullarsi localmente. Con fase intermedia l’ampiezza risultante non si ricava sommando i moduli. L’annullamento dello spostamento in un punto non implica sparizione dell’energia di tutto il campo: l’interferenza ridistribuisce l’energia e può generare nodi e ventri. La sovrapposizione del segnale non autorizza a sommare semplicemente le intensità di onde coerenti. Il modello richiede risposta lineare del mezzo.",
+  "workedExample": {
+    "prompt": "Due onde in fase producono nello stesso punto spostamenti+0,03m e+0,02m. Quale spostamento risultante? E se la seconda è−0,02m?",
+    "steps": [
+      "Somma algebrica dei valori istantanei.",
+      "0,03+0,02=0,05m.",
+      "0,03−0,02=0,01m."
+    ],
+    "result": "0,05m e0,01m."
+  },
+  "practice": {
+    "prompt": "Due onde coerenti con ampiezza0,04m sono in opposizione di fase nello stesso punto. Quale ampiezza risultante ideale?",
+    "answer": "0m",
+    "feedback": "I contributi hanno uguale modulo e segno opposto a ogni istante nel punto considerato."
+  },
+  "transfer": {
+    "prompt": "Due onde di uguale intensitàI e stessa frequenza arrivano in fase. La loro intensità risultante è2I oppure4I nel modello lineare con stessa impedenza?",
+    "answer": "4I",
+    "feedback": "L’ampiezza raddoppia e l’intensità è proporzionale al quadrato dell’ampiezza. L’energia è ridistribuita nello spazio."
+  },
+  "commonErrors": [
+    "Sommare sempre le intensità coerenti",
+    "Chiamare distruzione dell’energia un nodo"
+  ],
+  "hintLadder": [
+    "Confronta fasi prima dei moduli",
+    "Somma spostamenti nello stesso punto e tempo"
+  ],
+  "recap": "La sovrapposizione riguarda la perturbazione, non una somma universale delle intensità.",
+  "transcript": "In un mezzo lineare la perturbazione risultante è la somma algebrica degli spostamenti nello stesso punto e istante. Due onde coerenti di stessa frequenza e ampiezzaA, in fase, danno ampiezza2A; in opposizione di fase possono annullarsi localmente. Con fase intermedia l’ampiezza risultante non si ricava sommando i moduli. L’annullamento dello spostamento in un punto non implica sparizione dell’energia di tutto il campo: l’interferenza ridistribuisce l’energia e può generare nodi e ventri. La sovrapposizione del segnale non autorizza a sommare semplicemente le intensità di onde coerenti. Il modello richiede risposta lineare del mezzo. Esempio: Due onde in fase producono nello stesso punto spostamenti+0,03m e+0,02m. Quale spostamento risultante? E se la seconda è−0,02m? Somma algebrica dei valori istantanei. 0,03+0,02=0,05m. 0,03−0,02=0,01m. Risultato: 0,05m e0,01m.",
+  "scientificCounterchecks": [
+    "La sovrapposizione riguarda la perturbazione, non una somma universale delle intensità.",
+    "0,05−0,01=0,04m, coerente con il cambio di segno di0,02.",
+    "In opposizione perfettaA−A=0."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

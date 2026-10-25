@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u6-05",
+  "familyId": "U6-05",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Condensatori",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U6-05.01",
+    "U6-05.02",
+    "U6-05.03",
+    "U6-05.04",
+    "U6-05.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La capacitàC=Q/ΔV misura quanta carica di un’armatura è associata alla tensione fra le armature; l’unità èF=C/V. Un condensatore piano ideale haC=εA/d trascurando effetti di bordo. Un dielettrico aumentaε e quindiC a geometria fissa. L’energia immagazzinata èU=CV²/2=Q²/(2C). In parallelo le capacità si sommano perché la tensione è comune; in serie si sommano i reciproci perché le cariche delle armature interne isolate si bilanciano e la tensione si ripartisce. Inserire un dielettrico a tensione fissata dal generatore non è uguale al farlo con condensatore isolato e carica fissata: nel primo casoU cresce, nel secondo diminuisce. Nessun transitorioRC quantitativo è richiesto qui.",
+  "workedExample": {
+    "prompt": "Due condensatori2µF e3µF sono collegati in parallelo a10V. TrovaCeq,Qtot eU.",
+    "steps": [
+      "Ceq=5µF.",
+      "Qtot=CeqV=50µC.",
+      "U=CeqV²/2=250µJ."
+    ],
+    "result": "5µF;50µC;250µJ."
+  },
+  "practice": {
+    "prompt": "Gli stessi condensatori sono in serie. Quanto valeCeq?",
+    "answer": "1,2µF",
+    "feedback": "Ceq=C1C2/(C1+C2)=6/5µF. È minore della capacità più piccola."
+  },
+  "transfer": {
+    "prompt": "Un condensatore isolato mantieneQ e raddoppiaC con un dielettrico. Come cambianoV eU?",
+    "answer": "Entrambe si dimezzano.",
+    "feedback": "V=Q/C eU=Q²/(2C). A tensione mantenuta da generatore la conclusione energetica cambierebbe."
+  },
+  "commonErrors": [
+    "Invertire serie/parallelo rispetto alle capacità",
+    "Non dichiarareVfissa oQfissa"
+  ],
+  "hintLadder": [
+    "Identifica se il generatore resta collegato",
+    "Controlla il limite della capacità equivalente"
+  ],
+  "recap": "Le condizioni al contorno determinano la variazione dell’energia del condensatore.",
+  "transcript": "La capacitàC=Q/ΔV misura quanta carica di un’armatura è associata alla tensione fra le armature; l’unità èF=C/V. Un condensatore piano ideale haC=εA/d trascurando effetti di bordo. Un dielettrico aumentaε e quindiC a geometria fissa. L’energia immagazzinata èU=CV²/2=Q²/(2C). In parallelo le capacità si sommano perché la tensione è comune; in serie si sommano i reciproci perché le cariche delle armature interne isolate si bilanciano e la tensione si ripartisce. Inserire un dielettrico a tensione fissata dal generatore non è uguale al farlo con condensatore isolato e carica fissata: nel primo casoU cresce, nel secondo diminuisce. Nessun transitorioRC quantitativo è richiesto qui. Esempio: Due condensatori2µF e3µF sono collegati in parallelo a10V. TrovaCeq,Qtot eU. Ceq=5µF. Qtot=CeqV=50µC. U=CeqV²/2=250µJ. Risultato: 5µF;50µC;250µJ.",
+  "scientificCounterchecks": [
+    "Le condizioni al contorno determinano la variazione dell’energia del condensatore.",
+    "5·10^-6·100/2=250·10^-6J.",
+    "Ceqserie<2µF eCeqparallelo>3µF."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

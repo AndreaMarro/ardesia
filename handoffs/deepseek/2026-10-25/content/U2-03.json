@@ -1,0 +1,68 @@
+{
+  "id": "ds-2026-u2-03",
+  "familyId": "U2-03",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U2",
+  "title": "Lavoro ed energia",
+  "sourcePages": [
+    2,
+    3
+  ],
+  "subtargetIds": [
+    "U2-03.01",
+    "U2-03.02",
+    "U2-03.03",
+    "U2-03.04",
+    "U2-03.05",
+    "U2-03.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Il lavoro di una forza costante è W=Fs cosθ; è negativo se la componente della forza si oppone allo spostamento e nullo per forza perpendicolare. La potenza media è W/Δt e misura il ritmo del trasferimento energetico. Il teorema dell’energia cinetica lega il lavoro totale a ΔK, con K=mv²/2. Per una forza conservativa il lavoro è −ΔU: vicino alla Terra Ug=mgh, per una molla ideale Ue=kx²/2. Se agiscono solo forze conservative, K+U resta costante. Con attrito l’energia meccanica diminuisce mentre l’energia complessiva, includendo quella interna e l’ambiente, resta conservata. Lo zero dell’energia potenziale è convenzionale; le differenze producono previsioni. Non applicare conservazione dell’energia meccanica a un sistema che riceve lavoro esterno non incluso.",
+  "workedExample": {
+    "prompt": "Una massa di2kg cade da5m, parte da ferma e non incontra attrito; g=10m/s². Trova K finale e v.",
+    "steps": [
+      "ΔUg=−mgh=−100J.",
+      "K finale=100J.",
+      "v=√(2K/m)=10m/s."
+    ],
+    "result": "100J;10m/s."
+  },
+  "practice": {
+    "prompt": "Una forza di10N agisce per3m in verso opposto allo spostamento. Qual è il lavoro?",
+    "answer": "−30J",
+    "feedback": "Il coseno di180° è−1; il lavoro negativo riduce l’energia cinetica se non intervengono altri lavori."
+  },
+  "transfer": {
+    "prompt": "Una molla k=100N/m compressa di0,2m trasferisce idealmente energia a un corpo di1kg. Trova energia, velocità e potenza media se il trasferimento dura0,5s.",
+    "answer": "2J;2m/s;4W",
+    "feedback": "Ue=100·0,04/2=2J; v²=4; Pmedia=2/0,5. Il tempo non cambia l’energia disponibile."
+  },
+  "commonErrors": [
+    "UsareW=Fs quando la forza è perpendicolare",
+    "ConservareK+U anche con attrito non contabilizzato"
+  ],
+  "hintLadder": [
+    "Definisci sistema e forze",
+    "Confronta energia iniziale e finale",
+    "Verifica joule e watt distinti"
+  ],
+  "recap": "Il lavoro totale cambiaK; le forze conservative consentono di introdurreU.",
+  "transcript": "Il lavoro di una forza costante è W=Fs cosθ; è negativo se la componente della forza si oppone allo spostamento e nullo per forza perpendicolare. La potenza media è W/Δt e misura il ritmo del trasferimento energetico. Il teorema dell’energia cinetica lega il lavoro totale a ΔK, con K=mv²/2. Per una forza conservativa il lavoro è −ΔU: vicino alla Terra Ug=mgh, per una molla ideale Ue=kx²/2. Se agiscono solo forze conservative, K+U resta costante. Con attrito l’energia meccanica diminuisce mentre l’energia complessiva, includendo quella interna e l’ambiente, resta conservata. Lo zero dell’energia potenziale è convenzionale; le differenze producono previsioni. Non applicare conservazione dell’energia meccanica a un sistema che riceve lavoro esterno non incluso. Esempio: Una massa di2kg cade da5m, parte da ferma e non incontra attrito; g=10m/s². Trova K finale e v. ΔUg=−mgh=−100J. K finale=100J. v=√(2K/m)=10m/s. Risultato: 100J;10m/s.",
+  "scientificCounterchecks": [
+    "Il lavoro totale cambiaK; le forze conservative consentono di introdurreU.",
+    "kg·m²/s²=J.",
+    "Con10J dissipati laKfinale del primo esempio sarebbe90J."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

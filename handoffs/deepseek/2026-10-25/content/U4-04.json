@@ -1,0 +1,63 @@
+{
+  "id": "ds-2026-u4-04",
+  "familyId": "U4-04",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U4",
+  "title": "Suono e decibel",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U4-04.01",
+    "U4-04.02",
+    "U4-04.03"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Il suono è una perturbazione meccanica: necessita di un mezzo materiale e nei fluidi è longitudinale. La velocità dipende dalle proprietà del mezzo e dalla temperatura, non dalla sola frequenza emessa. Il livello di intensità sonora èβ=10log10(I/I0), con riferimento dichiaratoI0; non è una misura lineare dell’intensità né una descrizione completa della sensazione soggettiva. Un aumento di10dB corrisponde a intensità per10,20dB a per100. Per sorgenti incoerenti si sommano le intensità prima di calcolare il logaritmo. Frequenza e sensibilità dell’ascoltatore influenzano la percezione, quindi uguali dB non certificano uguale esperienza soggettiva. Il valoreI=0 non ha logaritmo finito.",
+  "workedExample": {
+    "prompt": "ConI0=10^-12W/m² eI=10^-8W/m² trovaβ.",
+    "steps": [
+      "I/I0=10^4.",
+      "log10(10^4)=4.",
+      "β=10·4=40dB."
+    ],
+    "result": "40dB."
+  },
+  "practice": {
+    "prompt": "Il livello passa da40 a60dB con lo stesso riferimento. Qual è il rapporto fra intensità?",
+    "answer": "100",
+    "feedback": "Δβ=20dB implica10^(20/10)=100."
+  },
+  "transfer": {
+    "prompt": "Due sorgenti incoerenti uguali, ciascuna a40dB nel punto, agiscono insieme. Quale livello totale approssimato?",
+    "answer": "43,0103dB",
+    "feedback": "L’intensità raddoppia: incremento10log10(2)≈3,0103dB, non40dB aggiuntivi."
+  },
+  "commonErrors": [
+    "Sommare direttamente i livelli in dB",
+    "Sostenere che il suono si propaga nel vuoto"
+  ],
+  "hintLadder": [
+    "Calcola il rapporto di intensità",
+    "Somma intensità prima del logaritmo"
+  ],
+  "recap": "Il decibel esprime un rapporto logaritmico rispetto a un riferimento.",
+  "transcript": "Il suono è una perturbazione meccanica: necessita di un mezzo materiale e nei fluidi è longitudinale. La velocità dipende dalle proprietà del mezzo e dalla temperatura, non dalla sola frequenza emessa. Il livello di intensità sonora èβ=10log10(I/I0), con riferimento dichiaratoI0; non è una misura lineare dell’intensità né una descrizione completa della sensazione soggettiva. Un aumento di10dB corrisponde a intensità per10,20dB a per100. Per sorgenti incoerenti si sommano le intensità prima di calcolare il logaritmo. Frequenza e sensibilità dell’ascoltatore influenzano la percezione, quindi uguali dB non certificano uguale esperienza soggettiva. Il valoreI=0 non ha logaritmo finito. Esempio: ConI0=10^-12W/m² eI=10^-8W/m² trovaβ. I/I0=10^4. log10(10^4)=4. β=10·4=40dB. Risultato: 40dB.",
+  "scientificCounterchecks": [
+    "Il decibel esprime un rapporto logaritmico rispetto a un riferimento.",
+    "40dB significa rapporto10^4, non40.",
+    "Un aumento di3,0103dB corrisponde al raddoppioI."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

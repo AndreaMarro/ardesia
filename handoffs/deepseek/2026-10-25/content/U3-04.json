@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u3-04",
+  "familyId": "U3-04",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U3",
+  "title": "Viscosità e Poiseuille",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U3-04.01",
+    "U3-04.02",
+    "U3-04.03",
+    "U3-04.04",
+    "U3-04.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "La viscosità descrive la resistenza allo scorrimento fra strati. Nel modello newtoniano lo sforzo tangenziale è proporzionale al gradiente di velocità. In tubo cilindrico lungo e rigido con flusso stazionario laminare, fluido incomprimibile newtoniano e aderenza alle pareti, il profilo è parabolico: velocità nulla sulla parete e massima sull’asse, doppia della media. Poiseuille dà Q=πr^4Δp/(8ηL) e resistenza idraulica Rh=Δp/Q. In serie le resistenze si sommano; in parallelo si sommano le conduttanze1/Rh. AΔp fissata raddoppiare r moltiplicaQ per16; aQ fissata invece cambia la pressione necessaria. Non confondere un profilo ideale con previsione quantitativa per sangue in ogni vaso o moto turbolento.",
+  "workedExample": {
+    "prompt": "Due tubi identici hanno ciascuno resistenza idraulicaR=10^8Pa s/m³. ConΔp=100Pa trovaQ equivalente in serie e parallelo.",
+    "steps": [
+      "Serie:Req=2·10^8Pa s/m³,Q=100/Req.",
+      "Parallelo:Req=R/2=5·10^7Pa s/m³.",
+      "Qserie=5·10^-7m³/s;Qparallelo=2·10^-6m³/s."
+    ],
+    "result": "0,5mL/s in serie;2mL/s in parallelo."
+  },
+  "practice": {
+    "prompt": "AΔp,η,L fissati il raggio si dimezza. Quale rapporto Qnuova/Qvecchia?",
+    "answer": "1/16",
+    "feedback": "La dipendenza è sulla quarta potenza del raggio, non sulla sola area."
+  },
+  "transfer": {
+    "prompt": "Un flusso laminare ha velocità media0,03m/s. Nel modello diPoiseuille quale massima sull’asse? Se raddoppiaη aΔp fissata?",
+    "answer": "0,06m/s; portata dimezzata.",
+    "feedback": "Per il profilo parabolico vmax=2vmedia eQ è inversamente proporzionale alla viscosità."
+  },
+  "commonErrors": [
+    "VariareQ senza specificare cosa resta fisso",
+    "Usare diametro al posto del raggio nella formula"
+  ],
+  "hintLadder": [
+    "Scrivi tutte le quantità mantenute costanti",
+    "Confronta rapporti prima dei valori assoluti"
+  ],
+  "recap": "Poiseuille ha un dominio fisico preciso e una forte sensibilità geometrica.",
+  "transcript": "La viscosità descrive la resistenza allo scorrimento fra strati. Nel modello newtoniano lo sforzo tangenziale è proporzionale al gradiente di velocità. In tubo cilindrico lungo e rigido con flusso stazionario laminare, fluido incomprimibile newtoniano e aderenza alle pareti, il profilo è parabolico: velocità nulla sulla parete e massima sull’asse, doppia della media. Poiseuille dà Q=πr^4Δp/(8ηL) e resistenza idraulica Rh=Δp/Q. In serie le resistenze si sommano; in parallelo si sommano le conduttanze1/Rh. AΔp fissata raddoppiare r moltiplicaQ per16; aQ fissata invece cambia la pressione necessaria. Non confondere un profilo ideale con previsione quantitativa per sangue in ogni vaso o moto turbolento. Esempio: Due tubi identici hanno ciascuno resistenza idraulicaR=10^8Pa s/m³. ConΔp=100Pa trovaQ equivalente in serie e parallelo. Serie:Req=2·10^8Pa s/m³,Q=100/Req. Parallelo:Req=R/2=5·10^7Pa s/m³. Qserie=5·10^-7m³/s;Qparallelo=2·10^-6m³/s. Risultato: 0,5mL/s in serie;2mL/s in parallelo.",
+  "scientificCounterchecks": [
+    "Poiseuille ha un dominio fisico preciso e una forte sensibilità geometrica.",
+    "Qparallelo/Qserie=4 per due resistenze identiche.",
+    "Pa/(Pa s/m³)=m³/s."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

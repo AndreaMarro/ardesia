@@ -1,0 +1,64 @@
+{
+  "id": "ds-2026-u4-03",
+  "familyId": "U4-03",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U4",
+  "title": "Energia e intensità",
+  "sourcePages": [
+    3
+  ],
+  "subtargetIds": [
+    "U4-03.01",
+    "U4-03.02",
+    "U4-03.03",
+    "U4-03.04"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "L’energia trasportata in un intervallo divisa per il tempo dà la potenzaP; la potenza per area perpendicolare dà intensitàI. Le unità sonoJ,W,W/m². Per una sorgente puntiforme isotropa senza assorbimento, la stessa potenza attraversa sfere di area4πr² eI=P/(4πr²): raddoppiare r divideI per4. Non è una legge per ogni geometria di onda né per un ambiente con riflessioni. In un mezzo lineare fissato, a frequenza fissata, l’intensità di un’onda armonica cresce comeA²; cambiare mezzo o frequenza richiede il modello specifico. Un aumento di potenza non cambia necessariamente velocità di propagazione.",
+  "workedExample": {
+    "prompt": "Un’onda trasporta12J in3s attraverso area2m² uniforme e perpendicolare. TrovaP eI.",
+    "steps": [
+      "P=12/3=4W.",
+      "I=P/A=4/2=2W/m².",
+      "Il flusso energetico per secondo e metro quadrato è2J/(s m²)."
+    ],
+    "result": "4W;2W/m²."
+  },
+  "practice": {
+    "prompt": "Una sorgente puntiforme isotropa produceI=8W/m² a2m. QualeI a4m senza assorbimento?",
+    "answer": "2W/m²",
+    "feedback": "La distanza raddoppia: dividi per quattro."
+  },
+  "transfer": {
+    "prompt": "A mezzo e frequenza fissati l’ampiezza passa daA a3A. Come variaI? Se l’area intercettata raddoppia aI fissata, quale potenza riceve?",
+    "answer": "Intensità9volte; potenza ricevuta2volte.",
+    "feedback": "Prima usaI∝A², poiP=I·area. Non confondere l’ampiezza dello spostamento con l’area attraversata."
+  },
+  "commonErrors": [
+    "UsareW/m per l’intensità",
+    "Applicare1/r² a onde piane senza ipotesi"
+  ],
+  "hintLadder": [
+    "ScriviE→P→I",
+    "Controlla geometria e assorbimento"
+  ],
+  "recap": "L’intensità è energia per tempo e area, non energia totale.",
+  "transcript": "L’energia trasportata in un intervallo divisa per il tempo dà la potenzaP; la potenza per area perpendicolare dà intensitàI. Le unità sonoJ,W,W/m². Per una sorgente puntiforme isotropa senza assorbimento, la stessa potenza attraversa sfere di area4πr² eI=P/(4πr²): raddoppiare r divideI per4. Non è una legge per ogni geometria di onda né per un ambiente con riflessioni. In un mezzo lineare fissato, a frequenza fissata, l’intensità di un’onda armonica cresce comeA²; cambiare mezzo o frequenza richiede il modello specifico. Un aumento di potenza non cambia necessariamente velocità di propagazione. Esempio: Un’onda trasporta12J in3s attraverso area2m² uniforme e perpendicolare. TrovaP eI. P=12/3=4W. I=P/A=4/2=2W/m². Il flusso energetico per secondo e metro quadrato è2J/(s m²). Risultato: 4W;2W/m².",
+  "scientificCounterchecks": [
+    "L’intensità è energia per tempo e area, non energia totale.",
+    "2W/m²·2m²·3s=12J.",
+    "Alla metà della distanza l’intensità isotropa quadruplica."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

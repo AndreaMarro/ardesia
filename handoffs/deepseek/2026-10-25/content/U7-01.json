@@ -1,0 +1,65 @@
+{
+  "id": "ds-2026-u7-01",
+  "familyId": "U7-01",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Radiazione elettromagnetica",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-01.01",
+    "U7-01.02",
+    "U7-01.03",
+    "U7-01.04",
+    "U7-01.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Un’onda elettromagnetica piana nel vuoto ha campi elettrico e magnetico oscillanti fra loro perpendicolari e perpendicolari alla direzione di propagazione; trasporta energia senza richiedere un mezzo materiale. La velocità nel vuoto èc=299792458m/s e valec=λf. In un mezzo la velocità può essere diversa e si usa la relazionev=λf con il modello del mezzo. L’ampiezza del campo e la frequenza sono grandezze distinte: nel modello lineare fissato l’intensità media cresce con il quadrato dell’ampiezza, mentre l’energia per fotone dipende dalla frequenza. Aumentare la luminosità a frequenza fissa non rende automaticamente la radiazione più energetica per singolo fotone.",
+  "workedExample": {
+    "prompt": "Nel vuoto una radiazione haf=3·10^8Hz. Usa c=299792458m/s e trovaλ.",
+    "steps": [
+      "λ=c/f.",
+      "299792458/(3·10^8)=0,9993081933m.",
+      "Il valore è circa1m; l’approssimazione c≈3·10^8m/s darebbe1m esatto."
+    ],
+    "result": "λ≈0,9993081933m."
+  },
+  "practice": {
+    "prompt": "In un mezzo non dispersivo la velocità è2·10^8m/s ef=5·10^14Hz. Trovaλ.",
+    "answer": "4·10^-7m =400nm",
+    "feedback": "La relazione usa la velocità nel mezzo, nonc nel vuoto."
+  },
+  "transfer": {
+    "prompt": "A frequenza e mezzo fissati l’ampiezza del campo elettrico raddoppia. Come varia l’intensità? Cambia la frequenza?",
+    "answer": "Intensità quadruplica; frequenza invariata.",
+    "feedback": "Ampiezza e ritmo di oscillazione sono parametri indipendenti del modello."
+  },
+  "commonErrors": [
+    "Richiedere aria per propagare la luce",
+    "Confondere ampiezza e frequenza"
+  ],
+  "hintLadder": [
+    "Distingui vuoto e mezzo",
+    "Controlla λf=v"
+  ],
+  "recap": "Le ondeEM propagano campi e energia; ampiezza non è energia del singolo fotone.",
+  "transcript": "Un’onda elettromagnetica piana nel vuoto ha campi elettrico e magnetico oscillanti fra loro perpendicolari e perpendicolari alla direzione di propagazione; trasporta energia senza richiedere un mezzo materiale. La velocità nel vuoto èc=299792458m/s e valec=λf. In un mezzo la velocità può essere diversa e si usa la relazionev=λf con il modello del mezzo. L’ampiezza del campo e la frequenza sono grandezze distinte: nel modello lineare fissato l’intensità media cresce con il quadrato dell’ampiezza, mentre l’energia per fotone dipende dalla frequenza. Aumentare la luminosità a frequenza fissa non rende automaticamente la radiazione più energetica per singolo fotone. Esempio: Nel vuoto una radiazione haf=3·10^8Hz. Usa c=299792458m/s e trovaλ. λ=c/f. 299792458/(3·10^8)=0,9993081933m. Il valore è circa1m; l’approssimazione c≈3·10^8m/s darebbe1m esatto. Risultato: λ≈0,9993081933m.",
+  "scientificCounterchecks": [
+    "Le ondeEM propagano campi e energia; ampiezza non è energia del singolo fotone.",
+    "m/s divisoHz=m.",
+    "Nel vuotoE,B e direzione di propagazione sono ortogonali nel modello piano."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

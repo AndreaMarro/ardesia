@@ -1,0 +1,62 @@
+{
+  "id": "ds-2026-u6-03",
+  "familyId": "U6-03",
+  "pathId": "elettricita-magnetismo",
+  "unitId": "U6",
+  "title": "Conduttori e dielettrici",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U6-03.01",
+    "U6-03.02"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "In un conduttore le cariche libere possono ridistribuirsi. In equilibrio elettrostatico il campo all’interno del materiale conduttore è nullo e il conduttore è equipotenziale; eventuale carica in eccesso si dispone sulla superficie. Avvicinare una carica esterna può separare cariche nel conduttore senza cambiare la carica totale: è induzione elettrostatica. Il collegamento a terra permette invece scambio di carica e va dichiarato. Un dielettrico ha cariche legate che possono spostarsi leggermente o orientarsi: la polarizzazione crea dipoli e modifica il campo senza implicare un flusso libero permanente attraverso l’isolante. Un corpo neutro può essere attratto da una carica per ridistribuzione; neutro non significa assenza di cariche.",
+  "workedExample": {
+    "prompt": "Una sfera metallica isolata e neutra viene avvicinata, senza contatto, a una bacchetta positiva. Quali cariche si trovano sul lato vicino e qual è la carica totale?",
+    "steps": [
+      "Gli elettroni mobili sono attratti verso il lato vicino.",
+      "Il lato lontano resta con eccesso relativo di carica positiva.",
+      "Senza contatto o terra la carica totale della sfera resta zero."
+    ],
+    "result": "Lato vicino negativo; totale zero."
+  },
+  "practice": {
+    "prompt": "In un dielettrico neutro i dipoli si orientano in un campo esterno. È necessario che passino elettroni da un capo all’altro del campione?",
+    "answer": "No.",
+    "feedback": "La polarizzazione può coinvolgere spostamenti locali di cariche legate o orientamento dei dipoli, senza corrente libera macroscopica permanente."
+  },
+  "transfer": {
+    "prompt": "Una sfera conduttrice viene collegata a terra mentre la bacchetta è vicina. Si può dedurre che la carica finale resti necessariamente zero?",
+    "answer": "No: la terra può fornire o assorbire cariche; conta l’ordine delle operazioni.",
+    "feedback": "L’isolamento era un’ipotesi essenziale del primo esempio. Specificare stacco da terra e rimozione della bacchetta è necessario per il risultato finale."
+  },
+  "commonErrors": [
+    "Confondere polarizzazione e caricamento netto",
+    "ApplicareE=0 a un conduttore attraversato da corrente"
+  ],
+  "hintLadder": [
+    "Distingui isolato e collegato a terra",
+    "Verifica se è equilibrio elettrostatico"
+  ],
+  "recap": "Separazione locale e carica totale sono concetti distinti.",
+  "transcript": "In un conduttore le cariche libere possono ridistribuirsi. In equilibrio elettrostatico il campo all’interno del materiale conduttore è nullo e il conduttore è equipotenziale; eventuale carica in eccesso si dispone sulla superficie. Avvicinare una carica esterna può separare cariche nel conduttore senza cambiare la carica totale: è induzione elettrostatica. Il collegamento a terra permette invece scambio di carica e va dichiarato. Un dielettrico ha cariche legate che possono spostarsi leggermente o orientarsi: la polarizzazione crea dipoli e modifica il campo senza implicare un flusso libero permanente attraverso l’isolante. Un corpo neutro può essere attratto da una carica per ridistribuzione; neutro non significa assenza di cariche. Esempio: Una sfera metallica isolata e neutra viene avvicinata, senza contatto, a una bacchetta positiva. Quali cariche si trovano sul lato vicino e qual è la carica totale? Gli elettroni mobili sono attratti verso il lato vicino. Il lato lontano resta con eccesso relativo di carica positiva. Senza contatto o terra la carica totale della sfera resta zero. Risultato: Lato vicino negativo; totale zero.",
+  "scientificCounterchecks": [
+    "Separazione locale e carica totale sono concetti distinti.",
+    "L’esempio conserva la carica netta della sfera.",
+    "Einterno=0 vale nel materiale conduttore in equilibrio elettrostatico."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

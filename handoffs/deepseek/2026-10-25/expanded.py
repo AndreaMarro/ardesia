@@ -14,11 +14,11 @@ L('U2-02',
 
 L('U5-01',
  'Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio.',
- 'Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,314 J/(mol K) e trova V.',
- ['Isola il volume: V=nRT/p.', 'Il numeratore vale 1·8,314·300=2494,2 J.', 'V=2494,2/100000=0,024942 m³, cioè 24,942 L.'],
- 'V=0,024942 m³.',
- Q('Con n=1 mol e p=100000 Pa la temperatura passa da 300 K a 600 K. Quanto vale il nuovo volume? R=8,314.', '0,049884 m³', 'A pressione e moli costanti il volume è proporzionale alla temperatura assoluta, quindi raddoppia.'),
- Q('Un campione di 0,5 mol è a 400 K e 200000 Pa. Trova V con R=8,314.', '0,008314 m³', 'nT=200 mol K e nRT=1662,8 J. La divisione per 200000 Pa dà 8,314 L.'),
+ 'Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.',
+ ['Isola il volume: V=nRT/p.', 'Il numeratore vale 1·8,31446261815324·300=2494,338785445972 J.', 'V=2494,338785445972/100000=0,02494338785445972 m³, circa 24,9434 L.'],
+ 'V=0,02494338785445972 m³.',
+ Q('Con n=1 mol e p=100000 Pa la temperatura passa da 300 K a 600 K. Quanto vale il nuovo volume? R=8,31446261815324.', '0,04988677570891944 m³', 'A pressione e moli costanti il volume è proporzionale alla temperatura assoluta, quindi raddoppia.'),
+ Q('Un campione di 0,5 mol è a 400 K e 200000 Pa. Trova V con R=8,31446261815324.', '0,00831446261815324 m³', 'nT=200 mol K e nRT=1662,892523630648 J. La divisione per 200000 Pa dà circa 8,31446 L.'),
  ['Usare °C in pV=nRT','Inserire pressione manometrica come assoluta','Confondere m³ e L'],
  ['Riconosci il sistema e lo stato di equilibrio','Converti a kelvin e pressione assoluta','Isola la variabile e verifica la proporzionalità'],
  ['pV=nRT richiede unità coerenti e temperatura assoluta.','J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.','Dimezzare n e raddoppiare T lascia nT costante; raddoppiare p dimezza V.'])
@@ -35,14 +35,14 @@ L('U4-01',
  ['Frequenza e periodo descrivono il ritmo locale; λ e v descrivono la propagazione.','m/s diviso Hz restituisce m; fT=1.','A=0 annulla tutti gli spostamenti; una traslazione (x+λ,t+T) conserva la fase.'])
 
 def consumer_four():
-    specs=[('U2-02','strumenti-meccanica','Molla, forze ed equilibrio',4,20,0.2,6,80,0.075,'m'),('U5-01','fluidi-termodinamica','Stato termodinamico e gas ideale',None,None,0.024942,None,None,0.008314,'m³'),('U6-04','elettricita-magnetismo','Corrente e potenza in una rete',None,None,1,None,None,4.5,'A'),('U4-01','onde-ottica-radiazioni','Frequenza e lunghezza d’onda',None,None,2,None,None,1.5,'m')]
+    specs=[('U2-02','strumenti-meccanica','Molla, forze ed equilibrio',4,20,0.2,6,80,0.075,'m'),('U5-01','fluidi-termodinamica','Stato termodinamico e gas ideale',None,None,0.02494338785445972,None,None,0.00831446261815324,'m³'),('U6-04','elettricita-magnetismo','Corrente e potenza in una rete',None,None,1,None,None,4.5,'A'),('U4-01','onde-ottica-radiazioni','Frequenza e lunghezza d’onda',None,None,2,None,None,1.5,'m')]
     result=[]
     for ident,course,title,_,__,answer,___,____,other,unit in specs:
         lesson=LESSONS[ident]
         if ident=='U2-02':
             p='Molla ideale: forza statica 4 N e k=20 N/m. Qual è l’allungamento in metri?'; t='Un’altra molla ha k=80 N/m e forza statica 6 N. Trova l’allungamento in metri.'
         elif ident=='U5-01':
-            p='Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,314 J/(mol K). Trova V in m³.'; t='Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,314 J/(mol K). Trova V in m³.'
+            p='Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.'; t='Gas ideale: n=0,5 mol, T=400 K, p assoluta=200000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.'
         elif ident=='U6-04':
             p='Generatore ideale 12 V, resistori 4 Ω e 8 Ω in serie. Trova la corrente totale in A.'; t='Generatore ideale 12 V, resistori 4 Ω e 8 Ω in parallelo. Trova la corrente totale in A.'
         else:

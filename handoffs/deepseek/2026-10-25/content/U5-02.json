@@ -1,0 +1,67 @@
+{
+  "id": "ds-2026-u5-02",
+  "familyId": "U5-02",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U5",
+  "title": "Calore e calorimetria",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U5-02.01",
+    "U5-02.02",
+    "U5-02.03",
+    "U5-02.04",
+    "U5-02.05",
+    "U5-02.06",
+    "U5-02.07"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Il calore è energia trasferita per differenza di temperatura e non una sostanza contenuta nel corpo. Senza cambiamenti di stato, Q=mcΔT=CΔT per calore specifico c e capacità termica C=mc nelle condizioni dichiarate. Nei gas ideali c e capacità dipendono dal vincolo: a pressione costante parte del calore serve al lavoro di espansione, quindi Cp>Cv e per una mole Cp−Cv=R. In una transizione di fase ideale a pressione fissata l’energia Q=mL può cambiare la fase senza cambiare T. Fusione ed evaporazione assorbono energia, condensazione e solidificazione la cedono. In calorimetria isolata la somma dei calori scambiati è zero includendo recipiente e transizioni se rilevanti. La media aritmetica delle temperature vale solo per uguali capacità senza cambiamenti di stato.",
+  "workedExample": {
+    "prompt": "Una massa0,2kg, c=4200J/(kg K), si scalda da20a30°C senza transizioni. TrovaQ.",
+    "steps": [
+      "ΔT=10K, stesso intervallo di10°C.",
+      "C=0,2·4200=840J/K.",
+      "Q=840·10=8400J."
+    ],
+    "result": "8400J assorbiti."
+  },
+  "practice": {
+    "prompt": "Masse uguali di acqua a20e60°C sono miscelate in recipiente isolato di capacità trascurabile. TrovaTf.",
+    "answer": "40°C",
+    "feedback": "Uguali masse e stesso c: (Tf−20)+(Tf−60)=0. Non estendere la media a capacità differenti."
+  },
+  "transfer": {
+    "prompt": "Per fondere0,05kg a temperatura di fusione usaL=334000J/kg. QuantoQ? Una successiva condensazione dello stesso materiale libera o assorbe calore?",
+    "answer": "16700J; la condensazione libera calore.",
+    "feedback": "Q=mL per la fusione data. Il valore numerico del calore di condensazione non è fornito e non coincide necessariamente conLfusione."
+  },
+  "commonErrors": [
+    "Scrivere calore contenuto al posto di energia interna",
+    "UsaremcΔT durante una transizione aTcostante"
+  ],
+  "hintLadder": [
+    "Controlla se cambia fase",
+    "Somma i contributi per riscaldamento e transizione"
+  ],
+  "recap": "Capacità termica e calore specifico hanno unità diverse.",
+  "transcript": "Il calore è energia trasferita per differenza di temperatura e non una sostanza contenuta nel corpo. Senza cambiamenti di stato, Q=mcΔT=CΔT per calore specifico c e capacità termica C=mc nelle condizioni dichiarate. Nei gas ideali c e capacità dipendono dal vincolo: a pressione costante parte del calore serve al lavoro di espansione, quindi Cp>Cv e per una mole Cp−Cv=R. In una transizione di fase ideale a pressione fissata l’energia Q=mL può cambiare la fase senza cambiare T. Fusione ed evaporazione assorbono energia, condensazione e solidificazione la cedono. In calorimetria isolata la somma dei calori scambiati è zero includendo recipiente e transizioni se rilevanti. La media aritmetica delle temperature vale solo per uguali capacità senza cambiamenti di stato. Esempio: Una massa0,2kg, c=4200J/(kg K), si scalda da20a30°C senza transizioni. TrovaQ. ΔT=10K, stesso intervallo di10°C. C=0,2·4200=840J/K. Q=840·10=8400J. Risultato: 8400J assorbiti.",
+  "scientificCounterchecks": [
+    "Capacità termica e calore specifico hanno unità diverse.",
+    "8400J/(840J/K)=10K.",
+    "Un calore di condensazione ha segno negativo per il sistema che condensa."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

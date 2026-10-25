@@ -1,0 +1,66 @@
+{
+  "id": "ds-2026-u7-05",
+  "familyId": "U7-05",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Radioattività",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-05.01",
+    "U7-05.02",
+    "U7-05.03",
+    "U7-05.04",
+    "U7-05.05",
+    "U7-05.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Isotopi dello stesso elemento hanno uguale numero di protoni e diverso numero di neutroni; alcuni nuclei instabili decadono spontaneamente. Il numero medio di nuclei non decaduti segueN=N0 exp(−λt), conλ>0 e attivitàA=λN inBq, cioè decadimenti al secondo. L’emivitaT1/2=ln2/λ dimezzaN eA a ogni intervallo uguale; non indica che ogni singolo nucleo decada dopo lo stesso tempo. Il decadimentoα riduce numero di massaA di4 e numero atomicoZ di2;β− conservaA e aumentaZ di1,β+ conservaA e riduceZ di1;γ cambia lo stato energetico senza cambiareA oZ. Gli eventi sono stocastici; la legge esponenziale descrive valori medi di insiemi. Attività non coincide con dose assorbita o rischio biologico.",
+  "workedExample": {
+    "prompt": "Un campione ha attività800Bq ed emivita2h. Quale attività media dopo6h, senza produzione di nuovi nuclei?",
+    "steps": [
+      "6h corrispondono a3emivite.",
+      "A=800·(1/2)^3.",
+      "A=100Bq."
+    ],
+    "result": "100Bq."
+  },
+  "practice": {
+    "prompt": "Un nucleo conA=226,Z=88 emetteα. QualiA eZ ha il nucleo figlio?",
+    "answer": "A=222,Z=86",
+    "feedback": "Sottrai4nucleoni e2protoni. Non usare il simboloA dell’attività nello stesso passaggio senza distinguere i significati."
+  },
+  "transfer": {
+    "prompt": "Un nucleo conA=14,Z=6 subisceβ− e poiγ. Come cambianoA eZ? Dopo un’altra emivita cosa succede all’attività100Bq?",
+    "answer": "Dopoβ−:A=14,Z=7;γ non li cambia. Attività media50Bq.",
+    "feedback": "Ilβ− converte un neutrone in protone con emissione degli altri prodotti. Gamma rilassa l’energia del nucleo."
+  },
+  "commonErrors": [
+    "ConfondereBq con dose",
+    "Trattare l’emivita come appuntamento deterministico del singolo nucleo"
+  ],
+  "hintLadder": [
+    "Conta il numero di emivite",
+    "BilanciaA eZ separatamente"
+  ],
+  "recap": "Decadimento è probabilistico; attività e numero di nuclei dimezzano insieme.",
+  "transcript": "Isotopi dello stesso elemento hanno uguale numero di protoni e diverso numero di neutroni; alcuni nuclei instabili decadono spontaneamente. Il numero medio di nuclei non decaduti segueN=N0 exp(−λt), conλ>0 e attivitàA=λN inBq, cioè decadimenti al secondo. L’emivitaT1/2=ln2/λ dimezzaN eA a ogni intervallo uguale; non indica che ogni singolo nucleo decada dopo lo stesso tempo. Il decadimentoα riduce numero di massaA di4 e numero atomicoZ di2;β− conservaA e aumentaZ di1,β+ conservaA e riduceZ di1;γ cambia lo stato energetico senza cambiareA oZ. Gli eventi sono stocastici; la legge esponenziale descrive valori medi di insiemi. Attività non coincide con dose assorbita o rischio biologico. Esempio: Un campione ha attività800Bq ed emivita2h. Quale attività media dopo6h, senza produzione di nuovi nuclei? 6h corrispondono a3emivite. A=800·(1/2)^3. A=100Bq. Risultato: 100Bq.",
+  "scientificCounterchecks": [
+    "Decadimento è probabilistico; attività e numero di nuclei dimezzano insieme.",
+    "800→400→200→100 in3intervalli.",
+    "Bq=s^-1;λN ha questa unità."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}
