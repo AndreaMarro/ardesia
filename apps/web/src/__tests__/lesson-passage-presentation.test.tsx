@@ -30,7 +30,7 @@ const workspace = {
   enrolled: true,
   edition: { id: "fluidi", teacherId: "teacher-01", capacity: 10,
     priceMinor: 4900, state: "collecting", sessions: [], timezone: "Europe/Rome" },
-  resources: [resource], submissions: [], layouts: [],
+  resources: [resource], submissions: [], layouts: [], layoutSaved: false, layoutVersion: digest,
 } as Workspace;
 
 test("source library indexes the authorized exact lesson revision by a human label, never a JSON prefix", async () => {
