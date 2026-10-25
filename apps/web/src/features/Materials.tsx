@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {LessonMediaLibrary} from "./lesson-media/LessonMediaLibrary";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
@@ -19,7 +20,7 @@ export function Materials({
 }) {
   const tutor = me.role === "teacher",
     resources = data.resources.filter(
-      (r) => r.visibility === "group" || r.ownerId === me.id,
+      (r) => r.kind !== "lesson-media-index" && (r.visibility === "group" || r.ownerId === me.id),
     );
   const [selected, setSelected] = useState<string | null>(null);
   const current = resources.find((r) => r.id === selected);
@@ -44,6 +45,7 @@ export function Materials({
             : "I materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza."}
         </p>
       </header>
+      <LessonMediaLibrary key={`${me.id}:${data.edition.id}`} me={me} data={data} onUpdate={onUpdate} />
       <div className="materials-layout">
         <aside
           aria-label={tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}

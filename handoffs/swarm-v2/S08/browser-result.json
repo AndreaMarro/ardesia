@@ -1,0 +1,43 @@
+{
+  "result": "PASS",
+  "environment": "loopback-only synthetic Core SQLite + Vite Web + canonical Studio",
+  "browser": "Chromium",
+  "viewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "media": {
+    "duration": 10,
+    "time": 2.2361,
+    "paused": true,
+    "src": true
+  },
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:5480/study/resources/c2e640694b5345b3b567deca2dc7a84d/revisions/6cae40fcd34743d3878d066e38007f01"
+    }
+  ],
+  "unexpectedConsole": [],
+  "sourceIds": [
+    "c2e640694b5345b3b567deca2dc7a84d",
+    "c43a5a4d502843bfb41e77f2ebf39ca3"
+  ],
+  "recordingsDistinct": true,
+  "checks": [
+    "catalog two takes",
+    "edit/reload",
+    "player exact recording+object",
+    "seek/play/pause/resume/end",
+    "search edited text",
+    "VTT export",
+    "mobile no overflow",
+    "keyboard",
+    "source withdrawal blocks export",
+    "anonymous 401",
+    "other student 403"
+  ],
+  "humanAudioListening": "NOT_RUN",
+  "remoteVideoUpload": "NOT_IMPLEMENTED"
+}
