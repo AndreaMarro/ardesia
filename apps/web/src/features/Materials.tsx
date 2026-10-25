@@ -5,6 +5,7 @@ import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
 import { type StudyMe, type Workspace } from "../api";
 import { useResourceComposer } from "../components/useResourceComposer";
 import { SourceViewer } from "../components/SourceViewer";
+import { displaySourceTitle } from "../components/lessonPassageReference";
 import { ResourceEditor } from "../components/ResourceEditor";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
 export function Materials({
@@ -60,7 +61,7 @@ export function Materials({
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span>
-                      <strong>{r.text.split("\n")[0].slice(0, 70)}</strong>
+                      <strong>{displaySourceTitle(r, 70)}</strong>
                       <small>
                         {r.visibility === "private"
                           ? "Privata"
