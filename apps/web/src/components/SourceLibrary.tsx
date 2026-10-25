@@ -6,6 +6,7 @@ import {
   type Workspace,
 } from "../api";
 import { ErrorNotice } from "./Feedback";
+import { displaySourceTitle } from "./lessonPassageReference";
 type Entry = {
   resourceId: string;
   revisionId: string;
@@ -18,9 +19,8 @@ function libraryEntries(data: Workspace): Entry[] {
     entries.set(`${resource.id}:${resource.revisionId}`, {
       resourceId: resource.id,
       revisionId: resource.revisionId,
-      title:
-        resource.text.split("\n")[0].slice(0, 85) || "Originale della consegna",
-      detail: `Versione corrente · ${resource.visibility === "private" ? "privata" : "del gruppo"}`,
+      title: displaySourceTitle(resource),
+      detail: `Versione corrente · ${resource.kind === "lesson-passage" ? "passaggio della lezione" : resource.visibility === "private" ? "privata" : "del gruppo"}`,
     });
   }
   for (const submission of data.submissions) {
