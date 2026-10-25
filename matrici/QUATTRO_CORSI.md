@@ -20,3 +20,7 @@ Stato scientifico: controlli automatici e review tecnica, non firma umana. B ha 
 Installazione plugin scientifici: NON implementata. I cinque renderer scientifici sono first-party in bundle; i contratti ToolHost esistenti non dimostrano distribuzione/mount/uninstall di questi oggetti.
 
 Per esiti remoti, SHA, test e prossimo passo: [consegna](../docs/ops/four-courses-2026-10-25/README.md), [memoria](../docs/ops/ARDESIA-RUNLOG.md).
+
+## Evidenza per singolo obiettivo
+
+Le [200 schede aggiornate](../docs/ops/four-courses-2026-10-25/objective-evidence.json) collegano target, famiglia, lessonRef e packRef esatti alla prova browser della review protetta. La [precedente matrice DeepSeek](../handoffs/deepseek/2026-10-25/coverage-200.json), che ancora riportava remote NOT_RUN, resta conservata come snapshot precedente. La nuova osservazione certifica raggiungibilità editoriale, non sufficienza della spiegazione o accettazione del target. Tutti i200 mantengono approved=false e complete=false. Comando riproducibile: `python3 docs/ops/four-courses-2026-10-25/build-objective-evidence.py`.
