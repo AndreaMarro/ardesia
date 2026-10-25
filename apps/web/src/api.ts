@@ -19,7 +19,7 @@ export type Edition = LegacyEdition & {
   questionBankIds?: string[];
   entryActivityId?: string | null;
 };
-export type Workspace = Omit<LegacyWorkspace, "edition"> & {
+export type Workspace = Omit<LegacyWorkspace, "edition" | "submissions"> & {
   edition: Edition;
   submissions: (LegacyWorkspace["submissions"][number] & {activityEvidence?: import("./components/experienceTypes").ActivityEvidence | import("./components/experienceTypes").ActivityEvidenceV2})[];
   layoutSaved: boolean;
