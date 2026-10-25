@@ -1,0 +1,106 @@
+{
+  "base": "51023fc5f0e3df5cee52b40bbe3f7d47028bca5a",
+  "status": "PASS_WITH_DOCUMENTED_P2",
+  "sourceFiles": {
+    "apps/studio/src/LessonPassageAuthor.tsx": "a9ccbe0079850a7ea88acb45c9f7f84bb61258eee2da2daeef6f33ceb121c9a9",
+    "apps/studio/src/__tests__/LessonPassageAuthor.test.tsx": "010a2943a914e58ef488d0f6c9d70e77eb64760d791bcb753a294f06da51c23e",
+    "apps/studio/e2e/study-group-journey.spec.ts": "3117f58a5602932918ca70c27b5d13121327428c8d4895575cdb9d87625e21b6",
+    "apps/studio/e2e/study-cold-reopen.spec.ts": "6a32dff3dd293af72a1cd76ba8d78783a800a676e346e1ec5ccd76466e61cbf5"
+  },
+  "proofDigests": {
+    "author-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "author-audio-focused-green.log": "2f5e7ea1edeb278a13a5ca4b35883e634b92f7e835050dd783507aec26a91a1f",
+    "author-vitest-red-r2.log": "7c5d6e3d4f0e4d1a38529e9cccc6d44feb887aa20d6539f9225be0854a2dc76a",
+    "author-vitest-green.log": "74d58e969e24680c4ba9d1e0a7c7fd797fcdf00875a2ff3a4da6a4cc7400fdc7",
+    "red-native-r2/audio-visible-ui.json": "926b275fffe9fe9e9dd01e6174c29ca420828bd489980b5cbc243eed1e88c839",
+    "green-native-built/audio-visible-ui.json": "989222cd537d48799b57f190412a4bceea74a0ee85f2991b87c5ece4277ef0c9",
+    "m1-run.log": "62a55f3b72d90d4146d7fe1a44dc16c4c3bdd3e3ca55bcd371fac436f075692a",
+    "m1-run-r2.log": "eb60de55420dbfca9eec2101b6428cafec649ef7d379babe16474d486e4d8e3e",
+    "m1-run-r3.log": "2494e75aa167a3d1352afcfd689a6d6c5271098ab257ed4f560308739b378340",
+    "m1-cold.log": "6838ef86626cfa2260d41fa5da87e919d7eaf5b8fc7aca162b4a85d71c7b7ae9",
+    "m1-cold-r2.log": "222517373a20bcf1752701cae0d6d75e90bed16ec39bba49578228754690fca7",
+    "public-review/review.json": "0b0611b24b3ca2d9ca4a88ef8278b4cda4691bdd0ff8ce22ae2203946dc86114",
+    "donor-rea-evidence-r3.json": "515a2af764bc78f3a95f11425e3c802375b5cc9ee49045550b9c7631e15af530",
+    "rea-ergonomics-transfer.json": "59e7a6291643b53b71c0f78cffa6896a7f7b0b05912acc1be5faad1826634c57"
+  },
+  "checks": {
+    "studioTypecheck": "PASS",
+    "focusedTests": "45/45PASS",
+    "authorTests": "RED\u2192GREEN3/3",
+    "nativeBuiltUI": "6/6PASS",
+    "M1": "1/1PASS26.3s",
+    "coldAfterRestart": "1/1PASS3.3s",
+    "publicIndependent": "9/9cases,72checksPASS;sourcefilesmatchbeforeandafter"
+  },
+  "bindings": {
+    "studioBuilt": {
+      "root": "/private/tmp/ardesia-release-20261025/ergonomics-qa/m1-build/studio",
+      "indexSha256": "b42465b386ec81415ba3008d3b9972c8dfb0a90e7d956cdb792c4f360dd301f1",
+      "assets": [
+        {
+          "url": "/studio/assets/index-CSZBi_n3.js",
+          "sha256": "c08047ac9e64cd8123aa086a8f2425523d610c15d353e815315ab22219fa70d5"
+        },
+        {
+          "url": "/studio/assets/chunk-BHe-jwch.js",
+          "sha256": "e17cabe5e25f3c66777c529f01df0ae562f11671a8506eb583d8799eaceeb149"
+        },
+        {
+          "url": "/studio/assets/index-r6w4tUo0.css",
+          "sha256": "4097249c0d414ccc5914d30cf6af1217956fc261fbbd0d90b45be6dbb5040c4f"
+        }
+      ]
+    },
+    "webBuiltForM1": {
+      "root": "/private/tmp/ardesia-release-20261025/ergonomics-qa/m1-build/web",
+      "indexSha256": "056a43348c5f8f7d26b57c28ebb021ab8dea92277eb193c79f3b724504e1962a",
+      "assets": [
+        {
+          "url": "/assets/index-Cm_K8mhh.js",
+          "sha256": "0dced77a1ceeac94891605f29ad46d1a5e6304293631320245e8d4c24325f373"
+        },
+        {
+          "url": "/assets/Feedback-sIz7ksbp.js",
+          "sha256": "5e2008b3c1915dd8e5aceba2b176bb43c6b4aa380078e8da42849d8733c274bf"
+        },
+        {
+          "url": "/assets/sessionDraftCache-DLZhItMX.js",
+          "sha256": "e8708e0f9d73c9ea075130361898d9fc6f756d5b22684c14dd5f7cceef325698"
+        },
+        {
+          "url": "/assets/index-CZpaTnyo.css",
+          "sha256": "dd4d67dab2f96ddeb8a7e96d640f5793d4223b90c2cbb3fda185a32e30f12f0b"
+        }
+      ]
+    },
+    "publicReviewed": {
+      "root": "/private/tmp/ardesia-r2-20261024/apps/web/dist-public",
+      "indexSha256": "b689a7786b3419f553a4325c286706aede5929fa4bf1307b7b8eb65cb967e60e",
+      "assets": [
+        {
+          "url": "/esperienza/assets/index-BcTL33b3.js",
+          "sha256": "60a620af74ade0a8501066b81b25de4cbfab63907d82c6629dbc426a7eeafa6a"
+        },
+        {
+          "url": "/esperienza/assets/index-BaGEeozC.css",
+          "sha256": "ef89805cdfb6477bc72b540d57a45a538f1b6d82b23f5d429d8ceed1a76aefda"
+        }
+      ]
+    },
+    "publicSourceSnapshotSha256": "3a900068b363fadf77ab88071a1dc223aa41ad8fdf162e2a4e21104a05750878"
+  },
+  "remaining": [
+    {
+      "priority": "P2",
+      "id": "comparison-below-fold",
+      "detail": "Submit top y1038\u20131189 at1440\u00d71000,1430\u20131626 at390\u00d71000; scroll needed, controls work and no overflow."
+    }
+  ],
+  "limits": [
+    "Built dirty candidate, not final committed or Vercel artifact.",
+    "No hardware/FSA/physical microphone or real personal data.",
+    "No human scientific/editorial approval or learning efficacy claim.",
+    "Do not copy m1-data* fixture credentials into source/public artifacts.",
+    "REA total cost UNKNOWN."
+  ]
+}

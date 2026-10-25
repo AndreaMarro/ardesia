@@ -1,12 +1,15 @@
 import {useRef, useState} from "react";
 import {publicPreviewData} from "../generated/publicPreviewData";
 import {HydrostaticModel, hydrostaticFormat} from "./HydrostaticModel";
+import {readPublicDraft} from "../publicDraft";
+import {PublicDraftControls} from "./PublicDraftControls";
 
 export function PublicHydrostaticLab() {
-  const [depth, setDepth] = useState(2), [density, setDensity] = useState(1000);
-  const [reference, setReference] = useState("gauge");
-  const [prediction, setPrediction] = useState("");
-  const [revealed, setRevealed] = useState(false), [hint, setHint] = useState(0), [transfer, setTransfer] = useState(false);
+  const [saved] = useState(() => readPublicDraft("hydrostatic"));
+  const [depth, setDepth] = useState(saved?.depth ?? 2), [density, setDensity] = useState(saved?.density ?? 1000);
+  const [reference, setReference] = useState(saved?.reference ?? "gauge");
+  const [prediction, setPrediction] = useState(saved?.prediction ?? "");
+  const [revealed, setRevealed] = useState(false), [hint, setHint] = useState(0), [transfer, setTransfer] = useState(saved?.transfer ?? false);
   const input = useRef<HTMLInputElement>(null);
   const cases = publicPreviewData.hydrostatic.cases;
   const selected = cases.find(c => c.parameters.depth === depth && c.parameters.density === density && c.parameters.reference === reference);
@@ -14,7 +17,7 @@ export function PublicHydrostaticLab() {
   const valid = prediction.trim() !== "" && Number.isFinite(numeric) && numeric >= 0;
   const result = revealed && selected ? selected.result : null;
   const points = cases.filter(c => c.parameters.density === density && c.parameters.reference === reference).map(c => ({depth: c.parameters.depth, value: c.result.value}));
-  function change(update: () => void) { update(); setRevealed(false); setPrediction(""); setTransfer(false); }
+  function change(update: () => void) { update(); setRevealed(false); setPrediction(""); setHint(0); setTransfer(false); }
   return <section className="physics-lab hydrostatic-lab" aria-labelledby="hydrostatic-title">
     <div className="lab-introduction"><p className="section-meta">Fisica · liquidi in equilibrio</p><h2 id="hydrostatic-title">Da dove misuri la pressione?</h2>
       <p>{transfer ? `Nuova prova: liquido di densità ${hydrostaticFormat(density)} kg/m³, sonda a ${hydrostaticFormat(depth)} m. Prevedi la pressione ${reference === "gauge" ? "relativa alla superficie" : "assoluta"} e confronta i contributi con il caso precedente.` : "Una sonda sotto la superficie. Prevedi la pressione, poi cambia profondità, liquido e riferimento."}</p>
@@ -37,7 +40,8 @@ export function PublicHydrostaticLab() {
       {hint > 0 && <p>Qual è lo zero? La pressione relativa considera solo l’aumento sotto la superficie; quella assoluta comprende anche la pressione alla superficie.</p>}
       {hint > 1 && <p>Il contributo della profondità è ρgh. Per la pressione assoluta aggiungi la pressione alla superficie. Scrivi le unità prima di confrontare.</p>}
       {result && <button type="button" onClick={() => {const lighter = density === 1000; setDensity(lighter ? 800 : 1000); setDepth(lighter ? 3 : 1.5); setReference(lighter ? "gauge" : "absolute"); setPrediction(""); setRevealed(false); setHint(0); setTransfer(true); input.current?.focus();}}>Cambia fluido: una nuova prova</button>}
-      <details><summary>Ipotesi, provenienza e limiti</summary><p>{selected?.result.domain}</p><p>36 configurazioni calcolate dal Core durante la build, senza formule del modello nel browser. La previsione resta in questa pagina: non è una consegna o una misura di autonomia. Il grafico mostra solo il riferimento selezionato. Revisione scientifica umana da completare.</p></details>
+      <PublicDraftControls model="hydrostatic" data={{depth, density, reference, prediction, transfer}} />
+      <details><summary>Ipotesi, provenienza e limiti</summary><p>{selected?.result.domain}</p><p>Scenario originale DEMO. 36 configurazioni verificate numericamente nel Core durante la build, senza formule del modello nel browser. La bozza locale facoltativa non è una consegna o una misura di autonomia. Il grafico mostra solo il riferimento selezionato. Il controllo numerico è separato dall’approvazione editoriale umana.</p></details>
     </form></div>
   </section>;
 }

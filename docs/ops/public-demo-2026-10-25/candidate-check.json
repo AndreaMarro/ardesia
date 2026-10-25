@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "technicalStatus": "PASS",
+  "releaseStatus": "BLOCKED",
+  "errors": [],
+  "binding": {
+    "candidateManifestSha256": "459518948bc1b388f24fc178b02d3a7107c080bed609ecf021fd37dd1bed8ed0",
+    "sourceManifestSha256": "acea91193bb60f646bdb1d261164d172a85eb7cb913f224f4c68754e47543430",
+    "sourceCommit": "9fe1cef6319fc789fbfca9bc89fb5f060e6aa0d2",
+    "sourceTreeSha256": "302f84d37d33b568e55757709a70b7d9aaae62c5a9ac89c97bff26bc888c4fff",
+    "assetCount": 16
+  },
+  "humanReview": {
+    "status": "PENDING",
+    "scientificReviewer": null,
+    "editorialAuthorizer": null,
+    "decisionReference": null,
+    "approvedAt": null,
+    "draftExamples": [],
+    "existingApprovalRegistry": "apps/marketing-01/examples/approvals.json"
+  },
+  "releaseGates": [
+    "exact_scientific_and_editorial_human_review",
+    "draft_examples_exact_digest_approval_or_exclusion",
+    "explicit_target_and_publication_authorization",
+    "verify_real_https_headers_bytes_routes_cta_and_rollback_after_authorized_deploy"
+  ],
+  "privateBeta": "NOT_CERTIFIED_REMOTE",
+  "limits": [
+    "Local hashes establish consistency, not authorship or approval.",
+    "High-confidence credential patterns do not prove the absence of every possible secret or personal datum.",
+    "Exported host rules are configuration, not evidence that a hosting provider applied them."
+  ]
+}

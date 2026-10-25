@@ -4,17 +4,54 @@ import path from 'node:path'
 const root=path.resolve(process.cwd(),'../..')
 const dataDir=process.env.STUDY_DEMO_DATA_DIR??path.join(root,'.study-demo')
 const access=JSON.parse(readFileSync(path.join(dataDir,'demo-access.json'),'utf8')) as {tokens:Record<string,string>}
+// Serve the current Web consumer at / and Studio at /studio on the same origin.
+// Use seed.py (12 actors, no members) plus fixtures.py in a fresh data directory.
+const studio='/studio/?vista=fisica'
 test.use({actionTimeout:10000})
 async function login(page:Page,actor:string){
-  await page.goto('/?vista=fisica');await page.getByText('Accedi alla demo',{exact:true}).click()
+  await page.goto(studio);await page.getByText('Accedi alla demo',{exact:true}).click()
   await page.getByLabel('Accesso sintetico',{exact:true}).fill(access.tokens[actor]);await page.getByRole('button',{name:'Accedi',exact:true}).click()
   await expect(page.getByText(actor,{exact:false}).first()).toBeVisible()
+}
+async function offerThroughMiniCourses(page:Page){
+ await page.goto('/?view=courses&edition=fluidi')
+ await expect(page.getByRole('heading',{name:'I tuoi mini-corsi.'})).toBeVisible()
+ const manager=page.getByRole('region',{name:'Gestione delle edizioni'})
+ const editor=manager.locator('details').filter({has:page.locator('summary',{hasText:'Gestisci date e offerta'})}).first()
+ if(!await editor.evaluate(element=>(element as HTMLDetailsElement).open))await editor.locator('summary').first().click()
+ for(const [index,day] of [3,5,10,12].entries())await manager.getByLabel(`Incontro ${index+1} · inizio`,{exact:true}).fill(`2026-11-${String(day).padStart(2,'0')}T18:00`)
+ const savedResponse=page.waitForResponse(response=>response.url().endsWith('/study/admin/editions/fluidi')&&response.request().method()==='PATCH')
+ await manager.getByRole('button',{name:'Salva date e condizioni',exact:true}).click()
+ const saved=await savedResponse;expect(saved.ok()).toBe(true)
+ const savedEdition=(await saved.json()).edition
+ expect(savedEdition.capacity).toBe(10);expect(savedEdition.sessions).toHaveLength(4)
+ // Refreshing the workspace remounts the current edition editor after save.
+ if(!await editor.evaluate(element=>(element as HTMLDetailsElement).open))await editor.locator('summary').first().click()
+ await expect(manager.getByLabel('Incontro 1 · inizio',{exact:true})).toHaveValue('2026-11-03T18:00')
+ const previewResponse=page.waitForResponse(response=>response.url().endsWith('/study/admin/editions/fluidi/offer/preview')&&response.request().method()==='POST')
+ await manager.getByRole('button',{name:'Rileggi l’offerta completa',exact:true}).click()
+ const preview=await (await previewResponse).json()
+ expect(preview.previewId).toEqual(expect.any(String));expect(preview.previewHash).toMatch(/^[a-f0-9]{64}$/);expect(preview.expectedRevision).toEqual(expect.any(Number))
+ expect(preview.expectedRevision).toBe(savedEdition.managementRevision)
+ const offer=page.getByRole('region',{name:'Anteprima dell’offerta'})
+ await expect(offer.locator('ol > li')).toHaveCount(4)
+ await expect(offer).toContainText('massimo 10 persone')
+ await expect(offer.getByRole('button',{name:'Conferma offerta di test',exact:true})).toBeDisabled()
+ await offer.getByRole('checkbox',{name:'Ho riletto le quattro date, i posti e il prezzo indicativo. Confermo questa offerta di test.'}).check()
+ const confirmationResponse=page.waitForResponse(response=>response.url().endsWith('/study/admin/editions/fluidi/offer/confirm')&&response.request().method()==='POST')
+ await offer.getByRole('button',{name:'Conferma offerta di test',exact:true}).click()
+ const confirmation=await confirmationResponse
+ expect(confirmation.ok()).toBe(true)
+ expect(confirmation.request().postDataJSON()).toEqual({previewId:preview.previewId,previewHash:preview.previewHash,expectedRevision:preview.expectedRevision,confirmed:true})
+ expect((await confirmation.json()).edition.state).toBe('offered')
+ await expect(page.getByRole('article',{name:'Fisica: relazioni e fluidi'})).toContainText('Edizione proposta')
+ await page.goto(studio)
 }
 test('M1 on real build: ten students, private multimodal work, manual review, retry and LessonOS',async({browser},info)=>{
  test.setTimeout(180000)
  const errors:string[]=[]
  const visitorContext=await browser.newContext({viewport:{width:390,height:844}});const visitor=await visitorContext.newPage()
- await visitor.goto('/?vista=fisica');if(process.env.STUDY_EXPECTED_SHA)expect(await visitor.evaluate(()=>(window as unknown as {__ARDESIA_BUILD__:{commitSha:string}}).__ARDESIA_BUILD__.commitSha)).toBe(process.env.STUDY_EXPECTED_SHA);await expect(visitor.getByRole('heading',{name:'Che cosa tieni fisso?'})).toBeVisible()
+ await visitor.goto(studio);if(process.env.STUDY_EXPECTED_SHA)expect(await visitor.evaluate(()=>(window as unknown as {__ARDESIA_BUILD__:{commitSha:string}}).__ARDESIA_BUILD__.commitSha)).toBe(process.env.STUDY_EXPECTED_SHA);await expect(visitor.getByRole('heading',{name:'Che cosa tieni fisso?'})).toBeVisible()
  await visitor.getByLabel('La tua previsione').fill('La portata aumenta');await visitor.getByLabel('Rapporto dei raggi').fill('1.5')
  await expect(visitor.getByTestId('physics-ratio')).toContainText('5,0625');await visitor.getByLabel('Grandezza fissata',{exact:true}).selectOption('flow')
  await expect(visitor.getByTestId('physics-ratio')).toContainText('0,197531')
@@ -27,7 +64,7 @@ test('M1 on real build: ten students, private multimodal work, manual review, re
  const tutorContext=await browser.newContext({viewport:{width:1440,height:1000}});const tutor=await tutorContext.newPage()
  tutor.on('pageerror',error=>errors.push(error.message));await login(tutor,'tutor-synthetic')
  await tutor.getByRole('button',{name:'Gruppo',exact:true}).click();await expect(tutor.getByText('interested-01@example.invalid',{exact:false})).toBeVisible()
- await tutor.getByRole('button',{name:'Approva edizione di test'}).click();await tutor.getByRole('button',{name:'Lezione',exact:true}).click()
+ await offerThroughMiniCourses(tutor);await tutor.getByRole('button',{name:'Lezione',exact:true}).click()
  await tutor.getByLabel('Istruzioni per il gruppo').fill('Prevedi Q/Q0 con raggio 1,5r a Δp fissata. Poi cambia vincolo.');await tutor.getByRole('button',{name:'Assegna al gruppo'}).click()
  await expect(tutor.getByText('Attività assegnata al gruppo.')).toBeVisible()
  const contexts=[];const pages:Page[]=[]

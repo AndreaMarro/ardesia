@@ -22,6 +22,7 @@ from lessonos.study.public_preview import (  # noqa: E402
 OUTPUT = ROOT / 'apps/web/src/generated/publicPreviewData.ts'
 SOURCES = (
     'packages/engine/lessonos/study/activities.py',
+    'packages/engine/lessonos/study/spring.py',
     'packages/engine/lessonos/study/public_preview.py',
     'bin/web/poiseuille-demo.json',
     'bin/web/export_public_preview.py',
@@ -78,6 +79,25 @@ def build_projection():
                                     'reference': reference}]
             ],
         },
+        'spring': {
+            'force': {'min': 0, 'max': 10, 'step': .5},
+            'stiffnesses': [20, 40, 80],
+            'maxExtension': .5,
+            'cases': [
+                {'parameters': parameters,
+                 'result': evaluate_activity('hooke-v1', parameters)}
+                for force in range(21)
+                for stiffness in (20, 40, 80)
+                for parameters in [{'force': force / 2, 'stiffness': stiffness}]
+            ],
+        },
+        'demonstration': {
+            'provenance': 'DEMO',
+            'authorship': 'Original Ardesia educational scenarios, independent of the question bank.',
+            'numericalVerification': 'Deterministic canonical Core; independent SI oracle tests.',
+            'humanEditorialApproval': False,
+            'meaning': 'Numerical verification is separate from human scientific/editorial approval.',
+        },
     }
 
 
@@ -102,7 +122,7 @@ def main():
         if not OUTPUT.exists() or OUTPUT.read_text() != expected:
             print('STALE public preview: run python3 bin/web/export_public_preview.py', file=sys.stderr)
             return 1
-        print('PASS: public course, 62 Poiseuille + 36 hydrostatic states and the distinct transfer match the current Core')
+        print('PASS: public course, 62 Poiseuille + 36 hydrostatic + 63 spring states and the distinct transfer match the current Core')
     else:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(expected)

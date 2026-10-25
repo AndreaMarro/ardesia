@@ -1,0 +1,133 @@
+{
+  "schema": "ardesia.rea-transfer-observation.v1",
+  "scope": "Studio object/context ergonomics; no donor code or assets copied, no new canvas or dependency",
+  "donor": {
+    "package": "@excalidraw/excalidraw",
+    "version": "0.18.1",
+    "license": "MIT",
+    "observations": "OBSERVED",
+    "sources": [
+      {
+        "path": "actionDeleteSelected.tsx",
+        "url": "https://raw.githubusercontent.com/excalidraw/excalidraw/v0.18.1/packages/excalidraw/actions/actionDeleteSelected.tsx",
+        "bytes": 9475,
+        "sha256": "1be8b7f8866b66ad6d9f0c8c2f572d6477ebd27f71557d0c7e1dff0ecff1b1df"
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/excalidraw/excalidraw/v0.18.1/LICENSE",
+        "bytes": 1067,
+        "sha256": "1352d204fdb90d5e482c13139d848bc2c9300a9a7de358a0a558a23e72d0d8be"
+      },
+      {
+        "path": "/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/package.json",
+        "bytes": 3427,
+        "sha256": "402f54fc7de128b25d22bd4d905fb46dbcdbe2ce6efee567d4da0fc79a29aab1"
+      },
+      {
+        "path": "/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/index.js",
+        "bytes": 1147428,
+        "sha256": "e10e24df153077770849c7d68f9a8f5db3bb1eb1576d909d1e3c9a5b024d1882"
+      },
+      {
+        "path": "/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/chunk-4FTI6OG3.js",
+        "bytes": 969103,
+        "sha256": "3cfe278cb537fde73b42bbd4697b392946517d3dc02d3f3cf8487d8476f63ba2"
+      }
+    ],
+    "npmLock": {
+      "version": "0.18.1",
+      "resolved": "https://registry.npmjs.org/@excalidraw/excalidraw/-/excalidraw-0.18.1.tgz",
+      "integrity": "sha512-6i5Gt7IDTOH//qa0Z315Ly5iVRhjWpu2whrlQFqkuwrkKUWgRsMk0P5qdE7bpyDpai7jeLeWYkyj1eVAfni1lw==",
+      "license": "MIT"
+    }
+  },
+  "rea": {
+    "version": "6.7.0",
+    "node": "24.22.1",
+    "evidenceId": "ev_07e02f9658eb8e510182691d22d4cd510cd0e994b687bd0ae65a7dafec66df0a",
+    "path": "donor-rea-evidence-r3.json",
+    "sha256": "515a2af764bc78f3a95f11425e3c802375b5cc9ee49045550b9c7631e15af530",
+    "authority": "controlled-replay",
+    "confidence": "observed",
+    "completeness": {
+      "status": "complete",
+      "equality_eligible": true,
+      "missing_sections": [],
+      "truncated_sections": []
+    },
+    "steps": [
+      {
+        "step": "scenario_start",
+        "status": "completed",
+        "selection": {
+          "activeElements": 1,
+          "selectedIds": []
+        },
+        "objectControlsPresent": false
+      },
+      {
+        "step": "select-donor-rectangle",
+        "status": "completed",
+        "selection": {
+          "activeElements": 1,
+          "selectedIds": [
+            "LFTQrog0Q5ro3jTOexI-w"
+          ]
+        },
+        "objectControlsPresent": true
+      },
+      {
+        "step": "delete-current-selection",
+        "status": "completed",
+        "selection": {
+          "activeElements": 0,
+          "selectedIds": []
+        },
+        "objectControlsPresent": false
+      }
+    ]
+  },
+  "transfer": {
+    "observed": "Selecting the rectangle shows its object actions; Delete yields zero live elements and no selected IDs and removes those controls.",
+    "designChoice": "Use the existing recorder snapshot to derive whether the linked audio passage and its transfer controls are available. Clear presentation of the prior descriptor when that snapshot loses its recording; keep the explicitly linked board context.",
+    "nonEquivalence": "Excalidraw deletion is not audio consent or revocation; the donor does not prove any Ardesia privacy guarantee. The existing controller/store still decide availability.",
+    "files": [
+      "apps/studio/src/LessonPassageAuthor.tsx",
+      "apps/studio/src/__tests__/LessonPassageAuthor.test.tsx"
+    ]
+  },
+  "validation": {
+    "unitRed": "author-vitest-red-r2.log",
+    "unitGreen": "author-vitest-green.log",
+    "nativeRed": "red-native-r2/audio-visible-ui.json",
+    "nativeGreen": "green-native/audio-visible-ui.json",
+    "scope": "Unit uses real controller/store with synthetic native ordering; native probe uses Studio source through Vite with real Chromium Web Locks/BroadcastChannel/MediaRecorder and fake native input. Physical microphone, FSA and exported copies are not tested."
+  },
+  "corrections": [
+    "Invoking dist/cli.js directly exited without output: no Evidence claim for that invocation. Use the package scripts/rea.mjs entry point.",
+    "Initial fixture selection ID did not correspond to the converted rectangle, and first selector used incorrect case.",
+    "Second capture selected the real shape (screenshots show controls) but its visible wait timed out. Cause not established. Both incomplete Evidence records retained; final capture declares only click and Delete and reads their actual DOM."
+  ],
+  "cost": {
+    "total": "UNKNOWN",
+    "scope": "No monetary, token or full workflow cost metering. Observed capture durations are not total cost or a comparison against direct inspection.",
+    "captureWindows": [
+      {
+        "evidenceId": "ev_c0f3cc433f201af0aa91e8b93ccbe8d4e6ed105b32438599db142e01569372a1",
+        "durationMs": 28032,
+        "completeness": "incomplete"
+      },
+      {
+        "evidenceId": "ev_2529d2ab2e466f8d65aadbce76e9ac69fda1de3ef45e8a1cd6d5bbfb53299438",
+        "durationMs": 27155,
+        "completeness": "incomplete"
+      },
+      {
+        "evidenceId": "ev_07e02f9658eb8e510182691d22d4cd510cd0e994b687bd0ae65a7dafec66df0a",
+        "durationMs": 11259,
+        "completeness": "complete"
+      }
+    ]
+  }
+}

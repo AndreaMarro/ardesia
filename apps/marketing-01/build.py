@@ -94,7 +94,7 @@ def render(data, courses, identity, site_url=None, preview_url=None, examples=()
                     teacher_links=''.join(external_link(link) for link in teacher['links']),
                     reviews=''.join(review(value) for value in teacher['reviews']), reviews_url=text(organization['reviews']),
                     path_index=''.join(path_link(course, i) for i, course in enumerate(courses, 1)),
-                    course_cards=''.join(course_card(course, i, url, example_link(course, site_url or '/') if any(e['pathId'] == course['id'] for e in examples) else None, '/esperienza/?percorso=fluidi-termodinamica' if interactive_preview and course['id'] == 'fluidi-termodinamica' else None) for i, (course, url) in enumerate(contacts, 1)),
+                    course_cards=''.join(course_card(course, i, url, example_link(course, site_url or '/') if any(e['pathId'] == course['id'] for e in examples) else None, '/esperienza/?percorso=' + course['id'] if interactive_preview and course['id'] in ('fluidi-termodinamica', 'strumenti-meccanica') else None) for i, (course, url) in enumerate(contacts, 1)),
                     audience=text(data['audience']), count_word=count_word, reference_url=text(data['reference']['url']),
                     reference_label=text(data['reference']['label']),
                     method_title=text(page['method']['title']), method_intro=text(page['method']['intro']),

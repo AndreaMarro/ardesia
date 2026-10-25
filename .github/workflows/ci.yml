@@ -225,6 +225,8 @@ jobs:
         run: python3 bin/audit/test_legacy_inventory.py
       - name: Immutable question inbox QA contracts
         run: python3 bin/pro-regia/test_question_inbox_adapter.py
+      - name: Public candidate integrity and static upload contracts
+        run: python3 -m unittest discover -s bin/tests -p 'test_teaching*.py'
       # Stato corrente generato a macchina (F0-1). `--verify` gira OFFLINE e
       # asserisce che il generatore legga l'HEAD REALE del repo: se restituisse
       # una costante o un valore memorizzato, questa asserzione fallirebbe al

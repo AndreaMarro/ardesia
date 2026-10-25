@@ -13,7 +13,8 @@ HINTS = (
 
 def evaluate_activity(activity_id, parameters, attempt=None):
     from .taylor import evaluate_exp_taylor
-    handlers = {'taylor-exp-v1': evaluate_exp_taylor}
+    from .spring import evaluate_static_spring
+    handlers = {'taylor-exp-v1': evaluate_exp_taylor, 'hooke-v1': evaluate_static_spring}
     if isinstance(activity_id, str) and activity_id in handlers:
         return handlers[activity_id](parameters)
     return _evaluate_physics(activity_id, parameters)
