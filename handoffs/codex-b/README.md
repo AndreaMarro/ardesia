@@ -347,3 +347,28 @@ readiness e contratto PASS; marketing ancora IN_PROGRESS. La produzione
 restava il deployment precedente8aUF/9fe durante questa QA. A possiede merge,
 promozione, RUNLOG/NEXT e prova dell'alias finale. Questi PASS non autorizzano
 B a dichiarare la PR integrata o la produzione aggiornata.
+
+## Produzione pubblica — verifica anonima conclusa da B
+
+A ha pubblicato gli stessi file source05d2; B ha verificato direttamente
+metadata Vercel del deployment **dpl_7BQB2RrpkNdAsFgQ4MktHgfdnS1z**,
+READY/targetproduction/source`05d2bc9911aff3862906ac5a71769bc726dfbcea`.
+Alias pubblico: https://ardesia-fisica-preview.vercel.app/corsi/ .
+Su tale alias, in contesti browser nuovi senza access file, share link,
+cookie o header di autenticazione forniti: **15/15 PASS,192 controlli**.
+Quattro corsi e cinematica a390/820/1440; CTA senza invio, note separate,
+riapertura e revisione rifiutata comprese. Nessun pageError, HTTP>=400 o
+warning/error console. Quattro smoke audio anonimi **4/4 PASS,24 controlli**:
+niente autoplay, trascrizione/provenienza/label, progresso reale e pausa.
+La fine naturale resta provata sul precedente deployment con gli stessi asset,
+non ripetuta in questo smoke. Nessuna attestazione di ascolto umano.
+
+Tutti i browser B sono CHIUSI. A ha confermato importazione dei precedenti
+handoff B (505646d2→A6c8bbdde), revoca dei due share link e rimozione degli
+access file0600. Le prove A di28file/routing/range e del workflow Core locale
+su5modelli sono ricevute distinte, non eseguite da B. Non attestano beta cloud,
+efficacia didattica o approvazione umana. PR #306 ancora affidata ad A per
+memorycommit, CI e merge ordinario; B non ne ha effettuato merge o chiusura.
+Questo completa la verifica del contributo B pubblicato, non i quattro corsi:
+consegne qualitative, provenienza lessonRef/fase, beta remota e gate umani
+restano nel residuo comune. Nessun'altra modifica sorgente B per questo rilascio.
