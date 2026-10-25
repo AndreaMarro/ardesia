@@ -92,7 +92,22 @@ def verify_engine(engine):
     check('kin/reversal/independent_path',9+1,10)
     for p in [{'time':5,'duration':4},{'duration':0},{'time':True},{'accelerationX':float('nan')},{'positionX':10**1000}]:
         reject('kin/invalid/'+repr(p)[:60],kin,p,StudyError)
-    return {m.__name__:hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest() for m in (electrical,waves,kinematics)}
+    modules=[electrical,waves,kinematics]
+    if (engine/'lessonos/study/thermodynamics.py').exists():
+        gas_module=importlib.import_module('lessonos.study.thermodynamics')
+        gas=gas_module.evaluate_ideal_gas
+        # Exact SI R was derived from NA*kB above, not read from production.
+        g=gas({'moles':1,'temperatureK':300,'pressurePa':100000})
+        check('gas/volume',g['volumeM3'],.02494338785445972)
+        check('gas/litres',g['volumeL'],24.94338785445972)
+        g2=gas({'moles':.5,'temperatureK':400,'pressurePa':200000})
+        check('gas/transfer',g2['volumeM3'],.00831446261815324)
+        double_p=gas({'moles':1,'temperatureK':300,'pressurePa':200000})
+        check('gas/double_pressure',double_p['volumeM3'],.01247169392722986)
+        for p in [{'moles':0},{'temperatureK':0},{'pressurePa':0},{'temperatureK':True},{'moles':float('nan')},{'pressurePa':10**1000},{'temperatureC':25}]:
+            reject('gas/invalid/'+repr(p)[:60],gas,p,StudyError)
+        modules.append(gas_module)
+    return {m.__name__:hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest() for m in modules}
 
 def verify_content():
     baseline=json.loads((HERE/'baseline.json').read_text())

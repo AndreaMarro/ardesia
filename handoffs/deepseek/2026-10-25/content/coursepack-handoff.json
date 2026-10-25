@@ -170,7 +170,7 @@
             "result": "Fx=5√3 N≈8,660 N; Fy=5 N."
           },
           "practice": {
-            "prompt": "Lo stesso modulo è diretto a 150°. Quali sono i segni e le componenti?",
+            "prompt": "Una forza di modulo10N è diretta a150° da+x. Quali sono i segni e le componenti?",
             "answer": "Fx=−5√3 N; Fy=+5 N",
             "feedback": "Nel secondo quadrante il coseno è negativo e il seno positivo."
           },
@@ -2708,7 +2708,7 @@
             "feedback": "Conduzione e convezione necessitano di materia lungo il tragitto; la radiazione elettromagnetica no."
           },
           "transfer": {
-            "prompt": "La parete dell’esempio ha spessore doppio e tutte le altre grandezze identiche. TrovaP e descrivi come una ventola cambia il trasporto nell’aria.",
+            "prompt": "Una parete ha k=0,5W/(m K),A=2m²,ΔT=10K eL=0,2m. UsaP=kAΔT/L; trovaP e descrivi come una ventola cambia il trasporto nell’aria.",
             "answer": "50W; la ventola aumenta il moto del fluido e favorisce convezione forzata.",
             "feedback": "La conduzione ideale è inversa aL. Il trasferimento nell’aria richiede un modello convettivo diverso, senza attribuirgli lo stesso kAΔT/L."
           },
@@ -3283,9 +3283,9 @@
           "sourcePages": [
             3
           ],
-          "prompt": "Un moto stazionario è necessariamente privo di ogni fluttuazione turbolenta?",
-          "answer": "No: stazionarietà del campo o delle medie e turbolenza sono distinzioni diverse; dichiarare se si parla di valori istantanei o medi.",
-          "feedback": "No: stazionarietà del campo o delle medie e turbolenza sono distinzioni diverse; dichiarare se si parla di valori istantanei o medi.",
+          "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee?",
+          "answer": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
+          "feedback": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
           "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
           "assessmentType": "original_short_answer_review_item",
           "scientificStatus": "AI_CHECKED",
@@ -4329,7 +4329,7 @@
           "itemId": "final-U3-03.02",
           "objectiveId": "U3-03.02",
           "lessonId": "ds-2026-u3-03",
-          "feedback": "No: stazionarietà del campo o delle medie e turbolenza sono distinzioni diverse; dichiarare se si parla di valori istantanei o medi."
+          "feedback": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo."
         },
         {
           "itemId": "final-U3-03.03",
@@ -4844,7 +4844,7 @@
             "result": "I totale 4,5 A; R equivalente 8/3 Ω; P totale 54 W."
           },
           "practice": {
-            "prompt": "Gli stessi due resistori sono ora in serie a 12 V: trova I, V1,V2 e P totale.",
+            "prompt": "Un generatore ideale12V alimenta resistori4Ω e8Ω in serie: trovaI,V1,V2 ePtotale.",
             "answer": "1 A; 4 V; 8 V; 12 W",
             "feedback": "La serie ha 12 Ω. La stessa corrente percorre entrambi e le due cadute sommano 12 V."
           },
@@ -4911,7 +4911,7 @@
             "result": "5µF;50µC;250µJ."
           },
           "practice": {
-            "prompt": "Gli stessi condensatori sono in serie. Quanto valeCeq?",
+            "prompt": "Due condensatori2µF e3µF sono collegati in serie. Quanto valeCeq?",
             "answer": "1,2µF",
             "feedback": "Ceq=C1C2/(C1+C2)=6/5µF. È minore della capacità più piccola."
           },
@@ -6701,7 +6701,7 @@
             "result": "I=I0/2."
           },
           "practice": {
-            "prompt": "Due strati uguali a quello dell’esempio vengono sovrapposti. Quale trasmissione totale?",
+            "prompt": "Due strati,ciascuno conμ=ln2m^-1 e spessore1m,sono sovrapposti. ConI=I0exp(−μx),quale trasmissione totale?",
             "answer": "1/4=25%",
             "feedback": "Moltiplica le trasmissioni1/2·1/2; non sottrarre due volte50% dell’intensità iniziale."
           },
@@ -6897,7 +6897,7 @@
             "result": "q=15 cm; m=−0,5; immagine reale e capovolta."
           },
           "practice": {
-            "prompt": "La stessa lente ha un oggetto a 5 cm: calcola q e m.",
+            "prompt": "Una lente convergente sottile ha f=10cm e oggetto reale a5cm: calcolaq em.",
             "answer": "q=−10 cm; m=+2",
             "feedback": "L’oggetto è dentro il fuoco: il segno negativo di q indica immagine virtuale sul lato dell’oggetto, non una distanza fisica impossibile."
           },

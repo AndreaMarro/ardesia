@@ -95,7 +95,7 @@ Un manometro conρ=1000kg/m³,g=10,dislivello0,03m misura quale differenza di pr
 ''')
 D('U3-03','''
 In2s attraversano un tubo6L. Qual è la portata volumetrica?|3L/s=0,003m³/s.
-Un moto stazionario è necessariamente privo di ogni fluttuazione turbolenta?|No: stazionarietà del campo o delle medie e turbolenza sono distinzioni diverse; dichiarare se si parla di valori istantanei o medi.
+Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee?|No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.
 Quale struttura del moto caratterizza il flusso laminare ideale in un tubo?|Strati ordinati con velocità che varia regolarmente,senza rimescolamento turbolento.
 Fluido incomprimibile:A1=6cm²,v1=2m/s,A2=3cm². Qual èv2?|4m/s; portata conservata.
 In flusso ideale orizzontaleρ=1000,la velocità passa da2a3m/s. Qual èp2−p1?|−2500Pa daBernoulli.

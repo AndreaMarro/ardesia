@@ -20,7 +20,7 @@ L('U1-03',
  'In un triangolo rettangolo seno e coseno sono rapporti tra cateti e ipotenusa: sinθ=opposto/ipotenusa, cosθ=adiacente/ipotenusa; tanθ=sinθ/cosθ dove cosθ non è nullo. Se θ è misurato dall’asse x positivo, le componenti di un vettore di modulo F sono Fx=F cosθ e Fy=F sinθ. Il quadrante stabilisce i segni. L’identità sin²θ+cos²θ=1 permette un controllo del modulo. Gradi e radianti rappresentano lo stesso angolo con scale diverse: π rad=180°. Specificare la modalità della calcolatrice evita di trattare 30 rad come 30°. La tangente non è definita per angoli con coseno nullo.',
  'Una forza di 10 N forma 30° con +x. Trova le componenti usando sin30°=1/2 e cos30°=√3/2.',
  ['Fx=10√3/2=5√3 N.', 'Fy=10/2=5 N.', 'Il modulo è √(75+25)=10 N.'], 'Fx=5√3 N≈8,660 N; Fy=5 N.',
- Q('Lo stesso modulo è diretto a 150°. Quali sono i segni e le componenti?', 'Fx=−5√3 N; Fy=+5 N', 'Nel secondo quadrante il coseno è negativo e il seno positivo.'),
+ Q('Una forza di modulo10N è diretta a150° da+x. Quali sono i segni e le componenti?', 'Fx=−5√3 N; Fy=+5 N', 'Nel secondo quadrante il coseno è negativo e il seno positivo.'),
  Q('Un segmento ha componenti 3 cm e 4 cm positive. Trova modulo, seno e tangente dell’angolo da +x.', '5 cm; sinθ=4/5; tanθ=4/3', 'Identifica il cateto opposto all’angolo, quindi usa Pitagora e i rapporti.'),
  ['Scambiare seno e coseno senza dichiarare asse di riferimento','Ignorare il quadrante'],['Disegna il triangolo delle componenti','Controlla Fx²+Fy²=F²'],['Un angolo deve sempre avere asse di riferimento e unità dichiarati.','75+25=100 N².','A90° Fx=0 e Fy=F; tan90° non è finita.'])
 
@@ -141,7 +141,7 @@ L('U5-03',
  'Parete piana: k=0,5W/(m K),A=2m²,ΔT=10K,L=0,1m. La legge fornita èP=kAΔT/L. TrovaP.',
  ['Il prodotto kAΔT vale10W m.', 'Dividi per0,1m.', 'P=100W dal lato caldo al freddo.'], '100W.',
  Q('Il calore del Sole raggiunge un oggetto nello spazio vuoto. Quale meccanismo può agire attraverso il vuoto?', 'Irraggiamento.', 'Conduzione e convezione necessitano di materia lungo il tragitto; la radiazione elettromagnetica no.'),
- Q('La parete dell’esempio ha spessore doppio e tutte le altre grandezze identiche. TrovaP e descrivi come una ventola cambia il trasporto nell’aria.', '50W; la ventola aumenta il moto del fluido e favorisce convezione forzata.', 'La conduzione ideale è inversa aL. Il trasferimento nell’aria richiede un modello convettivo diverso, senza attribuirgli lo stesso kAΔT/L.'),
+ Q('Una parete ha k=0,5W/(m K),A=2m²,ΔT=10K eL=0,2m. UsaP=kAΔT/L; trovaP e descrivi come una ventola cambia il trasporto nell’aria.', '50W; la ventola aumenta il moto del fluido e favorisce convezione forzata.', 'La conduzione ideale è inversa aL. Il trasferimento nell’aria richiede un modello convettivo diverso, senza attribuirgli lo stesso kAΔT/L.'),
  ['Confondere convezione con conduzione','Dire che in equilibrio termico non c’è emissione'],['Individua se si muove materia','Distingui flusso emesso e netto'],['I tre meccanismi richiedono modelli e ipotesi distinti.','W/(mK)·m²·K/m=W.','ΔT=0 annulla il flusso netto del modello di conduzione.'])
 
 L('U5-05',
@@ -180,7 +180,7 @@ L('U6-05',
  'La capacitàC=Q/ΔV misura quanta carica di un’armatura è associata alla tensione fra le armature; l’unità èF=C/V. Un condensatore piano ideale haC=εA/d trascurando effetti di bordo. Un dielettrico aumentaε e quindiC a geometria fissa. L’energia immagazzinata èU=CV²/2=Q²/(2C). In parallelo le capacità si sommano perché la tensione è comune; in serie si sommano i reciproci perché le cariche delle armature interne isolate si bilanciano e la tensione si ripartisce. Inserire un dielettrico a tensione fissata dal generatore non è uguale al farlo con condensatore isolato e carica fissata: nel primo casoU cresce, nel secondo diminuisce. Nessun transitorioRC quantitativo è richiesto qui.',
  'Due condensatori2µF e3µF sono collegati in parallelo a10V. TrovaCeq,Qtot eU.',
  ['Ceq=5µF.', 'Qtot=CeqV=50µC.', 'U=CeqV²/2=250µJ.'], '5µF;50µC;250µJ.',
- Q('Gli stessi condensatori sono in serie. Quanto valeCeq?', '1,2µF', 'Ceq=C1C2/(C1+C2)=6/5µF. È minore della capacità più piccola.'),
+ Q('Due condensatori2µF e3µF sono collegati in serie. Quanto valeCeq?', '1,2µF', 'Ceq=C1C2/(C1+C2)=6/5µF. È minore della capacità più piccola.'),
  Q('Un condensatore isolato mantieneQ e raddoppiaC con un dielettrico. Come cambianoV eU?', 'Entrambe si dimezzano.', 'V=Q/C eU=Q²/(2C). A tensione mantenuta da generatore la conclusione energetica cambierebbe.'),
  ['Invertire serie/parallelo rispetto alle capacità','Non dichiarareVfissa oQfissa'],['Identifica se il generatore resta collegato','Controlla il limite della capacità equivalente'],['Le condizioni al contorno determinano la variazione dell’energia del condensatore.','5·10^-6·100/2=250·10^-6J.','Ceqserie<2µF eCeqparallelo>3µF.'])
 
@@ -228,7 +228,7 @@ L('U7-04',
  'Nel modello diLambert-Beer per fascio collimato monocromatico in mezzo omogeneo l’intensità trasmessa èI(x)=I0 exp(−μx), conμ≥0 in m^-1 ex≥0 in m. La trasmissioneI/I0 è adimensionale; il prodottoμx deve esserlo. Strati successivi indipendenti sommano gli spessori o le profondità ottiche, non le percentuali attenuate. La forma spettrofotometrica con logaritmo decimaleA=log10(I0/I)=εcl usa coefficienti definiti per quella base: non confondereμ conε senza conversione. Il modello non include in modo generale diffusione multipla, fascio policromatico o variazioni del mezzo. x=0 implicaI=I0 e un coefficiente positivo non può aumentareI.',
  'Un materiale haμ=ln2m^-1 e spessore1m. Quale frazione del fascio è trasmessa?',
  ['μx=ln2.', 'I/I0=exp(−ln2)=1/2.', 'Trasmissione50%; attenuazione50%.'], 'I=I0/2.',
- Q('Due strati uguali a quello dell’esempio vengono sovrapposti. Quale trasmissione totale?', '1/4=25%', 'Moltiplica le trasmissioni1/2·1/2; non sottrarre due volte50% dell’intensità iniziale.'),
+ Q('Due strati,ciascuno conμ=ln2m^-1 e spessore1m,sono sovrapposti. ConI=I0exp(−μx),quale trasmissione totale?', '1/4=25%', 'Moltiplica le trasmissioni1/2·1/2; non sottrarre due volte50% dell’intensità iniziale.'),
  Q('Un campione haI/I0=0,01. Qual èA decimale? Se lo spessore raddoppia nello stesso modello lineare ottico?', 'A=2;A raddoppia a4 e trasmissione diventa10^-4.', 'A=−log10(0,01). La profondità ottica cresce linearmente con il cammino, l’intensità no.'),
  ['Sommare percentuali successive','Inserirecm conμ in m^-1'],['Controllaμx adimensionale','Distingui assorbimento e trasmissione'],['La trasmissione esponenziale di strati si moltiplica.','A=0 aI=I0;μ=0 non attenua.','Perμ,x≥0 la trasmissione è compresa fra0e1.'])
 
