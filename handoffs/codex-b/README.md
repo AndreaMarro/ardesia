@@ -213,3 +213,44 @@ Indipendenza della diagnostica dalla finale, ascolto dei nuovi audio, consumer
 cinematico finale, CI e URL remota restano verifiche distinte in carico ad A o
 da ripetere sul suo candidato. Non contare200 riferimenti strutturali come200
 obiettivi con tutti i criteri soddisfatti.
+
+## Review avversariale del bridge Core e gate editoriale
+
+Review manuale read-only richiesta da A sui nuovi `four_courses.py`,
+`course_models.py`, route HTTP, `courseLearning`, `PublicCoursePlayer`,
+`CourseLearningWorkspace` e diff `Classroom`/`SubmissionPanel`. Le sorgenti A
+erano in modifica; le ricevute fissano i digest osservati, senza dichiarare una
+scansione immutabile o certificazione di sicurezza completa.
+
+**P1 riprodotto e corretto localmente:** il nuovo endpoint restituiva sempre
+`review=True` anche allo studente; il GET `/study/coursepack` restituiva il raw
+pack DRAFT anonimamente se l'edizione era `collecting`. Fixture sintetica
+Elettricità: anonimo200 con8lezioni e33 prove finali corredate di risposta;
+studente con7lezioni `PRIVATE_EDITORIAL_REVIEW`. Nessuna richiesta remota o dato
+reale. Prove in `editorial-anonymous-http-repro.json` e
+`editorial-student-repro.json` nella cartella evidence.
+
+A ha applicato la separazione server: il docente proprietario legge i DRAFT,
+lo studente riceve una proiezione esplicita degli esempi ammessi. Ho rieseguito
+una prova HTTP indipendente: **10 check PASS**, due route × anonimo401,
+studente200 limitato, studente revocato401, docente estraneo403, proprietario200
+con materiali DRAFT. `editorial-gate-fixed-http.json` lega i risultati ai digest
+`four_courses.py b0dafdd6…` e `app.py 47648a53…`. Stato:
+`FIXED_SOURCE / LOCAL_HTTP_VERIFIED`; la verifica remota resta distinta. Il
+bundle statico pubblico già filtrato non era la superficie della riproduzione.
+
+Altri residui funzionali segnalati ad A per soluzione o perimetro esplicito:
+
+- Il filtro `retryParentId` confrontava il modello di base dell'edizione,
+  mentre il nuovo invio usa `commit.activityId`: retry cinematico in un corso
+  con base Hooke può perdere il parent, oppure un parent Hooke non compatibile
+  produce403. Conservare il gate server e selezionare il modello del retry.
+- Le lezioni qualitative senza `modelCases` non emettono un commit di attività:
+  il loro testo in revisione non è ancora un percorso consegnabile al Core.
+- La ricevuta conserva pack/versione/digest e modello/parametri, ma il nuovo
+  commit UI non conserva ancora `lessonRef`/fase come evidenza tipizzata. La
+  riproducibilità numerica non equivale al replay semantico esatto dell'episodio.
+
+Nessun secondo ledger proposto e nessuna modifica B ai file condivisi. Questi
+residui impediscono claim di quattro corsi completi; i test sulle cinque scene
+originali non li cancellano.
