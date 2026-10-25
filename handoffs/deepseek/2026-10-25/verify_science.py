@@ -72,6 +72,12 @@ def verify_engine(engine):
     check('wave/zero_A',all(x['displacementM']==0 for x in zero['spatialSamples']+zero['temporalSamples']),True)
     transfer=wave({'speed':6,'frequency':4})
     check('wave/transfer_lambda',transfer['wavelengthM'],1.5)
+    # New boundary counterexample reported and fixed by B at55dcc3d6.
+    # Exactly one million complete periods must restore the zero-phase probe.
+    long_time=wave({'speed':4,'frequency':1,'amplitude':1000,'time':1e6,'phase':0})
+    check('wave/million_periods_zero',long_time['probeDisplacementM'],0.)
+    quarter_phase=wave({'speed':4,'frequency':1,'amplitude':1000,'time':1e6,'phase':math.pi/2})
+    check('wave/million_periods_quarter_phase',quarter_phase['probeDisplacementM'],1000.)
     for p in [{'speed':0},{'frequency':0},{'amplitude':-1},{'time':-1},{'frequency':1e12,'time':1},{'phase':8},{'frequency':True},{'frequency':float('inf')}]:
         reject('wave/invalid/'+repr(p),wave,p,StudyError)
     kin=kinematics.evaluate_kinematics

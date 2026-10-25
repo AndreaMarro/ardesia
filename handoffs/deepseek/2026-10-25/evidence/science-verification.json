@@ -1,5 +1,5 @@
 {
-  "observedAt": "2026-10-25T21:31:21.819874+00:00",
+  "observedAt": "2026-10-25T21:41:07.265773+00:00",
   "checks": [
     {
       "id": "content/families",
@@ -1597,6 +1597,18 @@
       "status": "PASS"
     },
     {
+      "id": "wave/million_periods_zero",
+      "actual": 0.0,
+      "expected": 0.0,
+      "status": "PASS"
+    },
+    {
+      "id": "wave/million_periods_quarter_phase",
+      "actual": 1000.0,
+      "expected": 1000.0,
+      "status": "PASS"
+    },
+    {
       "id": "wave/invalid/{'speed': 0}",
       "status": "PASS",
       "expected": "StudyError"
@@ -1716,11 +1728,11 @@
       "expected": "StudyError"
     }
   ],
-  "count": 279,
+  "count": 281,
   "status": "PASS",
   "engineSourceHashes": {
     "lessonos.study.electrical": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819",
-    "lessonos.study.waves": "31dabb725a81653d11609a9c5c20ea94a8ec27f08f49face1d60da9ded19cde0",
+    "lessonos.study.waves": "bdc7af2e860dd1b48519294eaef2a6536f87c2e1064dfc0259b05f2228e50add",
     "lessonos.study.kinematics": "5bde268b1f20d4e2a56cb695caa2840129573b1a119eade82fc0005df79809fc"
   },
   "limitations": [
