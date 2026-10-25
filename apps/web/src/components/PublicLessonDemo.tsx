@@ -21,7 +21,7 @@ export function PublicLessonDemo({onShowFormula,lesson}: {onShowFormula: () => v
   return <div className="lesson-demo" data-testid="lesson-demo">
     <p className="lesson-demo-label">Voce sintetica dimostrativa</p>
     <button type="button" disabled={loading} aria-pressed={playing} onClick={() => void toggle()}>{loading ? "Apro l’audio…" : playing ? "Pausa audio" : "Ascolta il passaggio"}</button>
-    <audio ref={player} controls preload="none" aria-label="Ascolta il passaggio sul vincolo" src={import.meta.env.BASE_URL + demo.audioPath}
+    <audio ref={player} controls preload="none" aria-label={lesson ? "Ascolta il passaggio della lezione" : "Ascolta il passaggio sul vincolo"} src={import.meta.env.BASE_URL + demo.audioPath}
       onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} />
     {error && <p role="alert">{error}</p>}
     <blockquote>{demo.transcript}</blockquote>
