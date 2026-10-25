@@ -63,3 +63,14 @@ export function readLessonPassage(resource: StudyResource): LessonPassage | null
     return readPassageDescriptor(JSON.stringify(p.descriptor)) ? p : null;
   } catch { return null; }
 }
+
+/** A display projection: never changes source bytes, revisions or selection offsets. */
+export function displaySourceTitle(resource: StudyResource, limit = 85): string {
+  const passage = readLessonPassage(resource);
+  if (passage) {
+    const title = passage.descriptor.objectRefs.map(ref => ref.label).join(" · ");
+    return title.slice(0, limit) || "Passaggio della lezione";
+  }
+  if (resource.kind === "lesson-passage") return "Passaggio della lezione non leggibile";
+  return resource.text.split("\n")[0].slice(0, limit) || "Originale della consegna";
+}
