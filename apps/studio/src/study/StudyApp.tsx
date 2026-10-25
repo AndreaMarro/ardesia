@@ -13,6 +13,7 @@ export default function StudyApp(){
   const mounted=useRef(true),pendingLogin=useRef<AbortController|null>(null)
   useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;pendingLogin.current?.abort()}},[])
   const [me,setMe]=useState<Me|null>(null)
+  const [checked,setChecked]=useState(false)
   const [token,setToken]=useState('')
   const [error,setError]=useState('')
   const [invitation,setInvitation]=useState(false)
@@ -22,7 +23,7 @@ export default function StudyApp(){
     const epoch=beginStudySessionCheck(),controller=new AbortController()
     void studyRequest<Me>('/me',undefined,{signal:controller.signal}).then(value=>{
       if(mounted&&activateStudySession(epoch))setMe(value)
-    }).catch(()=>{})
+    }).catch(()=>{}).finally(()=>{if(mounted)setChecked(true)})
     return()=>{mounted=false;controller.abort()}
   },[])
   async function login(event:React.FormEvent){
@@ -41,8 +42,8 @@ export default function StudyApp(){
     <nav className="study-nav" aria-label="Ardesia Fisica"><a href="?vista=fisica">ARDESIA</a><span>Fisica / Semestre Filtro</span>{me&&<><button onClick={()=>void logout()}>Esci</button><button onClick={()=>void logout(true)}>Revoca tutti i miei accessi</button></>}</nav>
     {error&&<p role="alert">{error}</p>}
     {me?<StudyWorkspace key={`${studySessionEpoch()}:${me.id}`} me={me}/>:<>
-      <PublicCourseView/>
-      <details className="study-login"><summary>Banco contenuti DRAFT — anteprima locale</summary><CoursePackPreview/></details>
+      {checked?<PublicCourseView key={studySessionEpoch()}/>:<p role="status">Verifica dell'accesso in corso…</p>}
+      {checked&&<details className="study-login"><summary>Banco contenuti DRAFT — anteprima locale</summary><CoursePackPreview key={studySessionEpoch()}/></details>}
       <details className="study-login"><summary>Accedi alla demo</summary><form onSubmit={event=>void login(event)}><label><input type="checkbox" checked={invitation} onChange={event=>setInvitation(event.target.checked)}/>Usa invito monouso</label><label>Accesso sintetico<input type="password" required autoComplete="off" value={token} onChange={event=>setToken(event.target.value)}/></label><button>Accedi</button></form></details>
     </>}
     <footer>Laboratorio locale di prova · nessuna affiliazione con atenei, MUR o editori.</footer>
