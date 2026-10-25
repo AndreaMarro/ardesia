@@ -11,7 +11,7 @@ tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/p
         store.add_test_member(tutor,'second-edition',student.id)
 >       assert dashboard(store,student,'second-edition')['suggestions'] == []
 E       AssertionError: assert [{'threadId':...509ce'}, ...}] == []
-E         
+E
 E         Left contains one more item: {'threadId': 'ea6b13a535da4f0f953cbbdf95cf3813', 'category': 'model_selection', 'status': 'OPEN', 'sourceRef': {'resourceId': 'cb09892d4c6a48aaa512dc655b2934ed', 'revisionId': 'b3de57ef04b24bb0853cdbac930509ce'}, ...}
 E         Use -v to get more diff
 
