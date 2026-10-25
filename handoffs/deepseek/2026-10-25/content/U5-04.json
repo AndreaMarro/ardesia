@@ -1,0 +1,70 @@
+{
+  "id": "ds-2026-u5-04",
+  "familyId": "U5-04",
+  "pathId": "fluidi-termodinamica",
+  "unitId": "U5",
+  "title": "Primo principio e trasformazioni",
+  "sourcePages": [
+    4
+  ],
+  "subtargetIds": [
+    "U5-04.01",
+    "U5-04.02",
+    "U5-04.03",
+    "U5-04.04",
+    "U5-04.05",
+    "U5-04.06",
+    "U5-04.07",
+    "U5-04.08"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Scegliamo come sistema un gas chiuso e usiamo ΔU=Q−W: Q è positivo se entra calore e W se il gas compie lavoro sull’ambiente. Energia interna U è funzione di stato; Q e W descrivono trasferimenti e dipendono dal percorso. Per un gas ideale U dipende dalla temperatura. In un’isocora il volume resta fermo e W=0. In un’isobara quasi statica W=p(Vf−Vi), area sotto il grafico p-V. In un’isoterma ideale ΔU=0, quindi Q=W; non significa Q=0. In un’adiabatica Q=0 e un’espansione con W>0 riduce U e T. Un processo reversibile è un limite ideale che può essere invertito senza variazioni nette di sistema e ambiente; attrito e passaggi con differenze finite producono irreversibilità. La sola forma di un grafico non certifica reversibilità. Prima di usare l’area p-V occorre sapere che la pressione esterna coincide con quella del gas nel limite quasi statico.",
+  "workedExample": {
+    "prompt": "Un gas si espande quasi staticamente a 100 kPa da 2 L a 5 L e riceve 500 J di calore. Trova W e ΔU.",
+    "steps": [
+      "Converti: 100 kPa=100000 Pa e ΔV=3 L=0,003 m³.",
+      "Lavoro fatto dal gas: W=pΔV=300 J.",
+      "Bilancio: ΔU=500−300=200 J. Il gas conserva internamente parte del calore ricevuto."
+    ],
+    "result": "W=+300 J; ΔU=+200 J."
+  },
+  "practice": {
+    "prompt": "Un gas in recipiente rigido cede 80 J. Quanto valgono W e ΔU con la convenzione dichiarata?",
+    "answer": "W=0 J; ΔU=−80 J",
+    "feedback": "Volume costante annulla il lavoro p dV. Il calore uscente ha Q negativo."
+  },
+  "transfer": {
+    "prompt": "In una compressione adiabatica vengono compiuti 120 J sul gas ideale. Trova Q,W,ΔU e il verso della variazione di T.",
+    "answer": "Q=0 J; W=−120 J; ΔU=+120 J; T aumenta.",
+    "feedback": "Il lavoro sul gas è negativo nella convenzione del lavoro fatto dal gas. Un’adiabatica non è necessariamente isoterma."
+  },
+  "commonErrors": [
+    "Usare litri senza conversione in pΔV",
+    "Cambiare convenzione per W a metà soluzione",
+    "Confondere isoterma e adiabatica"
+  ],
+  "hintLadder": [
+    "Scrivi per primo ΔU=Q−W e il sistema",
+    "Individua quale variabile resta costante",
+    "Controlla il segno guardando la direzione del trasferimento"
+  ],
+  "recap": "Dichiara sempre sistema, segni e ipotesi prima del bilancio.",
+  "transcript": "Scegliamo come sistema un gas chiuso e usiamo ΔU=Q−W: Q è positivo se entra calore e W se il gas compie lavoro sull’ambiente. Energia interna U è funzione di stato; Q e W descrivono trasferimenti e dipendono dal percorso. Per un gas ideale U dipende dalla temperatura. In un’isocora il volume resta fermo e W=0. In un’isobara quasi statica W=p(Vf−Vi), area sotto il grafico p-V. In un’isoterma ideale ΔU=0, quindi Q=W; non significa Q=0. In un’adiabatica Q=0 e un’espansione con W>0 riduce U e T. Un processo reversibile è un limite ideale che può essere invertito senza variazioni nette di sistema e ambiente; attrito e passaggi con differenze finite producono irreversibilità. La sola forma di un grafico non certifica reversibilità. Prima di usare l’area p-V occorre sapere che la pressione esterna coincide con quella del gas nel limite quasi statico. Esempio: Un gas si espande quasi staticamente a 100 kPa da 2 L a 5 L e riceve 500 J di calore. Trova W e ΔU. Converti: 100 kPa=100000 Pa e ΔV=3 L=0,003 m³. Lavoro fatto dal gas: W=pΔV=300 J. Bilancio: ΔU=500−300=200 J. Il gas conserva internamente parte del calore ricevuto. Risultato: W=+300 J; ΔU=+200 J.",
+  "scientificCounterchecks": [
+    "Dichiara sempre sistema, segni e ipotesi prima del bilancio.",
+    "Pa·m³=J; 10^5·3·10^-3=300.",
+    "Q=ΔU+W=200+300=500 J; in un ciclo ΔU totale è zero, non necessariamente Q e W."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

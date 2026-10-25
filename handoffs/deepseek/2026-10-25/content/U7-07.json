@@ -1,0 +1,68 @@
+{
+  "id": "ds-2026-u7-07",
+  "familyId": "U7-07",
+  "pathId": "onde-ottica-radiazioni",
+  "unitId": "U7",
+  "title": "Ottica geometrica",
+  "sourcePages": [
+    5
+  ],
+  "subtargetIds": [
+    "U7-07.01",
+    "U7-07.02",
+    "U7-07.03",
+    "U7-07.04",
+    "U7-07.05",
+    "U7-07.06"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Nella riflessione l’angolo riflesso uguaglia l’angolo incidente, misurati dalla normale. Nella rifrazione n1 sinθ1=n2 sinθ2 e n=c/v; entrando in un mezzo con indice maggiore il raggio si avvicina alla normale. La frequenza resta fissata dalla sorgente, mentre velocità e lunghezza d’onda cambiano. Per una lente convergente sottile scegliamo f>0 e oggetto reale a distanza p>0; 1/f=1/p+1/q. Una soluzione q>0 descrive un’immagine reale dall’altro lato, q<0 un’immagine virtuale sul lato dell’oggetto. L’ingrandimento trasversale è m=−q/p. A p=f i raggi emergono paralleli e l’immagine non è a distanza finita. Per p<f l’immagine è virtuale, diritta e ingrandita: una lente convergente non forma sempre un’immagine reale. Tutte queste leggi richiedono il modello geometrico, lente sottile e raggi vicini all’asse.",
+  "workedExample": {
+    "prompt": "Una lente convergente ha f=10 cm; un oggetto è posto a p=30 cm. Determina q e m.",
+    "steps": [
+      "1/q=1/10−1/30=1/15 cm^-1.",
+      "q=15 cm>0: immagine reale oltre la lente.",
+      "m=−15/30=−0,5: immagine capovolta e alta metà dell’oggetto."
+    ],
+    "result": "q=15 cm; m=−0,5; immagine reale e capovolta."
+  },
+  "practice": {
+    "prompt": "La stessa lente ha un oggetto a 5 cm: calcola q e m.",
+    "answer": "q=−10 cm; m=+2",
+    "feedback": "L’oggetto è dentro il fuoco: il segno negativo di q indica immagine virtuale sul lato dell’oggetto, non una distanza fisica impossibile."
+  },
+  "transfer": {
+    "prompt": "Un raggio passa dall’aria n=1 a vetro n=1,5 con θi=30°. Quanto vale sinθt e quale angolo ha il raggio riflesso? Cambia la frequenza?",
+    "answer": "sinθt=1/3; θriflesso=30°; frequenza invariata.",
+    "feedback": "Snell usa gli angoli dalla normale. Il vetro riduce velocità e lunghezza d’onda, non la frequenza."
+  },
+  "commonErrors": [
+    "Misurare gli angoli dalla superficie",
+    "Trattare q negativa come errore numerico",
+    "Sostenere che nel vetro cambia la frequenza"
+  ],
+  "hintLadder": [
+    "Disegna normale o asse ottico",
+    "Dichiara la convenzione dei segni",
+    "Confronta p con f prima del calcolo"
+  ],
+  "recap": "La natura dell’immagine richiede segno di q e ingrandimento, non il solo tipo di lente.",
+  "transcript": "Nella riflessione l’angolo riflesso uguaglia l’angolo incidente, misurati dalla normale. Nella rifrazione n1 sinθ1=n2 sinθ2 e n=c/v; entrando in un mezzo con indice maggiore il raggio si avvicina alla normale. La frequenza resta fissata dalla sorgente, mentre velocità e lunghezza d’onda cambiano. Per una lente convergente sottile scegliamo f>0 e oggetto reale a distanza p>0; 1/f=1/p+1/q. Una soluzione q>0 descrive un’immagine reale dall’altro lato, q<0 un’immagine virtuale sul lato dell’oggetto. L’ingrandimento trasversale è m=−q/p. A p=f i raggi emergono paralleli e l’immagine non è a distanza finita. Per p<f l’immagine è virtuale, diritta e ingrandita: una lente convergente non forma sempre un’immagine reale. Tutte queste leggi richiedono il modello geometrico, lente sottile e raggi vicini all’asse. Esempio: Una lente convergente ha f=10 cm; un oggetto è posto a p=30 cm. Determina q e m. 1/q=1/10−1/30=1/15 cm^-1. q=15 cm>0: immagine reale oltre la lente. m=−15/30=−0,5: immagine capovolta e alta metà dell’oggetto. Risultato: q=15 cm; m=−0,5; immagine reale e capovolta.",
+  "scientificCounterchecks": [
+    "La natura dell’immagine richiede segno di q e ingrandimento, non il solo tipo di lente.",
+    "1/10=1/30+1/15 in cm^-1.",
+    "p=f è caso degenere senza q finita; per p→∞, q→f."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}

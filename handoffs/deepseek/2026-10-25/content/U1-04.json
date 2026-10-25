@@ -1,0 +1,67 @@
+{
+  "id": "ds-2026-u1-04",
+  "familyId": "U1-04",
+  "pathId": "strumenti-meccanica",
+  "unitId": "U1",
+  "title": "Operazioni vettoriali",
+  "sourcePages": [
+    2
+  ],
+  "subtargetIds": [
+    "U1-04.01",
+    "U1-04.02",
+    "U1-04.03",
+    "U1-04.04",
+    "U1-04.05"
+  ],
+  "editorialStatus": "DRAFT",
+  "scientificStatus": "AI_CHECKED",
+  "humanApproval": false,
+  "provenance": "Original AI-authored proposal created 2026-10-25; no donor code/assets or private editorial-kit text copied.",
+  "prerequisites": [
+    "Leggere dati e unità SI",
+    "Distinguere modello ideale da misura",
+    "Conservare segni e dominio delle formule"
+  ],
+  "explanation": "Un vettore descrive modulo, direzione e verso. In assi cartesiani ortogonali si scrive con componenti: il modulo è la radice della somma dei quadrati. Somma e differenza agiscono sulle componenti; non si sommano i moduli salvo casi allineati concordi. Il prodotto scalare A·B = AxBx + AyBy restituisce uno scalare, può essere negativo e vale zero per vettori ortogonali. Il prodotto vettoriale restituisce un vettore perpendicolare al piano: per due vettori nel piano xy la componente z è AxBy − AyBx, con segno dato dalla regola della mano destra. Scambiando i fattori il prodotto scalare resta uguale e quello vettoriale cambia segno. Le unità dei prodotti si moltiplicano. Una risultante nulla non impone che ciascuna forza sia nulla.",
+  "workedExample": {
+    "prompt": "Due forze nel piano sono A=(3,4) N e B=(−3,4) N. Trova A+B, A−B, A·B e A×B.",
+    "steps": [
+      "Somma: (3−3,4+4)=(0,8) N; modulo 8 N.",
+      "Differenza: (3+3,4−4)=(6,0) N.",
+      "Scalare: 3(−3)+4·4=7 N². Vettoriale: z=3·4−4(−3)=24 N², verso +z."
+    ],
+    "result": "Risultante (0,8) N; differenza (6,0) N; scalare 7 N²; vettoriale (0,0,24) N²."
+  },
+  "practice": {
+    "prompt": "Per C=(6,0) m e D=(0,8) m calcola modulo della somma e prodotto scalare.",
+    "answer": "10 m; 0 m²",
+    "feedback": "La somma è (6,8) m: Pitagora dà 10 m. I vettori sono ortogonali, quindi il prodotto scalare è nullo."
+  },
+  "transfer": {
+    "prompt": "Due spostamenti hanno componenti (2,−1) m e (−2,1) m. Un loro prodotto vettoriale nullo implica verso concorde? Motiva.",
+    "answer": "No: sono opposti; somma nulla, prodotto scalare −5 m², prodotto vettoriale nullo.",
+    "feedback": "Il vettoriale nullo indica parallelismo, anche in verso opposto. Il segno dello scalare distingue questo caso."
+  },
+  "commonErrors": [
+    "Sommare 5 N+5 N ottenendo sempre 10 N",
+    "Scrivere N invece di N² per prodotti fra forze",
+    "Invertire il segno di AxBy−AyBx"
+  ],
+  "hintLadder": [
+    "Disegna gli assi e scrivi ogni coppia ordinata",
+    "Somma prima le x e poi le y",
+    "Controlla se il risultato rispetta le simmetrie"
+  ],
+  "recap": "Le operazioni sui vettori vanno verificate per componenti, verso e unità.",
+  "transcript": "Un vettore descrive modulo, direzione e verso. In assi cartesiani ortogonali si scrive con componenti: il modulo è la radice della somma dei quadrati. Somma e differenza agiscono sulle componenti; non si sommano i moduli salvo casi allineati concordi. Il prodotto scalare A·B = AxBx + AyBy restituisce uno scalare, può essere negativo e vale zero per vettori ortogonali. Il prodotto vettoriale restituisce un vettore perpendicolare al piano: per due vettori nel piano xy la componente z è AxBy − AyBx, con segno dato dalla regola della mano destra. Scambiando i fattori il prodotto scalare resta uguale e quello vettoriale cambia segno. Le unità dei prodotti si moltiplicano. Una risultante nulla non impone che ciascuna forza sia nulla. Esempio: Due forze nel piano sono A=(3,4) N e B=(−3,4) N. Trova A+B, A−B, A·B e A×B. Somma: (3−3,4+4)=(0,8) N; modulo 8 N. Differenza: (3+3,4−4)=(6,0) N. Scalare: 3(−3)+4·4=7 N². Vettoriale: z=3·4−4(−3)=24 N², verso +z. Risultato: Risultante (0,8) N; differenza (6,0) N; scalare 7 N²; vettoriale (0,0,24) N².",
+  "scientificCounterchecks": [
+    "Le operazioni sui vettori vanno verificate per componenti, verso e unità.",
+    "|A|=|B|=5 N; risultante verticale attesa per simmetria.",
+    "B×A=−A×B; A·B=B·A."
+  ],
+  "assessmentCoverageStatus": "REQUIRES_SUBTARGET_REVIEW",
+  "releaseStatus": "PROPOSAL_ONLY; A selects original demo or protected editorial review; no publication approval implied",
+  "integrationStatus": "NOT_INTEGRATED",
+  "audioStatus": "TRANSCRIPT_ONLY; audio playback NOT_RUN"
+}
