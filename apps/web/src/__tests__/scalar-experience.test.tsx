@@ -142,9 +142,12 @@ test("cold reopen does not borrow a foreign student's receipt or a stale experie
 test("cold reopen of all completed scalar steps shows a receipt-based summary, not a fresh duplicate attempt", async () => {
   stubComposition();
   const second: ActivityEvidenceV2 = {
-    ...evidence(), stepId: "absolute",
-    result: {...evidence().result, value: 120945, calculatedVariable: "Pressione assoluta"},
+    schemaVersion: 2, experienceRef: experience.experienceRef, stepId: "absolute",
     prediction: {kind: "scalar", value: 120945, unit: "Pa"},
+    supportUsed: [], assistance: "NO_SUPPORT_REQUESTED", assistanceScope: "prior receipts",
+    result: {kind: "scalar", activityId: "hydrostatic-v1", version: 1,
+      value: 120945, unit: "Pa", calculatedVariable: "Pressione assoluta", fixedQuantity: "rho,g",
+      domain: "Liquido fermo", editorialStatus: "DRAFT", numericalCheck: "deterministic"},
     check: {kind: "scalar", valueMatches: true, unitMatches: true},
   };
   render(<ScalarExperienceEpisode me={me} data={storedExperience([
