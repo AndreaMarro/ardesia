@@ -1,3 +1,4 @@
+import {useState} from "react";
 import "./scientific-models.css";
 
 export type ElectricalResult = {
@@ -29,6 +30,7 @@ function valid(result: ElectricalResult): boolean {
 
 /** Presentation only: all SI values and graph points come from the versioned Core result. */
 export function ScientificElectricalModel({result}: {result: ElectricalResult | null}) {
+  const [view, setView] = useState<"circuit" | "current" | "power">("circuit");
   if (result === null) return <figure className="scientific-model"><p>Formula una previsione: circuito, misure e grafici compaiono dopo il confronto.</p></figure>;
   if (!valid(result)) return <p role="status" className="scientific-model">Dati del circuito non disponibili o versione non supportata. Conserva i parametri e riapri la risorsa verificata.</p>;
   const {parameters: p, ivSamples} = result;
@@ -43,6 +45,12 @@ export function ScientificElectricalModel({result}: {result: ElectricalResult | 
   const yCurrent = (i: number) => 200 - (i - currentMin) / (currentMax - currentMin || 1) * 160;
   const yPower = (w: number) => 200 - w / (powerMax || 1) * 160;
   return <figure className="scientific-model scientific-electrical">
+    <div role="group" aria-label="Rappresentazione del circuito" className="scientific-view-controls">
+      <button type="button" aria-pressed={view === "circuit"} onClick={() => setView("circuit")}>Circuito e misure</button>
+      <button type="button" aria-pressed={view === "current"} onClick={() => setView("current")}>Corrente e tensione</button>
+      <button type="button" aria-pressed={view === "power"} onClick={() => setView("power")}>Potenza e tensione</button>
+    </div>
+    {view === "circuit" &&
     <svg viewBox="0 0 480 210" role="img" aria-label={`Circuito in ${topology}, generatore ideale ${fmt(p.voltage)} V, due resistori ${fmt(p.resistance1)} e ${fmt(p.resistance2)} ohm.`}>
       <path d="M75 85V40H410V170H75V125M55 85H95M63 125H87" fill="none" stroke="currentColor" strokeWidth="3" />
       {p.topology === "series" ? <>
@@ -54,33 +62,33 @@ export function ScientificElectricalModel({result}: {result: ElectricalResult | 
         <text x="285" y="70">R₁</text><text x="285" y="137">R₂</text>
       </>}
       <text x="12" y="152">{fmt(p.voltage)} V</text><text x="155" y="197">Collegamento in {topology}</text>
-    </svg>
+    </svg>}
     <dl className="scientific-readings">
       <div><dt>Resistenza equivalente</dt><dd>{fmt(result.equivalentResistanceOhm)} Ω</dd></div>
       <div><dt>Corrente totale</dt><dd>{fmt(result.currentA)} A</dd></div>
       <div><dt>Potenza totale dissipata</dt><dd>{fmt(result.totalPowerW)} W</dd></div>
     </dl>
-    <div className="scientific-table-wrap"><table aria-label="Misure dei due resistori">
+    {view === "circuit" && <div className="scientific-table-wrap"><table aria-label="Misure dei due resistori">
       <thead><tr><th scope="col">Resistore</th><th scope="col">R [Ω]</th><th scope="col">ΔV [V]</th><th scope="col">I [A]</th><th scope="col">P [W]</th></tr></thead>
       <tbody>{result.branches.map((b, index) => <tr key={index}><th scope="row">{b.id}</th><td>{fmt(b.resistanceOhm)}</td><td>{fmt(b.voltageV)}</td><td>{fmt(b.currentA)}</td><td>{fmt(b.powerW)}</td></tr>)}</tbody>
-    </table></div>
-    <p>I due grafici usano le stesse resistenze e lo stesso collegamento. Cambia soltanto la tensione del generatore.</p>
-    <svg viewBox="0 0 480 270" role="img" aria-label="Corrente totale in funzione della tensione, campioni del Core">
+    </table></div>}
+    {view !== "circuit" && <p>I due grafici usano le stesse resistenze e lo stesso collegamento. Cambia soltanto la tensione del generatore.</p>}
+    {view === "current" && <svg viewBox="0 0 480 270" role="img" aria-label="Corrente totale in funzione della tensione, campioni del Core">
       <path d={`M${x(0)} 25V200M60 ${yCurrent(0)}H440`} fill="none" stroke="currentColor" />
       <polyline data-testid="electrical-iv-curve" points={ivSamples.map(s => `${x(s.voltageV)},${yCurrent(s.currentA)}`).join(" ")} fill="none" stroke="var(--accent-text, currentColor)" strokeWidth="3" />
       <text x="8" y="23">I [A]</text><text x="8" y="50">{fmt(currentMax)}</text><text x="8" y="222">{fmt(currentMin)}</text>
       <text x="60" y="240">{fmt(xMin)}</text><text x="395" y="240">{fmt(xMax)}</text><text x="175" y="263">Tensione ΔV [V]</text>
-    </svg>
-    <svg viewBox="0 0 480 270" role="img" aria-label="Potenza dissipata in funzione della tensione, campioni del Core">
+    </svg>}
+    {view === "power" && <svg viewBox="0 0 480 270" role="img" aria-label="Potenza dissipata in funzione della tensione, campioni del Core">
       <path d={`M${x(0)} 25V200M60 200H440`} fill="none" stroke="currentColor" />
       <polyline data-testid="electrical-power-curve" points={ivSamples.map(s => `${x(s.voltageV)},${yPower(s.totalPowerW)}`).join(" ")} fill="none" stroke="var(--accent-text, currentColor)" strokeWidth="3" />
       <text x="8" y="23">P [W]</text><text x="8" y="50">{fmt(powerMax)}</text><text x="15" y="222">0</text>
       <text x="60" y="240">{fmt(xMin)}</text><text x="395" y="240">{fmt(xMax)}</text><text x="175" y="263">Tensione ΔV [V]</text>
-    </svg>
-    <details><summary>Valori dei grafici elettrici</summary><div className="scientific-table-wrap"><table aria-label="Campioni di tensione corrente e potenza">
+    </svg>}
+    {view !== "circuit" && <details><summary>Valori dei grafici elettrici</summary><div className="scientific-table-wrap"><table aria-label="Campioni di tensione corrente e potenza">
       <thead><tr><th scope="col">ΔV [V]</th><th scope="col">I [A]</th><th scope="col">P [W]</th></tr></thead>
       <tbody>{ivSamples.map((s, i) => <tr key={i}><td>{fmt(s.voltageV)}</td><td>{fmt(s.currentA)}</td><td>{fmt(s.totalPowerW)}</td></tr>)}</tbody>
-    </table></div></details>
+    </table></div></details>}
     <figcaption>Modello ideale statico. Nessuna animazione rappresenta il moto degli elettroni. La potenza indicata non certifica il funzionamento sicuro di componenti reali.</figcaption>
   </figure>;
 }

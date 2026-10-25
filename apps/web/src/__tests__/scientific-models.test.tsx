@@ -38,13 +38,19 @@ test("circuit drawing, branches and both linked graphs render supplied values wi
   const {ScientificElectricalModel} = await import("../components/ScientificElectricalModel");
   const view = render(<ScientificElectricalModel result={electrical} />);
   expect(screen.getByRole("img", {name: /circuito.*serie/i})).toBeTruthy();
-  expect(screen.getByRole("img", {name: /corrente.*tensione/i})).toBeTruthy();
-  expect(screen.getByRole("img", {name: /potenza.*tensione/i})).toBeTruthy();
+  expect(screen.getAllByRole("img")).toHaveLength(1);
   const table = screen.getByRole("table", {name: /resistori/i});
   expect(within(table).getAllByRole("row")).toHaveLength(3);
   expect(table.textContent).toContain("R2");
   expect(table.textContent).toContain("Ω");
+  fireEvent.click(screen.getByRole("button", {name: "Corrente e tensione"}));
+  expect(screen.queryByRole("table", {name: /resistori/i})).toBeNull();
+  expect(screen.getByRole("img", {name: /corrente.*tensione/i})).toBeTruthy();
+  expect(screen.getAllByRole("img")).toHaveLength(1);
   expect(screen.getByTestId("electrical-iv-curve").getAttribute("points")).toContain("430,40");
+  fireEvent.click(screen.getByRole("button", {name: "Potenza e tensione"}));
+  expect(screen.getByRole("img", {name: /potenza.*tensione/i})).toBeTruthy();
+  expect(screen.queryByTestId("electrical-iv-curve")).toBeNull();
   expect(screen.getByTestId("electrical-power-curve").getAttribute("points")).toContain("430,40");
   // A JSON resource and an external remount preserve values, with no view storage.
   view.unmount(); render(<ScientificElectricalModel result={JSON.parse(JSON.stringify(electrical))} />);
@@ -55,11 +61,15 @@ test("wave view distinguishes space from time and never recomputes supplied disp
   const {ScientificWaveModel} = await import("../components/ScientificWaveModel");
   const view = render(<ScientificWaveModel result={wave} />);
   expect(screen.getByRole("img", {name: /profilo spaziale/i})).toBeTruthy();
-  expect(screen.getByRole("img", {name: /punto.*tempo/i})).toBeTruthy();
+  expect(screen.getAllByRole("img")).toHaveLength(1);
   expect(screen.getByText(/verso \+x/i)).toBeTruthy();
   expect(screen.getByText(/0,025 m/)).toBeTruthy();
   expect(screen.getByRole("table", {name: /campioni spaziali/i}).textContent).toContain("0,08");
+  fireEvent.click(screen.getByRole("button", {name: "Punto nel tempo"}));
+  expect(screen.getByRole("img", {name: /punto.*tempo/i})).toBeTruthy();
+  expect(screen.queryByTestId("wave-spatial-curve")).toBeNull();
   expect(screen.getByRole("table", {name: /campioni temporali/i}).textContent).toContain("−0,08");
+  fireEvent.click(screen.getByRole("button", {name: "Profilo nello spazio"}));
   const before = screen.getByTestId("wave-spatial-curve").getAttribute("points");
   fireEvent.click(screen.getByText("Valori del profilo e del punto"));
   expect(screen.getByTestId("wave-spatial-curve").getAttribute("points")).toBe(before);
@@ -77,7 +87,7 @@ test("zero voltage and zero amplitude have finite SVG coordinates and textual al
     spatialSamples: [{xM: 0, displacementM: 0}, {xM: 1, displacementM: 0}]};
   const {container} = render(<><ScientificElectricalModel result={zeroCircuit} /><ScientificWaveModel result={flat} /></>);
   expect(container.innerHTML).not.toMatch(/NaN|Infinity/);
-  expect(screen.getAllByRole("table")).toHaveLength(4);
+  expect(screen.getAllByRole("table")).toHaveLength(2);
   expect(screen.getByText(/ampiezza nulla/i)).toBeTruthy();
 });
 

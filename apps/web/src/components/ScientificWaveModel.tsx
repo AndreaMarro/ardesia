@@ -1,3 +1,4 @@
+import {useState} from "react";
 import "./scientific-models.css";
 
 export type WaveResult = {
@@ -28,6 +29,7 @@ function valid(result: WaveResult): boolean {
 
 /** Two views of supplied Core samples; no wave equation, timer or sound synthesis here. */
 export function ScientificWaveModel({result}: {result: WaveResult | null}) {
+  const [view, setView] = useState<"spatial" | "temporal">("spatial");
   if (result === null) return <figure className="scientific-model"><p>Formula una previsione: profilo e punto nel tempo compaiono dopo il confronto.</p></figure>;
   if (!valid(result)) return <p role="status" className="scientific-model">Dati dell’onda non disponibili o versione non supportata. Conserva i parametri e riapri la risorsa verificata.</p>;
   const {parameters: p, spatialSamples, temporalSamples} = result;
@@ -47,25 +49,31 @@ export function ScientificWaveModel({result}: {result: WaveResult | null}) {
     </dl>
     <p>Propagazione verso +x a {fmt(p.speed)} m/s. Frequenza {fmt(p.frequency)} Hz. I punti del mezzo oscillano: non viaggiano con il profilo.</p>
     {p.amplitude === 0 && <p>Ampiezza nulla: il mezzo non si sposta; λ e T descrivono i parametri impostati, non creste osservabili.</p>}
+    <div role="group" aria-label="Rappresentazione dell’onda" className="scientific-view-controls">
+      <button type="button" aria-pressed={view === "spatial"} onClick={() => setView("spatial")}>Profilo nello spazio</button>
+      <button type="button" aria-pressed={view === "temporal"} onClick={() => setView("temporal")}>Punto nel tempo</button>
+    </div>
+    {view === "spatial" &&
     <svg viewBox="0 0 480 280" role="img" aria-label={`Profilo spaziale al tempo ${fmt(p.time)} s. Asse orizzontale posizione in metri, asse verticale spostamento in metri.`}>
       <path d="M70 28V225M70 130H445" fill="none" stroke="currentColor" />
       <polyline data-testid="wave-spatial-curve" points={spatialSamples.map(s => `${x(s.xM)},${y(s.displacementM)}`).join(" ")} fill="none" stroke="var(--accent-text, currentColor)" strokeWidth="3" />
       <circle cx={x(spatialSamples[0].xM)} cy={y(spatialSamples[0].displacementM)} r="5" fill="currentColor" />
       <text x="5" y="23">y [m]</text><text x="5" y="52">{fmt(p.amplitude)}</text><text x="5" y="215">{fmt(-p.amplitude)}</text>
       <text x="70" y="244">{fmt(xMin)}</text><text x="395" y="244">{fmt(xMax)}</text><text x="180" y="270">Posizione x [m]</text>
-    </svg>
+    </svg>}
+    {view === "temporal" &&
     <svg viewBox="0 0 480 280" role="img" aria-label="Spostamento del punto x uguale zero nel tempo. Asse orizzontale tempo in secondi, asse verticale spostamento in metri.">
       <path d="M70 28V225M70 130H445" fill="none" stroke="currentColor" />
       <polyline data-testid="wave-temporal-curve" points={temporalSamples.map(s => `${t(s.timeS)},${y(s.displacementM)}`).join(" ")} fill="none" stroke="var(--accent-text, currentColor)" strokeWidth="3" />
       <circle cx={t(temporalSamples[0].timeS)} cy={y(temporalSamples[0].displacementM)} r="5" fill="currentColor" />
       <text x="5" y="23">y [m]</text><text x="5" y="52">{fmt(p.amplitude)}</text><text x="5" y="215">{fmt(-p.amplitude)}</text>
       <text x="70" y="244">{fmt(tMin)}</text><text x="395" y="244">{fmt(tMax)}</text><text x="190" y="270">Tempo t [s]</text>
-    </svg>
+    </svg>}
     <details><summary>Valori del profilo e del punto</summary>
-      <div className="scientific-table-wrap"><table aria-label="Campioni spaziali dell’onda"><thead><tr><th scope="col">Posizione x [m]</th><th scope="col">Spostamento y [m]</th></tr></thead>
-        <tbody>{spatialSamples.map((s, i) => <tr key={i}><td>{fmt(s.xM)}</td><td>{fmt(s.displacementM)}</td></tr>)}</tbody></table></div>
-      <div className="scientific-table-wrap"><table aria-label="Campioni temporali del punto x uguale zero"><thead><tr><th scope="col">Tempo t [s]</th><th scope="col">Spostamento y [m]</th></tr></thead>
-        <tbody>{temporalSamples.map((s, i) => <tr key={i}><td>{fmt(s.timeS)}</td><td>{fmt(s.displacementM)}</td></tr>)}</tbody></table></div>
+      {view === "spatial" && <div className="scientific-table-wrap"><table aria-label="Campioni spaziali dell’onda"><thead><tr><th scope="col">Posizione x [m]</th><th scope="col">Spostamento y [m]</th></tr></thead>
+        <tbody>{spatialSamples.map((s, i) => <tr key={i}><td>{fmt(s.xM)}</td><td>{fmt(s.displacementM)}</td></tr>)}</tbody></table></div>}
+      {view === "temporal" && <div className="scientific-table-wrap"><table aria-label="Campioni temporali del punto x uguale zero"><thead><tr><th scope="col">Tempo t [s]</th><th scope="col">Spostamento y [m]</th></tr></thead>
+        <tbody>{temporalSamples.map((s, i) => <tr key={i}><td>{fmt(s.timeS)}</td><td>{fmt(s.displacementM)}</td></tr>)}</tbody></table></div>}
     </details>
     <figcaption>Due rappresentazioni della stessa onda ideale: fotografia nello spazio e oscillazione di un punto. Il tempo è impostato nei parametri, senza riproduzione automatica. Il disegno trasversale non simula compressioni sonore né produce suono.</figcaption>
   </figure>;

@@ -6,6 +6,10 @@
 .scientific-model .scientific-readings > div {flex: 1 1 140px;}
 .scientific-model dt {font-size: .9em;}
 .scientific-model dd {margin: 4px 0 0; font-weight: 600;}
+.scientific-model .scientific-view-controls {display: flex; flex-wrap: wrap; gap: 8px;}
+.scientific-model .scientific-view-controls button {min-height: 44px; padding: 8px 12px; color: inherit; background: var(--surface, Canvas); border: 1px solid var(--line, currentColor); border-radius: 8px; font: inherit; cursor: pointer;}
+.scientific-model .scientific-view-controls button[aria-pressed="true"] {outline: 2px solid var(--accent-text, currentColor); outline-offset: -2px; font-weight: 600;}
+.scientific-model .scientific-view-controls button:focus-visible {outline: 3px solid var(--accent-text, currentColor); outline-offset: 3px;}
 .scientific-model .scientific-table-wrap {max-width: 100%; overflow-x: auto; margin: 12px 0;}
 .scientific-model table {width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums;}
 .scientific-model th, .scientific-model td {padding: 8px 6px; text-align: start; border-bottom: 1px solid var(--line, currentColor);}
