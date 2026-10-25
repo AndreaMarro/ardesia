@@ -9,6 +9,7 @@ import {
 import { ErrorNotice, Loading } from "./Feedback";
 import { NotebookEditor } from "../integrations/notebook/NotebookEditor";
 import { notebookResource } from "../integrations/notebook/model";
+import { displaySourceTitle, readLessonPassage } from "./lessonPassageReference";
 export function SourceViewer({
   reference,
   onSelect,
@@ -108,6 +109,7 @@ export function SourceViewer({
     resource.revisionId !== reference.revisionId
   )
     return <Loading>Sto aprendo la revisione originale…</Loading>;
+  const passage = readLessonPassage(resource);
   return (
     <section className="source-viewer">
       <div className="source-heading">
@@ -120,35 +122,33 @@ export function SourceViewer({
       </div>
       {resource.kind === "scientific-notebook" && <NotebookEditor key={resource.revisionId}
         resource={notebookResource(resource)} actor={resource.ownerId} readOnly onSaved={() => {}} />}
+      {passage && <article className="lesson-passage-source" aria-label="Passaggio della lezione">
+        <h3>{displaySourceTitle(resource, 140)}</h3>
+        <blockquote>{passage.transcript}</blockquote>
+        <p className="fine-print">Passaggio dichiarato dal docente. Il replay e i media restano nello Studio locale; questa fonte non li incorpora.</p>
+      </article>}
+      {resource.kind === "lesson-passage" && !passage &&
+        <ErrorNotice message="Il passaggio della lezione non è leggibile in questa revisione. Non viene mostrato il JSON come spiegazione." />}
       {onSelect ? (
-        <>
-          <p className="fine-print">
-            Seleziona con il mouse o la tastiera il passaggio preciso su cui
-            intervenire.
-          </p>
+        <details className="source-selection" open={!passage}>
+          <summary>{passage ? "Seleziona un frammento della fonte strutturata" : "Seleziona un passaggio preciso"}</summary>
+          <p className="fine-print">Seleziona con mouse o tastiera un passaggio nell'originale. Le selezioni conservano gli offset della revisione esatta.</p>
           <textarea
             className="original-text original-selectable"
             aria-label="Originale della fonte"
             readOnly
             value={resource.text}
-            rows={Math.min(
-              12,
-              Math.max(4, resource.text.split("\n").length + 1),
-            )}
+            rows={Math.min(12, Math.max(4, resource.text.split("\n").length + 1))}
             onSelect={(e) => {
               const el = e.currentTarget;
               if (el.selectionEnd > el.selectionStart)
-                onSelect(
-                  el.selectionStart,
-                  el.selectionEnd,
-                  resource.text.slice(el.selectionStart, el.selectionEnd),
-                );
+                onSelect(el.selectionStart, el.selectionEnd, resource.text.slice(el.selectionStart, el.selectionEnd));
             }}
           />
-        </>
-      ) : (
+        </details>
+      ) : !passage && resource.kind !== "lesson-passage" ? (
         <p className="original-text">{resource.text}</p>
-      )}
+      ) : null}
       <details className="provenance">
         <summary>Fonte, versione e contesto</summary>
         <dl>
