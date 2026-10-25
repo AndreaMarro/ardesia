@@ -1,0 +1,44 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/coursePassageBridge.test.ts (11 tests | 2 failed) 9ms
+     × waits for a pinned opener handshake and sends only after the teacher's explicit send 4ms
+     × pins matching loopback dev origins and never accepts an origin from query 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/coursePassageBridge.test.ts > ephemeral Studio → Aula passage bridge > waits for a pinned opener handshake and sends only after the teacher's explicit send
+AssertionError: expected "vi.fn()" to be called once with arguments: [ { …(2) }, …(1) ]
+
+Number of calls: 0
+
+ ❯ src/__tests__/coursePassageBridge.test.ts:21:34
+     19|   it("waits for a pinned opener handshake and sends only after the tea…
+     20|     const h = host(); const bridge = createStudioCourseBridge(h.window)
+     21|     expect(h.parent.postMessage).toHaveBeenCalledExactlyOnceWith({ typ…
+       |                                  ^
+     22|     expect(() => bridge.send({ schema: "ardesia.lesson-passage.v1" }))…
+     23|     h.message(connect)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/coursePassageBridge.test.ts > ephemeral Studio → Aula passage bridge > pins matching loopback dev origins and never accepts an origin from query
+AssertionError: expected "vi.fn()" to be called with arguments: [ { …(2) }, 'http://127.0.0.1:5320' ]
+
+Number of calls: 0
+
+ ❯ src/__tests__/coursePassageBridge.test.ts:40:34
+     38|     const h = host(`http://127.0.0.1:5197/?courseBridge=${CHANNEL}&ori…
+     39|     const bridge = createStudioCourseBridge(h.window)
+     40|     expect(h.parent.postMessage).toHaveBeenCalledWith({ type: "ardesia…
+       |                                  ^
+     41|     h.message(connect, "http://localhost:5320"); expect(bridge.getSnap…
+     42|     h.message(connect, "http://127.0.0.1:5320"); expect(bridge.getSnap…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  14:46:58
+   Duration  139ms (transform 25ms, setup 23ms, import 13ms, tests 9ms, environment 0ms)

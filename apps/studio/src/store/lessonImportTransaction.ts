@@ -1,4 +1,6 @@
 import type { WorkspaceStore } from "./WorkspaceStore"
+import { canonicalAudioIdentity } from "./audioWriteFence"
+import { parseSessionYamlV2, sessionPaths } from "./sessionState"
 
 export const LESSON_IMPORT_TRANSACTION_ROOT = "raw/.ardesia/import-transactions"
 const ACTIVE_TRANSACTION_PATH = `${LESSON_IMPORT_TRANSACTION_ROOT}/active.json`
@@ -349,7 +351,25 @@ export async function rollbackLessonImport(
   } catch {
     // Il record precedente resta sufficiente per riprovare il rollback.
   }
+  const preserved = new Set<string>()
   for (const entry of [...current.entries].reverse()) {
+    const identity = canonicalAudioIdentity(entry.targetPath)
+    if (identity) {
+      const paths = sessionPaths(identity)
+      const live = await store.read(paths.session)
+      const value = live ? parseSessionYamlV2(new Uint8Array(await live.arrayBuffer())) : null
+      if (entry.targetPath === paths.session && live) {
+        const liveReceipt = await receipt(live)
+        if (liveReceipt.sha256 !== entry.next.sha256 && liveReceipt.sha256 !== entry.previous?.sha256) {
+          preserved.add(entry.targetPath)
+          continue // A competing CAS decision is authoritative over rollback.
+        }
+      } else if (entry.targetPath.startsWith(paths.audioDir) && value && !value.audioConsent) {
+        await store.delete(entry.targetPath)
+        preserved.add(entry.targetPath)
+        continue
+      }
+    }
     if (entry.previous === null) {
       await store.delete(entry.targetPath)
       continue
@@ -361,6 +381,7 @@ export async function rollbackLessonImport(
     await store.write(entry.targetPath, backup)
   }
   for (const entry of current.entries) {
+    if (preserved.has(entry.targetPath)) continue
     if (entry.previous === null) {
       if (await store.read(entry.targetPath)) {
         throw new Error(`Lesson import rollback: target nuovo non eliminato (${entry.targetPath})`)
@@ -371,6 +392,30 @@ export async function rollbackLessonImport(
   }
   current = await setPhase(store, current, "rolled-back")
   await clearActivePointer(store)
+  for (const entry of current.entries) {
+    await store.delete(entry.stagePath)
+    if (entry.backupPath) await store.delete(entry.backupPath)
+  }
+}
+
+/** Revocation also covers app-controlled copies retained by unfinished imports. */
+export async function purgeSessionImportAudioCopies(
+  store: WorkspaceStore,
+  identity: Readonly<{ lessonId: string; sessionId: string }>,
+): Promise<void> {
+  const prefix = sessionPaths(identity).audioDir
+  for (const file of await store.list(`${LESSON_IMPORT_TRANSACTION_ROOT}/`)) {
+    if (!file.path.endsWith("/transaction.json")) continue
+    const record = parseTransaction(JSON.parse(await file.data.text()), file.path)
+    for (const entry of record.entries) {
+      if (!entry.targetPath.startsWith(prefix)) continue
+      for (const path of [entry.stagePath, entry.backupPath]) {
+        if (!path) continue
+        await store.delete(path)
+        if (await store.read(path)) throw new Error("Audio revocation: import copy could not be deleted")
+      }
+    }
+  }
 }
 
 export async function abandonStagedLessonImport(

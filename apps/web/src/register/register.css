@@ -1,0 +1,66 @@
+.register-content { padding: 24px 0 8px; }
+.register-heading { display: flex; gap: 24px; justify-content: space-between; align-items: baseline; }
+.register-heading h2 { font-size: 30px; margin: 0 0 10px; }
+.register-heading > span { color: var(--green); font-size: 12px; white-space: nowrap; }
+.register-heading p { color: var(--muted); font-size: 14px; }
+.register-lanes { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 16px 0; border-block: 1px solid var(--line); }
+.register-lanes > div { padding: 20px 16px 20px 0; min-width: 0; }
+.register-lanes dt { font-size: 12px; font-weight: 650; color: var(--ink); margin-bottom: 8px; }
+.register-lanes dd { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; }
+.register-read-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+.register-read-bar button { font-size: 12px; }
+.register-read-time { color: var(--muted); font-size: 11px; }
+.register-section { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+.register-section > h3 { font: 400 26px/1.2 Georgia,"Times New Roman",serif; letter-spacing: -.025em; margin-bottom: 12px; }
+.register-section > p { font-size: 13px; max-width: 72ch; }
+.register-section > label { max-width: 580px; }
+.register-roster, .register-payments { padding: 0; list-style: none; margin: 20px 0; }
+.register-roster > li { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; padding: 20px 0; border-top: 1px solid var(--line); }
+.register-roster strong, .register-roster span { display: block; font-size: 13px; overflow-wrap: anywhere; }
+.register-roster span { margin-top: 5px; color: var(--muted); }
+.register-row-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; min-width: 0; }
+.register-row-actions button { white-space: normal; text-align: left; overflow-wrap: anywhere; }
+.register-roster .source-warning { font-size: 12px; margin-top: 12px; }
+.register-form { border-left: 2px solid var(--green); background: var(--surface); padding: 24px; margin: 24px 0; }
+.register-form h4 { font-size: 16px; margin-bottom: 12px; }
+.register-form p { font-size: 13px; }
+.register-form fieldset { border: 0; margin: 18px 0 0; padding: 0; min-width: 0; }
+.register-form legend { color: var(--muted); font-size: 12px; margin-bottom: 18px; }
+.register-form label { margin-bottom: 16px; }
+.register-form input, .register-form select, .register-form textarea { min-width: 0; max-width: 100%; }
+.register-form textarea { min-height: 90px; }
+.register-actions, .register-pagination { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 20px; }
+.register-actions button { white-space: normal; }
+.register-pagination button { font-size: 12px; }
+.register-history { flex-basis: 100%; min-width: 0; font-size: 12px; }
+.register-history > div { margin-top: 16px; }
+.register-history ol { padding-left: 20px; }
+.register-history li { padding: 12px 0; }
+.register-history li p { margin: 8px 0; font-size: 12px; }
+.register-new { margin: 24px 0; }
+.register-new summary { font-weight: 600; }
+.register-payment-summary { display: flex; flex-wrap: wrap; column-gap: 32px; row-gap: 18px; margin: 24px 0; }
+.register-payment-summary dt { font-size: 12px; color: var(--muted); }
+.register-payment-summary dd { font-size: 18px; margin: 6px 0 0; }
+.register-payments > li { padding: 22px 0; border-top: 1px solid var(--line); }
+.register-payment-heading { display: flex; gap: 24px; justify-content: space-between; }
+.register-payment-heading > div { min-width: 0; }
+.register-payment-heading strong { font-size: 14px; overflow-wrap: anywhere; }
+.register-payment-heading p { margin: 6px 0 10px; font-size: 13px; overflow-wrap: anywhere; }
+.register-payment-heading span { display: block; font-size: 12px; color: var(--muted); margin-top: 5px; }
+.register-ack { border-left: 2px solid var(--green); padding: 12px 18px; margin: 18px 0; }
+.register-ack p { font-size: 13px; margin-bottom: 10px; }
+.register-ack details { font-size: 12px; }
+.register-conflict { padding: 16px 0; }
+.register-conflict button { margin: 0 8px 8px 0; }
+@media (max-width: 1050px) { .register-lanes { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 600px) {
+  .register-heading { flex-wrap: wrap; gap: 4px; }
+  .register-heading h2 { font-size: 27px; }
+  .register-lanes { grid-template-columns: minmax(0,1fr); }
+  .register-lanes > div { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .register-lanes > div:last-child { border: 0; }
+  .register-roster > li { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .register-form { padding: 18px; }
+  .register-payment-heading { flex-wrap: wrap; gap: 8px; }
+}

@@ -1,0 +1,115 @@
+[
+  {
+    "modelId": "U1-scientific-scale",
+    "serial": 7,
+    "reasoningTask": "order_of_magnitude_logarithmic_convention",
+    "objective": "Stimare l’ordine di grandezza con una convenzione dichiarata",
+    "taskTitle": "Ordine di grandezza e soglia geometrica",
+    "context": "Una lunghezza è 3×10⁵ m. Per questo quesito, l’ordine di grandezza è la potenza di dieci più vicina sulla scala logaritmica: fra 10ⁿ e 10ⁿ⁺¹ la soglia è √10×10ⁿ.",
+    "assumptions": [
+      "Si applica la convenzione indicata nel testo, distinguendola dal semplice esponente della notazione scientifica."
+    ],
+    "replaceStandardExposition": true,
+    "prompt": "Qual è l’ordine di grandezza della lunghezza? Puoi confrontare 3 e √10 elevando entrambi al quadrato, senza calcolarne valori decimali.",
+    "answer": {
+      "kind": "rational",
+      "exact": "100000",
+      "unit": "m"
+    },
+    "options": [
+      "10³ m",
+      "10⁴ m",
+      "10⁵ m",
+      "10⁶ m",
+      "10⁷ m"
+    ],
+    "correctIndex": 2,
+    "verification": [
+      {
+        "expression": "10**5",
+        "expected": "100000",
+        "kind": "exact_power",
+        "residual": "0"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Identificare le potenze adiacenti",
+        "explanation": "Il valore 3×10⁵ è maggiore di 10⁵ e minore di 10⁶. Solo queste due potenze possono essere le più vicine nella convenzione scelta: potenze ancora più piccole o più grandi sono più lontane anche sulla scala logaritmica.",
+        "math": "10⁵ < 3×10⁵ < 10⁶"
+      },
+      {
+        "title": "Leggere la soglia nella convenzione",
+        "explanation": "La soglia non è la media aritmetica delle due potenze: è la loro media geometrica. Dividendo valore e soglia per il fattore positivo comune 10⁵, il confronto si riduce a quello fra il coefficiente 3 e √10. Non è necessario conoscere il valore decimale della radice.",
+        "math": "soglia = √(10⁵×10⁶) = √10×10⁵"
+      },
+      {
+        "title": "Confrontare senza approssimazioni",
+        "explanation": "I due numeri confrontati sono positivi. Elevare al quadrato conserva quindi l’ordine: 3² vale 9, mentre (√10)² vale 10. Poiché 9 è minore di 10, anche 3 è minore di √10. La lunghezza si trova dunque sotto la soglia che separa i due ordini di grandezza.",
+        "math": "3²=9<10=(√10)² ⇒ 3<√10"
+      },
+      {
+        "title": "Scegliere l’ordine e conservare l’unità",
+        "explanation": "Sotto la soglia si sceglie la potenza inferiore, cioè 10⁵. La grandezza resta una lunghezza e viene espressa in metri. Scrivere 10⁵ m significa indicare una scala approssimativa, non sostituire il valore esatto iniziale con una misura diversa. Un’altra convenzione avrebbe dovuto essere dichiarata: qui il testo elimina questa possibile ambiguità.",
+        "math": "ordine di grandezza = 10⁵ m = 100000 m"
+      }
+    ]
+  },
+  {
+    "modelId": "U1-scientific-scale",
+    "serial": 15,
+    "reasoningTask": "nested_scientific_power_and_exponent_constraint",
+    "objective": "Combinare potenze, quozienti e un esponente incognito",
+    "taskTitle": "Esponente da un rapporto di potenze",
+    "context": "Un rapporto adimensionale è R=(4×10ⁿ)²/(2×10ⁿ⁺³), dove il denominatore significa 2×10^(n+3) e n è un intero positivo.",
+    "assumptions": [
+      "Le potenze e i coefficienti si trattano separatamente.",
+      "R è assegnato esattamente, senza arrotondamento."
+    ],
+    "replaceStandardExposition": true,
+    "prompt": "Se R=8×10⁴, quanto vale n? Nel numeratore il quadrato agisce sull’intero prodotto 4×10ⁿ.",
+    "answer": {
+      "kind": "rational",
+      "exact": "7",
+      "unit": "1"
+    },
+    "options": [
+      "7",
+      "1",
+      "4",
+      "5",
+      "11"
+    ],
+    "correctIndex": 0,
+    "verification": [
+      {
+        "kind": "substitution",
+        "expression": "(4*10**7)**2/(2*10**(7+3))",
+        "expected": "8*10**4",
+        "residual": "0"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Elevare al quadrato tutti i fattori del numeratore",
+        "explanation": "Il quadrato si applica sia al coefficiente 4 sia alla potenza di dieci. Il coefficiente diventa 16; per elevare una potenza a un’altra potenza si moltiplicano gli esponenti, quindi n diventa 2n. Lasciare il coefficiente invariato o sommare 2 a n cambierebbe il rapporto assegnato.",
+        "math": "(4×10ⁿ)²=4²×(10ⁿ)²=16×10^(2n)"
+      },
+      {
+        "title": "Dividere i coefficienti e sottrarre gli esponenti",
+        "explanation": "I coefficienti si dividono secondo l’aritmetica ordinaria: 16/2=8. Nel rapporto fra potenze di dieci si sottrae l’intero esponente del denominatore. Le parentesi intorno a n+3 sono essenziali: la sottrazione cambia il segno di entrambi i suoi termini.",
+        "math": "R=8×10^[2n−(n+3)]=8×10^(n−3)"
+      },
+      {
+        "title": "Confrontare le due rappresentazioni dello stesso rapporto",
+        "explanation": "La misura assegna R=8×10⁴. Il coefficiente 8 è identico nei due membri e si può eliminare dividendo entrambi per 8. Rimangono due potenze con la stessa base 10. La funzione 10 elevato a un esponente è strettamente crescente, quindi potenze uguali devono avere esponenti uguali.",
+        "math": "10^(n−3)=10⁴ ⇒ n−3=4"
+      },
+      {
+        "title": "Isolare l’esponente e verificare la sostituzione",
+        "explanation": "Aggiungiamo 3 ai due membri: n=7. Questo valore rispetta il requisito di essere un intero positivo. Nel rapporto originario gli esponenti diventano 14 al numeratore e 10 al denominatore: la loro differenza è 4, mentre il coefficiente resta 16/2=8. Si ricostruisce così esattamente la misura.",
+        "math": "n=4+3=7; R=(16/2)×10^(14−10)=8×10⁴"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1046 @@
+{
+  "date": "2026-10-20",
+  "repository": "AndreaMarro/ardesia",
+  "base": "d0235e8a9dbbccd6808741a087dd0359908feb2b",
+  "head": "9ad5b38e1892ff4a081ff2d5fad201926b7d8d23",
+  "branch": "codex/ardesia-public-rea-20261020",
+  "gitClean": true,
+  "releaseStatus": "LOCAL_PREVIEW_ONLY",
+  "rea": {
+    "version": "6.7.0",
+    "transport": "MCP stdio",
+    "toolsDiscovered": 207,
+    "latestStableChecked": "2026-10-20",
+    "release": "https://github.com/morluto/rea/releases/tag/rea-agents-6.7.0"
+  },
+  "sourceFiles": [
+    {
+      "path": ".gitignore",
+      "sha256": "371f050cc67cdd941837517b0a62ad69dae3451760298ef8091c5b313a6ea5aa"
+    },
+    {
+      "path": "apps/web/index.html",
+      "sha256": "48c8170578d897034abc12c9465e6c76d85cdaf6e734a0b774af65f49eaa9985"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "a9f8410dfb1ffd0b1986d525bff3257eb8bcf2164aa453b7216f12e5f1ea2093"
+    },
+    {
+      "path": "apps/web/public/favicon.svg",
+      "sha256": "99cf741296888dff56450debd14ea55d8933e473b3ab6a15c99697339c39a1d4"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-preview.test.tsx",
+      "sha256": "bcb8363d4f1c3a838d46f72f9209ffa2f21f22ae9a7641eef7c0e2e04b6dd2d9"
+    },
+    {
+      "path": "apps/web/src/components/PhysicsLab.tsx",
+      "sha256": "b66fcb1f6dce340ff3ccf352789d214e27dc901f62fdf9608c675e7cab95c2df"
+    },
+    {
+      "path": "apps/web/src/features/Public.tsx",
+      "sha256": "68d40d52cb78634baa6911441ec283326e218d20730d8152f5ed2ff158ae5c7a"
+    },
+    {
+      "path": "apps/web/src/public-main.tsx",
+      "sha256": "d52b48c9671562bb22032b0abd183cbf6320aa3403d241f7c67fbcfc4ab5eebd"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "sha256": "e698f0a1c1961c534d2efd400c84b7f7975f59a13e07c918df91446249fd3409"
+    },
+    {
+      "path": "apps/web/vite.public.config.ts",
+      "sha256": "fef843b9e0dcbda9a110b983d01e5e2580fae379ce399e782ef83fce475534d6"
+    },
+    {
+      "path": "bin/study-public/README.md",
+      "sha256": "25a213b530ac453b951fe867bb425c056066170cc14c3a251f85fd79a2ce57bf"
+    },
+    {
+      "path": "bin/study-public/serve.py",
+      "sha256": "4bad6ce3602106f921e834b449f0a5807876992d8e36534312dfba60e1f92a7e"
+    },
+    {
+      "path": "package.json",
+      "sha256": "0edee60be1a29c6c20aa67f594f165498c9000f4629e334b3af1eb191c829f12"
+    },
+    {
+      "path": "services/study-api/study_api/public_app.py",
+      "sha256": "f43f9dee29fe5ddb3a3a182181abd56ee37dccbd08e0ab1eb1a4fcd3ddab2a98"
+    },
+    {
+      "path": "services/study-api/tests/test_public_preview.py",
+      "sha256": "7828151e29b5d0cc79724795d514807f250a74fdee3c737e3426464b70820555"
+    }
+  ],
+  "servedAssets": [
+    {
+      "path": "apps/web/dist-public/assets/index-Cbag5SBs.css",
+      "sha256": "f0cec7beae2f412076bb418c9919993c071243f76fee982a4314fcb9304ba1f3",
+      "bytes": 43853,
+      "matchesReaResponse": true
+    },
+    {
+      "path": "apps/web/dist-public/assets/index-UM3dtt0Z.js",
+      "sha256": "bdd79a961e856123be54ed2f85395e56aa2e9e9747fa01da2af985ecc8c54aa4",
+      "bytes": 210835,
+      "matchesReaResponse": true
+    },
+    {
+      "path": "apps/web/dist-public/favicon.svg",
+      "sha256": "99cf741296888dff56450debd14ea55d8933e473b3ab6a15c99697339c39a1d4",
+      "bytes": 322,
+      "matchesReaResponse": true
+    },
+    {
+      "path": "apps/web/dist-public/index.html",
+      "sha256": "938e86292b6d1dab59e2e70cae8f9cd08dd0f0f14b1b6b946fe9a2f488e75a20",
+      "bytes": 539,
+      "matchesReaResponse": true
+    }
+  ],
+  "evidence": [
+    {
+      "file": "baseline-scenario.json",
+      "evidenceId": "ev_b4f999c384afc5374333682508e5518cc853d8cc68fee54f7ba5c60c86b9d18f",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "ready",
+          "status": "completed"
+        },
+        {
+          "id": "calculate",
+          "status": "completed"
+        },
+        {
+          "id": "result",
+          "status": "completed"
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/assets/index-Bo6aGWMP.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/assets/Feedback-BKhCkVOl.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/assets/sessionDraftCache-DFCjCdOU.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/assets/index-DWQ_V7NM.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/study/me"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5391/study/course"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5391/study/activities/evaluate"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason.",
+        "Some network requests had not completed when capture ended; later activity is unknown."
+      ]
+    },
+    {
+      "file": "public-390-scenario-final.json",
+      "evidenceId": "ev_395214fa598042b2175c6abd5e0a0be438c72b24314c46d07e40780e974c2fae",
+      "viewport": {
+        "width": 390,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "ready",
+          "status": "completed"
+        },
+        {
+          "id": "calculate",
+          "status": "completed"
+        },
+        {
+          "id": "result",
+          "status": "completed"
+        },
+        {
+          "id": "change-boundary",
+          "status": "completed"
+        },
+        {
+          "id": "calculate-flow",
+          "status": "completed"
+        },
+        {
+          "id": "flow-result",
+          "status": "completed"
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-UM3dtt0Z.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-Cbag5SBs.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/study/public/course"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/favicon.svg"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason."
+      ]
+    },
+    {
+      "file": "public-820-scenario-final.json",
+      "evidenceId": "ev_1265a3961dad1994b62600a5cf9041c6320b387c4b929fdf2b0fa92ce22f1614",
+      "viewport": {
+        "width": 820,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "ready",
+          "status": "completed"
+        },
+        {
+          "id": "calculate",
+          "status": "completed"
+        },
+        {
+          "id": "result",
+          "status": "completed"
+        },
+        {
+          "id": "change-boundary",
+          "status": "completed"
+        },
+        {
+          "id": "calculate-flow",
+          "status": "completed"
+        },
+        {
+          "id": "flow-result",
+          "status": "completed"
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-UM3dtt0Z.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-Cbag5SBs.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/study/public/course"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/favicon.svg"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason."
+      ]
+    },
+    {
+      "file": "public-1440-scenario-final.json",
+      "evidenceId": "ev_a6a1b84e9889a400996ba7bd368cd53e3000144555ffd3bb7b369b6d4b114d89",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "ready",
+          "status": "completed"
+        },
+        {
+          "id": "calculate",
+          "status": "completed"
+        },
+        {
+          "id": "result",
+          "status": "completed"
+        },
+        {
+          "id": "change-boundary",
+          "status": "completed"
+        },
+        {
+          "id": "calculate-flow",
+          "status": "completed"
+        },
+        {
+          "id": "flow-result",
+          "status": "completed"
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-UM3dtt0Z.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-Cbag5SBs.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/study/public/course"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/favicon.svg"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason."
+      ]
+    },
+    {
+      "file": "public-1440-with-scripts.json",
+      "evidenceId": "ev_a89cd638ecaf3cf06d58f438ff1b96763f15f1533c15ba564bdc1743bf8ef173",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "device_scale_factor": 1
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "steps": [
+        {
+          "id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "id": "ready",
+          "status": "completed"
+        },
+        {
+          "id": "calculate",
+          "status": "completed"
+        },
+        {
+          "id": "result",
+          "status": "completed"
+        },
+        {
+          "id": "change-boundary",
+          "status": "completed"
+        },
+        {
+          "id": "calculate-flow",
+          "status": "completed"
+        },
+        {
+          "id": "flow-result",
+          "status": "completed"
+        }
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-UM3dtt0Z.js"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/assets/index-Cbag5SBs.css"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/study/public/course"
+        },
+        {
+          "method": "GET",
+          "url": "http://127.0.0.1:5392/favicon.svg"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        },
+        {
+          "method": "POST",
+          "url": "http://127.0.0.1:5392/study/public/activities/evaluate"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Captured response-body bytes are the result of Playwright's Response.body() API. Playwright may satisfy that API with a credentialed follow-up load of the request URL when CDP has no body, so transaction and event links do not verify that retained bytes came from the original network transaction.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some selected network content was unavailable; per-transaction content states retain the reason."
+      ]
+    }
+  ],
+  "verification": {
+    "studyApiTestsPassed": 214,
+    "webTestsPassed": 141,
+    "webWorkers": 1,
+    "typecheck": "passed",
+    "publicBuild": "passed",
+    "browser": {
+      "tool": "Playwright with system Chrome; Browser plugin unavailable in this session",
+      "cases": [
+        {
+          "width": 390,
+          "status": "passed",
+          "focus": {
+            "outline": "solid",
+            "width": "3px"
+          },
+          "motion": "0s",
+          "accessibility": {
+            "violations": [],
+            "passes": 25,
+            "incomplete": [
+              {
+                "id": "color-contrast",
+                "nodes": [
+                  {
+                    "target": [
+                      "text[x=\"244\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"241\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"460\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"480\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"294\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"280\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"18\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"455\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  }
+                ]
+              }
+            ]
+          },
+          "persistence": {
+            "cookies": "",
+            "local": 0,
+            "session": 0
+          },
+          "requests": [
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"pressure\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":0.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            }
+          ],
+          "consoleErrors": [],
+          "reload": "stateless reset verified"
+        },
+        {
+          "width": 820,
+          "status": "passed",
+          "focus": {
+            "outline": "solid",
+            "width": "3px"
+          },
+          "motion": "0s",
+          "accessibility": {
+            "violations": [],
+            "passes": 25,
+            "incomplete": [
+              {
+                "id": "color-contrast",
+                "nodes": [
+                  {
+                    "target": [
+                      "text[x=\"244\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"241\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"460\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"480\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"294\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"280\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"18\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"455\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  }
+                ]
+              }
+            ]
+          },
+          "persistence": {
+            "cookies": "",
+            "local": 0,
+            "session": 0
+          },
+          "requests": [
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"pressure\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":0.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            }
+          ],
+          "consoleErrors": [],
+          "reload": "stateless reset verified"
+        },
+        {
+          "width": 1440,
+          "status": "passed",
+          "focus": {
+            "outline": "solid",
+            "width": "3px"
+          },
+          "motion": "0s",
+          "accessibility": {
+            "violations": [],
+            "passes": 25,
+            "incomplete": [
+              {
+                "id": "color-contrast",
+                "nodes": [
+                  {
+                    "target": [
+                      "text[x=\"244\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"241\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"460\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[y=\"480\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"294\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"280\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"18\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  },
+                  {
+                    "target": [
+                      "text[x=\"455\"]"
+                    ],
+                    "summary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+                  }
+                ]
+              }
+            ]
+          },
+          "persistence": {
+            "cookies": "",
+            "local": 0,
+            "session": 0
+          },
+          "requests": [
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"pressure\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":1.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/study/public/activities/evaluate",
+              "method": "POST",
+              "body": "{\"activityId\":\"poiseuille-v1\",\"parameters\":{\"radiusRatio\":0.5,\"boundary\":\"flow\"}}"
+            },
+            {
+              "path": "/",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-UM3dtt0Z.js",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/assets/index-Cbag5SBs.css",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/study/public/course",
+              "method": "GET",
+              "body": null
+            },
+            {
+              "path": "/favicon.svg",
+              "method": "GET",
+              "body": null
+            }
+          ],
+          "consoleErrors": [],
+          "reload": "stateless reset verified"
+        },
+        {
+          "status": "passed",
+          "course503": "retry recovered",
+          "calculation503": "prediction retained and retry recovered",
+          "delayedResponse": "obsolete result rejected; next calculation succeeded",
+          "zoom": "CSS zoom 200%; no horizontal overflow"
+        }
+      ],
+      "errors": [],
+      "browser": "155.0.8059.85"
+    },
+    "svgDeclaredColorContrast": [
+      {
+        "foreground": "#344f49",
+        "background": "#e7e9df",
+        "ratio": 7.25
+      },
+      {
+        "foreground": "#3f5d4d",
+        "background": "#fffefa",
+        "ratio": 7.21
+      },
+      {
+        "foreground": "#3f5d4d",
+        "background": "#e0e9d9",
+        "ratio": 5.83
+      }
+    ],
+    "initialWebRuns": "5 failures then 1 failure in session-boundary; isolated base and candidate 9/9; final complete run 141/141 without test changes"
+  },
+  "hosting": {
+    "projectId": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+    "deploymentId": "dpl_5iUwzeRarRoXUxb49ra4te4Ypwv1",
+    "cliFallback": "unavailable",
+    "results": [
+      {
+        "status": 403,
+        "code": "forbidden",
+        "operation": "GET /v9/projects/{idOrName}",
+        "scope": "andreas-projects-6d4e9791",
+        "teamId": "team_23uD0RgdInaTaOPEL0EGltup",
+        "message": "Vercel API request failed (403: forbidden). Not authorized: Trying to access resource under scope \"andreas-projects-6d4e9791\". You must re-authenticate to this scope or use a token with access to this scope."
+      },
+      {
+        "status": 403,
+        "code": "forbidden",
+        "operation": "GET /v13/deployments/{idOrUrl}",
+        "scope": "andreas-projects-6d4e9791",
+        "teamId": "team_23uD0RgdInaTaOPEL0EGltup",
+        "message": "Vercel API request failed (403: forbidden). Not authorized: Trying to access resource under scope \"andreas-projects-6d4e9791\". You must re-authenticate to this scope or use a token with access to this scope."
+      }
+    ]
+  },
+  "notChecked": [
+    "native browser zoom",
+    "Safari",
+    "Firefox",
+    "production hosting",
+    "Postgres/Supabase",
+    "all private workflows",
+    "G0/G1 certification"
+  ]
+}

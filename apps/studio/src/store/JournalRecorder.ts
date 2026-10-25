@@ -9,6 +9,7 @@
 import { type WorkspaceStore } from "./WorkspaceStore"
 import { PATHS } from "./types"
 import { roomPaths } from "./roomPaths"
+import { assertAudioRecordingRef, audioAssetEvidence, audioObjectEvidence, type AudioRecordingRef } from "./audioRecording"
 import {
   assertEventEnvelopeV2,
   createEventEnvelopeV2,
@@ -68,6 +69,11 @@ export interface JournalAudioChunk {
   endEpoch: number
 }
 
+export interface JournalAudioRecording {
+  type: "audio.recording"
+  recording: AudioRecordingRef
+}
+
 export type JournalEventBody =
   | JournalElementAdd
   | JournalElementUpdate
@@ -77,6 +83,7 @@ export type JournalEventBody =
   | JournalMathInsert
   | JournalPdfPageView
   | JournalAudioChunk
+  | JournalAudioRecording
 
 export type JournalEvent = JournalEventBody & {
   /** Timestamp epoch ms */
@@ -92,11 +99,13 @@ export const JOURNAL_KINDS = [
   "journal.math.insert",
   "journal.pdf.imported",
   "journal.pdf.page-observed",
+  "journal.audio.recording",
 ] as const
 
 export type JournalKind = (typeof JOURNAL_KINDS)[number]
 
 type JournalPayloadByKind = {
+  "journal.audio.recording": AudioRecordingRef
   "journal.element.add": Readonly<{ element: JsonObject }>
   "journal.element.update": Readonly<{ element: JsonObject }>
   "journal.element.delete": Readonly<{ elementId: string }>
@@ -169,6 +178,48 @@ function failJournal(reason: string): never {
   throw new Error(`Journal v2: ${reason}`)
 }
 
+/**
+ * Excalidraw uses own `undefined` fields for absent optional metadata. Omit
+ * only those object data fields at capture; the canonical validator stays
+ * strict. Preserve descriptors, array holes and unsupported values so they
+ * are rejected, never coerced by JSON.stringify or erased by structuredClone.
+ */
+function snapshotBoardElement(element: Record<string, unknown>): Record<string, unknown> {
+  const copies = new WeakMap<object, object>()
+  const pending: Array<{ source: object; target: object }> = []
+  const snapshot = (value: unknown): unknown => {
+    if (typeof value !== "object" || value === null) return value
+    const isArray = Array.isArray(value)
+    if (Object.getPrototypeOf(value) !== (isArray ? Array.prototype : Object.prototype)) {
+      return value // Leave non-JSON prototypes for the envelope validator.
+    }
+    const existing = copies.get(value)
+    if (existing) return existing
+    const target = isArray ? [] : {}
+    copies.set(value, target)
+    pending.push({ source: value, target })
+    return target
+  }
+
+  const result = snapshot(element) as Record<string, unknown>
+  // Iterative traversal also preserves cycles for the validator's bounded walk.
+  while (pending.length > 0) {
+    const { source, target } = pending.pop()!
+    for (const key of Reflect.ownKeys(source)) {
+      const descriptor = Object.getOwnPropertyDescriptor(source, key)
+      if (!descriptor) failJournal("board element property changed during capture")
+      if (
+        !Array.isArray(source) && typeof key === "string" &&
+        descriptor.enumerable && "value" in descriptor && descriptor.value === undefined
+      ) continue
+      Object.defineProperty(target, key, "value" in descriptor
+        ? { ...descriptor, value: snapshot(descriptor.value) }
+        : descriptor)
+    }
+  }
+  return result
+}
+
 export function looksLikeJournalEnvelopeV2(value: unknown): boolean {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return false
   return Object.keys(value).some((key) => ENVELOPE_HINT_KEYS.has(key))
@@ -225,6 +276,14 @@ export function assertJournalEnvelopeV2(value: unknown): asserts value is Journa
   }
   const envelope = value as JournalEnvelopeV2
   switch (envelope.kind) {
+    case "journal.audio.recording": {
+      assertAudioRecordingRef(envelope.payload, envelope)
+      const expected = [audioAssetEvidence(envelope.payload), ...envelope.payload.objectRefs.map(audioObjectEvidence)]
+      if (envelope.evidence.length !== expected.length || envelope.evidence.some((item, index) => item.ref !== expected[index])) {
+        failJournal("audio evidence must match its asset digest and explicit object versions")
+      }
+      break
+    }
     case "journal.element.add":
     case "journal.element.update": {
       assertExactKeys(envelope.payload, ["element"], envelope.kind)
@@ -348,6 +407,10 @@ function journalPayload<K extends JournalKind>(
 ): JournalPayloadByKind[K] {
   let payload: JsonObject
   switch (kind) {
+    case "journal.audio.recording":
+      if (event.type !== "audio.recording") failJournal(`${kind} requires audio.recording`)
+      payload = event.recording
+      break
     case "journal.element.add":
     case "journal.element.update": {
       if (event.type !== "element.add" && event.type !== "element.update") {
@@ -549,7 +612,7 @@ export class JournalRecorder {
 
       if (prevVersion === undefined && !isDeleted) {
         // Nuovo elemento
-        const event: JournalEvent = { t, type: "element.add", element: structuredClone(el) }
+        const event: JournalEvent = { t, type: "element.add", element: snapshotBoardElement(el) }
         stage(event, "journal.element.add", this.verifiedBoardEvidence(`board:${encodeURIComponent(id)}`))
       } else if (prevVersion !== undefined && isDeleted) {
         // Elemento cancellato (isDeleted flag)
@@ -559,7 +622,7 @@ export class JournalRecorder {
         continue
       } else if (prevVersion !== undefined && version > prevVersion && !isDeleted) {
         // Aggiornamento strutturale (non move/restyle)
-        const event: JournalEvent = { t, type: "element.update", element: structuredClone(el) }
+        const event: JournalEvent = { t, type: "element.update", element: snapshotBoardElement(el) }
         stage(event, "journal.element.update", this.verifiedBoardEvidence(`board:${encodeURIComponent(id)}`))
       }
 
@@ -651,6 +714,28 @@ export class JournalRecorder {
   /** Marker chunk audio allineato al clock del journal (stesso epoch del recorder) */
   recordAudioChunk(_chunkIndex: number, _startEpoch: number, _endEpoch: number): void {
     failJournal("audio is outside Founder Beta canonical journal")
+  }
+
+  /** Bytes have already passed durable readback. Explicit links must resolve to recorded board versions. */
+  async recordAudioRecording(recording: AudioRecordingRef): Promise<void> {
+    assertAudioRecordingRef(recording, this.identity)
+    await this.flush()
+    if (recording.objectRefs.length > 0) {
+      const blob = await this.store.read(this.journalPath)
+      const stored = indexStoredEnvelopes(blob ? await blob.text() : "", this.identity.lessonId)
+      for (const ref of recording.objectRefs) {
+        const found = [...stored.byEventId.values()].some(({ envelope }) => (
+          (envelope.kind === "journal.element.add" || envelope.kind === "journal.element.update") &&
+          envelope.payload.element.id === ref.elementId && envelope.payload.element.version === ref.version
+        ))
+        if (!found) failJournal(`audio object/version not recorded (${ref.elementId}@${ref.version})`)
+      }
+    }
+    this.enqueue({ t: recording.endEpoch, type: "audio.recording", recording }, "journal.audio.recording", [
+      { ref: audioAssetEvidence(recording), resolution: "verified" },
+      ...recording.objectRefs.map((ref) => ({ ref: audioObjectEvidence(ref), resolution: "verified" as const })),
+    ])
+    await this.flush()
   }
 
   private scheduleFlush(): void {
@@ -885,6 +970,8 @@ function legacyMapping(event: JournalEvent): {
       return { kind: "journal.pdf.imported", payload: pdfPayload(event) }
     case "audio.chunk":
       return null
+    case "audio.recording":
+      return null // No legacy producer may mint a canonical recording identity.
   }
 }
 
@@ -930,6 +1017,8 @@ export function toLegacyJournalEvent(envelope: JournalEnvelopeV2): JournalEvent 
   assertJournalEnvelopeV2(envelope)
   const t = Date.parse(envelope.occurredAt)
   switch (envelope.kind) {
+    case "journal.audio.recording":
+      return { t, type: "audio.recording", recording: structuredClone(envelope.payload) }
     case "journal.element.add":
       return { t, type: "element.add", element: structuredClone(envelope.payload.element) }
     case "journal.element.update":

@@ -1,0 +1,253 @@
+{
+  "status": "ACCEPTED_SCOPED_ARTIFACT_REVIEW_NO_NEW_HTTP_EXECUTION",
+  "productCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "manifestSha256": "477fbf595475bd0409d319849759d2e6c952638768c905ff0a7a1eb4c87ac62e",
+  "filesIndependentlyHashed": 39,
+  "publicFilesPatternChecked": 30,
+  "rawProjectionFilesByteIdentical": 4,
+  "rawProjectionSha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf",
+  "httpAssertionsReadPerPhase": 43,
+  "phases": 4,
+  "tablesBeforeServices": 83,
+  "storagePayloadHashesIndependentlyVerified": 3,
+  "restoreScope": "New known-complete synthetic input; logical full-stack restore in distinct services/volumes on same Docker VM",
+  "historical15Missing": "OPEN",
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY",
+  "files": [
+    {
+      "path": "report.json",
+      "bytes": 17770,
+      "sha256": "b85246096e22f9fc0f6df6233966e08d645566915f9eaf8817ddfbbfc33ad6ec",
+      "private": false
+    },
+    {
+      "path": "report.md",
+      "bytes": 7524,
+      "sha256": "9b8639f19f2381913954457b24fe05529c552aa48eeb01a217d94d75c1d7fe57",
+      "private": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 5587,
+      "sha256": "dae695c0ddc244b3de931a20360c399bc4dee836c5cda8c0ecf7247172fdcfde",
+      "private": false
+    },
+    {
+      "path": "run.json",
+      "bytes": 455,
+      "sha256": "72d1cd020398a7187fc144aaea53afb111ed99d22a292de5ae2a217c20caf7f7",
+      "private": false
+    },
+    {
+      "path": "restore_s.py",
+      "bytes": 17897,
+      "sha256": "8c70fea819a81d1791b56f62d0839bf6daf824eab17993023926983880b3ccca",
+      "private": false
+    },
+    {
+      "path": "journey.py",
+      "bytes": 15751,
+      "sha256": "f45a03ac2b61ab349c329661e29a026c2e86dfb6ec7ee46b64ced3392d7439c8",
+      "private": false
+    },
+    {
+      "path": "snapshot.py",
+      "bytes": 9539,
+      "sha256": "8b888be690701958368fae242fe11714c648a1eaceaee49a41ea015f2cfca3a2",
+      "private": false
+    },
+    {
+      "path": "negative_cases.py",
+      "bytes": 4440,
+      "sha256": "1ea09ebd183bbb436b8cb36b958bfe46ef558707dc6eddbe1bd2729d2c3c4423",
+      "private": false
+    },
+    {
+      "path": "test_controls.py",
+      "bytes": 2607,
+      "sha256": "93b48d8f854ecc89d894cfed3c87e60a8a01c875f69bf30bc4fff0ffbf8ae2a7",
+      "private": false
+    },
+    {
+      "path": "freeze_manifest.py",
+      "bytes": 2850,
+      "sha256": "a40ec1cc50721bb8bcdff15d34613c2abb00d0cefd4e356e584b344fe00f9379",
+      "private": false
+    },
+    {
+      "path": "evidence/assertion-inventory-43.json",
+      "bytes": 10425,
+      "sha256": "826dd4f5237f9a427fc09fbb084b4795f6246ec0c9fae361899dd7230c1723ca",
+      "private": false
+    },
+    {
+      "path": "evidence/projection-raw-hashes.json",
+      "bytes": 918,
+      "sha256": "da4ad04a1ef0841562404b43ff2fcf71c461fe70e0beef7d4fbce8085f8c45a2",
+      "private": false
+    },
+    {
+      "path": "evidence/backup-manifest.json",
+      "bytes": 1313,
+      "sha256": "5b3d573fe575a32d2efcdb05dfd07f6c47c23505c617af9ade2d76dbda54abf4",
+      "private": false
+    },
+    {
+      "path": "evidence/source-known-complete-inventory.json",
+      "bytes": 1278,
+      "sha256": "c7cdb97b0e2e9a051d915794c928a971811a89bae4ef77f2a9030cf6745d2685",
+      "private": false
+    },
+    {
+      "path": "evidence/source-quiesced.json",
+      "bytes": 182,
+      "sha256": "f9bbde94b03a6ea53ebfc0250a462888984dc5dd157f4ead53384771f05a0ca9",
+      "private": false
+    },
+    {
+      "path": "evidence/target-db-before-services.json",
+      "bytes": 761,
+      "sha256": "2e2ee3481e962e1da96ca5bf4a32432934503fd94530fa0b0d592ada2306867b",
+      "private": false
+    },
+    {
+      "path": "evidence/target-storage-before-start.json",
+      "bytes": 1418,
+      "sha256": "8df665aaf1cef32ff10c2df2f4a38f41688adac0052f36ad280d21b588af10fe",
+      "private": false
+    },
+    {
+      "path": "evidence/first-target-infrastructure.json",
+      "bytes": 9342,
+      "sha256": "dac2d6fcc5640d70427ab7f7e05d943d46504fb07e845bdcac23022c7b7fe99a",
+      "private": false
+    },
+    {
+      "path": "evidence/target-auth-storage-security.json",
+      "bytes": 2293,
+      "sha256": "d29e77d25ff94aa91d3a91b1cd0cb60565d0b34e0dffc947a50229100403cd76",
+      "private": false
+    },
+    {
+      "path": "evidence/target-sacrificial-missing-object.json",
+      "bytes": 1018,
+      "sha256": "90baf6c17903aca11aedcf85d6af830db31cf5fac10ff1e3d976019d763db78f",
+      "private": false
+    },
+    {
+      "path": "evidence/target-degraded-metadata.json",
+      "bytes": 136,
+      "sha256": "8fdccaa6fa33247660477b12c5f130610de533369775eb9ef74f86786ceb59a8",
+      "private": false
+    },
+    {
+      "path": "evidence/target-exact-projection-comparison.json",
+      "bytes": 469,
+      "sha256": "cc1900931fe909d3a0777d9b44a5ca2d551d316346ef41287cf6f3eb81b38b8d",
+      "private": false
+    },
+    {
+      "path": "evidence/final-reconstruction-exact.json",
+      "bytes": 289,
+      "sha256": "01e4deff73f6d121e69675a03a9921f592f0183b5822d86a1450de3aa2adfa33",
+      "private": false
+    },
+    {
+      "path": "evidence/final-target-new-volumes.json",
+      "bytes": 676,
+      "sha256": "349e5a90dadd5d0346725a5c6442ecaee348c4351e66c8424565328d1c69abea",
+      "private": false
+    },
+    {
+      "path": "evidence/product-source-integrity.json",
+      "bytes": 557,
+      "sha256": "d6b3d1906ee9a032afccc41bbf7ea5011997780404f4affb079b354de8f83572",
+      "private": false
+    },
+    {
+      "path": "evidence/cleanup.json",
+      "bytes": 1081,
+      "sha256": "cd78551b1da22ec100a52f6cd4b3320b3acf92e4de660107cc1425d9be4752b9",
+      "private": false
+    },
+    {
+      "path": "evidence/before-backup-http.json",
+      "bytes": 11485,
+      "sha256": "3ab5ffb2e0ac0de1c5c7ece064f91b6ff567a5cf6db2f60d1169b7efec33b1b2",
+      "private": false
+    },
+    {
+      "path": "evidence/after-restore-http.json",
+      "bytes": 11485,
+      "sha256": "ad7305302d5b417b460e024e20fe996b361e70d97114458259fcb397879cf851",
+      "private": false
+    },
+    {
+      "path": "evidence/after-restart-http.json",
+      "bytes": 11485,
+      "sha256": "ad7305302d5b417b460e024e20fe996b361e70d97114458259fcb397879cf851",
+      "private": false
+    },
+    {
+      "path": "evidence/final-reconstructed-http.json",
+      "bytes": 11485,
+      "sha256": "ad7305302d5b417b460e024e20fe996b361e70d97114458259fcb397879cf851",
+      "private": false
+    },
+    {
+      "path": "private/before-backup-projections.json",
+      "bytes": 35784,
+      "sha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf",
+      "private": true
+    },
+    {
+      "path": "private/after-restore-projections.json",
+      "bytes": 35784,
+      "sha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf",
+      "private": true
+    },
+    {
+      "path": "private/after-restart-projections.json",
+      "bytes": 35784,
+      "sha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf",
+      "private": true
+    },
+    {
+      "path": "private/final-reconstructed-projections.json",
+      "bytes": 35784,
+      "sha256": "9499323c38c64dd5c6ffa09be321564df6badaaf311555cbbe676bb493666cdf",
+      "private": true
+    },
+    {
+      "path": "private/backup/database.dump",
+      "bytes": 459205,
+      "sha256": "171d8d9e7f3fd6db228bd724983b3958fed2591257ad7059a774a290b68e3635",
+      "private": true
+    },
+    {
+      "path": "private/backup/storage.tar.gz",
+      "bytes": 4025,
+      "sha256": "2db82db694cf696c3afee973e038a7823c413fd507f35679de9f2bdc8b71f8b3",
+      "private": true
+    },
+    {
+      "path": "private/backup/roles-no-passwords.sql",
+      "bytes": 5519,
+      "sha256": "a543d3ed16cb0b1cb3dfab8364a0644bd5fedcda7859377e665efb363de14df7",
+      "private": true
+    },
+    {
+      "path": "private/backup/service-config.json",
+      "bytes": 5386,
+      "sha256": "7b06df80c120d29fba8e2ed4ef5d1473ab9145623136dad7d099bef1920fc7ce",
+      "private": true
+    },
+    {
+      "path": "private/backup/source-db-before.json",
+      "bytes": 43181,
+      "sha256": "c18d7b4d7af0e2f36deae6fc2fac92d57a83f42a6f3fc225ea498fb98f52b10d",
+      "private": true
+    }
+  ]
+}

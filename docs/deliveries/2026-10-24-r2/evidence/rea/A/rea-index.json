@@ -1,0 +1,493 @@
+{
+  "schema": "ardesia.rea-mission-checkpoint.v1",
+  "mission": "R2-A",
+  "status": "ORIGINAL_TRANSFER_IMPLEMENTED_TARGETED_VERIFICATION_COMPLETE_DONOR_COVERAGE_PARTIAL",
+  "baselineAtAcquisition": "6a81d870fd1f390444ef5acbe6bc42203104fa63",
+  "baselineAtResume": "cc6223c6a156b5868013184e91231206d8708cc0",
+  "cli": "rea-agents@6.7.0",
+  "node": "26.5.1",
+  "measuredProviderDurationMs": 152146,
+  "modelTokenCost": "UNKNOWN",
+  "monetaryCost": "UNKNOWN",
+  "purchasesOrAccountsCreated": 0,
+  "newCaptureAfterApproval": true,
+  "licenseSources": [
+    {
+      "url": "https://brilliant.org/terms-of-use/",
+      "accessed": "2026-10-24",
+      "scope": "terms effective 2026-02-09; proprietary content; no product reuse"
+    },
+    {
+      "url": "https://mathigon.org/faqs",
+      "accessed": "2026-10-24",
+      "scope": "free educational access; commercial reuse requires agreement"
+    },
+    {
+      "url": "https://h5p.org/fill-in-the-blanks",
+      "accessed": "2026-10-24",
+      "scope": "page declares CC BY4.0 unless Rights of use differs; no content/code/assets transferred"
+    }
+  ],
+  "implementation": {
+    "ownedFiles": [
+      {
+        "file": "apps/web/src/components/PoiseuilleEpisode.tsx",
+        "sha256": "fd0d368f81e5f205dfabfabe24b3b6b76d3f0dd8d3eee33de335854365523b90"
+      },
+      {
+        "file": "apps/web/src/__tests__/poiseuille-episode.test.tsx",
+        "sha256": "7d1bd113db16130ac8db6d3c67e47bebfde73aa3605bf19243dbc9f084fa9fe4"
+      }
+    ],
+    "browserSummary": "browser-hints-run3/summary.json",
+    "browserSummarySha256": "78d02f8d4c688672b1b62f28592382b54f06ff388d8314ed28f643a525fedfef",
+    "focusedTestsPassed": 10,
+    "fullWebTestsPassed": 340,
+    "typecheck": "PASS",
+    "pinCoverage": "focused unit test; no lesson source in actual browser dataset",
+    "performance": "NOT_MEASURED",
+    "donorUnobserved": [
+      "successful mathematical correction",
+      "conceptually different new problem",
+      "full keyboard order"
+    ]
+  },
+  "captures": [
+    {
+      "file": "brilliant-continue.evidence.json",
+      "evidenceId": "ev_bd496999ef3f8f48f60e80feefe0fa40f9f7cc49e9d4a061c3226a46b5521738",
+      "sha256": "e4c8b64c5a9e14716859d7405d2eea9d80ea7bc0d766db0b4bf104fe1679cae9",
+      "bytes": 2587310,
+      "durationMs": 28580,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "reject-optional-cookies",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "start-first-lesson",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "lesson-or-gate-settled",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "continue-introduction",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "onboarding-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "brilliant-entry.evidence.json",
+      "evidenceId": "ev_eff58d565ddeaba4d3670c1724f46be8c7c1a3bafbee24a4b034f8a1692a9ea1",
+      "sha256": "c179f6a4a5027e58e2229be1ff96ebb35437523728a53e97f71588364c70af4c",
+      "bytes": 2009749,
+      "durationMs": 23593,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "brilliant-start.evidence.json",
+      "evidenceId": "ev_c10ecb720db8ac7e9b45cf58008532b77dcf420f721481cae2c330b48bef127a",
+      "sha256": "61698e0d0bb04dfb10ac343dd350b448a40d3dec30cd004c01955132e6a5d43b",
+      "bytes": 1930675,
+      "durationMs": 21895,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "reject-optional-cookies",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "start-first-lesson",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "lesson-or-gate-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "h5p-blanks-entry.evidence.json",
+      "evidenceId": "ev_6266f2b17c5901952150a05c50fcbd06b2bc49d15e2a3653df9cfc7ece2b195c",
+      "sha256": "1edc16be748bc10c8c78792574a41abaa8273c17a2039520b2386b530b42d3bc",
+      "bytes": 2973917,
+      "durationMs": 6393,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "example-iframes-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "examples-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "h5p-classical-embed.evidence.json",
+      "evidenceId": "ev_a13dcf56633308792fb844288e3116d1e324837692433bb67bcb7f9a5650232f",
+      "sha256": "cae0c3eae9b0db1993419735f13ee4143b7d060fc79b12ca15b75d432dbae841",
+      "bytes": 221176,
+      "durationMs": 10742,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "tip-example-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "tip-example-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "h5p-classical-question.evidence.json",
+      "evidenceId": "ev_33f7c26910542ef34869098096b306fb08b7858f67f8a60b2d732e7b504df509",
+      "sha256": "79388176c821e80c92d9060fda94425c90010337a1b918711e18e1e6332c7882",
+      "bytes": 1285548,
+      "durationMs": 14022,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "example-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "read-question",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "question-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "h5p-partial-tip.evidence.json",
+      "evidenceId": "ev_d5eca34bf369de2170d737162a0ec4836878fa50bddb6abc48828c11e4b7626e",
+      "sha256": "54fff31aca4c36458faab51c5e036f509702c4c353487c5808fec0d1ab08d249",
+      "bytes": 440802,
+      "durationMs": 9031,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "wrong-capital",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "check-wrong-answer",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "feedback-settled",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "open-partial-tip-keyboard",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "tip-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "h5p-tip-entry.evidence.json",
+      "evidenceId": "ev_b18e21cd9a1584dc914daff6addd7e2b610f07bec827637774b2c94a8b949d99",
+      "sha256": "86f0ea4d170ae3ff1f04c23a5c7bbea9022079cedcba3e6019154c303e8d29cb",
+      "bytes": 3177648,
+      "durationMs": 7983,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "tip-example-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "tip-example-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "mathigon-entry.evidence.json",
+      "evidenceId": "ev_4f91c9006a09722a0734750bac562b5dedc7bc9bf234940d9b1d31f2b9242405",
+      "sha256": "1de566d138a01dabb0abd095cb4742439f12c4a394d2a6913c8f78740a41c2ea",
+      "bytes": 1921498,
+      "durationMs": 17758,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-ready",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "page-settled",
+          "status": "completed",
+          "error": null
+        }
+      ]
+    },
+    {
+      "file": "mathigon-wrong-hint.evidence.json",
+      "evidenceId": "ev_c1971240c127b3396d4b997f8027e3b03f0d239e330edd5f2336a7b9269e86da",
+      "sha256": "ee50fbcfb5b7f7f5b6524e5c602d15b378297044381acdfccde451db547fdc8d",
+      "bytes": 3907365,
+      "durationMs": 12149,
+      "browser": {
+        "mode": "launch",
+        "process_ownership": "provider-owned",
+        "cleanup": "terminated-owned-process",
+        "product": "Chromium",
+        "version": "148.0.7778.96"
+      },
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "accessibility",
+          "action",
+          "dom",
+          "screenshot",
+          "url"
+        ],
+        "truncated_sections": []
+      },
+      "stepOutcomes": [
+        {
+          "id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "first-prediction-wrong",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "submit-wrong-keyboard",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "incorrect-feedback-settled",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "open-tutor",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "id": "request-partial-hint",
+          "status": "failed",
+          "error": "Analysis operation timed out after 5000ms: capture_browser_scenario"
+        },
+        {
+          "id": "hint-settled",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        }
+      ]
+    }
+  ]
+}

@@ -72,7 +72,7 @@ function requestedSessionId(): string | null {
  */
 function sessionHref(sessionId: string): string {
   const hash = window.location.hash
-  return `/?vista=continuita&sessione=${encodeURIComponent(sessionId)}${hash}`
+  return `${import.meta.env.BASE_URL}?vista=continuita&sessione=${encodeURIComponent(sessionId)}${hash}`
 }
 
 type ViewState =

@@ -11,6 +11,7 @@ import { isContinuityView } from "./store/continuityView"
 // Code-split per vista: Excalidraw (~MB) e le viste che lo usano escono
 // dall'entry — l'entry resta il solo router. Ogni vista arriva come chunk
 // lazy alla prima navigazione.
+const StudyApp = lazy(() => import("./study/StudyApp"))
 const Room = lazy(() => import("./Room"))
 const ReferenceBlinkDemo = lazy(() => import("./design/ReferenceBlinkDemo"))
 const ToolLab = lazy(() => import("./design/ToolLab"))
@@ -40,7 +41,7 @@ function isMultiPostitWorkbenchView(): boolean {
 export default function App() {
   return (
     <Suspense fallback={<ViewFallback />}>
-      {isContinuityView() ? <ContinuityView /> : isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
+      {new URL(window.location.href).searchParams.get("vista") === "fisica" ? <StudyApp /> : isContinuityView() ? <ContinuityView /> : isTeacherDashboardView() ? <TeacherDashboardView /> : isPluginWizardView() ? <PluginWizard /> : isSavedLessonsView() ? <SavedLessonsView /> : isMultiPostitWorkbenchView() ? <MultiPostitWorkbench /> : isSimulationPluginView() ? <SimulationPluginWorkbench /> : isElabLabView() ? <ElabLab /> : isToolLabView() ? <ToolLab /> : isReferenceBlinkDemo() ? <ReferenceBlinkDemo /> : <Room />}
     </Suspense>
   )
 }

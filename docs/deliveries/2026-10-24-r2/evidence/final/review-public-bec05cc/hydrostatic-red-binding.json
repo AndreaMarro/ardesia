@@ -1,0 +1,41 @@
+{
+  "recordedAtUTC": "2026-10-24T22:12:44.720967+00:00",
+  "url": "http://127.0.0.1:5442/esperienza/?percorso=fluidi-termodinamica",
+  "candidateRoot": "/private/tmp/ardesia-r2-candidate-final-20261025",
+  "sourceManifestFileSha256": "276ccc399c08449866527e499a8e3495482702c8ebcab4b1058695943c418d4b",
+  "sourceTreeSha256": "83b86d2184a30c6e8a617e1c326fa0e736fa800d1325da173a253b72796122c9",
+  "files": {
+    "apps/web/src/components/HydrostaticModel.tsx": "f7f9419fdffc1d875df81d77b0cf6043a9330bb9c361ee8c5c265ebc02fac22d",
+    "apps/web/src/components/PublicHydrostaticLab.tsx": "b0af247abd29d3c4510100a740e0d5e7b5a85d0a34f41d8852ef8841f7ad6dc8",
+    "apps/web/src/features/PublicExperience.tsx": "b5246ebebeeb6ab2edaa7b9a4bd1715622271a483fe13c874d8351c3c430de08",
+    "apps/web/src/styles.css": "0e5463a6d69d66ac18bc93dab0194157a0d36b1c908c4ce5967c1f9a47250683",
+    "bin/web/export_public_preview.py": "f4382874b663130fbd2a7cbbc44856b5e3eeaa4b04da7c29e468ecdfabbdfd75"
+  },
+  "candidateManifestFileSha256": "12edd36fca7f83429a257a4e1684fc2c9bdf103aff38015b6b0750bf842de39c",
+  "publicHtmlSha256": "c07efa49c3b566c77bfca0dac7bdf2ecc82ec8681932d250cbfd3486180a6ee3",
+  "findings": [
+    {
+      "priority": "P2",
+      "path": "apps/web/src/components/PublicHydrostaticLab.tsx",
+      "reproduction": "Complete initial19620 then first transfer23544, then choose newproblem again: density800/depth3/referencegauge repeated. Captured first and second a11y DOMs identical."
+    },
+    {
+      "priority": "P2",
+      "path": "apps/web/src/components/HydrostaticModel.tsx",
+      "stylePath": "apps/web/src/styles.css",
+      "reproduction": "At viewport360, SVG clientwidth298 and font14 produce8.6917px text; capture reveal-first-result-red.png."
+    }
+  ],
+  "nativeChecks": {
+    "zeroGaugeAtSurface": "0Pa",
+    "zeroAbsoluteAtSurface": "101325Pa",
+    "referenceChangeClearsResult": true,
+    "finalHintKeepsFocusAndAriaDisabled": true,
+    "horizontalScroll360": false
+  },
+  "toolLimits": [
+    "First native range Home returned a CDP timeout but fresh DOM confirmed value0; gesture was not repeated.",
+    "CUA getByLabel select resolver failed despite visible combobox; role/name selected successfully.",
+    "CUA read-only SVG DOM does not expose getScreenCTM or parseFloat global; font scale derived from SVG width/viewBox outside DOM scope."
+  ]
+}

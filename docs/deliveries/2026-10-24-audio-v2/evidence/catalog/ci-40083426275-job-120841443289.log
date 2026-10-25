@@ -1,0 +1,1465 @@
+﻿2026-10-24T09:48:43.8157801Z Current runner version: '2.338.0'
+2026-10-24T09:48:43.8191963Z ##[group]Runner Image Provisioner
+2026-10-24T09:48:43.8193264Z Hosted Compute Agent
+2026-10-24T09:48:43.8194181Z Version: 20261012.601
+2026-10-24T09:48:43.8195347Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-24T09:48:43.8196596Z Build Date: 2026-10-12T17:48:21Z
+2026-10-24T09:48:43.8198152Z Worker ID: {40aed82d-6d08-4678-b75a-f7f4ded0c7db}
+2026-10-24T09:48:43.8199418Z Region: eastus
+2026-10-24T09:48:43.8200293Z Cloud: Azure
+2026-10-24T09:48:43.8201235Z ##[endgroup]
+2026-10-24T09:48:43.8203920Z ##[group]Operating System
+2026-10-24T09:48:43.8205056Z Ubuntu
+2026-10-24T09:48:43.8205953Z 24.04.5
+2026-10-24T09:48:43.8206766Z LTS
+2026-10-24T09:48:43.8207928Z ##[endgroup]
+2026-10-24T09:48:43.8208928Z ##[group]Runner Image
+2026-10-24T09:48:43.8210022Z Image: ubuntu-24.04
+2026-10-24T09:48:43.8210940Z Version: 20261012.334.1
+2026-10-24T09:48:43.8213099Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-24T09:48:43.8215794Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-24T09:48:43.8217894Z ##[endgroup]
+2026-10-24T09:48:43.8219709Z ##[group]GITHUB_TOKEN Permissions
+2026-10-24T09:48:43.8222716Z Contents: read
+2026-10-24T09:48:43.8223728Z Metadata: read
+2026-10-24T09:48:43.8224665Z ##[endgroup]
+2026-10-24T09:48:43.8227845Z Secret source: Actions
+2026-10-24T09:48:43.8229429Z Cache mode: write
+2026-10-24T09:48:43.8230574Z Prepare workflow directory
+2026-10-24T09:48:43.8702335Z Prepare all required actions
+2026-10-24T09:48:43.8773072Z Getting action download info
+2026-10-24T09:48:44.1191214Z Download action repository 'actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-10-24T09:48:44.2498249Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-24T09:48:44.3487660Z Download action repository 'astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86' (SHA:d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86)
+2026-10-24T09:48:44.5288843Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-24T09:48:44.7387464Z Complete job name: web (typecheck + test + build)
+2026-10-24T09:48:44.8264731Z ##[group]Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+2026-10-24T09:48:44.8265867Z with:
+2026-10-24T09:48:44.8266310Z   persist-credentials: false
+2026-10-24T09:48:44.8266843Z   repository: AndreaMarro/ardesia
+2026-10-24T09:48:44.8271193Z   token: ***
+2026-10-24T09:48:44.8271624Z   ssh-strict: true
+2026-10-24T09:48:44.8272055Z   ssh-user: git
+2026-10-24T09:48:44.8272468Z   clean: true
+2026-10-24T09:48:44.8272900Z   sparse-checkout-cone-mode: true
+2026-10-24T09:48:44.8273420Z   fetch-depth: 1
+2026-10-24T09:48:44.8273846Z   fetch-tags: false
+2026-10-24T09:48:44.8274286Z   show-progress: true
+2026-10-24T09:48:44.8274725Z   lfs: false
+2026-10-24T09:48:44.8275146Z   submodules: false
+2026-10-24T09:48:44.8275610Z   set-safe-directory: true
+2026-10-24T09:48:44.8276370Z ##[endgroup]
+2026-10-24T09:48:44.9422559Z Syncing repository: AndreaMarro/ardesia
+2026-10-24T09:48:44.9425051Z ##[group]Getting Git version info
+2026-10-24T09:48:44.9426241Z Working directory is '/home/runner/work/ardesia/ardesia'
+2026-10-24T09:48:44.9458295Z [command]/usr/bin/git version
+2026-10-24T09:48:44.9554385Z git version 2.55.0
+2026-10-24T09:48:44.9578115Z ##[endgroup]
+2026-10-24T09:48:44.9593408Z Temporarily overriding HOME='/home/runner/work/_temp/b798cb18-cf8d-452f-9d50-accf975a609d' before making global git config changes
+2026-10-24T09:48:44.9595920Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T09:48:44.9598324Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ardesia/ardesia
+2026-10-24T09:48:44.9686351Z Deleting the contents of '/home/runner/work/ardesia/ardesia'
+2026-10-24T09:48:44.9690219Z ##[group]Initializing the repository
+2026-10-24T09:48:44.9694112Z [command]/usr/bin/git init /home/runner/work/ardesia/ardesia
+2026-10-24T09:48:44.9821184Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-24T09:48:44.9822899Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-24T09:48:44.9825799Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-24T09:48:44.9827000Z hint: call:
+2026-10-24T09:48:44.9827851Z hint:
+2026-10-24T09:48:44.9828987Z hint: 	git config --global init.defaultBranch <name>
+2026-10-24T09:48:44.9830053Z hint:
+2026-10-24T09:48:44.9831009Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-24T09:48:44.9832513Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-24T09:48:44.9833712Z hint:
+2026-10-24T09:48:44.9834597Z hint: 	git branch -m <name>
+2026-10-24T09:48:44.9835493Z hint:
+2026-10-24T09:48:44.9836613Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-24T09:48:44.9838808Z Initialized empty Git repository in /home/runner/work/ardesia/ardesia/.git/
+2026-10-24T09:48:44.9850514Z [command]/usr/bin/git remote add origin https://github.com/AndreaMarro/ardesia
+2026-10-24T09:48:44.9910712Z ##[endgroup]
+2026-10-24T09:48:44.9911981Z ##[group]Disabling automatic garbage collection
+2026-10-24T09:48:44.9914015Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-24T09:48:44.9946761Z ##[endgroup]
+2026-10-24T09:48:44.9948268Z ##[group]Setting up auth
+2026-10-24T09:48:44.9956113Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T09:48:44.9999606Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T09:48:45.0422542Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T09:48:45.0459486Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T09:48:45.0683228Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T09:48:45.0719576Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T09:48:45.0941629Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-24T09:48:45.0984249Z ##[endgroup]
+2026-10-24T09:48:45.0985519Z ##[group]Fetching the repository
+2026-10-24T09:48:45.0994351Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +75a541a82148adec6467aa3b5867f41d8feff16a:refs/remotes/pull/297/merge
+2026-10-24T09:48:51.0536121Z From https://github.com/AndreaMarro/ardesia
+2026-10-24T09:48:51.0538443Z  * [new ref]         75a541a82148adec6467aa3b5867f41d8feff16a -> pull/297/merge
+2026-10-24T09:48:51.0542261Z ##[endgroup]
+2026-10-24T09:48:51.0544094Z ##[group]Determining the checkout info
+2026-10-24T09:48:51.0545714Z ##[endgroup]
+2026-10-24T09:48:51.0548945Z [command]/usr/bin/git sparse-checkout disable
+2026-10-24T09:48:51.0609544Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-24T09:48:51.0643940Z ##[group]Checking out the ref
+2026-10-24T09:48:51.0647540Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/297/merge
+2026-10-24T09:48:52.0778016Z Updating files:  64% (5160/7962)
+2026-10-24T09:48:52.0851953Z Updating files:  65% (5176/7962)
+2026-10-24T09:48:52.0950993Z Updating files:  66% (5255/7962)
+2026-10-24T09:48:52.1009596Z Updating files:  67% (5335/7962)
+2026-10-24T09:48:52.1060361Z Updating files:  68% (5415/7962)
+2026-10-24T09:48:52.1257481Z Updating files:  69% (5494/7962)
+2026-10-24T09:48:52.1413599Z Updating files:  70% (5574/7962)
+2026-10-24T09:48:52.1597068Z Updating files:  71% (5654/7962)
+2026-10-24T09:48:52.4093958Z Updating files:  72% (5733/7962)
+2026-10-24T09:48:52.4257473Z Updating files:  73% (5813/7962)
+2026-10-24T09:48:52.4338210Z Updating files:  74% (5892/7962)
+2026-10-24T09:48:52.4433124Z Updating files:  75% (5972/7962)
+2026-10-24T09:48:52.4495181Z Updating files:  76% (6052/7962)
+2026-10-24T09:48:52.4581108Z Updating files:  77% (6131/7962)
+2026-10-24T09:48:52.4802335Z Updating files:  78% (6211/7962)
+2026-10-24T09:48:52.5240783Z Updating files:  79% (6290/7962)
+2026-10-24T09:48:52.5311172Z Updating files:  80% (6370/7962)
+2026-10-24T09:48:52.5685591Z Updating files:  81% (6450/7962)
+2026-10-24T09:48:52.5744556Z Updating files:  82% (6529/7962)
+2026-10-24T09:48:52.5820543Z Updating files:  83% (6609/7962)
+2026-10-24T09:48:52.5889965Z Updating files:  84% (6689/7962)
+2026-10-24T09:48:52.6006142Z Updating files:  85% (6768/7962)
+2026-10-24T09:48:52.6070266Z Updating files:  86% (6848/7962)
+2026-10-24T09:48:52.6152298Z Updating files:  87% (6927/7962)
+2026-10-24T09:48:52.6306865Z Updating files:  88% (7007/7962)
+2026-10-24T09:48:52.6361103Z Updating files:  89% (7087/7962)
+2026-10-24T09:48:52.6663008Z Updating files:  90% (7166/7962)
+2026-10-24T09:48:52.7020778Z Updating files:  91% (7246/7962)
+2026-10-24T09:48:52.7078438Z Updating files:  92% (7326/7962)
+2026-10-24T09:48:52.7130709Z Updating files:  93% (7405/7962)
+2026-10-24T09:48:52.7179516Z Updating files:  94% (7485/7962)
+2026-10-24T09:48:52.7230574Z Updating files:  95% (7564/7962)
+2026-10-24T09:48:52.7287372Z Updating files:  96% (7644/7962)
+2026-10-24T09:48:52.7349241Z Updating files:  97% (7724/7962)
+2026-10-24T09:48:52.7407787Z Updating files:  98% (7803/7962)
+2026-10-24T09:48:52.7454228Z Updating files:  99% (7883/7962)
+2026-10-24T09:48:52.7454908Z Updating files: 100% (7962/7962)
+2026-10-24T09:48:52.7455616Z Updating files: 100% (7962/7962), done.
+2026-10-24T09:48:52.7548018Z Note: switching to 'refs/remotes/pull/297/merge'.
+2026-10-24T09:48:52.7548579Z
+2026-10-24T09:48:52.7548931Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-24T09:48:52.7549753Z changes and commit them, and you can discard any commits you make in this
+2026-10-24T09:48:52.7550605Z state without impacting any branches by switching back to a branch.
+2026-10-24T09:48:52.7551458Z
+2026-10-24T09:48:52.7551907Z If you want to create a new branch to retain commits you create, you may
+2026-10-24T09:48:52.7578176Z do so (now or later) by using -c with the switch command. Example:
+2026-10-24T09:48:52.7590195Z
+2026-10-24T09:48:52.7607985Z   git switch -c <new-branch-name>
+2026-10-24T09:48:52.7628191Z
+2026-10-24T09:48:52.7628624Z Or undo this operation with:
+2026-10-24T09:48:52.7628954Z
+2026-10-24T09:48:52.7629126Z   git switch -
+2026-10-24T09:48:52.7629341Z
+2026-10-24T09:48:52.7629717Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-24T09:48:52.7630301Z
+2026-10-24T09:48:52.7630919Z HEAD is now at 75a541a Merge 9f738d25dd8a6a2866bf5054d68c59d24ad3cfa2 into 339ab08f4139da0b37e78bbde81e9fe4e83afea0
+2026-10-24T09:48:52.7633363Z ##[endgroup]
+2026-10-24T09:48:52.7674706Z [command]/usr/bin/git log -1 --format=%H
+2026-10-24T09:48:52.7704796Z 75a541a82148adec6467aa3b5867f41d8feff16a
+2026-10-24T09:48:52.7719289Z ##[group]Removing auth
+2026-10-24T09:48:52.7721424Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T09:48:52.7759136Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T09:48:52.8023409Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T09:48:52.8054744Z http.https://github.com/.extraheader
+2026-10-24T09:48:52.8062013Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-24T09:48:52.8098664Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T09:48:52.8333171Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T09:48:52.8367901Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T09:48:52.8603442Z ##[endgroup]
+2026-10-24T09:48:52.8815285Z ##[group]Run bin/ci/web-e2e-physics-pathways.sh --self-test
+2026-10-24T09:48:52.8815831Z [36;1mbin/ci/web-e2e-physics-pathways.sh --self-test[0m
+2026-10-24T09:48:52.9089064Z shell: /usr/bin/bash -e {0}
+2026-10-24T09:48:52.9089435Z ##[endgroup]
+2026-10-24T09:48:52.9432077Z VERDE  contenitore artifact preesistente intatto, nuova sottodirectory univoca
+2026-10-24T09:48:52.9479461Z VERDE  secondo run artifact distinto, primo run preservato
+2026-10-24T09:48:52.9742083Z VERDE  database in directory nuova, sentinelle intatte, teardown isolato
+2026-10-24T09:48:52.9745569Z BLOCCO  contenitore dati non e' una directory: /tmp/ardesia-runner-selftest.vM4R4R/missing
+2026-10-24T09:48:52.9748520Z VERDE  contenitore dati mancante rifiutato senza crearlo
+2026-10-24T09:48:52.9808694Z BLOCCO  dati dentro il repo ma non ignorati da git: /home/runner/work/ardesia/ardesia/apps/web/e2e/ardesia-physics-pathways.probe
+2026-10-24T09:48:52.9824713Z VERDE  directory tracciata non ignorata rifiutata senza scriverci
+2026-10-24T09:48:52.9887751Z BLOCCO  artifact dentro il repo ma non ignorati da git: /home/runner/work/ardesia/ardesia/apps/web/e2e/physics-pathways.probe
+2026-10-24T09:48:52.9903302Z VERDE  artifact in directory tracciata rifiutati senza scriverci
+2026-10-24T09:48:53.0319314Z VERDE  teardown dopo failure: dati rimossi, artifact e sentinelle preservati
+2026-10-24T09:48:53.1771931Z VERDE  teardown dopo SIGTERM: dati rimossi, artifact e sentinelle preservati
+2026-10-24T09:48:53.1848734Z VERDE  file estranei ai contenitori intatti
+2026-10-24T09:48:53.1849518Z VERDE  self-test runner: contenitori, sentinelle, failure e interruzione
+2026-10-24T09:48:53.1979856Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-10-24T09:48:53.1980274Z with:
+2026-10-24T09:48:53.1980476Z   node-version: 26.5.1
+2026-10-24T09:48:53.1980691Z   cache: npm
+2026-10-24T09:48:53.1980917Z   cache-dependency-path: package-lock.json
+2026-10-24T09:48:53.1981203Z   always-auth: false
+2026-10-24T09:48:53.1981415Z   check-latest: false
+2026-10-24T09:48:53.1984142Z   token: ***
+2026-10-24T09:48:53.1984336Z ##[endgroup]
+2026-10-24T09:48:53.3433825Z Attempting to download 26.5.1...
+2026-10-24T09:48:53.3542600Z (node:2478) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T09:48:53.3544007Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T09:48:53.8257399Z Acquiring 26.5.1 - x64 from https://github.com/actions/node-versions/releases/download/26.5.1-30508404249/node-26.5.1-linux-x64.tar.gz
+2026-10-24T09:48:54.2225478Z Extracting ...
+2026-10-24T09:48:54.2343612Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/45ce2c48-2f95-4d24-a9e6-d586ac2add40 -f /home/runner/work/_temp/432f93a4-4c4b-4173-a4a3-6b8c62cf37b8
+2026-10-24T09:48:55.5428864Z Adding to the cache ...
+2026-10-24T09:48:57.5002006Z ##[group]Environment details
+2026-10-24T09:48:57.7278495Z node: v26.5.1
+2026-10-24T09:48:57.7278809Z npm: 11.17.0
+2026-10-24T09:48:57.7279013Z yarn: 1.22.22
+2026-10-24T09:48:57.7279726Z ##[endgroup]
+2026-10-24T09:48:57.7303746Z [command]/opt/hostedtoolcache/node/26.5.1/x64/bin/npm config get cache
+2026-10-24T09:48:57.8288139Z /home/runner/.npm
+2026-10-24T09:48:57.9010371Z Cache hit for: node-cache-Linux-x64-npm-3ae9c5ed2a29f6aaf76e47c8a2740e5b3ba2a9155e2d0fdbde3d46ce2bd0b397
+2026-10-24T09:48:57.9124966Z (node:2478) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-24T09:48:58.3182302Z Received 84136008 of 84136008 (100.0%), 208.4 MBs/sec
+2026-10-24T09:48:58.3183216Z Cache Size: ~80 MB (84136008 B)
+2026-10-24T09:48:58.3211075Z [command]/usr/bin/tar -xf /home/runner/work/_temp/673fb5f0-b6f7-4dd2-9948-8ebe17cef021/cache.tzst -P -C /home/runner/work/ardesia/ardesia --use-compress-program unzstd
+2026-10-24T09:48:58.4611128Z Cache restored successfully
+2026-10-24T09:48:58.4654673Z Cache restored from key: node-cache-Linux-x64-npm-3ae9c5ed2a29f6aaf76e47c8a2740e5b3ba2a9155e2d0fdbde3d46ce2bd0b397
+2026-10-24T09:48:58.4867944Z ##[group]Run npm ci --no-audit --no-fund
+2026-10-24T09:48:58.4868320Z [36;1mnpm ci --no-audit --no-fund[0m
+2026-10-24T09:48:58.4935060Z shell: /usr/bin/bash -e {0}
+2026-10-24T09:48:58.4935327Z ##[endgroup]
+2026-10-24T09:49:01.1738690Z
+2026-10-24T09:49:01.1746080Z added 147 packages in 3s
+2026-10-24T09:49:01.2410990Z ##[group]Run npm run typecheck:web
+2026-10-24T09:49:01.2432829Z [36;1mnpm run typecheck:web[0m
+2026-10-24T09:49:01.2498597Z shell: /usr/bin/bash -e {0}
+2026-10-24T09:49:01.2498883Z ##[endgroup]
+2026-10-24T09:49:01.3550145Z
+2026-10-24T09:49:01.3551077Z > ardesia-monorepo@0.1.0 typecheck:web
+2026-10-24T09:49:01.3551842Z > npm run typecheck --workspace @ardesia/web
+2026-10-24T09:49:01.3552255Z
+2026-10-24T09:49:01.4807794Z
+2026-10-24T09:49:01.4830200Z > @ardesia/web@0.1.0 typecheck
+2026-10-24T09:49:01.4830966Z > tsc -b --noEmit
+2026-10-24T09:49:01.4831371Z
+2026-10-24T09:49:06.9173275Z ##[group]Run npm run test:web
+2026-10-24T09:49:06.9173600Z [36;1mnpm run test:web[0m
+2026-10-24T09:49:06.9238014Z shell: /usr/bin/bash -e {0}
+2026-10-24T09:49:06.9238274Z ##[endgroup]
+2026-10-24T09:49:07.0255889Z
+2026-10-24T09:49:07.0256439Z > ardesia-monorepo@0.1.0 test:web
+2026-10-24T09:49:07.0257331Z > npm run test --workspace @ardesia/web
+2026-10-24T09:49:07.0257603Z
+2026-10-24T09:49:07.1543881Z
+2026-10-24T09:49:07.1544782Z > @ardesia/web@0.1.0 test
+2026-10-24T09:49:07.1545328Z > vitest run
+2026-10-24T09:49:07.1545562Z
+2026-10-24T09:49:07.4669338Z
+2026-10-24T09:49:07.4673428Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/runner/work/ardesia/ardesia/apps/web[39m
+2026-10-24T09:49:07.4677726Z
+2026-10-24T09:49:09.5615002Z  [32m✓[39m src/__tests__/course-workspace.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 771[2mms[22m[39m
+2026-10-24T09:49:09.9496776Z  [32m✓[39m src/__tests__/register-commands.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 1027[2mms[22m[39m
+2026-10-24T09:49:10.7679420Z  [32m✓[39m src/__tests__/source-board.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 1556[2mms[22m[39m
+2026-10-24T09:49:11.0983680Z  [32m✓[39m src/__tests__/notebook-portable-model.test.ts [2m([22m[2m41 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+2026-10-24T09:49:11.6191869Z  [32m✓[39m src/__tests__/pdf-reader.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[33m 814[2mms[22m[39m
+2026-10-24T09:49:11.6194032Z    [33m[2m✓[22m[39m a late getPage rejection from V1 cannot overwrite V2 after source replacement [33m 319[2mms[22m[39m
+2026-10-24T09:49:11.8827830Z  [32m✓[39m src/__tests__/workflows.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 771[2mms[22m[39m
+2026-10-24T09:49:13.3282706Z  [32m✓[39m src/__tests__/question-bank-review.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 1021[2mms[22m[39m
+2026-10-24T09:49:13.3288442Z    [33m[2m✓[22m[39m private save, scientific decision, deliberate publication and revocation remain distinct [33m 636[2mms[22m[39m
+2026-10-24T09:49:13.3989355Z  [32m✓[39m src/__tests__/notebook-preview.test.tsx [2m([22m[2m19 tests[22m[2m)[22m[33m 449[2mms[22m[39m
+2026-10-24T09:49:14.0416406Z  [32m✓[39m src/__tests__/classroom-course-boundary.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 914[2mms[22m[39m
+2026-10-24T09:49:14.0419643Z    [33m[2m✓[22m[39m switching editions using the same laboratory resets computed state, source and editor while preserving each edition's draft [33m 326[2mms[22m[39m
+2026-10-24T09:49:14.6269506Z  [32m✓[39m src/__tests__/notebook-draft.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 97[2mms[22m[39m
+2026-10-24T09:49:15.6797503Z  [32m✓[39m src/__tests__/edition-management.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 925[2mms[22m[39m
+2026-10-24T09:49:15.6809928Z    [33m[2m✓[22m[39m an empty tutor workspace creates a private draft, preserving fields and key after a failed request [33m 439[2mms[22m[39m
+2026-10-24T09:49:16.4279422Z  [32m✓[39m src/__tests__/physics-question-bank.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1133[2mms[22m[39m
+2026-10-24T09:49:16.4299370Z    [33m[2m✓[22m[39m bank loads only when opened and reveals the complete explanation after a pinned answer [33m 460[2mms[22m[39m
+2026-10-24T09:49:16.4323528Z    [33m[2m✓[22m[39m the training paper uses the pinned 2026 profile and returns to the filtered catalog [33m 499[2mms[22m[39m
+2026-10-24T09:49:16.8464882Z  [31m❯[39m src/__tests__/curriculum-catalog.test.tsx [2m([22m[2m4 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 795[2mms[22m[39m
+2026-10-24T09:49:16.8466705Z    [33m[2m✓[22m[39m teacher opens a real curriculum inventory on demand, with content references and separate draft states [33m 412[2mms[22m[39m
+2026-10-24T09:49:16.8472718Z    [32m✓[39m search matches actual topics and announces an empty result without inventing a course[32m 152[2mms[22m[39m
+2026-10-24T09:49:16.8474375Z    [32m✓[39m student never requests private inventory and a late teacher response cannot restore it[32m 22[2mms[22m[39m
+2026-10-24T09:49:16.8475819Z [31m   [31m×[31m catalog links reopen the exact unit and reject an obsolete composition without a fallback[39m[32m 207[2mms[22m[39m
+2026-10-24T09:49:17.5458086Z  [32m✓[39m src/__tests__/notebook-portable-reader.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 544[2mms[22m[39m
+2026-10-24T09:49:17.5465249Z    [33m[2m✓[22m[39m opening exact historical revisions mounts only one local reader; close and session switch release it [33m 397[2mms[22m[39m
+2026-10-24T09:49:18.8862959Z  [32m✓[39m src/__tests__/register-reading.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 782[2mms[22m[39m
+2026-10-24T09:49:18.9455514Z  [32m✓[39m src/__tests__/register-payment-pin.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 1159[2mms[22m[39m
+2026-10-24T09:49:18.9488964Z    [33m[2m✓[22m[39m off-page reread rejects changed immutable person and preserves the origin draft [33m 446[2mms[22m[39m
+2026-10-24T09:49:19.3190630Z  [32m✓[39m src/__tests__/session-transport.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 84[2mms[22m[39m
+2026-10-24T09:49:20.8792212Z  [32m✓[39m src/__tests__/course-drafts.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 296[2mms[22m[39m
+2026-10-24T09:49:20.9398810Z  [32m✓[39m src/__tests__/session-boundary.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 2000[2mms[22m[39m
+2026-10-24T09:49:20.9400802Z    [33m[2m✓[22m[39m a verified child json 401 (cookie) removes the private application and opens access [33m 1116[2mms[22m[39m
+2026-10-24T09:49:21.3029335Z  [32m✓[39m src/__tests__/exam-bank.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 1159[2mms[22m[39m
+2026-10-24T09:49:21.3031008Z    [33m[2m✓[22m[39m a bank exam sends option ids, CAS revision and shows an invalid result [33m 1157[2mms[22m[39m
+2026-10-24T09:49:22.5148938Z  [32m✓[39m src/__tests__/notebook-submission.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 439[2mms[22m[39m
+2026-10-24T09:49:22.5150860Z    [33m[2m✓[22m[39m a notebook attaches its exact PDF once, then a retry freezes source, PDF, text and key [33m 310[2mms[22m[39m
+2026-10-24T09:49:22.7067748Z  [32m✓[39m src/__tests__/source-context-identity.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 310[2mms[22m[39m
+2026-10-24T09:49:22.7532784Z  [32m✓[39m src/__tests__/original-asset.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+2026-10-24T09:49:23.2761159Z  [32m✓[39m src/__tests__/exam.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 1253[2mms[22m[39m
+2026-10-24T09:49:23.2788819Z    [33m[2m✓[22m[39m the exam hides explanations, autosaves answers, submits and reviews errors [33m 1251[2mms[22m[39m
+2026-10-24T09:49:24.2362076Z  [32m✓[39m src/__tests__/course-review-boundary.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 449[2mms[22m[39m
+2026-10-24T09:49:24.2874756Z  [32m✓[39m src/__tests__/course-submission.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 485[2mms[22m[39m
+2026-10-24T09:49:24.2879646Z    [33m[2m✓[22m[39m Taylor sends course-specific frozen parameters and retry retains the original human procedure after a switch [33m 352[2mms[22m[39m
+2026-10-24T09:49:25.0798690Z  [32m✓[39m src/__tests__/session-legacy.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 540[2mms[22m[39m
+2026-10-24T09:49:25.3799273Z  [32m✓[39m src/__tests__/pdf-worker.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+2026-10-24T09:49:26.3688937Z  [32m✓[39m src/__tests__/taylor-classroom.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 858[2mms[22m[39m
+2026-10-24T09:49:26.3718537Z    [33m[2m✓[22m[39m the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt [33m 857[2mms[22m[39m
+2026-10-24T09:49:26.7271247Z  [32m✓[39m src/__tests__/access-capabilities.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 475[2mms[22m[39m
+2026-10-24T09:49:27.7703287Z  [32m✓[39m src/__tests__/edition-register.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 302[2mms[22m[39m
+2026-10-24T09:49:28.1582114Z  [32m✓[39m src/__tests__/resource-composer.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 390[2mms[22m[39m
+2026-10-24T09:49:28.3414234Z  [32m✓[39m src/__tests__/exam-cas.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 1791[2mms[22m[39m
+2026-10-24T09:49:28.3428668Z    [33m[2m✓[22m[39m a 409 reloads the server revision and the next save uses that revision [33m 1789[2mms[22m[39m
+2026-10-24T09:49:29.4721045Z  [32m✓[39m src/__tests__/accessibility-semantics.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 608[2mms[22m[39m
+2026-10-24T09:49:29.4732874Z    [33m[2m✓[22m[39m public and private brand links retain the complete visible name [33m 367[2mms[22m[39m
+2026-10-24T09:49:29.7489623Z  [32m✓[39m src/__tests__/course-pack-disclosure.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 513[2mms[22m[39m
+2026-10-24T09:49:29.7492686Z    [33m[2m✓[22m[39m student-courses: closed preview makes no content or evaluation request; opening is explicit and closing unmounts it [33m 354[2mms[22m[39m
+2026-10-24T09:49:29.9272185Z  [32m✓[39m src/__tests__/notebook-math.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 419[2mms[22m[39m
+2026-10-24T09:49:29.9275850Z    [33m[2m✓[22m[39m HTML command aliases cannot inject page styles, URLs, classes or identities [33m 314[2mms[22m[39m
+2026-10-24T09:49:29.9829741Z  [32m✓[39m src/__tests__/public-projection.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+2026-10-24T09:49:30.1292494Z  [32m✓[39m src/__tests__/course-dispatch.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+2026-10-24T09:49:30.3669436Z  [32m✓[39m src/__tests__/notebook-geometry.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+2026-10-24T09:49:31.2362471Z  [32m✓[39m src/__tests__/public-preview.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 515[2mms[22m[39m
+2026-10-24T09:49:31.2368857Z    [33m[2m✓[22m[39m public preview sends neither API requests, predictions nor contacts [33m 343[2mms[22m[39m
+2026-10-24T09:49:31.4299358Z  [32m✓[39m src/__tests__/public-static.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 309[2mms[22m[39m
+2026-10-24T09:49:31.4358605Z    [33m[2m✓[22m[39m the static preview opens the course and both physical cases without a backend [33m 308[2mms[22m[39m
+2026-10-24T09:49:31.5583882Z  [32m✓[39m src/__tests__/notebook-placement.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 28[2mms[22m[39m
+2026-10-24T09:49:31.5618466Z
+2026-10-24T09:49:31.5619168Z [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+2026-10-24T09:49:31.5619718Z
+2026-10-24T09:49:31.5624655Z [41m[1m FAIL [22m[49m src/__tests__/curriculum-catalog.test.tsx[2m > [22mcatalog links reopen the exact unit and reject an obsolete composition without a fallback
+2026-10-24T09:49:31.5633059Z [31m[1mTestingLibraryElementError[22m[39m: Unable to find an accessible element with the role "heading" and name "Riferimento non disponibile"
+2026-10-24T09:49:31.5634259Z
+2026-10-24T09:49:31.5634536Z Here are the accessible roles:
+2026-10-24T09:49:31.5634856Z
+2026-10-24T09:49:31.5635013Z   banner:
+2026-10-24T09:49:31.5635222Z
+2026-10-24T09:49:31.5635381Z   Name "":
+2026-10-24T09:49:31.5635846Z   [36m<header[39m
+2026-10-24T09:49:31.5636398Z     [33mclass[39m=[32m"page-heading"[39m
+2026-10-24T09:49:31.5637306Z   [36m/>[39m
+2026-10-24T09:49:31.5637552Z
+2026-10-24T09:49:31.5637871Z   --------------------------------------------------
+2026-10-24T09:49:31.5638493Z   heading:
+2026-10-24T09:49:31.5638725Z
+2026-10-24T09:49:31.5638920Z   Name "I tuoi mini-corsi.":
+2026-10-24T09:49:31.5639608Z   [36m<h1 />[39m
+2026-10-24T09:49:31.5639897Z
+2026-10-24T09:49:31.5640165Z   Name "Le basi dei tuoi prossimi corsi.":
+2026-10-24T09:49:31.5640799Z   [36m<h2 />[39m
+2026-10-24T09:49:31.5641042Z
+2026-10-24T09:49:31.5641616Z   Name "U4 · Onde meccaniche":
+2026-10-24T09:49:31.5642350Z   [36m<h3[39m
+2026-10-24T09:49:31.5642904Z     [33mtabindex[39m=[32m"-1"[39m
+2026-10-24T09:49:31.5643470Z   [36m/>[39m
+2026-10-24T09:49:31.5643708Z
+2026-10-24T09:49:31.5643961Z   Name "Prerequisiti dichiarati":
+2026-10-24T09:49:31.5644532Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5644780Z
+2026-10-24T09:49:31.5644983Z   Name "Copertura osservata":
+2026-10-24T09:49:31.5645524Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5645783Z
+2026-10-24T09:49:31.5646108Z   Name "Prima dell’erogazione":
+2026-10-24T09:49:31.5646484Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5646643Z
+2026-10-24T09:49:31.5646767Z   Name "Raccolte collegate":
+2026-10-24T09:49:31.5647355Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5647522Z
+2026-10-24T09:49:31.5647651Z   Name "Onde meccaniche":
+2026-10-24T09:49:31.5647990Z   [36m<h3 />[39m
+2026-10-24T09:49:31.5648153Z
+2026-10-24T09:49:31.5648277Z   Name "Argomenti presenti":
+2026-10-24T09:49:31.5648621Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5648750Z
+2026-10-24T09:49:31.5648847Z   Name "Temi":
+2026-10-24T09:49:31.5649071Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5649197Z
+2026-10-24T09:49:31.5649335Z   Name "Compiti cognitivi dichiarati":
+2026-10-24T09:49:31.5649632Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5649753Z
+2026-10-24T09:49:31.5649845Z   Name "Prerequisiti":
+2026-10-24T09:49:31.5650092Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5650208Z
+2026-10-24T09:49:31.5650426Z   Name "Distribuzione dichiarata delle difficoltà":
+2026-10-24T09:49:31.5650767Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5650891Z
+2026-10-24T09:49:31.5650986Z   Name "Da completare":
+2026-10-24T09:49:31.5651226Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5651344Z
+2026-10-24T09:49:31.5651466Z   Name "Riferimenti di esempio":
+2026-10-24T09:49:31.5651751Z   [36m<h4 />[39m
+2026-10-24T09:49:31.5651864Z
+2026-10-24T09:49:31.5652020Z   Name "Dal programma alla prossima edizione.":
+2026-10-24T09:49:31.5652340Z   [36m<h2 />[39m
+2026-10-24T09:49:31.5652463Z
+2026-10-24T09:49:31.5652615Z   --------------------------------------------------
+2026-10-24T09:49:31.5652912Z   paragraph:
+2026-10-24T09:49:31.5653033Z
+2026-10-24T09:49:31.5653114Z   Name "":
+2026-10-24T09:49:31.5653332Z   [36m<p />[39m
+2026-10-24T09:49:31.5653449Z
+2026-10-24T09:49:31.5653531Z   Name "":
+2026-10-24T09:49:31.5653741Z   [36m<p[39m
+2026-10-24T09:49:31.5654037Z     [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5654330Z   [36m/>[39m
+2026-10-24T09:49:31.5654628Z
+2026-10-24T09:49:31.5654710Z   Name "":
+2026-10-24T09:49:31.5654924Z   [36m<p />[39m
+2026-10-24T09:49:31.5655038Z
+2026-10-24T09:49:31.5655120Z   Name "":
+2026-10-24T09:49:31.5655323Z   [36m<p[39m
+2026-10-24T09:49:31.5655597Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5655883Z   [36m/>[39m
+2026-10-24T09:49:31.5655993Z
+2026-10-24T09:49:31.5656069Z   Name "":
+2026-10-24T09:49:31.5656272Z   [36m<p[39m
+2026-10-24T09:49:31.5656581Z     [33mclass[39m=[32m"curriculum-counts"[39m
+2026-10-24T09:49:31.5656926Z   [36m/>[39m
+2026-10-24T09:49:31.5657407Z
+2026-10-24T09:49:31.5657498Z   Name "":
+2026-10-24T09:49:31.5657887Z   [36m<p />[39m
+2026-10-24T09:49:31.5658013Z
+2026-10-24T09:49:31.5658097Z   Name "":
+2026-10-24T09:49:31.5658304Z   [36m<p />[39m
+2026-10-24T09:49:31.5658424Z
+2026-10-24T09:49:31.5658500Z   Name "":
+2026-10-24T09:49:31.5658706Z   [36m<p[39m
+2026-10-24T09:49:31.5658980Z     [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5659272Z   [36m/>[39m
+2026-10-24T09:49:31.5659387Z
+2026-10-24T09:49:31.5659467Z   Name "":
+2026-10-24T09:49:31.5659664Z   [36m<p[39m
+2026-10-24T09:49:31.5659973Z     [33mclass[39m=[32m"curriculum-counts"[39m
+2026-10-24T09:49:31.5660277Z   [36m/>[39m
+2026-10-24T09:49:31.5660390Z
+2026-10-24T09:49:31.5660471Z   Name "":
+2026-10-24T09:49:31.5660675Z   [36m<p />[39m
+2026-10-24T09:49:31.5660803Z
+2026-10-24T09:49:31.5660879Z   Name "":
+2026-10-24T09:49:31.5661085Z   [36m<p[39m
+2026-10-24T09:49:31.5661352Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5661784Z   [36m/>[39m
+2026-10-24T09:49:31.5661904Z
+2026-10-24T09:49:31.5661985Z   Name "":
+2026-10-24T09:49:31.5662189Z   [36m<p />[39m
+2026-10-24T09:49:31.5662307Z
+2026-10-24T09:49:31.5662382Z   Name "":
+2026-10-24T09:49:31.5662585Z   [36m<p[39m
+2026-10-24T09:49:31.5662849Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5663135Z   [36m/>[39m
+2026-10-24T09:49:31.5663252Z
+2026-10-24T09:49:31.5663370Z   Name "":
+2026-10-24T09:49:31.5663607Z   [36m<p[39m
+2026-10-24T09:49:31.5663873Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5664153Z   [36m/>[39m
+2026-10-24T09:49:31.5664275Z
+2026-10-24T09:49:31.5664355Z   Name "":
+2026-10-24T09:49:31.5664563Z   [36m<p />[39m
+2026-10-24T09:49:31.5664689Z
+2026-10-24T09:49:31.5664765Z   Name "":
+2026-10-24T09:49:31.5664972Z   [36m<p[39m
+2026-10-24T09:49:31.5665243Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5665527Z   [36m/>[39m
+2026-10-24T09:49:31.5665642Z
+2026-10-24T09:49:31.5665722Z   Name "":
+2026-10-24T09:49:31.5665925Z   [36m<p[39m
+2026-10-24T09:49:31.5666190Z     [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5666479Z   [36m/>[39m
+2026-10-24T09:49:31.5666585Z
+2026-10-24T09:49:31.5666668Z   Name "":
+2026-10-24T09:49:31.5666865Z   [36m<p[39m
+2026-10-24T09:49:31.5667463Z     [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5667785Z   [36m/>[39m
+2026-10-24T09:49:31.5667905Z
+2026-10-24T09:49:31.5667982Z   Name "":
+2026-10-24T09:49:31.5668202Z   [36m<p />[39m
+2026-10-24T09:49:31.5668323Z
+2026-10-24T09:49:31.5668472Z   --------------------------------------------------
+2026-10-24T09:49:31.5668762Z   region:
+2026-10-24T09:49:31.5668870Z
+2026-10-24T09:49:31.5669002Z   Name "Catalogo privato del docente":
+2026-10-24T09:49:31.5669293Z   [36m<section[39m
+2026-10-24T09:49:31.5669674Z     [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+2026-10-24T09:49:31.5670126Z     [33mclass[39m=[32m"curriculum-catalog"[39m
+2026-10-24T09:49:31.5670446Z   [36m/>[39m
+2026-10-24T09:49:31.5670559Z
+2026-10-24T09:49:31.5670679Z   Name "Gestione delle edizioni":
+2026-10-24T09:49:31.5670954Z   [36m<section[39m
+2026-10-24T09:49:31.5671308Z     [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+2026-10-24T09:49:31.5671718Z     [33mclass[39m=[32m"edition-manager"[39m
+2026-10-24T09:49:31.5672019Z   [36m/>[39m
+2026-10-24T09:49:31.5672132Z
+2026-10-24T09:49:31.5672274Z   --------------------------------------------------
+2026-10-24T09:49:31.5672706Z   button:
+2026-10-24T09:49:31.5672817Z
+2026-10-24T09:49:31.5672908Z   Name "Chiudi catalogo":
+2026-10-24T09:49:31.5673169Z   [36m<button[39m
+2026-10-24T09:49:31.5673512Z     [33maria-controls[39m=[32m"curriculum-content"[39m
+2026-10-24T09:49:31.5673916Z     [33maria-expanded[39m=[32m"true"[39m
+2026-10-24T09:49:31.5674216Z   [36m/>[39m
+2026-10-24T09:49:31.5674324Z
+2026-10-24T09:49:31.5674449Z   Name "Percorsi di Fisica (1)":
+2026-10-24T09:49:31.5674719Z   [36m<button[39m
+2026-10-24T09:49:31.5675010Z     [33maria-pressed[39m=[32m"true"[39m
+2026-10-24T09:49:31.5675300Z   [36m/>[39m
+2026-10-24T09:49:31.5675412Z
+2026-10-24T09:49:31.5675537Z   Name "Programmi configurati (1)":
+2026-10-24T09:49:31.5675838Z   [36m<button[39m
+2026-10-24T09:49:31.5676134Z     [33maria-pressed[39m=[32m"false"[39m
+2026-10-24T09:49:31.5676425Z   [36m/>[39m
+2026-10-24T09:49:31.5676543Z
+2026-10-24T09:49:31.5676672Z   Name "Raccolte da progettare (1)":
+2026-10-24T09:49:31.5676968Z   [36m<button[39m
+2026-10-24T09:49:31.5677627Z     [33maria-pressed[39m=[32m"false"[39m
+2026-10-24T09:49:31.5678181Z   [36m/>[39m
+2026-10-24T09:49:31.5678380Z
+2026-10-24T09:49:31.5678547Z   Name "Nuova edizione":
+2026-10-24T09:49:31.5679004Z   [36m<button[39m
+2026-10-24T09:49:31.5679553Z     [33mclass[39m=[32m"button-primary"[39m
+2026-10-24T09:49:31.5680106Z   [36m/>[39m
+2026-10-24T09:49:31.5680238Z
+2026-10-24T09:49:31.5680391Z   --------------------------------------------------
+2026-10-24T09:49:31.5680679Z   navigation:
+2026-10-24T09:49:31.5680970Z
+2026-10-24T09:49:31.5681104Z   Name "Posizione nel catalogo":
+2026-10-24T09:49:31.5681393Z   [36m<nav[39m
+2026-10-24T09:49:31.5681737Z     [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+2026-10-24T09:49:31.5682174Z     [33mclass[39m=[32m"pathway-breadcrumb"[39m
+2026-10-24T09:49:31.5682488Z   [36m/>[39m
+2026-10-24T09:49:31.5682607Z
+2026-10-24T09:49:31.5682745Z   --------------------------------------------------
+2026-10-24T09:49:31.5683040Z   link:
+2026-10-24T09:49:31.5683139Z
+2026-10-24T09:49:31.5683241Z   Name "Tutti i percorsi":
+2026-10-24T09:49:31.5683487Z   [36m<a[39m
+2026-10-24T09:49:31.5683783Z     [33mhref[39m=[32m"/?catalog=pathways"[39m
+2026-10-24T09:49:31.5684084Z   [36m/>[39m
+2026-10-24T09:49:31.5684198Z
+2026-10-24T09:49:31.5684294Z   Name "Percorso sintetico":
+2026-10-24T09:49:31.5684646Z   [36m<a[39m
+2026-10-24T09:49:31.5686308Z     [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+2026-10-24T09:49:31.5687778Z   [36m/>[39m
+2026-10-24T09:49:31.5687915Z
+2026-10-24T09:49:31.5688137Z   --------------------------------------------------
+2026-10-24T09:49:31.5688658Z   group:
+2026-10-24T09:49:31.5688858Z
+2026-10-24T09:49:31.5689005Z   Name "":
+2026-10-24T09:49:31.5689459Z   [36m<details />[39m
+2026-10-24T09:49:31.5689719Z
+2026-10-24T09:49:31.5689874Z   Name "":
+2026-10-24T09:49:31.5690296Z   [36m<details />[39m
+2026-10-24T09:49:31.5690574Z
+2026-10-24T09:49:31.5690723Z   Name "":
+2026-10-24T09:49:31.5691128Z   [36m<details[39m
+2026-10-24T09:49:31.5691714Z     [33mclass[39m=[32m"curriculum-topics"[39m
+2026-10-24T09:49:31.5692316Z   [36m/>[39m
+2026-10-24T09:49:31.5692504Z
+2026-10-24T09:49:31.5692595Z   Name "":
+2026-10-24T09:49:31.5692818Z   [36m<details[39m
+2026-10-24T09:49:31.5693153Z     [33mclass[39m=[32m"pathway-identity"[39m
+2026-10-24T09:49:31.5693465Z   [36m/>[39m
+2026-10-24T09:49:31.5693584Z
+2026-10-24T09:49:31.5693661Z   Name "":
+2026-10-24T09:49:31.5693887Z   [36m<details[39m
+2026-10-24T09:49:31.5694235Z     [33mclass[39m=[32m"curriculum-prerequisites"[39m
+2026-10-24T09:49:31.5694563Z   [36m/>[39m
+2026-10-24T09:49:31.5694680Z
+2026-10-24T09:49:31.5694826Z   --------------------------------------------------
+2026-10-24T09:49:31.5695111Z   list:
+2026-10-24T09:49:31.5695215Z
+2026-10-24T09:49:31.5695295Z   Name "":
+2026-10-24T09:49:31.5695509Z   [36m<ul />[39m
+2026-10-24T09:49:31.5695829Z
+2026-10-24T09:49:31.5695915Z   Name "":
+2026-10-24T09:49:31.5696125Z   [36m<ul />[39m
+2026-10-24T09:49:31.5696249Z
+2026-10-24T09:49:31.5696325Z   Name "":
+2026-10-24T09:49:31.5696536Z   [36m<ul />[39m
+2026-10-24T09:49:31.5696649Z
+2026-10-24T09:49:31.5696733Z   Name "":
+2026-10-24T09:49:31.5696931Z   [36m<ul />[39m
+2026-10-24T09:49:31.5697327Z
+2026-10-24T09:49:31.5697494Z   Name "":
+2026-10-24T09:49:31.5697734Z   [36m<ul />[39m
+2026-10-24T09:49:31.5697869Z
+2026-10-24T09:49:31.5697948Z   Name "":
+2026-10-24T09:49:31.5698182Z   [36m<ul />[39m
+2026-10-24T09:49:31.5698312Z
+2026-10-24T09:49:31.5698393Z   Name "":
+2026-10-24T09:49:31.5698596Z   [36m<ul />[39m
+2026-10-24T09:49:31.5698712Z
+2026-10-24T09:49:31.5698791Z   Name "":
+2026-10-24T09:49:31.5699000Z   [36m<ul />[39m
+2026-10-24T09:49:31.5699115Z
+2026-10-24T09:49:31.5699196Z   Name "":
+2026-10-24T09:49:31.5699393Z   [36m<ul />[39m
+2026-10-24T09:49:31.5699512Z
+2026-10-24T09:49:31.5699591Z   Name "":
+2026-10-24T09:49:31.5699795Z   [36m<ul />[39m
+2026-10-24T09:49:31.5699905Z
+2026-10-24T09:49:31.5700051Z   --------------------------------------------------
+2026-10-24T09:49:31.5700330Z   listitem:
+2026-10-24T09:49:31.5700444Z
+2026-10-24T09:49:31.5700523Z   Name "":
+2026-10-24T09:49:31.5700726Z   [36m<li />[39m
+2026-10-24T09:49:31.5700845Z
+2026-10-24T09:49:31.5700922Z   Name "":
+2026-10-24T09:49:31.5701130Z   [36m<li />[39m
+2026-10-24T09:49:31.5701242Z
+2026-10-24T09:49:31.5701401Z   Name "":
+2026-10-24T09:49:31.5701753Z   [36m<li />[39m
+2026-10-24T09:49:31.5701876Z
+2026-10-24T09:49:31.5702117Z   Name "":
+2026-10-24T09:49:31.5702336Z   [36m<li />[39m
+2026-10-24T09:49:31.5702455Z
+2026-10-24T09:49:31.5702532Z   Name "":
+2026-10-24T09:49:31.5702740Z   [36m<li />[39m
+2026-10-24T09:49:31.5702852Z
+2026-10-24T09:49:31.5702933Z   Name "":
+2026-10-24T09:49:31.5703278Z   [36m<li />[39m
+2026-10-24T09:49:31.5703493Z
+2026-10-24T09:49:31.5703634Z   Name "":
+2026-10-24T09:49:31.5704055Z   [36m<li />[39m
+2026-10-24T09:49:31.5704296Z
+2026-10-24T09:49:31.5704441Z   Name "":
+2026-10-24T09:49:31.5704849Z   [36m<li />[39m
+2026-10-24T09:49:31.5705072Z
+2026-10-24T09:49:31.5705223Z   Name "":
+2026-10-24T09:49:31.5705622Z   [36m<li />[39m
+2026-10-24T09:49:31.5705849Z
+2026-10-24T09:49:31.5706001Z   Name "":
+2026-10-24T09:49:31.5706402Z   [36m<li />[39m
+2026-10-24T09:49:31.5706628Z
+2026-10-24T09:49:31.5706776Z   Name "":
+2026-10-24T09:49:31.5707443Z   [36m<li />[39m
+2026-10-24T09:49:31.5707671Z
+2026-10-24T09:49:31.5707828Z   Name "":
+2026-10-24T09:49:31.5708257Z   [36m<li />[39m
+2026-10-24T09:49:31.5708488Z
+2026-10-24T09:49:31.5708759Z   --------------------------------------------------
+2026-10-24T09:49:31.5709275Z   article:
+2026-10-24T09:49:31.5709476Z
+2026-10-24T09:49:31.5709644Z   Name "Onde meccaniche":
+2026-10-24T09:49:31.5710136Z   [36m<article[39m
+2026-10-24T09:49:31.5710740Z     [33maria-label[39m=[32m"Onde meccaniche"[39m
+2026-10-24T09:49:31.5711615Z     [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+2026-10-24T09:49:31.5712296Z   [36m/>[39m
+2026-10-24T09:49:31.5712509Z
+2026-10-24T09:49:31.5712766Z   --------------------------------------------------
+2026-10-24T09:49:31.5713264Z   code:
+2026-10-24T09:49:31.5713451Z
+2026-10-24T09:49:31.5713586Z   Name "":
+2026-10-24T09:49:31.5713981Z   [36m<code />[39m
+2026-10-24T09:49:31.5714204Z
+2026-10-24T09:49:31.5714349Z   Name "":
+2026-10-24T09:49:31.5714729Z   [36m<code />[39m
+2026-10-24T09:49:31.5714956Z
+2026-10-24T09:49:31.5715103Z   Name "":
+2026-10-24T09:49:31.5715484Z   [36m<code />[39m
+2026-10-24T09:49:31.5715714Z
+2026-10-24T09:49:31.5715850Z   Name "":
+2026-10-24T09:49:31.5716231Z   [36m<code />[39m
+2026-10-24T09:49:31.5716448Z
+2026-10-24T09:49:31.5716589Z   Name "":
+2026-10-24T09:49:31.5716978Z   [36m<code />[39m
+2026-10-24T09:49:31.5717487Z
+2026-10-24T09:49:31.5717640Z   Name "":
+2026-10-24T09:49:31.5718023Z   [36m<code />[39m
+2026-10-24T09:49:31.5718250Z
+2026-10-24T09:49:31.5718387Z   Name "":
+2026-10-24T09:49:31.5719101Z   [36m<code />[39m
+2026-10-24T09:49:31.5719326Z
+2026-10-24T09:49:31.5719475Z   Name "":
+2026-10-24T09:49:31.5719865Z   [36m<code />[39m
+2026-10-24T09:49:31.5720098Z
+2026-10-24T09:49:31.5720244Z   Name "":
+2026-10-24T09:49:31.5720634Z   [36m<code />[39m
+2026-10-24T09:49:31.5720862Z
+2026-10-24T09:49:31.5721117Z   --------------------------------------------------
+2026-10-24T09:49:31.5721474Z
+2026-10-24T09:49:31.5721762Z Ignored nodes: comments, script, style
+2026-10-24T09:49:31.5722307Z [36m<body>[39m
+2026-10-24T09:49:31.5722731Z   [36m<div>[39m
+2026-10-24T09:49:31.5723167Z     [36m<header[39m
+2026-10-24T09:49:31.5723734Z       [33mclass[39m=[32m"page-heading"[39m
+2026-10-24T09:49:31.5724292Z     [36m>[39m
+2026-10-24T09:49:31.5724675Z       [36m<h1>[39m
+2026-10-24T09:49:31.5725173Z         [0mI tuoi mini-corsi.[0m
+2026-10-24T09:49:31.5725684Z       [36m</h1>[39m
+2026-10-24T09:49:31.5726106Z       [36m<p>[39m
+2026-10-24T09:49:31.5727288Z         [0mUn programma riutilizzabile. Un’edizione con le sue persone e le sue date.[0m
+2026-10-24T09:49:31.5728193Z       [36m</p>[39m
+2026-10-24T09:49:31.5728636Z     [36m</header>[39m
+2026-10-24T09:49:31.5729106Z     [36m<section[39m
+2026-10-24T09:49:31.5729823Z       [33maria-label[39m=[32m"Catalogo privato del docente"[39m
+2026-10-24T09:49:31.5730651Z       [33mclass[39m=[32m"curriculum-catalog"[39m
+2026-10-24T09:49:31.5731236Z     [36m>[39m
+2026-10-24T09:49:31.5731642Z       [36m<div[39m
+2026-10-24T09:49:31.5732190Z         [33mclass[39m=[32m"section-title"[39m
+2026-10-24T09:49:31.5733003Z       [36m>[39m
+2026-10-24T09:49:31.5733470Z         [36m<div>[39m
+2026-10-24T09:49:31.5733917Z           [36m<p[39m
+2026-10-24T09:49:31.5734503Z             [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5735070Z           [36m>[39m
+2026-10-24T09:49:31.5735592Z             [0mPatrimonio didattico[0m
+2026-10-24T09:49:31.5736145Z           [36m</p>[39m
+2026-10-24T09:49:31.5736654Z           [36m<h2>[39m
+2026-10-24T09:49:31.5737447Z             [0mLe basi dei tuoi prossimi corsi.[0m
+2026-10-24T09:49:31.5738025Z           [36m</h2>[39m
+2026-10-24T09:49:31.5738465Z         [36m</div>[39m
+2026-10-24T09:49:31.5738897Z         [36m<button[39m
+2026-10-24T09:49:31.5739546Z           [33maria-controls[39m=[32m"curriculum-content"[39m
+2026-10-24T09:49:31.5740293Z           [33maria-expanded[39m=[32m"true"[39m
+2026-10-24T09:49:31.5740838Z         [36m>[39m
+2026-10-24T09:49:31.5741312Z           [0mChiudi catalogo[0m
+2026-10-24T09:49:31.5741814Z         [36m</button>[39m
+2026-10-24T09:49:31.5742268Z       [36m</div>[39m
+2026-10-24T09:49:31.5742682Z       [36m<p>[39m
+2026-10-24T09:49:31.5743953Z         [0mProgrammi configurati, contenuti da organizzare e prerequisiti condivisi. Le bozze restano distinte dalle edizioni offerte.[0m
+2026-10-24T09:49:31.5745075Z       [36m</p>[39m
+2026-10-24T09:49:31.5745473Z       [36m<div[39m
+2026-10-24T09:49:31.5746014Z         [33mid[39m=[32m"curriculum-content"[39m
+2026-10-24T09:49:31.5746599Z       [36m>[39m
+2026-10-24T09:49:31.5746982Z         [36m<div[39m
+2026-10-24T09:49:31.5747860Z           [33maria-label[39m=[32m"Tipo di materiale"[39m
+2026-10-24T09:49:31.5748645Z           [33mclass[39m=[32m"curriculum-filters"[39m
+2026-10-24T09:49:31.5749213Z         [36m>[39m
+2026-10-24T09:49:31.5749629Z           [36m<button[39m
+2026-10-24T09:49:31.5750210Z             [33maria-pressed[39m=[32m"true"[39m
+2026-10-24T09:49:31.5750755Z           [36m>[39m
+2026-10-24T09:49:31.5751264Z             [0mPercorsi di Fisica ([0m
+2026-10-24T09:49:31.5751774Z             [0m1[0m
+2026-10-24T09:49:31.5752186Z             [0m)[0m
+2026-10-24T09:49:31.5752614Z           [36m</button>[39m
+2026-10-24T09:49:31.5753089Z           [36m<button[39m
+2026-10-24T09:49:31.5753683Z             [33maria-pressed[39m=[32m"false"[39m
+2026-10-24T09:49:31.5754244Z           [36m>[39m
+2026-10-24T09:49:31.5754767Z             [0mProgrammi configurati ([0m
+2026-10-24T09:49:31.5755587Z             [0m1[0m
+2026-10-24T09:49:31.5756001Z             [0m)[0m
+2026-10-24T09:49:31.5756436Z           [36m</button>[39m
+2026-10-24T09:49:31.5756917Z           [36m<button[39m
+2026-10-24T09:49:31.5757757Z             [33maria-pressed[39m=[32m"false"[39m
+2026-10-24T09:49:31.5758325Z           [36m>[39m
+2026-10-24T09:49:31.5758863Z             [0mRaccolte da progettare ([0m
+2026-10-24T09:49:31.5759416Z             [0m1[0m
+2026-10-24T09:49:31.5759834Z             [0m)[0m
+2026-10-24T09:49:31.5760279Z           [36m</button>[39m
+2026-10-24T09:49:31.5760757Z         [36m</div>[39m
+2026-10-24T09:49:31.5761194Z         [36m<div[39m
+2026-10-24T09:49:31.5761771Z           [33mclass[39m=[32m"physics-pathways"[39m
+2026-10-24T09:49:31.5762339Z         [36m>[39m
+2026-10-24T09:49:31.5762738Z           [36m<nav[39m
+2026-10-24T09:49:31.5763401Z             [33maria-label[39m=[32m"Posizione nel catalogo"[39m
+2026-10-24T09:49:31.5764195Z             [33mclass[39m=[32m"pathway-breadcrumb"[39m
+2026-10-24T09:49:31.5764761Z           [36m>[39m
+2026-10-24T09:49:31.5765176Z             [36m<a[39m
+2026-10-24T09:49:31.5765776Z               [33mhref[39m=[32m"/?catalog=pathways"[39m
+2026-10-24T09:49:31.5766341Z             [36m>[39m
+2026-10-24T09:49:31.5766843Z               [0mTutti i percorsi[0m
+2026-10-24T09:49:31.5767566Z             [36m</a>[39m
+2026-10-24T09:49:31.5768035Z             [36m<span[39m
+2026-10-24T09:49:31.5768613Z               [33maria-hidden[39m=[32m"true"[39m
+2026-10-24T09:49:31.5769373Z             [36m>[39m
+2026-10-24T09:49:31.5769843Z               [0m / [0m
+2026-10-24T09:49:31.5770290Z             [36m</span>[39m
+2026-10-24T09:49:31.5770777Z             [36m<a[39m
+2026-10-24T09:49:31.5772441Z               [33mhref[39m=[32m"/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"[39m
+2026-10-24T09:49:31.5773859Z             [36m>[39m
+2026-10-24T09:49:31.5774380Z               [0mPercorso sintetico[0m
+2026-10-24T09:49:31.5774902Z             [36m</a>[39m
+2026-10-24T09:49:31.5775352Z             [36m<span[39m
+2026-10-24T09:49:31.5775950Z               [33maria-current[39m=[32m"page"[39m
+2026-10-24T09:49:31.5776515Z             [36m>[39m
+2026-10-24T09:49:31.5776947Z               [0m / [0m
+2026-10-24T09:49:31.5777618Z               [0mU4[0m
+2026-10-24T09:49:31.5778065Z               [0m · [0m
+2026-10-24T09:49:31.5778584Z               [0mOnde meccaniche[0m
+2026-10-24T09:49:31.5779111Z             [36m</span>[39m
+2026-10-24T09:49:31.5779569Z           [36m</nav>[39m
+2026-10-24T09:49:31.5780010Z           [36m<h3[39m
+2026-10-24T09:49:31.5780534Z             [33mtabindex[39m=[32m"-1"[39m
+2026-10-24T09:49:31.5781054Z           [36m>[39m
+2026-10-24T09:49:31.5781564Z             [0mU4 · Onde meccaniche[0m
+2026-10-24T09:49:31.5782075Z           [36m</h3>[39m
+2026-10-24T09:49:31.5782498Z           [36m<p[39m
+2026-10-24T09:49:31.5783048Z             [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5783599Z           [36m>[39m
+2026-10-24T09:49:31.5785408Z             [0mComposizione editoriale iniziale. Un percorso non stabilisce incontri o calendario e non è un CoursePack erogabile. La pubblicazione dipende da edizione, quesito e revisione.[0m
+2026-10-24T09:49:31.5786877Z           [36m</p>[39m
+2026-10-24T09:49:31.5787622Z           [36m<p[39m
+2026-10-24T09:49:31.5806777Z             [33mclass[39m=[32m"curriculum-counts"[39m
+2026-10-24T09:49:31.5814565Z           [36m>[39m
+2026-10-24T09:49:31.5815177Z             [0m272[0m
+2026-10-24T09:49:31.5816097Z             [0m quesiti · [0m
+2026-10-24T09:49:31.5816618Z             [0m17[0m
+2026-10-24T09:49:31.5817517Z             [0m famiglie[0m
+2026-10-24T09:49:31.5819056Z           [36m</p>[39m
+2026-10-24T09:49:31.5819525Z           [36m<p>[39m
+2026-10-24T09:49:31.5822808Z             [0mStato autoriale: [0m
+2026-10-24T09:49:31.5824171Z             [0mDRAFT: 272[0m
+2026-10-24T09:49:31.5825014Z             [0m. Revisione umana da attestare.[0m
+2026-10-24T09:49:31.5825606Z           [36m</p>[39m
+2026-10-24T09:49:31.5826073Z           [36m<details>[39m
+2026-10-24T09:49:31.5826597Z             [36m<summary>[39m
+2026-10-24T09:49:31.5827485Z               [0mObiettivi dichiarati nei quesiti ([0m
+2026-10-24T09:49:31.5828097Z               [0m1[0m
+2026-10-24T09:49:31.5828537Z               [0m)[0m
+2026-10-24T09:49:31.5829050Z             [36m</summary>[39m
+2026-10-24T09:49:31.5829566Z             [36m<ul>[39m
+2026-10-24T09:49:31.5830034Z               [36m<li>[39m
+2026-10-24T09:49:31.5830640Z                 [0mConfrontare due frequenze[0m
+2026-10-24T09:49:31.5831214Z               [36m</li>[39m
+2026-10-24T09:49:31.5831696Z             [36m</ul>[39m
+2026-10-24T09:49:31.5832211Z           [36m</details>[39m
+2026-10-24T09:49:31.5832691Z           [36m<h4>[39m
+2026-10-24T09:49:31.5833231Z             [0mPrerequisiti dichiarati[0m
+2026-10-24T09:49:31.5833777Z           [36m</h4>[39m
+2026-10-24T09:49:31.5834213Z           [36m<ul>[39m
+2026-10-24T09:49:31.5834634Z             [36m<li>[39m
+2026-10-24T09:49:31.5835174Z               [0mLettura di una formula[0m
+2026-10-24T09:49:31.5835706Z             [36m</li>[39m
+2026-10-24T09:49:31.5836147Z           [36m</ul>[39m
+2026-10-24T09:49:31.5836648Z           [36m<h4>[39m
+2026-10-24T09:49:31.5837388Z             [0mCopertura osservata[0m
+2026-10-24T09:49:31.5837904Z           [36m</h4>[39m
+2026-10-24T09:49:31.5838542Z           [36m<p>[39m
+2026-10-24T09:49:31.5839043Z             [0mInterferenza[0m
+2026-10-24T09:49:31.5839519Z           [36m</p>[39m
+2026-10-24T09:49:31.5839949Z           [36m<h4>[39m
+2026-10-24T09:49:31.5840492Z             [0mPrima dell’erogazione[0m
+2026-10-24T09:49:31.5841113Z           [36m</h4>[39m
+2026-10-24T09:49:31.5841558Z           [36m<ul>[39m
+2026-10-24T09:49:31.5841984Z             [36m<li>[39m
+2026-10-24T09:49:31.5842547Z               [0mSequenza da deliberare[0m
+2026-10-24T09:49:31.5843080Z             [36m</li>[39m
+2026-10-24T09:49:31.5843521Z           [36m</ul>[39m
+2026-10-24T09:49:31.5843964Z           [36m<h4>[39m
+2026-10-24T09:49:31.5844495Z             [0mRaccolte collegate[0m
+2026-10-24T09:49:31.5845012Z           [36m</h4>[39m
+2026-10-24T09:49:31.5845476Z           [36m<article[39m
+2026-10-24T09:49:31.5846133Z             [33maria-label[39m=[32m"Onde meccaniche"[39m
+2026-10-24T09:49:31.5847534Z             [33mclass[39m=[32m"curriculum-card curriculum-candidate"[39m
+2026-10-24T09:49:31.5871078Z           [36m>[39m
+2026-10-24T09:49:31.5871588Z             [36m<div[39m
+2026-10-24T09:49:31.5872141Z               [33mclass[39m=[32m"curriculum-card-heading"[39m
+2026-10-24T09:49:31.5872572Z             [36m>[39m
+2026-10-24T09:49:31.5872885Z               [36m<p[39m
+2026-10-24T09:49:31.5873366Z                 [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5873981Z               [36m>[39m
+2026-10-24T09:49:31.5874526Z                 [0mFisica · 2026/2027 · U4[0m
+2026-10-24T09:49:31.5875173Z               [36m</p>[39m
+2026-10-24T09:49:31.5875656Z               [36m<span[39m
+2026-10-24T09:49:31.5876322Z                 [33mclass[39m=[32m"curriculum-status"[39m
+2026-10-24T09:49:31.5876957Z               [36m>[39m
+2026-10-24T09:49:31.5877661Z                 [0mDRAFT[0m
+2026-10-24T09:49:31.5878207Z               [36m</span>[39m
+2026-10-24T09:49:31.5878727Z             [36m</div>[39m
+2026-10-24T09:49:31.5879234Z             [36m<h3>[39m
+2026-10-24T09:49:31.5879779Z               [0mOnde meccaniche[0m
+2026-10-24T09:49:31.5880327Z             [36m</h3>[39m
+2026-10-24T09:49:31.5880796Z             [36m<p[39m
+2026-10-24T09:49:31.5881448Z               [33mclass[39m=[32m"curriculum-counts"[39m
+2026-10-24T09:49:31.5882098Z             [36m>[39m
+2026-10-24T09:49:31.5882536Z               [0m272[0m
+2026-10-24T09:49:31.5883057Z               [0m quesiti · [0m
+2026-10-24T09:49:31.5883832Z               [0m17[0m
+2026-10-24T09:49:31.5884356Z               [0m famiglie · [0m
+2026-10-24T09:49:31.5884865Z               [0m272[0m
+2026-10-24T09:49:31.5885394Z               [0m soluzioni[0m
+2026-10-24T09:49:31.5885893Z             [36m</p>[39m
+2026-10-24T09:49:31.5886340Z             [36m<p>[39m
+2026-10-24T09:49:31.5887758Z               [0mNon è ancora un programma per un’edizione. È una selezione di contenuti da organizzare e revisionare.[0m
+2026-10-24T09:49:31.5888861Z             [36m</p>[39m
+2026-10-24T09:49:31.5889363Z             [36m<p[39m
+2026-10-24T09:49:31.5889969Z               [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5890567Z             [36m>[39m
+2026-10-24T09:49:31.5891162Z               [0mRevisione umana da eseguire[0m
+2026-10-24T09:49:31.5891999Z               [0m. I quesiti delle raccolte possono sovrapporsi.[0m
+2026-10-24T09:49:31.5892698Z             [36m</p>[39m
+2026-10-24T09:49:31.5893229Z             [36m<details>[39m
+2026-10-24T09:49:31.5893798Z               [36m<summary>[39m
+2026-10-24T09:49:31.5894285Z                 [0mContenuti, riferimenti e lacune[0m
+2026-10-24T09:49:31.5894651Z               [36m</summary>[39m
+2026-10-24T09:49:31.5894942Z               [36m<div>[39m
+2026-10-24T09:49:31.5895238Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5895560Z                   [0mArgomenti presenti[0m
+2026-10-24T09:49:31.5895893Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5896179Z                 [36m<ul>[39m
+2026-10-24T09:49:31.5896631Z                   [36m<li>[39m
+2026-10-24T09:49:31.5896954Z                     [0mInterferenza[0m
+2026-10-24T09:49:31.5897577Z                   [36m</li>[39m
+2026-10-24T09:49:31.5897875Z                 [36m</ul>[39m
+2026-10-24T09:49:31.5898154Z               [36m</div>[39m
+2026-10-24T09:49:31.5898445Z               [36m<details[39m
+2026-10-24T09:49:31.5898806Z                 [33mclass[39m=[32m"curriculum-topics"[39m
+2026-10-24T09:49:31.5899148Z               [36m>[39m
+2026-10-24T09:49:31.5899431Z                 [36m<summary>[39m
+2026-10-24T09:49:31.5899780Z                   [0mTutti i temi del materiale ([0m
+2026-10-24T09:49:31.5900139Z                   [0m1[0m
+2026-10-24T09:49:31.5900393Z                   [0m)[0m
+2026-10-24T09:49:31.5900673Z                 [36m</summary>[39m
+2026-10-24T09:49:31.5900969Z                 [36m<div>[39m
+2026-10-24T09:49:31.5901252Z                   [36m<h4>[39m
+2026-10-24T09:49:31.5901533Z                     [0mTemi[0m
+2026-10-24T09:49:31.5901821Z                   [36m</h4>[39m
+2026-10-24T09:49:31.5902111Z                   [36m<ul>[39m
+2026-10-24T09:49:31.5902392Z                     [36m<li>[39m
+2026-10-24T09:49:31.5902708Z                       [0mBattimenti[0m
+2026-10-24T09:49:31.5903027Z                     [36m</li>[39m
+2026-10-24T09:49:31.5903329Z                   [36m</ul>[39m
+2026-10-24T09:49:31.5903622Z                 [36m</div>[39m
+2026-10-24T09:49:31.5903916Z               [36m</details>[39m
+2026-10-24T09:49:31.5904201Z               [36m<div>[39m
+2026-10-24T09:49:31.5904482Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5904867Z                   [0mCompiti cognitivi dichiarati[0m
+2026-10-24T09:49:31.5905221Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5905533Z                 [36m<ul>[39m
+2026-10-24T09:49:31.5905812Z                   [36m<li>[39m
+2026-10-24T09:49:31.5906149Z                     [0mConfrontare due frequenze[0m
+2026-10-24T09:49:31.5906490Z                   [36m</li>[39m
+2026-10-24T09:49:31.5906775Z                 [36m</ul>[39m
+2026-10-24T09:49:31.5907257Z               [36m</div>[39m
+2026-10-24T09:49:31.5907560Z               [36m<div>[39m
+2026-10-24T09:49:31.5907866Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5908182Z                   [0mPrerequisiti[0m
+2026-10-24T09:49:31.5908493Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5908768Z                 [36m<ul>[39m
+2026-10-24T09:49:31.5909198Z                   [36m<li>[39m
+2026-10-24T09:49:31.5909565Z                     [0mLettura di una formula[0m
+2026-10-24T09:49:31.5909916Z                   [36m</li>[39m
+2026-10-24T09:49:31.5910199Z                 [36m</ul>[39m
+2026-10-24T09:49:31.5910473Z               [36m</div>[39m
+2026-10-24T09:49:31.5910733Z               [36m<div>[39m
+2026-10-24T09:49:31.5911006Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5911503Z                   [0mDistribuzione dichiarata delle difficoltà[0m
+2026-10-24T09:49:31.5911915Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5912179Z                 [36m<p>[39m
+2026-10-24T09:49:31.5912600Z                   [0mbase: 68 · facile: 68 · medio: 68 · difficile: 68[0m
+2026-10-24T09:49:31.5913009Z                 [36m</p>[39m
+2026-10-24T09:49:31.5913280Z                 [36m<p[39m
+2026-10-24T09:49:31.5913626Z                   [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5913956Z                 [36m>[39m
+2026-10-24T09:49:31.5914428Z                   [0mLa difficoltà dichiarata non è una calibrazione su studenti.[0m
+2026-10-24T09:49:31.5914866Z                 [36m</p>[39m
+2026-10-24T09:49:31.5915145Z               [36m</div>[39m
+2026-10-24T09:49:31.5915411Z               [36m<div>[39m
+2026-10-24T09:49:31.5915687Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5915983Z                   [0mDa completare[0m
+2026-10-24T09:49:31.5916302Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5916584Z                 [36m<ul>[39m
+2026-10-24T09:49:31.5916998Z                   [36m<li>[39m
+2026-10-24T09:49:31.5917642Z                     [0mCoursePack e sequenza incontri assenti[0m
+2026-10-24T09:49:31.5918027Z                   [36m</li>[39m
+2026-10-24T09:49:31.5918315Z                   [36m<li>[39m
+2026-10-24T09:49:31.5918673Z                     [0mRevisione scientifica/editoriale[0m
+2026-10-24T09:49:31.5919026Z                   [36m</li>[39m
+2026-10-24T09:49:31.5919311Z                   [36m<li>[39m
+2026-10-24T09:49:31.5919645Z                     [0mCollaudo del percorso[0m
+2026-10-24T09:49:31.5919990Z                   [36m</li>[39m
+2026-10-24T09:49:31.5920272Z                 [36m</ul>[39m
+2026-10-24T09:49:31.5920550Z               [36m</div>[39m
+2026-10-24T09:49:31.5920817Z               [36m<div>[39m
+2026-10-24T09:49:31.5921089Z                 [36m<h4>[39m
+2026-10-24T09:49:31.5921412Z                   [0mRiferimenti di esempio[0m
+2026-10-24T09:49:31.5921747Z                 [36m</h4>[39m
+2026-10-24T09:49:31.5922026Z                 [36m<ul>[39m
+2026-10-24T09:49:31.5922300Z                   [36m<li>[39m
+2026-10-24T09:49:31.5922595Z                     [36m<code>[39m
+2026-10-24T09:49:31.5922930Z                       [0mfixture-wave-01[0m
+2026-10-24T09:49:31.5923272Z                     [36m</code>[39m
+2026-10-24T09:49:31.5923585Z                     [0m · v[0m
+2026-10-24T09:49:31.5923849Z                     [0m1[0m
+2026-10-24T09:49:31.5924131Z                     [36m<br />[39m
+2026-10-24T09:49:31.5924439Z                     [36m<span[39m
+2026-10-24T09:49:31.5924804Z                       [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5925146Z                     [36m>[39m
+2026-10-24T09:49:31.5925467Z                       [0mSHA-256 contenuto: [0m
+2026-10-24T09:49:31.5925888Z                       [36m<code>[39m
+2026-10-24T09:49:31.5926937Z                         [0mcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc[0m
+2026-10-24T09:49:31.5928194Z                       [36m</code>[39m
+2026-10-24T09:49:31.5928807Z                     [36m</span>[39m
+2026-10-24T09:49:31.5929396Z                   [36m</li>[39m
+2026-10-24T09:49:31.5929940Z                 [36m</ul>[39m
+2026-10-24T09:49:31.5930478Z               [36m</div>[39m
+2026-10-24T09:49:31.5930898Z               [36m<p[39m
+2026-10-24T09:49:31.5931508Z                 [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5932118Z               [36m>[39m
+2026-10-24T09:49:31.5932959Z                 [0mSelezione riutilizzabile: [0m
+2026-10-24T09:49:31.5933577Z                 [36m<code>[39m
+2026-10-24T09:49:31.5934087Z                   [0msf-u4[0m
+2026-10-24T09:49:31.5934399Z                 [36m</code>[39m
+2026-10-24T09:49:31.5934692Z                 [36m<br />[39m
+2026-10-24T09:49:31.5934976Z                 [0mBanca: [0m
+2026-10-24T09:49:31.5935263Z                 [36m<code>[39m
+2026-10-24T09:49:31.5935591Z                   [0mphysics-semestre-2026[0m
+2026-10-24T09:49:31.5935946Z                   [0m · v[0m
+2026-10-24T09:49:31.5936211Z                   [0m1[0m
+2026-10-24T09:49:31.5936487Z                 [36m</code>[39m
+2026-10-24T09:49:31.5936820Z                 [36m<br />[39m
+2026-10-24T09:49:31.5937379Z                 [0mSHA-256: [0m
+2026-10-24T09:49:31.5937696Z                 [36m<code>[39m
+2026-10-24T09:49:31.5938227Z                   [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+2026-10-24T09:49:31.5938753Z                 [36m</code>[39m
+2026-10-24T09:49:31.5939027Z               [36m</p>[39m
+2026-10-24T09:49:31.5939311Z             [36m</details>[39m
+2026-10-24T09:49:31.5939595Z           [36m</article>[39m
+2026-10-24T09:49:31.5939864Z           [36m<details[39m
+2026-10-24T09:49:31.5940211Z             [33mclass[39m=[32m"pathway-identity"[39m
+2026-10-24T09:49:31.5940535Z           [36m>[39m
+2026-10-24T09:49:31.5940818Z             [36m<summary>[39m
+2026-10-24T09:49:31.5941312Z               [0mIdentità e provenienza[0m
+2026-10-24T09:49:31.5941669Z             [36m</summary>[39m
+2026-10-24T09:49:31.5941948Z             [36m<p>[39m
+2026-10-24T09:49:31.5942217Z               [36m<code>[39m
+2026-10-24T09:49:31.5942527Z                 [0mfixture-composition[0m
+2026-10-24T09:49:31.5942840Z                 [0m · v[0m
+2026-10-24T09:49:31.5943144Z                 [0m2[0m
+2026-10-24T09:49:31.5945993Z               [36m</code>[39m
+2026-10-24T09:49:31.5946305Z               [36m<br />[39m
+2026-10-24T09:49:31.5946655Z               [0mSHA-256 composizione: [0m
+2026-10-24T09:49:31.5946989Z               [36m<code>[39m
+2026-10-24T09:49:31.5947804Z                 [0mdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd[0m
+2026-10-24T09:49:31.5948314Z               [36m</code>[39m
+2026-10-24T09:49:31.5948600Z               [36m<br />[39m
+2026-10-24T09:49:31.5948871Z               [36m<code>[39m
+2026-10-24T09:49:31.5949198Z                 [0mphysics-semestre-2026[0m
+2026-10-24T09:49:31.5949529Z                 [0m · v[0m
+2026-10-24T09:49:31.5949784Z                 [0m1[0m
+2026-10-24T09:49:31.5950085Z               [36m</code>[39m
+2026-10-24T09:49:31.5950368Z               [36m<br />[39m
+2026-10-24T09:49:31.5950662Z               [0mSHA-256 banca: [0m
+2026-10-24T09:49:31.5950965Z               [36m<code>[39m
+2026-10-24T09:49:31.5951469Z                 [0mbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb[0m
+2026-10-24T09:49:31.5952018Z               [36m</code>[39m
+2026-10-24T09:49:31.5952307Z             [36m</p>[39m
+2026-10-24T09:49:31.5952589Z             [36m<p[39m
+2026-10-24T09:49:31.5952911Z               [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5953224Z             [36m>[39m
+2026-10-24T09:49:31.5953985Z               [0mQuantità e metadati derivati dai record verificati del Core. Completezza didattica e validazione scientifica non attestate.[0m
+2026-10-24T09:49:31.5954644Z             [36m</p>[39m
+2026-10-24T09:49:31.5954925Z           [36m</details>[39m
+2026-10-24T09:49:31.5955191Z         [36m</div>[39m
+2026-10-24T09:49:31.5955445Z         [36m<details[39m
+2026-10-24T09:49:31.5955802Z           [33mclass[39m=[32m"curriculum-prerequisites"[39m
+2026-10-24T09:49:31.5956150Z         [36m>[39m
+2026-10-24T09:49:31.5956388Z           [36m<summary>[39m
+2026-10-24T09:49:31.5956706Z             [0mPrerequisiti condivisi ([0m
+2026-10-24T09:49:31.5957012Z             [0m1[0m
+2026-10-24T09:49:31.5957942Z             [0m)[0m
+2026-10-24T09:49:31.5958215Z           [36m</summary>[39m
+2026-10-24T09:49:31.5958481Z           [36m<p[39m
+2026-10-24T09:49:31.5958797Z             [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5959109Z           [36m>[39m
+2026-10-24T09:49:31.5959764Z             [0mEtichette già presenti in più programmi o raccolte; non attestano che esistano moduli di recupero dedicati.[0m
+2026-10-24T09:49:31.5960336Z           [36m</p>[39m
+2026-10-24T09:49:31.5960739Z           [36m<ul>[39m
+2026-10-24T09:49:31.5961019Z             [36m<li>[39m
+2026-10-24T09:49:31.5961404Z               [0mLettura di una formula[0m
+2026-10-24T09:49:31.5961750Z               [0m [0m
+2026-10-24T09:49:31.5962039Z               [36m<span[39m
+2026-10-24T09:49:31.5962401Z                 [33mclass[39m=[32m"fine-print"[39m
+2026-10-24T09:49:31.5962777Z               [36m>[39m
+2026-10-24T09:49:31.5963112Z                 [0m· [0m
+2026-10-24T09:49:31.5963399Z                 [0m2[0m
+2026-10-24T09:49:31.5963692Z                 [0m riferimenti[0m
+2026-10-24T09:49:31.5964028Z               [36m</span>[39m
+2026-10-24T09:49:31.5964315Z             [36m</li>[39m
+2026-10-24T09:49:31.5964586Z           [36m</ul>[39m
+2026-10-24T09:49:31.5964858Z         [36m</details>[39m
+2026-10-24T09:49:31.5965117Z       [36m</div>[39m
+2026-10-24T09:49:31.5965384Z     [36m</section>[39m
+2026-10-24T09:49:31.5965651Z     [36m<section[39m
+2026-10-24T09:49:31.5966188Z       [33maria-label[39m=[32m"Gestione delle edizioni"[39m
+2026-10-24T09:49:31.5966660Z       [33mclass[39m=[32m"edition-manager"[39m
+2026-10-24T09:49:31.5966990Z     [36m>[39m
+2026-10-24T09:49:31.5967506Z       [36m<div[39m
+2026-10-24T09:49:31.5967862Z         [33mclass[39m=[32m"section-title"[39m
+2026-10-24T09:49:31.5968202Z       [36m>[39m
+2026-10-24T09:49:31.5968455Z         [36m<div>[39m
+2026-10-24T09:49:31.5968708Z           [36m<p[39m
+2026-10-24T09:49:31.5969041Z             [33mclass[39m=[32m"section-meta"[39m
+2026-10-24T09:49:31.5969357Z           [36m>[39m
+2026-10-24T09:49:31.5969674Z             [0mRegia del docente[0m
+2026-10-24T09:49:31.5970002Z           [36m</p>[39m
+2026-10-24T09:49:31.5970313Z           [36m<h2>[39m
+2026-10-24T09:49:31.5970700Z             [0mDal programma alla prossima edizione.[0m
+2026-10-24T09:49:31.5971092Z           [36m</h2>[39m
+2026-10-24T09:49:31.5971363Z         [36m</div>[39m
+2026-10-24T09:49:31.5971631Z         [36m<button[39m
+2026-10-24T09:49:31.5971978Z           [33mclass[39m=[32m"button-primary"[39m
+2026-10-24T09:49:31.5972316Z         [36m>[39m
+2026-10-24T09:49:31.5972618Z           [0mNuova edizione[0m
+2026-10-24T09:49:31.5972917Z         [36m</button>[39m
+2026-10-24T09:49:31.5973171Z       [36m</div>[39m
+2026-10-24T09:49:31.5973444Z       [36m<p>[39m
+2026-10-24T09:49:31.5974205Z         [0mScegli un programma, prepara le quattro date e rileggi l’offerta. La bozza resta privata finché non la confermi.[0m
+2026-10-24T09:49:31.5974864Z       [36m</p>[39m
+2026-10-24T09:49:31.5975155Z     [36m</section>[39m
+2026-10-24T09:49:31.5975462Z   [36m</div>[39m
+2026-10-24T09:49:31.5975737Z [36m</body>[39m
+2026-10-24T09:49:31.5976465Z [90m [2m❯[22m Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+2026-10-24T09:49:31.5977642Z [90m [2m❯[22m ../../node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+2026-10-24T09:49:31.5978499Z [90m [2m❯[22m ../../node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+2026-10-24T09:49:31.5979345Z [90m [2m❯[22m ../../node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+2026-10-24T09:49:31.5980078Z [36m [2m❯[22m src/__tests__/curriculum-catalog.test.tsx:[2m95:17[22m[39m
+2026-10-24T09:49:31.5980843Z     [90m 93|[39m   history.replaceState(null, "", url.replace("catalogVersion=2", "cata…
+2026-10-24T09:49:31.5981730Z     [90m 94|[39m   [34mfireEvent[39m(window[33m,[39m [35mnew[39m [33mPopStateEvent[39m([32m"popstate"[39m))[33m;[39m
+2026-10-24T09:49:31.5982755Z     [90m 95|[39m   expect(screen.getByRole("heading", { name: "Riferimento non disponib…
+2026-10-24T09:49:31.5983304Z     [90m   |[39m                 [31m^[39m
+2026-10-24T09:49:31.5983866Z     [90m 96|[39m   expect(screen.queryByRole("article", { name: "Onde meccaniche" })).t…
+2026-10-24T09:49:31.5984571Z     [90m 97|[39m   fireEvent.click(screen.getByRole("link", { name: "Tutti i percorsi" …
+2026-10-24T09:49:31.5984918Z
+2026-10-24T09:49:31.5985191Z [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+2026-10-24T09:49:31.5985422Z
+2026-10-24T09:49:31.5985446Z
+2026-10-24T09:49:31.5985947Z [2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m41 passed[39m[22m[90m (42)[39m
+2026-10-24T09:49:31.5986784Z [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m293 passed[39m[22m[90m (294)[39m
+2026-10-24T09:49:31.5987755Z [2m   Start at [22m 09:49:07
+2026-10-24T09:49:31.5988561Z [2m   Duration [22m 24.08s[2m (transform 2.04s, setup 0ms, import 7.03s, tests 26.16s, environment 30.93s)[22m
+2026-10-24T09:49:31.5988990Z
+2026-10-24T09:49:31.5988996Z
+2026-10-24T09:49:31.6069575Z ##[error]TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Riferimento non disponibile"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  <header
+    class="page-heading"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "I tuoi mini-corsi.":
+  <h1 />
+
+  Name "Le basi dei tuoi prossimi corsi.":
+  <h2 />
+
+  Name "U4 · Onde meccaniche":
+  <h3
+    tabindex="-1"
+  />
+
+  Name "Prerequisiti dichiarati":
+  <h4 />
+
+  Name "Copertura osservata":
+  <h4 />
+
+  Name "Prima dell’erogazione":
+  <h4 />
+
+  Name "Raccolte collegate":
+  <h4 />
+
+  Name "Onde meccaniche":
+  <h3 />
+
+  Name "Argomenti presenti":
+  <h4 />
+
+  Name "Temi":
+  <h4 />
+
+  Name "Compiti cognitivi dichiarati":
+  <h4 />
+
+  Name "Prerequisiti":
+  <h4 />
+
+  Name "Distribuzione dichiarata delle difficoltà":
+  <h4 />
+
+  Name "Da completare":
+  <h4 />
+
+  Name "Riferimenti di esempio":
+  <h4 />
+
+  Name "Dal programma alla prossima edizione.":
+  <h2 />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="section-meta"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p
+    class="curriculum-counts"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="section-meta"
+  />
+
+  Name "":
+  <p
+    class="curriculum-counts"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p
+    class="fine-print"
+  />
+
+  Name "":
+  <p
+    class="section-meta"
+  />
+
+  Name "":
+  <p />
+
+  --------------------------------------------------
+  region:
+
+  Name "Catalogo privato del docente":
+  <section
+    aria-label="Catalogo privato del docente"
+    class="curriculum-catalog"
+  />
+
+  Name "Gestione delle edizioni":
+  <section
+    aria-label="Gestione delle edizioni"
+    class="edition-manager"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Chiudi catalogo":
+  <button
+    aria-controls="curriculum-content"
+    aria-expanded="true"
+  />
+
+  Name "Percorsi di Fisica (1)":
+  <button
+    aria-pressed="true"
+  />
+
+  Name "Programmi configurati (1)":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "Raccolte da progettare (1)":
+  <button
+    aria-pressed="false"
+  />
+
+  Name "Nuova edizione":
+  <button
+    class="button-primary"
+  />
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Posizione nel catalogo":
+  <nav
+    aria-label="Posizione nel catalogo"
+    class="pathway-breadcrumb"
+  />
+
+  --------------------------------------------------
+  link:
+
+  Name "Tutti i percorsi":
+  <a
+    href="/?catalog=pathways"
+  />
+
+  Name "Percorso sintetico":
+  <a
+    href="/?catalog=pathways&pathway=fixture-path&catalogVersion=2&catalogSha=dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  />
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  <details />
+
+  Name "":
+  <details />
+
+  Name "":
+  <details
+    class="curriculum-topics"
+  />
+
+  Name "":
+  <details
+    class="pathway-identity"
+  />
+
+  Name "":
+  <details
+    class="curriculum-prerequisites"
+  />
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  Name "":
+  <ul />
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  Name "":
+  <li />
+
+  --------------------------------------------------
+  article:
+
+  Name "Onde meccaniche":
+  <article
+    aria-label="Onde meccaniche"
+    class="curriculum-card curriculum-candidate"
+  />
+
+  ---------
+2026-10-24T09:49:31.6166903Z npm error Lifecycle script `test` failed with error:
+2026-10-24T09:49:31.6168297Z npm error code 1
+2026-10-24T09:49:31.6169542Z npm error path /home/runner/work/ardesia/ardesia/apps/web
+2026-10-24T09:49:31.6170627Z npm error workspace @ardesia/web@0.1.0
+2026-10-24T09:49:31.6172113Z npm error location /home/runner/work/ardesia/ardesia/apps/web
+2026-10-24T09:49:31.6172878Z npm error command failed
+2026-10-24T09:49:31.6174997Z npm error command sh -c vitest run
+2026-10-24T09:49:31.6287992Z ##[error]Process completed with exit code 1.
+2026-10-24T09:49:31.6430948Z ##[group]Run actions/upload-artifact@v4
+2026-10-24T09:49:31.6431294Z with:
+2026-10-24T09:49:31.6431676Z   name: web-physics-pathways-75a541a82148adec6467aa3b5867f41d8feff16a
+2026-10-24T09:49:31.6432252Z   path: apps/web/test-results/physics-pathways.*
+2026-10-24T09:49:31.6432634Z   if-no-files-found: warn
+2026-10-24T09:49:31.6432902Z   retention-days: 14
+2026-10-24T09:49:31.6433139Z   compression-level: 6
+2026-10-24T09:49:31.6433381Z   overwrite: false
+2026-10-24T09:49:31.6433619Z   include-hidden-files: false
+2026-10-24T09:49:31.6433896Z ##[endgroup]
+2026-10-24T09:49:31.8124568Z (node:2972) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-24T09:49:31.8126055Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-24T09:49:31.8145595Z ##[warning]No files were found with the provided path: apps/web/test-results/physics-pathways.*. No artifacts will be uploaded.
+2026-10-24T09:49:31.8438125Z Post job cleanup.
+2026-10-24T09:49:31.9342172Z [command]/usr/bin/git version
+2026-10-24T09:49:31.9388556Z git version 2.55.0
+2026-10-24T09:49:31.9429554Z Temporarily overriding HOME='/home/runner/work/_temp/028c8873-0c60-43b2-b65d-d6acf16d1cc7' before making global git config changes
+2026-10-24T09:49:31.9431135Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-24T09:49:31.9435538Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ardesia/ardesia
+2026-10-24T09:49:31.9479539Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-24T09:49:31.9517555Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-24T09:49:31.9789030Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-24T09:49:31.9839807Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-24T09:49:32.0095418Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-24T09:49:32.0136454Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-24T09:49:32.0608927Z Cleaning up orphan processes
+2026-10-24T09:49:32.0900821Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

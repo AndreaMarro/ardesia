@@ -1,0 +1,26 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/AudioV2.test.ts (18 tests | 1 failed | 17 skipped) 31ms
+     × prepares a verified passage for unified /studio and refuses revoked media or a stale object pin before sending 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2.test.ts > canonical audio recording v2 > prepares a verified passage for unified /studio and refuses revoked media or a stale object pin before sending
+Error: Passaggio verso Aula da implementare
+ ❯ prepareLessonPassage src/store/lessonPassage.ts:4:9
+      2| import type { AudioRecordingRef } from "./audioRecording"
+      3| export async function prepareLessonPassage(_store: WorkspaceStore, _re…
+      4|   throw new Error("Passaggio verso Aula da implementare")
+       |         ^
+      5| }
+      6|
+ ❯ src/__tests__/AudioV2.test.ts:107:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 skipped (18)
+   Start at  14:47:36
+   Duration  1.24s (transform 203ms, setup 28ms, import 273ms, tests 31ms, environment 815ms)

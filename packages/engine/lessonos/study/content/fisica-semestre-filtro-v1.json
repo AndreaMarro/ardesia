@@ -1,0 +1,535 @@
+{
+  "id": "fisica-semestre-filtro-v1",
+  "version": 1,
+  "title": "Fisica — Prova di filtro",
+  "subtitle": "Semestre filtro 2026/27",
+  "durationSeconds": 3000,
+  "rules": {
+    "totalQuestions": 31,
+    "mcq": 21,
+    "completion": 10,
+    "correctTenths": 10,
+    "wrongTenths": -1,
+    "omittedTenths": 0,
+    "maxTenths": 310,
+    "scoring": "Risposta corretta +1,00; risposta errata -0,10; risposta omessa 0,00.",
+    "maxScore": 31.0
+  },
+  "provenance": "Prova originale scritta per ARDESIA, ispirata ai programmi di fisica della scuola secondaria superiore. Non è un fac-simile ufficiale né una prova ministeriale.",
+  "questions": [
+    {
+      "id": "fis-mecc-01",
+      "topic": "Cinematica",
+      "type": "mcq",
+      "prompt": "Un'automobile parte da ferma e raggiunge la velocità di 20 m/s in 8 s, con accelerazione costante. Quale distanza percorre?",
+      "options": [
+        "80 m",
+        "160 m",
+        "40 m",
+        "20 m"
+      ],
+      "answer": 0,
+      "explanation": "Con accelerazione costante, lo spazio è la media delle velocità per il tempo: s = ((0 + 20) / 2) × 8 = 80 m. In alternativa, a = 20/8 = 2,5 m/s² e s = ½at² = ½ × 2,5 × 64 = 80 m."
+    },
+    {
+      "id": "fis-mecc-02",
+      "topic": "Dinamica",
+      "type": "mcq",
+      "prompt": "Un blocco di 2 kg è spinto da una forza orizzontale di 6 N su un piano orizzontale senza attrito. Qual è il modulo della sua accelerazione?",
+      "options": [
+        "12 m/s²",
+        "3 m/s²",
+        "0,33 m/s²",
+        "6 m/s²"
+      ],
+      "answer": 1,
+      "explanation": "Dal secondo principio della dinamica F = ma, quindi a = F/m = 6/2 = 3 m/s²."
+    },
+    {
+      "id": "fis-mecc-03",
+      "topic": "Energia",
+      "type": "mcq",
+      "prompt": "Un corpo cade da fermo da un'altezza di 0,80 m. Trascurando l'attrito e usando g = 9,8 m/s², quale velocità ha appena prima di toccare il suolo?",
+      "options": [
+        "2,8 m/s",
+        "8,0 m/s",
+        "4,0 m/s",
+        "16 m/s"
+      ],
+      "answer": 2,
+      "explanation": "La conservazione dell'energia meccanica dà ½mv² = mgh, quindi v = √(2gh) = √(2 × 9,8 × 0,80) ≈ 4,0 m/s. La massa non serve: si semplifica."
+    },
+    {
+      "id": "fis-mecc-04",
+      "topic": "Quantità di moto",
+      "type": "mcq",
+      "prompt": "Due carrelli identici si urtano in modo elastico su un binario orizzontale senza attrito. Il primo arriva con velocità v, il secondo è fermo. Che cosa accade subito dopo l'urto?",
+      "options": [
+        "Entrambi si muovono con velocità v/2.",
+        "Il primo carrello si ferma e il secondo parte con velocità v.",
+        "Entrambi si fermano.",
+        "Il primo torna indietro con velocità -v e il secondo parte con velocità 2v."
+      ],
+      "answer": 1,
+      "explanation": "In un urto elastico centrale tra masse uguali, le velocità si scambiano. Essendo il secondo inizialmente fermo, dopo l'urto il primo si ferma e il secondo acquista velocità v. Si conservano sia la quantità di moto sia l'energia cinetica."
+    },
+    {
+      "id": "fis-mecc-05",
+      "topic": "Moto circolare",
+      "type": "mcq",
+      "prompt": "Un'automobile percorre una curva circolare di raggio 50 m a velocità costante di 10 m/s. Qual è il modulo della sua accelerazione centripeta?",
+      "options": [
+        "5 m/s²",
+        "0,2 m/s²",
+        "20 m/s²",
+        "2 m/s²"
+      ],
+      "answer": 3,
+      "explanation": "L'accelerazione centripeta vale a_c = v²/r = 10²/50 = 100/50 = 2 m/s². La velocità è costante in modulo, ma la direzione cambia, quindi l'accelerazione non è nulla."
+    },
+    {
+      "id": "fis-termo-06",
+      "topic": "Termodinamica",
+      "type": "mcq",
+      "prompt": "Due moli di gas ideale monoatomico vengono riscaldate a volume costante da 300 K a 400 K. Quanto calore assorbono? (R è la costante dei gas)",
+      "options": [
+        "200 R",
+        "300 R",
+        "500 R",
+        "100 R"
+      ],
+      "answer": 1,
+      "explanation": "A volume costante Q = n C_V ΔT. Per un gas ideale monoatomico C_V = (3/2)R, quindi Q = 2 × (3/2)R × 100 = 300R. A pressione costante servirebbe C_P = (5/2)R e il calore sarebbe 500R."
+    },
+    {
+      "id": "fis-termo-07",
+      "topic": "Secondo principio",
+      "type": "mcq",
+      "prompt": "Quale affermazione è compatibile con il secondo principio della termodinamica?",
+      "options": [
+        "Il calore passa spontaneamente da un corpo freddo a uno più caldo, senza lavoro esterno.",
+        "Una macchina termica può avere rendimento del 100% tra due sorgenti a temperature diverse.",
+        "L'entropia di un sistema isolato può diminuire spontaneamente.",
+        "L'entropia dell'universo non diminuisce nei processi spontanei."
+      ],
+      "answer": 3,
+      "explanation": "Il secondo principio afferma che nei processi spontanei l'entropia totale dell'universo non diminuisce. Il passaggio spontaneo di calore da freddo a caldo e il rendimento del 100% sono impossibili; l'entropia di un sistema isolato non può diminuire spontaneamente."
+    },
+    {
+      "id": "fis-termo-08",
+      "topic": "Gas ideali",
+      "type": "mcq",
+      "prompt": "Un gas ideale, a temperatura costante, triplica la sua pressione. Come cambia il suo volume?",
+      "options": [
+        "Diventa un terzo del valore iniziale.",
+        "Triplica.",
+        "Diventa nove volte quello iniziale.",
+        "Resta invariato."
+      ],
+      "answer": 0,
+      "explanation": "A temperatura e quantità di gas fissate vale la legge di Boyle: pV = costante. Se p diventa 3p, allora V diventa V/3. Attenzione a non applicare la legge isobara, che richiederebbe pressione costante."
+    },
+    {
+      "id": "fis-elettro-09",
+      "topic": "Elettrostatica",
+      "type": "mcq",
+      "prompt": "Due cariche puntiformi si attraggono con una forza di modulo F. Se la loro distanza viene raddoppiata, il modulo della forza diventa:",
+      "options": [
+        "F/2",
+        "2F",
+        "F/4",
+        "4F"
+      ],
+      "answer": 2,
+      "explanation": "La forza di Coulomb è inversamente proporzionale al quadrato della distanza: F ∝ 1/r². Raddoppiando r, il denominatore diventa 4r² e la forza si riduce a F/4."
+    },
+    {
+      "id": "fis-elettro-10",
+      "topic": "Circuiti",
+      "type": "mcq",
+      "prompt": "Due resistori da 6 Ω sono collegati in parallelo a una batteria ideale da 12 V. Quale affermazione è corretta?",
+      "options": [
+        "La resistenza equivalente è 12 Ω e la corrente totale è 1 A.",
+        "La resistenza equivalente è 3 Ω e la corrente totale è 4 A.",
+        "La resistenza equivalente è 6 Ω e la corrente totale è 2 A.",
+        "La resistenza equivalente è 3 Ω e la corrente totale è 2 A."
+      ],
+      "answer": 1,
+      "explanation": "Per due resistori uguali in parallelo, R_eq = R/2 = 3 Ω. La corrente totale è I = V/R_eq = 12/3 = 4 A. Ogni ramo è percorso da 2 A, ma la corrente totale è la somma dei due rami."
+    },
+    {
+      "id": "fis-elettro-11",
+      "topic": "Condensatori",
+      "type": "mcq",
+      "prompt": "Un condensatore carico viene scollegato dalla batteria e le armature vengono allontanate fino a raddoppiare la distanza. Che cosa accade?",
+      "options": [
+        "La carica raddoppia, la capacità resta invariata e la differenza di potenziale si dimezza.",
+        "La carica resta invariata, la capacità si dimezza e la differenza di potenziale raddoppia.",
+        "La capacità raddoppia e la differenza di potenziale si dimezza.",
+        "La differenza di potenziale resta invariata perché la carica non cambia."
+      ],
+      "answer": 1,
+      "explanation": "Scollegando la batteria la carica Q resta intrappolata sulle armature. La capacità di un condensatore piano è C = ε₀A/d: raddoppiando d, C si dimezza. Poiché V = Q/C, anche V raddoppia."
+    },
+    {
+      "id": "fis-elettro-12",
+      "topic": "Magnetismo",
+      "type": "mcq",
+      "prompt": "Le linee del campo magnetico generate da un lungo filo rettilineo percorso da corrente sono:",
+      "options": [
+        "rette parallele al filo.",
+        "rette radiali che escono dal filo.",
+        "circonferenze concentriche al filo, in piani perpendicolari al filo.",
+        "circonferenze in piani che contengono il filo."
+      ],
+      "answer": 2,
+      "explanation": "La regola della mano destra mostra che il campo magnetico circonda il filo: le linee sono circonferenze centrate sul filo e giacciono in piani perpendicolari ad esso. Il verso dipende dal verso della corrente."
+    },
+    {
+      "id": "fis-elettro-13",
+      "topic": "Induzione",
+      "type": "mcq",
+      "prompt": "Un magnete si avvicina a una spira conduttrice. La corrente indotta nella spira:",
+      "options": [
+        "produce un campo magnetico che si oppone all'avvicinamento del magnete.",
+        "produce un campo magnetico che favorisce l'avvicinamento del magnete.",
+        "è nulla, perché il flusso magnetico aumenta.",
+        "ha sempre lo stesso verso, qualunque sia il moto del magnete."
+      ],
+      "answer": 0,
+      "explanation": "La legge di Lenz afferma che la corrente indotta genera un campo magnetico che si oppone alla variazione di flusso che l'ha prodotta. Avvicinando il magnete, la spira lo respinge; allontanandolo, lo attrae."
+    },
+    {
+      "id": "fis-onde-14",
+      "topic": "Onde",
+      "type": "mcq",
+      "prompt": "Un'onda periodica ha frequenza 50 Hz e lunghezza d'onda 2 m. Qual è la sua velocità di propagazione?",
+      "options": [
+        "25 m/s",
+        "100 m/s",
+        "52 m/s",
+        "0,04 m/s"
+      ],
+      "answer": 1,
+      "explanation": "La relazione fondamentale delle onde è v = λf. Quindi v = 2 m × 50 Hz = 100 m/s. L'unità hertz equivale a s⁻¹."
+    },
+    {
+      "id": "fis-onde-15",
+      "topic": "Suono",
+      "type": "mcq",
+      "prompt": "Un tuono viene udito 3 s dopo il lampo. Assumendo v_suono = 340 m/s e trascurando il tempo di propagazione della luce, quanto è lontano il fulmine?",
+      "options": [
+        "circa 1 km",
+        "circa 3 km",
+        "circa 340 m",
+        "circa 10 km"
+      ],
+      "answer": 0,
+      "explanation": "La distanza è d = v t = 340 × 3 = 1020 m ≈ 1,0 km. Il segnale luminoso arriva in un tempo trascurabile rispetto ai 3 s del suono."
+    },
+    {
+      "id": "fis-onde-16",
+      "topic": "Ottica",
+      "type": "mcq",
+      "prompt": "Un oggetto è posto a 20 cm da una lente convergente con distanza focale 10 cm. L'immagine formata è:",
+      "options": [
+        "virtuale, diritta e ingrandita.",
+        "reale, capovolta e della stessa dimensione dell'oggetto.",
+        "reale, diritta e dimezzata.",
+        "all'infinito."
+      ],
+      "answer": 1,
+      "explanation": "Con l'equazione della lente 1/f = 1/p + 1/q si ottiene 1/10 = 1/20 + 1/q, quindi q = 20 cm. L'immagine è reale perché q > 0, capovolta e con ingrandimento m = -q/p = -1: stessa dimensione."
+    },
+    {
+      "id": "fis-onde-17",
+      "topic": "Rifrazione",
+      "type": "mcq",
+      "prompt": "La luce passa dall'aria al vetro, il cui indice di rifrazione è 1,5. Quale grandezza resta invariata attraversando la superficie?",
+      "options": [
+        "La velocità di propagazione.",
+        "La lunghezza d'onda.",
+        "La frequenza.",
+        "L'angolo rispetto alla normale."
+      ],
+      "answer": 2,
+      "explanation": "La frequenza è determinata dalla sorgente e non cambia nel passaggio tra mezzi. Nel vetro la velocità diminuisce (v = c/n) e, poiché v = λf, anche la lunghezza d'onda diminuisce. L'angolo cambia secondo la legge di Snell."
+    },
+    {
+      "id": "fis-fluid-18",
+      "topic": "Fluidi",
+      "type": "mcq",
+      "prompt": "In un tubo a sezione variabile scorre un liquido incomprimibile. Se la sezione del tubo si dimezza, la velocità del liquido:",
+      "options": [
+        "dimezza.",
+        "raddoppia.",
+        "resta uguale.",
+        "quadruplica."
+      ],
+      "answer": 1,
+      "explanation": "Per un liquido incomprimibile vale l'equazione di continuità A₁v₁ = A₂v₂. Se l'area si dimezza, la velocità raddoppia, perché la portata volumetrica deve restare costante."
+    },
+    {
+      "id": "fis-fluid-19",
+      "topic": "Pressione",
+      "type": "mcq",
+      "prompt": "In un liquido in quiete, la pressione:",
+      "options": [
+        "dipende solo dalla forma del recipiente.",
+        "è uguale in tutti i punti del liquido.",
+        "aumenta con la profondità e, a parità di profondità, non dipende dalla forma del recipiente.",
+        "diminuisce con la profondità."
+      ],
+      "answer": 2,
+      "explanation": "La legge di Stevino è p = p₀ + ρgh: la pressione cresce linearmente con la profondità e non dipende dalla forma del contenitore. In un liquido in quiete, punti alla stessa profondità hanno la stessa pressione."
+    },
+    {
+      "id": "fis-mod-20",
+      "topic": "Fisica moderna",
+      "type": "mcq",
+      "prompt": "Nel fenomeno fotoelettrico, aumentando l'intensità di una luce con frequenza superiore alla soglia:",
+      "options": [
+        "aumenta l'energia cinetica massima degli elettroni emessi.",
+        "aumenta il numero di elettroni emessi, mentre l'energia cinetica massima resta invariata.",
+        "non cambia nulla.",
+        "diminuisce il numero di elettroni emessi."
+      ],
+      "answer": 1,
+      "explanation": "L'energia cinetica massima dipende dalla frequenza della luce secondo K_max = hf - φ. Aumentare l'intensità significa inviare più fotoni, quindi viene emesso un numero maggiore di elettroni, ma ciascuno conserva la stessa energia cinetica massima."
+    },
+    {
+      "id": "fis-mod-21",
+      "topic": "Radioattività",
+      "type": "mcq",
+      "prompt": "Un isotopo radioattivo ha emivita di 5 anni. Dopo 15 anni, quale frazione del campione iniziale rimane?",
+      "options": [
+        "1/3",
+        "1/8",
+        "1/4",
+        "1/16"
+      ],
+      "answer": 1,
+      "explanation": "Quindici anni corrispondono a 15/5 = 3 emivite. A ogni emivita la quantità dimezza: dopo 3 emivite resta (1/2)³ = 1/8 del campione iniziale."
+    },
+    {
+      "id": "fis-comp-22",
+      "topic": "Cinematica",
+      "type": "completion",
+      "prompt": "Un corpo parte da fermo con accelerazione costante di 2 m/s². Dopo 5 s, la sua velocità è ___ m/s.",
+      "accepted": [
+        "10",
+        "10,0",
+        "10.0",
+        "10 m/s",
+        "10,0 m/s"
+      ],
+      "numeric": {
+        "value": 10,
+        "tolerance": 0.001,
+        "units": [
+          "m/s",
+          "m s-1",
+          "m·s-1",
+          "m/s⁻¹",
+          "metrialsecondo",
+          "metri/secondo"
+        ],
+        "unit": "m/s"
+      },
+      "explanation": "Con accelerazione costante e velocità iniziale nulla, v = at = 2 × 5 = 10 m/s."
+    },
+    {
+      "id": "fis-comp-23",
+      "topic": "Lavoro",
+      "type": "completion",
+      "prompt": "Una forza costante di 10 N sposta un corpo di 3 m nella stessa direzione della forza. Il lavoro compiuto è ___ J.",
+      "accepted": [
+        "30",
+        "30,0",
+        "30.0",
+        "30 J",
+        "3×10^1 J",
+        "3,0×10^1 J"
+      ],
+      "numeric": {
+        "value": 30,
+        "tolerance": 0.001,
+        "units": [
+          "j",
+          "joule",
+          "joul"
+        ],
+        "unit": "J"
+      },
+      "explanation": "Se forza e spostamento hanno la stessa direzione, W = F s = 10 × 3 = 30 J."
+    },
+    {
+      "id": "fis-comp-24",
+      "topic": "Densità",
+      "type": "completion",
+      "prompt": "Un campione ha massa 300 g e volume 100 cm³. La sua densità è ___ g/cm³.",
+      "accepted": [
+        "3",
+        "3,0",
+        "3.0",
+        "3 g/cm3",
+        "3 g/cm³",
+        "3,0 g/cm³"
+      ],
+      "numeric": {
+        "value": 3,
+        "tolerance": 0.001,
+        "units": [
+          "g/cm3",
+          "g/cm³",
+          "gcm-3",
+          "gcm⁻³",
+          "g/cm^3"
+        ],
+        "unit": "g/cm3"
+      },
+      "explanation": "La densità è ρ = m/V = 300/100 = 3 g/cm³. Equivale a 3000 kg/m³."
+    },
+    {
+      "id": "fis-comp-25",
+      "topic": "Gas ideali",
+      "type": "completion",
+      "prompt": "Un gas ideale a pressione costante occupa 2,0 L a 300 K. A 600 K occupa ___ L.",
+      "accepted": [
+        "4",
+        "4,0",
+        "4.0",
+        "4 L",
+        "4,0 L",
+        "4 litri"
+      ],
+      "numeric": {
+        "value": 4,
+        "tolerance": 0.001,
+        "units": [
+          "l",
+          "litri",
+          "litro",
+          "dm3",
+          "dm³"
+        ],
+        "unit": "L"
+      },
+      "explanation": "A pressione costante vale V/T = costante (legge di Charles). Se la temperatura assoluta raddoppia, anche il volume raddoppia: 2,0 L → 4,0 L."
+    },
+    {
+      "id": "fis-comp-26",
+      "topic": "Circuiti",
+      "type": "completion",
+      "prompt": "Un resistore da 10 Ω è percorso da una corrente di 0,5 A. La differenza di potenziale ai suoi capi è ___ V.",
+      "accepted": [
+        "5",
+        "5,0",
+        "5.0",
+        "5 V",
+        "5,0 V"
+      ],
+      "numeric": {
+        "value": 5,
+        "tolerance": 0.001,
+        "units": [
+          "v",
+          "volt"
+        ],
+        "unit": "V"
+      },
+      "explanation": "Dalla legge di Ohm V = RI = 10 × 0,5 = 5 V."
+    },
+    {
+      "id": "fis-comp-27",
+      "topic": "Onde",
+      "type": "completion",
+      "prompt": "Un'onda ha frequenza 4 Hz e lunghezza d'onda 0,5 m. La sua velocità è ___ m/s.",
+      "accepted": [
+        "2",
+        "2,0",
+        "2.0",
+        "2 m/s",
+        "2,0 m/s"
+      ],
+      "numeric": {
+        "value": 2,
+        "tolerance": 0.001,
+        "units": [
+          "m/s",
+          "m s-1",
+          "m·s-1",
+          "metrialsecondo",
+          "metri/secondo"
+        ],
+        "unit": "m/s"
+      },
+      "explanation": "v = λf = 0,5 × 4 = 2 m/s."
+    },
+    {
+      "id": "fis-comp-28",
+      "topic": "Radioattività",
+      "type": "completion",
+      "prompt": "Dopo tre emivite, la frazione di nuclei radioattivi ancora presenti rispetto a quelli iniziali è ___.",
+      "accepted": [
+        "1/8",
+        "0,125",
+        "0.125",
+        "12,5%",
+        "12.5%",
+        "un ottavo"
+      ],
+      "explanation": "A ogni emivita la frazione si dimezza. Dopo tre emivite resta (1/2)³ = 1/8, cioè il 12,5% del campione iniziale."
+    },
+    {
+      "id": "fis-comp-29",
+      "topic": "Fluidi",
+      "type": "completion",
+      "prompt": "In un liquido di densità 1000 kg/m³, a 2 m di profondità l'incremento di pressione rispetto alla superficie è ___ Pa (usa g = 10 m/s²).",
+      "accepted": [
+        "20000",
+        "20.000",
+        "2×10^4",
+        "2,0×10^4",
+        "20 kPa",
+        "20000 Pa"
+      ],
+      "numeric": {
+        "value": 20000,
+        "tolerance": 1,
+        "units": [
+          "pa",
+          "pascal",
+          "kpa"
+        ],
+        "unit": "Pa"
+      },
+      "explanation": "La legge di Stevino dà Δp = ρgh = 1000 × 10 × 2 = 20 000 Pa, cioè 20 kPa."
+    },
+    {
+      "id": "fis-comp-30",
+      "topic": "Circuiti",
+      "type": "completion",
+      "prompt": "In un circuito in serie, l'intensità di corrente che attraversa ciascun componente è ___.",
+      "accepted": [
+        "la stessa",
+        "la stessa corrente",
+        "uguale",
+        "identica",
+        "costante"
+      ],
+      "explanation": "In un circuito in serie non ci sono diramazioni: la stessa corrente attraversa tutti i componenti. È la tensione a ripartirsi tra le resistenze."
+    },
+    {
+      "id": "fis-comp-31",
+      "topic": "Onde",
+      "type": "completion",
+      "prompt": "Il numero di oscillazioni complete compiute da un'onda in un secondo si chiama ___.",
+      "accepted": [
+        "frequenza",
+        "la frequenza"
+      ],
+      "explanation": "La frequenza misura le oscillazioni complete al secondo e si esprime in hertz (Hz). Il periodo è invece il tempo impiegato per una oscillazione completa."
+    }
+  ]
+}

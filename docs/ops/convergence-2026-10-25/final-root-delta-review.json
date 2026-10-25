@@ -1,0 +1,249 @@
+{
+  "observedAt": "2026-10-25T13:24:04.168621+00:00",
+  "reviewer": "convergence_inventory agent A",
+  "scope": "Read-only review of root CI/Vercel/AGENTS delta; prior root-owned PR gate was independently reviewed, two findings fixed under explicit root authorization, and those four fixed files are separately recorded/tested. No repository edits in this final review. No stage/commit/remote mutation by this agent.",
+  "files": [
+    {
+      "path": "bin/ci/pr_contract_gate.py",
+      "sha256": "cdec3373359c5e83065d37327426b23276c27837efc82c307b03e40225b0e443",
+      "blob": "b56549e3b01a180c0825206fee9b9ee2897d7e0b"
+    },
+    {
+      "path": "bin/ci/test_pr_contract_gate.py",
+      "sha256": "62165e8f354ac0d7984dd17feba491e25166a9b2df0ee21dd8b8fb3488e4f2b0",
+      "blob": "58eaf93ad41462efd8179c290a90b1e3490c4a09"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "ba77541b75efd0f6aa52d38b12e95321e4e163d3fcc8e900656640a96fb45e3e",
+      "blob": "ec06d8623daa1c0135aad2b239d65fe9ec51d213"
+    },
+    {
+      "path": ".github/workflows/pr-contract.yml",
+      "sha256": "af24dc4d4853b231805925b707b04b26a4fa69cad93a3cfe5127928cf7f79e05",
+      "blob": "56a8bd293701e9c2c56164169154eec71bb59f90"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "0b25f51a021d297dc36b36fafa16b1173ba59863e05dd12378db218dd572f951",
+      "blob": "7c3b1ed8e83008873b89539352caa851ef4a2ca2"
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "724cf3f8abcd95939221f445f79ef63f9d296954c4925f9a62400613ad45e43f",
+      "blob": "527f363279187b1ce79cd4c59f5802fdf7491754"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "56d928b08d8c2ccdd2be66497439240adec789ea97590a36b54b3564b0300a28",
+      "blob": "91e00ad6c20a387e3f8cf65d98123803b0c02977"
+    }
+  ],
+  "findings": [],
+  "conclusions": {
+    "ciGates": "No removed required job, trigger restriction, checkout-credential persistence, xfail/skip, or new continue-on-error. Existing advisory lane remains advisory. CI contents permission remains read-only.",
+    "qaConsumers": "15-test scanner and 11-test immutable-intake contracts are added to existing hygiene; no duplicate workflow needed.",
+    "postgres": "Pinned postgres:16.15 manifest matches official Docker Hub API. Ubuntu job-scoped service, fixed synthetic ardesia_fixture user/trust auth, localhost client DSN, matching pg_isready health check. No production or Supabase credentials are passed. Existing fixture creates random disposable ardesia_conv databases and drops them in finally. Psycopg is a mandatory pinned API dependency, so the supplied opt-in URL is meaningful.",
+    "databaseEvidence": "Read actual local logs: PG16.15 service process; 12 real convergence tests PASS; full API 963 PASS/18 SKIP, remaining skips explicitly require ARDESIA_SUPABASE_ENV_FILE. Counts overlap and are not summed.",
+    "releaseGuard": "root vercel.json now uses boolean git.deploymentEnabled:false, disabling Git-triggered deployments for projects consuming this config. apps/web/vercel.json already has the same flag. This does not disable manual authorized previews or change SSO.",
+    "rootPolicy": "New owner authorization is explicitly limited to integration through protection/review/gates; ZERO-LLM/privacy/additive/frozen-gate rules remain. DONE requires reachable consumer/functional proof and exact SHA; superseded closure requires actual main integration; human/scientific/editorial approval remains separate."
+  },
+  "prContractValidation": {
+    "contractUnitTests": {
+      "passed": 23,
+      "failed": 0,
+      "transport": "mocked; no live token/network invoked"
+    },
+    "workflowTriggerTests": {
+      "passed": 20,
+      "failed": 0
+    },
+    "previousFindings": "Fixed stale event body and @OWNER/consecutive-hyphen owner validation."
+  },
+  "sourceValidation": {
+    "workflowTriggerGate": "PASS on current tracked workflow set: 4 workflows, no base-branch filter; self-test 20 PASS from prior recorded run.",
+    "vercelJSON": "Parsed root/Web JSON and asserted deploymentEnabled is boolean false.",
+    "postgresDockerHub": {
+      "source": "https://hub.docker.com/v2/repositories/library/postgres/tags/16.15",
+      "name": "16.15",
+      "digest": "sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97",
+      "pinMatches": true,
+      "lastUpdated": "2026-10-22T01:09:32.315546Z",
+      "images": [
+        {
+          "architecture": "amd64",
+          "os": "linux",
+          "digest": "sha256:f9d1e581cde3e4c8bc696b07e6f7b7aea1d41014b33a52b27990762daae61beb"
+        },
+        {
+          "architecture": "ppc64le",
+          "os": "linux",
+          "digest": "sha256:d6c7d05125ae2f060d21538ff36448c4d2fdc65f0e2343c5edbf9fe9bc1b6e23"
+        },
+        {
+          "architecture": "386",
+          "os": "linux",
+          "digest": "sha256:ae5ed4a762e8d7ab84c75b18700f29ad677bb07f7060c2b1abb462019f87fe79"
+        },
+        {
+          "architecture": "s390x",
+          "os": "linux",
+          "digest": "sha256:12080c1428263c6354b71aac7ff8869e764b370e8424c90ca859f61f1baadd82"
+        },
+        {
+          "architecture": "arm",
+          "os": "linux",
+          "digest": "sha256:07f1677ad58a6e864ec91a4bb15d2fab7e4f398ef0433b8dbe352031f373c5aa"
+        },
+        {
+          "architecture": "arm64",
+          "os": "linux",
+          "digest": "sha256:d735d89e0f050dd5efa611ad633e44e06b526da77b04a7501cece311cd032375"
+        },
+        {
+          "architecture": "arm",
+          "os": "linux",
+          "digest": "sha256:6ed57496a93dfec2537ffc66920c6f4633d8b05a1c5f2e097e4cbca35a81c1bc"
+        },
+        {
+          "architecture": "riscv64",
+          "os": "linux",
+          "digest": "sha256:2a8be63cd464f571fe3e21edbbdbae18ef42355b2f59de4d9b7e0395a2abe1a9"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:e26df3553bb3e1b931a5c223ba0078c584acc3d51e8685343785c8a5eeb4aec0"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:edc5ec2c732cc5abeee0fb6bc10d796e7ad305d71d7231cd3ec0e54874dbf45a"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:95cee3042b1cc2f0496dbcf13973591c393fe1b4202d33fbaf05b4b5c91d39b4"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:04fe4eaf03d1084bf67bde32717de4d91213194986aa2aa2be28cdf4094f5d66"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:0bcea47452c104ef021556b8ec18bb8634a4d14f67c6066bbc590f971ef03b65"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:a235507bf4fbb6501fe33e0fe8f8c752bc5f172854e94d671e2861cd0b11796a"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:1b8657c810a059592fbcb5f98a6a1d308493b5e3510c37b9aa0813590e15d73b"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:14f21d9acd818513b259a87556a4a42eb3d4062b2fe0f4ba97bf5a12c66db3e5"
+        }
+      ],
+      "rawSha256": "051b8afb5a5c385a70c20c6e3466ee688ff94603d63779ad544eb80edef6743d"
+    },
+    "localLogs": [
+      {
+        "path": "/private/tmp/ardesia-convergence-20261025-work/postgres/contracts.log",
+        "sha256": "60f68f97ead8a9e07f3ce4b51d25444480212f1935ecd6d39f57cce9821fed46"
+      },
+      {
+        "path": "/private/tmp/ardesia-convergence-20261025-work/api-tests.log",
+        "sha256": "25a2361ce164a79c19b1273398d455ea824dc2315a847ed61891a5bc853379eb"
+      },
+      {
+        "path": "/private/tmp/ardesia-convergence-20261025-work/postgres/server.log",
+        "sha256": "0edf02af63180c99ab9b45ab8f3f849bdf8cf1fc6b7ca6a028b3ab4ca4145322"
+      }
+    ]
+  },
+  "currentGitHubDisposition": {
+    "number": 264,
+    "state": "closed",
+    "merged": false,
+    "closedAt": "2026-10-25T13:14:37Z",
+    "headUnchanged": true,
+    "bodyUnchanged": true,
+    "disposition": "CLOSED_REJECTED by root; this agent only re-read state",
+    "currentOpenCount": 36,
+    "note": "Original 37-row inventory is a baseline snapshot and remains historical."
+  },
+  "cloudReadOnly": {
+    "observedAt": "2026-10-25T13:21:58.565Z",
+    "scope": "Read-only Vercel connector metadata; no deployment, protection or project changes.",
+    "projects": [
+      {
+        "id": "prj_MAKpjVWHC6Lw9LAPC4AwJX1tkT98",
+        "name": "ardesia-lavagna",
+        "ssoProtection": {
+          "enabled": true,
+          "deploymentType": "all_except_custom_domains"
+        },
+        "latestDeployment": {
+          "id": "dpl_3yhEQMzrLdXqUfFA68VX7Ghp92go",
+          "url": "ardesia-lavagna-e7eg2zx5f-andreas-projects-6d4e9791.vercel.app",
+          "createdAt": 1792908879594,
+          "readyState": "READY",
+          "target": null
+        },
+        "rootDirectory": "NOT_EXPOSED_BY_CONNECTOR"
+      },
+      {
+        "id": "prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8",
+        "name": "ardesia-fisica-preview",
+        "ssoProtection": {
+          "enabled": true,
+          "deploymentType": "preview"
+        },
+        "latestDeployment": {
+          "id": "dpl_DFzshU93DT5N746XiPYr26dyjpcx",
+          "url": "ardesia-fisica-preview-p4t6b0w96-andreas-projects-6d4e9791.vercel.app",
+          "createdAt": 1792882345332,
+          "readyState": "READY",
+          "target": null
+        },
+        "rootDirectory": "NOT_EXPOSED_BY_CONNECTOR"
+      }
+    ],
+    "rootConfigVerification": "root vercel.json and apps/web/vercel.json both contain git.deploymentEnabled false. Official schema/doc says this disables automatic Git deployments for the project using that config.",
+    "limitations": [
+      "Connector omits project rootDirectory and full Git settings; no claim that every unknown project override consumes root config.",
+      "Current metadata is before new candidate push, so it does not prove the new guard has been evaluated by Vercel."
+    ]
+  },
+  "sources": [
+    {
+      "title": "Vercel Git configuration",
+      "url": "https://vercel.com/docs/project-configuration/git-configuration",
+      "supports": "Boolean false disables automatic Git deployments for all branches of the project consuming the configuration."
+    },
+    {
+      "title": "GitHub PostgreSQL service containers",
+      "url": "https://docs.github.com/en/actions/tutorials/use-containerized-services/create-postgresql-service-containers",
+      "supports": "Ubuntu runner service container and mapped localhost port pattern."
+    },
+    {
+      "title": "GitHub workflow syntax: services",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idservices",
+      "supports": "Runner manages service Docker network and lifecycle."
+    }
+  ],
+  "notChecked": [
+    "Actual GitHub execution of new service image, health command and API driver on the final committed head; local Homebrew PostgreSQL success is separate.",
+    "Actual current-body API request using workflow GITHUB_TOKEN; PR gate network tests were mocked.",
+    "Vercel application of the new guard after candidate push: connector omits rootDirectory/full project Git settings, so no blanket claim about unknown project overrides.",
+    "Protected-branch independent approval, actual merge and post-merge CI/consumer path; source review is not that approval.",
+    "Live Supabase/Auth/Storage, scientific/editorial/audio approval or public release."
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "checks": [
+    {
+      "name": "v1 exact result remains available in v2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "idempotent original receipt unchanged after newer version",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "peer has no other actor assistance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "edition isolation retains independent availability",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "different boundary is a distinct model result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new transfer uses actual viscosity and length, remains separate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "v2 defaults first and both v1 variants remain resolvable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "simultaneous cross-version submissions linearize exactly one first result",
+      "pass": true,
+      "detail": [
+        "NO_SUPPORT_REQUESTED",
+        "SUPPORT_REQUESTED"
+      ]
+    },
+    {
+      "name": "canonical aggregate lock key matches across versions",
+      "pass": true,
+      "detail": [
+        {
+          "version": "v1",
+          "namespace": "learning.model-result",
+          "key": "[\"independent-student-c\",\"fluidi\",\"poiseuille-v1\",1,[2.0,1.0,1.0,\"flow\"]]"
+        },
+        {
+          "version": "v2",
+          "namespace": "learning.model-result",
+          "key": "[\"independent-student-c\",\"fluidi\",\"poiseuille-v1\",1,[2.0,1.0,1.0,\"flow\"]]"
+        }
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "key": "original-v1",
+      "version": "v1",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 0.0625
+    },
+    {
+      "key": "new-v2",
+      "version": "v2",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "SUPPORT_REQUESTED",
+      "support": [
+        "model-result"
+      ],
+      "ratio": 0.0625
+    },
+    {
+      "key": "original-v1",
+      "version": "v1",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 0.0625
+    },
+    {
+      "key": "peer-first",
+      "version": "v2",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 0.0625
+    },
+    {
+      "key": "edition-first",
+      "version": "v2",
+      "edition": "other-edition",
+      "step": "fixed-flow",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 0.0625
+    },
+    {
+      "key": "pressure-first",
+      "version": "v2",
+      "edition": "fluidi",
+      "step": "fixed-pressure",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 16.0
+    },
+    {
+      "key": "transfer-a",
+      "version": "v2",
+      "edition": "fluidi",
+      "step": "transfer",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 4.0
+    },
+    {
+      "key": "concurrent-v1",
+      "version": "v1",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "NO_SUPPORT_REQUESTED",
+      "support": [],
+      "ratio": 0.0625
+    },
+    {
+      "key": "concurrent-v2",
+      "version": "v2",
+      "edition": "fluidi",
+      "step": "fixed-flow",
+      "assistance": "SUPPORT_REQUESTED",
+      "support": [
+        "model-result"
+      ],
+      "ratio": 0.0625
+    }
+  ],
+  "scope": "real local SQLite independent fixture, separate connections and concurrent threads; shared canonical lock-key request inspected; remote Postgres concurrency NOT_RUN",
+  "humanApproval": "PENDING"
+}

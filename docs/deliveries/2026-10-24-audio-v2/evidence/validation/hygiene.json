@@ -1,0 +1,31 @@
+{
+  "implementationCommit": "e1be6c9ea0a19b90d53a9e4d8a38dac5846c1270",
+  "scope": "Final staged memory/documentation diff; product unchanged. All checks executed, no gate configuration edits.",
+  "checks": [
+    {
+      "name": "text",
+      "command": "python3 bin/ci/nul_scan.py && python3 bin/ci/secret_scan.py && python3 bin/ci/test_secret_scan.py",
+      "exit": 0,
+      "outputBeforeFinalRedirect": "nul_scan: OK (no NUL bytes in tracked text files)\nsecret_scan: OK (no high-confidence secret patterns)\n"
+    },
+    {
+      "name": "boundary",
+      "command": "python3 bin/ci/elab_boundary_gate.py && python3 bin/ci/workflow_trigger_gate.py && python3 bin/ci/workflow_trigger_gate.py --self-test",
+      "exit": 0,
+      "outputBeforeFinalRedirect": "elab_boundary_gate: OK (12 baseline offenders remain, none added; packs/ clean)\nworkflow trigger gate ok: 3 workflow, nessun filtro di base [modo: semantico (PyYAML 6.0.3)]\n"
+    },
+    {
+      "name": "docs-state",
+      "command": "packages/engine/.venv/bin/python bin/ci/doc_claims_gate.py && packages/engine/.venv/bin/python bin/ci/doc_claims_gate.py --self-test && python3 bin/state/project_state.py --self-test && python3 bin/state/test_project_state.py && python3 bin/state/project_state.py --verify",
+      "exit": 0,
+      "outputBeforeFinalRedirect": "doc claims gate ok: 1 documento/i, 4 controlli [da 16 finding avversariali misurati il 2026-07-30]\n...........\n----------------------------------------------------------------------\nRan 11 tests in 0.074s\n\nOK\nself-test: 18 controlli, tutti verdi\nVERDE  29 test\n"
+    }
+  ],
+  "finalRedirectResults": {
+    "text": "3 secret scanner tests PASS",
+    "boundary": "20 workflow trigger self-tests PASS",
+    "docs-state": "verify: head_sha e1be6c9e letto dal repo reale; CURRENT.md 57 righe"
+  },
+  "whitespaceExit": 0,
+  "knownLegacyBoundaryOffenders": 12
+}

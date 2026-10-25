@@ -1,0 +1,1575 @@
+
+> ardesia-monorepo@0.1.0 test:web
+> npm run test --workspace @ardesia/web
+
+
+> @ardesia/web@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ❯ src/__tests__/session-boundary.test.tsx (9 tests | 3 failed) 7231ms
+   × a verified child json 401 (cookie) removes the private application and opens access 1811ms
+   × a verified child binary 401 (cookie) removes the private application and opens access 1291ms
+   × a verified child json 401 (missing) removes the private application and opens access 1814ms
+ ❯ src/__tests__/edition-register.test.tsx (3 tests | 1 failed) 7397ms
+   × opening reads the selected edition and keeps four lanes distinct; server canRecord forbids an old-date cell 6530ms
+ ❯ src/__tests__/resource-composer.test.tsx (3 tests | 2 failed) 10738ms
+   × Classroom: retry reuses an immutable draft key and a new draft rotates it 7189ms
+   × Materials: retry reuses an immutable draft key and a new draft rotates it 1446ms
+ ❯ src/__tests__/accessibility-semantics.test.tsx (4 tests | 2 failed) 17233ms
+   × public and private brand links retain the complete visible name 9158ms
+   × skip links target a main that can receive focus without joining the tab order 7531ms
+ ❯ src/__tests__/course-pack-disclosure.test.tsx (3 tests | 1 failed) 4788ms
+   × student-courses: closed preview makes no content or evaluation request; opening is explicit and closing unmounts it 3978ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/accessibility-semantics.test.tsx > public and private brand links retain the complete visible name
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/accessibility-semantics.test.tsx:29:1
+     27| };
+     28|
+     29| test("public and private brand links retain the complete visible name"…
+       | ^
+     30|   vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify…
+     31|   const publicView = render(<Public onLogin={() => {}} />);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/__tests__/accessibility-semantics.test.tsx > skip links target a main that can receive focus without joining the tab order
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/accessibility-semantics.test.tsx:39:1
+     37| });
+     38|
+     39| test("skip links target a main that can receive focus without joining …
+       | ^
+     40|   vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify…
+     41|   const publicView = render(<Public onLogin={() => {}} />);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/__tests__/course-pack-disclosure.test.tsx > student-courses: closed preview makes no content or evaluation request; opening is explicit and closing unmounts it
+TestingLibraryElementError: Unable to find role="heading" and name "Contenuti originali di prova"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mI miei corsi.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mUn programma riutilizzabile. Un’edizione con le sue persone e le sue date.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<article[39m
+      [33maria-label[39m=[32m"Edizione fluidi"[39m
+      [33mclass[39m=[32m"edition-row"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"subject-mark"[39m
+      [36m>[39m
+        [0mM[0m
+      [36m</div>[39m
+      [36m<div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mMini-corso[0m
+          [0m ·[0m
+          [0m [0m
+          [0mProgramma dell’edizione[0m
+        [36m</p>[39m
+        [36m<h2>[39m
+          [0mEdizione fluidi[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m0[0m
+          [0m incontri · massimo [0m
+          [0m10[0m
+          [0m [0m
+          [0mpersone ·[0m
+          [0m [0m
+          [0m49,00 €[0m
+          [0m [0m
+          [0mindicativi[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"edition-row-action"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mRaccolta di interesse[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+        [36m>[39m
+          [0mApri l’aula[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</article>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"course-detail-layout"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"plain-panel"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mEdizione corrente · [0m
+          [0mEdizione fluidi[0m
+        [36m</p>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"study-group"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mIl gruppo dell’edizione[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mMassimo [0m
+            [0m10[0m
+            [0m ·[0m
+            [0m [0m
+            [0m49,00 €[0m
+            [0m [0m
+            [0mindicativi · Nessun addebito[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mStato:[0m
+            [0m [0m
+            [0min raccolta[0m
+          [36m</p>[39m
+          [36m<ul />[39m
+          [36m<p>[39m
+            [0mIscrizione di test confermata.[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m/>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"plain-panel"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mIl percorso[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mPrevedi, manipola il modello, spiega il passaggio. Poi affronta un problema diverso.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mOriginali, tentativi, feedback e diario rimangono collegati nel tuo spazio.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPagamento simulato. Nessuna vendita o approvazione scientifica attestata.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<details[39m
+      [33mclass[39m=[32m"disclosure-panel"[39m
+      [33mopen[39m=[32m""[39m
+    [36m>[39m
+      [36m<summary>[39m
+        [0mProgramma e materiali in preparazione[0m
+      [36m</summary>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mCaricamento contenuti originali…[0m
+      [36m</p>[39m
+    [36m</details>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mI miei corsi.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mUn programma riutilizzabile. Un’edizione con le sue persone e le sue date.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<article[39m
+      [33maria-label[39m=[32m"Edizione fluidi"[39m
+      [33mclass[39m=[32m"edition-row"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"subject-mark"[39m
+      [36m>[39m
+        [0mM[0m
+      [36m</div>[39m
+      [36m<div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mMini-corso[0m
+          [0m ·[0m
+          [0m [0m
+          [0mProgramma dell’edizione[0m
+        [36m</p>[39m
+        [36m<h2>[39m
+          [0mEdizione fluidi[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0m0[0m
+          [0m incontri · massimo [0m
+          [0m10[0m
+          [0m [0m
+          [0mpersone ·[0m
+          [0m [0m
+          [0m49,00 €[0m
+          [0m [0m
+          [0mindicativi[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"edition-row-action"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mRaccolta di interesse[0m
+        [36m</span>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button-primary"[39m
+        [36m>[39m
+          [0mApri l’aula[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</article>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"course-detail-layout"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"plain-panel"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mEdizione corrente · [0m
+          [0mEdizione fluidi[0m
+        [36m</p>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"study-group"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mIl gruppo dell’edizione[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mMassimo [0m
+            [0m10[0m
+            [0m ·[0m
+            [0m [0m
+            [0m49,00 €[0m
+            [0m [0m
+            [0mindicativi · Nessun addebito[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mStato:[0m
+            [0m [0m
+            [0min raccolta[0m
+          [36m</p>[39m
+          [36m<ul />[39m
+          [36m<p>[39m
+            [0mIscrizione di test confermata.[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m/>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"plain-panel"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mIl percorso[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mPrevedi, manipola il modello, spiega il passaggio. Poi affronta un problema diverso.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mOriginali, tentativi, feedback e diario rimangono collegati nel tuo spazio.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPagamento simulato. Nessuna vendita o approvazione scientifica attestata.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<details[39m
+      [33mclass[39m=[32m"disclosure-panel"[39m
+      [33mopen[39m=[32m""[39m
+    [36m>[39m
+      [36m<summary>[39m
+        [0mProgramma e materiali in preparazione[0m
+      [36m</summary>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mCaricamento contenuti originali…[0m
+      [36m</p>[39m
+    [36m</details>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/course-pack-disclosure.test.tsx:110:18
+    108|     );
+    109|     fireEvent.click(summary);
+    110|     await screen.findByRole("heading", { name: pack.title });
+       |                  ^
+    111|     await waitFor(() =>
+    112|       expect(previewCalls()).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/__tests__/edition-register.test.tsx > opening reads the selected edition and keeps four lanes distinct; server canRecord forbids an old-date cell
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/edition-register.test.tsx:39:1
+     37|   expect(screen.queryByText("Registro dell’edizione")).toBeNull(); exp…
+     38| });
+     39| test("opening reads the selected edition and keeps four lanes distinct…
+       | ^
+     40|   const fetcher = mockRead(); render(<EditionRegister me={me} edition=…
+     41|   await act(async () => { await vi.dynamicImportSettled(); });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/__tests__/resource-composer.test.tsx > Classroom: retry reuses an immutable draft key and a new draft rotates it
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/__tests__/resource-composer.test.tsx:63:3
+     61| ];
+     62| for (const surface of surfaces)
+     63|   test(`${surface.name}: retry reuses an immutable draft key and a new…
+       |   ^
+     64|     setup();
+     65|     const requests: { key: string; body: string }[] = [];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/__tests__/resource-composer.test.tsx > Materials: retry reuses an immutable draft key and a new draft rotates it
+AssertionError: expected '' to be 'Una previsione.' // Object.is equality
+
+- Expected
++ Received
+
+- Una previsione.
+
+ ❯ src/__tests__/resource-composer.test.tsx:88:50
+     86|     fireEvent.click(screen.getByRole("button", { name: "Salva nota pri…
+     87|     await screen.findByRole("alert");
+     88|     expect((input as HTMLTextAreaElement).value).toBe(resource.text);
+       |                                                  ^
+     89|     fireEvent.click(screen.getByRole("button", { name: "Salva nota pri…
+     90|     await screen.findByText("Nota salvata nel tuo spazio privato.");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/__tests__/session-boundary.test.tsx > a verified child json 401 (cookie) removes the private application and opens access
+TestingLibraryElementError: Unable to find role="button" and name "Consegne e feedback"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-frame"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Navigazione e account"[39m
+        [33mclass[39m=[32m"sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"workspace-label"[39m
+        [36m>[39m
+          [0mIl tuo spazio[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Navigazione principale"[39m
+          [33mclass[39m=[32m"primary-navigation"[39m
+        [36m>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mOggi[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M4 4h16v16H4zM4 9h16M9 9v11"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mI miei corsi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mIl mio lavoro[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mProva di fisica[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 6h7l2 2h9v12H3z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mMateriali[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mUno spazio per capire.[0m
+            [36m<br />[39m
+            [0mUn filo da ritrovare.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"profile-control"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"profile-monogram"[39m
+            [36m>[39m
+              [0mS[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mSpazio studente[0m
+              [36m<small>[39m
+                [0mEsci dall’account[0m
+              [36m</small>[39m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"app-main"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"topbar"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mIl tuo percorso[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"environment-note"[39m
+          [36m>[39m
+            [0mAmbiente di prova · dati sintetici[0m
+          [36m</span>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"page-content"[39m
+          [33mid[39m=[32m"content"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0m [0m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mSto aprendo il tuo spazio…[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-frame"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Navigazione e account"[39m
+        [33mclass[39m=[32m"sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"workspace-label"[39m
+        [36m>[39m
+          [0mIl tuo spazio[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Navigazione principale"[39m
+          [33mclass[39m=[32m"primary-navigation"[39m
+        [36m>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mOggi[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M4 4h16v16H4zM4 9h16M9 9v11"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mI miei corsi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mIl mio lavoro[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mProva di fisica[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 6h7l2 2h9v12H3z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mMateriali[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mUno spazio per capire.[0m
+            [36m<br />[39m
+            [0mUn filo da ritrovare.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"profile-control"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"profile-monogram"[39m
+            [36m>[39m
+              [0mS[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mSpazio studente[0m
+              [36m<small>[39m
+                [0mEsci dall’account[0m
+              [36m</small>[39m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"app-main"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"topbar"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mIl tuo percorso[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"environment-note"[39m
+          [36m>[39m
+            [0mAmbiente di prova · dati sintetici[0m
+          [36m</span>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"page-content"[39m
+          [33mid[39m=[32m"content"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0m [0m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mSto aprendo il tuo spazio…[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ openDelivery src/__tests__/session-boundary.test.tsx:53:32
+     51| async function openDelivery() {
+     52|   render(<App />);
+     53|   fireEvent.click(await screen.findByRole("button", { name: "Consegne …
+       |                                ^
+     54|   await screen.findByText("PROCEDIMENTO PRIVATO C7");
+     55|   const details = screen.getByText("Originali, versione e ricevuta").c…
+ ❯ src/__tests__/session-boundary.test.tsx:70:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/__tests__/session-boundary.test.tsx > a verified child binary 401 (cookie) removes the private application and opens access
+TestingLibraryElementError: Unable to find role="button" and name "Consegne e feedback"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-frame"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Navigazione e account"[39m
+        [33mclass[39m=[32m"sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"workspace-label"[39m
+        [36m>[39m
+          [0mIl tuo spazio[0m
+        [36m</p>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"course-selector"[39m
+        [36m>[39m
+          [0mEdizione corrente[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Edizione corrente"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"fluidi"[39m
+            [36m>[39m
+              [0mPercorso privato[0m
+              [0m · [0m
+              [0mfluidi[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Navigazione principale"[39m
+          [33mclass[39m=[32m"primary-navigation"[39m
+        [36m>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mOggi[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M4 4h16v16H4zM4 9h16M9 9v11"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mI miei corsi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mIl mio lavoro[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mProva di fisica[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 6h7l2 2h9v12H3z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mMateriali[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mUno spazio per capire.[0m
+            [36m<br />[39m
+            [0mUn filo da ritrovare.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"profile-control"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"profile-monogram"[39m
+            [36m>[39m
+              [0mS[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mSpazio studente[0m
+              [36m<small>[39m
+                [0mEsci dall’account[0m
+              [36m</small>[39m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"app-main"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"topbar"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mPercorso privato[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"environment-note"[39m
+          [36m>[39m
+            [0mAmbiente di prova · dati sintetici[0m
+          [36m</span>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"page-content"[39m
+          [33mid[39m=[32m"content"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0m [0m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mSto aprendo questa parte del tuo spazio…[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-frame"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Navigazione e account"[39m
+        [33mclass[39m=[32m"sidebar"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"workspace-label"[39m
+        [36m>[39m
+          [0mIl tuo spazio[0m
+        [36m</p>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"course-selector"[39m
+        [36m>[39m
+          [0mEdizione corrente[0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Edizione corrente"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"fluidi"[39m
+            [36m>[39m
+              [0mPercorso privato[0m
+              [0m · [0m
+              [0mfluidi[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Navigazione principale"[39m
+          [33mclass[39m=[32m"primary-navigation"[39m
+        [36m>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mOggi[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M4 4h16v16H4zM4 9h16M9 9v11"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mI miei corsi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-current[39m=[32m"page"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mIl mio lavoro[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mProva di fisica[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.5"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 6h7l2 2h9v12H3z"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mMateriali[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"sidebar-bottom"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mUno spazio per capire.[0m
+            [36m<br />[39m
+            [0mUn filo da ritrovare.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"profile-control"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"profile-monogram"[39m
+            [36m>[39m
+              [0mS[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mSpazio studente[0m
+              [36m<small>[39m
+                [0mEsci dall’account[0m
+              [36m</small>[39m
+            [36m</span>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"app-main"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"topbar"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mPercorso privato[0m
+          [36m</span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"environment-note"[39m
+          [36m>[39m
+            [0mAmbiente di prova · dati sintetici[0m
+          [36m</span>[39m
+        [36m</header>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"page-content"[39m
+          [33mid[39m=[32m"content"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0m [0m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mSto aprendo questa parte del tuo spazio…[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ openDelivery src/__tests__/session-boundary.test.tsx:53:32
+     51| async function openDelivery() {
+     52|   render(<App />);
+     53|   fireEvent.click(await screen.findByRole("button", { name: "Consegne …
+       |                                ^
+     54|   await screen.findByText("PROCEDIMENTO PRIVATO C7");
+     55|   const details = screen.getByText("Originali, versione e ricevuta").c…
+ ❯ src/__tests__/session-boundary.test.tsx:70:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  src/__tests__/session-boundary.test.tsx > a verified child json 401 (missing) removes the private application and opens access
+TestingLibraryElementError: Unable to find role="dialog"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"public-page"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#public-content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"public-nav"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Esplora Ardesia"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"#corso"[39m
+          [36m>[39m
+            [0mIl mini-corso[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"#laboratorio"[39m
+          [36m>[39m
+            [0mIl laboratorio[0m
+          [36m</a>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-quiet"[39m
+          [36m>[39m
+            [0mAccedi al tuo spazio[0m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"arrow-icon"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 12h14M13 6l6 6-6 6"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.5"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<main[39m
+        [33mid[39m=[32m"public-content"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"public-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hero-copy"[39m
+          [36m>[39m
+            [36m<h1>[39m
+              [0mLa fisica.[0m
+              [36m<br />[39m
+              [0mUn’idea alla volta.[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mPrevedi, sperimenta, spiega. Un piccolo gruppo per capire i passaggi che fanno la differenza.[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mhref[39m=[32m"#laboratorio"[39m
+            [36m>[39m
+              [0mProva il laboratorio[0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"arrow-icon"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M5 12h14M13 6l6 6-6 6"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"1.5"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</a>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hero-footnote"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"small-rule"[39m
+              [36m/>[39m
+              [0mIl primo percorso: proporzioni e fluidi.[0m
+              [36m<br />[39m
+              [0mUn pezzo di Fisica, fatto con cura.[0m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33maria-label[39m=[32m"Illustrazione originale delle linee di flusso di un fluido"[39m
+            [33mclass[39m=[32m"scientific-art"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mviewBox[39m=[32m"0 0 520 510"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<pattern[39m
+                  [33mheight[39m=[32m"34"[39m
+                  [33mid[39m=[32m"hero-grid"[39m
+                  [33mpatternUnits[39m=[32m"userSpaceOnUse"[39m
+                  [33mwidth[39m=[32m"34"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M34 0H0V34"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mstroke[39m=[32m"#7c8980"[39m
+                    [33mstroke-width[39m=[32m".45"[39m
+                  [36m/>[39m
+                [36m</pattern>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"art-clip"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"510"[39m
+                    [33mrx[39m=[32m"4"[39m
+                    [33mwidth[39m=[32m"520"[39m
+                    [33mx[39m=[32m"0"[39m
+                    [33my[39m=[32m"0"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclip-path[39m=[32m"url(#art-clip)"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mfill[39m=[32m"#e7e9df"[39m
+                  [33mheight[39m=[32m"510"[39m
+                  [33mwidth[39m=[32m"520"[39m
+                [36m/>[39m
+                [36m<rect[39m
+                  [33mfill[39m=[32m"url(#hero-grid)"[39m
+                  [33mheight[39m=[32m"510"[39m
+                  [33mopacity[39m=[32m".6"[39m
+                  [33mwidth[39m=[32m"520"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"267"[39m
+                  [33mcy[39m=[32m"252"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mr[39m=[32m"174"[39m
+                  [33mstroke[39m=[32m"#b1baab"[39m
+                  [33mstroke-width[39m=[32m".8"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"267"[39m
+                  [33mcy[39m=[32m"252"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mr[39m=[32m"141"[39m
+                  [33mstroke[39m=[32m"#b1baab"[39m
+                  [33mstroke-dasharray[39m=[32m"2 6"[39m
+                  ...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"public-page"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"skip-link"[39m
+        [33mhref[39m=[32m"#public-content"[39m
+      [36m>[39m
+        [0mVai al contenuto[0m
+      [36m</a>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"public-nav"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"wordmark"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"brand-symbol"[39m
+          [36m>[39m
+            [0ma[0m
+          [36m</span>[39m
+          [0mardesia[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"brand-dot"[39m
+          [36m>[39m
+            [0m.[0m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Esplora Ardesia"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"#corso"[39m
+          [36m>[39m
+            [0mIl mini-corso[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"#laboratorio"[39m
+          [36m>[39m
+            [0mIl laboratorio[0m
+          [36m</a>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-quiet"[39m
+          [36m>[39m
+            [0mAccedi al tuo spazio[0m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"arrow-icon"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 12h14M13 6l6 6-6 6"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.5"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</header>[39m
+      [36m<main[39m
+        [33mid[39m=[32m"public-content"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"public-hero"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"hero-copy"[39m
+          [36m>[39m
+            [36m<h1>[39m
+              [0mLa fisica.[0m
+              [36m<br />[39m
+              [0mUn’idea alla volta.[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mPrevedi, sperimenta, spiega. Un piccolo gruppo per capire i passaggi che fanno la differenza.[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mhref[39m=[32m"#laboratorio"[39m
+            [36m>[39m
+              [0mProva il laboratorio[0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"arrow-icon"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M5 12h14M13 6l6 6-6 6"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"1.5"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</a>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"hero-footnote"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"small-rule"[39m
+              [36m/>[39m
+              [0mIl primo percorso: proporzioni e fluidi.[0m
+              [36m<br />[39m
+              [0mUn pezzo di Fisica, fatto con cura.[0m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<figure[39m
+            [33maria-label[39m=[32m"Illustrazione originale delle linee di flusso di un fluido"[39m
+            [33mclass[39m=[32m"scientific-art"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mviewBox[39m=[32m"0 0 520 510"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<pattern[39m
+                  [33mheight[39m=[32m"34"[39m
+                  [33mid[39m=[32m"hero-grid"[39m
+                  [33mpatternUnits[39m=[32m"userSpaceOnUse"[39m
+                  [33mwidth[39m=[32m"34"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M34 0H0V34"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mstroke[39m=[32m"#7c8980"[39m
+                    [33mstroke-width[39m=[32m".45"[39m
+                  [36m/>[39m
+                [36m</pattern>[39m
+                [36m<clippath[39m
+                  [33mid[39m=[32m"art-clip"[39m
+                [36m>[39m
+                  [36m<rect[39m
+                    [33mheight[39m=[32m"510"[39m
+                    [33mrx[39m=[32m"4"[39m
+                    [33mwidth[39m=[32m"520"[39m
+                    [33mx[39m=[32m"0"[39m
+                    [33my[39m=[32m"0"[39m
+                  [36m/>[39m
+                [36m</clippath>[39m
+              [36m</defs>[39m
+              [36m<g[39m
+                [33mclip-path[39m=[32m"url(#art-clip)"[39m
+              [36m>[39m
+                [36m<rect[39m
+                  [33mfill[39m=[32m"#e7e9df"[39m
+                  [33mheight[39m=[32m"510"[39m
+                  [33mwidth[39m=[32m"520"[39m
+                [36m/>[39m
+                [36m<rect[39m
+                  [33mfill[39m=[32m"url(#hero-grid)"[39m
+                  [33mheight[39m=[32m"510"[39m
+                  [33mopacity[39m=[32m".6"[39m
+                  [33mwidth[39m=[32m"520"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"267"[39m
+                  [33mcy[39m=[32m"252"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mr[39m=[32m"174"[39m
+                  [33mstroke[39m=[32m"#b1baab"[39m
+                  [33mstroke-width[39m=[32m".8"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"267"[39m
+                  [33mcy[39m=[32m"252"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mr[39m=[32m"141"[39m
+                  [33mstroke[39m=[32m"#b1baab"[39m
+                  [33mstroke-dasharray[39m=[32m"2 6"[39m
+                  ...
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/session-boundary.test.tsx:71:18
+     69|     writeResourceDraft("private-memory", { text: "MEMORY DRAFT", key: …
+     70|     await openDelivery();
+     71|     await screen.findByRole("dialog");
+       |                  ^
+     72|     expect(screen.queryByText("PROCEDIMENTO PRIVATO C7")).toBeNull();
+     73|     expect(document.querySelector(".app-frame")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  5 failed | 37 passed (42)
+      Tests  9 failed | 285 passed (294)
+   Start at  12:10:21
+   Duration  69.28s (transform 23.55s, setup 0ms, import 69.17s, tests 144.88s, environment 195.23s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+npm error command failed
+npm error command sh -c vitest run

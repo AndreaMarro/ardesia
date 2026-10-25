@@ -1,0 +1,297 @@
+{
+  "schema": "ardesia.delivery.snapshot.v1",
+  "observed_date": "2026-10-24",
+  "is_live_state": false,
+  "repository": "AndreaMarro/ardesia",
+  "observed_main_sha": "b124eee04acc8062c27284f23c5d9108e3767c27",
+  "base": {
+    "pr": 290,
+    "sha": "339ab08f4139da0b37e78bbde81e9fe4e83afea0",
+    "branch": "pro/ardesia-golive-02-20261024"
+  },
+  "working_branch": "pro/ardesia-living-lesson-audio-20261024",
+  "evidence_scope": "Base plus working diff identified by source-manifest; resulting commit and CI in draft PR",
+  "generated_live_state": {
+    "command": "python3 bin/state/project_state.py",
+    "human": "docs/ops/CURRENT.md",
+    "machine": "artifacts/state/project.json"
+  },
+  "product_identity": {
+    "product": "Ardesia",
+    "continuity_subsystem": "LessonOS",
+    "specialist_capabilities": [
+      "Kirchhoff",
+      "simulation",
+      "document reader",
+      "math input"
+    ],
+    "first_offer": "narrow reviewed physics microcourse"
+  },
+  "features": [
+    {
+      "id": "studio-board-journal",
+      "states": [
+        "IMPLEMENTED",
+        "LOCAL_VERIFIED"
+      ],
+      "scope": "Real Excalidraw mouse/keyboard; canonical v2; no validator weakening",
+      "evidence": "evidence/replay-browser/README.md"
+    },
+    {
+      "id": "room-replay",
+      "states": [
+        "IMPLEMENTED",
+        "LOCAL_VERIFIED"
+      ],
+      "scope": "Room-scoped source, cold reopen, last millisecond; mobile framing remains limited",
+      "evidence": "evidence/replay-browser/README.md"
+    },
+    {
+      "id": "audio-recorder-primitive",
+      "states": [
+        "IMPLEMENTED",
+        "LOCAL_VERIFIED"
+      ],
+      "scope": "Native MediaRecorder synthetic stream; memory store; no production Room consumer",
+      "evidence": "evidence/audio-native/README.md"
+    },
+    {
+      "id": "audio-room-v2",
+      "states": [
+        "SPECIFIED",
+        "BLOCKED"
+      ],
+      "scope": "Room has no AudioRecorder; canonical journal rejects audio; session/media/export bridge required",
+      "evidence": "multimodal-mcp-contracts.md"
+    },
+    {
+      "id": "audio-object-semantics",
+      "states": [
+        "SPECIFIED"
+      ],
+      "scope": "Time alignment is not a semantic interpretation; teacher-confirmed links first",
+      "evidence": "multimodal-mcp-contracts.md"
+    },
+    {
+      "id": "learning-experience",
+      "states": [
+        "SPECIFIED"
+      ],
+      "scope": "Composition over existing CoursePack; no new attempts authority",
+      "evidence": "product-pedagogy-economics.md"
+    },
+    {
+      "id": "physics-core",
+      "states": [
+        "IMPLEMENTED"
+      ],
+      "scope": "Poiseuille and additional evaluators exist; do not rewrite; source review and focused oracle only",
+      "evidence": "architecture-report.md"
+    },
+    {
+      "id": "student-diary",
+      "states": [
+        "IMPLEMENTED"
+      ],
+      "scope": "Existing Core diary and transfer; full current multimodal journey unverified",
+      "evidence": "architecture-report.md"
+    },
+    {
+      "id": "teacher-register",
+      "states": [
+        "IMPLEMENTED"
+      ],
+      "scope": "Existing editions/attendance/manual records; synthetic scope and pilot constraints",
+      "evidence": "architecture-report.md"
+    },
+    {
+      "id": "mcp-read",
+      "states": [
+        "IMPLEMENTED"
+      ],
+      "scope": "Four tools; upstream SDK/stdio evidence; current host matrix NOT_RUN",
+      "evidence": "multimodal-mcp-contracts.md"
+    },
+    {
+      "id": "mcp-private-write",
+      "states": [
+        "SPECIFIED",
+        "BLOCKED"
+      ],
+      "scope": "Reuse RFC #293 and Core candidate revisions; W01-W18; no new writer implemented",
+      "evidence": "multimodal-mcp-contracts.md"
+    },
+    {
+      "id": "rea-marketing-e0",
+      "states": [
+        "LOCAL_VERIFIED"
+      ],
+      "scope": "Original build analysis and behavior verifier, not reconstruction of a new feature",
+      "evidence": "evidence/rea/README.md"
+    },
+    {
+      "id": "marketing-public-preview",
+      "states": [
+        "REMOTE_VERIFIED"
+      ],
+      "scope": "Existing preview observed manually; not a deployment of this branch or integrated lesson",
+      "evidence": "README.md"
+    },
+    {
+      "id": "integrated-beta",
+      "states": [
+        "SPECIFIED",
+        "BLOCKED"
+      ],
+      "scope": "No commercial readiness or user acceptance; candidate/auth/media/review gates remain",
+      "evidence": "README.md"
+    }
+  ],
+  "validation": {
+    "studio_typecheck": "PASS",
+    "studio_test_files_passed": 200,
+    "studio_test_files_skipped": 1,
+    "studio_tests_passed": 2201,
+    "studio_tests_skipped": 5,
+    "skip_reason": "legacy screenshots directory absent; existing shots.test.ts skipIf",
+    "studio_build": "PASS_WITH_BUNDLE_WARNING",
+    "native_audio_checks": 20,
+    "native_audio": "PASS",
+    "browser_replay_checks": 13,
+    "browser_replay": "PASS_WITH_EXTERNAL_FONT_ERRORS",
+    "rea_verifier_checks": 12,
+    "rea_verifier": "PASS",
+    "new_commit_ci": "See exact draft PR checks; not inherited from base",
+    "repository_hygiene": "PASS; initial whitespace-only finding fixed in readable logs, originals retained"
+  },
+  "known_limits": [
+    "Audio not wired to Room/v2 journal",
+    "No multimodal export/import proof",
+    "Mobile replay needs recenter and clips scene edge",
+    "155 external font console errors and 148 failed requests in replay browser run",
+    "No physical microphone, FSA or other browsers",
+    "No Ardesia host interoperability run",
+    "No live beta auth/RLS acceptance",
+    "No learning efficacy or observed profitability"
+  ],
+  "decisions": [
+    {
+      "id": "D01",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D02",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D03",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D04",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D05",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D06",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D07",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D08",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D09",
+      "reference": "README.md#4-decisioni-registrate"
+    },
+    {
+      "id": "D10",
+      "reference": "README.md#4-decisioni-registrate"
+    }
+  ],
+  "ownership_at_delivery": {
+    "root": [
+      "audio lifecycle",
+      "canonical docs",
+      "review integration",
+      "draft publication"
+    ],
+    "architecture_audit": [
+      "replay",
+      "journal producer",
+      "independent audio review"
+    ],
+    "product_pedagogy": [
+      "pedagogy",
+      "journeys",
+      "economics",
+      "browser QA"
+    ],
+    "rea_research": [
+      "REA experiment",
+      "native audio test",
+      "evidence packaging"
+    ]
+  },
+  "next_increment": {
+    "id": "AUDIO-V2",
+    "depends_on": [
+      "existing session CAS",
+      "canonical journal kind design",
+      "recording-scoped timeline",
+      "bundle/import/export"
+    ],
+    "acceptance": [
+      "explicit opt-in",
+      "short native tail",
+      "two takes with pause",
+      "source object resolution",
+      "export to fresh store and import",
+      "revocation with pending writes and permission",
+      "two-room isolation"
+    ]
+  },
+  "milestones": [
+    {
+      "date": "2026-10-26",
+      "target": "marketing demonstration",
+      "state": "SPECIFIED",
+      "gate": "README.md#5-marketing-gate-del-26-ottobre"
+    },
+    {
+      "date": "2026-11-02",
+      "target": "invited integrated beta",
+      "state": "SPECIFIED",
+      "gate": "README.md#6-beta-massimo-perimetro-credibile-al-2-novembre"
+    }
+  ],
+  "human_decisions": [
+    "ratify product scope",
+    "choose integration candidate",
+    "approve actual scientific content",
+    "runtime inference policy if changed",
+    "release/production/provider spend if later requested"
+  ],
+  "session_actions": {
+    "merge": false,
+    "production_deploy": false,
+    "payment_change": false,
+    "real_student_data_used": false,
+    "scheduled_automation_created": false,
+    "new_product_dependencies": false
+  },
+  "authoritative_documents": {
+    "product": "docs/PRODUCT-CANON.md",
+    "architecture": "docs/adr/ADR-0004-study-core-and-provider-boundaries.md",
+    "routing": "docs/CANON-INDEX.md",
+    "mcp_implemented": "services/study-mcp/README.md",
+    "mcp_write_rfc": "https://github.com/AndreaMarro/ardesia/blob/5a4d89312f6a46e3a0dd435e6c040b3c134ba9f5/docs/product/MCP-CORRECTION-WRITE-CORE-REUSE-RFC-2026-10-24.md"
+  }
+}

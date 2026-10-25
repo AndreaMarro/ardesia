@@ -1,4 +1,27 @@
-# ARDESIA — CANON INDEX (23/06/2026)
+# ARDESIA — CANON INDEX
+
+## Orientamento aggiornato il 24 ottobre 2026
+
+**Ardesia è il prodotto; LessonOS è il sottosistema di continuità didattica; Kirchhoff e i simulatori sono capacità specialistiche.** Il microcorso è la prima offerta commerciale. La lezione persistente, il lavoro del docente e il percorso dello studente rimangono il centro del prodotto.
+
+Questo indice ordina l'autorità dei documenti; non certifica il deploy corrente. Per lo stato esegui `python3 bin/state/project_state.py`, poi verifica su GitHub lo SHA e i run del candidato. Una prova su un ramo non certifica un altro ramo.
+
+| Argomento | Documento di riferimento | Ambito |
+| --- | --- | --- |
+| Identità e priorità di prodotto | [PRODUCT-CANON](PRODUCT-CANON.md), addendum 24 ottobre | Visione e decisioni; capacità non ancora integrate dichiarate come tali |
+| Core e confini provider | [ADR-0004](adr/ADR-0004-study-core-and-provider-boundaries.md) e [ARCHITECTURE-CANON](ARCHITECTURE-CANON.md), addendum | Dominio nel monorepo canonico; nessun secondo Core |
+| Storia, inventario, debito e prove | [Consegna di convergenza](deliveries/2026-10-24-convergence/README.md) | Snapshot fissato alla base e al diff dichiarati; mappa dei documenti richiesti dal mandato |
+| Incremento AUDIO-V2 e Poiseuille | [Consegna utilizzabile locale](deliveries/2026-10-24-audio-v2/README.md), [validazione](deliveries/2026-10-24-audio-v2/validation.md) | Successore di #297: percorso docente/studente sintetico, sessioni/media/bundle canonici; limiti locali e remoti distinti |
+| Candidato continuo e REA Deep Build | [Consegna](deliveries/2026-10-24-rea-deep-build/README.md), [validazione](deliveries/2026-10-24-rea-deep-build/validation.md) | Successore locale di#298: landing/esperienza, ponte Aula–Studio, tre missioni REA e prove; nessuna pubblicazione o beta remota certificata |
+| R1: candidato pubblico e beta distinta | [Consegna](deliveries/2026-10-24-r1/README.md), [validazione](deliveries/2026-10-24-r1/validation.md) | Successore di#299: due transferv2, focus/refresh tutor, policy e gate artefatto; TechnicalPASS pubblico, firma umana e beta remota ancora aperte |
+| R2: esperienze e primi consumer riusabili | [Consegna](deliveries/2026-10-24-r2/README.md), [validazione](deliveries/2026-10-24-r2/validation.md), [mandato R2B](deliveries/2026-10-24-r2/prompts/MANDATO-R2B-PLUGIN-RISORSE.md) | Successore di #300: composizione, Idrostatica, grafico Taylor e aiuti progressivi; preview HTTPS protetta verificata, lancio e beta privata distinti |
+| Contratto MCP implementato | [Study MCP README](../services/study-mcp/README.md) | Quattro letture; limiti reali del trasporto e delle autorizzazioni |
+| Convergenza e Definition of Done del 25 ottobre | [Registro](ops/PROJECT-CONVERGENCE.md), [inventario PR](ops/convergence-2026-10-25/matrix.md), [esiti effettivi](ops/convergence-2026-10-25/pr-outcomes.json) | Snapshot, codice verificato e blocco di approvazione distinti; nessuna chiusura equivale a merge |
+| Governance e stato | [AGENTS](../AGENTS.md), [loop a due cardini](ops/ARDESIA-LOOP-TWO-HINGE-2026-07-30.md) | Regole operative e stato generato |
+
+**Migrazione documentale:** le sezioni sotto sono il reperto del 23 giugno. Il divieto di leggere i subtree del monorepo e i percorsi `~/lessonos`/`~/maestro-studio` descrivevano la situazione prima del cutover; non sono istruzioni correnti. Gli stati `EXISTS/MISSING`, le percentuali e le priorità di giugno non si trasferiscono all'ottobre 2026. Le regole Core/Plugin/Pack/Workflow restano utili; i loro consumer vanno verificati nel candidato corrente.
+
+## Archivio: indice del 23 giugno 2026
 
 Spec canoniche del prodotto/architettura, ricavate dai repo reali e verificate firsthand (workflow `wf_a3b09ee4`, 10 agenti, file:riga). Autorità: queste 4 + questo indice. NON marketing.
 

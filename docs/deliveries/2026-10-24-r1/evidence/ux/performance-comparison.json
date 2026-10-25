@@ -1,0 +1,156 @@
+{
+  "base": "6f19b1956cedbebf36a5cf097af66e47ed8acecd",
+  "candidate": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+  "baselineManifestSha256": "73cfbfacbf41e2f5d8f76e7ef911d19281a8a0450288d5a9621e3a32e64d70ce",
+  "candidateManifestSha256": "ea3b747337f83a7a4b99de4082a883826f42f12579ce62e5db881f9c5feaa853",
+  "profiles": "plain-loopback",
+  "initialBytes": {
+    "html": [
+      580,
+      580
+    ],
+    "javascript": [
+      239504,
+      249666
+    ],
+    "css": [
+      60065,
+      60135
+    ]
+  },
+  "initialRequests": [
+    3,
+    3
+  ],
+  "interactionRequests": [
+    0,
+    0
+  ],
+  "optionalAudio": {
+    "baseBytes": 1806784,
+    "candidateBytes": 1882900,
+    "candidateSha256": "530c78a6075ea26949265a80fe9efc7d23083cf638cb600ec52fb42ddc873989",
+    "initialRequests": 0
+  },
+  "medians": [
+    {
+      "width": 390,
+      "profile": "plain-loopback",
+      "loadMs": [
+        20.100000008940697,
+        22
+      ],
+      "snapshotMs": [
+        92.5,
+        90.40000000596046
+      ],
+      "evaluateEventToTwoRafMs": [
+        40.20000000298023,
+        38.5
+      ],
+      "radiusEventToTwoRafMs": [
+        20.700000002980232,
+        22.5
+      ],
+      "jsHeapUsedBytes": [
+        3791752,
+        3802940
+      ],
+      "taskInteractionDeltaMs": [
+        68.363,
+        77.60100000000003
+      ]
+    },
+    {
+      "width": 390,
+      "profile": "browser-simulated-limited",
+      "loadMs": [
+        1872.2000000029802,
+        1925.1000000089407
+      ],
+      "snapshotMs": [
+        2101.8999999910593,
+        2119.2999999970198
+      ],
+      "evaluateEventToTwoRafMs": [
+        50,
+        50
+      ],
+      "radiusEventToTwoRafMs": [
+        22.80000001192093,
+        23
+      ],
+      "jsHeapUsedBytes": [
+        3796032,
+        3797624
+      ],
+      "taskInteractionDeltaMs": [
+        124.35499999999999,
+        116.433
+      ]
+    },
+    {
+      "width": 1440,
+      "profile": "plain-loopback",
+      "loadMs": [
+        20.69999998807907,
+        18.299999997019768
+      ],
+      "snapshotMs": [
+        75,
+        75.20000000298023
+      ],
+      "evaluateEventToTwoRafMs": [
+        40,
+        41
+      ],
+      "radiusEventToTwoRafMs": [
+        19.899999991059303,
+        18.700000002980232
+      ],
+      "jsHeapUsedBytes": [
+        3780904,
+        3793016
+      ],
+      "taskInteractionDeltaMs": [
+        46.99,
+        48.91499999999999
+      ]
+    },
+    {
+      "width": 1440,
+      "profile": "browser-simulated-limited",
+      "loadMs": [
+        1878.2000000029802,
+        1926
+      ],
+      "snapshotMs": [
+        2074.5999999940395,
+        2123.9000000059605
+      ],
+      "evaluateEventToTwoRafMs": [
+        52.099999994039536,
+        54.30000001192093
+      ],
+      "radiusEventToTwoRafMs": [
+        19.700000002980232,
+        17.799999997019768
+      ],
+      "jsHeapUsedBytes": [
+        3777832,
+        3782800
+      ],
+      "taskInteractionDeltaMs": [
+        121.74300000000002,
+        118.399
+      ]
+    }
+  ],
+  "samplesPerWidthAndProfile": 3,
+  "sets": {
+    "baseChecks": 38,
+    "candidateChecks": 38
+  },
+  "limits": "Shared host. Three new anonymous contexts per width/profile with cache disabled; OS/JIT/filesystem caches not reset. Browser-only CPU4 and explicit 150ms/200000Bps-down/93750Bps-up network simulation, distinct from loopback; no physical mobile/field INP/fps. Event-to-two-rAF proxy includes two frames and is not INP. CDP task/script/layout duration and JS heap are observed browser metrics, not OS CPU percent or a leak diagnosis. Fontready is current font set. Completed resource bytes differ from full artifact. No private API, token, user data, microphone, external model, contact submission or deploy.",
+  "interpretation": "Byte deltas and exact HTTP asset identities are deterministic for the recorded pages. Timing/heap/task deltas are descriptive only: sequential separate sets on a shared host, n=3, no causal/statistical/field/physical-device claim. No extra initial chunks or API/audio requests. Larger canonical domain metadata and one new authored case are included in the changed bundle; not an isolated optimization experiment."
+}

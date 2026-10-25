@@ -55,6 +55,8 @@ import {
   type PendingLessonImport,
 } from "./lessonImportTransaction"
 import { roomPaths, validateRoomId } from "./roomPaths"
+import { parseSessionYamlV2, sessionPaths, type SessionYamlV2 } from "./sessionState"
+import { audioSha256, readAudioSession, type AudioRecordingRef } from "./audioRecording"
 
 export { LESSON_PATHS } from "./lessonBundleManifest"
 
@@ -189,18 +191,40 @@ export async function exportLesson(
   }
   addEntry(entries, LESSON_PATHS.LESSONOS, lessonOsSnapshot)
 
+  // AUDIO-V2 keeps canonical paths and identities inside the portable container.
+  // Only referenced, authorized media travel; failed/orphaned writes do not.
+  const recordings = await bundleAudioRecordings(entries.get(LESSON_PATHS.JOURNAL)?.data ?? null)
+  const canonicalSessions = new Map<string, SessionYamlV2>()
+  for (const entry of await store.list(`raw/${lessonId}/`)) {
+    if (!/^raw\/[^/]+\/[^/]+\/session\.yaml$/.test(entry.path)) continue
+    const value = parseSessionYamlV2(new Uint8Array(await entry.data.arrayBuffer()))
+    if (value.lessonId !== lessonId || sessionPaths(value).session !== entry.path) throw new Error("Audio bundle: session identity/path mismatch")
+    canonicalSessions.set(value.sessionId, value)
+    entries.set(entry.path, entry)
+  }
+  for (const ref of recordings) {
+    const session = [...canonicalSessions.values()].find((value) => ref.assetPath.startsWith(sessionPaths(value).audioDir))
+    if (!session) throw new Error("Audio bundle: recording session missing")
+    if (!session.audioConsent) continue
+    const data = await store.read(ref.assetPath)
+    if (!data) continue // Preserve the reference; replay reports missing media explicitly.
+    if (data.size !== ref.bytes || await audioSha256(data) !== ref.sha256) throw new Error("Audio bundle: recording integrity failed")
+    entries.set(ref.assetPath, { path: ref.assetPath, data, mtime: 0 })
+  }
+
   assertRequiredLessonBundleEntries(entries)
 
   const identity = await embeddedIdentity(
     entries.get(LESSON_PATHS.JOURNAL)?.data ?? null,
     entries.get(LESSON_PATHS.LESSONOS)?.data ?? null,
   )
+  for (const sessionId of canonicalSessions.keys()) identity.sessionIds.add(sessionId)
   for (const embeddedLessonId of identity.lessonIds) {
     if (embeddedLessonId !== lessonId) {
       throw new Error("Lesson bundle: payload identity differs from requested lesson")
     }
   }
-  const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries)
+  const manifest = await buildLessonBundleManifest(lessonId, [...identity.sessionIds], entries, recordings.length > 0 ? 2 : 1)
 
   // Costruisce ZIP
   const zip = new JSZip()
@@ -338,6 +362,51 @@ async function embeddedIdentity(
   }
 
   return { lessonIds, sessionIds }
+}
+
+async function bundleAudioRecordings(journal: Blob | null): Promise<AudioRecordingRef[]> {
+  const refs: AudioRecordingRef[] = []
+  if (!journal) return refs
+  for (const line of (await journal.text()).split("\n")) {
+    if (!line || !looksLikeRawJournalEnvelopeV2(line)) continue
+    const envelope: unknown = JSON.parse(line)
+    assertJournalEnvelopeV2(envelope)
+    if (envelope.kind === "journal.audio.recording") refs.push(envelope.payload)
+  }
+  return refs
+}
+
+/** Validate canonical session/media payloads before the import's first target write. */
+async function validateCanonicalAudioBundle(
+  store: WorkspaceStore,
+  entries: ReadonlyMap<string, Blob>,
+  lessonId: string | null,
+): Promise<ReadonlyMap<string, SessionYamlV2>> {
+  const sessions = new Map<string, SessionYamlV2>()
+  for (const [path, data] of entries) {
+    if (!/^raw\/[^/]+\/[^/]+\/session\.yaml$/.test(path)) continue
+    const value = parseSessionYamlV2(new Uint8Array(await data.arrayBuffer()))
+    if (lessonId === null || value.lessonId !== lessonId || sessionPaths(value).session !== path) throw new Error("Audio bundle: foreign session identity/path")
+    const current = await readAudioSession(store, value)
+    if (current && (current.value.revision > value.revision || (
+      current.value.revision > 0 && !current.value.audioConsent && value.audioConsent
+    ))) throw new Error("Audio bundle: newer or revoked session decision exists; audio cannot be restored by import")
+    sessions.set(value.sessionId, value)
+  }
+  const recordings = await bundleAudioRecordings(entries.get(LESSON_PATHS.JOURNAL) ?? null)
+  for (const ref of recordings) {
+    const session = [...sessions.values()].find((value) => ref.assetPath.startsWith(sessionPaths(value).audioDir))
+    if (!session) throw new Error("Audio bundle: recording session missing")
+    const data = entries.get(ref.assetPath)
+    if (data && (!session.audioConsent || data.size !== ref.bytes || await audioSha256(data) !== ref.sha256)) throw new Error("Audio bundle: revoked or corrupt media")
+  }
+  for (const [path] of entries) {
+    const match = /^raw\/([^/]+)\/([^/]+)\/(.+)$/.exec(path)
+    if (!match || !/^[0-9a-f-]{36}$/.test(match[2]!)) continue
+    if (match[1] !== lessonId) throw new Error("Audio bundle: foreign session subtree")
+    if (match[3] !== "session.yaml" && !recordings.some((ref) => ref.assetPath === path)) throw new Error("Audio bundle: unreferenced session media")
+  }
+  return sessions
 }
 
 function importedPath(path: string, destinationLessonId: string | null): string {
@@ -482,6 +551,11 @@ async function runLessonImport(
     byPortablePath.get(LESSON_PATHS.JOURNAL) ?? null,
     byPortablePath.get(LESSON_PATHS.LESSONOS) ?? null,
   )
+  const canonicalSessions = await validateCanonicalAudioBundle(store, byPortablePath, manifest?.lessonId ?? requestedDestination)
+  if ((await bundleAudioRecordings(byPortablePath.get(LESSON_PATHS.JOURNAL) ?? null)).length > 0 && manifest?.compatibility.minimumReaderSchemaVersion !== 2) {
+    throw new Error("Audio bundle: canonical recordings require reader schema version 2")
+  }
+  for (const [sessionId, value] of canonicalSessions) { sessionIds.add(sessionId); lessonIds.add(value.lessonId) }
   if (manifest === null && (lessonIds.size > 0 || sessionIds.size > 0)) {
     throw new Error("Bundle manifest mancante: downgrade di payload canonico v2 rifiutato")
   }

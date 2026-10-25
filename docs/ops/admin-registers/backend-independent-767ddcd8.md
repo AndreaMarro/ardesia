@@ -1,0 +1,13 @@
+# Recheck indipendente del fix F3 — 767ddcd8
+
+Il fix di **ADMIN-REVIEW-03 è verificato nel perimetro SQLite/ASGI offline**. Fonte `767ddcd84ad0debf5467051475732404b869ec4e`, parent `b37fd1977e348444ed634856dc9a66675bf9ef5f`. Import esclusivamente dal nuovo archivio Git circoscritto a Core, API e test HTTP del registro: 1,341,440 byte, SHA256 `7d0b9843339a28a186ac28f403589fff266a46bb19ffd52b62f51eac800691b9`. Nessuna modifica a prodotto, runtime, PG/Auth/Docker o prove precedenti.
+
+Il witness causale originale su `b37fd197` resta immutato: `1.2` → 422, `amountMinor:1e1000` → 500. Sul nuovo SHA gli **11 casi numerici producono 422**: `±1e1000` nei campi importo, extra sconosciuto ed extra annidato (6); `1.2` negli stessi tre punti (3); interi di 401 cifre in importo ed extra (2). Questi ultimi verificano che il guard `isinstance(item, float)` non converta gli interi in float. I sei errori non finiti hanno locazione costante `body`, senza input o contesto riflesso. Il cookie effettivamente stabilito dal login resta identico, nessuna cancellazione cookie, `/me` → 200; **zero fatti contabili e zero ricevute amministrative dai rifiuti**. Guard di rete: zero tentativi.
+
+Controlli di non regressione limitati: chiave surrogate annidata → 422; studentId astrale e riferimento con emoji/NFC → 200; riferimento NFC equivalente con una nuova chiave → 409. La matrice Unicode completa di `b37` rimane prova storica, non nuova esecuzione. `manual_payments.py` è byte-identico a `b37` (SHA256 `f07b021cbf0c56cd0d5b95aad229c6bd154a4b08815405daa4a21bf4db70a6ac`): la query unica di F2 non cambia. Il precedente witness causale di seconda connessione resta storico; non dichiaro un nuovo replay F2.
+
+Esecuzione singola del probe proprio `probe_numeric_focused.py`, con ambiente minimo e venv esistente del root, exit 0. Nessun full suite, browser o installazione. Slot QA acquisito solo dopo il rilascio di diary_core e rilasciato subito al termine. Log `numeric-focused.log`, risultato completo `numeric-focused-result.json`.
+
+La prima preparazione aveva incluso l'intero repository con 443.361.280 byte di materiali estranei; ho interrotto soltanto il mio PID verificato e rimosso quel nuovo scratch non usato, sostituendolo con l'archivio circoscritto. L'incidente è dichiarato in `preparation-incident.json`; non è una prova del prodotto. Gli hash dei report/manifest `b37` sono stati riletti e verificati uguali. Originali `5b`, `93`, `b37` e R6 preservati.
+
+**PG/RLS e migrazione V5: NOT_RUN.** Questo recheck non sostituisce integrazione, backup/restore o viaggio completo dell'integratore, né produce gate o certificazione globale G0/G1. Il fullb37 dell'autore è una prova separata, non una nuova esecuzione su questo SHA.

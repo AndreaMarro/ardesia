@@ -1,0 +1,12 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+stdout | ../../docs/deliveries/2026-10-24-audio-v2/evidence/review/session-boundary/pending-import.test.tsx > diagnostic: a pending real Work import reproduces the pre-401 timeout and auth still closes after release
+SESSION_BOUNDARY_TRACE {"timeline":[{"phase":"before-render","at":1219.587333},{"phase":"lazy-request-started","at":1383.794958},{"phase":"standard-query-timed-out","at":2247.653333},{"phase":"actual-module-evaluated","at":2432.10375},{"phase":"module-and-react-flushed","at":2438.842042},{"phase":"verified-401-private-ui-cleared","at":2852.880583}],"calls":["/study/me","/study/editions?limit=50","/study/workspace?editionId=fluidi","/study/diary?editionId=fluidi","/study/resources/resource/revisions/revision","/study/course","/study/health"]}
+
+ ✓ ../../docs/deliveries/2026-10-24-audio-v2/evidence/review/session-boundary/pending-import.test.tsx > diagnostic: a pending real Work import reproduces the pre-401 timeout and auth still closes after release 1652ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  12:44:58
+   Duration  2.90s (transform 341ms, setup 0ms, import 330ms, tests 1.65s, environment 767ms)

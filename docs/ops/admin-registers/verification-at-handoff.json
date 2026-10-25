@@ -1,0 +1,111 @@
+{
+  "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84",
+  "ci": {
+    "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84",
+    "status": "ALL_EIGHT_CHECK_RUNS_SUCCESS",
+    "observedAt": "2026-10-20T11:18:51.381104+00:00",
+    "checks": [
+      {
+        "name": "study-api (HTTP + shared Core)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484205",
+        "started_at": "2026-10-20T11:13:24Z",
+        "completed_at": "2026-10-20T11:14:44Z"
+      },
+      {
+        "name": "web (typecheck + test + build)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484160",
+        "started_at": "2026-10-20T11:13:25Z",
+        "completed_at": "2026-10-20T11:14:05Z"
+      },
+      {
+        "name": "hygiene (NUL + secrets + boundary + whitespace)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484138",
+        "started_at": "2026-10-20T11:13:25Z",
+        "completed_at": "2026-10-20T11:13:52Z"
+      },
+      {
+        "name": "engine (pytest)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596484094",
+        "started_at": "2026-10-20T11:13:24Z",
+        "completed_at": "2026-10-20T11:14:59Z"
+      },
+      {
+        "name": "e2e golden path (advisory)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483901",
+        "started_at": "2026-10-20T11:13:24Z",
+        "completed_at": "2026-10-20T11:15:13Z"
+      },
+      {
+        "name": "studio (typecheck + test + build)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483879",
+        "started_at": "2026-10-20T11:13:24Z",
+        "completed_at": "2026-10-20T11:15:43Z"
+      },
+      {
+        "name": "study-mcp (official SDK stdio + HTTP)",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406313/job/118596483722",
+        "started_at": "2026-10-20T11:13:25Z",
+        "completed_at": "2026-10-20T11:14:01Z"
+      },
+      {
+        "name": "no-deploy-check",
+        "head_sha": "46fda24283ef686172ff3edd082139fffe395e84",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/AndreaMarro/ardesia/actions/runs/39413406301/job/118596482885",
+        "started_at": "2026-10-20T11:13:25Z",
+        "completed_at": "2026-10-20T11:16:57Z"
+      }
+    ],
+    "scope": "CI_OFFLINE_UNIT_INTEGRATION_PLUS_ADVISORY_STUDIO_GOLDEN_PATH;LIVE_REGISTER_PG_RLS_NOT_RUN",
+    "codeRabbitReviewClaimed": false
+  },
+  "rootLocal": {
+    "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84",
+    "checks": [
+      {
+        "name": "typecheck",
+        "exitCode": 0,
+        "timedOut": false,
+        "seconds": 22.55,
+        "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84"
+      },
+      {
+        "name": "web-tests",
+        "exitCode": null,
+        "timedOut": true,
+        "seconds": 210.3,
+        "logSha256": "fc8df17e89d41d788532eb858632b05921839c5221f298efeffa8a46b687b115",
+        "sourceCommit": "46fda24283ef686172ff3edd082139fffe395e84"
+      }
+    ],
+    "webResult": "INCOMPLETE_210S_TIMEOUT_WITH_TWO_FAILED_CASES_IN_PARTIAL_LOG;NOT_PASS",
+    "build": "NOT_RUN_LOCAL_AFTER_TIMEOUT;CI_BUILD_SUCCESS_SEPARATE",
+    "cause": "NOT_ESTABLISHED"
+  },
+  "livePgRls": "NOT_RUN",
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY"
+}

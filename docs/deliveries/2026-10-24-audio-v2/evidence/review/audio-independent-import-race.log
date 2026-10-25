@@ -1,0 +1,34 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+(node:58584) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/AudioV2_independent.test.ts (6 tests | 1 failed) 219ms
+     × a revocation committed after import validation survives the import target writes 61ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioV2_independent.test.ts > independent recorder adversarial review > a revocation committed after import validation survives the import target writes
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/AudioV2_independent.test.ts:169:91
+    167|     await importing
+    168|     const current = await h.store.read(sessionPaths(identity).session)
+    169|     expect(parseSessionYamlV2(new Uint8Array(await current!.arrayBuffe…
+       |                                                                                           ^
+    170|     expect(await h.store.list(sessionPaths(identity).audioDir)).toEqua…
+    171|     expect((await loadReplayTimeline(h.store, identity.lessonId)).reco…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  12:24:20
+   Duration  1.43s (transform 215ms, setup 31ms, import 250ms, tests 219ms, environment 798ms)

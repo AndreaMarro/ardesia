@@ -1,0 +1,140 @@
+{
+  "schema": "ardesia.c8-current-recheck/1",
+  "sourceCommit": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "apiSource": "f4384eed61e87510cbb7e29b9e7f9ff6d6fecebd",
+  "status": "SCOPED_AUTOMATED_AUDIT_PASSED",
+  "origin": "http://127.0.0.1:5369",
+  "processId": 60175,
+  "authentication": "ACTUAL_OWN_SUPABASE_PG_RESTORED_REALM",
+  "views": 26,
+  "viewports": [
+    1440,
+    390
+  ],
+  "violations": 0,
+  "overflow": 0,
+  "pageErrors": 0,
+  "axeSha256": "20c09fe157a8a34a30e241aaa1fcdade657734f08ab379ecfbeb7d45cc46e878",
+  "pageGET": 68,
+  "directMeGET": 4,
+  "onlyGET": true,
+  "actorChecks": [
+    {
+      "actor": "restore-student",
+      "width": 1440,
+      "status": 200,
+      "principalId": "restore-student",
+      "role": "student"
+    },
+    {
+      "actor": "restore-tutor",
+      "width": 1440,
+      "status": 200,
+      "principalId": "restore-tutor",
+      "role": "teacher"
+    },
+    {
+      "actor": "restore-student",
+      "width": 390,
+      "status": 200,
+      "principalId": "restore-student",
+      "role": "student"
+    },
+    {
+      "actor": "restore-tutor",
+      "width": 390,
+      "status": 200,
+      "principalId": "restore-tutor",
+      "role": "teacher"
+    }
+  ],
+  "keyboard": [
+    {
+      "case": "login_trap_escape_restore",
+      "width": 1440,
+      "focusInside": true,
+      "focusTrapped": true,
+      "focusRestored": true
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "student",
+      "width": 1440,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "MAIN",
+        "id": "content"
+      }
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "tutor",
+      "width": 1440,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "MAIN",
+        "id": "content"
+      }
+    },
+    {
+      "case": "login_trap_escape_restore",
+      "width": 390,
+      "focusInside": true,
+      "focusTrapped": true,
+      "focusRestored": true
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "student",
+      "width": 390,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "MAIN",
+        "id": "content"
+      }
+    },
+    {
+      "case": "first_tab_skip_content",
+      "role": "tutor",
+      "width": 390,
+      "first": {
+        "text": "Vai al contenuto",
+        "href": "#content"
+      },
+      "activeAfter": {
+        "tag": "MAIN",
+        "id": "content"
+      }
+    }
+  ],
+  "reportSha256": "f55fd4333da911e7192cf7bdaa72960cf089cf77066ac5030748fff4993cc82a",
+  "runtimeSourceManifest": "work/c7-owned-clone-20261020/evidence/c7-c8-f4384eed-process.json",
+  "sourceTreesUnchangedAfterMetadata": true,
+  "original14AccountsUsed": 0,
+  "learningWrites": 0,
+  "humanUX": "NOT_RUN",
+  "fullWCAG": "NOT_CERTIFIED",
+  "readiness": "DOM_CONTENT_LOADED_PLUS_EXPLICIT_PRIVATE_SHELL_LOADING_STATE_FONT_AND_TWO_ANIMATION_FRAMES;NOT_NETWORKIDLE",
+  "preservedHarnessFailures": [
+    "Initial networkidle timeout; zero audited cases; original apiSource field retained an obsolete5cb default. The subsequent successful runner states both exact API/Webf438 sources.",
+    "Second explicit-DOM attempt audited4views then strict-selector failure because two source views had loading surfaces. Final predicate waits for ALL visible loading surfaces without changing product or axe rules."
+  ],
+  "limits": [
+    "Automated axe and sampled keyboard/focus checks are not human UX or full WCAG certification.",
+    "Loopback LCP proxy on this host is not production performance or a load test.",
+    "No delivery/review mutation or remote preview exercised.",
+    "No mobile delivery/review mutation or edition date form certification.",
+    "Source-view data, text and actor authorization are not inferred from axe alone; actual authenticated fixture and exact source process recorded separately."
+  ],
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY"
+}

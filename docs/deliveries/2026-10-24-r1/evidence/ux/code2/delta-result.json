@@ -1,0 +1,835 @@
+{
+  "status": "PASS",
+  "origin": "http://127.0.0.1:5416",
+  "artifact": "/private/tmp/ardesia-r1-marketing-release",
+  "previous": "/private/tmp/ardesia-r1-candidate-c762e30",
+  "source": {
+    "commit": "706316f0582f88366cd3cad6c5c1227537a6c419",
+    "trackedDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sourceTreeSha256": "a60670dfc5de974dbdd1b9b267260d50f77d68f49873570552bc8d54214a7f63",
+    "sourceFileCount": 1596,
+    "note": "source tree and asset hashes identify the exact build, including uncommitted sources"
+  },
+  "manifestSha": "d34b3c364de8aff829a365a77e09a14f0f5e36fee2b2ffefbd74d193cbac80d1",
+  "sourceManifestSha": "c2b98ea25fc98e6de45f4f271cd5a5a5475daba0bc4c7bfe2a12924a41b81916",
+  "node": "v26.5.1",
+  "browser": "148.0.7778.96",
+  "checks": [
+    {
+      "name": "all experience files are byte-identical to c762",
+      "pass": true,
+      "detail": [
+        {
+          "path": "assets/index-B1N3AsGB.js",
+          "bytes": 249666,
+          "sha256": "53a6ad41c4b99534f94ee8a53d6f6bae1ba91a28594cd196a0f5239ad456636a"
+        },
+        {
+          "path": "assets/index-BWPqF67I.css",
+          "bytes": 60135,
+          "sha256": "29ef81dfa28c39f78c4def55c41f6e66266f49d58e59d37d37c5b1f7f3d19d57"
+        },
+        {
+          "path": "favicon.svg",
+          "bytes": 322,
+          "sha256": "99cf741296888dff56450debd14ea55d8933e473b3ab6a15c99697339c39a1d4"
+        },
+        {
+          "path": "index.html",
+          "bytes": 580,
+          "sha256": "def334c9ce8a4ac626161fd3d5aa65f91e280e65de84febfbf494d5824857a94"
+        },
+        {
+          "path": "lesson-demo/poiseuille.wav",
+          "bytes": 1882900,
+          "sha256": "530c78a6075ea26949265a80fe9efc7d23083cf638cb600ec52fb42ddc873989"
+        }
+      ]
+    },
+    {
+      "name": "360: page identity and meaningful content",
+      "pass": true
+    },
+    {
+      "name": "360: text200 landing has no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 360,
+        "scrollWidth": 360,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 250.265625,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 45.734375,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 272.734375,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 23.265625,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 260.8125,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 35.1875,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 281.921875,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 14.078125,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "360: text200 path labels and arrows remain separate",
+      "pass": true,
+      "detail": [
+        {
+          "text": "Strumenti e meccanica",
+          "textRight": 250.265625,
+          "arrowLeft": 296,
+          "arrowRight": 344,
+          "rowRight": 344,
+          "gap": 45.734375,
+          "overflow": false
+        },
+        {
+          "text": "Fluidi e termodinamica",
+          "textRight": 272.734375,
+          "arrowLeft": 296,
+          "arrowRight": 344,
+          "rowRight": 344,
+          "gap": 23.265625,
+          "overflow": false
+        },
+        {
+          "text": "Elettricità e magnetismo",
+          "textRight": 260.8125,
+          "arrowLeft": 296,
+          "arrowRight": 344,
+          "rowRight": 344,
+          "gap": 35.1875,
+          "overflow": false
+        },
+        {
+          "text": "Onde, ottica e radiazioni",
+          "textRight": 281.921875,
+          "arrowLeft": 296,
+          "arrowRight": 344,
+          "rowRight": 344,
+          "gap": 14.078125,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "360: course selection works by keyboard at text200",
+      "pass": true
+    },
+    {
+      "name": "360: selected course retains the experience route",
+      "pass": true
+    },
+    {
+      "name": "390: page identity and meaningful content",
+      "pass": true
+    },
+    {
+      "name": "390: text200 landing has no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 250.265625,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 75.734375,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 307.59375,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 18.40625,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 260.8125,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 65.1875,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 281.921875,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 44.078125,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "390: text200 path labels and arrows remain separate",
+      "pass": true,
+      "detail": [
+        {
+          "text": "Strumenti e meccanica",
+          "textRight": 250.265625,
+          "arrowLeft": 326,
+          "arrowRight": 374,
+          "rowRight": 374,
+          "gap": 75.734375,
+          "overflow": false
+        },
+        {
+          "text": "Fluidi e termodinamica",
+          "textRight": 307.59375,
+          "arrowLeft": 326,
+          "arrowRight": 374,
+          "rowRight": 374,
+          "gap": 18.40625,
+          "overflow": false
+        },
+        {
+          "text": "Elettricità e magnetismo",
+          "textRight": 260.8125,
+          "arrowLeft": 326,
+          "arrowRight": 374,
+          "rowRight": 374,
+          "gap": 65.1875,
+          "overflow": false
+        },
+        {
+          "text": "Onde, ottica e radiazioni",
+          "textRight": 281.921875,
+          "arrowLeft": 326,
+          "arrowRight": 374,
+          "rowRight": 374,
+          "gap": 44.078125,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "390: course selection works by keyboard at text200",
+      "pass": true
+    },
+    {
+      "name": "390: selected course retains the experience route",
+      "pass": true
+    },
+    {
+      "name": "820: page identity and meaningful content",
+      "pass": true
+    },
+    {
+      "name": "820: text200 landing has no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 820,
+        "scrollWidth": 820,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 444.0625,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 295.125,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 453.46875,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 285.71875,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 470.6875,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 268.5,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 468.09375,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 271.09375,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "820: text200 path labels and arrows remain separate",
+      "pass": true,
+      "detail": [
+        {
+          "text": "Strumenti e meccanica",
+          "textRight": 444.0625,
+          "arrowLeft": 739.1875,
+          "arrowRight": 787.1875,
+          "rowRight": 787.1875,
+          "gap": 295.125,
+          "overflow": false
+        },
+        {
+          "text": "Fluidi e termodinamica",
+          "textRight": 453.46875,
+          "arrowLeft": 739.1875,
+          "arrowRight": 787.1875,
+          "rowRight": 787.1875,
+          "gap": 285.71875,
+          "overflow": false
+        },
+        {
+          "text": "Elettricità e magnetismo",
+          "textRight": 470.6875,
+          "arrowLeft": 739.1875,
+          "arrowRight": 787.1875,
+          "rowRight": 787.1875,
+          "gap": 268.5,
+          "overflow": false
+        },
+        {
+          "text": "Onde, ottica e radiazioni",
+          "textRight": 468.09375,
+          "arrowLeft": 739.1875,
+          "arrowRight": 787.1875,
+          "rowRight": 787.1875,
+          "gap": 271.09375,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "820: course selection works by keyboard at text200",
+      "pass": true
+    },
+    {
+      "name": "820: selected course retains the experience route",
+      "pass": true
+    },
+    {
+      "name": "1440: page identity and meaningful content",
+      "pass": true
+    },
+    {
+      "name": "1440: text200 landing has no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 1109.578125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 145.625,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 1186.984375,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 68.21875,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 1123.8125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 131.390625,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 1152.3125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 102.890625,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "1440: text200 path labels and arrows remain separate",
+      "pass": true,
+      "detail": [
+        {
+          "text": "Strumenti e meccanica",
+          "textRight": 1109.578125,
+          "arrowLeft": 1255.203125,
+          "arrowRight": 1320,
+          "rowRight": 1320,
+          "gap": 145.625,
+          "overflow": false
+        },
+        {
+          "text": "Fluidi e termodinamica",
+          "textRight": 1186.984375,
+          "arrowLeft": 1255.203125,
+          "arrowRight": 1320,
+          "rowRight": 1320,
+          "gap": 68.21875,
+          "overflow": false
+        },
+        {
+          "text": "Elettricità e magnetismo",
+          "textRight": 1123.8125,
+          "arrowLeft": 1255.203125,
+          "arrowRight": 1320,
+          "rowRight": 1320,
+          "gap": 131.390625,
+          "overflow": false
+        },
+        {
+          "text": "Onde, ottica e radiazioni",
+          "textRight": 1152.3125,
+          "arrowLeft": 1255.203125,
+          "arrowRight": 1320,
+          "rowRight": 1320,
+          "gap": 102.890625,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "name": "1440: course selection works by keyboard at text200",
+      "pass": true
+    },
+    {
+      "name": "1440: selected course retains the experience route",
+      "pass": true
+    },
+    {
+      "name": "all observed HTTP bodies equal final artifact",
+      "pass": true
+    },
+    {
+      "name": "no runtime, console, HTTP, network or remote errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "candidate manifest unchanged",
+      "pass": true
+    },
+    {
+      "name": "source manifest unchanged",
+      "pass": true
+    }
+  ],
+  "issues": [],
+  "rows": [
+    {
+      "width": 360,
+      "fit": {
+        "width": 360,
+        "scrollWidth": 360,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 250.265625,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 45.734375,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 272.734375,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 23.265625,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 260.8125,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 35.1875,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 281.921875,
+            "arrowLeft": 296,
+            "arrowRight": 344,
+            "rowRight": 344,
+            "gap": 14.078125,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "fit": {
+        "width": 390,
+        "scrollWidth": 390,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 250.265625,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 75.734375,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 307.59375,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 18.40625,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 260.8125,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 65.1875,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 281.921875,
+            "arrowLeft": 326,
+            "arrowRight": 374,
+            "rowRight": 374,
+            "gap": 44.078125,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "width": 820,
+      "fit": {
+        "width": 820,
+        "scrollWidth": 820,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 444.0625,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 295.125,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 453.46875,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 285.71875,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 470.6875,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 268.5,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 468.09375,
+            "arrowLeft": 739.1875,
+            "arrowRight": 787.1875,
+            "rowRight": 787.1875,
+            "gap": 271.09375,
+            "overflow": false
+          }
+        ]
+      }
+    },
+    {
+      "width": 1440,
+      "fit": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "rows": [
+          {
+            "text": "Strumenti e meccanica",
+            "textRight": 1109.578125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 145.625,
+            "overflow": false
+          },
+          {
+            "text": "Fluidi e termodinamica",
+            "textRight": 1186.984375,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 68.21875,
+            "overflow": false
+          },
+          {
+            "text": "Elettricità e magnetismo",
+            "textRight": 1123.8125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 131.390625,
+            "overflow": false
+          },
+          {
+            "text": "Onde, ottica e radiazioni",
+            "textRight": 1152.3125,
+            "arrowLeft": 1255.203125,
+            "arrowRight": 1320,
+            "rowRight": 1320,
+            "gap": 102.890625,
+            "overflow": false
+          }
+        ]
+      }
+    }
+  ],
+  "assets": [
+    {
+      "url": "http://127.0.0.1:5416/",
+      "bytes": 33639,
+      "sha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0",
+      "artifactSha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/tokens.a6cbc8d0e277.css",
+      "bytes": 429,
+      "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8",
+      "artifactSha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.8d2e9d4dd826.css",
+      "bytes": 16996,
+      "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a",
+      "artifactSha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.084d55bb702f.js",
+      "bytes": 4986,
+      "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+      "artifactSha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+    },
+    {
+      "url": "http://127.0.0.1:5416/",
+      "bytes": 33639,
+      "sha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0",
+      "artifactSha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/tokens.a6cbc8d0e277.css",
+      "bytes": 429,
+      "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8",
+      "artifactSha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.8d2e9d4dd826.css",
+      "bytes": 16996,
+      "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a",
+      "artifactSha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.084d55bb702f.js",
+      "bytes": 4986,
+      "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+      "artifactSha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+    },
+    {
+      "url": "http://127.0.0.1:5416/",
+      "bytes": 33639,
+      "sha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0",
+      "artifactSha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/tokens.a6cbc8d0e277.css",
+      "bytes": 429,
+      "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8",
+      "artifactSha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.8d2e9d4dd826.css",
+      "bytes": 16996,
+      "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a",
+      "artifactSha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.084d55bb702f.js",
+      "bytes": 4986,
+      "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+      "artifactSha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+    },
+    {
+      "url": "http://127.0.0.1:5416/",
+      "bytes": 33639,
+      "sha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0",
+      "artifactSha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/tokens.a6cbc8d0e277.css",
+      "bytes": 429,
+      "sha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8",
+      "artifactSha256": "a6cbc8d0e2775cf1fcd6607868979128c40b4174aff31c32af8cffee35a927a8"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.8d2e9d4dd826.css",
+      "bytes": 16996,
+      "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a",
+      "artifactSha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/site.084d55bb702f.js",
+      "bytes": 4986,
+      "sha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+      "artifactSha256": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83"
+    },
+    {
+      "url": "http://127.0.0.1:5416/assets/andrea.c2ac507d2282.webp",
+      "bytes": 35340,
+      "sha256": "c2ac507d2282020794329fa5d66dbe139ffeb85bf469a379730a7e7b9cb9118a",
+      "artifactSha256": "c2ac507d2282020794329fa5d66dbe139ffeb85bf469a379730a7e7b9cb9118a"
+    }
+  ],
+  "publicFileDelta": {
+    "changed": [
+      {
+        "path": "404.html",
+        "bytes": 577,
+        "sha256": "48afff6188695c8b517dcee174dccabf6e837eaca403b2631ec8b898eb598032"
+      },
+      {
+        "path": "esempi/elettricita-magnetismo/index.html",
+        "bytes": 6041,
+        "sha256": "79995fc252940b6b1bb4506dfe77a592be72972b9dbdad1d1d101729bd28247a"
+      },
+      {
+        "path": "esempi/fluidi-termodinamica/index.html",
+        "bytes": 6049,
+        "sha256": "0d20fa1d9d7ec971dcd8a62bd7f7c4ac4a0ac3c7944625df59fa562d50e14268"
+      },
+      {
+        "path": "esempi/onde-ottica-radiazioni/index.html",
+        "bytes": 6053,
+        "sha256": "c4b6d3ca23f2c33c7f44ae1f20763b267d646bcf3758ce8f140b8747e48b3c0b"
+      },
+      {
+        "path": "esempi/strumenti-meccanica/index.html",
+        "bytes": 5918,
+        "sha256": "26af0510ed3077b3faed74e8015b5686c674facf672cac8fba8814ed12ba54a4"
+      },
+      {
+        "path": "index.html",
+        "bytes": 33639,
+        "sha256": "58948bc8b9b8ddb43ef701502756a27ba5bcd361c20e961ff13dbcc70fe70ce0"
+      },
+      {
+        "path": "source-manifest.json",
+        "bytes": 1886,
+        "sha256": "0d8ae6caad464398eeafac72071db4a8e05718ea451be8f715e6f16ec5c5c1b4"
+      }
+    ],
+    "added": [
+      {
+        "path": "assets/site.8d2e9d4dd826.css",
+        "bytes": 16996,
+        "sha256": "8d2e9d4dd82683812db3a88cdfafb1cbefb331a463f613f6e9b5708069b13b6a"
+      }
+    ],
+    "removed": [
+      {
+        "path": "assets/site.4dc1a793db31.css",
+        "bytes": 16992,
+        "sha256": "4dc1a793db31ba5570958e9a197f6884f4e16d383d416ddd851de64bdc303a98"
+      }
+    ]
+  },
+  "experienceFileEquality": [
+    {
+      "path": "assets/index-B1N3AsGB.js",
+      "bytes": 249666,
+      "sha256": "53a6ad41c4b99534f94ee8a53d6f6bae1ba91a28594cd196a0f5239ad456636a"
+    },
+    {
+      "path": "assets/index-BWPqF67I.css",
+      "bytes": 60135,
+      "sha256": "29ef81dfa28c39f78c4def55c41f6e66266f49d58e59d37d37c5b1f7f3d19d57"
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 322,
+      "sha256": "99cf741296888dff56450debd14ea55d8933e473b3ab6a15c99697339c39a1d4"
+    },
+    {
+      "path": "index.html",
+      "bytes": 580,
+      "sha256": "def334c9ce8a4ac626161fd3d5aa65f91e280e65de84febfbf494d5824857a94"
+    },
+    {
+      "path": "lesson-demo/poiseuille.wav",
+      "bytes": 1882900,
+      "sha256": "530c78a6075ea26949265a80fe9efc7d23083cf638cb600ec52fb42ddc873989"
+    }
+  ],
+  "limits": "Focused CODE2 delta. Previous113journey/38performance checks remain attributed to c762. Text200 is computed-font doubling in anonymous contexts; actual tab zoom and experience journey checked separately. No user account, token, private API, contact submission, hardware or field performance claim."
+}

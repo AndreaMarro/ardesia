@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-24T13:27:09.434950+00:00",
+  "reviewer": "audio_v2",
+  "independence": "Authored Studio, so no independent Studio review claimed. Read-only review of Web/Core/artifact implementation authored by other agents.",
+  "filesSha256": {
+    "apps/web/src/components/LessonPassage.tsx": "5bc83b3275130767f849f6ccf53d1ecb8b2c7dd52c3376515391e80428d8d610",
+    "apps/web/src/components/lessonStudioBridge.ts": "cd4ba4a135c5343e9b4e2f359261f47b21d49f61df2583755df41c6aca23eb8f",
+    "apps/web/src/components/lessonPassageReference.ts": "554e16e08c77fce13863be78f69d6dddfc0de0e8b11b083b463c73a4594b2d9e",
+    "packages/engine/lessonos/study/learning_experiences.py": "e87ccc271c57b4a5589cff4ae7c37861436881b0a7d30274e36785c85f052ff9",
+    "services/study-api/study_api/app.py": "e6c50d188e754c97922b6ec382ccd7312658963e90c43f1945554319f7e2811b",
+    "bin/build_teaching_candidate.py": "907deee67ea1061476ecd4d8d8b3a0d1ab50b5935d3b44cc584e58459d0e9ca5",
+    "bin/web/serve_teaching_candidate.py": "58d7355d46ae87347101ed918688ac1e69ddda6ed0030f3d0658621f4ca4a5d8"
+  },
+  "observedChecks": [
+    "Web bridge derives installed/dev endpoint, pins popup Window, exact origin and channel, requires ready/connect before proposed and disposes listener on close/reopen/unmount.",
+    "Web draft requires transcript plus separate explicit share; Core validates declared local descriptor and existing resource/access authority. No media bytes or credentials in bridge.",
+    "Core rejects duplicated recording query where Web preview currently accepts joined values.",
+    "Artifact candidate-review was a disposable online review surface with stale manifest while recomposition was in progress; root confirmed it is not the final output. No final-artifact integrity conclusion."
+  ],
+  "findings": [
+    {
+      "id": "WEB-PIN-1",
+      "priority": "P2",
+      "status": "RESOLVED: independently reproduced original probe now rejects/ignores without exception",
+      "file": "apps/web/src/components/lessonPassageReference.ts",
+      "reproduction": "Descriptor recordingId=a,b; replay URL has recording=a&recording=b, otherwise valid pins. readPassageDescriptor returns descriptor (Node26 real TS module); Core validate_lesson_passage rejects invalid_lesson_passage.",
+      "impact": "Malformed manual input appears valid in preview but fails share. Real Studio UUID producer does not emit this. No Core bypass demonstrated.",
+      "suggestedFix": "Each requested pin must have exactly one value equal to the descriptor; avoid join as cardinality validation."
+    },
+    {
+      "id": "WEB-MALFORMED-2",
+      "priority": "P2",
+      "status": "RESOLVED: independently reproduced original probe now rejects/ignores without exception",
+      "file": "apps/web/src/components/lessonStudioBridge.ts",
+      "reproduction": "Pinned connected popup sends proposed with cyclic descriptor object (valid structured clone). JSON.stringify before readPassageDescriptor throws uncaught TypeError. Real source evaluated through node:module stripTypeScriptTypes with mocked Window; not a browser runtime claim.",
+      "impact": "Malformed authorized-peer payload produces page error instead of being ignored. No Core request or permission bypass.",
+      "suggestedFix": "Catch serialization/validation errors inside receive and discard malformed proposal."
+    }
+  ],
+  "productEditsByReviewer": false,
+  "finalPrivateArtifact": "PENDING fresh release-final from root builder, including paired private surfaces, source inventory and asset hashes",
+  "recheckedAt": "2026-10-24T13:41:06.578554+00:00",
+  "recheckLog": "bridge-web-core-recheck.log",
+  "recheckMethod": "Same direct Node26 real-source probes as RED, no browser runtime or independent Web full-suite claim",
+  "fixedFilesSha256": {
+    "apps/web/src/components/lessonStudioBridge.ts": "53b6792556ed230fb27e973346b4c7d818485a713c4597d03a0170efaa86bdf2",
+    "apps/web/src/components/lessonPassageReference.ts": "554e16e08c77fce13863be78f69d6dddfc0de0e8b11b083b463c73a4594b2d9e"
+  }
+}

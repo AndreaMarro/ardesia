@@ -1,0 +1,68 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/diary-activity-provenance.test.tsx --maxWorkers=1
+
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/web
+
+ ❯ src/__tests__/diary-activity-provenance.test.tsx (8 tests | 6 failed) 290ms
+   × the same Fluidi diary offers Poiseuille only for its exact originating activity, while Hydro stays manual 149ms
+   × missing provenance cannot inherit the edition's Poiseuille form or infer one from the concept 16ms
+   × null provenance cannot inherit the edition's Poiseuille form or infer one from the concept 13ms
+   × assigned-transfer provenance cannot inherit the edition's Poiseuille form or infer one from the concept 13ms
+   × different-capability provenance cannot inherit the edition's Poiseuille form or infer one from the concept 14ms
+   × different-edition provenance cannot inherit the edition's Poiseuille form or infer one from the concept 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > the same Fluidi diary offers Poiseuille only for its exact originating activity, while Hydro stays manual
+AssertionError: expected <summary></summary> to be null
+
+- Expected:
+null
+
++ Received:
+<summary>
+  Verifica e prepara il prossimo passo
+</summary>
+
+ ❯ src/__tests__/diary-activity-provenance.test.tsx:37:77
+     35|   const hydro = (await screen.findByRole("heading", { name: "student-h…
+     36|   const poiseuille = screen.getByRole("heading", { name: "student-pois…
+     37|   expect(within(hydro).queryByText("Verifica e prepara il prossimo pas…
+       |                                                                             ^
+     38|   expect(within(hydro).queryByLabelText("Rapporto originale r/r₀")).to…
+     39|   expect(within(hydro).getByText(/resta da verificare manualmente/)).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > missing provenance cannot inherit the edition's Poiseuille form or infer one from the concept
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > null provenance cannot inherit the edition's Poiseuille form or infer one from the concept
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > assigned-transfer provenance cannot inherit the edition's Poiseuille form or infer one from the concept
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > different-capability provenance cannot inherit the edition's Poiseuille form or infer one from the concept
+ FAIL  src/__tests__/diary-activity-provenance.test.tsx > different-edition provenance cannot inherit the edition's Poiseuille form or infer one from the concept
+AssertionError: expected <summary></summary> to be null
+
+- Expected:
+null
+
++ Received:
+<summary>
+  Verifica e prepara il prossimo passo
+</summary>
+
+ ❯ src/__tests__/diary-activity-provenance.test.tsx:56:70
+     54|   render(<Diary me={teacher} editionId="fluidi" activityId="poiseuille…
+     55|   await screen.findByRole("heading", { name: item.studentId });
+     56|   expect(screen.queryByText("Verifica e prepara il prossimo passo")).t…
+       |                                                                      ^
+     57|   expect(screen.queryByLabelText("Rapporto originale r/r₀")).toBeNull(…
+     58|   expect(screen.queryByLabelText("Argomento originale x")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 2 passed (8)
+   Start at  00:44:08
+   Duration  1.59s (transform 217ms, setup 0ms, import 361ms, tests 290ms, environment 767ms)

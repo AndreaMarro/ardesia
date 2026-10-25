@@ -1,0 +1,125 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "2537E82D49CA64261EB5A78636C13916"
+  },
+  "start_url": {
+    "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/gJf3Q8cYVncjJuqR7wu47"
+  },
+  "environment": {
+    "locale": "en-US",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "second-lesson-context",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"Second lesson action\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "search-button-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "test_id",
+        "value": "slider-bar-quick-search-button"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "open-memory-search",
+      "action": "click",
+      "locator": {
+        "kind": "test_id",
+        "value": "slider-bar-quick-search-button"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "query-previous-explanation",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "input[cmdk-input]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "R4-L1-ANCHOR-741"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "source-result-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "[role=\"option\"]:has-text(\"R4 Lesson 1\")"
+      },
+      "state": "visible",
+      "timeout_ms": 20000
+    },
+    {
+      "step_id": "return-to-source-segment",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "[role=\"option\"]:has-text(\"R4 Lesson 1\")"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "prior-explanation-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph[data-block-id=\"sgY5YuFgXY\"]:has-text(\"Correction v2\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "return-to-second-lesson-action",
+      "action": "goto",
+      "destination": {
+        "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/gJf3Q8cYVncjJuqR7wu47"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "next-action-restored",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"Second lesson action\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

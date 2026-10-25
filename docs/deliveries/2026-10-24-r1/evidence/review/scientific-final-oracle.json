@@ -1,0 +1,1938 @@
+{
+  "base": "c762e30af0dbfb709a68468a71df16449e96c1b5",
+  "runtime": "3.13.14 (main, Jun 23 2026, 15:20:43) [Clang 22.1.3 ]",
+  "activitySourceSha256": "75da833a014c90142bd75dc03952de4bbf0c26a29551f1b7074148f6b5c0f603",
+  "checks": [
+    {
+      "name": "independent SI grid (144 cases)",
+      "pass_": true,
+      "cases": 144
+    },
+    {
+      "name": "six explicit mandatory radius/eta/length oracles",
+      "pass_": true
+    },
+    {
+      "name": "SI reference also matches independent cross-section quadrature",
+      "pass_": true,
+      "quadrature_m3_s": 1.9634954084936204e-08
+    },
+    {
+      "name": "dimensional Q exponent is (M0,L3,T-1)",
+      "pass_": true,
+      "exponents": [
+        0,
+        3,
+        -1
+      ]
+    },
+    {
+      "name": "27 invalid numerical domain values rejected",
+      "pass_": true
+    },
+    {
+      "name": "both editorial variants resolve real CoursePack refs and SI answers",
+      "pass_": true
+    }
+  ],
+  "initial_SI_reference": {
+    "radius_m": "0.001",
+    "length_m": "0.200",
+    "dynamicViscosity_Pa_s": "0.001",
+    "pressureDrop_Pa": "10",
+    "flow_m3_s": "1.963495408493620774039152114549689302623230874609441138109340370192385E-8",
+    "flow_uL_s": "19.63495408493620774039152114549689302623230874609441138109340370192385",
+    "meanSpeed_m_s": "0.00625",
+    "density_kg_m3": "1000",
+    "Reynolds": "12.50000",
+    "scope": "hypothetical Newtonian test fluid; input conversions are mm→m and mPa·s→Pa·s, not measured blood/water properties"
+  },
+  "mandatoryOracles": [
+    {
+      "radiusRatio": "2",
+      "boundary": "pressure",
+      "etaRatio": "1",
+      "lengthRatio": "1",
+      "expected": "16",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "radiusRatio": "2",
+      "boundary": "flow",
+      "etaRatio": "1",
+      "lengthRatio": "1",
+      "expected": ".0625",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "radiusRatio": ".5",
+      "boundary": "flow",
+      "etaRatio": "1",
+      "lengthRatio": "1",
+      "expected": "16",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "radiusRatio": "1",
+      "boundary": "pressure",
+      "etaRatio": "2",
+      "lengthRatio": "1",
+      "expected": ".5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "radiusRatio": "1",
+      "boundary": "pressure",
+      "etaRatio": "1",
+      "lengthRatio": "2",
+      "expected": ".5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "radiusRatio": "1",
+      "boundary": "flow",
+      "etaRatio": "2",
+      "lengthRatio": "3",
+      "expected": "6",
+      "actual": 6.0,
+      "pass_": true
+    }
+  ],
+  "SIgrid": [
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.2500000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "4",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1250000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "8",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.06250000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "16",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1250000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "8",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.06250000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "16",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.03125000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.03125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "32",
+      "actual": 32.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.06250000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "16",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.03125000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.03125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "32",
+      "actual": 32.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.01562500000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.015625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "63.99999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 64.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.03125000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.03125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "32",
+      "actual": 32.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.01562500000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.015625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "63.99999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 64.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.007812500000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 0.0078125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.5,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "128.000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 128.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.265625000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.265625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.7901234567901234567901234567901234567901234567901234567901234567901234",
+      "actual": 0.7901234567901234,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.6328125000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.6328125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.580246913580246913580246913580246913580246913580246913580246913580247",
+      "actual": 1.5802469135802468,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.3164062500000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.31640625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.160493827160493827160493827160493827160493827160493827160493827160494",
+      "actual": 3.1604938271604937,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.6328125000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.6328125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.580246913580246913580246913580246913580246913580246913580246913580247",
+      "actual": 1.5802469135802468,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.3164062500000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.31640625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.160493827160493827160493827160493827160493827160493827160493827160494",
+      "actual": 3.1604938271604937,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1582031250000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.158203125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "6.320987654320987654320987654320987654320987654320987654320987654320987",
+      "actual": 6.320987654320987,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.3164062500000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.31640625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.160493827160493827160493827160493827160493827160493827160493827160494",
+      "actual": 3.1604938271604937,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1582031250000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.158203125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "6.320987654320987654320987654320987654320987654320987654320987654320987",
+      "actual": 6.320987654320987,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.07910156250000000000000000000000000000000000000000000000000000000000001",
+      "actual": 0.0791015625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "12.64197530864197530864197530864197530864197530864197530864197530864197",
+      "actual": 12.641975308641975,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1582031250000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.158203125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "6.320987654320987654320987654320987654320987654320987654320987654320987",
+      "actual": 6.320987654320987,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.07910156250000000000000000000000000000000000000000000000000000000000001",
+      "actual": 0.0791015625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "12.64197530864197530864197530864197530864197530864197530864197530864197",
+      "actual": 12.641975308641975,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.03955078125000000000000000000000000000000000000000000000000000000000001",
+      "actual": 0.03955078125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 0.75,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "25.28395061728395061728395061728395061728395061728395061728395061728395",
+      "actual": 25.28395061728395,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.25",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "2",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1",
+      "actual": 1.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "2",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.2500000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.999999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.5",
+      "actual": 0.5,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "2",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.2500000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.999999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.1250000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.0,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "8.000000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "8.294400000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 8.2944,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.1205632716049382716049382716049382716049382716049382716049382716049383",
+      "actual": 0.12056327160493828,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.147200000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 4.1472,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2411265432098765432098765432098765432098765432098765432098765432098765",
+      "actual": 0.24112654320987656,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.073600000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 2.0736,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.482253086419753086419753086419753086419753086419753086419753086419753",
+      "actual": 0.4822530864197531,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.147200000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 4.1472,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2411265432098765432098765432098765432098765432098765432098765432098765",
+      "actual": 0.24112654320987656,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.073600000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 2.0736,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.482253086419753086419753086419753086419753086419753086419753086419753",
+      "actual": 0.4822530864197531,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.036800000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.0368,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.9645061728395061728395061728395061728395061728395061728395061728395061",
+      "actual": 0.9645061728395062,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.073600000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 2.0736,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.482253086419753086419753086419753086419753086419753086419753086419753",
+      "actual": 0.4822530864197531,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.036800000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.0368,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.9645061728395061728395061728395061728395061728395061728395061728395061",
+      "actual": 0.9645061728395062,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.5183999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.5184,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.929012345679012345679012345679012345679012345679012345679012345679012",
+      "actual": 1.9290123456790125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.036800000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.0368,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.9645061728395061728395061728395061728395061728395061728395061728395061",
+      "actual": 0.9645061728395062,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.5183999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.5184,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.929012345679012345679012345679012345679012345679012345679012345679012",
+      "actual": 1.9290123456790125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.2592000000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.2592,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.2,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.858024691358024691358024691358024691358024691358024691358024691358025",
+      "actual": 3.858024691358025,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "9.765625000000000000000000000000000000000000000000000000000000000000005",
+      "actual": 9.765625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.102400000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 0.1024,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.882812500000000000000000000000000000000000000000000000000000000000002",
+      "actual": 4.8828125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2047999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.2048,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.441406250000000000000000000000000000000000000000000000000000000000001",
+      "actual": 2.44140625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.4095999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.4096,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.882812500000000000000000000000000000000000000000000000000000000000002",
+      "actual": 4.8828125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2047999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.2048,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.441406250000000000000000000000000000000000000000000000000000000000001",
+      "actual": 2.44140625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.4095999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.4096,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.220703125000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.220703125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.8191999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.8192,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.441406250000000000000000000000000000000000000000000000000000000000001",
+      "actual": 2.44140625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.4095999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.4096,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.220703125000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.220703125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.8191999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.8192,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.6103515625000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.6103515625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.638399999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 1.6384,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "1.220703125000000000000000000000000000000000000000000000000000000000000",
+      "actual": 1.220703125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.8191999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.8192,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.6103515625000000000000000000000000000000000000000000000000000000000002",
+      "actual": 0.6103515625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "1.638399999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 1.6384,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "0.3051757812500000000000000000000000000000000000000000000000000000000001",
+      "actual": 0.30517578125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 1.25,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "3.276799999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 3.2768,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "64.00000000000000000000000000000000000000000000000000000000000000000003",
+      "actual": 64.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.01562499999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.015625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "32.00000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 32.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.03124999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.03125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "16.00000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 0.5,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.06249999999999999999999999999999999999999999999999999999999999999999997",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "32.00000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 32.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.03124999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.03125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "16.00000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.06249999999999999999999999999999999999999999999999999999999999999999997",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "8.000000000000000000000000000000000000000000000000000000000000000000005",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 1.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.1249999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "16.00000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 16.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.06249999999999999999999999999999999999999999999999999999999999999999997",
+      "actual": 0.0625,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "8.000000000000000000000000000000000000000000000000000000000000000000005",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.1249999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.000000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 2.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2499999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "8.000000000000000000000000000000000000000000000000000000000000000000005",
+      "actual": 8.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.1249999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.125,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "4.000000000000000000000000000000000000000000000000000000000000000000002",
+      "actual": 4.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 1.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.2499999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.25,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.000000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 2.0,
+      "pass_": true
+    },
+    {
+      "parameters": {
+        "radiusRatio": 2.0,
+        "viscosity": 4.0,
+        "length": 2.0,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.4999999999999999999999999999999999999999999999999999999999999999999998",
+      "actual": 0.5,
+      "pass_": true
+    }
+  ],
+  "invalidInputs": [
+    {
+      "key": "radiusRatio",
+      "value": "0",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "-1",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "True",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "None",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "'1'",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "-inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "nan",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "radiusRatio",
+      "value": "101",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "0",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "-1",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "True",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "None",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "'1'",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "-inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "nan",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "viscosity",
+      "value": "101",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "0",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "-1",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "True",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "None",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "'1'",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "-inf",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "nan",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    },
+    {
+      "key": "length",
+      "value": "101",
+      "rejected": true,
+      "error": "invalid_physical_domain"
+    }
+  ],
+  "editorialVariants": [
+    {
+      "variant": "poiseuille-boundary-v1",
+      "step": "fixed-pressure",
+      "exerciseRef": "RF-06",
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "16.00000000000000000000000000000000000000000000000000000000000000000001",
+      "actual": 16.0,
+      "coursePackAnswer": 16,
+      "pass_": true
+    },
+    {
+      "variant": "poiseuille-boundary-v1",
+      "step": "fixed-flow",
+      "exerciseRef": null,
+      "parameters": {
+        "radiusRatio": 2,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.06249999999999999999999999999999999999999999999999999999999999999999997",
+      "actual": 0.0625,
+      "coursePackAnswer": null,
+      "pass_": true
+    },
+    {
+      "variant": "poiseuille-boundary-v1",
+      "step": "transfer",
+      "exerciseRef": "RF-04",
+      "parameters": {
+        "radiusRatio": 0.5,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "16",
+      "actual": 16.0,
+      "coursePackAnswer": 16,
+      "pass_": true
+    },
+    {
+      "variant": "poiseuille-nearby-v1",
+      "step": "fixed-pressure",
+      "exerciseRef": "RF-02",
+      "parameters": {
+        "radiusRatio": 1.2,
+        "boundary": "pressure"
+      },
+      "expected_SI_ratio": "2.073600000000000000000000000000000000000000000000000000000000000000000",
+      "actual": 2.0736,
+      "coursePackAnswer": 2.0736,
+      "pass_": true
+    },
+    {
+      "variant": "poiseuille-nearby-v1",
+      "step": "fixed-flow",
+      "exerciseRef": "RF-03",
+      "parameters": {
+        "radiusRatio": 1.25,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.4095999999999999999999999999999999999999999999999999999999999999999999",
+      "actual": 0.4096,
+      "coursePackAnswer": 0.4096,
+      "pass_": true
+    },
+    {
+      "variant": "poiseuille-nearby-v1",
+      "step": "transfer",
+      "exerciseRef": "TR-A3",
+      "parameters": {
+        "radiusRatio": 1.1,
+        "boundary": "flow"
+      },
+      "expected_SI_ratio": "0.6830134553650706918926302848166108872344785192268287685267399767775424",
+      "actual": 0.6830134553650705,
+      "coursePackAnswer": 0.6830134553650706,
+      "pass_": true
+    }
+  ],
+  "humanApproval": "NOT_GRANTED_BY_THIS_AUTOMATED_REVIEW",
+  "limits": "steady fully developed laminar Newtonian incompressible fluid in uniform rigid circular horizontal tube; no slip and negligible entrance/gravity axial effects. Absolute starting values chosen independently; Ardesia returns dimensionless ratios and cannot certify Reynolds from ratios alone."
+}

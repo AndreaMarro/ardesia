@@ -1,0 +1,319 @@
+{
+  "createdAt": "2026-10-20T17:34:53.185345+00:00",
+  "incrementBase": "12296e6be225be7571be88ca55b67bd3fd30784d",
+  "webFullSuite": {
+    "passed": 239,
+    "files": 31,
+    "exit": 0,
+    "scope": "before final token-wrapping CSS rule, no behavioral source changed afterward"
+  },
+  "webBuild": {
+    "typecheck": 0,
+    "build": 0,
+    "scope": "final CSS included",
+    "warning": "lazy MathLive chunk 832.56 kB; existing threshold unchanged"
+  },
+  "publicBuild": {
+    "typecheck": 0,
+    "build": 0,
+    "scope": "public entry unchanged by final notebook-only CSS rule"
+  },
+  "studioGate": {
+    "passed": 2156,
+    "failed": 1,
+    "exit": 1,
+    "replay": "not run because Vitest failed"
+  },
+  "studioFinalFailure": {
+    "file": "no-emoji.test.ts",
+    "test": "nessun emoji in alcun file .ts/.tsx/.css/.html di src/",
+    "durationMs": 23124.83725,
+    "message": "STACK_TRACE_ERROR; no offender list",
+    "cause": "not established",
+    "isolatedDiagnostic": {
+      "numPassedTests": 2,
+      "numFailedTests": 0,
+      "success": true
+    }
+  },
+  "studioFirstGate": {
+    "passed": 2155,
+    "failed": 2,
+    "exit": 1,
+    "replay": "not run because Vitest failed",
+    "failingFiles": [
+      "PluginWindow.test.tsx",
+      "ElabV1Cap6Esp1Fixture.test.ts"
+    ],
+    "cause": "not established"
+  },
+  "isolatedStudioDiagnostic": {
+    "passed": 11,
+    "failed": 0,
+    "exit": 0,
+    "node": "26.5.1",
+    "flags": "same config, no timeout/runner weakening"
+  },
+  "browser": {
+    "phase": "reopen",
+    "synthetic": true,
+    "roles": [
+      {
+        "role": "portable-student",
+        "exactInspectBytes": true,
+        "exactSubmittedSnapshot": true,
+        "requests": [
+          {
+            "path": "/study/notebook/inspect",
+            "method": "POST"
+          },
+          {
+            "path": "/study/notebook/inspect",
+            "method": "POST"
+          },
+          {
+            "path": "/study/notebook/inspect",
+            "method": "POST"
+          },
+          {
+            "path": "/study/notebook/inspect",
+            "method": "POST"
+          }
+        ],
+        "blocked": [],
+        "workers": [
+          "http://127.0.0.1:5397/assets/pdf.worker.min-CjEcRF4W.mjs",
+          "http://127.0.0.1:5397/assets/pdf.worker.min-CjEcRF4W.mjs",
+          "http://127.0.0.1:5397/assets/pdf.worker.min-CjEcRF4W.mjs"
+        ],
+        "geometry": {
+          "390": {
+            "client": 390,
+            "scroll": 390
+          },
+          "820": {
+            "client": 820,
+            "scroll": 820
+          },
+          "1440": {
+            "client": 1440,
+            "scroll": 1440
+          },
+          "zoom200": {
+            "width": 1440,
+            "scroll": 1440
+          }
+        },
+        "focus": {
+          "label": "Pagina precedente",
+          "outline": "3px"
+        },
+        "axe": {
+          "violations": [],
+          "incomplete": [
+            "aria-prohibited-attr",
+            "color-contrast"
+          ],
+          "passes": 22
+        },
+        "logoutCleared": true,
+        "errors": [],
+        "external": [],
+        "csp": []
+      },
+      {
+        "role": "portable-tutor",
+        "exactInspectBytes": true,
+        "exactSubmittedSnapshot": true,
+        "requests": [
+          {
+            "path": "/study/notebook/inspect",
+            "method": "POST"
+          }
+        ],
+        "blocked": [],
+        "workers": [
+          "http://127.0.0.1:5397/assets/pdf.worker.min-CjEcRF4W.mjs"
+        ],
+        "geometry": {},
+        "focus": {
+          "label": "Pagina precedente",
+          "outline": "3px"
+        },
+        "axe": {
+          "violations": [],
+          "incomplete": [
+            "aria-prohibited-attr",
+            "color-contrast"
+          ],
+          "passes": 22
+        },
+        "logoutCleared": true,
+        "errors": [],
+        "external": [],
+        "csp": []
+      }
+    ]
+  },
+  "browserExit": 0,
+  "browserExport": {
+    "phase": "export",
+    "synthetic": true,
+    "roles": [
+      {
+        "role": "portable-student",
+        "exactResponseBytes": true,
+        "rawFloatTokens": true,
+        "normalizedInspectStatus": 422,
+        "bytes": 7311,
+        "errors": [],
+        "external": [],
+        "csp": []
+      },
+      {
+        "role": "portable-tutor",
+        "exactResponseBytes": true,
+        "rawFloatTokens": true,
+        "normalizedInspectStatus": 422,
+        "bytes": 6090,
+        "errors": [],
+        "external": [],
+        "csp": []
+      }
+    ],
+    "harnessShutdown": {
+      "assertionsReported": true,
+      "remainingChildProcesses": 0,
+      "action": "SIGTERM to owned Node process after completed report; exit not claimed as zero"
+    }
+  },
+  "serverRestart": {
+    "oldServerPid": 4836,
+    "oldHarnessPid": 5372,
+    "exportAssertionsComplete": true,
+    "termination": "SIGTERM",
+    "restartRecordedAt": "2026-10-20T16:34:49.953422+00:00",
+    "newServerPid": 5534,
+    "shutdownAfterValidation": {
+      "signal": "SIGTERM",
+      "exitCode": 143,
+      "apiToolSession": 74259,
+      "after": "browser reopen exit 0 and REA passive harness exit 0"
+    }
+  },
+  "responsiveCorrection": {
+    "before": {
+      "client": 390,
+      "scroll": 545
+    },
+    "cause": "long SHA and technical tokens in portable metadata",
+    "change": "scoped overflow-wrap:anywhere; no clipping",
+    "after": {
+      "390": {
+        "client": 390,
+        "scroll": 390
+      },
+      "820": {
+        "client": 820,
+        "scroll": 820
+      },
+      "1440": {
+        "client": 1440,
+        "scroll": 1440
+      },
+      "zoom200": {
+        "width": 1440,
+        "scroll": 1440
+      }
+    },
+    "visualInspection": "1440 and 390 screenshots inspected"
+  },
+  "rea": {
+    "version": "6.7.0",
+    "toolCount": 207,
+    "registration": "existing pinned config reused; actual MCP initialize/tools/list",
+    "external": "AFFiNE guest note creation, persistence and export menu only; no complete PDF/export/reimport cycle",
+    "local": "passive inspection and screenshot after test harness import; records in local-evidence-index.json",
+    "latestCheck": "npm latest 6.7.0, official release published 2026-10-18"
+  },
+  "reviews": {
+    "design": "DESIGN-REVIEW.md",
+    "ui": "UI-REVIEW.md; four focused probes pass; final CSS source-only pass",
+    "parser": "BOUNDARY-REVIEW.md; separate reviewer from parser author",
+    "wrapper": "review.sh unavailable, not claimed"
+  },
+  "coreApiTests": "No full Core/API suite rerun; unchanged. Real synthetic SQLite API roundtrip and adversarial inspect probes run.",
+  "logs": [
+    {
+      "name": "web-tests.log",
+      "sha256": "2fb779866612f431babf0fe144618a4ad2f6e0771b101e3075422d17d8c3155a",
+      "bytes": 403
+    },
+    {
+      "name": "build-final.log",
+      "sha256": "3518373da029fdb7f6998b88a03a319d94777d8bf6654b0f26f5aaf7af2c3e7f",
+      "bytes": 21839
+    },
+    {
+      "name": "build-public.log",
+      "sha256": "5a984cb20a6010a93eb7f9059ab2c542da3c521de88abb878462e6d50c39fb4a",
+      "bytes": 464
+    },
+    {
+      "name": "studio-gate.log",
+      "sha256": "7836b804fb11f1699bce3fcb4e3457372732328153bc7d10bab45855da8fc333",
+      "bytes": 36
+    },
+    {
+      "name": "studio-diagnostic-corrected.log",
+      "sha256": "1e298cfd631022e2a71342e99f09295fd06c2d6a3a9fa126e863af54dfecddd0",
+      "bytes": 267
+    },
+    {
+      "name": "studio-gate-final.log",
+      "sha256": "cbf36fa79040a8dcf3dfa5d2002d9298647f72473c96c988daae6e18805b543b",
+      "bytes": 36
+    },
+    {
+      "name": "studio-final-diagnostic.log",
+      "sha256": "4ad01f6efdbf1b73606eec5033617178bf9e353bc3534acd6fea488bf9ae716d",
+      "bytes": 92
+    },
+    {
+      "name": "browser-export.log",
+      "sha256": "8f56675a7ba0a4332723d0bb7a02c91e24caae75177a86c284f711ab752b0ab6",
+      "bytes": 516
+    },
+    {
+      "name": "browser-reopen.log",
+      "sha256": "5e08b4d14ce101a19518edd71b9e05926ee5b43934a0e3f3f6e3d01b611157ca",
+      "bytes": 2237
+    },
+    {
+      "name": "browser-reopen-overflow.log",
+      "sha256": "13f2e63d11562caaeca33eab7ddcc9ab459fe3b949e38d7674aa73d662261e1b",
+      "bytes": 193
+    },
+    {
+      "name": "rea-local.log",
+      "sha256": "09f84682ef6879efe1edb204cd4a6a566b76bc2a5a0549532b387d6f620dbd0e",
+      "bytes": 675
+    }
+  ],
+  "limitations": [
+    "online authenticated inspection required",
+    "Axe incomplete aria-prohibited-attr and color-contrast",
+    "no Safari/Firefox/screen reader/touch/pen stress",
+    "200-formula load not measured",
+    "draft editor remains memory-only",
+    "full external equivalent workflow incomplete",
+    "SYS01 and SYS02..08 remain open"
+  ],
+  "incrementStatus": "UNCOMMITTED_STUDIO_GATE_FAILED",
+  "goalComplete": false,
+  "externalActions": "no push, merge, deploy or messages; AFFiNE guest research only",
+  "frozenStudioGate": {
+    "sha256": "46dbf3e019cb4fd89c39148d5336752ade34cf1dc4449ecc136c6ac9829f69f3",
+    "unchangedFromHead": true
+  }
+}

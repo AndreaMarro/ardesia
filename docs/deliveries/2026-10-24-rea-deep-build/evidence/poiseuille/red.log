@@ -1,0 +1,53 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ❯ src/__tests__/lesson-studio-bridge.test.ts (0 test)
+ ❯ src/__tests__/public-experience.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/lesson-studio-bridge.test.ts [ src/__tests__/lesson-studio-bridge.test.ts ]
+Error: Failed to resolve import "../components/lessonStudioBridge" from "src/__tests__/lesson-studio-bridge.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web/src/__tests__/lesson-studio-bridge.test.ts:3:57
+  1  |  // @vitest-environment jsdom
+  2  |  import { afterEach, expect, test, vi } from "vitest";
+  3  |  import { openLessonStudioBridge, studioBridgeTarget } from "../components/lessonStudioBridge";
+     |                                                              ^
+  4  |  afterEach(() => {
+  5  |  	vi.unstubAllGlobals();
+ ❯ TransformPluginContext._formatLog ../../node_modules/vite/dist/node/chunks/node.js:30408:39
+ ❯ TransformPluginContext.error ../../node_modules/vite/dist/node/chunks/node.js:30405:14
+ ❯ normalizeUrl ../../node_modules/vite/dist/node/chunks/node.js:27662:18
+ ❯ ../../node_modules/vite/dist/node/chunks/node.js:27725:30
+ ❯ TransformPluginContext.transform ../../node_modules/vite/dist/node/chunks/node.js:27693:4
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/vite/dist/node/chunks/node.js:30193:14
+ ❯ loadAndTransform ../../node_modules/vite/dist/node/chunks/node.js:24511:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/public-experience.test.tsx [ src/__tests__/public-experience.test.tsx ]
+Error: Failed to resolve import "../features/PublicExperience" from "src/__tests__/public-experience.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web/src/__tests__/public-experience.test.tsx:4:31
+  2  |  import { afterEach, expect, test, vi } from "vitest";
+  3  |  import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+  4  |  import { PublicExperience } from "../features/PublicExperience";
+     |                                    ^
+  5  |  var _jsxFileName = "/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesi...
+  6  |  import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
+ ❯ TransformPluginContext._formatLog ../../node_modules/vite/dist/node/chunks/node.js:30408:39
+ ❯ TransformPluginContext.error ../../node_modules/vite/dist/node/chunks/node.js:30405:14
+ ❯ normalizeUrl ../../node_modules/vite/dist/node/chunks/node.js:27662:18
+ ❯ ../../node_modules/vite/dist/node/chunks/node.js:27725:30
+ ❯ TransformPluginContext.transform ../../node_modules/vite/dist/node/chunks/node.js:27693:4
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/vite/dist/node/chunks/node.js:30193:14
+ ❯ loadAndTransform ../../node_modules/vite/dist/node/chunks/node.js:24511:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  14:47:25
+   Duration  1.54s (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 1.18s)

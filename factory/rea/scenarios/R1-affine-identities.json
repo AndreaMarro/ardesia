@@ -1,0 +1,69 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "D0D245C571C712541A4F16B941AEDEA3"
+  },
+  "start_url": {
+    "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/lxHNi_4DNx6F6BI0l16Uo"
+  },
+  "environment": {
+    "service_workers": "allow"
+  },
+  "actions": [
+    {
+      "step_id": "document-visible",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"At fixed flow\")"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "same-source-canvas",
+      "action": "click",
+      "locator": {
+        "kind": "test_id",
+        "value": "switch-edgeless-mode-button"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "canvas-identity-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "affine-edgeless-root"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "same-source-document",
+      "action": "click",
+      "locator": {
+        "kind": "test_id",
+        "value": "switch-page-mode-button"
+      },
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

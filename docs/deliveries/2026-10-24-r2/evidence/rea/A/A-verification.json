@@ -1,0 +1,88 @@
+{
+  "origin": "http://127.0.0.1:5440",
+  "classification": "development UI with real synthetic Core/API; no mocked HTTP; no Studio/source media claim",
+  "browserPath": "Browser plugin not available; regular Playwright",
+  "result": "PASS",
+  "checks": [
+    "1440: ordinary UI login and fluidi episode reachable",
+    "1440: Tab/Enter opens partial help only; prediction and procedure retained",
+    "1440: second explicit gesture shows relation; trigger retains keyboard focus",
+    "1440: no horizontal document overflow; reduced motion context",
+    "1440: actual Core wrong receipt retains attempt; correction retains all fields",
+    "1440: correction receives actual Core agreement",
+    "1440: next step resets answers/help and places focus at its heading",
+    "390: ordinary UI login and fluidi episode reachable",
+    "390: Tab/Enter opens partial help only; prediction and procedure retained",
+    "390: second explicit gesture shows relation; trigger retains keyboard focus",
+    "390: no horizontal document overflow; reduced motion context",
+    "actual Core receipts: support ID once, correction parentId and source refs preserved",
+    "owned source hashes unchanged throughout browser run",
+    "no unexpected browser errors or warnings"
+  ],
+  "sourceBefore": [
+    {
+      "file": "apps/web/src/components/PoiseuilleEpisode.tsx",
+      "sha256": "fd0d368f81e5f205dfabfabe24b3b6b76d3f0dd8d3eee33de335854365523b90"
+    },
+    {
+      "file": "apps/web/src/__tests__/poiseuille-episode.test.tsx",
+      "sha256": "7d1bd113db16130ac8db6d3c67e47bebfde73aa3605bf19243dbc9f084fa9fe4"
+    }
+  ],
+  "sourceAfter": [
+    {
+      "file": "apps/web/src/components/PoiseuilleEpisode.tsx",
+      "sha256": "fd0d368f81e5f205dfabfabe24b3b6b76d3f0dd8d3eee33de335854365523b90"
+    },
+    {
+      "file": "apps/web/src/__tests__/poiseuille-episode.test.tsx",
+      "sha256": "7d1bd113db16130ac8db6d3c67e47bebfde73aa3605bf19243dbc9f084fa9fe4"
+    }
+  ],
+  "receiptOutcomes": [
+    {
+      "status": 200,
+      "prediction": {
+        "ratio": 4,
+        "fixedQuantity": "flow"
+      },
+      "check": {
+        "ratioMatches": false,
+        "constraintMatches": false
+      },
+      "supportUsed": [
+        "constraint-hint"
+      ],
+      "assistance": "SUPPORT_REQUESTED",
+      "sourceRefs": [],
+      "isCorrection": false
+    },
+    {
+      "status": 200,
+      "prediction": {
+        "ratio": 16,
+        "fixedQuantity": "pressure"
+      },
+      "check": {
+        "ratioMatches": true,
+        "constraintMatches": true
+      },
+      "supportUsed": [
+        "constraint-hint",
+        "model-result"
+      ],
+      "assistance": "SUPPORT_REQUESTED",
+      "sourceRefs": [],
+      "isCorrection": true
+    }
+  ],
+  "consoleHealth": {
+    "pageErrors": 0,
+    "initialAnonymous401": 2
+  },
+  "limits": [
+    "Development runtime; not full immutable release",
+    "Source pin covered by focused unit; no source in browser dataset",
+    "No performance or throttling measurement"
+  ]
+}

@@ -399,11 +399,11 @@ export function validateContinuityScopeV1(input: {
 
 /** Href interno alla lezione, mai un link esterno (design §8.3). */
 function continuityLessonHref(scope: ContinuityScopeV1): string {
-  return `/#${scope.roomId}`
+  return `${import.meta.env.BASE_URL}#${scope.roomId}`
 }
 
 function continuityRecoveryHref(scope: ContinuityScopeV1): string {
-  return `/?vista=continuita&lessonId=${encodeURIComponent(scope.lessonId)}`
+  return `${import.meta.env.BASE_URL}?vista=continuita&lessonId=${encodeURIComponent(scope.lessonId)}`
     + `&sessionId=${scope.sessionId}#${scope.roomId}`
 }
 

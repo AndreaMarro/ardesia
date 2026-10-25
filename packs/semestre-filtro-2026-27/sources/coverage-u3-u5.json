@@ -1,0 +1,870 @@
+{
+  "schemaVersion": "1.0.0",
+  "academicYear": "2026/2027",
+  "reviewedOn": "2026-10-21",
+  "purpose": "Mappa editoriale degli argomenti U3/U5 del syllabus verificato verso quesiti originali della banca. Non è una previsione della composizione della prova.",
+  "source": {
+    "id": "MUR-SYLLABUS-2026",
+    "url": "https://www.mur.gov.it/sites/default/files/2026-06/Syllabus_FISICA_%20finale%202026.pdf",
+    "primaryMirror": "https://www.unibo.it/it/studiare/insegnamenti-competenze-trasversali-moocs/insegnamenti/insegnamento/2026/568106"
+  },
+  "coveragePolicy": "I quesiti quantitativi oltre il requisito qualitativo sono distinti come provided_law_extension; la mappa conserva questa distinzione. Gli ID sono stabili e vanno risolti contro il build finale.",
+  "officialTopicCount": 48,
+  "entries": [
+    {
+      "unitId": "U3",
+      "officialTopic": "Fluidi e solidi, stati di aggregazione",
+      "topicOrdinal": 1,
+      "modelIds": [
+        "U3-couette-force"
+      ],
+      "questionIds": [
+        "u3-couette-force-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "La risposta a taglio è esplicitamente riferita a fluido newtoniano e solido elastico ideale. I cambiamenti di stato sono sviluppati anche in U5.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Pressione",
+      "topicOrdinal": 2,
+      "modelIds": [
+        "U3-pressure-area"
+      ],
+      "questionIds": [
+        "u3-pressure-area-01",
+        "u3-pressure-area-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Distinzione forza totale/pressione e forza normale/area.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Densità",
+      "topicOrdinal": 3,
+      "modelIds": [
+        "U3-density"
+      ],
+      "questionIds": [
+        "u3-density-01",
+        "u3-density-05"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Densità media, massa, volume e unità coerenti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Legge di Stevino",
+      "topicOrdinal": 4,
+      "modelIds": [
+        "U3-stevino-gauge",
+        "U3-stevino-absolute",
+        "U3-layered-liquids"
+      ],
+      "questionIds": [
+        "u3-stevino-gauge-03",
+        "u3-stevino-absolute-01",
+        "u3-layered-liquids-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Riferimenti assoluto/relativo espliciti; liquidi stratificati senza sommare due volte la pressione superficiale.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Principio di Pascal",
+      "topicOrdinal": 5,
+      "modelIds": [
+        "U3-hydraulic-force",
+        "U3-hydraulic-stroke"
+      ],
+      "questionIds": [
+        "u3-hydraulic-force-03",
+        "u3-hydraulic-stroke-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Amplificazione di forza, conservazione del volume e bilancio del lavoro.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Principio di Archimede",
+      "topicOrdinal": 6,
+      "modelIds": [
+        "U3-archimedes-force",
+        "U3-apparent-weight",
+        "U3-hydrostatic-weighing"
+      ],
+      "questionIds": [
+        "u3-archimedes-force-03",
+        "u3-apparent-weight-01",
+        "u3-hydrostatic-weighing-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Usare densità del liquido e volume spostato; distinguere pressione locale e forza risultante.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Galleggiamento",
+      "topicOrdinal": 7,
+      "modelIds": [
+        "U3-floating-fraction",
+        "U3-maximum-payload",
+        "U3-loaded-raft-depth",
+        "U3-two-liquid-floating"
+      ],
+      "questionIds": [
+        "u3-floating-fraction-03",
+        "u3-maximum-payload-01",
+        "u3-loaded-raft-depth-01",
+        "u3-two-liquid-floating-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Carichi esterni che non spostano acqua, immersione limite e interfaccia fra due liquidi.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Torricelli e manometri",
+      "topicOrdinal": 8,
+      "modelIds": [
+        "U3-differential-manometer",
+        "U3-torricelli-speed",
+        "U3-torricelli-flow"
+      ],
+      "questionIds": [
+        "u3-differential-manometer-01",
+        "u3-torricelli-speed-01",
+        "u3-torricelli-flow-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Manometria per equilibrio idrostatico ed efflusso ideale con battente dichiarato.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Portata e flusso",
+      "topicOrdinal": 9,
+      "modelIds": [
+        "U3-volume-flow",
+        "U3-mass-flow",
+        "U3-transport-time"
+      ],
+      "questionIds": [
+        "u3-volume-flow-03",
+        "u3-mass-flow-01",
+        "u3-transport-time-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Distinzione fra velocità locale, media, portata volumetrica e massica.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Moto stazionario, laminare e turbolento",
+      "topicOrdinal": 10,
+      "modelIds": [
+        "U3-poiseuille-flow",
+        "U3-parabolic-profile"
+      ],
+      "questionIds": [
+        "u3-poiseuille-flow-03",
+        "u3-parabolic-profile-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Le ipotesi di regime sono esplicite; il quesito di applicabilità impedisce di estendere Poiseuille alla turbolenza. Non viene proposta una legge universale di flusso turbolento.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Continuità e conservazione della massa",
+      "topicOrdinal": 11,
+      "modelIds": [
+        "U3-constriction-velocity",
+        "U3-junction-balance",
+        "U3-identical-branches",
+        "U3-pressure-gradient-fixed-speed"
+      ],
+      "questionIds": [
+        "u3-constriction-velocity-01",
+        "u3-junction-balance-01",
+        "u3-pressure-gradient-fixed-speed-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "La definizione di incomprimibilità è separata dall’assenza di viscosità.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Bernoulli",
+      "topicOrdinal": 12,
+      "modelIds": [
+        "U3-bernoulli-horizontal",
+        "U3-bernoulli-height-speed"
+      ],
+      "questionIds": [
+        "u3-bernoulli-horizontal-01",
+        "u3-bernoulli-height-speed-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Regime ideale, stessa linea di corrente, contributi di pressione/velocità/quota distinti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Stenosi e aneurismi nel modello ideale",
+      "topicOrdinal": 13,
+      "modelIds": [
+        "U3-venturi-area-ratio",
+        "U3-bernoulli-horizontal"
+      ],
+      "questionIds": [
+        "u3-venturi-area-ratio-03",
+        "u3-venturi-area-ratio-01",
+        "u3-bernoulli-horizontal-04"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Confronti di restringimento/allargamento nel modello di continuità e Bernoulli; nessuna pretesa di modello clinico completo.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Viscosità",
+      "topicOrdinal": 14,
+      "modelIds": [
+        "U3-couette-force",
+        "U3-viscous-dissipation"
+      ],
+      "questionIds": [
+        "u3-couette-force-01",
+        "u3-viscous-dissipation-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Viscosità dinamica, sforzo e dissipazione; differenza rispetto all’incomprimibilità.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Profilo parabolico e gradiente di velocità",
+      "topicOrdinal": 15,
+      "modelIds": [
+        "U3-parabolic-profile",
+        "U3-couette-force",
+        "U3-volume-flow"
+      ],
+      "questionIds": [
+        "u3-parabolic-profile-03",
+        "u3-couette-force-01",
+        "u3-volume-flow-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Condizioni al bordo e media del profilo; profilo lineare di Couette distinto dal profilo parabolico del tubo.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Poiseuille",
+      "topicOrdinal": 16,
+      "modelIds": [
+        "U3-poiseuille-flow",
+        "U3-pressure-gradient-fixed-speed"
+      ],
+      "questionIds": [
+        "u3-poiseuille-flow-08",
+        "u3-pressure-gradient-fixed-speed-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Variazioni simultanee di raggio e lunghezza a portata fissa; differenza r⁻⁴ a Q fissata/r⁻² a velocità media fissata.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Resistenze idrauliche in serie e parallelo",
+      "topicOrdinal": 17,
+      "modelIds": [
+        "U3-hydraulic-series",
+        "U3-hydraulic-parallel",
+        "U3-parallel-flow-divider",
+        "U3-network-stages"
+      ],
+      "questionIds": [
+        "u3-hydraulic-series-06",
+        "u3-hydraulic-parallel-06",
+        "u3-network-stages-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Portata comune in serie, pressione comune in parallelo; distinzione pompa a pressione/portata imposta.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Tensione superficiale",
+      "topicOrdinal": 18,
+      "modelIds": [
+        "U3-soap-film-force",
+        "U3-surface-work"
+      ],
+      "questionIds": [
+        "u3-soap-film-force-01",
+        "u3-surface-work-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Numero di facce e area totale dichiarati per evitare fattori due ambiguamente sottintesi.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Capillarità",
+      "topicOrdinal": 19,
+      "modelIds": [
+        "U3-capillary-rise"
+      ],
+      "questionIds": [
+        "u3-capillary-rise-01",
+        "u3-capillary-rise-07"
+      ],
+      "coverage": "covered",
+      "coverageMode": "provided_law_quantitative_support",
+      "evidence": "La legge quantitativa è fornita, con angolo di contatto zero e ipotesi esplicite. Non viene imposta come requisito ulteriore da memorizzare.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Interfacce piane e curve",
+      "topicOrdinal": 20,
+      "modelIds": [
+        "U3-surface-work",
+        "U3-laplace-droplet",
+        "U3-droplet-fragmentation"
+      ],
+      "questionIds": [
+        "u3-surface-work-01",
+        "u3-laplace-droplet-03",
+        "u3-droplet-fragmentation-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Il numero di interfacce è esplicito. I calcoli di frammentazione e superficie sono marcati approfondimento con leggi geometriche fornite.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U3",
+      "officialTopic": "Pressione di curvatura e Laplace qualitativa",
+      "topicOrdinal": 21,
+      "modelIds": [
+        "U3-laplace-droplet",
+        "U3-alveolar-surfactant-balance"
+      ],
+      "questionIds": [
+        "u3-laplace-droplet-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Il concettuale sul raggio minore e sovrapressione maggiore è core; i calcoli ulteriori ricevono il tag provided_law_extension.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Sistema e ambiente",
+      "topicOrdinal": 1,
+      "modelIds": [
+        "U5-sensible-heat"
+      ],
+      "questionIds": [
+        "u5-sensible-heat-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Confine dichiarato, bagno esterno, distinzione chiuso/isolato.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Variabili e stato termodinamico",
+      "topicOrdinal": 2,
+      "modelIds": [
+        "U5-ideal-gas-pressure",
+        "U5-gas-density"
+      ],
+      "questionIds": [
+        "u5-ideal-gas-pressure-01",
+        "u5-gas-density-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Stati di equilibrio e uso di pressione assoluta e kelvin.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Funzioni di stato",
+      "topicOrdinal": 3,
+      "modelIds": [
+        "U5-ideal-gas-pressure",
+        "U5-ideal-expansion-entropy"
+      ],
+      "questionIds": [
+        "u5-ideal-gas-pressure-03",
+        "u5-ideal-expansion-entropy-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Energia interna ed entropia differenziate da calore e lavoro.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Scale di temperatura",
+      "topicOrdinal": 4,
+      "modelIds": [
+        "U5-temperature-difference"
+      ],
+      "questionIds": [
+        "u5-temperature-difference-03",
+        "u5-temperature-difference-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Differenze Celsius/kelvin e rapporti assoluti distinti; rapporti di letture Celsius altrove qualificati come rapporti di coordinate.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Gas perfetto ed equazione di stato",
+      "topicOrdinal": 5,
+      "modelIds": [
+        "U5-ideal-gas-pressure",
+        "U5-gas-density",
+        "U5-isothermal-chambers"
+      ],
+      "questionIds": [
+        "u5-ideal-gas-pressure-01",
+        "u5-gas-density-01",
+        "u5-isothermal-chambers-06"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Campione fissato, quantità di sostanza, pressione di equilibrio e ripartizione delle molecole.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Calore e scambi energetici",
+      "topicOrdinal": 6,
+      "modelIds": [
+        "U5-first-law-expansion",
+        "U5-sensible-heat"
+      ],
+      "questionIds": [
+        "u5-first-law-expansion-03",
+        "u5-sensible-heat-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Calore definito come trasferimento energetico dovuto a differenza di temperatura.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Capacità termica e calore specifico",
+      "topicOrdinal": 7,
+      "modelIds": [
+        "U5-two-body-calorimetry",
+        "U5-sensible-heat"
+      ],
+      "questionIds": [
+        "u5-two-body-calorimetry-03",
+        "u5-sensible-heat-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "C=mc esplicito, unità J/K versus J/(kg K), omogeneità e condizioni meccaniche comuni.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Calori specifici dei gas ideali",
+      "topicOrdinal": 8,
+      "modelIds": [
+        "U5-isobaric-monatomic-heat",
+        "U5-isochoric-heat"
+      ],
+      "questionIds": [
+        "u5-isobaric-monatomic-heat-03",
+        "u5-isobaric-monatomic-heat-01",
+        "u5-isochoric-heat-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Il task individuale confronta ΔU=6 J, W=4 J e Q=10 J; C_V del campione contiene già n.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Cambiamenti di stato e calore latente",
+      "topicOrdinal": 9,
+      "modelIds": [
+        "U5-latent-heat",
+        "U5-subzero-ice-melting",
+        "U5-steam-condensation-cooling",
+        "U5-ice-final-temperature",
+        "U5-freezing-time"
+      ],
+      "questionIds": [
+        "u5-latent-heat-03",
+        "u5-subzero-ice-melting-01",
+        "u5-ice-final-temperature-01",
+        "u5-freezing-time-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Fasi separate; domini escludono fusione incompleta o ebollizione quando non modellate.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Calorimetria",
+      "topicOrdinal": 10,
+      "modelIds": [
+        "U5-two-body-calorimetry",
+        "U5-calorimeter-capacity",
+        "U5-warm-water-and-ice"
+      ],
+      "questionIds": [
+        "u5-two-body-calorimetry-01",
+        "u5-calorimeter-capacity-01",
+        "u5-warm-water-and-ice-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Bilanci con capacità del recipiente e ghiaccio; condizioni garantiscono il regime finale dichiarato.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Conduzione",
+      "topicOrdinal": 11,
+      "modelIds": [
+        "U5-plane-conduction",
+        "U5-composite-wall-series",
+        "U5-interface-temperature"
+      ],
+      "questionIds": [
+        "u5-plane-conduction-03",
+        "u5-composite-wall-series-01",
+        "u5-interface-temperature-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Legge di Fourier, resistenze in serie, continuità della potenza e temperatura di interfaccia.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Convezione",
+      "topicOrdinal": 12,
+      "modelIds": [
+        "U5-convective-loss",
+        "U5-parallel-heat-losses"
+      ],
+      "questionIds": [
+        "u5-convective-loss-01",
+        "u5-parallel-heat-losses-01",
+        "u5-plane-conduction-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Legge di scambio fornita e meccanismo distinto dal trasporto per conduzione.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Irraggiamento",
+      "topicOrdinal": 13,
+      "modelIds": [
+        "U5-emitted-blackbody-power",
+        "U5-net-blackbody-exchange"
+      ],
+      "questionIds": [
+        "u5-emitted-blackbody-power-01",
+        "u5-net-blackbody-exchange-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Temperature assolute, variabili normalizzate adimensionali, emissione lorda/scambio netto distinti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Primo principio",
+      "topicOrdinal": 14,
+      "modelIds": [
+        "U5-first-law-expansion",
+        "U5-compression-heating",
+        "U5-isochoric-heat"
+      ],
+      "questionIds": [
+        "u5-first-law-expansion-01",
+        "u5-compression-heating-01",
+        "u5-isochoric-heat-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Convenzioni energetiche esplicite; lavoro compiuto dal sistema e lavoro sul sistema distinti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Energia interna, calore e lavoro",
+      "topicOrdinal": 15,
+      "modelIds": [
+        "U5-isobaric-monatomic-heat",
+        "U5-first-law-expansion",
+        "U5-isobaric-work"
+      ],
+      "questionIds": [
+        "u5-isobaric-monatomic-heat-03",
+        "u5-first-law-expansion-03",
+        "u5-isobaric-work-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Lavoro orientato e rapporto fra ΔU, Q e W, senza confondere quantità di stato e di scambio.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Reversibilità e irreversibilità",
+      "topicOrdinal": 16,
+      "modelIds": [
+        "U5-free-expansion-pressure",
+        "U5-reversible-isothermal-entropy",
+        "U5-ideal-expansion-entropy"
+      ],
+      "questionIds": [
+        "u5-free-expansion-pressure-03",
+        "u5-reversible-isothermal-entropy-03",
+        "u5-ideal-expansion-entropy-16"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Processo libero isolato, processo reversibile e produzione totale di entropia.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Isoterma",
+      "topicOrdinal": 17,
+      "modelIds": [
+        "U5-isothermal-work",
+        "U5-ideal-expansion-entropy"
+      ],
+      "questionIds": [
+        "u5-isothermal-work-01",
+        "u5-isothermal-work-16"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "Logaritmi semplificati con raddoppi; ciclo composto con isoterme a temperature diverse.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Isocora",
+      "topicOrdinal": 18,
+      "modelIds": [
+        "U5-isochoric-heat"
+      ],
+      "questionIds": [
+        "u5-isochoric-heat-03",
+        "u5-isochoric-heat-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Volume rigido e assenza di altre forme di lavoro dichiarati.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Isobara",
+      "topicOrdinal": 19,
+      "modelIds": [
+        "U5-isobaric-work",
+        "U5-isobaric-monatomic-heat"
+      ],
+      "questionIds": [
+        "u5-isobaric-work-03",
+        "u5-isobaric-monatomic-heat-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Percorso inverso e segno del lavoro; calore distinto dalla sola energia interna.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Adiabatica e confronto qualitativo",
+      "topicOrdinal": 20,
+      "modelIds": [
+        "U5-adiabatic-monatomic",
+        "U5-free-expansion-pressure"
+      ],
+      "questionIds": [
+        "u5-adiabatic-monatomic-01",
+        "u5-free-expansion-pressure-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "provided_law_quantitative_support",
+      "evidence": "Il modello reversibile fornisce T₂=T₁(V₁/V₂)^(2/3); la libera espansione distingue adiabatica irreversibile da isoentropica. La potenza quantitativa è etichettata come estensione.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Secondo principio",
+      "topicOrdinal": 21,
+      "modelIds": [
+        "U5-engine-efficiency",
+        "U5-entropy-hot-cold"
+      ],
+      "questionIds": [
+        "u5-engine-efficiency-03",
+        "u5-entropy-hot-cold-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Kelvin–Planck e direzione del calore, con distinzione dal solo primo principio.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Cicli termodinamici",
+      "topicOrdinal": 22,
+      "modelIds": [
+        "U5-cyclic-work",
+        "U5-isothermal-work"
+      ],
+      "questionIds": [
+        "u5-cyclic-work-01",
+        "u5-isothermal-work-16"
+      ],
+      "coverage": "covered",
+      "coverageMode": "quantitative",
+      "evidence": "ΔU del ciclo nulla e somma algebrica dei lavori su più tratti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Macchine termiche e rendimento",
+      "topicOrdinal": 23,
+      "modelIds": [
+        "U5-engine-efficiency",
+        "U5-engine-average-power",
+        "U5-refrigerator-cop"
+      ],
+      "questionIds": [
+        "u5-engine-efficiency-01",
+        "u5-engine-average-power-01",
+        "u5-refrigerator-cop-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Rendimento, potenza e COP distinti; calori ceduti come moduli dichiarati.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Carnot",
+      "topicOrdinal": 24,
+      "modelIds": [
+        "U5-carnot-efficiency",
+        "U5-carnot-work-temperature-gap"
+      ],
+      "questionIds": [
+        "u5-carnot-efficiency-03",
+        "u5-carnot-efficiency-01",
+        "u5-carnot-work-temperature-gap-01"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Temperature assolute e indipendenza dal fluido di lavoro.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Entropia come funzione di stato",
+      "topicOrdinal": 25,
+      "modelIds": [
+        "U5-ideal-expansion-entropy"
+      ],
+      "questionIds": [
+        "u5-ideal-expansion-entropy-03",
+        "u5-ideal-expansion-entropy-16"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Stessi estremi e percorsi diversi; variazione e produzione di entropia separate.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Entropia: interpretazione macroscopica e statistica",
+      "topicOrdinal": 26,
+      "modelIds": [
+        "U5-reversible-isothermal-entropy",
+        "U5-statistical-entropy"
+      ],
+      "questionIds": [
+        "u5-reversible-isothermal-entropy-03",
+        "u5-statistical-entropy-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "mixed",
+      "evidence": "Q_rev/T e Boltzmann, logaritmo del rapporto di microstati e unità J/K.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    },
+    {
+      "unitId": "U5",
+      "officialTopic": "Direzione naturale dei processi",
+      "topicOrdinal": 27,
+      "modelIds": [
+        "U5-entropy-hot-cold",
+        "U5-free-expansion-pressure"
+      ],
+      "questionIds": [
+        "u5-entropy-hot-cold-03",
+        "u5-free-expansion-pressure-03"
+      ],
+      "coverage": "covered",
+      "coverageMode": "qualitative",
+      "evidence": "Aumento del totale e conservazione dell’energia sono controlli distinti.",
+      "sourceRef": "MUR-SYLLABUS-2026"
+    }
+  ],
+  "limitations": [
+    "Mappatura per obiettivi, non certificazione indipendente di ogni soluzione.",
+    "Non tutte le combinazioni geometriche o tutte le sostanze possibili costituiscono argomenti ministeriali separati.",
+    "Capillarità e adiabatica hanno supporto quantitativo con legge fornita, senza pretendere che formule ulteriori siano requisiti da memorizzare."
+  ]
+}

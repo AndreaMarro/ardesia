@@ -1,0 +1,97 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "17CB60E49DA82398874595C802090865"
+  },
+  "start_url": {
+    "url": "https://sandbox.moodledemo.net/enrol/editinstance.php?courseid=5&id=12&type=self"
+  },
+  "environment": {
+    "service_workers": "allow"
+  },
+  "actions": [
+    {
+      "step_id": "enable-enrolment",
+      "action": "select_option",
+      "locator": {
+        "kind": "css",
+        "selector": "#id_status"
+      },
+      "timeout_ms": 15000,
+      "value": {
+        "source": "literal",
+        "value": "0"
+      }
+    },
+    {
+      "step_id": "capacity-ten",
+      "action": "fill",
+      "locator": {
+        "kind": "css",
+        "selector": "#id_customint3"
+      },
+      "timeout_ms": 15000,
+      "value": {
+        "source": "literal",
+        "value": "10"
+      }
+    },
+    {
+      "step_id": "disable-notifications",
+      "action": "select_option",
+      "locator": {
+        "kind": "css",
+        "selector": "#id_customint4"
+      },
+      "timeout_ms": 15000,
+      "value": {
+        "source": "literal",
+        "value": "0"
+      }
+    },
+    {
+      "step_id": "save-capacity",
+      "action": "click",
+      "locator": {
+        "kind": "css",
+        "selector": "#id_submitbutton"
+      },
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "reopen-policy",
+      "action": "goto",
+      "destination": {
+        "url": "https://sandbox.moodledemo.net/enrol/editinstance.php?courseid=5&id=12&type=self"
+      },
+      "wait_until": "domcontentloaded",
+      "timeout_ms": 15000
+    },
+    {
+      "step_id": "capacity-persisted",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "#id_customint3[value=\"10\"]"
+      },
+      "timeout_ms": 15000,
+      "state": "visible"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

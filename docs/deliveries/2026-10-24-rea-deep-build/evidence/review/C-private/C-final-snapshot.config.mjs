@@ -1,0 +1,1 @@
+export default {root:'/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio',test:{environment:'node',include:['/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/deep-build/review/C-final-snapshot.test.ts'],fileParallelism:false,testTimeout:10000}}

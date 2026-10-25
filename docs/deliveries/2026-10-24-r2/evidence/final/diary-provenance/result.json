@@ -1,0 +1,28 @@
+{
+  "schema": "ardesia.r2-diary-provenance-fix.v1",
+  "baseSha": "bec05cc8172393b153b7d8ea56ae48f1afa95ef0",
+  "finding": "Hydro CANDIDATE inherits Poiseuille guided form from edition baseActivity.",
+  "cause": "Diary ignored canonical thread.originalExerciseId, frozen by Core from the originating submission activity_id.",
+  "invariant": "Offer only the supported activity whose canonical originalExerciseId equals current edition capability and whose thread.editionId equals active editionId. Missing/null/unknown/assigned-transfer/capability or edition mismatch fails closed. No concept inference.",
+  "unchanged": [
+    "Work.tsx",
+    "Studio",
+    "Core",
+    "source references",
+    "receipt authority",
+    "manual CANDIDATE state",
+    "existing assigned transfer practice"
+  ],
+  "files": {
+    "apps/web/src/features/Diary.tsx": "9638184f98cb82280487de3b57c2d125d580d22a2313bb52c57b6e108748bac9",
+    "apps/web/src/__tests__/diary-activity-provenance.test.tsx": "8f4c5749d817249adcebf5b0c6d37775f95e79d81fa39ea8b9b72c1ba76dcbe8"
+  },
+  "validation": {
+    "red": "6failed/2passed before fix; Poiseuille/Taylor positive commands already passed.",
+    "green": "21passed:8new+4course-review-boundary+9workflows",
+    "typecheck": "PASS",
+    "runtime": "Node26.5.1; Vitest maxWorkers1",
+    "browser": "Coordinator/independent reviewer handles final artifact; not claimed by these component tests."
+  },
+  "review": "Independent C source review: no findings or blockers; confirmed submission.activity_id → originalExerciseId → canonical projection → editionId/capability guard. C is closing bounded read-only matrix/report; no additional suite during root gate."
+}

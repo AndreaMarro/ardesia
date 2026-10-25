@@ -1,0 +1,150 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.8 /workspace/scratch/6f2994042c33/ardesia/apps/studio
+
+ ❯ src/__tests__/ReplayView.test.tsx (13 tests | 1 failed | 12 skipped) 1071ms
+     × uses the selected room journal even when unrelated flat legacy data exists 1069ms
+ ❯ src/__tests__/replayTimelineRoom.test.ts (5 tests | 5 failed) 21ms
+     × replays real canonical journal writes in two rooms and after a fresh load 13ms
+     × never substitutes flat legacy events when the requested room is missing 2ms
+     × rejects a canonical envelope belonging to a different physical room 2ms
+     × resolves imported legacy audio only inside its room; the flat API stays explicit 2ms
+     × rejects invalid room identifiers before reading any file 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/ReplayView.test.tsx > ReplayView > uses the selected room journal even when unrelated flat legacy data exists
+AssertionError: expected '9999' to be '1000' // Object.is equality
+
+Expected: "1000"
+Received: "9999"
+
+ ❯ src/__tests__/ReplayView.test.tsx:195:25
+    193|     await vi.waitFor(() => {
+    194|       const range = container.querySelector('input[type="range"]') as …
+    195|       expect(range.min).toBe("1000")
+       |                         ^
+    196|       expect(range.max).toBe("3000")
+    197|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/__tests__/replayTimelineRoom.test.ts > room-scoped replay loading > replays real canonical journal writes in two rooms and after a fresh load
+AssertionError: expected [ 'unassigned-legacy' ] to deeply equal [ 'only-a' ]
+
+- Expected
++ Received
+
+  [
+-   "only-a",
++   "unassigned-legacy",
+  ]
+
+ ❯ src/__tests__/replayTimelineRoom.test.ts:48:50
+     46|       const timeline = await loadReplayTimeline(store.port, room)
+     47|       const scene = new ReplayEngine().getSceneAt(timeline.events, 100…
+     48|       expect(scene.map((element) => element.id)).toEqual([expected])
+       |                                                  ^
+     49|     }
+     50|     expect(store.read.mock.calls.map(([path]) => path)).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/__tests__/replayTimelineRoom.test.ts > room-scoped replay loading > never substitutes flat legacy events when the requested room is missing
+AssertionError: expected [ { t: 1000, …(2) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "element": {
++       "id": "another-lesson",
++     },
++     "t": 1000,
++     "type": "element.add",
++   },
++ ]
+
+ ❯ src/__tests__/replayTimelineRoom.test.ts:61:29
+     59|     ])]))
+     60|     const timeline = await loadReplayTimeline(store.port, "empty-room")
+     61|     expect(timeline.events).toEqual([])
+       |                             ^
+     62|     expect(timeline.firstEventTime).toBeNull()
+     63|     expect(store.read).not.toHaveBeenCalledWith(PATHS.JOURNAL)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/__tests__/replayTimelineRoom.test.ts > room-scoped replay loading > rejects a canonical envelope belonging to a different physical room
+AssertionError: promise resolved "{ events: [], …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "audioChunks": [],
++   "events": [],
++   "firstEventTime": null,
++   "lastEventTime": null,
+  }
+
+ ❯ src/__tests__/replayTimelineRoom.test.ts:70:58
+     68|     await recordRoom(store.port, "room-b", "only-b")
+     69|     store.files.set(roomPaths("room-a").journal, store.files.get(roomP…
+     70|     await expect(loadReplayTimeline(store.port, "room-a")).rejects.toT…
+       |                                                          ^
+     71|   })
+     72|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/__tests__/replayTimelineRoom.test.ts > room-scoped replay loading > resolves imported legacy audio only inside its room; the flat API stays explicit
+AssertionError: expected 'raw/audio/chunk-0.webm' to be 'raw/room-a/audio/chunk-0.webm' // Object.is equality
+
+Expected: "raw/room-a/audio/chunk-0.webm"
+Received: "raw/audio/chunk-0.webm"
+
+ ❯ src/__tests__/replayTimelineRoom.test.ts:82:40
+     80|     const scoped = await loadReplayTimeline(store.port, "room-a")
+     81|     const legacy = await loadReplayTimeline(store.port)
+     82|     expect(scoped.audioChunks[0].path).toBe("raw/room-a/audio/chunk-0.…
+       |                                        ^
+     83|     expect(legacy.audioChunks[0].path).toBe("raw/audio/chunk-0.webm")
+     84|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/__tests__/replayTimelineRoom.test.ts > room-scoped replay loading > rejects invalid room identifiers before reading any file
+AssertionError: promise resolved "{ events: [], …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "audioChunks": [],
++   "events": [],
++   "firstEventTime": null,
++   "lastEventTime": null,
+  }
+
+ ❯ src/__tests__/replayTimelineRoom.test.ts:88:61
+     86|   it("rejects invalid room identifiers before reading any file", async…
+     87|     const store = memoryStore()
+     88|     await expect(loadReplayTimeline(store.port, "../room-b")).rejects.…
+       |                                                             ^
+     89|     expect(store.read).not.toHaveBeenCalled()
+     90|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  6 failed | 12 skipped (18)
+   Start at  10:33:02
+   Duration  2.18s (transform 283ms, setup 37ms, import 355ms, tests 1.09s, environment 484ms)

@@ -1,0 +1,17 @@
+evalmachine.<anonymous>:1
+("use strict";
+             ^
+
+SyntaxError: Unexpected token ';'
+    at new Script (node:vm:118:7)
+    at createScript (node:vm:270:10)
+    at Object.runInNewContext (node:vm:311:10)
+    at harness (/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r2/qa/final-fixes-review/probe-final-fixes.cjs:54:22)
+    at zeroWhilePending (/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r2/qa/final-fixes-review/probe-final-fixes.cjs:80:13)
+    at Object.<anonymous> (/Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/r2/qa/final-fixes-review/probe-final-fixes.cjs:110:9)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+
+Node.js v26.5.1

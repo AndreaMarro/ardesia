@@ -1,0 +1,55 @@
+{
+  "schema": "ardesia.rea.public-closure-handoff/1",
+  "status": "DOCUMENTATION_ONLY_FROM_PREVIOUSLY_FROZEN_RESEARCH",
+  "newResearch": false,
+  "newTestsExecuted": false,
+  "productModified": false,
+  "productCommit": null,
+  "sources": [
+    {
+      "targetId": "TARGET-116",
+      "kind": "FROZEN_RESEARCH_NOT_PRODUCT_RECEIPT",
+      "freezeSHA256PreviouslyDelivered": "47cdb88b64c15172141ad79d24970dcc1a39241a250e7b78709c771e60ec1470",
+      "manifestSHA256FromFreeze": "1d59824cf15acb294cf4e180fdaf8e24f428a8110cd6d418092730432457a132",
+      "researchSHA256FromFreeze": "7e7a220666157b8b8974718d9a71bf3a918e58a413ed7f0d57a3342d1989c025",
+      "contractSHA256FromFreeze": "749157352077d530a70449cbae96581958e9f82883a100c9b5f6d49517b3415c",
+      "originalEvidenceCountFromFreeze": 19,
+      "freezeMetadataReadAtClosure": true,
+      "allOriginalFilesRehashedAtClosure": false,
+      "productAdoptionClaimed": false
+    },
+    {
+      "targetId": "TARGET-082-ADAPTER",
+      "kind": "FROZEN_RESEARCH_PROTOTYPE_ONLY",
+      "freezeSHA256PreviouslyDelivered": "698d279d5e7ff5f7484f76b8f0acd2a4d418ed435a0954e8346cd62d1b7b8d71",
+      "manifestSHA256FromFreeze": "3189e99e8e26bd9dabc5e5cec10307f3600084ed69602afe10629ddc65e90cad",
+      "researchSHA256FromFreeze": "a03eb065ba1469e7db0aea9ca886ed922c7568ba5b668dbc101a675385be9111",
+      "fileCountFromFreeze": 79,
+      "bytesFromFreeze": 11844794,
+      "originalEvidenceCountFromFreeze": 9,
+      "freezeMetadataReadAtClosure": true,
+      "allOriginalFilesRehashedAtClosure": false,
+      "productAdoptionClaimed": false,
+      "openFinding": "F082-1"
+    },
+    {
+      "findingId": "F082-1",
+      "kind": "INDEPENDENT_CONTROLLED_NODEVM_REVIEW_REPORTED_BY_INTEGRATOR",
+      "reportSHA256ReportedByIntegrator": "267580b3c4e73b6f2f51d26f8ce295be1121215bae7cb49ccf2bff294aa85dde",
+      "status": "OPEN",
+      "proofScope": "Two stale-rejection cases and one late-resolve control; same app.mjs in NodeVM with controlled PDF/fetch/hash/DOM. No actual PDF, browser or Auth proof.",
+      "rawOrReportCopied": false,
+      "reportRehashedByThisClosure": false
+    }
+  ],
+  "excluded": [
+    "donor code and bundles",
+    "prototype source and tests not newly byte-verified at closure",
+    "REA raw envelopes and provider captures",
+    "PDFs and font assets",
+    "credentials cookies tokens and PII"
+  ],
+  "globalG0G1CertificationClaimed": false,
+  "all139TargetsDeeplyInvestigatedClaimed": false,
+  "quantitativeBenefit": "UNKNOWN"
+}

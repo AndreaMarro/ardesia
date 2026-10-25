@@ -1,0 +1,388 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/LessonPassageAuthor.test.tsx (2 tests | 2 failed) 213ms
+     × links an existing selected object without adding a second annotation or starting capture 178ms
+     × returns focus to the panel trigger on Escape and leaves recording default off 34ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/LessonPassageAuthor.test.tsx > teacher's passage panel > links an existing selected object without adding a second annotation or starting capture
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Registra e collega un passaggio"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Passaggio della lezione":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Passaggio della lezione"[39m
+    [33mclass[39m=[32m"st-passage-author"[39m
+  [36m/>[39m
+
+  Name "Audio della lezione":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Audio della lezione"[39m
+    [33mclass[39m=[32m"st-audio-controls"[39m
+    [33mstyle[39m=[32m"display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"st-quiet"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Annotazione del docente":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"240"[39m
+    [33mplaceholder[39m=[32m"Per esempio: qui manteniamo fissata la pressione"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Annota passaggio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-ghost"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Registra audio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-btn"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Revoca e cancella audio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-btn"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Copia passaggio per il corso":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-ghost"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Solo il mio microfono docente":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33mrole[39m=[32m"status"[39m
+    [33mstyle[39m=[32m"font-size: 12px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Passaggio della lezione"[39m
+      [33mclass[39m=[32m"st-passage-author"[39m
+    [36m>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mRegistra e collega un passaggio[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mRegistra soltanto la tua voce. Scrivi un'annotazione e collegala esplicitamente al segmento: il tempo da solo non interpreta ciò che dici.[0m
+        [36m</p>[39m
+        [36m<label>[39m
+          [0mAnnotazione del docente[0m
+          [36m<input[39m
+            [33mmaxlength[39m=[32m"240"[39m
+            [33mplaceholder[39m=[32m"Per esempio: qui manteniamo fissata la pressione"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"st-ghost"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mAnnota passaggio[0m
+        [36m</button>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Audio della lezione"[39m
+          [33mclass[39m=[32m"st-audio-controls"[39m
+          [33mstyle[39m=[32m"display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mstyle[39m=[32m"font-size: 12px;"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [0m [0m
+            [0mSolo il mio microfono docente[0m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"st-btn"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRegistra audio[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"st-btn"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRevoca e cancella audio[0m
+          [36m</button>[39m
+          [36m<span[39m
+            [33maria-live[39m=[32m"polite"[39m
+            [33mrole[39m=[32m"status"[39m
+            [33mstyle[39m=[32m"font-size: 12px;"[39m
+          [36m>[39m
+            [0mMicrofono spento[0m
+          [36m</span>[39m
+        [36m</section>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"st-ghost"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mCopia passaggio per il corso[0m
+        [36m</button>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"st-quiet"[39m
+        [36m>[39m
+          [0mIl replay apre questa lezione nello stesso browser e archivio locale. Per un altro archivio trasferisci prima il file .lesson; il collegamento non concede accesso remoto.[0m
+        [36m</p>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/LessonPassageAuthor.test.tsx:21:28
+     19|   it("links an existing selected object without adding a second annota…
+     20|     const p = props(); render(<LessonPassageAuthor {...p} />)
+     21|     fireEvent.click(screen.getByRole("button", { name: "Registra e col…
+       |                            ^
+     22|     fireEvent.click(screen.getByRole("button", { name: "Collega oggett…
+     23|     expect(await screen.findByText(/Passaggio collegato: Formula già s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/LessonPassageAuthor.test.tsx > teacher's passage panel > returns focus to the panel trigger on Escape and leaves recording default off
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Registra e collega un passaggio"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Passaggio della lezione":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Passaggio della lezione"[39m
+    [33mclass[39m=[32m"st-passage-author"[39m
+  [36m/>[39m
+
+  Name "Audio della lezione":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Audio della lezione"[39m
+    [33mclass[39m=[32m"st-audio-controls"[39m
+    [33mstyle[39m=[32m"display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"st-quiet"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Annotazione del docente":
+  [36m<input[39m
+    [33mmaxlength[39m=[32m"240"[39m
+    [33mplaceholder[39m=[32m"Per esempio: qui manteniamo fissata la pressione"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Annota passaggio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-ghost"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Registra audio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-btn"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Revoca e cancella audio":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-btn"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Copia passaggio per il corso":
+  [36m<button[39m
+    [33mclass[39m=[32m"st-ghost"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Solo il mio microfono docente":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<span[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33mrole[39m=[32m"status"[39m
+    [33mstyle[39m=[32m"font-size: 12px;"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Passaggio della lezione"[39m
+      [33mclass[39m=[32m"st-passage-author"[39m
+    [36m>[39m
+      [36m<details>[39m
+        [36m<summary>[39m
+          [0mRegistra e collega un passaggio[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mRegistra soltanto la tua voce. Scrivi un'annotazione e collegala esplicitamente al segmento: il tempo da solo non interpreta ciò che dici.[0m
+        [36m</p>[39m
+        [36m<label>[39m
+          [0mAnnotazione del docente[0m
+          [36m<input[39m
+            [33mmaxlength[39m=[32m"240"[39m
+            [33mplaceholder[39m=[32m"Per esempio: qui manteniamo fissata la pressione"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"st-ghost"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mAnnota passaggio[0m
+        [36m</button>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Audio della lezione"[39m
+          [33mclass[39m=[32m"st-audio-controls"[39m
+          [33mstyle[39m=[32m"display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mstyle[39m=[32m"font-size: 12px;"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [0m [0m
+            [0mSolo il mio microfono docente[0m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"st-btn"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRegistra audio[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"st-btn"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRevoca e cancella audio[0m
+          [36m</button>[39m
+          [36m<span[39m
+            [33maria-live[39m=[32m"polite"[39m
+            [33mrole[39m=[32m"status"[39m
+            [33mstyle[39m=[32m"font-size: 12px;"[39m
+          [36m>[39m
+            [0mMicrofono spento[0m
+          [36m</span>[39m
+        [36m</section>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"st-ghost"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mCopia passaggio per il corso[0m
+        [36m</button>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"st-quiet"[39m
+        [36m>[39m
+          [0mIl replay apre questa lezione nello stesso browser e archivio locale. Per un altro archivio trasferisci prima il file .lesson; il collegamento non concede accesso remoto.[0m
+        [36m</p>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/__tests__/LessonPassageAuthor.test.tsx:30:28
+     28|   it("returns focus to the panel trigger on Escape and leaves recordin…
+     29|     const p = props(); render(<LessonPassageAuthor {...p} />)
+     30|     const trigger = screen.getByRole("button", { name: "Registra e col…
+       |                            ^
+     31|     fireEvent.click(trigger)
+     32|     const field = screen.getByRole("textbox", { name: "Annotazione del…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  14:49:07
+   Duration  1.49s (transform 229ms, setup 22ms, import 443ms, tests 213ms, environment 699ms)

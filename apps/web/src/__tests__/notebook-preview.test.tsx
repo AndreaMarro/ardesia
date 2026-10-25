@@ -1,0 +1,254 @@
+// @vitest-environment jsdom
+import { afterEach, expect, test, vi } from "vitest";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
+import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
+import { readNotebookPreview } from "../../../studio/src/study/notebookPreview";
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+  vi.restoreAllMocks();
+});
+const source = (revisionId: string, text: string) => ({
+  id: "same-source",
+  revisionId,
+  text,
+  contextId: "context",
+  ownerId: "student",
+  editionId: "analysis",
+  kind: "notes",
+  visibility: "private",
+  sha256: "a".repeat(64),
+});
+const bundle = {
+  format: "ardesia-study-notebook-v1",
+  schemaVersion: 1,
+  resources: [source("v2", "Nuova bozza privata v2")],
+  resourceRevisions: [source("v1", "Procedimento consegnato v1")],
+  unavailableResourceRefs: [],
+  submissions: [
+    {
+      id: "submission",
+      student_id: "student",
+      text: "Tentativo",
+      revision: 1,
+      parent_id: null,
+      receipt_id: "receipt",
+      source_refs: [
+        { resourceId: "same-source", revisionId: "v1", contextId: "context" },
+      ],
+      asset_refs: [],
+      feedback: [],
+    },
+  ],
+  assets: [],
+  omissions: [
+    "Solo versioni correnti accessibili e revisioni referenziate, senza storia completa.",
+  ],
+};
+test.each([
+  ["astral beyond UTF-16 midpoint", "𝑥".repeat(10_001)],
+  ["astral at codepoint limit", "𝑥".repeat(20_000)],
+  ["mixed BMP and astral at codepoint limit", "a".repeat(10_000) + "𝑥".repeat(10_000)],
+  ["ASCII at codepoint limit", "a".repeat(20_000)],
+])("portable source accepts %s under the Core codepoint budget", (_label, text) => {
+  const preview = readNotebookPreview({ ...bundle, resources: [source("v2", text)] });
+  expect(preview.sources[0].source.text).toBe(text);
+});
+test.each([
+  ["astral", "𝑥".repeat(20_001)],
+  ["mixed BMP and astral", "a".repeat(10_001) + "𝑥".repeat(10_000)],
+  ["ASCII", "a".repeat(20_001)],
+])("portable source rejects %s beyond the Core codepoint budget", (_label, text) => {
+  expect(() => readNotebookPreview({ ...bundle, resources: [source("v2", text)] }))
+    .toThrow("invalid_notebook_presentation");
+});
+test("within-budget ASCII fields and a 68MiB base64 retain the constant-time fast path", () => {
+  const base64 = "A".repeat(68 * 1024 * 1024);
+  const iterator = vi.spyOn(String.prototype, Symbol.iterator);
+  let iterations: number;
+  let actual: string;
+  try {
+    const preview = readNotebookPreview({
+      ...bundle,
+      assets: [{ id: "asset", mime: "image/png", sha256: "a".repeat(64), base64 }],
+    });
+    actual = preview.assets[0].base64;
+    iterations = iterator.mock.calls.length;
+  } finally {
+    iterator.mockRestore();
+  }
+  expect(actual).toBe(base64);
+  expect(iterations).toBe(0);
+});
+test("an oversized astral source stops counting at the first excess codepoint", () => {
+  const text = "𝑥".repeat(40_000);
+  const original = String.prototype[Symbol.iterator];
+  let yielded = 0;
+  const iterator = vi.spyOn(String.prototype, Symbol.iterator)
+    .mockImplementation(function* (this: string) {
+      for (const point of { [Symbol.iterator]: () => original.call(this) }) {
+        if (String(this) === text) yielded += 1;
+        yield point;
+      }
+      return undefined;
+    });
+  try {
+    expect(() => readNotebookPreview({ ...bundle, resources: [source("v2", text)] }))
+      .toThrow("invalid_notebook_presentation");
+  } finally {
+    iterator.mockRestore();
+  }
+  expect(yielded).toBe(20_001);
+});
+function upload(value: unknown) {
+  const file = new File([JSON.stringify(value)], "quaderno.study.json", {
+    type: "application/json",
+  });
+  Object.defineProperty(file, "text", {
+    value: async () => JSON.stringify(value),
+  });
+  fireEvent.change(screen.getByLabelText("Riapri quaderno .study.json"), {
+    target: { files: [file] },
+  });
+}
+function setup(extra = {}) {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(
+      async () =>
+        new Response(
+          JSON.stringify({
+            valid: true,
+            resources: 1,
+            resourceRevisions: 1,
+            submissions: 1,
+            canonicalAuthenticity: "NOT_VERIFIED",
+            referenceIntegrity: "CHECKED_INTERNALLY",
+            referenceIntegrityScope: "RESOURCE_REVISION_REFERENCES",
+            referencesComplete: true,
+            ...extra,
+          }),
+        ),
+    ),
+  );
+  render(<NotebookPanel editionId="analysis" />);
+}
+test("portable preview renders exact historical and current pairs; never substitutes a current head for a submitted pin", async () => {
+  setup();
+  upload(bundle);
+  await screen.findByText("Procedimento consegnato v1");
+  expect(screen.getByText("Nuova bozza privata v2")).toBeTruthy();
+  expect(screen.queryByText("Versione non collegata v0")).toBeNull();
+  expect(screen.getByText(/Autenticità canonica non verificata/)).toBeTruthy();
+  expect(
+    (fetch as ReturnType<typeof vi.fn>).mock.calls.map((call) => call[0]),
+  ).toEqual(["/study/notebook/inspect"]);
+});
+test("a Core-sized astral source reaches inspect and renders intact after upload", async () => {
+  setup();
+  const text = "𝑥".repeat(10_001);
+  upload({ ...bundle, resources: [source("v2", text)] });
+  await screen.findByText(text);
+  expect(screen.queryByText(/struttura non leggibile/)).toBeNull();
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+test("a tutor artifact with no readable current head still renders the submitted historical snapshot", async () => {
+  setup();
+  upload({ ...bundle, resources: [] });
+  await screen.findByText("Procedimento consegnato v1");
+  expect(screen.queryByText("Nuova bozza privata v2")).toBeNull();
+});
+test("malformed presentation fields are rejected even when an internal-integrity inspect could accept them", async () => {
+  setup();
+  upload({ ...bundle, submissions: [{}] });
+  await screen.findByText(/struttura non leggibile/);
+  expect(screen.queryByText("Quaderno riaperto")).toBeNull();
+  expect(fetch).not.toHaveBeenCalled();
+});
+test("legacy reference scope and declared missing revisions remain explicit; no head is opened to fill the gap", async () => {
+  setup({ referenceIntegrity: "NOT_CHECKED_LEGACY", referencesComplete: null });
+  const { resourceRevisions: _, ...legacy } = bundle;
+  void _;
+  upload(legacy);
+  await screen.findByText(
+    /Formato precedente: i riferimenti storici non sono verificati/,
+  );
+  expect(
+    screen.getByText(/versione non inclusa, nessuna sostituzione/),
+  ).toBeTruthy();
+});
+test("declared losses and unsigned authenticity are visible without granting imported access", async () => {
+  setup({
+    referenceIntegrity: "CHECKED_WITH_DECLARED_LOSSES",
+    referencesComplete: false,
+  });
+  upload({
+    ...bundle,
+    resourceRevisions: [],
+    unavailableResourceRefs: [
+      { resourceId: "same-source", revisionId: "v1", reason: "unavailable" },
+    ],
+  });
+  await screen.findByText("Revisioni dichiarate non disponibili");
+  expect(screen.getByText(/versioni non disponibili dichiarate/)).toBeTruthy();
+  expect(screen.queryByRole("button", { name: /Apri.*Core/ })).toBeNull();
+});
+test("unsupported artifacts never enter the preview or the inspect API", async () => {
+  setup();
+  upload({ ...bundle, format: "lesson-v0" });
+  await screen.findByText(/Quaderno non supportato/);
+  expect(fetch).not.toHaveBeenCalled();
+});
+test("source text stays escaped and file sizes above the old75MiB ceiling reach the96MiB inspect boundary", async () => {
+  setup();
+  const text = '<img src=x onerror="globalThis.injected=true">';
+  const value = { ...bundle, resources: [source("v2", text)] };
+  const file = new File(["fixture"], "quaderno.study.json");
+  Object.defineProperty(file, "text", {
+    value: async () => JSON.stringify(value),
+  });
+  Object.defineProperty(file, "size", { value: 79_756_325 });
+  fireEvent.change(screen.getByLabelText("Riapri quaderno .study.json"), {
+    target: { files: [file] },
+  });
+  await screen.findByText(text);
+  expect(document.querySelector("img")).toBeNull();
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+test("download preserves exact JSON number tokens and whitespace for canonical snapshot digests", async () => {
+  let serialized: Blob | undefined;
+  const createObjectURL = vi.fn((blob: Blob) => {
+    serialized = blob;
+    return "blob:local-preview";
+  });
+  vi.stubGlobal("URL", { createObjectURL, revokeObjectURL: vi.fn() });
+  vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+  const encoded = JSON.stringify({ ...bundle, numericFixture: [0, 1] }, null, 2)
+    .replace('"numericFixture": [\n    0,\n    1\n  ]', '"numericFixture": [\n    -0.0,\n    1.0\n  ]');
+  const fetcher = vi.fn(async (_path: string) => new Response(encoded));
+  vi.stubGlobal("fetch", fetcher);
+  render(<NotebookPanel editionId="analysis" />);
+  fireEvent.click(screen.getByRole("button", { name: "Esporta quaderno" }));
+  await waitFor(() =>
+    expect(serialized?.size).toBe(new Blob([encoded]).size),
+  );
+  expect(await serialized?.text()).toBe(encoded);
+  expect(fetcher.mock.calls[0][0]).toBe("/study/notebook?editionId=analysis");
+});
+
+test("inspect receives the raw imported JSON without normalizing floating-point tokens", async () => {
+  setup();
+  const encoded = JSON.stringify({ ...bundle, numericFixture: [0, 1] })
+    .replace('"numericFixture":[0,1]', '"numericFixture":[-0.0,1.0]');
+  const file = new File([encoded], "raw.study.json", { type: "application/json" });
+  Object.defineProperty(file, "text", { value: async () => encoded });
+  fireEvent.change(screen.getByLabelText("Riapri quaderno .study.json"), { target: { files: [file] } });
+  await screen.findByText("Procedimento consegnato v1");
+  expect(vi.mocked(fetch).mock.calls[0][1]?.body).toBe(encoded);
+});

@@ -1,0 +1,44 @@
+{
+  "artifact": {
+    "categories": {
+      "RUNTIME_DISTRIBUTION": 465
+    },
+    "content_not_scanned": 267,
+    "file_count": 465,
+    "files_with_markers": 20,
+    "root": "apps/studio/dist",
+    "status": "INVENTORIED"
+  },
+  "limitations": [
+    "Source is the tracked worktree, not all Git history or untracked files.",
+    "Markers are lexical leads; comments and inactive code may match.",
+    "No transitive import graph, alias resolution, licence or ownership verdict.",
+    "Binary, oversized, symlink and gitlink content needs separate review.",
+    "No OCR, escaped/encoded marker detection or visual brand certification.",
+    "Artifact hashes describe observed bytes; the scanner does not prove which source built them.",
+    "Artifact prerequisites are readable index.html and one JS file, not entrypoint or dependency closure validation.",
+    "Run on a stable checkout; concurrent file or directory replacement is not isolated.",
+    "Exit 0 and zero marker matches never certify runtime decoupling."
+  ],
+  "purpose": "LEXICAL_INVENTORY_ONLY",
+  "repository": {
+    "checkout_sha": "17eebd0e573d77ce60c68c5985552e257c59e206",
+    "tracked_worktree_dirty": false
+  },
+  "schema_version": 1,
+  "source": {
+    "categories": {
+      "GOVERNANCE_TOOLING": 691,
+      "HISTORIC_EVIDENCE": 1952,
+      "LEGACY_SOURCE": 4454,
+      "SOURCE_CURRENT": 741,
+      "TEST_FIXTURE": 1315
+    },
+    "content_not_scanned": 1301,
+    "file_count": 9153,
+    "files_with_markers": 6451,
+    "status": "INVENTORIED"
+  },
+  "fullReportSha256": "615b1e44b650cff994174d257ddd172fb392f3c02d284e46a51ec1dc971d18c2",
+  "fullReportPrivateLocalPath": "/private/tmp/ardesia-convergence-20261025-work/legacy-built-17eebd0.json"
+}

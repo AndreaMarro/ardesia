@@ -1,0 +1,28 @@
+{
+  "schema": "ardesia.acceptance-delta/1",
+  "productCommit": "5cbafd072504cb4603bf0daa903472fa0f528247",
+  "baseline": "docs/ops/ARDESIA-V4-ACCEPTANCE-a3cdf6ba.json",
+  "baselineRegisterChanged": false,
+  "fullCurrent85CriterionReaudit": "NOT_RUN",
+  "globalG0": "NOT_CERTIFIED",
+  "globalG1": "NOT_READY",
+  "changes": [
+    {
+      "id": "AC-047",
+      "oldStatus": "PARTIAL_HISTORICAL_H",
+      "currentStatus": "PROVED_SCOPED_NEW_SYNTHETIC_INPUT_S",
+      "assertion": "Ripristino DB e oggetti privati provato in ambiente separato",
+      "proof": "docs/ops/ARDESIA-RESTORE-S-5cbafd07.json",
+      "limits": [
+        "Distinct clusters/services/volumes in same Docker VM; not host-loss or RTO proof",
+        "HistoricalH still15missing; S does not recover them",
+        "Fresh logins demonstrate restored passwords/identity, not every historicalJWT"
+      ]
+    },
+    {
+      "id": "AC-080",
+      "currentStatus": "PARTIAL",
+      "proof": "C5 actual rejected-cookie recovery integrated5cb; C7 child401 UI finding remains open; remote marketing preview unproved"
+    }
+  ]
+}

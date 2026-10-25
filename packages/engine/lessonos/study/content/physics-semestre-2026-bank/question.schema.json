@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AndreaMarro/ardesia/physics-semestre-2026/question.schema.json",
+  "title": "Ardesia Physics Question 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "schemaVersion", "bankId", "activityId", "language", "title", "prompt", "format", "options", "answer", "solution", "solutionSteps", "taxonomy", "difficulty", "descriptors", "hints", "familyId", "lawFamily", "semanticSignature", "semanticDescriptor", "status", "reviewer", "provenance", "verification"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^u[1-7]-[a-z0-9-]+-[0-9]{2}$", "maxLength": 128},
+    "version": {"const": 1},
+    "schemaVersion": {"const": "1.0.0"},
+    "bankId": {"const": "physics-semestre-2026"},
+    "activityId": {"const": "physics-question-bank-v1"},
+    "language": {"const": "it-IT"},
+    "title": {"type": "string", "minLength": 1},
+    "prompt": {"type": "string", "minLength": 30},
+    "format": {"enum": ["multiple_choice", "completion"]},
+    "options": {"type": "array", "items": {"$ref": "#/$defs/option"}, "maxItems": 5},
+    "answer": {"$ref": "#/$defs/answer"},
+    "solution": {"type": "string", "minLength": 500},
+    "solutionSteps": {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/step"}},
+    "taxonomy": {"type": "object", "additionalProperties": false, "required": ["unitId", "macroarea", "microarea", "topic"], "properties": {
+      "unitId": {"enum": ["U1", "U2", "U3", "U4", "U5", "U6", "U7"]},
+      "macroarea": {"type": "string", "minLength": 1}, "microarea": {"type": "string", "minLength": 1}, "topic": {"type": "string", "minLength": 1}
+    }},
+    "difficulty": {"type": "object", "required": ["level", "rank", "reason", "calibrationStatus", "conceptualLoad", "algebraicLoad", "reasoningSteps"], "properties": {
+      "level": {"enum": ["base", "facile", "medio", "difficile"]},
+      "rank": {"type": "integer", "minimum": 1, "maximum": 4},
+      "reason": {"type": "string", "minLength": 20},
+      "calibrationStatus": {"const": "editorial_not_student_calibrated"},
+      "conceptualLoad": {"type": "integer", "minimum": 1, "maximum": 4},
+      "algebraicLoad": {"type": "integer", "minimum": 1, "maximum": 4},
+      "reasoningSteps": {"type": "integer", "minimum": 0}
+    }},
+    "descriptors": {"type": "object", "required": ["learningObjective", "reasoningTask", "representation", "calculatorAllowed", "estimatedSeconds", "prerequisites", "misconceptions", "miniCourseIds", "syllabusSubtopics", "scope", "assumptions", "symbols", "estimatedDifficultyIsEmpirical"], "properties": {
+      "learningObjective": {"type": "string", "minLength": 1}, "reasoningTask": {"type": "string", "minLength": 1},
+      "representation": {"enum": ["qualitative", "symbolic", "exact_numeric"]},
+      "calculatorAllowed": {"const": false}, "estimatedSeconds": {"type": "integer", "minimum": 1},
+      "prerequisites": {"$ref": "#/$defs/strings"}, "misconceptions": {"$ref": "#/$defs/strings"},
+      "miniCourseIds": {"$ref": "#/$defs/strings"}, "syllabusSubtopics": {"$ref": "#/$defs/strings"},
+      "scope": {"enum": ["syllabus_core", "provided_law_extension"]}, "assumptions": {"$ref": "#/$defs/strings"},
+      "symbols": {"type": "object", "additionalProperties": {"$ref": "#/$defs/symbol"}},
+      "estimatedDifficultyIsEmpirical": {"const": false}
+    }},
+    "hints": {"$ref": "#/$defs/strings"},
+    "familyId": {"type": "string", "minLength": 1}, "lawFamily": {"type": "string", "minLength": 1},
+    "semanticSignature": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "semanticDescriptor": {"type": "object", "required": ["physicalModel", "lawFamily", "reasoningTask", "requested", "representation", "constraints"]},
+    "status": {"const": "DRAFT"}, "reviewer": {"type": "null"},
+    "provenance": {"type": "object", "required": ["kind", "authoringModelId", "authoringTaskId", "sources", "copiedQuestion", "aiAssisted", "createdOn"], "properties": {
+      "kind": {"enum": ["original_authored_model_expansion", "original_individually_authored_task"]},
+      "authoringModelId": {"type": "string"}, "authoringTaskId": {"type": "string"},
+      "sources": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["sourceId", "locator"], "properties": {"sourceId": {"type": "string"}, "locator": {"type": "string"}}}},
+      "copiedQuestion": {"const": false}, "aiAssisted": {"const": true}, "createdOn": {"const": "2026-10-21"}
+    }},
+    "verification": {"type": "object", "required": ["arithmetic", "automaticChecks", "humanScientificReview", "semanticUniqueness", "limitations"], "properties": {
+      "arithmetic": {"enum": ["exact_sympy", "not_applicable"]},
+      "automaticChecks": {"type": "array", "items": {"type": "object"}},
+      "humanScientificReview": {"const": "NOT_RUN"},
+      "semanticUniqueness": {"const": "structural_signature_and_normalized_text_checked"},
+      "limitations": {"$ref": "#/$defs/strings"}
+    }}
+  },
+  "allOf": [
+    {"if": {"properties": {"format": {"const": "multiple_choice"}}}, "then": {"properties": {
+      "options": {"minItems": 5, "maxItems": 5}, "answer": {"required": ["correctOptionId"]}
+    }}},
+    {"if": {"properties": {"format": {"const": "completion"}}}, "then": {"properties": {
+      "options": {"maxItems": 0}, "answer": {"properties": {"kind": {"const": "rational"}}}
+    }}}
+  ],
+  "$defs": {
+    "strings": {"type": "array", "items": {"type": "string"}},
+    "option": {"type": "object", "additionalProperties": false, "required": ["id", "text"], "properties": {
+      "id": {"enum": ["A", "B", "C", "D", "E"]}, "text": {"type": "string", "minLength": 1}, "exact": {"type": "string"}
+    }},
+    "answer": {"type": "object", "additionalProperties": false, "required": ["kind", "exact", "unit", "text", "accepted"], "properties": {
+      "kind": {"enum": ["rational", "symbolic", "text"]}, "exact": {"type": "string", "minLength": 1},
+      "unit": {"type": "string"}, "text": {"type": "string", "minLength": 1},
+      "accepted": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "correctOptionId": {"enum": ["A", "B", "C", "D", "E"]}
+    }},
+    "step": {"type": "object", "additionalProperties": false, "required": ["title", "explanation"], "properties": {
+      "title": {"type": "string", "minLength": 1}, "explanation": {"type": "string", "minLength": 1}, "math": {"type": "string"}
+    }},
+    "symbol": {"type": "object", "required": ["name", "symbol", "unit", "dimension"], "properties": {
+      "name": {"type": "string"}, "symbol": {"type": "string"}, "unit": {"type": "string"}, "dimension": {"type": "string"}
+    }}
+  }
+}

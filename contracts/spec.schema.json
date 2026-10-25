@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ardesia:handoff-contracts:4",
+  "title": "Ardesia V4 — risorse, eventi, adapter, osservazioni del diario",
+  "description": "Valida struttura, non identità/permessi/verità scientifica. Da generare nei linguaggi del prodotto e testare con vere boundary.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/resource"
+    },
+    {
+      "$ref": "#/$defs/event"
+    },
+    {
+      "$ref": "#/$defs/adapter"
+    },
+    {
+      "$ref": "#/$defs/error_observation"
+    }
+  ],
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "ref",
+        "visibility",
+        "media_type"
+      ],
+      "properties": {
+        "kind": {
+          "const": "resource_version"
+        },
+        "ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resource_id",
+            "revision_id",
+            "organization_id",
+            "sha256"
+          ],
+          "properties": {
+            "resource_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "organization_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "visibility": {
+          "enum": [
+            "learner_private",
+            "submitted_to_assigned_tutor",
+            "cohort_shared",
+            "teacher_private"
+          ]
+        },
+        "media_type": {
+          "enum": [
+            "text/plain",
+            "application/pdf",
+            "image/png",
+            "image/jpeg",
+            "image/webp",
+            "audio/webm",
+            "audio/wav",
+            "application/vnd.ardesia.activity+json"
+          ]
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "event_id",
+        "organization_id",
+        "actor_id",
+        "event_type",
+        "occurred_at",
+        "evidence"
+      ],
+      "properties": {
+        "kind": {
+          "const": "learning_event"
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "organization_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_type": {
+          "enum": [
+            "resource.finalized",
+            "submission.created",
+            "feedback.proposed",
+            "feedback.published",
+            "attempt.resubmitted",
+            "source.superseded",
+            "context.recalled",
+            "error.proposed",
+            "error.confirmed",
+            "error.dismissed",
+            "error.transfer_attempted",
+            "error.transfer_verified",
+            "error.recurred"
+          ]
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "resource_id",
+              "revision_id",
+              "organization_id",
+              "sha256"
+            ],
+            "properties": {
+              "resource_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "organization_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "edition_id": {
+          "type": "string"
+        },
+        "student_id": {
+          "type": "string"
+        }
+      }
+    },
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "source",
+        "target_capability",
+        "status",
+        "preserved",
+        "losses",
+        "receipt_id"
+      ],
+      "properties": {
+        "kind": {
+          "const": "adapter_result"
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resource_id",
+            "revision_id",
+            "organization_id",
+            "sha256"
+          ],
+          "properties": {
+            "resource_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "organization_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "target_capability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "SUPPORTED",
+            "PARTIAL",
+            "UNSUPPORTED"
+          ]
+        },
+        "preserved": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "losses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "reason"
+            ],
+            "properties": {
+              "field": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "receipt_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "error_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "observation_id",
+        "organization_id",
+        "student_id",
+        "concept_id",
+        "category",
+        "verification",
+        "source",
+        "attempt_revision_id",
+        "actor_id",
+        "occurred_at"
+      ],
+      "properties": {
+        "kind": {
+          "const": "error_observation"
+        },
+        "observation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "organization_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "student_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "concept_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": [
+            "misconception",
+            "model_selection",
+            "procedure",
+            "algebra",
+            "sign",
+            "units",
+            "arithmetic",
+            "reading_or_transcription",
+            "ambiguous_question",
+            "other"
+          ]
+        },
+        "verification": {
+          "enum": [
+            "PROPOSED_AI",
+            "CHECKED_IN_SCOPE",
+            "REVIEWED_BY_TUTOR"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resource_id",
+            "revision_id",
+            "organization_id",
+            "sha256"
+          ],
+          "properties": {
+            "resource_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "organization_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "attempt_revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

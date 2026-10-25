@@ -1,0 +1,46 @@
+{
+  "observedAt": "2026-10-25T13:15:11.228796+00:00",
+  "pr": 264,
+  "sourceHead": "b41380e32dee962599dc0bc02ac7cd1d8342590f",
+  "comparisonCandidate": "1898b633e26f99710535c94e25fa28241f0f45b3",
+  "scope": "Read-only source review and one current registry lookup; no code, PR or policy mutation.",
+  "evidence": {
+    "oldFormat": "ardesia.course-pack/1",
+    "oldId": "it.semestre-aperto.medicina.fisica",
+    "oldStatus": "DRAFT_NOT_WIRED_NOT_CERTIFIED",
+    "missingCurrentPackFields": [
+      "activities",
+      "exercises",
+      "reviewRubric",
+      "transferTests",
+      "version"
+    ],
+    "currentRegistryLookup": {
+      "result": "rejected by current closed registry",
+      "exceptionClass": "StudyError",
+      "code": "invalid_coursepack"
+    },
+    "packageWorkspacesOld": null,
+    "packageWorkspacesCandidate": [
+      "apps/web"
+    ],
+    "webScriptsLostByWholeFileReplacement": [
+      "build:web",
+      "build:web:public",
+      "dev:web",
+      "e2e:web",
+      "test:web",
+      "typecheck:web"
+    ],
+    "sourcePolicyLocation": "docs/product/ARDESIA-MEDICINA-2026-27-RFC.md:66; README optional AI statement",
+    "effectiveVersionedPolicyLocation": "AGENTS.md final paragraph remains ZERO-LLM in prodotto",
+    "packReadme": "Whole-file adoption would replace the newer 4,000-question bank README with a historical DRAFT_NOT_WIRED manifest/implement-a-loader proposal; the two branches added the same path independently, so a real merge requires explicit add/add conflict resolution.",
+    "blobRelationsCorrection": "2 ABSENT (RFC and alternate JSON), 3 DIFFERENT (root README/package and pack README). Final matrix JSON already has this correct relation."
+  },
+  "recommendation": "Reject adoption of this whole implementation/migration route, retain the source-pinned historical proposal. Do not call it incorporated; do not claim that selectively removing the four old ELAB shortcuts is intrinsically unsafe. CLOSED_REJECTED is supportable for the non-adopted implementation if root decides, with an explicit preserved-proposal pointer.",
+  "notClaimed": [
+    "Every selective merge of PR264 necessarily deletes web scripts: the regression described is whole-file replacement or incorrect conflict resolution.",
+    "That the optional-AI product direction is forbidden forever: an explicit human directive would take precedence, and this review did not ratify or reject such a directive.",
+    "Legal/ministerial accuracy, scientific approval or certification of either CoursePack."
+  ]
+}

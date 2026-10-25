@@ -44,3 +44,18 @@
   --ui-font:var(--m-font-ui); --border-radius-lg:var(--m-r-card); --border-radius-md:var(--m-r-field);
 }
 .excalidraw .default-sidebar-trigger { display:none; } /* Library nascosta in v1 */
+
+/* Study CoursePack palette; scoped consumers share this canonical token file. */
+:root {
+  --study-shadow-tint:#20242220;
+  --study-ink:#202422;
+  --study-accent:#245d4b;
+  --study-paper:#f7f7f5;
+  --study-control-line:#c7d2c9;
+  --study-surface:#fff;
+  --study-field-line:#aebbb0;
+  --study-banner:#e8eee8;
+  --study-line:#dde1dc;
+  --study-muted:#5c635f;
+  --study-error:#963820;
+}

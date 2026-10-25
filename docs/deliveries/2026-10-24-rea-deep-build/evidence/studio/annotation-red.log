@@ -1,0 +1,52 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/studio
+
+ ❯ src/__tests__/passageAnnotation.test.ts (2 tests | 2 failed) 6ms
+     × wraps long prose without dropping its words or an explicit paragraph 4ms
+     × keeps a long unbroken token readable without losing characters 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/passageAnnotation.test.ts > readable teacher annotation > wraps long prose without dropping its words or an explicit paragraph
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/passageAnnotation.test.ts:7:54
+      5|     const text = "La differenza di pressione resta fissata mentre conf…
+      6|     const lines = wrapPassageAnnotation(text).split("\n")
+      7|     expect(lines.every((line) => line.length <= 40)).toBe(true)
+       |                                                      ^
+      8|     expect(lines.join(" ").replace(/\s+/g, " ")).toBe(text.replace(/\s…
+      9|     expect(lines).toContain("La portata cambia.")
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/passageAnnotation.test.ts > readable teacher annotation > keeps a long unbroken token readable without losing characters
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/passageAnnotation.test.ts:14:54
+     12|     const text = "Q".repeat(125)
+     13|     const lines = wrapPassageAnnotation(text).split("\n")
+     14|     expect(lines.every((line) => line.length <= 40)).toBe(true)
+       |                                                      ^
+     15|     expect(lines.join("")).toBe(text)
+     16|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  15:01:20
+   Duration  179ms (transform 29ms, setup 29ms, import 9ms, tests 6ms, environment 0ms)

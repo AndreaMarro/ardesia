@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "status": "MEASUREMENTS_COMPLETE_WITH_EXTERNAL_FONT_LIMITATION",
+  "measuredSamples": 24,
+  "base": "f456ade218acee1a8b65f5dc24e9220681658b11",
+  "baselineStudioSource": "2e90e3ee01a66f19f441b19fc64dbeafb29937ae2b38beee2d034725fcda1419",
+  "baselineMarketingArtifact": "896e8b7a83f4ed815d6c4a8475349d4ac9a9a7e7080217fc52f855bd10d716ae",
+  "baselineMarketingFiles": {
+    "404.html": "add900a1fb20024013c301f9b6e2f93419f848d22a44ca28dc2008b2b1197d31",
+    "_headers": "9839e98d05ca352c7eaefdd8ab7e125900d3ffafe11c22f16ca4ec7f6b4819f9",
+    "assets/andrea.c2ac507d2282.webp": "c2ac507d2282020794329fa5d66dbe139ffeb85bf469a379730a7e7b9cb9118a",
+    "assets/favicon.bc975b89b1b1.svg": "bc975b89b1b161bb741797356817b6118cff5357fdda8fc9ad7596c2346ebfdf",
+    "assets/site.084d55bb702f.js": "084d55bb702f480833342b4641462c5b30a68c00f059108778772b2de86f7a83",
+    "assets/site.e7c9211dd490.css": "e7c9211dd490727964536d3a65fe3ee516551e2a5c4a9f0473efe56af7583f88",
+    "assets/social-cover.be3cdb7e8bb8.jpg": "be3cdb7e8bb8b988f3c5a4ef789e9be0115622d05a063bef1c347958834db56f",
+    "assets/tokens.3b44f787b7c0.css": "3b44f787b7c0690a3e86d6d80b4f8c528c21a9027bad28d5b3c1172fd0d8b307",
+    "esempi/elettricita-magnetismo/index.html": "a8242699271e4c2030ac9b8efa9c511286cef286188e16d23d19193d160bc672",
+    "esempi/fluidi-termodinamica/index.html": "57e441e6c71656482c9d510c52a8ae35f63d6a8e2a1eff5c87137a1d19b5a0d1",
+    "esempi/onde-ottica-radiazioni/index.html": "4e642547ffb32bb4cd461b9c53213c6bb2860d77c90d03a5fb18ebaf2da99ae6",
+    "esempi/strumenti-meccanica/index.html": "1cf7d4cc8ee88f5b61f2e58c49f8534812b32e3c1c385600036e6fad012db2a0",
+    "index.html": "e650e19b811824de86a9b4879cd335cbc88f26115e3305b70fc1eca7731bc8f8",
+    "robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "source-manifest.json": "ebb431068c809d5d6d2d75a356bba03be7b06c85fde0d79e9abe7ee8ec5901ff"
+  },
+  "finalArtifactSource": "d8d28f7d14495778fd4f7e688037def42766b0ce4d6ab7e2210763b60d75597d",
+  "dependencyLocksIdentical": true,
+  "locks": {
+    "apps/studio/package-lock.json": "0f7c344b16bab89fb7312a4375533cc7f7715e217837a32cf165b1ee3ccf21d4",
+    "package-lock.json": "4f261496a923a8afcddaa0775b7bfae1c4bd5d08860fcd17200f7ae688c05b68"
+  },
+  "runnerProfile": "Explicit PATH /opt/homebrew/bin first for baseline rebuild and measurement runner: Node26.5.1. First Node22 baseline build discarded and retained separately.",
+  "installedBrowserCheckedAfterRun": {
+    "version": "Google Chrome for Testing 148.0.7778.96",
+    "executableSha256": "2447c7bdea8e8ad38b52594f1ba53e18821c05445e8a07ad1cf3b0f23931d89d",
+    "note": "The failure path did not save browser.version during sampling. Version is checked from the same pinned installed Playwright executable afterward; not retrospective field measurement."
+  },
+  "checks": [
+    {
+      "name": "all Studio and marketing samples used three new anonymous contexts per width",
+      "pass": true
+    },
+    {
+      "name": "no page errors",
+      "pass": true
+    },
+    {
+      "name": "no failed requests",
+      "pass": true
+    },
+    {
+      "name": "no HTTP failure statuses",
+      "pass": true
+    },
+    {
+      "name": "no user Study API requested",
+      "pass": true
+    },
+    {
+      "name": "all responses stay on the tested local origin",
+      "pass": false
+    },
+    {
+      "name": "fonts reached loaded status",
+      "pass": true
+    },
+    {
+      "name": "no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "both Studio versions rendered an actual empty Excalidraw canvas",
+      "pass": true
+    },
+    {
+      "name": "archived baseline source files remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "all captured JS/CSS and main HTML bytes matched pinned baseline/final artifact files",
+      "pass": true
+    }
+  ],
+  "summaries": [
+    {
+      "target": "baseline-studio",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 18.200000002980232,
+      "loadMs": 18.299999997019768,
+      "visibleFontsTwoFrameSnapshotMs": 909.2000000029802,
+      "resourceCount": 50,
+      "initialAllResourceDecodedBytes": 3347310,
+      "lcpObservedMs": 436,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 24,
+        "decodedBytes": 3098580,
+        "encodedBytes": 3098580,
+        "transferBytes": 3105780,
+        "offlineGzipBytes": 927591
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 162842,
+        "encodedBytes": 162842,
+        "transferBytes": 163442,
+        "offlineGzipBytes": 26960
+      },
+      "externalResponseCountMedian": 40,
+      "externalResponseOrigins": [
+        "https://unpkg.com"
+      ]
+    },
+    {
+      "target": "baseline-studio",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 17.599999994039536,
+      "loadMs": 18,
+      "visibleFontsTwoFrameSnapshotMs": 460.79999999701977,
+      "resourceCount": 30,
+      "initialAllResourceDecodedBytes": 3347310,
+      "lcpObservedMs": 432,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 24,
+        "decodedBytes": 3098580,
+        "encodedBytes": 3098580,
+        "transferBytes": 3105780,
+        "offlineGzipBytes": 927591
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 162842,
+        "encodedBytes": 162842,
+        "transferBytes": 163442,
+        "offlineGzipBytes": 26960
+      },
+      "externalResponseCountMedian": 20,
+      "externalResponseOrigins": [
+        "https://unpkg.com"
+      ]
+    },
+    {
+      "target": "candidate-studio",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 23.299999997019768,
+      "loadMs": 23.299999997019768,
+      "visibleFontsTwoFrameSnapshotMs": 882,
+      "resourceCount": 50,
+      "initialAllResourceDecodedBytes": 3365167,
+      "lcpObservedMs": 448,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 24,
+        "decodedBytes": 3109558,
+        "encodedBytes": 3109558,
+        "transferBytes": 3116758,
+        "offlineGzipBytes": 930954
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 169721,
+        "encodedBytes": 169721,
+        "transferBytes": 170321,
+        "offlineGzipBytes": 28257
+      },
+      "externalResponseCountMedian": 40,
+      "externalResponseOrigins": [
+        "https://unpkg.com"
+      ]
+    },
+    {
+      "target": "candidate-studio",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 23.30000001192093,
+      "loadMs": 23.30000001192093,
+      "visibleFontsTwoFrameSnapshotMs": 874.2000000029802,
+      "resourceCount": 30,
+      "initialAllResourceDecodedBytes": 3365167,
+      "lcpObservedMs": 436,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 24,
+        "decodedBytes": 3109558,
+        "encodedBytes": 3109558,
+        "transferBytes": 3116758,
+        "offlineGzipBytes": 930954
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 169721,
+        "encodedBytes": 169721,
+        "transferBytes": 170321,
+        "offlineGzipBytes": 28257
+      },
+      "externalResponseCountMedian": 0,
+      "externalResponseOrigins": []
+    },
+    {
+      "target": "baseline-marketing",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 9.400000005960464,
+      "loadMs": 22.200000002980232,
+      "visibleFontsTwoFrameSnapshotMs": 48.1000000089407,
+      "resourceCount": 4,
+      "initialAllResourceDecodedBytes": 55620,
+      "lcpObservedMs": 32,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 1,
+        "decodedBytes": 4986,
+        "encodedBytes": 4986,
+        "transferBytes": 5286,
+        "offlineGzipBytes": 1862
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 15294,
+        "encodedBytes": 15294,
+        "transferBytes": 15894,
+        "offlineGzipBytes": 4174
+      },
+      "externalResponseCountMedian": 0,
+      "externalResponseOrigins": []
+    },
+    {
+      "target": "baseline-marketing",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 7.9000000059604645,
+      "loadMs": 20,
+      "visibleFontsTwoFrameSnapshotMs": 52.400000005960464,
+      "resourceCount": 4,
+      "initialAllResourceDecodedBytes": 55620,
+      "lcpObservedMs": 36,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 1,
+        "decodedBytes": 4986,
+        "encodedBytes": 4986,
+        "transferBytes": 5286,
+        "offlineGzipBytes": 1862
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 15294,
+        "encodedBytes": 15294,
+        "transferBytes": 15894,
+        "offlineGzipBytes": 4174
+      },
+      "externalResponseCountMedian": 0,
+      "externalResponseOrigins": []
+    },
+    {
+      "target": "candidate-marketing",
+      "width": 390,
+      "samples": 3,
+      "domContentLoadedMs": 9.5,
+      "loadMs": 23.5,
+      "visibleFontsTwoFrameSnapshotMs": 61.400000005960464,
+      "resourceCount": 3,
+      "initialAllResourceDecodedBytes": 22407,
+      "lcpObservedMs": 40,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 1,
+        "decodedBytes": 4986,
+        "encodedBytes": 4986,
+        "transferBytes": 5286,
+        "offlineGzipBytes": 1862
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 17421,
+        "encodedBytes": 17421,
+        "transferBytes": 18021,
+        "offlineGzipBytes": 4726
+      },
+      "externalResponseCountMedian": 0,
+      "externalResponseOrigins": []
+    },
+    {
+      "target": "candidate-marketing",
+      "width": 1440,
+      "samples": 3,
+      "domContentLoadedMs": 9,
+      "loadMs": 23.80000001192093,
+      "visibleFontsTwoFrameSnapshotMs": 59.5,
+      "resourceCount": 4,
+      "initialAllResourceDecodedBytes": 57747,
+      "lcpObservedMs": 40,
+      "lcpObservedSamples": 3,
+      "js": {
+        "initialRequestedCompletedCount": 1,
+        "decodedBytes": 4986,
+        "encodedBytes": 4986,
+        "transferBytes": 5286,
+        "offlineGzipBytes": 1862
+      },
+      "css": {
+        "initialRequestedCompletedCount": 2,
+        "decodedBytes": 17421,
+        "encodedBytes": 17421,
+        "transferBytes": 18021,
+        "offlineGzipBytes": 4726
+      },
+      "externalResponseCountMedian": 0,
+      "externalResponseOrigins": []
+    }
+  ],
+  "limits": "3 cold isolated browser contexts per version/390/1440. Empty anonymous Studio lesson; no tokens, Study API, audio capture or user dataset. New contexts isolate HTTP/site cache; OS/process/JIT/font/filesystem caches are not reset. Shared host while root Studio frozen gate ran, no CPU/network throttle. Baseline Studio root on Python5419 vs candidate /studio/ on FastAPI5412; baseline marketing Python5420 vs composed public5414. Render proxy: Excalidraw visible (Studio), fonts.ready and two rAF callbacks including automation transport; not first-render instrumentation, field INP, fps, full replay or physical mobile performance. JS/CSS sizes count completed resource timing entries by that snapshot; gzip computed offline, not claimed wire compression. Third-party MathLive fonts from unpkg.com requested by BOTH frozen baseline and candidate, redirecting to @0.111.1: latency/cache/version outside artifact. Cross-origin timing body sizes can be zero. Therefore load/render medians are observations with uncontrolled external dependencies; no causal speedup/regression claim or local-network-only PASS. Missing LCP remains null.",
+  "attempts": "Initial baseline built under shell-default Node22, then rebuilt Node26 before any samples. One measurement run collected all24 rows and verified82 local HTML/JS/CSS HTTP bodies, then intentionally retained FAIL on same-origin assertion. No sample rerun, timeout increase, filter or product change. Summary derived from that complete failure.json, keeping the failed assertion visible."
+}

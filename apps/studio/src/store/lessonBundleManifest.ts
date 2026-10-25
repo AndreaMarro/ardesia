@@ -48,7 +48,7 @@ export type LessonBundleManifestV1 = Readonly<{
     warnings: readonly string[]
   }>
   compatibility: Readonly<{
-    minimumReaderSchemaVersion: 1
+    minimumReaderSchemaVersion: 1 | 2
     migrations: readonly string[]
   }>
 }>
@@ -166,7 +166,7 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
   }
 
   if (!isRecord(value.compatibility)) manifestError("compatibility mancante o non valido")
-  if (value.compatibility.minimumReaderSchemaVersion !== 1) {
+  if (value.compatibility.minimumReaderSchemaVersion !== 1 && value.compatibility.minimumReaderSchemaVersion !== 2) {
     manifestError("minimumReaderSchemaVersion non supportato")
   }
   const migrations = stringArray(value.compatibility.migrations, "compatibility.migrations")
@@ -186,7 +186,7 @@ export function parseLessonBundleManifestV1(value: unknown): LessonBundleManifes
     files: Object.freeze(files),
     lessonOs: Object.freeze({ status: value.lessonOs.status, warnings: Object.freeze(warnings) }),
     compatibility: Object.freeze({
-      minimumReaderSchemaVersion: 1,
+      minimumReaderSchemaVersion: value.compatibility.minimumReaderSchemaVersion,
       migrations: Object.freeze(migrations),
     }),
   })
@@ -225,6 +225,7 @@ export async function buildLessonBundleManifest(
   lessonId: string,
   sessionIds: readonly string[],
   entries: ReadonlyMap<string, FileEntry>,
+  minimumReaderSchemaVersion: 1 | 2 = 1,
 ): Promise<LessonBundleManifestV1> {
   const required = new Set<string>(REQUIRED_ARTIFACTS)
   const files = await Promise.all([...entries.values()]
@@ -250,7 +251,7 @@ export async function buildLessonBundleManifest(
       warnings: Object.freeze(lessonOsIncluded ? [] : ["LessonOS snapshot missing"]),
     }),
     compatibility: Object.freeze({
-      minimumReaderSchemaVersion: 1,
+      minimumReaderSchemaVersion,
       migrations: Object.freeze([]),
     }),
   })

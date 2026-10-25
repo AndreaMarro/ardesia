@@ -1,0 +1,638 @@
+[
+  {
+    "modelId": "U3-hydraulic-series",
+    "serial": 5,
+    "reasoningTask": "partition_pressure_series",
+    "objective": "Ripartire una differenza di pressione fra due resistenze idrauliche in serie.",
+    "prompt": "Le resistenze sono R₁=2 kPa s/L e R₂=4 kPa s/L; la differenza di pressione totale è 12 kPa. Quale differenza di pressione cade sul primo tratto?",
+    "answer": {
+      "kind": "rational",
+      "exact": "4",
+      "unit": "kPa"
+    },
+    "options": [
+      "2 kPa",
+      "4 kPa",
+      "6 kPa",
+      "8 kPa",
+      "12 kPa"
+    ],
+    "correctIndex": 1,
+    "context": "Due tratti idraulici lineari sono collegati in serie senza diramazioni. Ogni tratto segue Δp=RQ.",
+    "assumptions": [
+      "Fluido incomprimibile, regime stazionario, nessun accumulo fra i tratti."
+    ],
+    "law": "Q=Δp_tot/(R₁+R₂); Δp₁=R₁Q",
+    "explanation": "In una connessione in serie tutta la portata attraversa prima un tratto e poi l’altro. Non si divide a metà, perché non esistono vie alternative. Si sommano invece le cadute di pressione: la pompa deve compensare la resistenza di entrambi i tratti. Il primo passaggio è dunque ricavare la resistenza complessiva e da questa la portata comune. Soltanto dopo si applica Δp=RQ al tratto indicato. Il tratto con resistenza doppia richiede una caduta di pressione doppia per sostenere la stessa portata. Questo criterio permette anche di verificare il risultato senza ripetere ogni operazione: il primo tratto deve ricevere un terzo della caduta totale e il secondo due terzi. Non è corretto dividere sempre la pressione totale in parti uguali; ciò varrebbe soltanto per resistenze uguali. Le unità kPa s/L moltiplicate per L/s producono kPa, coerentemente con una differenza di pressione. La pressione assoluta all’ingresso non è necessaria: nel modello resistivo contano le differenze fra i nodi.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Determinare la portata comune",
+        "explanation": "Le resistenze in serie si sommano. La differenza totale si divide per la resistenza equivalente.",
+        "math": "R_eq=2+4=6 kPa s/L; Q=12/6=2 L/s"
+      },
+      {
+        "title": "Applicare la legge al primo tratto",
+        "explanation": "Il primo tratto è attraversato dalla portata appena trovata. Non gli attribuiamo tutta la differenza della pompa.",
+        "math": "Δp₁=2×2=4 kPa"
+      },
+      {
+        "title": "Controllare il secondo tratto",
+        "explanation": "La seconda caduta deve completare la differenza totale e rispettare il rapporto delle resistenze.",
+        "math": "Δp₂=4×2=8 kPa; 4+8=12 kPa"
+      }
+    ],
+    "traps": [
+      "In serie si conserva la portata, non la stessa caduta su ogni tratto.",
+      "La divisione in parti uguali richiede resistenze uguali."
+    ],
+    "microarea": "resistenze-idrauliche",
+    "topic": "Ripartire una differenza di pressione fra due resistenze idrauliche in serie.",
+    "syllabusSubtopics": [
+      "U3.resistenze-idrauliche"
+    ]
+  },
+  {
+    "modelId": "U3-hydraulic-parallel",
+    "serial": 5,
+    "reasoningTask": "close_branch_fixed_pressure",
+    "objective": "Distinguere la portata del ramo e la portata totale quando si chiude un ramo a pressione imposta.",
+    "prompt": "Si chiude completamente il secondo ramo lasciando invariata la differenza di pressione fra i nodi e invariata la resistenza del primo ramo. Che cosa accade alla portata nel primo ramo e a quella totale?",
+    "answer": {
+      "kind": "text",
+      "exact": "La portata nel primo ramo resta uguale; la portata totale diminuisce.",
+      "unit": "1"
+    },
+    "options": [
+      "Entrambe raddoppiano.",
+      "La portata nel primo ramo resta uguale; la portata totale diminuisce.",
+      "La portata nel primo ramo aumenta fino a diventare la vecchia portata totale.",
+      "Entrambe restano uguali.",
+      "La portata nel primo ramo si annulla."
+    ],
+    "correctIndex": 1,
+    "context": "Due rami idraulici lineari in parallelo collegano gli stessi nodi. Una pompa mantiene una differenza di pressione positiva costante, anche dopo la chiusura di un ramo.",
+    "assumptions": [
+      "Ogni ramo aperto segue Q=Δp/R; non vi sono variazioni della geometria o della resistenza del primo ramo."
+    ],
+    "law": "Q₁=Δp/R₁; Q_tot,prima=Q₁+Q₂; Q_tot,dopo=Q₁",
+    "explanation": "La risposta dipende dal vincolo imposto dalla pompa. Qui la pompa mantiene la differenza di pressione, non la portata totale. La portata nel primo ramo è determinata dal rapporto fra quella differenza e la sua resistenza. Poiché entrambe restano uguali, la portata di quel ramo non cambia. Il ramo chiuso non trasporta più liquido, perciò la somma delle portate perde il suo contributo positivo. La portata totale diminuisce. Non bisogna immaginare che tutta la portata originaria sia obbligata a passare nell’unico ramo rimasto: questo sarebbe il risultato di un dispositivo diverso che imponesse portata totale costante, aumentando la pressione necessaria. La distinzione è un esempio di come lo stesso cambiamento geometrico possa produrre effetti diversi sotto condizioni di controllo diverse. Prima della chiusura ogni ramo riceve la medesima differenza di pressione perché collega gli stessi due nodi. Dopo la chiusura il primo ramo continua a collegare quei nodi, senza che il suo valore di R sia cambiato. La conclusione segue dal confronto della stessa legge sotto lo stesso vincolo.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Fissare il dato mantenuto dalla pompa",
+        "explanation": "Il testo mantiene Δp. Il fatto che la rete cambi non autorizza a imporre anche la vecchia portata totale."
+      },
+      {
+        "title": "Confrontare il ramo rimasto aperto",
+        "explanation": "Il numeratore e il denominatore della sua legge non cambiano.",
+        "math": "Q₁,dopo=Δp/R₁=Q₁,prima"
+      },
+      {
+        "title": "Ricostruire la portata complessiva",
+        "explanation": "Prima era presente il contributo positivo del secondo ramo, dopo no.",
+        "math": "Q_tot,dopo=Q₁<Q₁+Q₂=Q_tot,prima"
+      }
+    ],
+    "traps": [
+      "Pressione imposta e portata imposta sono vincoli diversi.",
+      "Le portate dei rami si sommano; la pressione fra nodi è comune."
+    ],
+    "microarea": "resistenze-idrauliche",
+    "topic": "Distinguere la portata del ramo e la portata totale quando si chiude un ramo a pressione imposta.",
+    "syllabusSubtopics": [
+      "U3.resistenze-idrauliche"
+    ]
+  },
+  {
+    "modelId": "U5-isothermal-chambers",
+    "serial": 5,
+    "reasoningTask": "particle_partition_equal_volumes",
+    "objective": "Usare l’uguaglianza degli stati finali per determinare la ripartizione delle molecole.",
+    "prompt": "Dopo il collegamento e il raggiungimento dell’equilibrio, quale frazione del numero totale di molecole si trova in ciascuno dei due recipienti?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1/2",
+      "unit": "1"
+    },
+    "options": [
+      "1/4",
+      "1/3",
+      "1/2",
+      "2/3",
+      "Dipende soltanto dal rapporto fra le pressioni iniziali."
+    ],
+    "correctIndex": 2,
+    "context": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura iniziale, ma a pressioni iniziali diverse. Si apre il collegamento e si mantiene uniforme la temperatura, fino all’equilibrio.",
+    "assumptions": [
+      "Volume del collegamento trascurabile; nessuna perdita di gas; equilibrio finale con pressione e temperatura comuni."
+    ],
+    "law": "n₁=p_fV/(RT_f)=n₂; n_tot=n₁+n₂",
+    "explanation": "All’inizio i due volumi uguali possono contenere quantità di gas diverse perché hanno pressioni diverse. Aprire il collegamento permette alle molecole di redistribuirsi. All’equilibrio finale non si conserva separatamente il numero iniziale di molecole di ogni recipiente: si conserva il numero complessivo dei due. La pressione finale è comune e anche la temperatura finale è comune. Applicando l’equazione del gas ideale ai due recipienti, che hanno lo stesso volume, si ottiene quindi la stessa quantità di sostanza in ciascuno. Il totale si divide in due parti uguali. Non occorre conoscere il valore delle pressioni iniziali per trovare questa frazione; quei valori servirebbero invece per calcolare la pressione finale e il numero totale se il volume fosse noto. La conclusione riguarda il valore medio macroscopico all’equilibrio, non una rigida assegnazione delle singole molecole, che continuano a muoversi attraverso il collegamento. Se i volumi fossero diversi, i numeri finali sarebbero proporzionali ai volumi, e non necessariamente uguali.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Identificare le condizioni finali",
+        "explanation": "Le due regioni comunicanti raggiungono gli stessi valori di pressione e temperatura. I volumi sono uguali per costruzione."
+      },
+      {
+        "title": "Confrontare le quantità di gas",
+        "explanation": "Applicare la stessa equazione a dati finali uguali produce quantità di sostanza uguali.",
+        "math": "n₁=p_fV/(RT_f)=n₂"
+      },
+      {
+        "title": "Dividere per il totale",
+        "explanation": "Se n₁=n₂, ciascuna quantità è metà della loro somma. La frazione di molecole coincide con la frazione di moli.",
+        "math": "n₁/(n₁+n₂)=n₁/(2n₁)=1/2"
+      }
+    ],
+    "traps": [
+      "La quantità si conserva nell’insieme, non in ogni recipiente aperto al collegamento.",
+      "Uguale pressione finale da sola non basterebbe senza uguale temperatura e volume."
+    ],
+    "microarea": "gas-perfetto",
+    "topic": "Usare l’uguaglianza degli stati finali per determinare la ripartizione delle molecole.",
+    "syllabusSubtopics": [
+      "U5.gas-perfetto"
+    ]
+  },
+  {
+    "modelId": "U3-horizontal-jet-range",
+    "serial": 5,
+    "reasoningTask": "complementary_holes_geometry",
+    "objective": "Riconoscere uguale gittata con differenti velocità di uscita per fori a quote complementari.",
+    "prompt": "Il foro A è a quota 2 m sul suolo, il foro B a quota 8 m. Quale confronto è corretto fra le gittate e le velocità di uscita?",
+    "answer": {
+      "kind": "text",
+      "exact": "Le gittate sono uguali, ma dal foro A il getto esce più velocemente.",
+      "unit": "1"
+    },
+    "options": [
+      "Il foro A ha gittata doppia e uguale velocità.",
+      "Il foro B ha gittata doppia e uguale velocità.",
+      "Le gittate sono uguali e le velocità sono uguali.",
+      "Le gittate sono uguali, ma dal foro A il getto esce più velocemente.",
+      "Il foro B ha gittata maggiore perché è più in alto."
+    ],
+    "correctIndex": 3,
+    "context": "La superficie libera di un grande serbatoio è mantenuta a quota 10 m sul suolo. Due piccoli fori producono getti inizialmente orizzontali.",
+    "assumptions": [
+      "Liquido ideale; stessa pressione alla superficie libera e ai fori; gravità uniforme; aria e interazioni fra i getti trascurate."
+    ],
+    "law": "H=10−h; v=√(2gH); t=√(2h/g); R=2√(Hh)",
+    "explanation": "La distanza orizzontale è il prodotto fra la velocità di uscita e il tempo di caduta. Un foro più basso ha più liquido sopra di sé e quindi una velocità maggiore, ma ha meno tempo prima di raggiungere il suolo. Un foro più alto presenta i due effetti opposti. Qui le quote sono complementari rispetto all’altezza della superficie: scambiando due e otto metri si scambiano il battente e l’altezza di caduta. Il prodotto dei due rimane uguale, quindi la gittata rimane uguale. Le velocità non rimangono uguali, perché dipendono dal solo battente. Questo confronto spiega perché osservare uguali gittate non permette di concludere che i getti partano con la stessa velocità. Nel calcolo della gittata la gravità si cancella perché aumenta la velocità di efflusso ma riduce il tempo di caduta. Non si cancella invece nel valore di ciascuna velocità. Il ragionamento richiede che la superficie resti alla stessa quota e che i due getti non si ostacolino.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Separare battente e altezza di caduta",
+        "explanation": "Per A il battente è otto metri e l’altezza di caduta due; per B i valori si scambiano.",
+        "math": "H_A=10−2=8 m; H_B=10−8=2 m"
+      },
+      {
+        "title": "Confrontare le gittate",
+        "explanation": "I prodotti Hh sono uguali e valgono sedici metri quadrati; la radice è quattro metri.",
+        "math": "R_A=2√(8×2)=8 m; R_B=2√(2×8)=8 m"
+      },
+      {
+        "title": "Confrontare le velocità",
+        "explanation": "Il rapporto delle velocità è la radice del rapporto dei battenti. Il getto A esce più veloce ma cade in un tempo minore.",
+        "math": "v_A/v_B=√(8/2)=2"
+      }
+    ],
+    "traps": [
+      "Battente sopra il foro e quota sul suolo sono distanze diverse.",
+      "Stessa gittata non implica stessa velocità iniziale."
+    ],
+    "microarea": "torricelli",
+    "topic": "Riconoscere uguale gittata con differenti velocità di uscita per fori a quote complementari.",
+    "syllabusSubtopics": [
+      "U3.torricelli"
+    ]
+  },
+  {
+    "modelId": "U3-poiseuille-flow",
+    "serial": 7,
+    "reasoningTask": "poiseuille_fixed_flow_geometry",
+    "objective": "Combinare la dipendenza da lunghezza e raggio a portata imposta.",
+    "prompt": "Il raggio interno r viene raddoppiato e la lunghezza L viene quadruplicata. La viscosità e la portata volumetrica restano uguali. Quale rapporto Δp_nuova/Δp_iniziale è necessario?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1/4",
+      "unit": "1"
+    },
+    "options": [
+      "1/16",
+      "1/4",
+      "1",
+      "4",
+      "16"
+    ],
+    "correctIndex": 1,
+    "context": "Un fluido newtoniano incomprimibile scorre in un tubo cilindrico rigido in regime laminare sviluppato. La legge è Q=πr⁴Δp/(8ηL). Si confrontano due tubi con la stessa portata imposta.",
+    "assumptions": [
+      "Viscosità costante; regime laminare sviluppato valido in entrambi i tubi; si confrontano differenze di pressione positive."
+    ],
+    "law": "Δp=8ηLQ/(πr⁴); Δp_n/Δp_i=(L_n/L_i)(r_i/r_n)⁴",
+    "explanation": "La dipendenza osservata cambia quando si cambia la grandezza mantenuta fissa. In questo problema non si mantiene la pressione: si impone la stessa portata. Occorre quindi isolare la differenza di pressione nella legge di Poiseuille e poi confrontare i due tubi. La lunghezza moltiplica la pressione richiesta, perché una tratta più lunga oppone più resistenza al flusso. Il raggio compare invece al denominatore elevato alla quarta potenza. Raddoppiarlo riduce di sedici volte la pressione necessaria a parità di tutto il resto. Quadruplicare contemporaneamente la lunghezza recupera un fattore quattro, lasciando una riduzione complessiva di quattro volte. I due fattori non si sommano: agiscono su quantità che si moltiplicano nella formula. Il rapporto elimina viscosità, portata e costanti geometriche comuni. Prima di trasferire questa conclusione a una situazione reale bisogna mantenere le ipotesi del modello, in particolare il regime laminare e la rigidità del tubo. La quarta potenza del raggio non va sostituita con la dipendenza dell’area dalla seconda potenza.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Isolare la grandezza regolata",
+        "explanation": "Moltiplichiamo per 8ηL e dividiamo per πr⁴. È la pressione a dover cambiare quando la portata è mantenuta.",
+        "math": "Δp=8ηLQ/(πr⁴)"
+      },
+      {
+        "title": "Formare il rapporto",
+        "explanation": "I fattori 8, η, Q e π sono uguali nei due stati e si cancellano.",
+        "math": "Δp_n/Δp_i=4/2⁴"
+      },
+      {
+        "title": "Calcolare la potenza e semplificare",
+        "explanation": "Due alla quarta è sedici; quattro sedicesimi sono un quarto.",
+        "math": "2⁴=16; 4/16=1/4"
+      }
+    ],
+    "traps": [
+      "A portata fissa si ricava Δp; a pressione fissa si ricaverebbe Q.",
+      "La dipendenza è dal raggio alla quarta, non soltanto dall’area."
+    ],
+    "microarea": "poiseuille",
+    "topic": "Combinare la dipendenza da lunghezza e raggio a portata imposta.",
+    "syllabusSubtopics": [
+      "U3.poiseuille"
+    ]
+  },
+  {
+    "modelId": "U5-isothermal-work",
+    "serial": 15,
+    "reasoningTask": "composed_isotherms_cycle_work",
+    "objective": "Ricostruire il calore di una isoterma da due lavori, un rapporto termico e un bilancio di ciclo.",
+    "prompt": "Il gas si espande reversibilmente da V a 4V alla temperatura T_h, poi si raffredda a volume costante fino a T_h/2. Viene compresso reversibilmente da 4V a V a T_h/2 e infine torna alla temperatura T_h a volume costante. Il lavoro netto compiuto dal gas nel ciclo è 12 J. Quanto calore assorbe durante la sola isoterma calda?",
+    "answer": {
+      "kind": "rational",
+      "exact": "24",
+      "unit": "J"
+    },
+    "options": [
+      "6 J",
+      "12 J",
+      "18 J",
+      "24 J",
+      "36 J"
+    ],
+    "correctIndex": 3,
+    "context": "Un campione chiuso di gas ideale percorre un ciclo composto da due isoterme e due isocore. Si fornisce la legge del lavoro isoterma reversibile W=nRT ln(V_f/V_i).",
+    "assumptions": [
+      "Lavoro positivo se compiuto dal gas; solo lavoro di frontiera; le isocore non compiono lavoro; i calori delle isocore non sono inclusi nella quantità richiesta."
+    ],
+    "law": "W_h=nRT_h ln4; W_c=nR(T_h/2)ln(1/4)=−W_h/2; Q_h=W_h",
+    "explanation": "Il ciclo contiene quattro trasformazioni, ma soltanto le due isoterme cambiano il volume e producono lavoro di frontiera. L’espansione alla temperatura più alta compie lavoro positivo; la compressione alla temperatura dimezzata richiede lavoro, quindi il lavoro compiuto dal gas è negativo. I rapporti di volume sono reciproci e i loro logaritmi hanno lo stesso modulo e segno opposto. La temperatura dimezzata dimezza ulteriormente il modulo del lavoro di compressione. Il lavoro netto del ciclo è dunque la metà del lavoro svolto durante l’espansione calda. Il dato di dodici joule permette di ricostruire quest’ultimo senza conoscere quantità di gas o temperature numeriche. Durante la singola isoterma di un gas ideale l’energia interna non cambia, perché dipende dalla temperatura. Il calore assorbito coincide quindi con il lavoro compiuto in quella trasformazione. Questa uguaglianza non va attribuita automaticamente a ogni tratto: le isocore possono scambiare calore pur avendo lavoro nullo. Il quesito distingue deliberatamente il calore della sola isoterma dal calore positivo totale eventualmente assorbito lungo tutto il ciclo.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Valutare il lavoro della prima isoterma",
+        "explanation": "Indichiamo con A il valore positivo del lavoro di espansione calda. Non occorre approssimare il logaritmo.",
+        "math": "A=nRT_h ln4"
+      },
+      {
+        "title": "Usare il percorso inverso e la temperatura dimezzata",
+        "explanation": "Il logaritmo del reciproco cambia segno; la temperatura aggiunge il fattore un mezzo.",
+        "math": "ln(1/4)=−ln4; W_c=−A/2"
+      },
+      {
+        "title": "Escludere lavoro sulle isocore",
+        "explanation": "Il volume non cambia nei due collegamenti termici. Perciò non si aggiunge alcun pΔV al lavoro del ciclo.",
+        "math": "W_isochore=0"
+      },
+      {
+        "title": "Imporre il lavoro netto misurato",
+        "explanation": "Il lavoro netto è la somma algebrica dei contributi, non la somma dei loro moduli.",
+        "math": "12=A−A/2=A/2"
+      },
+      {
+        "title": "Ricavare il lavoro caldo",
+        "explanation": "Moltiplicando entrambi i membri per due si ottiene il valore dell’espansione.",
+        "math": "A=2×12=24 J"
+      },
+      {
+        "title": "Passare dal lavoro al calore richiesto",
+        "explanation": "Nella sola isoterma calda ΔU=0, perciò dal primo principio Q_h=W_h.",
+        "math": "Q_h=24 J"
+      }
+    ],
+    "traps": [
+      "La compressione contribuisce con lavoro negativo nella convenzione dichiarata.",
+      "Le isocore hanno lavoro nullo ma possono scambiare calore."
+    ],
+    "microarea": "isoterma",
+    "topic": "Ricostruire il calore di una isoterma da due lavori, un rapporto termico e un bilancio di ciclo.",
+    "syllabusSubtopics": [
+      "U5.isoterma"
+    ]
+  },
+  {
+    "modelId": "U5-ideal-expansion-entropy",
+    "serial": 15,
+    "reasoningTask": "entropy_reversible_free_sequence",
+    "objective": "Separare variazione di entropia del gas, scambio con la sorgente e produzione in due trasformazioni.",
+    "prompt": "Prima il gas raddoppia il volume mediante espansione isoterma reversibile con una sorgente. Poi, in un recipiente rigido isolato, si espande liberamente nel vuoto quadruplicando il nuovo volume. La variazione di entropia del gas fra lo stato iniziale e quello finale è 12 J/K. Quanto aumenta complessivamente l’entropia del gas più la sorgente?",
+    "answer": {
+      "kind": "rational",
+      "exact": "8",
+      "unit": "J/K"
+    },
+    "options": [
+      "0 J/K",
+      "4 J/K",
+      "6 J/K",
+      "8 J/K",
+      "12 J/K"
+    ],
+    "correctIndex": 3,
+    "context": "Si considera lo stesso campione di gas ideale nei due processi. Si fornisce la relazione fra stati alla stessa temperatura ΔS=nR ln(V_f/V_i).",
+    "assumptions": [
+      "La prima trasformazione è reversibile; la seconda non scambia calore o lavoro con l’esterno; i dispositivi meccanici ideali non producono entropia; la sorgente interviene soltanto nella prima trasformazione."
+    ],
+    "law": "B=nR ln2; ΔS₁=B; ΔS₂=2B; ΔS_gas=3B; ΔS_sorgente=−B",
+    "explanation": "L’entropia del gas è una funzione di stato e la sua variazione complessiva si può sommare fra le due tappe. È utile chiamare B la variazione corrispondente a un raddoppio del volume alla stessa temperatura. La prima tappa vale B. Nella seconda il volume viene moltiplicato per quattro, cioè per due due volte: il logaritmo vale due logaritmi di due e la variazione vale 2B. Il dato totale determina quindi B attraverso una semplice divisione per tre. La reversibilità della prima tappa impone che il guadagno di entropia del gas sia compensato da una perdita uguale della sorgente. La seconda tappa è isolata e libera: non trasferisce entropia con calore attraverso il confine, ma produce entropia internamente. Il gas ideale mantiene la stessa temperatura fra gli stati di equilibrio della libera espansione, perché calore e lavoro esterni sono nulli e l’energia interna dipende soltanto dalla temperatura. La domanda chiede l’aumento dell’insieme, quindi bisogna sottrarre al guadagno del gas la perdita della sorgente, senza confondere dodici joule per kelvin con l’entropia prodotta.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Usare il logaritmo per le due variazioni di volume",
+        "explanation": "La legge riguarda gli stati estremi; può essere usata anche per la seconda trasformazione irreversibile.",
+        "math": "ΔS₁=B; ΔS₂=nR ln4=2B"
+      },
+      {
+        "title": "Imporre la variazione totale del gas",
+        "explanation": "Le due variazioni si sommano. Il volume finale è otto volte quello iniziale, coerentemente con tre raddoppi.",
+        "math": "12=B+2B=3B; B=4 J/K"
+      },
+      {
+        "title": "Calcolare la variazione della sorgente",
+        "explanation": "Nel primo processo reversibile la sorgente perde esattamente l’entropia acquistata dal gas.",
+        "math": "ΔS_sorgente=−B=−4 J/K"
+      },
+      {
+        "title": "Controllare la seconda tappa",
+        "explanation": "L’espansione libera isolata ha Q=0 e W=0. Il suo aumento di entropia non proviene da uno scambio termico.",
+        "math": "ΔS₂=2B=8 J/K"
+      },
+      {
+        "title": "Sommare le parti richieste",
+        "explanation": "Il totale dell’insieme è il guadagno del gas più la perdita con segno della sorgente.",
+        "math": "ΔS_insieme=12−4=8 J/K"
+      }
+    ],
+    "traps": [
+      "Q=0 non implica ΔS=0 in un processo irreversibile.",
+      "Nel processo reversibile si annulla la produzione totale, non la variazione di ogni parte."
+    ],
+    "microarea": "entropia",
+    "topic": "Separare variazione di entropia del gas, scambio con la sorgente e produzione in due trasformazioni.",
+    "syllabusSubtopics": [
+      "U5.entropia"
+    ]
+  },
+  {
+    "modelId": "U5-gas-density",
+    "serial": 7,
+    "reasoningTask": "provided_kinetic_temperature_ratio",
+    "objective": "Applicare la legge fornita dell’energia cinetica traslazionale media alla temperatura assoluta.",
+    "prompt": "La temperatura passa da 300 K a 900 K. Si fornisce ⟨K_trasl⟩=(3/2)k_B T per una molecola del gas ideale classico. Quale rapporto ⟨K_trasl⟩_finale/⟨K_trasl⟩_iniziale si ottiene?",
+    "answer": {
+      "kind": "rational",
+      "exact": "3",
+      "unit": "1"
+    },
+    "options": [
+      "1/3",
+      "1",
+      "3",
+      "9",
+      "27"
+    ],
+    "correctIndex": 2,
+    "context": "Questo approfondimento riprende una classe di abilità osservata nella prova 2025. La legge microscopica necessaria è fornita nella domanda; non è richiesta come formula aggiuntiva da memorizzare per il nucleo del syllabus 2026.",
+    "assumptions": [
+      "Gas ideale classico in equilibrio; si considera la sola energia cinetica traslazionale media per molecola; usare kelvin."
+    ],
+    "law": "⟨K_trasl⟩=(3/2)k_B T; ⟨K⟩_f/⟨K⟩_i=T_f/T_i",
+    "explanation": "La formula collega la temperatura assoluta a un’energia media microscopica. Il simbolo di media è essenziale: le singole molecole non hanno tutte la stessa velocità o la stessa energia in un dato istante. Il quesito chiede il confronto fra le medie di due stati di equilibrio. Il coefficiente tre mezzi e la costante di Boltzmann sono gli stessi nei due stati, perciò si cancellano formando il rapporto. Rimane soltanto il rapporto delle temperature in kelvin. Triplicare la temperatura assoluta triplica questa energia media. Non la moltiplica per nove: la dipendenza quadratica riguarda l’energia in funzione della velocità, non l’energia media in funzione della temperatura. La legge è riferita all’energia traslazionale per molecola; un’energia totale del campione richiederebbe anche il numero di molecole, e ulteriori gradi di libertà di una molecola complessa richiederebbero specificare che cosa viene contato. Usare Celsius cambierebbe impropriamente il rapporto, perché quella scala ha origine diversa dallo zero assoluto. Non serve conoscere il valore numerico di k_B e non si usa una calcolatrice.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Scrivere i due valori con la stessa legge",
+        "explanation": "Si conserva il coefficiente comune invece di sostituire un valore decimale della costante.",
+        "math": "⟨K⟩_f=(3/2)k_B·900; ⟨K⟩_i=(3/2)k_B·300"
+      },
+      {
+        "title": "Cancellare i fattori comuni",
+        "explanation": "La stessa costante moltiplica numeratore e denominatore; il rapporto è adimensionale.",
+        "math": "⟨K⟩_f/⟨K⟩_i=900/300"
+      },
+      {
+        "title": "Semplificare il rapporto",
+        "explanation": "Dividere entrambi i numeri per trecento dà tre.",
+        "math": "900/300=3"
+      }
+    ],
+    "traps": [
+      "La temperatura va espressa in kelvin.",
+      "Non confondere energia traslazionale media per molecola ed energia totale del campione."
+    ],
+    "scope": "provided_law_extension",
+    "microarea": "teoria-cinetica-legge-fornita",
+    "topic": "Applicare la legge fornita dell’energia cinetica traslazionale media alla temperatura assoluta.",
+    "syllabusSubtopics": [
+      "U5.teoria-cinetica-legge-fornita"
+    ]
+  },
+  {
+    "modelId": "U5-ideal-gas-pressure",
+    "serial": 7,
+    "reasoningTask": "provided_real_ideal_assumptions",
+    "objective": "Distinguere le idealizzazioni del gas perfetto dalle caratteristiche del gas reale.",
+    "prompt": "Nel modello ideale le particelle sono trattate come puntiformi e si trascurano le interazioni reciproche salvo gli urti. Perché un gas reale può discostarsi da pV=nRT quando la densità diventa grande?",
+    "answer": {
+      "kind": "text",
+      "exact": "Perché il volume proprio delle molecole e le interazioni fra esse possono non essere più trascurabili.",
+      "unit": "1"
+    },
+    "options": [
+      "Perché le molecole reali perdono necessariamente tutta la massa.",
+      "Perché il volume proprio delle molecole e le interazioni fra esse possono non essere più trascurabili.",
+      "Perché la temperatura assoluta diventa sempre negativa.",
+      "Perché il numero di moli non può essere definito per un gas reale.",
+      "Perché in ogni gas reale la pressione deve essere identicamente zero."
+    ],
+    "correctIndex": 1,
+    "context": "Si confrontano il modello del gas ideale e un gas reale in una sola fase. Il confronto qualitativo estende una classe osservata nella prova 2025; non si richiede una nuova equazione di stato dei gas reali.",
+    "assumptions": [
+      "Non si attraversa una transizione di fase; le ipotesi del modello ideale sono esplicitate nel testo."
+    ],
+    "law": "Gas ideale: pV=nRT sotto le idealizzazioni dichiarate. Gas reale: possono contare dimensioni molecolari e interazioni.",
+    "explanation": "Un modello fisico trascura alcuni effetti per descrivere una situazione entro un intervallo di validità. Nel gas ideale il volume occupato materialmente dalle molecole è considerato trascurabile rispetto al volume del recipiente e le interazioni reciproche non contribuiscono all’energia se non negli urti idealizzati. A densità maggiore le molecole sono mediamente più vicine. Il loro volume proprio può occupare una frazione non trascurabile dello spazio e le forze intermolecolari possono incidere sulla pressione e sull’energia interna. Non si deve però dedurre una correzione numerica o un unico verso dello scostamento senza un modello ulteriore: effetti di volume escluso e interazioni possono avere ruoli differenti. L’affermazione corretta identifica le idealizzazioni che possono fallire, senza sostenere che pV=nRT sia sempre esatta o sempre inutilizzabile. Quantità di sostanza, pressione e temperatura rimangono grandezze definibili anche per un gas reale. Le proprietà reali non implicano né massa nulla né temperatura assoluta negativa. Questo confronto aiuta a capire perché dichiarare gas ideale è una vera ipotesi del problema, non una semplice parola decorativa.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Riconoscere le ipotesi esplicitate",
+        "explanation": "Puntiforme significa volume proprio trascurato. Interazioni trascurate significa assenza di contributi intermolecolari nel modello, oltre agli urti."
+      },
+      {
+        "title": "Collegare la densità alle distanze",
+        "explanation": "Più molecole per volume riducono la distanza media e rendono meno sicuro trascurare dimensioni e interazioni."
+      },
+      {
+        "title": "Limitare correttamente la conclusione",
+        "explanation": "Il confronto identifica una causa di scostamento. Non permette di calcolare una correzione senza dati e legge aggiuntivi."
+      }
+    ],
+    "traps": [
+      "Ideale è un’ipotesi di modello, non un sinonimo di qualunque gas.",
+      "Non attribuire un segno universale allo scostamento senza un’equazione per il gas reale."
+    ],
+    "scope": "provided_law_extension",
+    "microarea": "gas-reale-ideale-approfondimento",
+    "topic": "Distinguere le idealizzazioni del gas perfetto dalle caratteristiche del gas reale.",
+    "syllabusSubtopics": [
+      "U5.gas-reale-ideale-approfondimento"
+    ]
+  },
+  {
+    "modelId": "U3-pressure-gradient-fixed-speed",
+    "serial": 7,
+    "reasoningTask": "provided_reynolds_dimensions",
+    "objective": "Verificare l’adimensionalità del numero di Reynolds a partire dalla formula fornita.",
+    "prompt": "Si fornisce Re=ρvD/η, con densità ρ in kg/m³, velocità v in m/s, diametro D in m e viscosità dinamica η in Pa s. Quale unità ha Re?",
+    "answer": {
+      "kind": "text",
+      "exact": "È adimensionale.",
+      "unit": "1"
+    },
+    "options": [
+      "Pa",
+      "m/s",
+      "kg/m³",
+      "Pa s",
+      "È adimensionale."
+    ],
+    "correctIndex": 4,
+    "context": "Questo approfondimento usa una formula fornita per una verifica dimensionale, riprendendo una classe della prova 2025. Non richiede soglie numeriche di transizione del moto né una legge aggiuntiva da memorizzare nel nucleo 2026.",
+    "assumptions": [
+      "Si usa viscosità dinamica, non viscosità cinematica; 1 Pa=1 kg/(m s²)."
+    ],
+    "law": "[ρvD]=(kg/m³)(m/s)m=kg/(m s)=[η]; [Re]=1",
+    "explanation": "Un numero adimensionale confronta quantità fisiche con la stessa dimensione, così le unità si cancellano nel rapporto. Qui conviene tradurre il pascal in unità fondamentali prima di moltiplicare. Un pascal è un newton per metro quadrato e un newton è un chilogrammo moltiplicato per un metro e diviso per un secondo al quadrato; ne segue Pa=kg/(m s²). Moltiplicare per un secondo dà alla viscosità dinamica l’unità kg/(m s). Il numeratore della formula di Reynolds contiene densità, velocità e diametro: le due lunghezze al numeratore cancellano due delle tre lunghezze al denominatore della densità, lasciando anch’esso kg/(m s). Il rapporto è quindi privo di unità. Essere adimensionale non significa essere sempre uguale a uno: il valore numerico cambia al cambiare dei dati, ma non richiede una nuova unità di misura. La verifica distingue la viscosità dinamica dalla cinematica, la cui unità è m²/s e che entrerebbe in una formula diversa. Non serve usare una soglia di turbolenza per rispondere: il quesito riguarda esclusivamente le dimensioni della relazione fornita.",
+    "derivation": [
+      "La legge e i vincoli di questo compito sono quelli dichiarati nella domanda; il ragionamento seguente li applica al confronto richiesto."
+    ],
+    "steps": [
+      {
+        "title": "Espandere l’unità della viscosità",
+        "explanation": "Si sostituisce il pascal con la sua definizione e si moltiplica per il secondo.",
+        "math": "Pa s=[kg/(m s²)]s=kg/(m s)"
+      },
+      {
+        "title": "Moltiplicare le unità del numeratore",
+        "explanation": "Le potenze delle lunghezze vanno semplificate insieme, senza cancellare il tempo.",
+        "math": "(kg/m³)(m/s)m=kg/(m s)"
+      },
+      {
+        "title": "Formare il rapporto",
+        "explanation": "Numeratore e denominatore hanno esattamente la stessa unità.",
+        "math": "[Re]=[kg/(m s)]/[kg/(m s)]=1"
+      }
+    ],
+    "traps": [
+      "Adimensionale non significa valore numerico obbligatoriamente uno.",
+      "Non sostituire la viscosità cinematica nella formula con η."
+    ],
+    "scope": "provided_law_extension",
+    "microarea": "reynolds-analisi-dimensionale",
+    "topic": "Verificare l’adimensionalità del numero di Reynolds a partire dalla formula fornita.",
+    "syllabusSubtopics": [
+      "U3.reynolds-analisi-dimensionale"
+    ]
+  },
+  {
+    "modelId": "U5-isobaric-monatomic-heat",
+    "serial": 2,
+    "reasoningTask": "ideal_gas_internal_energy_vs_heat",
+    "objective": "Calcolare la variazione di energia interna di un gas ideale e distinguerla da calore e lavoro.",
+    "prompt": "Un gas ideale monoatomico, per cui nR=2 J/K, viene riscaldato di 2 K a pressione costante. Si fornisce la capacità termica complessiva C_V=(3/2)nR e la relazione ΔU=C_VΔT. Quanto vale la variazione di energia interna?",
+    "answer": {
+      "kind": "rational",
+      "exact": "6",
+      "unit": "J"
+    },
+    "options": [
+      "4 J",
+      "6 J",
+      "8 J",
+      "10 J",
+      "0 J"
+    ],
+    "correctIndex": 1,
+    "context": "Si considera un campione chiuso di gas ideale monoatomico. Il lavoro è positivo se compiuto dal gas e l’unico lavoro possibile è quello di espansione.",
+    "assumptions": [
+      "Capacità termiche costanti nell’intervallo; trasformazione isobara lenta; nessuna variazione di energia cinetica o potenziale macroscopica."
+    ],
+    "law": "C_V=(3/2)nR; ΔU=C_VΔT; W=nRΔT; Q=ΔU+W",
+    "explanation": "L’energia interna di un campione di gas ideale dipende dalla sua temperatura, non dal percorso seguito fra gli stati. Per il gas monoatomico la capacità termica a volume costante dell’intero campione vale tre mezzi del prodotto nR. Il nome a volume costante indica come è definita quella capacità, ma non limita la relazione ΔU=C_VΔT alle sole trasformazioni isocore: per il gas ideale la stessa variazione di temperatura determina la stessa variazione di energia interna anche lungo un’isobara. Il dato nR comprende già il numero di moli, quindi non va moltiplicato nuovamente per una quantità di sostanza. Si ricava prima C_V in joule per kelvin e poi lo si moltiplica per i due kelvin di aumento. Il gas, espandendosi a pressione costante, compie anche lavoro. Il calore ricevuto deve perciò coprire sia l’aumento di energia interna sia quel lavoro, ed è maggiore della sola variazione interna. Questa distinzione spiega perché sei joule, quattro joule e dieci joule possano comparire correttamente nello stesso problema, ma rispondano a domande fisiche diverse. L’energia interna richiesta non coincide automaticamente con tutto il calore assorbito.",
+    "derivation": [
+      "Si usa la legge fornita per la capacità termica complessiva, poi la variazione di temperatura. Il primo principio permette di distinguere il risultato dalle altre quantità energetiche."
+    ],
+    "steps": [
+      {
+        "title": "Ricavare la capacità del campione",
+        "explanation": "Si moltiplica tre mezzi per il valore assegnato di nR. Il due al denominatore si cancella con il fattore due.",
+        "math": "C_V=(3/2)×2=3 J/K"
+      },
+      {
+        "title": "Calcolare la variazione interna",
+        "explanation": "Si moltiplica per l’aumento di temperatura, non per una temperatura assoluta finale. I kelvin si cancellano.",
+        "math": "ΔU=(3 J/K)×(2 K)=6 J"
+      },
+      {
+        "title": "Distinguere il lavoro",
+        "explanation": "Nell’isobara di un gas ideale il lavoro di espansione vale nRΔT. È un contributo diverso dalla variazione interna.",
+        "math": "W=(2 J/K)×(2 K)=4 J"
+      },
+      {
+        "title": "Controllare il bilancio energetico",
+        "explanation": "Il calore ricevuto deve fornire sia l’energia rimasta nel gas sia quella trasferita all’ambiente come lavoro. Il quesito chiede soltanto la prima.",
+        "math": "Q=ΔU+W=6+4=10 J"
+      }
+    ],
+    "traps": [
+      "La relazione ΔU=C_VΔT del gas ideale vale anche se il volume cambia.",
+      "Non confondere ΔU=6 J, W=4 J e Q=10 J."
+    ],
+    "microarea": "calori-specifici-gas-ideali",
+    "topic": "Energia interna del gas ideale monoatomico",
+    "syllabusSubtopics": [
+      "U5.calori-specifici-gas-ideali",
+      "U5.primo-principio"
+    ],
+    "scope": "syllabus_core",
+    "standalone": true
+  }
+]

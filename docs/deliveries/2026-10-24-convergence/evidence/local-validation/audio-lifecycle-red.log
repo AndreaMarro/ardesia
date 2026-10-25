@@ -1,0 +1,201 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> studio@0.0.0 test
+> vitest run --passWithNoTests --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000 src/__tests__/AudioRecorder.lifecycle.test.ts
+
+
+ RUN  v4.1.8 /workspace/scratch/6f2994042c33/ardesia/apps/studio
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts (12 tests | 12 failed) 278ms
+     × ordinary stop drains the final short recording before resolving 58ms
+     × revoke during pending permission never starts the late microphone 2ms
+     × stop during pending permission never starts the late microphone 1ms
+     × dispose during pending permission never starts the late microphone 1ms
+     × coalesces simultaneous starts while permission is pending 1ms
+     × an obsolete permission rejection cannot revoke a newer recording 1ms
+     × revocation releases tracks immediately even while a chunk write is blocked 51ms
+     × rapid re-consent waits for deletion and cannot reuse an old recorder callback 103ms
+     × serializes consent persistence so a delayed ON cannot overwrite revocation 1ms
+     × timestamps the actual start after a long permission prompt 56ms
+     × releases a granted stream if constructing MediaRecorder throws 1ms
+     × dispose is terminal even if a caller later toggles consent and starts 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > ordinary stop drains the final short recording before resolving
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:76:22
+     74|     const stopped = h.recorder.stop().then(() => { finished = true })
+     75|     await vi.waitFor(() => expect(h.takes[0]!.stop).toHaveBeenCalledOn…
+     76|     expect(finished).toBe(false)
+       |                      ^
+     77|     const saved = deferred<void>()
+     78|     h.store.write.mockImplementationOnce(async (path, blob) => { await…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > revoke during pending permission never starts the late microphone
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > stop during pending permission never starts the late microphone
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > dispose during pending permission never starts the late microphone
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:103:32
+    101|     permission.resolve(h.media.stream)
+    102|     await started
+    103|     expect(h.media.track.stop).toHaveBeenCalled()
+       |                                ^
+    104|     expect(h.factory).not.toHaveBeenCalled()
+    105|     expect(h.recorder.recording).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > coalesces simultaneous starts while permission is pending
+AssertionError: expected "vi.fn()" to be called once, but got 2 times
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:117:28
+    115|     const second = h.recorder.start()
+    116|     await vi.waitFor(() => expect(h.getUserMedia).toHaveBeenCalled())
+    117|     expect(h.getUserMedia).toHaveBeenCalledOnce()
+       |                            ^
+    118|     permission.resolve(h.media.stream)
+    119|     await Promise.all([first, second])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > an obsolete permission rejection cannot revoke a newer recording
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:137:32
+    135|     oldPermission.reject(new Error("old prompt dismissed"))
+    136|     await oldStart
+    137|     expect(h.recorder.consent).toBe(true)
+       |                                ^
+    138|     expect(h.recorder.recording).toBe(true)
+    139|     expect(fresh.track.stop).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > revocation releases tracks immediately even while a chunk write is blocked
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:152:32
+    150|     await vi.waitFor(() => expect(h.store.write).toHaveBeenCalledOnce(…
+    151|     h.recorder.consent = false
+    152|     expect(h.media.track.stop).toHaveBeenCalled()
+       |                                ^
+    153|     h.takes[0]!.finish("discard-final-after-revoke")
+    154|     write.resolve()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > rapid re-consent waits for deletion and cannot reuse an old recorder callback
+AssertionError: expected "vi.fn()" to be called once, but got 2 times
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:178:28
+    176|     const restarted = h.recorder.start()
+    177|     await Promise.resolve()
+    178|     expect(h.getUserMedia).toHaveBeenCalledOnce()
+       |                            ^
+    179|     deletion.resolve()
+    180|     await restarted
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > serializes consent persistence so a delayed ON cannot overwrite revocation
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:199:90
+    197|     firstWrite.resolve()
+    198|     await h.recorder.lastRevoke
+    199|     expect(parseSessionYaml(await h.files.get("raw/session.yaml")!.tex…
+       |                                                                                          ^
+    200|   })
+    201|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > timestamps the actual start after a long permission prompt
+AssertionError: expected "vi.fn()" to be called with arguments: [ +0, 41000, 42000 ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    0,
+-   41000,
++   1000,
+    42000,
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:215:23
+    213|     h.takes[0]!.data()
+    214|     await vi.waitFor(() => expect(h.onChunk).toHaveBeenCalledOnce())
+    215|     expect(h.onChunk).toHaveBeenCalledWith(0, 41000, 42000)
+       |                       ^
+    216|     expect(h.recorder.startEpoch).toBe(41000)
+    217|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > releases a granted stream if constructing MediaRecorder throws
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:224:32
+    222|     h.recorder.consent = true
+    223|     await h.recorder.start()
+    224|     expect(h.media.track.stop).toHaveBeenCalled()
+       |                                ^
+    225|     expect(h.recorder.recording).toBe(false)
+    226|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  src/__tests__/AudioRecorder.lifecycle.test.ts > AudioRecorder asynchronous browser lifecycle > dispose is terminal even if a caller later toggles consent and starts
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      Object {
+        "audio": true,
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ src/__tests__/AudioRecorder.lifecycle.test.ts:233:32
+    231|     h.recorder.consent = true
+    232|     await h.recorder.start()
+    233|     expect(h.getUserMedia).not.toHaveBeenCalled()
+       |                                ^
+    234|     expect(h.recorder.consent).toBe(false)
+    235|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed (12)
+   Start at  10:34:38
+   Duration  1.04s (transform 154ms, setup 30ms, import 180ms, tests 278ms, environment 446ms)

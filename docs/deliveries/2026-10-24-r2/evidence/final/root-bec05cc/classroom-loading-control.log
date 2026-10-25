@@ -1,0 +1,307 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024
+
+stderr | apps/web/src/__tests__/taylor-classroom.test.tsx > the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+stderr | apps/web/src/__tests__/taylor-classroom.test.tsx > the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+stderr | apps/web/src/__tests__/taylor-classroom.test.tsx > the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt
+An error occurred in the <SubmissionPanel> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+
+ ❯ apps/web/src/__tests__/taylor-classroom.test.tsx (1 test | 1 failed) 1314ms
+   × the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt 1313ms
+ ❯ apps/web/src/__tests__/classroom-loading.test.tsx (1 test | 1 failed) 63ms
+   × an authorized course can finish routing while its real Classroom module remains pending, then renders after that module resolves 62ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/src/__tests__/classroom-loading.test.tsx > an authorized course can finish routing while its real Classroom module remains pending, then renders after that module resolves
+TestingLibraryElementError: Unable to find an element with the text: Sto aprendo questa parte del tuo spazio…. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      class="app-frame"
+    >
+      <a
+        class="skip-link"
+        href="#content"
+      >
+        Vai al contenuto
+      </a>
+      <aside
+        aria-label="Navigazione e account"
+        class="sidebar"
+      >
+        <a
+          class="wordmark"
+          href="/"
+        >
+          <span
+            aria-hidden="true"
+            class="brand-symbol"
+          >
+            a
+          </span>
+          ardesia
+          <span
+            class="brand-dot"
+          >
+            .
+          </span>
+        </a>
+        <p
+          class="workspace-label"
+        >
+          Il tuo spazio
+        </p>
+        <label
+          class="course-selector"
+        >
+          Edizione corrente
+          <select
+            aria-label="Edizione corrente"
+          >
+            <option
+              value="analysis-loading"
+            >
+              Analisi loading probe
+               ·
+              analysis-loading
+            </option>
+          </select>
+        </label>
+        <nav
+          aria-label="Navigazione principale"
+          class="primary-navigation"
+        >
+          <button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 10 12 3l9 7v11h-6v-7H9v7H3Z"
+              />
+            </svg>
+            Oggi
+          </button>
+          <button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 4h16v16H4zM4 9h16M9 9v11"
+              />
+            </svg>
+            I miei corsi
+          </button>
+          <button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"
+              />
+            </svg>
+            Il mio lavoro
+          </button>
+          <button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6 4h12v16H6zM9 2h6v4H9zM9 10h6M9 14h4"
+              />
+            </svg>
+            Prova di fisica
+          </button>
+          <button>
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 6h7l2 2h9v12H3z"
+              />
+            </svg>
+            Materiali
+          </button>
+        </nav>
+        <div
+          class="sidebar-bottom"
+        >
+          <p>
+            Uno spazio per capire.
+            <br />
+            Un filo da ritrovare.
+          </p>
+          <button
+            class="profile-control"
+          >
+            <span
+              class="profile-monogram"
+            >
+              S
+            </span>
+            <span>
+              Spazio studente
+              <small>
+                Esci dall’account
+              </small>
+            </span>
+          </button>
+        </div>
+      </aside>
+      <div
+        class="app-main"
+      >
+        <header
+          class="topbar"
+        >
+          <span>
+            Analisi loading probe
+          </span>
+          <span
+            class="environment-note"
+          >
+            Ambiente di prova · dati sintetici
+          </span>
+        </header>
+        <main
+          class="page-content"
+          id="content"
+          tabindex="-1"
+        >
+
+          <p
+            class="loading-state"
+            role="status"
+          >
+            <span
+              aria-hidden="true"
+            />
+            Sto aprendo il tuo spazio…
+          </p>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ apps/web/src/__tests__/classroom-loading.test.tsx:20:17
+     18|   render(<App />);
+     19|   await screen.findByText("Analisi loading probe");
+     20|   expect(screen.getByText("Sto aprendo questa parte del tuo spazio…"))…
+       |                 ^
+     21|   expect(screen.queryByRole("heading", {name: "Quanto basta per appros…
+     22|   expect(new URLSearchParams(location.search).get("view")).toBe("class…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/web/src/__tests__/taylor-classroom.test.tsx > the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt
+TestingLibraryElementError: Unable to find role="heading" and name "Quanto basta per approssimare?"
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div />
+</body>
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ apps/web/src/__tests__/taylor-classroom.test.tsx:82:16
+     80|   );
+     81|   render(<App />);
+     82|   await screen.findByRole("heading", {
+       |                ^
+     83|     name: "Quanto basta per approssimare?",
+     84|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+TypeError: Cannot read properties of null (reading 'useState')
+ ❯ process.env.NODE_ENV.exports.useState apps/studio/node_modules/react/cjs/react.development.js:1263:33
+ ❯ SubmissionPanel apps/studio/src/study/SubmissionPanel.tsx:92:29
+     90|     }
+     91|   }
+     92|   const [draft, setDraft] = useState<Draft>(load);
+       |                             ^
+     93|   const [receipt, setReceipt] = useState<Receipt | null>(previousRecei…
+     94|   const [receiptVerified, setReceiptVerified] = useState(false);
+ ❯ Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:20
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:22
+ ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:19
+ ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:18
+ ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:874:13
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:22
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:41
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:11
+
+This error originated in "apps/web/src/__tests__/taylor-classroom.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "the authorized Taylor classroom commits prediction and procedure to its own course and displays the server receipt". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed (2)
+     Errors  1 error
+   Start at  00:03:46
+   Duration  3.49s (transform 489ms, setup 0ms, import 501ms, tests 1.38s, environment 1.27s)

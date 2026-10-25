@@ -1,0 +1,30 @@
+test_authorization_is_not_cached_and_private_errors_are_redacted (test_boundaries.GatewayTests.test_authorization_is_not_cached_and_private_errors_are_redacted) ... ok
+test_gets_only_canonical_routes_and_encodes_opaque_cursor (test_boundaries.GatewayTests.test_gets_only_canonical_routes_and_encodes_opaque_cursor) ... ok
+test_private_error_body_is_never_consumed_and_non_json_is_safe (test_boundaries.GatewayTests.test_private_error_body_is_never_consumed_and_non_json_is_safe) ... ok
+test_response_cap_timeout_and_cancellation (test_boundaries.GatewayTests.test_response_cap_timeout_and_cancellation) ... ok
+test_saturation_is_bounded_and_does_not_send_extra_requests (test_boundaries.GatewayTests.test_saturation_is_bounded_and_does_not_send_extra_requests) ... ok
+test_stream_without_content_length_stops_at_cap_and_closes (test_boundaries.GatewayTests.test_stream_without_content_length_stops_at_cap_and_closes) ... ok
+test_bounded_strict_inputs_and_opaque_cursor (test_boundaries.InputTests.test_bounded_strict_inputs_and_opaque_cursor) ... ok
+test_context_requires_all_three_refs_and_forbids_authority_arguments (test_boundaries.InputTests.test_context_requires_all_three_refs_and_forbids_authority_arguments) ... ok
+test_trusted_startup_origin_and_secret_redaction (test_boundaries.InputTests.test_trusted_startup_origin_and_secret_redaction) ... ok
+test_diary_rubric_is_a_strict_allowlisted_object_without_text_rewriting (test_boundaries.ProjectionTests.test_diary_rubric_is_a_strict_allowlisted_object_without_text_rewriting) ... ok
+test_exact_context_rejects_each_crossed_reference (test_boundaries.ProjectionTests.test_exact_context_rejects_each_crossed_reference) ... ok
+test_receipt_reports_actual_version_without_invented_source_hash (test_boundaries.ProjectionTests.test_receipt_reports_actual_version_without_invented_source_hash) ... ok
+test_assigned_diary_transfer_preserves_canonical_rubric_and_access (test_stdio_core.StdioCoreTests.test_assigned_diary_transfer_preserves_canonical_rubric_and_access) ... Executing <Task pending name='Task-45' coro=<StdioCoreTests.test_assigned_diary_transfer_preserves_canonical_rubric_and_access() running at /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/services/study-mcp/tests/test_stdio_core.py:215> wait_for=<Future pending cb=[Task.task_wakeup()] created at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/base_events.py:181] created at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/runners.py:101> took 0.383 seconds
+Executing <Task pending name='Task-45' coro=<StdioCoreTests.test_assigned_diary_transfer_preserves_canonical_rubric_and_access() running at /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/services/study-mcp/tests/test_stdio_core.py:222> wait_for=<Future pending cb=[Task.task_wakeup()] created at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/base_events.py:181] created at /Users/andreamarro/.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/asyncio/runners.py:101> took 0.912 seconds
+ok
+test_courses_are_bounded_mine_only_and_cursor_works (test_stdio_core.StdioCoreTests.test_courses_are_bounded_mine_only_and_cursor_works) ... ok
+test_discovery_is_exact_read_only_stateless_protocol_and_no_ui (test_stdio_core.StdioCoreTests.test_discovery_is_exact_read_only_stateless_protocol_and_no_ui) ... ok
+test_invalid_args_and_factory_tools_are_denied_without_authority (test_stdio_core.StdioCoreTests.test_invalid_args_and_factory_tools_are_denied_without_authority) ... ok
+test_peer_and_other_tutor_cannot_read_context_or_receipt_even_with_client_info (test_stdio_core.StdioCoreTests.test_peer_and_other_tutor_cannot_read_context_or_receipt_even_with_client_info) ... ok
+test_receipt_version_is_actual_and_owner_and_tutor_can_read (test_stdio_core.StdioCoreTests.test_receipt_version_is_actual_and_owner_and_tutor_can_read) ... ok
+test_revoked_isolated_session_is_rechecked_on_next_tool_call (test_stdio_core.StdioCoreTests.test_revoked_isolated_session_is_rechecked_on_next_tool_call) ... ok
+test_stdio_eof_and_bad_config_exit_cleanly_without_stdout_banner_or_secret (test_stdio_core.StdioCoreTests.test_stdio_eof_and_bad_config_exit_cleanly_without_stdout_banner_or_secret) ... ok
+test_teacher_catalog_matches_actual_http_core_and_forbids_authority (test_stdio_core.StdioCoreTests.test_teacher_catalog_matches_actual_http_core_and_forbids_authority) ... ok
+test_teacher_catalog_rechecks_revocation_and_invalid_sessions (test_stdio_core.StdioCoreTests.test_teacher_catalog_rechecks_revocation_and_invalid_sessions) ... ok
+test_tutor_gets_exact_historical_submission_but_no_private_head_or_v0 (test_stdio_core.StdioCoreTests.test_tutor_gets_exact_historical_submission_but_no_private_head_or_v0) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 37.682s
+
+OK

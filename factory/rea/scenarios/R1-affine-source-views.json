@@ -1,0 +1,153 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "D0D245C571C712541A4F16B941AEDEA3"
+  },
+  "start_url": {
+    "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/lxHNi_4DNx6F6BI0l16Uo"
+  },
+  "environment": {
+    "service_workers": "allow"
+  },
+  "actions": [
+    {
+      "step_id": "title-ready",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "doc-title [contenteditable=true]"
+      },
+      "state": "visible"
+    },
+    {
+      "step_id": "name-resource",
+      "action": "fill",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "doc-title [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "REA Poiseuille source"
+      }
+    },
+    {
+      "step_id": "write-source",
+      "action": "fill",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "At fixed pressure the flow ratio is radius ratio to the fourth power."
+      }
+    },
+    {
+      "step_id": "canvas-view",
+      "action": "click",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "[data-testid=\"switch-edgeless-mode-button\"]"
+      }
+    },
+    {
+      "step_id": "canvas-ready",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-edgeless-root"
+      },
+      "state": "attached"
+    },
+    {
+      "step_id": "document-view",
+      "action": "click",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "[data-testid=\"switch-page-mode-button\"]"
+      }
+    },
+    {
+      "step_id": "edit-source",
+      "action": "fill",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph [contenteditable=true]"
+      },
+      "value": {
+        "source": "literal",
+        "value": "At fixed flow pressure falls with the fourth power of radius."
+      }
+    },
+    {
+      "step_id": "undo-source",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph [contenteditable=true]"
+      },
+      "key": "Meta+z"
+    },
+    {
+      "step_id": "redo-source",
+      "action": "press",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph [contenteditable=true]"
+      },
+      "key": "Meta+Shift+z"
+    },
+    {
+      "step_id": "reopen",
+      "action": "goto",
+      "timeout_ms": 20000,
+      "destination": {
+        "url": "https://app.affine.pro/workspace/TS9JrTag9SicqKfriCoV8/lxHNi_4DNx6F6BI0l16Uo"
+      },
+      "wait_until": "domcontentloaded"
+    },
+    {
+      "step_id": "restored-source",
+      "action": "wait_for",
+      "timeout_ms": 20000,
+      "locator": {
+        "kind": "css",
+        "selector": "affine-paragraph:has-text(\"At fixed flow\")"
+      },
+      "state": "visible"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "network",
+      "page-errors"
+    ],
+    "network": {
+      "response_body": true
+    },
+    "limits": {
+      "max_network_body_bytes": 262144
+    }
+  }
+}

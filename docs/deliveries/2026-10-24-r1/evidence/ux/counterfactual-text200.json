@@ -1,0 +1,65 @@
+{
+  "doubled": 58,
+  "state": {
+    "width": 360,
+    "scrollWidth": 366,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "className": "",
+        "right": 366.203125,
+        "text": "Riparti dal ragionamento.Questa esperienza esplora un modello di fluid"
+      },
+      {
+        "tag": "H2",
+        "className": "",
+        "right": 366.203125,
+        "text": "Riparti dal ragionamento."
+      },
+      {
+        "tag": "P",
+        "className": "",
+        "right": 366.203125,
+        "text": "Questa esperienza esplora un modello di fluidi. Nel mini-corso il tuto"
+      },
+      {
+        "tag": "A",
+        "className": "button-primary",
+        "right": 366.203125,
+        "text": "Chiedi disponibilità"
+      }
+    ],
+    "quantities": [
+      {
+        "text": "PortataQ/Q₀ = 16",
+        "columnRight": 329,
+        "textRight": 177.5,
+        "overflowsColumn": false
+      },
+      {
+        "text": "Differenza ΔpΔp/Δp₀ = 1",
+        "columnRight": 192.859375,
+        "textRight": 190.609375,
+        "overflowsColumn": false
+      },
+      {
+        "text": "Velocità mediav/v₀ = 4",
+        "columnRight": 329,
+        "textRight": 315.734375,
+        "overflowsColumn": false
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "text200 has no horizontal page overflow",
+      "pass": false
+    },
+    {
+      "name": "text200 quantities fit their columns",
+      "pass": true
+    }
+  ],
+  "method": "Browser computed text sizes doubled through inline style in an isolated anonymous context; no source edit. This is a CSS text-resize simulation, not a browser preference or physical-device measure.",
+  "counterfactual": "CSS rules injected into immutable299 for an isolated causal check; not the final candidate build"
+}

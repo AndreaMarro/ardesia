@@ -1,0 +1,105 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5359",
+    "target_id": "D4118A9C69483070E677BBCAD8BEAD61"
+  },
+  "start_url": {
+    "url": "https://sandbox.moodledemo.net/course/modedit.php?add=assign&course=5&section=1&return=0&sr=0"
+  },
+  "environment": {
+    "service_workers": "allow"
+  },
+  "actions": [
+    {
+      "step_id": "expand-options",
+      "action": "click",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "a.collapseexpand"
+      }
+    },
+    {
+      "step_id": "assignment-name",
+      "action": "fill",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_name"
+      },
+      "value": {
+        "source": "literal",
+        "value": "REA Poiseuille private reasoning"
+      }
+    },
+    {
+      "step_id": "online-reasoning",
+      "action": "check",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_assignsubmission_onlinetext_enabled"
+      }
+    },
+    {
+      "step_id": "explicit-submit",
+      "action": "select_option",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_submissiondrafts"
+      },
+      "value": {
+        "source": "literal",
+        "value": "1"
+      }
+    },
+    {
+      "step_id": "rubric-method",
+      "action": "select_option",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_advancedgradingmethod_submissions"
+      },
+      "value": {
+        "source": "literal",
+        "value": "rubric"
+      }
+    },
+    {
+      "step_id": "save-assignment",
+      "action": "click",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "#id_submitbutton"
+      }
+    },
+    {
+      "step_id": "assignment-ready",
+      "action": "wait_for",
+      "timeout_ms": 15000,
+      "locator": {
+        "kind": "css",
+        "selector": "h1:has-text(\"REA Poiseuille\")"
+      },
+      "state": "visible"
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ]
+  }
+}

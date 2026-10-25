@@ -7,13 +7,15 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { createRoot } from "react-dom/client"
 import { ReplayEngine } from "../store/ReplayEngine"
 import { PATHS } from "../store/types"
+import { roomPaths } from "../store/roomPaths"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { hasEmoji } from "./emojiGuard"
 
 // --- Mock Excalidraw (pattern Room.integration.test.tsx) ---
 
-let capturedApi: { updateScene: ReturnType<typeof vi.fn> } | null = null
+let capturedApi: { updateScene: ReturnType<typeof vi.fn>; scrollToContent: ReturnType<typeof vi.fn> } | null = null
 let capturedExcalidrawProps: any = null
+let onFit: (() => void) | null = null
 
 vi.mock("@excalidraw/excalidraw", () => {
   return {
@@ -23,12 +25,12 @@ vi.mock("@excalidraw/excalidraw", () => {
         setTimeout(() => {
           capturedApi = {
             updateScene: vi.fn(),
+            scrollToContent: vi.fn(() => onFit?.()),
           }
           props.excalidrawAPI({
             ...capturedApi,
             getSceneElements: vi.fn(() => []),
             addFiles: vi.fn(),
-            scrollToContent: vi.fn(),
           })
           document.body.setAttribute("data-mock-excalidraw-api", "1")
         }, 0)
@@ -81,16 +83,17 @@ function journalBlob(events: JournalEvent[]): Blob {
   return new Blob([events.map((e) => JSON.stringify(e)).join("\n") + "\n"])
 }
 
-function makeMockStore(events: JournalEvent[] | null) {
+function makeMockStore(events: JournalEvent[] | null, room = "test-room") {
   const journal = events ? journalBlob(events) : null
+  const paths = roomPaths(room)
   return {
     registerActiveLesson: vi.fn(async (lessonId: string) => {
       const completion = Promise.resolve()
       return { lessonId, release: () => completion }
     }),
     read: vi.fn(async (path: string) => {
-      if (path === PATHS.JOURNAL) return journal
-      if (path.startsWith(PATHS.AUDIO_DIR)) return new Blob([new Uint8Array([1, 2, 3])])
+      if (path === paths.journal) return journal
+      if (path.startsWith(paths.audioDir)) return new Blob([new Uint8Array([1, 2, 3])])
       return null
     }),
     write: vi.fn(async (_path: string, _data: Blob) => {}),
@@ -114,6 +117,7 @@ describe("ReplayView", () => {
     mountedRoots = []
     capturedApi = null
     capturedExcalidrawProps = null
+    onFit = null
     document.body.removeAttribute("data-mock-excalidraw-api")
     // jsdom non implementa createObjectURL
     URL.createObjectURL = vi.fn(() => "blob:replay-test")
@@ -153,6 +157,124 @@ describe("ReplayView", () => {
     range.dispatchEvent(new Event("input", { bubbles: true }))
   }
 
+  describe("responsive replay camera", () => {
+    function resizeHarness() {
+      const frames = new Map<number, FrameRequestCallback>()
+      let nextFrame = 0
+      let notifyResize: (() => void) | undefined
+      let width = 1440
+      let height = 600
+      const disconnected = vi.fn()
+      const fittedWidths: number[] = []
+      onFit = () => fittedWidths.push(width)
+      vi.stubGlobal("requestAnimationFrame", (callback: FrameRequestCallback) => {
+        frames.set(++nextFrame, callback)
+        return nextFrame
+      })
+      vi.stubGlobal("cancelAnimationFrame", (id: number) => frames.delete(id))
+      vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(() => ({
+        x: 0, y: 0, top: 0, left: 0, right: width, bottom: height,
+        width, height, toJSON: () => ({}),
+      }))
+      vi.stubGlobal("ResizeObserver", class {
+        constructor(callback: ResizeObserverCallback) {
+          notifyResize = () => callback([{ contentRect: { width, height } } as ResizeObserverEntry], this as unknown as ResizeObserver)
+        }
+        observe() {}
+        disconnect() { disconnected() }
+      })
+      return {
+        frames, fittedWidths, disconnected,
+        resize(nextWidth: number, nextHeight = 600) {
+          width = nextWidth; height = nextHeight; notifyResize?.()
+        },
+        flushFrame() {
+          const pending = [...frames.values()]
+          frames.clear()
+          for (const callback of pending) callback(0)
+        },
+        async ready() {
+          await vi.waitFor(() => expect(frames.size).toBeGreaterThan(0))
+          this.flushFrame(); this.flushFrame()
+          fittedWidths.length = 0
+        },
+        dispose() {
+          for (const root of mountedRoots) root.unmount()
+          mountedRoots = []
+          vi.unstubAllGlobals()
+        },
+      }
+    }
+
+    it("fits after the canvas resize settles, instead of centering in the previous viewport", async () => {
+      // Native resize precedes Excalidraw's canvas layout. Fitting synchronously
+      // uses1440px even though the next paint is390px (independent browser RED).
+      const view = resizeHarness()
+      try {
+        const store = makeMockStore(JOURNAL_EVENTS)
+        await renderReplayView(store)
+        await view.ready()
+        window.dispatchEvent(new Event("resize"))
+        view.resize(390)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([390])
+        expect(store.write).not.toHaveBeenCalled()
+        expect(store.saveScene).not.toHaveBeenCalled()
+        expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("1000")
+      } finally { view.dispose() }
+    })
+
+    it("preserves camera gestures and scrubbing when canvas bounds do not change", async () => {
+      const view = resizeHarness()
+      try {
+        await renderReplayView(makeMockStore(JOURNAL_EVENTS))
+        await view.ready()
+        capturedExcalidrawProps.onChange([], { scrollX: -123, scrollY: 42, zoom: { value: 2 } })
+        scrubTo(2600)
+        await vi.waitFor(() => expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("2600"))
+        view.resize(1440)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        const fit = [...container.querySelectorAll("button")].find((button) => button.textContent === "Inquadra contenuto")!
+        fit.click()
+        expect(view.fittedWidths).toEqual([1440])
+      } finally { view.dispose() }
+    })
+
+    it("ignores zero-size bounds and disposes pending fits on a new lesson or unmount", async () => {
+      const view = resizeHarness()
+      try {
+        const store = makeMockStore(JOURNAL_EVENTS)
+        const root = await renderReplayView(store)
+        await view.ready()
+        view.resize(0)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        view.resize(390)
+        view.flushFrame()
+        view.resize(0)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        view.resize(390)
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([390])
+        view.fittedWidths.length = 0
+        view.resize(820)
+        view.flushFrame()
+        const { default: ReplayView } = await import("../ReplayView")
+        store.read.mockReturnValue(new Promise<Blob | null>(() => {}))
+        root.render(<ReplayView store={store as any} room="pending-room" />)
+        await vi.waitFor(() => expect(container.textContent).toContain("caricamento"))
+        expect(view.disconnected).toHaveBeenCalled()
+        view.flushFrame(); view.flushFrame()
+        expect(view.fittedWidths).toEqual([])
+        expect(view.frames.size).toBe(0)
+        root.unmount()
+        mountedRoots = []
+      } finally { view.dispose() }
+    })
+  })
+
   it("scrub a t proietta ESATTAMENTE getSceneAt(events, t) — stessi id, stesso ordine", async () => {
     const store = makeMockStore(JOURNAL_EVENTS)
     await renderReplayView(store)
@@ -177,6 +299,88 @@ describe("ReplayView", () => {
       // criterio §5: la proiezione coincide ESATTAMENTE con getSceneAt(events, t)
       expect(engine.getSceneAt(JOURNAL_EVENTS, t).map((e) => e.id)).toEqual(expected)
     }
+  })
+
+  it("uses the selected room journal even when unrelated flat legacy data exists", async () => {
+    const store = makeMockStore(null)
+    store.read.mockImplementation(async (path: string) => {
+      if (path === roomPaths("test-room").journal) return journalBlob(JOURNAL_EVENTS)
+      if (path === PATHS.JOURNAL) return journalBlob([
+        { t: 9999, type: "element.add", element: el("unrelated-legacy") },
+      ])
+      return null
+    })
+    await renderReplayView(store)
+    await vi.waitFor(() => {
+      const range = container.querySelector('input[type="range"]') as HTMLInputElement
+      expect(range.min).toBe("1000")
+      expect(range.max).toBe("3000")
+    })
+    expect(store.read).toHaveBeenCalledWith(roomPaths("test-room").journal)
+    expect(store.read).not.toHaveBeenCalledWith(PATHS.JOURNAL)
+  })
+
+  it("the native range can reach the final event when duration is not a multiple of 100 ms", async () => {
+    const store = makeMockStore([
+      { t: 1000, type: "t0" },
+      { t: 1405, type: "element.add", element: el("final-stroke") },
+    ])
+    await renderReplayView(store)
+    await vi.waitFor(() => expect(capturedApi).not.toBeNull())
+    const range = container.querySelector('input[type="range"]') as HTMLInputElement
+    // Native range stepping clamps to its greatest allowed value, just as End
+    // does in Chromium. A coarse step would leave the final event unreachable.
+    range.stepUp(1000)
+    expect(range.valueAsNumber).toBe(1405)
+    range.dispatchEvent(new Event("input", { bubbles: true }))
+    await vi.waitFor(() => {
+      const scene = capturedApi!.updateScene.mock.calls.at(-1)?.[0].elements as Array<{ id: string }>
+      expect(scene.map((element) => element.id)).toEqual(["final-stroke"])
+    })
+  })
+
+  it("room change hides the previous title and audio while the new journal is pending", async () => {
+    const store = makeMockStore(AUDIO_EVENTS)
+    let finishRead!: (blob: Blob | null) => void
+    const pending = new Promise<Blob | null>((resolve) => { finishRead = resolve })
+    const firstRead = store.read.getMockImplementation()!
+    store.read.mockImplementation((path: string) => (
+      path === roomPaths("room-b").journal ? pending : firstRead(path)
+    ))
+    store.loadMeta.mockImplementation(async () => ({ v: 1, name: "Prima lezione", createdAt: 1 }))
+    const root = await renderReplayView(store)
+    await vi.waitFor(() => expect(container.querySelector("audio")?.src).toBe("blob:replay-test"))
+
+    const { default: ReplayView } = await import("../ReplayView")
+    root.render(<ReplayView store={store as any} room="room-b" />)
+    await vi.waitFor(() => expect(container.textContent).toContain("caricamento"))
+    expect(container.textContent).not.toContain("Prima lezione")
+    expect(container.querySelector("audio")).toBeNull()
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:replay-test")
+
+    finishRead(journalBlob([{ t: 5000, type: "element.add", element: el("only-b") }]))
+    await vi.waitFor(() => {
+      const range = container.querySelector('input[type="range"]') as HTMLInputElement
+      expect(range.min).toBe("5000")
+    })
+    expect(container.querySelector("audio")).toBeNull()
+  })
+
+  it("a previous room read failure cannot hide a later room's valid journal", async () => {
+    const store = makeMockStore(null)
+    store.read.mockImplementation(async (path: string) => {
+      if (path === roomPaths("test-room").journal) throw new Error("synthetic read failure")
+      if (path === roomPaths("room-b").journal) return journalBlob(JOURNAL_EVENTS)
+      return null
+    })
+    const root = await renderReplayView(store)
+    expect(container.textContent).toContain("Registrazione non disponibile")
+    const { default: ReplayView } = await import("../ReplayView")
+    root.render(<ReplayView store={store as any} room="room-b" />)
+    await vi.waitFor(() => {
+      expect(container.querySelector('input[type="range"]')).not.toBeNull()
+    })
+    expect(container.textContent).not.toContain("synthetic read failure")
   })
 
   it("la timeline copre firstEventTime..lastEventTime", async () => {
@@ -240,8 +444,8 @@ describe("ReplayView", () => {
     // MediaRecorder con timeslice: solo chunk-0 contiene l'init segment WebM.
     // La sorgente audio deve essere la concatenazione ordinata di tutti i chunk.
     const { store } = await renderWithLoadedAudio()
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-0.webm`)
-    expect(store.read).toHaveBeenCalledWith(`${PATHS.AUDIO_DIR}chunk-1.webm`)
+    expect(store.read).toHaveBeenCalledWith(`${roomPaths("test-room").audioDir}chunk-0.webm`)
+    expect(store.read).toHaveBeenCalledWith(`${roomPaths("test-room").audioDir}chunk-1.webm`)
     // un solo object URL creato per l'audio (blob unico), non uno per chunk
     const urlCalls = vi.mocked(URL.createObjectURL).mock.calls.length
     expect(urlCalls).toBe(1)
@@ -313,7 +517,7 @@ describe("Room in ?vista=replay", () => {
     const { isReplayView } = await import("../store/isReplayView")
     vi.mocked(isReplayView).mockReturnValue(true)
 
-    const store = makeMockStore(JOURNAL_EVENTS)
+    const store = makeMockStore(JOURNAL_EVENTS, "replay-room-1")
     const { default: Room } = await import("../Room")
     const root = createRoot(container)
     root.render(<Room store={store as any} />)
@@ -326,7 +530,7 @@ describe("Room in ?vista=replay", () => {
     expect(harness.recorder).toBeNull()
     expect(harness.audioRecorder).toBeNull()
     // zero write sul journal durante il replay
-    const journalWrites = store.write.mock.calls.filter(([p]) => p === PATHS.JOURNAL)
+    const journalWrites = store.write.mock.calls.filter(([p]) => p === roomPaths("replay-room-1").journal)
     expect(journalWrites).toHaveLength(0)
     // la vista replay è renderizzata (timeline presente dopo il load)
     await vi.waitFor(() => {

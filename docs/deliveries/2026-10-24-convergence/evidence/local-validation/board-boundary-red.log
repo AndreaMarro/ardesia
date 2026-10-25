@@ -1,0 +1,108 @@
+Excalidraw-to-journal producer regression, before boundary correction.
+JournalRecorder baseline #290 339ab08f4139da0b37e78bbde81e9fe4e83afea0 unchanged; other unrelated shared worktree edits present.
+Command (cwd ardesia/apps/studio): ARDESIA_GIT_SHA=339ab08f4139da0b37e78bbde81e9fe4e83afea0 npx vitest run src/__tests__/JournalRecorder.boardBoundary.test.ts --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+Exit code: 1
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.8 /workspace/scratch/6f2994042c33/ardesia/apps/studio
+
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts (17 tests | 7 failed) 35ms
+     × captures a real board's optional undefined fields on add 10ms
+     × captures a real board's optional undefined fields on update 2ms
+     × omits absent object fields recursively while preserving null, false, zero and array order 1ms
+     × rejects class instance rather than silently changing it 2ms
+     × rejects symbol key rather than silently changing it 1ms
+     × rejects non-enumerable property rather than silently changing it 1ms
+     × rejects accessors without invoking them 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > captures a real board's optional undefined fields on add
+Error: EventEnvelope v2: payload.element.customData contains a non-JSON value of type undefined
+ ❯ invalid src/core/contracts/eventEnvelope.ts:100:9
+     98|
+     99| function invalid(context: string, reason: string): never {
+    100|   throw new Error(`EventEnvelope v2: ${context} ${reason}`)
+       |         ^
+    101| }
+    102|
+ ❯ assertJsonObject src/core/contracts/eventEnvelope.ts:203:7
+ ❯ assertDraft src/core/contracts/eventEnvelope.ts:413:3
+ ❯ createEventEnvelopeV2 src/core/contracts/eventEnvelope.ts:453:3
+ ❯ JournalRecorder.prepareRow src/store/JournalRecorder.ts:491:22
+ ❯ stage src/store/JournalRecorder.ts:541:27
+ ❯ JournalRecorder.recordChange src/store/JournalRecorder.ts:553:9
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts:44:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > captures a real board's optional undefined fields on update
+Error: EventEnvelope v2: payload.element.customData contains a non-JSON value of type undefined
+ ❯ invalid src/core/contracts/eventEnvelope.ts:100:9
+     98|
+     99| function invalid(context: string, reason: string): never {
+    100|   throw new Error(`EventEnvelope v2: ${context} ${reason}`)
+       |         ^
+    101| }
+    102|
+ ❯ assertJsonObject src/core/contracts/eventEnvelope.ts:203:7
+ ❯ assertDraft src/core/contracts/eventEnvelope.ts:413:3
+ ❯ createEventEnvelopeV2 src/core/contracts/eventEnvelope.ts:453:3
+ ❯ JournalRecorder.prepareRow src/store/JournalRecorder.ts:491:22
+ ❯ stage src/store/JournalRecorder.ts:541:27
+ ❯ JournalRecorder.recordChange src/store/JournalRecorder.ts:563:9
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts:44:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > omits absent object fields recursively while preserving null, false, zero and array order
+Error: EventEnvelope v2: payload.element.customData.missing contains a non-JSON value of type undefined
+ ❯ invalid src/core/contracts/eventEnvelope.ts:100:9
+     98|
+     99| function invalid(context: string, reason: string): never {
+    100|   throw new Error(`EventEnvelope v2: ${context} ${reason}`)
+       |         ^
+    101| }
+    102|
+ ❯ assertJsonObject src/core/contracts/eventEnvelope.ts:203:7
+ ❯ assertDraft src/core/contracts/eventEnvelope.ts:413:3
+ ❯ createEventEnvelopeV2 src/core/contracts/eventEnvelope.ts:453:3
+ ❯ JournalRecorder.prepareRow src/store/JournalRecorder.ts:491:22
+ ❯ stage src/store/JournalRecorder.ts:541:27
+ ❯ JournalRecorder.recordChange src/store/JournalRecorder.ts:553:9
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts:64:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > rejects class instance rather than silently changing it
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > rejects symbol key rather than silently changing it
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > rejects non-enumerable property rather than silently changing it
+AssertionError: expected [Function] to throw an error
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts:95:9
+     93|       { id: "safe", version: 1, customData: { label: "valid first elem…
+     94|       { id: "invalid", version: 1, customData: invalidValue() },
+     95|     ])).toThrow()
+       |         ^
+     96|     expect(h.recorder.getEnvelopeBuffer()).toEqual([])
+     97|     expect(h.store.write).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/__tests__/JournalRecorder.boardBoundary.test.ts > Excalidraw element to canonical journal boundary > rejects accessors without invoking them
+AssertionError: expected [Function] to throw an error
+ ❯ src/__tests__/JournalRecorder.boardBoundary.test.ts:106:99
+    104|     const getter = vi.fn(() => "must not run")
+    105|     const metadata = Object.defineProperty({}, "value", { enumerable: …
+    106|     expect(() => h.recorder.recordChange([{ id: "accessor", version: 1…
+       |                                                                                                   ^
+    107|     expect(getter).not.toHaveBeenCalled()
+    108|     expect(h.recorder.getEnvelopeBuffer()).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 10 passed (17)
+   Start at  10:45:22
+   Duration  380ms (transform 166ms, setup 24ms, import 198ms, tests 35ms, environment 0ms)

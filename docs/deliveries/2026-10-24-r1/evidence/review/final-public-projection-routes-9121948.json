@@ -1,0 +1,102 @@
+{
+  "sourceCommit": "91219486ddf270582bef1c2e0bda2a66796e6e78",
+  "publicManifestSha256": "a785a4a0dc151c2d859066f9f1016fdce501352a40778efca019ca212dacde5a",
+  "preparedReceiptBinding": {
+    "candidateManifestSha256": "a785a4a0dc151c2d859066f9f1016fdce501352a40778efca019ca212dacde5a",
+    "sourceManifestSha256": "71c85b055e63c7cc2ef5deb5c18181efe45e2e4959400356b6dfda9f69ace435",
+    "sourceCommit": "91219486ddf270582bef1c2e0bda2a66796e6e78",
+    "sourceTreeSha256": "8211844a37af1894dc104955f7389473e7556544f3980469d55be3c24f5a2d4b",
+    "assetCount": 20
+  },
+  "all20PublicBytesEquivalentTo706FullVercelAndHTTP": true,
+  "paths": [
+    {
+      "path": "/missing-independent-route",
+      "status": 404
+    },
+    {
+      "path": "/studio/",
+      "status": 404
+    },
+    {
+      "path": "/study/health",
+      "status": 404
+    },
+    {
+      "path": "/candidate-manifest.json",
+      "status": 404
+    },
+    {
+      "path": "/.git/config",
+      "status": 404
+    },
+    {
+      "path": "/%2e%2e/source-manifest.json",
+      "status": 404
+    }
+  ],
+  "true404NoPrivateRoute": true,
+  "audioHEAD": {
+    "status": 200,
+    "contentType": "audio/x-wav",
+    "contentLength": "1882900",
+    "csp": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+    "noindex": "noindex, nofollow"
+  },
+  "vercelConfigSha256": "e1ae9e9e1bfa46db28c64098d8804e16a7594bb6e452cc54fd9e1ea21ea84405",
+  "vercelConfig": {
+    "version": 3,
+    "routes": [
+      {
+        "src": "/.*",
+        "headers": {
+          "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "DENY",
+          "Referrer-Policy": "no-referrer",
+          "X-Robots-Tag": "noindex, nofollow",
+          "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+          "Cache-Control": "no-store"
+        },
+        "continue": true
+      },
+      {
+        "src": "/esempi/elettricita\\-magnetismo/?$",
+        "dest": "/esempi/elettricita-magnetismo/index.html"
+      },
+      {
+        "src": "/esempi/fluidi\\-termodinamica/?$",
+        "dest": "/esempi/fluidi-termodinamica/index.html"
+      },
+      {
+        "src": "/esempi/onde\\-ottica\\-radiazioni/?$",
+        "dest": "/esempi/onde-ottica-radiazioni/index.html"
+      },
+      {
+        "src": "/esempi/strumenti\\-meccanica/?$",
+        "dest": "/esempi/strumenti-meccanica/index.html"
+      },
+      {
+        "src": "/esperienza/?$",
+        "dest": "/esperienza/index.html"
+      },
+      {
+        "src": "/$",
+        "dest": "/index.html"
+      },
+      {
+        "handle": "filesystem"
+      },
+      {
+        "src": "/.*",
+        "status": 404,
+        "dest": "/404.html"
+      }
+    ]
+  },
+  "projectLinked": false,
+  "functionsIncluded": false,
+  "providerRuntimeValidation": "NOT_RUN",
+  "releaseStatus": "BLOCKED",
+  "deploymentPerformed": false
+}

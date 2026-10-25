@@ -1,0 +1,21 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/session-boundary.test.tsx --maxWorkers=1 --no-file-parallelism --reporter=verbose
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ✓ src/__tests__/session-boundary.test.tsx > a verified child json 401 (cookie) removes the private application and opens access 1012ms
+ ✓ src/__tests__/session-boundary.test.tsx > a verified child binary 401 (cookie) removes the private application and opens access 93ms
+ ✓ src/__tests__/session-boundary.test.tsx > a verified child json 401 (missing) removes the private application and opens access 77ms
+ ✓ src/__tests__/session-boundary.test.tsx > an untrusted child 401 preserves the private application 47ms
+ ✓ src/__tests__/session-boundary.test.tsx > an untrusted child 403 preserves the private application 41ms
+ ✓ src/__tests__/session-boundary.test.tsx > an untrusted child 503 preserves the private application 51ms
+ ✓ src/__tests__/session-boundary.test.tsx > an anonymous initial authentication boundary remains public without opening access 26ms
+ ✓ src/__tests__/session-boundary.test.tsx > explicit logout clears the private application even when server revocation is unconfirmed 74ms
+ ✓ src/__tests__/session-boundary.test.tsx > a late rejection from the previous session cannot clear a newly authenticated actor 274ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  12:50:29
+   Duration  3.17s (transform 509ms, setup 0ms, import 412ms, tests 1.70s, environment 872ms)

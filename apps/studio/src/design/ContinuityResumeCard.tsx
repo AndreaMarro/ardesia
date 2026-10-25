@@ -184,7 +184,7 @@ function ScopeInvalidState(props: { code: ContinuityScopeErrorCode }) {
         data-next-action="reopen-lesson"
         data-next-action-priority="4"
         data-next-action-cause="scope-invalid"
-        href="/"
+        href={import.meta.env.BASE_URL}
       >
         {NEXT_ACTION_TEXT["reopen-lesson"]}
       </a>

@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react"
 import { MathfieldElement } from "mathlive"
 import { IconFunction, IconCheck } from "./design/icons"
 
-// Carica i font MathLive da CDN (in dev Vite non serve copiarli in public/).
+// Vite serves/emits the fonts from the locked MathLive package at this local base.
 // Guard per ambienti senza DOM reale (jsdom test, SSR).
 if (typeof MathfieldElement !== "undefined") {
-  MathfieldElement.fontsDirectory = "https://unpkg.com/mathlive/fonts"
+  MathfieldElement.fontsDirectory = `${import.meta.env.BASE_URL}mathlive-fonts`
   MathfieldElement.soundsDirectory = null
 }
 

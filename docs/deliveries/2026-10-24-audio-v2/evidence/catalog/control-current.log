@@ -1,0 +1,17 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/__tests__/curriculum-catalog.test.tsx -t a popstate at the first visible unit --reporter=verbose
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ↓ src/__tests__/curriculum-catalog.test.tsx > teacher opens a real curriculum inventory on demand, with content references and separate draft states
+ ↓ src/__tests__/curriculum-catalog.test.tsx > search matches actual topics and announces an empty result without inventing a course
+ ↓ src/__tests__/curriculum-catalog.test.tsx > student never requests private inventory and a late teacher response cannot restore it
+ ↓ src/__tests__/curriculum-catalog.test.tsx > catalog links reopen the exact unit and reject an obsolete composition without a fallback
+ ✓ src/__tests__/curriculum-catalog.test.tsx > a popstate at the first visible unit rejects its obsolete reference before passive effects 706ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 4 skipped (5)
+   Start at  12:16:30
+   Duration  4.74s (transform 748ms, setup 0ms, import 1.32s, tests 714ms, environment 1.84s)

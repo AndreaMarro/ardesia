@@ -272,10 +272,11 @@ class TestRealtimeEvalParseScore:
 
 
 # ---------------------------------------------------------------------------
-# Live integration test — gated by KIMI_API_KEY
+# Live integration test — explicit --run-live-models plus KIMI_API_KEY
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.live_model
 @pytest.mark.skipif(
     "KIMI_API_KEY" not in __import__("os").environ,
     reason="KIMI_API_KEY not set — live LLM eval skipped",
@@ -283,7 +284,7 @@ class TestRealtimeEvalParseScore:
 class TestRealtimeEvalLiveKimi:
     """Run a REAL eval against Kimi on the fixture, log cost.
 
-    This test is gated by KIMI_API_KEY (skipped if absent). It makes
+    This test requires --run-live-models and KIMI_API_KEY. It makes
     real LLM calls and verifies that the end-to-end pipeline works
     with a production LLM, not just mock.
     """

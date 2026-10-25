@@ -1,0 +1,89 @@
+{
+  "browser": {
+    "mode": "connect",
+    "cdp_endpoint": "http://127.0.0.1:5354",
+    "target_id": "690BD383D1B8DD97082E966F8FA5B20C"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5321/?view=classroom"
+  },
+  "environment": {
+    "locale": "it-IT",
+    "timezone": "Europe/Rome",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "actions": [
+    {
+      "step_id": "access-dialog",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Accedi al tuo spazio"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "authorized-existing-actor",
+      "action": "fill",
+      "locator": {
+        "kind": "role",
+        "role": "textbox",
+        "name": "Codice di accesso sintetico"
+      },
+      "value": {
+        "source": "secret",
+        "secret_id": "r6-student-login"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "establish-session",
+      "action": "click",
+      "locator": {
+        "kind": "role",
+        "role": "button",
+        "name": "Accedi"
+      },
+      "timeout_ms": 10000
+    },
+    {
+      "step_id": "course-shell-ready",
+      "action": "wait_for",
+      "locator": {
+        "kind": "css",
+        "selector": "nav[aria-label=\"Navigazione principale\"]"
+      },
+      "state": "visible",
+      "timeout_ms": 15000
+    }
+  ],
+  "capture": {
+    "after_each_step": [
+      "dom",
+      "accessibility",
+      "url"
+    ],
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ],
+    "events": [
+      "page-errors"
+    ],
+    "limits": {
+      "max_network_body_bytes": 262144
+    }
+  },
+  "secrets": [
+    {
+      "secret_id": "r6-student-login",
+      "environment_variable": "ARDESIA_REA_R6_C2_TUTOR"
+    }
+  ]
+}

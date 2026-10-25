@@ -1,0 +1,61 @@
+[
+  {
+    "modelId": "U7-radioactive-decayed-count",
+    "serial": 15,
+    "reasoningTask": "reconstruct_initial_population_and_elapsed_half_lives",
+    "objective": "Ricostruire popolazione iniziale e tempo da due conteggi cumulativi",
+    "taskTitle": "Due conteggi e un tempo sconosciuto",
+    "context": "Un campione radioattivo ha emivita di 1 h. Si contano soltanto le trasformazioni dei nuclei genitori iniziali; i numeri indicati sono valori medi esatti del modello.",
+    "assumptions": [
+      "Campione chiuso, emivita costante di 1 h.",
+      "Si ignorano i decadimenti successivi dei nuclei figli."
+    ],
+    "prompt": "Dopo un tempo t dall’inizio si sono trasformati 12 milioni di nuclei. Un’ora dopo, il conteggio cumulativo dei genitori trasformati è 14 milioni. Non è nota la popolazione iniziale. Quanto vale t, in ore?",
+    "answer": {
+      "kind": "rational",
+      "exact": "2",
+      "unit": "h"
+    },
+    "steps": [
+      {
+        "title": "Separare il conteggio totale dalla differenza",
+        "explanation": "I 14 milioni sono tutti i genitori decaduti dall’inizio fino alla seconda osservazione. Per sapere quanti si sono trasformati soltanto nell’ultima ora dobbiamo togliere i 12 milioni già decaduti prima.",
+        "math": "ΔN_dec = 14−12 = 2 milioni"
+      },
+      {
+        "title": "Usare l’emivita sull’intervallo osservato",
+        "explanation": "Un’ora è esattamente un’emivita: nella popolazione ancora presente all’istante t, metà dei genitori si trasforma e metà resta. I 2 milioni appena ricavati sono dunque la metà dei genitori che erano ancora presenti a t.",
+        "math": "N(t)/2 = 2 milioni ⇒ N(t) = 4 milioni"
+      },
+      {
+        "title": "Ricostruire il campione iniziale",
+        "explanation": "Ogni nucleo iniziale è in uno dei due gruppi: ancora genitore oppure già trasformato. Sommando i 4 milioni presenti e i 12 milioni già decaduti ricostruiamo il conteggio iniziale senza contare due volte alcun nucleo.",
+        "math": "N₀ = N(t)+N_dec(t) = 4+12 = 16 milioni"
+      },
+      {
+        "title": "Contare i dimezzamenti",
+        "explanation": "La popolazione è passata da 16 milioni a 4 milioni. Dopo una prima emivita diventa 8 milioni; dopo la seconda diventa 4 milioni. Sono quindi trascorse due emivite, ciascuna lunga un’ora. Non serve approssimare un logaritmo.",
+        "math": "16 → 8 → 4; t = 2×1 h = 2 h"
+      },
+      {
+        "title": "Controllare entrambi i dati",
+        "explanation": "A due ore restano 4 milioni e ne sono decaduti 16−4=12 milioni. Un’ora dopo ne restano 2 milioni e il totale decaduto è 16−2=14 milioni. Entrambe le osservazioni sono riprodotte dalla stessa popolazione iniziale.",
+        "math": "N_dec(2 h)=12 milioni; N_dec(3 h)=14 milioni"
+      }
+    ],
+    "verification": [
+      {
+        "kind": "independent_substitution",
+        "expression": "16*(1-2**(-2))",
+        "expected": "12",
+        "residual": "0"
+      },
+      {
+        "kind": "independent_substitution",
+        "expression": "16*(1-2**(-3))",
+        "expected": "14",
+        "residual": "0"
+      }
+    ]
+  }
+]

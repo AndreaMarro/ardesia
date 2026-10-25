@@ -1,0 +1,552 @@
+{
+  "createdAtUTC": "2026-10-24T22:01:48.575763+00:00",
+  "reaVersion": "6.7.0",
+  "runtime": "owned Chromium148.0.7778.96",
+  "records": [
+    {
+      "file": "C-h5p-initial-evidence.json",
+      "sha256": "c1e59e4f3a18ff0e4876d1d5a3e8eaecbd4dee9c4ec6ba6fe25e66c919cd61f8",
+      "bytes": 1071008,
+      "evidenceId": "ev_c10374f4d959be410df4ef3314ead8c925a87f822e4b2379c30eee7325fa8741",
+      "startUrl": null,
+      "durationMs": 7734,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "branching-example-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "settle-ui",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-question-set-initial-evidence.json",
+      "sha256": "72f086b6cbf53f3ac6b79abce301575e1b97825f4c6725c12335158e00e0bcd6",
+      "bytes": 1386610,
+      "evidenceId": "ev_806263e6eeb3eb487fa0c8f8c04f93f789303446b6b772c8c063912defa71ae5",
+      "startUrl": null,
+      "durationMs": 3844,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "question-set-preview-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "settle-ui",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-finish-ready-evidence.json",
+      "sha256": "89c3df5b8e60f066e0d86545c376f9239045be446303a439d88695621f36e753",
+      "bytes": 10641210,
+      "evidenceId": "ev_7580f85cc35a7b6e7e6379a3ceb4e2079fd7ab1cc813b0c9e5aef8a9df9d8eb0",
+      "startUrl": null,
+      "durationMs": 5660,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-non-berry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-with-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "score-unanswered-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "go-to-final-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-wrong-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-final-wrong-answer",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-last-ready-evidence.json",
+      "sha256": "ebdbab7c514b6a19dbac1ddea3974c8144ca0a7d5b7f4e8368176232ca527a6a",
+      "bytes": 7267287,
+      "evidenceId": "ev_49ef90016574c7521594d607327586d3632f81f4a2e2abd766f789c9a9f5d7ed",
+      "startUrl": null,
+      "durationMs": 6672,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-non-berry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-with-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-with-unanswered-question",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-negative-evidence.json",
+      "sha256": "48133c6d09b9f6cda9d2438ee94255f4ea96317416952ebd2d300e3e594819c2",
+      "bytes": 5888816,
+      "evidenceId": "ev_7fbb7311042a32f2c2dd1eb4897b49b5b552108148e38c4031d7cd02363cf378",
+      "startUrl": null,
+      "durationMs": 7266,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-non-berry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-with-wrong-answer",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-negative-final-evidence.json",
+      "sha256": "20693751962586bf135029b614d95a9deeb492b0c3607f9642f67320c4aa26b1",
+      "bytes": 9690225,
+      "evidenceId": "ev_488fe3952a6229be3a6d37fce29570984b7dd6d84d8ad3ec033e41f5f86fd7b6",
+      "startUrl": null,
+      "durationMs": 7873,
+      "completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-non-berry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-with-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "score-unanswered-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "go-to-final-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-wrong-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-final-wrong-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "finish-failed-quiz",
+          "status": "completed"
+        },
+        {
+          "step_id": "inspect-reuse-options",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction.",
+        "Some network requests had not completed when capture ended; later activity is unknown."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-positive-final-evidence.json",
+      "sha256": "34a5bc6ce219b39f2201148fa0398f94b421180cf6c69be846a3c73afd2a5184",
+      "bytes": 14602536,
+      "evidenceId": "ev_a0c860a0c2624c8d32f9dcf08812f81c2e73cb82b5aab3cec6d73f37057ff364",
+      "startUrl": null,
+      "durationMs": 5738,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-blueberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-strawberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-raspberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-cloudberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-correct-first-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-to-second-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "score-unanswered-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "go-to-final-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-correct-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-correct-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "finish-partially-correct-quiz",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-ready-evidence.json",
+      "sha256": "d4b9608c9465380389f7d48633c05d28a96a3fb99586623acb7d6805785df0a7",
+      "bytes": 4003184,
+      "evidenceId": "ev_4675da6d1d28e32244cb37c7ab8aa6b6cc5e6bf69704332ca944d62395217c52",
+      "startUrl": null,
+      "durationMs": 5954,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "quiz-runtime-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "settle-ui",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-h5p-quiz-retry-rights-evidence.json",
+      "sha256": "b51f6e6e834690b99d774aff41a9393f7b71f5575b0797f3f57f58f8ba55423a",
+      "bytes": 17205397,
+      "evidenceId": "ev_4e2da2e467d1f26f0214f9adabc14d6aa9620a8ca4d5e5fd1dda4bc0b4b5a316",
+      "startUrl": null,
+      "durationMs": 7638,
+      "completeness": {
+        "status": "complete",
+        "equality_eligible": true,
+        "missing_sections": [],
+        "truncated_sections": []
+      },
+      "stepStates": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed"
+        },
+        {
+          "step_id": "first-question-ready",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-blueberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-strawberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-raspberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-cloudberry",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-correct-first-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "advance-to-second-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "score-unanswered-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "go-to-final-question",
+          "status": "completed"
+        },
+        {
+          "step_id": "choose-correct-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "check-correct-final-answer",
+          "status": "completed"
+        },
+        {
+          "step_id": "finish-partially-correct-quiz",
+          "status": "completed"
+        },
+        {
+          "step_id": "retry-composition",
+          "status": "completed"
+        },
+        {
+          "step_id": "inspect-runtime-rights",
+          "status": "completed"
+        }
+      ],
+      "limitations": [
+        "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+        "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+        "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+        "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+        "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+        "Storage values are hashed only after declared-secret redaction."
+      ]
+    },
+    {
+      "file": "C-numbas-initial-evidence.json",
+      "sha256": "dbd58b9a775b8694be4039f08f345d7bcf06336781ebb986f4a89b7d3d980365",
+      "bytes": 3296,
+      "evidenceId": null,
+      "startUrl": null,
+      "durationMs": 84458,
+      "completeness": null,
+      "stepStates": [],
+      "limitations": [],
+      "classification": "accessfailure",
+      "error": "execution_failure; net::ERR_CONNECTION_TIMED_OUT",
+      "cleanup": "terminated-owned-process"
+    }
+  ],
+  "observed": {
+    "questionSetLibrary": "H5P.QuestionSet1.20.31",
+    "questionLibraries": [
+      "H5P.MultiChoice1.16",
+      "H5P.DragQuestion1.14",
+      "H5P.MultiChoice1.16"
+    ],
+    "config": {
+      "progressType": "dots",
+      "passPercentage": 50,
+      "disableBackwardsNavigation": false,
+      "randomQuestions": false,
+      "perQuestionShowSolution": "off",
+      "perQuestionRetry": "off",
+      "checkButton": true
+    },
+    "negative": "wrong first choice checked as0/4; next question remains reachable; allwrong/unanswered final0/6",
+    "positive": "fourcorrect first choices and correct last choice; middle unanswered scored0; final5/6 and congratulatory live text",
+    "retry": "returns question1, all choices unchecked, question2and3 unanswered",
+    "reuse": "dialog offers .h5p download; download not executed",
+    "rights": "runtime rights dialog identifies CC BY-ND4.0 and CC BY-SA4.0 image assets",
+    "authoring": "public config/semantics/tutorial available; authenticated editor unobserved"
+  },
+  "unknown": [
+    "Numbas target could not be loaded; no applicationnegative claimed",
+    "No liveauthor create/edit/save/publish",
+    "No H5Ppackage download/import",
+    "No crossbrowser/screenreader coverage",
+    "Instantpositive screenshot scorebar transient0/6 while textual result5/6; no claim scoreanimationcorrectness",
+    "negativefinal Evidence incomplete only events due unfinishednetwork requests; DOM/actioncoverage retained"
+  ],
+  "cost": {
+    "captures": 10,
+    "capturedDurationMs": 142837,
+    "paidInferenceCalls": 0,
+    "paidInferenceSpend": 0,
+    "externalWriteActions": 0,
+    "installationChanges": 0,
+    "durationScope": "sum of browser-provider durations, not total human/model wall time"
+  }
+}

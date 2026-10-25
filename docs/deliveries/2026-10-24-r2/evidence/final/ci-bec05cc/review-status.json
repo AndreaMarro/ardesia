@@ -1,0 +1,52 @@
+{
+  "reviewRecordsRead": [
+    "docs/deliveries/2026-10-24-r2/evidence/rea/C/C-review-report.md",
+    "docs/deliveries/2026-10-24-r2/evidence/rea/A/root-review.md",
+    "docs/deliveries/2026-10-24-r2/evidence/rea/D/C-reviewed-source-hashes.json"
+  ],
+  "scope": "Existing independent review read; not a new whole-repository audit.",
+  "coreOpenFindings": 0,
+  "coreClosedFinding": "New scalar huge JSON integer OverflowError: immutable RED1\u2192GREEN1; owner permanent HTTP scalar+legacy regression422/zero writes;3 independent probes PASS.",
+  "limits": [
+    "SQLite/native local contracts; PG/live/cloud not covered by this review.",
+    "Pre-existing canonical serialization boundary for raw non-finite JSON is disclosed separately by C; not claimed universally fixed."
+  ],
+  "sourceChecks": [
+    {
+      "file": "packages/engine/lessonos/study/learning_experiences.py",
+      "reviewedSha256": "d6363256ea662bc7192e44bc3cbead1a9e428bf0bb3c0afdf0d897efd4192ce4",
+      "currentSha256": "d6363256ea662bc7192e44bc3cbead1a9e428bf0bb3c0afdf0d897efd4192ce4",
+      "unchanged": true
+    },
+    {
+      "file": "packages/engine/lessonos/study/content/learning-compositions-v1.json",
+      "reviewedSha256": "073d52a83c7759d0926fb17b8996ba8188fbd5b08d8440af98df40b096e9f58d",
+      "currentSha256": "073d52a83c7759d0926fb17b8996ba8188fbd5b08d8440af98df40b096e9f58d",
+      "unchanged": true
+    },
+    {
+      "file": "packages/engine/tests/study/test_learning_experiences.py",
+      "reviewedSha256": "a4b4cb059b949581f4eb3a5167cc79487afb6b2b67f181ac2cee00476e86d305",
+      "currentSha256": "a4b4cb059b949581f4eb3a5167cc79487afb6b2b67f181ac2cee00476e86d305",
+      "unchanged": true
+    },
+    {
+      "file": "services/study-api/study_api/app.py",
+      "reviewedSha256": "9b7a0d14c289d6abf08f89c3d487e5a959762479cda476b524fbfb84b9ea21f3",
+      "currentSha256": "9b7a0d14c289d6abf08f89c3d487e5a959762479cda476b524fbfb84b9ea21f3",
+      "unchanged": true
+    },
+    {
+      "file": "services/study-api/tests/test_learning_composition_http.py",
+      "reviewedSha256": "6a1adda14c8152ac7938e89d5a944ebe0a78d48438008d26f1b4378b5a629544",
+      "currentSha256": "6a1adda14c8152ac7938e89d5a944ebe0a78d48438008d26f1b4378b5a629544",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/src/components/experienceTypes.ts",
+      "reviewedSha256": "c5310d5f2f9d3d14dc9eaccb814867f5e132ef68c2786f2d5a66b07f94537c36",
+      "currentSha256": "c5310d5f2f9d3d14dc9eaccb814867f5e132ef68c2786f2d5a66b07f94537c36",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "synthetic": true,
+  "preflight": {
+    "directory": "journey-36cdba3",
+    "passed": false,
+    "checks": 1,
+    "stage": "loginUI networkidle",
+    "receipts": 0,
+    "sources": 0,
+    "diaryCommands": 0,
+    "networkIdleCause": "UNKNOWN",
+    "resolution": "Remove generic networkidle prerequisite; retain ordinary UI and canonical identity checks, no timeout increase"
+  },
+  "student05": {
+    "mainDirectory": "journey-36cdba3-run2",
+    "passed": false,
+    "checks": 43,
+    "receiptCount": 4,
+    "failure": "Student Work snapshot predates tutor publication; feedback heading absent",
+    "beforeDomSha256": "7e1cd599f94f235df7ba2bf33f52d79c424b49ea83c73fb6be03dc1f9fcf5fe9",
+    "continuationDirectory": "reload-05-36cdba3",
+    "combinedPassed": true,
+    "combinedChecks": 61,
+    "continuation": "Read-only, new ordinary login and explicit reload, exact published feedback read back; original browser had closed; no duplicate receipts"
+  },
+  "student06": {
+    "directory": "journey-06-36cdba3",
+    "passed": true,
+    "checks": 56,
+    "receiptCount": 4,
+    "beforeAfterInSameExecution": true,
+    "fixture": "student06 token already exists; added fluidi membership with existing StudyStore.add_test_member; no credential values printed"
+  },
+  "priorBec05cc": {
+    "selection": "../selection",
+    "selectedFileCount": 17,
+    "selectionManifestSha256": "4c0b5b8171f5d4de2b15969ecfd57c5e9de3ab029c9313564e4b0c7403d82016",
+    "combinedChecks": 55,
+    "unchangedHistoricalEvidence": true
+  }
+}

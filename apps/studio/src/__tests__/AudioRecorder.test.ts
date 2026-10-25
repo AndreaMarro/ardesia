@@ -213,11 +213,11 @@ describe("AudioRecorder", () => {
     }, { timeout: 500, interval: 10 })
     expect(chunks[0].chunkIndex).toBe(0)
     // clock parte da 10000, ogni chiamata +100
-    // al set consent: clock() = 10000 (startEpoch, chunkStartEpoch)
-    // al emitChunk: clock() = 10100 (endEpoch)
-    expect(chunks[0].startEpoch).toBe(10000)
-    expect(chunks[0].endEpoch).toBeGreaterThan(chunks[0].startEpoch)
-    expect(chunks[0].endEpoch).toBeLessThanOrEqual(10200)
+    // consenso 10000; prima persistenza 10100; cattura REALE 10200;
+    // persistenza dell'origine corretta 10300; dataavailable 10400.
+    // Il tempo trascorso sul prompt non fa parte del primo chunk.
+    expect(chunks[0].startEpoch).toBe(10200)
+    expect(chunks[0].endEpoch).toBe(10400)
 
     // Chunk scritto su store (async — attendi)
     await vi.waitFor(async () => {

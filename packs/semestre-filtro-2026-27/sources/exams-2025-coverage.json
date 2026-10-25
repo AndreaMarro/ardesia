@@ -1,0 +1,1105 @@
+{
+  "schemaVersion": "1.0.0",
+  "academicYear": "2026/2027",
+  "createdOn": "2026-10-21",
+  "purpose": "Mappa editoriale dei 62 obiettivi osservati nelle due prove 2025 verso quesiti originali. Non riproduce testi o chiavi delle prove; non afferma che ogni nuovo problema abbia lo stesso contesto o gli stessi dati del precedente.",
+  "sources": {
+    "first_paper": "https://testammissione.com/wp-content/uploads/2026/08/semestre-medicina-2025-fisica-primo-appello.pdf",
+    "second_paper": "https://testammissione.com/wp-content/uploads/2026/08/semestre-medicina-2025-fisica-secondo-appello.pdf",
+    "source_status": "Fascicoli originali recanti intestazione Semestre Aperto-Esami e anno 2025/2026, ospitati su un sito privato. Testo letto con il servizio web; download binario non riuscito (403). Nessuna chiave MUR pubblica autenticata recuperata."
+  },
+  "sourceLimitations": [
+    "I fascicoli sono ospitati da un sito privato; nessuna chiave MUR pubblica autenticata è stata recuperata.",
+    "La mappa riguarda le abilità e segnala esplicitamente adattamenti, coperture attraverso più quesiti e approfondimenti con legge fornita.",
+    "Il campione di 62 domande non giustifica previsioni sulla distribuzione futura degli argomenti."
+  ],
+  "counts": {
+    "direct": 48,
+    "provided_law_extension": 6,
+    "covered_by_combination": 4,
+    "adapted": 2,
+    "reframed_to_remove_ambiguity": 1,
+    "adapted_provided_law_extension": 1
+  },
+  "historicalQuestionCount": 62,
+  "unmappedHistoricalQuestions": [],
+  "entries": [
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 1,
+      "observedUnit": "U4",
+      "observedSkill": "Ricavare la costante elastica da massa e periodo: cancellazione simbolica di pi greco",
+      "bankQuestionIds": [
+        "u4-oscillator-period-06"
+      ],
+      "bankModelIds": [
+        "U4-oscillator-period"
+      ],
+      "coverage": "direct",
+      "rationale": "L’inversione ricava k da massa e periodo ridotto T/(2π); la normalizzazione rende esplicita la cancellazione simbolica di π.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 2,
+      "observedUnit": "U7",
+      "observedSkill": "Indice di rifrazione e proprietà elettriche/magnetiche del mezzo",
+      "bankQuestionIds": [
+        "u7-optical-depth-03"
+      ],
+      "bankModelIds": [
+        "U7-optical-depth"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Permittività e permeabilità sono esplicitamente relative, quindi n=√(ε_rμ_r) è dimensionale e fisicamente coerente.",
+      "historicalCaution": "Precisare costanti relative o assolute; la relazione senza c vale con epsilon e mu relativi",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 3,
+      "observedUnit": "U3",
+      "observedSkill": "Poiseuille: variazione simultanea di lunghezza e raggio a portata costante",
+      "bankQuestionIds": [
+        "u3-poiseuille-flow-08"
+      ],
+      "bankModelIds": [
+        "U3-poiseuille-flow"
+      ],
+      "coverage": "direct",
+      "rationale": "Nuovo task a Q fissata con raggio raddoppiato e lunghezza quadruplicata; si ricava Δp, non Q.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 4,
+      "observedUnit": "U1",
+      "observedSkill": "Conversione con potenze di dieci e due prefissi",
+      "bankQuestionIds": [
+        "u1-area-conversion-08",
+        "u1-scientific-scale-03"
+      ],
+      "bankModelIds": [
+        "U1-area-conversion",
+        "U1-scientific-scale"
+      ],
+      "coverage": "covered_by_combination",
+      "rationale": "Conversione composta massa/volume con prefissi e potenze cubiche; confronto aggiuntivo di potenze di dieci in un altro quesito.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 5,
+      "observedUnit": "U2",
+      "observedSkill": "Secondo principio: inversa proporzionalità massa-accelerazione a forza risultante costante",
+      "bankQuestionIds": [
+        "u2-two-blocks-system-07"
+      ],
+      "bankModelIds": [
+        "U2-two-blocks-system"
+      ],
+      "coverage": "adapted",
+      "rationale": "Il quesito mantiene F e cambia la massa di un blocco: l’inversa proporzionalità riguarda la massa totale M=2 kg+m, non il solo m. È applicazione concreta dello stesso principio F=Ma.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 6,
+      "observedUnit": "U3",
+      "observedSkill": "Definizione di incomprimibilità distinta da assenza di viscosità",
+      "bankQuestionIds": [
+        "u3-pressure-gradient-fixed-speed-03"
+      ],
+      "bankModelIds": [
+        "U3-pressure-gradient-fixed-speed"
+      ],
+      "coverage": "direct",
+      "rationale": "Incomprimibilità esplicitamente distinta da viscosità nulla e da pressione o velocità uniformi.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 7,
+      "observedUnit": "U3",
+      "observedSkill": "Galleggiamento: frazione immersa uguale al rapporto di densità",
+      "bankQuestionIds": [
+        "u3-floating-fraction-01",
+        "u3-floating-fraction-03"
+      ],
+      "bankModelIds": [
+        "U3-floating-fraction"
+      ],
+      "coverage": "direct",
+      "rationale": "Calcolo della frazione immersa e invarianza dopo il taglio di un corpo omogeneo.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 8,
+      "observedUnit": "U1",
+      "observedSkill": "Dimensioni della forza a partire da massa e accelerazione",
+      "bankQuestionIds": [
+        "u2-circular-force-02"
+      ],
+      "bankModelIds": [
+        "U2-circular-force"
+      ],
+      "coverage": "direct",
+      "rationale": "Analisi dimensionale della forza tramite la relazione fisica, con massa, velocità e raggio.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 9,
+      "observedUnit": "U6",
+      "observedSkill": "Confrontare correnti a tensione comune a partire da potenze e prefissi",
+      "bankQuestionIds": [
+        "u6-joule-power-08"
+      ],
+      "bankModelIds": [
+        "U6-joule-power"
+      ],
+      "coverage": "direct",
+      "rationale": "Confronto di correnti da potenze a tensione comune, con unità coerenti.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 10,
+      "observedUnit": "U5",
+      "observedSkill": "Energia cinetica molecolare e temperatura assoluta",
+      "bankQuestionIds": [
+        "u5-gas-density-08"
+      ],
+      "bankModelIds": [
+        "U5-gas-density"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Legge ⟨K_trasl⟩=(3/2)k_BT fornita; rapporto di temperature assolute senza valori decimali di k_B.",
+      "historicalCaution": "La teoria cinetica non è nominata esplicitamente nel programma 2026",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 11,
+      "observedUnit": "U2",
+      "observedSkill": "Identificare un moto con curvatura e rapidità costanti",
+      "bankQuestionIds": [
+        "u2-centripetal-acceleration-03"
+      ],
+      "bankModelIds": [
+        "U2-centripetal-acceleration"
+      ],
+      "coverage": "adapted",
+      "rationale": "Il contesto è esplicitamente moto circolare piano. Si evita la generalizzazione ambigua a qualunque traiettoria con curvatura e rapidità costanti.",
+      "historicalCaution": "Senza ipotesi piana una traiettoria elicoidale può soddisfare le stesse condizioni; esplicitare piano e curvatura non nulla",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 12,
+      "observedUnit": "U4",
+      "observedSkill": "Distinguere trasporto energetico da trasporto netto di massa",
+      "bankQuestionIds": [
+        "u4-echo-ranging-03"
+      ],
+      "bankModelIds": [
+        "U4-echo-ranging"
+      ],
+      "coverage": "direct",
+      "rationale": "Trasporto di energia distinto dal trasporto netto di materia nel suono in aria ferma.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 13,
+      "observedUnit": "U5",
+      "observedSkill": "Rendimento di Carnot e temperature in kelvin",
+      "bankQuestionIds": [
+        "u5-carnot-efficiency-01",
+        "u5-carnot-efficiency-03"
+      ],
+      "bankModelIds": [
+        "U5-carnot-efficiency"
+      ],
+      "coverage": "direct",
+      "rationale": "Rapporto fra temperature kelvin e indipendenza del rendimento reversibile dal fluido.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 14,
+      "observedUnit": "U7",
+      "observedSkill": "Velocità della radiazione nel mezzo e indice di rifrazione",
+      "bankQuestionIds": [
+        "u7-wavelength-in-medium-04"
+      ],
+      "bankModelIds": [
+        "U7-wavelength-in-medium"
+      ],
+      "coverage": "direct",
+      "rationale": "Velocità di fase da n=c/v con c simbolico in potenza di dieci.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 15,
+      "observedUnit": "U6",
+      "observedSkill": "Equipotenzialità interna di un conduttore in equilibrio; dati irrilevanti",
+      "bankQuestionIds": [
+        "u6-plane-capacitance-03"
+      ],
+      "bankModelIds": [
+        "U6-plane-capacitance"
+      ],
+      "coverage": "direct",
+      "rationale": "Equilibrio elettrostatico dichiarato per il materiale conduttore; campo interno e potenziale.",
+      "historicalCaution": "Esplicitare equilibrio elettrostatico",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 16,
+      "observedUnit": "U2",
+      "observedSkill": "Lavoro come prodotto scalare",
+      "bankQuestionIds": [
+        "u2-oblique-work-01",
+        "u1-scalar-product-03"
+      ],
+      "bankModelIds": [
+        "U2-oblique-work",
+        "U1-scalar-product"
+      ],
+      "coverage": "covered_by_combination",
+      "rationale": "Lavoro di forza obliqua e significato del prodotto scalare con caso perpendicolare.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 17,
+      "observedUnit": "U6",
+      "observedSkill": "Relazione tra campo elettrico e magnetico di una carica in moto",
+      "bankQuestionIds": [
+        "u7-em-wave-field-power-03"
+      ],
+      "bankModelIds": [
+        "U7-em-wave-field-power"
+      ],
+      "coverage": "reframed_to_remove_ambiguity",
+      "rationale": "Il nuovo quesito usa un’onda piana nel vuoto e orientazione E/B/propagazione. Non riproduce l’affermazione troppo generale sui campi di qualunque carica in moto.",
+      "historicalCaution": "La frase generale della prova è eccessiva: per nuovi quesiti usare onda piana nel vuoto o ipotesi precise",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 18,
+      "observedUnit": "U7",
+      "observedSkill": "Energia del fotone proporzionale alla frequenza",
+      "bankQuestionIds": [
+        "u7-photon-packet-frequency-07"
+      ],
+      "bankModelIds": [
+        "U7-photon-packet-frequency"
+      ],
+      "coverage": "direct",
+      "rationale": "Relazione energia–frequenza e confronto a numero di fotoni fissato.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 19,
+      "observedUnit": "U6",
+      "observedSkill": "Moto circolare di carica con velocità perpendicolare al campo B",
+      "bankQuestionIds": [
+        "u6-magnetic-circle-radius-01",
+        "u6-magnetic-circle-radius-03"
+      ],
+      "bankModelIds": [
+        "U6-magnetic-circle-radius"
+      ],
+      "coverage": "direct",
+      "rationale": "Velocità iniziale perpendicolare a B, modulo del raggio e segno della carica separati.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 20,
+      "observedUnit": "U4",
+      "observedSkill": "Smorzamento per forze dissipative",
+      "bankQuestionIds": [
+        "u4-oscillator-energy-03"
+      ],
+      "bankModelIds": [
+        "U4-oscillator-energy"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Bilancio energetico dello smorzamento con attrito debole e assenza di forzante; non una nuova equazione differenziale da memorizzare.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 21,
+      "observedUnit": "U7",
+      "observedSkill": "Immagine virtuale ingrandita per oggetto tra lente convergente e fuoco",
+      "bankQuestionIds": [
+        "u7-thin-lens-real-image-03"
+      ],
+      "bankModelIds": [
+        "U7-thin-lens-real-image"
+      ],
+      "coverage": "direct",
+      "rationale": "Oggetto reale fra lente convergente e fuoco, immagine virtuale ingrandita e diritta.",
+      "historicalCaution": "Distinguere centro ottico da punto a distanza 2f",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 22,
+      "observedUnit": "U5",
+      "observedSkill": "Primo principio in isocora",
+      "bankQuestionIds": [
+        "u5-isochoric-heat-03",
+        "u5-isochoric-heat-01"
+      ],
+      "bankModelIds": [
+        "U5-isochoric-heat"
+      ],
+      "coverage": "direct",
+      "rationale": "Recipiente rigido e solo lavoro di espansione: W=0 e Q=ΔU.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 23,
+      "observedUnit": "U4",
+      "observedSkill": "Lunghezza d'onda come rapporto velocità/frequenza",
+      "bankQuestionIds": [
+        "u4-wave-wavelength-01"
+      ],
+      "bankModelIds": [
+        "U4-wave-wavelength"
+      ],
+      "coverage": "direct",
+      "rationale": "Lunghezza d’onda da velocità e frequenza con unità coerenti.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 24,
+      "observedUnit": "U4",
+      "observedSkill": "Frequenza come inverso del periodo",
+      "bankQuestionIds": [
+        "u4-wave-phase-time-03"
+      ],
+      "bankModelIds": [
+        "U4-wave-phase-time"
+      ],
+      "coverage": "direct",
+      "rationale": "Definizione reciproca di periodo e frequenza in un task specifico.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 25,
+      "observedUnit": "U2",
+      "observedSkill": "Urto totalmente anelastico e conservazione della quantità di moto",
+      "bankQuestionIds": [
+        "u2-inelastic-rest-01",
+        "u2-inelastic-rest-03"
+      ],
+      "bankModelIds": [
+        "U2-inelastic-rest"
+      ],
+      "coverage": "direct",
+      "rationale": "Velocità iniziale del bersaglio specificata e impulso esterno trascurabile.",
+      "historicalCaution": "Specificare velocità iniziale del secondo corpo",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 26,
+      "observedUnit": "U1",
+      "observedSkill": "Conversione da pascal a nanopascal",
+      "bankQuestionIds": [
+        "u1-scientific-scale-07"
+      ],
+      "bankModelIds": [
+        "U1-scientific-scale"
+      ],
+      "coverage": "direct",
+      "rationale": "Conversione esplicita da pascal a nanopascal.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 27,
+      "observedUnit": "U3",
+      "observedSkill": "Pressione manometrica e legge di Stevino",
+      "bankQuestionIds": [
+        "u3-stevino-gauge-01"
+      ],
+      "bankModelIds": [
+        "U3-stevino-gauge"
+      ],
+      "coverage": "direct",
+      "rationale": "Richiesta esplicita di sovrapressione rispetto alla superficie, non pressione assoluta.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 28,
+      "observedUnit": "U3",
+      "observedSkill": "Continuità più Bernoulli con conversione delle unità",
+      "bankQuestionIds": [
+        "u3-venturi-area-ratio-01"
+      ],
+      "bankModelIds": [
+        "U3-venturi-area-ratio"
+      ],
+      "coverage": "direct",
+      "rationale": "Continuità per ricavare velocità stretta, Bernoulli e conversione Pa/kPa.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 29,
+      "observedUnit": "U1",
+      "observedSkill": "Concentrazione massa/volume con conversioni cubiche",
+      "bankQuestionIds": [
+        "u1-area-conversion-08"
+      ],
+      "bankModelIds": [
+        "U1-area-conversion"
+      ],
+      "coverage": "direct",
+      "rationale": "Concentrazione massa/volume con conversione cubica; il topic del task prevale su quello del modello di supporto.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 30,
+      "observedUnit": "U6",
+      "observedSkill": "Interpretare resistenza nella legge di Ohm",
+      "bankQuestionIds": [
+        "u6-ohmic-current-06"
+      ],
+      "bankModelIds": [
+        "U6-ohmic-current"
+      ],
+      "coverage": "direct",
+      "rationale": "Ricavare R da corrente e tensione secondo la prima legge di Ohm.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-11-20",
+      "historicalQuestionNumber": 31,
+      "observedUnit": "U6",
+      "observedSkill": "Resistori uguali in parallelo più resistore in serie",
+      "bankQuestionIds": [
+        "u6-series-parallel-resistor-network-01"
+      ],
+      "bankModelIds": [
+        "U6-series-parallel-resistor-network"
+      ],
+      "coverage": "direct",
+      "rationale": "Riduzione di un parallelo seguito da una resistenza in serie; topologia dichiarata.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 1,
+      "observedUnit": "U5",
+      "observedSkill": "Distinzione tra gas reale e modello ideale",
+      "bankQuestionIds": [
+        "u5-ideal-gas-pressure-08"
+      ],
+      "bankModelIds": [
+        "U5-ideal-gas-pressure"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Confronto delle idealizzazioni con dimensioni molecolari e interazioni nei gas reali; nessuna equazione di stato ulteriore richiesta.",
+      "historicalCaution": null,
+      "scope2026": "Non esplicitamente richiesto nel syllabus 2026",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 2,
+      "observedUnit": "U3",
+      "observedSkill": "Galleggiamento di una zattera con carico aggiunto",
+      "bankQuestionIds": [
+        "u3-loaded-raft-depth-01"
+      ],
+      "bankModelIds": [
+        "U3-loaded-raft-depth"
+      ],
+      "coverage": "direct",
+      "rationale": "Carico aggiunto, massa propria e volume spostato dalla zattera prismatica.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 3,
+      "observedUnit": "U1",
+      "observedSkill": "Unità dell'energia cinetica",
+      "bankQuestionIds": [
+        "u2-kinetic-work-difference-02"
+      ],
+      "bankModelIds": [
+        "U2-kinetic-work-difference"
+      ],
+      "coverage": "direct",
+      "rationale": "Unità dell’energia da una relazione che contiene velocità al quadrato e coefficienti dimensionali.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 4,
+      "observedUnit": "U1",
+      "observedSkill": "Equivalenza decimetro cubo-litro",
+      "bankQuestionIds": [
+        "u1-volume-conversion-08"
+      ],
+      "bankModelIds": [
+        "U1-volume-conversion"
+      ],
+      "coverage": "direct",
+      "rationale": "Equivalenze dm³, litro e millilitro esplicitamente esercitate.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 5,
+      "observedUnit": "U1",
+      "observedSkill": "Vettori: modulo della somma e differenza",
+      "bankQuestionIds": [
+        "u1-vector-sum-01",
+        "u1-vector-difference-01",
+        "u1-vector-perpendicular-01",
+        "u1-scalar-product-03"
+      ],
+      "bankModelIds": [
+        "U1-vector-sum",
+        "U1-vector-difference",
+        "U1-vector-perpendicular",
+        "U1-scalar-product"
+      ],
+      "coverage": "covered_by_combination",
+      "rationale": "Somma, differenza, composizione perpendicolare e prodotto scalare sono esercitati con versi dichiarati. La mappa non attribuisce a |a−b| un significato ambiguo fra differenza di moduli e modulo del vettore differenza.",
+      "historicalCaution": "Notazione ambigua: |a-b| può indicare differenza di moduli o modulo della differenza vettoriale; non usare senza disambiguare",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 6,
+      "observedUnit": "U4",
+      "observedSkill": "Zero decibel come intensità di riferimento non nulla",
+      "bankQuestionIds": [
+        "u4-sound-decibel-08"
+      ],
+      "bankModelIds": [
+        "U4-sound-decibel"
+      ],
+      "coverage": "direct",
+      "rationale": "Zero decibel identificato con un’intensità di riferimento non nulla.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 7,
+      "observedUnit": "U5",
+      "observedSkill": "Capacità termica del corpo distinta da calore specifico",
+      "bankQuestionIds": [
+        "u5-two-body-calorimetry-03"
+      ],
+      "bankModelIds": [
+        "U5-two-body-calorimetry"
+      ],
+      "coverage": "direct",
+      "rationale": "Capacità C=mc distinta dal calore specifico c, con raddoppio della massa e unità differenti.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 8,
+      "observedUnit": "U6",
+      "observedSkill": "Superfici equipotenziali di carica puntiforme",
+      "bankQuestionIds": [
+        "u6-point-electric-potential-08"
+      ],
+      "bankModelIds": [
+        "U6-point-electric-potential"
+      ],
+      "coverage": "direct",
+      "rationale": "Equipotenziali della carica puntiforme e distanza dalla carica.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 9,
+      "observedUnit": "U4",
+      "observedSkill": "Dipendenza della potenza acustica dal quadrato della frequenza",
+      "bankQuestionIds": [
+        "u4-wave-amplitude-energy-06"
+      ],
+      "bankModelIds": [
+        "U4-wave-amplitude-energy"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Legge I=Kf²A² fornita e ampiezza di spostamento A costante dichiarata. La potenza si confronta sulla stessa area.",
+      "historicalCaution": "Specificare costante l'ampiezza di spostamento delle particelle; a pressione sonora costante cambia la conclusione",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 10,
+      "observedUnit": "U5",
+      "observedSkill": "Variazione di energia interna del gas ideale",
+      "bankQuestionIds": [
+        "u5-isobaric-monatomic-heat-03"
+      ],
+      "bankModelIds": [
+        "U5-isobaric-monatomic-heat"
+      ],
+      "coverage": "direct",
+      "rationale": "Domanda specifica su ΔU con C_V fornita; distingue ΔU=6 J, W=4 J e Q=10 J evitando opzioni equivalenti.",
+      "historicalCaution": "Due opzioni identiche nel fascicolo; evitare opzioni equivalenti anche algebricamente",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 11,
+      "observedUnit": "U6",
+      "observedSkill": "Direzione delle linee del campo nel condensatore piano",
+      "bankQuestionIds": [
+        "u6-plane-capacitance-08"
+      ],
+      "bankModelIds": [
+        "U6-plane-capacitance"
+      ],
+      "coverage": "direct",
+      "rationale": "Direzione del campo nel condensatore piano lontano dai bordi, piastre e polarità esplicite.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 12,
+      "observedUnit": "U3",
+      "observedSkill": "Pressione assoluta a profondità assegnata",
+      "bankQuestionIds": [
+        "u3-stevino-absolute-01",
+        "u3-stevino-absolute-03"
+      ],
+      "bankModelIds": [
+        "U3-stevino-absolute"
+      ],
+      "coverage": "direct",
+      "rationale": "Pressione superficiale già assoluta; si aggiunge soltanto ρgh.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 13,
+      "observedUnit": "U3",
+      "observedSkill": "Adimensionalità del numero di Reynolds",
+      "bankQuestionIds": [
+        "u3-pressure-gradient-fixed-speed-08"
+      ],
+      "bankModelIds": [
+        "U3-pressure-gradient-fixed-speed"
+      ],
+      "coverage": "provided_law_extension",
+      "rationale": "Formula di Reynolds fornita; dimensioni di viscosità dinamica e cancellazione delle unità sviluppate.",
+      "historicalCaution": null,
+      "scope2026": "Reynolds non è nominato esplicitamente nel syllabus 2026; eventuale formula va fornita",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 14,
+      "observedUnit": "U7",
+      "observedSkill": "Rifrazione attraverso lastra a facce parallele",
+      "bankQuestionIds": [
+        "u7-snell-refracted-sine-06"
+      ],
+      "bankModelIds": [
+        "U7-snell-refracted-sine"
+      ],
+      "coverage": "direct",
+      "rationale": "Facce parallele e stesso mezzo esterno dichiarati; Snell applicato alle due interfacce.",
+      "historicalCaution": "Specificare stesso mezzo all'ingresso/uscita e incidenza obliqua",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 15,
+      "observedUnit": "U1",
+      "observedSkill": "Spostamento netto in due dimensioni e terna pitagorica",
+      "bankQuestionIds": [
+        "u1-vector-perpendicular-01",
+        "u1-vector-perpendicular-06"
+      ],
+      "bankModelIds": [
+        "U1-vector-perpendicular"
+      ],
+      "coverage": "direct",
+      "rationale": "Modulo dello spostamento da componenti ortogonali distinto dalla lunghezza del percorso.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 16,
+      "observedUnit": "U6",
+      "observedSkill": "Energia di una carica accelerata e conversione eV-keV",
+      "bankQuestionIds": [
+        "u6-work-potential-difference-08"
+      ],
+      "bankModelIds": [
+        "U6-work-potential-difference"
+      ],
+      "coverage": "direct",
+      "rationale": "Carica accelerata e conversione eV/keV con segno e verso della differenza di potenziale dichiarati.",
+      "historicalCaution": "Direzione e segno della differenza di potenziale vanno definiti",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 17,
+      "observedUnit": "U1",
+      "observedSkill": "Conversione m/s-km/h",
+      "bankQuestionIds": [
+        "u2-uniform-displacement-08"
+      ],
+      "bankModelIds": [
+        "U2-uniform-displacement"
+      ],
+      "coverage": "direct",
+      "rationale": "Conversione esplicita m/s in km/h.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 18,
+      "observedUnit": "U6",
+      "observedSkill": "Linee di campo magnetico e assenza di monopoli",
+      "bankQuestionIds": [
+        "u6-magnetic-flux-03"
+      ],
+      "bankModelIds": [
+        "U6-magnetic-flux"
+      ],
+      "coverage": "direct",
+      "rationale": "Linee magnetiche considerate sia fuori sia dentro il magnete; assenza di estremi isolati nel modello.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 19,
+      "observedUnit": "U2",
+      "observedSkill": "Parabola nel grafico posizione-tempo del moto uniformemente accelerato",
+      "bankQuestionIds": [
+        "u2-rest-accelerated-distance-08"
+      ],
+      "bankModelIds": [
+        "U2-rest-accelerated-distance"
+      ],
+      "coverage": "direct",
+      "rationale": "Grafico x–t parabolico, coefficiente della legge oraria e pendenza locale distinti.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 20,
+      "observedUnit": "U6",
+      "observedSkill": "Dipendenza di Coulomb dall'inverso del quadrato della distanza",
+      "bankQuestionIds": [
+        "u6-coulomb-force-07"
+      ],
+      "bankModelIds": [
+        "U6-coulomb-force"
+      ],
+      "coverage": "direct",
+      "rationale": "Confronto al variare della distanza, con cariche fissate e dipendenza r⁻².",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 21,
+      "observedUnit": "U7",
+      "observedSkill": "Riflessione totale nelle fibre ottiche",
+      "bankQuestionIds": [
+        "u7-critical-angle-sine-03"
+      ],
+      "bankModelIds": [
+        "U7-critical-angle-sine"
+      ],
+      "coverage": "direct",
+      "rationale": "Passaggio dal mezzo con indice maggiore a quello con indice minore e angolo oltre il critico.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 22,
+      "observedUnit": "U2",
+      "observedSkill": "Caduta libera: distinguere altezza persa da altezza residua a data frazione di velocità",
+      "bankQuestionIds": [
+        "u2-freefall-speed-08"
+      ],
+      "bankModelIds": [
+        "U2-freefall-speed"
+      ],
+      "coverage": "direct",
+      "rationale": "Domanda specifica sull’altezza residua quando la velocità è una frazione della velocità finale; distinzione dall’altezza persa.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 23,
+      "observedUnit": "U5",
+      "observedSkill": "Entropia come funzione di stato indipendente dal percorso",
+      "bankQuestionIds": [
+        "u5-ideal-expansion-entropy-03"
+      ],
+      "bankModelIds": [
+        "U5-ideal-expansion-entropy"
+      ],
+      "coverage": "direct",
+      "rationale": "Stessi stati iniziale/finale e percorsi reversibile/irreversibile: stessa ΔS del gas.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 24,
+      "observedUnit": "U4",
+      "observedSkill": "Assenza di propagazione del suono nel vuoto",
+      "bankQuestionIds": [
+        "u4-spherical-intensity-03"
+      ],
+      "bankModelIds": [
+        "U4-spherical-intensity"
+      ],
+      "coverage": "direct",
+      "rationale": "Assenza di mezzo materiale, senza sostenere che una superficie solida non possa trasmettere suono.",
+      "historicalCaution": "Specificare nel vuoto sopra la superficie; i solidi lunari possono trasmettere onde elastiche",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 25,
+      "observedUnit": "U3",
+      "observedSkill": "Frazione di volume immerso da rapporto tra densità",
+      "bankQuestionIds": [
+        "u3-floating-fraction-05",
+        "u3-floating-fraction-01"
+      ],
+      "bankModelIds": [
+        "U3-floating-fraction"
+      ],
+      "coverage": "direct",
+      "rationale": "Rapporto fra densità e frazione immersa con corpo omogeneo e galleggiamento libero.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 26,
+      "observedUnit": "U5",
+      "observedSkill": "Segno del lavoro su percorso inverso isobaro",
+      "bankQuestionIds": [
+        "u5-isobaric-work-03"
+      ],
+      "bankModelIds": [
+        "U5-isobaric-work"
+      ],
+      "coverage": "direct",
+      "rationale": "Stessa isobara percorsa nei due versi, W_BA=−W_AB con convenzione esplicita.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 27,
+      "observedUnit": "U4",
+      "observedSkill": "Rapporto di intensità da decibel usando potenze intere di dieci",
+      "bankQuestionIds": [
+        "u4-sound-decibel-05"
+      ],
+      "bankModelIds": [
+        "U4-sound-decibel"
+      ],
+      "coverage": "direct",
+      "rationale": "Inversione del livello sonoro per ricavare l’intensità; logaritmo dell’intensità con coefficiente dieci.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 28,
+      "observedUnit": "U3",
+      "observedSkill": "Carico massimo di galleggiamento",
+      "bankQuestionIds": [
+        "u3-maximum-payload-01"
+      ],
+      "bankModelIds": [
+        "U3-maximum-payload"
+      ],
+      "coverage": "direct",
+      "rationale": "Immersione completa limite, massa propria sottratta, carico che non sposta acqua e unità di densità coerenti.",
+      "historicalCaution": "Unità kg/cm3 stampate al posto di kg/m3: non replicare il refuso",
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 29,
+      "observedUnit": "U1",
+      "observedSkill": "Conversione accelerazione cm/s2-m/s2",
+      "bankQuestionIds": [
+        "u2-mean-acceleration-08"
+      ],
+      "bankModelIds": [
+        "U2-mean-acceleration"
+      ],
+      "coverage": "direct",
+      "rationale": "Conversione cm/s² in m/s², senza applicare il quadrato al fattore di conversione della lunghezza.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 30,
+      "observedUnit": "U5",
+      "observedSkill": "Tre meccanismi di trasmissione del calore",
+      "bankQuestionIds": [
+        "u5-plane-conduction-03",
+        "u5-convective-loss-01",
+        "u5-net-blackbody-exchange-03"
+      ],
+      "bankModelIds": [
+        "U5-plane-conduction",
+        "U5-convective-loss",
+        "U5-net-blackbody-exchange"
+      ],
+      "coverage": "covered_by_combination",
+      "rationale": "Conduzione, convezione e irraggiamento distinti nella spiegazione e applicati in quesiti separati.",
+      "historicalCaution": null,
+      "scope2026": "Vedere scope del quesito originale della banca.",
+      "copiedQuestion": false
+    },
+    {
+      "paper": "2025-12-10",
+      "historicalQuestionNumber": 31,
+      "observedUnit": "U4",
+      "observedSkill": "Doppler al primo ordine",
+      "bankQuestionIds": [
+        "u4-beats-envelope-16"
+      ],
+      "bankModelIds": [
+        "U4-beats-envelope"
+      ],
+      "coverage": "adapted_provided_law_extension",
+      "rationale": "Il quesito usa le leggi Doppler esatte fornite per avvicinamento/allontanamento. Copre il calcolo Doppler; non viene presentato come esercizio specifico di sviluppo al primo ordine. Il requisito 2026 resta qualitativo.",
+      "historicalCaution": null,
+      "scope2026": "Nuovo syllabus richiede descrizione qualitativa; classificare un calcolo Doppler come approfondimento con formula fornita",
+      "copiedQuestion": false
+    }
+  ],
+  "finalBuildResolution": "Gli ID sono derivati dai modelli e override presenti. La risoluzione fisica degli ID deve essere verificata nel build finale; non è una certificazione scientifica indipendente."
+}

@@ -1,0 +1,150 @@
+{
+  "status": "NOT_RUN",
+  "synthetic_actors": {
+    "organizations": 2,
+    "teachers": 2,
+    "students": 12,
+    "max_enrolled": 10
+  },
+  "real_components_required": [
+    "UI",
+    "API",
+    "DB transactions",
+    "RLS",
+    "private object storage",
+    "receipt",
+    "deterministic lab"
+  ],
+  "allowed_fakes": [
+    "AI provider explicitly tagged",
+    "ASR fixture explicitly tagged",
+    "payment adapter in simulation"
+  ],
+  "steps": [
+    {
+      "id": "S01",
+      "actor": "teacher",
+      "action": "Crea template Fluidi e una edizione con4date; data fittizia dichiarata"
+    },
+    {
+      "id": "S02",
+      "actor": "student1..12",
+      "action": "Invia interesse per argomento e disponibilità; ricevute persistite"
+    },
+    {
+      "id": "S03",
+      "actor": "teacher",
+      "action": "Propone il gruppo, conferma10posti in adapterpagamenti simulated"
+    },
+    {
+      "id": "S04",
+      "actor": "student11,12",
+      "action": "Contendono l’ultimo posto mentre i10sono confermati: listaattesa"
+    },
+    {
+      "id": "S05",
+      "actor": "student1,student2",
+      "action": "Accedono con sessioni isolate a homeprivata e aulacomune"
+    },
+    {
+      "id": "S06",
+      "actor": "teacher",
+      "action": "Pubblica attività in aula, mantenendo soluzione/rubricaprivate"
+    },
+    {
+      "id": "S07",
+      "actor": "student1",
+      "action": "Prevede risposta e manipola r a Δp fissa; annota risultato"
+    },
+    {
+      "id": "S08",
+      "actor": "student2",
+      "action": "Lavora su Qfissa e carica audio breve, ancora privato"
+    },
+    {
+      "id": "S09",
+      "actor": "student1",
+      "action": "Carica immagine/PDF e corregge una lettura proposta"
+    },
+    {
+      "id": "S10",
+      "actor": "student1",
+      "action": "Consegna e interrompeconnessione dopo commit; ripete stesso comando"
+    },
+    {
+      "id": "S11",
+      "actor": "teacher",
+      "action": "Apre una sola ricevuta e originale/versione corretti"
+    },
+    {
+      "id": "S12",
+      "actor": "student2",
+      "action": "Prova URL/ID di student1: accessonegato senza metadati"
+    },
+    {
+      "id": "S13",
+      "actor": "teacher",
+      "action": "Rivede rubrica e restituiscefeedback; mockAI è etichettato"
+    },
+    {
+      "id": "S14",
+      "actor": "student1",
+      "action": "Crea nuovotentativo; feedbackvecchio resta associato al precedente"
+    },
+    {
+      "id": "S14A",
+      "actor": "student1",
+      "action": "Apre Diario errori; la proposta AI è CANDIDATE e non fa apparire un errore confermato come fatto."
+    },
+    {
+      "id": "S14B",
+      "actor": "teacher",
+      "action": "Conferma o contesta l’osservazione sul passaggio; OPEN è registrato con evidenza e senza duplicazione."
+    },
+    {
+      "id": "S14C",
+      "actor": "student1",
+      "action": "Completa una variante di trasferimento; una risposta casuale senza spiegazione non chiude il thread."
+    },
+    {
+      "id": "S14D",
+      "actor": "teacher",
+      "action": "Verifica il nuovo procedimento, marca VERIFIED_RESOLVED, poi una nuova osservazione confermata riapre RECURRED."
+    },
+    {
+      "id": "S14E",
+      "actor": "student1",
+      "action": "Passa al pack Analisi e ritrova il diario precedente; altro tutor non può leggere il passato non autorizzato."
+    },
+    {
+      "id": "S15",
+      "actor": "teacher",
+      "action": "Modifica fonte: derivati interessati marcatiSTALe"
+    },
+    {
+      "id": "S16",
+      "actor": "student1",
+      "action": "Chiude e riapre browser/server; ricorda contesto e fonteaccessibile"
+    },
+    {
+      "id": "S17",
+      "actor": "teacher",
+      "action": "Replica su packAnalisi con stesso lifecycle; nessun nuovo account/database"
+    },
+    {
+      "id": "S18",
+      "actor": "teacher",
+      "action": "Genera scheda corso pubblica e ICS; zero datistudenti"
+    },
+    {
+      "id": "S19",
+      "actor": "external-adapter",
+      "action": "Esegue MCP mock scope, Calendarretry/tokeninvalidazione"
+    },
+    {
+      "id": "S20",
+      "actor": "test-runner",
+      "action": "Raccoglie SHA, log, risultatiG0 e blocchiG1; nessun iscritto reale dichiarato"
+    }
+  ]
+}

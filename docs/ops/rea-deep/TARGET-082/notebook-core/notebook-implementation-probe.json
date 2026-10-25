@@ -1,0 +1,14 @@
+{
+  "hugeIntegerCoordinate": {
+    "status": 422,
+    "body": "{\"error\":\"invalid_notebook_state\"}"
+  },
+  "missingAssetMime": {
+    "status": 422,
+    "body": "{\"error\":\"notebook_original_integrity_failure\"}"
+  },
+  "changedOriginalAcrossRevisions": {
+    "error": "notebook_original_integrity_failure",
+    "status": 422
+  }
+}

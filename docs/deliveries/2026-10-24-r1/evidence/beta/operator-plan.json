@@ -1,0 +1,69 @@
+{
+  "schema": "ardesia.beta-operator-plan.v1",
+  "status": "NOT_RUN",
+  "betaReady": false,
+  "launchAllowed": false,
+  "requirements": [
+    "Existing operator-approved staging only; no resource creation or production changes.",
+    "Explicit authorization before test-account login, invitations, writes, upload, revocation or restore.",
+    "Use authorized test accounts/media only; retain opaque receipt IDs and hashes, never tokens, cookies, email, private media or raw Auth bodies.",
+    "Match exact source SHA, artifact digest and approved origin before attributing remote results."
+  ],
+  "checks": [
+    {
+      "id": "human_release_gates",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Record scientific, editorial, consent and release approvals for the exact artifact."
+    },
+    {
+      "id": "two_user_login",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Use two authorized test accounts in separate browsers; verify login, logout and fresh login."
+    },
+    {
+      "id": "invitation_and_edition",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Create and accept an authorized invitation; verify the intended edition and capacity persist."
+    },
+    {
+      "id": "cross_user_isolation",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Prove anonymous, peer and other-edition denial for private Core records and assets."
+    },
+    {
+      "id": "private_media",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Upload and replay authorized test media; compare original bytes and enforce private Storage access."
+    },
+    {
+      "id": "session_revocation",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Verify local and global logout, stale JWT and in-flight private media after revocation."
+    },
+    {
+      "id": "studio_roundtrip",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Record, annotate, share and replay on a fresh device; verify session, digest, object version and revoked pins."
+    },
+    {
+      "id": "core_learning_journey",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Retain canonical activity, submission, feedback and diary receipts for the same edition."
+    },
+    {
+      "id": "persistence_and_restore",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Verify restart, independent-device persistence and an isolated backup/restore drill."
+    },
+    {
+      "id": "privacy_and_retention",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Record authorized consent, retention, erasure and access ownership decisions without putting PII in evidence."
+    },
+    {
+      "id": "independent_review",
+      "status": "NOT_RUN",
+      "requiredEvidence": "Review the exact source SHA, deployed artifact, Auth, Storage and RLS receipts independently."
+    }
+  ]
+}

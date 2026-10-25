@@ -1,0 +1,11 @@
+# Independent pin-fix recheck — 78696de9
+
+Freeze `78696de9c8caa0efa76a94d2ec9409cc7e83a334`, parent `2d6002b17bedc567bf3057d6265b459807235bc3`. A second separate Git archive contains571 Web/Studio files, all unchanged after execution. The4 changed files also match their Git blobs exactly. No moving working tree was reviewed or changed.
+
+**UI-REGISTER-F1 is verified fixed within the explicit mocked-HTTP scope.** Shared `isPaymentRevisionOf` now pins edition/entry/person/reference/currency and all5 original-offer fields in off-page reread, visible-page adoption and displayed history. Review found no residual instance of the original counterexample in those three consumers.
+
+One focused execution: **6PASS,17 intentionally nonselected tests skipped,10.59s,exit0**. The copied original I13 test file is byte-identical to the earlier independent witness (`f7492b5cb97234f886b7edda0e898a104174a7de3f61b476e0ff40e3344c8b43`); I13 previously failed on2d6002 and now passes. The original W01 bad-behavior file remains preserved as non-executed text, so no historical evidence/output could be overwritten. R1 uses the same malformed-history schedule but asserts rejection: error shown, adoption absent, origin person/reference/draft retained and no second CAS produced.
+
+Additional independent probes verify crossed visible-page identity blocks adoption/submit; crossed history text stays hidden; each of10 immutable fields is rejected while a mutable revision remains allowed. The positive end-to-end mock control returns a legitimate off-page revision, requires separate explicit adoption, then sends CASrevision2/exactnewrecord toward ACKrevision3 with a rotated key and the user's original amount/reason. It does not reject valid corrections indiscriminately.
+
+Existing local dependencies only, canonical physical/tmp cwd, minimal environment, one worker. Root received RELEASE_QA immediately after the process exited. There was **no fullsuite, browser, liveAPI/Auth/PG/RLS/Docker/migration/runtime call**. No additional typecheck/build was executed by this reviewer; author results remain separately reported. The previous2d6002 broader-suite122PASS/9FAIL and browser limits remain historical, not silently promoted by this fix. No G0/G1 or throughput certification follows. No causal attribution of previous slow runs to cwd, cache or contention is established.

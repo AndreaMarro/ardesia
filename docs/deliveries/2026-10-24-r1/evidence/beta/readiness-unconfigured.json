@@ -1,0 +1,107 @@
+{
+  "schema": "ardesia.beta-readiness-probe.v1",
+  "status": "BLOCKED",
+  "target": null,
+  "readOnlyPreflightPassed": false,
+  "betaReady": false,
+  "launchAllowed": false,
+  "scope": "Unauthenticated GET only; no login, data writes, media transfer or release approval.",
+  "checks": [
+    {
+      "id": "approved_target",
+      "stage": "preflight",
+      "status": "FAIL",
+      "reason": "target_manifest_invalid"
+    },
+    {
+      "id": "real_runtime",
+      "stage": "preflight",
+      "status": "NOT_RUN",
+      "reason": "approved_target_required"
+    },
+    {
+      "id": "deployed_commit",
+      "stage": "preflight",
+      "status": "NOT_RUN",
+      "reason": "approved_target_required"
+    },
+    {
+      "id": "anonymous_identity_denied",
+      "stage": "preflight",
+      "status": "NOT_RUN",
+      "reason": "approved_target_required"
+    },
+    {
+      "id": "anonymous_operations_denied",
+      "stage": "preflight",
+      "status": "NOT_RUN",
+      "reason": "approved_target_required"
+    },
+    {
+      "id": "human_release_gates",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Record scientific, editorial, consent and release approvals for the exact artifact."
+    },
+    {
+      "id": "two_user_login",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Use two authorized test accounts in separate browsers; verify login, logout and fresh login."
+    },
+    {
+      "id": "invitation_and_edition",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Create and accept an authorized invitation; verify the intended edition and capacity persist."
+    },
+    {
+      "id": "cross_user_isolation",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Prove anonymous, peer and other-edition denial for private Core records and assets."
+    },
+    {
+      "id": "private_media",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Upload and replay authorized test media; compare original bytes and enforce private Storage access."
+    },
+    {
+      "id": "session_revocation",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Verify local and global logout, stale JWT and in-flight private media after revocation."
+    },
+    {
+      "id": "studio_roundtrip",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Record, annotate, share and replay on a fresh device; verify session, digest, object version and revoked pins."
+    },
+    {
+      "id": "core_learning_journey",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Retain canonical activity, submission, feedback and diary receipts for the same edition."
+    },
+    {
+      "id": "persistence_and_restore",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Verify restart, independent-device persistence and an isolated backup/restore drill."
+    },
+    {
+      "id": "privacy_and_retention",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Record authorized consent, retention, erasure and access ownership decisions without putting PII in evidence."
+    },
+    {
+      "id": "independent_review",
+      "stage": "operator",
+      "status": "NOT_RUN",
+      "reason": "Review the exact source SHA, deployed artifact, Auth, Storage and RLS receipts independently."
+    }
+  ]
+}

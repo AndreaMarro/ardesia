@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-20",
+  "productScope": "Canonical scientific notebook Core/API/export only",
+  "checks": [
+    {
+      "log": "review-green-focused.log",
+      "sha256": "4d8e0edce96798a725083a643f776626150fcffbb44584effae5196bacc86147",
+      "passed": 31,
+      "skipped": 0,
+      "exitCode": 0,
+      "cwd": "services/study-api",
+      "command": "PYTHONPATH=../../packages/engine python -m pytest -q tests/test_scientific_notebook_http.py ../../packages/engine/tests/study/test_scientific_notebook.py"
+    },
+    {
+      "log": "engine-full-final.log",
+      "sha256": "de13f97a57925b53627c7abca38bb90661640e93fcf5315c0a522a1e09081b74",
+      "passed": 2473,
+      "skipped": 25,
+      "exitCode": 0,
+      "cwd": "packages/engine",
+      "command": "python -m pytest -q --no-header"
+    },
+    {
+      "log": "api-full-final.log",
+      "sha256": "6a44dddf30167ca48bc29b9694b5aad79fea5db7ae7ad7f6403a82ffb0513786",
+      "passed": 235,
+      "skipped": 0,
+      "exitCode": 0,
+      "cwd": "services/study-api",
+      "command": "PYTHONPATH=../../packages/engine python -m pytest -q --no-header"
+    }
+  ],
+  "redRegression": {
+    "log": "review-red-confirmed.log",
+    "failed": 8,
+    "sha256": "b354be132bba5f84446c296f1c26cc4f3ba7e4bbde66cf6a96fde9195f042784"
+  },
+  "initialCollectionError": {
+    "log": "review-red.log",
+    "reason": "PYTHONPATH omitted; ModuleNotFoundError: lessonos; no product tests executed"
+  },
+  "review": {
+    "findings": 4,
+    "fixed": 4,
+    "independentProbesRerun": 2,
+    "method": "separate Codex subagent, cross-family independence not attested",
+    "report": "REVIEW.md"
+  },
+  "notPerformed": [
+    "Live PostgreSQL migration and RLS",
+    "Frontend tests in this Core-only increment",
+    "Original Studio successful Undo/Redo/reopen",
+    "Full SYS-01 workflow",
+    "G0/G1/release",
+    "Historical gate.sh pointing at another checkout"
+  ],
+  "goalComplete": false
+}

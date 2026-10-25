@@ -1,0 +1,437 @@
+[
+  {
+    "modelId": "U4-incoherent-sound-sum",
+    "serial": 5,
+    "reasoningTask": "source_removal_fraction",
+    "objective": "Distinguere intensità rimasta e intensità rimossa per ricavare un rapporto fra sorgenti",
+    "prompt": "Due sorgenti sonore non coerenti sono accese. Spegnendo la sorgente 2, l’intensità totale nel punto di ascolto diminuisce del 75%. Qual è il rapporto I₁/I₂ delle intensità che le due sorgenti producevano singolarmente?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1/3",
+      "unit": "1"
+    },
+    "options": [
+      "1/3",
+      "3",
+      "1/4",
+      "3/4",
+      "4"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Interpretare la percentuale",
+        "explanation": "Una diminuzione del 75% lascia il 25% dell’intensità iniziale. Dopo lo spegnimento rimane soltanto la sorgente 1, quindi quel 25% rappresenta I₁ e non I₂.",
+        "math": "I₁ = (1/4)I_tot"
+      },
+      {
+        "title": "Identificare il contributo rimosso",
+        "explanation": "Per sorgenti non coerenti le intensità medie si sommano. La parte scomparsa coincide quindi con l’intensità della sorgente 2: tre quarti del totale iniziale.",
+        "math": "I₂ = (3/4)I_tot"
+      },
+      {
+        "title": "Formare il rapporto nell’ordine richiesto",
+        "explanation": "Si divide l’intensità della sorgente 1 per quella della sorgente 2. Il totale comune si cancella; restano due frazioni dello stesso riferimento.",
+        "math": "I₁/I₂ = (1/4)/(3/4) = 1/3"
+      },
+      {
+        "title": "Controllare il significato fisico",
+        "explanation": "La sorgente spenta forniva il contributo maggiore: tre volte quello rimasto. Il rapporto I₁/I₂ deve quindi essere minore di uno. Il valore 3 sarebbe il rapporto inverso e il valore 1/4 confronterebbe I₁ con il totale, non con I₂."
+      }
+    ],
+    "context": "Si confrontano intensità medie nello stesso punto prima e dopo lo spegnimento di una delle due sorgenti.",
+    "assumptions": [
+      "Sorgenti non coerenti",
+      "La sorgente rimasta mantiene la stessa intensità",
+      "Stesso punto di ascolto"
+    ],
+    "law": "I_tot = I₁ + I₂; I₁ = I_tot/4; I₂ = 3I_tot/4",
+    "derivation": [],
+    "explanation": "La percentuale descrive una variazione rispetto all’intensità totale iniziale. Per usarla correttamente bisogna stabilire quale contributo sia rimasto e quale sia stato eliminato. Le sorgenti non coerenti hanno intensità medie additive: spegnere una sorgente sottrae il suo contributo senza introdurre un nuovo termine di interferenza. La diminuzione del 75% significa che rimane il 25%, cioè un quarto del totale. Quel quarto appartiene alla sorgente 1. I tre quarti rimossi appartengono invece alla sorgente 2. Il rapporto richiesto non è quindi il 25%: il 25% confronta la prima sorgente con il totale, mentre la domanda confronta la prima sorgente con la seconda. Questa distinzione fra parte, parte complementare e totale è il punto concettuale del problema.",
+    "traps": [
+      "Il 25% rimasto è una frazione del totale, non il rapporto I₁/I₂.",
+      "Le intensità si sommano perché le sorgenti sono non coerenti."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U4-coherent-constructive",
+    "serial": 5,
+    "reasoningTask": "phase_switch_intensity_ratio",
+    "objective": "Collegare il cambiamento della fase relativa alla variazione dell’intensità",
+    "prompt": "Due onde coerenti della stessa frequenza hanno ampiezze 3 mm e 4 mm. Inizialmente arrivano in fase; successivamente la fase di una sola onda viene invertita di π, senza cambiare le ampiezze. Sapendo che l’intensità è proporzionale al quadrato dell’ampiezza risultante, qual è il rapporto I_finale/I_iniziale?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1/49",
+      "unit": "1"
+    },
+    "options": [
+      "1/49",
+      "1/7",
+      "7",
+      "49",
+      "1"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Sommare le ampiezze iniziali",
+        "explanation": "In fase, le due perturbazioni hanno sempre lo stesso segno e la risultante ha ampiezza pari alla somma. Le unità sono le stesse, perciò la somma è diretta.",
+        "math": "A_iniziale = 3 + 4 = 7 mm"
+      },
+      {
+        "title": "Applicare l’inversione di fase",
+        "explanation": "Una variazione di π trasforma rinforzo in opposizione: i contributi si sottraggono. L’ampiezza è il modulo della differenza, quindi resta positiva.",
+        "math": "A_finale = |4 − 3| = 1 mm"
+      },
+      {
+        "title": "Passare dalle ampiezze alle intensità",
+        "explanation": "Il mezzo e la frequenza non cambiano, quindi la costante di proporzionalità fra intensità e ampiezza al quadrato è la stessa nei due stati e si cancella.",
+        "math": "I_finale/I_iniziale = (1/7)² = 1/49"
+      },
+      {
+        "title": "Escludere la cancellazione completa",
+        "explanation": "L’opposizione di fase non azzera la risultante perché le ampiezze non sono uguali. Il rapporto 1/7 riguarderebbe le ampiezze; l’intensità richiede il quadrato."
+      }
+    ],
+    "context": "Il confronto cambia la fase relativa delle onde, mantenendo invariati ampiezze, frequenza e mezzo.",
+    "assumptions": [
+      "Onde coerenti con stessa frequenza e polarizzazione",
+      "Mezzo lineare",
+      "Intensità proporzionale ad A²"
+    ],
+    "law": "A_iniziale = A₁ + A₂; A_finale = |A₂−A₁|; I_finale/I_iniziale = (A_finale/A_iniziale)²",
+    "derivation": [],
+    "explanation": "La fase relativa stabilisce come si sommano le perturbazioni. Nello stato iniziale le creste dei due contributi coincidono e le ampiezze si sommano. Invertendo la fase di una sola onda di mezzo giro, una sua cresta coincide con un minimo dell’altra: le ampiezze si sottraggono. Questo cambiamento non modifica le ampiezze individuali, ma modifica fortemente quella risultante. La domanda chiede poi un rapporto di intensità, non di ampiezze. Poiché l’intensità dipende dal quadrato dell’ampiezza nel medesimo mezzo e alla medesima frequenza, bisogna elevare al quadrato il rapporto ottenuto. Il procedimento separa quindi due passaggi fisici: sovrapposizione delle perturbazioni e relazione fra ampiezza ed energia trasportata.",
+    "traps": [
+      "Non sommare le intensità di onde coerenti prima di considerare la fase.",
+      "Opposizione di fase e annullamento completo non sono sinonimi."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-symmetric-electric-potential",
+    "serial": 5,
+    "reasoningTask": "potential_reference_shift",
+    "objective": "Cambiare lo zero del potenziale mantenendo invariate le differenze fisiche",
+    "prompt": "Con lo zero del potenziale all’infinito, due punti hanno V_P = 18 V e V_R = 6 V. Si decide di usare P come nuovo zero del potenziale. Qual è il nuovo valore V′_R?",
+    "answer": {
+      "kind": "rational",
+      "exact": "-12",
+      "unit": "V"
+    },
+    "options": [
+      "−12 V",
+      "12 V",
+      "6 V",
+      "24 V",
+      "0 V"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Definire il cambio di riferimento",
+        "explanation": "Per rendere nullo il potenziale in P si deve sottrarre a tutti i potenziali il medesimo valore V_P. Non si modifica il campo fisico né si sposta una carica.",
+        "math": "V′ = V − V_P"
+      },
+      {
+        "title": "Applicare il nuovo zero al punto richiesto",
+        "explanation": "Si sostituisce il potenziale iniziale di R e si sottrae 18 V. Il risultato negativo indica che R si trova a potenziale inferiore rispetto al nuovo riferimento P.",
+        "math": "V′_R = 6 − 18 = −12 V"
+      },
+      {
+        "title": "Controllare il riferimento",
+        "explanation": "Lo stesso cambiamento applicato a P restituisce zero, come richiesto dalla nuova convenzione.",
+        "math": "V′_P = 18 − 18 = 0 V"
+      },
+      {
+        "title": "Controllare ciò che non cambia",
+        "explanation": "La differenza fra R e P valeva già 6 − 18 = −12 V e rimane −12 − 0 = −12 V. Le forze e il lavoro fra i punti non cambiano quando si sposta soltanto lo zero del potenziale."
+      }
+    ],
+    "context": "Il potenziale è definito a meno di una costante additiva. Qui non cambia la distribuzione delle cariche: cambia soltanto il riferimento numerico.",
+    "assumptions": [
+      "Stessa distribuzione di cariche prima e dopo",
+      "Nuovo zero nel punto P"
+    ],
+    "law": "V′(r) = V(r) − V(P)",
+    "derivation": [],
+    "explanation": "Il valore assoluto del potenziale dipende dal riferimento scelto. Sono le differenze di potenziale a determinare il lavoro elettrico per unità di carica fra due punti. Scegliere un nuovo zero equivale ad aggiungere o sottrarre la stessa costante in tutti i punti dello spazio. Non equivale a scaricare il sistema o ad annullare il campo elettrico. Poiché P aveva potenziale 18 V e deve diventare il nuovo zero, bisogna sottrarre 18 V a ogni valore precedente. Il punto R passa quindi da 6 V a un valore negativo: esso si trova 12 V sotto P. Il segno negativo non rende il potenziale impossibile; esprime semplicemente la relazione con il riferimento scelto.",
+    "traps": [
+      "Non porre a zero tutti i punti quando si cambia il riferimento.",
+      "Un potenziale negativo è compatibile con una scelta legittima dello zero."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-orthogonal-electric-fields",
+    "serial": 5,
+    "reasoningTask": "equal_components_direction",
+    "objective": "Ricavare la direzione della risultante da componenti ortogonali uguali",
+    "prompt": "Nel punto P un campo di 3 N/C è diretto lungo +x e un secondo campo di 3 N/C lungo +y. Qual è l’angolo della risultante rispetto a +x, misurato verso +y?",
+    "answer": {
+      "kind": "rational",
+      "exact": "45",
+      "unit": "gradi"
+    },
+    "options": [
+      "45°",
+      "0°",
+      "30°",
+      "60°",
+      "90°"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Identificare le componenti",
+        "explanation": "La risultante ha componente x uguale a 3 N/C e componente y uguale a 3 N/C. Entrambe sono positive, quindi il vettore si trova nel primo quadrante.",
+        "math": "E_x = 3 N/C; E_y = 3 N/C"
+      },
+      {
+        "title": "Usare la geometria del triangolo",
+        "explanation": "Le due componenti sono cateti uguali di un triangolo rettangolo. I due angoli acuti sono quindi uguali e devono sommare 90°."
+      },
+      {
+        "title": "Ricavare l’angolo",
+        "explanation": "Ciascun angolo acuto vale metà di 90°. La direzione cercata è la bisettrice fra +x e +y.",
+        "math": "θ = 90°/2 = 45°"
+      },
+      {
+        "title": "Controllare senza calcolatrice",
+        "explanation": "Equivalentemente tanθ = E_y/E_x = 1; l’angolo noto nel primo quadrante è 45°. Non serve calcolare il modulo 3√2 del campo per rispondere sulla direzione."
+      }
+    ],
+    "context": "Si chiede la direzione della somma vettoriale di due contributi di campo uguali e perpendicolari.",
+    "assumptions": [
+      "Contributi lungo +x e +y",
+      "Assi cartesiani ortogonali"
+    ],
+    "law": "tanθ = E_y/E_x; per E_x = E_y > 0, θ = 45°",
+    "derivation": [],
+    "explanation": "Un campo elettrico è un vettore: conoscere il suo modulo non esaurisce le informazioni che lo descrivono. In questa domanda il dato decisivo è l’uguaglianza delle componenti ortogonali. La risultante deve avere la stessa inclinazione rispetto ai due assi, perché nessuno dei due contributi prevale. La simmetria individua quindi la bisettrice del primo quadrante. Questo ragionamento evita calcoli inutili del modulo e mantiene separata la domanda sulla direzione da quella sull’intensità del campo. È comunque possibile verificarlo con la trigonometria elementare: il rapporto fra componente verticale e orizzontale vale uno, e la tangente di 45 gradi vale uno. I segni positivi escludono altre direzioni che potrebbero condividere rapporti simili in quadranti differenti.",
+    "traps": [
+      "Non sommare due moduli per ottenere un angolo.",
+      "La direzione dipende anche dai segni delle componenti."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-two-series-resistors",
+    "serial": 5,
+    "reasoningTask": "short_circuit_topology_change",
+    "objective": "Riconoscere l’effetto di un collegamento ideale che bypassa un resistore",
+    "prompt": "Due resistori da 2 Ω e 4 Ω sono inizialmente in serie. Si collega poi un filo ideale direttamente fra i due capi del resistore da 4 Ω. Qual è la resistenza equivalente finale vista dai morsetti esterni?",
+    "answer": {
+      "kind": "rational",
+      "exact": "2",
+      "unit": "Ω"
+    },
+    "options": [
+      "2 Ω",
+      "4 Ω",
+      "6 Ω",
+      "4/3 Ω",
+      "0 Ω"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Leggere il nuovo collegamento",
+        "explanation": "Il filo ideale collega fra loro i due capi del resistore da 4 Ω. Questi capi diventano lo stesso nodo elettrico e hanno la stessa differenza di potenziale nulla."
+      },
+      {
+        "title": "Valutare il resistore bypassato",
+        "explanation": "Per Ohm, con tensione nulla ai suoi capi, nel resistore da 4 Ω non scorre corrente nel modello ideale. Il collegamento equivalente fra quei due nodi ha resistenza zero.",
+        "math": "V_4 = 0; I_4 = V_4/(4 Ω) = 0"
+      },
+      {
+        "title": "Ridurre il circuito rimasto",
+        "explanation": "Il resistore da 2 Ω resta attraversato dalla corrente totale. È in serie con il collegamento ideale da zero ohm.",
+        "math": "R_finale = 2 Ω + 0 Ω = 2 Ω"
+      },
+      {
+        "title": "Escludere il cortocircuito totale",
+        "explanation": "Il filo non collega direttamente entrambi i morsetti esterni: bypassa soltanto il secondo resistore. Per questo la resistenza totale non è zero."
+      }
+    ],
+    "context": "Il circuito cambia topologia quando viene aggiunto il filo: non si può continuare a trattare entrambi i resistori come una serie semplice.",
+    "assumptions": [
+      "Filo di resistenza ideale nulla",
+      "Il filo collega soltanto i capi del resistore da 4 Ω"
+    ],
+    "law": "Un resistore in parallelo a un filo ideale è bypassato; R_eq = 2 Ω + 0 Ω",
+    "derivation": [],
+    "explanation": "La resistenza equivalente dipende sia dai valori dei componenti sia dai collegamenti fra i nodi. Prima dell’aggiunta del filo i due resistori sono in serie e la corrente li attraversa entrambi. Dopo l’aggiunta, il filo offre un collegamento ideale fra i capi del resistore da quattro ohm. La tensione su quel resistore è quindi nulla: non basta che esso sia ancora presente nel disegno per continuare a contarlo nella somma delle resistenze. Rimane attivo il resistore da due ohm, che non è stato bypassato. Per risolvere bisogna dunque rileggere la topologia e non applicare meccanicamente la precedente formula di serie. Il limite di un filo ideale è esplicitamente parte del modello.",
+    "traps": [
+      "La presenza grafica di un componente non implica che esso contribuisca alla resistenza equivalente.",
+      "Il filo corto su un solo resistore non cortocircuita automaticamente tutti i morsetti esterni."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-two-parallel-resistors",
+    "serial": 5,
+    "reasoningTask": "open_branch_total_current",
+    "objective": "Collegare la rimozione di un ramo alla corrente totale a tensione fissata",
+    "prompt": "Due resistori da 3 Ω e 6 Ω sono in parallelo a un generatore ideale di tensione costante. Si apre soltanto il ramo da 3 Ω. Qual è il rapporto fra la nuova corrente totale e quella iniziale?",
+    "answer": {
+      "kind": "rational",
+      "exact": "1/3",
+      "unit": "1"
+    },
+    "options": [
+      "1/3",
+      "3",
+      "1/2",
+      "2/3",
+      "1"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Calcolare la corrente totale iniziale",
+        "explanation": "Indichiamo con V la tensione, senza darle un valore non assegnato. Inizialmente le correnti sono V/3 e V/6 e si sommano.",
+        "math": "I_iniziale = V/3 + V/6 = V/2"
+      },
+      {
+        "title": "Applicare l’apertura del ramo",
+        "explanation": "Nel ramo aperto la corrente è nulla. Il resistore da 6 Ω resta collegato alla medesima tensione del generatore ideale.",
+        "math": "I_finale = V/6"
+      },
+      {
+        "title": "Formare il rapporto",
+        "explanation": "La tensione comune si cancella: non era necessario conoscerla per confrontare le correnti totali.",
+        "math": "I_finale/I_iniziale = (V/6)/(V/2) = 1/3"
+      },
+      {
+        "title": "Controllare il contributo eliminato",
+        "explanation": "Il ramo da 3 Ω conduceva il doppio del ramo da 6 Ω. Eliminarlo toglie quindi due terzi della corrente totale e lascia un terzo."
+      }
+    ],
+    "context": "Si modifica il numero dei rami conduttivi mantenendo la tensione imposta dal generatore ideale.",
+    "assumptions": [
+      "Generatore ideale a tensione costante",
+      "Si apre soltanto il ramo da 3 Ω",
+      "Il ramo da 6 Ω resta integro"
+    ],
+    "law": "I_iniziale = V(1/3 + 1/6); I_finale = V/6",
+    "derivation": [],
+    "explanation": "In un parallelo ogni ramo riceve l’intera tensione del generatore. Aprire uno dei rami elimina la sua corrente, ma non cambia la tensione sugli altri se il generatore è ideale. Il ramo di resistenza minore conduceva una corrente maggiore, quindi la sua rimozione ha un effetto superiore a quello che avrebbe la rimozione dell’altro ramo. Il confronto richiesto riguarda la corrente totale prima e dopo il cambiamento. Non serve assegnare un numero alla tensione: si può mantenerla come simbolo e cancellarla nel rapporto finale. Questo è un esempio di come una quantità non nota possa essere irrilevante per una domanda comparativa ben definita.",
+    "traps": [
+      "Rimuovere un ramo parallelo non divide la tensione del ramo rimasto.",
+      "Le correnti iniziali non erano uguali perché le resistenze erano diverse."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-parallel-capacitors",
+    "serial": 5,
+    "reasoningTask": "opposite_polarity_charge_balance",
+    "objective": "Applicare la conservazione algebrica della carica nel collegamento di condensatori",
+    "prompt": "Un condensatore da 1 μF è carico a 6 V e un condensatore da 2 μF è carico a 3 V. Si scollegano entrambi dai generatori e si collegano in parallelo con polarità opposte: l’armatura positiva del primo alla negativa del secondo. Qual è la tensione finale fra i due nodi?",
+    "answer": {
+      "kind": "rational",
+      "exact": "0",
+      "unit": "V"
+    },
+    "options": [
+      "0 V",
+      "2 V",
+      "3 V",
+      "4 V",
+      "6 V"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Calcolare le cariche prima del collegamento",
+        "explanation": "Il primo condensatore ha carica di modulo C₁V₁ = 6 μC; anche il secondo ha carica di modulo C₂V₂ = 6 μC.",
+        "math": "|Q₁| = 1·6 = 6 μC; |Q₂| = 2·3 = 6 μC"
+      },
+      {
+        "title": "Conservare la carica con il segno corretto",
+        "explanation": "Sul nodo formato unendo il positivo del primo e il negativo del secondo arrivano cariche opposte di uguale modulo. La carica totale di quel nodo è zero.",
+        "math": "Q_nodo = +6 μC − 6 μC = 0"
+      },
+      {
+        "title": "Usare la capacità finale del parallelo",
+        "explanation": "La capacità complessiva è 1 + 2 = 3 μF. Con carica netta nulla sul nodo, la tensione comune finale è zero.",
+        "math": "V_finale = Q_nodo/(C₁+C₂) = 0/(3 μF) = 0 V"
+      },
+      {
+        "title": "Distinguere carica ed energia",
+        "explanation": "Le energie iniziali non erano nulle. Durante la redistribuzione vengono convertite in altre forme; non bisogna imporre la conservazione della sola energia elettrostatica per negare il risultato."
+      }
+    ],
+    "context": "Il sistema è isolato dai generatori e il collegamento ha polarità opposte. Si cerca la tensione finale dopo la redistribuzione, non il valore istantaneo durante il transitorio.",
+    "assumptions": [
+      "Generatori scollegati",
+      "Collegamento con polarità opposte",
+      "Transitorio concluso"
+    ],
+    "law": "V_finale = (C₁V₁ − C₂V₂)/(C₁+C₂)",
+    "derivation": [],
+    "explanation": "Il collegamento in parallelo impone una tensione finale comune, ma il valore di tale tensione dipende dalla carica totale presente sui nodi. Poiché i generatori sono scollegati, non possono fornire nuova carica. La polarità opposta richiede di sommare algebricamente i contributi: una carica positiva viene unita a una negativa. In questo caso i due moduli coincidono, nonostante le capacità e le tensioni iniziali siano diverse. Il nodo risulta quindi neutro e la tensione finale si annulla. La formula della capacità equivalente in parallelo rimane valida, ma non basta da sola per conoscere la tensione: va combinata con la conservazione della carica. L’energia elettrostatica non si conserva separatamente durante il processo reale di redistribuzione.",
+    "traps": [
+      "Non sommare i moduli delle cariche quando le polarità sono opposte.",
+      "Condensatori di capacità diverse possono avere cariche di uguale modulo."
+    ],
+    "standalone": true
+  },
+  {
+    "modelId": "U6-series-capacitors",
+    "serial": 5,
+    "reasoningTask": "rewiring_capacitance_ratio",
+    "objective": "Confrontare la capacità equivalente degli stessi componenti in due topologie",
+    "prompt": "Due condensatori identici da 2 μF vengono usati prima in serie e poi in parallelo. Qual è il rapporto C_parallelo/C_serie delle capacità equivalenti? Le due misure riguardano soltanto la capacità dei collegamenti.",
+    "answer": {
+      "kind": "rational",
+      "exact": "4",
+      "unit": "1"
+    },
+    "options": [
+      "4",
+      "2",
+      "1/2",
+      "1/4",
+      "1"
+    ],
+    "correctIndex": 0,
+    "steps": [
+      {
+        "title": "Ridurre il collegamento in serie",
+        "explanation": "Per due capacità uguali C, i reciproci si sommano: 1/C_serie = 2/C. La capacità equivalente è quindi C/2.",
+        "math": "C_serie = 2 μF / 2 = 1 μF"
+      },
+      {
+        "title": "Ridurre il collegamento in parallelo",
+        "explanation": "In parallelo le capacità si sommano perché la tensione è comune e le cariche totali si sommano.",
+        "math": "C_parallelo = 2 μF + 2 μF = 4 μF"
+      },
+      {
+        "title": "Confrontare nel verso richiesto",
+        "explanation": "Il numeratore deve essere il valore del parallelo e il denominatore quello della serie. Le unità μF si cancellano.",
+        "math": "C_parallelo/C_serie = 4/1 = 4"
+      },
+      {
+        "title": "Separare capacità e stato di carica",
+        "explanation": "Il confronto dipende dal tipo di collegamento dei componenti. Non richiede di assegnare una tensione o di analizzare un transitorio di carica fra le due configurazioni."
+      }
+    ],
+    "context": "Gli stessi due componenti vengono considerati in configurazioni elettriche differenti. Non si sta confrontando la carica di un singolo esperimento di commutazione.",
+    "assumptions": [
+      "Condensatori lineari identici",
+      "Confronto delle capacità equivalenti",
+      "Nessuna ipotesi di conservazione di tensione o carica durante una commutazione"
+    ],
+    "law": "C_serie = C/2; C_parallelo = 2C; C_parallelo/C_serie = 4",
+    "derivation": [],
+    "explanation": "La capacità equivalente descrive il rapporto fra carica fornita dall’esterno e tensione ai morsetti. In serie la stessa carica deve sostenere due cadute di tensione, quindi la capacità equivalente diminuisce. In parallelo la stessa tensione permette di accumulare carica in entrambi i componenti, quindi la capacità equivalente aumenta. Usando due capacità identiche, i due effetti sono particolarmente semplici: la serie dimezza il valore del singolo componente e il parallelo lo raddoppia. Il rapporto fra i risultati è quindi quattro, non due. La domanda riguarda una proprietà dei due collegamenti e non impone che la tensione o l’energia restino uguali in una commutazione fisica.",
+    "traps": [
+      "Non usare le regole delle resistenze al posto di quelle delle capacità.",
+      "Il rapporto richiesto confronta due equivalenti, non il parallelo con un singolo condensatore."
+    ],
+    "standalone": true
+  }
+]

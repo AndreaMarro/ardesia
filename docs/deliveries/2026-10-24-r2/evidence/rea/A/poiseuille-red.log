@@ -1,0 +1,635 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-r2-20261024/apps/web
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx (10 tests | 2 failed | 8 skipped) 1200ms
+   × REA A opens a partial hint before the relation and preserves the attempt and exact source through correction 191ms
+   × the Poiseuille renderer excludes scalar and mixed-activity experiences 1008ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/poiseuille-episode.test.tsx > REA A opens a partial hint before the relation and preserves the attempt and exact source through correction
+AssertionError: expected <p class="entry-explanation"></p> to be null
+
+- Expected:
+null
+
++ Received:
+<p
+  class="entry-explanation"
+>
+  Parti da Q = π r⁴ Δp / (8 η L). Se Q resta costante, isola Δp: la quarta potenza del raggio è al denominatore. Se Δp resta costante, confronta Q.
+</p>
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx:203:54
+    201|   expect(screen.queryByRole("button", {name: "Mostra il secondo aiuto"…
+    202|   fireEvent.click(screen.getByRole("button", {name: "Un aiuto sul vinc…
+    203|   expect(screen.queryByText(/Parti da Q = π r⁴ Δp/)).toBeNull();
+       |                                                      ^
+    204|   expect(screen.queryByTestId("episode-ratio")).toBeNull();
+    205|   expect(submissions).toHaveLength(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/poiseuille-episode.test.tsx > the Poiseuille renderer excludes scalar and mixed-activity experiences
+TestingLibraryElementError: Unable to find role="heading" and name "Il vincolo cambia il risultato"
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="episode-title"
+      class="poiseuille-episode"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="entry-label"
+        >
+          Dalla lezione a una nuova prova
+        </p>
+        <h2
+          id="episode-title"
+        >
+          Pressione idrostatica
+        </h2>
+        <p>
+          Distingui pressione e portata fissata
+        </p>
+        <label>
+          Variante del percorso
+          <select>
+            <option
+              value="scalar-first"
+            >
+              Pressione idrostatica
+            </option>
+            <option
+              value="mixed"
+            >
+              Manifest misto
+            </option>
+            <option
+              value="poiseuille-boundary-v1"
+            >
+              Il vincolo cambia il risultato
+            </option>
+          </select>
+        </label>
+      </div>
+      <ol
+        aria-label="Passi dell’episodio"
+        class="episode-progress"
+      >
+        <li
+          aria-current="step"
+        >
+          <span>
+            1
+          </span>
+
+          Raggio doppio, pressione fissata
+        </li>
+      </ol>
+      <div
+        class="episode-step"
+      >
+        <h3
+          tabindex="-1"
+        >
+          Raggio doppio, pressione fissata
+        </h3>
+        <p>
+          Raddoppia il raggio a Δp fissata.
+        </p>
+        <div
+          class="lab-layout"
+        >
+          <div
+            class="lab-experiment"
+          >
+            <figure
+              class="poiseuille-model discovery-model"
+            >
+              <div
+                class="model-key"
+              >
+                <span>
+                  Stesso fluido · stessa lunghezza
+                </span>
+                <span>
+                  Δp fissata
+                </span>
+              </div>
+              <svg
+                aria-label="Due tubi cilindrici con rapporto dei raggi 2. Geometria prima della previsione."
+                role="img"
+                viewBox="0 0 680 335"
+              >
+                <defs>
+                  <clippath
+                    id="_r_1_-reference"
+                  >
+                    <rect
+                      height="70"
+                      width="455"
+                      x="95"
+                      y="48"
+                    />
+                  </clippath>
+                  <clippath
+                    id="_r_1_-comparison"
+                  >
+                    <rect
+                      height="140"
+                      width="455"
+                      x="95"
+                      y="165"
+                    />
+                  </clippath>
+                </defs>
+                <g
+                  class="pipe-reference"
+                >
+                  <text
+                    x="24"
+                    y="30"
+                  >
+                    riferimento
+                  </text>
+                  <rect
+                    class="tube-body"
+                    height="70"
+                    width="455"
+                    x="95"
+                    y="48"
+                  />
+                  <line
+                    class="pipe-axis"
+                    x1="95"
+                    x2="550"
+                    y1="83"
+                    y2="83"
+                  />
+                  <path
+                    class="pipe-dimension"
+                    d="M580 48V118M574 48H586M574 118H586"
+                  />
+                  <text
+                    x="596"
+                    y="88"
+                  >
+                    2r₀
+                  </text>
+                </g>
+                <g
+                  class="pipe-comparison"
+                >
+                  <text
+                    x="24"
+                    y="153"
+                  >
+                    confronto
+                  </text>
+                  <rect
+                    class="tube-body"
+                    height="140"
+                    width="455"
+                    x="95"
+                    y="165"
+                  />
+                  <line
+                    class="pipe-axis"
+                    x1="95"
+                    x2="550"
+                    y1="235"
+                    y2="235"
+                  />
+                  <path
+                    class="pipe-dimension"
+                    d="M580 165V305M574 165H586M574 305H586"
+                  />
+                  <text
+                    x="596"
+                    y="240"
+                  >
+                    2r
+                  </text>
+                </g>
+                <path
+                  class="pipe-dimension"
+                  d="M95 317H550M95 312V322M550 312V322"
+                />
+                <text
+                  text-anchor="middle"
+                  x="322.5"
+                  y="331"
+                >
+                  L costante
+                </text>
+              </svg>
+              <figcaption>
+                r / r₀ =
+                2
+                 ·
+                Δp è costante: confronta la portata.
+              </figcaption>
+            </figure>
+            <p>
+              Stesso fluido e stessa lunghezza.
+               Rapporti senza unità; Q in m³/s, Δp in Pa, r e L in m, η in Pa·s.
+            </p>
+            <p
+              class="fine-print"
+            >
+              Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.
+            </p>
+            <div
+              aria-live="polite"
+              class="lab-result"
+            >
+              <span>
+                Prima la tua previsione.
+              </span>
+              <p>
+                Il risultato compare dopo che previsione e procedimento sono stati ricevuti dal servizio.
+              </p>
+            </div>
+          </div>
+          <form
+            class="lab-controls"
+          >
+            <label>
+              Rapporto previsto
+              <input
+                inputmode="decimal"
+                maxlength="40"
+                value=""
+              />
+            </label>
+            <label>
+              Grandezza che resta fissata
+              <select>
+                <option
+                  value=""
+                >
+                  Scegli il vincolo
+                </option>
+                <option
+                  value="pressure"
+                >
+                  Differenza di pressione Δp
+                </option>
+                <option
+                  value="flow"
+                >
+                  Portata Q
+                </option>
+              </select>
+            </label>
+            <label>
+              Spiega il vincolo e il procedimento
+              <textarea
+                maxlength="8000"
+                rows="4"
+              />
+            </label>
+            <button
+              class="button-primary"
+              disabled=""
+            >
+              Registra previsione e confronta
+            </button>
+            <button
+              type="button"
+            >
+              Un aiuto sul vincolo
+            </button>
+            <button
+              type="button"
+            >
+              Recupera il passaggio della lezione
+            </button>
+            <p
+              role="status"
+            />
+          </form>
+        </div>
+      </div>
+      <p
+        class="fine-print"
+      >
+        Ambiente con identità sintetiche. Contenuto DRAFT, revisione scientifica non attestata. Il controllo numerico non sostituisce il feedback del docente.
+      </p>
+    </section>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <section
+      aria-labelledby="episode-title"
+      class="poiseuille-episode"
+    >
+      <div
+        class="lab-introduction"
+      >
+        <p
+          class="entry-label"
+        >
+          Dalla lezione a una nuova prova
+        </p>
+        <h2
+          id="episode-title"
+        >
+          Pressione idrostatica
+        </h2>
+        <p>
+          Distingui pressione e portata fissata
+        </p>
+        <label>
+          Variante del percorso
+          <select>
+            <option
+              value="scalar-first"
+            >
+              Pressione idrostatica
+            </option>
+            <option
+              value="mixed"
+            >
+              Manifest misto
+            </option>
+            <option
+              value="poiseuille-boundary-v1"
+            >
+              Il vincolo cambia il risultato
+            </option>
+          </select>
+        </label>
+      </div>
+      <ol
+        aria-label="Passi dell’episodio"
+        class="episode-progress"
+      >
+        <li
+          aria-current="step"
+        >
+          <span>
+            1
+          </span>
+
+          Raggio doppio, pressione fissata
+        </li>
+      </ol>
+      <div
+        class="episode-step"
+      >
+        <h3
+          tabindex="-1"
+        >
+          Raggio doppio, pressione fissata
+        </h3>
+        <p>
+          Raddoppia il raggio a Δp fissata.
+        </p>
+        <div
+          class="lab-layout"
+        >
+          <div
+            class="lab-experiment"
+          >
+            <figure
+              class="poiseuille-model discovery-model"
+            >
+              <div
+                class="model-key"
+              >
+                <span>
+                  Stesso fluido · stessa lunghezza
+                </span>
+                <span>
+                  Δp fissata
+                </span>
+              </div>
+              <svg
+                aria-label="Due tubi cilindrici con rapporto dei raggi 2. Geometria prima della previsione."
+                role="img"
+                viewBox="0 0 680 335"
+              >
+                <defs>
+                  <clippath
+                    id="_r_1_-reference"
+                  >
+                    <rect
+                      height="70"
+                      width="455"
+                      x="95"
+                      y="48"
+                    />
+                  </clippath>
+                  <clippath
+                    id="_r_1_-comparison"
+                  >
+                    <rect
+                      height="140"
+                      width="455"
+                      x="95"
+                      y="165"
+                    />
+                  </clippath>
+                </defs>
+                <g
+                  class="pipe-reference"
+                >
+                  <text
+                    x="24"
+                    y="30"
+                  >
+                    riferimento
+                  </text>
+                  <rect
+                    class="tube-body"
+                    height="70"
+                    width="455"
+                    x="95"
+                    y="48"
+                  />
+                  <line
+                    class="pipe-axis"
+                    x1="95"
+                    x2="550"
+                    y1="83"
+                    y2="83"
+                  />
+                  <path
+                    class="pipe-dimension"
+                    d="M580 48V118M574 48H586M574 118H586"
+                  />
+                  <text
+                    x="596"
+                    y="88"
+                  >
+                    2r₀
+                  </text>
+                </g>
+                <g
+                  class="pipe-comparison"
+                >
+                  <text
+                    x="24"
+                    y="153"
+                  >
+                    confronto
+                  </text>
+                  <rect
+                    class="tube-body"
+                    height="140"
+                    width="455"
+                    x="95"
+                    y="165"
+                  />
+                  <line
+                    class="pipe-axis"
+                    x1="95"
+                    x2="550"
+                    y1="235"
+                    y2="235"
+                  />
+                  <path
+                    class="pipe-dimension"
+                    d="M580 165V305M574 165H586M574 305H586"
+                  />
+                  <text
+                    x="596"
+                    y="240"
+                  >
+                    2r
+                  </text>
+                </g>
+                <path
+                  class="pipe-dimension"
+                  d="M95 317H550M95 312V322M550 312V322"
+                />
+                <text
+                  text-anchor="middle"
+                  x="322.5"
+                  y="331"
+                >
+                  L costante
+                </text>
+              </svg>
+              <figcaption>
+                r / r₀ =
+                2
+                 ·
+                Δp è costante: confronta la portata.
+              </figcaption>
+            </figure>
+            <p>
+              Stesso fluido e stessa lunghezza.
+               Rapporti senza unità; Q in m³/s, Δp in Pa, r e L in m, η in Pa·s.
+            </p>
+            <p
+              class="fine-print"
+            >
+              Fluido newtoniano incomprimibile, moto laminare stazionario e sviluppato; tubo cilindrico rigido orizzontale, senza scorrimento alla parete. Il regime laminare deve essere verificato dai valori assoluti: i soli rapporti non bastano. Modello idealizzato, non previsione clinica.
+            </p>
+            <div
+              aria-live="polite"
+              class="lab-result"
+            >
+              <span>
+                Prima la tua previsione.
+              </span>
+              <p>
+                Il risultato compare dopo che previsione e procedimento sono stati ricevuti dal servizio.
+              </p>
+            </div>
+          </div>
+          <form
+            class="lab-controls"
+          >
+            <label>
+              Rapporto previsto
+              <input
+                inputmode="decimal"
+                maxlength="40"
+                value=""
+              />
+            </label>
+            <label>
+              Grandezza che resta fissata
+              <select>
+                <option
+                  value=""
+                >
+                  Scegli il vincolo
+                </option>
+                <option
+                  value="pressure"
+                >
+                  Differenza di pressione Δp
+                </option>
+                <option
+                  value="flow"
+                >
+                  Portata Q
+                </option>
+              </select>
+            </label>
+            <label>
+              Spiega il vincolo e il procedimento
+              <textarea
+                maxlength="8000"
+                rows="4"
+              />
+            </label>
+            <button
+              class="button-primary"
+              disabled=""
+            >
+              Registra previsione e confronta
+            </button>
+            <button
+              type="button"
+            >
+              Un aiuto sul vincolo
+            </button>
+            <button
+              type="button"
+            >
+              Recupera il passaggio della lezione
+            </button>
+            <p
+              role="status"
+            />
+          </form>
+        </div>
+      </div>
+      <p
+        class="fine-print"
+      >
+        Ambiente con identità sintetiche. Contenuto DRAFT, revisione scientifica non attestata. Il controllo numerico non sostituisce il feedback del docente.
+      </p>
+    </section>
+  </div>
+</body>
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/__tests__/poiseuille-episode.test.tsx:238:23
+    236|   vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify…
+    237|   render(<PoiseuilleEpisode me={me} data={data} onUpdate={async () => …
+    238|   expect(await screen.findByRole("heading", {name: experience.title}))…
+       |                       ^
+    239|   expect(screen.queryByRole("heading", {name: "Pressione idrostatica"}…
+    240|   expect(screen.queryByRole("option", {name: "Manifest misto"})).toBeN…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 8 skipped (10)
+   Start at  23:53:06
+   Duration  2.67s (transform 394ms, setup 0ms, import 577ms, tests 1.20s, environment 731ms)

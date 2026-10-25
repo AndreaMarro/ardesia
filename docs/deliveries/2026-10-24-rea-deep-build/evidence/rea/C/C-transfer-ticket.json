@@ -1,0 +1,166 @@
+{
+  "targetVersion": {
+    "url": "https://www.falstad.com/circuit/circuitjs.html",
+    "observedBuildDirectory": "circuitjs112",
+    "semanticVersion": "UNAVAILABLE: primary about page renders version blank",
+    "primaryScript": "circuitjs-D4a6dPHu.js",
+    "scriptSha256": "e6d868e7bfa82a1d9c928dacc12b0d9c10b9c07e533fd2a8a920a7d4c6e186b5",
+    "cli": "REA 6.7.0",
+    "browser": "Chromium 148.0.7778.96"
+  },
+  "behavior": {
+    "observed": "A controlled variable and current state are visible together. Ohm example shows two branches under +5V: 100 ohm / 50mA and 1k ohm / 5mA. RUN/STOP changes accessible state and freezes/continues frames. Example selection changes the displayed circuit label.",
+    "notClaimed": "No inference of circuit-fluid equivalence or learner understanding."
+  },
+  "observedPath": [
+    "LRC initial page (root evidence)",
+    "Circuits > Basics > Ohm's Law",
+    "RUN / Stop -> Run / STOP",
+    "200ms and 500ms additional wait: identical PNG bytes",
+    "Reset while stopped: same frame; numeric reset NOT established",
+    "Run / STOP -> RUN / Stop",
+    "200ms and 500ms additional wait: different PNG bytes",
+    "Circuits > Basics > Resistors",
+    "Right click main canvas center -> add-component menu, not resistor edit"
+  ],
+  "evidence": [
+    {
+      "file": "C-ohm-explore-v2-evidence.json",
+      "id": "ev_5c47f911e6a5d3878ad27029f9b58dc541162a0c51ce83a9b4115dfd80ded8cd",
+      "sha256": "5968d7a3c016de1a8c3b5e051ccb161788deba1fa4c682e3ab81ae16ee3252d9",
+      "durationMs": 8544,
+      "completeness": "complete",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-state-examples-evidence.json",
+      "id": "ev_9f7e295ba3f112ff4132b692f629d4c7ccc4eba11b10d29df9d3f816712ac2bf",
+      "sha256": "9809119965debee2b2c674ab70e185a20d0ec1f0aa077e0f333387900df02558",
+      "durationMs": 19598,
+      "completeness": "incomplete",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-state-examples-v2-evidence.json",
+      "id": "ev_351b4e4103a3b95541b7da49eeabf562bd2e74c6ffed1314c0f824b728708914",
+      "sha256": "d9b0bdbc6eee7579b91119416530263d81d0be4db4ab30e4a18edea6ec917734",
+      "durationMs": 9119,
+      "completeness": "complete",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "C-v2-stopped-a.png",
+      "sha256": "8b8b9442a3262cd19409903d1b92ab0a8090d441504a4ce1bb410e8d03bdb110",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-stopped-b.png",
+      "sha256": "8b8b9442a3262cd19409903d1b92ab0a8090d441504a4ce1bb410e8d03bdb110",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-reset-stopped.png",
+      "sha256": "8b8b9442a3262cd19409903d1b92ab0a8090d441504a4ce1bb410e8d03bdb110",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-running-a.png",
+      "sha256": "6bf1c7ec959ffb9998bff3ca3b1eea5ec6dbf4eb8c10291851d33eb90360160b",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-running-b.png",
+      "sha256": "56ced42589291afb76fe6bb0e6b3b7a18af6bbe763f612ef6221ae412750f4ff",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-resistors-example.png",
+      "sha256": "8ca9f96549773023a2c3ee47e9533415ef0c5aec7f3f9f36d563836d88768a9f",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    },
+    {
+      "file": "C-v2-inspect-center.png",
+      "sha256": "7ed0abb359d8a780e2adbfd5565a563acc0c925be1002be554fbb702ac47fbb5",
+      "localOnly": true,
+      "localDirectory": "work/deep-build/rea"
+    }
+  ],
+  "limits": [
+    "Resistance editing NOT reached: parameter sliders and components are canvas; declared CLI locator actions have no coordinate drag or semantic parameter locator. No hidden JavaScript or solver manipulation used.",
+    "Invalid text locator rejected before browser action; retained as invalid_request, then corrected to DOM-derived CSS.",
+    "First state scenario used old exact button name after Stop: 10s timeout, remaining actions cancelled; retained. Adaptive correction uses observed Run / STOP.",
+    "Reset clicked while stopped produced same image; no numerical-reset guarantee.",
+    "Service worker blocked by explicit capture policy; resulting registration TypeError retained. Page source also logged a CompositeElm creation message.",
+    "Python urllib TLS trust failed; failures retained. curl succeeded with its configured TLS verification; no verification bypass.",
+    "No host/device/pilot or solver-correctness certification; motion observation uses short sampled frames only.",
+    "Donor source bytes hashed in memory only; screenshot evidence is diagnostic, not an asset adopted by marketing."
+  ],
+  "license": {
+    "primaryPage": "https://www.falstad.com/circuit/about.html",
+    "primarySourceLicense": "https://github.com/pfalstad/circuitjs1/blob/master/COPYING.txt",
+    "declared": "GPL-2.0-or-later (program); separate credits exist for icons and libraries",
+    "licenseBytesSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+    "decision": "OBSERVE ONLY; no GPL source, circuit definitions, icons, labels or styling copied into Ardesia; original behavior specification only",
+    "upstreamCommitToHostedAssetMatch": "NOT_ESTABLISHED; served asset digest fixes observed version",
+    "publicationDecision": "Raw capture zip includes donor SVG/icon paths and PNGs. Retained in local work only; committed delivery contains digests, contract, verification metadata and original recipient review. No clearance for raw redistribution asserted."
+  },
+  "ardesiaSpec": {
+    "originalTransfer": "Poiseuille: show which variable is held fixed, expose the input radius beside the Core result, animate a visual state derived from Core Q and area, and allow explicit pause/repetition with accessible state.",
+    "physicsBoundary": "Circuit current is not fluid flow. Poiseuille constraints and admissible domain remain owned by the existing Core; no imported electrical formula or second client solver.",
+    "accessibility": "Avoid donor canvas-only controls: radius keyboard range, readable constraint/quantities, pause state, reduced-motion alternative."
+  },
+  "reuse": {
+    "kind": "behavioral pattern, original implementation",
+    "adoptedCodeOrAssets": false,
+    "existingArdesiaAuthority": [
+      "packages/engine/lessonos/study/activities.py",
+      "bin/web/export_public_preview.py",
+      "apps/web/src/components/PhysicsLab.tsx"
+    ],
+    "historicalCapability": "Kirchhoff StudentTrace/ProofSession reviewed separately; no new circuit code or second memory adopted."
+  },
+  "implementation": {
+    "status": "VERIFIED within public local synthetic scope; final release integration remains root-owned",
+    "owner": "poiseuille",
+    "reportedCandidate": [
+      "apps/web/src/components/PoiseuilleVisual.tsx",
+      "apps/web/src/features/PublicExperience.tsx",
+      "bin/web/export_public_preview.py"
+    ],
+    "scope": "Independent review verified Core-derived Q/area visual state, pause/resume, explicit constraint, reset and unrevealed new problem on the actual public UI; original recipient implementation, not donor code.",
+    "independentEvidence": "../../review/C-public/result.json; final-contrast.json; final-delta.json; served-artifacts-and-http.json",
+    "sourceBeforeAfter": "Initial interaction run records seven exact source SHA-256 values, identical before/after; later geometry-only contrast fix checked separately against served assets."
+  },
+  "tests": {
+    "donor": "Three genuine Evidence objects; final path 16 declared actions plus navigation, all 17 steps complete. Stop sampled frame equality and resumed frame inequality independently checked.",
+    "recipient": "118 focused independent checks across 360/390/820/1440 PASS: prediction gate, Core ratios and speed projection, fixed Q and pressure, invalid/1000-char input, keyboard range, reduced motion, actual transform pause/resume, graph, assistance disclosure, source link, fresh problem and unrevealed reset. Zero Study requests/runtime/network failures. No full suite rerun claimed. Later distinct final composed delta: 8/8 PASS on actual WAV playback/fallback and fresh prediction focus; final 5414 contrast 7.215:1 on all four widths.",
+    "redGreenTransfer": "Independent recipient contrast RED at 3.656:1 caused by group opacity .72; author changed opacity to geometry only; independent live GREEN 7.215:1 at all four widths. Donor motion observation is a behavioral input, not a circuit reconstruction or scientific equivalence."
+  },
+  "comparison": {
+    "donor": "black canvas, menu examples, live state and anonymous canvas controls",
+    "recipientTarget": "existing paper/ink/sage/terracotta language, board-dominant fluid scene, explicit constraint and Core quantities, semantic keyboard controls",
+    "status": "Observed recipient public UI retains paper/ink/sage/terracotta and semantic controls. The quantitative model remains the existing Core; C transfer is implemented original mean-transport visualization and control semantics, not reused donor solver or assets."
+  },
+  "totalCost": {
+    "ownCliCaptureRequests": 4,
+    "ownEvidenceObjects": 3,
+    "invalidRequestBeforeBrowser": 1,
+    "ownProviderDurationMs": 37261,
+    "externalModelCalls": 0,
+    "newDependencies": 0,
+    "money": "NOT_MEASURED end-to-end; no paid model invocation/purchase/deploy performed",
+    "engineeringTime": "brief mission within assigned approximately 15-minute scope; no person-hours benchmark",
+    "remainingCost": "Recipient implementation and later independent review are separate activities, not included in donor capture duration; no model-provider cost measurement claimed."
+  }
+}

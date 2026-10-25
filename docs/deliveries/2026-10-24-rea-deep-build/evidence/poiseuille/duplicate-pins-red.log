@@ -1,0 +1,123 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-24/esegui-il-prossimo-mandato-operativo-di/work/ardesia/apps/web
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx (7 tests | 3 failed) 493ms
+   × declared passage rejects duplicate recording pins even when their joined text matches an ID 6ms
+   × declared passage rejects duplicate session pins even when their joined text matches an ID 1ms
+   × declared passage rejects duplicate object pins even when their joined text matches an ID 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/poiseuille-episode.test.tsx > declared passage rejects duplicate recording pins even when their joined text matches an ID
+AssertionError: expected { …(10) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "endEpoch": 2000,
+  "lessonId": "synthetic-room",
+  "objectRefs": [
+    {
+      "elementId": "synthetic-formula",
+      "label": "Il vincolo è Q",
+      "version": 2,
+    },
+  ],
+  "recordingId": "a,b",
+  "replayUrl": "http://127.0.0.1:5173/?vista=replay&at=2000&object=synthetic-formula&session=synthetic-session&sha=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&objectVersion=2&recording=a&recording=b#synthetic-room",
+  "schema": "ardesia.lesson-passage.v1",
+  "sessionId": "synthetic-session",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "startEpoch": 1000,
+  "workspaceId": "local-default",
+}
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx:150:58
+    148|   replay.searchParams.delete(pin); replay.searchParams.append(pin, "a"…
+    149|   changed.replayUrl = replay.href;
+    150|   expect(readPassageDescriptor(JSON.stringify(changed))).toBeNull();
+       |                                                          ^
+    151|   replay.searchParams.set(pin, "a,b"); changed.replayUrl = replay.href;
+    152|   expect(readPassageDescriptor(JSON.stringify(changed))).not.toBeNull(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/__tests__/poiseuille-episode.test.tsx > declared passage rejects duplicate session pins even when their joined text matches an ID
+AssertionError: expected { …(10) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "endEpoch": 2000,
+  "lessonId": "synthetic-room",
+  "objectRefs": [
+    {
+      "elementId": "synthetic-formula",
+      "label": "Il vincolo è Q",
+      "version": 2,
+    },
+  ],
+  "recordingId": "synthetic-recording",
+  "replayUrl": "http://127.0.0.1:5173/?vista=replay&at=2000&recording=synthetic-recording&object=synthetic-formula&sha=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&objectVersion=2&session=a&session=b#synthetic-room",
+  "schema": "ardesia.lesson-passage.v1",
+  "sessionId": "a,b",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "startEpoch": 1000,
+  "workspaceId": "local-default",
+}
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx:150:58
+    148|   replay.searchParams.delete(pin); replay.searchParams.append(pin, "a"…
+    149|   changed.replayUrl = replay.href;
+    150|   expect(readPassageDescriptor(JSON.stringify(changed))).toBeNull();
+       |                                                          ^
+    151|   replay.searchParams.set(pin, "a,b"); changed.replayUrl = replay.href;
+    152|   expect(readPassageDescriptor(JSON.stringify(changed))).not.toBeNull(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/__tests__/poiseuille-episode.test.tsx > declared passage rejects duplicate object pins even when their joined text matches an ID
+AssertionError: expected { …(10) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "endEpoch": 2000,
+  "lessonId": "synthetic-room",
+  "objectRefs": [
+    {
+      "elementId": "a,b",
+      "label": "Il vincolo è Q",
+      "version": 2,
+    },
+  ],
+  "recordingId": "synthetic-recording",
+  "replayUrl": "http://127.0.0.1:5173/?vista=replay&at=2000&recording=synthetic-recording&session=synthetic-session&sha=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&objectVersion=2&object=a&object=b#synthetic-room",
+  "schema": "ardesia.lesson-passage.v1",
+  "sessionId": "synthetic-session",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "startEpoch": 1000,
+  "workspaceId": "local-default",
+}
+
+ ❯ src/__tests__/poiseuille-episode.test.tsx:150:58
+    148|   replay.searchParams.delete(pin); replay.searchParams.append(pin, "a"…
+    149|   changed.replayUrl = replay.href;
+    150|   expect(readPassageDescriptor(JSON.stringify(changed))).toBeNull();
+       |                                                          ^
+    151|   replay.searchParams.set(pin, "a,b"); changed.replayUrl = replay.href;
+    152|   expect(readPassageDescriptor(JSON.stringify(changed))).not.toBeNull(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 4 passed (7)
+   Start at  15:23:47
+   Duration  1.98s (transform 337ms, setup 0ms, import 514ms, tests 493ms, environment 848ms)
