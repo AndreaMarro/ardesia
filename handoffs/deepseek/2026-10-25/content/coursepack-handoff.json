@@ -29,7 +29,7 @@
             "Distinguere modello ideale da misura",
             "Conservare segni e dominio delle formule"
           ],
-          "explanation": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Per una stima scegli esplicitamente la convenzione: qui una stima a una cifra significativa, senza far passare l’arrotondamento per precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine.",
+          "explanation": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Distingui arrotondamento a una cifra significativa e ordine di grandezza espresso come potenza di10. Qui per l’ordine di grandezza scegliamo la potenza più vicina sulla scala logaritmica:fra10^n e10^(n+1) la soglia è√10·10^n. La convenzione va dichiarata e non aggiunge precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine.",
           "workedExample": {
             "prompt": "Calcola (3,0·10^-3 m)(2,0·10^4 m).",
             "steps": [
@@ -58,7 +58,7 @@
             "Controlla la scala con un numero decimale"
           ],
           "recap": "Normalizzare una potenza non cambia il valore.",
-          "transcript": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Per una stima scegli esplicitamente la convenzione: qui una stima a una cifra significativa, senza far passare l’arrotondamento per precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine. Esempio: Calcola (3,0·10^-3 m)(2,0·10^4 m). Moltiplica coefficienti: 3·2=6. Somma esponenti: −3+4=1. Moltiplica unità: m·m=m². Risultato: 6,0·10^1 m² = 60 m².",
+          "transcript": "La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Distingui arrotondamento a una cifra significativa e ordine di grandezza espresso come potenza di10. Qui per l’ordine di grandezza scegliamo la potenza più vicina sulla scala logaritmica:fra10^n e10^(n+1) la soglia è√10·10^n. La convenzione va dichiarata e non aggiunge precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine. Esempio: Calcola (3,0·10^-3 m)(2,0·10^4 m). Moltiplica coefficienti: 3·2=6. Somma esponenti: −3+4=1. Moltiplica unità: m·m=m². Risultato: 6,0·10^1 m² = 60 m².",
           "scientificCounterchecks": [
             "Normalizzare una potenza non cambia il valore.",
             "0,003·20000=60.",
@@ -831,9 +831,9 @@
           "sourcePages": [
             2
           ],
-          "prompt": "Stima 4,8·10^3 a una cifra significativa, dichiarando che non è un dato più preciso.",
-          "answer": "5·10^3; l’arrotondamento non aggiunge precisione sperimentale.",
-          "feedback": "5·10^3; l’arrotondamento non aggiunge precisione sperimentale.",
+          "prompt": "Determina l’ordine di grandezza di4,8·10^3 scegliendo la potenza di10 più vicina sulla scala logaritmica:la soglia fra10^n e10^(n+1) è√10·10^n.",
+          "answer": "10^4,poiché4,8>√10≈3,162. È una convenzione dichiarata per l’ordine di grandezza;arrotondare a una cifra significativa darebbe invece5·10^3.",
+          "feedback": "10^4,poiché4,8>√10≈3,162. È una convenzione dichiarata per l’ordine di grandezza;arrotondare a una cifra significativa darebbe invece5·10^3.",
           "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
           "assessmentType": "original_short_answer_review_item",
           "scientificStatus": "AI_CHECKED",
@@ -983,9 +983,9 @@
           "sourcePages": [
             2
           ],
-          "prompt": "Per lo stesso triangolo, il cateto adiacente vale4. Quanto vale il coseno?",
-          "answer": "4/5.",
-          "feedback": "4/5.",
+          "prompt": "Un triangolo rettangolo ha ipotenusa5 e cateto adiacente4 rispetto all’angolo considerato. Quanto vale il coseno?",
+          "answer": "4/5,rapporto fra cateto adiacente e ipotenusa.",
+          "feedback": "4/5,rapporto fra cateto adiacente e ipotenusa.",
           "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
           "assessmentType": "original_short_answer_review_item",
           "scientificStatus": "AI_CHECKED",
@@ -1903,7 +1903,7 @@
           "itemId": "final-U1-01.03",
           "objectiveId": "U1-01.03",
           "lessonId": "ds-2026-u1-01",
-          "feedback": "5·10^3; l’arrotondamento non aggiunge precisione sperimentale."
+          "feedback": "10^4,poiché4,8>√10≈3,162. È una convenzione dichiarata per l’ordine di grandezza;arrotondare a una cifra significativa darebbe invece5·10^3."
         },
         {
           "itemId": "final-U1-02.01",
@@ -1951,7 +1951,7 @@
           "itemId": "final-U1-03.02",
           "objectiveId": "U1-03.02",
           "lessonId": "ds-2026-u1-03",
-          "feedback": "4/5."
+          "feedback": "4/5,rapporto fra cateto adiacente e ipotenusa."
         },
         {
           "itemId": "final-U1-03.03",
@@ -6573,7 +6573,7 @@
             "Distinguere modello ideale da misura",
             "Conservare segni e dominio delle formule"
           ],
-          "explanation": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità.",
+          "explanation": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità.",
           "workedExample": {
             "prompt": "Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto.",
             "steps": [
@@ -6602,7 +6602,7 @@
             "Inverti l’ordine soltanto quando passi aλ"
           ],
           "recap": "Nel vuoto la frequenza crescente corrisponde aλ decrescente.",
-          "transcript": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità. Esempio: Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto. Nel vuoto f eλ sono inversamente proporzionali. Frequenza: microonde<infrarosso<raggiX. Lunghezza: raggiX<infrarosso<microonde. Risultato: Ordini opposti per frequenza e lunghezza d’onda.",
+          "transcript": "Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità. Esempio: Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto. Nel vuoto f eλ sono inversamente proporzionali. Frequenza: microonde<infrarosso<raggiX. Lunghezza: raggiX<infrarosso<microonde. Risultato: Ordini opposti per frequenza e lunghezza d’onda.",
           "scientificCounterchecks": [
             "Nel vuoto la frequenza crescente corrisponde aλ decrescente.",
             "λ1f1=λ2f2=c.",
@@ -7216,9 +7216,9 @@
           "sourcePages": [
             3
           ],
-          "prompt": "Un oscillatore armonico ritorna allo stesso stato dopo0,2s. Questo tempo che cosa rappresenta?",
-          "answer": "Il periodo del moto,se è l’intervallo minimo di ripetizione.",
-          "feedback": "Il periodo del moto,se è l’intervallo minimo di ripetizione.",
+          "prompt": "Per un oscillatore armonico l’intervallo positivo minimo per tornare allo stesso stato di posizione e velocità è0,2s. Che cosa rappresenta?",
+          "answer": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.",
+          "feedback": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.",
           "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
           "assessmentType": "original_short_answer_review_item",
           "scientificStatus": "AI_CHECKED",
@@ -7824,9 +7824,9 @@
           "sourcePages": [
             5
           ],
-          "prompt": "L’emissioneγ modifica necessariamente il numero di protoni del nucleo?",
-          "answer": "No:è una transizione energetica senza cambiamento diZ oA.",
-          "feedback": "No:è una transizione energetica senza cambiamento diZ oA.",
+          "prompt": "Confronta raggiγ e luce visibile nel consueto spettro per frequenza e lunghezza d’onda nel vuoto. Perché la distinzioneX/γ non è soltanto una soglia energetica universale?",
+          "answer": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.",
+          "feedback": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.",
           "hint": "Identifica sistema, modello, unità e quantità mantenute costanti prima di rispondere.",
           "assessmentType": "original_short_answer_review_item",
           "scientificStatus": "AI_CHECKED",
@@ -8391,7 +8391,7 @@
           "itemId": "final-U4-01.03",
           "objectiveId": "U4-01.03",
           "lessonId": "ds-2026-u4-01",
-          "feedback": "Il periodo del moto,se è l’intervallo minimo di ripetizione."
+          "feedback": "Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo."
         },
         {
           "itemId": "final-U4-01.04",
@@ -8583,7 +8583,7 @@
           "itemId": "final-U7-02.07",
           "objectiveId": "U7-02.07",
           "lessonId": "ds-2026-u7-02",
-          "feedback": "No:è una transizione energetica senza cambiamento diZ oA."
+          "feedback": "Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi."
         },
         {
           "itemId": "final-U7-02.08",

@@ -12,7 +12,7 @@ def D(family,text):
 D('U1-01','''
 Normalizza 0,00072 usando una sola cifra non nulla prima della virgola.|7,2·10^-4.
 Calcola (8·10^5)/(2·10^2).|4·10^3; nel rapporto gli esponenti si sottraggono.
-Stima 4,8·10^3 a una cifra significativa, dichiarando che non è un dato più preciso.|5·10^3; l’arrotondamento non aggiunge precisione sperimentale.
+Determina l’ordine di grandezza di4,8·10^3 scegliendo la potenza di10 più vicina sulla scala logaritmica:la soglia fra10^n e10^(n+1) è√10·10^n.|10^4,poiché4,8>√10≈3,162. È una convenzione dichiarata per l’ordine di grandezza;arrotondare a una cifra significativa darebbe invece5·10^3.
 ''')
 D('U1-02','''
 Una formula somma una velocità e un’accelerazione senza un fattore temporale. È dimensionalmente omogenea?|No: L/T e L/T² non sono dimensioni sommabili.
@@ -24,7 +24,7 @@ Un valore di energia negativo rende l’energia una grandezza vettoriale?|No: lo
 ''')
 D('U1-03','''
 Un triangolo rettangolo ha cateto opposto3 e ipotenusa5. Quanto vale il seno dell’angolo considerato?|3/5; rapporto adimensionale.
-Per lo stesso triangolo, il cateto adiacente vale4. Quanto vale il coseno?|4/5.
+Un triangolo rettangolo ha ipotenusa5 e cateto adiacente4 rispetto all’angolo considerato. Quanto vale il coseno?|4/5,rapporto fra cateto adiacente e ipotenusa.
 Quanto vale la tangente nell’angolo con seno3/5 e coseno4/5?|3/4; tangente=seno/coseno.
 Un vettore di modulo7N è a90° da+x. Quali componenti?|Fx=0N,Fy=7N; l’angolo è rispetto all’assexpositivo.
 ''')
@@ -118,7 +118,7 @@ Fra due gocce dello stesso liquido con raggi3mm e6mm,quale ha maggior salto di p
 D('U4-01','''
 Un’onda sonora può propagarsi nel vuoto del modello classico elementare?|No:è meccanica e richiede mezzo materiale.
 Una cresta attraversa una corda:gli elementi della corda devono viaggiare con essa fino all’estremo?|No:oscillano localmente mentre perturbazione ed energia si propagano.
-Un oscillatore armonico ritorna allo stesso stato dopo0,2s. Questo tempo che cosa rappresenta?|Il periodo del moto,se è l’intervallo minimo di ripetizione.
+Per un oscillatore armonico l’intervallo positivo minimo per tornare allo stesso stato di posizione e velocità è0,2s. Che cosa rappresenta?|Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.
 Un oscillatore compie15cicli in3s. Qual èf?|5Hz.
 Se f=8Hz,quanto valeT?|0,125s.
 Per f=3Hz quale pulsazione?|6πrad/s,poichéω=2πf.
@@ -250,7 +250,7 @@ Fra infrarosso e ultravioletto quale regione si trova?|Visibile.
 Nel visibile,il violetto haλ maggiore o minore del rosso nel vuoto?|Minore.
 L’ultravioletto ha frequenze maggiori o minori del visibile?|Maggiori nel consueto ordinamento spettrale.
 Fra raggiX e microonde,quali hanno fotoni più energetici nel consueto spettro?|RaggiX,per frequenza maggiore.
-L’emissioneγ modifica necessariamente il numero di protoni del nucleo?|No:è una transizione energetica senza cambiamento diZ oA.
+Confronta raggiγ e luce visibile nel consueto spettro per frequenza e lunghezza d’onda nel vuoto. Perché la distinzioneX/γ non è soltanto una soglia energetica universale?|Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.
 Se la frequenza aumenta in vuoto,cosa accade aλ? Elenca l’ordine delle regioni a frequenza crescente.|λ diminuisce:radio,microonde,infrarosso,visibile,ultravioletto,X,gamma,con confini convenzionali e possibili sovrapposizioniX/γ.
 ''')
 D('U7-03','''

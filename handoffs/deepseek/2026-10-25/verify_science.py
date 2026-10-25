@@ -150,6 +150,7 @@ def verify_content():
       ('U7/power',1e12*2*1.602176634e-19,3.204353268e-7),('U7/beer',math.exp(-math.log(2)),.5),
       ('U7/decay',800*2**(-6/2),100),('U7/lens',1/(1/10-1/30),15),('U7/lens_virtual',1/(1/10-1/5),-10)]
     for name,a,e in cases:check('arithmetic/'+name,a,e)
+    check('arithmetic/U1/order_of_magnitude_log_convention',round(math.log10(4.8e3)),4)
     diagnostics=json.loads((HERE/'content/diagnostic-12.json').read_text())['courses']
     expected_diagnostics={
       'unit-speed':(18/3.6,'m/s'),'vector-sum':('(2,5)','N'),'newton':(10/4,'m/s²'),

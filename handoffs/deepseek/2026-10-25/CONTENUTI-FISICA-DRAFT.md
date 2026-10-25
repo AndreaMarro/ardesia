@@ -10,7 +10,7 @@ Famiglie: 9; sotto-obiettivi con domanda finale: 52; stato DRAFT.
 
 ## U1-01 - Notazione scientifica
 
-La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Per una stima scegli esplicitamente la convenzione: qui una stima a una cifra significativa, senza far passare l’arrotondamento per precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine.
+La notazione scientifica scrive un numero non nullo come a·10^n con 1≤|a|<10 e n intero. Nei prodotti si moltiplicano i coefficienti e si sommano gli esponenti; nei rapporti si dividono i coefficienti e si sottraggono gli esponenti. Per somme e differenze occorre prima esprimere i termini con la stessa potenza di dieci. Un esponente negativo non rende negativo il numero. Distingui arrotondamento a una cifra significativa e ordine di grandezza espresso come potenza di10. Qui per l’ordine di grandezza scegliamo la potenza più vicina sulla scala logaritmica:fra10^n e10^(n+1) la soglia è√10·10^n. La convenzione va dichiarata e non aggiunge precisione strumentale. Lo zero non ha esponente normalizzato unico. Mantieni le unità durante il calcolo e arrotonda soltanto alla fine.
 
 **Esempio svolto.** Calcola (3,0·10^-3 m)(2,0·10^4 m).
 
@@ -252,9 +252,9 @@ Risposta proposta: 7,2·10^-4.
 
 Risposta proposta: 4·10^3; nel rapporto gli esponenti si sottraggono.
 
-**U1-01.03** Stima 4,8·10^3 a una cifra significativa, dichiarando che non è un dato più preciso.
+**U1-01.03** Determina l’ordine di grandezza di4,8·10^3 scegliendo la potenza di10 più vicina sulla scala logaritmica:la soglia fra10^n e10^(n+1) è√10·10^n.
 
-Risposta proposta: 5·10^3; l’arrotondamento non aggiunge precisione sperimentale.
+Risposta proposta: 10^4,poiché4,8>√10≈3,162. È una convenzione dichiarata per l’ordine di grandezza;arrotondare a una cifra significativa darebbe invece5·10^3.
 
 **U1-02.01** Una formula somma una velocità e un’accelerazione senza un fattore temporale. È dimensionalmente omogenea?
 
@@ -284,9 +284,9 @@ Risposta proposta: No: lo scalare può avere segno; un vettore richiede anche di
 
 Risposta proposta: 3/5; rapporto adimensionale.
 
-**U1-03.02** Per lo stesso triangolo, il cateto adiacente vale4. Quanto vale il coseno?
+**U1-03.02** Un triangolo rettangolo ha ipotenusa5 e cateto adiacente4 rispetto all’angolo considerato. Quanto vale il coseno?
 
-Risposta proposta: 4/5.
+Risposta proposta: 4/5,rapporto fra cateto adiacente e ipotenusa.
 
 **U1-03.03** Quanto vale la tangente nell’angolo con seno3/5 e coseno4/5?
 
@@ -1428,7 +1428,7 @@ Un’onda elettromagnetica piana nel vuoto ha campi elettrico e magnetico oscill
 
 ## U7-02 - Spettro
 
-Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità.
+Lo spettro elettromagnetico ordina le radiazioni per frequenza o lunghezza d’onda. A frequenza crescente nel vuoto si incontrano radio,microonde,infrarosso,visibile,ultravioletto,raggiX,gamma; nello stesso ordine la lunghezza d’onda diminuisce poichéλ=c/f. Le regioni hanno confini convenzionali e alcuni intervalli possono sovrapporsi a seconda del meccanismo di emissione, soprattuttoX e gamma. I raggiX derivano da processi elettronici o frenamento di elettroni; i gamma da transizioni nucleari nel perimetro elementare considerato:non una soglia energetica universale che separi tutte le origini. Il colore nel visibile corrisponde alla frequenza percepita in condizioni usuali, ma non esaurisce intensità e composizione spettrale. La classificazione per regione non è da sola una valutazione clinica di rischio: contano energia,dose e interazione. Non usare una frequenza come se fosse una velocità.
 
 **Esempio svolto.** Ordina infrarosso,raggiX e microonde per frequenza crescente e per lunghezza d’onda crescente nel vuoto.
 
@@ -1592,9 +1592,9 @@ Risposta proposta: No:è meccanica e richiede mezzo materiale.
 
 Risposta proposta: No:oscillano localmente mentre perturbazione ed energia si propagano.
 
-**U4-01.03** Un oscillatore armonico ritorna allo stesso stato dopo0,2s. Questo tempo che cosa rappresenta?
+**U4-01.03** Per un oscillatore armonico l’intervallo positivo minimo per tornare allo stesso stato di posizione e velocità è0,2s. Che cosa rappresenta?
 
-Risposta proposta: Il periodo del moto,se è l’intervallo minimo di ripetizione.
+Risposta proposta: Il periodoT=0,2s;la condizione di minimo esclude multipli interi del periodo.
 
 **U4-01.04** Un oscillatore compie15cicli in3s. Qual èf?
 
@@ -1720,9 +1720,9 @@ Risposta proposta: Maggiori nel consueto ordinamento spettrale.
 
 Risposta proposta: RaggiX,per frequenza maggiore.
 
-**U7-02.07** L’emissioneγ modifica necessariamente il numero di protoni del nucleo?
+**U7-02.07** Confronta raggiγ e luce visibile nel consueto spettro per frequenza e lunghezza d’onda nel vuoto. Perché la distinzioneX/γ non è soltanto una soglia energetica universale?
 
-Risposta proposta: No:è una transizione energetica senza cambiamento diZ oA.
+Risposta proposta: Iγ hanno frequenza tipicamente maggiore e lunghezza d’onda minore del visibile. La distinzioneX/γ riguarda anche l’origine:elettronica o frenamento perX,transizioni nucleari perγ;gli intervalli energetici possono sovrapporsi.
 
 **U7-02.08** Se la frequenza aumenta in vuoto,cosa accade aλ? Elenca l’ordine delle regioni a frequenza crescente.
 
