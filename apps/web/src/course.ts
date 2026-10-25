@@ -1,11 +1,11 @@
 import type { Edition, StudyMe } from "./api";
-export type LabActivityId = "taylor-exp-v1" | "poiseuille-v1";
+export type LabActivityId = "taylor-exp-v1" | "poiseuille-v1" | "hooke-v1" | "ideal-gas-v1" | "dc-resistance-v1" | "harmonic-wave-v1" | "kinematics-v1";
 
 /** The renderer has two explicit capabilities, not a default physics solver. */
 export function baseActivity(edition: Edition): LabActivityId | null {
   if ("entryActivityId" in edition) {
     const id = edition.entryActivityId;
-    return id === "taylor-exp-v1" || id === "poiseuille-v1" ? id : null;
+    return ["taylor-exp-v1","poiseuille-v1","hooke-v1","ideal-gas-v1","dc-resistance-v1","harmonic-wave-v1","kinematics-v1"].includes(id||"") ? id as LabActivityId : null;
   }
   // Compatibility with descriptors emitted before entryActivityId existed.
   // Unknown packs, missing versions and future versions must fail closed.

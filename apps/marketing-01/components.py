@@ -35,7 +35,7 @@ def course_card(course, number, contact, demo_url=None, experience_url=None):
                     units=text(' + '.join(course['unitIds'])), title=text(course['title']),
                     intro=text(course['intro']), fit=text(course['fit']),
                     topics=items(course['topics']), outcomes=items(course['outcomes']),
-                    demo_link=(f'<a class="experience-teaser" href="{text(experience_url)}">Entra nella lezione interattiva {icon("arrow")}</a>' if experience_url else '') + (f'<a class="example-teaser" href="{text(demo_url)}"><span class="cta-label">Guarda un esercizio spiegato</span> {icon("arrow")}</a>' if demo_url else ''),
+                    demo_link=(f'<a class="experience-teaser" href="{text(experience_url)}">Apri il percorso in costruzione {icon("arrow")}</a>' if experience_url else '') + (f'<a class="example-teaser" href="{text(demo_url)}"><span class="cta-label">Guarda un esercizio spiegato</span> {icon("arrow")}</a>' if demo_url else ''),
                     contact_url=text(contact), external=icon('external'), chevron=icon('chevron'))
 
 

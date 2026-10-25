@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "node:path";
 
 // Separate entry: the public artifact does not mount App or its private routes.
 export default defineConfig({
@@ -16,6 +17,6 @@ export default defineConfig({
       },
     },
   ],
-  resolve: { dedupe: ["react", "react-dom"] },
+  resolve: { dedupe: ["react", "react-dom"], alias: process.env.ARDESIA_COURSE_REVIEW_DATA ? [{find:"./generated/courseLearningData",replacement:path.resolve(process.env.ARDESIA_COURSE_REVIEW_DATA)}] : [] },
   build: { outDir: "dist-public", emptyOutDir: true },
 });

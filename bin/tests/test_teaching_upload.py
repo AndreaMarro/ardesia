@@ -52,3 +52,15 @@ class PublicUploadTests(unittest.TestCase):
             (root / 'preview-manifest.json').write_text(json.dumps(receipt))
             with self.assertRaisesRegex(ValueError, 'unreleased_editorial_or_private_content'):
                 upload.prepare(root)
+
+    def test_full_editorial_courses_cannot_be_uploaded_as_the_public_demo(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root, public, receipt = self.fixture(directory)
+            (public/'courses-manifest.json').write_text('{"releaseScope":"PRIVATE_EDITORIAL_REVIEW"}')
+            receipt['publicAssetsSha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in public.iterdir()}
+            (root/'preview-manifest.json').write_text(json.dumps(receipt))
+            with self.assertRaisesRegex(ValueError,'protected_editorial_preview_required'):
+                upload.prepare(root)
+            body=upload.prepare(root,True)['requestBody']
+            self.assertNotIn('target',body)
+            self.assertEqual(body['meta']['scope'],'PRIVATE_EDITORIAL_REVIEW')

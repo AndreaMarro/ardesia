@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
-    "build:public": "python3 ../../bin/web/export_public_preview.py --check && tsc -b && vite build --config vite.public.config.ts",
+    "build:public": "python3 ../../bin/web/export_public_preview.py --check && python3 ../../bin/web/export_course_learning.py --check && tsc -b && vite build --config vite.public.config.ts",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "e2e": "playwright test",

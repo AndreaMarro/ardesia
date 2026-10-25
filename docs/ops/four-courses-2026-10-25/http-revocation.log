@@ -1,0 +1,150 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_course_content_is_edition_authorized_and_receipts_use_same_core[strumenti-meccanica] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-54/test_course_content_is_edition0')
+path = 'strumenti-meccanica'
+
+    @pytest.mark.parametrize('path',PATHS)
+    def test_course_content_is_edition_authorized_and_receipts_use_same_core(tmp_path,path):
+     store,tutor,student,peer,other=setup_store(tmp_path)
+     store.create_edition(tutor,'new-course',course_id=path,pack_id='sf-'+path+'-v1',pack_version=1)
+     store.add_test_member(tutor,'new-course',student.id)
+     with TestClient(create_app(store.path,demo=True)) as client:
+      assert client.get('/study/course-learning?editionId=new-course').status_code==401
+      client.post('/study/session',json={'token':store.issue_session(peer)})
+      assert client.get('/study/course-learning?editionId=new-course').status_code==403
+      token=store.issue_session(student)
+      client.post('/study/session',json={'token':token})
+      r=client.get('/study/course-learning?editionId=new-course');assert r.status_code==200,r.text
+      course=r.json()['course'];assert course['pathId']==path and course['completedObjectives']==0
+      lesson=next(l for l in course['lessons'] if l.get('activityId'))
+      assert lesson['modelCases'] and lesson['lessonRef']['sha256']
+      body={'editionId':'new-course','activityId':lesson['activityId'],'activityParameters':lesson['practice']['parameters'],'text':'Previsione ragionata sintetica.'}
+      response=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert response.status_code==200,response.text
+      retry=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert retry.status_code==200 and retry.json()==response.json()
+      assert response.json()['courseContext']['packId']==course['packId']
+      store.revoke_session(token)
+>     assert client.get('/study/course-learning?editionId=new-course').status_code==401
+E     AssertionError: assert 200 == 401
+E      +  where 200 = <Response [200 OK]>.status_code
+E      +    where <Response [200 OK]> = get('/study/course-learning?editionId=new-course')
+E      +      where get = <starlette.testclient.TestClient object at 0x109f2a270>.get
+
+services/study-api/tests/test_four_courses_http.py:29: AssertionError
+_ test_course_content_is_edition_authorized_and_receipts_use_same_core[fluidi-termodinamica] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-54/test_course_content_is_edition1')
+path = 'fluidi-termodinamica'
+
+    @pytest.mark.parametrize('path',PATHS)
+    def test_course_content_is_edition_authorized_and_receipts_use_same_core(tmp_path,path):
+     store,tutor,student,peer,other=setup_store(tmp_path)
+     store.create_edition(tutor,'new-course',course_id=path,pack_id='sf-'+path+'-v1',pack_version=1)
+     store.add_test_member(tutor,'new-course',student.id)
+     with TestClient(create_app(store.path,demo=True)) as client:
+      assert client.get('/study/course-learning?editionId=new-course').status_code==401
+      client.post('/study/session',json={'token':store.issue_session(peer)})
+      assert client.get('/study/course-learning?editionId=new-course').status_code==403
+      token=store.issue_session(student)
+      client.post('/study/session',json={'token':token})
+      r=client.get('/study/course-learning?editionId=new-course');assert r.status_code==200,r.text
+      course=r.json()['course'];assert course['pathId']==path and course['completedObjectives']==0
+      lesson=next(l for l in course['lessons'] if l.get('activityId'))
+      assert lesson['modelCases'] and lesson['lessonRef']['sha256']
+      body={'editionId':'new-course','activityId':lesson['activityId'],'activityParameters':lesson['practice']['parameters'],'text':'Previsione ragionata sintetica.'}
+      response=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert response.status_code==200,response.text
+      retry=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert retry.status_code==200 and retry.json()==response.json()
+      assert response.json()['courseContext']['packId']==course['packId']
+      store.revoke_session(token)
+>     assert client.get('/study/course-learning?editionId=new-course').status_code==401
+E     AssertionError: assert 200 == 401
+E      +  where 200 = <Response [200 OK]>.status_code
+E      +    where <Response [200 OK]> = get('/study/course-learning?editionId=new-course')
+E      +      where get = <starlette.testclient.TestClient object at 0x10a272d50>.get
+
+services/study-api/tests/test_four_courses_http.py:29: AssertionError
+_ test_course_content_is_edition_authorized_and_receipts_use_same_core[elettricita-magnetismo] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-54/test_course_content_is_edition2')
+path = 'elettricita-magnetismo'
+
+    @pytest.mark.parametrize('path',PATHS)
+    def test_course_content_is_edition_authorized_and_receipts_use_same_core(tmp_path,path):
+     store,tutor,student,peer,other=setup_store(tmp_path)
+     store.create_edition(tutor,'new-course',course_id=path,pack_id='sf-'+path+'-v1',pack_version=1)
+     store.add_test_member(tutor,'new-course',student.id)
+     with TestClient(create_app(store.path,demo=True)) as client:
+      assert client.get('/study/course-learning?editionId=new-course').status_code==401
+      client.post('/study/session',json={'token':store.issue_session(peer)})
+      assert client.get('/study/course-learning?editionId=new-course').status_code==403
+      token=store.issue_session(student)
+      client.post('/study/session',json={'token':token})
+      r=client.get('/study/course-learning?editionId=new-course');assert r.status_code==200,r.text
+      course=r.json()['course'];assert course['pathId']==path and course['completedObjectives']==0
+      lesson=next(l for l in course['lessons'] if l.get('activityId'))
+      assert lesson['modelCases'] and lesson['lessonRef']['sha256']
+      body={'editionId':'new-course','activityId':lesson['activityId'],'activityParameters':lesson['practice']['parameters'],'text':'Previsione ragionata sintetica.'}
+      response=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert response.status_code==200,response.text
+      retry=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert retry.status_code==200 and retry.json()==response.json()
+      assert response.json()['courseContext']['packId']==course['packId']
+      store.revoke_session(token)
+>     assert client.get('/study/course-learning?editionId=new-course').status_code==401
+E     AssertionError: assert 200 == 401
+E      +  where 200 = <Response [200 OK]>.status_code
+E      +    where <Response [200 OK]> = get('/study/course-learning?editionId=new-course')
+E      +      where get = <starlette.testclient.TestClient object at 0x10a07fd90>.get
+
+services/study-api/tests/test_four_courses_http.py:29: AssertionError
+_ test_course_content_is_edition_authorized_and_receipts_use_same_core[onde-ottica-radiazioni] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-54/test_course_content_is_edition3')
+path = 'onde-ottica-radiazioni'
+
+    @pytest.mark.parametrize('path',PATHS)
+    def test_course_content_is_edition_authorized_and_receipts_use_same_core(tmp_path,path):
+     store,tutor,student,peer,other=setup_store(tmp_path)
+     store.create_edition(tutor,'new-course',course_id=path,pack_id='sf-'+path+'-v1',pack_version=1)
+     store.add_test_member(tutor,'new-course',student.id)
+     with TestClient(create_app(store.path,demo=True)) as client:
+      assert client.get('/study/course-learning?editionId=new-course').status_code==401
+      client.post('/study/session',json={'token':store.issue_session(peer)})
+      assert client.get('/study/course-learning?editionId=new-course').status_code==403
+      token=store.issue_session(student)
+      client.post('/study/session',json={'token':token})
+      r=client.get('/study/course-learning?editionId=new-course');assert r.status_code==200,r.text
+      course=r.json()['course'];assert course['pathId']==path and course['completedObjectives']==0
+      lesson=next(l for l in course['lessons'] if l.get('activityId'))
+      assert lesson['modelCases'] and lesson['lessonRef']['sha256']
+      body={'editionId':'new-course','activityId':lesson['activityId'],'activityParameters':lesson['practice']['parameters'],'text':'Previsione ragionata sintetica.'}
+      response=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert response.status_code==200,response.text
+      retry=client.post('/study/submissions',json=body,headers={'Idempotency-Key':'four-course-attempt'})
+      assert retry.status_code==200 and retry.json()==response.json()
+      assert response.json()['courseContext']['packId']==course['packId']
+      store.revoke_session(token)
+>     assert client.get('/study/course-learning?editionId=new-course').status_code==401
+E     AssertionError: assert 200 == 401
+E      +  where 200 = <Response [200 OK]>.status_code
+E      +    where <Response [200 OK]> = get('/study/course-learning?editionId=new-course')
+E      +      where get = <starlette.testclient.TestClient object at 0x10a08b490>.get
+
+services/study-api/tests/test_four_courses_http.py:29: AssertionError
+=============================== warnings summary ===============================
+../ardesia-r2-20261024/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /private/tmp/ardesia-r2-20261024/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_four_courses_http.py::test_course_content_is_edition_authorized_and_receipts_use_same_core[strumenti-meccanica]
+FAILED services/study-api/tests/test_four_courses_http.py::test_course_content_is_edition_authorized_and_receipts_use_same_core[fluidi-termodinamica]
+FAILED services/study-api/tests/test_four_courses_http.py::test_course_content_is_edition_authorized_and_receipts_use_same_core[elettricita-magnetismo]
+FAILED services/study-api/tests/test_four_courses_http.py::test_course_content_is_edition_authorized_and_receipts_use_same_core[onde-ottica-radiazioni]
+4 failed, 1 warning in 1.26s

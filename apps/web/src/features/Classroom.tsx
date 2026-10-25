@@ -20,6 +20,8 @@ import { QuestionBankReview } from "../components/QuestionBankReview";
 import { PoiseuilleEpisode } from "../components/PoiseuilleEpisode";
 const ScalarExperienceEpisode = lazy(() => import("../components/ScalarExperienceEpisode").then(module => ({default: module.ScalarExperienceEpisode})));
 
+const CourseLearningWorkspace=lazy(()=>import('../components/CourseLearningWorkspace').then(m=>({default:m.CourseLearningWorkspace})));
+
 type Props = {
   me: StudyMe;
   data: Workspace;
@@ -88,7 +90,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
@@ -180,10 +182,10 @@ function ClassroomScope({
               <SubmissionPanel
                 key={`${me.id}:${data.edition.id}`}
                 editionId={data.edition.id}
-                activityId={activityId}
-                activityParameters={commit?.activityId === activityId ? commit.parameters : undefined}
-                prediction={commit?.activityId === activityId ? commit.prediction : undefined}
-                activityReady={commit?.activityId === activityId}
+                activityId={commit?.activityId||activityId}
+                activityParameters={commit?.parameters}
+                prediction={commit?.prediction}
+                activityReady={commit!==null}
                 requireProcedure
                 me={me}
                 source={source}
