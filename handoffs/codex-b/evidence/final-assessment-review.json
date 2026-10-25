@@ -1,0 +1,727 @@
+{
+  "observedAt": "2026-10-25T21:52:25.933188+00:00",
+  "reviewer": "Codex B, AI independent arithmetic/text review",
+  "sources": [
+    {
+      "path": "/private/tmp/ardesia-a-four-courses-20261025/packages/engine/lessonos/study/content/sf-elettricita-magnetismo-v1.json",
+      "sha256": "ef74df9da73459d489c55d6491814bfd0487cf857a9f391f8b023ad29ea57b36",
+      "items": 33
+    },
+    {
+      "path": "/private/tmp/ardesia-a-four-courses-20261025/packages/engine/lessonos/study/content/sf-fluidi-termodinamica-v1.json",
+      "sha256": "a64265cb6f6e7427919631c2fd22e265112aad54360373d16f5351baf48d485d",
+      "items": 57
+    },
+    {
+      "path": "/private/tmp/ardesia-a-four-courses-20261025/packages/engine/lessonos/study/content/sf-onde-ottica-radiazioni-v1.json",
+      "sha256": "1beca5ae447245c615568c0a306f9b39a41fee53a7a50a3d3fc6dcb1c797f4d5",
+      "items": 58
+    },
+    {
+      "path": "/private/tmp/ardesia-a-four-courses-20261025/packages/engine/lessonos/study/content/sf-strumenti-meccanica-v1.json",
+      "sha256": "32c10d0011a991510124047a822a591844a3641bef8beae2d7b27e00cbfdee54",
+      "items": 52
+    }
+  ],
+  "reviewedItems": 200,
+  "numericRecomputations": 83,
+  "numericRows": [
+    {
+      "objectiveId": "U1-01.02",
+      "independentExpression": "(8e5)/(2e2)",
+      "result": 4000.0,
+      "unit": "1",
+      "answerSnapshot": "4·10^3; nel rapporto gli esponenti si sottraggono.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-02.03",
+      "independentExpression": "250 * 1e-6",
+      "result": 0.00025,
+      "unit": "m3",
+      "answerSnapshot": "2,5·10^-4m³; 1mL=10^-6m³.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-03.01",
+      "independentExpression": "3/5",
+      "result": 0.6,
+      "unit": "1",
+      "answerSnapshot": "3/5; rapporto adimensionale.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-03.02",
+      "independentExpression": "4/5",
+      "result": 0.8,
+      "unit": "1",
+      "answerSnapshot": "4/5.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-03.03",
+      "independentExpression": "(3/5)/(4/5)",
+      "result": 0.75,
+      "unit": "1",
+      "answerSnapshot": "3/4; tangente=seno/coseno.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-04.01",
+      "independentExpression": "sqrt((-5)^2+12^2)",
+      "result": 13.0,
+      "unit": "m",
+      "answerSnapshot": "13m; il segno di una componente non rende negativo il modulo.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-04.04",
+      "independentExpression": "2*(-1)+1*2",
+      "result": 0.0,
+      "unit": "m2",
+      "answerSnapshot": "0m²: i vettori sono ortogonali.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U1-04.05",
+      "independentExpression": "1*3-0*0",
+      "result": 3.0,
+      "unit": "N2",
+      "answerSnapshot": "+3N²; scambiando l’ordine sarebbe−3N².",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.01",
+      "independentExpression": "5-(-2)",
+      "result": 7.0,
+      "unit": "m",
+      "answerSnapshot": "+7m; il cammino può essere maggiore se vi sono inversioni.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.03",
+      "independentExpression": "12/4",
+      "result": 3.0,
+      "unit": "m/s",
+      "answerSnapshot": "3m/s; non coincide in questo caso.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.04",
+      "independentExpression": "(5-(-1))/3",
+      "result": 2.0,
+      "unit": "m/s2",
+      "answerSnapshot": "2m/s²; se l’accelerazione è costante.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.05",
+      "independentExpression": "-3+2*5",
+      "result": 7.0,
+      "unit": "m",
+      "answerSnapshot": "7m.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.06",
+      "independentExpression": "1+1*2+2*2^2/2",
+      "result": 7.0,
+      "unit": "m",
+      "answerSnapshot": "x=7m;v=5m/s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.08",
+      "independentExpression": "8*(2*6/10)",
+      "result": 9.6,
+      "unit": "m",
+      "answerSnapshot": "1,2s e9,6m; il tempo verticale è2·6/10.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-01.09",
+      "independentExpression": "2^2/.5",
+      "result": 8.0,
+      "unit": "m/s2",
+      "answerSnapshot": "8m/s² verso il centro, non tangente.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.02",
+      "independentExpression": "9/3",
+      "result": 3.0,
+      "unit": "m/s2",
+      "answerSnapshot": "(3,0)m/s².",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.05",
+      "independentExpression": ".5*9.8",
+      "result": 4.9,
+      "unit": "N",
+      "answerSnapshot": "4,9N; l’attrazione gravitazionale puntiforme diventa1/4.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.06",
+      "independentExpression": "10+4",
+      "result": 14.0,
+      "unit": "N",
+      "answerSnapshot": "14N; normale non sempre uguale al solo peso.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.07",
+      "independentExpression": ".3*10",
+      "result": 3.0,
+      "unit": "N",
+      "answerSnapshot": "2N nel primo caso;3N nel secondo modello.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.08",
+      "independentExpression": "1*10",
+      "result": 10.0,
+      "unit": "N",
+      "answerSnapshot": "10N lungo il filo verso il punto di sospensione sul corpo.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-02.09",
+      "independentExpression": "-50*.04",
+      "result": -2.0,
+      "unit": "N",
+      "answerSnapshot": "−2N; modulo2N.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-03.02",
+      "independentExpression": "90/3",
+      "result": 30.0,
+      "unit": "W",
+      "answerSnapshot": "30W.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-03.03",
+      "independentExpression": "10-6",
+      "result": 4.0,
+      "unit": "J",
+      "answerSnapshot": "4J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-03.05",
+      "independentExpression": "40*.1^2/2",
+      "result": 0.20000000000000004,
+      "unit": "J",
+      "answerSnapshot": "20J;0,2J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-03.06",
+      "independentExpression": "3+9-5",
+      "result": 7.0,
+      "unit": "J",
+      "answerSnapshot": "7J; l’energia meccanica totale resta12J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-04.01",
+      "independentExpression": ".4*(-3)",
+      "result": -1.2000000000000002,
+      "unit": "kg m/s",
+      "answerSnapshot": "−1,2kg m/s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-04.02",
+      "independentExpression": "-6*.2",
+      "result": -1.2000000000000002,
+      "unit": "N s",
+      "answerSnapshot": "−1,2N s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-04.04",
+      "independentExpression": "(4+0)/2",
+      "result": 2.0,
+      "unit": "m/s",
+      "answerSnapshot": "2m/s; non si conservaK,parte diventa energia interna.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-05.01",
+      "independentExpression": "(2*1+2*5)/(2+2)",
+      "result": 3.0,
+      "unit": "m",
+      "answerSnapshot": "xCM=3m.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-05.02",
+      "independentExpression": "10/5",
+      "result": 2.0,
+      "unit": "m/s2",
+      "answerSnapshot": "2m/s² nella direzione della risultante.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-05.04",
+      "independentExpression": "8*.25",
+      "result": 2.0,
+      "unit": "N m",
+      "answerSnapshot": "2N m.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U2-05.06",
+      "independentExpression": "8/.04",
+      "result": 200.0,
+      "unit": "N",
+      "answerSnapshot": "200N; un piccolo braccio richiede forza elevata.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-01.02",
+      "independentExpression": "16/.004",
+      "result": 4000.0,
+      "unit": "Pa",
+      "answerSnapshot": "4000Pa.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-01.03",
+      "independentExpression": "1.5/.002",
+      "result": 750.0,
+      "unit": "kg/m3",
+      "answerSnapshot": "750kg/m³.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-02.01",
+      "independentExpression": "800*10*.5",
+      "result": 4000.0,
+      "unit": "Pa",
+      "answerSnapshot": "4000Pa,da aggiungere alla pressione sulla superficie.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-02.02",
+      "independentExpression": "2000*.01",
+      "result": 20.0,
+      "unit": "N",
+      "answerSnapshot": "20N,per Pascal eF=ΔpA.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-02.03",
+      "independentExpression": ".002*900*10",
+      "result": 18.0,
+      "unit": "N",
+      "answerSnapshot": "18N verso l’alto.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-02.04",
+      "independentExpression": "750/1000",
+      "result": 0.75,
+      "unit": "1",
+      "answerSnapshot": "0,75=75%.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-02.06",
+      "independentExpression": "1000*10*.03",
+      "result": 300.0,
+      "unit": "Pa",
+      "answerSnapshot": "300Pa; conta il dislivello verticale.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-03.01",
+      "independentExpression": ".006/2",
+      "result": 0.003,
+      "unit": "m3/s",
+      "answerSnapshot": "3L/s=0,003m³/s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-03.04",
+      "independentExpression": "6*2/3",
+      "result": 4.0,
+      "unit": "m/s",
+      "answerSnapshot": "4m/s; portata conservata.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-03.05",
+      "independentExpression": "1000*(2^2-3^2)/2",
+      "result": -2500.0,
+      "unit": "Pa",
+      "answerSnapshot": "−2500Pa daBernoulli.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-04.04",
+      "independentExpression": "3^4",
+      "result": 81.0,
+      "unit": "ratio",
+      "answerSnapshot": "81,poichéQ∝r^4.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U3-04.05",
+      "independentExpression": "1*3/(1+3)",
+      "result": 0.75,
+      "unit": "times R in parallel",
+      "answerSnapshot": "4R in serie;3R/4 in parallelo,nel modello lineare.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-01.04",
+      "independentExpression": "-20+273.15",
+      "result": 253.15,
+      "unit": "K",
+      "answerSnapshot": "253,15K.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-01.05",
+      "independentExpression": "2*R*250/100000, R=8.31446261815324",
+      "result": 0.0415723130907662,
+      "unit": "m3",
+      "answerSnapshot": "0,0415723130907662m³;usa pressione assoluta e kelvin.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-02.02",
+      "independentExpression": "120/40",
+      "result": 3.0,
+      "unit": "K",
+      "answerSnapshot": "3K.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-02.03",
+      "independentExpression": ".5*800",
+      "result": 400.0,
+      "unit": "J/K",
+      "answerSnapshot": "400J/K.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-02.06",
+      "independentExpression": "2e5*.03",
+      "result": 6000.0,
+      "unit": "J",
+      "answerSnapshot": "6000J;la legge e il segno del processo vanno dichiarati.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-04.02",
+      "independentExpression": "90-40",
+      "result": 50.0,
+      "unit": "J",
+      "answerSnapshot": "Q entrante,W fatto dal gas:ΔU=Q−W=+50J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-04.07",
+      "independentExpression": "2e5*.001",
+      "result": 200.0,
+      "unit": "J",
+      "answerSnapshot": "+200J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-04.08",
+      "independentExpression": "0-(-60)",
+      "result": 60.0,
+      "unit": "J",
+      "answerSnapshot": "Q=0;Wfatto dal gas=−60J;ΔU=+60J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-05.04",
+      "independentExpression": "(1000-700)/1000",
+      "result": 0.3,
+      "unit": "1",
+      "answerSnapshot": "0,3=30%;W=300J.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-05.05",
+      "independentExpression": "1-400/500",
+      "result": 0.2,
+      "unit": "1",
+      "answerSnapshot": "20%,conηC=1−400/500.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U5-05.08",
+      "independentExpression": "100/250-100/500",
+      "result": 0.2,
+      "unit": "J/K",
+      "answerSnapshot": "Aumenta di0,2J/K:100/250−100/500.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-01.03",
+      "independentExpression": "1/3^2",
+      "result": 0.1111111111111111,
+      "unit": "1",
+      "answerSnapshot": "1/9,a cariche fissate.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-01.06",
+      "independentExpression": ".002*50/.01",
+      "result": 10.0,
+      "unit": "m/s2",
+      "answerSnapshot": "10m/s² lungoE,da a=qE/m.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-02.03",
+      "independentExpression": "3*(7-2)",
+      "result": 15.0,
+      "unit": "J",
+      "answerSnapshot": "+15J,da qΔV.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-04.02",
+      "independentExpression": ".2/.5",
+      "result": 0.4,
+      "unit": "A",
+      "answerSnapshot": "0,4A.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-04.04",
+      "independentExpression": "3/15",
+      "result": 0.2,
+      "unit": "A",
+      "answerSnapshot": "0,2A.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-04.06",
+      "independentExpression": ".5^2*8",
+      "result": 2.0,
+      "unit": "W",
+      "answerSnapshot": "2W e8J;P=I²R,energia=Pt.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-04.06",
+      "independentExpression": ".5^2*8*4",
+      "result": 8.0,
+      "unit": "J",
+      "answerSnapshot": "2W e8J;P=I²R,energia=Pt.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-04.07",
+      "independentExpression": "6*3/(6+3)",
+      "result": 2.0,
+      "unit": "ohm",
+      "answerSnapshot": "9Ω in serie;2Ω in parallelo.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-05.01",
+      "independentExpression": "24e-6/6",
+      "result": 4e-06,
+      "unit": "F",
+      "answerSnapshot": "4µF.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-05.04",
+      "independentExpression": "2e-6*20^2/2",
+      "result": 0.00039999999999999996,
+      "unit": "J",
+      "answerSnapshot": "400µJ,daCV²/2.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-05.05",
+      "independentExpression": "4*4/(4+4)",
+      "result": 2.0,
+      "unit": "microF in series",
+      "answerSnapshot": "2µF in serie;8µF in parallelo.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-06.04",
+      "independentExpression": ".5*2*.4",
+      "result": 0.4,
+      "unit": "N",
+      "answerSnapshot": "0,4N;il verso è quello diL×B per corrente convenzionale.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U6-07.03",
+      "independentExpression": "20*.003/.1",
+      "result": 0.6,
+      "unit": "V",
+      "answerSnapshot": "0,6V.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-01.04",
+      "independentExpression": "15/3",
+      "result": 5.0,
+      "unit": "Hz",
+      "answerSnapshot": "5Hz.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-01.05",
+      "independentExpression": "1/8",
+      "result": 0.125,
+      "unit": "s",
+      "answerSnapshot": "0,125s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-01.06",
+      "independentExpression": "2*pi*3",
+      "result": 18.84955592153876,
+      "unit": "rad/s",
+      "answerSnapshot": "6πrad/s,poichéω=2πf.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-01.08",
+      "independentExpression": ".4*5",
+      "result": 2.0,
+      "unit": "m/s",
+      "answerSnapshot": "2m/s.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-02.01",
+      "independentExpression": "(-2+5)*.001",
+      "result": 0.003,
+      "unit": "m",
+      "answerSnapshot": "+3mm;la somma è algebrica.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-03.02",
+      "independentExpression": ".8/.2",
+      "result": 4.0,
+      "unit": "W",
+      "answerSnapshot": "4W.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-03.03",
+      "independentExpression": "10/5",
+      "result": 2.0,
+      "unit": "W/m2",
+      "answerSnapshot": "2W/m².",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-03.04",
+      "independentExpression": "18/3^2",
+      "result": 2.0,
+      "unit": "W/m2",
+      "answerSnapshot": "2W/m²;area sferica cresce di9.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U4-04.03",
+      "independentExpression": "10*log10(1e7)",
+      "result": 70.0,
+      "unit": "dB",
+      "answerSnapshot": "70dB.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-01.03",
+      "independentExpression": "1/2",
+      "result": 0.5,
+      "unit": "times c",
+      "answerSnapshot": "c/2.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-01.05",
+      "independentExpression": "3^2",
+      "result": 9.0,
+      "unit": "ratio",
+      "answerSnapshot": "Nove volte l’intensità.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-05.04",
+      "independentExpression": "640/2^(12/3)",
+      "result": 40.0,
+      "unit": "Bq",
+      "answerSnapshot": "40Bq,dopo4emivite.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-07.03",
+      "independentExpression": "1/(1/1.25)",
+      "result": 1.25,
+      "unit": "1",
+      "answerSnapshot": "1,25,adimensionale.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-07.04",
+      "independentExpression": "1*.6/2",
+      "result": 0.3,
+      "unit": "1",
+      "answerSnapshot": "0,3 daSnell.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    },
+    {
+      "objectiveId": "U7-07.05",
+      "independentExpression": "1/(1/12-1/24)",
+      "result": 24.0,
+      "unit": "cm",
+      "answerSnapshot": "q=24cm,m=−1;immagine reale e capovolta.",
+      "comparison": "AI text/unit comparison; numeric expression executed independently of Core"
+    }
+  ],
+  "findings": [
+    {
+      "id": "B-FINAL-01",
+      "objectiveId": "U1-01.03",
+      "kind": "target_alignment",
+      "finding": "Rounding to one significant digit is not an order of magnitude as a power of ten; declare convention and assess the mapped target."
+    },
+    {
+      "id": "B-FINAL-02",
+      "objectiveId": "U7-02.07",
+      "kind": "target_alignment",
+      "finding": "Spectral gamma target currently asks nuclear A/Z change, duplicating decay target; assess spectral position with X/gamma origin distinction."
+    },
+    {
+      "id": "B-FINAL-03",
+      "objectiveId": "U4-01.03",
+      "kind": "uniqueness",
+      "finding": "Return to same state after 0.2 s need not be minimum; could nT. State minimum or accept integer multiples explicitly."
+    },
+    {
+      "id": "B-FINAL-04",
+      "objectiveId": "U1-03.02",
+      "kind": "self_contained",
+      "finding": "Reference to same triangle needs preceding item; repeat 3-4-5 data to permit atomic reorder."
+    }
+  ],
+  "humanApproval": false,
+  "status": "AI_REVIEW_WITH_EDITORIAL_FINDINGS",
+  "limitations": [
+    "Numeric expressions executed independently of Core; answer matching and qualitative reasoning were reviewed by AI, not an automated grader.",
+    "No human scientific signoff, learner calibration, final UI, audio listening, or complete objective acceptance certified.",
+    "Final/diagnostic independence is separately owned and tested by A/DeepSeek."
+  ]
+}

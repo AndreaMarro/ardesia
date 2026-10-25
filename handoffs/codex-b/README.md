@@ -185,3 +185,31 @@ cinematica0,031417 ms; JSON compatti1442/7601/10189 byte. Nessuna inferenza su
 latenza UI, smartphone o carico multiutente. Il report indipendente DeepSeek
 è stato rieseguito da B dopo il fix fase:279 PASS sui nuovi digest; i suoi
 successivi281/292 check sono ricevute distinte, non sommati a questi numeri.
+
+## Review indipendente delle 200 verifiche finali DRAFT
+
+Su richiesta A ho letto tutti i200 `atomicFinalAssessment` nei quattro pack A:
+52 meccanica,57 fluidi/termica,33 elettricità e58 onde/ottica/radiazioni.
+Ho ricomputato83 risultati numerici con aritmetica standard/Fraction/Decimal,
+senza importare i modelli del prodotto, e confrontato da AI testo e unità delle
+risposte. Nessun errore aritmetico rilevato. Il report versionato
+[`evidence/final-assessment-review.json`](evidence/final-assessment-review.json)
+contiene le operazioni, i valori e i digest delle quattro sorgenti osservate.
+Non è un nuovo grader automatico, firma umana o certificazione di apprendimento.
+
+Quattro finding di domanda/target, inviati ad A e DeepSeek per chiusura sui
+successori effettivi, restano separati dalla correttezza delle formule:
+
+- `U1-01.03`: target ordine di grandezza, domanda arrotondamento a una cifra;
+  chiedere una potenza di10 e dichiarare la convenzione.
+- `U7-02.07`: target regione gamma nello spettro, domanda A/Z del decadimento;
+  verificare collocazione spettrale senza duplicare il diverso target nucleare.
+- `U4-01.03`: il ritorno allo stesso stato dopo0,2s può essere multiplo del
+  periodo; dichiarare intervallo minimo o accettare esplicitamente nT.
+- `U1-03.02`: ripetere i dati del triangolo per permettere quesito atomico e
+  riordino senza dipendenza dall'item precedente.
+
+Indipendenza della diagnostica dalla finale, ascolto dei nuovi audio, consumer
+cinematico finale, CI e URL remota restano verifiche distinte in carico ad A o
+da ripetere sul suo candidato. Non contare200 riferimenti strutturali come200
+obiettivi con tutti i criteri soddisfatti.
