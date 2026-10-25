@@ -13,14 +13,21 @@ function loadMathJax(): Promise<void> {
     const s = document.createElement("script")
     s.src = new URL("tex-svg-full.js", assets).href
     s.async = true
-    s.onload = () => {
-      const mj = (window as any).MathJax
-      mj?.startup?.promise ? mj.startup.promise.then(() => resolve()) : resolve()
-    }
-    s.onerror = () => {
+    const fail = (reason: unknown) => {
       _ready = null
       s.remove()
-      reject(new Error("MathJax local bundle load failed"))
+      reject(reason)
+    }
+    s.onload = () => {
+      const mj = (window as any).MathJax
+      const complete = () => {
+        if (typeof mj?.tex2svg !== "function") fail(new Error("MathJax SVG API unavailable"))
+        else resolve()
+      }
+      mj?.startup?.promise ? mj.startup.promise.then(complete, fail) : complete()
+    }
+    s.onerror = () => {
+      fail(new Error("MathJax local bundle load failed"))
     }
     document.head.appendChild(s)
   })

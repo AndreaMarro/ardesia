@@ -71,4 +71,16 @@ describe("latexToImage — renderer locale e retry", () => {
       await expect(loading).rejects.toThrow(/load failed/)
     } finally { history.replaceState(null, "", previous) }
   })
+
+  it("propaga un errore di startup e permette un nuovo caricamento", async () => {
+    const { latexToImage } = await import("../latexToImage")
+    const first = latexToImage("x^2")
+    ;(window as any).MathJax = { startup: { promise: Promise.reject(new Error("startup failed")) } }
+    scripts[0].onload?.(new Event("load"))
+    await expect(first).rejects.toThrow("startup failed")
+    const retry = latexToImage("x^2")
+    expect(scripts).toHaveLength(2)
+    scripts[1].onerror?.(new Event("error"))
+    await expect(retry).rejects.toThrow(/load failed/)
+  })
 })

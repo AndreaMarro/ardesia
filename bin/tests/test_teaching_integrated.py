@@ -140,3 +140,16 @@ class IntegratedPreviewTest(unittest.TestCase):
    encoded=next(f['data'] for f in payload['requestBody']['files'] if f['file']=='public/assets/client.js')
    self.assertEqual(base64.b64decode(encoded),original)
    self.assertNotEqual(path.read_bytes(),original)
+
+ def test_removing_editorial_marker_after_snapshot_cannot_bypass_the_gate(self):
+  with tempfile.TemporaryDirectory() as directory:
+   root=Path(directory);candidate=self.fixture(root,editorial=True)
+   preview.prepare(candidate,root/'prepared')
+   marker=root/'prepared/.vercel/output/static/courses-manifest.json';parse=json.loads
+   def remove_marker_after_snapshot(content):
+    value=parse(content)
+    if isinstance(value,dict) and value.get('examples')==[]:marker.unlink()
+    return value
+   with patch.object(upload.json,'loads',side_effect=remove_marker_after_snapshot):
+    with self.assertRaisesRegex(ValueError,'protected_editorial_preview_required'):
+     upload.prepare(root/'prepared')

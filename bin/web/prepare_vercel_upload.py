@@ -45,15 +45,14 @@ def prepare(directory,protected_review=False,*,protected_integrated=False):
     snapshot = {p.relative_to(static).as_posix(): asset_bytes(p, static)
                 for p in entries if p.is_file()}
     actual = {name: hashlib.sha256(content).hexdigest() for name, content in snapshot.items()}
-    integrated=(receipt.get('privateBetaIncluded') is True or 'staticAssetsSha256' in receipt or (static/'release-manifest.json').exists())
+    integrated=(receipt.get('privateBetaIncluded') is True or 'staticAssetsSha256' in receipt or 'release-manifest.json' in snapshot)
     if integrated and not protected_integrated:
         raise ValueError('private_integrated_preview_required')
     inventory=receipt.get('staticAssetsSha256') if integrated else receipt.get('publicAssetsSha256')
     if actual != inventory:
         raise ValueError('changed_public_assets')
     if integrated:
-        marker=static/'release-manifest.json'
-        if (not marker.is_file() or receipt.get('privateBetaIncluded') is not True
+        if ('release-manifest.json' not in snapshot or receipt.get('privateBetaIncluded') is not True
                 or receipt.get('requiresProtectedPreview') is not True
                 or receipt.get('kind')!='private-integrated-preview-preparation'):
             raise ValueError('invalid_private_integrated_receipt')
@@ -78,8 +77,7 @@ def prepare(directory,protected_review=False,*,protected_integrated=False):
         marketing = json.loads(snapshot['source-manifest.json'])
         if marketing['examples'] or any(p.startswith(('esempi/', 'studio/', 'beta/', 'study/','_integration/','ops/release/')) for p in actual):
             raise ValueError('unreleased_editorial_or_private_content')
-        course_marker=static/'courses-manifest.json'
-        scope=json.loads(snapshot['courses-manifest.json']).get('releaseScope') if course_marker.is_file() else 'PUBLIC_DEMONSTRATION'
+        scope=json.loads(snapshot['courses-manifest.json']).get('releaseScope') if 'courses-manifest.json' in snapshot else 'PUBLIC_DEMONSTRATION'
         if scope not in ('PUBLIC_DEMONSTRATION','PRIVATE_EDITORIAL_REVIEW') or (scope=='PRIVATE_EDITORIAL_REVIEW' and not protected_review):
             raise ValueError('protected_editorial_preview_required')
     files = [{'file': 'public/' + name, 'data': base64.b64encode(content).decode(),
