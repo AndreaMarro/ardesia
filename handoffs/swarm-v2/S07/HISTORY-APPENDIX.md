@@ -21,3 +21,8 @@ Head di consegnaa9c19746e44afd6d218d6d1b6054ffc3ac8e0896: tutti i checkSUCCESS v
 Successivamente main è avanzata a992d1a0b (S09 gestionale307). Merge ordinario6d6d503a96221e6019bc2c426d5106e9acc8a6d2: aggiunge solo Web/S09 e un test Core già integrati, nessun file Studio o istruzione AGENTS/CI cambiato. Diff Studio0d→6d vuoto verificato. La CI nuova non eredita il verde di a9; stato finale head e run sono consegnati nel checkpoint GitHub306 e rapporto outputs dopo lettura live. Questo addendum è sola memoria, preserva i risultati precedenti.
 
 S14 formula ha segnalato not-ready/rethrow e identità API/journal dopo await latexToImage. insertMath è rimasto intatto nella311; la patch non è ancora una capacità ricevuta/applicata o provata da S07. Raccordo successivo da writer assegnatoS00 con namespace MathComposerS14, senza copiare Room intero o trasferire le prove ink al nuovo flusso formule. Comunicazioni effettive6405915305 e precedenti nel rendezvous; nessuna nuova chat oPR.
+
+
+### ProsecuzioneFocus26ottobre2026, prima della headfinale
+
+Ownerutente ha richiesto continua: nuova capacità nello stesso311, DRAFTduranteverifica. Nativefocus17PASS49.948s e REApassiva2record sullo stessoChromium, includonoSpacepan e penna+focusdurantepointerdown con cattura atomica prima del cambio pagina; proofsourcece+guardie byteinventariate, non nuovaAPI/server. Review5P2 e relativi6RED/13GREEN prima del raffinamentodoubletask, errori/logoriginali gzip+SHA preservati. Slotrilasciato6412994325, Room77/pacchetti/Coreintatti per compatibilitàS14. Dettagli e limiti in focus-presentation/README; snapshotpubblicazione/CI dopo commit finale da leggereGitHub. Nessuna memoria comune editata.

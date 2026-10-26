@@ -38,9 +38,9 @@ export function usePresentation(adapter: RoomInkAdapter, api: ExcalidrawImperati
   }, [follower])
   useEffect(() => {
     if (!api) follower.setFollowing(false)
-    try { const target = follower.receive(adapter.presentation); setFocusError(''); apply(target); setFollowing(follower.isFollowing) }
+    try { validateRoomInkAdapter(adapter); const target = follower.receive(adapter.presentation); setFocusError(''); apply(target); setFollowing(follower.isFollowing) }
     catch { follower.setFollowing(false); setFollowing(false); setFocusError('La presentazione non corrisponde a questo documento.') }
-  }, [adapter.presentation, api, follower, apply])
+  }, [adapter.presentation, adapter.pages, api, follower, apply])
   useEffect(() => {
     setDenied(false); setNotice(''); setPublishError('')
   }, [adapter.signal, adapter.sessions.personal, adapter.sessions.shared, adapter.presentation?.channelId, adapter.presentation?.publish])
@@ -128,7 +128,7 @@ export function usePresentation(adapter: RoomInkAdapter, api: ExcalidrawImperati
       if (flight.current === cancellation) { flight.current = null; setPresenting(false) }
     }
   }
-  return { following, onFollow: adapter.presentation && api && !revoked ? onFollow : undefined,
+  return { following, onFollow: adapter.presentation && api && !revoked && !focusError ? onFollow : undefined,
     onPresent: adapter.presentation?.publish && api && !denied && !revoked ? () => void present() : undefined,
     presenting, presentationStatus: following ? 'Segui la presentazione · il tuo zoom resta personale' : notice,
     error: focusError || publishError, beginInteraction, endInteraction, revoke }

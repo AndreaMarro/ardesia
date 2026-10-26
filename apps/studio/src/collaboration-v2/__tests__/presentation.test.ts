@@ -62,3 +62,23 @@ test('missing channel identifiers are not coerced into valid string identifiers'
   const follower = new PresentationFollower('room', source)
   expect(() => follower.receive({ focus: null } as unknown as RoomPresentationAdapter)).toThrow('ink_focus_mismatch')
 })
+test('ten participants and a presenter preserve independent views under reordered focus and an active gesture', () => {
+  const group = Array.from({ length: 11 }, () => new PresentationFollower('room', source))
+  for (const [index, follower] of group.entries()) {
+    follower.receive(adapter(focus(0)))
+    if (index > 0) follower.setFollowing(true)
+  }
+  group[3].setFollowing(false); group[4].beginInteraction(); group[5].revoke()
+  const movements = group.map(() => [] as number[])
+  for (const sequence of [9, 3, 9, 10, 7, 12, 11]) {
+    const value = focus(sequence); value.target.center[0] = sequence / 100
+    for (const [index, follower] of group.entries()) {
+      const target = follower.receive(adapter(value))
+      if (target) movements[index].push(target.center[0])
+    }
+  }
+  for (const index of [0, 3, 4, 5]) expect(movements[index]).toEqual([])
+  for (const index of [1, 2, 6, 7, 8, 9, 10]) expect(movements[index]).toEqual([.09, .1, .12])
+  expect(group[4].endInteraction()?.center[0]).toBe(.12)
+  expect(group[5].setFollowing(true)).toBeNull()
+})

@@ -107,6 +107,12 @@ test('follow is unavailable until the native API is ready and then uses the reta
   act(() => view.result.current.onFollow?.(true))
   expect(view.onPage).toHaveBeenLastCalledWith(2)
   expect(view.scroll).toHaveBeenCalledTimes(1)
+  view.rerender({ value: { ...view.adapter, presentation: { channelId: 'channel', focus: {
+    ...focus(2), target: { ...focus(2).target, source: { ...source, revisionId: 'wrong-version' } },
+  } } } })
+  expect(view.result.current.onFollow).toBeUndefined()
+  view.rerender({ value: view.adapter })
+  expect(view.result.current.onFollow).toBeTypeOf('function')
 })
 test('publishing resolves the page at the native viewport center rather than the old selector page', () => {
   const view = setup()
