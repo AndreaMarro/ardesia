@@ -817,3 +817,20 @@ La copia offline conserva dati/passaggio/bozza, ma non risposteCore rieseguibili
 3. **P1 raccordi315/313/325:** primo passo ricalcolare lepatch sui nuoviinstaller/reader; dipendenze head309fissa/ownership; accettazione consumer reali e guardstrette; evidenza composizione/CI,FAIL325storico conservato.
 4. **P1 Studio:** primo passo311/318/319/322nel serializer/replayunico; dipendenzeCAS/consenso/offline; accettazione revoke/due take/roundtripnuovostore; evidenza sourceesatte e contromisure prima delclone.
 5. **P0 quattro corsi/remoto:** primo passoU1-01 approvato+Core remotoArdesia; dipendenzeidentità/storage/backup/editoria; accettazione200obiettiviprogressivi e percorso docente-studente remoto; evidenza ricevute/versioniumane, ancora0/200.
+
+
+## 26 ottobre2026 — S00: browser309 fallito, prove remote strumentate necessarie
+
+Fonte309locale ae71864da2e93e49315dbbc8f73f74174f448084, mergetree e95a80b+350d65a, ancora non integrata. Builddopo commit riuscita. Browseroriginale5checkPASS poi timeout15s aspettando Esegui il modello dopo Esplora; logAPI registra una solaPOSTactions diagnostica+GET200, zeroerroriJS. Non eseguito il successivo browser scientifico317. Non dichiarato flaky né risolto. Analisiindipendente esclude un CASserver come causa immediata (nessunasecondaPOST), ma non distingue eventoDOM non consegnato da guardclient: nessuna patchspeculativa working/busy.
+
+Controprova preparata aggiungeva osservazioneDOM ma non è arrivata albrowser: fixture nonprontaentro20s,api.logvuoto,childproprio terminato. ProvaFAIL_BEFORE_BROWSER distinta, non secondo risultato del percorso. Hostrilevato8.122MiBswapusati/9.216allocati,disco2,1GiB: contesa osservata, causalità non provata. Nessunapp/processoaltrui chiuso e nessunlimite aumentato. Stopaiheavy locali.
+
+Per rendere permanente il controllo dei consumer, stesso jobWebCI esteso in sequenza ai runnerStudioautonomo+sciencelibrary, conCore/Auth/SQLite reali eHEADpulita verificata. Il manifestdella nuovaCI attesta i byte dello checkoutcorrente, non riusaSHAdei3raccordistorici. Runneroriginale mantiene ingresso/click e15s; aggiunge solo listenercapture pointerdown/up/click e logpath/time delle azioni, DOM/screenshot inFAIL, senza body/header/token. Lo scriptS06di default mantiene ilmanifeststorico; overrideesplicito inorchestrazione S00. Nessunrequiredcheck,skip otimeoutindebolito. Reviewer trova rischioartifact suOOM prima cleanup: uploadcorretto adallowlistresult/PNG/api.log/manifest, mai directory interafixture/SQLite/access. CI futura ancora da eseguire; questa non è certificazione di309.
+
+### NEXT PRIORITY TASKS — diagnosi309 aperta
+
+1. **P0 browser309:** primo passo leggere la nuovaCI e traceeventi del percorsooriginale, senza rerunidenticocomecura; dipendenzeheadferma/runnerisolato; accettazione causa discriminata o limite esplicito, percorsofunzionante senza gateindeboliti; evidenza DOM/rete/sourceSHA evecchiFAILconservati.
+2. **P0 terminale309/316:** primo passo review+7required del candidato effettivo; dipendenze prova funzionale sufficiente e mainaggiornata; accettazione mergeordinario/postCI,316soloquando superseded da consumerintegrato; evidenza alberi,run eprovenienza.
+3. **P1 raccordi325/315/313:** primo passo candidati su basefissa309; dipendenzeownerfreeze/patchguard; accettazione fonti private e revisioni esatte senza doppioCore; evidenza UI/HTTP/CI,nessunverdeereditato.
+4. **P1 risorselocali/Studio:** primo passo verificare capacitàhost prima di nuovi test311/318/319/322; dipendenzeslotunico/consenso/CAS; accettazione nienteperdita/revoca/roundtrip; evidenza risorse/processipropri eproveoriginali.
+5. **P0 quattrocorsi/remoto:** primo passoU1-01 e backendCoreArdesia autorizzato; dipendenzeeditoriaumana/identità/storage/restore; accettazione200targetprogressivi e percorso remoto; evidenza ricevute/versioniapprovate,oggi0/200.

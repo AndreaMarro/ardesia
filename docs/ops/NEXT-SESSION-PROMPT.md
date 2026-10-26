@@ -110,3 +110,8 @@ Quattro corsi ancora0/52,0/57,0/33,0/58; Core remoto503 e Studiointerno restano 
 ### 309: correzioni di review prima della prova browser
 
 I3REDsessioni e13REDcache sono stati corretti; fullWeb521 ebuild PASS, poi secondo revisore ha trovato chiaviprototipo:5REDeffettivi corretti con mappeetichette aprototiponullo e fasi con vocabolariounico.63mirati ebuild/typecheck PASS; seconda controprova del revisoreGREEN. Log/limiti preservati in handoffs/swarm-v2/S00/evidence/study-composition. RisultatiCore non salvati nel cacheoffline, omissione esplicitaUI, inputconservati. Prima di dichiarare309pronta eseguire proveApp sulla nuovaSHAferma e7required/merge-tree;316rimaneaperta finoall'integrazione vera.
+
+
+### 309: FAILbrowser da conservare e nuovaCI da leggere
+
+Fonte ae71864: buildPASS, browser5check poi timeoutEsegui modello, una solaPOSTdiagnostica+GET200/zeroJSerror. Controprova successivaFAILprima avviofixture20s, browserNON_RUN; host8GBswap osservato,causaNONPROVATA. Stopheavy locali, nessun timeoutalzato oetichettaflaky. Runneroriginale ora cattura eventiDOM e azionirete suFAIL; jobWebCI esistente esegueS06+science confactoryreale, manifestbytecorrenti/HEADpulita. Artefatti inallowlist per nonpubblicareSQLite/token inOOM. Prima leggi nuovahead/CI/prove:309nonèintegrata,316nonchiudereancora.317rimaneMERGED/CIpostverde/805HTTPSprivati verificati.

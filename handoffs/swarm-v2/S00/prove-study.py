@@ -27,7 +27,8 @@ with tempfile.TemporaryDirectory(prefix='s00-study-') as temporary:
     env = {**os.environ, 'PYTHONPATH': 'packages/engine:services/study-api',
            'S06_COMPOSITION_DATA': temporary, 'S06_OUTPUTS': str(output),
            'S06_EXPECTED_SHA': sha,
-           'S06_SOURCE_MANIFEST': str(ROOT / 'handoffs/swarm-v2/S00/study-composition-manifest.json')}
+           'S06_SOURCE_MANIFEST': os.environ.get('S06_SOURCE_MANIFEST',
+               str(ROOT / 'handoffs/swarm-v2/S00/study-composition-manifest.json'))}
     with (output / 'api.log').open('w') as log:
         server = subprocess.Popen([sys.executable, '-m', 'uvicorn', 'server:app',
             '--app-dir', 'handoffs/swarm-v2/S06/composition', '--host', '127.0.0.1',

@@ -19,11 +19,11 @@ const data=process.env.S06_COMPOSITION_DATA||path.join(here,'.artifacts');
 const outputs=process.env.S06_OUTPUTS||path.join(data,'browser');
 const access=JSON.parse(await readFile(path.join(data,'access.json'),'utf8'));
 await mkdir(outputs,{recursive:true});
-const base='http://127.0.0.1:5361',checks=[],errors=[],requests=[];let revoking=false;
+const base='http://127.0.0.1:5361',checks=[],errors=[],requests=[],actions=[],observedPages=[];let revoking=false;
 const browser=await chromium.launch({headless:true});
 const check=(name,condition)=>{if(!condition)throw Error(name);checks.push(name);};
-function observe(page){page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!(revoking&&m.text().includes('401')))errors.push(m.text());});page.on('request',r=>requests.push(r.url()));}
-async function login(token,options={}){const c=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',...options});c.setDefaultTimeout(15000);check('cookie-login-'+checks.length,(await c.request.post(base+'/study/session',{data:{token}})).ok());return c;}
+function observe(page){observedPages.push(page);page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!(revoking&&m.text().includes('401')))errors.push(m.text());});page.on('request',r=>{requests.push(r.url());if(new URL(r.url()).pathname.endsWith('/actions'))actions.push({at:Date.now(),path:new URL(r.url()).pathname,method:r.method()});});}
+async function login(token,options={}){const c=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce',...options});c.setDefaultTimeout(15000);await c.addInitScript(()=>{window.__studyEvents=[];for(const type of ['pointerdown','pointerup','click'])document.addEventListener(type,e=>{const b=e.target instanceof Element?e.target.closest('button'):null;if(b){window.__studyEvents.push({at:Date.now(),type,text:b.textContent.slice(0,180),disabled:b.disabled,busy:document.querySelector('.independent-study')?.getAttribute('aria-busy'),trusted:e.isTrusted});if(window.__studyEvents.length>1000)window.__studyEvents.shift();}},true);});check('cookie-login-'+checks.length,(await c.request.post(base+'/study/session',{data:{token}})).ok());return c;}
 async function shot(page,name){await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await page.evaluate(()=>new Promise(requestAnimationFrame));await page.screenshot({path:path.join(outputs,name),fullPage:true});}
 async function current(c){const list=await(await c.request.get(base+'/study/independent-study?editionId=mechanics')).json();return(await c.request.get(base+'/study/independent-study/'+list.sessions[0].id)).json();}
 try{
@@ -118,5 +118,5 @@ try{
  assertCleanSource();
  await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'PASS',sourceCommit,sourceFiles,checks,errors,totalMilliseconds:Math.round(performance.now()-started),scope:'Installed PR309 source: compiled actual App + Shell316 + actual create_app, synthetic local database; no remote deployment'},null,2)+'\n');
  console.log(JSON.stringify({status:'PASS',checks:checks.length,errors}));
-}catch(e){await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'FAIL',sourceCommit,checks,errors,error:String(e)},null,2)+'\n');throw e;}
+}catch(e){const diagnostics=[];for(const p of observedPages){if(p.isClosed())continue;try{diagnostics.push(await p.evaluate(()=>({events:window.__studyEvents,view:document.querySelector('.independent-study')?.textContent})));await p.screenshot({path:path.join(outputs,'failure-'+diagnostics.length+'.png'),fullPage:true});}catch{/* Preserve the original failure even if its page crashed. */}}await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'FAIL',sourceCommit,checks,errors,actions,diagnostics,error:String(e)},null,2)+'\n');throw e;}
 finally{await browser.close();}
