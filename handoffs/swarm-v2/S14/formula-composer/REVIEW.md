@@ -64,3 +64,8 @@ Il revisore ha segnalato il limite delle asserzioni solo orizzontali prima
 della tastiera; estese in d269cb8 a top/bottom e verifica del pannello sopra
 la tastiera aperta nella sola viewport 390×844. Nessuna prova attribuita al
 revisore, nessuna certificazione di ogni altezza/formula o dello shadow DOM.
+
+La prova nativa 14 conferma bounds e hit-test del pannello con il delta 7cf3d66,
+ma trova un difetto distinto nel cleanup: tastiera condivisa ancora visible
+dopo unmount. Aggiunto il comando hideVirtualKeyboard prima della rimozione,
+controprova nativa pendente. Nessuna review statica è usata come verde runtime.

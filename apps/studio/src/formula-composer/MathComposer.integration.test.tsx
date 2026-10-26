@@ -34,6 +34,16 @@ function deferred() {
 }
 
 describe("formula host lifecycle", () => {
+  it("hides the shared native keyboard before removing the mathfield", () => {
+    const view = render(<MathComposer onInsert={() => {}} onClose={() => {}} />)
+    const mf = field()
+    const hide = vi.spyOn(mf, "executeCommand")
+    const remove = vi.spyOn(mf, "remove")
+    view.unmount()
+    expect(hide).toHaveBeenCalledWith("hideVirtualKeyboard")
+    expect(hide.mock.invocationCallOrder[0]).toBeLessThan(remove.mock.invocationCallOrder[0]!)
+  })
+
   it("sends one insertion while pending, then closes after success", async () => {
     const pending = deferred()
     const insert = vi.fn(() => pending.promise)

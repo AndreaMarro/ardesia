@@ -58,6 +58,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
       mfRef.current = null
       mf.removeEventListener("input", sync)
       mf.removeEventListener("undo-state-change", sync)
+      mf.executeCommand("hideVirtualKeyboard")
       mf.remove()
     }
   }, [hintId])

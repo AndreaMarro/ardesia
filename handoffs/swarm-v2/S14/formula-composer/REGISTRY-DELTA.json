@@ -9,10 +9,10 @@
       "name": "MathLive",
       "version": "0.111.1",
       "decision": "ADAPT",
-      "status": "IMPLEMENTED_HOST_NATIVE_COMPOSITION_VERIFIED_LAYOUT_FIX_PENDING",
+      "status": "IMPLEMENTED_NATIVE_LAYOUT_VERIFIED_KEYBOARD_CLEANUP_PENDING",
       "consumer": "Room toolbar Formula → MathComposer",
       "evidence": "PROVENANCE.json, REVIEW.md",
-      "limits": "15 functional native checks PASS on 23604bc + Room v3 copy; mobile clipping found visually; scoped layout fix 5142865 pending native validation; shared Room patch not applied"
+      "limits": "15 functional native checks on23604bc; layout bounds/hit-test3PASS on7cf3d66 then native keyboard cleanupFAIL; explicit hide fix pending validation. Shared Room patch not applied."
     },
     {
       "id": "TARGET-013",

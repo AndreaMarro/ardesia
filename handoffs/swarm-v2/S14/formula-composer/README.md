@@ -251,3 +251,29 @@ con path e disponibilità, senza inventare un recupero o ricreare byte storici.
 I log Room v3 e i report browser gzip presenti in evidence sono invece leggibili
 e i loro hash decompressi sono stati ricontrollati. CI e nuove prove native
 restano fonti distinte, riferite alle rispettive SHA.
+
+## 26 ottobre 2026 — controllo negativo layout e bug tastiera su unmount
+
+S00 ha rilasciato direttamente il gap dopo la prova HTTPS; ps analizzato senza
+processi pesanti prima della presa 306/6412348209. Nuovo delta 7cf3d66: pannello
+sopra la toolbar canvas, che le screenshot precedenti mostravano sovrapposta;
+il runner usa anche elementFromPoint sul centro di titolo, campo e comandi.
+
+Control 13 con solo il CSS nuovo disattivato: EXIT1 per causa attesa precisa,
+right=412 > viewport=390. Candidata 14: pannello right=378, bottom=482.6875,
+tastiera top=627; campo e tutti i comandi host contenuti, hit-test sopra canvas
+prima e durante la tastiera. Tre controlli PASS e zero errori inattesi, poi
+FAIL reale: dopo chiusura il campo sparisce ma keyboard.visible resta true
+oltre i 5 secondi standard. Report e screenshot del fallimento conservati.
+
+Il runner 12 non asseriva il false dopo la chiusura: il claim hide su unmount
+in 306/6411809212 è ritirato esplicitamente in 306/6412393366. Non attribuire
+retroattivamente questa asserzione al PASS funzionale 12. Il suo dato raw non
+viene riscritto. Il nuovo difetto deriva dalla tastiera condivisa gestita in
+modalità manual: la sola rimozione del mathfield non ne prova la chiusura.
+
+Preparato cleanup esplicito con il comando nativo hideVirtualKeyboard prima
+di remove, più test del contratto d'ordine host. Controprova ancora NON_RUN:
+slot rilasciato effettivamente con porta55140 chiusa, richiesto singolo nuovo
+gap dopo S08/S02. Nessun timeout allargato o nuovo tentativo non coordinato.
+Room v3 resta invariata e non applicata al sorgente.
