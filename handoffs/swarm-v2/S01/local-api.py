@@ -17,7 +17,7 @@ from lessonos.study.store import StudyStore
 from study_api import app as upstream
 
 
-def create_candidate(db):
+def create_candidate(db, frontend=None):
     path = Path(upstream.__file__)
     source = path.read_text()
     marker = '    if studio_frontend:\n'
@@ -27,7 +27,7 @@ def create_candidate(db):
              '    install_science_library_routes(app, store_dependency, authenticate)\n\n')
     namespace = dict(vars(upstream))
     exec(compile(source.replace(marker, patch+marker), str(path), 'exec'), namespace)
-    return namespace['create_app'](db, demo=True), hashlib.sha256(source.encode()).hexdigest()
+    return namespace['create_app'](db, demo=True, frontend=frontend), hashlib.sha256(source.encode()).hexdigest()
 
 
 def seed(directory):
@@ -58,11 +58,20 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--directory', type=Path, required=True)
     parser.add_argument('--seed-only', action='store_true')
+    parser.add_argument('--frontend', type=Path)
     args = parser.parse_args()
     db = args.directory/'science.sqlite'
     if not db.exists():
         seed(args.directory)
-    app, source_hash = create_candidate(db)
+    app, source_hash = create_candidate(db, args.frontend)
+    if args.frontend:
+        @app.middleware('http')
+        async def strict_script_policy(request, call_next):
+            response = await call_next(request)
+            response.headers['Content-Security-Policy'] = ("default-src 'self'; script-src 'self'; "
+                "style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; "
+                "font-src 'self'; object-src 'none'; base-uri 'self'")
+            return response
     (args.directory/'composition.json').write_text(json.dumps({'upstreamAppSha256': source_hash,
         'composition': 'in-memory two-line proposed owner patch; shared file untouched'}, indent=2)+'\n')
     if not args.seed_only:
