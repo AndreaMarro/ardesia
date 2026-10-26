@@ -48,7 +48,7 @@ export function CollaborationToolbar(props: CollaborationToolbarProps) {
     <div className="ink-heading"><div><span className="ink-eyebrow">SPAZI DI SCRITTURA</span>
       <h2>Un foglio, i tuoi passaggi.</h2></div><span className="ink-page-count">{props.page} / {props.pageCount}</span></div>
     <div className="ink-controls">
-      <fieldset disabled={revoked}><legend>Scrivi nello spazio</legend>
+      <fieldset disabled={revoked}><legend>Tratti a penna</legend>
         <div className="ink-segment"><button type="button" aria-pressed={props.audience === 'personal'} onClick={() => props.onAudience('personal')}>Personale</button>
           <button type="button" aria-pressed={props.audience === 'shared'} onClick={() => props.onAudience('shared')}>Condiviso</button></div>
       </fieldset>
@@ -78,7 +78,7 @@ export function CollaborationToolbar(props: CollaborationToolbarProps) {
       {saved && !saveError && <span> · {props.storageMode === 'fsa' ? 'Salvato nella cartella collegata' : 'Copia salvata nella cache del browser'}</span>}
       {props.presentationStatus && <span> · {props.presentationStatus}</span>}
     </div>
-    <p className="ink-hint">{props.audience === 'personal' ? 'Lo spazio personale resta separato da quello condiviso.' : 'Ogni autore conserva il proprio layer. Le sovrapposizioni rimangono visibili.'}
+    <p className="ink-hint">{props.audience === 'personal' ? 'I tratti personali restano separati.' : 'Ogni autore conserva i propri tratti. Le sovrapposizioni rimangono visibili.'}
       {' '}Annullare rimuove solo i tuoi tratti. Lo zoom cambia solo la tua vista.</p>
     {saveError && <p className="ink-error" role="alert">{saveError}</p>}
   </section>

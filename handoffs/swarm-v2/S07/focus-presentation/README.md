@@ -62,3 +62,8 @@ Sourceapp2a128 è identica ad a383, che ha43namespacePASS e fullStudio2347PASS/5
 Review tecnica finale limitata: nessunresiduo nel doubletimer o guardiafocusinvalido; nessun test/browser/compiler eseguito dalreviewer e nessuna firmaumana. Tutti i sorgentiStudio/manifest/lock confrontatiSHA256 e verificati; Room.tsx conserva blob e1200c21e2a5b6e7ceaf59a5d1cc0991d62a2d2a. Gli ultimi commit sono solo prove/runner/storico; nessun nuovo endpoint/provider/identità/lock oAPI/Core.
 
 Browser eVite propri chiusi,5470/5477libere, release6413451014. Fixture runtime rimossi dalla rootStudio. CapacitàTESTATA per hostadapter, READY_FOR_INTEGRATION dopoCIheadobbligatori: integrazione/composizione/rilascioS00 e grant/trasporto/storage remotoS10 restano esplicitamente NONDONE. Next3batch/primi passi/dipendenze/accettazioni sono sopra; nessuna memoria comune concorrente e storico non riscritto.
+
+
+### Chiarezza del perimetro personale —26ottobre2026
+
+Il selettore viene etichettato esplicitamente «Tratti a penna» e il testo parla di tratti, non di un intero spazio privato. Il binding nativo di questi livelli riguarda la penna: testo, immagini e formule native rimangono oggetti legacy della lavagna e non sono certificati personali da questo adapter. I DTOformula/proposal del modello non sono il raccordoMathComposerS14. È una distinzione visibile necessaria per non promettere una privacy più ampia del consumer implementato. Nessuna logica/persistenza/SDK cambiata da questa correzione di copy. Il runner verifica anche il nome accessibile del gruppo.

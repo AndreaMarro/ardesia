@@ -26,6 +26,7 @@ try {
   await page.getByRole('checkbox',{name:'Segui presentazione docente'}).waitFor()
  }
  const [teacher,student,independent]=pages
+ check(await student.getByRole('group',{name:'Tratti a penna',exact:true}).count()===1,'personal and shared controls explicitly concern pen strokes')
  const source=await teacher.evaluate(()=>window.s07.source)
  check((await Promise.all(pages.map(p=>p.evaluate(()=>window.s07.git)))).every(value=>value===expectedSource),'native build provenance matches the requested commit')
  check((await Promise.all(pages.map(p=>p.evaluate(()=>window.s07.source.sha256)))).every(sha=>sha===source.sha256),'three contexts exact PDF source')
