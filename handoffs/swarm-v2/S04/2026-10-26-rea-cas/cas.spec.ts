@@ -18,7 +18,7 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  const noticeUrl=await lab.getByRole('link',{name:'Provenienza e licenze del motore'}).getAttribute('href');
  expect(noticeUrl?.startsWith('data:')).toBe(false);
  const noticeResponse=await page.request.get(noticeUrl!);expect(noticeResponse.status()).toBe(200);
- expect(await noticeResponse.text()).toBe(await readFile(new URL('../../../../apps/web/src/features/assessment-quality/THIRD_PARTY_NOTICES.txt',import.meta.url),'utf8'));
+ expect(await noticeResponse.text()).toBe(await readFile('apps/web/src/features/assessment-quality/THIRD_PARTY_NOTICES.txt','utf8'));
  await expect(lab.locator('math-field')).toHaveCount(2);
  const started=Date.now();await lab.getByRole('button',{name:'Esegui controprova'}).click();
  await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible({timeout:30000});
