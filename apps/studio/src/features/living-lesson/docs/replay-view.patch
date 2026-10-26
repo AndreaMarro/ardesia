@@ -1,0 +1,126 @@
+--- a/apps/studio/src/ReplayView.tsx
++++ b/apps/studio/src/ReplayView.tsx
+@@ -3,7 +3,7 @@
+ // scena proiettata con ReplayEngine.getSceneAt (read-only, zero scritture),
+ // audio dei chunk registrati mappato sul tempo journal via startEpoch.
+
+-import { useState, useEffect, useRef, useMemo, type ChangeEvent } from "react"
++import { useState, useEffect, useRef, useMemo, type ChangeEvent, useCallback } from "react"
+ import { Excalidraw } from "@excalidraw/excalidraw"
+ import "@excalidraw/excalidraw/index.css"
+ import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
+@@ -13,7 +13,14 @@
+ import EmptyState from "./design/EmptyState"
+ import ReplayObjectFocus from "./ReplayObjectFocus"
+
++import type { ReactNode } from "react"
++import type { ReplayCursor } from "./features/living-lesson/replayCursor"
++
+ interface ReplayViewProps {
++  renderExtension?: (cursor: ReplayCursor) => ReactNode
++  replayFiles?: Record<string, any>
++  selectedRecordingId?: string
++  range?: { start: number; end: number }
+   store: WorkspaceStore
+   room: string
+ }
+@@ -34,7 +41,7 @@
+   return `${minutes}:${String(seconds).padStart(2, "0")}`
+ }
+
+-export default function ReplayView({ store, room }: ReplayViewProps) {
++export default function ReplayView({ store, room, renderExtension, replayFiles, range, selectedRecordingId }: ReplayViewProps) {
+   const [loaded, setLoaded] = useState<ReplayLoad | null>(null)
+   // Legare il risultato alla fonte nasconde già al primo render di B i dati
+   // di A: il solo reset in useEffect lascerebbe visibile uno stato precedente.
+@@ -52,6 +59,8 @@
+
+   const apiRef = useRef<any>(null)
+   const audioRef = useRef<HTMLAudioElement>(null)
++  const [mediaElement, setMediaElement] = useState<HTMLAudioElement | null>(null)
++  const attachMedia = useCallback((value: HTMLAudioElement | null) => { audioRef.current = value; setMediaElement(value) }, [])
+   const canvasRef = useRef<HTMLDivElement>(null)
+   const fitSceneRef = useRef<() => void>(() => {})
+   /** startEpoch del primo chunk = origine del tempo audio (sorgente concatenata) */
+@@ -63,9 +72,14 @@
+   tRef.current = t
+
+   const engine = useMemo(() => new ReplayEngine(), [])
+-  const canonicalRecording = timeline && t !== null ? recordingAtTime(timeline.recordings, t) : null
++  const canonicalRecording = timeline && t !== null ? (selectedRecordingId ? timeline.recordings.find(r => r.recordingId === selectedRecordingId && t >= r.startEpoch && t <= r.endEpoch) ?? null : recordingAtTime(timeline.recordings, t)) : null
+   const focusedObject = canonicalRecording?.objectRefs.find((ref) => ref.elementId === focusedObjectId) ?? canonicalRecording?.objectRefs[0] ?? null
+
++  const recordingKey = canonicalRecording ? JSON.stringify([room, canonicalRecording.assetPath, canonicalRecording.recordingId, canonicalRecording.sha256, canonicalRecording.startEpoch, canonicalRecording.endEpoch]) : ""
++  const activeKey = useRef(recordingKey)
++  activeKey.current = recordingKey
++  useEffect(() => () => { activeKey.current = "" }, [])
++
+   useEffect(() => {
+     let cancelled = false
+     setApiReady(false)
+@@ -219,12 +233,25 @@
+     if (audio && pendingSeekSecRef.current !== null) {
+       audio.currentTime = pendingSeekSecRef.current
+       pendingSeekSecRef.current = null
++    }
++  }
++
++  function seekEpoch(epoch: number) {
++    if (!recordingKey || activeKey.current !== recordingKey) return
++    if (!Number.isFinite(epoch) || epoch < (range?.start ?? timeline?.firstEventTime ?? 0) || epoch > (range?.end ?? timeline?.lastEventTime ?? 0)) return
++    const next = epoch
++    setT(next)
++    const media = audioRef.current, start = audioStartEpochRef.current
++    if (media && start !== null) {
++      const seconds = Math.max(0, (next - start) / 1000)
++      if (media.readyState === 0) pendingSeekSecRef.current = seconds
++      else { pendingSeekSecRef.current = null; media.currentTime = seconds }
+     }
+   }
+
+   /** Scrub manuale: aggiorna t e riallinea il tempo audio */
+   function handleScrub(e: ChangeEvent<HTMLInputElement>) {
+-    const next = Number(e.target.value)
++    const next = Math.max(range?.start ?? 0, Math.min(range?.end ?? Infinity, Number(e.target.value)))
+     setT(next)
+     const audio = audioRef.current
+     const startEpoch = audioStartEpochRef.current
+@@ -313,7 +340,7 @@
+               // Scena iniziale DENTRO initialData: Excalidraw la applica in modo
+               // asincrono e cancellerebbe una updateScene arrivata prima (race
+               // vista in smoke: lavagna vuota finché non si scrubba).
+-              initialData={{ elements: scene as any, appState: EXCALIDRAW_CONFIG.newRoomAppState }}
++              initialData={{ elements: scene as any, files: replayFiles, appState: EXCALIDRAW_CONFIG.newRoomAppState }}
+             />
+             <ReplayObjectFocus scene={scene} target={focusedObject} viewport={viewport} />
+           </div>
+@@ -338,8 +365,8 @@
+               type="range"
+               aria-label="linea del tempo della lezione"
+               aria-valuetext={`${formatClock((t ?? timeline.firstEventTime!) - timeline.firstEventTime!)} di ${formatClock(timeline.lastEventTime! - timeline.firstEventTime!)}`}
+-              min={timeline.firstEventTime!}
+-              max={timeline.lastEventTime!}
++              min={range?.start ?? timeline.firstEventTime!}
++              max={range?.end ?? timeline.lastEventTime!}
+               step={1}
+               value={t ?? timeline.firstEventTime!}
+               onChange={handleScrub}
+@@ -347,7 +374,7 @@
+             />
+             {hasAudio && (
+               <audio
+-                ref={audioRef}
++                ref={attachMedia}
+                 controls
+                 aria-label="audio della lezione"
+                 onTimeUpdate={handleTimeUpdate}
+@@ -357,7 +384,8 @@
+               />
+             )}
+           </div>
+-          {timeline.recordings.length > 0 && <div className="st-replay-passages">
++          {renderExtension?.({ media: mediaElement, recording: canonicalRecording, timeline, epoch: t, seekEpoch })}
++          {!renderExtension && timeline.recordings.length > 0 && <div className="st-replay-passages">
+             {timeline.recordings.map((recording, index) => <button type="button" className="st-btn" key={recording.recordingId} onClick={() => {
+               setFocusedObjectId(recording.objectRefs[0]?.elementId ?? null)
+               setT(recording.endEpoch)
