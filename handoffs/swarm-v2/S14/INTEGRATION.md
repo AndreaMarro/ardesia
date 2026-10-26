@@ -24,3 +24,14 @@ Ripetere anche le regressioni S07/audio e gli altri gate richiesti sul candidato
 Prova nativa richiesta: aprire Room reale, disegnare/selezionare un gruppo, aggiungerlo alla raccolta nativa, reinserirlo, rimuovere uno schema, importare una raccolta autorizzata, salvare/riaprire ed esportare/importare `.lesson`. Verificare almeno tastiera, viewport390/1440, rifiuto projection, errore di salvataggio visibile e import pending prima di export. Il callback del mock non certifica comportamento dell'SDK.
 
 La raccolta è locale alla lezione e non sincronizzata fra account o browser dal nuovo codice. S10 conserva transport/ACL e S00 conserva rilascio. S16 usa un manifest glTF2 separato per asset originali, non il formato della raccolta e non uno snapshot degli scope S07.
+
+
+## Controprova consegnata del ciclo nativo file/raccolta
+
+Eseguire il runner aggiuntivo sulla composizione finale, indicando la fonte esatta e una directory nuova:
+
+```sh
+ARDESIA_S14_SOURCE_ROOT=/percorso/composizione ARDESIA_S14_OUTPUT=/percorso/prova-nuova node handoffs/swarm-v2/S14/prove-library-edit.mjs
+```
+
+Il server Studio deve già essere pronto all'origine locale indicata da ARDESIA_S14_ORIGIN (default http://127.0.0.1:55714). Browser seriale e dipendenze già presenti, nessun download. Cinque PASS consegnati per aggiunta/rimozione e roundtrip UI `.excalidrawlib` nel fallback HTML, oltre ai nove del runner principale. I report espongono gli hash fonte; non certificano una composizione diversa. Il picker OS e l'inserimento della tile solo da tastiera restano non verificati.

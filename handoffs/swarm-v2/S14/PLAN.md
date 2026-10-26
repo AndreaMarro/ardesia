@@ -12,3 +12,8 @@ Scelta ADAPT: Excalidraw0.18.1 Library MIT già installata. Goodnotes Elements �
 - [ ] Provenienza, REA parziale e limiti; PR reviewabile a S00, integrazione e postmerge verificati prima di dichiarare DONE. Memoria comune consegnata al writer S00.
 
 Rischi da verificare: callback SDK non attesa dal donor; export durante import in corso; vecchia raccolta su cambio lezione/store; proiezioni collaborative private; input corrotto non deve diventare salvataggio vuoto; raccolta illimitata può saturare cache locale.
+
+
+## Stato successivo alle controprove
+
+I punti iniziali restano come piano storico. Utility e budget realizzati con7testPASS, consumer verificato con4testRoommockPASS, typecheck0 e9checknativiPASS; altri5checknativiPASS attestano creazione/rimozione e file.excalidrawlib nel fallback HTML. Review indipendente con due finding corretti. Le prove e i fallimenti intermedi sono conservati, CI e15e35e5 tuttaSUCCESS. Il checkbox del raccordo non è soddisfatto: la patch non è montata nel branch consegnato o nella main. Restano assegnazione/composizione S00, controprova della Room combinata e postmerge. Memoria comune consegnata al writer S00, non modificata in concorrenza.

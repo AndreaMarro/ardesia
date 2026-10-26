@@ -70,3 +70,12 @@ REA runtime: primo scenario FAIL per selettore non univoco (comprendeva il tile 
 Il primo launcher Node diretto Chrome155 non è arrivato alla pagina; terminato il solo albero proprio, dopo SIGTERM non sufficiente. Una seconda invocazione ha restituito1 senza log/directory output (causaUNKNOWN); non è PASS o difetto prodotto. Il terzo run usa il Chromium cached del Playwright già installato ed è concluso EXIT0 con cleanup. Esiti precedenti conservati separatamente; nessun timeout aumentato.
 
 La PR319 continua come batch unico. Il verde CI d373ee32 è della prima utility, non viene trasferito a questa nuova revisione. Room/sharedfile sono ancora intatti sul branch di consegna: S00 applica la patch dopo S07 e verifica la sua composizione prima di dichiarare integrazione.
+
+
+## Aggiornamento: ciclo nativo della raccolta verificato
+
+La stessa composizione S07+patch, con hash invariati delle tre fonti nel report, passa altri cinque controlli in `native-library-proof/attempt-3.json`: selezione e aggiunta alla raccolta con autosave, export reale `.excalidrawlib` di due elementi, rimozione di un elemento dal menu nativo con conferma, import dello stesso file con merge e ricaricamento con gli stessi identificativi. Nessun errore console/pageerror. Il runner `prove-library-edit.mjs` usa il fallback HTML download/file-input del donor; disabilita solo le API File System Access nel browser di prova. Nessun mock dell'SDK e nessuna modifica del prodotto. Il picker OS non è attestato.
+
+I tentativi precedenti sono conservati: `attempt-1.json` attendeva la tile pending senza riaprire la sidebar chiusa dall'inserimento (errore harness); `attempt-2.json` crea e salva correttamente l'elemento, poi attende invano un download mentre il picker OS emette AbortError nel Vite del harness. Non sono regressioni prodotto dimostrate. Il terzo tentativo verifica il percorso HTML con cinque PASS. Browser e server di proprietà sono stati chiusi; slot rilasciato su306/6406567501.
+
+La CI esatta di e15e35e59f564e7c3d284754efe85da3880161ae è tutta SUCCESS, incluso Studio e golden; snapshot in `ci-e15e35e5.json`. CodeRabbit su draft è skip, non una review. Il nuovo commit di sole prove richiederà i propri controlli. Rimangono il raccordo Room da S00 dopo311, la verifica della composizione finale e il postmerge; inserimento della tile solo da tastiera NON_VERIFIED. S16 resta PENDING_S13_CONSUMER.

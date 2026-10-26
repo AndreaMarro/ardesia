@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "native pending selection adds a second collection item and autosaves",
+      "status": "PASS"
+    },
+    {
+      "name": "native collection menu exports a real two-item excalidrawlib file",
+      "status": "PASS"
+    },
+    {
+      "name": "native collection menu removes a selected item and autosaves",
+      "status": "PASS"
+    },
+    {
+      "name": "native collection menu imports the exported excalidrawlib and merges the removed item",
+      "status": "PASS"
+    },
+    {
+      "name": "cold reload preserves the exact two library item identities after native file roundtrip",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "sourceFiles": {
+    "apps/studio/src/Room.tsx": "9065b39ea470898e548be4bffb46ea1c98022efa0576db398303a147be8ef5c1",
+    "apps/studio/src/whiteboard-library/libraryScene.ts": "63e81356f54782445232092436de6e261c594b9475c9178736a4579743042aab",
+    "apps/studio/src/whiteboard-library/libraryImport.ts": "d4487da80d329f49e439f739abb2ac279c7118c16d49eb7da1c0d7a4c65a4b41"
+  },
+  "platform": "HTML download/file-input fallback; native headless OS file picker not automated",
+  "browser": "148.0.7778.96",
+  "createdItemId": "jC5dhHgHH_Tt0L7oW5z2h",
+  "removeMenu": "Salva in...\nRimuovi\nPubblica",
+  "confirmText": "Rimuovi gli elementi selezionati dalla libreria\n\nEliminare 1 elementi dalla libreria?\n\nAnnulla\nConferma",
+  "cleanup": "CLOSED_OWNED_BROWSER"
+}
