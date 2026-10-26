@@ -80,3 +80,10 @@ distinto dall'identità applicativa. Revocare il grant al termine.
 ## Checkpoint finale locale successivo
 
 Fonte2c522f96; main992d1a0b. Dieci mirati Studio e27pipelinePASS; build4pulita e791check browser localePASS. Notice234font/9famiglie e codiceMIT emessi, copyright separati; Liberation1.05legacy/source non verificato impedisce una dichiarazione di pubblicazioneStudio. Review tecnica separata senza finding comprovati,7requiredSUCCESS sulla fonte.307/308 integrate e CI post-merge verdi;314 ancora da terminare con provaVercel. Upload dal checkpoint persistente, primo create400missing_files, nessuna pubblicazione anticipata. RAW/test/screenshot nel pacchetto locale output2026-10-26-s00-integration; finalizzare receipt provider e rapporto dopo esecuzione. Il vecchio checkpoint26test e GREEN non eseguito è storico, non cancellato. Decisione di riuso completa in REA-REUSE.md.
+
+
+## Prova remota effettiva successiva
+
+Deployment `dpl_CESVaUARu9iX9zZuwZSqRjj8W1U8` READY, URL protetto [registro operatore](https://ardesia-fisica-preview-kpdx7h80d-andreas-projects-6d4e9791.vercel.app/ops/release/). Fonte2c522f96, manifest86af3158… invariato;796 HTTPS PASS,27 pipeline ripetuti PASS.768 asset esatti,4 gate anonimi, API503/DRAFT404, quattro larghezze,focus/reduced-motion e Formula SVG reale locale,zero errori/richieste esterne. Receipt e prova nel sottopercorso evidence; il provider non espone un refGit utile (Unknown), quindi non lo si deduce.
+
+GrantTTL1800 revocato; link vecchio e client fresco302→SSO, file0600 eliminato. La mia prima asserzione401/403 e il reporting401 erano troppo restrittivi/prematuri: rettificati in6411382351 e RUNLOG, originale conservato. Produzione dpl_7BQB2RrpkNdAsFgQ4MktHgfdnS1z verificata invariata. Nessun backend remoto o rollback eseguito. Prova locale791 distinta da remota796. Gate congelato e finalizzazione314 si registrano con i propri esiti, non dedotti da READY.
