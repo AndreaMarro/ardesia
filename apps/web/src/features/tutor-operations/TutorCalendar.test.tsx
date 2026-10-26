@@ -12,7 +12,7 @@ beforeEach(() => {
   vi.stubGlobal("matchMedia", () => ({ matches: false, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} }));
   vi.stubGlobal("ResizeObserver", class { observe() {} unobserve() {} disconnect() {} });
 });
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 test("real calendar keeps history, filters owner/cancelled and shows both Rome offsets", async () => {
   render(<TutorCalendar tutorId="tutor" editions={[
@@ -44,4 +44,18 @@ test("filter and refreshed source remove selected stale appointment", async () =
   view.rerender(<TutorCalendar tutorId="tutor" editions={[]} />);
   await waitFor(() => expect(screen.queryByRole("link", { name: "Apri questa edizione" })).toBeNull());
   expect(screen.getByText("Nessun incontro nelle edizioni selezionate.")).toBeTruthy();
+});
+
+test("edition filter preserves the historical period chosen by the tutor", async () => {
+  vi.spyOn(Date, "now").mockReturnValue(Date.parse("2026-10-26T12:00:00Z"));
+  const { container } = render(<TutorCalendar tutorId="tutor" editions={[{ ...edition, sessions: [
+    ...dates, { start: "2026-11-03T17:00:00Z", end: "2026-11-03T18:30:00Z" },
+  ] }]} />);
+  const heading = container.querySelector(".tutor-calendar-toolbar h4")!;
+  await waitFor(() => expect(heading.textContent).toMatch(/novembre/));
+  fireEvent.change(screen.getByLabelText("Vai alla data", { exact: true }), { target: { value: "2026-10-25" } });
+  await waitFor(() => expect(heading.textContent).toMatch(/ottobre/));
+  const before = heading.textContent;
+  fireEvent.change(screen.getByRole("combobox", { name: "Edizioni nel calendario", exact: true }), { target: { value: "fluidi" } });
+  expect(heading.textContent).toBe(before);
 });

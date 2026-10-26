@@ -45,9 +45,7 @@ export default function TutorCalendar({ editions, tutorId }: { editions: Edition
     <p>Solo incontri delle tue edizioni caricate, comprese le date passate. I dati si rileggono al caricamento della pagina.</p>
     <div className="tutor-calendar-filters">
       <div><label htmlFor={`${fieldId}-edition`}>Edizioni nel calendario</label><select id={`${fieldId}-edition`} value={filter} onChange={(event) => {
-        const id = event.target.value; setFilter(id); setSelected(null);
-        const date = startingDate(source.appointments.filter((item) => !id || item.edition.id === id));
-        if (date) controller.gotoDate(date);
+        setFilter(event.target.value); setSelected(null);
       }}><option value="">Tutte le mie edizioni</option>{choices.map((edition) => <option key={edition.id} value={edition.id}>{courseTitle(edition)} · {edition.id.slice(0, 8)}</option>)}</select></div>
       <div><label htmlFor={`${fieldId}-date`}>Vai alla data</label><input id={`${fieldId}-date`} type="date" onChange={(event) => { if (event.target.value) controller.gotoDate(event.target.value); }} /></div>
     </div>

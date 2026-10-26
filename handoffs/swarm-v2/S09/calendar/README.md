@@ -165,3 +165,12 @@ filtro. Eventi v7 presenti (prima asserzione2PASS); console/pageerror vuoti.
 Correzione consumer: associazioni label/for esplicite con useId, evitando che
 le opzioni del select entrino nel testo della label implicita. Test e browser
 da ripetere; non aumento timeout.
+
+26/10/2026, fonte bd264c66: run7 FAIL discrimina salto di periodo al filtro.
+Il consumer spostava automaticamente alla prossima data, perdendo il periodo
+storico scelto. Correzione: filtro cambia soltanto gli incontri, conserva periodo;
+aggiunta regressione con date passate/future e nome accessibile esatto.
+
+26/10/2026: regressioni dopo label/filtro **3 PASS** in6,64s, calendario
+reale, nessun mock. Il filtro conserva il mese storico quando esistono anche
+incontri futuri. Suite namespace18PASS precedente distinta da questo rerun3.
