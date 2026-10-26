@@ -16,6 +16,7 @@ const contexts = [];
 const errors = [], consoleErrors = [];
 const expectedRejections = [];
 let revoking = false;
+let activePage;
 const evidence = { synthetic: true, baseURL, browser: 'Chromium', browserPlugin: 'Absent; repository Playwright used', checks: [], editionId: null };
 async function login(alias) {
   const context = await browser.newContext({ baseURL, viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
@@ -26,6 +27,7 @@ async function login(alias) {
 }
 try {
   const teacher = await login('tutor-synthetic'), page = await teacher.newPage();
+  activePage = page;
   page.setDefaultTimeout(20000);
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => {
@@ -46,12 +48,18 @@ try {
   const management = page.getByText('Gestisci date e offerta', { exact: true });
   if (!(await management.locator('..').getAttribute('open') !== null)) await management.click();
   for (const [index, day] of [6, 8, 13, 15].entries()) await page.getByLabel(`Incontro ${index + 1} · inizio`, { exact: true }).fill(`2026-01-${String(day).padStart(2, '0')}T18:00`);
+  const saved = page.waitForResponse((response) => new URL(response.url()).pathname === `/study/admin/editions/${eid}` && response.request().method() === 'PATCH');
   await page.getByRole('button', { name: 'Salva date e condizioni', exact: true }).click();
-  await expect(page.getByText('Date e condizioni salvate.', { exact: false })).toBeVisible();
+  const savedResponse = await saved; assert.equal(savedResponse.status(), 200);
+  assert.equal((await savedResponse.json()).edition.sessions.length, 4);
+  await expect(page.getByRole('heading', { name: 'Date salvate', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Rileggi l’offerta completa' }).click();
   await page.getByLabel('Ho riletto le quattro date, i posti e il prezzo indicativo.', { exact: false }).check();
+  const offered = page.waitForResponse((response) => new URL(response.url()).pathname === `/study/admin/editions/${eid}/offer/confirm`);
   await page.getByRole('button', { name: 'Conferma offerta di test', exact: true }).click();
-  await expect(page.getByText('Offerta di test confermata. Nessun addebito o invito è stato inviato.')).toBeVisible();
+  const offeredResponse = await offered; assert.equal(offeredResponse.status(), 200);
+  assert.equal((await offeredResponse.json()).edition.state, 'offered');
+  await expect(page.getByText('Stato: offerta di test confermata', { exact: true })).toBeVisible();
   evidence.checks.push('CoursePack Taylor: create/date/capacity/preview/offer through actual UI');
 
   const learners = [];
@@ -80,13 +88,13 @@ try {
   const register = page.locator('details.edition-register');
   await register.locator('summary').first().click();
   await register.getByRole('button', { name: 'Registra per student-01', exact: true }).click();
-  await register.getByLabel('Stato di presenza', { exact: true }).selectOption('PRESENT');
+  await register.getByRole('combobox', { name: 'Stato di presenza', exact: true }).selectOption('PRESENT');
   await register.getByLabel('Nota sulla dichiarazione (facoltativa)', { exact: true }).fill('Presenza sintetica verificata da S09');
   await register.getByRole('button', { name: 'Registra dichiarazione', exact: true }).click();
   await expect(register.getByText('Dichiarazione manuale acquisita', { exact: false })).toBeVisible();
   await register.getByText('Nuova annotazione manuale', { exact: true }).first().click();
   const payment = register.getByRole('form', { name: 'Nuova annotazione manuale', exact: true });
-  await payment.getByLabel('Partecipante', { exact: true }).selectOption('student-01');
+  await payment.getByRole('combobox', { name: 'Partecipante', exact: true }).selectOption('student-01');
   await payment.getByLabel('Importo (€)', { exact: true }).fill('12,00');
   await payment.getByLabel('Riferimento esterno', { exact: true }).fill(`S09-${eid}`);
   await payment.getByRole('button', { name: 'Registra annotazione manuale', exact: true }).click();
@@ -139,6 +147,10 @@ try {
   await writeFile(path.join(output, 'browser-evidence.json'), JSON.stringify(evidence, null, 2) + '\n');
   process.stdout.write(JSON.stringify({ result: 'PASS', checks: evidence.checks, output }) + '\n');
 } catch (error) {
+  if (activePage) {
+    await writeFile(path.join(output, 'failure-dom.txt'), await activePage.locator('body').innerText()).catch(() => {});
+    await activePage.screenshot({ path: path.join(output, 'failure.png') }).catch(() => {});
+  }
   evidence.result = 'FAIL'; evidence.error = error.message; evidence.pageErrors = errors; evidence.consoleErrors = consoleErrors;
   await writeFile(path.join(output, 'browser-evidence.json'), JSON.stringify(evidence, null, 2) + '\n');
   throw error;

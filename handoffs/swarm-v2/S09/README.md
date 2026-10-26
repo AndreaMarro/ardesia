@@ -1,6 +1,6 @@
 # S09 — primo consumer gestionale tutor
 
-Stato: IMPLEMENTATO, verifica finale in corso. Non DONE del mandato S09.
+Stato: IMPLEMENTATO, CI verde; prova browser finale in corso. Non DONE del mandato S09.
 Base: `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`.
 Branch: `codex/s09-tutor-operations-20261026`.
 Rendez-vous: https://github.com/AndreaMarro/ardesia/pull/306
@@ -44,11 +44,19 @@ finché il riepilogo è chiuso. Cambio identità/edizione/sessione distrugge il 
 - Typecheck Web: exit0. La prova finale sulla head è distinta.
 - Review tecnica read-only di un secondo agente: nessun difetto azionabile;
   ha letto codice e contratti, senza eseguire test o browser. Non è approvazione umana.
-- Ultima suite dopo aggiunta ICS: 13 PASS/2 timeout5000ms su host saturo.
+- Prima suite dopo aggiunta ICS: 13 PASS/2 timeout5000ms su host saturo.
   I due test riguardano apertura riepilogo e download calendario; nessun gate o
-  timeout modificato. Ripetizione seriale e prova visuale restano da registrare.
-- Prova browser reale predisposta in `prove-workflow.mjs`, non ancora eseguita
-  a questo checkpoint. Browser plugin assente; usa Playwright già nel repository.
+  timeout modificato. Ripetizione seriale invariata: 15 PASS in8.76s, 3 file.
+- CI prodotto `e9555c3ec51ffda8dc5a293c85a8eea50bd57a3e`: tutti i sette required
+  SUCCESS, più golden path advisory e marketing. Run40246398330,
+  contract40246398410. Il verde non si trasferisce automaticamente alla prossima head.
+- Browser reale: creazione Taylor/date/offerta dalla UI e contesa HTTP10+2 PASS;
+  percorso complessivo ancora FAIL sul selettore del modulo presenze. I primi due
+  run si fermavano su avviso/editor smontati dal normale reload; corretto il runner
+  a risposta200+stato persistito e visibile. Il terzo usa getByLabel exact sul select,
+  mentre il test canonico usa getByRole(combobox): allineato il runner, senza editare
+  il prodotto. Prova visuale/export/revoca ancora da completare nella coda host.
+  Browser plugin assente; usa Playwright già nel repository.
 
 ## Riproduzione privata
 
