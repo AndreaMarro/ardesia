@@ -57,3 +57,10 @@ Official REA references consulted: https://github.com/morluto/rea ; https://gith
 **Date gates:** October 25 public marketing was a demo milestone, not a certification of four courses. October 26 invited pilot requires authentic persisted teacher/student replay. November 2 wider beta is **AT RISK** while private composition, remote backend and editorial coverage remain unverified. Reduce scope rather than falsely promoting draft content.
 
 No private student data, recordings, deployment, DNS, costs, settings, merge or publication were touched.
+
+
+## Addendum sulla candidata PR #321 — 26 ottobre
+
+- La prima esecuzione `pr-contract` sul body originale è stata **FAIL** per metadata `dependencies` anziché il campo previsto `depends_on`. Corretto il body corrente senza cambiare il contratto applicativo; la verifica successiva è una nuova run, non una riscrittura retroattiva del fallimento.
+- Il census ora controlla anche la SHA di **ciascuna** head PR *dopo* il fetch dei file. Se una head muta durante l'osservazione, restituisce `STALE_SNAPSHOT_RETRY` e la lista degli ID instabili, anziché un falso report MEASURED.
+- **4 test unitari locali PASS** dopo la modifica, incluso il caso avversariale head `old`→`new` senza cambio di `main`. CLI GitHub live, CI finale e composizione su merge tree: da leggere sulle run della head finale; nessun PASS ereditato.
