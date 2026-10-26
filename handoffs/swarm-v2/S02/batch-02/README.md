@@ -8,10 +8,6 @@ Scope: namespaceproduct-shell e1export di legacyViews nell'entryShell assegnato.
 
 ## Prove effettive
 
-Aggiornamento REA-FIRST: [ACQUISITION.md](ACQUISITION.md) contiene confronto di tre candidati, osservazione statica del dist Radix, provenienza/licenze, consumer e limiti. Nuovo test con dialogo aperto: una destinazione focalizzata rimossa non porta il focus fuori dal dialogo e Invio usa solo route/callback correnti; 1PASS,6nonselezionati in15.68s su jsdom. Il comportamento è fornito dalla libreria esistente, senza modifica al prodotto. Focus nativo resta da provare nello slot assegnato.
-
-CI della head2da98d99038d91b846d141c5efb9e791ee5a7c55: run40248639849SUCCESS con tutti7job; Web432PASS/63file, typecheck, build privato/pubblico, publicE2E11PASS e teacherpath1PASS. Marketing40248639850 e contract40248639847SUCCESS. Queste prove precedono il nuovo test e gli handoff REA: leggere la nuovaCI sulla nuovahead prima dell'integrazione, senza trasferire il verde.
-
 - Tre test di disponibilità RED→4testGREEN; test memoria RED→5testGREEN. Ultimo puro5PASS senza browser in circa0.15s.
 - ConsumerShell/command con enabledViews:1PASS (~1.2s inclusa jsdom),5test precedenti non selezionati in quel run. Non contati come test eseguiti.
 - Review separata read-only del diff8e..c512 e consumerApp/Today: nessun finding azionabile; whitespacePASS. Il revisore non ha eseguito test/build/browser/servizi. Focus nativo quando una voce già focalizzata viene rimossa rimane non verificato.
@@ -19,7 +15,7 @@ CI della head2da98d99038d91b846d141c5efb9e791ee5a7c55: run40248639849SUCCESS con
 
 ## Review dei confini e adozione
 
-S06: rilevato main interno annidato nel main della shell nel consumer letto; segnalato all'owner. L'owner ha confermato in6405352617 la correzione in section con suo RED/GREEN e7WebPASS; S02 non ha eseguito quei test. Nessun edit al suo namespace. S05 ha fornito label/descrizione e requisito senza corsi nel rendezvous6405296890. S08LessonMediaLibrary letto alla head81f7e1cb: caricamento/errore/fonte sono markup locali, prima adozione esplicita dei componenti di stato ancora da effettuare dall'owner.
+S06: rilevato main interno annidato nel main della shell nel consumer letto; segnalato all'owner perché usi section/article. Nessun edit al suo namespace. S05 ha fornito label/descrizione e requisito senza corsi nel rendezvous6405296890. S08LessonMediaLibrary letto alla head81f7e1cb: caricamento/errore/fonte sono markup locali, prima adozione esplicita dei componenti di stato ancora da effettuare dall'owner.
 
 Delega `components/Feedback.tsx` richiesta a S00 in6405260914 ma non ricevuta alla scrittura: file intatto. SourceStatus non deve diventarecurrent perché un GET della revisione esatta ha successo: se attualità non restituita, unknown. La review/adottanza dei nuovi consumerS01/S06/S08 non è completata da questo contratto.
 
@@ -28,3 +24,17 @@ Delega `components/Feedback.tsx` richiesta a S00 in6405260914 ma non ricevuta al
 1. S00 adotta enabledViews nella propria lista di route realmente montate con S05/S06, mantiene re-exportShell e risolve la vecchia modifica Shell della PR315. Accettazione: entry+ricerca dello stessoID, reload/back e ruolo senza edizioni, nessuna funzione inattiva pubblicizzata. Prova sul merge tree e main/preview pertinente.
 2. Dopo assegnazione, unificare Feedback e stati fonte nei consumerS01/S06/S08 conservando props/heading/negative: almeno unjourney perowner e sua review del confine. Il codice di stato non crea nuovi permessi o ledger.
 3. Quando lo slot è rilasciato, browser su route abilitate, tastiera/focus alla rimozione della destinazione e compatibilità di viewport/zoom; screen reader/Safari/device separati. Nessuna nuova suite pesante o dichiarazione di remoto implicita.
+
+
+## Aggiornamento datato — 26 ottobre 2026, mandato REA-FIRST
+
+La fotografia precedente è conservata intatta. Questa appendice aggiorna le conclusioni senza sostituire le prove storiche.
+
+- PR316, base main8e0737b1, codice applicativo c512930a. CI della head2da98d99:40248639849SUCCESS, tutti7job, Web432PASS/63file con typecheck e build privato/pubblico, publicE2E11PASS e teacherpath1PASS; marketing40248639850 e contract40248639847SUCCESS. Non trasferire il verde alle head successive.
+- Head8219b389 aggiunge il test di rimozione della route focalizzata e handoff REA, senza cambiare codice applicativo. Test locale1PASS/6nonselezionati in15.68s totali,1.79s test; jsdom, non browser nativo. La CI40250598810 era IN_PROGRESS all'appendice: leggere il risultato esatto prima di integrare.
+- Correzione alla sezione storica S06: in6405352617 l'owner ha confermato section etichettata al posto del main annidato, suo RED/GREEN e7WebPASS. S02 non ha eseguito questi test. Il finding era valido sul consumer letto e non è una lacuna ancora presunta nella fonte successiva.
+- Il focus alla rimozione è ora provato in jsdom; resta NOT_RUN nel browser nativo. Radix lo gestisce senza un nuovo observer o trap proprietario. Le prove UI/Core di PR308 rimangono riferite alla loro fonte e non attestano il nuovo mount S05/S06.
+- [ACQUISITION.md](ACQUISITION.md): confronto di tre candidati, decisione REUSE Radix1.3.1, REA sul dist, licenze/provenienza e debito. [TARGETS.delta.json](TARGETS.delta.json) propone aggiornamento del soloTARGET-117 e candidati senza ID assegnati; registro comune intatto. S12/S15/S13/S16 consultati realmente via6405606925.
+- Slot/browser/build/tsc S02 non avviati. App/Feedback/API e namespace altrui intatti; Root e adozione stati restano da comporre con i writer. Nessun merge/deploy o DONE della nuova capacità dichiarati.
+
+Il nuovo [MEMORY-2026-10-26.md](MEMORY-2026-10-26.md) è appendice per il writer S00 di RUNLOG/NEXT, con decisioni, limiti e task accettabili.
