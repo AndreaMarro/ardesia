@@ -5,7 +5,7 @@ import type { ExcalidrawElement } from '@excalidraw/excalidraw/element/types'
 import { CollaborationToolbar } from './CollaborationToolbar'
 import { captureInkStroke, projectInk } from './canvasBinding'
 import type { PageGeometry } from './canvasBinding'
-import { CompletedInkCapture, isInkProjection } from './sceneBoundary'
+import { CompletedInkCapture, isInkProjection, isInkUndoTarget } from './sceneBoundary'
 import { validateRoomInkAdapter, type RoomInkAdapter } from './roomAdapter'
 export type { RoomInkAdapter } from './roomAdapter'
 import { writeInkCheckpoint } from './persistence'
@@ -87,9 +87,8 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
       presentation.revoke()
     }
     const keydown = (event: KeyboardEvent) => {
-      const target = event.target
-      if (!(target instanceof HTMLElement) || target.closest('[data-ink-room]')?.getAttribute('data-ink-room') !== adapter.roomId
-          || target.closest('input, textarea, [contenteditable="true"]') || !(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return
+      if (!isInkUndoTarget(event.target, adapter.roomId)
+          || !(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return
       event.preventDefault(); event.stopImmediatePropagation()
       if (session.state().status !== 'revoked' && !session.state().frozen) { if (event.shiftKey) session.redo(); else session.undo() }
     }

@@ -1,4 +1,9 @@
 type SceneObject = { id: string; type?: string; customData?: Record<string, unknown> | null }
+/** Canvas undo must not consume commands belonging to a native editor. */
+export function isInkUndoTarget(target: EventTarget | null, roomId: string): boolean {
+  return target instanceof HTMLElement && target.closest('[data-ink-room]')?.getAttribute('data-ink-room') === roomId
+    && !target.closest('input, textarea, math-field, [contenteditable="true"]')
+}
 export function isInkProjection(element: SceneObject): boolean {
   return !!element.customData && Object.hasOwn(element.customData, 'ardesiaInkV1')
 }
