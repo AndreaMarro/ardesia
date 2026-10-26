@@ -17,6 +17,7 @@ import { Shell, type View } from "./components/Shell";
 import { ErrorNotice, Loading } from "./components/Feedback";
 import { Public } from "./features/Public";
 import { Today } from "./features/Today";
+const LearningInsights = lazy(() => import("./features/learning-insights/LearningInsights").then(m => ({default:m.LearningInsights})));
 const Courses = lazy(() =>
   import("./features/Courses").then((m) => ({ default: m.Courses })),
 );
@@ -241,6 +242,7 @@ export default function App() {
                   }}
                 />
               ) : view === "work" ? (
+                <>
                 <Work
                   me={me}
                   data={data}
@@ -250,6 +252,8 @@ export default function App() {
                     navigate("classroom");
                   }}
                 />
+                <LearningInsights me={me} editionId={data.edition.id}/>
+                </>
               ) : view === "review" && me.role === "teacher" ? (
                 <Review
                   data={data}

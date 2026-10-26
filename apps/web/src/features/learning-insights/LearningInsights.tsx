@@ -22,10 +22,17 @@ function ScopedInsights({me,editionId}: Props) {
   const [busy,setBusy]=useState(false);
   const [status,setStatus]=useState("");
   const [reason,setReason]=useState("");
+  const [cards,setCards]=useState({view:"",page:0});
   const [contesting,setContesting]=useState<string|null>(null);
   const models=[...new Set(data?.attempts.map(a=>a.activityId)??[])].sort();
   const viewState=useInsightView(models);
   const filtered=data?visibleExport(data,viewState.view):null;
+  const cardsView=JSON.stringify(viewState.view);
+  useEffect(()=>{setCards({view:cardsView,page:0});},[cardsView]);
+  const cardsCount=filtered?.attempts.length??0;
+  const cardsPages=Math.max(1,Math.ceil(cardsCount/25));
+  const cardsPage=cards.view===cardsView?Math.min(cards.page,cardsPages-1):0;
+  const visibleCards=filtered?.attempts.slice(cardsPage*25,(cardsPage+1)*25)??[];
   const lifetime=useRef({alive:true,revoked:false,epoch:studySessionEpoch()});
   const read=useRef<AbortController|null>(null);
   const current=()=>lifetime.current.alive&&!lifetime.current.revoked&&lifetime.current.epoch===studySessionEpoch();
@@ -92,7 +99,7 @@ function ScopedInsights({me,editionId}: Props) {
       <EvidenceExplorer key={JSON.stringify(viewState.view)} attempts={filterAttempts(data.attempts,viewState.view)} role={data.role}/>
       <div className="insights-columns"><section aria-labelledby="attempts-title"><h2 id="attempts-title">Le prove svolte</h2>
         {!filtered?.attempts.length&&<p>Nessuna ricevuta in questa vista. Puoi azzerare i filtri; lo studio resta disponibile con l’analitica facoltativa disattivata.</p>}
-        <ol className="insights-attempts">{filtered?.attempts.map(a=><li key={a.receiptId}><article className="insights-card">
+        <ol className="insights-attempts">{visibleCards.map(a=><li key={a.receiptId}><article className="insights-card">
           <div className="insights-card-title"><h3>{a.activityId}</h3><span className={`insights-badge ${a.outcome==="MISMATCH"?"insights-review":""}`}>{outcomes[a.outcome]}</span></div>
           <p>{a.assistance==="SUPPORT_REQUESTED"?"Aiuto richiesto":a.assistance==="NO_SUPPORT_REQUESTED"?"Nessun aiuto richiesto registrato":"Assistenza non registrata"}</p>
           {a.supportUsed.length>0&&<ul>{a.supportUsed.map(s=><li key={s}>{help[s]??s}</li>)}</ul>}
@@ -101,6 +108,11 @@ function ScopedInsights({me,editionId}: Props) {
           <details><summary>Mostra evidenza</summary><dl><dt>Ricevuta Core</dt><dd>{a.receiptId}</dd><dt>Modello / versione</dt><dd>{a.activityId} / {a.modelVersion??"non registrata"}</dd><dt>Fonti esatte</dt><dd>{a.sourceRefs.map(r=><p key={r.resourceId}>{r.resourceId} · {r.revisionId}</p>)}</dd></dl><p>Il controllo riguarda questa prova. Non misura da solo l’apprendimento né gli aiuti esterni.</p></details>
           {me.role==="student"&&<button disabled={busy||!data.preferences.enabled} onClick={()=>void command(()=>studyRequest("/learning-insights/events",{editionId,events:[{schemaVersion:1,eventId:requestKey(),consentId:data.preferences.consentId,receiptId:a.receiptId,kind:"difficulty.reported",occurredAt:Date.now()/1000}]}),"Segnalazione registrata come osservazione dichiarata, senza diagnosi.")}>Segnala difficoltà</button>}
         </article></li>)}</ol>
+        {cardsPages>1&&<><nav className="insights-card-pages" aria-label="Pagine delle schede">
+          <button disabled={cardsPage===0} onClick={()=>setCards({view:cardsView,page:cardsPage-1})}>Schede precedenti</button>
+          <span>Pagina {cardsPage+1} di {cardsPages}</span>
+          <button disabled={cardsPage===cardsPages-1} onClick={()=>setCards({view:cardsView,page:cardsPage+1})}>Schede successive</button>
+        </nav><p className="insights-eyebrow">L’esportazione include tutte le prove dei filtri correnti.</p></>}
         {!!filtered?.comparisons.length&&<section className="insights-card"><h2>Tentativi collegati</h2><p>Confronti osservati, senza attribuzione causale. Un tentativo dopo il primo può avere aiuti diversi.</p>{filtered.comparisons.map(c=><details key={c.afterReceiptId}><summary>{c.scope==="SAME_MODEL_PARAMETERS"?"Stesso modello e parametri":"Il contesto è cambiato"}</summary><p>Prima: {outcomes[c.beforeOutcome as keyof typeof outcomes]??c.beforeOutcome}. Dopo: {outcomes[c.afterOutcome as keyof typeof outcomes]??c.afterOutcome}.</p><p>Ricevute: {c.beforeReceiptId} → {c.afterReceiptId}</p><p>Assistenza registrata: {c.beforeAssistance} → {c.afterAssistance}</p></details>)}</section>}
       </section><aside><section className="insights-card" aria-labelledby="suggestions-title"><h2 id="suggestions-title">Da riprendere insieme</h2>
         {!filtered?.suggestions.length&&<p>Nessuna indicazione revisionata da mostrare. Pochi clic non bastano per classificare una difficoltà.</p>}

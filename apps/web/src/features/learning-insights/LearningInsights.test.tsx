@@ -96,3 +96,23 @@ it("applies URL filters and browser navigation to authorized receipt evidence",a
   expect(screen.queryByRole("heading",{name:"poiseuille-v1"})).toBeNull();
   expect(screen.getByRole("heading",{name:"bernoulli-v1"})).toBeTruthy();
 });
+
+it("bounds receipt cards and resets pagination when a filter changes",async()=>{
+  const attempts=Array.from({length:61},(_,i)=>({...data.attempts[0],receiptId:`receipt-${i}`,activityId:`model-${i}`,outcome:i===60?'MATCH' as const:'MISMATCH' as const}));
+  serve({...data,attempts});
+  const view=render(<LearningInsights me={{id:"student-01",role:"student"}} editionId="fluidi"/>);
+  await screen.findByRole("heading",{name:"model-0"});
+  expect(view.container.querySelectorAll('.insights-attempts > li')).toHaveLength(25);
+  const pages=screen.getByRole("navigation",{name:"Pagine delle schede"});
+  fireEvent.click(within(pages).getByRole("button",{name:"Schede successive"}));
+  expect(screen.getByRole("heading",{name:"model-25"})).toBeTruthy();
+  fireEvent.click(within(pages).getByRole("button",{name:"Schede successive"}));
+  expect(view.container.querySelectorAll('.insights-attempts > li')).toHaveLength(11);
+  fireEvent.change(screen.getByRole("combobox",{name:/^Verifica/}),{target:{value:'MATCH'}});
+  expect(screen.getByRole("heading",{name:"model-60"})).toBeTruthy();
+  expect(view.container.querySelectorAll('.insights-attempts > li')).toHaveLength(1);
+  expect(screen.queryByRole("navigation",{name:"Pagine delle schede"})).toBeNull();
+  fireEvent.click(screen.getByRole("button",{name:"Azzera filtri"}));
+  expect(screen.getByRole("heading",{name:"model-0"})).toBeTruthy();
+  expect(view.container.querySelectorAll('.insights-attempts > li')).toHaveLength(25);
+});

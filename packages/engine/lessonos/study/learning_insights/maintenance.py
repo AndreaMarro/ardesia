@@ -23,7 +23,7 @@ def invalidate_after_restore(store, *, apply=False):
 
     Required before serving a restored DB with optional analytics enabled.
     Restored receipts remain in the Core; optional choices require a new action.
-    S10 owns the restore_data composition and must install this hook there.
+    operations.restore_data invokes this on its staging database before serving.
     """
     with store.transaction() as c:
         count = c.execute('SELECT COUNT(*) FROM study_events WHERE kind IN (?,?)',

@@ -1,19 +1,18 @@
-"""Private synthetic composition, not production installation or remote proof."""
+"""Private synthetic fixture using the installed create_app, no alternate routes."""
 import argparse
 import json
 from pathlib import Path
-from fastapi import Request
 import uvicorn
 from lessonos.study.store import StudyStore
-from lessonos.study.models import StudyError
 from lessonos.study.submissions import submit
 from lessonos.study import diary
-from lessonos.study.learning_insights.routes import install_routes
 from study_api.app import create_app
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--data-dir',type=Path,required=True)
 parser.add_argument('--port',type=int,default=55621)
+parser.add_argument('--frontend',type=Path,help='Serve the actual compiled Web artifact from this API')
+parser.add_argument('--synthetic-notice',action='store_true',help='Enable the notice only for this disposable synthetic fixture')
 args=parser.parse_args()
 args.data_dir.mkdir(parents=True,exist_ok=True)
 path=args.data_dir/'study.sqlite'
@@ -46,20 +45,10 @@ access={'editionId':'s11-fluidi','studentToken':store.issue_session(student),'pe
 access_path=args.data_dir/'access.json'
 access_path.write_text(json.dumps(access))
 access_path.chmod(0o600)
+if not store.connection.execute('SELECT 1 FROM study_editions WHERE id=?',('fluidi',)).fetchone():
+    store.create_edition(tutor,'fluidi')
 store.close()
-app=create_app(path,demo=True)
-
-def store_dependency():
-    current=StudyStore(path,initialize=False,check_same_thread=False)
-    try:yield current
-    finally:current.close()
-
-def authenticate(request:Request,current):
-    principal=current.principal_for_session(request.cookies.get('study_session',''))
-    if principal is None:raise StudyError('unauthenticated',401)
-    return principal
-
-install_routes(app,store_dependency,authenticate,notice={
-    'version':'s11-synthetic-usage-v1','purpose':'Osservazioni facoltative per la sola prova sintetica locale','retentionDays':30})
-print('S11 synthetic API: cookie sessions, persisted SQLite, optional notice for local tests only.',flush=True)
+notice={'version':'s11-synthetic-usage-v1','purpose':'Osservazioni facoltative per la sola prova sintetica locale','retentionDays':30} if args.synthetic_notice else None
+app=create_app(path,demo=True,frontend=args.frontend,learning_insights_notice=notice)
+print('S11 installed Core/API fixture; synthetic notice enabled: '+str(args.synthetic_notice),flush=True)
 uvicorn.run(app,host='127.0.0.1',port=args.port,log_level='warning')

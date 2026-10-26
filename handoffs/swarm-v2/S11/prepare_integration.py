@@ -37,6 +37,8 @@ def prepare(root=ROOT, copies=None):
         before = (root / filename).read_text()
         after = before
         for old, new in replacements:
+            if new in after:
+                continue  # The owner-approved hook is already installed.
             if after.count(old) != 1:
                 raise ValueError(f'Shared source changed; review new owner source: {filename}')
             after = after.replace(old, new)

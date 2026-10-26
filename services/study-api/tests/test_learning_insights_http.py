@@ -1,16 +1,6 @@
-"""Installer contract in a synthetic composition with real Core sessions.
-
-Shared create_app installation belongs to S10; tests supply its two documented
-dependencies. Existing app middleware, origin boundary and session routes run.
-"""
-import json
-import pytest
-from fastapi import Request
+"""Installed router: actual create_app cookie, admission and session boundaries."""
 from fastapi.testclient import TestClient
-from lessonos.study.models import StudyError
-from lessonos.study.store import StudyStore
 from lessonos.study.submissions import submit
-from lessonos.study.learning_insights.routes import install_routes
 from study_api.app import create_app
 from test_identity import setup_store
 
@@ -18,20 +8,7 @@ NOTICE = {'version':'synthetic-v1','purpose':'Uso facoltativo sintetico','retent
 
 
 def composed_app(path):
-    app = create_app(path, demo=True)
-    def store_dependency():
-        store = StudyStore(path, initialize=False, check_same_thread=False)
-        try:
-            yield store
-        finally:
-            store.close()
-    def authenticate(request: Request, store):
-        principal = store.principal_for_session(request.cookies.get('study_session', ''))
-        if principal is None:
-            raise StudyError('unauthenticated',401)
-        return principal
-    install_routes(app, store_dependency, authenticate, notice=NOTICE)
-    return app
+    return create_app(path, demo=True, learning_insights_notice=NOTICE)
 
 
 def test_http_session_receipt_scope_export_optout_and_revocation(tmp_path):
@@ -81,3 +58,18 @@ def test_http_origin_guard_precedes_optional_mutation(tmp_path):
         response=client.put('/study/learning-insights/preferences',json={'editionId':'fluidi','enabled':True,'noticeVersion':'synthetic-v1'},headers={'Origin':'https://other.invalid'})
         assert response.status_code == 403
         assert store.connection.execute("SELECT COUNT(*) FROM study_events WHERE kind='learning.insights.preference.v1'").fetchone()[0] == 0
+
+
+def test_installed_router_is_unique_and_default_collection_stays_disabled(tmp_path):
+    store,_,student,*_=setup_store(tmp_path)
+    app=create_app(store.path,demo=True)
+    assert sum(route.path == '/study/learning-insights' for route in app.routes) == 1
+    with TestClient(app) as client:
+        client.post('/study/session',json={'token':store.issue_session(student)})
+        result=client.get('/study/learning-insights?editionId=fluidi')
+        assert result.status_code == 200
+        assert result.json()['preferences']['notice'] is None
+        assert result.json()['preferences']['enabled'] is False
+        rejected=client.put('/study/learning-insights/preferences',json={'editionId':'fluidi','enabled':True,'noticeVersion':'invented'})
+        assert rejected.status_code == 409
+        assert store.connection.execute("SELECT COUNT(*) FROM study_events WHERE kind LIKE 'learning.insights.%'").fetchone()[0] == 0

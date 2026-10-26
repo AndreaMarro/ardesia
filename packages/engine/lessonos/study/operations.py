@@ -264,6 +264,8 @@ def restore_data(backup,destination,current_ledger):
         resume_erasures(stage)
         store=StudyStore(stage/'study.sqlite')
         try:
+            from .learning_insights.maintenance import invalidate_after_restore
+            invalidate_after_restore(store,apply=True)
             with store.transaction() as c:c.execute('DELETE FROM study_sessions');c.execute('DELETE FROM study_invitations')
         finally:store.close()
         result=check_data(stage)
