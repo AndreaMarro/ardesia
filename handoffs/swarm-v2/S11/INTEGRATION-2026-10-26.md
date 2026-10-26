@@ -45,3 +45,5 @@ Senza `--synthetic-notice` il fixture usa noticeNone. Un data-dir nuovo per ogni
 2. **P0 ambiente S00/S10:** prova privata nel deployment pertinente e policy reale di retention/backup/informativa. Defaultoff conservato; nessuna automazione o raccolta reale autorizzata implicitamente. PostgreSQL e account mai riaperti rimangono da validare.
 3. **P1 scala:** misurare dataset/coorti grandi, query Core e carichi concorrenti. La paginazione limita DOM delle schede e della tabella; non certifica scalabilità delle query o efficacia educativa.
 4. **P1 S12/S15:** riconciliare propostaPlot dopo integrazione main; dati/provenienza immutabili, nessunLRS o secondoCore. Prossimo candidato xAPI126/Caliper solo con valutazione3donor e consumer utile.
+
+Normalizzazione successiva del solo formato dei log installati: rimossi spazi finali emessi daVite; risultati e sorgenti/runtime invariati. Il full diff è verificato prima della consegna, senza esclusioni di igiene.
