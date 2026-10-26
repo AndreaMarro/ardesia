@@ -34,24 +34,33 @@ async function openFormula(page) {
   await button.click()
   await expect(page.locator('math-field')).toBeVisible()
 }
-async function touchBounds(page) {
+async function touchBounds(page, keyboardVisible = false) {
   // A clipped absolute panel does not increase document.scrollWidth. Check
   // its actual bounds and every host control rather than the document alone.
   const bounds = await page.locator('.st-composer-panel').evaluate(panel => {
     const rect = panel.getBoundingClientRect()
     const controls = [...panel.querySelectorAll('button, math-field, .st-composer-field')].map(control => {
       const r = control.getBoundingClientRect()
-      return { label: control.getAttribute('aria-label') || control.textContent, left: r.left, right: r.right }
+      return { label: control.getAttribute('aria-label') || control.textContent, left: r.left, right: r.right, top: r.top, bottom: r.bottom }
     })
-    return { left: rect.left, right: rect.right, viewport: window.innerWidth, controls }
+    const plate = document.querySelector('.ML__keyboard.is-visible .MLK__plate')?.getBoundingClientRect()
+    return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, viewport: window.innerWidth, height: window.innerHeight, keyboardTop: plate?.top, controls }
   })
+  expect(bounds.top).toBeGreaterThanOrEqual(0)
+  expect(bounds.bottom).toBeLessThanOrEqual(bounds.height)
+  if (keyboardVisible) {
+    expect(bounds.keyboardTop).toBeDefined()
+    expect(bounds.bottom).toBeLessThanOrEqual(bounds.keyboardTop + 1)
+  }
   expect(bounds.left).toBeGreaterThanOrEqual(0)
   expect(bounds.right).toBeLessThanOrEqual(bounds.viewport)
   for (const control of bounds.controls) {
+    expect(control.top, control.label).toBeGreaterThanOrEqual(bounds.top)
+    expect(control.bottom, control.label).toBeLessThanOrEqual(bounds.bottom)
     expect(control.left, control.label).toBeGreaterThanOrEqual(bounds.left)
     expect(control.right, control.label).toBeLessThanOrEqual(bounds.right)
   }
-  check('touch composer panel, field and host controls fit inside viewport', bounds)
+  check(`touch composer panel, field and host controls fit at 390x844${keyboardVisible ? ' above open keyboard' : ''}`, bounds)
 }
 async function scene(page, room) {
   return page.evaluate(async roomId => {
@@ -118,6 +127,7 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
       await expect.poll(() => page.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(visible)
     }
     await expect(page.locator('.ML__keyboard.is-visible .MLK__plate')).toBeInViewport({ ratio: 0.99 })
+    await touchBounds(page, true)
     await page.screenshot({ path: resolve(output, 'formula-mobile-keyboard.png') })
     check('touch native keyboard opens, closes and opens with plate visible')
     await page.getByRole('button', { name: 'chiudi', exact: true }).click()
@@ -252,6 +262,7 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
   await keyboard.click()
   await expect.poll(() => mobile.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(true)
   await expect(mobile.locator('.ML__keyboard.is-visible .MLK__plate')).toBeInViewport({ ratio: 0.99 })
+  await touchBounds(mobile, true)
   await mobile.screenshot({ path: resolve(output, 'formula-mobile-keyboard.png') })
   await mobile.getByRole('button', { name: 'chiudi', exact: true }).click()
   await expect(mobile.locator('math-field')).toHaveCount(0)
