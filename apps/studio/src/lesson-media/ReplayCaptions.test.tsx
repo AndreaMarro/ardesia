@@ -2,10 +2,10 @@
 import {afterEach,expect,test,vi} from 'vitest';
 import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {ReplayCaptions} from './ReplayCaptions';
-import {captionReplayUrl,type PlaybackIdentity} from './playback';
-import {defaultIndex,INDEX_KIND} from './model';
-import {source} from './fixture';
-import type {StudyResource} from '../../api';
+import {captionReplayUrl,type PlaybackIdentity} from '../../../web/src/features/lesson-media/playback';
+import {defaultIndex,INDEX_KIND} from '../../../web/src/features/lesson-media/model';
+import {source} from '../../../web/src/features/lesson-media/fixture';
+import type {StudyResource} from '../../../web/src/api';
 
 const a=source(),doc=defaultIndex(a)!;
 doc.cues=[{id:'first',startMs:125,endMs:2250,text:'Δp < 10 kPa.'},{id:'second',startMs:3500,endMs:9875,text:'0 < x < 5 e y > 2.'}];
@@ -13,7 +13,7 @@ const indexed:StudyResource={...a,id:'index',revisionId:'index-v1',kind:INDEX_KI
 const identity:PlaybackIdentity={lessonId:'aula-fluidi',sessionId:'session-one',recordingId:'take-one',sha256:'a'.repeat(64),startEpoch:1000,endEpoch:11000};
 const search=new URL(captionReplayUrl(JSON.parse(a.text).descriptor.replayUrl,a,indexed)).search;
 const audioRef={current:null},seekRevision={current:0};
-afterEach(()=>{cleanup();vi.unstubAllGlobals();vi.restoreAllMocks();});
+afterEach(()=>{seekRevision.current=0;cleanup();vi.unstubAllGlobals();vi.restoreAllMocks();});
 
 test('legacy replay makes no Core request or caption UI',()=>{
   const fetch=vi.fn();vi.stubGlobal('fetch',fetch);
@@ -35,8 +35,9 @@ test('reads pinned text, seeks only after another Core read and stops exposing i
 
 test('another recording hides the earlier document immediately and late Core responses cannot restore it',async()=>{
   let resolve:((response:Response)=>void)|undefined,count=0;
-  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>++count===1?new Promise<Response>(r=>{resolve=r;}):Response.json(String(url).includes('/index/')?indexed:a)));
+  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>String(url).includes('/index/')?Response.json(indexed):++count===1?new Promise<Response>(r=>{resolve=r;}):Response.json(a)));
   const view=render(<ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} identity={identity} search={search} onSeek={()=>{}}/>);
+  await waitFor(()=>expect(resolve).toBeTypeOf('function'));
   view.rerender(<ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} identity={{...identity,recordingId:'take-two'}} search={search} onSeek={()=>{}}/>);
   await screen.findByRole('alert');resolve!(Response.json(a));
   await waitFor(()=>expect(screen.queryByText('Δp < 10 kPa.')).toBeNull());
@@ -61,19 +62,21 @@ test('hiding the page clears text; returning rereads Core instead of restoring a
 
 test('a delayed seek preflight cannot move a player after unmount',async()=>{
   let count=0,resolve:((response:Response)=>void)|undefined;
-  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>++count===3?new Promise<Response>(r=>{resolve=r;}):Response.json(String(url).includes('/index/')?indexed:a)));
+  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>String(url).includes('/index/')?Response.json(indexed):++count===2?new Promise<Response>(r=>{resolve=r;}):Response.json(a)));
   const seek=vi.fn(),view=render(<ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} identity={identity} search={search} onSeek={seek}/>);
   await screen.findByText('Δp < 10 kPa.');fireEvent.click(screen.getByRole('button',{name:/Apri frammento 1/}));
-  view.unmount();resolve!(Response.json(a));await Promise.resolve();await Promise.resolve();expect(seek).not.toHaveBeenCalled();
+  await waitFor(()=>expect(resolve).toBeTypeOf('function'));
+  view.unmount();resolve!(Response.json(a));await new Promise(r=>setTimeout(r,0));expect(seek).not.toHaveBeenCalled();
 });
 
 
 test('a newer manual seek wins over an older caption preflight in the same recording',async()=>{
   let count=0,resolve:((response:Response)=>void)|undefined,position=9000;
-  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>++count===3?new Promise<Response>(r=>{resolve=r;}):Response.json(String(url).includes('/index/')?indexed:a)));
+  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>String(url).includes('/index/')?Response.json(indexed):++count===2?new Promise<Response>(r=>{resolve=r;}):Response.json(a)));
   const seek=vi.fn((epoch:number)=>{position=epoch;});
   render(<ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} identity={identity} search={search} onSeek={seek}/>);
   await screen.findByText('Δp < 10 kPa.');fireEvent.click(screen.getByRole('button',{name:/Apri frammento 1/}));
+  await waitFor(()=>expect(resolve).toBeTypeOf('function'));
   seekRevision.current++;position=9000;resolve!(Response.json(a));
   await screen.findByText('La posizione è cambiata durante la verifica. Il salto precedente è stato annullato.');
   expect(position).toBe(9000);expect(seek).not.toHaveBeenCalled();

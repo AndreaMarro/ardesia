@@ -1,9 +1,9 @@
 import {useEffect,useMemo,useRef,useState,type RefObject} from 'react';
-import {describeError} from '../../api';
-import {subscribeStudySessionEnd} from '../../../../studio/src/study/sessionBoundary';
-import {clock} from './model';
-import {attachCaptionTrack} from './nativeCaptions';
-import {parseCaptionReference,readCaptionDocument,type CaptionDocument,type PlaybackIdentity} from './playback';
+import {describeError} from '../../../web/src/api';
+import {subscribeStudySessionEnd} from '../study/sessionBoundary';
+import {clock} from '../../../web/src/features/lesson-media/model';
+import {attachCaptionTrack} from '../../../web/src/features/lesson-media/nativeCaptions';
+import {parseCaptionReference,readCaptionDocument,type CaptionDocument,type PlaybackIdentity} from '../../../web/src/features/lesson-media/playback';
 import './replay-captions.css';
 
 type Loaded={key:string;document:CaptionDocument};

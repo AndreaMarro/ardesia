@@ -28,3 +28,15 @@ CheckoutDocuments originale compressed,dataless preservato; worktree da commit e
 2. P0: browser suWAV/journal eCore reali, seek/cue/pausa/fine/cambio take/cookie/revoca e race con HTTP ritardato, mobile/tastiera/Blobcleanup; REA sullo stesso scenario.
 3. P0: stessaPR aggiornata solo come candidate verificato, allrequired esatti e handoffS00/main/postmerge; non DONE prima dell'integrazione.
 4. P1: server/storage/video/upload/Range S10; nessun endpointinventato, ascoltoumano/Safari/device e revoca fisica delle copie non certificati.
+
+## Correzione CI81 e confine workspace
+
+CI81 ha verificato Web/Core/API/MCP/hygiene/golden/marketing, ma Studio/readiness sono FAIL: React ejsx-runtime non risolti dal fileWeb durante npmci delsoloStudio, erroriTS2307/TS2875 e derivati. Il consumerReact, CSS e7test ora vivono in apps/studio/src/lesson-media; solo contratti/helper senza framework restanoWeb. Nessun manifest/lock/gate o nuovo pacchetto. Il primo setup di prova standalone aveva cwd errata e non aveva rimosso rootdeps: il tsc0 successivo è un check caldo, NON una prova di installazione pulita. Percorsi corretti prima del prossimo check.
+
+La fonte primaria viene riletta dopo l'indice, come nel catalogo: un indice ancora leggibile non autorizza la vista dopo il ritiro della fonte. Nuovo negativo controllato per ritiro durante indexload, senza fingere una transazione atomica tra dueGET. I timer e i controlliCore non sono revoca fisica dei byte o un nuovo sistema di consenso.
+
+## Addendum 26 ottobre — correzione confine Studio verificata
+
+Il consumer React/CSS e i suoi test sono nel package Studio; Web conserva contratti/helper privi di React. Typecheck forzato `tsc -b --noEmit --force` EXIT0 in102.14s con root/Web node_modules realmente assenti, runtime Studio già installato riusato: prova del confine di risoluzione, non una nuova npmci. NamespaceWeb44/44PASS in5file; Studio27/27PASS in2file (7consumer+20ReplayView), seriali coi flagAGENTS. Nessun manifest/lock/gate modificato. Il precedente processo50208 non era più interrogabile dopo ripresa: nessun esito dedotto, prova ripetuta con risultato/log sufile.
+
+Review read-only del delta: nessun nuovo finding; source-last negativo discriminante e import puri verificati staticamente. Lo spy del vero ReplayEngine verifica scena calcolata/cursore, non dimostra da solo renderingExcalidraw. Browser/REA di questo batch ancora NON_RUN al commit. Le dueFAIL import e lo startup precedente restano storici, non riscritti come verdi. Patch di raccordo aggiornata nel file `replay-captions-integration-current.patch`, informativa e già applicata; vecchia patch conservata.

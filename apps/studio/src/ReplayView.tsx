@@ -12,7 +12,7 @@ import { ReplayEngine } from "./store/ReplayEngine"
 import { loadReplayTimeline, recordingAtTime, resolveReplayTarget, type ReplayTimeline } from "./store/replayTimeline"
 import EmptyState from "./design/EmptyState"
 import ReplayObjectFocus from "./ReplayObjectFocus"
-import { ReplayCaptions } from "../../web/src/features/lesson-media/ReplayCaptions"
+import { ReplayCaptions } from "./lesson-media/ReplayCaptions"
 import { recordingSession } from "./store/audioRecording"
 
 interface ReplayViewProps {

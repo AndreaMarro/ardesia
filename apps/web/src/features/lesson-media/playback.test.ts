@@ -27,14 +27,14 @@ test('loads exact readable source/index and validates the local replay identity;
   const fetch=vi.fn(async(url:unknown)=>Response.json(String(url).includes('/index/')?index():a));vi.stubGlobal('fetch',fetch);
   const result=await readCaptionDocument(reference(),identity);
   expect(result.index).toEqual(defaultIndex(a));expect(result.indexRevision).toBe('index-v1');
-  expect(fetch.mock.calls.map(c=>c[0])).toEqual(['/study/resources/source/revisions/rev-source','/study/resources/index/revisions/index-v1']);
+  expect(fetch.mock.calls.map(c=>c[0])).toEqual(['/study/resources/index/revisions/index-v1','/study/resources/source/revisions/rev-source']);
 });
 
 test.each([
   {...identity,recordingId:'take-two'}, {...identity,sessionId:'other'}, {...identity,lessonId:'other'},
   {...identity,sha256:'d'.repeat(64)}, {...identity,startEpoch:1001}, {...identity,endEpoch:12000},
 ])('another recording/session/hash or interval cannot borrow the source transcript',async other=>{
-  vi.stubGlobal('fetch',vi.fn(async()=>Response.json(a)));
+  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>Response.json(String(url).includes('/index/')?index():a)));
   await expect(readCaptionDocument(reference(),other)).rejects.toThrow();
 });
 
@@ -54,4 +54,14 @@ test('without editorial index uses only the exact original source; withdrawal is
   expect((await readCaptionDocument(reference(null),identity)).index).toEqual(defaultIndex(a));expect(fetch).toHaveBeenCalledOnce();
   fetch.mockImplementation(async()=>Response.json({error:'not_found'},{status:404}));
   await expect(readCaptionDocument(reference(null),identity)).rejects.toThrow('not_found');
+});
+
+
+test('source withdrawal during index loading denies the display even if the index remains readable',async()=>{
+  let withdrawn=false;
+  vi.stubGlobal('fetch',vi.fn(async(url:unknown)=>{
+    if(String(url).includes('/index/')){withdrawn=true;return Response.json(index());}
+    return withdrawn?Response.json({error:'not_found'},{status:404}):Response.json(a);
+  }));
+  await expect(readCaptionDocument(reference(),identity)).rejects.toThrow('not_found');
 });

@@ -43,17 +43,21 @@ export function captionReplayUrl(rawUrl:string,source:StudyResource,indexResourc
 function samePin(resource:StudyResource,pin:RevisionPin){return resource.id===pin.id&&resource.revisionId===pin.revisionId&&resource.sha256===pin.sha256;}
 export async function readCaptionDocument(reference:CaptionReference,playback:PlaybackIdentity,signal?:AbortSignal):Promise<CaptionDocument>{
   const read=(p:RevisionPin)=>studyRequest<StudyResource>(`/resources/${encodeURIComponent(p.id)}/revisions/${encodeURIComponent(p.revisionId)}`,undefined,{signal});
+  let indexed:StudyResource|null=null,index:MediaIndex|null=null;
+  if(reference.index){
+    indexed=await read(reference.index);
+    if(!samePin(indexed,reference.index)||indexed.kind!==INDEX_KIND)throw new Error('caption_mismatch');
+    index=parseIndex(indexed.text);
+    if(!index||index.source.id!==reference.source.id||index.source.revisionId!==reference.source.revisionId||index.source.sha256!==reference.source.sha256)throw new Error('caption_mismatch');
+  }
+  // Read the primary source last, as the catalog does: an index that remains
+  // readable after source withdrawal cannot authorize a new display or seek.
   const source=await read(reference.source),passage=readLessonPassage(source);
   if(!samePin(source,reference.source)||!passage)throw new Error('caption_mismatch');
   const d=passage.descriptor;
   if(d.lessonId!==playback.lessonId||d.sessionId!==playback.sessionId||d.recordingId!==playback.recordingId||
     d.sha256!==playback.sha256||d.startEpoch!==playback.startEpoch||d.endEpoch!==playback.endEpoch)throw new Error('caption_mismatch');
-  let index=defaultIndex(source);
-  if(reference.index){
-    const resource=await read(reference.index);
-    if(!samePin(resource,reference.index)||resource.kind!==INDEX_KIND||resource.editionId!==source.editionId)throw new Error('caption_mismatch');
-    index=parseIndex(resource.text);
-  }
-  if(!index||!matchesSource(index,source))throw new Error('caption_mismatch');
+  index=index??defaultIndex(source);
+  if(!index||(indexed&&indexed.editionId!==source.editionId)||!matchesSource(index,source))throw new Error('caption_mismatch');
   return {index,sourceRevision:source.revisionId,indexRevision:reference.index?.revisionId??null};
 }
