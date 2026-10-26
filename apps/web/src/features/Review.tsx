@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { AttemptText } from "./circuit-lab/AttemptText";
 import {
   describeError,
   requestKey,
@@ -220,9 +221,7 @@ function SubmissionReview({
       <div className="review-columns">
         <section>
           <h3>La versione consegnata</h3>
-          <p className="original-text submission-answer">
-            {submission.text || "Consegna tramite originale allegato."}
-          </p>
+          <AttemptText text={submission.text} fallback="Consegna tramite originale allegato." />
           <PredictionEvidence value={submission.activityEvidence} />
           {submission.source_refs.length > 1 && (
             <label>

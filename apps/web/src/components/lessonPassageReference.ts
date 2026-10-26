@@ -1,3 +1,4 @@
+import { circuitSummary } from "../features/circuit-lab/resourceSummary";
 import type { StudyResource } from "../api";
 import { scienceSummary } from "../features/science-library/resourceSummary";
 
@@ -67,6 +68,10 @@ export function readLessonPassage(resource: StudyResource): LessonPassage | null
 
 /** A display projection: never changes source bytes, revisions or selection offsets. */
 export function displaySourceTitle(resource: StudyResource, limit = 85): string {
+  if (resource.kind === "s19-circuit") {
+    const source = circuitSummary(resource);
+    return (source ? `Circuito DC · ${source.quantity === "voltage" ? "tensione" : "corrente"} su ${source.target}` : "Circuito DC non leggibile").slice(0, limit);
+  }
   if (resource.kind === "science-resource") {
     const summary=scienceSummary(resource);
     return ("Esperimento scientifico"+(summary?" · "+(summary.note.trim().split("\n")[0]||summary.capabilityId):" non leggibile")).slice(0,limit);

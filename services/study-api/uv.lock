@@ -34,11 +34,17 @@ wheels = [
 ]
 
 [[package]]
+name = "ardesia-s19-circuit-lab"
+version = "0.1.0"
+source = { editable = "../../plugins/s19-circuit-lab" }
+
+[[package]]
 name = "ardesia-study-api"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "anyio" },
+    { name = "ardesia-s19-circuit-lab" },
     { name = "fastapi" },
     { name = "pillow" },
     { name = "psycopg", extra = ["binary"] },
@@ -55,6 +61,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "anyio", specifier = ">=4.15,<5" },
+    { name = "ardesia-s19-circuit-lab", editable = "../../plugins/s19-circuit-lab" },
     { name = "fastapi", specifier = "==0.139.0" },
     { name = "pillow", specifier = ">=12,<13" },
     { name = "psycopg", extras = ["binary"], specifier = "==3.3.3" },

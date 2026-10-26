@@ -1,0 +1,25 @@
+F...F                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_teacher_creates_configures_previews_and_explicitly_offers_without_charging _
+services/study-api/tests/test_admin_http.py:16: in test_teacher_creates_configures_previews_and_explicitly_offers_without_charging
+    assert {pack['packId'] for pack in registry.json()['items']}=={'relazioni-fluidi-v1','taylor-exp-v1',*(f'sf-{path}-v1' for path in ('strumenti-meccanica','fluidi-termodinamica','elettricita-magnetismo','onde-ottica-radiazioni'))}
+E   AssertionError: assert {'relazioni-f...nica-v1', ...} == {'relazioni-f...aylor-exp-v1'}
+E
+E     Extra items in the left set:
+E     's19-circuit-dc-v1'
+E     Use -v to get more diff
+________ test_pathway_pins_and_unavailable_state_are_explicit_metadata _________
+services/study-api/tests/test_curriculum_inventory_http.py:82: in test_pathway_pins_and_unavailable_state_are_explicit_metadata
+    assert len(result.json()['inventory']['programmes']) == 6
+E   AssertionError: assert 7 == 6
+E    +  where 7 = len([{'id': 'relazioni-fluidi-v1@1', 'title': 'Fisica: relazioni e fluidi', 'subject': 'fisica', 'packId': 'relazioni-flui...ccanica-v1@1', 'title': 'Strumenti e meccanica', 'subject': 'fisica', 'packId': 'sf-strumenti-meccanica-v1', ...}, ...])
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  <checkout>/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_admin_http.py::test_teacher_creates_configures_previews_and_explicitly_offers_without_charging
+FAILED services/study-api/tests/test_curriculum_inventory_http.py::test_pathway_pins_and_unavailable_state_are_explicit_metadata
+2 failed, 3 passed, 1 warning in 2.91s

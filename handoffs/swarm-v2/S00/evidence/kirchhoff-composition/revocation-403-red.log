@@ -1,0 +1,58 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep host transport 403
+
+(node:73340) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:73341) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73341) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:73341) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit (6.7s)
+
+
+  1) [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByLabel('Note', { exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for getByLabel('Note', { exact: true })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      350 |   await page.getByLabel("Note", { exact: true }).fill("PRIVATE ACCESS EDIT");
+      351 |   release();
+    > 352 |   await expect(page.getByLabel("Note", { exact: true })).toHaveCount(0);
+          |                                                          ^
+      353 |   await expect(page.getByTestId("answer")).toHaveCount(0);
+      354 |   await expect(page.getByRole("alert")).toContainText("non è accessibile");
+      355 | });
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:352:58
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-host-transport-403-rem-f70ba-ate-after-a-concurrent-edit-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-host-transport-403-rem-f70ba-ate-after-a-concurrent-edit-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-host-transport-403-rem-f70ba-ate-after-a-concurrent-edit-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-host-transport-403-rem-f70ba-ate-after-a-concurrent-edit-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit

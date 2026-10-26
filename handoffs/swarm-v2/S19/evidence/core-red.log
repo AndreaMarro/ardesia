@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+_____________________ ERROR collecting tests/test_core.py ______________________
+ImportError while importing test module '/Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/tests/test_core.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../../../.local/share/uv/python/cpython-3.13.14-macos-aarch64-none/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plugins/s19-circuit-lab/tests/test_core.py:9: in <module>
+    from s19_circuit_lab.core import save, reopen, submit_attempt
+E   ModuleNotFoundError: No module named 's19_circuit_lab.core'
+=========================== short test summary info ============================
+ERROR plugins/s19-circuit-lab/tests/test_core.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 8.72s

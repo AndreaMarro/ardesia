@@ -1,0 +1,136 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test
+
+(node:74393) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 32 tests using 1 worker
+
+(node:74394) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74394) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74394) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/lab.spec.ts:21:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (3.6s)
+  ✓   2 [desktop] › tests/lab.spec.ts:92:1 › keyboard and touch select nodes and reconnect branches through accessible controls (805ms)
+  ✓   3 [desktop] › tests/lab.spec.ts:122:1 › late numerical response cannot survive a changed circuit (607ms)
+  ✓   4 [desktop] › tests/lab.spec.ts:143:1 › portable JSON contains inputs and import recalculates; forged proof is refused (726ms)
+  ✓   5 [desktop] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft (1.2s)
+  ✓   6 [desktop] › tests/lab.spec.ts:223:1 › procedure editor persists before verification and hydrates on cold reopen (1.0s)
+  ✓   7 [desktop] › tests/lab.spec.ts:256:1 › controlled host preserves an edit made while save acknowledgement is pending (706ms)
+  ✓   8 [desktop] › tests/lab.spec.ts:284:1 › moving a node while a save is pending leaves the layout dirty (515ms)
+  ✓   9 [desktop] › tests/lab.spec.ts:314:1 › host transport 401 clears private state even after an intervening edit (1.1s)
+  ✓  10 [desktop] › tests/lab.spec.ts:341:34 › host transport 403 removes private state after a concurrent edit (939ms)
+  ✓  11 [desktop] › tests/lab.spec.ts:341:34 › host transport 404 removes private state after a concurrent edit (687ms)
+  ✓  12 [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B (1.2s)
+  ✓  13 [desktop] › tests/lab.spec.ts:388:1 › transfer circuit gets a distinct Core resource (674ms)
+  ✓  14 [desktop] › tests/lab.spec.ts:416:1 › unavailable engine still reopens private inputs and notes (725ms)
+  ✓  15 [desktop] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result (751ms)
+  ✓  16 [desktop] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file (1.5s)
+(node:74447) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74447) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74447) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [touch] › tests/lab.spec.ts:21:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (1.6s)
+  ✓  18 [touch] › tests/lab.spec.ts:92:1 › keyboard and touch select nodes and reconnect branches through accessible controls (553ms)
+  ✓  19 [touch] › tests/lab.spec.ts:122:1 › late numerical response cannot survive a changed circuit (374ms)
+  ✓  20 [touch] › tests/lab.spec.ts:143:1 › portable JSON contains inputs and import recalculates; forged proof is refused (526ms)
+  ✓  21 [touch] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft (813ms)
+  ✓  22 [touch] › tests/lab.spec.ts:223:1 › procedure editor persists before verification and hydrates on cold reopen (894ms)
+  ✓  23 [touch] › tests/lab.spec.ts:256:1 › controlled host preserves an edit made while save acknowledgement is pending (490ms)
+  ✓  24 [touch] › tests/lab.spec.ts:284:1 › moving a node while a save is pending leaves the layout dirty (444ms)
+  ✓  25 [touch] › tests/lab.spec.ts:314:1 › host transport 401 clears private state even after an intervening edit (596ms)
+  ✓  26 [touch] › tests/lab.spec.ts:341:34 › host transport 403 removes private state after a concurrent edit (534ms)
+  ✓  27 [touch] › tests/lab.spec.ts:341:34 › host transport 404 removes private state after a concurrent edit (1.1s)
+  ✓  28 [touch] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B (1.0s)
+  ✓  29 [touch] › tests/lab.spec.ts:388:1 › transfer circuit gets a distinct Core resource (873ms)
+  ✓  30 [touch] › tests/lab.spec.ts:416:1 › unavailable engine still reopens private inputs and notes (875ms)
+  ✘  31 [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result (5.4s)
+(node:74518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74518) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  32 [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file (5.6s)
+
+
+  1) [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+
+
+      16 |   await expect(
+      17 |     page.getByRole("heading", { name: "Il circuito, passo dopo passo." }),
+    > 18 |   ).toBeVisible();
+         |     ^
+      19 | });
+      20 |
+      21 | test("DC prediction, supported and unsupported steps, mutation and Core cold reopen", async ({
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:18:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-Core-session-revocatio-1a386--private-circuit-and-result-touch/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-Core-session-revocatio-1a386--private-circuit-and-result-touch/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-Core-session-revocatio-1a386--private-circuit-and-result-touch/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-Core-session-revocatio-1a386--private-circuit-and-result-touch/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+
+
+      16 |   await expect(
+      17 |     page.getByRole("heading", { name: "Il circuito, passo dopo passo." }),
+    > 18 |   ).toBeVisible();
+         |     ^
+      19 | });
+      20 |
+      21 | test("DC prediction, supported and unsupported steps, mutation and Core cold reopen", async ({
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:18:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result
+    [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file
+  30 passed (44.4s)

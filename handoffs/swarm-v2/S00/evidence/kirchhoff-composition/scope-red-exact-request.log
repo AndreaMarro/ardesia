@@ -1,0 +1,56 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep late forbidden
+
+(node:73859) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:73860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73860) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:73860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B (9.4s)
+
+
+  1) [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('Note', { exact: true })
+    Expected: "AUTHORIZED B"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" with timeout 5000ms
+      - waiting for getByLabel('Note', { exact: true })
+
+
+      382 |   const denied = page.waitForResponse((r) => r.url().includes(a.id)); release(); await denied;
+      383 |   await page.evaluate(() => new Promise(requestAnimationFrame));
+    > 384 |   await expect(page.getByLabel("Note", { exact: true })).toHaveValue("AUTHORIZED B");
+          |                                                          ^
+      385 |   await expect(page.getByRole("heading", { name: "Accesso non disponibile" })).toHaveCount(0);
+      386 | });
+      387 |
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:384:58
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-a-late-forbidden-respo-0d9bf-erase-authorized-document-B-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-a-late-forbidden-respo-0d9bf-erase-authorized-document-B-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-a-late-forbidden-respo-0d9bf-erase-authorized-document-B-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-a-late-forbidden-respo-0d9bf-erase-authorized-document-B-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B

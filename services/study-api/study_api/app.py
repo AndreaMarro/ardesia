@@ -540,6 +540,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     from lessonos.study.science_library.routes import install_science_library_routes
     install_science_library_routes(app, store_dependency, authenticate)
 
+    from s19_circuit_lab.routes import install
+    install(app, store_dependency, authenticate)
+
     if studio_frontend:
         from fastapi.staticfiles import StaticFiles
         app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')

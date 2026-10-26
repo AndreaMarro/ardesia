@@ -1,0 +1,22 @@
+2026-10-26T20:13:06.0556536Z     Test timeout of 60000ms exceeded.
+2026-10-26T20:13:06.0556744Z
+2026-10-26T20:13:06.0556929Z     Error: locator.click: Test timeout of 60000ms exceeded.
+2026-10-26T20:13:06.0557219Z     Call log:
+2026-10-26T20:13:06.0557889Z       - waiting for getByRole('region', { name: 'Catalogo privato del docente' }).getByRole('button', { name: 'Programmi configurati (6)', exact: true })
+2026-10-26T20:13:06.0558354Z
+2026-10-26T20:13:06.0558404Z
+2026-10-26T20:13:06.0558704Z       45 |   await expect(catalog.getByRole('heading',{name:'Riferimento non disponibile'})).toBeVisible();
+2026-10-26T20:13:06.0559532Z       46 |   await catalog.getByRole('link',{name:'Tutti i percorsi',exact:true}).click();
+2026-10-26T20:13:06.0560238Z     > 47 |   await catalog.getByRole('button',{name:'Programmi configurati (6)',exact:true}).click();
+2026-10-26T20:13:06.0560717Z          |                                                                                   ^
+2026-10-26T20:13:06.0561177Z       48 |   await expect(catalog.locator('.curriculum-grid').getByRole('article')).toHaveCount(6);
+2026-10-26T20:13:06.0561534Z       49 |   // Only the two seeded editions exist; registering a pack never enrols anyone.
+2026-10-26T20:13:06.0561870Z       50 |   await expect(catalog.getByRole('button',{name:'Apri edizione esistente'})).toHaveCount(2);
+2026-10-26T20:13:06.0562223Z         at <checkout>/apps/web/e2e/physics-pathways.spec.ts:47:83
+2026-10-26T20:13:06.0562539Z
+2026-10-26T20:13:06.0563083Z     Error Context: apps/web/test-results/physics-pathways.l0STna/playwright/physics-pathways-teacher-n-f8be2-ard-survive-at-three-widths/error-context.md
+2026-10-26T20:13:06.0563417Z
+2026-10-26T20:13:06.0563763Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-26T20:13:06.0564467Z     apps/web/test-results/physics-pathways.l0STna/playwright/physics-pathways-teacher-n-f8be2-ard-survive-at-three-widths/trace.zip
+2026-10-26T20:13:06.0564868Z     Usage:
+2026-10-26T20:13:06.0564935Z

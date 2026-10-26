@@ -1,0 +1,36 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.8 $WORKTREE/apps/web
+
+(node:73109) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73110) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/workflows.test.tsx (9 tests | 1 failed) 11421ms
+   × lab invalidates feedback after parameters change and commits once 5730ms
+ ❯ src/__tests__/public-spring.test.tsx (9 tests | 1 failed) 13326ms
+   × the third public lab requires a prediction, shows Core metres and joules, and invalidates its graph on edits 7278ms
+ ❯ src/__tests__/public-experience.test.tsx (10 tests | 2 failed) 13985ms
+   × public experience hides the solution and flow response until a prediction, then supports retry and a new constraint 5918ms
+   × the authored audio requires a manual gesture and its failure leaves the full transcript available 4014ms
+ ❯ src/__tests__/poiseuille-episode.test.tsx (10 tests | 1 failed) 10520ms
+   × ordinary classroom records a prediction before revealing the model and offers constraint recovery 5781ms
+(node:73105) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/session-boundary.test.tsx (11 tests | 2 failed) 17175ms
+   × logout clears independent-study device copies after leaving its view 5759ms
+   × rejected clears independent-study device copies after leaving its view 5130ms
+(node:73194) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/__tests__/course-pack-disclosure.test.tsx (3 tests | 1 failed) 3312ms
+   × student-courses: closed preview makes no content or evaluation request; opening is explicit and closing unmounts it 2233ms
+npm error Lifecycle script `test` failed with error:
+npm error code 130
+npm error path $WORKTREE/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location $WORKTREE/apps/web
+npm error command failed
+npm error command sh -c vitest run

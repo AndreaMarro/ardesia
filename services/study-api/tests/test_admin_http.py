@@ -13,7 +13,10 @@ def test_teacher_creates_configures_previews_and_explicitly_offers_without_charg
         assert client.post('/study/session',json={'token':token}).status_code==200
         registry=client.get('/study/admin/coursepacks')
         assert registry.status_code==200
-        assert {pack['packId'] for pack in registry.json()['items']}=={'relazioni-fluidi-v1','taylor-exp-v1',*(f'sf-{path}-v1' for path in ('strumenti-meccanica','fluidi-termodinamica','elettricita-magnetismo','onde-ottica-radiazioni'))}
+        assert {pack['packId'] for pack in registry.json()['items']}=={'relazioni-fluidi-v1','taylor-exp-v1','s19-circuit-dc-v1',*(f'sf-{path}-v1' for path in ('strumenti-meccanica','fluidi-termodinamica','elettricita-magnetismo','onde-ottica-radiazioni'))}
+        circuit = next(pack for pack in registry.json()['items'] if pack['packId'] == 's19-circuit-dc-v1')
+        assert circuit['courseId'] == 'elettrotecnica-dc' and circuit['packVersion'] == 1
+        assert circuit['entryActivityId'] is None and circuit['questionBankIds'] == []
         body={'packId':'taylor-exp-v1','packVersion':1,'capacity':10,'priceMinor':3900}
         headers={'Idempotency-Key':'create-management'}
         created=client.post('/study/admin/editions',json=body,headers=headers)

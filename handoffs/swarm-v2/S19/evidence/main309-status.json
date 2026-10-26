@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-26",
+  "scope": "User requested S00 confirmation before conditional push325",
+  "pr309": {
+    "headRefOid": "9da49952491445b93349e3f7b7f75bb9e323e074",
+    "isDraft": true,
+    "mergeCommit": null,
+    "mergedAt": null,
+    "state": "OPEN",
+    "url": "https://github.com/AndreaMarro/ardesia/pull/309"
+  },
+  "main": "e95a80b393589b71da2846aa98814dc1a034b730",
+  "s00Confirmation": "309 remains OPEN/DRAFT; do not push325 until actual main309 is communicated. New local309 candidate50b07bea0859000e0ba697a9e1fb684afb6d14f5 adds explicit revisionId to scientific compare; app.py unchanged. This candidate is reported by S00, not independently tested by S19.",
+  "s19RemoteHead": "5e080e3ed6ce5798bda2ca25cee92fc8e6934674",
+  "s19CandidateProof": "9da49952491445b93349e3f7b7f75bb9e323e074 local patch applicability/syntax only",
+  "s19Action": "Keep patch/handoff local; no commit/push or heavy local tests; await actual main SHA and rerun full CI after resulting push."
+}

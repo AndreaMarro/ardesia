@@ -54,3 +54,8 @@ Poi: aggiungi `kind` al manifest → estrai ELABTutor Pack (provenance-gated) �
 
 ## Sorgenti canoniche (regola anti-divergenza)
 Struttura = `~/ardesia` (Mini). Engine-behavior = `~/lessonos`. Studio-behavior = `~/maestro-studio`. ELAB = `~/VOLUME 3/PRODOTTO/elab-builder`. **Archivia `~/ardesia-monorepo`** (dup stale). NON studiare i subtree engine/studio del monorepo per il comportamento corrente.
+
+
+## Addendum del 26 ottobre 2026 — consegne coordinate
+
+L'[indice unico degli stream](../handoffs/swarm-v2/README.md) raccoglie codice, PR, contratti, prove e handoff delle chat Ardesia. Il [registro datato](../handoffs/swarm-v2/S00/evidence/chat-consolidation/REGISTRY-20261026.md) distingue codice integrato, solo PR e solo analisi locale; non sostituisce lo stato generato. [Composizione Kirchhoff e percorso reale](../handoffs/swarm-v2/S00/kirchhoff-composition.md). L'aggiunta conserva integralmente gli snapshot storici sopra.

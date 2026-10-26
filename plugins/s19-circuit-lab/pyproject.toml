@@ -1,0 +1,15 @@
+[project]
+name = "ardesia-s19-circuit-lab"
+version = "0.1.0"
+requires-python = ">=3.12"
+# The host can preserve inputs without the scientific engine. Acquire Kirchhoff
+# only through engine.lock.json/install_engine.py, never an unverified PyPI name.
+dependencies = []
+[build-system]
+requires = ["hatchling==1.30.1"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["s19_circuit_lab"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

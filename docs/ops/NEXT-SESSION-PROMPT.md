@@ -128,3 +128,33 @@ Su head309 `9da49952`, job Web40375681120 SUCCESS: 34 controlli Studio autonomo 
 
 
 Nota successiva: B-05 ha anche controprova indipendente ASTRA B9/9 sulla fonte50b07bea; il log RED conteneva valori della fixture sintetica e la relativa riga è ora redatta con ricevuta/digest, senza cambiare l'asserzione. La candidata5513 era già stata pubblicata; nessuna riscrittura della cronologia o credenziale di produzione identificata. Leggere la nuova head effettiva, non trasferire automaticamente il verde9da.
+
+
+## S00 — esito terminale309/316 e base per il seguito,26 ottobre2026
+
+**309 e316 sono MERGED**, main `d7dc3917d695c80d027c91df21577e06ec649232`, treee1f62518 identico al merge tree verificato. CI della head 40378097214 e **post-merge 40379757071 SUCCESS**; report post-merge 34 Study + 19 Science PASS con manifest esatto in `handoffs/swarm-v2/S00/evidence/study-terminal/`. Commenti terminali309#6424498231 e316#6424498826. Non ripartire dai vecchi checkpoint draft o chiedere nuovamente autorizzazione al merge. Il FAIL locale resta non attribuito; l'integrazione non lo trasforma in una diagnosi.
+
+S19 ha la base reale per riallineare la stessa #325; prima leggere la nuova head/CI, poi comporre il consumer e verificare merge/post-merge. Memoria #315, Back/Forward, media #313 e Room 311/318/319/322/324 restano raccordi espliciti, non consumer completati dalla sola ancestry. Backend remoto assente: servono adapter/entrypoint/policy hosted, non soltanto URL; guardie loopback locali da conservare. S10 non identificato, nessun riuso ELAB. Matrice di 60 probe disponibile ma tutti i journey remoti restano BLOCKED (503). lessonRef/fase esatti nella ricevuta sono un gap da riprodurre prima di progettare il contratto additivo.
+
+Produzione dei 5 esempi e preview #317 restano invariate, quattro corsi0/52, 0/57, 0/33, 0/58. Seguire i 5 task dell'ultima RUNLOG con primi passi, dipendenze, accettazione ed evidenze. Storico append-only, un writer S00, smentite datate e provate. Questo addendum va portato nel prossimo consumer integrato; gli esiti terminali sono già pubblicati nelle PR, senza creare una PR solo per documentazione.
+
+
+## Addendum S00 — 26 ottobre 2026: composizione #325 e indice di tutte le consegne
+
+Leggere il nuovo [indice degli stream](../../handoffs/swarm-v2/README.md) e il [report Kirchhoff](../../handoffs/swarm-v2/S00/kirchhoff-composition.md). Il registro fotografa 20 PR/19 fonti di chat su main d7; le sue 7 integrate/13 aperte sono un checkpoint, non lo stato futuro. Non ripartire dai blocchi già superati di #304, #309 o #316. RUNLOG conserva risultati, errori, correzioni e 5 task con accettazione.
+
+S00 ha composto il consumer S19 nella stessa #325: fonti con revisione esatta, copia privata, retry canonico, input JSON recuperabili senza motore, revoca e risposte tardive isolate. Prove locali: 530 Web, 45 S19 Python, 8 context, 32 browser componenti e 2 journey reali desktop/touch. Nuova CI, merge e post-merge vanno verificati sulla SHA corrente; non riciclare i verdi della vecchia head b64. Il task immediato è chiudere correttamente questa integrazione.
+
+Dopo l'esito terminale, affrontare backend hosted e lessonRef/fase esatti; poi comporre memoria/media/Room usando i contratti esistenti. Nessuna nuova PR per prolungare artificialmente il lavoro. S03/S10/S12/S13 senza pacchetto autonomo verificato restano gap, non attività completate. Le 60 prove remote sono ancora preparate, zero eseguite. I quattro corsi rimangono 0/52, 0/57, 0/33, 0/58; DRAFT e approvazione umana restano distinti dai test verdi.
+
+Pubblicare su GitHub codice, prove curate e handoff nel perimetro autorizzato, senza trascrizioni private o credenziali. Gli snapshot e le conclusioni precedenti si conservano: aggiungere una correzione datata con prova, mai riscrivere il passato.
+
+
+### #325 — correzione CI del 26 ottobre 2026
+
+La head33a non è verde: due test API conservavano il vecchio catalogo a sei pack e la build pubblica rilevava il digest catalog.py non rigenerato. Entrambi riprodotti; ora set esatto a sette pack e proiezione rigenerata dal Core, tutti gli altri dati pubblici identici. API5/5 e --check PASS, ricevute in kirchhoff-composition/ci-33a. Non cancellare i FAIL o chiamarli flaky. La prossima azione è nuova CI completa, review, merge protetto e post-merge nella stessa325; i cinque task dell'ultima RUNLOG restano validi. Nessun deploy pubblico o cambio della copertura0/200.
+
+
+### #325 — spec browser di inventario, 26 ottobre 2026
+
+CI5092: API eS19PASS, Webphysics-pathways ancora cerca6programmi mentreDOM7. Delta successivo allinea tre aspettative e aggiunge titoloKirchhoff, preservando riferimento obsoleto e tutti i controlli di navigazione. LocaleNOT_RUN per ENOSPC nell'installazione, non un fallimento del browser; continuare tramiteCI. Ricevute ci-5092 e addendumRUNLOG conservano la distinzione. Chiudere la stessa325 con merge/post-CI reali; restano backend, lessonRef/fase, consumer e0/200, senza modificare storia o gate.

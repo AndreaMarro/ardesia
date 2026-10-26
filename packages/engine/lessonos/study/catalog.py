@@ -8,6 +8,7 @@ DEFAULT_COURSE = 'fisica-fluidi'
 DEFAULT_PACK = 'relazioni-fluidi-v1'
 LEGACY_PACK_SHA256 = '3e0589e3647cc8d45e006c58839f2b83b06a13451f5d2985ac01eee8efaa321f'
 _PACKS = {
+    ('s19-circuit-dc-v1', 1): ('s19-circuit-dc-v1.json', 'elettrotecnica-dc', 'Laboratorio DC: nodi e Kirchhoff', 'elettrotecnica', 'Una lezione DRAFT', None, ()),
     (DEFAULT_PACK, 1): ('relazioni-fluidi-v1.json', DEFAULT_COURSE, 'Fisica: relazioni e fluidi', 'fisica',
                        '4 incontri da 90 minuti', 'poiseuille-v1', ('physics-semestre-2026',)),
     ('taylor-exp-v1', 1): ('taylor-exp-v1.json', 'analisi-1', 'Analisi 1: Taylor e resto', 'analisi',

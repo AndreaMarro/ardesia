@@ -1,0 +1,32 @@
+{
+  "sourceHead": "5092b14322b6b55d58869c6a0a8279196f8e5cf2",
+  "mergeCheckout": "2006f13339bf9377bbad7f59f75b6713fe3c7937",
+  "ciRun": 40393262248,
+  "failedJob": 121819497212,
+  "failure": "Exact locator Programmi configurati (6) no longer exists: observed DOM shows (7) after S19 registration. No wait or runtime change required.",
+  "rawJobLogSha256": "ffa92a3d38693e9f568cb66bd8baf79920db9938bc7222baff3c996e88303885",
+  "requiredRetainedAssertions": [
+    "Riferimento non disponibile",
+    "two seeded editions only",
+    "Back/Forward/refresh",
+    "three viewport widths",
+    "keyboard focus",
+    "reduced motion"
+  ],
+  "localBrowser": "NOT_RUN: npm ci --no-audit --no-fund failed ENOSPC before runner; removed own partial ignored node_modules only",
+  "npmLogSha256": "e536cf05e639740b16fec27f3112098e9fe5817facf640d2b4e87dab9ffcd9df",
+  "s19Run": 40393262168,
+  "s19Conclusion": "SUCCESS",
+  "s19Artifact": 12685196543,
+  "productProofs": [
+    {
+      "file": "product-desktop.json",
+      "sourceFilesMatch": true
+    },
+    {
+      "file": "product-touch.json",
+      "sourceFilesMatch": true
+    }
+  ],
+  "newCandidateValidation": "CI pending; previous S19 evidence not renamed as new-head execution"
+}
