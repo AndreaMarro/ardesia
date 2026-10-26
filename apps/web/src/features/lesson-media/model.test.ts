@@ -1,5 +1,4 @@
 import {expect, test} from 'vitest';
-import {resolveReplayTarget} from '../../../../studio/src/store/replayTimeline';
 import {readLessonPassage} from '../../components/lessonPassageReference';
 import {defaultIndex, parseIndex, replayAt, toVtt, type MediaIndex} from './model';
 import {source} from './fixture';
@@ -32,11 +31,8 @@ test('captions export uses millisecond timecodes and escapes cue payload markup'
 
 test('earlier audio cues do not claim an object version that only exists at the canonical anchor',()=>{
   const a=source(),d=readLessonPassage(a)!.descriptor;
-  const timeline={events:[{type:'element.add' as const,t:5000,element:{id:'formula',version:1}}],firstEventTime:1000,lastEventTime:11000,audioChunks:[],
-    recordings:[{v:1 as const,recordingId:d.recordingId,assetPath:`raw/${d.lessonId}/${d.sessionId}/audio/take.wav`,mimeType:'audio/wav',sha256:d.sha256,bytes:100,durationMs:10000,startEpoch:d.startEpoch,endEpoch:d.endEpoch,objectRefs:d.objectRefs,availability:'available' as const}]};
-  expect(resolveReplayTarget(timeline,new URL(d.replayUrl).search).objectId).toBe('formula');
   const earlier=new URL(replayAt(a,0)!);
-  expect(()=>resolveReplayTarget(timeline,earlier.search)).not.toThrow();
+  expect(earlier.searchParams.get('at')).toBe(String(d.startEpoch));
   expect(earlier.searchParams.has('object')).toBe(false);
   expect(new URL(replayAt(a,10000)!).searchParams.get('objectVersion')).toBe('1');
 });

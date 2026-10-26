@@ -16,8 +16,12 @@
     "http": 1,
     "webBuild": "PASS",
     "browser": "PASS",
-    "fullWebLocal": "PASS 427 tests in 62 files; earlier failed runs retained"
+    "fullWebLocal": "PASS 427 tests in 62 files; earlier failed runs retained",
+    "studioReplayRegression": 1,
+    "cleanRootWebInstall": "npm ci + forced typecheck PASS + 427/427 Web PASS; Studio dependencies absent"
   },
   "implementationSha": "0568864314026715263f12332d87c10f203cab19",
-  "pr": "https://github.com/AndreaMarro/ardesia/pull/313"
+  "pr": "https://github.com/AndreaMarro/ardesia/pull/313",
+  "integrationBase": "8e0737b1",
+  "slot": "released to S00; no heavy local process"
 }

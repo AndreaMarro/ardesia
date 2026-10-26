@@ -8,3 +8,5 @@ Review di un secondo agente, in contesto separato, prima del commit; non è una 
 RED esatto: due test falliti con errore di versione oggetto e controllo `:disabled` sulla bozza; 7 altri test esclusi intenzionalmente. Il primo tentativo del test replay importava dinamicamente Studio dentro il timeout5s e non era una prova discriminante: sostituito da import statico, poi osservato il fallimento effettivo. Il vecchio controllo `.disabled` non osservava l’ereditarietà del fieldset: corretto a `matches(':disabled')`, conservando il requisito.
 
 I risultati GREEN e la prova browser finale sono riportati nel rapporto. Nessun secondo round di review dichiarato; la correzione si verifica con le regressioni e i gate.
+
+La prova che importa il resolver canonico è infine nel workspace Studio. La prima collocazione Web introduceva una dipendenza transitiva Studio-only nel typecheck pulito CI; corretto dopo riproduzione npm ci. Nel Web rimane la controprova sul contratto URL; Studio esegue il resolver reale e verifica sia il rifiuto del target invalido sia il nuovo target valido. Vedere VALIDATION.md.

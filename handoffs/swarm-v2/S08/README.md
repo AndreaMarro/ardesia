@@ -12,7 +12,7 @@ Il comando principale apre il player Studio sulla scena canonica verificata con 
 
 WebVTT manuale preparato dopo rilettura della fonte e dell'indice dal Core; fonte ritirata blocca export/player. Le revisioni precedenti rimangono esplicite. La vista di fonti/allegati ricontrolla i permessi della revisione. Non registra eventi “guardato=imparato”.
 
-Build Web,9nuovi test Web,18test dominio/regressioni e1testHTTP: PASS. Chromium desktop/mobile finale: PASS;12controlli funzionali, nessun erroreJS/console inatteso. La suite Web completa finale è427/427PASS; i primi tentativi falliti restano conservati: [dettagli e comandi](VALIDATION.md).
+Build Web,9nuovi test Web,1regressione Studio,18test dominio/regressioni e1testHTTP: PASS. La suite Web427/427 e il typecheck forzato sono passati anche su npm ci root/Web pulito, senza installare dipendenze Studio. Chromium desktop/mobile finale: PASS;12controlli funzionali, nessun erroreJS/console inatteso. La suite Web completa finale è427/427PASS; i primi tentativi falliti restano conservati: [dettagli e comandi](VALIDATION.md).
 
 ## Codice, proprietà e compatibilità
 

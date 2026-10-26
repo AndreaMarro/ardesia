@@ -4,7 +4,7 @@ Base 37e0fe828e47b7c81784c2eb48a1b9776dd859ed, 26 ottobre 2026.
 
 ## Riuso implementato
 
-Consumer: Materiali → LessonMediaLibrary → MediaIndexEditor / player Studio. Delta locale Materials: import e mount, esclusione del tipo indice dalla lista testuale generica. Nessun routing/root lock/CI/shared auth/schema modificati.
+Consumer: Materiali → LessonMediaLibrary → MediaIndexEditor / player Studio. Delta locale Materials: import e mount, esclusione del tipo indice dalla lista testuale generica. Nessun routing/root lock/CI/shared auth/schema modificati. La regressione sul resolver canonico è nel workspace Studio (nuovo test dedicato), senza modificare il suo codice.
 
 `lesson-passage.v1` e `lesson-passage-source.v1` restano canonici; `validate_lesson_passage`/`lesson_passage_resource` riusati nel dominio. Nuovo documento editoriale `ardesia.lesson-media-index.v1` trasportato dal Core `StudyResource(kind=lesson-media-index)` con fonte `{id,revisionId,sha256}`, durata immutabile, cue con startMs/endMs espliciti, capitoli e riferimenti a revisioni di materiali/attività. CRUD, owner, membership, CAS e idempotenza creazione sono quelli delle risorse Core. Gli indici non contengono byte/URL media e non concedono permessi. Gli indici malformati non sono proiettati; un riferimento non viene sostituito con la revisione corrente. Editor teacher-owner e condivisione group soltanto.
 
