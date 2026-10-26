@@ -49,15 +49,15 @@ try{
  await expect(page.getByRole('list',{name:'Relazioni del grafo'})).toBeVisible();
  await expect(page.locator('.memory-graph-canvas canvas').first()).toBeVisible();
  await page.getByLabel('Disposizione del grafo').selectOption('circle');
- await page.getByLabel('Da · percorso nel grafo').selectOption(fixture.secondNote);
+ await page.getByRole('combobox',{name:/^Da · percorso nel grafo/}).selectOption(fixture.secondNote);
  const projection=await (await context.request.get(origin+'/study/memory')).json();
  const sourceNode=projection.nodes.find(node=>node.reference?.resourceId===fixture.firstSource.resourceId);
  expect(sourceNode).toBeTruthy();
- await page.getByLabel('A · percorso nel grafo').selectOption(sourceNode.id);
+ await page.getByRole('combobox',{name:/^A · percorso nel grafo/}).selectOption(sourceNode.id);
  await page.getByRole('button',{name:'Trova collegamento',exact:true}).click();
  await expect(page.getByRole('list',{name:'Percorso fra i nodi'})).toContainText('Riprendo il confronto');
  await page.getByRole('button',{name:'Salva disposizione',exact:true}).click();
- await expect(page.getByRole('status')).toContainText('Disposizione salvata');
+ await expect(page.getByRole('region',{name:'Esplora il grafo'}).getByRole('status')).toContainText('Disposizione salvata');
  let view=await (await context.request.get(origin+'/study/memory/view')).json();
  expect(view.layout).toBe('circle');expect(view.positions.length).toBe(projection.nodes.length);
  const firstPoint=view.positions.find(point=>point.id===fixture.firstNote);
@@ -66,7 +66,7 @@ try{
  const x=bounds.x+firstPoint.x*view.zoom+view.pan.x,y=bounds.y+firstPoint.y*view.zoom+view.pan.y;
  await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+35,y+24,{steps:8});await page.mouse.up();
  await page.getByRole('button',{name:'Salva disposizione',exact:true}).click();
- await expect(page.getByRole('status')).toContainText('revisione '+(view.version+1));
+ await expect(page.getByRole('region',{name:'Esplora il grafo'}).getByRole('status')).toContainText('revisione '+(view.version+1));
  const dragged=await (await context.request.get(origin+'/study/memory/view')).json();
  const moved=dragged.positions.find(point=>point.id===fixture.firstNote);
  expect(Math.abs(moved.x-firstPoint.x)+Math.abs(moved.y-firstPoint.y)).toBeGreaterThan(5);
@@ -75,7 +75,7 @@ try{
  await page.getByRole('button',{name:'Grafo dei collegamenti'}).click();
  await expect(page.getByLabel('Disposizione del grafo')).toHaveValue('circle');
  await page.getByRole('button',{name:'Salva disposizione',exact:true}).click();
- await expect(page.getByRole('status')).toContainText('revisione '+(view.version+1));
+ await expect(page.getByRole('region',{name:'Esplora il grafo'}).getByRole('status')).toContainText('revisione '+(view.version+1));
  const cold=await (await context.request.get(origin+'/study/memory/view')).json();
  expect(cold.positions).toEqual(view.positions);expect(cold.zoom).toBe(view.zoom);expect(cold.pan).toEqual(view.pan);
  pass('actual canvas, Dijkstra path, drag, canonical layout save and cold round trip');
