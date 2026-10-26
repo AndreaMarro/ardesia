@@ -139,6 +139,8 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
     await page.getByRole('button', { name: 'chiudi', exact: true }).click()
     await expect(page.locator('math-field')).toHaveCount(0)
     await expect.poll(() => page.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(false)
+    await expect(page.locator('.ML__keyboard .MLK__plate')).not.toBeInViewport()
+    await page.screenshot({ path: resolve(output, 'formula-mobile-closed.png') })
     await openFormula(page)
     await page.getByRole('button', { name: 'chiudi', exact: true }).click()
     await expect(page.locator('math-field')).toHaveCount(0)
