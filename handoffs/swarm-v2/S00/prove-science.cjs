@@ -9,7 +9,8 @@ const out=process.env.ARDESIA_S00_SCIENCE_EVIDENCE||require('node:os').tmpdir()+
 const python=path.join(root,'services/study-api/.venv/bin/python');
 const built=path.join(root,'apps/web/dist');
 const base='http://127.0.0.1:55511',entry='/?view=materials&edition=science-s01';
-const children=[],report={status:'RUNNING',scope:'Product App + Materials + real factory/cookie/Core; local compiled candidate, not remote acceptance',checks:[],screenshots:[],errors:[],externalRequests:[]};
+const graphGeometry=require('./science-graph-geometry.cjs');
+const children=[],report={status:'RUNNING',scope:'Product App + Materials + real factory/cookie/Core; local compiled candidate, not remote acceptance',checks:[],screenshots:[],resizeGeometry:[],errors:[],externalRequests:[]};
 fs.mkdirSync(out,{recursive:true});
 function start(command,args,name){const log=fs.openSync(path.join(out,name+'.log'),'a');const child=spawn(command,args,{cwd:root,env:{...process.env,PYTHONPATH:root+'/packages/engine:'+root+'/services/study-api'},stdio:['ignore',log,log]});fs.closeSync(log);children.push(child);return child;}
 async function ready(url){for(let i=0;i<80;i++){try{if((await fetch(url)).ok)return;}catch{}await new Promise(r=>setTimeout(r,250));}throw new Error('server_not_ready:'+url);}
@@ -70,8 +71,17 @@ async function noOverflow(p){expect(await p.evaluate(()=>document.documentElemen
   await pred(page).fill('0.15');await compare(page).click();await result(page,'0,15 m');
   for(const width of [1440,820,390,360]){await page.setViewportSize({width,height:1050});
    if(width<=740){const controls=await page.locator('.science-controls').boundingBox(),main=await page.locator('.science-main').boundingBox();expect(controls.y).toBeLessThan(main.y);
-    await page.getByRole('button',{name:'Modifica i dati',exact:true}).click();await expect(page.getByLabel('Distanza focale con segno [m]')).toBeFocused();} await page.evaluate(()=>{scrollTo(0,0);if(document.activeElement instanceof HTMLElement)document.activeElement.blur();});await noOverflow(page);const file='science-'+width+'.png';await page.screenshot({path:path.join(out,file),fullPage:true});report.screenshots.push(file);}
-  check('1440/820/390/360 actual product screenshots + no horizontal overflow');
+    await page.getByRole('button',{name:'Modifica i dati',exact:true}).click();await expect(page.getByLabel('Distanza focale con segno [m]')).toBeFocused();} const before=await page.locator('.science-graph').evaluate(graphGeometry);
+   await expect.poll(()=>page.locator('.science-graph').evaluate(graphGeometry).then(v=>v.fitted)).toBe(true);
+   report.resizeGeometry.push({width,before,settled:await page.locator('.science-graph').evaluate(graphGeometry)});
+   await page.evaluate(()=>{scrollTo(0,0);if(document.activeElement instanceof HTMLElement)document.activeElement.blur();});await noOverflow(page);const file='science-'+width+'.png';await page.screenshot({path:path.join(out,file),fullPage:true});report.screenshots.push(file);}
+  check('1440/820/390/360 actual product screenshots + fitted scientific geometry + no horizontal overflow');
+  const fresh=await browser.newContext({baseURL:base,storageState:await context.storageState(),viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  const freshPage=await fresh.newPage();freshPage.on('pageerror',e=>report.errors.push(e.message));freshPage.on('request',r=>{if(!r.url().startsWith(base)&&!r.url().startsWith('data:'))report.externalRequests.push(r.url());});
+  await freshPage.goto(savedURL);await pred(freshPage).fill('0.15');await compare(freshPage).tap();await result(freshPage,'0,15 m');
+  await expect.poll(()=>freshPage.locator('.science-graph').evaluate(graphGeometry).then(v=>v.fitted)).toBe(true);
+  report.resizeGeometry.push({width:390,freshContext:true,settled:await freshPage.locator('.science-graph').evaluate(graphGeometry)});
+  await freshPage.screenshot({path:path.join(out,'science-fresh-390.png'),fullPage:true});await fresh.close();check('fresh mobile context390 renders the actual scientific geometry under CSP');
   await page.getByRole('button',{name:'Un problema diverso',exact:true}).click();await expect(page.getByTestId('science-result')).toHaveCount(0);await expect(pred(page)).toHaveValue('');
   await pred(page).fill('-0.1');await compare(page).click();await result(page,'−0,1 m'.replace('−','-'));await expect(page.getByTestId('science-result')).toBeFocused();check('different lens problem resets prediction + virtual image');
   await context.setOffline(true);await page.getByLabel('Il tuo ragionamento',{exact:true}).fill('Nota sintetica offline');await page.getByRole('button',{name:'Salva nel quaderno',exact:true}).click();await expect(page.getByRole('alert')).toBeVisible();
