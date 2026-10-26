@@ -1,0 +1,19 @@
+{
+  "checks": [
+    {
+      "name": "main already provides inline prediction/model/next problem",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline refresh does not restore guided episode or active second step",
+      "status": "OBSERVED"
+    },
+    {
+      "name": "receipt reopen from lesson after refresh: work nav + deliveries tab + originals disclosure",
+      "actions": 3,
+      "status": "MEASURED"
+    }
+  ],
+  "source": "a00f2f40091aecf69e58ebaba42cf70d748e4066; proof config has no S20 or S02 transforms",
+  "limitation": "Task walkthrough, not user test or timing benchmark. Entry/input actions excluded from receipt comparison."
+}

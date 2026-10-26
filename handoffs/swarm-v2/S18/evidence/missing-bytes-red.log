@@ -1,0 +1,51 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_missing_original_bytes_report_unavailable_without_latest_fallback ____
+
+scene = (<lessonos.study.store.StudyStore object at 0x1092a8ad0>, Principal(id='s18-teacher', role='teacher'), Principal(id='s...lders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-24/test_missing_original_bytes_re0/blobs'), ...)
+
+    def test_missing_original_bytes_report_unavailable_without_latest_fallback(scene):
+        store,t,student,_,_,blobs,asset=scene
+        source=create(scene)
+        (blobs/asset['id']).unlink()
+        with pytest.raises(StudyError,match='source_original_unavailable'):
+>           read_original(store,student,source['id'],source['revisionId'],blobs)
+
+packages/engine/tests/study/test_living_sources.py:140:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+packages/engine/lessonos/study/living_sources/__init__.py:65: in read_original
+    source=read_source(store,principal,rid,revision,blob_dir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/living_sources/__init__.py:57: in read_source
+    data,_=original_for(store,resource,doc,blob_dir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/living_sources/__init__.py:36: in original_for
+    data=repository(store,blob_dir).get(row['blob_ref'])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/blobs.py:30: in get
+    return (self.directory / blob_id).read_bytes()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py:625: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-24/test_missing_original_bytes_re0/blobs/75e2dde2d1de4f2295f85fbb369797bc')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-24/test_missing_original_bytes_re0/blobs/75e2dde2d1de4f2295f85fbb369797bc'
+
+/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py:537: FileNotFoundError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_living_sources.py::test_missing_original_bytes_report_unavailable_without_latest_fallback
+1 failed in 0.28s

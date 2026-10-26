@@ -1,0 +1,27 @@
+{
+  "stream": "S08",
+  "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+  "branch": "codex/s08-lesson-media-20261026",
+  "status": "READY_FOR_INTEGRATION_PENDING_CI",
+  "coreAuthority": "existing StudyStore resources, session and membership",
+  "newDependencies": [],
+  "remoteMedia": "NOT_IMPLEMENTED: S10 contract missing",
+  "merge": "NOT_RUN_BY_S08",
+  "deployment": "NOT_RUN_BY_S08",
+  "publicMaterialPublished": false,
+  "scientificHumanApproval": "NOT_ATTESTED",
+  "validation": {
+    "newWebTests": 9,
+    "engineWithRegressions": 18,
+    "http": 1,
+    "webBuild": "PASS",
+    "browser": "PASS",
+    "fullWebLocal": "PASS 427 tests in 62 files; earlier failed runs retained",
+    "studioReplayRegression": 1,
+    "cleanRootWebInstall": "npm ci + forced typecheck PASS + 427/427 Web PASS; Studio dependencies absent"
+  },
+  "implementationSha": "0568864314026715263f12332d87c10f203cab19",
+  "pr": "https://github.com/AndreaMarro/ardesia/pull/313",
+  "integrationBase": "8e0737b1",
+  "slot": "released to S00; no heavy local process"
+}

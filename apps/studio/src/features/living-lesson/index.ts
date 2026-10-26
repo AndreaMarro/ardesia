@@ -1,0 +1,6 @@
+export { default as LivingLessonReplay } from './LivingLessonReplay'
+export type { LivingLessonReplayProps } from './LivingLessonReplay'
+export type { ReplayCursor } from './replayCursor'
+export { parseEditorial, attachEditorial, resolveMoment, assertCursorRecording, privateNoteFingerprint, mediaEpoch } from './model'
+export type { Editorial, LessonMoment, LessonAccess, PrivateNotes, SceneEnvelope } from './model'
+export { preserveEditorial } from './serialization'

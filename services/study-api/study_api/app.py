@@ -474,7 +474,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.post('/study/submissions')
     def submission(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import submit
-        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'))
+        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'),body.get('courseLesson'))
 
     @app.get('/study/receipts/{receipt_id}')
     def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
@@ -542,6 +542,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     from s19_circuit_lab.routes import install
     install(app, store_dependency, authenticate)
+
+    from .living_sources import install_living_sources
+    install_living_sources(app, authenticate, store_dependency, Path(db_path).parent/'blobs')
 
     if studio_frontend:
         from fastapi.staticfiles import StaticFiles

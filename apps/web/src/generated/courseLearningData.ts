@@ -23031,7 +23031,7 @@ export const courseLearningData = {
   "coreSourcesSha256": {
     "activities.py": "cc6bd930284544bcd8cb43328b14769f1c6e642efa7eef1e55bfc111e7a375bb",
     "catalog.py": "a690c9a85b486a9d6be72b19cdb754aaaa8ad08c9933c1ab77881df7fd9a17d0",
-    "four_courses.py": "b0dafdd6bfd9cdccbb3c7f66be43479ce1bb96dcba00f101e346ce66897beadf",
+    "four_courses.py": "1ad437e3ebe54c1da38174fbef9cdb2553830f8ce84c7127049f5728fa4831fe",
     "course_models.py": "4a93deaca52bb36f7d6eb08a1f1360e4f860580ebaf121f6340b638fa92988fe",
     "electrical.py": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819",
     "waves.py": "bdc7af2e860dd1b48519294eaef2a6536f87c2e1064dfc0259b05f2228e50add",

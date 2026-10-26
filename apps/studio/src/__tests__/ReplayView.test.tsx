@@ -10,6 +10,7 @@ import { PATHS } from "../store/types"
 import { roomPaths } from "../store/roomPaths"
 import type { JournalEvent } from "../store/JournalRecorder"
 import { hasEmoji } from "./emojiGuard"
+import type { ReplayCursor } from "../features/living-lesson/replayCursor"
 
 // --- Mock Excalidraw (pattern Room.integration.test.tsx) ---
 
@@ -133,11 +134,11 @@ describe("ReplayView", () => {
     vi.restoreAllMocks()
   })
 
-  async function renderReplayView(store: any) {
+  async function renderReplayView(store: any, props: Partial<React.ComponentProps<typeof import('../ReplayView').default>> = {}) {
     const { default: ReplayView } = await import("../ReplayView")
     const root = createRoot(container)
     mountedRoots.push(root)
-    root.render(<ReplayView store={store} room="test-room" />)
+    root.render(<ReplayView store={store} room="test-room" {...props} />)
     // attesa fine caricamento: l'header renderizza subito, quindi il testo
     // deve essere NON vuoto e fuori dallo stato "caricamento…"
     await vi.waitFor(() => {
@@ -392,6 +393,36 @@ describe("ReplayView", () => {
     expect(range.max).toBe("3000")
   })
 
+  it("the living replay cursor uses the same audio seek and rejects a previous room's callback", async () => {
+    const store = makeMockStore(AUDIO_EVENTS)
+    const read = store.read.getMockImplementation()!
+    store.read.mockImplementation(async path => path === roomPaths('room-b').journal ? journalBlob(AUDIO_EVENTS) : read(path))
+    let cursor: ReplayCursor | null = null
+    const extension = (value: ReplayCursor) => { cursor = value; return null }
+    const root = await renderReplayView(store, { renderExtension: extension, range: { start: 1000, end: 10000 } })
+    await vi.waitFor(() => expect(cursor?.media?.src).toBe('blob:replay-test'))
+    const first = cursor as unknown as ReplayCursor
+    Object.defineProperty(first.media!, 'readyState', { value: 4, configurable: true })
+    first.seekEpoch(4500)
+    await vi.waitFor(() => {
+      expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe('4500')
+      expect(cursor?.epoch).toBe(4500)
+      expect(first.media?.currentTime).toBe(3.5)
+    })
+    first.seekEpoch(12000)
+    expect(first.media?.currentTime).toBe(3.5)
+    const { default: ReplayView } = await import('../ReplayView')
+    root.render(<ReplayView store={store as any} room="room-b" renderExtension={extension} />)
+    await vi.waitFor(() => expect(cursor?.epoch).toBe(1000))
+    const current = cursor as unknown as ReplayCursor
+    first.seekEpoch(4500)
+    await new Promise(resolve => setTimeout(resolve, 0))
+    expect((cursor as ReplayCursor | null)?.epoch).toBe(1000)
+    expect(current.media?.currentTime).not.toBe(3.5)
+    expect(store.saveScene).not.toHaveBeenCalled()
+    expect(store.write).not.toHaveBeenCalled()
+  })
+
   it("initialData contiene la scena a firstEventTime (niente lavagna vuota al mount)", async () => {
     // Regressione trovata in smoke: initialData vuoto viene applicato DOPO la
     // prima updateScene e cancella la scena iniziale finché non si scrubba.
@@ -462,6 +493,21 @@ describe("ReplayView", () => {
       expect(range.value).toBe("6000")
     })
     expect(container.textContent).toContain("0:05")
+  })
+
+  it("un seek audio in pausa riallinea journal e scena senza avviare playback", async () => {
+    const projection = vi.spyOn(ReplayEngine.prototype, "getSceneAt")
+    const { audio } = await renderWithLoadedAudio()
+    Object.defineProperty(audio, "paused", { value: true, configurable: true })
+    Object.defineProperty(audio, "readyState", { value: 4, configurable: true })
+    Object.defineProperty(audio, "currentTime", { value: 1, configurable: true, writable: true })
+    audio.dispatchEvent(new Event("seeked"))
+    await vi.waitFor(() => {
+      expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("2000")
+      expect(projection).toHaveBeenLastCalledWith(expect.any(Array), 2000)
+      expect(projection.mock.results.at(-1)?.value.map((item: {id: string}) => item.id)).toEqual(["a", "b"])
+    })
+    expect(audio.paused).toBe(true)
   })
 
   it("scrub prima dei metadata: il seek è applicato a loadedmetadata (non perso)", async () => {

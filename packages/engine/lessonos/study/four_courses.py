@@ -18,6 +18,11 @@ BASELINE=Path(__file__).parent/'content/physics-curriculum-2026-v1.json'
 DEMO_IDS={'original-demo-u2-02','original-demo-u5-01','original-demo-u6-04','original-demo-u4-01','original-demo-kinematics'}
 
 
+def lesson_reference(lesson):
+    """One exact reference format for the reader and canonical receipts."""
+    return {'id': lesson['id'], 'version': 1, 'sha256': digest(canonical(lesson))}
+
+
 def course_projection(*,review=False):
     baseline=json.loads(BASELINE.read_text())
     courses=[]
@@ -41,7 +46,7 @@ def course_projection(*,review=False):
                     if not math.isclose(result['value'],case['answer']['value'],rel_tol=1e-10,abs_tol=1e-12) or result['unit']!=case['answer']['unit']:
                         raise StudyError('course_lesson_oracle_mismatch',409)
                     case['result']=result
-            lesson['lessonRef']={'id':lesson['id'],'version':1,'sha256':digest(canonical(item))}
+            lesson['lessonRef']=lesson_reference(item)
             lessons.append(lesson)
         courses.append({'pathId':path,'packId':pack_id,'packRef':{k:descriptor[k] for k in ('packId','packVersion','packSha256')},
                         'title':pack['title'],'unitIds':list(dict.fromkeys(f['unitId'] for f in families)),

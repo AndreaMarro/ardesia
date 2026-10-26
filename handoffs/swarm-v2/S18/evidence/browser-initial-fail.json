@@ -1,0 +1,23 @@
+{
+  "status": "FAIL",
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Annotazione della lezione' })\nExpected: visible\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 60000ms\n  - waiting for getByRole('heading', { name: 'Annotazione della lezione' })\n",
+  "checks": [
+    {
+      "name": "compiled real Materials and original PDF render",
+      "details": {
+        "url": "http://127.0.0.1:5419/?view=materials&edition=fluidi&living=%7B%22resourceId%22%3A%22f5c4813bc9d44faabe415c5f3fd4480c%22%2C%22revisionId%22%3A%228ab5be16361b43b4905d682a006b018f%22%2C%22kind%22%3A%22living-source%22%2C%22lesson%22%3A%7B%22lessonId%22%3A%22idrostatica%22%2C%22activityId%22%3A%22poiseuille-v1%22%7D%7D",
+        "pages": 2
+      }
+    },
+    {
+      "name": "upstream PDF find controller searches native text",
+      "details": "1 / 1"
+    },
+    {
+      "name": "teacher native-text equation plus structured formula saved in Core",
+      "details": "c9d4388d89304c1585f16e0dfc8532fe"
+    }
+  ],
+  "errors": [],
+  "external": []
+}

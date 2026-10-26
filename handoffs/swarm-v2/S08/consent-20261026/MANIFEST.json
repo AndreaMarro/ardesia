@@ -1,0 +1,199 @@
+{
+  "productSourceCommit": "34e1db4a11c7823e26a3685052dcef1f10de08db",
+  "productTree": "3317f1e004ee5a04ed8a2f8c0d2764988f805e38",
+  "baseline": "c35b3e3f7d80c6361b446c1b29d525ba84579690",
+  "browserRuntimeBuildSha": "34e1db4a11c7823e26a3685052dcef1f10de08db",
+  "sourceFiles": [
+    {
+      "path": "apps/studio/src/ReplayView.tsx",
+      "sha256": "0e10107336d03cce789211927152fd029418a2c2327321451f997d0561cf7f17"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/IntegratedLivingReplay.tsx",
+      "sha256": "2ef0293eadcb4ad2d5d9466ea86debaed8a1198ae954d546e0c4504579fbdba7"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/LivingLessonReplay.tsx",
+      "sha256": "0d0e41bd3f5a979439d2051ef21d77199bb86f6c357ee80e510fc3931ceaf982"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/archiveAccess.ts",
+      "sha256": "46f3f107e26d5bf70db4c5b0a54c4da215e19ce55c3d88a4eab71d7db57f2942"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/playbackLease.ts",
+      "sha256": "be0fcdbaf9dbb5e9ebfa490bb216637f94ec6ccfddfb14ecadfd36968b29ce0b"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/unlinked-consent.test.tsx",
+      "sha256": "e0922b4de6694e0758270b0fae99302b80b1db8e80fe6b97a30f67325c6efb05"
+    }
+  ],
+  "tests": {
+    "passed": 55,
+    "files": 11
+  },
+  "typecheck": "PASS",
+  "browser": "Chromium148.0.7778.96",
+  "browserCases": 2,
+  "rawLogs": [
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/fixture-mock-failure.log.gz",
+      "rawSha256": "859fc5468552f12dd8d945033a328ccb035e08e5b0e9d1cb766fb85094a76dba",
+      "gzipSha256": "b831ae0ba856f94f10f6ea8420e669dfba800a885f6f5c63631b2248c2990752"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/fixture-lock-failure.log.gz",
+      "rawSha256": "181e96852158ff02e1b7c11e7340d92562888107b10bf99d4b465882b300278d",
+      "gzipSha256": "094b0ddce4b329536d3a64623ba240eccca86ed46f713889165e910f9314095f"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/red.log.gz",
+      "rawSha256": "f6d552f4578e144053aec68a28e8b124e721c6a0d23b85ebd327c90433833b75",
+      "gzipSha256": "95b37d5e4241dfaa0ae6a7d792246ec484c418a3ea4f104f98520efc1b0d9716"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/green-fixture-failure.log.gz",
+      "rawSha256": "f114636dc1bfae7ea6ec6a1f380c4881b61d8d7f272f7160f3c32a534fd5538e",
+      "gzipSha256": "03a6310f752588f2245390228ce0e548c7c1e9e4a6005c81ab30be9a0c0c8939"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/green.log.gz",
+      "rawSha256": "3635c8c911a17a293bfb2f36624a97029b056a24756b99e9e4baa0893b8f9cf2",
+      "gzipSha256": "d057dc4305bc2b396aac492264d49b1c1af6369211ff3b6cffacc24da0eeb3f0"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/typecheck-initial.log.gz",
+      "rawSha256": "3c741c50ea704196740d5c351a869484d2f1696d14f248369ea4bd167bf2d3c4",
+      "gzipSha256": "d37aec6b8a6a0a8253ffc5eb24c0bd99bc3d7b8e703c430bf88368be297a6003"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/typecheck.log.gz",
+      "rawSha256": "9c7434f6f8529c3fcaf302b1d5c8352c7af5628d3b56a5270b38cfd326a0cf8d",
+      "gzipSha256": "dfc12ea6a40279009408e53e0045009ff9a32c74f103b4b32e2929145b0e9dfd"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-initial.log.gz",
+      "rawSha256": "f3600a448b8e97a224405b8230d5818a9c25f7f3ac459c35c66707903c4dc027",
+      "gzipSha256": "8af07716efde0d6db8103f270beb4060dd77578d17e5a1d92cc5c42d5adbd494"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-completion-counterexample.log.gz",
+      "rawSha256": "6142407c4e1f56d0c8d307c22a1ec550a27e5dc44a29bb3c7060c03a86c7d8f3",
+      "gzipSha256": "786d0898e1c1d63ac7dd539f26aff0eb07f6895d02e53617b80764bf4e95379d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-wallclock-counterexample.log.gz",
+      "rawSha256": "3817586c5db247d89b6700fd6b221e2fa1306381438adb8f242dfc9c44aea71e",
+      "gzipSha256": "3e1b24818996ef7ee9fa1625ad0ad9aef0d165a50fe9e2e73283ac44cf7f7d35"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-final.log.gz",
+      "rawSha256": "99ff1ca48e856e3acf691886a3c0cebe5ef463b919b6be2f2e31e7f53941a789",
+      "gzipSha256": "bde4d047895569a85e800e711d0538c0a750a740078ca09bf6a7d5116705581c"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/README.md",
+      "bytes": 5125,
+      "sha256": "845307f0ae85ede1b47aea30199e34bf1e0af377f10472ea830386a2ea60fd5b"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser/hidden-ready.png",
+      "bytes": 47339,
+      "sha256": "204b8d34f2d1bb5465d3e87c01cd380997df13abc3d9011717264c9f71db89f1"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser/hidden-revoked-390.png",
+      "bytes": 36208,
+      "sha256": "4d67e7a13c1fc41688bbc2caa7c5530e2b7e8dff2a284a86eac149a4e16e16df"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser/result.json",
+      "bytes": 1417,
+      "sha256": "99ff1ca48e856e3acf691886a3c0cebe5ef463b919b6be2f2e31e7f53941a789"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser/visible-ready.png",
+      "bytes": 48830,
+      "sha256": "e7253136915e333870a6e0a0f98bd13ec83af36ca8e8f46a7311b8affd8c981d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser/visible-revoked-390.png",
+      "bytes": 32950,
+      "sha256": "647c5852dd6f8b20ecb57eac38a5519e1d9e75c16fde83677bd85bc197c7e90d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-completion-counterexample.log.gz",
+      "bytes": 333,
+      "sha256": "786d0898e1c1d63ac7dd539f26aff0eb07f6895d02e53617b80764bf4e95379d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-counterexample-2.json",
+      "bytes": 283,
+      "sha256": "43bff946d6d229ed75f6c6c5f665d7998d6aeea4bb977e401421ebfa76f5e234"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-counterexample-3.json",
+      "bytes": 288,
+      "sha256": "ca8b3cdd692c229c55db4b67891eb434a64fd6b587774e76517ad186c76070da"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-final.log.gz",
+      "bytes": 636,
+      "sha256": "bde4d047895569a85e800e711d0538c0a750a740078ca09bf6a7d5116705581c"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-initial.log.gz",
+      "bytes": 558,
+      "sha256": "8af07716efde0d6db8103f270beb4060dd77578d17e5a1d92cc5c42d5adbd494"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-proof.mjs",
+      "bytes": 7816,
+      "sha256": "b4eeaf62a89dd64d6081fa812fd87cf70b0936709d0ce0d7574497a745a342bf"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/browser-wallclock-counterexample.log.gz",
+      "bytes": 334,
+      "sha256": "3e1b24818996ef7ee9fa1625ad0ad9aef0d165a50fe9e2e73283ac44cf7f7d35"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/fixture-lock-failure.log.gz",
+      "bytes": 717,
+      "sha256": "094b0ddce4b329536d3a64623ba240eccca86ed46f713889165e910f9314095f"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/fixture-mock-failure.log.gz",
+      "bytes": 865,
+      "sha256": "b831ae0ba856f94f10f6ea8420e669dfba800a885f6f5c63631b2248c2990752"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/green-fixture-failure.log.gz",
+      "bytes": 895,
+      "sha256": "03a6310f752588f2245390228ce0e548c7c1e9e4a6005c81ab30be9a0c0c8939"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/green.log.gz",
+      "bytes": 413,
+      "sha256": "d057dc4305bc2b396aac492264d49b1c1af6369211ff3b6cffacc24da0eeb3f0"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/red.log.gz",
+      "bytes": 1818,
+      "sha256": "95b37d5e4241dfaa0ae6a7d792246ec484c418a3ea4f104f98520efc1b0d9716"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/typecheck-initial.log.gz",
+      "bytes": 308,
+      "sha256": "d37aec6b8a6a0a8253ffc5eb24c0bd99bc3d7b8e703c430bf88368be297a6003"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/consent-20261026/typecheck.log.gz",
+      "bytes": 137,
+      "sha256": "dfc12ea6a40279009408e53e0045009ff9a32c74f103b4b32e2929145b0e9dfd"
+    }
+  ],
+  "remoteMutation": false
+}

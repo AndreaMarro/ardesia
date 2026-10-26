@@ -1,0 +1,39 @@
+# Voce proposta per S00 — 26 ottobre 2026, S08
+
+Writer della memoria comune resta S00; questo file non sostituisce RUNLOG/NEXT.
+
+Base verificata main37e0fe828e47b7c81784c2eb48a1b9776dd859ed, CI40242587363 e readiness40242587350 SUCCESS riletti da GitHub. S08 in ramo isolato codex/s08-lesson-media-20261026; non ha modificato il checkout altrui, routing RootApp, auth/schema, lockfile o CI. Stato rigenerato nel proprio checkout; il primo snapshot durante l’inizializzazione aveva9403 file temporaneamente assenti, il secondo7modifiche locali: il primo non era inventario del repository completo e non va usato.
+
+Risultato: Materiali possiede un catalogo dei passaggi registrati, ricerca nelle trascrizioni/indici, capitoli con timestamp, editor manuale, fonti/allegati versionati e export WebVTT. L’indice è una StudyResource Core con riferimento immutabile a una lesson-passage; salvataggio CAS e permessi riusati. Il player Studio viene aperto con sessione/registrazione/hash e versione oggetto originali; i cue in altri istanti selezionano l’audio senza inventare l’esistenza della versione oggetto in quel tempo. Il ritorno avviene alla scheda catalogo. Nessuna nuova autorità di sessione o memoria locale concorrente, nessun dato studente reale.
+
+Scelta: riuso del player/quaderno canonici e di `lesson_passage_resource`, invece di installare Video.js o duplicare blob/consenso. Non esiste una ragione per aggiungere runtime/costi al primo consumer locale; il lavoro su video/Range/upload remoto richiede il contratto di S10. Il servizio Python nuovo è un consumer Core testato, non una nuova route: l’UI usa CRUD generico e parser specifico fail-closed. Non dichiarare un vincolo globale API/SQL sull’indice.
+
+Errori/correzioni: la review tecnica di un secondo agente ha riprodotto il cue precedente alla nascita dell’oggetto e il blocco della bozza su preflight fallito. Due regressioni RED effettive poi correzioni: URL canonico separato dal seek audio e pending liberato prima di qualsiasi scrittura. Primo tentativo RED con import dinamico scaduto e controllo `.disabled` inadeguato al fieldset conservato come tale; corretto con import statico e `:disabled`. Primo browser timeout nel passaggio all’editor; prova completa successiva distinta. Font403 nel devserver Studio dovuto a symlink dipendenze fuori allowlist: corretto nel solo config QA locale; il rerun finale non ha errori di font o console inattesi. Due esecuzioni ampie interrotte dopo timeout nell’exam-cas invariato sotto forte carico host; non chiamate verdi né flaky. Nessun gate modificato.
+
+Correzione CI aggiuntiva: typecheck Web su npm ci pulito ha esposto l’import transitorio Studio-only(jszip) introdotto dal nuovo test, prima nascosto dalle dipendenze condivise locali. La prova del resolver reale è spostata nei test Studio, con1PASS, mentre Web mantiene il test del proprio contratto URL. Nessuna nuova dipendenza o gate cambiato.
+
+Apprendimento: il timestamp di una registrazione e l’istante di esistenza di una versione oggetto sono riferimenti diversi. Un consumer deve mantenere entrambi solo quando l’associazione è verificata; cambiare un numero nell’URL può invalidare un legame autentico. Un esito ignoto del comando richiede retry immutabile, mentre un GET fallito prima della scrittura deve lasciare correggibile la bozza.
+
+Suite Web completa finale427/427PASS,62file; buildPASS,9nuovi test e23/23controprove precedenti distinti e non sommati. PR313in bozza, prodotto0568864314026715263f12332d87c10f203cab19, commit successivi solo prove/handoff. Prove finali/SHA/PR e stato integrato o meno: vedere README e manifest della consegna S08. Nessun merge/deploy compiuto da S08. Ascolto umano, Safari fisico, efficacia didattica e remoto restano separati dai test sintetici.
+
+## Tre prossimi batch
+
+1. **P0 integrazione S00:** primo passo leggere diff/PR e consumer Materiali; dipendenza gate esatti e ownership; accettazione merge tree e base integrata con percorso completo e memoria aggiornata; prova SHA, CI, screenshot e player esatto. READY_FOR_INTEGRATION non equivale a DONE.
+2. **P0 media remoto S10/S08:** primo passo confrontare `CONTRACTS.md` con assets/uploads/blobs attuali; dipendenza grant/consenso/storage approvati; accettazione anonimo/altro partecipante negati anche sui segmenti, revoca/cache/Range e restore; prova due browser/edizioni su servizio reale, non mock.
+3. **P1 registrazione video/upload S08/S10:** primo passo fissare formati/dimensioni/hash e protocollo offset/quarantena/worker; dipendenza costo/licenze e primo grant remoto; accettazione interruzione/resume/hash, formato falso, duplicato, fail/retry/cancel e sottotitoli accessibili; prova HTTP e device con due registrazioni distinte, senza “guardato=imparato”.
+
+## Addendum da integrare append-only — 26 ottobre2026, S08 sottotitoli
+
+Fonte93deff59, candidato48251a32 con main992d1a0b, stessaPR313. Storico/rifiuti/prove del primo batch conservati; nuovo mandato REA-FIRST eseguito. Registro139 riletto, tre parser comparati: media-captions0.0.18 MIT ADAPT; vtt.js0.13.0 Apache2 e webvtt-parser2.2.0 CC0 DEFER motivati.29file distribuiti server+tipi immutati, pin/SHA512/manifest/license/downloadUI verificati, nessun manifest comune o servizio. Parser acquisito e consumer reale Materiali/trascrizioni/capitoli→Core/reopen/search/export.
+
+REAprod3JS/0parsefailure padre ev_fc40bc80683d603577656ea24be178e7e91d3599d6494349067267734759a3c6; poi vendorizzato finale3JS/0parsefailure padre ev_9ab0041e4e3ec0ab564a5daf54f38b4da89881b266ed45952980181bfca55b24. Entrambi parziali con unknowntroncati, non runtime. Bundle esportati distinti, nessuna equivalenza fra le duevarianti dichiarata.
+
+Apprendimenti/correzioni: strictdonor ignora orfani e rifiutaBOM; controllo integrale e normalizzazioneBOM in adapter. Review trova P2disuguaglianzeSRT perse: RED→guardia→GREEN, operatori/markup sconosciuto conservati come testo. Il primo harness browser non trovava textarea per getByLabel exact che includeva valore: snapshot confuta bugprodotto, corretto getByRole; interruzione chiude server propri, ripartenza fixture senza reset altrui. Proposta npm superseduta dal distribuito locale per evitare filecomuni; vecchia patch archiviata nonapplicata. Rimosse solo dipendenze npm-ci generate daS08 per recuperare disco, riusato runtime esistente.
+
+Prove distinte:29namespacePASS,12upstreamPASS, reviewer10roundtrip/29hashPASS. CI48251a32 tuttiSUCCESS, browser reale7gruppiPASS1440/390 con Corevero, CAS/reload, fileinvalidi/overlimit, ricerca/two-takes, tastiera/licenzaMITbyte-esatta, iscrittoread/altro403/anon401 e sourcewithdrawbloccasave/export senza frozen. Anteprima367ms singolaosservazione, non benchmark universale. Nessuna approvazione scientifica/umana, ascolto o Safari/device; byteaudio nuovo scenarioNOT_RUN. CPU/browser/API/Vite S08 chiusi e slot rilasciato6406046859.
+
+READY_FOR_INTEGRATION, non DONE; S00 unico integratore e writerRUNLOG/NEXT, nessunmerge/deployS08. NEXT proposto: 1)P0integrare313 dopohead/checks/controprova main epostmerge; 2)P1contrattoindiceautorizzato→playerStudio eprova cue/seek/withdraw; 3)P1S10portchunk/hash/quarantena/retry/Range/revoke con negativiHTTP; 4)P1raccordoS05/S06attivitàtimestamp con fonti/revisioni/ricevutecanoniche. Primo passo e accettazioni in CAPTIONS-ACQUISITION.md.
+
+## Addendum 26 ottobre — player sincronizzato, fonte1eb71382
+
+La frase storica «sottotitoli montati nel player da implementare» è superata da questo batch. [Rapporto nuovo](NATIVE-PLAYER-REPORT.md): consumerStudio/Core e TextTrack reali,44Web+27Studio+17tokenPASS, typecheckStudioforzato senza root/WebdepsPASS, browserfinale9gruppiPASS1440/390. Source `1eb713820dba483726504fd8c79d71cb19a3dc4d`; CI della consegna finale da rileggere. Fallimenti81/89 e byte raw conservati; REA passivo89 distinto dalla prova finale e dai parserstatici. Merge/deployS00 non eseguiti. Nessun DONE o ascoltoumano/Safari/remoto dichiarato.

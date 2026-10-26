@@ -1,0 +1,56 @@
+diff --git a/apps/studio/src/ReplayView.tsx b/apps/studio/src/ReplayView.tsx
+index 11e48617..b982cb31 100644
+--- a/apps/studio/src/ReplayView.tsx
++++ b/apps/studio/src/ReplayView.tsx
+@@ -14,0 +15,2 @@ import ReplayObjectFocus from "./ReplayObjectFocus"
++import { ReplayCaptions } from "../../web/src/features/lesson-media/ReplayCaptions"
++import { recordingSession } from "./store/audioRecording"
+@@ -61,0 +64 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
++  const seekRevision = useRef(0)
+@@ -226,2 +229,2 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
+-  function handleScrub(e: ChangeEvent<HTMLInputElement>) {
+-    const next = Number(e.target.value)
++  function seekToEpoch(next: number) {
++    seekRevision.current++
+@@ -239,0 +243,2 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
++  function handleScrub(e: ChangeEvent<HTMLInputElement>) { seekToEpoch(Number(e.target.value)) }
++
+@@ -241 +246 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
+-  function handleTimeUpdate() {
++  function handleAudioPosition() {
+@@ -244 +249 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
+-    if (!audio || startEpoch === null || audio.paused) return
++    if (!audio || startEpoch === null || !Number.isFinite(audio.currentTime) || (audio.currentSrc && audio.currentSrc !== audio.src)) return
+@@ -353 +358,4 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
+-                onTimeUpdate={handleTimeUpdate}
++                onTimeUpdate={() => { if (!audioRef.current?.paused) handleAudioPosition() }}
++                onSeeking={() => { seekRevision.current++ }}
++                onSeeked={() => { if (audioRef.current && audioRef.current.readyState > 0) handleAudioPosition() }}
++                onEnded={handleAudioPosition}
+@@ -361,0 +370 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
++              seekRevision.current++
+@@ -371,0 +381 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
++              seekRevision.current++
+@@ -386,0 +397,4 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
++          <ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} search={window.location.search} identity={canonicalRecording ? {
++            ...recordingSession(canonicalRecording), recordingId: canonicalRecording.recordingId, sha256: canonicalRecording.sha256,
++            startEpoch: canonicalRecording.startEpoch, endEpoch: canonicalRecording.endEpoch,
++          } : null} onSeek={seekToEpoch} />
+diff --git a/apps/studio/src/__tests__/ReplayView.test.tsx b/apps/studio/src/__tests__/ReplayView.test.tsx
+index 6e5c1b57..25b1b619 100644
+--- a/apps/studio/src/__tests__/ReplayView.test.tsx
++++ b/apps/studio/src/__tests__/ReplayView.test.tsx
+@@ -466,0 +467,13 @@ describe("ReplayView", () => {
++  it("un seek audio in pausa riallinea journal e scena senza avviare playback", async () => {
++    const { audio } = await renderWithLoadedAudio()
++    Object.defineProperty(audio, "paused", { value: true, configurable: true })
++    Object.defineProperty(audio, "readyState", { value: 4, configurable: true })
++    Object.defineProperty(audio, "currentTime", { value: 1, configurable: true, writable: true })
++    audio.dispatchEvent(new Event("seeked"))
++    await vi.waitFor(() => {
++      expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("2000")
++      expect(capturedApi?.updateScene.mock.calls.at(-1)?.[0].elements.map((item: {id: string}) => item.id)).toEqual(["a", "b"])
++    })
++    expect(audio.paused).toBe(true)
++  })
++

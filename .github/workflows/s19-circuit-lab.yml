@@ -40,7 +40,7 @@ jobs:
           uv pip install --python .s19-venv/bin/python --require-hashes -r plugins/s19-circuit-lab/requirements-dev.lock
           python3 plugins/s19-circuit-lab/scripts/install_engine.py --cache "$RUNNER_TEMP/kirchhoff-s19" --python "$GITHUB_WORKSPACE/.s19-venv/bin/python"
           uv pip install --python .s19-venv/bin/python --no-deps -e plugins/s19-circuit-lab
-      - name: Scientific checks, real Core and exact owner-patch composition
+      - name: Scientific checks and HTTP contracts on the actual integrated Core
         run: .s19-venv/bin/python -m pytest plugins/s19-circuit-lab/tests
       - name: Isolated frontend lock and build
         run: |

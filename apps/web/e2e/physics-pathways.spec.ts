@@ -54,13 +54,28 @@ test('teacher navigates pinned pathways, units and collections; back, reload and
   await catalog.getByRole('button',{name:'Percorsi di Fisica (4)'}).click();
   await catalog.getByRole('link',{name:'Strumenti e meccanica',exact:true}).click();
   await catalog.getByRole('link',{name:'U1 · Introduzione ai metodi della fisica',exact:true}).click();
+  await expect(catalog.getByRole('heading',{name:'U1 · Introduzione ai metodi della fisica',exact:true})).toBeVisible();
+  const unitBeforeShellNavigation = page.url();
   await page.getByRole('navigation',{name:'Navigazione principale'}).getByRole('button',{name:'Oggi',exact:true}).click();
+  await expect(page).toHaveURL(url => url.searchParams.get('view') === 'today');
+  await expect(catalog).not.toBeVisible();
   await page.goBack();
-  await expect(catalog.getByRole('heading',{name:'Strumenti e meccanica',exact:true})).toBeVisible();
-  await catalog.getByRole('link',{name:'U1 · Introduzione ai metodi della fisica',exact:true}).click();
+  // Shell navigation adds its own history entry. Back must restore the exact
+  // unit, rather than skip it as the former replaceState implementation did.
+  await expect(page).toHaveURL(unitBeforeShellNavigation);
+  await expect(catalog.getByRole('heading',{name:'U1 · Introduzione ai metodi della fisica',exact:true})).toBeVisible();
+  await page.goForward();
+  await expect(page).toHaveURL(url => url.searchParams.get('view') === 'today');
+  await expect(catalog).not.toBeVisible();
+  await page.goBack();
+  await expect(page).toHaveURL(unitBeforeShellNavigation);
+  await expect(catalog.getByRole('heading',{name:'U1 · Introduzione ai metodi della fisica',exact:true})).toBeVisible();
   await page.getByLabel('Edizione corrente').selectOption('analisi');
+  await expect(page.getByLabel('Edizione corrente')).toHaveValue('analisi');
   await page.goBack();
+  await expect(page).toHaveURL(unitBeforeShellNavigation);
   await expect(page.getByLabel('Edizione corrente')).toHaveValue('fluidi');
+  await expect(catalog.getByRole('heading',{name:'U1 · Introduzione ai metodi della fisica',exact:true})).toBeVisible();
   expect(new URL(page.url()).searchParams.get('edition')).toBe('fluidi');
   await page.goForward();
   await expect(page.getByLabel('Edizione corrente')).toHaveValue('analisi');
@@ -83,7 +98,12 @@ test('teacher navigates pinned pathways, units and collections; back, reload and
   await expect(identity).toContainText('physics-pathways · v1');
   await expect(identity).toContainText(reloaded.searchParams.get('catalogSha')!);
   await page.goBack();
+  await expect(page).toHaveURL(unitBeforeShellNavigation);
   await expect(page.getByLabel('Edizione corrente')).toHaveValue('fluidi');
+  await expect(catalog.getByRole('heading',{name:'U1 · Introduzione ai metodi della fisica',exact:true})).toBeVisible();
+  await page.goBack();
   await expect(catalog.getByRole('heading',{name:'Strumenti e meccanica',exact:true})).toBeVisible();
   expect(new URL(page.url()).searchParams.get('edition')).toBe('fluidi');
+  expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
+  expect(errors).toEqual([]);
 });

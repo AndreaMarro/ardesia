@@ -1,0 +1,39 @@
+[
+  {
+    "name": "web-media-focused",
+    "command": [
+      "node",
+      "/private/tmp/ardesia-s08-continuation-20261026/node_modules/vitest/vitest.mjs",
+      "run",
+      "src/features/lesson-media/",
+      "--pool=threads",
+      "--maxWorkers=1",
+      "--no-file-parallelism",
+      "--testTimeout=30000",
+      "--hookTimeout=30000",
+      "--teardownTimeout=30000"
+    ],
+    "cwd": "/private/tmp/ardesia-s08-continuation-20261026/apps/web",
+    "exitCode": 0,
+    "seconds": 20.32
+  },
+  {
+    "name": "studio-media-focused",
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "src/lesson-media/ReplayCaptions.test.tsx",
+      "src/__tests__/ReplayView.test.tsx",
+      "--pool=threads",
+      "--maxWorkers=1",
+      "--no-file-parallelism",
+      "--testTimeout=30000",
+      "--hookTimeout=30000",
+      "--teardownTimeout=30000"
+    ],
+    "cwd": "/private/tmp/ardesia-s08-continuation-20261026/apps/studio",
+    "exitCode": 0,
+    "seconds": 24.69
+  }
+]

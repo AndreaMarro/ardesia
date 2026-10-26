@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "sourceCommit": "34e1db4a11c7823e26a3685052dcef1f10de08db",
+  "browser": "148.0.7778.96",
+  "checks": [
+    {
+      "mode": "waveform-visible",
+      "status": "PASS",
+      "revocationMs": 2147,
+      "beforeRevocation": {
+        "paused": false,
+        "time": 0,
+        "duration": 4.5,
+        "rate": 0.5
+      },
+      "naturalEndExcluded": true,
+      "recordingId": "427a650b-4ba2-48ca-bb28-1403898c748d",
+      "objectRefs": 0,
+      "canonicalConsent": false,
+      "canonicalAudioFiles": 0,
+      "mediaDetached": true
+    },
+    {
+      "mode": "waveform-hidden",
+      "status": "PASS",
+      "revocationMs": 355,
+      "beforeRevocation": {
+        "paused": false,
+        "time": 0.002322,
+        "duration": 4.44,
+        "rate": 0.5
+      },
+      "naturalEndExcluded": true,
+      "recordingId": "96964c05-8071-45fc-b31a-7e487fb3318b",
+      "objectRefs": 0,
+      "canonicalConsent": false,
+      "canonicalAudioFiles": 0,
+      "mediaDetached": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Microfono sintetico Chromium; nessun ascolto umano o device fisico",
+    "Revoca osservata su entrambi i renderer usando i veri controlli Room e due viste della stessa origine",
+    "Non revoca fisicamente Blob o copie già esportate/scaricate da soggetti esterni",
+    "Chunk legacy senza identità sessione esplicita non vengono attribuiti a una sessione moderna"
+  ]
+}

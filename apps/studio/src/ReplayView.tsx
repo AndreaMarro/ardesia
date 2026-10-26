@@ -3,8 +3,9 @@
 // scena proiettata con ReplayEngine.getSceneAt (read-only, zero scritture),
 // audio dei chunk registrati mappato sul tempo journal via startEpoch.
 
-import { useState, useEffect, useRef, useMemo, type ChangeEvent } from "react"
+import { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, type ChangeEvent, type ReactNode } from "react"
 import { Excalidraw } from "@excalidraw/excalidraw"
+import type { BinaryFiles } from "@excalidraw/excalidraw/types"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import { type WorkspaceStore } from "./store/WorkspaceStore"
@@ -12,10 +13,22 @@ import { ReplayEngine } from "./store/ReplayEngine"
 import { loadReplayTimeline, recordingAtTime, resolveReplayTarget, type ReplayTimeline } from "./store/replayTimeline"
 import EmptyState from "./design/EmptyState"
 import ReplayObjectFocus from "./ReplayObjectFocus"
+import { ReplayCaptions } from "./lesson-media/ReplayCaptions"
+import { recordingSession } from "./store/audioRecording"
+import { emptyEditorial, parseEditorial, resolveMoment, type Editorial, type LessonMoment } from "./features/living-lesson/model"
+import type { ReplayCursor } from "./features/living-lesson/replayCursor"
+
+// Waveform dependencies are loaded only when replaying a canonical v2 take.
+// The canonical audio controls stay unavailable until its consent guard mounts.
+const IntegratedLivingReplay = lazy(() => import("./features/living-lesson/IntegratedLivingReplay").then(module => ({ default: module.IntegratedLivingReplay })))
 
 interface ReplayViewProps {
   store: WorkspaceStore
   room: string
+  renderExtension?: (cursor: ReplayCursor) => ReactNode
+  replayFiles?: Record<string, unknown>
+  selectedRecordingId?: string
+  range?: { start: number; end: number }
 }
 
 interface ReplayLoad {
@@ -24,6 +37,8 @@ interface ReplayLoad {
   timeline: ReplayTimeline | null
   lessonName: string | null
   error: string | null
+  editorial: Editorial
+  files: BinaryFiles
 }
 
 /** Formatta ms trascorsi come m:ss (per il contatore della timeline) */
@@ -34,7 +49,7 @@ function formatClock(ms: number): string {
   return `${minutes}:${String(seconds).padStart(2, "0")}`
 }
 
-export default function ReplayView({ store, room }: ReplayViewProps) {
+export default function ReplayView({ store, room, renderExtension, replayFiles, selectedRecordingId, range }: ReplayViewProps) {
   const [loaded, setLoaded] = useState<ReplayLoad | null>(null)
   // Legare il risultato alla fonte nasconde già al primo render di B i dati
   // di A: il solo reset in useEffect lascerebbe visibile uno stato precedente.
@@ -48,10 +63,16 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   const [apiReady, setApiReady] = useState(false)
   const [audioError, setAudioError] = useState<string | null>(null)
   const [focusedObjectId, setFocusedObjectId] = useState<string | null>(null)
+  const [selectedTakeId, setSelectedTakeId] = useState<string | null>(null)
   const [viewport, setViewport] = useState({ scrollX: 0, scrollY: 0, zoom: 1 })
 
   const apiRef = useRef<any>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const [mediaElement, setMediaElement] = useState<HTMLAudioElement | null>(null)
+  const attachMedia = useCallback((element: HTMLAudioElement | null) => {
+    audioRef.current = element
+    setMediaElement(element)
+  }, [])
   const canvasRef = useRef<HTMLDivElement>(null)
   const fitSceneRef = useRef<() => void>(() => {})
   /** startEpoch del primo chunk = origine del tempo audio (sorgente concatenata) */
@@ -59,12 +80,22 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   /** Seek richiesto prima che i metadata audio siano pronti (applicato a loadedmetadata) */
   const pendingSeekSecRef = useRef<number | null>(null)
   /** Ultimo t noto, per posizionare l'audio quando la sorgente finisce di caricare */
+  const seekRevision = useRef(0)
   const tRef = useRef<number | null>(null)
   tRef.current = t
 
   const engine = useMemo(() => new ReplayEngine(), [])
-  const canonicalRecording = timeline && t !== null ? recordingAtTime(timeline.recordings, t) : null
+  const exactTakeId = selectedRecordingId ?? selectedTakeId
+  const canonicalRecording = timeline && t !== null ? (exactTakeId
+    ? timeline.recordings.find(recording => recording.recordingId === exactTakeId && t >= recording.startEpoch && t <= recording.endEpoch) ?? null
+    : recordingAtTime(timeline.recordings, t)) : null
   const focusedObject = canonicalRecording?.objectRefs.find((ref) => ref.elementId === focusedObjectId) ?? canonicalRecording?.objectRefs[0] ?? null
+  const editorial = current?.editorial ?? emptyEditorial(room)
+  const sceneFiles = replayFiles ?? current?.files
+  const replayKey = useMemo(() => Symbol('replay-context'), [timeline, canonicalRecording?.recordingId])
+  const activeReplayKey = useRef(replayKey)
+  activeReplayKey.current = replayKey
+  useEffect(() => () => { activeReplayKey.current = Symbol('closed-replay') }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -73,16 +104,29 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     Promise.all([
       loadReplayTimeline(store, room),
       store.loadMeta(room).catch(() => null),
+      store.loadScene(room),
     ])
-      .then(([tl, meta]) => {
+      .then(([tl, meta, serialized]) => {
         if (cancelled) return
         const target = resolveReplayTarget(tl, window.location.search)
-        setLoaded({ store, room, timeline: tl, lessonName: meta?.name ?? null, error: null })
-        setT(target.epoch)
-        setFocusedObjectId(target.objectId)
+        const envelope = serialized ? JSON.parse(serialized) : {}
+        const extension = parseEditorial(envelope, room)
+        const params = new URLSearchParams(window.location.search)
+        if (params.getAll('moment').length > 1) throw new Error('Riferimento al marker duplicato')
+        const requestedMoment = params.get('moment')
+        const moment = requestedMoment ? extension.moments.find(item => item.id === requestedMoment) : null
+        if (requestedMoment && !moment) throw new Error('Il marker richiesto non appartiene alla lezione')
+        if (moment) {
+          resolveMoment(room, tl, moment, envelope.files ?? {})
+          if ((target.recordingId && target.recordingId !== moment.recordingId) || (params.has('at') && target.epoch !== moment.epoch)) throw new Error('Il marker non corrisponde al passaggio richiesto')
+        }
+        setLoaded({ store, room, timeline: tl, lessonName: meta?.name ?? null, error: null, editorial: extension, files: envelope.files ?? {} })
+        setT(moment?.epoch ?? target.epoch)
+        setSelectedTakeId(moment?.recordingId ?? target.recordingId)
+        setFocusedObjectId(moment?.objectRefs[0]?.elementId ?? target.objectId)
       })
       .catch((err: unknown) => {
-        if (!cancelled) setLoaded({ store, room, timeline: null, lessonName: null, error: (err as Error).message })
+        if (!cancelled) setLoaded({ store, room, timeline: null, lessonName: null, error: (err as Error).message, editorial: emptyEditorial(room), files: {} })
       })
     return () => { cancelled = true }
   }, [store, room])
@@ -223,8 +267,10 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   }
 
   /** Scrub manuale: aggiorna t e riallinea il tempo audio */
-  function handleScrub(e: ChangeEvent<HTMLInputElement>) {
-    const next = Number(e.target.value)
+  function seekToEpoch(next: number) {
+    if (activeReplayKey.current !== replayKey || !Number.isFinite(next) || !timeline ||
+        next < (range?.start ?? timeline.firstEventTime ?? 0) || next > (range?.end ?? timeline.lastEventTime ?? 0)) return
+    seekRevision.current++
     setT(next)
     const audio = audioRef.current
     const startEpoch = audioStartEpochRef.current
@@ -233,20 +279,45 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     if (audio.readyState === 0) {
       pendingSeekSecRef.current = seekSec
     } else {
+      pendingSeekSecRef.current = null
       audio.currentTime = seekSec
     }
   }
 
+  function handleScrub(e: ChangeEvent<HTMLInputElement>) {
+    if (!selectedRecordingId) setSelectedTakeId(null)
+    seekToEpoch(Number(e.target.value))
+  }
+
+  function selectMoment(moment: LessonMoment) {
+    if (!timeline) return
+    try {
+      resolveMoment(room, timeline, moment, sceneFiles ?? {})
+      seekToEpoch(moment.epoch)
+      setSelectedTakeId(moment.recordingId)
+      setFocusedObjectId(moment.objectRefs[0]?.elementId ?? null)
+      const url = new URL(window.location.href)
+      const ref = moment.objectRefs[0]!
+      for (const [key, value] of Object.entries({ moment: moment.id, recording: moment.recordingId, session: moment.sessionId, sha: moment.sha256, at: String(moment.epoch), object: ref.elementId, objectVersion: String(ref.version) })) url.searchParams.set(key, value)
+      window.history.replaceState(null, '', url)
+    } catch (cause) { setAudioError((cause as Error).message) }
+  }
+
   /** L'audio avanza → il cursore journal lo segue (audio→t via startEpoch) */
-  function handleTimeUpdate() {
+  function handleAudioPosition() {
     const audio = audioRef.current
     const startEpoch = audioStartEpochRef.current
-    if (!audio || startEpoch === null || audio.paused) return
+    if (!audio || startEpoch === null || !Number.isFinite(audio.currentTime) || (audio.currentSrc && audio.currentSrc !== audio.src)) return
     setT(Math.min(canonicalRecording?.endEpoch ?? Infinity, timeline?.lastEventTime ?? Infinity, startEpoch + audio.currentTime * 1000))
   }
 
   const hasEvents = timeline !== null && timeline.firstEventTime !== null && timeline.lastEventTime !== null
   const hasAudio = timeline !== null && (timeline.audioChunks.length > 0 || timeline.recordings.length > 0)
+  const livingReplay = !renderExtension && canonicalRecording !== null
+  const captions = <ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} search={window.location.search} identity={canonicalRecording ? {
+    ...recordingSession(canonicalRecording), recordingId: canonicalRecording.recordingId, sha256: canonicalRecording.sha256,
+    startEpoch: canonicalRecording.startEpoch, endEpoch: canonicalRecording.endEpoch,
+  } : null} onSeek={seekToEpoch} />
 
   return (
     <div className="st-replay" style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
@@ -313,10 +384,11 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               // Scena iniziale DENTRO initialData: Excalidraw la applica in modo
               // asincrono e cancellerebbe una updateScene arrivata prima (race
               // vista in smoke: lavagna vuota finché non si scrubba).
-              initialData={{ elements: scene as any, appState: EXCALIDRAW_CONFIG.newRoomAppState }}
+              initialData={{ elements: scene as any, files: sceneFiles as BinaryFiles | undefined, appState: EXCALIDRAW_CONFIG.newRoomAppState }}
             />
             <ReplayObjectFocus scene={scene} target={focusedObject} viewport={viewport} />
           </div>
+          <div className="st-replay-panel" style={{ flex: "0 1 auto", minHeight: 0, maxHeight: "52vh", overflow: "auto" }}>
           <div
             className="st-replay-controls"
             style={{
@@ -338,8 +410,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               type="range"
               aria-label="linea del tempo della lezione"
               aria-valuetext={`${formatClock((t ?? timeline.firstEventTime!) - timeline.firstEventTime!)} di ${formatClock(timeline.lastEventTime! - timeline.firstEventTime!)}`}
-              min={timeline.firstEventTime!}
-              max={timeline.lastEventTime!}
+              min={range?.start ?? timeline.firstEventTime!}
+              max={range?.end ?? timeline.lastEventTime!}
               step={1}
               value={t ?? timeline.firstEventTime!}
               onChange={handleScrub}
@@ -347,18 +419,23 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
             />
             {hasAudio && (
               <audio
-                ref={audioRef}
-                controls
+                ref={attachMedia}
+                controls={!livingReplay && !renderExtension}
                 aria-label="audio della lezione"
-                onTimeUpdate={handleTimeUpdate}
+                onTimeUpdate={() => { if (!audioRef.current?.paused) handleAudioPosition() }}
+                onSeeking={() => { seekRevision.current++ }}
+                onSeeked={() => { if (audioRef.current && audioRef.current.readyState > 0) handleAudioPosition() }}
+                onEnded={handleAudioPosition}
                 onLoadedMetadata={handleLoadedMetadata}
                 onError={() => setAudioError("Il browser non riesce a decodificare questa registrazione.")}
                 style={{ height: "32px", maxWidth: "100%" }}
               />
             )}
           </div>
-          {timeline.recordings.length > 0 && <div className="st-replay-passages">
+          {!renderExtension && timeline.recordings.length > 0 && <div className="st-replay-passages">
             {timeline.recordings.map((recording, index) => <button type="button" className="st-btn" key={recording.recordingId} onClick={() => {
+              seekRevision.current++
+              setSelectedTakeId(recording.recordingId)
               setFocusedObjectId(recording.objectRefs[0]?.elementId ?? null)
               setT(recording.endEpoch)
               if (audioRef.current && audioStartEpochRef.current === recording.startEpoch) audioRef.current.currentTime = recording.durationMs / 1000
@@ -368,7 +445,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               const element = scene.find((item) => item.id === ref.elementId && item.version === ref.version)
               if (element) apiRef.current?.scrollToContent?.([element], { fitToContent: true, viewportZoomFactor: .85, animate: false })
             }}>Evidenzia {ref.label}</button>)}
-            {canonicalRecording?.availability === "available" && <button type="button" className="st-btn" onClick={() => {
+            {!livingReplay && canonicalRecording?.availability === "available" && <button type="button" className="st-btn" onClick={() => {
+              seekRevision.current++
               setT(canonicalRecording.startEpoch)
               const audio = audioRef.current
               if (audio && audioStartEpochRef.current === canonicalRecording.startEpoch) {
@@ -384,6 +462,12 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               : "Pausa fra le registrazioni: nessun audio in questo intervallo."}</span>
           </div>}
           {audioError && <p role="alert" style={{ padding: "0 16px" }}>{audioError}</p>}
+          {!renderExtension && editorial.moments.length > 0 && <nav className="st-replay-editorial" aria-label="Marker e capitoli della lezione">
+            {editorial.moments.map(moment => <button type="button" className="st-ghost" key={moment.id} onClick={() => selectMoment(moment)}>{moment.kind === 'chapter' ? 'Capitolo' : 'Passaggio'} · {moment.title}</button>)}
+          </nav>}
+          {renderExtension ? <>{renderExtension({ media: mediaElement, recording: canonicalRecording, timeline, epoch: t, seekEpoch: seekToEpoch })}{captions}</> : livingReplay ?
+            <Suspense fallback={<p role="status">Caricamento del lettore audio…</p>}><IntegratedLivingReplay store={store} room={room} cursor={{ media: mediaElement, recording: canonicalRecording, timeline, epoch: t, seekEpoch: seekToEpoch }} editorial={editorial} captions={captions} onUnavailable={setAudioError} /></Suspense> : captions}
+          </div>
         </>
       )}
     </div>

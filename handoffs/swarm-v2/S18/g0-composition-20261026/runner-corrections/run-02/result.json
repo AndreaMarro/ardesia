@@ -1,0 +1,96 @@
+{
+  "status": "FAIL",
+  "stage": "teacher exact PDF-media index link",
+  "error": "TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Collega una fonte del gruppo', { exact: true })\u001b[22m\n",
+  "stack": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Collega una fonte del gruppo', { exact: true })\u001b[22m\n\n    at /tmp/ardesia-g0-proof/golden.mjs:178:77",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "5d3ae53a8967411d9513466a4cddfb17",
+        "revisionId": "fbd75e91c5a24687adffffd82f1c31dc"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    },
+    {
+      "name": "Native PDF equation selection, structured formula and lesson association saved in Core",
+      "status": "PASS",
+      "annotation": {
+        "resourceId": "2255af77e3ed45038059784126de22ba",
+        "revisionId": "15e69ed5163341cab5a6e2b1d223b7f5"
+      },
+      "target": {
+        "contextId": "a1ea7600dd8842dd864e82eed342e841",
+        "documentSha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf",
+        "page": 1,
+        "rects": [
+          [
+            0.06299233001658376,
+            0.12455301616915414,
+            0.2511983336896248,
+            0.019900497512437845
+          ]
+        ],
+        "resourceId": "5d3ae53a8967411d9513466a4cddfb17",
+        "revisionId": "fbd75e91c5a24687adffffd82f1c31dc",
+        "text": {
+          "end": 60,
+          "exact": "Q = pi r^4 Dp / (8 eta L)",
+          "model": "native-pdfjs-items-concat-utf16-v1",
+          "prefix": "Poiseuille: prima scegli il vincolo",
+          "start": 35,
+          "suffix": "Moto laminare; fluido newtoniano incompr"
+        }
+      }
+    },
+    {
+      "name": "Real Aula popup handshake, explicit teacher consent, Room object, recording and canonical chapter writer",
+      "status": "PASS"
+    },
+    {
+      "name": "Teacher explicitly publishes the real Studio descriptor and transcript to the same Core",
+      "status": "PASS",
+      "passage": {
+        "resourceId": "b165a4035293437cb9ad2bd16d934116",
+        "revisionId": "1813694c09184781b42130b193015109"
+      },
+      "recording": "0affd649-2eea-4bfb-9dc2-4677689059e5",
+      "lesson": "aula-fluidi",
+      "objectRefs": [
+        {
+          "elementId": "RihD_1c0UC-yDZHbIxB4l",
+          "version": 2,
+          "label": "Poiseuille: Q = π r⁴ Δp / (8 η L). Prima scegli se fissare Δp oppure Q."
+        }
+      ],
+      "audioSha256": "9220002ccf3a8eede63580ba1d7737283eaa646334fa510442b18c74709965f8"
+    },
+    {
+      "name": "Teacher exports actual .lesson bundle after Room journal flush",
+      "status": "PASS",
+      "bundleSha256": "60bbcf14d845a34c67c556e57e0a03b2bce328fd91b2bb66cbad521e46eb83f9",
+      "bytes": 21374
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [],
+  "product": {
+    "head": "ec5f19076d07f5a71b6151d8cd89bf33c8713a64",
+    "tree": "0e5fc123984d4a925f3ae3d5f6c7cb325c4a4cbe",
+    "web": {
+      "fileCount": 350,
+      "sha256": "61b709a28f3cf96613fbe4287dcb6fab90c7af199da96c71be63a4a84ebaa9e9"
+    },
+    "studio": {
+      "fileCount": 483,
+      "sha256": "eba74268f133d88c4b3d6eaba81c23e01e536c66fed0c280d952fd1a9532be8c"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "coreProcessIds": [
+    25071
+  ]
+}

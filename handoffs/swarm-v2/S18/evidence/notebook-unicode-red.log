@@ -1,0 +1,32 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+
+ ❯ src/features/living-sources/notebookBridge.test.ts (2 tests | 1 failed) 29ms
+   × keeps notebook chunks valid Unicode at every content boundary 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/living-sources/notebookBridge.test.ts > keeps notebook chunks valid Unicode at every content boundary
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/features/living-sources/notebookBridge.test.ts:20:169
+     18|   for(const version of ['1','12']){
+     19|     const state=notebookCopyState({...source,document:{...source.docum…
+     20|     for(const value of [state.title,...state.annotations.map(a=>a.cont…
+       |                                                                                                                                                                         ^
+     21|     expect(JSON.parse(state.annotations.filter(a=>a.id.startsWith('cit…
+     22|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  17:09:53
+   Duration  447ms (transform 67ms, setup 0ms, import 93ms, tests 29ms, environment 0ms)

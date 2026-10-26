@@ -1,0 +1,20 @@
+--- a/apps/studio/src/Room.tsx
++++ b/apps/studio/src/Room.tsx
+@@ -36,6 +36,7 @@
+ import { SessionAudioRecorder } from "./store/SessionAudioRecorder"
+ import type { AudioObjectReference } from "./store/audioRecording"
+ import LessonPassageAuthor from "./LessonPassageAuthor"
++import { preserveEditorial } from "./features/living-lesson/serialization"
+ import { wrapPassageAnnotation } from "./store/passageAnnotation"
+
+ const MathComposer = lazy(() => import("./MathComposer"))
+@@ -519,7 +520,8 @@
+     if (!elements) return
+     const run = _pendingSave.current.then(async () => {
+       try {
+-        const serialized = serializeAsJSON(elements, appState, files, "local")
++        const previous = await actualStore.loadScene(room)
++        const serialized = preserveEditorial(serializeAsJSON(elements, appState, files, "local"), previous ? JSON.parse(previous) : {}, room)
+         await actualStore.saveScene(room, serialized)
+         setStorageError(null)
+         setSaved(true)

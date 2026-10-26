@@ -158,3 +158,26 @@ La head33a non è verde: due test API conservavano il vecchio catalogo a sei pac
 ### #325 — spec browser di inventario, 26 ottobre 2026
 
 CI5092: API eS19PASS, Webphysics-pathways ancora cerca6programmi mentreDOM7. Delta successivo allinea tre aspettative e aggiunge titoloKirchhoff, preservando riferimento obsoleto e tutti i controlli di navigazione. LocaleNOT_RUN per ENOSPC nell'installazione, non un fallimento del browser; continuare tramiteCI. Ricevute ci-5092 e addendumRUNLOG conservano la distinzione. Chiudere la stessa325 con merge/post-CI reali; restano backend, lessonRef/fase, consumer e0/200, senza modificare storia o gate.
+
+## Addendum S00 — 26 ottobre 2026: tree G0 composto e verifiche terminali nella stessa #313
+
+Il mandato intensivo del proprietario autorizza implementazione, merge ordinari e preview Vercel protette senza nuovi costi o servizi ELAB. Non ripartire dalla ricognizione: main osservata b24ef978, #325 già merged; dettagli, originali e deleghe sono nell'ultima appendice RUNLOG. La stessa #313 assorbe #322/#323/#324/#318 conservando i parent originali. Consegne congelate: media3872c0be, Formulaa2fb0532, S182c0cdd1c, S20eb443ed1, G05cb141f2, P0b26f4e4. SourceViewer, Materials, Room e Classroom sono consumer reali; le vecchie patch di mount non vanno riapplicate.
+
+G0 locale è provato in un solo journey Poiseuille: PDF/annotazione/formula, consenso e registrazione, oggetto/capitolo, export/import .lesson fra browser, replay/PDF esatti, due ricevute, feedback e vero riavvio Core. Preserve tutti i RED e le rettifiche CSS/parent/transfer. Core canonico conserva lessonRef/fase; legacy compatibile senza falsa attribuzione. Il runner CI required ora copre golden e layout, oltre alle suite esistenti. Non cambiare HEAD durante i gate: il primo Studio ha correttamente fallito quando la regia l'ha spostata in esecuzione.
+
+Prima azione: rileggere #313 per head remota, sette required checks, merge e post-merge reali, quindi la ricevuta del deployment. I commit API devono avere il tree locale verificato; nessun vecchio verde certifica una nuova SHA. La preview usa i comandi canonici con `--include-private --learning-journey`, poi `--private-integrated` e `--protected-integrated-preview`; target Preview, SSO invariato, backend503 esplicito e pubblico dei cinque esempi conservato. Non chiudere le PR assorbite prima che la main contenga i loro originali.
+
+In parallelo sono già affidati incrementi isolati: #315+#312 (storia personale, notice=None), #310 (revisore senza approvazioni automatiche), #321 (race membership/retarget) e #320 (calendario reale). S00 resta il solo writer esterno; confrontare e integrare i loro nuovi head, non sovrascrivere. #311/#319 richiedono ancora composizione di scene/Library/grant/trasporto; nessuna intera PR è già superseded. Blocchi scientifici, attivazione raccolta facoltativa e licenza di distribuzione esterna asset restano distinti dalla normale integrazione tecnica.
+
+G1 non è pronto: nessun backend Ardesia hosted trovato in Render/Supabase; il runtime attuale è loopback e il prototipo Vercel di giugno non lo sostituisce. Non eliminare guardie locali, non usare progetti ELAB, non creare costi. Preparare e verificare ambiente/identità/storage/restore prima di collegare l'API. Quattro corsi ancora 0/200, approvazione umana distinta dai test. Questa appendice descrive il candidato; gli esiti esterni terminali si leggono nelle PR e nelle ricevute di release, senza inferirli dalle prove locali.
+
+
+### Addendum S00 — golden nativo concluso, 26 ottobre 2026
+
+Fonte golden locale7c941263,26PASS, prove e limiti in `handoffs/swarm-v2/S00/g0-final-20261026/README.md`. Mantiene il percorso unico con formulaMathLive e SVG collegato all’audio, importUI su nuovo browser, Core riavviato e due ricevute. Web622,Studio2365/5SKIP,CoreAPI1224/30SKIP,rilascio27,layout16; build pubblica e igiene PASS. Non riattribuire a questi verdi una head remota senza controllare tree eCI. Primo passo necessario: completare la stessa313 con parent originali318/322/323/324, sette gate richiesti, merge ordinario,CIpush e Preview protetta su progetto canonico; la313 è la ricevuta esterna autorevole. PhaseE ha consegne isolate da integrare sulla main risultante;311/319 e profiloG1 non sono già conclusi. Nessun costo nuovo, backendELAB o promozioneDRAFT autorizzati.
+
+
+Addendum CI G0: la head011246b ha raggiunto GitHub con tree esatto; S19 ha fermato il preparatore storico della patch325. Correzione: binding ai moduli attuali,49test locali PASS e3negativi sulle copie temporanee. Non saltare S19 o riusare la vecchia CI: verificare nuova head313, sette required più S19, merge ordinario e pushprima Preview. Evidenza in `handoffs/swarm-v2/S00/g0-final-20261026/s19-ci/`.
+
+
+Addendum navigazione G0: b8 ha passato golden26, layout, Studio e S19; Web ha fermato il test storico della cronologia. Due RED conservati: aspettativa Shell obsoleta e perdita effettiva dell’unità nel cambio edizione. La correzione minima preserva URL esatto e passa browser+22unitari. Rileggere head e CI della313 prima di merge e Preview; prove in g0-final-20261026/pathway-history-ci.

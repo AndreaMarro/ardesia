@@ -1,0 +1,68 @@
+{
+  "status": "FAIL",
+  "stage": "actual Aula to Room bridge",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n5.0625 !== 16\n",
+  "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n5.0625 !== 16\n\n    at file:///workspace/scratch/4d73e8ddb2b6/ardesia-integration/handoffs/swarm-v2/S18/g0-composition-20261026/verify-golden.mjs:154:10",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "063f87b43a464110a9d90571919f908c",
+        "revisionId": "967fbf6eca724cceb2f0c7fea84ed51e"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    },
+    {
+      "name": "Native PDF equation selection, structured formula and lesson association saved in Core",
+      "status": "PASS",
+      "annotation": {
+        "resourceId": "38ccec4b8e6347c19a4915862c00ff44",
+        "revisionId": "b8967ba047c94cd4b4ec41c5c69ced9b"
+      },
+      "target": {
+        "contextId": "848cecc079fb46d3b78e87a11c4a6ba4",
+        "documentSha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf",
+        "page": 1,
+        "rects": [
+          [
+            0.06299233001658376,
+            0.12455301616915414,
+            0.2511983336896248,
+            0.019900497512437845
+          ]
+        ],
+        "resourceId": "063f87b43a464110a9d90571919f908c",
+        "revisionId": "967fbf6eca724cceb2f0c7fea84ed51e",
+        "text": {
+          "end": 60,
+          "exact": "Q = pi r^4 Dp / (8 eta L)",
+          "model": "native-pdfjs-items-concat-utf16-v1",
+          "prefix": "Poiseuille: prima scegli il vincolo",
+          "start": 35,
+          "suffix": "Moto laminare; fluido newtoniano incompr"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [],
+  "product": {
+    "head": "c1ed980a52bca6a90d420284182308156c6fddfb",
+    "tree": "730b0b38c0e324fa964947227540589f20274cd9",
+    "web": {
+      "fileCount": 322,
+      "sha256": "d2e6956603ded732f126989e666d7980b008c20e0d50ce7bd4784d367f69f276"
+    },
+    "studio": {
+      "fileCount": 484,
+      "sha256": "061c645fa861980bd7f6bd40d371a2b00eb79836e2f7ec6433cfcce13b45eebe"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "coreProcessIds": [
+    45835
+  ]
+}

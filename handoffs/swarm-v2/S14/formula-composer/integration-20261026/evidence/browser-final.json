@@ -1,0 +1,578 @@
+{
+  "origin": "http://127.0.0.1:55140",
+  "commit": "4ba6c2b489965e5e0e63c8d9a9b90efd5fc9c1cb",
+  "sources": [
+    {
+      "path": "apps/studio/src/Room.tsx",
+      "sha256": "58d448ae97376993b21f483f4b51fa8033fa953d34ef920a36b00e0a77c693f4"
+    },
+    {
+      "path": "apps/studio/src/MathComposer.tsx",
+      "sha256": "c35b9cec6f79c4320ba46f6151a6fcf200b53930b96980e6ad7cf8659f0b071c"
+    },
+    {
+      "path": "apps/studio/src/formula-composer/MathComposer.css",
+      "sha256": "7dbfa20f37ec4d3b8484ce2e138a95a4cd56dc80cc0913f2613ca526b204e3fd"
+    },
+    {
+      "path": "apps/studio/src/latexToImage.ts",
+      "sha256": "2659ca490788048657ce03ee652ad356d27fabe6084f9c22e3dc764a37aebb52"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/serialization.ts",
+      "sha256": "f81e940874ce92a6865d04d8ce905d749549d862e0681ec3013bca347161845e"
+    }
+  ],
+  "composition": "ordinary production Studio build and Vite preview, actual Room source; no transforms or DEV harness",
+  "checks": [
+    {
+      "name": "production Room has no DEV test harness",
+      "data": true
+    },
+    {
+      "name": "actual teacher consent and recorded chapter precede formula save",
+      "data": {
+        "v": 1,
+        "lessonId": "s14-formula-a",
+        "moments": [
+          {
+            "id": "3ef876e7-d116-488a-bb3f-e534745cef35",
+            "title": "Portata costante e formula",
+            "kind": "chapter",
+            "lessonId": "s14-formula-a",
+            "sessionId": "edc298d8-cacc-43b8-954e-6a488052377e",
+            "recordingId": "cdd0e209-2fcb-4e7c-88fb-f51d895bef5d",
+            "sha256": "4fbcef53f4c288d682b16d34da1cc5f3db5f1f3fad739024416c386624958068",
+            "epoch": 1793049958911,
+            "objectRefs": [
+              {
+                "elementId": "iiJ4_f5zRgBSRJLpcjh0M",
+                "version": 2,
+                "label": "Formula e passaggio: Q fissata, Δp ∝ 1/r⁴"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "native prompt locked and external toggle disabled while rendering",
+      "data": true
+    },
+    {
+      "name": "real Room rejection retains native formula for retry",
+      "data": true
+    },
+    {
+      "name": "native template preserves rest of formula and undo/redo",
+      "data": true
+    },
+    {
+      "name": "native selected expression enters structure",
+      "data": true
+    },
+    {
+      "name": "native math template from text mode",
+      "data": "x+1\\frac{\\placeholder{}}{\\placeholder{}}"
+    },
+    {
+      "name": "native math template from latex mode",
+      "data": "x+1\\frac{\\placeholder{}}{\\placeholder{}}"
+    },
+    {
+      "name": "native expression copied through real clipboard",
+      "data": true
+    },
+    {
+      "name": "native virtual keyboard opens and closes on desktop",
+      "data": true
+    },
+    {
+      "name": "formula is below the existing annotation, whose exact element is unchanged",
+      "data": {
+        "formula": {
+          "x": 160,
+          "y": 208.8,
+          "width": 96,
+          "height": 24
+        },
+        "annotation": {
+          "x": 160,
+          "y": 120,
+          "width": 395,
+          "height": 64.80000000000001
+        }
+      }
+    },
+    {
+      "name": "real local MathJax SVG saved by the canonical writer preserves exact editorial chapter",
+      "data": true
+    },
+    {
+      "name": "normal Continuity navigation flushes formula journal before reopen",
+      "data": true
+    },
+    {
+      "name": "saved formula survives Room reload",
+      "data": true
+    },
+    {
+      "name": "second lesson has no formula from the first",
+      "data": true
+    },
+    {
+      "name": "portable .lesson retains SVG bytes, journal, exact chapter and build SHA",
+      "data": true
+    },
+    {
+      "name": "new mobile browser imports exact formula, journal and editorial chapter from .lesson",
+      "data": true
+    },
+    {
+      "name": "touch composer panel, field and host controls fit at 390x844",
+      "data": {
+        "left": 12,
+        "right": 378,
+        "top": 124,
+        "bottom": 475.6875,
+        "viewport": 390,
+        "height": 844,
+        "controls": [
+          {
+            "label": " inserisci sulla lavagna",
+            "left": 189,
+            "right": 361,
+            "top": 141,
+            "bottom": 163
+          },
+          {
+            "label": "copia LaTeX",
+            "left": 29,
+            "right": 134,
+            "top": 171,
+            "bottom": 200
+          },
+          {
+            "label": "chiudi",
+            "left": 294,
+            "right": 361,
+            "top": 171,
+            "bottom": 200
+          },
+          {
+            "label": "frazione",
+            "left": 29,
+            "right": 98,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "radice",
+            "left": 102,
+            "right": 161,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "integrale",
+            "left": 165,
+            "right": 240,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "sommatoria",
+            "left": 244,
+            "right": 337,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "limite",
+            "left": 29,
+            "right": 84,
+            "top": 236,
+            "bottom": 256
+          },
+          {
+            "label": "matrice",
+            "left": 88,
+            "right": 156,
+            "top": 236,
+            "bottom": 256
+          },
+          {
+            "label": "annulla",
+            "left": 29,
+            "right": 105,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "ripeti",
+            "left": 113,
+            "right": 175,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "tastiera matematica",
+            "left": 183,
+            "right": 344,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "",
+            "left": 29,
+            "right": 361,
+            "top": 297,
+            "bottom": 391.6875
+          },
+          {
+            "label": "Formula matematica",
+            "left": 38,
+            "right": 352,
+            "top": 306,
+            "bottom": 382.6875
+          }
+        ],
+        "foreground": [
+          {
+            "label": "Formula",
+            "aboveCanvas": true
+          },
+          {
+            "label": " inserisci sulla lavagna",
+            "aboveCanvas": true
+          },
+          {
+            "label": "copia LaTeX",
+            "aboveCanvas": true
+          },
+          {
+            "label": "chiudi",
+            "aboveCanvas": true
+          },
+          {
+            "label": "frazione",
+            "aboveCanvas": true
+          },
+          {
+            "label": "radice",
+            "aboveCanvas": true
+          },
+          {
+            "label": "integrale",
+            "aboveCanvas": true
+          },
+          {
+            "label": "sommatoria",
+            "aboveCanvas": true
+          },
+          {
+            "label": "limite",
+            "aboveCanvas": true
+          },
+          {
+            "label": "matrice",
+            "aboveCanvas": true
+          },
+          {
+            "label": "annulla",
+            "aboveCanvas": true
+          },
+          {
+            "label": "ripeti",
+            "aboveCanvas": true
+          },
+          {
+            "label": "tastiera matematica",
+            "aboveCanvas": true
+          },
+          {
+            "label": "Formula matematica",
+            "aboveCanvas": true
+          }
+        ],
+        "background": "rgb(245, 246, 248)"
+      }
+    },
+    {
+      "name": "touch keyboard toggles both ways without horizontal overflow",
+      "data": true
+    },
+    {
+      "name": "touch composer panel, field and host controls fit at 390x844 above open keyboard",
+      "data": {
+        "left": 12,
+        "right": 378,
+        "top": 124,
+        "bottom": 475.6875,
+        "viewport": 390,
+        "height": 844,
+        "keyboardTop": 627,
+        "controls": [
+          {
+            "label": " inserisci sulla lavagna",
+            "left": 189,
+            "right": 361,
+            "top": 141,
+            "bottom": 163
+          },
+          {
+            "label": "copia LaTeX",
+            "left": 29,
+            "right": 134,
+            "top": 171,
+            "bottom": 200
+          },
+          {
+            "label": "chiudi",
+            "left": 294,
+            "right": 361,
+            "top": 171,
+            "bottom": 200
+          },
+          {
+            "label": "frazione",
+            "left": 29,
+            "right": 98,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "radice",
+            "left": 102,
+            "right": 161,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "integrale",
+            "left": 165,
+            "right": 240,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "sommatoria",
+            "left": 244,
+            "right": 337,
+            "top": 212,
+            "bottom": 232
+          },
+          {
+            "label": "limite",
+            "left": 29,
+            "right": 84,
+            "top": 236,
+            "bottom": 256
+          },
+          {
+            "label": "matrice",
+            "left": 88,
+            "right": 156,
+            "top": 236,
+            "bottom": 256
+          },
+          {
+            "label": "annulla",
+            "left": 29,
+            "right": 105,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "ripeti",
+            "left": 113,
+            "right": 175,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "tastiera matematica",
+            "left": 183,
+            "right": 344,
+            "top": 268,
+            "bottom": 297
+          },
+          {
+            "label": "",
+            "left": 29,
+            "right": 361,
+            "top": 297,
+            "bottom": 391.6875
+          },
+          {
+            "label": "Formula matematica",
+            "left": 38,
+            "right": 352,
+            "top": 306,
+            "bottom": 382.6875
+          }
+        ],
+        "foreground": [
+          {
+            "label": "Formula",
+            "aboveCanvas": true
+          },
+          {
+            "label": " inserisci sulla lavagna",
+            "aboveCanvas": true
+          },
+          {
+            "label": "copia LaTeX",
+            "aboveCanvas": true
+          },
+          {
+            "label": "chiudi",
+            "aboveCanvas": true
+          },
+          {
+            "label": "frazione",
+            "aboveCanvas": true
+          },
+          {
+            "label": "radice",
+            "aboveCanvas": true
+          },
+          {
+            "label": "integrale",
+            "aboveCanvas": true
+          },
+          {
+            "label": "sommatoria",
+            "aboveCanvas": true
+          },
+          {
+            "label": "limite",
+            "aboveCanvas": true
+          },
+          {
+            "label": "matrice",
+            "aboveCanvas": true
+          },
+          {
+            "label": "annulla",
+            "aboveCanvas": true
+          },
+          {
+            "label": "ripeti",
+            "aboveCanvas": true
+          },
+          {
+            "label": "tastiera matematica",
+            "aboveCanvas": true
+          },
+          {
+            "label": "Formula matematica",
+            "aboveCanvas": true
+          }
+        ],
+        "background": "rgb(245, 246, 248)"
+      }
+    },
+    {
+      "name": "repeat native mount/unmount closes keyboard and imported formula survives cold mobile reload",
+      "data": true
+    }
+  ],
+  "errors": [],
+  "expectedFailures": [
+    "Failed to load resource: net::ERR_FAILED"
+  ],
+  "limits": [
+    "Local synthetic lesson and Chromium microphone; not a physical device or human scientific review",
+    "Read-only localStorage observations are cache evidence; portable truth checked in actual exported .lesson",
+    "No remote CI, deployed build or G0/G1 completion claim"
+  ],
+  "browser": "148.0.7778.96",
+  "bundle": {
+    "bytes": 30095,
+    "sha256": "f82a9cd32e27602f913c9a57ff85a7bb66ca94342e6af89e710b1b04adf6407b",
+    "manifest": {
+      "bundleVersion": 1,
+      "schemaVersion": 1,
+      "lessonId": "s14-formula-a",
+      "sessionIds": [
+        "484c3485-1cf6-4a9e-873f-b898dd051846",
+        "a275bb7a-855d-4e02-9a34-2fb4cb39fc95",
+        "edc298d8-cacc-43b8-954e-6a488052377e"
+      ],
+      "producer": {
+        "id": "com.github.andreamarro.ardesia.studio",
+        "version": "0.0.0",
+        "commitSha": "4ba6c2b489965e5e0e63c8d9a9b90efd5fc9c1cb"
+      },
+      "requiredArtifacts": [
+        "raw/board.excalidraw",
+        "raw/events.jsonl",
+        "raw/session.yaml"
+      ],
+      "optionalArtifacts": [
+        "raw/lessonos-events.jsonl",
+        "raw/audio/*"
+      ],
+      "files": [
+        {
+          "path": "raw/board.excalidraw",
+          "bytes": 6616,
+          "sha256": "a832f059a7f3d933335be9d82023b45cc8c02251cde7a44cf7bd5bb62f940979",
+          "required": true
+        },
+        {
+          "path": "raw/events.jsonl",
+          "bytes": 4431,
+          "sha256": "79fb2a9c280c6744904317dd73a6bec3c5784c06d8fd2e5e428e760d6a838408",
+          "required": true
+        },
+        {
+          "path": "raw/lessonos-events.jsonl",
+          "bytes": 1839,
+          "sha256": "5a769bd6f78319ac808e7ea006f1f3c76329cfd49abd12499c58b8ed4cd0bf0a",
+          "required": false
+        },
+        {
+          "path": "raw/s14-formula-a/484c3485-1cf6-4a9e-873f-b898dd051846/session.yaml",
+          "bytes": 154,
+          "sha256": "ef95d10ab6e76eea6555ca8e128384c52af1c4f6b9cec8fd5ec3805ef83035fc",
+          "required": false
+        },
+        {
+          "path": "raw/s14-formula-a/a275bb7a-855d-4e02-9a34-2fb4cb39fc95/session.yaml",
+          "bytes": 154,
+          "sha256": "a20ef9f9d107836daa8768599537fbd7807fc17e193081b03d8e2c9b55abc782",
+          "required": false
+        },
+        {
+          "path": "raw/s14-formula-a/edc298d8-cacc-43b8-954e-6a488052377e/audio/cdd0e209-2fcb-4e7c-88fb-f51d895bef5d.webm",
+          "bytes": 11865,
+          "sha256": "4fbcef53f4c288d682b16d34da1cc5f3db5f1f3fad739024416c386624958068",
+          "required": false
+        },
+        {
+          "path": "raw/s14-formula-a/edc298d8-cacc-43b8-954e-6a488052377e/session.yaml",
+          "bytes": 162,
+          "sha256": "eceb502584e9b4238aa1bbbabd82e40663fec872f26eafc307d2c8a326e954c8",
+          "required": false
+        },
+        {
+          "path": "raw/session.yaml",
+          "bytes": 36,
+          "sha256": "47cbae59f9a489b12dfa8b6533d17731c98e165576797317b16dc7e864e6bb51",
+          "required": true
+        }
+      ],
+      "lessonOs": {
+        "status": "included",
+        "warnings": []
+      },
+      "compatibility": {
+        "minimumReaderSchemaVersion": 2,
+        "migrations": []
+      }
+    }
+  },
+  "result": "PASS"
+}

@@ -1,0 +1,158 @@
+{
+  "productCommit": "840bbf83c0824083b42a166b5c9db0d5c432306e",
+  "buildWorkingBase": "1619c9aadf69c3fc09b3cf8e411d3d69313157c2",
+  "baseMain": "a00f2f40091aecf69e58ebaba42cf70d748e4066",
+  "compilation": "Working files frozen before commit; exact SHA256 values below unchanged in product commit. Candidate shared patches composed only in memory.",
+  "browser": {
+    "result": "browser-acceptance.json",
+    "groups": 24,
+    "engine": "148.0.7778.96",
+    "viewports": [
+      390,
+      820,
+      1440
+    ],
+    "errors": [],
+    "externalRequests": []
+  },
+  "targetedWeb": {
+    "files": 5,
+    "passed": 10,
+    "log": "web-acceptance-green.log"
+  },
+  "targetedCoreHTTP": {
+    "passed": 11,
+    "log": "core-acceptance.log"
+  },
+  "typecheck": "typecheck-acceptance.log",
+  "build": "build-acceptance.log",
+  "productFiles": [
+    {
+      "path": "apps/web/src/features/living-sources/LivingSourceReader.tsx",
+      "sha256": "a1ba2b7d201cdbe4e30310a2ef39b3344cfb782496629d42fa0d34f80efde835",
+      "bytes": 22142
+    },
+    {
+      "path": "apps/web/src/features/living-sources/LivingSourceReference.tsx",
+      "sha256": "9ef83dee9ead412e58763320f988960828887b0035cb70644ff6525c64faf841",
+      "bytes": 1445
+    },
+    {
+      "path": "apps/web/src/features/living-sources/LivingSources.tsx",
+      "sha256": "3dad74c73699e107bb2653a360784c085c870465578b1e90c9dc201afd103a33",
+      "bytes": 7758
+    },
+    {
+      "path": "apps/web/src/features/living-sources/PdfSurface.tsx",
+      "sha256": "b99838b44a348fc32c0872841f4f12535af13a21f493bc56e96e6afb7def448b",
+      "bytes": 22944
+    },
+    {
+      "path": "apps/web/src/features/living-sources/api.ts",
+      "sha256": "1be5638dd0514ce88c0761345252ff30c5c4083633e199dff4ee0a24b7c76707",
+      "bytes": 2685
+    },
+    {
+      "path": "apps/web/src/features/living-sources/lessonBridge.test.ts",
+      "sha256": "1582e4132123d4be5912a1c0dbd232d4d09357fddfa0ad1c773bc2fedba6e3f3",
+      "bytes": 1527
+    },
+    {
+      "path": "apps/web/src/features/living-sources/lessonBridge.ts",
+      "sha256": "8bc7f13c744c5f5e25f52e70d86b8cdb7b9e9d8b945e4a8dd280b7358cb2aa67",
+      "bytes": 2273
+    },
+    {
+      "path": "apps/web/src/features/living-sources/living-sources.css",
+      "sha256": "981b08ea7832d8bf2cd971a646137da83b37e25403453ad98ea2e48c62a31a3f",
+      "bytes": 6153
+    },
+    {
+      "path": "apps/web/src/features/living-sources/model.test.ts",
+      "sha256": "5d0aaa1ff7614b5627775a5bf27284b47c768a1e7f7d4970acad60f3e994791f",
+      "bytes": 2318
+    },
+    {
+      "path": "apps/web/src/features/living-sources/model.ts",
+      "sha256": "608ddb8fbb87d364c0608f54398f0802b78096ee9bb2fb48746d07197e40fda6",
+      "bytes": 5036
+    },
+    {
+      "path": "apps/web/src/features/living-sources/notebookBridge.test.ts",
+      "sha256": "161b9cbabbabe9a287a3f8bcc64648425b84586900c6ef993651484863a7b631",
+      "bytes": 3002
+    },
+    {
+      "path": "apps/web/src/features/living-sources/notebookBridge.ts",
+      "sha256": "f0cc88715495eb187335085e3d11957e0fc4ca9f7b493e847de348a3a676920a",
+      "bytes": 1877
+    },
+    {
+      "path": "apps/web/src/features/living-sources/pdfRuntime.ts",
+      "sha256": "3efe372def1be1f268ac534607f0b7c960c0341647de7bacfd997e91c90b199d",
+      "bytes": 2511
+    },
+    {
+      "path": "apps/web/src/features/living-sources/portableImport.ts",
+      "sha256": "4728e4b080f8dd517731000adbef2e06f6bdacb65959f2613de4af743c142879",
+      "bytes": 1218
+    },
+    {
+      "path": "apps/web/src/features/living-sources/revocation.test.tsx",
+      "sha256": "8f979064e5c7530a4ec2a9c5cdd3ce3706f8215726103d3217978be9d6a49c78",
+      "bytes": 3744
+    },
+    {
+      "path": "apps/web/src/features/living-sources/workerFailure.test.tsx",
+      "sha256": "2a54e78fb1a3060fb96874902cc62db10793213c06e5d494c12e9d0a5076aa72",
+      "bytes": 1789
+    },
+    {
+      "path": "packages/engine/lessonos/study/living_sources/__init__.py",
+      "sha256": "739425f770e69afcf5a89b9d1fdd96f67b2eef7e22f7c06e946a8cef83843b00",
+      "bytes": 12336
+    },
+    {
+      "path": "services/study-api/study_api/living_sources.py",
+      "sha256": "875d1a09cc2952f38cfe118ff170868176b1981233577583a0a3798637ebd6b7",
+      "bytes": 3744
+    }
+  ],
+  "unchangedSharedReuse": [
+    {
+      "path": "apps/web/src/integrations/notebook/pdfDocument.ts",
+      "sha256": "7b5c646a757ffca10d251bd74d330503c00d7e7c1004ecfe62e71ec6d6956cee"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/NotebookEditor.tsx",
+      "sha256": "60f3eb4e67cf39e2b4f9828b5fecfab504d11d00be9569fcb85ede7de7e79a7e"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/mathField.ts",
+      "sha256": "3324c0ab51737a0652bbb25407e55df7d02e828ca2a49daed72d9b8ae6267369"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "s18-1440.png",
+      "sha256": "9156b184b7a814610e22e3a62d270dfb1178b6eb4600a7ab93c1f8f686f8e2b9",
+      "visuallyInspected": true
+    },
+    {
+      "name": "s18-390.png",
+      "sha256": "4133f6c3740b5cb7dc71d2a582f2f54902bfbcafae72fc088b1484a59741dd0d",
+      "visuallyInspected": true
+    },
+    {
+      "name": "s18-820.png",
+      "sha256": "7cbeabc86105ac849787bd35b29085210fc36c8c7e14fa9939ff640c6051f549",
+      "visuallyInspected": false
+    }
+  ],
+  "limits": [
+    "No main mount/merge/deploy claimed",
+    "S00 must compose patches and repeat on final tree",
+    "Remote providers/Safari/device NOT_RUN",
+    "Local full Core/API was interrupted at S00 request; historical exact1619 CI passed completely; do not transfer it to this product commit"
+  ]
+}

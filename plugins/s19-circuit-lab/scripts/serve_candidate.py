@@ -4,17 +4,10 @@ import argparse
 from pathlib import Path
 import json
 import os
-import sys
 
 ROOT = Path(__file__).resolve().parents[3]
 PRODUCT = os.environ.get("S19_PRODUCT") == "1"
-if PRODUCT:
-    # Final consumer proof imports the real factory, without the owner-patch shim.
-    sys.path[:0] = [str(ROOT / p) for p in (
-        "packages/engine", "services/study-api", "plugins/s19-circuit-lab"
-    )]
-else:
-    import compose_candidate  # exact owner patch in disposable module copies
+import current_candidate  # both browsers use the same actual Core/factory
 from lessonos.study.store import StudyStore
 from study_api.app import create_app
 import uvicorn

@@ -1,0 +1,25 @@
+{
+  "product_commit": "d269cb8251d8ce07033e667ea3fab2cf71319e5d",
+  "baseline_functional_commit": "23604bca36c80e9805b7cc8de1d58403e4ba6b0d",
+  "room_patch_applied_to_source": false,
+  "files": [
+    {
+      "path": "apps/studio/src/MathComposer.tsx",
+      "sha256": "8e5c41189e79685595689f2f04ee6a3a04efbf9ff80aaafd38fc1978b0ef5df3"
+    },
+    {
+      "path": "apps/studio/src/formula-composer/MathComposer.css",
+      "sha256": "81cfd3660929a68e62b8e64c67c934f136dc4457fdf06c362e92def25e185f10"
+    },
+    {
+      "path": "handoffs/swarm-v2/S14/formula-composer/room-insert-math-v3.patch",
+      "sha256": "c8a85d2648bc61e66bc7aa90eb17abf5464fd3473cfbdda87ffba76c2280fbd7"
+    },
+    {
+      "path": "handoffs/swarm-v2/S14/formula-composer/verify-browser.mjs",
+      "sha256": "3df305fe3fa2c5068cbd975c0a9bbe95c29936881b5414c178d52a68e4ebbd2d"
+    }
+  ],
+  "next_command": "S14_LAYOUT_ONLY=1 S14_LAYOUT_CONTROL=1 node handoffs/swarm-v2/S14/formula-composer/verify-browser.mjs <control-output>; expected exit1, then S14_LAYOUT_ONLY=1 without control; expected exit0",
+  "status": "NOT_RUN_PENDING_HOST_SLOT"
+}

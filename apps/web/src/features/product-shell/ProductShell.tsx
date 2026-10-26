@@ -27,7 +27,7 @@ export function ProductShell({ me, view, onView, onLogout, children, editions = 
   }, [view]);
   return <div className="app-frame product-shell">
     <a className="skip-link" href="#content">Vai al contenuto</a>
-    <aside className="sidebar" aria-label="Navigazione e account">
+    <aside className="ps-sidebar" aria-label="Navigazione e account">
       <a className="wordmark" href="/" aria-label="ardesia."><span className="ps-brand-mark" aria-hidden="true"><i /><i /><i /></span>ardesia<span className="brand-dot">.</span></a>
       <p className="workspace-label">{tutor ? "Il tuo studio" : "Il tuo spazio"}</p>
       <div className="ps-editions">

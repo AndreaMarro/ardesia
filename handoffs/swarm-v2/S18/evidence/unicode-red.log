@@ -1,0 +1,32 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+
+ ❯ src/features/living-sources/model.test.ts (4 tests | 1 failed) 6ms
+   × does not split surrogate pairs at quote context boundaries 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/living-sources/model.test.ts > does not split surrogate pairs at quote context boundaries
+AssertionError: expected '�aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…' not to match /[\udc00-\udfff]/u
+
+- Expected:
+/[\udc00-\udfff]/u
+
++ Received:
+"�aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+ ❯ src/features/living-sources/model.test.ts:30:31
+     28|   const text='💧'+'a'.repeat(39)+'target'+'a'.repeat(39)+'💧';
+     29|   const start=text.indexOf('target');const selector=textSelector(text,…
+     30|   expect(selector.prefix).not.toMatch(/[\udc00-\udfff]/u);
+       |                               ^
+     31|   expect(selector.suffix).not.toMatch(/[\ud800-\udbff]$/u);
+     32|   expect(verifyTextSelector(text,selector)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  17:02:47
+   Duration  166ms (transform 34ms, setup 0ms, import 44ms, tests 6ms, environment 0ms)

@@ -1,0 +1,38 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_large_portable_pdf_uses_original_upload_and_small_manifest_under_body_admission _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-19/test_large_portable_pdf_uses_o0')
+
+    def test_large_portable_pdf_uses_original_upload_and_small_manifest_under_body_admission(tmp_path):
+        import base64
+        store,t,student,_,_=setup_store(tmp_path)
+        with TestClient(composed_factory()(store.path,demo=True)) as client:
+            assert client.post('/study/session',json={'token':store.issue_session(t)}).status_code==200
+            pdf=PdfWriter();pdf.add_blank_page(width=300,height=400);pdf.add_metadata({'/S18Padding':'x'*300000});out=BytesIO();pdf.write(out);data=out.getvalue()
+            asset=client.post('/study/assets?editionId=fluidi',content=data,headers={'Content-Type':'application/pdf','Idempotency-Key':'large-pdf'}).json()
+            source=client.post('/study/living-sources',json={'editionId':'fluidi','document':{'title':'Large fixture','version':'1','assetId':asset['id'],'sha256':asset['sha256']},'visibility':'group'},headers={'Idempotency-Key':'large-source'}).json()
+            target={k:source[k] for k in ['revisionId','contextId']};target.update(resourceId=source['id'],documentSha256=asset['sha256'],page=1,rects=[[.1,.1,.4,.2]],text=None)
+            note=client.post('/study/living-annotations',json={'editionId':'fluidi','annotation':{'target':target,'blocks':[{'kind':'explanation','text':'Large fixture note'}],'lesson':None},'visibility':'group'},headers={'Idempotency-Key':'large-note'}).json()
+            client.post('/study/session',json={'token':store.issue_session(student)})
+            bundle=client.get(f"/study/living-annotations/{note['id']}/revisions/{note['revisionId']}/export").json()
+            assert len(bundle['original']['base64'])>256*1024
+            # Bytes use the existing admitted asset transport, not an enlarged JSON route.
+            uploaded=client.post('/study/assets?editionId=fluidi',content=base64.b64decode(bundle['original']['base64']),headers={'Content-Type':'application/pdf','Idempotency-Key':'import-large-pdf'}).json()
+            bundle['original'].pop('base64');bundle['original']['assetId']=uploaded['id']
+            imported=client.post('/study/living-sources/import',json={'editionId':'fluidi','bundle':bundle},headers={'Idempotency-Key':'import-large'})
+>           assert imported.status_code==200,imported.text
+E           AssertionError: {"error":"invalid_living_source"}
+E           assert 400 == 200
+E            +  where 400 = <Response [400 Bad Request]>.status_code
+
+services/study-api/tests/test_living_sources_http.py:60: AssertionError
+=============================== warnings summary ===============================
+../../../../../../../../private/tmp/ardesia-s06-runtime-20261026/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /private/tmp/ardesia-s06-runtime-20261026/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_living_sources_http.py::test_large_portable_pdf_uses_original_upload_and_small_manifest_under_body_admission
+1 failed, 1 warning in 0.59s

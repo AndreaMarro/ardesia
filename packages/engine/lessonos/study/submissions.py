@@ -31,7 +31,7 @@ def _assigned_activity(store, principal, edition_id, activity_id, thread_id=None
             'assignedAfterEventSeq': thread['history'][-1]['seq']}
 
 
-def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=None,source_refs=None,diary_thread_id=None,activity_parameters=None,activity_evidence=None):
+def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=None,source_refs=None,diary_thread_id=None,activity_parameters=None,activity_evidence=None,course_lesson=None):
     store._edition_access(principal,edition_id)
     if principal.role!='student':raise StudyError('forbidden',403)
     if not isinstance(text,str) or len(text)>20_000 or not (text.strip() or asset_refs):raise StudyError('invalid_submission')
@@ -46,10 +46,14 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
     if diary_thread_id is not None:payload['diaryThreadId']=diary_thread_id
     if activity_parameters is not None:payload['activityParameters']=activity_parameters
     if activity_evidence is not None:payload['activityEvidence']=activity_evidence
+    if course_lesson is not None:payload['courseLesson']=course_lesson
     def apply(c):
         activity_context=_assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
         from .catalog import submission_course_context
         course_context=submission_course_context(store,edition_id,activity_id,activity_parameters,activity_context)
+        from .course_lesson_context import freeze_course_lesson, require_same_parent_lesson
+        lesson_context=freeze_course_lesson(store,principal,edition_id,activity_id,course_lesson,course_context['parameters'])
+        if lesson_context is not None:course_context.update(lesson_context)
         evidence=None
         if activity_evidence is not None:
             from .learning_experiences import freeze_activity_evidence
@@ -73,6 +77,9 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             store.lock_aggregate(c, 'submission.parent', parent_id)
             parent=c.execute('SELECT * FROM study_submissions WHERE id=?',(parent_id,)).fetchone()
             if not parent or parent['student_id']!=principal.id or parent['edition_id']!=edition_id or parent['activity_id']!=activity_id:raise StudyError('forbidden',403)
+            parent_receipt=c.execute('SELECT body FROM study_receipts WHERE id=?',(parent['receipt_id'],)).fetchone()
+            parent_context=json.loads(parent_receipt['body']).get('courseContext',{}) if parent_receipt else {}
+            require_same_parent_lesson(parent_context,course_context)
             if c.execute('SELECT 1 FROM study_submissions WHERE parent_id=?',(parent_id,)).fetchone():raise StudyError('newer_attempt_exists',409)
             revision=parent['revision']+1
         submission_id,receipt_id=identifier(),identifier()
@@ -113,5 +120,6 @@ def list_submissions(store,principal,edition_id):
         item=dict(row)
         receipt=json.loads(item.pop('receipt_body') or '{}')
         if 'activityEvidence' in receipt:item['activityEvidence']=receipt['activityEvidence']
+        if 'courseContext' in receipt:item['courseContext']=receipt['courseContext']
         result.append({**item,'asset_refs':json.loads(row['asset_refs']),'source_refs':json.loads(row['source_refs'])})
     return result

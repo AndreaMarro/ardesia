@@ -1,0 +1,30 @@
+--- a/apps/web/src/features/Classroom.tsx
++++ b/apps/web/src/features/Classroom.tsx
+@@ -22,6 +22,8 @@
+
+ const CourseLearningWorkspace=lazy(()=>import('../components/CourseLearningWorkspace').then(m=>({default:m.CourseLearningWorkspace})));
+
++const LearningJourney = lazy(() => import("./learning-journey/LearningJourney").then(m => ({ default: m.LearningJourney })));
++
+ type Props = {
+   me: StudyMe;
+   data: Workspace;
+@@ -30,6 +32,8 @@
+ };
+
+ export function Classroom(props: Props) {
++  if (import.meta.env.VITE_S20_LEARNING_JOURNEY === "1" && props.me.role === "student" && props.data.enrolled && baseActivity(props.data.edition) === "poiseuille-v1")
++    return <Suspense fallback={<Loading>Apro il percorso di studio…</Loading>}><LearningJourney me={props.me} data={props.data} /></Suspense>;
+   return <ClassroomScope key={courseScope(props.me, props.data.edition)} {...props} />;
+ }
+
+--- a/apps/web/src/useCourseWorkspace.ts
++++ b/apps/web/src/useCourseWorkspace.ts
+@@ -220,6 +220,7 @@
+         { signal: controller.signal },
+       );
+       if (!valid()) return;
++      value.resources = value.resources.filter(resource => resource.kind !== "learning-journey-checkpoint");
+       if (value.edition.id !== editionId)
+         throw Error("course_response_mismatch");
+       if (!value.enrolled) {

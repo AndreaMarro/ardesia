@@ -588,7 +588,7 @@ test("one source keeps exact independent views, historical authorization and por
       true,
     );
     await page
-      .locator(".sidebar")
+      .getByRole("complementary", { name: "Navigazione e account" })
       .evaluate((node) => node.scrollIntoView({ block: "start" }));
     await capture(page, "source-board-mobile-navigation-390.png");
     await page

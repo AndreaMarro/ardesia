@@ -229,11 +229,17 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
         );
         return;
       }
+      // Internal resources are read by their typed consumers. The generic
+      // workspace must never cache or expose their JSON as editable notes.
+      const visibleWorkspace = { ...value, resources: value.resources.filter(resource => ![
+        "learning-journey-checkpoint", "independent-study-plan-v1",
+        "independent-study-source-v1", "independent-study-attempt-v1",
+      ].includes(resource.kind)) };
       cache.current.delete(editionId);
-      cache.current.set(editionId, value);
+      cache.current.set(editionId, visibleWorkspace);
       while (cache.current.size > 16)
         cache.current.delete(cache.current.keys().next().value!);
-      setData(value);
+      setData(visibleWorkspace);
     } catch (failure) {
       if (valid()) {
         if (failure instanceof StudyApiError && failure.sessionRejected)
@@ -274,7 +280,10 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
     // authorized entries in this actor's current discovery page.
     selectionOwner.current = actor;
     url.searchParams.set("edition", id);
-    history.replaceState(null, "", url);
+    // Explicit course navigation must retain the previous exact lesson/catalog
+    // location. Discovery and popstate reconciliation still replace their entry.
+    if (id === editionId) history.replaceState(null, "", url);
+    else history.pushState(null, "", url);
     setEditionId(id);
   }
   function reloadEditions(id: string) {

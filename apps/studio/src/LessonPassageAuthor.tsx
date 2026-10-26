@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import SessionAudioControls from "./SessionAudioControls"
 import { revokeStoredAudioSession, type SessionAudioRecorder } from "./store/SessionAudioRecorder"
-import { recordingSession, type AudioObjectReference } from "./store/audioRecording"
+import { recordingSession, type AudioObjectReference, type AudioRecordingRef } from "./store/audioRecording"
 import type { WorkspaceStore } from "./store/WorkspaceStore"
 import { loadReplayTimeline } from "./store/replayTimeline"
 import type { LessonSessionIdentityV1 } from "./store/sessionState"
@@ -9,18 +9,20 @@ import { prepareLessonPassage } from "./store/lessonPassage"
 import { createStudioCourseBridge } from "./store/coursePassageBridge"
 import { IconCheck, IconLink, IconMic } from "./design/icons"
 
-export default function LessonPassageAuthor({ recorder, store, onAnnotate, selectedObjects = [], onLinkSelection, onFit }: {
+export default function LessonPassageAuthor({ recorder, store, onAnnotate, selectedObjects = [], onLinkSelection, onFit, onAddMoment }: {
   recorder: SessionAudioRecorder
   store: WorkspaceStore
   onAnnotate: (text: string) => Promise<readonly AudioObjectReference[]>
   selectedObjects?: readonly AudioObjectReference[]
   onLinkSelection?: () => Promise<readonly AudioObjectReference[]>
   onFit?: () => void
+  onAddMoment?: (recording: AudioRecordingRef, title: string, kind: 'marker' | 'chapter') => Promise<void>
 }) {
   const audio = useSyncExternalStore(recorder.subscribe, recorder.getSnapshot)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const [open, setOpen] = useState(() => new URLSearchParams(window.location.search).has("courseBridge"))
   const [text, setText] = useState("")
+  const [momentTitle, setMomentTitle] = useState("")
   const [refs, setRefs] = useState<readonly AudioObjectReference[]>([])
   const saved = audio.lastRecording
   const [reference, setReference] = useState("")
@@ -60,7 +62,7 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
     }).catch((cause) => { if (active) setError("Archivio audio non leggibile: " + (cause as Error).message) })
     return () => { active = false }
   }, [store, recorder, saved, historyVersion])
-  useEffect(() => { setReference(""); setNotice(null) }, [recorder, saved?.recordingId])
+  useEffect(() => { setReference(""); setNotice(null); setMomentTitle("") }, [recorder, saved?.recordingId])
   function close() { setOpen(false); triggerRef.current?.focus() }
   async function revokePrevious(identity: LessonSessionIdentityV1) {
     setBusy(true); setError(null)
@@ -98,6 +100,17 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
     } catch (cause) { setError((cause as Error).message) }
     finally { setBusy(false) }
   }
+  async function addMoment(kind: 'marker' | 'chapter') {
+    if (!saved || !onAddMoment || !momentTitle.trim() || busy) return
+    setBusy(true); setError(null)
+    try {
+      await onAddMoment(saved, momentTitle, kind)
+      if (recorder.getSnapshot().lastRecording?.recordingId !== saved.recordingId) return
+      setMomentTitle('')
+      setNotice(`${kind === 'chapter' ? 'Capitolo' : 'Passaggio'} salvato nella lezione. Lo ritrovi in Rivedi e nel file .lesson.`)
+    } catch (cause) { setError((cause as Error).message) }
+    finally { setBusy(false) }
+  }
   const recording = audio.stage === "recording" || audio.stage === "requesting"
   return <section className={`st-passage-author${open ? " st-passage-open" : ""}`} aria-label="Passaggio della lezione">
     <div className="st-passage-strip">
@@ -131,6 +144,13 @@ export default function LessonPassageAuthor({ recorder, store, onAnnotate, selec
       <div className="st-passage-step">
         <span className="st-step-number">02 <span>LA TUA VOCE</span></span>
         <SessionAudioControls recorder={recorder} objectRefs={refs} />
+        {saved?.objectRefs.length && onAddMoment ? <details className="st-passage-secondary">
+          <summary>Dai un nome al passaggio salvato</summary>
+          <p>Il titolo conserva la registrazione e le revisioni degli oggetti alla fine di questo segmento.</p>
+          <label>Titolo del passaggio<input aria-label="Titolo del passaggio" value={momentTitle} maxLength={240} onChange={event => setMomentTitle(event.target.value)} disabled={busy || recording} /></label>
+          <button type="button" className="st-ghost" disabled={busy || recording || !momentTitle.trim()} onClick={() => void addMoment('marker')}>Salva passaggio</button>
+          <button type="button" className="st-ghost" disabled={busy || recording || !momentTitle.trim()} onClick={() => void addMoment('chapter')}>Salva capitolo</button>
+        </details> : null}
       </div>
       <div className="st-passage-step">
         <span className="st-step-number">03 <span>IL RITORNO AL CORSO</span></span>

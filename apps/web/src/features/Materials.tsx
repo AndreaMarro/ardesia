@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
+import {LessonMediaLibrary} from "./lesson-media/LessonMediaLibrary";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
 import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
@@ -9,6 +10,7 @@ import { displaySourceTitle } from "../components/lessonPassageReference";
 import { ResourceEditor } from "../components/ResourceEditor";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
 import { ScienceMaterials } from "./science-library/ScienceMaterials";
+const LivingSources = lazy(() => import("./living-sources/LivingSources").then(module => ({ default: module.LivingSources })));
 export function Materials({
   me,
   data,
@@ -20,7 +22,8 @@ export function Materials({
 }) {
   const tutor = me.role === "teacher",
     resources = data.resources.filter(
-      (r) => r.visibility === "group" || r.ownerId === me.id,
+      (r) => !["living-source", "living-annotation", "lesson-media-index"].includes(r.kind)
+        && (r.visibility === "group" || r.ownerId === me.id),
     );
   const [selected, setSelected] = useState<string | null>(null);
   const current = resources.find((r) => r.id === selected);
@@ -45,8 +48,12 @@ export function Materials({
             : "I materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza."}
         </p>
       </header>
-      <ScienceMaterials key={`${me.id}:${me.role}:${data.edition.id}`} me={me}
+      <ScienceMaterials key={`science:${me.id}:${me.role}:${data.edition.id}`} me={me}
         editionId={data.edition.id} onUpdate={onUpdate} />
+      <LessonMediaLibrary key={`media:${me.id}:${me.role}:${data.edition.id}`} me={me} data={data} onUpdate={onUpdate} />
+      <Suspense fallback={<p role="status">Preparazione delle fonti…</p>}>
+        <LivingSources key={`sources:${me.id}:${me.role}:${data.edition.id}`} me={me} data={data} onUpdate={onUpdate} />
+      </Suspense>
       <div className="materials-layout">
         <aside
           aria-label={tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}

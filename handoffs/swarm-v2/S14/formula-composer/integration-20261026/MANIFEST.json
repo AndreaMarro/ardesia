@@ -1,0 +1,218 @@
+{
+  "productCommit": "4ba6c2b489965e5e0e63c8d9a9b90efd5fc9c1cb",
+  "productTree": "73900d68f560f917491a56d25dce645ad3f564e9",
+  "integrationMerge": "88e468a2b036ee2c11131e7bcd9bcb07390f4274",
+  "mediaParent": "c35b3e3f7d80c6361b446c1b29d525ba84579690",
+  "original318Parent": "dbb49121819b9ca0e60ba5b6b097737ec2b990cd",
+  "runtime": {
+    "node": "v24.22.1",
+    "browser": "148.0.7778.96",
+    "server": "ordinary Vite preview of frozen npm run build",
+    "productFlags": [],
+    "devHarness": false,
+    "sourceTransforms": false
+  },
+  "tests": {
+    "files": 5,
+    "passed": 120,
+    "failed": 0,
+    "fullStudioSuite": "NOT_RUN; joint integration gate owned by S00",
+    "originalConsumerRed": 4,
+    "placementRed": 1
+  },
+  "typecheck": {
+    "command": "npm --prefix apps/studio run typecheck",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm --prefix apps/studio run build",
+    "status": "PASS",
+    "exitCode": 0,
+    "warnings": [
+      "Existing chunks larger than 500kB; warning unchanged"
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": 21,
+    "unexpectedErrors": [],
+    "expectedNetworkFailures": 1,
+    "bundleSha256": "f82a9cd32e27602f913c9a57ff85a7bb66ca94342e6af89e710b1b04adf6407b",
+    "bundleProducer": {
+      "id": "com.github.andreamarro.ardesia.studio",
+      "version": "0.0.0",
+      "commitSha": "4ba6c2b489965e5e0e63c8d9a9b90efd5fc9c1cb"
+    }
+  },
+  "beforePlacement": {
+    "productCommit": "7f7623a4953234972261429f65a538b0de83ac44",
+    "functionalChecks": 20,
+    "functionalResult": "PASS",
+    "screenshotResult": "FAIL: fixed x160/y120 overlapped prior annotation",
+    "disposition": "Corrected and browser rerun on 4ba6c2b; raw PASS report retained, no visual success claim for prior run"
+  },
+  "review": {
+    "kind": "independent technical code review by media integration agent",
+    "scope": "actual Room deltas 88e468a..7f7623a and 7f7623a..4ba6c2b",
+    "result": "No demonstrated contract violation found",
+    "humanScientificApproval": false
+  },
+  "remoteMutation": false,
+  "limits": [
+    "Local synthetic lesson and Chromium microphone; not a physical device or human scientific review",
+    "Read-only localStorage observations are cache evidence; portable truth checked in actual exported .lesson",
+    "No remote CI, deployed build or G0/G1 completion claim",
+    "Node24.22.1 local differs from CI Node26.5.1",
+    "No full Studio suite, remote CI, post-merge or deployment evidence",
+    "S07/PR311 not part of this tree; retain its undo/overlay boundaries when later composing"
+  ],
+  "sourceFiles": [
+    {
+      "path": "apps/studio/src/Room.tsx",
+      "bytes": 54307,
+      "sha256": "58d448ae97376993b21f483f4b51fa8033fa953d34ef920a36b00e0a77c693f4"
+    },
+    {
+      "path": "apps/studio/src/__tests__/Room.integration.test.tsx",
+      "bytes": 145812,
+      "sha256": "868446de1428036e5cce9a440c00a86a3773e5a115876c99525ebbcd64055299"
+    },
+    {
+      "path": "apps/studio/src/MathComposer.tsx",
+      "bytes": 6736,
+      "sha256": "c35b9cec6f79c4320ba46f6151a6fcf200b53930b96980e6ad7cf8659f0b071c"
+    },
+    {
+      "path": "apps/studio/src/formula-composer/MathComposer.css",
+      "bytes": 520,
+      "sha256": "7dbfa20f37ec4d3b8484ce2e138a95a4cd56dc80cc0913f2613ca526b204e3fd"
+    },
+    {
+      "path": "apps/studio/src/latexToImage.ts",
+      "bytes": 2164,
+      "sha256": "2659ca490788048657ce03ee652ad356d27fabe6084f9c22e3dc764a37aebb52"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/serialization.ts",
+      "bytes": 542,
+      "sha256": "f81e940874ce92a6865d04d8ce905d749549d862e0681ec3013bca347161845e"
+    },
+    {
+      "path": "handoffs/swarm-v2/S14/formula-composer/integration-20261026/verify-browser.mjs",
+      "bytes": 20490,
+      "sha256": "5621a20c9152da34c8845c19dd32112abdfc804e6bb67fefe3d1f897ed9c27a2"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/browser-before-placement.json",
+      "bytes": 14959,
+      "sha256": "a91150abdd725381a73b29ca9e3d206ad73f6dab2cac208f9a54b0756db45a8a"
+    },
+    {
+      "path": "evidence/browser-before-placement.log.gz",
+      "bytes": 602,
+      "sha256": "56d54b003309d3d9d4cd333f142af2c7b317ec4465d153aaa50c8a353fa40d22"
+    },
+    {
+      "path": "evidence/browser-final.json",
+      "bytes": 15344,
+      "sha256": "69a582233646ed8008a59aa7392a5b848312318ed3106c2ebae5678a9ef2ca16"
+    },
+    {
+      "path": "evidence/browser-final.log.gz",
+      "bytes": 640,
+      "sha256": "f772bd78a3898164ce34e706e543c01bd9c8d024366c12e67d72d5b034a2ccb0"
+    },
+    {
+      "path": "evidence/build-before-placement.log.gz",
+      "bytes": 12707,
+      "sha256": "34da25f5719218476217819ae700e3cefec25a2b5642e464de2a8591ad18dfa5"
+    },
+    {
+      "path": "evidence/build-final.log.gz",
+      "bytes": 12690,
+      "sha256": "e07384c594e6822cf5e93a1cfef51b02bbe4862bbe85a06fc93d9cd9edcb6d7f"
+    },
+    {
+      "path": "evidence/formula-before-placement-overlap.png",
+      "bytes": 49926,
+      "sha256": "dc7543a137a2a3369cc90deca406ce8201f57b5886bb9f9b8638f8e23666d91d"
+    },
+    {
+      "path": "evidence/formula-cold-reopen.png",
+      "bytes": 50229,
+      "sha256": "162cae1d056ba3ece0f7e71e4e06d4ed9c99f13855c15a6343b6586cdfc14f5c"
+    },
+    {
+      "path": "evidence/formula-desktop.png",
+      "bytes": 88571,
+      "sha256": "5df06e975798e35768f5e63a0743d92953c28865835cab5bc677c20c90097685"
+    },
+    {
+      "path": "evidence/formula-mobile-keyboard.png",
+      "bytes": 55275,
+      "sha256": "86dd1c31cffeff550fa9f84951bc256ffceb1bddc7f82bd2ca6b1b185d00ab5b"
+    },
+    {
+      "path": "evidence/formula-mobile.png",
+      "bytes": 43126,
+      "sha256": "d73b3e551355d37ed06560597ae7981bd0fb86e55dc77c991547d02698069ee7"
+    },
+    {
+      "path": "evidence/formula.lesson",
+      "bytes": 30095,
+      "sha256": "f82a9cd32e27602f913c9a57ff85a7bb66ca94342e6af89e710b1b04adf6407b"
+    },
+    {
+      "path": "evidence/placement-red.json.gz",
+      "bytes": 5006,
+      "sha256": "e40df068c8cb2194fdb5358f3834952c3ee4b832f468a4eabbf7b46cd21ba2f4"
+    },
+    {
+      "path": "evidence/preview-final.log",
+      "bytes": 40,
+      "sha256": "913568f58ad9be91be7d2a594465728245f11cacc23d6bf5908bee2974eb6472"
+    },
+    {
+      "path": "evidence/room-original-red.json.gz",
+      "bytes": 5192,
+      "sha256": "0ff56fd265b34ac97448fc5f1f6cce148f522e5d35e9d94e3f4ef6e7bbf9553e"
+    },
+    {
+      "path": "evidence/room-v3-green.json.gz",
+      "bytes": 4768,
+      "sha256": "fa7715e47c115eb06e154baf26116aff91b85706869a22902423e9e42dfce209"
+    },
+    {
+      "path": "evidence/targeted-before-placement-green.json.gz",
+      "bytes": 6914,
+      "sha256": "ee69687d794d1c07b7ad5c9a6153def202e08567e94ea3c9600b88796fec1f9e"
+    },
+    {
+      "path": "evidence/targeted-final-green.json.gz",
+      "bytes": 6964,
+      "sha256": "256bef67ef439189b458e444d43a09cf347e5002302557ce2e507a34ed6053e0"
+    },
+    {
+      "path": "evidence/targeted-fixture-failure.json.gz",
+      "bytes": 7231,
+      "sha256": "97793456f17136433158e1f3b9fa1500bc06d55c80cfacf2b26b29632f208399"
+    },
+    {
+      "path": "evidence/tooling-incomplete.json",
+      "bytes": 748,
+      "sha256": "45ad90a9f452c3915420ae03753d923719b5d943ebd2192e0250e4c73a6554f1"
+    },
+    {
+      "path": "evidence/typecheck-final.log.gz",
+      "bytes": 137,
+      "sha256": "dfc12ea6a40279009408e53e0045009ff9a32c74f103b4b32e2929145b0e9dfd"
+    }
+  ],
+  "hygiene": {
+    "formulaDelta": "git diff --check 88e468a HEAD: PASS after lossless compression of raw typecheck stdout",
+    "inheritedMedia": "git diff --check origin/main reports extra blank EOF in eight inherited S08 composition logs; reported to S00/media owner, not edited here"
+  }
+}

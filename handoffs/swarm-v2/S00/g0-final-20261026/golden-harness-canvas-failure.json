@@ -1,0 +1,72 @@
+{
+  "status": "FAIL",
+  "stage": "teacher native formula editor in the same Room",
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.excalidraw canvas').first()\u001b[22m\n\u001b[2m    - locator resolved to <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas static\"></canvas>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.excalidraw canvas').first()\u001b[22m\n\u001b[2m    - locator resolved to <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas static\"></canvas>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <canvas width=\"1280\" height=\"788\" class=\"excalidraw__canvas interactive\">Area di disegno</canvas> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /workspace/scratch/4d73e8ddb2b6/ardesia-integration/handoffs/swarm-v2/S18/g0-composition-20261026/verify-golden.mjs:182:54",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "962272daf829497a97ff0ad3a71fda48",
+        "revisionId": "184ef95f73e54d49b425d1eef981424b"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    },
+    {
+      "name": "Native PDF equation selection, structured formula and lesson association saved in Core",
+      "status": "PASS",
+      "annotation": {
+        "resourceId": "f00fd3993b85401083c2778b1fe74d3a",
+        "revisionId": "0d0fa3d0367a45d8a995e1b53585823d"
+      },
+      "target": {
+        "contextId": "712408ad15194d5897d7b6b410cb2d9c",
+        "documentSha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf",
+        "page": 1,
+        "rects": [
+          [
+            0.06299233001658376,
+            0.12455301616915414,
+            0.2511983336896248,
+            0.019900497512437845
+          ]
+        ],
+        "resourceId": "962272daf829497a97ff0ad3a71fda48",
+        "revisionId": "184ef95f73e54d49b425d1eef981424b",
+        "text": {
+          "end": 60,
+          "exact": "Q = pi r^4 Dp / (8 eta L)",
+          "model": "native-pdfjs-items-concat-utf16-v1",
+          "prefix": "Poiseuille: prima scegli il vincolo",
+          "start": 35,
+          "suffix": "Moto laminare; fluido newtoniano incompr"
+        }
+      }
+    },
+    {
+      "name": "Teacher opens and manipulates the same scientific object through the actual Aula and Core",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [],
+  "product": {
+    "head": "7db5c6bb0e0f8eaaaf1fdc09e4fe6ef3834f2098",
+    "tree": "4a407850aeb7584123820dff2be32e3b2c3055a6",
+    "web": {
+      "fileCount": 322,
+      "sha256": "d2e6956603ded732f126989e666d7980b008c20e0d50ce7bd4784d367f69f276"
+    },
+    "studio": {
+      "fileCount": 484,
+      "sha256": "d4bd4595934ca48403474917d47b17bbd5d538a300fd90edd634487d55fb1152"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "coreProcessIds": [
+    46747
+  ]
+}

@@ -111,6 +111,7 @@ def prepare_private(candidate,destination,manifest,verification,main_sha,head_sh
                  'integrationHead':head_sha,'sourceProduct':verification['binding']['sourceCommit'],
                  'sourceTreeSha256':verification['binding']['sourceTreeSha256'],
                  'candidateManifestSha256':verification['binding']['candidateManifestSha256'],
+                 'buildFlags':manifest.get('source',{}).get('buildFlags',{}),
                  'deployment':None,'backend':'NOT_CONFIGURED','remoteReady':False,
                  'applicationAuthorization':'CORE_REQUIRED; preview SSO is a separate operator gate',
                  'publicReleaseAllowed':False,'editorialApproval':False}

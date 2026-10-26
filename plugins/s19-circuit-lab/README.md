@@ -50,3 +50,8 @@ Il codice Python del motore viene caricato dai byte verificati contro i Gitblob 
 I raccordi sopra descritti come patch sono ora applicati nel candidato della stessa PR325. Il consumer Corsi/Materiali/Review usa la revisione esatta; CircuitLab accetta revisionId e canSubmit, onResource può ricevere null per una nuova copia. Storico e fonti del docente sono in sola lettura. Il JSON esporta input anche senza engine, i calcoli richiedono il pin. L’adapter è una dipendenza path del lock API; nessun omonimo PyPI Kirchhoff viene installato implicitamente.
 
 La verifica S19_PRODUCT=1 esegue App compilata e factory effettiva senza composer. Il runner componente isola i viewport in processi/DB diversi, preservando il rate limit canonico. [Prove, RED/GREEN, limiti e riproduzione](../../handoffs/swarm-v2/S00/kirchhoff-composition.md). La CI sulla nuova head e il merge restano da verificare; le vecchie prove owner non certificano questa composizione.
+
+
+## S00: gate del checkout integrato dopo G0
+
+Dopo il merge325 il preparatore `compose_candidate.py` resta uno strumento storico della patch owner. Il gate scientifico/HTTP e i due browser importano ora `current_candidate.py`, che carica direttamente catalogo, contesto e factory dal checkout e rifiuta un modulo proveniente da copie temporanee. Nessuna patch viene applicata durante le prove del prodotto. I comandi, i contratti, il pin Kirchhoff e i timeout restano attivi. La CI011246b aveva fermato la vecchia composizione su app.py evoluta;49test locali nel suo ambiente pinned, inclusi tre negativi di sostituzione dei moduli, sono PASS. La nuova CI remota e il browser corrente restano verifiche separate. Prove in `handoffs/swarm-v2/S00/g0-final-20261026/s19-ci/`.

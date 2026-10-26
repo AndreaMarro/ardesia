@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "proof": "S08 plus S17 composed into production ReplayView",
+  "browser": "148.0.7778.96",
+  "checks": [
+    "Catalogo → URL con pin Core → player canonico e WAV reale → seek autorizzato da pausa → activeCues nativi/cursore journal; testo letterale sicuro",
+    "Seek nativo con audio in pausa aggiorna sottotitoli e cursore journal, senza play automatico",
+    "Verifica Core ritardata realmente, senza mock della risposta: uno seek successivo dalla waveform usa la stessa seekRevision e resta autorevole",
+    "Playback reale/fine naturale a4x: nessun cue attivo oltre l’intervallo",
+    "Altra take non eredita testo/track della fonte precedente; ritorno rilegge Core",
+    "Cambio cookie ad altro studente403 e anonimo401: nessun seek/testo/track autorizzato; accesso ripristinato solo con Core",
+    "Capitolo locale con sessione/hash/oggetto/versione: cold reload del ReplayView prodotto risolve lo stesso segmento",
+    "390px senzaoverflow e seek frammento da tastiera",
+    "Ritiro fonte rilevato dalla rilettura periodica: testo e track rimossi; byte locali non reinterpretati come revoca remota",
+    "Un solo media/source; waveform nascosta durante playback mantiene la guardia montata: revoca canonica interrompe e stacca il media",
+    "Ritorno alla scheda catalogo conservata"
+  ],
+  "withdrawalMs": 14416,
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "url": "http://127.0.0.1:5482/study/resources/881e7f4e5c4d4b51b77b9236e79652f9/revisions/5e9cd41e6ac34e9d8983ecc902f1a573"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "url": "http://127.0.0.1:5482/study/resources/881e7f4e5c4d4b51b77b9236e79652f9/revisions/5e9cd41e6ac34e9d8983ecc902f1a573"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:5482/study/resources/7ef4aa772e1a4d338087f792a76b942d/revisions/615563b9751d4adfa027ab8ce7cd0b77"
+    }
+  ],
+  "unexpectedResponses": [],
+  "source": "manifest of this composed candidate, no deployment claim",
+  "limits": [
+    "Visible-page refresh15s plus5s deadline; hidden clearing covered by unit test, not this browser scenario",
+    "No Safari/device or human listening; fixture has no changing board scene; audio source detachment observed on consent revocation; object URL allocator cleanup covered separately",
+    "No remote media server/Range or physical revocation of copies"
+  ]
+}

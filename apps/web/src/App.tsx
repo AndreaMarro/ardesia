@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
   describeError,
   StudyApiError,
@@ -57,13 +57,7 @@ export default function App() {
     [parentId, setParentId] = useState<string | null>(null);
   const sessionVersion = studySessionEpoch();
   const course = useCourseWorkspace(me, sessionVersion);
-  const { data: workspace, refresh } = course;
-  const data = useMemo(() => workspace && {
-    ...workspace,
-    resources: workspace.resources.filter((resource) => ![
-      "independent-study-plan-v1", "independent-study-source-v1", "independent-study-attempt-v1",
-    ].includes(resource.kind)),
-  }, [workspace]);
+  const { data, refresh } = course;
   const studyEnabled = me?.role === "student" && !!data?.enrolled;
   const mountedViews = studyEnabled ? views : legacyViews;
   const currentView = view === "independent-study" && !studyEnabled ? "today" : view;
@@ -126,7 +120,8 @@ export default function App() {
     setView(next);
     const url = new URL(location.href);
     url.searchParams.set("view", next);
-    history.replaceState({}, "", url);
+    if (next === view) history.replaceState({}, "", url);
+    else history.pushState({}, "", url);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   async function logout() {

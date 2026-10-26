@@ -1,5 +1,5 @@
 import { CircuitSource } from "../features/circuit-lab/CircuitSource";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   describeError,
   studyRequest,
@@ -11,14 +11,16 @@ import { ErrorNotice, Loading } from "./Feedback";
 import { NotebookEditor } from "../integrations/notebook/NotebookEditor";
 import { notebookResource } from "../integrations/notebook/model";
 import { displaySourceTitle, readLessonPassage } from "./lessonPassageReference";
+import { lessonMediaLink } from "../features/lesson-media/navigation";
 import { ScienceResourceView } from "../features/science-library/ScienceResourceView";
 import {IndependentStudySource, isIndependentStudyResource, canCiteIndependentStudyAttempt, studySourceSelection} from "../features/independent-study/SourceProjection";
+const LivingSourceReference = lazy(() => import("../features/living-sources/LivingSourceReference").then(module => ({ default: module.LivingSourceReference })));
 export function SourceViewer({
   reference,
   onSelect,
   onLoaded,
 }: {
-  reference: PostitReference;
+  reference: Pick<PostitReference, "resourceId" | "revisionId"> & Partial<Pick<PostitReference, "contextId">>;
   onSelect?: (start: number, end: number, quote: string) => void;
   onLoaded?: (resource: StudyResource) => void;
 }) {
@@ -112,6 +114,12 @@ export function SourceViewer({
     resource.revisionId !== reference.revisionId
   )
     return <Loading>Sto aprendo la revisione originale…</Loading>;
+  if (resource.kind === "living-source" || resource.kind === "living-annotation")
+    return (
+      <Suspense fallback={<Loading>Apertura della fonte…</Loading>}>
+        <LivingSourceReference key={`${resource.id}:${resource.revisionId}`} reference={reference} kind={resource.kind} />
+      </Suspense>
+    );
   const passage = readLessonPassage(resource);
   const science = resource.kind === "science-resource";
   const circuit = resource.kind === "s19-circuit";
@@ -135,6 +143,7 @@ export function SourceViewer({
       {passage && <article className="lesson-passage-source" aria-label="Passaggio della lezione">
         <h3>{displaySourceTitle(resource, 140)}</h3>
         <blockquote>{passage.transcript}</blockquote>
+        <a className="button-primary" href={lessonMediaLink({resourceId:resource.id,revisionId:resource.revisionId},resource.editionId,location.search)} target="_blank" rel="noopener noreferrer">Apri audio e lavagna collegati · in un’altra scheda</a>
         <p className="fine-print">Passaggio dichiarato dal docente. Il replay e i media restano nello Studio locale; questa fonte non li incorpora.</p>
       </article>}
       {resource.kind === "lesson-passage" && !passage &&

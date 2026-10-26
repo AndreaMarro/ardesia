@@ -1,0 +1,8 @@
+{
+  "status": "NOT_COMPLETED",
+  "scope": "Initial focused Room test command in default filesystem sandbox",
+  "exitCode": 1,
+  "reason": "Vite config could not obtain Git SHA through its execFileSync child process: Ardesia build provenance: Git fallback did not return a full SHA",
+  "followup": "Same exact test command completed under authorized require_escalated; original Room behavior was 4 RED, then 4 GREEN after actual consumer integration. No provenance configuration was changed.",
+  "reviewWrapper": "apps/studio/bin/review.sh points REVIEW_REPO at $HOME/maestro-studio and invokes $HOME/lessonos/bin/review.sh. It does not target this isolated checkout; narrow independent code review was performed by the media integrator instead."
+}
