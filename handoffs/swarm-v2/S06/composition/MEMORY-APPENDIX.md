@@ -1,0 +1,13 @@
+# Proposta appendice S00 — raccordo reader/consumer S06
+
+Appendere a RUNLOG/NEXT solo dal writerS00; nessun record passato da riscrivere. Stessa309, base prodotto2401f4c9 e main992d1a0b, Shell316head3326. Il nuovo SourceProjection nel namespaceS06 impedisce fallthroughraw e non considera aiuti dichiarati nel JSON una prova di emissione o autonomia. Quote S06 tradotte daDOMUTF16 a codepointCore senza mutare fonti. Nessun nuovoDB/auth/LLM/grader/dipendenza.
+
+Raccordo ora concreto in gzip con before/afterhash di App, factoryAPI e SourceViewer; nessun sharedfile effettivo scritto. App mountlazy/eligibleenrolled/sessioncurrent+kindprojection; factoryusaautenticazione/store reali; SourceViewerusaadapterS06 e citazione originale opt-in. Dipendenza tecnicaShell316 per View/enabledViews, non nuovi contratti auth.
+
+Prove:2HTTPactualfactoryPASS dopoRED404,26WebcompostiPASS (19namespace+7readeropt-in), build/typecheckcompletoPASS; browser33PASS/16.122s conWorkprimatransfer, note eCoreintatti, nuova sessione/edizione/ruoli/revoca, citazione pointerF/k dopoemoji→diarioCANDIDATECore200. I checkpoint27PASS e33PASS precedenti, FAILCSP/keyboardselection, reviewP2 e correzioni sono distinti. ProiezioneCSP nel harness non headerprod; tastieracitazione parziale NON_VERIFIED. Sorgenti/hashes eCI della nuovahead da confermare dopo push; nessun trasferimento automatico del verde.
+
+1. S00/S10: assegnare/applicare i soli3hook nel candidato consolidato. Primo passo leggere manifest/patch corrente e316; dipendenza writer/sharedbase; accettazione afterhash oppure diff riconciliato esplicito, nessuna perdita dei mountS01/S05/S11 o altri.
+2. S00/S06: eseguire controprova sui3file effettivamente installati e commit risultante. Primo passo factoryHTTP e preparazioneisolata riproducibile; dipendenza16/26check+build e authreal; accettazione percorsoApp/Work/Review/diario/revoca conSHAesatta e assenza dianticipazioni.
+3. S00: integrare309/316 inordine autorizzato e verificaremain/postmerge; primo passo requiredcheckstrict e conversazioni; accettazione stato terminale e nessunverdeereditato, nonchiusuraamministrativa.
+4. S00/S10: scegliere ambienteappropriato privato con backendcanonico reale; primopasso deployment/configautorizzati e disponibilità/costi; accettazione duebrowser/remoto/restore oppure limiteesplicito, nessuna nuova pubblicazioneDRAFT implicita.
+5. S04/S10 conS06consumer: evidence lessonRef/fase canonica perqualitative e successivo adapterNumbas. Primo passo contratto versionato, prerequisiti eapprovazioneeditoriale; accettazione consegne reali/receipts/aiuti distinti senza secondoquiz o mastery inferita.
