@@ -67,6 +67,11 @@ try {
     await page.goto(origin + '/?view=courses');
     await expect(page.getByRole('button', { name: /accedi/i }).first()).toBeVisible();
     check('no_horizontal_overflow:web:' + width, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    const banner = page.locator('.public-service-error');
+    await expect(banner).toBeVisible();
+    const bannerBox = await banner.boundingBox(), contentBox = await page.locator('main').boundingBox();
+    check('service_notice_does_not_cover_content:' + width, Boolean(bannerBox && contentBox &&
+      (bannerBox.y >= contentBox.y + contentBox.height || bannerBox.y + bannerBox.height <= contentBox.y)));
     await page.keyboard.press('Tab');
     check('keyboard_focus:web:' + width, await page.evaluate(() => document.activeElement !== document.body));
     await page.screenshot({ path: path.join(args.output, 'web-' + width + '.png'), fullPage: true });
