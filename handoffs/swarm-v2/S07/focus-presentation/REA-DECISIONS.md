@@ -1,0 +1,9 @@
+# Acquisizione/riuso focus —26ottobre2026
+
+Registro139 invariato da77: TARGET080Excalidraw0.18.1REUSE,088Yjs13.6.27ADAPT giànelramo,089tldrawDEFER e HocuspocusDEFER come daDONORparent; nessun nuovoid/dipendenza/provider. SDK completo giàadottato, nessun canvas ricostruito.
+
+Verificato anche il follow nativo del package: UserToFollow contiene socketId/username; actionGoToCollaborator aggiorna quello stato e componentDidUpdate emette FOLLOW/UNFOLLOW. API onUserFollow è notifica d'intento; il package non fornisce il trasporto/autorizzazione/sourcePDF richiesti daS07. Non integriamo l'app collab completa o una secondaidentità socket; il binding usa API native di camera/coordinate e aggiunge soltanto policy locale opt-in/ordine/gesture e contrattoCore source/page. Zoom è volutamente personale, non replica continua della camera del docente. File pinned: dist/types/excalidraw/types.d.ts (UserToFollow/OnUserFollowedPayload/onUserFollow), dist/dev/index.js (actionGoToCollaborator, componentDidUpdate); fonte upstream MIT giàcitata nelDONOR.
+
+REA runtime eseguita: providerCDPversion2,2EvidenceID e bundlelossless nelREADME. Osservazione passiva del nostro browser, non analisi del serverCore, nonreplay di azioni daREA e non identitàbinaria automaticamenteattestata. Artifactidentity/platform/architecture e attivitàprimaattach rimangonoUNKNOWN; policyfiltered/attachlimited dichiarati, eventidropped0. AXmostra ilcomandoFollow e nessunPublishnelviewer. Versione dell'intero serverREA nonesposta; non sostituirla con la versioneprovider.
+
+Prossima acquisizione Hocuspocus resta condizionata alcontrattoCoreS10, convalidazionebinari/ACL/storage/revoca/receipt; nessun secondoAuth/DB. Reimplementeventuale soltanto adattatoridiDominio, non algoritmoCRDT o renderer. Risparmio quantitativoUNKNOWN; scenarioNative17totale49.948s non è misura di scala o beneficio moltiplicativo.

@@ -1,4 +1,5 @@
 import {createRequire} from 'node:module'
+import {execFileSync} from 'node:child_process'
 import {resolve} from 'node:path'
 import {mkdir,writeFile} from 'node:fs/promises'
 const root=resolve(process.env.ARDESIA_S07_ROOT??process.cwd())
@@ -6,6 +7,7 @@ const output=resolve(process.env.ARDESIA_S07_OUTPUT??'work/s07-focus-browser')
 await mkdir(output,{recursive:true})
 const require=createRequire(resolve(root,'apps/studio/package.json'))
 const {chromium}=require('@playwright/test')
+const expectedSource=process.env.ARDESIA_S07_SHA??execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim()
 const started=performance.now(), errors=[],results=[],pages=[]
 const browser=await chromium.launch({headless:true,args:['--remote-debugging-port=5477','--remote-debugging-address=127.0.0.1']})
 const check=(value,label)=>{if(!value)throw Error(label);results.push({case:label,pass:true})}
@@ -25,6 +27,7 @@ try {
  }
  const [teacher,student,independent]=pages
  const source=await teacher.evaluate(()=>window.s07.source)
+ check((await Promise.all(pages.map(p=>p.evaluate(()=>window.s07.git)))).every(value=>value===expectedSource),'native build provenance matches the requested commit')
  check((await Promise.all(pages.map(p=>p.evaluate(()=>window.s07.source.sha256)))).every(sha=>sha===source.sha256),'three contexts exact PDF source')
  check(await student.getByRole('button',{name:'Indica questo punto',exact:true}).count()===0,'viewer has no publishing command')
  await teacher.bringToFront()
@@ -79,6 +82,13 @@ try {
  const captured=await student.evaluate(()=>window.s07.dump().objects[0])
  check(captured.source.page===1&&captured.authorId==='bob','native pointer-up captures stroke on original page before focus')
  check(sameCamera(independentBefore,await camera(independent)),'independent peer still controls its own view')
+ const validView=await camera(student)
+ await student.evaluate(value=>window.s07.receiveFocus({...value,sequence:100,target:{...value.target,source:{...value.target.source,revisionId:'wrong-revision'}}}),third)
+ await student.getByRole('alert').filter({hasText:'La presentazione non corrisponde'}).waitFor()
+ check(await student.getByRole('checkbox',{name:'Segui presentazione docente'}).count()===0&&sameCamera(validView,await camera(student)),'wrong source revision rejects focus without moving camera')
+ await student.evaluate(value=>window.s07.receiveFocus(value),third)
+ await student.getByRole('checkbox',{name:'Segui presentazione docente'}).check()
+ check(await student.getByLabel('Pagina del documento').inputValue()==='2','a valid presentation restores opt-in after invalid focus')
  await teacher.bringToFront();await teacher.evaluate(()=>window.s07.presentationMode('offline'))
  await teacher.getByRole('button',{name:'Indica questo punto',exact:true}).click()
  await teacher.getByRole('alert').filter({hasText:'Punto non inviato'}).waitFor()
@@ -106,7 +116,7 @@ try {
  await teacher.getByRole('status').filter({hasText:'Accesso revocato'}).waitFor()
  check(await teacher.evaluate(()=>window.s07.sentFocus().length)===4&&await teacher.getByRole('status').filter({hasText:'Punto della presentazione inviato'}).count()===0,'host revocation aborts pending publication without false success')
  if(errors.length)throw Error('unexpected browser errors: '+JSON.stringify(errors))
- const report={source,browser:browser.version(),node:process.version,sourceCommit:process.env.ARDESIA_S07_SHA??null,results,errors,durationMs:Math.round(performance.now()-started),transport:'synthetic host port and explicit packet transfer, no Core auth/server/websocket',mobile:'Chromium emulation; no physical device'}
+ const report={source,browser:browser.version(),node:process.version,sourceCommit:expectedSource,results,errors,durationMs:Math.round(performance.now()-started),transport:'synthetic host port and explicit packet transfer, no Core auth/server/websocket',mobile:'Chromium emulation; no physical device'}
  await writeFile(resolve(output,'focus-browser.json'),JSON.stringify(report,null,2))
  console.log(JSON.stringify(report))
  if(process.env.ARDESIA_S07_REA_HOLD==='1'){

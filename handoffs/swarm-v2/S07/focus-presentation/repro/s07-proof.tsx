@@ -47,6 +47,7 @@ function Proof(){
   if(!prepared)return
   ;(window as any).s07={
    source:prepared.sessions.shared.scope.source,
+   git:__ARDESIA_GIT_SHA__,
    receiveFocus:(value:PresentationFocus|null)=>setFocus(value),
    sentFocus:()=>structuredClone(transport.current.sent),
    presentationMode:(mode:string)=>{transport.current.mode=mode},
