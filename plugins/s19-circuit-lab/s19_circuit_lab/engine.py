@@ -5,6 +5,8 @@ from importlib.metadata import distribution
 from pathlib import Path
 import json
 import subprocess
+from urllib.parse import unquote, urlparse
+from .frozen_imports import install_frozen_imports
 
 SOURCE_SHA = "b35a8b5da0616f00a7764397bda0e6b95aca3c95"
 
@@ -30,7 +32,9 @@ def validate_checkout(root: Path, expected=SOURCE_SHA):
             timeout=10,
         ).strip()
     except (OSError, subprocess.SubprocessError) as exc:
-        raise ValueError("Checkout Kirchhoff non disponibile: conserva gli input e ripristina la dipendenza fissata.") from exc
+        raise ValueError(
+            "Checkout Kirchhoff non disponibile: conserva gli input e ripristina la dipendenza fissata."
+        ) from exc
     if sha != expected or dirty:
         raise ValueError(
             "La dipendenza Kirchhoff deve essere pulita alla revisione S19 fissata."
@@ -39,8 +43,6 @@ def validate_checkout(root: Path, expected=SOURCE_SHA):
 
 @lru_cache(maxsize=1)
 def assert_engine():
-    import kirchhoff
-
     meta = distribution("kirchhoff")
     source = json.loads(meta.read_text("direct_url.json") or "{}")
     if (
@@ -50,4 +52,21 @@ def assert_engine():
         raise ValueError(
             "Installa Kirchhoff con lo script S19 e il relativo pin verificato."
         )
-    validate_checkout(Path(kirchhoff.__file__).resolve().parents[2])
+    parsed = urlparse(source.get("url", ""))
+    if parsed.scheme != "file":
+        raise ValueError("Serve il checkout sorgente S19 installato e fissato.")
+    root = Path(unquote(parsed.path)).resolve()
+    validate_checkout(root)
+    try:
+        revision = install_frozen_imports(root, SOURCE_SHA)
+        import kirchhoff
+        from kirchhoff.runtime_identity import SNAPSHOT
+    except (OSError, ImportError, subprocess.SubprocessError) as exc:
+        raise ValueError(
+            "Caricamento del motore fissato non disponibile: gli input restano nel Core."
+        ) from exc
+
+    if SNAPSHOT.package_revision != revision:
+        raise ValueError(
+            "Lo snapshot sul disco non coincide con i byte Python caricati e fissati."
+        )

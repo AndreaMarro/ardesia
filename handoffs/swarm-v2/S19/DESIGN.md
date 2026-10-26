@@ -20,3 +20,5 @@ Claim elettrico VERIFIED e backend CLOSED appartengono a Kirchhoff. Il procedime
 
 ## Accettazione
 Formule indipendenti su DC, KCL corretta/errata/non supportata, topologie limite, input razionali, modifica e invalidazione, CAS, consegna/ricevuta, cold reopen/export, permessi/revoca/isolation Core; browser reale desktop/mobile touch/tastiera. Nessun risultato importato da JSON viene usato come prova. Licenze e lock dedicati verificati; gates condivisi non modificati.
+
+Il codice Python del motore viene caricato dai byte verificati contro i Gitblob della revisione e congelati in memoria, senza usare le cache `.pyc`. Un import precedente fuori da questo confine richiede riavvio; SourceSnapshot da solo non garantiva questo legame. La controprova sul package installato è in test_loaded_source.py e ACQUISITION_PACKET.

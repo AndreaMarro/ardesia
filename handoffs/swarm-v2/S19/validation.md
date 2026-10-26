@@ -28,3 +28,9 @@ Base Ardesia `a00f2f40091aecf69e58ebaba42cf70d748e4066`; motore installato `b35a
 Limiti: touch emulato, nessun device fisico/Safari/WCAG completo; nessun pilot umano; backend di prova SQLite con identità sintetiche, nessun ACL remoto attestato. La fixture di indisponibilità è failure injection, non un motore differente realmente distribuito. Le risposte derivate non sono certificazioni di persona/procedimento. I warn use-client del bundler e deprecazione httpx sono conservati, non filtrati come PASS scientifici.
 
 Controllo igiene iniziale: git diff --check rileva spazi finali nello stdout upstream conservato. Le viste testuali sono normalizzate solo per spazi finali; i byte originali delle prove interessate rimangono integralmente in evidence/raw-log-evidence.tar.gz. Errori, conteggi e soglie non alterati. Il primo commit è rimasto nella storia; correzione additiva, nessuna riscrittura.
+
+## Delta CI e controprova sulla provenienza
+
+CI sul commit a6be7b9202ba0f2644a2eb1659d5cb877e96e03e:35PythonPASS3.10s,24browserPASS18.2s,27notices,0npmvulnerabilità ([run40360688622](https://github.com/AndreaMarro/ardesia/actions/runs/40360688622)). I test di indisponibilità sono quindi eseguiti e verdi in quellaCI. Successiva correzione della copertura dei path CI:184e27829d93c21e9978915445c7f4793369f007, nessun cambiamento runtime.
+
+Il successivo finding ASTRA sulla cache timestamp richiede una nuova head e prova distinta: test_loaded_source.py esegue il controesempio sul package installato e il controllo protetto con partitore8V;2PASS0.64s in loaded-source-counterprobe.log. Il confine ora compila byte confrontati con i Gitblob e congelati, con rifiuto del preimport. Le precedenti attestazioni SourceSnapshot-only sono superate. La CI completa deve essere riletta sulla head successiva; nessun vecchio verde ereditato.

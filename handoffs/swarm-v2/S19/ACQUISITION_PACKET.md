@@ -57,3 +57,13 @@ Kirchhoff: AGENTS/README, costituzione K0–K5, regole error ledger, spine AD1�
 Quaderno JSON S19 conserva solo input; non concede autenticità o permessi. `s19-attempt.v1` nella consegna è testo derivato: una ricevuta Core attesta la consegna, non la correttezza di un blob arbitrario. Ogni consumer che vuole controlli deve ricalcolare dalla fonte esatta; S19 non legge answer key importate.
 
 Nessuna installazione ToolHost firmata, pubblicazione remota, browser/device fisico, conformità WCAG completa, antitrasformata o pilot con studenti reali attestati. Studio può consumare gli stessi resourceId/revisionId; il mount finale e la registrazione del reader restano di S00. G0 Poiseuille e S13 sono indipendenti.
+
+## Correzione successiva — codice caricato e cache timestamp
+
+ASTRA A riproduce un limite reale di SourceSnapshot: con una cache `.pyc` timestamp coerente con size/mtime, Python può eseguire altro codice mentre lo snapshot legge il sorgente attuale e accetta. `-B` impedisce la scrittura, non la lettura. Il verde iniziale35Python/24browser non copriva questo caso; la pretesa di provenienza basata sul solo snapshot è ritirata.
+
+S19 aggiunge un confine di import nel proprio adapter, senza toccare Kirchhoff: verifica ciascun file Python contro l'OID del blob nel commit fissato, congela quei byte in memoria, compila direttamente la copia attestata per ogni modulo kirchhoff.*, e non legge/scrive cache pyc. Un modulo preimportato fuori da tale loader rende il motore indisponibile finché il processo non viene riavviato correttamente. Lo snapshot upstream deve inoltre coincidere con la revisione della copia congelata. I byte congelati restano la sola sorgente eseguibile fino al riavvio.
+
+Controprova sul package installato (`test_loaded_source.py`): cache alterata reversibile del solo config.py, nessun `.py` modificato; processo Python-B ordinario osserva sentinel stale e SourceSnapshot accetta; processo con guard S19 non osserva sentinel e calcola il partitore8V. Un import precedente non controllato viene rifiutato. Due test isolati PASS0.64s; cache originale ripristinata nel finally. CI finale richiesta sulla nuova head, distinta dai risultati precedenti.
+
+Due avvii locali col conftest Core erano rimasti in lettura FileProvider di models.py prima della raccolta: interrotti, non conteggiati come RED o PASS. La controprova autonoma esclude quel conftest perché non esercita Core/auth/storage; la CI completa continua ad applicarlo. Nessun gate scientifico o test di prodotto è stato omesso dalla CI.

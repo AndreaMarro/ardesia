@@ -42,3 +42,5 @@ python3 plugins/s19-circuit-lab/scripts/audit_dependencies.py --check
 La build `--mode test` aggiunge un host fixture per verificare il componente controllato senza eventi del punto d'ingresso. La build normale esclude tale fixture. Il runner usa DB e sessioni sintetici temporanei, termina solo il proprio server e non cambia soglie o servizi remoti.
 
 SPICE DC e CircuitikZ delegano agli exporter upstream e mantengono i relativi rifiuti, incluse frazioni periodiche non esportabili esattamente in SPICE. JSON importa solo input validati. AC/Laplace, ToolHost firmato, rilascio pubblico e revisione scientifica umana sono fuori da questa tranche. Provenienza e limiti: `handoffs/swarm-v2/S19/ACQUISITION_PACKET.md`.
+
+Il codice Python del motore viene caricato dai byte verificati contro i Gitblob della revisione e congelati in memoria, senza usare le cache `.pyc`. Un import precedente fuori da questo confine richiede riavvio; SourceSnapshot da solo non garantiva questo legame. La controprova sul package installato è in test_loaded_source.py e ACQUISITION_PACKET.

@@ -19,3 +19,5 @@ Il transfer deve creare una nuova risorsa: browser-transfer-actual-red.log conse
 Il primo test del movimento pending ometteva Enter e quindi non muoveva davvero il nodo: non è una seconda regressione del prodotto. Ora richiede il cambiamento della bounding box prima di sbloccare la risposta. Nessuna soglia o gate alzato.
 
 Stato finale dei test: vedere validation.md; i log RED, gli errori d'ambiente e i timeout restano distinti dai PASS.
+
+Nuovo finding ASTRA successivo al primo verdeCI: SourceSnapshot da solo non esclude bytecode timestamp stale. Blocco di provenienza riconosciuto e corretto nel solo namespace S19, loader sui byte Git verificati e congelati, rifiuto degli import preesistenti. Controprova effettiva sul package installato, inclusi kernel8V e controllo-B:2PASS isolati; non una modifica upstream né una ridefinizione di Verified. Vedere ACQUISITION_PACKET e test_loaded_source.py. Il verde finale sulla nuova head resta il requisito per rivendicare chiusura.
