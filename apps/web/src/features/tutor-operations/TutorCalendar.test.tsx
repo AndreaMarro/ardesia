@@ -56,6 +56,6 @@ test("edition filter preserves the historical period chosen by the tutor", async
   fireEvent.change(screen.getByLabelText("Vai alla data", { exact: true }), { target: { value: "2026-10-25" } });
   await waitFor(() => expect(heading.textContent).toMatch(/ottobre/));
   const before = heading.textContent;
-  fireEvent.change(screen.getByRole("combobox", { name: "Edizioni nel calendario", exact: true }), { target: { value: "fluidi" } });
+  fireEvent.change(screen.getByRole("combobox", { name: "Edizioni nel calendario" }), { target: { value: "fluidi" } });
   expect(heading.textContent).toBe(before);
 });

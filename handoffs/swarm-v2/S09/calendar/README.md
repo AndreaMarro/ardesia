@@ -231,3 +231,20 @@ vendor per evitare la coda del writer. Una revisione locale non sostituisce
 npmci/CI sul commit finale. Nessun rilascio remoto o DONE del batch acquisizione
 finché S00 non integra dipendenze, PR/check e main. L'interfaccia usa solo date
 già presenti nel Core: non sblocca pricing, rinvii, recuperi o disponibilità.
+
+## Controprova CI e ripresa filesystem — 26/10/2026
+
+CIcefda140 run40254045727: Core/API/MCP/Studio/goldenPASS; WebFAIL per
+dipendenze mancanti e opzione exact non ammessa in ByRoleOptions. HygieneFAIL
+per una riga vuota finale nelle notices first-party. Corretti opzione di test
+e blankEOF, licenze donor originali intatte; non cambia comportamento del
+consumer verificato nel browser. PackagingS00 e nuovaCI ancora pendenti.
+
+macOS ha evictato .git e sorgenti in Documents (compressed,dataless): lettori
+Git bloccati. Richiesto brctl download dei soli tre file propri, ancora non
+materializzati. Checkout originale e filecloud preservati. Per procedere
+creato checkout sparso da ESATTOcefda140 nel solo /private/tmp/ardesia-s09-
+calendar-recovery-20261026, branch codex/s09-calendar-recovery-20261026.
+La correzione va alla STESSA320 con push fast-forward, nessuna nuovaPR e nessun
+branchreset/forcepush; il checkout originale potrà incorporarla normalmente
+quando iCloud restituisce i file. Terminati soltanto lettori propri bloccati.
