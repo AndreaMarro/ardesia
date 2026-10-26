@@ -1,10 +1,11 @@
-import {useEffect,useRef,useState} from 'react';
+import {lazy,Suspense,useEffect,useRef,useState} from 'react';
 import {describeError,requestKey,studyRequest,type StudyMe,type StudyResource} from '../../api';
 import {ErrorNotice,Loading} from '../../components/Feedback';
 import {SourceViewer} from '../../components/SourceViewer';
 import {displaySourceTitle,readLessonPassage} from '../../components/lessonPassageReference';
 import {classifications,relations,diaryStates,noteBody,type MemoryNote,type MemoryNode,type MemoryPacket,type MemoryReference,type NoteBody} from './model';
 import './memory.css';
+const GraphExplorer=lazy(()=>import('./GraphExplorer'));
 
 export function MemoryView(props:{me:StudyMe;resources?:StudyResource[]}) {
   return <MemoryScope key={props.me.id} {...props}/>;
@@ -16,6 +17,7 @@ function MemoryScope({resources=[]}:{me:StudyMe;resources?:StudyResource[]}) {
   const [source,setSource]=useState<MemoryReference|null>(null),[versions,setVersions]=useState<MemoryNote[]|null>(null);
   const [editing,setEditing]=useState<MemoryNote|null|undefined>(undefined),[notice,setNotice]=useState(''),[actionBusy,setActionBusy]=useState(false);
   const [refresh,setRefresh]=useState(0),[detailBusy,setDetailBusy]=useState(false);
+  const [projection,setProjection]=useState(0);
   const request=useRef(0),detailRequest=useRef(0),mounted=useRef(true),heading=useRef<HTMLHeadingElement>(null);
   const importPending=useRef<{archive:unknown;key:string}|null>(null);
   useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;detailRequest.current++;};},[]);
@@ -38,9 +40,19 @@ function MemoryScope({resources=[]}:{me:StudyMe;resources?:StudyResource[]}) {
     }catch(e){if(mounted.current&&detailRequest.current===sequence)setError(describeError(e,'Questa idea non è disponibile. Aggiorna la memoria.'));}
     finally{if(mounted.current&&detailRequest.current===sequence)setDetailBusy(false);}
   }
-  function openNode(value:MemoryNode) {
+  async function openNode(value:MemoryNode) {
     if(value.kind==='note'){void openNote(value.id);return;}
-    detailRequest.current++;setDetailBusy(false);setDetail(null);setVersions(null);setNode(value);setSource(value.reference??null);setEditing(undefined);
+    const sequence=++detailRequest.current;
+    setDetailBusy(true);setDetail(null);setVersions(null);setNode(null);setSource(null);setEditing(undefined);setError('');
+    try {
+      const current=await studyRequest<MemoryPacket>('/memory'+(search?'?'+new URLSearchParams({query:search}):''));
+      if(!mounted.current||sequence!==detailRequest.current)return;
+      const authorized=current.nodes.find(item=>item.id===value.id);
+      if(JSON.stringify(current)!==JSON.stringify(data)){setData(current);setProjection(v=>v+1);}
+      if(!authorized){setError('Questo collegamento non è più disponibile. La memoria è stata aggiornata.');return;}
+      setNode(authorized);setSource(authorized.reference??null);
+    }catch(e){if(mounted.current&&sequence===detailRequest.current){setData(null);setError(describeError(e,'Il collegamento non è disponibile. Aggiorna la memoria.'));}}
+    finally{if(mounted.current&&sequence===detailRequest.current)setDetailBusy(false);}
   }
   async function history() {
     if(!detail)return;
@@ -108,13 +120,13 @@ function MemoryScope({resources=[]}:{me:StudyMe;resources?:StudyResource[]}) {
         <nav aria-label="Vista della memoria"><button aria-pressed={mode==='notes'} onClick={()=>setMode('notes')}>Quaderno</button>
         <button aria-pressed={mode==='graph'} onClick={()=>setMode('graph')}>Grafo dei collegamenti</button></nav></div>
       <div className="memory-layout"><section aria-label="Idee e collegamenti">
-        {notes.length===0?<div className="memory-empty"><h2>{search?'Nessun risultato autorizzato.':'Nessuna idea salvata.'}</h2><p>Una domanda aperta è un buon punto da cui ripartire.</p></div>:
+        {notes.length===0&&(mode==='notes'||data.nodes.length===0)?<div className="memory-empty"><h2>{search?'Nessun risultato autorizzato.':'Nessuna idea salvata.'}</h2><p>Una domanda aperta è un buon punto da cui ripartire.</p></div>:
           mode==='notes'?<div className="memory-cards">{notes.map(note=><article className="memory-card" key={note.id}>
             <span className={'memory-class memory-class-'+note.classification}>{classifications[note.classification]??note.classification}</span>
             <h2><button aria-label={'Apri '+note.title} onClick={()=>void openNote(note.id)}>{note.title}</button></h2>
             <p>{note.text.slice(0,180)}</p><div className="memory-tags">{note.concepts.map(c=><span key={c}>{c}</span>)}</div>
             <small>{note.sourceState==='UNAVAILABLE'?'Fonte ritirata o accesso revocato':note.sourceState==='HISTORICAL'?'Collegata a una revisione storica':`${note.sourceRefs.length} fonti · revisione ${note.version}`}</small>
-          </article>)}</div>:<MemoryGraph data={data} onOpen={openNode}/>}</section>
+          </article>)}</div>:<MemoryGraph key={projection} data={data} onOpen={openNode} onReload={()=>setRefresh(v=>v+1)}/>}</section>
         {(detail||node||detailBusy)&&<aside className="memory-detail" aria-label="Dettaglio del collegamento">
           {detailBusy?<Loading>Apertura dell’idea…</Loading>:detail?<>
             <span className="memory-eyebrow">{classifications[detail.classification]} · REVISIONE {detail.version}</span><h2 ref={heading} tabIndex={-1}>{detail.title}</h2>
@@ -155,8 +167,9 @@ function PinnedSource({reference}:{reference:MemoryReference}) {
   </div>}</>;
 }
 
-function MemoryGraph({data,onOpen}:{data:MemoryPacket;onOpen:(node:MemoryNode)=>void}) {
+function MemoryGraph({data,onOpen,onReload}:{data:MemoryPacket;onOpen:(node:MemoryNode)=>void;onReload:()=>void}) {
   return <div className="memory-graph"><p>Segui una relazione per aprire l’oggetto e la sua revisione. Gli stessi collegamenti sono disponibili da tastiera.</p>
+    <Suspense fallback={<Loading>Apertura del grafo…</Loading>}><GraphExplorer data={data} onOpen={onOpen} onReload={onReload}/></Suspense>
     <ul className="memory-graph-nodes" aria-label="Nodi del grafo">{data.nodes.map(node=><li key={node.id} className={'memory-node memory-node-'+node.kind}>
       <span>{({note:'Idea',concept:'Concetto',source:'Fonte',attempt:'Tentativo',review:'Review',observation:'Osservazione'} as Record<string,string>)[node.kind]}</span>
       <button onClick={()=>onOpen(node)}>{node.label}</button></li>)}</ul>

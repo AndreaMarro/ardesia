@@ -1,5 +1,10 @@
 # S05 — Quaderno personale, fonti, collegamenti e rettifiche
 
+> Appendice del26ottobre2026: il [nuovo incremento REA-FIRST](acquisition-2026-10-26/README.md)
+> acquisisce Cytoscape e aggiunge disposizione persistente e grafo interattivo.
+> Il rapporto sotto conserva prove e decisioni del primo batchdde23c0; non è
+> stato riscritto per attribuirgli retroattivamente la nuova acquisizione.
+
 Stato della consegna locale: **READY_FOR_INTEGRATION**, subordinato ai check della
 head effettiva della PR e alla composizione S00. Base verificata:
 `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`. Il commit candidato è la head della PR;

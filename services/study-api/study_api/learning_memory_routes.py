@@ -12,6 +12,15 @@ def install_learning_memory_routes(app, store_dependency, authenticate):
     def export(request: Request, store=Depends(store_dependency)):
         return memory.export_memory(store, authenticate(request, store))
 
+    @app.get('/study/memory/view')
+    def view(request: Request, store=Depends(store_dependency)):
+        return memory.get_view(store, authenticate(request, store))
+
+    @app.post('/study/memory/view')
+    def save_view(body: dict, request: Request, store=Depends(store_dependency)):
+        return memory.save_view(store, authenticate(request, store), body,
+            request.headers.get('Idempotency-Key', ''))
+
     @app.post('/study/memory/import')
     def import_archive(body: dict, request: Request, store=Depends(store_dependency)):
         return memory.import_memory(store, authenticate(request, store), body.get('archive'),

@@ -139,3 +139,32 @@ test('cached workspace titles are reauthorized before being offered as sources',
  fireEvent.click(screen.getByRole('button',{name:'Nuova idea'}));
  expect(screen.queryByRole('option',{name:'TITOLO REVOCATO'})).toBeNull();
 });
+
+test('opening a projected graph node rechecks access before showing its details',async()=>{
+ let revoked=false;
+ vi.stubGlobal('fetch',vi.fn(async(path:string)=>{
+  if(path==='/study/memory')return json(revoked?{...packet,notes:[],nodes:[],edges:[]}:packet);
+  throw Error(path);
+ }));
+ render(<MemoryView me={me}/>);await screen.findByRole('button',{name:'Apri Lezione uno'});
+ fireEvent.click(screen.getByRole('button',{name:'Grafo dei collegamenti'}));
+ revoked=true;fireEvent.click(within(screen.getByRole('list',{name:'Nodi del grafo'})).getByRole('button',{name:'Fonte originale'}));
+ await screen.findByRole('alert');
+ expect(screen.queryByRole('heading',{name:'Fonte originale',level:2})).toBeNull();
+ expect(screen.queryByRole('list',{name:'Nodi del grafo'})).toBeNull();
+});
+
+test('a successful node read also retires other revoked labels in the graph',async()=>{
+ const publicNode={id:'still-accessible',kind:'concept',label:'Concetto ancora accessibile'};
+ let revoked=false;
+ vi.stubGlobal('fetch',vi.fn(async(path:string)=>{
+  if(path==='/study/memory')return json({...packet,nodes:revoked?[publicNode]:[...packet.nodes,publicNode]});
+  throw Error(path);
+ }));
+ render(<MemoryView me={me}/>);await screen.findByRole('button',{name:'Apri Lezione uno'});
+ fireEvent.click(screen.getByRole('button',{name:'Grafo dei collegamenti'}));
+ revoked=true;fireEvent.click(within(screen.getByRole('list',{name:'Nodi del grafo'})).getByRole('button',{name:publicNode.label}));
+ await screen.findByRole('heading',{name:publicNode.label,level:2});
+ expect(within(screen.getByRole('list',{name:'Nodi del grafo'})).queryByRole('button',{name:'Fonte originale'})).toBeNull();
+ expect(screen.queryByRole('option',{name:'Fonte originale'})).toBeNull();
+});

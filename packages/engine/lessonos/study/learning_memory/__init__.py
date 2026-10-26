@@ -270,7 +270,8 @@ def get_memory(store, principal, query=''):
                 'sourceState': source_state}
             edges.append({'source': note['id'], 'target': source_id, 'relation': 'cites'})
     _evidence_graph(store, principal, sources, nodes, edges)
-    return {'notes': notes, 'nodes': list(nodes.values()), 'edges': edges,
+    from .view import read_view
+    return {'notes': notes, 'nodes': list(nodes.values()), 'edges': edges,'view':read_view(store,principal,set(nodes)),
         'limits': ['Classificazioni manuali e correggibili; nessuna diagnosi di competenza.',
             'Collegamenti ricalcolati con i permessi attuali. Le revisioni storiche restano esplicite.']}
 
@@ -316,3 +317,6 @@ def import_memory(store, principal, archive, key):
         for note in validated: _write(store, c, principal, note)
         return {'importedCount': len(validated), 'noteIds': list(mapping.values())}
     return execute_command(store, principal, 'memory.import.v1', key, archive, apply)
+
+
+from .view import get_view, save_view

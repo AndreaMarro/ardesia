@@ -2,7 +2,8 @@ export type MemoryReference = {resourceId:string;revisionId:string;sha256?:strin
 export type NoteBody = {title:string;text:string;classification:string;concepts:string[];sourceRefs:MemoryReference[];links:string[]};
 export type MemoryNote = NoteBody & {id:string;version:number;sourceState:string;updatedAt?:number;backlinks?:string[]};
 export type MemoryNode = {id:string;kind:string;label:string;text?:string;reference?:MemoryReference;status?:string;sourceState?:string;contested?:boolean};
-export type MemoryPacket = {notes:MemoryNote[];nodes:MemoryNode[];edges:{source:string;target:string;relation:string}[];limits:string[]};
+export type GraphView = {version:number;layout:'grid'|'breadthfirst'|'circle';positions:{id:string;x:number;y:number}[];zoom:number;pan:{x:number;y:number}};
+export type MemoryPacket = {notes:MemoryNote[];nodes:MemoryNode[];edges:{source:string;target:string;relation:string}[];limits:string[];view?:GraphView};
 export const classifications:Record<string,string> = {idea:'Idea',annotation:'Annotazione',observation:'Osservazione',
   hypothesis:'Ipotesi',correction:'Rettifica',undetermined:'Non determinato',not_understood:'Non ho capito'};
 export const relations:Record<string,string> = {tagged:'riguarda',links_to:'riprende',cites:'cita',attempt_of:'ha un tentativo',

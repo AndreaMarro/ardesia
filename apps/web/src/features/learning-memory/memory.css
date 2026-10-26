@@ -55,6 +55,15 @@
 .memory-graph-edges{display:grid;gap:.6rem}
 .memory-graph-edges li{padding:.6rem 0;border-bottom:1px solid var(--memory-line);font-size:.8rem}
 .memory-graph-edges button{font:inherit;overflow-wrap:anywhere;max-width:100%}
+.memory-explorer{border:1px solid var(--memory-line);border-radius:12px;padding:1rem;min-width:0;background:var(--memory-paper)}
+.memory-graph-controls{border:0;padding:0;min-width:0}
+.memory-graph-controls label{display:grid;gap:.4rem;margin:.8rem 0;font-size:.85rem}
+.memory-graph-controls select{width:100%;max-width:100%;min-height:44px}
+.memory-graph-canvas{height:460px;min-width:0;margin:1rem 0;border:1px solid var(--memory-line);border-radius:8px;background:#fafbf8;touch-action:none}
+.memory-explorer .memory-actions{margin:.8rem 0}
+.memory-explorer ol{padding-left:1.4rem}
+.memory-graph-license{margin-top:1rem;font-size:.75rem}
+.memory-graph-license pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
 .memory-history article{border-left:2px solid var(--memory-line);padding-left:1rem}
 .learning-memory :focus-visible{outline:2px solid var(--memory-accent);outline-offset:3px}
 @media(max-width:900px){.memory-layout:has(.memory-detail){grid-template-columns:1fr}
