@@ -13,3 +13,9 @@ Nessuna nuova dipendenza o asset di terzi adottati. Il catalogo riusa i contratt
 Video.js/hls.js/WaveSurfer/LiveKit/FFmpeg/MediaCMS restano candidati non adottati. Non serve aggiungere un runtime player quando il primo consumer necessita del replay canonico del quaderno già presente. Non vengono attribuite versioni/licenze/test a pacchetti non installati. Nessun bundle proprietario, asset senza licenza, server a pagamento o ASR esterno usato.
 
 Gli asset QA sono WAV sintetici generati dal runner (onda sinusoidale, non voce di persone) e testo originale first-party. Nessun media di studenti nel Git/bundle prodotto. Non è stato eseguito un esperimento REA nuovo su un donor esterno: questa è ispezione di API/codice first-party e riuso diretto. Risparmio temporale complessivo UNKNOWN; nessun moltiplicatore rivendicato.
+
+## Addendum 26 ottobre — acquisizione sottotitoli
+
+Il testo precedente descrive il primo batch e resta intatto. Il successivo incremento93deff59, candidato con main48251a32, adotta **media-captions0.0.18 MIT**: distribuzione server e tipi ufficiali immutati,29file byte-esatti, pin/integrità/licenze e manutenzione nel manifest locale. Parsing/tokenizzazione VTT/SRT lazy → anteprima/cancel → bozza → stesse revisioni Core → ricerca/export. Nessun manifest/lock condiviso o servizio modificato.
+
+Tre candidati comparati, REA su variante prod e vendorizzato finale, limiti, correzioni, review e prove sono in [CAPTIONS-ACQUISITION.md](CAPTIONS-ACQUISITION.md). La prima proposta npm è superseduta e mai applicata; decisione finale ADAPT con distribuito locale verificato. Il mandato media remoto resta aperto.

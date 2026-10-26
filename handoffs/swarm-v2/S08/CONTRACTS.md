@@ -23,3 +23,11 @@ Prove discriminanti prima di chiamarlo remoto: anonimo e altro studente non legg
 ## S05/S02 — consumatori
 
 S05 può indicizzare titolo e cue solo dopo lettura autorizzata di indice e fonte, conservando entrambe le revisioni; nessun evento “guardato=imparato”. S02 può revisionare CSS locale basato sui token correnti e percorso Materiali. La prova browser della consegna dichiara ciò che è stato realmente eseguito; nessuna approvazione umana presunta.
+
+## Addendum 26 ottobre — import VTT/SRT sul contratto esistente
+
+Consumer reale: CaptionImport → MediaIndexEditor → StudyResource lesson-media-index.v1. Input locale UTF-8 fino64KiB, VTT/SRT, destinazione trascrizione/capitoli. Output atomico: una nuova bozza nello stesso schema, con source id/revision/sha e durata immutati. Nessuna scrittura prima di «Salva indice e trascrizione». Le stesse autorizzazioni, riletture Core, CAS/retry e limiti20.000caratteri restano autorità.
+
+Errori espliciti: file illeggibile/nonUTF8/oltre soglia, blocco orfano, zero/troppi cue, tempi invalidi/sovrapposti/fuori durata, testo oltre limiti. Nessun clipping, retiming, riordino o salvataggio parziale. Una modifica della bozza, chiusura/unmount o writeCore pendente invalida l'anteprima. La fonte ritirata blocca save/export e lascia la bozza editabile. Non introduce grant ai byte, consent authority, endpoint, schemaDB o attività/receipt alternativi.
+
+Raccordo packaging concluso nel solo namespace: distribuzione server media-captions0.0.18 MIT e tipi ufficiali immutati,29file con hash. Nessuna patch ai manifest richiesta dopo commento6405805776; vecchia proposta superseduta. Il futuro mount sottotitoli nel player richiede ancora contratto ownerStudio per la revisione indice autorizzata sulla stessa registrazione/sessione/hash.

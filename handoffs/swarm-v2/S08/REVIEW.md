@@ -10,3 +10,9 @@ RED esatto: due test falliti con errore di versione oggetto e controllo `:disabl
 I risultati GREEN e la prova browser finale sono riportati nel rapporto. Nessun secondo round di review dichiarato; la correzione si verifica con le regressioni e i gate.
 
 La prova che importa il resolver canonico è infine nel workspace Studio. La prima collocazione Web introduceva una dipendenza transitiva Studio-only nel typecheck pulito CI; corretto dopo riproduzione npm ci. Nel Web rimane la controprova sul contratto URL; Studio esegue il resolver reale e verifica sia il rifiuto del target invalido sia il nuovo target valido. Vedere VALIDATION.md.
+
+## Addendum 26 ottobre — review acquisizione sottotitoli
+
+Reviewer read-only distinto ha letto adapter, UI/test e donor reale. Ha riprodotto P2: tokenizerVTT consumava «<» letterale inSRT, alterando «Δp < 10kPa». Quattro testRED conservano la confutazione. Guardia aggiunta per consumare solo markup caption noto e preservare altri simboli/tag come testo; anche WebVTT protetto. Dopo fix:29namespacePASS; reviewer esegue10import/export/reimport per operatori, tag, formattazione ed entità, senzaVTTCuenativo, e verifica29file contro manifest/tarball. Nessun altro finding azionabile nella controprova. Non ha eseguito browser/build/fullsuite, non è approvazione umana.
+
+Parent ha poi eseguito la prova browser Chromium148 sul consumer reale con CoreSQLite/sessioni/risorse/revisioni:7gruppi di controlliPASS, esatta fonte48251a32. Il primo FAIL del runner era il selettore getByLabel exact sul testo completo del label che includeva il contenuto textarea; DOM e accessibilitysnapshot confermano il controllo presente. Corretto solo harness a getByRole textbox. Nessun cambio prodotto per fare passare questo test.404dopo ritiro atteso; zero pageerror o consoleerror inattesi. [Prove](captions-validation.json).

@@ -38,10 +38,10 @@ try{
   await page.getByLabel('Testo dei sottotitoli').waitFor();await page.waitForFunction(()=>document.querySelector('.lm-import textarea')?.value.includes('10 kPa'));
   const started=performance.now();await page.getByRole('button',{name:'Analizza i sottotitoli'}).click();
   await page.getByRole('button',{name:'Sostituisci la trascrizione nella bozza'}).waitFor();const firstPreviewMs=performance.now()-started;
-  assert.equal(posts.length,0);assert.equal(await page.getByLabel('Trascrizione 1',{exact:true}).inputValue(),'Trascrizione originale sintetica.');
+  assert.equal(posts.length,0);assert.equal(await page.getByRole('textbox',{name:'Trascrizione 1',exact:true}).inputValue(),'Trascrizione originale sintetica.');
   assert.equal(await page.locator('.lm-import-preview').getByText('Δp < 10 kPa e Q > 2.',{exact:true}).count(),1);
   await page.locator('.lm-import').scrollIntoViewIfNeeded();await page.screenshot({path:join(output,'s08-captions-desktop.png'),fullPage:true});
-  await page.getByRole('button',{name:'Annulla anteprima'}).click();assert.equal(await page.getByLabel('Trascrizione 1',{exact:true}).inputValue(),'Trascrizione originale sintetica.');
+  await page.getByRole('button',{name:'Annulla anteprima'}).click();assert.equal(await page.getByRole('textbox',{name:'Trascrizione 1',exact:true}).inputValue(),'Trascrizione originale sintetica.');
   await page.getByRole('button',{name:'Analizza i sottotitoli'}).click();await page.getByRole('button',{name:'Sostituisci la trascrizione nella bozza'}).click();
   assert.equal(posts.length,0);assert.equal(await page.getByLabel('Inizio 1 (secondi)',{exact:true}).inputValue(),'0.125');
   const savedResponse=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname==='/study/resources');
@@ -59,7 +59,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('.lm-import textarea')?.value.includes('confronto dei raggi'));
   await page.getByLabel('Importa come').selectOption('chapters');await page.getByRole('button',{name:'Analizza i sottotitoli'}).click();
   await page.getByRole('button',{name:'Sostituisci i capitoli nella bozza'}).click();
-  assert.equal(await page.getByLabel('Trascrizione 1',{exact:true}).inputValue(),'Δp < 10 kPa e Q > 2.');
+  assert.equal(await page.getByRole('textbox',{name:'Trascrizione 1',exact:true}).inputValue(),'Δp < 10 kPa e Q > 2.');
   const revisedResponse=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname.endsWith('/revise'));
   await page.getByRole('button',{name:'Salva indice e trascrizione',exact:true}).click();const revised=await (await revisedResponse).json();
   assert.notEqual(revised.revisionId,saved.revisionId);assert.deepEqual(JSON.parse(revised.text).chapters.map(c=>c.atMs),[500,4250]);
@@ -68,7 +68,7 @@ try{
   await page.locator('.lm-edit > summary').click();await page.locator('.lm-import > summary').click();
   await page.getByLabel('Testo dei sottotitoli').fill(chapters+'\nBAD BLOCK\nMISSING TIME\nNon perdermi.');
   await page.getByRole('button',{name:'Analizza i sottotitoli'}).click();await page.locator('.lm-import').getByRole('alert').waitFor();
-  assert.equal(await page.getByRole('button',{name:/Sostituisci .* nella bozza/}).count(),0);assert.equal(await page.getByLabel('Trascrizione 1',{exact:true}).inputValue(),'Δp < 10 kPa e Q > 2.');
+  assert.equal(await page.getByRole('button',{name:/Sostituisci .* nella bozza/}).count(),0);assert.equal(await page.getByRole('textbox',{name:'Trascrizione 1',exact:true}).inputValue(),'Δp < 10 kPa e Q > 2.');
   await page.getByLabel('File dei sottotitoli').setInputFiles({name:'large.vtt',mimeType:'text/vtt',buffer:Buffer.alloc(65537,120)});
   await page.locator('.lm-import').getByRole('alert').filter({hasText:'64 KiB'}).waitFor();
   checks.push('Malformed block and oversized file rejected atomically; saved/draft content preserved');
@@ -86,7 +86,7 @@ try{
   checks.push('Enrolled student reads imported text without editor; other student403/anonymous401 on exact Core revision');
   const beforePosts=posts.length;assert.equal((await teacher.request.delete('/study/resources/'+sources[0].id)).status(),200);
   await page.getByRole('button',{name:'Salva indice e trascrizione',exact:true}).click();await page.locator('.lm-editor > [role=alert]').waitFor();assert.equal(posts.length,beforePosts);
-  assert.equal(await page.getByLabel('Trascrizione 1',{exact:true}).isEnabled(),true);
+  assert.equal(await page.getByRole('textbox',{name:'Trascrizione 1',exact:true}).isEnabled(),true);
   await page.getByText('Esporta i sottotitoli manuali',{exact:true}).click();await page.getByRole('button',{name:'Prepara WebVTT'}).click();
   assert.equal(await page.getByLabel('Sottotitoli WebVTT').count(),0);
   checks.push('Source withdrawal blocks save/export, preserves editable draft and sends no Core write');

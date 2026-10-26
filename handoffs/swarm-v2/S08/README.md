@@ -32,3 +32,11 @@ Il testo può essere condiviso nel gruppo mentre l'audio è assente dall'archivi
 Non implementati: video remoto, bitrate adattivo/HLS, upload a chunk riprendibile, quarantena/worker/retry media remoto, concessioni Range e revoca cache URL remoti, offline autorizzato, sottotitoli montati nel player e avvio di attività canoniche a timestamp. Il collegamento a una fonte/attività non crea un nuovo tentativo o una prova di apprendimento. Nessun test automatizzato certifica ascolto umano, Safari/device fisico o correttezza scientifica umana.
 
 Il primo batch locale include più del primo esempio: editing/riapertura, ricerca tra lezioni, capitoli, export e permessi negativi. Il primo batch remoto resta subordinato ai contratti assenti osservati in assets/uploads/blobs, dettagliati in CONTRACTS.md. Non sono state inventate API o approvazioni. RUNLOG/NEXT restano al writer S00: [append proposta e tre prossimi batch](RUNLOG-APPEND.md).
+
+## Addendum 26 ottobre — importazione sottotitoli acquisita
+
+I paragrafi precedenti sono lo snapshot del primo batch: la frase iniziale sui commit successivi solo documentali non descrive più il ramo dopo93deff59. Il nuovo batch acquisisce media-captions0.0.18 MIT nel namespaceS08, con file verificati byte per byte, e rende utilizzabile l'import VTT/SRT per trascrizioni e capitoli nello stesso editor/Core. Nessuna modifica package/lock o servizio.
+
+[Rapporto di acquisizione, REA, licenze, correzioni e limiti](CAPTIONS-ACQUISITION.md). Fonte prodotto48251a32, base main992d1a0b:29test namespacePASS,12test upstreamPASS, review circoscritta con P2risolto, tutti i checkCI verdi e browser realeCorePASS desktop/mobile. [Risultato browser](captions-browser-result.json), screenshot/hash in [manifest](captions-validation.json). Browser/audio del primo batch e nuova prova import restano distinti. La nuova prova non esercita i byte audio.
+
+Stato IMPLEMENTATO/TESTATO, READY_FOR_INTEGRATION; merge/deploy restanoS00. Il codice dei media remoti resta incompleto. La proposta iniziale dei manifest npm è conservata solo come esperimento superseduto in rea/superseded-media-captions-dependency.patch: non applicarla.
