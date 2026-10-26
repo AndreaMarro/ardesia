@@ -66,7 +66,7 @@ it('rejects cached media after an OFF/ON consent transition between polling tick
 it('rejects a cached cursor whose canonical media has been purged before mounting',async()=>{
  const f=await fixture();await f.store.delete(f.cursor.recording!.assetPath)
  const access:LessonAccess={allowed:()=>true,subscribe:()=>()=>{},authorize:async()=>true};const unavailable=vi.fn()
- const view=render(<LivingLessonReplay {...f} lessonId={f.moment.lessonId} editorial={{v:1,lessonId:f.moment.lessonId,moments:[f.moment]}} access={access} onUnavailable={unavailable}/>)
+ render(<LivingLessonReplay {...f} lessonId={f.moment.lessonId} editorial={{v:1,lessonId:f.moment.lessonId,moments:[f.moment]}} access={access} onUnavailable={unavailable}/>)
  try{await waitFor(()=>expect(unavailable).toHaveBeenCalledWith(expect.stringMatching(/audio.*indisponibil/i)));expect(f.audio.play).not.toHaveBeenCalled()}
  finally{cleanup()}
 })
