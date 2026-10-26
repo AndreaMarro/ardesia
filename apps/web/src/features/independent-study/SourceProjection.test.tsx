@@ -39,3 +39,18 @@ test('unverified resource fields are described as source-reported, never as esta
  expect(screen.getByText(/non sono verificate da questa vista/)).toBeTruthy();
  expect(screen.queryByText(/Nessun aiuto richiesto in questa fase osservato/)).toBeNull();
 });
+
+test.each([['reasoning',4000],['unit',32]] as const)('reader accepts the Core Unicode code point limit for %s', (field,limit)=>{
+ const answer={value:1,unit:'m',reasoning:'Controllo il modello',[field]:'🔬'.repeat(limit)};
+ const resource=source('independent-study-attempt-v1',{schemaVersion:1,phase:'practice',answer,assistance:{observed:[]}});
+ render(<IndependentStudySource resource={resource}/>);
+ expect(screen.getByRole('heading',{name:'Tentativo di studio autonomo'})).toBeTruthy();
+ expect(canCiteIndependentStudyAttempt(resource)).toBe(true);
+});
+
+test.each([['reasoning',4000],['unit',32]] as const)('reader rejects more than the Core code point limit for %s', (field,limit)=>{
+ const resource=source('independent-study-attempt-v1',{schemaVersion:1,phase:'practice',answer:{value:1,unit:'m',reasoning:'Controllo il modello',[field]:'🔬'.repeat(limit+1)},assistance:{observed:[]}});
+ render(<IndependentStudySource resource={resource}/>);
+ expect(screen.getByRole('alert').textContent).toContain('non è leggibile');
+ expect(canCiteIndependentStudyAttempt(resource)).toBe(false);
+});

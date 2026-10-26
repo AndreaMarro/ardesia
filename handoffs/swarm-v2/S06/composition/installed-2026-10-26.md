@@ -35,3 +35,7 @@ READY_FOR_INTEGRATION resta distinto da INTEGRATO o DISTRIBUITO. La delega rimuo
 3. Con S04/S10 collegare contenuti approvati e richieste tutor a un consumer docente; accettazione: revisione umana delle revisioni e richiesta effettivamente ricevuta, senza mock score.
 
 **Verifica successiva prima del commit:** 78 test Core/adapter/upstream PASS; build Web con typecheck PASS (196 moduli, Vite654ms). Warning bundle superiore a500kB e Starlette/httpx conservati nei log, nessun gate modificato.
+
+**Review successiva:** revisore separato ha ispezionato il delta e riprodotto un P2: unit/reasoning validati con lunghezza UTF16 anziché code point del Core. Due casi di confine RED (4000simboli nel procedimento,32nell’unità), due oltre limite già negati; limiti del reader allineati con Array.from. Il primo comando per aggiungere i test aveva un percorso duplicato rispetto al cwd apps/web: corretto il comando, nessuna falsa attribuzione del PASS precedente alla regressione. Nessun altro problema materiale emerso dalla review; ispezione+aritmetica, senza suite o browser del revisore.
+
+**Esito dopo correzione:**45Web S06+Shell PASS (inclusi4nuovi casiUnicode), build/typecheck PASS. Revisore ha riletto il delta e il RED e non segnala finding residui. Prove native/CI finali ancora distinte e da registrare. Log raw compressi lossless in installed-evidence/ con hash e round-trip.

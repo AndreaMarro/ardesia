@@ -13,8 +13,8 @@ function submitted(resource:StudyResource):Submitted|null{
  const value=body(resource);if(resource.kind!=='independent-study-attempt-v1'||!value||value.schemaVersion!==1)return null;
  const answer=value.answer,assistance=value.assistance;
  if((value.phase!=='practice'&&value.phase!=='transfer')||!object(answer)||!object(assistance)
-  ||typeof answer.value!=='number'||!Number.isFinite(answer.value)||typeof answer.unit!=='string'||answer.unit.length>32
-  ||typeof answer.reasoning!=='string'||!answer.reasoning.trim()||answer.reasoning.length>4000
+  ||typeof answer.value!=='number'||!Number.isFinite(answer.value)||typeof answer.unit!=='string'||Array.from(answer.unit).length>32
+  ||typeof answer.reasoning!=='string'||!answer.reasoning.trim()||Array.from(answer.reasoning).length>4000
   ||!Array.isArray(assistance.observed)||assistance.observed.length>12||!assistance.observed.every(s=>typeof s==='string'&&s.length<=80))return null;
  return {phase:value.phase,answer:{value:answer.value,unit:answer.unit,reasoning:answer.reasoning},observed:assistance.observed};
 }
