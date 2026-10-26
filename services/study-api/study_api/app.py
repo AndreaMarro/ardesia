@@ -523,6 +523,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         authenticate(request,store)
         return inspect_notebook(body)
 
+    from lessonos.study.independent_study.routes import install_routes as install_independent_study_routes
+    install_independent_study_routes(app, store_dependency, authenticate)
     from .admin_routes import install_admin_routes
     install_admin_routes(app,store_dependency,authenticate)
     from .register_routes import install_register_routes

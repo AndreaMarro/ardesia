@@ -45,3 +45,8 @@ Il middlewareCSP del solo harness impone script-src self senza unsafe-eval per l
 Confrontare i tre hashbefore e integrare prima il contrattoShell316. Ispezionare la patch con decompressione, poi `gzip -dc shared-composition.patch.gz | git apply --check -`; solo il writer delegato la applica allo stesso modo senza --check. Ricontrollare afterhash, typecheck/test/build e percorso sul commit risultante. Se altri filoni hanno già esteso App o SourceViewer, riconciliare i pochi hunk nel candidatoS00, senza sovrascrivere i loro consumer.
 
 La compressione conserva il patchtestuale byte-esatto senza introdurre trailing-whitespace dei contextblank nei gate documentali. Non sono indeboliti gate, autorizzazioni o protezioni. Rimozione dei soli hook è rollback del consumer: fonti, card, receipt e diario rimangono nel Core. Disponibilità remota e ambiente appropriato restano decisioni S00/S10.
+
+
+## Aggiornamento successivo: delega umana e installazione
+
+La fase proposta sopra descrive il checkpoint c6453718. Dopo «Delega S06 sui tre file», il raccordo è installato nella stessa PR309 con Shell316@28d70a5. Per lo stato successivo usare [installed-2026-10-26.md](installed-2026-10-26.md); la patch e il manifest precedenti rimangono storici, non vanno riapplicati al ramo installato.

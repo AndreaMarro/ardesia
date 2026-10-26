@@ -10,6 +10,7 @@ import { ErrorNotice, Loading } from "./Feedback";
 import { NotebookEditor } from "../integrations/notebook/NotebookEditor";
 import { notebookResource } from "../integrations/notebook/model";
 import { displaySourceTitle, readLessonPassage } from "./lessonPassageReference";
+import {IndependentStudySource, isIndependentStudyResource, canCiteIndependentStudyAttempt, studySourceSelection} from "../features/independent-study/SourceProjection";
 export function SourceViewer({
   reference,
   onSelect,
@@ -110,6 +111,8 @@ export function SourceViewer({
   )
     return <Loading>Sto aprendo la revisione originale…</Loading>;
   const passage = readLessonPassage(resource);
+  const studyProjection = isIndependentStudyResource(resource.kind);
+  const citeStudyAttempt = canCiteIndependentStudyAttempt(resource);
   return (
     <section className="source-viewer">
       <div className="source-heading">
@@ -120,6 +123,7 @@ export function SourceViewer({
         </span>
         <span>Revisione {resource.revisionId.slice(0, 8)}</span>
       </div>
+      {studyProjection && <IndependentStudySource resource={resource} />}
       {resource.kind === "scientific-notebook" && <NotebookEditor key={resource.revisionId}
         resource={notebookResource(resource)} actor={resource.ownerId} readOnly onSaved={() => {}} />}
       {passage && <article className="lesson-passage-source" aria-label="Passaggio della lezione">
@@ -129,9 +133,9 @@ export function SourceViewer({
       </article>}
       {resource.kind === "lesson-passage" && !passage &&
         <ErrorNotice message="Il passaggio della lezione non è leggibile in questa revisione. Non viene mostrato il JSON come spiegazione." />}
-      {onSelect ? (
-        <details className="source-selection" open={!passage}>
-          <summary>{passage ? "Seleziona un frammento della fonte strutturata" : "Seleziona un passaggio preciso"}</summary>
+      {onSelect && (!studyProjection || citeStudyAttempt) ? (
+        <details className="source-selection" open={!passage && !studyProjection}>
+          <summary>{studyProjection ? "Cita l’originale strutturato" : passage ? "Seleziona un frammento della fonte strutturata" : "Seleziona un passaggio preciso"}</summary>
           <p className="fine-print">Seleziona con mouse o tastiera un passaggio nell'originale. Le selezioni conservano gli offset della revisione esatta.</p>
           <textarea
             className="original-text original-selectable"
@@ -141,14 +145,18 @@ export function SourceViewer({
             rows={Math.min(12, Math.max(4, resource.text.split("\n").length + 1))}
             onSelect={(e) => {
               const el = e.currentTarget;
-              if (el.selectionEnd > el.selectionStart)
-                onSelect(el.selectionStart, el.selectionEnd, resource.text.slice(el.selectionStart, el.selectionEnd));
+              if (el.selectionEnd > el.selectionStart) {
+                const selection = citeStudyAttempt ? studySourceSelection(resource.text, el.selectionStart, el.selectionEnd)
+                  : {start: el.selectionStart, end: el.selectionEnd, quote: resource.text.slice(el.selectionStart, el.selectionEnd)};
+                if (selection) onSelect(selection.start, selection.end, selection.quote);
+              }
             }}
           />
         </details>
-      ) : !passage && resource.kind !== "lesson-passage" ? (
+      ) : !studyProjection && !passage && resource.kind !== "lesson-passage" ? (
         <p className="original-text">{resource.text}</p>
       ) : null}
+      {onSelect && studyProjection && !citeStudyAttempt && <p className="fine-print">La selezione testuale non è disponibile per questa fonte strutturata.</p>}
       <details className="provenance">
         <summary>Fonte, versione e contesto</summary>
         <dl>

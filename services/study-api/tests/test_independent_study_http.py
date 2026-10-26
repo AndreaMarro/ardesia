@@ -1,22 +1,11 @@
-"""Real Core/Auth HTTP tests. Until S10's hook lands, compose at the existing
-admin-routes install point, passing through its real dependencies unchanged."""
+"""Real Core/Auth HTTP tests through the installed application factory."""
 import pytest
 from fastapi.testclient import TestClient
 from study_api.app import create_app
-from lessonos.study.independent_study.routes import install_routes
 from test_identity import setup_store
 
-@pytest.fixture
-def compose(monkeypatch):
-    from study_api import admin_routes
-    original=admin_routes.install_admin_routes
-    def install(app,store_dependency,authenticate):
-        original(app,store_dependency,authenticate)
-        install_routes(app,store_dependency,authenticate)
-    monkeypatch.setattr(admin_routes,'install_admin_routes',install)
 
-
-def test_http_real_session_revocation_and_cold_resume(compose,tmp_path):
+def test_http_real_session_revocation_and_cold_resume(tmp_path):
     s,t,a,b,_=setup_store(tmp_path)
     s.create_edition(t,'mechanics',course_id='strumenti-meccanica',pack_id='sf-strumenti-meccanica-v1',pack_version=1)
     s.add_test_member(t,'mechanics',a.id);s.add_test_member(t,'mechanics',b.id)
@@ -61,7 +50,7 @@ def test_http_real_session_revocation_and_cold_resume(compose,tmp_path):
     s.close()
 
 @pytest.mark.parametrize('rating',['again','hard','good','easy'])
-def test_http_scheduler_uses_core_cookie_revision_and_reopens(compose,tmp_path,rating):
+def test_http_scheduler_uses_core_cookie_revision_and_reopens(tmp_path,rating):
     s,t,a,b,_=setup_store(tmp_path)
     s.create_edition(t,'mechanics',course_id='strumenti-meccanica',pack_id='sf-strumenti-meccanica-v1',pack_version=1)
     s.add_test_member(t,'mechanics',a.id)

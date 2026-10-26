@@ -2,7 +2,19 @@ import {chromium} from 'playwright';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 const here=path.dirname(fileURLToPath(import.meta.url));
+const root=path.resolve(here,'../../../..');
+const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
+const sourceCommit=git('rev-parse','HEAD');
+if(process.env.S06_EXPECTED_SHA&&process.env.S06_EXPECTED_SHA!==sourceCommit)throw Error('Unexpected source commit');
+const sourcePaths=['apps/web/src','services/study-api','packages/engine/lessonos','handoffs/swarm-v2/S06/composition/browser.mjs','handoffs/swarm-v2/S06/composition/server.py','handoffs/swarm-v2/S06/composition/test_factory_composition.py'];
+function assertCleanSource(){if(git('status','--porcelain','--',...sourcePaths))throw Error('Source changed or untracked during proof');if(git('rev-parse','HEAD')!==sourceCommit)throw Error('HEAD changed during proof');}
+assertCleanSource();
+const manifest=JSON.parse(await readFile(path.join(here,'source-manifest.json'),'utf8'));
+const sourceFiles=[];
+for(const item of manifest.files){const sha256=createHash('sha256').update(await readFile(path.join(root,item.path))).digest('hex');if(sha256!==item.candidateSha256)throw Error('Shared wiring differs: '+item.path);sourceFiles.push({path:item.path,sha256});}
 const data=process.env.S06_COMPOSITION_DATA||path.join(here,'.artifacts');
 const outputs=process.env.S06_OUTPUTS||path.join(data,'browser');
 const access=JSON.parse(await readFile(path.join(data,'access.json'),'utf8'));
@@ -103,7 +115,8 @@ try{
  check('root-revocation-clears-private-plan',await mobile.getByRole('navigation',{name:'Navigazione principale'}).count()===0);
  check('root-revocation-clears-local-copy',await mobile.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes('independent-study.v1.offline')).length===0));
  check('zero-browser-errors',errors.length===0);await cold.close();
- await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'PASS',checks,errors,totalMilliseconds:Math.round(performance.now()-started),scope:'Compiled real App + Shell316 + proposed factory in disposable snapshot, no owner worktree or remote deployment modified'},null,2)+'\n');
+ assertCleanSource();
+ await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'PASS',sourceCommit,sourceFiles,checks,errors,totalMilliseconds:Math.round(performance.now()-started),scope:'Installed PR309 source: compiled actual App + Shell316 + actual create_app, synthetic local database; no remote deployment'},null,2)+'\n');
  console.log(JSON.stringify({status:'PASS',checks:checks.length,errors}));
-}catch(e){await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'FAIL',checks,errors,error:String(e)},null,2)+'\n');throw e;}
+}catch(e){await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'FAIL',sourceCommit,checks,errors,error:String(e)},null,2)+'\n');throw e;}
 finally{await browser.close();}
