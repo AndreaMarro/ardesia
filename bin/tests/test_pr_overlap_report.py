@@ -31,10 +31,24 @@ class OverlapTest(unittest.TestCase):
         def fake(path, pages=False):
             if '/branches/' in path: return {'commit': {'sha': 'base'}}
             if 'pulls?state=' in path: return [original]
-            return [{'filename': 'apps/studio/src/Room.tsx'}]
+            if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
+            return {'head': {'sha': 'h'}}
         with patch.object(audit, 'gh', side_effect=fake):
             result = audit.live('AndreaMarro/ardesia', 'main')
         self.assertEqual(result['status'], 'MEASURED')
         self.assertEqual(result['pullRequests'][0]['headSha'], 'h')
+        self.assertEqual(result['unstablePrs'], [])
+
+    def test_detects_racing_pr_head(self):
+        original = {'base': {'ref': 'main'}, 'head': {'sha': 'old'}, 'number': 12, 'draft': True}
+        def fake(path, pages=False):
+            if '/branches/' in path: return {'commit': {'sha': 'base'}}
+            if 'pulls?state=' in path: return [original]
+            if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
+            return {'head': {'sha': 'new'}}
+        with patch.object(audit, 'gh', side_effect=fake):
+            result = audit.live('AndreaMarro/ardesia', 'main')
+        self.assertEqual(result['status'], 'STALE_SNAPSHOT_RETRY')
+        self.assertEqual(result['unstablePrs'], [12])
 
 if __name__ == '__main__': unittest.main()
