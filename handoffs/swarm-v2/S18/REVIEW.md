@@ -16,3 +16,5 @@ No Critical issue and no Core authorization bypass found. Exact resource authori
 | Missing physical original file | Controlled503, no fallback; missing-bytes-red.log and final Core tests |
 
 Considered limitations were resolved or bounded explicitly: multi-region/text target parity is retained in complete citation chunks plus all highlights; remote-provider/final S00 composition and Safari/device behavior remain NOT_RUN. Browser success is established only by the actual final run and evidence manifest, not by the reviewer's observation. No deferred review finding remains in S18 code.
+
+Final executor fixes beyond the initial review: shared openPdf/PdfTask now reports worker failures to an accessible retry state (workerFailure.test.tsx RED→GREEN); acknowledged save updates the exact living URL, not only a link (lessonBridge.test.ts plus actual native refresh browser proof). URI changes retain shell/edition/hash/history state. Complete notebook citation chunks and bounded prose/title also pass valid-Unicode boundary tests. No new review seat or claimed human approval was added.

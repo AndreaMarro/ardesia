@@ -14,7 +14,7 @@ Apply/reconcile the following minimal patches in this same implementation PR, ac
 
 `git apply --check` is verified against the declared base; it is not a promise about a future combined branch. The proof composes these same seams **in memory** in the real compiled app and API factory, not a stand-in reader shell. No production route is claimed mounted on main. No stacked PR is needed.
 
-The browser helper is `proof/browser.mjs`; `proof/vite.config.ts` composes the candidate UI, `proof/composition.py` composes the candidate installer, and `proof/serve.py` starts the ordinary cookie-authenticated Study app. Build with `node node_modules/vite/bin/vite.js build --config handoffs/swarm-v2/S18/proof/vite.config.ts`. Set `ARDESIA_S18_PROOF_STATE` to a fresh disposable directory before a new proof. The runner currently records the locally available Python environment path; on another host replace that path with its existing Study API Python. It owns/stops its server on127.0.0.1:5419. Built files and synthetic SQLite/tokens remain in ignored scratch, outside the deliverable.
+The browser helper is `proof/browser.mjs`; `proof/vite.config.ts` composes the candidate UI, `proof/composition.py` composes the candidate installer, and `proof/serve.py` starts the ordinary cookie-authenticated Study app. Build with `node node_modules/vite/bin/vite.js build --config handoffs/swarm-v2/S18/proof/vite.config.ts`. Set `ARDESIA_S18_PROOF_STATE` to a fresh disposable directory before a new proof. Set `ARDESIA_STUDY_PYTHON` to the existing Study API Python (default: services/study-api/.venv/bin/python), and `ARDESIA_S18_OUTPUTS` to the desired screenshot output directory. Default compiled and synthetic state paths live under work/. It owns/stops its server on127.0.0.1:5419. Built files and synthetic SQLite/tokens remain in ignored scratch, outside the deliverable.
 
 ## Verification
 
@@ -45,3 +45,11 @@ Failed runs are preserved, including wrong test cwd, a mistaken rotated-width as
 2. Recheck required CI on that exact composed head and merge tree; then let S00 integrate and verify post-merge main. This PR alone does not certify main.
 3. Exercise remote provider/revocation and Safari/device compatibility on synthetic data; do not extrapolate local SQLite/Chromium results.
 4. Connect S17 replay and S20 activity entry using CONTRACTS.md, retaining their own canonical page/media/activity authority.
+
+## Final acceptance delta
+
+Product source: `840bbf83c0824083b42a166b5c9db0d5c432306e`. `evidence/acceptance-manifest.json` pins every product file, shared loader/editor reuse, screenshots and validation boundary. Latest source verification: **10Web tests /5files,11Core/HTTP tests,24compiled browser groups PASS**; typecheck/buildPASS,0unexpectedJSerrors/0externalrequests. See `browser-acceptance.json`, `web-acceptance-green.log`, `core-acceptance.log` and `bundle-acceptance.json`. Screenshots1440/390 were inspected; tablet820 and overlay/page alignment are tested.
+
+This final delta reuses the existing openPdf/PdfTask worker lifecycle (fresh ports, failure propagation, bounded teardown) and adds a reader retry. After acknowledged save, only the feature's `living` URL query is updated, so native refresh restores the saved exact revision while shell/edition/history state remains intact. The last browser run executes teacher equation+figure, two actual activity sourceRefs, private note, native refresh, two distinct same-page notebooks, export/import, two PDFbyteversions, disabled PDFJS/actions, keyboard/reduced motion, peer403, revocation, restart and deletion. Earlier21group green and failed attempts remain historical, not replaced.
+
+The complete CI on1619c9a was SUCCESS (recorded in ci-1619.json). The final evidence head must get its own CI; read PR324's current head/body/checks. No inherited green or main integration is claimed. This session's local heavy slot has been released toS17/S00, so no further local full-suite repeats are started. Full final CI supplies the full lanes; the deliberately interrupted local Core/API log stays an interruption.

@@ -1,0 +1,432 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Developer/ardesia-s18-20261026/apps/web
+
+ ❯ src/features/living-sources/lessonBridge.test.ts (2 tests | 1 failed) 13ms
+   × updates only the living reference so an acknowledged save survives native refresh 6ms
+ ❯ src/features/living-sources/workerFailure.test.tsx (1 test | 1 failed) 1224ms
+   × closes a failed PDF worker and leaves an accessible error instead of a stalled reader 1220ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/living-sources/lessonBridge.test.ts > updates only the living reference so an acknowledged save survives native refresh
+TypeError: livingSourceLocation is not a function
+ ❯ src/features/living-sources/lessonBridge.test.ts:28:14
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/features/living-sources/workerFailure.test.tsx > closes a failed PDF worker and leaves an accessible error instead of a stalled reader
+TestingLibraryElementError: Unable to find role="alert"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Lettore della fonte originale"[39m
+      [33mclass[39m=[32m"ls-reader"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Strumenti di lettura"[39m
+        [33mclass[39m=[32m"ls-toolbar"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Pagina precedente"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mPrecedente[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0mPagina[0m
+          [0m [0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Pagina del documento"[39m
+          [36m>[39m
+            [36m<option>[39m
+              [0m1[0m
+            [36m</option>[39m
+          [36m</select>[39m
+          [0m [0m
+          [0m/ [0m
+          [0m1[0m
+        [36m</label>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Pagina successiva"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mSuccessiva[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0mZoom[0m
+          [0m [0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Zoom del documento"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"page-width"[39m
+            [36m>[39m
+              [0mLarghezza[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0.75"[39m
+            [36m>[39m
+              [0m75%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0m100%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1.5"[39m
+            [36m>[39m
+              [0m150%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0m200%[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"true"[39m
+        [36m>[39m
+          [0mTesto[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+        [36m>[39m
+          [0mRegione[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+        [36m>[39m
+          [0mSposta[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mConserva vista[0m
+        [36m</button>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"ls-search"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"Cerca nel PDF"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Cerca nel PDF"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Risultato precedente"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mIndietro[0m
+          [36m</button>[39m
+          [36m<output[39m
+            [33maria-live[39m=[32m"polite"[39m
+          [36m/>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ls-document-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33maria-label[39m=[32m"Pagine e sezioni"[39m
+          [33mclass[39m=[32m"ls-pages"[39m
+        [36m>[39m
+          [36m<details[39m
+            [33mopen[39m=[32m""[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mMiniature[0m
+            [36m</summary>[39m
+            [36m<button[39m
+              [33maria-current[39m=[32m"page"[39m
+              [33maria-label[39m=[32m"Apri pagina 1"[39m
+              [33mclass[39m=[32m"ls-thumbnail"[39m
+            [36m>[39m
+              [36m<canvas />[39m
+              [36m<span>[39m
+                [0mPagina [0m
+                [0m1[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mSezioni del documento[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mNessun indice incorporato.[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</aside>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"ls-stage"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Documento PDF, scorrimento e selezione"[39m
+            [33mclass[39m=[32m"ls-viewport ls-text"[39m
+            [33mrole[39m=[32m"region"[39m
+            [33mtabindex[39m=[32m"0"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"pdfViewer"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"ls-overlays"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"ls-accessible"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mTesto accessibile e selezione da tastiera[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mTesto nativo incorporato, senza OCR. Controlla formule e ordine sull’originale.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mPagina grafica: nessun testo nativo disponibile. Seleziona una regione; nessun riconoscimento è stato eseguito.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mSeleziona una regione da tastiera[0m
+        [36m</button>[39m
+      [36m</details>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"ls-attribution"[39m
+      [36m>[39m
+        [0mLettore Mozilla PDF.js 6.4.299 ·[0m
+        [0m [0m
+        [36m<a[39m
+          [33mdownload[39m=[32m""[39m
+          [33mhref[39m=[32m"/pdfjs/6.4.299/LICENSE"[39m
+        [36m>[39m
+          [0mLicenza Apache 2.0[0m
+        [36m</a>[39m
+      [36m</p>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Lettore della fonte originale"[39m
+      [33mclass[39m=[32m"ls-reader"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Strumenti di lettura"[39m
+        [33mclass[39m=[32m"ls-toolbar"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Pagina precedente"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mPrecedente[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0mPagina[0m
+          [0m [0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Pagina del documento"[39m
+          [36m>[39m
+            [36m<option>[39m
+              [0m1[0m
+            [36m</option>[39m
+          [36m</select>[39m
+          [0m [0m
+          [0m/ [0m
+          [0m1[0m
+        [36m</label>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Pagina successiva"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mSuccessiva[0m
+        [36m</button>[39m
+        [36m<label>[39m
+          [0mZoom[0m
+          [0m [0m
+          [36m<select[39m
+            [33maria-label[39m=[32m"Zoom del documento"[39m
+          [36m>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"page-width"[39m
+            [36m>[39m
+              [0mLarghezza[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"0.75"[39m
+            [36m>[39m
+              [0m75%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1"[39m
+            [36m>[39m
+              [0m100%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"1.5"[39m
+            [36m>[39m
+              [0m150%[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"2"[39m
+            [36m>[39m
+              [0m200%[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"true"[39m
+        [36m>[39m
+          [0mTesto[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+        [36m>[39m
+          [0mRegione[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+        [36m>[39m
+          [0mSposta[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mConserva vista[0m
+        [36m</button>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"ls-search"[39m
+        [36m>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"Cerca nel PDF"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Cerca nel PDF"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Risultato precedente"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mIndietro[0m
+          [36m</button>[39m
+          [36m<output[39m
+            [33maria-live[39m=[32m"polite"[39m
+          [36m/>[39m
+        [36m</form>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ls-document-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33maria-label[39m=[32m"Pagine e sezioni"[39m
+          [33mclass[39m=[32m"ls-pages"[39m
+        [36m>[39m
+          [36m<details[39m
+            [33mopen[39m=[32m""[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mMiniature[0m
+            [36m</summary>[39m
+            [36m<button[39m
+              [33maria-current[39m=[32m"page"[39m
+              [33maria-label[39m=[32m"Apri pagina 1"[39m
+              [33mclass[39m=[32m"ls-thumbnail"[39m
+            [36m>[39m
+              [36m<canvas />[39m
+              [36m<span>[39m
+                [0mPagina [0m
+                [0m1[0m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mSezioni del documento[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mNessun indice incorporato.[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</aside>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"ls-stage"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33maria-label[39m=[32m"Documento PDF, scorrimento e selezione"[39m
+            [33mclass[39m=[32m"ls-viewport ls-text"[39m
+            [33mrole[39m=[32m"region"[39m
+            [33mtabindex[39m=[32m"0"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"pdfViewer"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"ls-overlays"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"ls-accessible"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mTesto accessibile e selezione da tastiera[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mTesto nativo incorporato, senza OCR. Controlla formule e ordine sull’originale.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mPagina grafica: nessun testo nativo disponibile. Seleziona una regione; nessun riconoscimento è stato eseguito.[0m
+        [36m</p>[39m
+        [36m<button>[39m
+          [0mSeleziona una regione da tastiera[0m
+        [36m</button>[39m
+      [36m</details>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"ls-attribution"[39m
+      [36m>[39m
+        [0mLettore Mozilla PDF.js 6.4.299 ·[0m
+        [0m [0m
+        [36m<a[39m
+          [33mdownload[39m=[32m""[39m
+          [33mhref[39m=[32m"/pdfjs/6.4.299/LICENSE"[39m
+        [36m>[39m
+          [0mLicenza Apache 2.0[0m
+        [36m</a>[39m
+      [36m</p>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../../../Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/living-sources/workerFailure.test.tsx:17:24
+     15|   await act(async()=>{await Promise.resolve();});
+     16|   await act(async()=>{fail(new Error('pdf_worker_failed'));});
+     17|   expect((await screen.findByRole('alert')).textContent).toContain('in…
+       |                        ^
+     18| });
+     19|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 1 passed (3)
+   Start at  17:48:37
+   Duration  5.16s (transform 452ms, setup 0ms, import 1.13s, tests 1.24s, environment 2.14s)
