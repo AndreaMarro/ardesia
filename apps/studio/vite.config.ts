@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { localExcalidrawFonts } from './build/localExcalidrawFonts'
 import { localMathLiveFonts } from './build/localMathLiveFonts'
+import { localMathJax } from './build/localMathJax'
+import { localExcalidrawEnvironment } from './build/localExcalidrawEnvironment'
 import { assertFullCommitSha } from './src/core/contracts/eventEnvelope.ts'
 
 const GIT_SHA_PROVIDERS = [
@@ -82,7 +84,7 @@ export default defineConfig({
     __ARDESIA_STUDIO_VERSION__: JSON.stringify(studioPackage.version),
     __ARDESIA_GIT_SHA__: JSON.stringify(buildCommitSha),
   },
-  plugins: [react(), localExcalidrawFonts(), localMathLiveFonts()],
+  plugins: [react(), localExcalidrawEnvironment(), localExcalidrawFonts(), localMathLiveFonts(), localMathJax()],
   resolve: {
     // Forza UNA sola copia di React (Excalidraw + app): senza, l'optimizer
     // duplica react quando si aggiunge una dep → "Invalid hook call".

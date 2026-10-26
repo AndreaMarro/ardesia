@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "node": "v26.5.1",
+  "mode": "native",
+  "matcher": "Buffer.equals",
+  "readMs": 4.190458000000035,
+  "buildMs": 83.57441600000004,
+  "checks": [
+    {
+      "name": "mathjax/tex-svg-full.js",
+      "bytes": 2275113,
+      "comparisonMs": 0.13191700000004403,
+      "heapBefore": 19592808,
+      "heapAfter": 19596584,
+      "rssBefore": 133005312,
+      "rssAfter": 133005312,
+      "sha256": "87d82f5c3b1fe8c1e0c95379a881204a4c7077fee45602414a11850266728e12",
+      "corruptions": [
+        {
+          "index": 0,
+          "rejected": true
+        },
+        {
+          "index": 2275112,
+          "rejected": true
+        }
+      ]
+    },
+    {
+      "name": "mathjax/LICENSE.txt",
+      "bytes": 11358,
+      "comparisonMs": 0.011999999999943611,
+      "heapBefore": 19671192,
+      "heapAfter": 19671864,
+      "rssBefore": 137150464,
+      "rssAfter": 137150464,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "corruptions": [
+        {
+          "index": 0,
+          "rejected": true
+        },
+        {
+          "index": 11357,
+          "rejected": true
+        }
+      ]
+    }
+  ],
+  "maxRssKiB": 133936,
+  "status": "PASS",
+  "limits": [
+    "Single isolated sample, not a production performance benchmark.",
+    "No inference that all historical latency came from this comparison."
+  ]
+}
