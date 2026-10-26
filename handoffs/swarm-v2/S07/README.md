@@ -80,3 +80,8 @@ Head di consegnaa9c19746e44afd6d218d6d1b6054ffc3ac8e0896: tutti i checkSUCCESS v
 Successivamente main è avanzata a992d1a0b (S09 gestionale307). Merge ordinario6d6d503a96221e6019bc2c426d5106e9acc8a6d2: aggiunge solo Web/S09 e un test Core già integrati, nessun file Studio o istruzione AGENTS/CI cambiato. Diff Studio0d→6d vuoto verificato. La CI nuova non eredita il verde di a9; stato finale head e run sono consegnati nel checkpoint GitHub306 e rapporto outputs dopo lettura live. Questo addendum è sola memoria, preserva i risultati precedenti.
 
 S14 formula ha segnalato not-ready/rethrow e identità API/journal dopo await latexToImage. insertMath è rimasto intatto nella311; la patch non è ancora una capacità ricevuta/applicata o provata da S07. Raccordo successivo da writer assegnatoS00 con namespace MathComposerS14, senza copiare Room intero o trasferire le prove ink al nuovo flusso formule. Comunicazioni effettive6405915305 e precedenti nel rendezvous; nessuna nuova chat oPR.
+
+
+## 26ottobre2026 — prosecuzione richiesta, focus in lavorazione
+
+Il proprietario ha richiesto continua dopo la consegna77c2178d; la311 è ancoraOPEN. Nuovo batch nel solo namespacecollaboration-v2: focus docente opt-in e publisherhost opzionale, deferenza dei gesti nativi, zoom personale, revoca/ordine/errori. Room.tsx, Core, manifest/lock e patchS14 intatti. Dettagli e fotografie di test in focus-presentation/README.md; nessun verde77 trasferito al delta. PR rimessaDRAFT fino a prova nativa e CI nuova. Clone remoto77 in/private/tmp dopo FileProviderdataless, vecchio checkoutDocumenti preservato. ProveRED/GREENnuove compresse con byte/digest originali; typecheck/browserfocus pendenti allo slot dopoS00/S08/S02.

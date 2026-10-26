@@ -10,6 +10,7 @@ import { validateRoomInkAdapter, type RoomInkAdapter } from './roomAdapter'
 export type { RoomInkAdapter } from './roomAdapter'
 import { writeInkCheckpoint } from './persistence'
 import type { WorkspaceStore } from '../store/WorkspaceStore'
+import { usePresentation } from './usePresentation'
 
 function signature(element: Pick<ExcalidrawElement, 'id' | 'type' | 'x' | 'y' | 'width' | 'height' | 'angle' | 'strokeColor' | 'strokeWidth' | 'locked' | 'customData'>): string {
   const extra = element as unknown as { points?: number[][]; text?: string }
@@ -24,6 +25,7 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
   latestAdapter.current = adapter
   const refreshProjection = useRef<(() => void) | null>(null)
   const session = adapter.sessions[audience]
+  const presentation = usePresentation(adapter, api, setPage)
   const matching = adapter.roomId === session.scope.roomId
   useEffect(() => {
     if (!api || !matching) return
@@ -82,6 +84,7 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
     const revoke = () => {
       for (const element of capture.completed(api.getSceneElements())) captured.current.add(element.id)
       adapter.sessions.personal.revoke(); adapter.sessions.shared.revoke(); project()
+      presentation.revoke()
     }
     const keydown = (event: KeyboardEvent) => {
       const target = event.target
@@ -94,7 +97,8 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
     adapter.signal.addEventListener('abort', revoke, { once: true })
     if (adapter.signal.aborted) revoke(); else project()
     return () => { disposed = true; if (refreshProjection.current === project) refreshProjection.current = null; clearTimeout(timer); document.removeEventListener('keydown', keydown, true); adapter.signal.removeEventListener('abort', revoke); for (const unsubscribe of unsubscribers) unsubscribe() }
-  }, [api, audience, page, session, matching, adapter.signal, adapter.sessions.personal, adapter.sessions.shared])
+  }, [api, audience, page, session, matching, adapter.signal, adapter.sessions.personal, adapter.sessions.shared,
+    presentation.revoke])
   useEffect(() => { refreshProjection.current?.() }, [adapter])
   if (!matching) return <p role="alert">Il layer appartiene a un’altra lezione.</p>
   return <div onKeyDownCapture={event => {
@@ -103,15 +107,20 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
     if (session.state().status !== 'revoked' && !session.state().frozen) { if (event.shiftKey) session.redo(); else session.undo() }
   }}>
     <CollaborationToolbar session={session} page={page} pageCount={adapter.pages.length} onPage={value => {
+      presentation.onFollow?.(false)
       setPage(value); const geometry = adapter.pages[value - 1]
       const currentZoom = api?.getAppState().zoom.value ?? 1
       api?.updateScene({ appState: { scrollX: 40 / currentZoom - geometry.x, scrollY: 40 / currentZoom - geometry.y } })
     }} audience={audience} onAudience={setAudience} zoom={zoom} onZoom={value => {
+      presentation.onFollow?.(false)
       setZoom(value); api?.updateScene({ appState: { zoom: { value: value as ReturnType<ExcalidrawImperativeAPI['getAppState']>['zoom']['value'] } } })
-    }} storageMode={store.mode} transport={adapter.transport} onSave={async () => {
+    }} storageMode={store.mode} transport={adapter.transport}
+    following={presentation.following} onFollow={presentation.onFollow} onPresent={presentation.onPresent}
+    presenting={presentation.presenting} presentationStatus={presentation.presentationStatus} onSave={async () => {
       await writeInkCheckpoint(store, adapter.sessions.personal.checkpoint())
       await writeInkCheckpoint(store, adapter.sessions.shared.checkpoint())
     }} />
     {error && <p className="ink-error" role="alert">{error}</p>}
+    {presentation.error && <p className="ink-error" role="alert">{presentation.error}</p>}
   </div>
 }

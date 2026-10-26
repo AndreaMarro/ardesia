@@ -16,6 +16,9 @@ export type CollaborationToolbarProps = {
   transport?: InkTransport
   following?: boolean
   onFollow?: (value: boolean) => void
+  onPresent?: () => void
+  presenting?: boolean
+  presentationStatus?: string
 }
 const messages = {
   local: 'Pronto per scrivere', offline: 'Tratti in attesa di conferma', syncing: 'Conferma in corso…',
@@ -63,6 +66,8 @@ export function CollaborationToolbar(props: CollaborationToolbarProps) {
       </select></label>
       {props.onFollow && <label className="ink-follow"><input type="checkbox" checked={!!props.following} disabled={revoked}
         onChange={event => props.onFollow?.(event.target.checked)} />Segui presentazione docente</label>}
+      {props.onPresent && <button type="button" disabled={revoked || props.presenting} onClick={props.onPresent}>
+        {props.presenting ? 'Invio punto…' : 'Indica questo punto'}</button>}
       <button className="ink-save" type="button" onClick={() => void save()} disabled={saving || revoked || props.storageMode === 'unavailable'}>
         {saving ? 'Salvataggio…' : 'Salva su questo dispositivo'}</button>
       {props.transport && <button type="button" disabled={revoked || !state.pending || state.status === 'syncing'}
@@ -71,6 +76,7 @@ export function CollaborationToolbar(props: CollaborationToolbarProps) {
     <div className="ink-status" role="status" aria-live="polite"><span className={`ink-dot ink-dot-${state.status}`} aria-hidden="true" />
       {state.frozen && !revoked ? 'Layer in sola lettura' : messages[state.status]}{!props.transport && !revoked ? ' · Collegamento remoto non attivo' : ''}
       {saved && !saveError && <span> · {props.storageMode === 'fsa' ? 'Salvato nella cartella collegata' : 'Copia salvata nella cache del browser'}</span>}
+      {props.presentationStatus && <span> · {props.presentationStatus}</span>}
     </div>
     <p className="ink-hint">{props.audience === 'personal' ? 'Lo spazio personale resta separato da quello condiviso.' : 'Ogni autore conserva il proprio layer. Le sovrapposizioni rimangono visibili.'}
       {' '}Annullare rimuove solo i tuoi tratti. Lo zoom cambia solo la tua vista.</p>

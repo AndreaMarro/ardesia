@@ -42,3 +42,19 @@ test('a clean to pending to acknowledged edit cannot mark an older local write s
   expect(screen.getByRole('alert').textContent).toContain('Salva anche i nuovi tratti')
   session.destroy()
 })
+test('a host presentation action exposes pending and retry without changing ink', async () => {
+  const session = new InkSession(scope)
+  let calls = 0
+  const action = { onPresent: () => { calls++ }, presenting: false }
+  const props = { session, page: 1, pageCount: 2, onPage: () => {}, audience: 'personal' as const,
+    onAudience: () => {}, zoom: 1.5, onZoom: () => {}, storageMode: 'localStorage' as const, onSave: async () => {} }
+  const view = render(<CollaborationToolbar {...props} {...action} />)
+  fireEvent.click(screen.getByRole('button', { name: 'Indica questo punto' }))
+  expect(calls).toBe(1)
+  view.rerender(<CollaborationToolbar {...props} {...action} presenting={true} />)
+  expect(screen.getByRole('button', { name: 'Invio punto…' })).toHaveProperty('disabled', true)
+  expect(session.objects()).toEqual([])
+  view.rerender(<CollaborationToolbar {...props} />)
+  expect(screen.queryByRole('button', { name: 'Indica questo punto' })).toBeNull()
+  session.destroy()
+})

@@ -1,0 +1,35 @@
+# Prosecuzione S07 — focus presentazione,26ottobre2026
+
+StessaPR311, base77c2178d/main992d1a0b; statoWIP/DRAFT, nonDONE. Il primo batch e tutti i suoi risultati restano intatti nel parenthandoff. CheckoutDocumenti .git/source dataless: nessun reset/cancellazione, clone remoto77 verificato in/private/tmp/ardesia-s07-followup-20261026. RuntimeYjs13.6.27 ripristinato solo in/private/tmp, lock/prodotto/dipendenze invariati.
+
+## Capacità e consumer
+
+Completa following/onFollow già previsti dalla toolbar: adesione esplicita al focus docente, source/revisione/pagina esatte, punto normalizzato e zoom personale invariato. Cambio canale richiede nuova adesione; duplicati e sequenze obsolete scartati anche dopo focusnull. Nativepan/Space/middle/pointermultipli/wheel mantengono il controllo locale fino a finegesto. Due turni timer al rilascio precedono il cambio pagina soltanto DOPO la catturaRoom; la controprova nativa resta richiesta.
+
+Publisher visibile solo con capacità publish iniettata dall'host dopo il grantCore: click esplicito, punto al centro della vista nativa, pagina risolta tra le geometrie correnti, rifiuto se centro fuori o ambiguo. Singleflight, errore/riprova,401/403 sospendono il comando; cambioCore/API/canale e revocaInkSession abortiscono richiesta e rifiutano successi tardivi. Errori follower/publisher separati: un nuovo focus non cancella un diniego. Nessun nuovo login/ruolo/provider/websocket o endpoint.
+
+Native viewportCoordsToSceneCoords, convertToExcalidrawElements e scrollToContent sono riusati dal package Excalidraw0.18.1 esistente, con fitToContentfalse per preservare zoom. TARGET080REUSE,088YjsADAPT già nel ramo; HocuspocusDEFER richiede S10, tldrawDEFER evita secondoCanvas e migrazione/licenza. Fonte ufficiale https://docs.excalidraw.com/docs/@excalidraw/excalidraw/api/props/excalidraw-api e tipi/source distribuito pinned. Il source trace ha mostrato che le callback pubbliche di creazione omettono il pan; per questo il binding ascolta il ciclo pointer nativo del solo canvas nella Room. Nessun algoritmoCRDT o sync custom ricostruito. Core host risolve e autorizza channelId/sequence/receive/publish: la validazione client controlla dati, non autentica il docente.
+
+Il focus è effimero e non ha checkpoint/outbox/evento scientifico proprio. Non aggiunge ink o eventi al journal; l'appState della vista segue il normale comportamento cache giàesistente di Room. Nessun consensoFollow ripristinato a coldreopen. Publisher non effettua invii automatici o raccolta di tasti/posizioni; usa il centro vista solo al click.
+
+## Prove ed errori, fotografie successive
+
+- Setup sparsecheckout iniziale escludeva buildfonthelpers: importVite falliva; secondo errore di cwd nella correzione, poi ripristinati perimetro e config originali. setupfailure è errore d'ambiente, nonREDfunzionale; nessuna configprodotto indebolita.
+- ToolbarRED comandoassente; primoGREEN33test/10file8.58s. ReplayRED focusnull permetteva vecchioseq; corretto contatore ricevuto distinto da applicato.
+- SecondoGREEN37test/11file209.75s suhostconteso, non benchmark. GuardsRED2FAIL/7PASS: idcanaleundefined coercibile astringa e abortlistener non sganciato finché Promise terminava. Correzioni typeof e detach immediato.
+- Review separata read-only5P2: revocaInkSession+ACK, APIpronta, erroripublisher, pagina nativa e pan. Controprove review-red6FAIL/1PASS; fix review-green13PASS/2file29.72s PRIMA dell'ultimo raffinamento a due timer.
+- Reviewer ha poi rilevato che un microtask può avvenire fra listener DOM nativi: non è sufficiente microtask→timer per ordinare la cattura. Corretto a due turni timer; E2Enativo necessario prima diPASScompleto. Reviewer non ha eseguito test/compiler/browser e non è approvazione umana.
+
+Rawlog compressi lossless in .log.gz, SHA256/byte originali in LOGS.json. Le prove del parent77 non valgono automaticamente sul nuovo codice. Typecheck/fullCI e browser del nuovo focus NON_RUN al momento di questo checkpoint. RimaneWIP; i risultati terminali successivi saranno addenda datati.
+
+## Contratto host e limiti
+
+RoomInkAdapter.presentation opzionale: channelId opaque identificatore di presentazione autorizzata, focus{channelId,sequence,target{v,roomId,source,page,center}}, publish(target,AbortSignal) facoltativo. Host memoizza la funzione publish, mantiene ordine monotono percanale e cambia identità canale quando cambia presentazione/grant. Deve autenticare/read/write/revoke nel Core ad ogni uso, non fidarsi dei campi client. Port deve rispettare AbortSignal; latecompletion non vale come successo UI. UI assente di default: nessuna attivazione daURL prodotto. Fixture attori sintetici/trasferimenti espliciti non sono ACL/reteCore remota.
+
+Room.tsx e consumerformula/library S14 intatti per compatibilità; namespaceCore/shared/manifest/rootlock non modificati. S00 integra/rilascia, S10 possiede auth/trasporto/storage; nessun loro lavoro replicato. NonDONE e nonpubblicato.
+
+## Tre prossime azioni
+
+1. P0 prova nativafocus: ottenere slot dopoS00/S08/S02; unChromium con trecontesti, optin/zoom, pan+focus e penna+focus durantepointerdown, publishoffline/retry/revoca; accettazione nessun tratto perso o camera rubata, evidenzaSHA/JSON/screenshot.
+2. P0 tipo/integrazione: CI esatta e review dei fix, stessa311, browser sourceinventory; dipendenzecheckstrict eS00, accettazione merge/postmerge+composizione autorizzata, evidenza run/controprova propriaS00. Memoria comune soltanto appendice.
+3. P0 CoreS10: trasporto e grant reali,3poi11browser con latenza/reconnect/revoca/storage canonico; acquisizioneHocuspocus se compatibile, nessun secondoAuth/DB. Evidenza rete/ricevute e negativo ruolo, non fixture spacciato perremoto.
