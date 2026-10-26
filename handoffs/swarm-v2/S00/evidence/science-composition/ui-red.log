@@ -1,0 +1,712 @@
+
+> ardesia-monorepo@0.1.0 test:web
+> npm run test --workspace @ardesia/web --maxWorkers=1 src/features/science-library/__tests__/MaterialsScience.test.tsx
+
+npm warn Unknown cli config "--maxWorkers". This will stop working in the next major version of npm.
+
+> @ardesia/web@0.1.0 test
+> vitest run src/features/science-library/__tests__/MaterialsScience.test.tsx
+
+
+ RUN  v4.1.8 /Users/andreamarro/Developer/ardesia-s00-20261026/science/apps/web
+
+ ❯ src/features/science-library/__tests__/MaterialsScience.test.tsx (4 tests | 4 failed) 2631ms
+   × Materials exposes an explicit lazy entry for the four course views 534ms
+   × Materials reopens only the pinned revision and invalid popstate never falls back to a new experiment 1039ms
+   × scientific sources have a typed exact-revision reader and cannot be edited as plain JSON 41ms
+   × an invalid science snapshot never reveals raw JSON, including when selection is requested 1014ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/science-library/__tests__/MaterialsScience.test.tsx > Materials exposes an explicit lazy entry for the four course views
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Apri la libreria scientifica"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"page-heading"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Materiali e appunti.":
+  [36m<h1 />[39m
+
+  Name "Fonti disponibili":
+  [36m<h2 />[39m
+
+  Name "Apri una fonte.":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"empty-inline"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "Fonti disponibili":
+  [36m<aside[39m
+    [33maria-label[39m=[32m"Fonti disponibili"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"disclosure-panel"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Titolo e contenuto della nota":
+  [36m<textarea[39m
+    [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+    [33mmaxlength[39m=[32m"20000"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mrows[39m=[32m"6"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Salva nota privata":
+  [36m<button[39m
+    [33mclass[39m=[32m"button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mMateriali e appunti.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mI materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"materials-layout"[39m
+    [36m>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Fonti disponibili"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mFonti disponibili[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"empty-inline"[39m
+        [36m>[39m
+          [0mNessun materiale aggiunto.[0m
+        [36m</p>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"disclosure-panel"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mAggiungi una nota privata[0m
+          [36m</summary>[39m
+          [36m<form>[39m
+            [36m<label>[39m
+              [0mTitolo e contenuto della nota[0m
+              [36m<textarea[39m
+                [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+                [33mmaxlength[39m=[32m"20000"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mrows[39m=[32m"6"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mdisabled[39m=[32m""[39m
+            [36m>[39m
+              [0mSalva nota privata[0m
+            [36m</button>[39m
+            [0m [0m
+          [36m</form>[39m
+        [36m</details>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"material-detail"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"empty-state"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mApri una fonte.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mScegli un materiale per leggerlo, ritrovare i collegamenti o aggiornarlo.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/science-library/__tests__/MaterialsScience.test.tsx:33:26
+     31|   const fetcher=transport();render(<Materials me={me} data={data} onUp…
+     32|   expect(fetcher).not.toHaveBeenCalled();
+     33|   fireEvent.click(screen.getByRole('button',{name:'Apri la libreria sc…
+       |                          ^
+     34|   await screen.findByRole('heading',{name:'Urto e bilancio di energia'…
+     35|   expect(screen.getByLabelText('Percorso di studio').querySelectorAll(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/features/science-library/__tests__/MaterialsScience.test.tsx > Materials reopens only the pinned revision and invalid popstate never falls back to a new experiment
+TestingLibraryElementError: Unable to find an element with the display value: Nota scientifica conservata.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mMateriali e appunti.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mI materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"materials-layout"[39m
+    [36m>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Fonti disponibili"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mFonti disponibili[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"empty-inline"[39m
+        [36m>[39m
+          [0mNessun materiale aggiunto.[0m
+        [36m</p>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"disclosure-panel"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mAggiungi una nota privata[0m
+          [36m</summary>[39m
+          [36m<form>[39m
+            [36m<label>[39m
+              [0mTitolo e contenuto della nota[0m
+              [36m<textarea[39m
+                [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+                [33mmaxlength[39m=[32m"20000"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mrows[39m=[32m"6"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mdisabled[39m=[32m""[39m
+            [36m>[39m
+              [0mSalva nota privata[0m
+            [36m</button>[39m
+            [0m [0m
+          [36m</form>[39m
+        [36m</details>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"material-detail"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"empty-state"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mApri una fonte.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mScegli un materiale per leggerlo, ritrovare i collegamenti o aggiornarlo.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mMateriali e appunti.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mI materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"materials-layout"[39m
+    [36m>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Fonti disponibili"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mFonti disponibili[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"empty-inline"[39m
+        [36m>[39m
+          [0mNessun materiale aggiunto.[0m
+        [36m</p>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"disclosure-panel"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mAggiungi una nota privata[0m
+          [36m</summary>[39m
+          [36m<form>[39m
+            [36m<label>[39m
+              [0mTitolo e contenuto della nota[0m
+              [36m<textarea[39m
+                [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+                [33mmaxlength[39m=[32m"20000"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mrows[39m=[32m"6"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mdisabled[39m=[32m""[39m
+            [36m>[39m
+              [0mSalva nota privata[0m
+            [36m</button>[39m
+            [0m [0m
+          [36m</form>[39m
+        [36m</details>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"material-detail"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"empty-state"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mApri una fonte.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mScegli un materiale per leggerlo, ritrovare i collegamenti o aggiornarlo.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/science-library/__tests__/MaterialsScience.test.tsx:42:16
+     40|   history.replaceState(null,'','/?view=materials&edition=fluidi&scienc…
+     41|   const fetcher=transport();render(<Materials me={me} data={data} onUp…
+     42|   await screen.findByDisplayValue('Nota scientifica conservata');
+       |                ^
+     43|   expect(fetcher.mock.calls.some(([path])=>String(path).includes('revi…
+     44|   history.replaceState(null,'','/?view=materials&edition=fluidi&scienc…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/features/science-library/__tests__/MaterialsScience.test.tsx > scientific sources have a typed exact-revision reader and cannot be edited as plain JSON
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name `/Esperimento scientifico/`
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"page-heading"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Materiali e appunti.":
+  [36m<h1 />[39m
+
+  Name "Fonti disponibili":
+  [36m<h2 />[39m
+
+  Name "Apri una fonte.":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "Fonti disponibili":
+  [36m<aside[39m
+    [33maria-label[39m=[32m"Fonti disponibili"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"material-list"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "{"schemaVersion":1,"capabilityId":"collision-1d-v1","capabilityVersionPrivata · Materiale":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+  [36m/>[39m
+
+  Name "Salva nota privata":
+  [36m<button[39m
+    [33mclass[39m=[32m"button-primary"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"disclosure-panel"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Titolo e contenuto della nota":
+  [36m<textarea[39m
+    [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+    [33mmaxlength[39m=[32m"20000"[39m
+    [33mrequired[39m=[32m""[39m
+    [33mrows[39m=[32m"6"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"page-heading"[39m
+    [36m>[39m
+      [36m<h1>[39m
+        [0mMateriali e appunti.[0m
+      [36m</h1>[39m
+      [36m<p>[39m
+        [0mI materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza.[0m
+      [36m</p>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"materials-layout"[39m
+    [36m>[39m
+      [36m<aside[39m
+        [33maria-label[39m=[32m"Fonti disponibili"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mFonti disponibili[0m
+        [36m</h2>[39m
+        [36m<ul[39m
+          [33mclass[39m=[32m"material-list"[39m
+        [36m>[39m
+          [36m<li>[39m
+            [36m<button[39m
+              [33maria-pressed[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"document-icon"[39m
+              [36m>[39m
+                [0m01[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [36m<strong>[39m
+                  [0m{"schemaVersion":1,"capabilityId":"collision-1d-v1","capabilityVersion[0m
+                [36m</strong>[39m
+                [36m<small>[39m
+                  [0mPrivata[0m
+                  [0m [0m
+                  [0m·[0m
+                  [0m [0m
+                  [0mMateriale[0m
+                [36m</small>[39m
+              [36m</span>[39m
+            [36m</button>[39m
+          [36m</li>[39m
+        [36m</ul>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"disclosure-panel"[39m
+        [36m>[39m
+          [36m<summary>[39m
+            [0mAggiungi una nota privata[0m
+          [36m</summary>[39m
+          [36m<form>[39m
+            [36m<label>[39m
+              [0mTitolo e contenuto della nota[0m
+              [36m<textarea[39m
+                [33maria-label[39m=[32m"Titolo e contenuto della nota"[39m
+                [33mmaxlength[39m=[32m"20000"[39m
+                [33mrequired[39m=[32m""[39m
+                [33mrows[39m=[32m"6"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button-primary"[39m
+              [33mdisabled[39m=[32m""[39m
+            [36m>[39m
+              [0mSalva nota privata[0m
+            [36m</button>[39m
+            [0m [0m
+          [36m</form>[39m
+        [36m</details>[39m
+      [36m</aside>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"material-detail"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"empty-state"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mApri una fonte.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mScegli un materiale per leggerlo, ritrovare i collegamenti o aggiornarlo.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/science-library/__tests__/MaterialsScience.test.tsx:53:26
+     51| test('scientific sources have a typed exact-revision reader and cannot…
+     52|   transport();render(<Materials me={me} data={{...data,resources:[reso…
+     53|   fireEvent.click(screen.getByRole('button',{name:/Esperimento scienti…
+       |                          ^
+     54|   await screen.findByRole('heading',{name:'Configurazione scientifica …
+     55|   expect(screen.getByText('Nota scientifica conservata')).toBeTruthy();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/features/science-library/__tests__/MaterialsScience.test.tsx > an invalid science snapshot never reveals raw JSON, including when selection is requested
+TestingLibraryElementError: Unable to find role="alert"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"source-viewer"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"source-heading"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mFonte privata[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mRevisione [0m
+          [0mscience-[0m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"source-selection"[39m
+        [33mopen[39m=[32m""[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mSeleziona un passaggio preciso[0m
+        [36m</summary>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mSeleziona con mouse o tastiera un passaggio nell'originale. Le selezioni conservano gli offset della revisione esatta.[0m
+        [36m</p>[39m
+        [36m<textarea[39m
+          [33maria-label[39m=[32m"Originale della fonte"[39m
+          [33mclass[39m=[32m"original-text original-selectable"[39m
+          [33mreadonly[39m=[32m""[39m
+          [33mrows[39m=[32m"4"[39m
+        [36m>[39m
+          [0m{"privateRaw":"must-not-render"}[0m
+        [36m</textarea>[39m
+      [36m</details>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"provenance"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mFonte, versione e contesto[0m
+        [36m</summary>[39m
+        [36m<dl>[39m
+          [36m<dt>[39m
+            [0mRisorsa[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0mscience-r[0m
+          [36m</dd>[39m
+          [36m<dt>[39m
+            [0mRevisione originale[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0mscience-v1[0m
+          [36m</dd>[39m
+          [36m<dt>[39m
+            [0mHash della revisione[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+          [36m</dd>[39m
+        [36m</dl>[39m
+        [36m<button>[39m
+          [0mApri il contesto di lavoro[0m
+        [36m</button>[39m
+        [0m [0m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"source-viewer"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"source-heading"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mFonte privata[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mRevisione [0m
+          [0mscience-[0m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"source-selection"[39m
+        [33mopen[39m=[32m""[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mSeleziona un passaggio preciso[0m
+        [36m</summary>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mSeleziona con mouse o tastiera un passaggio nell'originale. Le selezioni conservano gli offset della revisione esatta.[0m
+        [36m</p>[39m
+        [36m<textarea[39m
+          [33maria-label[39m=[32m"Originale della fonte"[39m
+          [33mclass[39m=[32m"original-text original-selectable"[39m
+          [33mreadonly[39m=[32m""[39m
+          [33mrows[39m=[32m"4"[39m
+        [36m>[39m
+          [0m{"privateRaw":"must-not-render"}[0m
+        [36m</textarea>[39m
+      [36m</details>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"provenance"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mFonte, versione e contesto[0m
+        [36m</summary>[39m
+        [36m<dl>[39m
+          [36m<dt>[39m
+            [0mRisorsa[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0mscience-r[0m
+          [36m</dd>[39m
+          [36m<dt>[39m
+            [0mRevisione originale[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0mscience-v1[0m
+          [36m</dd>[39m
+          [36m<dt>[39m
+            [0mHash della revisione[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+          [36m</dd>[39m
+        [36m</dl>[39m
+        [36m<button>[39m
+          [0mApri il contesto di lavoro[0m
+        [36m</button>[39m
+        [0m [0m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/science-library/__tests__/MaterialsScience.test.tsx:66:16
+     64|   vi.stubGlobal('fetch',vi.fn(async()=>Response.json(malformed)));
+     65|   render(<SourceViewer reference={{resourceId:resource.id,revisionId:r…
+     66|   await screen.findByRole('alert');
+       |                ^
+     67|   expect(screen.queryByText(malformed.text)).toBeNull();
+     68|   expect(screen.queryByRole('textbox',{name:'Originale della fonte'}))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  17:26:25
+   Duration  6.82s (transform 604ms, setup 0ms, import 988ms, tests 2.63s, environment 2.70s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Developer/ardesia-s00-20261026/science/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Developer/ardesia-s00-20261026/science/apps/web
+npm error command failed
+npm error command sh -c vitest run src/features/science-library/__tests__/MaterialsScience.test.tsx

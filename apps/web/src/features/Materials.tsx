@@ -8,6 +8,7 @@ import { SourceViewer } from "../components/SourceViewer";
 import { displaySourceTitle } from "../components/lessonPassageReference";
 import { ResourceEditor } from "../components/ResourceEditor";
 import { EmptyState, ErrorNotice } from "../components/Feedback";
+import { ScienceMaterials } from "./science-library/ScienceMaterials";
 export function Materials({
   me,
   data,
@@ -44,6 +45,8 @@ export function Materials({
             : "I materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza."}
         </p>
       </header>
+      <ScienceMaterials key={`${me.id}:${me.role}:${data.edition.id}`} me={me}
+        editionId={data.edition.id} onUpdate={onUpdate} />
       <div className="materials-layout">
         <aside
           aria-label={tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}
@@ -67,7 +70,7 @@ export function Materials({
                           ? "Privata"
                           : "Condivisa con il gruppo"}{" "}
                         ·{" "}
-                        {r.kind === "attempt-source"
+                        {r.kind === "science-resource" ? "Esperimento" : r.kind === "attempt-source"
                           ? "Tentativo"
                           : r.kind === "notes"
                             ? "Nota"
@@ -137,7 +140,7 @@ export function Materials({
                   contextId: current.contextId,
                 }}
               />
-              {current.ownerId === me.id && (
+              {current.ownerId === me.id && current.kind !== "science-resource" && (
                 <details className="disclosure-panel">
                   <summary>Modifica e salva una nuova versione</summary>
                   <ResourceEditor

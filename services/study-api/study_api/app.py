@@ -535,6 +535,9 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     from lessonos.study.calendar_mock import MockCalendar
     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
 
+    from lessonos.study.science_library.routes import install_science_library_routes
+    install_science_library_routes(app, store_dependency, authenticate)
+
     if studio_frontend:
         from fastapi.staticfiles import StaticFiles
         app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')

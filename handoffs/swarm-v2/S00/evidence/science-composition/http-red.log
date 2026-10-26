@@ -1,0 +1,35 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_product_factory_uses_actual_cookie_and_rejection_signal _________
+
+boundary = (<starlette.testclient.TestClient object at 0x10a83f230>, <lessonos.study.store.StudyStore object at 0x10a7e9be0>, Pri...tudent': 'PczOGOv9NVXPEUEYY9vxlHljZCYm6VEsMesIGTA52ec', 'science-peer': 'bW06kkij2IblgvmvTWk7yXCrv_oOs6C5K7xK5A-lW-w'})
+
+    def test_product_factory_uses_actual_cookie_and_rejection_signal(boundary):
+        # Exercise the product factory, not an in-memory proposed composition.
+        _, store, student, peer, tokens = boundary
+        root = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(root/'services/study-api'))
+        try:
+            from study_api.app import create_app
+            candidate = create_app(store.path, demo=True)
+        finally:
+            sys.path.pop(0)
+        url = '/study/editions/science-edition/science-library/catalog'
+        with TestClient(candidate) as client:
+            assert client.post('/study/session', json={'token': tokens[student.id]}).status_code == 200
+>           assert client.get(url).status_code == 200
+E           AssertionError: assert 404 == 200
+E            +  where 404 = <Response [404 Not Found]>.status_code
+E            +    where <Response [404 Not Found]> = get('/study/editions/science-edition/science-library/catalog')
+E            +      where get = <starlette.testclient.TestClient object at 0x10ab20910>.get
+
+services/study-api/tests/test_science_library_http.py:126: AssertionError
+=============================== warnings summary ===============================
+services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Developer/ardesia-s00-20261026/science/services/study-api/.venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_science_library_http.py::test_product_factory_uses_actual_cookie_and_rejection_signal
+1 failed, 1 warning in 2.80s

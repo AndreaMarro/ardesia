@@ -16,9 +16,21 @@ function api():ScienceApi{return {
   evaluate:vi.fn<ScienceApi['evaluate']>(async(_edition,snapshot)=>({result:results[snapshot.capabilityId],prediction:snapshot.prediction,assessment:'MODEL_COMPARISON_NOT_A_GRADE'})),
   read:vi.fn(),save:vi.fn(async(_edition,snapshot)=>saved(structuredClone(snapshot))),
 };}
-afterEach(cleanup);
+afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 
 describe('science library consumer state',()=>{
+ it('focuses the mobile result and returns to the first physical parameter on request',async()=>{
+  vi.stubGlobal('matchMedia',()=>({matches:true}));
+  render(<ScienceLibrary me={me} editionId="fluidi" api={api()}/>);
+  await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
+  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});
+  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+  const result=await screen.findByTestId('science-result');
+  expect(document.activeElement).toBe(result);
+  fireEvent.click(screen.getByRole('button',{name:'Modifica i dati'}));
+  expect(document.activeElement).toBe(screen.getByLabelText('Massa del corpo1 [kg]'));
+ });
+
  it('survives development StrictMode remount without losing canonical comparisons',async()=>{
   const transport=api();render(<StrictMode><ScienceLibrary me={me} editionId="fluidi" api={transport}/></StrictMode>);
   await screen.findByRole('heading',{name:'Urto e bilancio di energia'});

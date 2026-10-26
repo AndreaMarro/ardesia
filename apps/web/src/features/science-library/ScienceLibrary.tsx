@@ -3,6 +3,7 @@ import {describeError,requestKey,type StudyMe} from '../../api';
 import {scienceApi} from './scienceApi';
 import {ScientificPlot} from './ScientificPlot';
 import {checkResult} from './validateResult';
+import {scienceResourceHref} from './resourceNavigation';
 import type {Capability,Catalog,Parameters,ResourceRef,SavedScience,ScienceApi,ScienceResult,Snapshot} from './types';
 import './science-library.css';
 
@@ -44,6 +45,17 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
   const pending=useRef<PendingSave|null>(null),generation=useRef(0),edit=useRef(0),alive=useRef(true);
   const evaluateController=useRef<AbortController|null>(null),saveController=useRef<AbortController|null>(null);
   const predictionInput=useRef<HTMLInputElement>(null);
+  const resultPanel=useRef<HTMLDivElement>(null),controls=useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(result&&globalThis.matchMedia?.('(max-width:740px)').matches){
+      resultPanel.current?.focus({preventScroll:true});
+      resultPanel.current?.scrollIntoView?.({behavior:'instant',block:'center'});
+    }
+  },[result]);
+  function editParameters(){
+    const input=controls.current?.querySelector('input');
+    input?.focus({preventScroll:true});input?.scrollIntoView?.({behavior:'instant',block:'center'});
+  }
   useEffect(()=>{alive.current=true;return()=>{alive.current=false;evaluateController.current?.abort();saveController.current?.abort();};},[]);
   useEffect(()=>{
     const controller=new AbortController();let active=true;setLoading(true);setLoadError('');
@@ -117,7 +129,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
     if(!draft)return;setOpened(v=>v.includes(which)?v.filter(x=>x!==which):[...v,which]);
     if(!(draft.supportUsed||[]).includes(which))change({supportUsed:[...(draft.supportUsed||[]),which]},false);
   }
-  function exactLink(ref:ResourceRef){const url=new URL(location.href);url.searchParams.set('scienceResource',ref.resourceId);url.searchParams.set('scienceRevision',ref.revisionId);return url.pathname+url.search+url.hash;}
+  function exactLink(ref:ResourceRef){return scienceResourceHref(editionId,ref);}
   if(loading)return <section className="science-library" aria-busy="true"><h2>Libreria scientifica</h2><p role="status">Apro strumenti e revisione…</p></section>;
   if(loadError)return <section className="science-library"><h2>Revisione non disponibile</h2><p role="alert">{loadError}</p><button onClick={()=>setReload(v=>v+1)}>Riprova il caricamento</button></section>;
   if(!draft||draft.unsupported||draft.readonly||!capability)return <section className="science-library"><h2>Quaderno scientifico · revisione conservata</h2>
@@ -134,18 +146,18 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
       {catalog?.courses.map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label>
       <label>Oggetto scientifico<select value={selected} onChange={e=>choose(e.target.value)}>{catalog?.capabilities.filter(c=>available.includes(c.id)).map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label></div>
     <article className="science-object"><div className="science-object-title"><p className="science-eyebrow">Esperimento ideale · DRAFT</p><h3>{capability.title}</h3><p>Prevedi: {capability.primaryOutput.label.toLocaleLowerCase('it')}, in {capability.primaryOutput.unit}. Usa i dati attualmente selezionati.</p></div>
-      <div className="science-workspace"><div className="science-main">
-        {result?<><div className="science-result" data-testid="science-result"><span>Risultato del modello</span><strong>{formatScienceNumber(result.value)} {result.unit}</strong><p>La tua previsione: {draft.prediction}. Il confronto non è un voto.</p></div>
+      <div className="science-workspace"><div ref={controls} className="science-controls"><h4>Dati del sistema</h4><div className="science-parameters">{capability.parameters.map(field=><label key={field.key}>{field.label} [{field.unit}]<input type="number" step="any" min={field.minimum} max={field.maximum} value={draft.values[field.key]??''} onChange={e=>change({values:{...draft.values,[field.key]:e.target.value},prediction:''})}/></label>)}</div>
+        {!valid&&<p className="science-input-note">Completa i valori negli intervalli indicati.</p>}
+        <form onSubmit={e=>{e.preventDefault();void compare();}}><label>La tua previsione<input ref={predictionInput} inputMode="decimal" maxLength={200} value={draft.prediction} onChange={e=>change({prediction:e.target.value})}/></label><p>Unità: {capability.primaryOutput.unit}</p>
+          <button className="button-primary" disabled={!valid||!draft.prediction.trim()||comparing}>{comparing?'Confronto in corso…':'Confronta la previsione'}</button></form>
+        <button type="button" className="science-transfer" onClick={()=>{change({values:valuesOf({...Object.fromEntries(capability.parameters.map(p=>[p.key,p.default])),...capability.transfer}),prediction:''});predictionInput.current?.focus();}}>Un problema diverso</button>
+      </div><div className="science-main">
+        {result?<><div ref={resultPanel} tabIndex={-1} aria-label="Risultato del modello" className="science-result" data-testid="science-result"><span>Risultato del modello</span><strong>{formatScienceNumber(result.value)} {result.unit}</strong><p>La tua previsione: {draft.prediction}. Il confronto non è un voto.</p><button type="button" onClick={editParameters}>Modifica i dati</button></div>
           <nav className="science-views" aria-label="Rappresentazioni scientifiche">{result.raySegments&&<button type="button" aria-pressed={plotId==='rays'} onClick={()=>setPlotId('rays')}>Raggi e immagine</button>}
             {result.plots.map(p=><button key={p.id} type="button" aria-pressed={plotId===p.id} onClick={()=>setPlotId(p.id)}>{p.label}</button>)}</nav>
           <ScientificPlot result={result} plotId={plotId}/>
           <details className="science-values"><summary>Valori e unità del modello</summary><table><thead><tr><th>Grandezza</th><th>Valore</th><th>Unità</th></tr></thead><tbody>{result.observables.map(o=><tr key={o.key}><th>{o.label}</th><td>{formatScienceNumber(o.value)}</td><td>{o.unit}</td></tr>)}</tbody></table></details>
         </>:<div className="science-before"><svg viewBox="0 0 480 180" role="img" aria-label="Lo spazio per il confronto resta vuoto prima della previsione"><path d="M40 30V145H450" fill="none" stroke="currentColor"/><text x="65" y="55">Prima immagina. Poi confronta.</text></svg><p>Il risultato, i grafici e le misure compaiono dopo la tua previsione.</p></div>}
-      </div><div className="science-controls"><h4>Dati del sistema</h4><div className="science-parameters">{capability.parameters.map(field=><label key={field.key}>{field.label} [{field.unit}]<input type="number" step="any" min={field.minimum} max={field.maximum} value={draft.values[field.key]??''} onChange={e=>change({values:{...draft.values,[field.key]:e.target.value},prediction:''})}/></label>)}</div>
-        {!valid&&<p className="science-input-note">Completa i valori negli intervalli indicati.</p>}
-        <form onSubmit={e=>{e.preventDefault();void compare();}}><label>La tua previsione<input ref={predictionInput} inputMode="decimal" maxLength={200} value={draft.prediction} onChange={e=>change({prediction:e.target.value})}/></label><p>Unità: {capability.primaryOutput.unit}</p>
-          <button className="button-primary" disabled={!valid||!draft.prediction.trim()||comparing}>{comparing?'Confronto in corso…':'Confronta la previsione'}</button></form>
-        <button type="button" className="science-transfer" onClick={()=>{change({values:valuesOf({...Object.fromEntries(capability.parameters.map(p=>[p.key,p.default])),...capability.transfer}),prediction:''});predictionInput.current?.focus();}}>Un problema diverso</button>
       </div></div>
       {error&&<p role="alert" className="science-error">{error}</p>}
       <section className="science-support" aria-label="Spiegazione e ipotesi"><button type="button" aria-expanded={opened.includes('explanation')} onClick={()=>openSupport('explanation')}>Mostra il ragionamento</button>

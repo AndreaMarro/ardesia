@@ -1,4 +1,5 @@
 import type { StudyResource } from "../api";
+import { scienceSummary } from "../features/science-library/resourceSummary";
 
 export type LessonPassageDescriptor = {
   schema: "ardesia.lesson-passage.v1";
@@ -66,6 +67,10 @@ export function readLessonPassage(resource: StudyResource): LessonPassage | null
 
 /** A display projection: never changes source bytes, revisions or selection offsets. */
 export function displaySourceTitle(resource: StudyResource, limit = 85): string {
+  if (resource.kind === "science-resource") {
+    const summary=scienceSummary(resource);
+    return ("Esperimento scientifico"+(summary?" · "+(summary.note.trim().split("\n")[0]||summary.capabilityId):" non leggibile")).slice(0,limit);
+  }
   const passage = readLessonPassage(resource);
   if (passage) {
     const title = passage.descriptor.objectRefs.map(ref => ref.label).join(" · ");

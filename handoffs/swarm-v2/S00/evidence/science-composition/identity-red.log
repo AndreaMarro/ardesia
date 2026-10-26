@@ -1,0 +1,41 @@
+F.FF                                                                     [100%]
+=================================== FAILURES ===================================
+_ RuntimeIdentityTests.test_late_resources_import_keeps_the_previously_loaded_model_identity _
+
+self = <test_science_library_runtime_identity.RuntimeIdentityTests testMethod=test_late_resources_import_keeps_the_previously_loaded_model_identity>
+
+    def test_late_resources_import_keeps_the_previously_loaded_model_identity(self):
+        report = self.probe('before_resources')
+>       self.assertEqual(report['snapshotHash'], report['loadedHash'])
+E       AssertionError: 'a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5' != 'dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78'
+E       - a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5
+E       + dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78
+
+packages/engine/tests/study/test_science_library_runtime_identity.py:123: AssertionError
+_ RuntimeIdentityTests.test_saved_revision_remains_comparable_in_the_original_process _
+
+self = <test_science_library_runtime_identity.RuntimeIdentityTests testMethod=test_saved_revision_remains_comparable_in_the_original_process>
+
+    def test_saved_revision_remains_comparable_in_the_original_process(self):
+        report = self.probe('after_resources')
+>       self.assertTrue(report['liveSavedSupported'])
+E       AssertionError: False is not true
+
+packages/engine/tests/study/test_science_library_runtime_identity.py:127: AssertionError
+_ RuntimeIdentityTests.test_snapshot_after_disk_edit_identifies_the_code_actually_loaded _
+
+self = <test_science_library_runtime_identity.RuntimeIdentityTests testMethod=test_snapshot_after_disk_edit_identifies_the_code_actually_loaded>
+
+    def test_snapshot_after_disk_edit_identifies_the_code_actually_loaded(self):
+        report = self.probe('after_resources')
+>       self.assertEqual(report['snapshotHash'], report['loadedHash'])
+E       AssertionError: 'a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5' != 'dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78'
+E       - a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5
+E       + dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78
+
+packages/engine/tests/study/test_science_library_runtime_identity.py:119: AssertionError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_science_library_runtime_identity.py::RuntimeIdentityTests::test_late_resources_import_keeps_the_previously_loaded_model_identity
+FAILED packages/engine/tests/study/test_science_library_runtime_identity.py::RuntimeIdentityTests::test_saved_revision_remains_comparable_in_the_original_process
+FAILED packages/engine/tests/study/test_science_library_runtime_identity.py::RuntimeIdentityTests::test_snapshot_after_disk_edit_identifies_the_code_actually_loaded
+3 failed, 1 passed in 30.26s

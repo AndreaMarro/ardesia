@@ -5,7 +5,6 @@ contract. Reopening never evaluates a model or restores a revealed answer.
 """
 import json
 import math
-from pathlib import Path
 import re
 
 from ..context import _invalidate_projection
@@ -13,6 +12,7 @@ from ..models import StudyError
 from ..store import canonical, digest, identifier
 from ..transactions import execute_command
 from .models import evaluate, _HANDLERS
+from . import _MODEL_IMPLEMENTATION_SHA256
 
 KIND = 'science-resource'
 _KEYS = {'schemaVersion', 'capabilityId', 'capabilityVersion',
@@ -20,9 +20,8 @@ _KEYS = {'schemaVersion', 'capabilityId', 'capabilityVersion',
 
 
 def implementation_sha256():
-    # Exact installed source bundle; changes require explicit new snapshots.
-    # Old revisions remain readable and never execute under a different hash.
-    return digest(Path(__file__).with_name('models.py').read_bytes())
+    # Identity of code loaded in this process, not later bytes on disk.
+    return _MODEL_IMPLEMENTATION_SHA256
 
 
 def _text(value, maximum, *, nonempty=False):

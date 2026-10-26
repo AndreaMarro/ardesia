@@ -10,6 +10,7 @@ import { ErrorNotice, Loading } from "./Feedback";
 import { NotebookEditor } from "../integrations/notebook/NotebookEditor";
 import { notebookResource } from "../integrations/notebook/model";
 import { displaySourceTitle, readLessonPassage } from "./lessonPassageReference";
+import { ScienceResourceView } from "../features/science-library/ScienceResourceView";
 export function SourceViewer({
   reference,
   onSelect,
@@ -110,6 +111,7 @@ export function SourceViewer({
   )
     return <Loading>Sto aprendo la revisione originale…</Loading>;
   const passage = readLessonPassage(resource);
+  const science = resource.kind === "science-resource";
   return (
     <section className="source-viewer">
       <div className="source-heading">
@@ -120,6 +122,7 @@ export function SourceViewer({
         </span>
         <span>Revisione {resource.revisionId.slice(0, 8)}</span>
       </div>
+      {science && <ScienceResourceView resource={resource} />}
       {resource.kind === "scientific-notebook" && <NotebookEditor key={resource.revisionId}
         resource={notebookResource(resource)} actor={resource.ownerId} readOnly onSaved={() => {}} />}
       {passage && <article className="lesson-passage-source" aria-label="Passaggio della lezione">
@@ -129,7 +132,7 @@ export function SourceViewer({
       </article>}
       {resource.kind === "lesson-passage" && !passage &&
         <ErrorNotice message="Il passaggio della lezione non è leggibile in questa revisione. Non viene mostrato il JSON come spiegazione." />}
-      {onSelect ? (
+      {!science && onSelect ? (
         <details className="source-selection" open={!passage}>
           <summary>{passage ? "Seleziona un frammento della fonte strutturata" : "Seleziona un passaggio preciso"}</summary>
           <p className="fine-print">Seleziona con mouse o tastiera un passaggio nell'originale. Le selezioni conservano gli offset della revisione esatta.</p>
@@ -146,7 +149,7 @@ export function SourceViewer({
             }}
           />
         </details>
-      ) : !passage && resource.kind !== "lesson-passage" ? (
+      ) : !science && !passage && resource.kind !== "lesson-passage" ? (
         <p className="original-text">{resource.text}</p>
       ) : null}
       <details className="provenance">
