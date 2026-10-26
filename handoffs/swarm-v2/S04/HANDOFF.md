@@ -1,6 +1,6 @@
 # S04 — candidato implementato, integrazione aperta
 
-**Stato: IMPLEMENTATO / TESTATO PARZIALMENTE; DRAFT_FOR_INTEGRATION, non DONE.**
+**Stato: IMPLEMENTATO / TESTATO; READY_FOR_INTEGRATION, non DONE.**
 Base `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`; branch `codex/s04-assessment-quality-20261026`. Nessuna PR precedente aperta per questo filone.
 
 ## Risultato raggiungibile
@@ -23,7 +23,7 @@ Persistenza dove pertinente: le note di revisione usano QuestionBankReview/Appro
 
 ## Prove e residui
 
-[Validazione](VALIDATION.md), [audit e 23 digest](audit-summary.json), test Engine/API/Web e harness browser. Baseline 37 PASS; dominio/API 30 PASS; nuova UI 2 PASS; typecheck/build iniziali PASS. I timeout del revisore e del journey browser restano registrati e richiedono ripetizione nella coda host. CI della head finale da leggere sulla PR; nessun verde trasferito da una SHA diversa.
+[Validazione](VALIDATION.md), [audit e 23 digest](audit-summary.json), test Engine/API/Web e harness browser. Baseline 37 PASS; dominio/API 30 PASS; nuova UI 2 PASS; typecheck/build iniziali PASS. Timeout iniziali conservati; CI esatta della fonte e5e0d642: tutti7required SUCCESS (Web420/Engine2783/API1100, senza sommare suite sovrapposte). Browser finale PASS16.6s con touch/tastiera/refresh/revoca,1440/390 e console vuota. Nuovo processo sullo stessoDB: notaPENDING esatta e zero pubblicazioni. Commit finale di sole prove/harness: la sua CI resta da leggere prima del merge.
 
 ## Tre batch successivi
 

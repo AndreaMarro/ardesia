@@ -9,8 +9,12 @@ Base: main37e0fe828e47b7c81784c2eb48a1b9776dd859ed. Ambiente: checkout isolato S
 - Audit integrale:4000record,4000firme distinte,250famiglie di generazione,23segnalazioni per passaggi senza spiegazione,495risposte numeriche ricalcolate,2151non verificate e1354di altro tipo;0discrepanze nei controlli supportati. `audit-summary.json` conserva i23id/digest, il report integrale locale ha hash dichiarato. Non è correttezza di tutti4000.
 - Famiglie:32seed per ciascuna di4proposte originali;112combinazioni distinte complessive (20/32/32/28); MRU con somma discreta, continuità con bilancio di volume, Ohm con bilancio di potenza, onda con ricostruzione dei cicli. Goldens dei quattro transfer; controprova non certifica efficacia didattica o ogni modello possibile.
 - Typecheck iniziale e build Web completa `npm run build:web`:EXIT0. Vite avverte chunk math/pdf grandi, controllo non cambiato.
-- UI nuova2PASS. Due test preesistenti del revisore hanno raggiunto timeout5000ms durante contesa; nessun timeout/gate/asserzione modificato. Rerun seriale ancora da registrare.
-- Browser reale `http://127.0.0.1:5454`: raggiunti audit4000,4dossier,table4corsi; screenshot1440×1000 e390×844, nessun overflow nelle due asserzioni. Il test complessivo ha raggiunto timeout180s; non chiamatoPASS. Snapshot finale pubblico dopo logout e notaPENDING nelDB conservati come evidenza parziale; il journey completo deve essere ripetuto in slot assegnato.
+- UI nuova2PASS. Due test preesistenti del revisore hanno raggiunto timeout5000ms durante contesa; nessun timeout/gate/asserzione modificato. La CI esatta e5e0d642 ha poi completato tutti420testWeb con il timeout canonico.
+- Browser reale `http://127.0.0.1:5454`: raggiunti audit4000,4dossier,table4corsi; screenshot1440×1000 e390×844, nessun overflow nelle due asserzioni. Primo test complessivo timeout180s, conservatoFAIL. Rerun seriale finale:PASS16.6s/runner23.1s, touch tap e focus/Enter,4dossier,notaPENDING→reload esatto,logout401/studente403,console/pageerror vuote. Evitato un secondo BrowserContext superfluo; stessi gate,timeout e asserzioni di autorità. ProcessoAPI poi chiuso e DB riaperto in nuovo processo: nota esatta e zero pubblicazioni, ricevuta cold-reopen.json.
+
+## CI della fonte applicativa e5e0d642
+
+Tutti7required SUCCESS, CI40246747223 e contract corretto successivo sulla stessahead. Web420PASS/61file,Engine2783PASS/29SKIP,API1100PASS/18SKIP; Studio/MCP/hygiene SUCCESS e golden advisorySUCCESS. Suite condivise non sommate. Marketing separato ancora in corso allo snapshot: non dichiaratoPASS. Il primo contract FAIL aveva owner non conforme al login GitHub; corretto il solo body, senza modificare il gate. ci-product.json conserva i riferimenti. Il commit finale aggiunge solo prove/harness; verificare la sua CI esatta prima del merge.
 
 ## Errori e correzioni
 

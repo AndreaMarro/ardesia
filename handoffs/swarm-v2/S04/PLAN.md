@@ -9,7 +9,7 @@ Ownership: nuovi moduli in packages/engine/lessonos/study/assessment_quality e a
 - [x] API docente: autorizzazione e binding edizione/banca esistenti prima del caricamento; report read-only e conteggi di pubblicazione derivati da ApprovalGate.
 - [x] UI: apertura esplicita, conteggi per quattro corsi, filtro problemi, salto alla revisione corrente, loading/retry/revoca; nessun salvataggio locale di soluzioni.
 - [x] Quattro dossier originali: MRU, continuità, Ohm, lunghezza d'onda; step, distrattori, transfer e prove su seed dichiarati. DRAFT e firma umana assente.
-- [ ] Test di dominio/API/UI, audit 4000, visuale 390/1440 e percorso HTTP reale con riapertura e revoca.
+- [x] Test di dominio/API/UI, audit 4000, visuale 390/1440 e percorso HTTP reale con riapertura e revoca.
 - [ ] Consegna PR con prove e limiti per S00; integrazione/deploy riservati a S00. READY_FOR_INTEGRATION finché non integrato.
 
 Decisione: i candidati Numbas/STACK/PrairieLearn/Doenet richiedono valutazione separata; il primo consumer è servito dai componenti esistenti. Nessuna nuova dipendenza runtime. La controprova aritmetica distinta dal generatore SymPy non certifica la scelta del modello fisico né l'efficacia didattica.

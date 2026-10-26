@@ -8,9 +8,9 @@ test('real bank audit, four proposals, existing review cold reopen, responsive a
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text())});
  // Real HttpOnly cookie login, no routed/mocked API responses.
  expect((await page.request.post('/study/session',{data:{token:access.tokens['tutor-synthetic']}})).ok()).toBe(true);
- await page.goto('/?view=classroom');
- await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).click();
- await page.getByText('Qualità della banca e casi da verificare',{exact:true}).click();
+ await page.setViewportSize({width:390,height:844});await page.goto('/?view=classroom');
+ await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).tap();
+ await page.getByText('Qualità della banca e casi da verificare',{exact:true}).tap();
  const audit=page.getByRole('region',{name:'Audit qualità della banca'});
  await expect(audit.getByText('4000',{exact:true})).toBeVisible({timeout:120000});console.log('S04 checkpoint: authorized audit4000 visible');
  await expect(audit.getByText(/200 sotto-obiettivi editoriali interni/)).toBeVisible();
@@ -21,7 +21,8 @@ test('real bank audit, four proposals, existing review cold reopen, responsive a
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`${outputs}/S04-audit-${viewport.width}.png`});
  }
- await audit.getByText('Moto rettilineo uniforme · bozza di autore',{exact:true}).click();
+ await audit.getByText('Moto rettilineo uniforme · bozza di autore',{exact:true}).focus();
+ await page.keyboard.press('Enter');
  await expect(audit.getByRole('heading',{name:'Problema di trasferimento'})).toBeVisible();
  await audit.getByRole('button',{name:'Apri il quesito di riferimento · Moto rettilineo uniforme'}).click();
  const notes=page.getByLabel('Osservazioni della revisione');
