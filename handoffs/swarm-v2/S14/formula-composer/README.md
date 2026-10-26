@@ -310,3 +310,18 @@ runner forza hover e controlla background computato, oltre alle prove già
 esistenti. Nessun nuovo host/fullsuite necessario per questo CSS. Una sola
 controprova/screenshot pending dopo release S07, il cui browser è osservato
 attivo; nessuna sovrapposizione richiesta o processo altrui toccato.
+
+## 26 ottobre 2026 — fonte finale e consegna
+
+Riferimento corrente: [FINAL.md](FINAL.md). Dopo release/grant S07/6412994325 e
+ps analizzato vuoto, presa6413025955: native16 suhead1e086d9 EXIT0/4PASS,
+zeroerrori inattesi. Hover forzato prima e sopra la tastiera restituisce
+rgb(245,246,248) opaco; bounds e hit-test PASS, keyboard false e plate fuori
+viewport dopo close, remount/close PASS. Screenshot finale ispezionata: il
+canvas non traspare nel pannello. Rilascio definitivo6413044345,55140CLOSED.
+Nessun altro heavy S14 previsto. Host16PASS non ripetuto per il solo CSS.
+
+Inventario hash finale in evidence/final-source-inventory.json, report16 e
+screenshot finali conservati. Stato IMPLEMENTED_HOST_NATIVE_VERIFIED_PENDING_S00_ROOM;
+non MAIN/DONE/DEPLOYED. Fonte corrente e cinque prossimi passi per la memoria
+single-writer sono nel FINAL.md; nessun RUNLOG/NEXT condiviso modificato.

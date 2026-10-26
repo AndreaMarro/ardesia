@@ -87,3 +87,10 @@ Rimane useLayoutEffect per la gestione DOM imperativa. Test del controller
 condiviso richiede visible=false e nessun comando del mathfield durante il
 cleanup; ordine prima della disconnessione conservato. Versioni intermedie
 f66/60395 non sono mai state dichiarate native PASS. Nuova controprova pending.
+
+Chiusura adjudication: controller pubblico diretto in layout cleanup risolve i
+due finding di distruzione del target/proxy. Host16PASS e native15/16PASS con
+zero pageerror; controller false e plate fuori viewport verificati realmente.
+Hover opaco aggiunto dopo ispezione screenshot e verificato nel native16. Non
+restano finding concreti respinti o dichiarati corretti tramite sola review;
+consumer shared e target integrato rimangono esplicitamente da verificare daS00.

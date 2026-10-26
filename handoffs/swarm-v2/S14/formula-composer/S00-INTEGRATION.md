@@ -29,7 +29,8 @@ non garantisce l'applicabilità a una futura head diversa. Il controllo su copie
   SVG reale, flush normale Continuità, reload, isolamento lezioni, export/import
   in store nuovo. Pannello mobile tagliato trovato dalla lettura screenshot:
   il PASS sul solo scrollWidth non lo rilevava e il claim visuale è ritirato.
-- Layout: CSS5142865 e assertd269cb8 richiedono la controprova breve coordinata.
+- Layout e cleanup finali:16host PASS,4native touch PASS su1e086d9; pannello
+  opaco in hover e keyboard fisicamente fuori viewport suclose. Vedi FINAL.md.
   Il runner può disabilitare solo il CSS nuovo per il controllo negativo.
 - Il salvataggio della sola board non prova il flush del journal: il percorso
   verificato attraversa Continuità prima del reload/export. Nessun journal

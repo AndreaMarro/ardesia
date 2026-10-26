@@ -53,3 +53,10 @@ reale incluso; ispezione screenshot trova pannello mobile tagliato, claim
 scrollWidth insufficiente ritirato. Delta 5142865 nel namespace composer;
 controprova layout pendente. Review/commit/draft PR318/handoff/306 eseguiti;
 integrazione del writer Room e gate sul prodotto consolidato restano aperti.
+
+2026-10-26 finale locale: host16PASS/3file; native16 touch4PASS/zeroerrori,
+keyboardhidden fisico e hover opaco verificati. Round-trip completo resta
+checkpoint23604bc separato. Review trova e fa correggere cleanup dopo DOM
+invalidato e callback proxy differita; tutti riportati. StessaPR318, inventory
+e FINAL.md pronti. Il checkbox del consumer consolidato resta aperto: Roomv3
+non applicata, integrazione/CI merge tree/post-merge appartengono ancoraS00.

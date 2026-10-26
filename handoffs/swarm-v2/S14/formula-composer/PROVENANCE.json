@@ -4,7 +4,7 @@
   "owner": "S14-formula-composer",
   "target": "TARGET-081",
   "decision": "ADAPT",
-  "adoption_status": "IMPLEMENTED_HOST_NOT_INTEGRATED",
+  "adoption_status": "IMPLEMENTED_HOST_NATIVE_VERIFIED_NOT_INTEGRATED",
   "package": {
     "name": "mathlive",
     "version": "0.111.1",
@@ -431,5 +431,14 @@
     "native Goodnotes UI unavailable: CUA timeout -10005",
     "Room patch pending owner application",
     "no inference of learning efficacy"
-  ]
+  ],
+  "runtime_evidence": {
+    "native_full_functional_head": "23604bca36c80e9805b7cc8de1d58403e4ba6b0d",
+    "native_final_touch_head": "1e086d93c163a53edc32249188e629f8ad615506",
+    "native_final_touch_checks": 4,
+    "host_checks": 16,
+    "consumer_source_patch_applied": false,
+    "inventory": "evidence/final-source-inventory.json",
+    "limits": "Separate checkpoints, not additive coverage or proof of main/deployment. See FINAL.md and historical corrections."
+  }
 }
