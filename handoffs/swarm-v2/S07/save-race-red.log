@@ -1,0 +1,29 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-4/work/ardesia-s07/apps/studio
+
+ ❯ src/collaboration-v2/__tests__/toolbar.test.tsx (2 tests | 1 failed) 1143ms
+   × a clean to pending to acknowledged edit cannot mark an older local write saved 175ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/collaboration-v2/__tests__/toolbar.test.tsx > a clean to pending to acknowledged edit cannot mark an older local write saved
+AssertionError: expected 'Tratti confermati · Collegamento remo…' not to contain 'Copia salvata'
+
+Expected: "Copia salvata"
+Received: "Tratti confermati · Collegamento remoto non attivo · Copia salvata nella cache del browser"
+
+ ❯ src/collaboration-v2/__tests__/toolbar.test.tsx:41:54
+     39|   expect(session.checkpoint().pendingRequestId).toBeNull()
+     40|   await act(async () => { finishWrite(); await write })
+     41|   expect(screen.getByRole('status').textContent).not.toContain('Copia …
+       |                                                      ^
+     42|   expect(screen.getByRole('alert').textContent).toContain('Salva anche…
+     43|   session.destroy()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  01:39:03
+   Duration  14.63s (transform 1.26s, setup 1.97s, import 2.14s, tests 1.14s, environment 7.86s)
