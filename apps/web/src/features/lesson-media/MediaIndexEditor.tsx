@@ -1,6 +1,7 @@
 import {useRef,useState} from 'react';
 import {describeError,requestKey,studyRequest,type StudyResource} from '../../api';
 import {matchesSource,parseIndex,INDEX_KIND,type MediaIndex} from './model';
+import {CaptionImport} from './CaptionImport';
 
 export function MediaIndexEditor({source,indexResource,initial,resources,onSaved}:{source:StudyResource;indexResource:StudyResource|null;initial:MediaIndex;resources:StudyResource[];onSaved:(r:StudyResource)=>void}){
   const [draft,setDraft]=useState<MediaIndex>(initial),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
@@ -33,6 +34,7 @@ export function MediaIndexEditor({source,indexResource,initial,resources,onSaved
     <h4>Prepara il passaggio per il riuso</h4>
     <p>Correggi il testo liberamente. I tempi cambiano solo nei campi dedicati, in secondi dall’inizio di questa registrazione.</p>
     <label>Titolo del passaggio<input value={draft.title} maxLength={160} disabled={frozen} onChange={e=>patch({...draft,title:e.target.value})}/></label>
+    <CaptionImport draft={draft} disabled={frozen} onApply={patch}/>
     {draft.cues.map((cue,i)=><fieldset key={cue.id} disabled={frozen}>
       <legend>Frammento {i+1}</legend>
       <div className="lm-time-fields">
