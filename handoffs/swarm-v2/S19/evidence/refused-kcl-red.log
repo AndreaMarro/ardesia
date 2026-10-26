@@ -8,7 +8,7 @@ ___ test_kcl_topology_alone_does_not_assess_a_circuit_refused_by_the_lesson ____
         d['trace']={'schema':'student-trace.v1','circuit_fingerprint':sha256(netlist(d).encode()).hexdigest(),'steps':[{'transcription':'KCL','operation':'kcl','first':'b','second':'+V1,+R1,+V2'}]}
 >       assert diagnose(d)['outcome']=='not_assessable'
 E       AssertionError: assert 'valid_so_far' == 'not_assessable'
-E         
+E
 E         - not_assessable
 E         + valid_so_far
 

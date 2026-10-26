@@ -13,7 +13,7 @@
 @@ -535,6 +535,9 @@
      from lessonos.study.calendar_mock import MockCalendar
      install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
- 
+
 +    from s19_circuit_lab.routes import install
 +    install(app, store_dependency, authenticate)
 +
@@ -24,8 +24,8 @@
 +++ b/packages/engine/lessonos/study/context.py
 @@ -52,13 +52,13 @@
              c.execute('DELETE FROM segments WHERE seg_id=?',('study-'+row['review_id'],))
- 
- 
+
+
 -def revise_resource(store,principal,resource_id,expected_revision,text):
 +def revise_resource(store,principal,resource_id,expected_revision,text, *, key=None):
      resource=store.get_resource(principal,resource_id)
@@ -51,6 +51,6 @@
 +            {'resourceId':resource_id,'expectedRevision':expected_revision,'text':text},apply)
 +    with store.transaction() as c:
 +        return apply(c)
- 
- 
+
+
  def delete_resource(store,principal,resource_id):

@@ -16,7 +16,7 @@ for key,value in lock['packages'].items():
         data=path.read_bytes();texts.append({'file':path.name,'sha256':hashlib.sha256(data).hexdigest()})
         notices.extend([f'--- {key} {value["version"]}: {path.name} ---',data.decode('utf8',errors='replace'),''])
     records.append({'package':key.removeprefix('node_modules/'),'version':value['version'],'license':value.get('license'),'resolved':value.get('resolved'),'integrity':value.get('integrity'),'notices':texts})
-outputs={root/'handoffs/swarm-v2/S19/dependency-provenance.json':json.dumps({'lockSha256':hashlib.sha256((base/'package-lock.json').read_bytes()).hexdigest(),'packages':records},indent=2)+'\n',base/'public/THIRD_PARTY_NOTICES.txt':'\n'.join(notices)}
+outputs={root/'handoffs/swarm-v2/S19/dependency-provenance.json':json.dumps({'lockSha256':hashlib.sha256((base/'package-lock.json').read_bytes()).hexdigest(),'packages':records},indent=2)+'\n',base/'public/THIRD_PARTY_NOTICES.txt':'\n'.join(line.rstrip() for line in '\n'.join(notices).splitlines()).rstrip()+'\n'}
 for target,value in outputs.items():
     if args.check:
         if target.read_text()!=value:raise SystemExit('Dependency evidence drift: '+str(target.relative_to(root)))

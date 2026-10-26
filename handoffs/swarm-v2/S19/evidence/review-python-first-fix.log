@@ -7,11 +7,11 @@ ________________ test_huge_layout_integer_is_a_validation_error ________________
 >       with pytest.raises(ValueError):read_document(d)
                                        ^^^^^^^^^^^^^^^^
 
-plugins/s19-circuit-lab/tests/test_adapter.py:189: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plugins/s19-circuit-lab/tests/test_adapter.py:189:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:124: in read_document
     or any(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 .0 = <dict_valueiterator object at 0x1089ac4f0>
 
@@ -35,15 +35,15 @@ core = (<lessonos.study.store.StudyStore object at 0x10894a030>, Principal(id='s
 >       retry=save(s,u,'s19-dc',d,'update-once',r['id'],r['revisionId'])
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-plugins/s19-circuit-lab/tests/test_core.py:126: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plugins/s19-circuit-lab/tests/test_core.py:126:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 plugins/s19-circuit-lab/s19_circuit_lab/core.py:52: in save
     return revise_resource(store, principal, resource_id, expected_revision, text)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 /var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/s19-integration-hljvbigu/packages/engine/lessonos/study/context.py:78: in revise_resource
     return apply(c)
            ^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 c = <sqlite3.Connection object at 0x1088efd30>
 

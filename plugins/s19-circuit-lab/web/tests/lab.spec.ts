@@ -422,4 +422,3 @@ test("Core session revocation removes the private circuit and result", async ({
   );
   expect(fresh.desktop).toBeTruthy();
 });
-

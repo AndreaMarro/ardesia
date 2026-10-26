@@ -138,7 +138,7 @@ Call log:
   3  | const sessions=JSON.parse(fs.readFileSync(process.env.S19_SESSION_FILE!,'utf8'));
   4  | const start='/s19/circuit-lab/?edition=s19-dc';
   5  | test.beforeEach(async({page},info)=>{await page.request.post('/study/session',{data:{token:sessions[info.project.name]}});await page.goto(start);await expect(page.getByRole('heading',{name:'Il circuito, passo dopo passo.'})).toBeVisible();});
-  6  | 
+  6  |
   7  | test('DC prediction, supported and unsupported steps, mutation and Core cold reopen',async({page},info)=>{
   8  |  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   9  |  await page.getByLabel('Previsione',{exact:true}).fill('Positiva, circa 8 V nel verso a → 0');
@@ -169,7 +169,7 @@ Call log:
   34 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   35 |  expect(errors).toEqual([]);
   36 | });
-  37 | 
+  37 |
   38 | test('keyboard and touch select nodes and reconnect branches through accessible controls',async({page},info)=>{
   39 |  const node=page.getByRole('group',{name:'Nodo a',exact:true});
   40 |  await node.focus();await page.keyboard.press('Enter');await page.keyboard.press('ArrowRight');
@@ -183,7 +183,7 @@ Call log:
 > 48 |  await expect(page.getByTestId('answer')).toContainText('12 V');
      |                                           ^ Error: expect(locator).toContainText(expected) failed
   49 | });
-  50 | 
+  50 |
   51 | test('late numerical response cannot survive a changed circuit',async({page})=>{
   52 |  let release!:()=>void;const gate=new Promise<void>(r=>release=r);
   53 |  await page.route('**/study/s19/circuits/solve',async route=>{const response=await route.fetch();await gate;await route.fulfill({response});});
@@ -192,7 +192,7 @@ Call log:
   56 |  await expect(page.getByRole('button',{name:'Calcola e mostra le equazioni'})).toBeEnabled();
   57 |  await expect(page.getByTestId('answer')).toHaveCount(0);
   58 | });
-  59 | 
+  59 |
   60 | test('portable JSON contains inputs and import recalculates; forged proof is refused',async({page})=>{
   61 |  const promise=page.waitForEvent('download');await page.getByRole('button',{name:'Esporta input JSON',exact:true}).click();const download=await promise;const file=await download.path();const document=JSON.parse(fs.readFileSync(file!,'utf8'));expect(document.answer).toBeUndefined();
   62 |  document.components[2].value='100';await page.getByLabel('Importa circuito JSON').setInputFiles({name:'circuit.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(document))});
@@ -201,7 +201,7 @@ Call log:
   65 |  await expect(page.getByText('Controlla valori, morsetti e procedimento: i dati non sono accettati.',{exact:true})).toBeVisible();
   66 |  await expect(page.getByTestId('answer')).toContainText('6 V');
   67 | });
-  68 | 
+  68 |
   69 | test('Core session revocation removes the private circuit and result',async({page})=>{
   70 |  await page.getByRole('button',{name:'Calcola e mostra le equazioni'}).click();await expect(page.getByTestId('answer')).toBeVisible();
   71 |  await page.request.post('/study/session/revoke-all');
@@ -212,5 +212,5 @@ Call log:
   76 |  const fresh=JSON.parse(fs.readFileSync(process.env.S19_SESSION_FILE!,'utf8'));
   77 |  expect(fresh.desktop).toBeTruthy();
   78 | });
-  79 | 
+  79 |
 ```
