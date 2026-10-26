@@ -44,12 +44,13 @@ test('teacher navigates pinned pathways, units and collections; back, reload and
   await page.goto(url.href);
   await expect(catalog.getByRole('heading',{name:'Riferimento non disponibile'})).toBeVisible();
   await catalog.getByRole('link',{name:'Tutti i percorsi',exact:true}).click();
-  await catalog.getByRole('button',{name:'Programmi configurati (6)',exact:true}).click();
-  await expect(catalog.locator('.curriculum-grid').getByRole('article')).toHaveCount(6);
+  await catalog.getByRole('button',{name:'Programmi configurati (7)',exact:true}).click();
+  await expect(catalog.locator('.curriculum-grid').getByRole('article')).toHaveCount(7);
+  await expect(catalog.getByRole('heading',{name:'Laboratorio DC: nodi e Kirchhoff',exact:true})).toBeVisible();
   // Only the two seeded editions exist; registering a pack never enrols anyone.
   await expect(catalog.getByRole('button',{name:'Apri edizione esistente'})).toHaveCount(2);
   await page.reload();
-  await expect(catalog.getByRole('button',{name:'Programmi configurati (6)',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(catalog.getByRole('button',{name:'Programmi configurati (7)',exact:true})).toHaveAttribute('aria-pressed','true');
   await catalog.getByRole('button',{name:'Percorsi di Fisica (4)'}).click();
   await catalog.getByRole('link',{name:'Strumenti e meccanica',exact:true}).click();
   await catalog.getByRole('link',{name:'U1 · Introduzione ai metodi della fisica',exact:true}).click();

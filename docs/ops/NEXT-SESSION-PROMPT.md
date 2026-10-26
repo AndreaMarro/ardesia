@@ -153,3 +153,8 @@ Pubblicare su GitHub codice, prove curate e handoff nel perimetro autorizzato, s
 ### #325 — correzione CI del 26 ottobre 2026
 
 La head33a non è verde: due test API conservavano il vecchio catalogo a sei pack e la build pubblica rilevava il digest catalog.py non rigenerato. Entrambi riprodotti; ora set esatto a sette pack e proiezione rigenerata dal Core, tutti gli altri dati pubblici identici. API5/5 e --check PASS, ricevute in kirchhoff-composition/ci-33a. Non cancellare i FAIL o chiamarli flaky. La prossima azione è nuova CI completa, review, merge protetto e post-merge nella stessa325; i cinque task dell'ultima RUNLOG restano validi. Nessun deploy pubblico o cambio della copertura0/200.
+
+
+### #325 — spec browser di inventario, 26 ottobre 2026
+
+CI5092: API eS19PASS, Webphysics-pathways ancora cerca6programmi mentreDOM7. Delta successivo allinea tre aspettative e aggiunge titoloKirchhoff, preservando riferimento obsoleto e tutti i controlli di navigazione. LocaleNOT_RUN per ENOSPC nell'installazione, non un fallimento del browser; continuare tramiteCI. Ricevute ci-5092 e addendumRUNLOG conservano la distinzione. Chiudere la stessa325 con merge/post-CI reali; restano backend, lessonRef/fase, consumer e0/200, senza modificare storia o gate.

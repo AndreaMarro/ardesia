@@ -940,3 +940,15 @@ Task prioritizzati:
 3. **P0 lessonRef/fase:** primo passo controprova di due lezioni con activityId comune; dipendenze contratto additivo e pin editoriali; accettazione riferimento esatto e retry isolato; evidenza RED/GREEN e riapertura.
 4. **P1 memoria/media/Room:** primo passo comporre le PR indicizzate sulla main risultante; dipendenze ownership e lifecycle revoca; accettazione percorso docente–studente con export/import; evidenza consumer reale e review.
 5. **P1 quattro corsi:** primo passo un target completo per ciascun corso; dipendenze backend e revisione scientifica/editoriale; accettazione progressiva dei200 obiettivi con autonomia distinta; evidenza ricevute e approvazioni reali, oggi0/200.
+
+
+### 26 ottobre 2026 — S00: seconda aspettativa di catalogo nel browser, limite disco esplicito
+
+Candidata5092b143/merge tree2006f133: CI40393262248 conferma API dopo la correzione; S19run40393262168SUCCESS comprende32 test browser e2journey actualApp/factory. Report recuperati e digest dei sette sorgenti verificati, nessun errore browser osservato. Web fallisce a physics-pathways.spec.ts:47: cerca «Programmi configurati (6)», il DOM pubblicato mostra «(7)». La precedente correzione API non copriva questa aspettativa E2E. Corrette le tre occorrenze sul catalogo reale e aggiunta presenza esplicita di Kirchhoff; asserzione sul riferimento obsoleto, due sole edizioni seed, navigazione, viewport e timeout intatti. Nessuna correzione runtime o etichetta flaky.
+
+Tentativo locale di collaudo NON_ESEGUITO: npm ci fallisce ENOSPC prima del browser (disco115MiB residui, node_modules parziale178MiB). Rimossa soltanto quella cache del worktreeS00, mai file/processi degli altri stream. Si usa la CI isolata per il GREEN; risultati precedenti non trasferiti. Ricevuta e excerpt privi di credenziali in evidence/kirchhoff-composition/ci-5092. RunS19 della head33a superata cancellato per non mantenere lavoro duplicato; non è un PASS e non sostituisce il run5092. RaccoltaGitHub riletta: cinque file indice/registro/manifest identici ai locali e21 link relativi validi.
+
+Prossimi task prioritizzati:
+1. **P0 terminale325:** primo passo CI esatta dopo il delta browser e review; dipendenze base ferma/protezioni; accettazione merge e post-CI con consumer reali; evidenza SHA/tree, report e stato terminale.
+2. **P0 backend e riferimenti:** primo passo writer hosted e RED lessonRef/fase condivisa; dipendenze Core canonico, provider e pin editoriali; accettazione isolamento/revoca/restore e riapertura esatta; evidenza60probe remote e RED/GREEN contrattuale.
+3. **P1 lezione viva e quattro corsi:** primo passo comporre i consumer aperti dall'indice e un target per corso; dipendenze ownership e review umana; accettazione percorso docente–studente–transfer e progressiva copertura200obiettivi; evidenza ricevute, UI e accettazioni reali, oggi0/200.

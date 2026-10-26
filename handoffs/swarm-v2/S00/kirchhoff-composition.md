@@ -83,3 +83,13 @@ Il primo controllo staged ha rilevato spazi finali nei log appena aggiunti; la s
 La CI [40392048016](https://github.com/AndreaMarro/ardesia/actions/runs/40392048016) ha rifiutato due aspettative API rimaste sul catalogo a sei pack e la proiezione pubblica con digest del vecchio catalogo. Non si è trattato di rerun: entrambi i fallimenti sono stati riprodotti localmente e corretti nella stessa PR. I test conservano l'uguaglianza esatta del registro, ora con i sette pack previsti, e verificano che S19 non acquisisca attività generiche o question bank implicite. L'inventario resta completo e identico anche quando il riferimento alla banca diventa obsoleto.
 
 Il generatore canonico ha cambiato soltanto il digest di catalog.py: confronto strutturale di tutti gli altri dati PASS, senza nuovi contenuti o autorizzazioni pubbliche. RED API2/5, GREEN5/5; proiezione RED → GREEN. [Ricevuta, digest originali e log curati](evidence/kirchhoff-composition/ci-33a/receipt.json). CI completa sulla nuova head ancora necessaria; nessun gate, timeout, soglia o guardia rimossi.
+
+
+### Follow-up browser sul catalogo, 26 ottobre 2026
+
+La CI5092 ha confermato API e laneS19, inclusi i32 browser dei componenti e2journey reali; i due report del prodotto sono in [ci-5092](evidence/kirchhoff-composition/ci-5092/receipt.json), byte dei sette sorgenti ricontrollati. Web si è fermato nel percorso docente a un'ulteriore aspettativa a sei programmi (`physics-pathways.spec.ts:47`): il DOM allegato mostra sette, il locator richiede sei. Tre aspettative allineate al registro a sette, aggiunta presenza del titolo Kirchhoff. Riferimento obsoleto rifiutato, due sole edizioni create, refresh/Back/Forward, viewport e timeout restano invariati.
+
+La prima correzione aveva coperto inventario API e proiezione ma non questa spec E2E. Ricerca delle aspettative equivalenti completata. Tentativo locale successivo NOT_RUN: `npm ci` fallisce ENOSPC prima del browser, rimossa soltanto la propria node_modules parziale. La nuova esecuzione completa è affidata alla CI; non si attribuisce un GREEN locale inesistente. Head, log RED e artefatti precedenti restano identificati separatamente.
+
+
+Review del delta browser: nessun finding bloccante, [rapporto indipendente](evidence/kirchhoff-composition/ci-5092/independent-review.md). Debito P2 preesistente distinto: la vecchia `catalog-course-capabilities.spec.ts` presume due programmi reali e non è invocata dal job pathways; il seed crea due edizioni, non restringe il registro. Individuazione statica, nessun nuovo browser eseguito su quella spec. Va allineata quando si riattiva la sua suite, preservando l'isolamento delle due edizioni. Non è dichiarata verificata dalla CI attuale.
