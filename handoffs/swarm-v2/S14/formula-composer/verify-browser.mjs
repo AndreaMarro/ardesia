@@ -35,10 +35,12 @@ async function openFormula(page) {
   await expect(page.locator('math-field')).toBeVisible()
 }
 async function touchBounds(page, keyboardVisible = false) {
+  await page.locator('.st-composer-panel').hover()
   // A clipped absolute panel does not increase document.scrollWidth. Check
   // its actual bounds and every host control rather than the document alone.
   const bounds = await page.locator('.st-composer-panel').evaluate(panel => {
     const rect = panel.getBoundingClientRect()
+    const background = getComputedStyle(panel).backgroundColor
     const controls = [...panel.querySelectorAll('button, math-field, .st-composer-field')].map(control => {
       const r = control.getBoundingClientRect()
       return { label: control.getAttribute('aria-label') || control.textContent, left: r.left, right: r.right, top: r.top, bottom: r.bottom }
@@ -49,7 +51,7 @@ async function touchBounds(page, keyboardVisible = false) {
       return { label: control.getAttribute('aria-label') || control.textContent, aboveCanvas: hit !== null && panel.contains(hit) }
     })
     const plate = document.querySelector('.ML__keyboard.is-visible .MLK__plate')?.getBoundingClientRect()
-    return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, viewport: window.innerWidth, height: window.innerHeight, keyboardTop: plate?.top, controls, foreground }
+    return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, viewport: window.innerWidth, height: window.innerHeight, keyboardTop: plate?.top, controls, foreground, background }
   })
   expect(bounds.top).toBeGreaterThanOrEqual(0)
   expect(bounds.bottom).toBeLessThanOrEqual(bounds.height)
@@ -65,6 +67,7 @@ async function touchBounds(page, keyboardVisible = false) {
     expect(control.left, control.label).toBeGreaterThanOrEqual(bounds.left)
     expect(control.right, control.label).toBeLessThanOrEqual(bounds.right)
   }
+  expect(bounds.background).not.toMatch(/^rgba\(.+,\s*0(?:\.|\))/)
   for (const control of bounds.foreground) expect(control.aboveCanvas, control.label).toBe(true)
   check(`touch composer panel, field and host controls fit at 390x844${keyboardVisible ? ' above open keyboard' : ''}`, bounds)
 }

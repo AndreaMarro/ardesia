@@ -15,3 +15,8 @@
 .st-composer-panel .st-formula-tools {
   flex-wrap: wrap;
 }
+
+/* Generic card hover is translucent; an editor must cover canvas content. */
+.st-card.st-composer-panel:hover {
+  background: var(--m-paper);
+}
