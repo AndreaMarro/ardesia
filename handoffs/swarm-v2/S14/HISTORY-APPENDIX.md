@@ -40,3 +40,10 @@ Review separata ha identificato due rischi asincroni; i precedenti2test non li c
 ## Nota di confezionamento
 
 Normalizzati esclusivamente CRLF/spazi finali e righe vuote finali di log, patch e notices per il gate whitespace; testo legale ed esiti invariati. Byte originali conservati fuori Git in work/s14-raw-formatting-records.json.gz. GLB/digest/manifest scientifici non alterati da questa normalizzazione. Patch ricontrollata con git apply.
+
+
+## Addendum successivo — prove native e importazione
+
+Typecheck della composizione temporanea EXIT0. REA runtime10azioni complete, con errori font403 espliciti; correzione della sola allow-list del devserver symlink, poi runner Chromium cached148.0.7778.96:9checkPASS, zero console/pageerror, export/import.lesson reale, quota/retry e viewport390/1440. Le immagini sono state lette; prova locale sintetica, tastiera limitata all'apertura e nessuna autorizzazione remota verificata. Report include i digest esatti di Room/libraryScene/libraryImport sulla base S07 0d809591. Il primo lancio Chrome155 è stato interrotto sul solo albero proprio; seconda invocazione1senzaoutput restaUNKNOWN, terza EXIT0. Nessun risultato precedente riscritto come PASS.
+
+Revisione preflight: la sola validazione dopo import avrebbe permesso la sostituzione del board prima di rifiutare una library invalida. Aggiunta validazione del campo opzionale nel namespace, prima della transazione canonica, con JSZip esistente e RED/GREEN. Ora7utilityPASS; non è un nuovo validatore di identità/percorso/manifest. La patch Room aggiornata e i test rimangono consegna da comporre da S00, non main integrata. CI d373ee32 tutti required SUCCESS fotografata prima di questo incremento, nuova head da verificare separatamente.

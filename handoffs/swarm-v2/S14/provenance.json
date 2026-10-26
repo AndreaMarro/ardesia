@@ -33,7 +33,13 @@
     "maxSemanticUnknowns": 3000,
     "unknownRetentionTruncated": true,
     "parseFailures": 0,
-    "runtimeScenario": "NOT_RUN",
+    "runtimeScenario": {
+      "evidenceId": "ev_050c9816d98e4d70a206473b8b9198d90c8ec793fe46e24da5ebe24e4df66ebe",
+      "actionsCompleted": 10,
+      "coverage": "complete scenario actions, not full product",
+      "console": "font403 in dev symlink harness; corrected path-specific config independently verified by native runner",
+      "summary": "handoffs/swarm-v2/S14/rea-native-summary.json"
+    },
     "exportedCompleteLedger": "Retained outside Git as losslessly compressed work/rea-library-evidence.json.gz"
   },
   "consumer": {
@@ -49,10 +55,17 @@
     }
   },
   "verification": {
-    "utilityTestsPassed": 6,
+    "utilityTestsPassed": 7,
     "rehearsalRoomTestsPassed": 4,
-    "nativeE2E": "PENDING_SLOT",
-    "composedTypecheck": "PENDING_SLOT",
+    "nativeE2E": {
+      "status": "PASS",
+      "checks": 9,
+      "browser": "Chromium 148.0.7778.96",
+      "source": "handoffs/swarm-v2/S14/native-proof/native-result.json",
+      "composition": "S07 0d809591 + exact Room/helper hashes, not a main commit",
+      "scope": "local synthetic real SDK/WorkspaceStore/bundle; keyboard opener only, no remote ACL"
+    },
+    "composedTypecheck": "EXIT0",
     "postMerge": "NOT_RUN"
   },
   "benefit": {

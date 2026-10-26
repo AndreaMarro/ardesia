@@ -4,6 +4,7 @@ import JSZip from "jszip"
 import { WorkspaceStore } from "../store/WorkspaceStore"
 import { roomPaths } from "../store/roomPaths"
 import { libraryFromScene, sceneWithLibrary, snapshotLibraryItems } from "./libraryScene"
+import { validateLibraryLesson } from "./libraryImport"
 
 beforeEach(() => {
   const entries = new Map<string, string>()
@@ -13,6 +14,19 @@ beforeEach(() => {
     removeItem: key => { entries.delete(key) }, setItem: (key, value) => { entries.set(key, String(value)) },
   }
   Object.defineProperty(globalThis, "localStorage", { configurable: true, value: storage })
+})
+
+it("validates the optional library extension before an import can replace the current board", async () => {
+  const archive = async (scene: unknown) => {
+    const zip = new JSZip()
+    zip.file("raw/board.excalidraw", JSON.stringify(scene))
+    return zip.generateAsync({ type: "blob" })
+  }
+  await expect(validateLibraryLesson(await archive({ elements: [] }))).resolves.toEqual([])
+  await expect(validateLibraryLesson(await archive({ libraryItems: null }))).rejects.toThrow()
+  const invalid = { libraryItems: [{ id: "foreign", status: "unpublished", created: 0,
+    elements: [{ id: "private", type: "freedraw", customData: { copied: { ardesiaInkV1: {} } } }] }] }
+  await expect(validateLibraryLesson(await archive(invalid))).rejects.toThrow("tratti collaborativi")
 })
 
 it("preserves the lesson collection through the real bundle manifest, cold store and room isolation", async () => {

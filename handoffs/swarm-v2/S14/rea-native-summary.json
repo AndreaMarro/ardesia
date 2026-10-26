@@ -1,0 +1,128 @@
+{
+  "schema": "ardesia.s14-native-rea/1",
+  "corrected": {
+    "evidenceId": "ev_050c9816d98e4d70a206473b8b9198d90c8ec793fe46e24da5ebe24e4df66ebe",
+    "completeness": {
+      "status": "complete",
+      "equality_eligible": true,
+      "missing_sections": [],
+      "truncated_sections": []
+    },
+    "browser": {
+      "mode": "launch",
+      "process_ownership": "provider-owned",
+      "cleanup": "terminated-owned-process",
+      "product": "Chromium",
+      "version": "155.0.8059.86"
+    },
+    "durationMs": 5222,
+    "steps": [
+      {
+        "step": "scenario_start",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "room-ready",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "open-library",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "native-tile",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "insert-component",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "allow-autosave",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "new-document",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "reopened-room",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "reopen-library",
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step": "reopened-tile",
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "errors": [
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Regular.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Bold.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Medium.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-SemiBold.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Regular.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Bold.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-Medium.woff2"
+      },
+      {
+        "kind": "console",
+        "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+        "url": "http://127.0.0.1:55714/@fs/private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@excalidraw/excalidraw/dist/dev/fonts/Assistant/Assistant-SemiBold.woff2"
+      }
+    ]
+  },
+  "earlier": {
+    "evidenceId": "ev_d3a606777d207404e1eedd8741cce4c62cb245f74b5f57a3154b9be50a5ccd03",
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "action"
+      ],
+      "truncated_sections": []
+    },
+    "failedStep": "reopened-tile",
+    "reason": "Selector also matched native pending add-to-library tile; initial same-URL goto was not counted as cold document proof."
+  },
+  "interpretation": "Corrected controlled scenario completed all actions, but font requests returned 403 in the symlinked dev harness. The path-specific allow-list correction was subsequently verified by the separate real browser runner with zero console errors. Scenario step completion is not global product equivalence or remote authorization."
+}
