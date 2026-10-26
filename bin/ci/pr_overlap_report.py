@@ -90,6 +90,7 @@ def live(repo, base):
     before = sha()
     entries = gh(f'{root}/pulls?state=open&per_page=100', pages=True)
     prs = []
+    unstable = []
     for pr in entries:
         if pr['base']['ref'] != base:
             continue
@@ -99,10 +100,13 @@ def live(repo, base):
             paths.append(file['filename'])
             if file.get('status') == 'renamed' and file.get('previous_filename'):
                 paths.append(file['previous_filename'])
+        if gh(f"{root}/pulls/{pr['number']}")['head']['sha'] != pr['head']['sha']:
+            unstable.append(pr['number'])
         prs.append({'number': pr['number'], 'files': paths,
                     'headSha': pr['head']['sha'], 'baseRef': base, 'draft': pr['draft']})
     after = sha()
-    return {'status': 'MEASURED' if before == after else 'STALE_BASE_RETRY',
+    return {'status': 'MEASURED' if before == after and not unstable else 'STALE_SNAPSHOT_RETRY',
+            'unstablePrs': unstable,
             'observedAt': datetime.now(timezone.utc).isoformat(),
             'baseShaBefore': before, 'baseShaAfter': after, 'pullRequests': prs}
 
