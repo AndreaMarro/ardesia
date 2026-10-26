@@ -51,7 +51,7 @@ try{
   const indexBody={schema:'ardesia.lesson-media-index.v1',source:{id:sources[0].id,revisionId:sources[0].revisionId,sha256:sources[0].sha256},title:'Portata e pressione: testo sincronizzato',durationMs:10000,cues:[{id:'first',startMs:125,endMs:2250,text:'Δp < 10 kPa. <script>Testo letterale</script>'},{id:'second',startMs:3500,endMs:9875,text:'Il vincolo resta 0 < x < 5 e y > 2.'}],chapters:[{id:'ch-first',atMs:125,title:'Il vincolo di portata'},{id:'ch-second',atMs:3500,title:'Il confronto dei raggi'}],links:[]};
   const createdIndex=await context.request.post('/study/resources',{headers:{'Idempotency-Key':crypto.randomUUID()},data:{editionId:'fluidi',kind:'lesson-media-index',visibility:'group',text:JSON.stringify(indexBody)}});assert.equal(createdIndex.status(),200);const indexed=await createdIndex.json();
   const unexpectedResponses=[],checks=[];
-  const observe=page=>{page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')consoleErrors.push({text:m.text(),url:m.location().url});});page.on('response',r=>{if(r.status()>=400&&!new URL(r.url()).pathname.startsWith('/study/resources/'))unexpectedResponses.push({status:r.status(),url:r.url()});});};
+  const observe=page=>{page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')consoleErrors.push({text:m.text(),url:m.location().url});});page.on('response',r=>{if(r.status()>=400&&!(new URL(r.url()).pathname.startsWith('/study/resources/')&&[401,403,404].includes(r.status())))unexpectedResponses.push({status:r.status(),url:r.url()});});};
   const page=await context.newPage();observe(page);await page.goto('/?view=materials&edition=fluidi');
   await page.getByRole('navigation',{name:'Passaggi registrati'}).getByRole('button',{name:/Portata e pressione: testo sincronizzato/}).click();
   const popup=page.waitForEvent('popup');await page.getByRole('button',{name:'Apri player e quaderno'}).click();const player=await popup;observe(player);
@@ -64,7 +64,7 @@ try{
   let media=await player.locator('audio').evaluate(a=>({time:a.currentTime,paused:a.paused,trackCount:a.querySelectorAll('track').length,active:Array.from(a.textTracks[0].activeCues??[],c=>c.id),duration:a.duration}));
   assert.ok(Math.abs(media.time-.125)<.02);assert.equal(media.paused,true);assert.deepEqual(media.active,['1']);assert.equal(media.trackCount,1);assert.equal(Math.round(media.duration),10);
   assert.ok(Math.abs(Number(await player.getByRole('slider',{name:'linea del tempo della lezione'}).inputValue())-1125)<2);
-  checks.push('Catalogo → URL con pin Core → player canonico e WAV reale → seek autorizzato da pausa → activeCues nativi/scene time; testo letterale sicuro');
+  checks.push('Catalogo → URL con pin Core → player canonico e WAV reale → seek autorizzato da pausa → activeCues nativi/cursore journal; testo letterale sicuro');
   await player.screenshot({path:output+'/s08-native-captions-desktop.png',fullPage:true});
   if(process.env.ARDESIA_MEDIA_REA_SIGNAL){
     await writeFile(output+'/rea-ready.json',JSON.stringify({url:player.url(),cdpPort:process.env.ARDESIA_MEDIA_CDP_PORT}));
@@ -102,11 +102,14 @@ try{
   await player.getByRole('button',{name:'Apri frammento 1 a 0:00',exact:true}).click();await player.locator('.rc-current').getByText(indexBody.cues[0].text,{exact:true}).waitFor();
   const before=await player.getByRole('slider',{name:'linea del tempo della lezione'}).inputValue();
   assert.equal((await context.request.post('/study/session',{data:{token:access['other-media']}})).status(),200);
-  await player.getByRole('button',{name:'Apri frammento 2 a 0:03',exact:true}).click();await player.locator('.replay-captions').getByRole('alert').waitFor();
+  const denied=player.waitForResponse(r=>new URL(r.url()).pathname.startsWith('/study/resources/')&&r.status()===403);
+  await player.getByRole('button',{name:'Apri frammento 2 a 0:03',exact:true}).click();await denied;await player.locator('.replay-captions').getByRole('alert').waitFor();
+  assert.equal(await player.locator('audio track').count(),0);
   assert.equal(await player.getByRole('slider',{name:'linea del tempo della lezione'}).inputValue(),before);assert.equal(await player.locator('.rc-scroll').count(),0);
   assert.equal((await context.request.post('/study/session',{data:{token:access['tutor-media']}})).status(),200);await player.getByRole('button',{name:'Ricontrolla la fonte'}).click();await player.locator('.rc-fragments > summary').waitFor();
   if(!await player.locator('.rc-fragments').evaluate(e=>e.open))await player.locator('.rc-fragments > summary').click();
-  await context.clearCookies();await player.getByRole('button',{name:'Apri frammento 2 a 0:03',exact:true}).click();await player.locator('.replay-captions').getByRole('alert').waitFor();assert.equal(await player.locator('.rc-scroll').count(),0);
+  const beforeAnonymous=await player.getByRole('slider',{name:'linea del tempo della lezione'}).inputValue();
+  await context.clearCookies();const anonymous=player.waitForResponse(r=>new URL(r.url()).pathname.startsWith('/study/resources/')&&r.status()===401);await player.getByRole('button',{name:'Apri frammento 2 a 0:03',exact:true}).click();await anonymous;await player.locator('.replay-captions').getByRole('alert').waitFor();assert.equal(await player.locator('.rc-scroll').count(),0);assert.equal(await player.locator('audio track').count(),0);assert.equal(await player.getByRole('slider',{name:'linea del tempo della lezione'}).inputValue(),beforeAnonymous);
   assert.equal((await context.request.post('/study/session',{data:{token:access['tutor-media']}})).status(),200);await player.getByRole('button',{name:'Ricontrolla la fonte'}).click();await player.locator('.rc-fragments > summary').waitFor();
   checks.push('Cambio cookie ad altro studente403 e anonimo401: nessun seek/testo/track autorizzato; accesso ripristinato solo con Core');
   await player.setViewportSize({width:390,height:844});assert.equal(await player.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
@@ -116,10 +119,10 @@ try{
   await player.screenshot({path:output+'/s08-native-captions-mobile.png',fullPage:true});checks.push('390px senzaoverflow e seek frammento da tastiera');
   const withdrawnAt=Date.now();assert.equal((await context.request.delete('/study/resources/'+sources[0].id)).status(),200);
   await player.locator('.replay-captions').getByRole('alert').waitFor();const withdrawalMs=Date.now()-withdrawnAt;assert.equal(await player.locator('.rc-scroll').count(),0);assert.equal(await player.locator('audio track').count(),0);
-  checks.push('Ritiro fonte rilevato dalla rilettura periodica: testo rimosso e track/Blob rilasciati; byte locali non reinterpretati come revoca remota');
+  checks.push('Ritiro fonte rilevato dalla rilettura periodica: testo e track rimossi; byte locali non reinterpretati come revoca remota');
   await player.close();await page.bringToFront();assert.equal(await page.locator('.lm-detail').count(),1);checks.push('Ritorno alla scheda catalogo conservata');
   assert.deepEqual(errors,[]);assert.deepEqual(unexpectedResponses,[]);
   assert.deepEqual(consoleErrors.filter(e=>!e.url.includes('/study/resources/')),[]);
-  const result={status:'PASS',browser:browser.version(),checks,withdrawalMs,errors,consoleErrors,unexpectedResponses,source:'manifest of this composed candidate, no deployment claim',limits:['Visible-page refresh15s plus5s deadline; hidden document cleared','No Safari/device or human listening','No remote media server/Range or physical revocation of copies']};
+  const result={status:'PASS',browser:browser.version(),checks,withdrawalMs,errors,consoleErrors,unexpectedResponses,source:'manifest of this composed candidate, no deployment claim',limits:['Visible-page refresh15s plus5s deadline; hidden clearing covered by unit test, not this browser scenario','No Safari/device or human listening; fixture has no changing board scene; Blob URL revocation inspected statically only','No remote media server/Range or physical revocation of copies']};
   await writeFile(output+'/native-captions-browser-result.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }finally{await context.close();await browser.close();}

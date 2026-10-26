@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "browser": "148.0.7778.96",
+  "checks": [
+    "Catalogo → URL con pin Core → player canonico e WAV reale → seek autorizzato da pausa → activeCues nativi/scene time; testo letterale sicuro",
+    "Seek nativo con audio in pausa aggiorna sottotitoli e cursore journal, senza play automatico",
+    "Verifica Core ritardata realmente, senza mock della risposta: uno spostamento manuale successivo resta autorevole",
+    "Playback reale/fine naturale a4x: nessun cue attivo oltre l’intervallo",
+    "Altra take non eredita testo/track della fonte precedente; ritorno rilegge Core",
+    "Cambio cookie ad altro studente403 e anonimo401: nessun seek/testo/track autorizzato; accesso ripristinato solo con Core",
+    "390px senzaoverflow e seek frammento da tastiera",
+    "Ritiro fonte rilevato dalla rilettura periodica: testo rimosso e track/Blob rilasciati; byte locali non reinterpretati come revoca remota",
+    "Ritorno alla scheda catalogo conservata"
+  ],
+  "withdrawalMs": 14721,
+  "errors": [],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "url": "http://127.0.0.1:5482/study/resources/e117aa0791124ea7b85a2c9acbf5fd2c/revisions/a85a5ac5fe10406fbf4ee3e40e385817"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "url": "http://127.0.0.1:5482/study/resources/e117aa0791124ea7b85a2c9acbf5fd2c/revisions/a85a5ac5fe10406fbf4ee3e40e385817"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:5482/study/resources/7818865f95d844fb8c446bf70603ef60/revisions/884a338f7ebf4d9d9c8ba007a12a5446"
+    }
+  ],
+  "unexpectedResponses": [],
+  "source": "manifest of this composed candidate, no deployment claim",
+  "limits": [
+    "Visible-page refresh15s plus5s deadline; hidden document cleared",
+    "No Safari/device or human listening",
+    "No remote media server/Range or physical revocation of copies"
+  ]
+}
