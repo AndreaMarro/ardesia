@@ -28,3 +28,11 @@ Il test composer applica le patch solo a copie temporanee dei tre moduli reali, 
 **S13 — simulazione:** nessuna dipendenza 3D o ELAB. Input R/V/I e orientazioni fanno fede; le coordinate sono presentazione. Un eventuale simulatore invia una nuova revisione di input e invalida i risultati, senza produrre un proprio VERIFIED o solver MNA comune.
 
 **S01 — compatibilità:** capability/version/hash del runtime effettivo, distinto dal contratto di risorsa numerica. Kirchhoff SourceSnapshot e pin installato impediscono di rietichettare byte già caricati; gli input restano disponibili senza esito se il motore non è utilizzabile. Nessuna attesa del prototipo14strumenti.
+
+## Checkpoint di ripresa — 26 ottobre 2026
+
+La head implementativa `f80dc4d2998d83ff8f7c4fd3116bd75c5021873c` della [PR325](https://github.com/AndreaMarro/ardesia/pull/325) ha CI S19 verde:37Python/24browser, inclusi la controprova source/pyc e i casi di indisponibilità. Tutti i sette controlli richiesti sono SUCCESS sulla stessa head; [snapshot e log](evidence/ci-f80dc4d-summary.json), [dettaglio additivo](validation.md#ripresa-dopo-interruzione--26-ottobre-2026). I90/87/22locali rimangono prove storiche distinte.
+
+Precisazione che supera la precedente frase S01: SourceSnapshot da solo può accettare una cache pyc timestamp stale. La correzione S19 verifica i byte Python contro i Gitblob del pin e li congela prima degli import, compila direttamente quei byte e rifiuta import Kirchhoff precedenti non controllati. Il test sul package installato riproduce la baseline vulnerabile e risolve il partitore8V con il confine protetto.
+
+S00 resta il writer della composizione principale e dei registri condivisi. Le patch minimali di questo handoff sono ancora candidate, da rileggere sulla base scelta da S00; il verde della PR non attesta main integrata, distribuzione remota o approvazione umana del contenuto. Nessun test pesante locale rilanciato durante la ripresa.
