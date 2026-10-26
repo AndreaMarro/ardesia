@@ -506,3 +506,8 @@ Fonte2c522f96, base992d1a0b, PR314. CSP privata richiede script locali: emesso i
 ### 26 ottobre2026 — rettifica finale locale S00
 
 795locali/800HTTPS PASS sulla fonte15825e70 conP2banner corretto e reviewvisuale separata. CI40294401864 Studio2313PASS/5skip e audio/buildSUCCESS. Gate congelato locale primo2311/2,secondo2312/1FAIL; replayNON_RUN. Il primo commit durante test invalidava provenienza, corretto conHEADferma; rimane timeoutMathJax nel matcherBuffer2,27MB. Patchconfrontonativo proposta non applicata, nessuna soglia/testscartato. Due tentativi impongono stop§5, handoffDIAGNOSTIC-DECISION registra ciclo mirato richiesto; non dichiarareMERGED/DONE. SSOgrant revocato, produzione invariata, backend remoto503.
+
+
+### 26 ottobre2026 — ciclo S00 autorizzato, nessuna soglia cambiata
+
+Proprietario autorizza ciclo mirato dopo stop precedente. Misura bundle2,27MB: build36–84ms, helper deep9,085s/heapcirca+698MB, native0,132ms; controprove primo/ultimobyte rifiutate per bundle/licenza da entrambi. Applicato Buffer.equals esatto al posto di toEqual, conservati build reale e tutti i requisiti. Nessun pool/timeout/gate modificato. Mirato e gate della nuovaHEAD non anticipati; durante l'esecuzione niente commit. Previewprodotto158/800HTTPS distinta daHEAD di test/prove. Log e limiti nel handoffS00.

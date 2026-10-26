@@ -18,7 +18,7 @@ it("ships the exact locked full browser bundle and its Apache notice", async () 
   for (const [name, original] of [["mathjax/tex-svg-full.js", "es5/tex-svg-full.js"], ["mathjax/LICENSE.txt", "LICENSE"]]) {
     const asset = assets.find((item) => item.fileName === name)
     expect(asset?.type).toBe("asset")
-    if (asset?.type === "asset") expect(Buffer.from(asset.source)).toEqual(readFileSync(`${root}/${original}`))
+    if (asset?.type === "asset") expect(Buffer.from(asset.source).equals(readFileSync(`${root}/${original}`))).toBe(true)
   }
   expect(readFileSync(`${root}/LICENSE`, "utf8")).toContain("Apache License")
 })

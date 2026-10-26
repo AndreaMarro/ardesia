@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "node": "v26.5.1",
+  "mode": "deep",
+  "matcher": "equals(a,b,[iterableEquality])",
+  "readMs": 0.7441249999999968,
+  "buildMs": 36.080208,
+  "checks": [
+    {
+      "name": "mathjax/tex-svg-full.js",
+      "bytes": 2275113,
+      "comparisonMs": 9085.482625,
+      "heapBefore": 19499328,
+      "heapAfter": 717319056,
+      "rssBefore": 133201920,
+      "rssAfter": 247136256,
+      "sha256": "87d82f5c3b1fe8c1e0c95379a881204a4c7077fee45602414a11850266728e12",
+      "corruptions": [
+        {
+          "index": 0,
+          "rejected": true
+        },
+        {
+          "index": 2275112,
+          "rejected": true
+        }
+      ]
+    },
+    {
+      "name": "mathjax/LICENSE.txt",
+      "bytes": 11358,
+      "comparisonMs": 27.72595899999942,
+      "heapBefore": 734437088,
+      "heapAfter": 731624376,
+      "rssBefore": 247824384,
+      "rssAfter": 249577472,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "corruptions": [
+        {
+          "index": 0,
+          "rejected": true
+        },
+        {
+          "index": 11357,
+          "rejected": true
+        }
+      ]
+    }
+  ],
+  "maxRssKiB": 692064,
+  "status": "PASS",
+  "limits": [
+    "Single isolated sample, not a production performance benchmark.",
+    "No inference that all historical latency came from this comparison."
+  ]
+}

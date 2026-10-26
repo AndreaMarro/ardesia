@@ -72,3 +72,8 @@ La prova796 resta storica sulla build4. Review visuale indipendente trovaP2 bann
 ## S00 — checkpoint800HTTPS, decisione diagnostica richiesta
 
 Nuova preview privata https://ardesia-fisica-preview-bjr7xic5r-andreas-projects-6d4e9791.vercel.app/ops/release/ , deploymentdpl_G2Tqz6efx2PMHv3n9B71VZVYS3wy, fonte15825e70,795locali/800HTTPS e7requiredCI40294401864 verdi; grant revocato e produzione invariata. Vecchia preview796 resta storico distinto. Due gate locali falliti, ultimo2312/1 su localMathJax, replayNON_RUN; non nasconderlo dietroCIverde. Dopo regola stopAGENTSStudio§5,314 è temporaneamenteBLOCKED_HUMAN_DECISION: leggere handoffs/swarm-v2/S00/DIAGNOSTIC-DECISION.md e patch byte-equivalente NON applicata. Prima misurare build/confronto e bytecorrotto, nessuna soglia alzata o rerun identico; poi ciclo autorizzato e chiusura con merge/postCI.317 resta stessaPR congelata2e9cea03 per raccordoS00 dopo314. Quattro corsi ancora0/200, Core remoto503 e limite licenzaStudio invariati; seguire5task ultimaRUNLOG e memoriaappend-only.
+
+
+### S00 — ciclo mirato autorizzato direttamente dal proprietario
+
+26 ottobre2026: autorizzato «senza indebolire i gate». Misura reale del confronto Buffer2,27MB:9,085s/helperstrutturale e0,132ms/native, build36–84ms; entrambi rifiutano4corruzioni di byte. Applicata patch1riga equivalente, gate/pool/timeout invariati. Non riproporre la domanda già autorizzata né cancellare i2FAIL storici. Eseguire mirato/gate sulla nuovaHEADferma, poi CI/merge/postCI dellaSTESSA314. Previewfonte15825e70 resta800HTTPS e non cambia per soli test. Report e script in handoffs/swarm-v2/S00; successivi317/309/311/318/319 e quattro corsi0/200 restano obiettivi, con5task ultimaRUNLOG.

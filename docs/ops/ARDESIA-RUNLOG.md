@@ -699,3 +699,20 @@ StudioAGENTS§5 impone stop dopo2tentativi; ~/lessonos/COORDINATION.md assente, 
 3. **P0 consumer317/309/316:** primo passo installerAPI e ingresso Aula/typedreader su main aggiornata; dipendenze314 terminale,ownership efonti esatte; accettazione quattro modelli e studioautonomo persistenti con revoca; evidenza browser/Core su nuovaSHA, non17check ereditati.
 4. **P1 Studio311/318/319:** primo passo leggere Room finale e comporre solo hunk assegnati; dipendenze Yjs/formula/raccolta; accettazione audio/ultimo segmento/mutex/export-import e layoutmobile; evidenza controprove composte, finding S14pannellomobile non nascosto dietro scrollWidth.
 5. **P0 quattro corsi/Core remoto:** primo passo U1-01 con pratica/feedback/transfer e ambienteCore Ardesia autorizzato; dipendenze contenuti/reviewumana/identità/storage; accettazione progressiva200target e percorso docente-studente remoto; evidenza ricevute/versioni approvate, ancora0/200.
+
+
+## 26 ottobre 2026 — S00: ciclo diagnostico autorizzato e confronto binario misurato
+
+Base992d1a0b, head di ingressoadf5f9e9 verificata pulita e7requiredCI40297877606/contract40298119981 SUCCESS. Il proprietario autorizza esplicitamente «il ciclo mirato, senza indebolire i gate»; superato il precedente BLOCKED_HUMAN_DECISION soltanto per questo ciclo. Nessuna autorizzazione a ignorare test,protezioni oeditoria.
+
+Script measure-mathjax.mjs esegue lo stesso Vitebuild reale e helper equals/iterableEquality installato, due processi isolati. Bundle2.275.113byte identico SHA25687d82f5c…: build36,08/83,57ms, confronto9085,48ms strutturale e0,132ms nativo; heapdeep19,50→717,32MB, maxRSS692064KiB contro133936KiB. Quattro controprove per modalità rifiutano byte iniziale/finale alterati su bundle/licenza. I tempi dimostrano il costo oneroso dell'asserzione e confermano equivalenza byte per byte; un campione, non benchmark di produzione o prova che tutti i31s storici fossero confronto. Scartati allargamento soglia, cambio pool, rimozione test e nuovo deploy di solo codice test. Applicata una riga Buffer.equals/toBe(true) mantenendo build, elencoasset, tipo, licenza e confronto esatto. Gate e timeout immutati.
+
+Un primo avvio aveva ../Root in eccesso: MODULE_NOT_FOUND prima della build, conservato initial-path-error.log, corretto; non conteggiato come REDprodotto. Prossime verifiche conHEADimmutabile per evitare il precedente errore di provenienza; nessun commit durante gate. Preview rimane fonteprodotto15825e70/800HTTPS, non si attribuisce il suo deployment alla nuovaHEAD di soli test/prove. Fonteapplicativa non cambia; risultato del nuovo gate non anticipato qui.
+
+### NEXT PRIORITY TASKS — ciclo autorizzato S00
+
+1. **P0 gate314:** primo passo52mirati nel profilo originale e gate congelato conJSON; dipendenzeHEADferma e patch nativa; accettazione zeroFAIL e replay eseguito senza skip; evidenza raw/exit/sourceSHA.
+2. **P0 integrazione314:** primo passo verificare nuovaCI/review/mergetree; dipendenze gateverde e7strict; accettazione mergeordinario epostCI; evidenza SHA/tree/run, nessun bypass.
+3. **P0 consumer317/309:** primo passo raccordoAPI e navigazione/typedreader nellaPR esistente; dipendenze mainaggiornata eownership; accettazione4modelli e studioautonomo persistenti/isolati; evidenza Core+HTTP+UI nuovaSHA.
+4. **P1 Studio311/318/319:** primo passo Roomfinale e patch minime; dipendenze Yjs/composer/raccolta; accettazione audio/flush/revoca/roundtrip/mobile composti; evidenza nuoviRED/GREEN, non verdi ereditati.
+5. **P0 quattro corsi:** primo passo U1-01 e ambienteCore remoto autorizzato; dipendenze contenuti/identità/storage/reviewumana; accettazione200target progressivi e docente-studente remoto; evidenza ricevute/versioni approvate, ancora0/200.

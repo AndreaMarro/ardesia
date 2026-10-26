@@ -1,0 +1,20 @@
+node:internal/modules/cjs/loader:1569
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'vite'
+Require stack:
+- /private/tmp/apps/studio/package.json
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at require.resolve (node:internal/modules/helpers:214:31)
+    at file:///private/tmp/ardesia-a-four-courses-20261025/handoffs/swarm-v2/S00/measure-mathjax.mjs:11:52
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/private/tmp/apps/studio/package.json' ]
+}
+
+Node.js v26.5.1

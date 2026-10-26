@@ -23,3 +23,12 @@ Decisione richiesta: autorizzare un nuovo ciclo diagnostico circoscritto nella S
 ## Limiti indipendenti
 
 Core remoto non configurato,503 non è beta autenticata; SSO è gate operatore. Liberation1.05legacy/source esatto non verificato: Studio solo preview interna.0/52,0/57,0/33,0/58 obiettivi con accettazione completa. Nessun rollback eseguito o approvazione editoriale inventata.317 congelata2e9cea03 attende raccordo S00 dopo314; nessun nuovo ramo dipendente.
+
+
+## 26 ottobre2026 — autorizzazione e misure successive
+
+Il proprietario risponde direttamente «Autorizzo il ciclo mirato, senza indebolire i gate». Il blocco umano di questo checkpoint è superato per quel ciclo, non per un merge con test rosso. Storia precedente preservata.
+
+Script riproducibile measure-mathjax.mjs: Node26.5.1, buildVite reale, sorgenti bloccate identiche e confronto equivalente al matcher installato. Due processi separati, uno per modalità. Build36,08ms/deep e83,57ms/native; confronto bundle2.275.113byte:9085,48ms/deep e0,132ms/native. Heapdeep da19,50MB a717,32MB; piccoRSS692064KiB contro133936KiB. Un solo campione isolato, non benchmark prodotto o moltiplicatoreREA. Dimostra costo del confronto, senza attribuire ogni millisecondo dei31s storici.
+
+Entrambi i comparatori rifiutano primo e ultimo byte alterati su bundle e licenza: quattro controprove per modalità. SHA256 degli asset concordi fra build. Applicata la patch byte-equivalente di una riga; nessuna modifica a pool, timeout, gate, byte richiesti o licenza. Mirato/gate sulla nuovaHEAD ancora da eseguire. Primo lancio diagnostico aveva un ../ in eccesso nel pathRoot: MODULE_NOT_FOUND prima della misura, log conservato, corretto; non è RED prodotto o fallimento del nuovo gate.
