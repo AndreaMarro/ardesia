@@ -22,7 +22,7 @@ for(const [relative,pin] of Object.entries(lock.packages).filter(([k])=>k.starts
  const licenses=[];for(const name of names){const body=await readFile(path.join(root,name),'utf8');notices+=`\n===== ${pkg.name}@${pkg.version} / ${name} =====\n${body}\n`;licenses.push(name);}
  components.push({name:pkg.name,version:pkg.version,license:pkg.license,resolved:pin.resolved,integrity:pin.integrity,licenseFiles:licenses});
 }
-await writeFile(path.join(target,'THIRD_PARTY_NOTICES.txt'),notices);
+await writeFile(path.join(target,'THIRD_PARTY_NOTICES.txt'),notices+'End of third-party notices.\n');
 const digest=async name=>createHash('sha256').update(await readFile(path.join(target,name))).digest('hex');
 await writeFile(path.join(target,'PROVENANCE.json'),JSON.stringify({schemaVersion:1,adopted:'@observablehq/plot@0.6.17',upstream:'https://github.com/observablehq/plot',upstreamGitHead:'42da60b3e817bb950be73d798f79b848d6b54de4',strategy:'REUSE: locally bundled ESM subset (plot, barX, ruleX); upstream source unmodified',tool:'rolldown@1.0.0',components,artifacts:{'plot-engine.mjs':await digest('plot-engine.mjs'),'THIRD_PARTY_NOTICES.txt':await digest('THIRD_PARTY_NOTICES.txt')},maintenance:'Pin updates require new official tarball/integrity, license inspection, reproducible build, consumer tests and browser checks. Rollback removes this namespace only.'},null,2)+'\n');
 console.log(JSON.stringify({components:components.length,bundleSha256:await digest('plot-engine.mjs')}));
