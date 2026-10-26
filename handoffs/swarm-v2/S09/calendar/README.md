@@ -269,3 +269,9 @@ Prossimi4passi:1)S00 applica patchduefile e verifica CI320 esatta;2)integrazione
 sequenziale e controprova su main;3)ambiente remoto autenticato daS10 senza
 trasferire la prova locale;4)disponibilità/riprogrammazione con riconferma e
 oracoloICS test-only in batchsuccessivi. Storico precedente intatto.
+
+26/10/2026: i log grezzi aggiunti in11a9d5a4 contenevano whitespace
+del tool (blankEOF e trailingblank del reporterVite). Per preservare i byte
+originali e rispettare il gate sono ora gzip lossless con mtime0; roundtrip
+byte-identico asserito, hash grezzi/compressi in composition/verification.json.
+Nessun log ripulito o esito storico riscritto, nessun gate modificato.
