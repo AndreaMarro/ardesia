@@ -3,14 +3,20 @@ on:
   pull_request:
     paths:
       - 'plugins/s19-circuit-lab/**'
-      - 'packages/engine/lessonos/study/content/s19-circuit-dc-v1.json'
-      - 'handoffs/swarm-v2/S19/**'
+      - 'packages/engine/lessonos/study/**'
+      - 'services/study-api/**'
+      - 'apps/studio/src/study/**'
+      - 'handoffs/swarm-v2/S19/*.patch'
       - '.github/workflows/s19-circuit-lab.yml'
   push:
     branches: [main]
     paths:
       - 'plugins/s19-circuit-lab/**'
-      - 'handoffs/swarm-v2/S19/**'
+      - 'packages/engine/lessonos/study/**'
+      - 'services/study-api/**'
+      - 'apps/studio/src/study/**'
+      - 'handoffs/swarm-v2/S19/*.patch'
+      - '.github/workflows/s19-circuit-lab.yml'
 permissions:
   contents: read
 jobs:
