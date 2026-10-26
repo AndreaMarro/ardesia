@@ -595,7 +595,7 @@ export default function Room({
     const all = [...current, ...elements]
     api.updateScene({ elements: all, appState: { selectedElementIds: { [element.id]: true } } })
     // Publish the actual object/version before the audio marker can reference it.
-    journal.recordChange(all)
+    journal.recordChange(legacyBoardScene(all, collaboration ? legacyInkIds.current : undefined))
     await journal.flush()
     latestElementsRef.current = all
     latestAppStateRef.current = api.getAppState?.() ?? EXCALIDRAW_CONFIG.newRoomAppState
@@ -607,7 +607,7 @@ export default function Room({
 
   function boardSelection(elements: readonly any[], appState: any): readonly AudioObjectReference[] {
     const ids = appState?.selectedElementIds ?? {}
-    return elements.filter((element) => ids[element.id] && !element.isDeleted && Number.isSafeInteger(element.version) && element.version > 0).slice(0, 21).map((element) => ({
+    return legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined).filter((element) => ids[element.id] && !element.isDeleted && Number.isSafeInteger(element.version) && element.version > 0).slice(0, 21).map((element) => ({
       elementId: element.id, version: element.version,
       label: String(element.text?.replace(/\s+/g, " ").trim() || ({ rectangle: "Riquadro", ellipse: "Cerchio", freedraw: "Disegno", arrow: "Freccia", image: "Immagine", line: "Linea" } as Record<string, string>)[element.type] || "Oggetto della lavagna").slice(0, 240),
     }))
@@ -619,7 +619,7 @@ export default function Room({
     const elements = api.getSceneElements()
     const refs = boardSelection(elements, api.getAppState())
     if (refs.length === 0 || refs.length > 20) throw new Error("Seleziona da uno a venti oggetti sulla lavagna.")
-    journal.recordChange(elements)
+    journal.recordChange(legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined))
     await journal.flush()
     latestElementsRef.current = elements
     latestAppStateRef.current = api.getAppState()
@@ -847,6 +847,7 @@ export default function Room({
         if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
         const elements = Array.isArray(parsed.elements) ? legacyBoardScene(parsed.elements) : []
         legacyInkIds.current = new Set(elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
+        parsed.elements = elements
         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
         const files = parsed.files ?? {}
         setSceneData(parsed)
