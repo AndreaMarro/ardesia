@@ -1,0 +1,24 @@
+{
+  "browser": {
+    "mode": "launch",
+    "executable_path": "/absolute/path/to/chromium"
+  },
+  "start_url": {
+    "url": "http://127.0.0.1:5416/"
+  },
+  "actions": [
+    {
+      "step_id": "settle-for-document-render",
+      "action": "wait_for_timeout",
+      "duration_ms": 1500
+    }
+  ],
+  "capture": {
+    "at_end": [
+      "dom",
+      "accessibility",
+      "screenshot",
+      "url"
+    ]
+  }
+}
