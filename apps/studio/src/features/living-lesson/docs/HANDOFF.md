@@ -28,3 +28,14 @@ Importare i tipi pubblici dall'index del namespace. Il consumer host fornisce Le
 2. P0 S00/S08: collegare ReplayCaptions al medesimo media/seekRevision; dipendenza riferimentiCore esatti e preflight; accettazione cue tardivo/revoca non sposta o espone contesto vecchio; prova HTTP+browser di composizione.
 3. P1 S20: innestare LessonAccess/PrivateNotes reali nel suo consumer; dipendenza identità/Core canonici; accettazione isolamento principal+context, logout e cold reopen; prova due utenti autorizzati e controprove401/403.
 4. P1 operatore: ascolto e microfono hardware/Safari/iPad; dipendenza consenso e dispositivo reale; accettazione comprensibilità e rilascio tracce; prova distinta dai device simulati. Le copie già esportate restano esterne alla revoca locale.
+
+
+## Aggiornamento del 26 ottobre2026 — revoca OFF→ON (successivo alla consegna883)
+
+La precedente consegna READY883 è stata ritirata e PR322 riportata in bozza quando la rilettura ha trovato due lacune: consenso OFF→ON fra due tick poteva riabilitare bytes già caricati; nascondere la waveform smontava anche il guard. Due regressioni reali aggiunte su eb36f7b sono RED in CI40367877918 (2 falliti,2337 passati,5 skipped), con log grezzo compresso in evidence/revocation. Il primo tentativo ed0ebdf era fallito al typecheck per un binding test inutilizzato, corretto prima di osservare il RED delle asserzioni.
+
+Il delta mantiene LivingLessonReplay montato con showWaveform=false, separa il decoder dal guard e usa readLessonSnapshot/resolveReplayRecording canonici per il preflight del file. Il player lega la sessione allo SHA immutabile osservato: una variazione richiede riapertura, anche se l'ultimo consenso è true. Il digest audio resta distinto dal digest della sessione. Polling250ms e ogni comando play ricontrollano il binding; i dati mancanti/corrotti non passano attraverso il fallback di sola waveform. Non viene creato un nuovo media source o archivio.
+
+Verifica locale del delta a sorgenti ferme:26/26 test S17, typecheck, due patch git apply --check e browser completo PASS, compresa revoca in ascolto con waveform nascosta. Il browser di questo primo giro era su working tree modificato rispetto a eb36f7b: non è un PASS della vecchia SHA. Le prove finali sul commit pulito e lo stato della CI della nuova SHA sono registrati nella consegna finale e nel body PR. Review separata del delta solo statica, senza nuovi finding; nessuna approvazione umana implicita. La finestra locale è stata rilasciata a S00 prima di continuare con git/rete. RUNLOG/NEXT condivisi non modificati.
+
+Raccordo obbligatorio per S00: non legare il mount del guard alla visibilità della waveform. Il componente deve vivere quanto il media canonico autorizzato; nascondere la UI usa showWaveform. Restano pendenti mount Room integrato, composizione313, hardware/Safari e ACL remoti come nella consegna iniziale. S00 conserva merge e certificazione integrata.

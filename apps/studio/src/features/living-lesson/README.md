@@ -28,7 +28,7 @@ Questi runner usano il device Chromium simulato e il vero MediaRecorder. Non son
 
 ## Contratti
 
-- `LivingLessonReplay`: proiezione Wavesurfer BSD di `ReplayCursor`, con l'unico elemento audio e cursore epoch di ReplayView. Lo slot `captionContent: ReactNode` ospita il consumer S08 senza copiarne dati/authority. Un fallback mantiene i controlli audio quando il decode dei peaks fallisce.
+- `LivingLessonReplay`: proiezione Wavesurfer BSD di `ReplayCursor`, con l'unico elemento audio e cursore epoch di ReplayView. Lo slot `captionContent: ReactNode` ospita il consumer S08 senza copiarne dati/authority. Un fallback mantiene i controlli audio quando il decode dei peaks fallisce. Mantenere il componente montato per tutta la vita del media autorizzato; `showWaveform={false}` nasconde e distrugge solo la waveform. Il preflight usa lo snapshot e il resolver audio canonici, verifica il binario e lega il player allo SHA della sessione: anche OFF→ON fra due tick invalida i dati già caricati.
 - `LessonAccess` e `PrivateNotes`: port forniti dall'host, che conserva identità e autorizzazioni. Il consumer dichiara identità sintetiche locali. Il fingerprint della nota include sessione, recording/hash, istante e oggetti/versioni; le note private restano fuori dall'export `.lesson`.
 - `model`: validazione versionata dell'extension `livingLesson` dello scene envelope. Risoluzione esatta di registrazione/sessione/hash/oggetti; versione o file mancanti producono errore esplicito.
 - `serialization`: conserva solo l'extension pubblica validata dopo `serializeAsJSON`; non copia campi privati del vecchio envelope. Il filtro delle proiezioni ink rimane quello S07, verificato separatamente sulla sorgente esatta di PR311.

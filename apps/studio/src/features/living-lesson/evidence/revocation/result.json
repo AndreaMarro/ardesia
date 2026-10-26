@@ -1,0 +1,36 @@
+{
+  "base": "a00f2f40091aecf69e58ebaba42cf70d748e4066",
+  "red": {
+    "head": "eb36f7b5dcb4fbb9f28d4607efeac0bd4eafae6d",
+    "ciRun": 40367877918,
+    "failed": 2,
+    "passed": 2337,
+    "skipped": 5
+  },
+  "localGreen": {
+    "headDuringRun": "eb36f7b5dcb4fbb9f28d4607efeac0bd4eafae6d",
+    "workingTree": "modified source; hashes below, not a PASS of the old head",
+    "testsPassed": 26,
+    "typecheck": "PASS",
+    "browser": "PASS; hidden-waveform revocation included; Chromium fake mic, native MediaRecorder",
+    "patchApplicability": "PASS"
+  },
+  "sourceFiles": [
+    {
+      "path": "LivingLessonReplay.tsx",
+      "sha256": "39079df8a2a1830fdd2bf0e20aac72fada0042cc0c6d4ac1da69d192f7c6d655"
+    },
+    {
+      "path": "consumer/main.tsx",
+      "sha256": "b1623ca552b2d9e3e2d8bf3d8e7972610ed33b3851a46dcced95f181f6b63b23"
+    },
+    {
+      "path": "consumer/verify-browser.mjs",
+      "sha256": "9a7991d8b7b57c5e3e9e9bc0897697eb12c9c7dda47e866949978c439bb1b60a"
+    },
+    {
+      "path": "tests/action-lifetime.test.tsx",
+      "sha256": "78034b573f94a75dd7bd8476accaacf63dc8db7cdac520ae0fe0465e637b4e5c"
+    }
+  ]
+}
