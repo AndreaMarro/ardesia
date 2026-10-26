@@ -8,12 +8,12 @@ import fixtures from './fixtures.json';
 
 vi.mock('../ScientificPlot',()=>({ScientificPlot:()=> <div data-testid="graph-presentation"/>}));
 const me={id:'student-01',role:'student' as const,synthetic:true as const};
-const catalog=fixtures.catalog as Catalog;
+const catalog=fixtures.catalog as unknown as Catalog;
 const results=fixtures.results as unknown as Record<string,ScienceResult>;
 function saved(snapshot:Snapshot):SavedScience{return {supported:true,snapshot,resource:{id:'resource-1',revisionId:'revision-1',ownerId:me.id,editionId:'fluidi',contextId:'context-1',visibility:'private',kind:'science-resource',text:JSON.stringify(snapshot),sha256:'a'.repeat(64)}};}
 function api():ScienceApi{return {
   catalog:vi.fn(async()=>structuredClone(catalog)),
-  evaluate:vi.fn(async(_edition,snapshot)=>({result:results[snapshot.capabilityId],prediction:snapshot.prediction,assessment:'MODEL_COMPARISON_NOT_A_GRADE'})),
+  evaluate:vi.fn<ScienceApi['evaluate']>(async(_edition,snapshot)=>({result:results[snapshot.capabilityId],prediction:snapshot.prediction,assessment:'MODEL_COMPARISON_NOT_A_GRADE'})),
   read:vi.fn(),save:vi.fn(async(_edition,snapshot)=>saved(structuredClone(snapshot))),
 };}
 afterEach(cleanup);
@@ -21,18 +21,18 @@ afterEach(cleanup);
 describe('science library consumer state',()=>{
  it('survives development StrictMode remount without losing canonical comparisons',async()=>{
   const transport=api();render(<StrictMode><ScienceLibrary me={me} editionId="fluidi" api={transport}/></StrictMode>);
-  await screen.findByRole('heading',{name:'Urto e bilancio di energia',exact:true});
+  await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
   fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});
-  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
   await screen.findByTestId('science-result');
  });
 
  it('requires prediction, uses canonical response and clears it when parameters change',async()=>{
   const transport=api();render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);
-  await screen.findByRole('heading',{name:'Urto e bilancio di energia',exact:true});
+  await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
   expect(screen.queryByTestId('science-result')).toBeNull();
   fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});
-  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
   await waitFor(()=>expect(screen.getByTestId('science-result').textContent).toContain('1 m/s'));
   expect(screen.getByTestId('science-result').textContent).toContain('non è un voto');
   fireEvent.change(screen.getByLabelText('Massa del corpo1 [kg]'),{target:{value:'3'}});
@@ -41,9 +41,9 @@ describe('science library consumer state',()=>{
  });
 
  it('discards a delayed canonical result after a parameter edit',async()=>{
-  let resolve!:(v:Comparison)=>void;const transport=api();transport.evaluate=vi.fn(()=>new Promise(r=>{resolve=r;}));
-  render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia',exact:true});
-  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione',exact:true}));
+  let resolve!:(v:Comparison)=>void;const transport=api();transport.evaluate=vi.fn<ScienceApi['evaluate']>(()=>new Promise<Comparison>(r=>{resolve=r;}));
+  render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
+  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
   fireEvent.change(screen.getByLabelText('Massa del corpo1 [kg]'),{target:{value:'3'}});
   await act(async()=>{resolve({result:results['collision-1d-v1'],prediction:'1',assessment:'MODEL_COMPARISON_NOT_A_GRADE'});});
   expect(screen.queryByTestId('science-result')).toBeNull();
@@ -51,12 +51,12 @@ describe('science library consumer state',()=>{
 
  it('saves private canonical configuration and freezes a failed request for retry',async()=>{
   const transport=api();const save=vi.fn<ScienceApi['save']>().mockRejectedValueOnce(new Error('offline')).mockImplementationOnce(async(_edition,snapshot)=>saved(snapshot));transport.save=save;
-  render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia',exact:true});
+  render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
   fireEvent.change(screen.getByLabelText('Il tuo ragionamento'),{target:{value:'Nota prima del tentativo'}});
-  fireEvent.click(screen.getByRole('button',{name:'Salva nel quaderno',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Salva nel quaderno'}));
   await screen.findByRole('alert');
   fireEvent.change(screen.getByLabelText('Il tuo ragionamento'),{target:{value:'Nuova nota ancora aperta'}});
-  fireEvent.click(screen.getByRole('button',{name:'Riprova il salvataggio in attesa',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'Riprova il salvataggio in attesa'}));
   await waitFor(()=>expect(save).toHaveBeenCalledTimes(2));
   expect(save.mock.calls[1].slice(0,4)).toEqual(save.mock.calls[0].slice(0,4));
   expect((screen.getByLabelText('Il tuo ragionamento') as HTMLTextAreaElement).value).toBe('Nuova nota ancora aperta');
@@ -74,11 +74,11 @@ describe('science library consumer state',()=>{
  });
 
  it('keeps four course views on the same definitions and resets before the different problem',async()=>{
-  const transport=api();render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia',exact:true});
+  const transport=api();render(<ScienceLibrary me={me} editionId="fluidi" api={transport}/>);await screen.findByRole('heading',{name:'Urto e bilancio di energia'});
   fireEvent.change(screen.getByLabelText('Percorso di studio'),{target:{value:'fluidi-termodinamica'}});
-  await screen.findByRole('heading',{name:'Continuità e Bernoulli',exact:true});
-  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'114000'}});fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione',exact:true}));
-  await screen.findByTestId('science-result');fireEvent.click(screen.getByRole('button',{name:'Un problema diverso',exact:true}));
+  await screen.findByRole('heading',{name:'Continuità e Bernoulli'});
+  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'114000'}});fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+  await screen.findByTestId('science-result');fireEvent.click(screen.getByRole('button',{name:'Un problema diverso'}));
   expect(screen.queryByTestId('science-result')).toBeNull();expect((screen.getByLabelText('Quota della seconda sezione [m]') as HTMLInputElement).value).toBe('2');
   expect((screen.getByLabelText('La tua previsione') as HTMLInputElement).value).toBe('');
  });

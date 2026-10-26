@@ -29,8 +29,12 @@ export function ScientificPlot({result,plotId}:{result:ScienceResult;plotId:stri
     void import('jsxgraph').then(({default:JXG})=>{
       if(!active||!node.current)return;
       try{
-        const b=JXG.JSXGraph.initBoard(id,{boundingbox:bounds,axis:true,renderer:'svg',showNavigation:false,
-          showCopyright:false,pan:{enabled:false},zoom:{enabled:false},keyboard:{enabled:false}});
+        // 1.14 documents keyboard and zoom.enabled but omits them from its
+        // board declarations. Structural options retain those runtime gates.
+        const zoom={enabled:false,wheel:false,pinchHorizontal:false,pinchVertical:false};
+        const options={boundingbox:bounds,axis:true,renderer:'svg' as const,showNavigation:false,
+          showCopyright:false,pan:{enabled:false},zoom,keyboard:{enabled:false}};
+        const b=JXG.JSXGraph.initBoard(id,options);
         board.current=b;free=value=>{JXG.JSXGraph.freeBoard(value);};
         const colors=['#a84b32','#2b6970','#565c69'];
         normalized.forEach((line,i)=>{

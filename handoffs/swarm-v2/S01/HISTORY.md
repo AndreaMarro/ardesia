@@ -78,3 +78,32 @@ applicata. REA parziale per timeout conservato, valutazione3candidati eseguita.
 Slot pesante e raccordi shared ancora da chiudere, nessun nuovoVercelS01.
 Gap espliciti: pipeline4corsi completa, fonte cross-edition, pluginlifecycle,
 Kirchhoff, approvazioni e distribuzione. Nessun grant/schema/DB/LLM parallelo.
+
+## 26 ottobre 2026 — correzione del checkpoint compiler e aggiornamento main
+
+Main992d1a0b (307 integrata) unita ordinariamente in a03f6d4b dopo94fd282f;
+nessun conflitto, file S09 importati dalla main, non riattribuiti aS01.
+Prima verifica TypeScript:FAIL su tipi S01 della fixtureJSON/mock, proprietà
+`exact` di TestingLibrary e opzioni incomplete nei tipi JSXGraph. Seconda:
+FAIL ancora su Promise<unknown> e keyboard assente in BoardAttributes.
+Correzioni ora nel codice; verifica successiva demandata alla CI sul commit,
+non dichiarata già PASS. Nessun ts-ignore o modifica dei tipi upstream.
+
+**Errore di reporting corretto:** nel comment6405836902 avevo riportato EXIT0
+e rilascio mentre il poll restituiva ancora session_id. Il processo terminò
+EXIT1. Correzione pubblicata6405839734, log distinti conservati in evidence.
+Non usare quel primo messaggio come evidenza di un typecheck riuscito.
+Tutti i processi compilerS01 sono terminati; nessun browser consumer avviato.
+
+Pressione disco fino345MiB: eliminati solo68.109.949byte di mappe, documenti e
+bundle duplicati nell'estrazione npm privata S01. Originale tarball verificato
+conservato, ricostruzione byte-esatta possibile; nessun sorgente, runtime,
+tipo o notice usato dal consumer modificato. Dettaglio pruned-extraction.json.
+Il digest REA dell'intera directory descrive l'estrazione prima del taglio;
+non viene falsamente riattribuito alla directory alleggerita.
+
+Per progredire senza aggiungere carico alMac, una sola PRdraft verso main
+porta la dipendenza ora risolvibile e le correzioni alla CI remota. Draft non
+significa READY: E2E consumer e composizione S00 restano da eseguire.
+Precedenza locale alle finestreS06/S05/S08 già richieste; nessun reset o
+interruzione dei loro processi. Restano valide le5azioni prioritarie sopra.
