@@ -19,3 +19,9 @@ La prima CI verde ff384000 e il suo browser14PASS rimangono prove del primo incr
 Commit acquisizione `267425d9`; merge ordinario della main `992d1a0b5cdf40d94259d3be698a4d6c5dcc1231` in `32b002e2914185a5d0fb7989762399daf19e06f6`, senza conflitti o forcepush. Nessuna modifica al prodotto S06 nel merge: inventario27file verificato byte per byte dopo l'allineamento. `git apply --check` della patch installerAPI e whitespace PASS.
 
 Ultimo comando dominio:37PASS in27.85s (26Core+11adapter), incluso secondo ciclo/undo. Donor41PASS e HTTP5PASS restano le verifiche separate delle stesse sorgenti; totale83 contratti pertinenti, senza dichiarare un'unica nuova esecuzione83. Web11PASS e browser25PASS sulle stesse sorgenti inventariate. Review separata: nessun altro difetto azionabile, un P2 messaggi risolto con regressioni. CI della head di consegna da leggere separatamente dopo push; non viene presunta da questi PASS locali.
+
+## Correzione di packaging dei log — stesso 26 ottobre
+
+Head6a3a07c8: igiene CI40253316401 FAIL sul solo step whitespace, causato dagli spazi/righe finali dei log allegati. Il precedente controllo locale `git diff --check` copriva solo working tree, non l'intero intervalloPR: rettifica esplicita, non un PASS di quel gate. Gli altri stepigiene, inclusi NUL/secrets/boundary/inventory, erano PASS.
+
+I sette log coinvolti sono preservati byte-esatti in `.log.gz`, compressione lossless con manifest SHA256/bytecount e roundtrip verificato. I file originali restano anche nel commit6a3a07c8. Non vengono normalizzati, tagliati o riscritti risultati storici. I riferimenti storici a quei nomi `.log` si leggono ora tramite il relativo `.log.gz` e RAW-LOGS-MANIFEST.json. Nuovo controllo `git diff --check origin/main` PASS sull'intero diff, senza cambiare gate o sorgenti prodotto. Nuova CI head necessaria.
