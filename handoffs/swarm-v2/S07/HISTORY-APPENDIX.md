@@ -12,3 +12,12 @@ NEXT: P0 S00→head/CI311+controprova→merge/postmerge; P0 S10→contrattoCore/
 ### Addendum verificato26ottobre2026
 
 ControprovaRoom completa su0d809591PASS in30.754s,3context/2pagine, sourcestesso, geometryreplacedX2/3, undo/peer/cold/privacy/revoca e mobile senzaoverflow, zeroerrori. CI0d tuttaSUCCESS: Studio2332PASS/5skipstorici, typecheck/build e Web/API/MCP/Engine/hygiene/golden/marketing/no-deploy/contract. Inventory applicativo esatto, proof in evidence/. Processi propri chiusi, slot rilasciabile. Stato candidatoREADY_FOR_INTEGRATION, non remotaDONE; commit successivi di sola consegna da controllare inCI allahead. Nessuna modifica al passato.
+
+
+## 26 ottobre2026 — CI di consegna confermata e main aggiornata
+
+Head di consegnaa9c19746e44afd6d218d6d1b6054ffc3ac8e0896: tutti i checkSUCCESS verificati live, run40251552984, marketing40251552967, no-deploy40251552952 e contract40251572752. CodeRabbit segnala review saltata/manuale richiesta: non è contato come revisione eseguita. La PR311 è OPEN non-draft. Il browser resta quello esatto0d809591; inventario applicativo Studio a9 identico.
+
+Successivamente main è avanzata a992d1a0b (S09 gestionale307). Merge ordinario6d6d503a96221e6019bc2c426d5106e9acc8a6d2: aggiunge solo Web/S09 e un test Core già integrati, nessun file Studio o istruzione AGENTS/CI cambiato. Diff Studio0d→6d vuoto verificato. La CI nuova non eredita il verde di a9; stato finale head e run sono consegnati nel checkpoint GitHub306 e rapporto outputs dopo lettura live. Questo addendum è sola memoria, preserva i risultati precedenti.
+
+S14 formula ha segnalato not-ready/rethrow e identità API/journal dopo await latexToImage. insertMath è rimasto intatto nella311; la patch non è ancora una capacità ricevuta/applicata o provata da S07. Raccordo successivo da writer assegnatoS00 con namespace MathComposerS14, senza copiare Room intero o trasferire le prove ink al nuovo flusso formule. Comunicazioni effettive6405915305 e precedenti nel rendezvous; nessuna nuova chat oPR.

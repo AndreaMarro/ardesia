@@ -71,3 +71,12 @@ Su0d809591ca47a3c87878548d59b343d62e7ff7a8: browser reale PASS, Chromium148.0.77
 CI0d809591: tutti i checkSUCCESS, run40250552612 (Web/Studio/Engine/API/MCP/hygiene/golden), marketing40250552629, no-deploy40250552631, contract40250713721. Studio typecheck e buildPASS,2332testPASS/5skip storici,222filePASS/1skip; nessun nuovo skip. Evidenza esatta in ci-0d809591.json e ci-studio-0d809591-summary.log. Source inventory SHA256 di tutti i sorgenti Studio+manifest/lock verificato invariato prima e dopo il browser; gli ulteriori commit di sola consegna non cambiano l'applicativo. Browser e proprio Vite arrestati, fixture rootStudio rimossi; riproduzione conservata soltanto nel namespace handoff. Nessun processo altrui interrotto.
 
 Stato: READY_FOR_INTEGRATION del primo incremento, non DONE della collaborazione remota. Head finale di sola evidenza e relativa CI devono essere rilette al merge; source commit e confini non cambiano. Le verifiche precedenti restano fotografie storiche.
+
+
+## 26 ottobre2026 — CI di consegna confermata e main aggiornata
+
+Head di consegnaa9c19746e44afd6d218d6d1b6054ffc3ac8e0896: tutti i checkSUCCESS verificati live, run40251552984, marketing40251552967, no-deploy40251552952 e contract40251572752. CodeRabbit segnala review saltata/manuale richiesta: non è contato come revisione eseguita. La PR311 è OPEN non-draft. Il browser resta quello esatto0d809591; inventario applicativo Studio a9 identico.
+
+Successivamente main è avanzata a992d1a0b (S09 gestionale307). Merge ordinario6d6d503a96221e6019bc2c426d5106e9acc8a6d2: aggiunge solo Web/S09 e un test Core già integrati, nessun file Studio o istruzione AGENTS/CI cambiato. Diff Studio0d→6d vuoto verificato. La CI nuova non eredita il verde di a9; stato finale head e run sono consegnati nel checkpoint GitHub306 e rapporto outputs dopo lettura live. Questo addendum è sola memoria, preserva i risultati precedenti.
+
+S14 formula ha segnalato not-ready/rethrow e identità API/journal dopo await latexToImage. insertMath è rimasto intatto nella311; la patch non è ancora una capacità ricevuta/applicata o provata da S07. Raccordo successivo da writer assegnatoS00 con namespace MathComposerS14, senza copiare Room intero o trasferire le prove ink al nuovo flusso formule. Comunicazioni effettive6405915305 e precedenti nel rendezvous; nessuna nuova chat oPR.
