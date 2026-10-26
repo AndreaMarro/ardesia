@@ -1,8 +1,11 @@
 # S09 — primo consumer gestionale tutor
 
-Stato: IMPLEMENTATO, CI verde; prova browser finale in corso. Non DONE del mandato S09.
-Base: `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`.
+Stato: READY_FOR_INTEGRATION del primo consumer. Non DONE del mandato S09.
+Base iniziale: `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`.
+Base integrata nel branch: `8e0737b114f147735ef4daf062285e1dbe4064e3` (shell S02).
+Prodotto verificato: `eb77cab5f97bd48f6a54ff252425e12b4b222554`.
 Branch: `codex/s09-tutor-operations-20261026`.
+PR: https://github.com/AndreaMarro/ardesia/pull/307
 Rendez-vous: https://github.com/AndreaMarro/ardesia/pull/306
 
 ## Risultato raggiungibile
@@ -32,7 +35,7 @@ finché il riepilogo è chiuso. Cambio identità/edizione/sessione distrugge il 
   Il browser non introduce una seconda autorità né memorizza anagrafiche localmente.
 - EditionManager, editions.py, admin_routes.py, RootApp e memoria comune non modificati.
 
-## Prove eseguite a questo checkpoint
+## Prove eseguite
 
 - Baseline Core groups+calendar_time: 37 PASS.
 - Baseline EditionManager: 5 PASS.
@@ -47,16 +50,45 @@ finché il riepilogo è chiuso. Cambio identità/edizione/sessione distrugge il 
 - Prima suite dopo aggiunta ICS: 13 PASS/2 timeout5000ms su host saturo.
   I due test riguardano apertura riepilogo e download calendario; nessun gate o
   timeout modificato. Ripetizione seriale invariata: 15 PASS in8.76s, 3 file.
+- Dopo l’aggiunta del formato con offset: 7 test puri PASS in204ms; la CI della
+  fonte eb77 include anche la nuova asserzione UI dell’orario. Ore/minuti erano
+  già presenti nella funzione condivisa: il finding iniziale «solo data» è stato
+  ritirato da S00 dopo verifica. Il helper locale rende espliciti anno e offset
+  e distingue due02:30 al cambio d’ora senza cambiare il Core.
 - CI prodotto `e9555c3ec51ffda8dc5a293c85a8eea50bd57a3e`: tutti i sette required
   SUCCESS, più golden path advisory e marketing. Run40246398330,
   contract40246398410. Il verde non si trasferisce automaticamente alla prossima head.
-- Browser reale: creazione Taylor/date/offerta dalla UI e contesa HTTP10+2 PASS;
-  percorso complessivo ancora FAIL sul selettore del modulo presenze. I primi due
-  run si fermavano su avviso/editor smontati dal normale reload; corretto il runner
-  a risposta200+stato persistito e visibile. Il terzo usa getByLabel exact sul select,
-  mentre il test canonico usa getByRole(combobox): allineato il runner, senza editare
-  il prodotto. Prova visuale/export/revoca ancora da completare nella coda host.
-  Browser plugin assente; usa Playwright già nel repository.
+- CI prodotto eb77: tutti i sette required SUCCESS, più golden advisory e
+  marketing. Run40247711333, contract40247711341, marketing40247711326.
+  Questa fonte include la main S02. I commit successivi di sole prove richiedono
+  comunque lettura dei controlli della loro head esatta.
+- Browser reale finale PASS: creazione Taylor/date/capienza/offerta dalla UI;
+  HTTP reale per la gara10+2 e retry; presenza con nota e dichiarazione manuale
+  1200 dalla UI; CSV presenze/incassi e ICS4eventi senzaATTENDEE/VALARM; disclosure
+  da tastiera;1440×1000 e390×1000 senzaoverflow; reload; altro tutor/studente403,
+  area personale dello stesso iscritto200; revoca401 e scomparsa dati privati.
+  Zero errori console/pageerror inattesi. Quattro errori401 deliberati della
+  revoca sono registrati separatamente, non nascosti.
+- Primi tre browser FAIL conservati: due asserzioni del runner su avviso/editor
+  smontati dal normale reload, poi getByLabel exact sul select. Il runner finale
+  verifica200+stato persistito/visibile e usa lo stesso getByRole(combobox) del
+  test browser canonico. Nessuna modifica ai registri Core/UI o a gate/timeout
+  preesistenti per ottenere PASS. Le prove fallite non sono accettazioni.
+- Browser plugin assente; Playwright1.60.0 già nel repository. Ambiente solo
+  loopback `http://127.0.0.1:54909`, proxy API54919, SQLite e identità sintetiche.
+  Screenshot del primo viewport a entrambe le larghezze ispezionati; niente
+  Safari/device vero, ascolto umano o certificazione WCAG dedotta dai test.
+- Prove/hash: `browser-evidence.json`, `gestionale-1440.png`, `gestionale-390.png`.
+
+## Accettazione specifica: passaggi e residui
+
+| Criterio | Evidenza | Stato |
+| --- | --- | --- |
+| Ultimo posto, retry e attesa | Una sola riserva,10iscritti+2attesa, retry stabile | PASS del caso; cancellazione richieste non implementata |
+| Date e audit/presenze | Quattro date salvate; conflitti e rinvio con iscritti rifiutati senza perdita | PARZIALE: riconferma/rinvio attivo mancano |
+| Incassi manuali | UI1200, Core storico/receipt; nessuna transazione o fattura | PASS nel test sintetico |
+| Isolamento tutor/gruppi | Owner guard; altro tutor/student403 e studente iscritto200 | PASS locale |
+| Gestione completa dalla UI | Crea→date→offerta→presenza/nota→incasso→export→reload | PARZIALE del mandato: cancellazione/recuperi/disponibilità mancano |
 
 ## Riproduzione privata
 
@@ -99,6 +131,8 @@ il solo mount e il namespace, senza migrazioni né perdita di dati.
    complessivi coerenti: definire semantica/retention con S10/S11. Oggi disponibilità
    non significa agenda completa dell’host e l’export incassi è per pagina.
 
-Merge/deployment: non eseguiti a questo checkpoint. Nessuna certificazione del
+Merge/deployment S09: non eseguiti in questa consegna; integrazione sequenziale S00.
+Rilasciato lo slot dopo il browser finale, nessuna suite/build/Chromium attiva.
+Nessuna certificazione del
 backend remoto, pagamento verificato, approvazione scientifica o rilascio pubblico.
 L’implementazione non dichiara completato il mandato gestionale esteso.
