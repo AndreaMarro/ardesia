@@ -1,0 +1,18 @@
+--- a/apps/web/src/components/SourceViewer.tsx
++++ b/apps/web/src/components/SourceViewer.tsx
+@@ -1,4 +1,5 @@
+-import { useEffect, useRef, useState } from "react";
++import { lazy, Suspense, useEffect, useRef, useState } from "react";
++const LivingSourceReference = lazy(() => import("../features/living-sources/LivingSourceReference").then(m => ({default:m.LivingSourceReference})));
+ import {
+   describeError,
+   studyRequest,
+@@ -109,6 +110,8 @@
+     resource.revisionId !== reference.revisionId
+   )
+     return <Loading>Sto aprendo la revisione originale…</Loading>;
++  if (resource.kind === "living-source" || resource.kind === "living-annotation")
++    return <Suspense fallback={<p>Apertura della fonte…</p>}><LivingSourceReference reference={reference} kind={resource.kind} /></Suspense>;
+   const passage = readLessonPassage(resource);
+   return (
+     <section className="source-viewer">

@@ -1,0 +1,69 @@
+PASS outline and thumbnail navigation
+PASS compiled real Materials and original PDF render
+PASS upstream PDF find controller searches native text
+PASS teacher native-text equation plus structured formula saved in Core
+PASS student real activity delivery opens exact shared annotation via SourceViewer
+PASS personal note cold page reload restores exact source and selection
+PASS graphical page region stored separately from native text
+PASS historical annotation revision preserves page and zoom/pan resume
+PASS actual existing NotebookEditor creates and persists personal notebook
+PASS UI export/import includes original bytes and exact origin revision
+PASS document JavaScript and active link annotations never execute
+PASS two document versions keep historical byte identity
+PASS responsive keyboard reduced-motion 1440
+PASS responsive keyboard reduced-motion 820
+PASS responsive keyboard reduced-motion 390
+PASS accessible native-text and keyboard region fallback
+PASS peer cannot access personal annotation
+PASS session revocation removes private reader and original URL
+PASS server process restart restores source, note and notebook from same Core
+PASS deleted exact source removes the reader without latest fallback
+ExpectError: expect(received).toEqual(expected) // deep equality
+
+- Expected  -  1
++ Received  + 13
+
+- Array []
++ Array [
++   Object {
++     "location": Object {
++       "column": 2448,
++       "columnNumber": 2448,
++       "line": 0,
++       "lineNumber": 0,
++       "url": "http://127.0.0.1:5419/assets/pdf_viewer-Cc1LVcBP.js",
++     },
++     "message": "offsetParent is not set -- cannot scroll",
++     "stage": "actual existing NotebookEditor creates and persists personal notebook",
++   },
++ ]
+    at captureRawStack (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright-core/lib/coreBundle.js:3130:17)
+    at callMatcherAsStep (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12873:57)
+    at Object.toEqual (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12863:23)
+    at /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/handoffs/swarm-v2/S18/proof/browser.mjs:56:18 {
+  matcherResult: {
+    actual: [ [Object] ],
+    expected: [],
+    message: 'expect(received).toEqual(expected) // deep equality\n' +
+      '\n' +
+      '- Expected  -  1\n' +
+      '+ Received  + 13\n' +
+      '\n' +
+      '- Array []\n' +
+      '+ Array [\n' +
+      '+   Object {\n' +
+      '+     "location": Object {\n' +
+      '+       "column": 2448,\n' +
+      '+       "columnNumber": 2448,\n' +
+      '+       "line": 0,\n' +
+      '+       "lineNumber": 0,\n' +
+      '+       "url": "http://127.0.0.1:5419/assets/pdf_viewer-Cc1LVcBP.js",\n' +
+      '+     },\n' +
+      '+     "message": "offsetParent is not set -- cannot scroll",\n' +
+      '+     "stage": "actual existing NotebookEditor creates and persists personal notebook",\n' +
+      '+   },\n' +
+      '+ ]',
+    name: 'toEqual',
+    pass: false
+  }
+}

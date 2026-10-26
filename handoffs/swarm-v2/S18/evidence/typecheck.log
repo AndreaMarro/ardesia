@@ -1,0 +1,20 @@
+
+> @ardesia/web@0.1.0 typecheck
+> tsc -b --noEmit
+
+src/features/living-sources/api.ts(1,41): error TS2307: Cannot find module '../../../../../studio/src/study/apiClient' or its corresponding type declarations.
+src/features/living-sources/LivingSourceReader.tsx(3,36): error TS2307: Cannot find module '../../../../../studio/src/study/sessionBoundary' or its corresponding type declarations.
+src/features/living-sources/LivingSourceReader.tsx(4,32): error TS2307: Cannot find module '../../../../../studio/src/study/uploadOriginal' or its corresponding type declarations.
+src/features/living-sources/LivingSourceReader.tsx(22,17): error TS2554: Expected 1 arguments, but got 0.
+src/features/living-sources/LivingSourceReader.tsx(61,7): error TS2322: Type 'undefined' is not assignable to type '{ fingerprint: string; key: string; }'.
+src/features/living-sources/LivingSources.tsx(3,32): error TS2307: Cannot find module '../../../../../studio/src/study/uploadOriginal' or its corresponding type declarations.
+src/features/living-sources/pdfRuntime.ts(25,63): error TS2353: Object literal may only specify known properties, and 'isEvalSupported' does not exist in type 'DocumentInitParameters'.
+src/features/living-sources/pdfRuntime.ts(30,59): error TS2561: Object literal may only specify known properties, but 'externalLinkEnabled' does not exist in type 'PDFLinkServiceOptions'. Did you mean to write 'externalLinkRel'?
+src/features/living-sources/PdfSurface.tsx(15,92): error TS2345: Argument of type 'null' is not assignable to parameter of type '{ title: string; bold: boolean; italic: boolean; color: Uint8ClampedArray<ArrayBufferLike>; dest: string | any[] | null; url: string | null; unsafeUrl: string | undefined; newWindow: boolean | undefined; count: number | undefined; items: any[]; }[] | (() => { ...; }[])'.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+npm error command failed
+npm error command sh -c tsc -b --noEmit

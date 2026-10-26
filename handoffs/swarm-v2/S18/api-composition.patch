@@ -1,0 +1,12 @@
+--- a/services/study-api/study_api/app.py
++++ b/services/study-api/study_api/app.py
+@@ -535,6 +535,9 @@
+     from lessonos.study.calendar_mock import MockCalendar
+     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
+
++    from .living_sources import install_living_sources
++    install_living_sources(app, authenticate, store_dependency, Path(db_path).parent/'blobs')
++
+     if studio_frontend:
+         from fastapi.staticfiles import StaticFiles
+         app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')

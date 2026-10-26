@@ -1,0 +1,118 @@
+{
+  "status": "FAIL",
+  "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"location\": Object {\n+       \"column\": 2448,\n+       \"columnNumber\": 2448,\n+       \"line\": 0,\n+       \"lineNumber\": 0,\n+       \"url\": \"http://127.0.0.1:5419/assets/pdf_viewer-Cc1LVcBP.js\",\n+     },\n+     \"message\": \"offsetParent is not set -- cannot scroll\",\n+     \"stage\": \"actual existing NotebookEditor creates and persists personal notebook\",\n+   },\n+ ]",
+  "checks": [
+    {
+      "name": "outline and thumbnail navigation",
+      "details": true
+    },
+    {
+      "name": "compiled real Materials and original PDF render",
+      "details": {
+        "url": "http://127.0.0.1:5419/?view=materials&edition=fluidi&living=%7B%22resourceId%22%3A%22d3965b66184140f18e1952b2921af63a%22%2C%22revisionId%22%3A%2242ebd3aa2fcc45afb5b45be0bcf17349%22%2C%22kind%22%3A%22living-source%22%2C%22lesson%22%3A%7B%22lessonId%22%3A%22idrostatica%22%2C%22activityId%22%3A%22poiseuille-v1%22%7D%7D",
+        "pages": 2
+      }
+    },
+    {
+      "name": "upstream PDF find controller searches native text",
+      "details": "1 / 1"
+    },
+    {
+      "name": "teacher native-text equation plus structured formula saved in Core",
+      "details": "44513af0a6ae45759931e7cb2275e972"
+    },
+    {
+      "name": "student real activity delivery opens exact shared annotation via SourceViewer",
+      "details": 200
+    },
+    {
+      "name": "personal note cold page reload restores exact source and selection",
+      "details": "afb30c16addf44a1a3340081829cf428"
+    },
+    {
+      "name": "graphical page region stored separately from native text",
+      "details": [
+        [
+          0.05555555555555555,
+          0.052083333333333336,
+          0.09722222222222224,
+          0.07291666666666666
+        ]
+      ]
+    },
+    {
+      "name": "historical annotation revision preserves page and zoom/pan resume",
+      "details": "34cebbec83db4672b3aa2843bac43d2a"
+    },
+    {
+      "name": "actual existing NotebookEditor creates and persists personal notebook",
+      "details": "dbb9dc213fa740409de3329356896ad2"
+    },
+    {
+      "name": "UI export/import includes original bytes and exact origin revision",
+      "details": "10fb4480302246a6958f52c8b90210fe"
+    },
+    {
+      "name": "document JavaScript and active link annotations never execute",
+      "details": true
+    },
+    {
+      "name": "two document versions keep historical byte identity",
+      "details": "b26b51dde93b48bf828669dabcacbb23"
+    },
+    {
+      "name": "responsive keyboard reduced-motion 1440",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 820",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 390",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "accessible native-text and keyboard region fallback",
+      "details": {
+        "reducedMotion": true
+      }
+    },
+    {
+      "name": "peer cannot access personal annotation",
+      "details": 403
+    },
+    {
+      "name": "session revocation removes private reader and original URL",
+      "details": true
+    },
+    {
+      "name": "server process restart restores source, note and notebook from same Core",
+      "details": true
+    },
+    {
+      "name": "deleted exact source removes the reader without latest fallback",
+      "details": true
+    }
+  ],
+  "errors": [
+    {
+      "message": "offsetParent is not set -- cannot scroll",
+      "stage": "actual existing NotebookEditor creates and persists personal notebook",
+      "location": {
+        "url": "http://127.0.0.1:5419/assets/pdf_viewer-Cc1LVcBP.js",
+        "line": 0,
+        "column": 2448,
+        "lineNumber": 0,
+        "columnNumber": 2448
+      }
+    }
+  ],
+  "external": []
+}

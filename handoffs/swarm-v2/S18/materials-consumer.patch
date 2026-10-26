@@ -1,0 +1,26 @@
+--- a/apps/web/src/features/Materials.tsx
++++ b/apps/web/src/features/Materials.tsx
+@@ -1,4 +1,5 @@
+-import { useState } from "react";
++import { lazy, Suspense, useState } from "react";
++const LivingSources = lazy(() => import("./living-sources/LivingSources").then(m => ({default:m.LivingSources})));
+ import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
+ import { renderPortableNotebook } from "../integrations/notebook/PortableNotebook";
+ import { CoursePackDisclosure } from "../components/CoursePackDisclosure";
+@@ -19,7 +20,7 @@
+ }) {
+   const tutor = me.role === "teacher",
+     resources = data.resources.filter(
+-      (r) => r.visibility === "group" || r.ownerId === me.id,
++      (r) => r.kind !== "living-source" && r.kind !== "living-annotation" && (r.visibility === "group" || r.ownerId === me.id),
+     );
+   const [selected, setSelected] = useState<string | null>(null);
+   const current = resources.find((r) => r.id === selected);
+@@ -44,6 +45,7 @@
+             : "I materiali del gruppo e le tue note private. Ogni revisione conserva la sua provenienza."}
+         </p>
+       </header>
++      <Suspense fallback={<p>Preparazione delle fonti…</p>}><LivingSources me={me} data={data} onUpdate={onUpdate} /></Suspense>
+       <div className="materials-layout">
+         <aside
+           aria-label={tutor ? "Biblioteca del gruppo" : "Fonti disponibili"}

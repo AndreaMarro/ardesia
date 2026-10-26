@@ -1,0 +1,27 @@
+{
+  "status": "FAIL",
+  "error": "Error: expect(received).toEqual(expected) // deep equality\n\nExpected: {\"activityId\": \"poiseuille-v1\", \"lessonId\": \"idrostatica\"}\nReceived: null",
+  "checks": [
+    {
+      "name": "compiled real Materials and original PDF render",
+      "details": {
+        "url": "http://127.0.0.1:5419/?view=materials&edition=fluidi&living=%7B%22resourceId%22%3A%2280c1c09b2f4b4d928f9c2b025c20b87d%22%2C%22revisionId%22%3A%228255687643f5489e8010ca542d7c5e6f%22%2C%22kind%22%3A%22living-source%22%2C%22lesson%22%3A%7B%22lessonId%22%3A%22idrostatica%22%2C%22activityId%22%3A%22poiseuille-v1%22%7D%7D",
+        "pages": 2
+      }
+    },
+    {
+      "name": "upstream PDF find controller searches native text",
+      "details": "1 / 1"
+    },
+    {
+      "name": "teacher native-text equation plus structured formula saved in Core",
+      "details": "38fad41576944ab3acf2984a7e8dc9dc"
+    },
+    {
+      "name": "student real activity delivery opens exact shared annotation via SourceViewer",
+      "details": 200
+    }
+  ],
+  "errors": [],
+  "external": []
+}

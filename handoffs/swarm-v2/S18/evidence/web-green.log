@@ -1,0 +1,25 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+
+ ❯ src/features/living-sources/model.test.ts (3 tests | 1 failed) 90ms
+     × inverts rotated CropBox coordinates using the existing notebook geometry 47ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/living-sources/model.test.ts > living source selectors > inverts rotated CropBox coordinates using the existing notebook geometry
+AssertionError: expected 0.19999999999999998 to be close to 0.4, received difference is 0.20000000000000004, but expected 0.005
+ ❯ src/features/living-sources/model.test.ts:11:25
+      9|     const rects=normalizedRects(geometry, [[40,20,80,40]]);
+     10|     expect(rects[0][0]).toBeCloseTo(.1); expect(rects[0][1]).toBeClose…
+     11|     expect(rects[0][2]).toBeCloseTo(.4); expect(rects[0][3]).toBeClose…
+       |                         ^
+     12|   });
+     13|   it('keeps explicit UTF16 offsets and quote context, including surrog…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  16:35:22
+   Duration  14.48s (transform 2.01s, setup 0ms, import 2.87s, tests 90ms, environment 0ms)

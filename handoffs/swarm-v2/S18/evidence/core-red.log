@@ -1,0 +1,16 @@
+
+==================================== ERRORS ====================================
+_____________ ERROR collecting tests/study/test_living_sources.py ______________
+ImportError while importing test module '/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/packages/engine/tests/study/test_living_sources.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/tests/study/test_living_sources.py:9: in <module>
+    from lessonos.study.living_sources import save_source, read_source, read_original, save_annotation, read_annotation, export_bundle, import_bundle
+E   ImportError: cannot import name 'save_source' from 'lessonos.study.living_sources' (unknown location)
+=========================== short test summary info ============================
+ERROR packages/engine/tests/study/test_living_sources.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 13.76s
