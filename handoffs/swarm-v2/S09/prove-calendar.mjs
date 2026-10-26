@@ -10,7 +10,7 @@ const access = JSON.parse(await readFile(process.env.ARDESIA_DEMO_ACCESS, 'utf8'
 assert.equal(access.synthetic, true);
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, ...(process.env.ARDESIA_REA_PAUSE ? { args: ['--remote-debugging-port=54929'] } : {}) });
-const context = await browser.newContext({ baseURL, viewport: { width: 1440, height: 1100 }, timezoneId: 'Pacific/Honolulu', locale: 'it-IT', reducedMotion: 'reduce' });
+const context = await browser.newContext({ baseURL, viewport: { width: 1440, height: 1100 }, hasTouch: true, timezoneId: 'Pacific/Honolulu', locale: 'it-IT', reducedMotion: 'reduce' });
 let page, revoking = false;
 const errors = [], consoleErrors = [], expectedRejections = [];
 const evidence = { synthetic: true, browserTimezone: 'Pacific/Honolulu', calendarTimezone: 'Europe/Rome', checks: [] };
@@ -33,9 +33,11 @@ try {
   page.on('console', (message) => { if (message.type() === 'error') (revoking && /status of 401/.test(message.text()) ? expectedRejections : consoleErrors).push(message.text()); });
   await page.goto('/?view=courses&edition=fluidi');
   const disclosure = page.getByText('Calendario delle edizioni', { exact: true });
+  const loadStarted = performance.now();
   await disclosure.focus(); await page.keyboard.press('Enter');
   const calendar = page.getByRole('region', { name: 'Calendario delle tue edizioni', exact: true });
   await expect(calendar).toBeVisible();
+  evidence.firstOpenMs = Math.round(performance.now() - loadStarted);
   await calendar.getByLabel('Vai alla data', { exact: true }).fill('2026-10-25');
   await calendar.getByRole('button', { name: 'Lista', exact: true }).click();
   const events = calendar.locator('.tutor-calendar-event');
@@ -64,11 +66,17 @@ try {
   await expect(heading).toHaveText(before);
   for (const width of [1440, 820, 390]) {
     await page.setViewportSize({ width, height: 1100 });
+    await calendar.getByRole('button', { name: width === 1440 ? 'Mese' : width === 820 ? 'Settimana' : 'Lista', exact: true }).click();
     await calendar.scrollIntoViewIfNeeded();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await page.screenshot({ path: path.join(output, `calendario-${width}.png`) });
   }
-  evidence.checks.push('All four donor views, previous/next roundtrip; 1440/820/390 no page overflow');
+  await calendar.getByRole('button', { name: 'Settimana', exact: true }).tap();
+  const grid = calendar.getByLabel('Griglia calendario, scorribile nelle viste orarie', { exact: true });
+  assert.equal(await grid.evaluate((element) => element.scrollWidth > element.clientWidth), true);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await calendar.getByRole('button', { name: 'Lista', exact: true }).tap();
+  evidence.checks.push('All four donor views, previous/next roundtrip; 1440/820/390 no page overflow; mobile week scrolls inside calendar and touch switches view');
   await page.reload(); await disclosure.click();
   await expect(calendar).toBeVisible();
   await calendar.getByLabel('Vai alla data', { exact: true }).fill('2026-10-25');
