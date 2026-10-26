@@ -248,3 +248,24 @@ calendar-recovery-20261026, branch codex/s09-calendar-recovery-20261026.
 La correzione va alla STESSA320 con push fast-forward, nessuna nuovaPR e nessun
 branchreset/forcepush; il checkout originale potrà incorporarla normalmente
 quando iCloud restituisce i file. Terminati soltanto lettori propri bloccati.
+
+## Composizione privata completata — 26/10/2026
+
+Fonte27c841c6 + SOLApatchdipendenze3500827e in directoryprivata nonGit,
+non nei manifestdella320. npmci --offline --ignore-scripts:149package/4s;
+typecheckWeb verificato EXIT0;19testnamespace/4filePASS in2,89s; buildWebPASS
+in1,02s. Calendario lazy276,13kB/76,03kBgzip; notices presenti nel chunk
+verificate. Warningchunk500kB sui chunk preesistenti MathLive/PDF, nessun
+aumento limite o soppressione. Log e dettagli in composition/.
+
+Questo risolve i difetti locali della CI e verifica che la patchconcreta basta
+al consumer. Non è il verdeGitHub della320 e non applica i file condivisi:
+restaPENDING_S00_DEPENDENCY_PATCH, poi CIesatta/integrata. Sorgenti del consumer
+E2E542921b6 invariate, eccetto blankEOF nel notice; non affermo identitàbyte
+dell’intero inventario apps dopo questa correzione. Nessun browser ripetuto per
+un cambio di soli tipi del test e whitespace del notice chiuso.
+
+Prossimi4passi:1)S00 applica patchduefile e verifica CI320 esatta;2)integrazione
+sequenziale e controprova su main;3)ambiente remoto autenticato daS10 senza
+trasferire la prova locale;4)disponibilità/riprogrammazione con riconferma e
+oracoloICS test-only in batchsuccessivi. Storico precedente intatto.
