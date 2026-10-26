@@ -72,7 +72,9 @@ try {
     await page.screenshot({ path: path.join(args.output, 'web-' + width + '.png'), fullPage: true });
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto(origin + '/studio/');
+  const studioConsole = [];
+  page.on('console', message => { if (message.type() === 'error') studioConsole.push(message.text()); });
+  await page.goto(origin + '/studio');
   await page.getByRole('button', { name: 'formula', exact: true }).click();
   await page.locator('math-field').waitFor();
   const loaded = page.waitForResponse(response => response.url() === origin + '/studio/mathjax/tex-svg-full.js');
@@ -85,6 +87,7 @@ try {
   await page.reload();
   await page.getByRole('button', { name: 'formula', exact: true }).waitFor();
   check('no_page_errors', errors.length === 0, errors);
+  check('no_studio_console_errors', studioConsole.length === 0, studioConsole);
   check('no_external_runtime_requests', external.length === 0, [...new Set(external)]);
   report.status = 'PASS';
 } catch (error) {

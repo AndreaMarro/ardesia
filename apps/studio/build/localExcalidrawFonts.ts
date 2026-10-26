@@ -17,7 +17,8 @@ export function localExcalidrawFonts(): Plugin {
     name: "ardesia-local-excalidraw-fonts",
     configureServer(server) {
       server.middlewares.use((request, response, next) => {
-        const name = (request.url ?? "").split("?")[0].replace(/^\//, "")
+        const path = (request.url ?? "").split("?")[0]!
+        const name = path.startsWith(server.config.base) ? path.slice(server.config.base.length) : ""
         const file = files.get(name)
         if (!file) return next()
         response.setHeader("Content-Type", "font/woff2")

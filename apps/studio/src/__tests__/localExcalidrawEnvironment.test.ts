@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { expect, it } from "vitest"
-import { removeHostedFirebaseConfig } from "../../build/localExcalidrawEnvironment"
+import { removeHostedFirebaseConfig, localFontFallback } from "../../build/localExcalidrawEnvironment"
 
 it("removes the hosted app config from the actual locked component without allowing credentials", () => {
   const root = fileURLToPath(new URL("../../node_modules/@excalidraw/excalidraw/", import.meta.url))
@@ -14,4 +14,13 @@ it("removes the hosted app config from the actual locked component without allow
   expect(embedded).not.toMatch(/\bAIza[0-9A-Za-z_-]{35}\b/)
   expect(embedded).not.toContain('"authDomain":"excalidraw-room-persistence.firebaseapp.com"')
   expect(removeHostedFirebaseConfig("export const other = 'unchanged'")).toBe("export const other = 'unchanged'")
+})
+
+it.each(["/", "/studio/"])("replaces the locked CDN font fallback with local assets at %s", (base) => {
+  const root = fileURLToPath(new URL("../../node_modules/@excalidraw/excalidraw/", import.meta.url))
+  const original = readFileSync(`${root}/dist/prod/chunk-K2UTITRG.js`, "utf8")
+  expect(original).toContain("https://esm.sh/")
+  const embedded = localFontFallback(original, base)
+  expect(embedded).not.toContain("https://esm.sh/")
+  expect(embedded).toContain(JSON.stringify(base + "excalidraw-assets/"))
 })
