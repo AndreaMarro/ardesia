@@ -67,3 +67,8 @@ S00 ha congelato la317 su2e9cea03 e prende il raccordo installer API, RootApp e 
 ### S00: correzione successiva alla prova796
 
 La prova796 resta storica sulla build4. Review visuale indipendente trovaP2 banner sovrapposto: CSS corretto e RED reale conservato, nuovo build/GREEN richiesti prima del merge314. Gate locale2311PASS/2FAIL non va nascosto dietro7requiredCIverdi; controprova mostra errore di commit durante test/SHA compilata e52miratiPASS aHEADferma. MathJax15,7s contro15s non completamente attribuito. Leggere nuovo handoff/rendezvous314 e mantenereHEADimmutabile durante test. Nessuna soglia,gate ocronologia modificata; quattro corsi ancora0/200.
+
+
+## S00 — checkpoint800HTTPS, decisione diagnostica richiesta
+
+Nuova preview privata https://ardesia-fisica-preview-bjr7xic5r-andreas-projects-6d4e9791.vercel.app/ops/release/ , deploymentdpl_G2Tqz6efx2PMHv3n9B71VZVYS3wy, fonte15825e70,795locali/800HTTPS e7requiredCI40294401864 verdi; grant revocato e produzione invariata. Vecchia preview796 resta storico distinto. Due gate locali falliti, ultimo2312/1 su localMathJax, replayNON_RUN; non nasconderlo dietroCIverde. Dopo regola stopAGENTSStudio§5,314 è temporaneamenteBLOCKED_HUMAN_DECISION: leggere handoffs/swarm-v2/S00/DIAGNOSTIC-DECISION.md e patch byte-equivalente NON applicata. Prima misurare build/confronto e bytecorrotto, nessuna soglia alzata o rerun identico; poi ciclo autorizzato e chiusura con merge/postCI.317 resta stessaPR congelata2e9cea03 per raccordoS00 dopo314. Quattro corsi ancora0/200, Core remoto503 e limite licenzaStudio invariati; seguire5task ultimaRUNLOG e memoriaappend-only.
