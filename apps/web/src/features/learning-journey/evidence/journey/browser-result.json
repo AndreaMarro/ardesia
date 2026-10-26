@@ -1,0 +1,134 @@
+{
+  "origin": "http://127.0.0.1:5468",
+  "checks": [
+    {
+      "name": "actual App + ProductShell + proposed Classroom mount loads",
+      "status": "PASS"
+    },
+    {
+      "name": "MathLive runtime not requested on opening the journey",
+      "status": "PASS"
+    },
+    {
+      "name": "exact source revision + keyboard focus trap + Escape restore",
+      "status": "PASS"
+    },
+    {
+      "name": "checkpoint persisted by real Core",
+      "status": "PASS",
+      "checkpointId": "5fd60ab9b3b94a09bf1627a2e0c4b5eb"
+    },
+    {
+      "name": "existing PhysicsLab: keyboard manipulation and actual Core evaluation",
+      "status": "PASS"
+    },
+    {
+      "name": "network unavailable: answer preserved and save retry succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "cold reopen of lost response: same frozen request and exactly one Core receipt",
+      "status": "PASS",
+      "receiptId": "dd30340c43b244b9a4d309465ca12475"
+    },
+    {
+      "name": "synthetic tutor command + actual Core feedback read in same view",
+      "status": "PASS"
+    },
+    {
+      "name": "peer cannot read private checkpoint or receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "different canonical step opens without previous answer",
+      "status": "PASS"
+    },
+    {
+      "name": "refresh restores second step receipt and exact source",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 360 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 390 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 820 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 1440 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "focus mode + nested source/help dialog + Escape restores focus",
+      "status": "PASS"
+    },
+    {
+      "name": "real shell navigation away and return preserves current receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "S02 attributed navigation patch: Back/Forward and checkpoints hidden in generic Materials",
+      "status": "PASS"
+    },
+    {
+      "name": "missing revision: real 404 and no substitution by current source",
+      "status": "PASS"
+    },
+    {
+      "name": "revocation: UI erased and original receipt API rejects session",
+      "status": "PASS"
+    },
+    {
+      "name": "no unexpected browser runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "expectedNetwork": [
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "requests": [
+    "/assets/index-Dt4pchxO.js",
+    "/assets/jsx-runtime-B6doAwFl.js",
+    "/assets/api-CG4KpFaG.js",
+    "/assets/Feedback-Dw7RV_Ry.js",
+    "/assets/publicPreview-BBvblbRn.js",
+    "/assets/PoiseuilleVisual-C-39Wdge.js",
+    "/assets/PublicLessonDemo-CKa4FcH6.js",
+    "/assets/sessionDraftCache-C2exqmLf.js",
+    "/assets/PhysicsLab-BFq3H1CY.js",
+    "/assets/index-CmgHQAvR.css",
+    "/assets/Classroom-DZ99CAm9.js",
+    "/assets/LessonPassage-Cq703WdG.js",
+    "/assets/lessonPassageReference-dDRLfzbU.js",
+    "/assets/ScientificNotebooks-Dcr-4Y7v.js",
+    "/assets/SourceViewer-D4ERgedF.js",
+    "/assets/FormulaField-BOuMjmKd.js",
+    "/assets/FormulaPreview-bj-OLRCe.js",
+    "/assets/SourceViewer-BVBSLj-P.css",
+    "/assets/useResourceComposer-BObBmsXv.js",
+    "/assets/Classroom-C7XcZqB3.css",
+    "/assets/LearningJourney-D8rUcz1O.js",
+    "/assets/PredictionEvidence-B6o-lx-k.js",
+    "/assets/LearningJourney-Bj-LWTEn.css",
+    "/assets/mathField-DPjB_4id.js",
+    "/assets/mathField-BZGFzauE.css",
+    "/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+    "/assets/KaTeX_Math-Italic-t53AETM-.woff2",
+    "/assets/Materials-Cn_JWOTP.js",
+    "/assets/CoursePackDisclosure-gHJ4C11v.js",
+    "/assets/PortableNotebook-ZT0zjaZv.js",
+    "/assets/Login-CawzJccg.js"
+  ],
+  "browser": "148.0.7778.96",
+  "limitation": "Synthetic local Core, Chromium emulation; not a user study or scientific approval. Proposed Classroom patch composed only in proof build."
+}

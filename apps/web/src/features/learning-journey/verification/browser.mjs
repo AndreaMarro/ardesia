@@ -1,0 +1,198 @@
+import { chromium } from 'playwright';
+import { expect } from '@playwright/test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+const origin = process.env.S20_ORIGIN || 'http://127.0.0.1:5460';
+const access = JSON.parse(await fs.readFile(path.join(process.env.S20_PRIVATE_DIR, 'access.json'), 'utf8'));
+const out = process.env.S20_EVIDENCE_DIR;
+await fs.mkdir(out, { recursive: true });
+const checks = [], errors = [], expectedNetwork = [], requests = [];
+const browser = await chromium.launch({ headless: true });
+const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+let page = await context.newPage();
+function observe(p) {
+  p.on('pageerror', error => errors.push(error.message));
+  p.on('console', msg => { if (msg.type() === 'error') {
+    const text = msg.text();
+    if (/net::ERR_|Failed to load resource/.test(text)) expectedNetwork.push(text); else errors.push(text);
+  } });
+  p.on('request', req => { if (req.url().includes('/assets/')) requests.push(new URL(req.url()).pathname); });
+}
+observe(page);
+const check = (name, detail = {}) => { checks.push({ name, status: 'PASS', ...detail }); console.log('PASS', name); };
+const shot = name => page.screenshot({ path: path.join(out, name + '.png'), fullPage: true, animations: 'disabled' });
+const saved = () => page.getByText('Salvato nel tuo spazio', { exact: true }).waitFor();
+async function login(ctx, token) {
+  const r = await ctx.request.post(origin + '/study/session', { data: { token } }); assert.equal(r.status(), 200);
+}
+try {
+  await login(context, access.student);
+  await page.goto(origin + '/?view=classroom&edition=fluidi');
+  await page.getByTestId('learning-journey').waitFor();
+  assert.match(await page.title(), /Ardesia/i);
+  await page.getByRole('heading', { level: 1 }).waitFor();
+  check('actual App + ProductShell + proposed Classroom mount loads');
+  assert(!requests.some(url => /mathField-.*\.js/.test(url)));
+  check('MathLive runtime not requested on opening the journey');
+  await page.getByRole('combobox', { name: 'Fonte del percorso' }).selectOption(access.source.id);
+  await page.getByRole('button', { name: 'Apri la fonte', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'La spiegazione originale' });
+  await dialog.getByText(access.source.text, { exact: true }).waitFor();
+  for (let i = 0; i < 10; i++) {
+    await page.keyboard.press('Tab');
+    assert(await dialog.evaluate(el => el.contains(document.activeElement)));
+  }
+  await shot('source-1440');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Apri la fonte', exact: true })).toBeFocused();
+  check('exact source revision + keyboard focus trap + Escape restore');
+  await shot('prediction-1440');
+  await page.getByRole('textbox', { name: 'Rapporto previsto', exact: true }).fill('16');
+  await page.getByRole('combobox', { name: 'Grandezza fissata', exact: true }).selectOption('pressure');
+  await page.getByRole('button', { name: 'Salva e riprendi', exact: true }).click(); await saved();
+  const checkpointId = new URL(page.url()).searchParams.get('journey'); assert(checkpointId);
+  check('checkpoint persisted by real Core', { checkpointId });
+  await page.getByRole('button', { name: 'Sperimenta', exact: true }).click();
+  const lab = page.locator('.physics-lab'); await lab.waitFor();
+  const range = lab.getByRole('slider', { name: 'Rapporto dei raggi' });
+  const before = await range.inputValue(); await range.focus(); await page.keyboard.press('ArrowLeft');
+  assert.notEqual(await range.inputValue(), before);
+  await lab.getByRole('textbox', { name: 'Rapporto previsto' }).fill('16');
+  await lab.getByRole('button', { name: 'Metti alla prova', exact: true }).click();
+  await lab.getByTestId('physics-ratio').waitFor();
+  await shot('model-1440');
+  check('existing PhysicsLab: keyboard manipulation and actual Core evaluation');
+  await page.getByRole('button', { name: 'Torna alla tua risposta', exact: true }).click();
+  const reasoning = 'Mantengo Δp costante. Raddoppiando il raggio, la portata cresce di 2 alla quarta, cioè 16 volte.';
+  await page.getByRole('textbox', { name: 'Il tuo ragionamento' }).fill(reasoning);
+  await page.getByRole('button', { name: 'Scrivi una formula', exact: true }).click();
+  await page.getByText('Codice LaTeX', { exact: true }).first().click();
+  await page.getByRole('textbox', { name: 'Codice LaTeX', exact: true }).fill(String.raw`\frac{Q}{Q_0}=2^4=16`);
+  await shot('response-1440');
+  await context.setOffline(true);
+  await page.getByRole('button', { name: 'Salva e riprendi', exact: true }).click();
+  await page.getByText(/Salvataggio non confermato/).waitFor();
+  assert.equal(await page.getByRole('textbox', { name: 'Il tuo ragionamento' }).inputValue(), reasoning);
+  await shot('offline-1440');
+  await context.setOffline(false);
+  await page.getByRole('button', { name: 'Salva e riprendi', exact: true }).click(); await saved();
+  check('network unavailable: answer preserved and save retry succeeds');
+  let lost = false;
+  await page.route('**/study/submissions', async route => {
+    if (lost || route.request().method() !== 'POST') return route.continue();
+    const response = await route.fetch(); assert.equal(response.status(), 200); lost = true;
+    await route.abort('failed'); // real Core committed; only the HTTP response is lost.
+  });
+  await page.getByRole('button', { name: 'Invia il tentativo', exact: true }).click();
+  await page.getByRole('button', { name: 'Conferma lo stesso invio', exact: true }).waitFor();
+  await page.getByText(/Invio da confermare\. Testo/).waitFor();
+  assert(lost); await shot('uncertain-submit-1440');
+  const reopenURL = page.url();
+  await page.close();
+  page = await context.newPage(); observe(page);
+  await page.goto(reopenURL);
+  await page.getByRole('button', { name: 'Conferma lo stesso invio', exact: true }).waitFor();
+  assert.equal(await page.getByRole('textbox', { name: 'Il tuo ragionamento' }).inputValue(), reasoning);
+  await page.getByRole('button', { name: 'Conferma lo stesso invio', exact: true }).click();
+  await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  await saved();
+  let workspace = await (await context.request.get(origin + '/study/workspace?editionId=fluidi')).json();
+  assert.equal(workspace.submissions.length, 1);
+  const first = workspace.submissions[0];
+  assert.equal(first.activityEvidence.assistance, 'SUPPORT_REQUESTED');
+  assert(first.activityEvidence.supportUsed.includes('model-result'));
+  assert(first.source_refs.some(ref => ref.resourceId === access.source.id && ref.revisionId === access.source.revisionId));
+  assert.match(await page.locator('.lj-feedback').textContent(), new RegExp(first.receipt_id));
+  await shot('receipt-1440');
+  check('cold reopen of lost response: same frozen request and exactly one Core receipt', { receiptId: first.receipt_id });
+  const teacher = await browser.newContext(); await login(teacher, access.teacher);
+  let r = await teacher.request.post(origin + '/study/feedback/drafts', { data: { submissionId: first.id } }); assert.equal(r.status(), 200);
+  const candidate = await r.json();
+  const feedback = 'Hai isolato correttamente il vincolo. Ora mantieni Q costante e confronta la pressione.';
+  r = await teacher.request.post(origin + '/study/feedback/' + candidate.id + '/publish', { data: { expectedRevision: 1, text: feedback, decision: 'returned' }, headers: { 'Idempotency-Key': 's20-synthetic-review-1' } }); assert.equal(r.status(), 200);
+  await page.getByRole('button', { name: 'Aggiorna il feedback' }).click();
+  await page.getByText(feedback, { exact: true }).waitFor();
+  await shot('feedback-1440');
+  check('synthetic tutor command + actual Core feedback read in same view');
+  const peer = await browser.newContext(); await login(peer, access.peer);
+  assert.equal((await peer.request.get(origin + '/study/resources/' + checkpointId)).status(), 403);
+  assert.equal((await peer.request.get(origin + '/study/receipts/' + first.receipt_id)).status(), 403);
+  await peer.close();
+  check('peer cannot read private checkpoint or receipt');
+  await page.getByRole('button', { name: 'Affronta un problema diverso' }).click();
+  await page.getByRole('textbox', { name: 'Rapporto previsto', exact: true }).waitFor();
+  assert.equal(await page.getByRole('textbox', { name: 'Rapporto previsto', exact: true }).inputValue(), '');
+  check('different canonical step opens without previous answer');
+  await page.getByRole('textbox', { name: 'Rapporto previsto', exact: true }).fill('0,0625');
+  await page.getByRole('combobox', { name: 'Grandezza fissata', exact: true }).selectOption('flow');
+  await page.getByRole('button', { name: 'Scrivi la risposta', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Il tuo ragionamento' }).fill('A Q costante isolo Δp. Il raggio doppio richiede una pressione sedici volte minore.');
+  await page.getByRole('button', { name: 'Invia il tentativo', exact: true }).click();
+  await page.getByText('Ricevuto dal Core', { exact: true }).waitFor(); await saved();
+  workspace = await (await context.request.get(origin + '/study/workspace?editionId=fluidi')).json();
+  assert.equal(workspace.submissions.length, 2);
+  const second = workspace.submissions.find(item => item.id !== first.id); assert(second);
+  const secondReceipt = second.receipt_id;
+  await page.reload();
+  await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  assert.match(await page.locator('.lj-feedback').textContent(), new RegExp(secondReceipt));
+  assert.match(await page.locator('.lj-source-strip').textContent(), new RegExp(access.source.revisionId.slice(0, 8)));
+  check('refresh restores second step receipt and exact source');
+  for (const width of [360, 390, 820, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await shot('feedback-' + width);
+    check('responsive viewport ' + width + ' without horizontal overflow');
+  }
+  await page.getByRole('button', { name: 'Studia senza distrazioni' }).click();
+  await page.getByRole('dialog', { name: 'Il tuo spazio di studio' }).waitFor();
+  await page.getByRole('button', { name: 'Un aiuto sul vincolo' }).click();
+  await page.getByRole('dialog', { name: 'Riparti da ciò che resta costante' }).waitFor();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Il tuo spazio di studio' })).toBeVisible();
+  assert.equal(await page.getByRole('dialog').count(), 1);
+  await shot('focus-1440'); await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Studia senza distrazioni' })).toBeFocused();
+  check('focus mode + nested source/help dialog + Escape restores focus');
+  // Navigate through the real shell; S20 cache is UI-only, server state stays authoritative.
+  await page.getByRole('button', { name: 'Materiali', exact: true }).click(); await page.locator('[data-testid=learning-journey]').waitFor({ state: 'detached' });
+  assert.equal(await page.getByText(/ardesia.learning-journey.v1/).count(), 0);
+  await page.goBack(); await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  assert.match(await page.locator('.lj-feedback').textContent(), new RegExp(secondReceipt));
+  await page.goForward(); await page.getByRole('heading', { name: 'Materiali e appunti.' }).waitFor();
+  await page.getByRole('button', { name: 'Lezione', exact: true }).click();
+  await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  assert.match(await page.locator('.lj-feedback').textContent(), new RegExp(secondReceipt));
+  check('real shell navigation away and return preserves current receipt');
+  check('S02 attributed navigation patch: Back/Forward and checkpoints hidden in generic Materials');
+  // Missing revision is a real 404 from the unchanged API, not a mocked success/error body.
+  r = await teacher.request.delete(origin + '/study/resources/' + access.source.id); assert.equal(r.status(), 200);
+  await page.reload(); await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Apri la fonte', exact: true }).click();
+  await page.getByText(/Questa revisione non è disponibile/).waitFor();
+  assert.equal(await page.getByRole('dialog').getByText(access.source.text, { exact: true }).count(), 0);
+  await shot('missing-revision-1440'); await page.keyboard.press('Escape');
+  check('missing revision: real 404 and no substitution by current source');
+  // Revocation is an actual authenticated endpoint on the original service.
+  await page.reload(); await page.getByText('Ricevuto dal Core', { exact: true }).waitFor();
+  r = await context.request.post(origin + '/study/session/revoke-all', { data: {} }); assert.equal(r.status(), 200);
+  await page.getByRole('button', { name: 'Aggiorna il feedback' }).click();
+  await page.getByTestId('learning-journey').waitFor({ state: 'detached' });
+  assert.equal(await page.locator('.lj-feedback').count(), 0);
+  assert.equal((await context.request.get(origin + '/study/receipts/' + secondReceipt)).status(), 401);
+  await page.goBack(); assert.equal(await page.locator('.lj-feedback').count(), 0);
+  await shot('revoked-1440');
+  check('revocation: UI erased and original receipt API rejects session');
+  await teacher.close();
+  assert.deepEqual(errors, []);
+  check('no unexpected browser runtime errors');
+} catch (error) {
+  checks.push({ name: 'run', status: 'FAIL', message: error.message, stack: error.stack });
+  await shot('failure').catch(() => {});
+  throw error;
+} finally {
+  await fs.writeFile(path.join(out, 'browser-result.json'), JSON.stringify({ origin, checks, errors, expectedNetwork, requests: [...new Set(requests)], browser: browser.version(), limitation: 'Synthetic local Core, Chromium emulation; not a user study or scientific approval. Proposed Classroom patch composed only in proof build.' }, null, 2));
+  await context.close(); await browser.close();
+}
