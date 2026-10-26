@@ -4,6 +4,7 @@ import {readLessonPassage} from '../../components/lessonPassageReference';
 import {SourceViewer} from '../../components/SourceViewer';
 import {MediaIndexEditor} from './MediaIndexEditor';
 import {clock,defaultIndex,INDEX_KIND,matchesSource,parseIndex,replayAt,toVtt} from './model';
+import {captionReplayUrl} from './playback';
 import './lesson-media.css';
 
 function associated(resources:StudyResource[],source:StudyResource){
@@ -69,7 +70,7 @@ function MediaDetail({me,candidate,resources,onUpdate}:{me:StudyMe;candidate:Stu
       if(!mounted.current||turn!==generation.current){popup?.close();return;}
       const url=position===null?readLessonPassage(r)?.descriptor.replayUrl:replayAt(r,position);if(!url)throw new Error('stale_source');
       if(!popup)throw new Error('popup_blocked');
-      popup.location.replace(url);
+      popup.location.replace(captionReplayUrl(url,r,selected?.resource??null));
       setNotice('Il player verifica i media nello Studio locale. I tempi aprono l’audio; il comando principale recupera anche la versione dell’oggetto collegato. Torna a questa scheda per continuare.');
     }catch(e){popup?.close();if(mounted.current){setError(describeError(e,e instanceof Error&&e.message==='popup_blocked'?'Consenti l’apertura del player in una nuova scheda e riprova.':'La fonte non è disponibile. Il player non è stato aperto.'));setSource(null);}}
     finally{if(mounted.current)setOpening(false);}

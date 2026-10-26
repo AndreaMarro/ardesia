@@ -464,6 +464,19 @@ describe("ReplayView", () => {
     expect(container.textContent).toContain("0:05")
   })
 
+  it("un seek audio in pausa riallinea journal e scena senza avviare playback", async () => {
+    const { audio } = await renderWithLoadedAudio()
+    Object.defineProperty(audio, "paused", { value: true, configurable: true })
+    Object.defineProperty(audio, "readyState", { value: 4, configurable: true })
+    Object.defineProperty(audio, "currentTime", { value: 1, configurable: true, writable: true })
+    audio.dispatchEvent(new Event("seeked"))
+    await vi.waitFor(() => {
+      expect((container.querySelector('input[type="range"]') as HTMLInputElement).value).toBe("2000")
+      expect(capturedApi?.updateScene.mock.calls.at(-1)?.[0].elements.map((item: {id: string}) => item.id)).toEqual(["a", "b"])
+    })
+    expect(audio.paused).toBe(true)
+  })
+
   it("scrub prima dei metadata: il seek è applicato a loadedmetadata (non perso)", async () => {
     const { audio } = await renderWithLoadedAudio()
     let stored = 0

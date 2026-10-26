@@ -12,6 +12,8 @@ import { ReplayEngine } from "./store/ReplayEngine"
 import { loadReplayTimeline, recordingAtTime, resolveReplayTarget, type ReplayTimeline } from "./store/replayTimeline"
 import EmptyState from "./design/EmptyState"
 import ReplayObjectFocus from "./ReplayObjectFocus"
+import { ReplayCaptions } from "../../web/src/features/lesson-media/ReplayCaptions"
+import { recordingSession } from "./store/audioRecording"
 
 interface ReplayViewProps {
   store: WorkspaceStore
@@ -59,6 +61,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   /** Seek richiesto prima che i metadata audio siano pronti (applicato a loadedmetadata) */
   const pendingSeekSecRef = useRef<number | null>(null)
   /** Ultimo t noto, per posizionare l'audio quando la sorgente finisce di caricare */
+  const seekRevision = useRef(0)
   const tRef = useRef<number | null>(null)
   tRef.current = t
 
@@ -223,8 +226,8 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
   }
 
   /** Scrub manuale: aggiorna t e riallinea il tempo audio */
-  function handleScrub(e: ChangeEvent<HTMLInputElement>) {
-    const next = Number(e.target.value)
+  function seekToEpoch(next: number) {
+    seekRevision.current++
     setT(next)
     const audio = audioRef.current
     const startEpoch = audioStartEpochRef.current
@@ -237,11 +240,13 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
     }
   }
 
+  function handleScrub(e: ChangeEvent<HTMLInputElement>) { seekToEpoch(Number(e.target.value)) }
+
   /** L'audio avanza → il cursore journal lo segue (audio→t via startEpoch) */
-  function handleTimeUpdate() {
+  function handleAudioPosition() {
     const audio = audioRef.current
     const startEpoch = audioStartEpochRef.current
-    if (!audio || startEpoch === null || audio.paused) return
+    if (!audio || startEpoch === null || !Number.isFinite(audio.currentTime) || (audio.currentSrc && audio.currentSrc !== audio.src)) return
     setT(Math.min(canonicalRecording?.endEpoch ?? Infinity, timeline?.lastEventTime ?? Infinity, startEpoch + audio.currentTime * 1000))
   }
 
@@ -350,7 +355,10 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
                 ref={audioRef}
                 controls
                 aria-label="audio della lezione"
-                onTimeUpdate={handleTimeUpdate}
+                onTimeUpdate={() => { if (!audioRef.current?.paused) handleAudioPosition() }}
+                onSeeking={() => { seekRevision.current++ }}
+                onSeeked={() => { if (audioRef.current && audioRef.current.readyState > 0) handleAudioPosition() }}
+                onEnded={handleAudioPosition}
                 onLoadedMetadata={handleLoadedMetadata}
                 onError={() => setAudioError("Il browser non riesce a decodificare questa registrazione.")}
                 style={{ height: "32px", maxWidth: "100%" }}
@@ -359,6 +367,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
           </div>
           {timeline.recordings.length > 0 && <div className="st-replay-passages">
             {timeline.recordings.map((recording, index) => <button type="button" className="st-btn" key={recording.recordingId} onClick={() => {
+              seekRevision.current++
               setFocusedObjectId(recording.objectRefs[0]?.elementId ?? null)
               setT(recording.endEpoch)
               if (audioRef.current && audioStartEpochRef.current === recording.startEpoch) audioRef.current.currentTime = recording.durationMs / 1000
@@ -369,6 +378,7 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               if (element) apiRef.current?.scrollToContent?.([element], { fitToContent: true, viewportZoomFactor: .85, animate: false })
             }}>Evidenzia {ref.label}</button>)}
             {canonicalRecording?.availability === "available" && <button type="button" className="st-btn" onClick={() => {
+              seekRevision.current++
               setT(canonicalRecording.startEpoch)
               const audio = audioRef.current
               if (audio && audioStartEpochRef.current === canonicalRecording.startEpoch) {
@@ -384,6 +394,10 @@ export default function ReplayView({ store, room }: ReplayViewProps) {
               : "Pausa fra le registrazioni: nessun audio in questo intervallo."}</span>
           </div>}
           {audioError && <p role="alert" style={{ padding: "0 16px" }}>{audioError}</p>}
+          <ReplayCaptions audioRef={audioRef} seekRevision={seekRevision} search={window.location.search} identity={canonicalRecording ? {
+            ...recordingSession(canonicalRecording), recordingId: canonicalRecording.recordingId, sha256: canonicalRecording.sha256,
+            startEpoch: canonicalRecording.startEpoch, endEpoch: canonicalRecording.endEpoch,
+          } : null} onSeek={seekToEpoch} />
         </>
       )}
     </div>
