@@ -5,56 +5,41 @@ import type { ExcalidrawElement } from '@excalidraw/excalidraw/element/types'
 import { CollaborationToolbar } from './CollaborationToolbar'
 import { captureInkStroke, projectInk } from './canvasBinding'
 import type { PageGeometry } from './canvasBinding'
-import type { InkSession, InkTransport } from './session'
-import type { InkLayer } from './layer'
 import { CompletedInkCapture, isInkProjection } from './sceneBoundary'
+import { validateRoomInkAdapter, type RoomInkAdapter } from './roomAdapter'
+export type { RoomInkAdapter } from './roomAdapter'
 import { writeInkCheckpoint } from './persistence'
 import type { WorkspaceStore } from '../store/WorkspaceStore'
 
-/** Host supplies sessions and exact PDF page geometry after resolving its Core session.
- * No query-string actor/role/provider is accepted or constructed by Room.
- */
-export type RoomInkAdapter = {
-  roomId: string
-  sessions: { personal: InkSession; shared: InkSession }
-  pages: readonly PageGeometry[]
-  peers?: readonly InkLayer[]
-  signal: AbortSignal
-  transport?: InkTransport
-}
 function signature(element: Pick<ExcalidrawElement, 'id' | 'type' | 'x' | 'y' | 'width' | 'height' | 'angle' | 'strokeColor' | 'strokeWidth' | 'locked' | 'customData'>): string {
   const extra = element as unknown as { points?: number[][]; text?: string }
   return JSON.stringify([element.id, element.type, element.x, element.y, element.width, element.height,
     element.angle, element.strokeColor, element.strokeWidth, element.locked, element.customData, extra.points, extra.text])
 }
-function validateAdapter(adapter: RoomInkAdapter): void {
-  const a = adapter.sessions.personal.scope, b = adapter.sessions.shared.scope
-  if (a.roomId !== adapter.roomId || b.roomId !== adapter.roomId || a.ownerId !== b.ownerId
-      || a.audience !== 'personal' || b.audience !== 'shared' || JSON.stringify(a.source) !== JSON.stringify(b.source)
-      || adapter.pages.length !== a.source.pageCount || adapter.pages.some((p, i) => p.page !== i + 1
-        || ![p.x, p.y, p.width, p.height].every(Number.isFinite) || p.width <= 0 || p.height <= 0))
-    throw Error('ink_scope_mismatch')
-  for (const peer of adapter.peers ?? []) if (peer.scope.ownerId === a.ownerId || peer.scope.audience !== 'shared' || peer.scope.roomId !== adapter.roomId
-      || JSON.stringify(peer.scope.source) !== JSON.stringify(a.source)) throw Error('ink_scope_mismatch')
-}
 export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAdapter; api: ExcalidrawImperativeAPI | null; store: WorkspaceStore }) {
   const [audience, setAudience] = useState<'personal' | 'shared'>('personal'), [page, setPage] = useState(1), [zoom, setZoom] = useState(1)
   const [error, setError] = useState('')
   const captured = useRef(new Set<string>())
+  const latestAdapter = useRef(adapter)
+  latestAdapter.current = adapter
+  const refreshProjection = useRef<(() => void) | null>(null)
   const session = adapter.sessions[audience]
   const matching = adapter.roomId === session.scope.roomId
   useEffect(() => {
     if (!api || !matching) return
-    try { validateAdapter(adapter) } catch { setError('Il documento o la sessione non corrispondono ai layer.'); return }
+    try { validateRoomInkAdapter(adapter) } catch { setError('Il documento o la sessione non corrispondono ai layer.'); return }
     let applying = false, disposed = false
     const capture = new CompletedInkCapture(api.getSceneElements())
     let timer: ReturnType<typeof setTimeout> | undefined
+    let gesturePage: PageGeometry | undefined
     const project = () => {
       if (disposed || applying) return
+      const currentAdapter = latestAdapter.current
+      try { validateRoomInkAdapter(currentAdapter) } catch { setError('Il documento o la sessione non corrispondono ai layer.'); return }
       const scene = api.getSceneElements()
-      const items = adapter.signal.aborted || session.state().status === 'revoked' ? [] : [...session.objects().map(item => ({ item, scope: session.scope })),
-        ...(audience === 'shared' ? (adapter.peers ?? []).flatMap(layer => layer.objects().map(item => ({ item, scope: layer.scope }))) : [])]
-      const projected = items.map(({ item, scope }) => projectInk(item, scope, adapter.pages[item.source.page - 1]))
+      const items = currentAdapter.signal.aborted || session.state().status === 'revoked' ? [] : [...session.objects().map(item => ({ item, scope: session.scope })),
+        ...(audience === 'shared' ? (currentAdapter.peers ?? []).flatMap(layer => layer.objects().map(item => ({ item, scope: layer.scope }))) : [])]
+      const projected = items.map(({ item, scope }) => projectInk(item, scope, currentAdapter.pages[item.source.page - 1]))
       const managed = scene.filter(isInkProjection)
       const restored = restoreElements(projected as unknown as Parameters<typeof restoreElements>[0], managed)
       const dropOriginal = scene.some(element => captured.current.has(element.id))
@@ -65,18 +50,28 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
         api.updateScene({ elements: [...base, ...restored], captureUpdate: CaptureUpdateAction.NEVER })
       } finally { applying = false }
     }
+    setZoom(api.getAppState().zoom.value)
+    refreshProjection.current = project
     const unsubscribers = [
       session.subscribe(project),
       api.onChange(project),
+      api.onScrollChange((_x, _y, value) => setZoom(value.value)),
+      api.onPointerDown((tool, state) => {
+        capture.begin(tool.type, new Set(state.originalElements.keys()))
+        const geometry = latestAdapter.current.pages[page - 1]
+        gesturePage = tool.type === 'freedraw' && geometry ? { ...geometry } : undefined
+      }),
       api.onPointerUp(() => {
+        const geometry = gesturePage
+        gesturePage = undefined
         clearTimeout(timer)
         timer = setTimeout(() => {
           if (disposed) return
           for (const element of capture.completed(api.getSceneElements())) {
             captured.current.add(element.id)
             try {
-              if (adapter.signal.aborted) throw Error('ink_read_only')
-              session.add(captureInkStroke(element as Parameters<typeof captureInkStroke>[0], session.scope, adapter.pages[page - 1])); setError('')
+              if (adapter.signal.aborted || !geometry) throw Error('ink_read_only')
+              session.add(captureInkStroke(element as Parameters<typeof captureInkStroke>[0], session.scope, geometry)); setError('')
             }
             catch { setError('Tratto non acquisito: scrivi interamente nella pagina selezionata, con il layer abilitato.') }
           }
@@ -98,8 +93,9 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
     document.addEventListener('keydown', keydown, true)
     adapter.signal.addEventListener('abort', revoke, { once: true })
     if (adapter.signal.aborted) revoke(); else project()
-    return () => { disposed = true; clearTimeout(timer); document.removeEventListener('keydown', keydown, true); adapter.signal.removeEventListener('abort', revoke); for (const unsubscribe of unsubscribers) unsubscribe() }
-  }, [adapter, api, audience, page, session, matching])
+    return () => { disposed = true; if (refreshProjection.current === project) refreshProjection.current = null; clearTimeout(timer); document.removeEventListener('keydown', keydown, true); adapter.signal.removeEventListener('abort', revoke); for (const unsubscribe of unsubscribers) unsubscribe() }
+  }, [api, audience, page, session, matching, adapter.signal, adapter.sessions.personal, adapter.sessions.shared])
+  useEffect(() => { refreshProjection.current?.() }, [adapter])
   if (!matching) return <p role="alert">Il layer appartiene a un’altra lezione.</p>
   return <div onKeyDownCapture={event => {
     if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return

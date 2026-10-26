@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { InkSession, InkTransport } from './session'
 import './collaboration.css'
 
@@ -25,13 +25,19 @@ const messages = {
 export function CollaborationToolbar(props: CollaborationToolbarProps) {
   const { session } = props
   const [, refresh] = useState(0)
+  const currentSession = useRef(session)
+  currentSession.current = session
   const [saving, setSaving] = useState(false), [saveError, setSaveError] = useState(''), [saved, setSaved] = useState(false)
-  useEffect(() => session.subscribe(() => refresh(value => value + 1)), [session])
+  useEffect(() => { setSaved(false); return session.subscribe(() => { setSaved(false); refresh(value => value + 1) }) }, [session])
   const state = session.state(), revoked = state.status === 'revoked'
   async function save() {
     if (saving || revoked) return
     setSaving(true); setSaveError(''); setSaved(false)
-    try { await props.onSave(); setSaved(true) }
+    const checkpoint = JSON.stringify(session.checkpoint())
+    try { await props.onSave(); if (currentSession.current === session) {
+      if (JSON.stringify(session.checkpoint()) === checkpoint) setSaved(true)
+      else setSaveError('Copia precedente salvata. Salva anche i nuovi tratti.')
+    } }
     catch { setSaveError('Salvataggio non riuscito. Mantieni aperta la lezione e riprova.') }
     finally { setSaving(false) }
   }
@@ -53,7 +59,7 @@ export function CollaborationToolbar(props: CollaborationToolbarProps) {
       </select></label>
       <label>Il tuo zoom<select aria-label="Il tuo zoom" value={props.zoom} disabled={revoked}
         onChange={event => props.onZoom(Number(event.target.value))}>
-        {[.5, .75, 1, 1.25, 1.5, 2].map(value => <option key={value} value={value}>{Math.round(value * 100)}%</option>)}
+        {[...new Set([props.zoom, .5, .75, 1, 1.25, 1.5, 2])].sort((a, b) => a - b).map(value => <option key={value} value={value}>{Math.round(value * 100)}%</option>)}
       </select></label>
       {props.onFollow && <label className="ink-follow"><input type="checkbox" checked={!!props.following} disabled={revoked}
         onChange={event => props.onFollow?.(event.target.checked)} />Segui presentazione docente</label>}

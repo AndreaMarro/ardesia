@@ -1,5 +1,11 @@
 // @vitest-environment jsdom
-import { expect, test } from 'vitest'
+import { expect, test, vi } from 'vitest'
+// jsdom lacks canvas; only the import-time feature probe/measurement port is shimmed.
+vi.hoisted(() => {
+  Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', { configurable: true, value: () => ({
+    filter: 'none', font: '', measureText: (text: string) => ({ width: text.length * 10 }),
+  }) })
+})
 import { restoreElements } from '@excalidraw/excalidraw'
 import { projectInk } from '../canvasBinding'
 import type { InkObject, LayerScope } from '../model'

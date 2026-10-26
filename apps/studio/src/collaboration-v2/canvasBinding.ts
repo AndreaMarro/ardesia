@@ -38,7 +38,7 @@ export function projectInk(item: InkObject, scope: LayerScope, page: PageGeometr
   const points = item.points!, first = points[0]
   const xs = points.map(p => p[0]), ys = points.map(p => p[1])
   return {
-    id: `ink-${scope.ownerId}-${scope.audience}-${item.id}`, type: item.kind === 'stroke' ? 'freedraw' : 'text',
+    id: 'ink:' + btoa(Array.from(new TextEncoder().encode(JSON.stringify([scope.roomId, scope.source.resourceId, scope.source.revisionId, scope.source.sha256, scope.ownerId, scope.audience, item.id])), byte => String.fromCharCode(byte)).join('')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''), type: item.kind === 'stroke' ? 'freedraw' : 'text',
     x: page.x + first[0] * page.width, y: page.y + first[1] * page.height,
     width: item.kind === 'stroke' ? (Math.max(...xs) - Math.min(...xs)) * page.width : Math.max(1, Math.min((1 - first[0]) * page.width, Math.max(20, (item.text?.length ?? 1) * 11))),
     height: item.kind === 'stroke' ? (Math.max(...ys) - Math.min(...ys)) * page.height : 28 * (item.text?.split('\n').length ?? 1),

@@ -28,3 +28,12 @@ test('cross-page, rotated and incomplete strokes are refused instead of clipped 
   expect(() => captureInkStroke(input, scope, page)).toThrow('ink_invalid_object')
   expect(() => captureInkStroke({ ...input, x: 100, angle: .2 }, scope, page)).toThrow('ink_unsupported_geometry')
 })
+
+test('projection identity is unambiguous for hyphens and pins source revision', () => {
+  const a = { ...scope, ownerId: 'a' }, b = { ...scope, ownerId: 'a-shared-b' }
+  const input = { id: 'b-shared-c', type: 'freedraw', x: 160, y: 360, points: [[0, 0], [120, 240]], strokeColor: '#123456', strokeWidth: 2 }
+  const first = captureInkStroke(input, a, page), second = captureInkStroke({ ...input, id: 'c' }, b, page)
+  expect(projectInk(first, a, page).id).not.toBe(projectInk(second, b, page).id)
+  const revision = { ...a, source: { ...a.source, revisionId: 'v2' } }
+  expect(projectInk({ ...first, source: { ...first.source, revisionId: 'v2' } }, revision, page).id).not.toBe(projectInk(first, a, page).id)
+})
