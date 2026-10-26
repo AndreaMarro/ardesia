@@ -40,8 +40,8 @@ export function projectInk(item: InkObject, scope: LayerScope, page: PageGeometr
   return {
     id: `ink-${scope.ownerId}-${scope.audience}-${item.id}`, type: item.kind === 'stroke' ? 'freedraw' : 'text',
     x: page.x + first[0] * page.width, y: page.y + first[1] * page.height,
-    width: (Math.max(...xs) - Math.min(...xs)) * page.width,
-    height: (Math.max(...ys) - Math.min(...ys)) * page.height,
+    width: item.kind === 'stroke' ? (Math.max(...xs) - Math.min(...xs)) * page.width : Math.max(1, Math.min((1 - first[0]) * page.width, Math.max(20, (item.text?.length ?? 1) * 11))),
+    height: item.kind === 'stroke' ? (Math.max(...ys) - Math.min(...ys)) * page.height : 28 * (item.text?.split('\n').length ?? 1),
     angle: 0, strokeColor: item.color, strokeWidth: item.width * page.width, locked: true,
     ...(item.kind === 'stroke' ? { points: points.map(p => [(p[0] - first[0]) * page.width, (p[1] - first[1]) * page.height]),
       pressures: points.map(p => p[2]) } : { text: item.kind === 'proposal' ? `Proposta: ${item.text}` : item.text, fontSize: 20 }),

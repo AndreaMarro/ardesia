@@ -53,3 +53,16 @@ test('cold reopen retains the exact idempotency key after an unconfirmed request
   await reopened.flush({ submit: async request => { restored = request.requestId; return request } })
   expect(restored).toBe(original); expect(reopened.state().pending).toBe(false)
 })
+
+test('cold retry after undo sends the exact unconfirmed bytes and accepts the original receipt', async () => {
+  const session = new InkSession(scope); session.add(stroke('a')); session.undo()
+  let receipt!: import('../session').InkRequest
+  await session.flush({ submit: async request => { receipt = request; throw Error('response lost') } })
+  const reopened = new InkSession(scope, session.checkpoint())
+  await reopened.flush({ submit: async request => {
+    expect(request.requestId).toBe(receipt.requestId)
+    expect(request.update).toEqual(receipt.update)
+    return receipt
+  } })
+  expect(reopened.state().status).toBe('committed')
+})

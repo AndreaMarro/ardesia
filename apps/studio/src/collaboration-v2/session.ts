@@ -17,6 +17,7 @@ export class InkSession {
   private readonly committed: InkLayer
   private readonly cancellation = new AbortController()
   private pendingId: string | null = null
+  private pendingUpdate: Uint8Array | null = null
   private status: InkStatus = 'local'
   private error: string | null = null
   private inFlight: Promise<void> | null = null
@@ -27,7 +28,7 @@ export class InkSession {
     if (checkpoint) validateInkCheckpoint(checkpoint, scope)
     this.committed = checkpoint ? InkLayer.restore(scope, checkpoint.committed) : new InkLayer(scope)
     this.live = checkpoint ? InkLayer.restore(scope, checkpoint.pending ?? checkpoint.committed) : new InkLayer(scope)
-    if (checkpoint?.pending) { this.pendingId = checkpoint.pendingRequestId; this.status = 'offline' }
+    if (checkpoint?.pending) { this.pendingId = checkpoint.pendingRequestId; this.pendingUpdate = Uint8Array.from(checkpoint.pending.update); this.status = 'offline' }
   }
   subscribe = (listener: () => void): (() => void) => { this.listeners.add(listener); return () => this.listeners.delete(listener) }
   private emit(): void { for (const listener of this.listeners) listener() }
@@ -36,7 +37,7 @@ export class InkSession {
   objects(): InkObject[] { return this.live.objects() }
   committedObjects(): InkObject[] { return this.committed.objects() }
   private changed(): void {
-    this.pendingId = crypto.randomUUID(); this.status = 'offline'; this.error = null; this.emit()
+    this.pendingId = crypto.randomUUID(); this.pendingUpdate = this.live.encode(); this.status = 'offline'; this.error = null; this.emit()
   }
   add(item: InkObject): void { this.live.add(item); this.changed() }
   undo(): void { if (!this.live.canUndo) { if (this.cancellation.signal.aborted || this.frozen) throw Error('ink_read_only'); return }
@@ -48,11 +49,11 @@ export class InkSession {
     this.cancellation.abort(); this.live.setWritable(false); this.status = 'revoked'; this.error = null; this.emit()
   }
   checkpoint(): InkCheckpoint { return { v: 1, scope: copy(this.scope), committed: this.committed.snapshot(),
-    pending: this.pendingId ? this.live.snapshot() : null, pendingRequestId: this.pendingId } }
+    pending: this.pendingId && this.pendingUpdate ? { v: 1, scope: copy(this.scope), update: Array.from(this.pendingUpdate) } : null, pendingRequestId: this.pendingId } }
   flush(transport: InkTransport): Promise<void> {
     if (this.inFlight) return this.inFlight
-    if (!this.pendingId || this.cancellation.signal.aborted || this.frozen) return Promise.resolve()
-    const request: InkRequest = { requestId: this.pendingId, scope: copy(this.scope), update: this.live.encode() }
+    if (!this.pendingId || !this.pendingUpdate || this.cancellation.signal.aborted || this.frozen) return Promise.resolve()
+    const request: InkRequest = { requestId: this.pendingId, scope: copy(this.scope), update: this.pendingUpdate.slice() }
     this.status = 'syncing'; this.error = null; this.emit()
     const run = async () => {
       try {
@@ -61,7 +62,7 @@ export class InkSession {
         if (!ack || ack.requestId !== request.requestId || scopeKey(ack.scope) !== scopeKey(this.scope)
             || !sameBytes(ack.update, request.update)) throw Error('ink_ack_mismatch')
         this.committed.receive(ack.update)
-        if (this.pendingId === request.requestId) this.pendingId = null
+        if (this.pendingId === request.requestId) { this.pendingId = null; this.pendingUpdate = null }
         this.status = this.pendingId ? 'offline' : 'committed'
       } catch (failure) {
         if (this.cancellation.signal.aborted) return

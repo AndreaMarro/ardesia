@@ -73,3 +73,17 @@ test('caller mutation cannot alter the document or its snapshot', () => {
   const objects = layer.objects(); objects[0].points![0][0] = .8
   expect(layer.objects()[0].points![0][0]).toBe(.1)
 })
+
+test('large add/undo/redo cycles remain within the encoded budget and reopen at every accepted mutation', () => {
+  const layer = new InkLayer(scope())
+  const large = (id: string) => ({ ...stroke(id), points: Array.from({length: 4096}, (_, i) => [i / 4096, .123456789, .987654321]) })
+  let bounded = false
+  for (let i = 0; i < 30; i++) {
+    try { layer.add(large('large-' + i)); if (layer.canUndo) layer.undo(); if (layer.canRedo) layer.redo(); if (layer.canUndo) layer.undo() }
+    catch (error) { expect(String(error)).toMatch(/ink_(capacity|update_budget)/); bounded = true }
+    expect(layer.encode().byteLength).toBeLessThanOrEqual(512 * 1024)
+    const cold = InkLayer.restore(scope(), layer.snapshot()); cold.destroy()
+    if (bounded) break
+  }
+  expect(bounded).toBe(true)
+})

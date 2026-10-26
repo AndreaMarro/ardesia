@@ -7,7 +7,7 @@ import { captureInkStroke, projectInk } from './canvasBinding'
 import type { PageGeometry } from './canvasBinding'
 import type { InkSession, InkTransport } from './session'
 import type { InkLayer } from './layer'
-import { scopeKey } from './model'
+import { CompletedInkCapture, isInkProjection } from './sceneBoundary'
 import { writeInkCheckpoint } from './persistence'
 import type { WorkspaceStore } from '../store/WorkspaceStore'
 
@@ -47,50 +47,53 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
     if (!api || !matching) return
     try { validateAdapter(adapter) } catch { setError('Il documento o la sessione non corrispondono ai layer.'); return }
     let applying = false, disposed = false
-    let beforePointer = new Set<string>()
+    const capture = new CompletedInkCapture(api.getSceneElements())
     let timer: ReturnType<typeof setTimeout> | undefined
-    const scopes = [adapter.sessions.personal.scope, adapter.sessions.shared.scope, ...(adapter.peers ?? []).map(layer => layer.scope)]
-    const known = new Set(scopes.map(scopeKey))
     const project = () => {
       if (disposed || applying) return
       const scene = api.getSceneElements()
       const items = adapter.signal.aborted || session.state().status === 'revoked' ? [] : [...session.objects().map(item => ({ item, scope: session.scope })),
         ...(audience === 'shared' ? (adapter.peers ?? []).flatMap(layer => layer.objects().map(item => ({ item, scope: layer.scope }))) : [])]
       const projected = items.map(({ item, scope }) => projectInk(item, scope, adapter.pages[item.source.page - 1]))
-      const managed = scene.filter(element => known.has(element.customData?.ardesiaInkV1?.scope as string))
+      const managed = scene.filter(isInkProjection)
       const restored = restoreElements(projected as unknown as Parameters<typeof restoreElements>[0], managed)
       const dropOriginal = scene.some(element => captured.current.has(element.id))
       if (!dropOriginal && managed.length === restored.length && managed.every((element, i) => signature(element) === signature(restored[i]))) return
       applying = true
       try {
-        const base = scene.filter(element => !captured.current.has(element.id) && !known.has(element.customData?.ardesiaInkV1?.scope as string))
+        const base = scene.filter(element => !captured.current.has(element.id) && !isInkProjection(element))
         api.updateScene({ elements: [...base, ...restored], captureUpdate: CaptureUpdateAction.NEVER })
       } finally { applying = false }
     }
     const unsubscribers = [
       session.subscribe(project),
       api.onChange(project),
-      api.onPointerDown(() => { beforePointer = new Set(api.getSceneElements().map(e => e.id)) }),
       api.onPointerUp(() => {
         clearTimeout(timer)
         timer = setTimeout(() => {
-          if (disposed || adapter.signal.aborted) return
-          for (const element of api.getSceneElements()) {
-            if (element.type !== 'freedraw' || beforePointer.has(element.id) || element.customData?.ardesiaInkV1 || captured.current.has(element.id)) continue
-            try { session.add(captureInkStroke(element, session.scope, adapter.pages[page - 1])); captured.current.add(element.id); setError('') }
+          if (disposed) return
+          for (const element of capture.completed(api.getSceneElements())) {
+            captured.current.add(element.id)
+            try {
+              if (adapter.signal.aborted) throw Error('ink_read_only')
+              session.add(captureInkStroke(element as Parameters<typeof captureInkStroke>[0], session.scope, adapter.pages[page - 1])); setError('')
+            }
             catch { setError('Tratto non acquisito: scrivi interamente nella pagina selezionata, con il layer abilitato.') }
           }
           project()
         }, 0)
       }),
     ]
-    const revoke = () => { adapter.sessions.personal.revoke(); adapter.sessions.shared.revoke(); project() }
+    const revoke = () => {
+      for (const element of capture.completed(api.getSceneElements())) captured.current.add(element.id)
+      adapter.sessions.personal.revoke(); adapter.sessions.shared.revoke(); project()
+    }
     const keydown = (event: KeyboardEvent) => {
       const target = event.target
       if (!(target instanceof HTMLElement) || target.closest('[data-ink-room]')?.getAttribute('data-ink-room') !== adapter.roomId
           || target.closest('input, textarea, [contenteditable="true"]') || !(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return
       event.preventDefault(); event.stopImmediatePropagation()
-      if (session.state().status !== 'revoked') { if (event.shiftKey) session.redo(); else session.undo() }
+      if (session.state().status !== 'revoked' && !session.state().frozen) { if (event.shiftKey) session.redo(); else session.undo() }
     }
     document.addEventListener('keydown', keydown, true)
     adapter.signal.addEventListener('abort', revoke, { once: true })
@@ -101,7 +104,7 @@ export function RoomCollaboration({ adapter, api, store }: { adapter: RoomInkAda
   return <div onKeyDownCapture={event => {
     if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return
     event.preventDefault(); event.stopPropagation()
-    if (event.shiftKey) session.redo(); else session.undo()
+    if (session.state().status !== 'revoked' && !session.state().frozen) { if (event.shiftKey) session.redo(); else session.undo() }
   }}>
     <CollaborationToolbar session={session} page={page} pageCount={adapter.pages.length} onPage={value => {
       setPage(value); const geometry = adapter.pages[value - 1]

@@ -19,7 +19,7 @@ export function validateLayerUpdate(scope: LayerScope, committed: Uint8Array, up
   validateScope(scope)
   if (!(update instanceof Uint8Array) || update.byteLength === 0 || update.byteLength > MAX_UPDATE_BYTES
       || committed.byteLength > MAX_UPDATE_BYTES) throw Error('ink_update_budget')
-  const candidate = new Y.Doc()
+  const candidate = new Y.Doc({ gc: false })
   try {
     if (committed.byteLength) Y.applyUpdate(candidate, committed)
     Y.applyUpdate(candidate, update)
@@ -33,12 +33,14 @@ export function validateLayerUpdate(scope: LayerScope, committed: Uint8Array, up
 export class InkLayer {
   private readonly boundScope: LayerScope
   get scope(): LayerScope { return copy(this.boundScope) }
-  private readonly doc = new Y.Doc()
+  private readonly doc = new Y.Doc({ gc: false })
   private readonly localOrigin = Symbol('local-ink')
   private readonly remoteOrigin = Symbol('committed-ink')
   private readonly objectsMap = this.doc.getMap<InkObject>('objects')
   private readonly history: Y.UndoManager
   private writable = true
+  private maxRedoBytes = 1024
+  private budgetAllows(extra: number): boolean { return this.encode().byteLength + extra <= MAX_UPDATE_BYTES - 1024 }
   constructor(scope: LayerScope) {
     validateScope(scope); this.boundScope = copy(scope)
     this.history = new Y.UndoManager(this.objectsMap, { trackedOrigins: new Set([this.localOrigin]), captureTimeout: 0 })
@@ -49,17 +51,20 @@ export class InkLayer {
     this.assertWritable(); validateObject(value, this.scope)
     if (this.objectsMap.has(value.id)) throw Error('ink_duplicate_id')
     if (this.objectsMap.size >= MAX_OBJECTS) throw Error('ink_capacity')
-    const item = copy(value), probe = new Y.Doc()
+    const item = copy(value), probe = new Y.Doc({ gc: false })
     try {
       Y.applyUpdate(probe, this.encode()); probe.getMap('objects').set(item.id, item)
-      if (Y.encodeStateAsUpdate(probe).byteLength > MAX_UPDATE_BYTES) throw Error('ink_update_budget')
+      if (Y.encodeStateAsUpdate(probe).byteLength > MAX_UPDATE_BYTES - 1024) throw Error('ink_update_budget')
     } finally { probe.destroy() }
+    const single = new Y.Doc({ gc: false })
+    try { single.getMap('objects').set(item.id, item); this.maxRedoBytes = Math.max(this.maxRedoBytes, Y.encodeStateAsUpdate(single).byteLength + 1024) }
+    finally { single.destroy() }
     this.doc.transact(() => this.objectsMap.set(item.id, item), this.localOrigin)
   }
-  undo(): void { this.assertWritable(); this.history.undo() }
-  redo(): void { this.assertWritable(); this.history.redo() }
-  get canUndo(): boolean { return this.writable && this.history.undoStack.length > 0 }
-  get canRedo(): boolean { return this.writable && this.history.redoStack.length > 0 }
+  undo(): void { this.assertWritable(); if (!this.budgetAllows(1024)) throw Error('ink_capacity'); this.history.undo() }
+  redo(): void { this.assertWritable(); if (!this.budgetAllows(this.maxRedoBytes)) throw Error('ink_capacity'); this.history.redo() }
+  get canUndo(): boolean { return this.writable && this.history.undoStack.length > 0 && this.budgetAllows(1024) }
+  get canRedo(): boolean { return this.writable && this.history.redoStack.length > 0 && this.budgetAllows(this.maxRedoBytes) }
   objects(): InkObject[] { return copy([...this.objectsMap.values()].sort((a, b) => a.id.localeCompare(b.id))) }
   encode(): Uint8Array { return Y.encodeStateAsUpdate(this.doc) }
   receive(update: Uint8Array): void {

@@ -38,6 +38,7 @@ import type { AudioObjectReference } from "./store/audioRecording"
 import LessonPassageAuthor from "./LessonPassageAuthor"
 import { wrapPassageAnnotation } from "./store/passageAnnotation"
 
+import { legacyBoardScene } from "./collaboration-v2/sceneBoundary"
 import type { RoomInkAdapter } from "./collaboration-v2/RoomCollaboration"
 import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types"
 
@@ -168,6 +169,7 @@ export default function Room({
   /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
+  const legacyInkIds = useRef(new Set<string>())
   const apiRef = useRef<any>(null)
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
@@ -227,6 +229,7 @@ export default function Room({
       window.clearTimeout(saveTimer.current)
       saveTimer.current = null
     }
+    legacyInkIds.current = new Set()
     latestElementsRef.current = null
     latestAppStateRef.current = null
     latestFilesRef.current = null
@@ -454,6 +457,10 @@ export default function Room({
           try {
             const parsed = JSON.parse(data)
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
+            if (Array.isArray(parsed.elements)) {
+              parsed.elements = legacyBoardScene(parsed.elements)
+              legacyInkIds.current = new Set(parsed.elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
+            }
             setSceneData(parsed)
             if (journalRef.current && parsed?.elements) {
               journalRef.current.seed(parsed.elements)
@@ -535,7 +542,7 @@ export default function Room({
     if (!elements) return
     const run = _pendingSave.current.then(async () => {
       try {
-        const serialized = serializeAsJSON(elements, appState, files, "local")
+        const serialized = serializeAsJSON(legacyBoardScene(elements as Parameters<typeof serializeAsJSON>[0], collaboration ? legacyInkIds.current : undefined), appState, files, "local")
         await actualStore.saveScene(room, serialized)
         setStorageError(null)
         setSaved(true)
@@ -634,9 +641,10 @@ export default function Room({
     }
     const selection = boardSelection(elements, appState)
     setSelectedObjects((previous) => JSON.stringify(previous) === JSON.stringify(selection) ? previous : selection)
-    persist(elements, appState, files)
+    const baseElements = legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined)
+    persist(baseElements, appState, files)
     if (!initialLoadDone.current) return
-    journalRef.current?.recordChange(elements)
+    journalRef.current?.recordChange(baseElements)
   }
 
   /** Chiude il drawer e restituisce il focus al controllo che l'ha aperto (WCAG 2.4.3) */
@@ -837,7 +845,8 @@ export default function Room({
         if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
         const parsed = JSON.parse(sceneJson)
         if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
-        const elements = Array.isArray(parsed.elements) ? parsed.elements : []
+        const elements = Array.isArray(parsed.elements) ? legacyBoardScene(parsed.elements) : []
+        legacyInkIds.current = new Set(elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
         const files = parsed.files ?? {}
         setSceneData(parsed)
