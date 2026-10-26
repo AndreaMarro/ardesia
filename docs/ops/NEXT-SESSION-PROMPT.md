@@ -46,3 +46,12 @@ A resta unico integratore/deployer e writer della memoria comune. B cura modelli
 4. **P1 — Qualità umana e compatibilità.** Primo passo: ascoltare le quattro clip e verificare Safari/device reale; correggere «Unità richiesta: .» nella review qualitativa. Dipendenze: operatore, dati sintetici e permessi. Accettazione: testo/audio comprensibili e recuperabili, focus/font/movimento ridotto corretti. Evidenza: gesti e limiti espliciti. Goodnotes osservato solo nei metadati della versione 7.1.30: non dichiarare Goodnotes6, UI o replay collaudati.
 
 Prima della consegna aggiornare RUNLOG con risultati, errori/correzioni, alternative, prove e limiti; terminare con 3–5 task che abbiano primo passo, dipendenze, accettazione ed evidenza. Aggiornare NEXT e provenienza. Il mandato resta aperto finché tutti e quattro i corsi non superano i criteri. Non creare una nuova PR per prolungare artificialmente un’attività aperta: verificare prima l’esito effettivo della 306.
+
+
+## Addendum S00 successivo — 26 ottobre 2026, candidata2c522f96
+
+308 e307 sono MERGED, main992d1a0b e CI post-merge40251190531SUCCESS. Il vecchio stato delle loro draft è storico.314 ha fonte2c522f96,7requiredSUCCESS,27pipeline/10Studio mirati e791browser locali; uploadVercel ancora in corso e nessun nuovo deployment attestato a questo checkpoint. Leggere il rapportoS00/rendezvous306 per esito terminale e URL effettivi, senza ereditare un verde da un'altraSHA. Sorgenti runtime del build pulite, i commit successivi di memoria non cambiano i suoi asset.
+
+Prima chiudere314 attraverso provaHTTPS/merge/postmerge e ricevuta provider, poi integrare i consumer già pronti dalla main aggiornata. S10START rimane non osservato: gli installer condivisi richiedono writer esplicito, non endpoint finti. La finestra S01perJSXGraph è stata rilasciata; patch manifest/lock1.14.0 autoreS00 consegnata e verificata dall'owner. FontLiberation1.05legacy nonOFL e source esatto non verificato: Studio solo preview interna, nessuna pubblicazione implicita. Pubblico5demo invariato, quattro corsi ancora0/200accettazioni complete.
+
+Ricordare, leggere e aggiornare lo storico senza modificare il passato: voci e conclusioni precedenti rimangono, smentite aggiunte datate con prove. Handoff di ogni owner e appendici aS00, RUNLOG/NEXT un solo writer. Non chiamare DONE unaPR aperta, una chiusura senza integrazione, una demo mock o unaCI di altrahead.

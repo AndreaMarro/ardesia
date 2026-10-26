@@ -75,3 +75,8 @@ distinto dall'identità applicativa. Revocare il grant al termine.
    fonti, tentativi/feedback e ripresa; nessuna seconda autorità.
 3. Distribuire la candidata privata integrata e collegare l'attestazione provider
    a main osservata/head/sorgente/hash degli asset. Backend mancante resta esplicito.
+
+
+## Checkpoint finale locale successivo
+
+Fonte2c522f96; main992d1a0b. Dieci mirati Studio e27pipelinePASS; build4pulita e791check browser localePASS. Notice234font/9famiglie e codiceMIT emessi, copyright separati; Liberation1.05legacy/source non verificato impedisce una dichiarazione di pubblicazioneStudio. Review tecnica separata senza finding comprovati,7requiredSUCCESS sulla fonte.307/308 integrate e CI post-merge verdi;314 ancora da terminare con provaVercel. Upload dal checkpoint persistente, primo create400missing_files, nessuna pubblicazione anticipata. RAW/test/screenshot nel pacchetto locale output2026-10-26-s00-integration; finalizzare receipt provider e rapporto dopo esecuzione. Il vecchio checkpoint26test e GREEN non eseguito è storico, non cancellato. Decisione di riuso completa in REA-REUSE.md.
