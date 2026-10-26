@@ -15,7 +15,16 @@ vi.mock("mathlive", () => {
     mathVirtualKeyboardPolicy = "auto"
     canUndo() { return false }
     canRedo() { return false }
-    executeCommand() { return true }
+    nativeConnected = false
+    keyboardHidden = false
+    connectedCallback() { this.nativeConnected = true }
+    disconnectedCallback() { this.nativeConnected = false }
+    executeCommand(selector: string) {
+      // The real MathLive command target is destroyed on disconnect.
+      if (!this.nativeConnected) return false
+      if (selector === "hideVirtualKeyboard") this.keyboardHidden = true
+      return true
+    }
     insert(value: string) { this.value += value; return true }
   }
   customElements.define("test-math-field", TestMathfield)
@@ -24,7 +33,7 @@ vi.mock("mathlive", () => {
 
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 function field() {
-  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean; disabled: boolean; insert: (value: string, options?: unknown) => boolean; executeCommand: (selector: string) => boolean }
+  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean; disabled: boolean; keyboardHidden: boolean; nativeConnected: boolean; insert: (value: string, options?: unknown) => boolean; executeCommand: (selector: string) => boolean }
 }
 function deferred() {
   let resolve!: () => void
@@ -34,12 +43,14 @@ function deferred() {
 }
 
 describe("formula host lifecycle", () => {
-  it("hides the shared native keyboard before removing the mathfield", () => {
+  it("hides the shared native keyboard while the mathfield is still connected", () => {
     const view = render(<MathComposer onInsert={() => {}} onClose={() => {}} />)
     const mf = field()
     const hide = vi.spyOn(mf, "executeCommand")
     const remove = vi.spyOn(mf, "remove")
     view.unmount()
+    expect(mf.keyboardHidden).toBe(true)
+    expect(mf.nativeConnected).toBe(false)
     expect(hide).toHaveBeenCalledWith("hideVirtualKeyboard")
     expect(hide.mock.invocationCallOrder[0]).toBeLessThan(remove.mock.invocationCallOrder[0]!)
   })

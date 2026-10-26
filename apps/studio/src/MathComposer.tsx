@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react"
+import { useLayoutEffect, useId, useRef, useState } from "react"
 import { MathfieldElement } from "mathlive"
 import { IconFunction, IconCheck } from "./design/icons"
 import "./formula-composer/MathComposer.css"
@@ -34,7 +34,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!host.current) return
     const mf = new MathfieldElement()
     mf.value = "\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"
@@ -58,6 +58,8 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
       mfRef.current = null
       mf.removeEventListener("input", sync)
       mf.removeEventListener("undo-state-change", sync)
+      // MathLive disposes its command target on DOM disconnect. Layout
+      // cleanup runs while the field is connected, before React removes it.
       mf.executeCommand("hideVirtualKeyboard")
       mf.remove()
     }

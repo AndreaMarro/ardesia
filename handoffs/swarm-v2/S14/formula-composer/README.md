@@ -277,3 +277,11 @@ di remove, più test del contratto d'ordine host. Controprova ancora NON_RUN:
 slot rilasciato effettivamente con porta55140 chiusa, richiesto singolo nuovo
 gap dopo S08/S02. Nessun timeout allargato o nuovo tentativo non coordinato.
 Room v3 resta invariata e non applicata al sorgente.
+
+Review read-only successiva della f66ee96 trova che il primo fix cleanup non
+è sufficiente: React distacca il DOM prima dell'effetto passivo, MathLive
+invalida il command target e hide diventa no-op. P1 accettato, nessun PASS
+nativo attribuito alla f66. Spostata costruzione/pulizia imperativa in
+useLayoutEffect; il test modella ora invalidazione del target su disconnect
+e verifica la chiusura effettiva mentre connesso. Controprova ancora pendente,
+nessun nuovo browser avviato durante lo slot S08.

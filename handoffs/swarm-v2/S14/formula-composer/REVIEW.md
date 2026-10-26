@@ -69,3 +69,12 @@ La prova nativa 14 conferma bounds e hit-test del pannello con il delta 7cf3d66,
 ma trova un difetto distinto nel cleanup: tastiera condivisa ancora visible
 dopo unmount. Aggiunto il comando hideVirtualKeyboard prima della rimozione,
 controprova nativa pendente. Nessuna review statica è usata come verde runtime.
+
+Review finale della f66ee96 trova un P1 concreto: cleanup passivo useEffect è
+troppo tardi. React ha già rimosso il contenitore; disconnectedCallback del
+MathLive0.111.1 distrugge _mathfield e il successivo executeCommand è no-op.
+Il test dello spy prima di mf.remove era insufficiente. Rilievo accettato:
+usare useLayoutEffect per costruzione/pulizia dell'elemento imperativo e
+chiudere quando è ancora connesso. Il mock ora invalida il target su disconnect
+e richiede keyboardHidden effettivo, oltre all'ordine. Nessun runtime attribuito
+al revisore; controprova nativa e host di questa correzione ancora pendenti.
