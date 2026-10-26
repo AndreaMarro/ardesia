@@ -1,0 +1,75 @@
+{
+  "baselineHead": "33a58930acecdf60a4db457d10932106320b9e2a",
+  "ciRun": 40392048016,
+  "ciMergeCheckout": "48cd6e67f943bec4497036420f670305a85ff188",
+  "failures": [
+    {
+      "job": 121815711875,
+      "cause": "Public projection source catalog digest stale; all generated course data unchanged."
+    },
+    {
+      "job": 121815711913,
+      "cause": "Two exact registry assertions still expected six packs after authorized S19 seventh pack."
+    }
+  ],
+  "originalJobLogs": [
+    {
+      "job": 121815711875,
+      "sha256": "f2278277872073532bd03e380cc7992d47e6d23f4e22992c465b8b04ff03a4e0",
+      "disposition": "LOCAL_ONLY; no raw job transcripts published"
+    },
+    {
+      "job": 121815711913,
+      "sha256": "aae6144d4c668a43e8b100a6e91bae9ac893d99ef5f5e104e0f4ff53f0d930ee",
+      "disposition": "LOCAL_ONLY; no raw job transcripts published"
+    }
+  ],
+  "publicProjection": {
+    "oldCatalogDigest": "b075c151175fd2a227fcad23a4e15906384fe379c0cc3c8b990e3777f104f518",
+    "newCatalogDigest": "a690c9a85b486a9d6be72b19cdb754aaaa8ad08c9933c1ab77881df7fd9a17d0",
+    "allOtherDataIdentical": true,
+    "command": "python3 bin/web/export_course_learning.py",
+    "verified": "Official --check PASS; no DRAFT/public scope changed"
+  },
+  "localApi": "Original tests 2 FAIL / 3 PASS; corrected expectations 5 PASS, warning retained",
+  "evidence": [
+    {
+      "file": "api-red-local.log",
+      "originalSha256": "fd94153c398d5595775a1148305a35f7e233329513684885c96bab5bb8576f76",
+      "publishedSha256": "735379eba15a7e9de811935c932e48096e612cb9cf95aaccc7f9bfe83c1ba71a",
+      "transformation": "Checkout absolute path and ANSI/trailing spaces normalized; assertions/results unchanged."
+    },
+    {
+      "file": "api-green-local.log",
+      "originalSha256": "5cec4aaa87fb6ed633b071304e75513e5c1ab74fbb66a4f366038dfa1985d2fa",
+      "publishedSha256": "a2612f6a2b07b527d5b3bb7fb76a17826161d550ed5524f92be6b7849d623710",
+      "transformation": "Checkout absolute path and ANSI/trailing spaces normalized; assertions/results unchanged."
+    },
+    {
+      "file": "projection-red-local.log",
+      "originalSha256": "579cafa7943907d3e8b77a604d6f3e86f3c14a92d9a6b1fbb710b2e594dda1a4",
+      "publishedSha256": "579cafa7943907d3e8b77a604d6f3e86f3c14a92d9a6b1fbb710b2e594dda1a4",
+      "transformation": "Checkout absolute path and ANSI/trailing spaces normalized; assertions/results unchanged."
+    },
+    {
+      "file": "projection-green-local.log",
+      "originalSha256": "53735cd9abef7f3a71f08e2d12af155d52d8f6dd628a7e9ce44d4df4450e8ad3",
+      "publishedSha256": "53735cd9abef7f3a71f08e2d12af155d52d8f6dd628a7e9ce44d4df4450e8ad3",
+      "transformation": "Checkout absolute path and ANSI/trailing spaces normalized; assertions/results unchanged."
+    }
+  ],
+  "candidateFiles": [
+    {
+      "file": "apps/web/src/generated/courseLearningData.ts",
+      "sha256": "18bb1ecae1d7642033bc6110bb2a794ed34669c1dda17634dfa763cddf56beb0"
+    },
+    {
+      "file": "services/study-api/tests/test_admin_http.py",
+      "sha256": "3f5c11ca84fae002bc351c436ac9be93a5b7185472b461fcd669ca8c71df0881"
+    },
+    {
+      "file": "services/study-api/tests/test_curriculum_inventory_http.py",
+      "sha256": "6ce95aba4eb4e2199a00c157d4c38494a57c5555ae5e4ebb708497b75e7461ac"
+    }
+  ]
+}

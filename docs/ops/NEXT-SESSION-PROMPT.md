@@ -148,3 +148,8 @@ S00 ha composto il consumer S19 nella stessa #325: fonti con revisione esatta, c
 Dopo l'esito terminale, affrontare backend hosted e lessonRef/fase esatti; poi comporre memoria/media/Room usando i contratti esistenti. Nessuna nuova PR per prolungare artificialmente il lavoro. S03/S10/S12/S13 senza pacchetto autonomo verificato restano gap, non attività completate. Le 60 prove remote sono ancora preparate, zero eseguite. I quattro corsi rimangono 0/52, 0/57, 0/33, 0/58; DRAFT e approvazione umana restano distinti dai test verdi.
 
 Pubblicare su GitHub codice, prove curate e handoff nel perimetro autorizzato, senza trascrizioni private o credenziali. Gli snapshot e le conclusioni precedenti si conservano: aggiungere una correzione datata con prova, mai riscrivere il passato.
+
+
+### #325 — correzione CI del 26 ottobre 2026
+
+La head33a non è verde: due test API conservavano il vecchio catalogo a sei pack e la build pubblica rilevava il digest catalog.py non rigenerato. Entrambi riprodotti; ora set esatto a sette pack e proiezione rigenerata dal Core, tutti gli altri dati pubblici identici. API5/5 e --check PASS, ricevute in kirchhoff-composition/ci-33a. Non cancellare i FAIL o chiamarli flaky. La prossima azione è nuova CI completa, review, merge protetto e post-merge nella stessa325; i cinque task dell'ultima RUNLOG restano validi. Nessun deploy pubblico o cambio della copertura0/200.

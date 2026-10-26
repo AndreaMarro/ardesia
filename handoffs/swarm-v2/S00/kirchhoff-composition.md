@@ -76,3 +76,10 @@ Claude Code2.1.246 è stato invocato prima del commit con il revisore read-only 
 ## Rettifica editoriale delle prove
 
 Il primo controllo staged ha rilevato spazi finali nei log appena aggiunti; la sequenza di comandi non si è fermata e il commit d3a1d39b è stato pubblicato. Correzione separata e tracciata nella stessa PR: rimossi colori ANSI e whitespace dai soli log di questa consegna, mantenuti gli hash originali e aggiornati quelli pubblicati nel manifest. Nessun risultato o asserzione modificato; controllo diff ripetuto con arresto su errore.
+
+
+## Correzione del candidato dopo la CI 33a — 26 ottobre 2026
+
+La CI [40392048016](https://github.com/AndreaMarro/ardesia/actions/runs/40392048016) ha rifiutato due aspettative API rimaste sul catalogo a sei pack e la proiezione pubblica con digest del vecchio catalogo. Non si è trattato di rerun: entrambi i fallimenti sono stati riprodotti localmente e corretti nella stessa PR. I test conservano l'uguaglianza esatta del registro, ora con i sette pack previsti, e verificano che S19 non acquisisca attività generiche o question bank implicite. L'inventario resta completo e identico anche quando il riferimento alla banca diventa obsoleto.
+
+Il generatore canonico ha cambiato soltanto il digest di catalog.py: confronto strutturale di tutti gli altri dati PASS, senza nuovi contenuti o autorizzazioni pubbliche. RED API2/5, GREEN5/5; proiezione RED → GREEN. [Ricevuta, digest originali e log curati](evidence/kirchhoff-composition/ci-33a/receipt.json). CI completa sulla nuova head ancora necessaria; nessun gate, timeout, soglia o guardia rimossi.
