@@ -1,0 +1,201 @@
+{
+  "schema": "ardesia.scientific3d-assets/1",
+  "revision": 1,
+  "status": "PENDING_S13_CONSUMER",
+  "integration": {
+    "owner": "S13",
+    "approved": false,
+    "consumerVerified": false,
+    "reason": "No 3D consumer/contract observed in the inspected checkout paths or open PRs at 8e0737b1 during S16 reconnaissance. This is a proposed asset boundary."
+  },
+  "format": {
+    "spec": "glTF 2.0",
+    "container": "GLB",
+    "units": "m",
+    "handedness": "right",
+    "up": "+Y",
+    "front": "+Z",
+    "requiredExtensions": [],
+    "externalResources": false,
+    "textures": false,
+    "animations": false,
+    "materialProfile": "core opaque metallic-roughness"
+  },
+  "budgets": {
+    "maxBytesPerAsset": 262144,
+    "maxTrianglesPerAsset": 6000,
+    "maxPrimitivesPerAsset": 8,
+    "maxPackBytes": 524288,
+    "scope": "Static resource budgets only; browser/mobile rendering is NOT_RUN"
+  },
+  "rights": "LicenseRef-Ardesia-Original; see RIGHTS.md; build-tool licenses are separate",
+  "science": "Illustrative geometry. No physical model, scientific approval, simulation, learner outcome, or runtime performance certification.",
+  "assets": [
+    {
+      "id": "calibrated-vessel",
+      "title": "Recipiente cilindrico graduato — sezione aperta",
+      "parameters": {
+        "innerRadiusM": 0.04,
+        "outerRadiusM": 0.043,
+        "baseThicknessM": 0.004,
+        "cavityHeightM": 0.12,
+        "cutawayDegrees": 90
+      },
+      "anchors": {
+        "floor": [
+          0,
+          0.004,
+          0
+        ],
+        "rim": [
+          0,
+          0.124,
+          0
+        ]
+      },
+      "calibration": [
+        {
+          "node": "graduation-100ml",
+          "volumeMl": 100,
+          "heightAboveFloorM": 0.01989436788648691,
+          "localY": 0.02389436788648691
+        },
+        {
+          "node": "graduation-200ml",
+          "volumeMl": 200,
+          "heightAboveFloorM": 0.039788735772973816,
+          "localY": 0.04378873577297382
+        },
+        {
+          "node": "graduation-300ml",
+          "volumeMl": 300,
+          "heightAboveFloorM": 0.05968310365946074,
+          "localY": 0.06368310365946074
+        },
+        {
+          "node": "graduation-400ml",
+          "volumeMl": 400,
+          "heightAboveFloorM": 0.07957747154594765,
+          "localY": 0.08357747154594765
+        },
+        {
+          "node": "graduation-500ml",
+          "volumeMl": 500,
+          "heightAboveFloorM": 0.09947183943243458,
+          "localY": 0.10347183943243458
+        }
+      ],
+      "scienceLimit": "Graduazioni per il cilindro ideale completo; la parete ha una sezione visiva aperta di 90°. Non è una misura sperimentale o una simulazione di fluido.",
+      "path": "calibrated-vessel.glb",
+      "mediaType": "model/gltf-binary",
+      "sha256": "d3d268ab0c054350217c17a5452618fbb0ce47202cba81975e3be3b8bcab3b55",
+      "bytes": 29116,
+      "triangles": 704,
+      "vertices": 782,
+      "primitives": 7,
+      "provenance": {
+        "kind": "ORIGINAL_PARAMETRIC",
+        "generator": "../../handoffs/swarm-v2/S16/build-assets.mjs",
+        "thirdPartyGeometry": [],
+        "rights": "RIGHTS.md"
+      }
+    },
+    {
+      "id": "piston-cylinder",
+      "title": "Cilindro e pistone — sezione aperta",
+      "parameters": {
+        "boreRadiusM": 0.025,
+        "outerRadiusM": 0.028,
+        "barrelFloorM": 0.003,
+        "barrelRimM": 0.103,
+        "pistonRadiusM": 0.0245,
+        "pistonThicknessM": 0.006,
+        "rodRadiusM": 0.004
+      },
+      "anchors": {
+        "floor": [
+          0,
+          0.003,
+          0
+        ],
+        "axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "controls": [
+        {
+          "node": "piston-moving",
+          "property": "translation.y",
+          "units": "m",
+          "initial": 0.055,
+          "min": 0.012,
+          "max": 0.082,
+          "authority": "S13 integration proposal; not an installed control"
+        }
+      ],
+      "scienceLimit": "Gioco radiale e limiti di corsa geometrici soltanto. Nessuna legge dei gas, tenuta, attrito, pressione o forza è calcolata dal GLB.",
+      "path": "piston-cylinder.glb",
+      "mediaType": "model/gltf-binary",
+      "sha256": "bf88e33fc2f8f30f57d83793cd92e693f8e43e33df79902c7e86654a0b8239cb",
+      "bytes": 39240,
+      "triangles": 1156,
+      "vertices": 1186,
+      "primitives": 4,
+      "provenance": {
+        "kind": "ORIGINAL_PARAMETRIC",
+        "generator": "../../handoffs/swarm-v2/S16/build-assets.mjs",
+        "thirdPartyGeometry": [],
+        "rights": "RIGHTS.md"
+      }
+    },
+    {
+      "id": "biconvex-lens",
+      "title": "Lente biconvessa sferica illustrativa",
+      "parameters": {
+        "curvatureRadiusM": 0.1,
+        "apertureRadiusM": 0.025,
+        "centerThicknessM": 0.01,
+        "radialSegments": 16,
+        "angularSegments": 64
+      },
+      "anchors": {
+        "opticalCenter": [
+          0,
+          0,
+          0
+        ],
+        "frontVertex": [
+          0,
+          0,
+          0.005
+        ],
+        "backVertex": [
+          0,
+          0,
+          -0.005
+        ],
+        "opticalAxis": [
+          0,
+          0,
+          1
+        ]
+      },
+      "scienceLimit": "Superfici sferiche geometriche e materiale opaco per compatibilità. Nessun indice, tracciamento raggi, rifrazione, focale o precisione ottica è verificato.",
+      "path": "biconvex-lens.glb",
+      "mediaType": "model/gltf-binary",
+      "sha256": "6180df063faa0c5c6f05291027e6418e08a02263a59a4be5e7950ca476007801",
+      "bytes": 79028,
+      "triangles": 4096,
+      "vertices": 2212,
+      "primitives": 1,
+      "provenance": {
+        "kind": "ORIGINAL_PARAMETRIC",
+        "generator": "../../handoffs/swarm-v2/S16/build-assets.mjs",
+        "thirdPartyGeometry": [],
+        "rights": "RIGHTS.md"
+      }
+    }
+  ]
+}

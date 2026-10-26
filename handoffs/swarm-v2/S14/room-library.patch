@@ -1,0 +1,168 @@
+--- a/apps/studio/src/Room.tsx
++++ b/apps/studio/src/Room.tsx
+@@ -39,6 +39,7 @@
+ import { wrapPassageAnnotation } from "./store/passageAnnotation"
+
+ import { legacyBoardScene } from "./collaboration-v2/sceneBoundary"
++import { LessonLibraryState, sceneWithLibrary, snapshotLibraryItems } from "./whiteboard-library/libraryScene"
+ import type { RoomInkAdapter } from "./collaboration-v2/RoomCollaboration"
+ import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types"
+
+@@ -169,6 +170,8 @@
+   /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
+   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
+
++  const lessonLibrary = useRef(new LessonLibraryState())
++  const libraryGeneration = useRef<symbol | null>(null)
+   const legacyInkIds = useRef(new Set<string>())
+   const apiRef = useRef<any>(null)
+   const saveTimer = useRef<number | null>(null)
+@@ -197,6 +200,7 @@
+   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
+   useEffect(() => {
+     const generation = lifecycleGeneration
++    libraryGeneration.current = generation
+     let cancelled = false
+     let activity: ActiveLessonRegistration | null = null
+     let registrationPromise: Promise<ActiveLessonRegistration> | null = null
+@@ -245,6 +249,7 @@
+     setRooms([])
+     setLoadingRooms(false)
+     setSceneData(null)
++    lessonLibrary.current = new LessonLibraryState()
+     setExportAdvice(null)
+     setSessionAudio(null)
+     setSelectedObjects([])
+@@ -461,7 +466,10 @@
+               parsed.elements = legacyBoardScene(parsed.elements)
+               legacyInkIds.current = new Set(parsed.elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
+             }
+-            setSceneData(parsed)
++            try { lessonLibrary.current.load(parsed) } catch (error) {
++              setStorageError("Raccolta non caricata: " + (error as Error).message)
++            }
++            setSceneData({ ...parsed, libraryItems: lessonLibrary.current.items })
+             if (journalRef.current && parsed?.elements) {
+               journalRef.current.seed(parsed.elements)
+             }
+@@ -486,6 +494,7 @@
+     })()
+     return () => {
+       cancelled = true
++      if (libraryGeneration.current === generation) libraryGeneration.current = null
+       // Pulisci il debounce timer persist() se ancora in sospeso
+       if (saveTimer.current) {
+         window.clearTimeout(saveTimer.current)
+@@ -539,10 +548,13 @@
+     const elements = latestElementsRef.current
+     const appState = latestAppStateRef.current
+     const files = latestFilesRef.current
++    const libraryItems = lessonLibrary.current.items
++    const libraryError = lessonLibrary.current.error
+     if (!elements) return
+     const run = _pendingSave.current.then(async () => {
+       try {
+-        const serialized = serializeAsJSON(legacyBoardScene(elements as Parameters<typeof serializeAsJSON>[0], collaboration ? legacyInkIds.current : undefined), appState, files, "local")
++        if (libraryError) throw libraryError
++        const serialized = sceneWithLibrary(serializeAsJSON(legacyBoardScene(elements as Parameters<typeof serializeAsJSON>[0], collaboration ? legacyInkIds.current : undefined), appState, files, "local"), libraryItems)
+         await actualStore.saveScene(room, serialized)
+         setStorageError(null)
+         setSaved(true)
+@@ -572,7 +584,17 @@
+
+   /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
+   async function flushLiveLesson(): Promise<void> {
++    const api = apiRef.current
++    const owner = lessonLibrary.current
++    const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && apiRef.current === api && lessonLibrary.current === owner
+     await audioRef.current?.stop()
++    if (!stillCurrent()) throw new Error("La lezione è cambiata durante il salvataggio: riprova nella lezione corrente.")
++    if (!studentView && api?.updateLibrary) {
++      // Excalidraw queues library imports but does not await onLibraryChange.
++      // This no-op waits for its queue before the canonical scene save fence.
++      await api.updateLibrary({ libraryItems: (items: unknown) => items })
++    }
++    if (!stillCurrent()) throw new Error("La lezione è cambiata durante il salvataggio: riprova nella lezione corrente.")
+     await flushPersist()
+     await journalRef.current?.flush()
+   }
+@@ -833,6 +855,13 @@
+     }
+     try {
+       if (lessonFile) {
++        const owner = lessonLibrary.current
++        const api = apiRef.current
++        const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && apiRef.current === api && lessonLibrary.current === owner
++        // Drain old writes before the import transaction replaces this board.
++        if (saveTimer.current) { window.clearTimeout(saveTimer.current); saveTimer.current = null }
++        await _pendingSave.current
++        if (!stillCurrent()) return
+         // P32 R10: passa l'event-log LessonOS così il bundle può ripristinare la
+         // memoria didattica. Restore SOLO su log vuoto (disaster-recovery); nella
+         // Room live il log ha già lesson.started ⇒ esito atteso "skipped-non-empty".
+@@ -842,6 +871,7 @@
+           lessonOsRef.current?.store,
+         )
+         const sceneJson = await actualStore.loadScene(room)
++        if (!stillCurrent()) return
+         if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
+         const parsed = JSON.parse(sceneJson)
+         if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
+@@ -850,12 +880,15 @@
+         parsed.elements = elements
+         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
+         const files = parsed.files ?? {}
++        owner.load(parsed)
+         setSceneData(parsed)
+         latestElementsRef.current = elements
+         latestAppStateRef.current = appState
+         latestFilesRef.current = files
+         journalRef.current?.seed(elements)
+-        apiRef.current.updateScene({ elements, appState, files })
++        api.updateScene({ elements, appState, files })
++        await api.updateLibrary({ libraryItems: owner.items, merge: false })
++        if (!stillCurrent()) return
+         // Telemetria mai silenziosa (§4.4): un restore FALLITO va detto al docente
+         // (il board è importato; è la memoria didattica a non essere tornata).
+         if (importResult.lessonOsRestore.kind === "failed") {
+@@ -1044,6 +1077,7 @@
+               onNavigate={(href) => { void navigateToSurface(href) }}
+             />
+           )}
++          {!studentView && <button type="button" className="st-ghost" aria-label="Apri raccolta della lezione" onClick={() => { apiRef.current?.toggleSidebar({ name: "default", tab: "library" }); setMenuOpen(false) }}>raccolta</button>}
+           <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
+           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
+           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
+@@ -1180,9 +1214,31 @@
+               // senza appState (import/export esterni) non perde Nunito/ink/canvas
+               sceneData
+                 ? { ...sceneData, appState: { ...EXCALIDRAW_CONFIG.newRoomAppState, ...sceneData.appState } }
+-                : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
++                : { appState: EXCALIDRAW_CONFIG.newRoomAppState, libraryItems: lessonLibrary.current.items }
+             }
+             // In vista studente la lavagna è sola-lettura: nessun persist/journal
++            onLibraryChange={studentView ? undefined : (items) => {
++              if (libraryGeneration.current !== lifecycleGeneration) return
++              const owner = lessonLibrary.current
++              const api = apiRef.current
++              const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && lessonLibrary.current === owner && apiRef.current === api
++              try {
++                owner.change(items)
++                if (api) persist(latestElementsRef.current ?? api.getSceneElementsIncludingDeleted(), latestAppStateRef.current ?? api.getAppState(), latestFilesRef.current ?? api.getFiles())
++              } catch (error) {
++                setStorageError((error as Error).message)
++                if (!owner.error && api) {
++                  // Rebase repair on the latest SDK state: a valid queued edit
++                  // must survive. Never suppress another operation's callback.
++                  void api.updateLibrary({ libraryItems: (current: unknown) => {
++                    if (!stillCurrent()) return current
++                    try { return snapshotLibraryItems(current) } catch { return owner.items }
++                  }, merge: false }).catch((failure: Error) => {
++                    if (stillCurrent()) setStorageError(failure.message)
++                  })
++                }
++              }
++            }}
+             onChange={studentView && !collaborativeWriting ? undefined : handleChange}
+             validateEmbeddable={/^maestro-tool:\/\//}
+             // Host per i tool embed (slice 4): write-back dei piazzamenti nello

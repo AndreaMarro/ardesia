@@ -1,0 +1,151 @@
+{
+  "schema": "ardesia.s15-reuse-decisions/1",
+  "observed_at_utc": "2026-10-26T00:42:20.280385+00:00",
+  "audit_status": "AUDIT_COMPLETE",
+  "adoption_status": "NOT_ADOPTED",
+  "repository": "AndreaMarro/ardesia",
+  "base_head": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+  "recommended_count": 2,
+  "heavy_validation_run": false,
+  "recommendations": [
+    {
+      "id": "S15-R1",
+      "priority": 1,
+      "owner": "S06",
+      "decision": "ADAPT",
+      "adoption_status": "NOT_ADOPTED",
+      "source_id": "PY-FSRS-6.3.2",
+      "source_head": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+      "module_scope": "Complete FSRS scheduler package, wrapped at existing Core independent-study transaction boundary; no optimizer extras.",
+      "consumer": {
+        "pr": 309,
+        "head": "ff38400012594ab2fad16d4721305e50532ae31a",
+        "paths": [
+          "packages/engine/lessonos/study/independent_study/__init__.py",
+          "apps/web/src/features/independent-study/IndependentStudy.tsx"
+        ],
+        "existing_seam": "act finish/schedule and new explicit self-rating action; plan _write/revision and transact receipt"
+      },
+      "current_code_observed": {
+        "scheduler": "1/3-day suggestion from numeric correctness/assistance; explicit day overrides; no FSRS card/rating/reviewlog in observed head",
+        "plan_text_character_limit": 20000,
+        "frontend_due_format": "date only"
+      },
+      "coordination": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6405629157",
+      "coordination_interpretation": "Owner now plans explicit self-rating and canonical versioned card/log. Conditional ADAPT supersedes blanket DEFER based only on old head; no adoption inferred from message.",
+      "contract": [
+        "Four explicit student recall ratings only; never derive rating from correctness, hints, video, elapsed time or inferred mastery.",
+        "Canonical backend UTC review_datetime, persisted stable scoped card_id and enable_fuzzing=False; persist full chosen scheduler configuration/version.",
+        "Wrapper ties card to plan, edition, lesson and pack; card snapshot plus ReviewLog evidence stays within existing Core resources/revisions/receipts.",
+        "CAS and idempotency admit one transition and one ReviewLog; no second learner authority, queue or table.",
+        "suggestedDue and learner override are distinct with explicit reason; legacy heuristic histories remain readable.",
+        "Validate wrapper/config/card versions before reconstruction; reject unknown or forged state atomically rather than reset.",
+        "Bound current snapshot to existing20000-character plan cap; preserve full history through canonical receipt/revision history rather than unbounded inline array.",
+        "Chosen minute/day learning steps must be visible as actual due time in UI; no efficacy claim attached to upstream default retention.",
+        "Review exact locked dependency/license closure; base fsrs only, omit optimizer extras unless separately justified."
+      ],
+      "adoption_proof_required": [
+        "Exact integrated source/package lock and preserved MIT notices; dependency closure reviewed.",
+        "Relevant pinned upstream tests plus wrapper fixtures for all four ratings, learning/review/relearning and same-day recalls with fixed canonical clock.",
+        "Two identical inputs replay identically with fuzz disabled and explicit card identity.",
+        "Retry produces one log; concurrent CAS allows one revision; cross-owner/cross-lesson/revoked requests fail.",
+        "Cold reopen preserves card/config/log linkage; legacy state and manual override remain readable.",
+        "Long review history does not overflow state or silently erase evidence.",
+        "Real consumer rating choice, sub-day due display if enabled, reopen and boundary proof on final SHA."
+      ],
+      "benefit": {
+        "expected": "Avoid maintaining an original adaptive spacing algorithm while retaining canonical Core history.",
+        "measurement_status": "UNKNOWN",
+        "elapsed_time_saved": null,
+        "performance_delta": null,
+        "learning_effect": null
+      },
+      "rollback": "Disable only versioned new transitions; preserve all Core plan/revision/receipt records and legacy behavior without resetting or deleting donor state.",
+      "registry_disposition": "No FSRS target ID currently observed; S06/S00 owns additive registry delta, S15 does not allocate a competing ID."
+    },
+    {
+      "id": "S15-R2",
+      "priority": 2,
+      "owner": "S09/Core owner via S00",
+      "decision": "REUSE",
+      "adoption_status": "NOT_ADOPTED",
+      "source_id": "ICALENDAR-7.3.0",
+      "source_head": "138c8453db34fbb584bbcbc592fd7bd4b972e8ef",
+      "target_id": "TARGET-123",
+      "module_scope": "Independent parser oracle in tests only: Calendar.from_ical(existing_download_bytes); no runtime serializer replacement.",
+      "consumer": {
+        "pr": 307,
+        "head": "595fbb79650b7b3a6699f7117f542c79226638d9",
+        "core_base": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+        "paths": [
+          "packages/engine/lessonos/study/calendar_time.py",
+          "packages/engine/lessonos/study/calendar.py",
+          "apps/web/src/features/tutor-operations/CalendarExport.tsx"
+        ],
+        "existing_seam": "render_ics -> confirm receipt icsSha256/get_ics -> confirmed S09 download"
+      },
+      "current_code_observed": {
+        "text_escaping": "Existing original _text escapes backslash, newline, semicolon and comma.",
+        "folding": "Existing _fold counts UTF-8 byte width and uses CRLF continuation.",
+        "digest_boundary": "confirm_schedule stores digest(render_ics(plan)); get_ics regenerates bytes.",
+        "defect_found_in_serializer": false
+      },
+      "coordination": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6405615343",
+      "coordination_interpretation": "S09 owns full calendar renderer evaluation; this test parser contract neither replaces renderer selection nor creates a blocking prerequisite.",
+      "contract": [
+        "Read the exact confirmed consumer file bytes with pinned independent Calendar.from_ical parser.",
+        "Verify exactly four VEVENTs, stable/distinct canonical UID, UTC DTSTART/DTEND/DTSTAMP, expected STATUS/SEQUENCE and duration against canonical plan.",
+        "Decode delimiter/newline/backslash/Unicode text; boundary cases at74/75/76UTF-8octets and long title preserve content.",
+        "Also assert physical CRLF/fold limits independently: parser tolerance is not proof of generation conformance.",
+        "Two repeated local02:30Europe/Rome instants remain distinct UTC instants; retry/reopen preserves same bytes/hash/UID/SEQUENCE.",
+        "No new ATTENDEE/ORGANIZER/VALARM/METHOD; stale preview, unauthorized principal and revocation keep current negative controls.",
+        "Do not switch to to_ical in this increment. Future serializer changes require versioned wire format plus old intent/receipt replay compatibility.",
+        "Pin test-only dependency and verify transitive dependency licenses; a third-party client import remains separately NOT_RUN."
+      ],
+      "adoption_proof_required": [
+        "Exact test dependency lock/closure, BSD notices and integrated consumer SHA.",
+        "Independent parser fixtures pass on actual S09 download, including Unicode/folding, DST and exact canonical event fields.",
+        "Retry/reopen hash stays unchanged; four events and no invitations/alarms after boundary tests.",
+        "Negative authorization/stale/revocation paths remain passing in real consumer.",
+        "Separate external calendar client import before claiming full TARGET-123 acceptance."
+      ],
+      "benefit": {
+        "expected": "Independent maintained parser can detect serializer/test shared assumptions without changing persisted export bytes.",
+        "measurement_status": "UNKNOWN",
+        "elapsed_time_saved": null,
+        "defects_prevented": null,
+        "performance_delta": null
+      },
+      "rollback": "Remove test-only dependency and new oracle tests; product bytes, endpoints, schema and historical receipts remain unchanged."
+    }
+  ],
+  "alternatives": [
+    {
+      "source_id": "TS-FSRS-5.4.2",
+      "decision": "DEFER",
+      "adoption_status": "NOT_ADOPTED",
+      "scope": "Alternative for current Python S06 consumer",
+      "reason": "Stable5.4.2 supports Node>=20 and MIT, so not rejected on a main-README v6 Node24 statement. A second JS runtime/client scheduler would add an authority boundary when canonical commands are Python. Reconsider only if the actual owner identifies a consumer requiring that runtime.",
+      "benefit_measurement": "UNKNOWN"
+    },
+    {
+      "source_id": "ICALENDAR-7.3.0",
+      "decision": "REIMPLEMENT",
+      "adoption_status": "EXISTING_ORIGINAL_RENDERER_RETAINED",
+      "scope": "Runtime serializer only",
+      "reason": "Current bounded original Core renderer already escapes TEXT/folds UTF-8. Replacing runtime bytes without versioning risks persisted icsSha256 compatibility; test-oracle reuse is the proposed first increment.",
+      "benefit_measurement": "UNKNOWN"
+    }
+  ],
+  "not_checked": [
+    "Donor package installation and distributed bytes",
+    "Donor or product runtime/scenario",
+    "Upstream or product test execution",
+    "External calendar import",
+    "Transitive dependency license closure",
+    "Final adoption commits on owner branches",
+    "Scientific efficacy, cost or time saving"
+  ],
+  "no_github_mutations": true,
+  "product_files_changed_by_s15": false
+}

@@ -1,0 +1,25 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/ardesia-acquisition/apps/studio
+
+ ❯ src/whiteboard-library/libraryScene.test.ts (5 tests | 1 failed) 23ms
+     × keeps a corrupt saved collection blocked despite the SDK initial empty notification; a valid import recovers 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/libraryScene.test.ts > lesson library snapshot > keeps a corrupt saved collection blocked despite the SDK initial empty notification; a valid import recovers
+TypeError: LessonLibraryState is not a constructor
+ ❯ src/whiteboard-library/libraryScene.test.ts:11:19
+      9| describe("lesson library snapshot", () => {
+     10|   it("keeps a corrupt saved collection blocked despite the SDK initial…
+     11|     const state = new LessonLibraryState()
+       |                   ^
+     12|     expect(() => state.load({ libraryItems: null })).toThrow()
+     13|     expect(state.error).toBeInstanceOf(Error)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  01:44:06
+   Duration  255ms (transform 34ms, setup 27ms, import 18ms, tests 23ms, environment 0ms)

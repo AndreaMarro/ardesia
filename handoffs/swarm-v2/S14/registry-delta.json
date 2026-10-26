@@ -1,0 +1,15 @@
+{
+  "schema": "ardesia.target-update-proposal/1",
+  "canonicalRegistry": "registry/TARGETS.json",
+  "baseCount": 139,
+  "status": "PENDING_CANONICAL_WRITER",
+  "preserveHistoricalIdentifiersAndEvidence": true,
+  "updates": [
+    { "id": "TARGET-080", "name": "Excalidraw", "owner": "S14/S07", "status": "INVESTIGATED", "decision": "ADAPT", "capability": "Native lesson-scoped LibraryItems editor/import/export with canonical board/bundle persistence", "version": "0.18.1", "license": "MIT", "productAdoption": "PENDING_S00_WIRING", "evidence": "handoffs/swarm-v2/S14/provenance.json" },
+    { "id": "TARGET-013", "name": "Goodnotes", "owner": "S14", "status": "INVESTIGATED", "decision": "REIMPLEMENT", "observation": "Official Elements documentation only in this batch; separate authorized Goodnotes REA chat owns runtime study", "rights": "No proprietary source or asset reuse", "productAdoption": "NO_DONOR_CODE_ADOPTED" },
+    { "id": "TARGET-089", "name": "tldraw", "owner": "S14", "status": "INVESTIGATED", "decision": "DEFER", "observation": "Official commercial SDK licensing/production key documentation", "version": "NOT_ACQUIRED", "reason": "Current capability supplied by existing MIT canvas; no production tldraw license acquired", "productAdoption": "NOT_ADOPTED" }
+  ],
+  "newCandidates": [],
+  "relatedDeltas": ["handoffs/swarm-v2/S15/reuse-decisions.json", "handoffs/swarm-v2/S16/candidates.json"],
+  "note": "Proposal for the existing registry, not a second runtime registry; S00 deduplicates related donor candidates by canonical URL and assigns new IDs sequentially. No shared registry edit performed."
+}
