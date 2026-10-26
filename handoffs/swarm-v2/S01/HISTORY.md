@@ -132,3 +132,42 @@ Nessuna soluzione editoriale esportata nella fotografia aggregata.
 S00 ha assegnato il prossimo slotS01 dopo la sua breve prova su5418;
 nessuna prova S01 anticipata. Restano da chiudere E2Econsumer, misura build,
 composizione Root/API autorizzata e successivo rilascio diS00.
+
+## 26 ottobre 2026 — consumer compilato verificato e slot rilasciato
+
+Presa6406120309, rilascio effettivo6406190063 entro gli8minuti assegnati daS00.
+Fonte finale c2ecf61bb0352562b59826cc4ab8a12d4a5dcde6: tscEXIT0,13WebPASS,
+43CorePASS,5HTTPPASS, buildprivataEXIT0.17check browserPASS sull'artefatto
+compilato, servito con cookie/Core/create_app originali e sola patch candidata
+in memoria. CSP script-src self senzaunsafe-eval; licenzaHTTP200 byte-esatta;
+zero pageerror/richiesteesterne nella pagina principale. Tre viewport reali
+emulati1440/820/390 e touch, screenshot letti. Safari/VoiceOver/device NOT_RUN.
+
+Prima prove dev82bb:7checkPASS eFAIL alcoldreopen, due riproduzioni preservate.
+**Correzione datata:** nota e revisione erano presenti; il nome accessibile
+deltextarea inglobava il contenuto almount, così il campo non era trovabile
+con il nome stabile. aria-label esplicita in b58ea5b6 corregge il consumer;
+dev15PASS e successivamente build17PASS su c2ecf61b. Nessun dato perso o
+checkCore aggirato. Migliorata solo cattura scroll/focus del runner per non
+fotografare sidebarsticky a metàpagina; nessun edit aldesignsystemS02.
+
+Il budget350KiB è superato come criterio: chunklazy~259kBgzip dichiarati da
+Vite, hash/misura separata in evidence/final/bundle.json; raw~1MB con warning
+500kB conservato. JessieCodeeval rimane nel distribuito: warning documentato,
+percorsi numerici testati conCSPsenzaeval, nessuna attestazione su scripts
+arbitrari. Il notice3661byte avrebbe generato dataURL con ?url: ?url&no-inline
+ora emette unfile reale, provato200 e hash identico. REA rimane timeout/parziale,
+non riscritto come successo dalla provaPlaywright.
+
+Core/HTTP/UI/build log originali compressi lossless; primiFAIL ePASS distinti,
+quattro screenshot e manifest congelati in evidence/final. DB/token/cookie e
+fixture-private.json esclusi daGit e consegna. Porte55510/55511 verificate
+senza listener dopo chiusura propria. Nessun processo altrui terminato.
+
+INTEGRATION.md e study-api-composition.patch rendono concreto ilhandoffS00:
+patchAPIgitapply--checkPASS, mountlazy+referencecontract e typedreader richiesti.
+Il raccordo App/API non è stato applicato daS01 e non è un deployVercel.
+PR317 rimane la stessa; nuovaCIhead da verificare dopo upload prove. Le5azioni
+prioritarie sopra proseguono dalla composizione del consumer, non da una
+ripartenza del ramo o dalla review304/306 superata.0/200certificati, DRAFT e
+nessuna humanapproval restano espliciti in FOUR-COURSE-GAPS.md.
