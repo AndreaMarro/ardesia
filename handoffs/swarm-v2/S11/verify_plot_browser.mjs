@@ -41,11 +41,11 @@ try{
  await page.getByRole('button',{name:'Apri fonte originale',exact:true}).click();
  await page.locator('.source-viewer').waitFor();
  check('canonical exact source viewer',(await page.locator('.source-viewer').innerText()).includes('Previsione sintetica'));
- await page.getByLabel('Verifica',{exact:true}).selectOption('MATCH');
+ await page.getByRole('combobox',{name:/^Verifica/}).selectOption('MATCH');
  await page.waitForFunction(()=>document.querySelectorAll('.insights-attempts > li').length===1);
  check('filtered URL state',new URL(page.url()).searchParams.get('insightOutcome')==='MATCH');
  await page.reload();await page.getByRole('img',{name:'Prove conservate per verifica e aiuti richiesti'}).waitFor();
- check('filter survives cold reload',await page.locator('.insights-attempts > li').count()===1&&await page.getByLabel('Verifica',{exact:true}).inputValue()==='MATCH');
+ check('filter survives cold reload',await page.locator('.insights-attempts > li').count()===1&&await page.getByRole('combobox',{name:/^Verifica/}).inputValue()==='MATCH');
  const filteredDownloadPromise=page.waitForEvent('download');
  await page.getByRole('button',{name:'Esporta i dati visibili'}).click();
  const filteredDownload=await filteredDownloadPromise;
@@ -57,7 +57,7 @@ try{
  await page.waitForFunction(()=>document.querySelectorAll('.insights-attempts > li').length===2);
  await page.goBack();
  await page.waitForFunction(()=>document.querySelectorAll('.insights-attempts > li').length===1);
- check('browser back restores filter',await page.getByLabel('Verifica',{exact:true}).inputValue()==='MATCH');
+ check('browser back restores filter',await page.getByRole('combobox',{name:/^Verifica/}).inputValue()==='MATCH');
  await page.goForward();await page.waitForFunction(()=>document.querySelectorAll('.insights-attempts > li').length===2);
  check('two canonical receipts',await page.locator('.insights-attempts > li').count()===2);
  await page.getByText('Mostra evidenza',{exact:true}).first().click();
@@ -99,7 +99,7 @@ try{
  checkingRevocation=true;
  const rejected=page.waitForResponse(r=>r.url().includes('/study/learning-insights?')&&r.status()===401);
  await page.getByRole('button',{name:'Aggiorna'}).click();await rejected;
- await page.getByRole('alert').waitFor();
+ await page.locator('.learning-insights').waitFor({state:'detached'});
  check('revocation removes private evidence',await page.locator('.insights-attempts > li').count()===0&&await page.locator('.insights-plot svg,.source-viewer').count()===0);
  check('console health',errors.length===0);
 }finally{

@@ -49,7 +49,8 @@ def prepare(root=ROOT, copies=None):
     if copies is not None:
         schema = 'packages/engine/lessonos/study/schema.sql'
         (Path(copies) / schema).write_bytes((root / schema).read_bytes())
-    return patch
+    # Git accepts empty context lines without a space prefix; keep the patch itself whitespace-clean.
+    return ''.join('\n' if line == ' \n' else line for line in patch.splitlines(True))
 
 
 if __name__ == '__main__':

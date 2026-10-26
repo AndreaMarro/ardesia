@@ -15,9 +15,12 @@ function EvidencePlot({rows}:{rows:EvidenceCount[]}){
   element.replaceChildren();setError('');setReady(false);const start=performance.now();
   void import('./vendor/plot-engine.mjs').then(Plot=>{
    if(!active)return;const renderStart=performance.now();
+   const totals=new Map<string,number>();for(const row of rows)totals.set(row.outcome,(totals.get(row.outcome)??0)+row.count);
+   const maximum=Math.max(1,...totals.values());const step=Math.max(1,Math.ceil(maximum/5));
+   const ticks=Array.from({length:Math.floor(maximum/step)+1},(_,i)=>i*step);if(ticks.at(-1)!==maximum)ticks.push(maximum);
    const svg=Plot.plot({width,height:230,marginLeft:148,marginRight:24,ariaLabel:'Prove conservate per verifica e aiuti richiesti',
     ariaDescription:'Conteggi delle prove selezionate; la tabella riporta ogni ricevuta. Non è una misura di apprendimento.',
-    x:{label:'Numero di prove',grid:true,tickFormat:'d',ticks:Math.min(6,Math.max(1,rows.reduce((n,r)=>n+r.count,0)))},
+    x:{label:'Numero di prove',grid:true,tickFormat:'d',domain:[0,maximum],ticks},
     y:{label:null,domain:['Da confrontare','Concorde con il modello','Non verificato'],tickSize:0},
     color:{domain:Object.values(HELP_LABELS),range:['#b56735','#355d4e','#69736c'],legend:false},
     marks:[Plot.barX(rows,{x:'count',y:'outcome',fill:'assistance',title:d=>`${d.outcome}; ${d.assistance}: ${d.count}`,tip:true}),Plot.ruleX([0])]});

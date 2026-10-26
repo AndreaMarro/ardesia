@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "existingTargetId": null,
+  "candidateKey": "observable-plot",
+  "name": "Observable Plot",
+  "url": "https://github.com/observablehq/plot",
+  "version": "0.6.17",
+  "license": "ISC",
+  "decision": "REUSE distributed library, ADAPT original consumer only",
+  "state": "INVESTIGATED",
+  "codeAdoption": "implemented and tested in private proposed shared composition; actual shared mount/merge/deploy pending S00",
+  "owner": "S11",
+  "reviewOwners": [
+    "S12",
+    "S15"
+  ],
+  "replaces": "handwritten chart axes/scales/stacking; no authority or data store",
+  "dependencies": "42 pinned npm package closure bundled in local lazy ESM subset; PROVENANCE.json and notices",
+  "requiredProof": "actual shared mount/API/restore and postmerge/private environment verification",
+  "otherCandidates": [
+    "ECharts6.1.0 DEFER",
+    "Vega-Lite6.5.0 DEFER"
+  ],
+  "relatedExistingTargets": [
+    "TARGET-126",
+    "TARGET-132"
+  ]
+}

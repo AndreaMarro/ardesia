@@ -1,0 +1,105 @@
+{
+  "environment": "local synthetic Core composition; shared mount pending",
+  "checks": [
+    {
+      "name": "page identity",
+      "pass": true
+    },
+    {
+      "name": "not blank and no overlay",
+      "pass": true
+    },
+    {
+      "name": "real Plot SVG",
+      "pass": true
+    },
+    {
+      "name": "measured plot timings",
+      "pass": true
+    },
+    {
+      "name": "chart excludes identities",
+      "pass": true
+    },
+    {
+      "name": "canonical exact source viewer",
+      "pass": true
+    },
+    {
+      "name": "filtered URL state",
+      "pass": true
+    },
+    {
+      "name": "filter survives cold reload",
+      "pass": true
+    },
+    {
+      "name": "fresh filtered export",
+      "pass": true
+    },
+    {
+      "name": "browser back restores filter",
+      "pass": true
+    },
+    {
+      "name": "two canonical receipts",
+      "pass": true
+    },
+    {
+      "name": "exact receipt/source evidence",
+      "pass": true
+    },
+    {
+      "name": "default optout",
+      "pass": true
+    },
+    {
+      "name": "explicit difficulty persisted",
+      "pass": true
+    },
+    {
+      "name": "cold page retains optional choice",
+      "pass": true
+    },
+    {
+      "name": "optout deletion while study preserved",
+      "pass": true
+    },
+    {
+      "name": "contest updates canonical diary",
+      "pass": true
+    },
+    {
+      "name": "export download",
+      "pass": true
+    },
+    {
+      "name": "mobile has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "keyboard focus visible",
+      "pass": true
+    },
+    {
+      "name": "reduced motion",
+      "pass": true
+    },
+    {
+      "name": "console health before deliberate revocation",
+      "pass": true
+    },
+    {
+      "name": "revocation removes private evidence",
+      "pass": true
+    },
+    {
+      "name": "console health",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "expectedNegativeErrors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ]
+}

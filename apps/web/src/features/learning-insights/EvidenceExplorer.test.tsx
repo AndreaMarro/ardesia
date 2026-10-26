@@ -20,3 +20,10 @@ it('suppresses chart and group values for small tutor subsets while keeping auth
  fireEvent.click(screen.getByText('Tabella delle prove (1)'));
  expect(screen.getByRole('button',{name:'Apri prova 1'})).toBeTruthy();
 });
+
+it('uses distinct integer ticks when two groups each have one receipt',async()=>{
+ render(<EvidenceExplorer attempts={[a,{...a,receiptId:'r2',outcome:'MISMATCH',assistance:'SUPPORT_REQUESTED'}]} role="student"/>);
+ const chart=await screen.findByRole('img',{name:'Prove conservate per verifica e aiuti richiesti'});
+ const labels=[...chart.querySelectorAll('g[aria-label="x-axis tick label"] text')].map(el=>el.textContent);
+ expect(labels).toEqual(['0','1']);
+});

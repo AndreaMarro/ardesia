@@ -24,6 +24,7 @@ with tempfile.TemporaryDirectory(prefix='s11-shared-composition-') as temporary:
     source=(Path(__file__).with_name('run_demo.py')).read_text()
     source=source[:source.index('\ndef store_dependency():')]
     source=source.replace('from study_api.app import create_app','')
+    source=source.replace('store.close()',"if not store.connection.execute('SELECT 1 FROM study_editions WHERE id=?',('fluidi',)).fetchone():store.create_edition(tutor,'fluidi')\nstore.close()")
     namespace={'__name__':'__main__','create_app':create_app}
     exec(compile(source,'s11-fixture-seed','exec'),namespace)
     uvicorn.run(namespace['app'],host='127.0.0.1',port=namespace['args'].port,log_level='warning')
