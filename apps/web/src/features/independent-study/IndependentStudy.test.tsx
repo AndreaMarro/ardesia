@@ -18,3 +18,9 @@ test('does not reveal a solution on resume and a revoked request removes private
  revoked=true;fireEvent.click(screen.getByRole('button',{name:'Chiedi un indizio'}));
  await screen.findByRole('alert');expect(screen.queryByText('Trova x.')).toBeNull();
 });
+
+test('keeps a single main landmark when mounted inside the application shell',async()=>{
+ vi.stubGlobal('fetch',vi.fn(async(path:string)=>new Response(JSON.stringify(path.endsWith('/session')?base:{objectives:[],sessions:[{id:'session'}],reason:'Riprendi',coverageWarning:'DRAFT'}))));
+ render(<main aria-label="Applicazione"><IndependentStudy editionId="mechanics" me={{id:'student-a',role:'student',synthetic:true}}/></main>);
+ await screen.findByText('Trova x.');expect(screen.getAllByRole('main')).toHaveLength(1);
+});

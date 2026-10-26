@@ -96,7 +96,7 @@ function StudySession({editionId,me}:Props){
     {state.reviewAt&&<p>Ripasso: <strong>{date(state.reviewAt)}</strong></p>}
     <label className="is-field">Scegli quando ripassare<select aria-label="Scegli quando ripassare" value="" disabled={blocked} onChange={e=>void action('schedule',{days:Number(e.target.value)})}><option value="">Modifica il piano</option>{[1,3,7,14].map(d=><option key={d} value={d}>Fra {d} giorni</option>)}</select></label>
     <button type="button" disabled={blocked} onClick={()=>void run(async()=>{const c=await studyRequest<StudyCatalog>(endpoint+'?editionId='+encodeURIComponent(editionId));if(alive.current){setCatalog(c);setState(null);pending.current=null;}})}>Scegli un altro obiettivo</button>
-   </aside><main className="is-card" aria-label="Passaggio del percorso">
+   </aside><section className="is-card" aria-label="Passaggio del percorso">
     <p className="section-meta">{labels[state.phase]}</p>
     {state.phase==='diagnostic'&&<><h2>Prima di cominciare</h2><p>Quale relazione useresti? Scrivi quello che sai e il dubbio da verificare. Non assegniamo un livello da questa risposta.</p>
      <label className="is-field">La tua idea iniziale<textarea maxLength={4000} value={diagnostic} onChange={e=>setDiagnostic(e.target.value)} disabled={blocked}/></label>
@@ -126,7 +126,7 @@ function StudySession({editionId,me}:Props){
     <details><summary>Dubbi, contestazione e richiesta al docente</summary><label className="is-field">Descrivi il dubbio<textarea maxLength={4000} value={requestText} onChange={e=>setRequestText(e.target.value)} disabled={blocked}/></label><div className="is-actions"><button disabled={blocked||!requestText.trim()} onClick={()=>void action('dispute',{text:requestText})}>Contesta il feedback</button><button disabled={blocked||!requestText.trim()} onClick={()=>void action('tutor',{text:requestText})}>Registra richiesta al docente</button></div>
      {(state.tutorRequest||state.dispute)&&<p>Richiesta conservata. Non inviata al docente; nessun messaggio esterno.</p>}</details>
     <details><summary>Fonte e revisione esatte</summary><p>Lezione {state.lessonRef.id} · versione {state.lessonRef.version}</p><p className="is-reference">{state.lessonRef.sha256}</p><p>Risorsa {state.sourceRef.resourceId} · revisione {state.sourceRef.revisionId}</p></details>
-   </main></div>
+   </section></div>
   </>:catalog&&<div className="is-catalog"><h2>Scegli da dove cominciare.</h2><p>{catalog.reason}</p>
    {!!catalog.sessions.length&&<div className="is-resume"><h3>I tuoi percorsi</h3>{catalog.sessions.map(s=><button key={s.id} disabled={busy||offline} onClick={()=>void run(async()=>{const v=await studyRequest<StudyState>(endpoint+'/'+s.id);if(alive.current)adopt(v,true);})}>Riprendi · {labels[s.phase]}{s.reviewAt?' · '+date(s.reviewAt):''}</button>)}</div>}
    <div className="is-objectives">{catalog.objectives.map(o=><article key={o.lessonRef.id}><p className="section-meta">OBIETTIVO</p><h3>{o.title}</h3><p>{o.objectiveIds.join(' · ')}</p><button className="button-primary" disabled={busy||offline} onClick={()=>void run(async()=>{const v=await studyRequest<StudyState>(endpoint,{editionId,lessonRef:o.lessonRef},{headers:{'Idempotency-Key':requestKey()}});if(alive.current)adopt(v);})}>Scegli questo obiettivo</button></article>)}</div><p>{catalog.coverageWarning}</p>
