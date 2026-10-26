@@ -48,6 +48,10 @@ test("supports decimal and scientific numerators accepted by the value grammar",
       .atValues,
   ).toBe("0.005");
 });
+
+test("evaluates numeric substitutions before composing them into a quotient", () => {
+  expect(calculate({ ...input, left: "x/x", right: "1", values: "x=1.5/2" }).left.atValues).toBe("1");
+});
 test("square root branch and unequal expressions never become a universal equality", () => {
   const result = calculate({
     ...input,

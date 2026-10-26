@@ -178,7 +178,7 @@ export function calculate(input: CasInput): CasResult {
         ? ce.box([
             value.every(Number.isSafeInteger) ? "Rational" : "Divide",
             ...value,
-          ])
+          ]).evaluate()
         : ce.number(value),
     ]),
   );
