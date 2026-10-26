@@ -175,3 +175,6 @@ G1 non è pronto: nessun backend Ardesia hosted trovato in Render/Supabase; il r
 ### Addendum S00 — golden nativo concluso, 26 ottobre 2026
 
 Fonte golden locale7c941263,26PASS, prove e limiti in `handoffs/swarm-v2/S00/g0-final-20261026/README.md`. Mantiene il percorso unico con formulaMathLive e SVG collegato all’audio, importUI su nuovo browser, Core riavviato e due ricevute. Web622,Studio2365/5SKIP,CoreAPI1224/30SKIP,rilascio27,layout16; build pubblica e igiene PASS. Non riattribuire a questi verdi una head remota senza controllare tree eCI. Primo passo necessario: completare la stessa313 con parent originali318/322/323/324, sette gate richiesti, merge ordinario,CIpush e Preview protetta su progetto canonico; la313 è la ricevuta esterna autorevole. PhaseE ha consegne isolate da integrare sulla main risultante;311/319 e profiloG1 non sono già conclusi. Nessun costo nuovo, backendELAB o promozioneDRAFT autorizzati.
+
+
+Addendum CI G0: la head011246b ha raggiunto GitHub con tree esatto; S19 ha fermato il preparatore storico della patch325. Correzione: binding ai moduli attuali,49test locali PASS e3negativi sulle copie temporanee. Non saltare S19 o riusare la vecchia CI: verificare nuova head313, sette required più S19, merge ordinario e pushprima Preview. Evidenza in `handoffs/swarm-v2/S00/g0-final-20261026/s19-ci/`.
