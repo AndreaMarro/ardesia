@@ -1,0 +1,701 @@
+{
+  "catalog": {
+    "schemaVersion": 1,
+    "referenceScope": "capability-definition; Core resource access remains edition-scoped",
+    "capabilities": [
+      {
+        "id": "collision-1d-v1",
+        "version": 1,
+        "implementationSha256": "dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78",
+        "title": "Urto e bilancio di energia",
+        "primaryOutput": {
+          "label": "Velocità finale del corpo1",
+          "unit": "m/s"
+        },
+        "explanation": [
+          "La quantità di moto totale prima e dopo coincide se la risultante degli impulsi esterni è trascurabile.",
+          "Il coefficiente e confronta velocità relativa di separazione e di avvicinamento. Per e=1 l’urto è elastico; per e=0 i due corpi hanno la stessa velocità finale.",
+          "L’energia cinetica trasformata non è energia totale scomparsa. Il modello non descrive deformazioni o temperatura durante l’urto."
+        ],
+        "transfer": {
+          "mass1": 1,
+          "mass2": 1,
+          "velocity1": 2,
+          "velocity2": -1,
+          "restitution": 1
+        },
+        "domain": "Urto istantaneo unidimensionale fra due corpi isolati: corpo1 a sinistra di corpo2, in avvicinamento u1>u2. Masse positive; coefficiente di restituzione 0≤e≤1. Quantità di moto conservata; energia cinetica conservata solo per e=1. Nessun attrito, forza esterna, rotazione, penetrazione o andamento temporale dell’urto.",
+        "distribution": "BUNDLED_FIRST_PARTY",
+        "editorialStatus": "DRAFT",
+        "parameters": [
+          {
+            "key": "mass1",
+            "label": "Massa del corpo1",
+            "unit": "kg",
+            "default": 2,
+            "minimum": 1e-06,
+            "maximum": 1000000.0
+          },
+          {
+            "key": "mass2",
+            "label": "Massa del corpo2",
+            "unit": "kg",
+            "default": 1,
+            "minimum": 1e-06,
+            "maximum": 1000000.0
+          },
+          {
+            "key": "velocity1",
+            "label": "Velocità iniziale del corpo1",
+            "unit": "m/s",
+            "default": 3,
+            "minimum": -10000.0,
+            "maximum": 10000.0
+          },
+          {
+            "key": "velocity2",
+            "label": "Velocità iniziale del corpo2",
+            "unit": "m/s",
+            "default": 0,
+            "minimum": -10000.0,
+            "maximum": 10000.0
+          },
+          {
+            "key": "restitution",
+            "label": "Coefficiente di restituzione",
+            "unit": "1",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 1
+          }
+        ]
+      },
+      {
+        "id": "bernoulli-v1",
+        "version": 1,
+        "implementationSha256": "dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78",
+        "title": "Continuità e Bernoulli",
+        "primaryOutput": {
+          "label": "Pressione assoluta nella seconda sezione",
+          "unit": "Pa"
+        },
+        "explanation": [
+          "La portata volumetrica è la stessa nelle due sezioni di un tubo senza accumulo: Q=A₁v₁=A₂v₂.",
+          "Lungo la stessa linea di corrente ideale, pressione, termine cinetico e termine gravitazionale si scambiano mantenendo costante p+ρv²/2+ρgh.",
+          "Una sezione più stretta non implica da sola una conclusione sulla pressione se cambiano anche quota, pompe o dissipazioni. Qui questi ultimi due effetti sono esclusi."
+        ],
+        "transfer": {
+          "density": 1000,
+          "area1": 0.01,
+          "area2": 0.01,
+          "speed1": 3,
+          "pressure1": 150000,
+          "height1": 0,
+          "height2": 2,
+          "g": 9.81
+        },
+        "domain": "Fluido ideale incomprimibile, regime stazionario lungo la stessa linea di corrente, senza pompe, turbine o dissipazioni. Q=A·v e p+ρv²/2+ρgh costante. Pressioni assolute positive; entrambe le velocità ≤100m/s. Una pressione positiva non esclude la cavitazione: tensione di vapore, viscosità, profilo delle velocità e comprimibilità non sono verificati da questo modello.",
+        "distribution": "BUNDLED_FIRST_PARTY",
+        "editorialStatus": "DRAFT",
+        "parameters": [
+          {
+            "key": "density",
+            "label": "Densità del fluido",
+            "unit": "kg/m³",
+            "default": 1000,
+            "minimum": 0.1,
+            "maximum": 20000
+          },
+          {
+            "key": "area1",
+            "label": "Area della prima sezione",
+            "unit": "m²",
+            "default": 0.01,
+            "minimum": 1e-06,
+            "maximum": 10
+          },
+          {
+            "key": "area2",
+            "label": "Area della seconda sezione",
+            "unit": "m²",
+            "default": 0.005,
+            "minimum": 1e-06,
+            "maximum": 10
+          },
+          {
+            "key": "speed1",
+            "label": "Velocità nella prima sezione",
+            "unit": "m/s",
+            "default": 2,
+            "minimum": 0.001,
+            "maximum": 100
+          },
+          {
+            "key": "pressure1",
+            "label": "Pressione assoluta nella prima sezione",
+            "unit": "Pa",
+            "default": 120000,
+            "minimum": 1,
+            "maximum": 100000000.0
+          },
+          {
+            "key": "height1",
+            "label": "Quota della prima sezione",
+            "unit": "m",
+            "default": 0,
+            "minimum": -100,
+            "maximum": 100
+          },
+          {
+            "key": "height2",
+            "label": "Quota della seconda sezione",
+            "unit": "m",
+            "default": 0,
+            "minimum": -100,
+            "maximum": 100
+          },
+          {
+            "key": "g",
+            "label": "Accelerazione di gravità",
+            "unit": "m/s²",
+            "default": 9.81,
+            "minimum": 0.01,
+            "maximum": 30
+          }
+        ]
+      },
+      {
+        "id": "point-charge-v1",
+        "version": 1,
+        "implementationSha256": "dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78",
+        "title": "Campo, potenziale e carica di prova",
+        "primaryOutput": {
+          "label": "Componente x del campo elettrico",
+          "unit": "N/C"
+        },
+        "explanation": [
+          "Il campo è una proprietà della sorgente e del punto: Eₓ=kq·segno(x)/|x|². Il potenziale, con zero all’infinito, è V=kq/|x|.",
+          "Spostarsi sul lato opposto cambia il segno della componente del campo, non il segno del potenziale di quella sorgente.",
+          "Forza ed energia potenziale dipendono anche dalla carica di prova: Fₓ=qₚEₓ e U=qₚV. Il campo non coincide con la forza."
+        ],
+        "transfer": {
+          "charge": -2e-09,
+          "position": -0.6,
+          "testCharge": 2e-09
+        },
+        "domain": "Carica puntiforme fissata all’origine nel vuoto; sonda sull’asse x con |x|≥0,01m. k≈9·10⁹N·m²/C² è un’approssimazione didattica dichiarata, non una costante SI esatta. Campo con segno lungo x, potenziale nullo all’infinito. Carica di prova ideale: nessuna perturbazione della sorgente, materiali, moto o campo magnetico.",
+        "distribution": "BUNDLED_FIRST_PARTY",
+        "editorialStatus": "DRAFT",
+        "parameters": [
+          {
+            "key": "charge",
+            "label": "Carica sorgente",
+            "unit": "C",
+            "default": 1e-09,
+            "minimum": -1e-05,
+            "maximum": 1e-05
+          },
+          {
+            "key": "position",
+            "label": "Posizione della sonda sull’asse x",
+            "unit": "m",
+            "default": 0.3,
+            "minimum": -1000,
+            "maximum": 1000
+          },
+          {
+            "key": "testCharge",
+            "label": "Carica di prova",
+            "unit": "C",
+            "default": 2e-09,
+            "minimum": -1e-05,
+            "maximum": 1e-05
+          }
+        ]
+      },
+      {
+        "id": "thin-lens-v1",
+        "version": 1,
+        "implementationSha256": "dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78",
+        "title": "Lente sottile e immagine con segno",
+        "primaryOutput": {
+          "label": "Posizione firmata dell’immagine",
+          "unit": "m"
+        },
+        "explanation": [
+          "La convenzione qui usa u positivo per l’oggetto reale a sinistra e v positivo per l’immagine reale a destra. La distanza focale è negativa per una lente divergente.",
+          "L’equazione 1/f=1/u+1/v determina la posizione; m=−v/u determina orientamento e rapporto delle altezze.",
+          "I prolungamenti tratteggiati verso un’immagine virtuale non sono raggi che viaggiano all’indietro. Vicino al piano focale il confronto è escluso dal dominio numerico dichiarato."
+        ],
+        "transfer": {
+          "focalLength": 0.1,
+          "objectDistance": 0.05,
+          "objectHeight": 0.001
+        },
+        "domain": "Lente sottile ideale in aria, approssimazione paraassiale; oggetto reale a sinistra. 1/f=1/u+1/v, u>0; f positivo convergente, negativo divergente; v positivo immagine reale a destra, negativo virtuale a sinistra. m=−v/u. Altezza ≤0,1·min(u,|f|). Esclusa la fascia |u−f|≤10⁻⁴max(u,|f|), numericamente mal condizionata vicino al fuoco. Nessuna aberrazione, diffrazione o misura sperimentale della lente.",
+        "distribution": "BUNDLED_FIRST_PARTY",
+        "editorialStatus": "DRAFT",
+        "parameters": [
+          {
+            "key": "focalLength",
+            "label": "Distanza focale con segno",
+            "unit": "m",
+            "default": 0.1,
+            "minimum": -10,
+            "maximum": 10
+          },
+          {
+            "key": "objectDistance",
+            "label": "Distanza dell’oggetto reale",
+            "unit": "m",
+            "default": 0.3,
+            "minimum": 0.01,
+            "maximum": 100
+          },
+          {
+            "key": "objectHeight",
+            "label": "Altezza dell’oggetto",
+            "unit": "m",
+            "default": 0.005,
+            "minimum": 1e-06,
+            "maximum": 0.1
+          }
+        ]
+      }
+    ],
+    "courses": [
+      {
+        "id": "strumenti-meccanica",
+        "title": "Strumenti e meccanica",
+        "capabilityIds": [
+          "collision-1d-v1",
+          "bernoulli-v1"
+        ]
+      },
+      {
+        "id": "fluidi-termodinamica",
+        "title": "Fluidi e termodinamica",
+        "capabilityIds": [
+          "bernoulli-v1"
+        ]
+      },
+      {
+        "id": "elettricita-magnetismo",
+        "title": "Elettricità e magnetismo",
+        "capabilityIds": [
+          "point-charge-v1"
+        ]
+      },
+      {
+        "id": "onde-ottica-radiazioni",
+        "title": "Onde, ottica e radiazioni",
+        "capabilityIds": [
+          "thin-lens-v1"
+        ]
+      }
+    ]
+  },
+  "results": {
+    "collision-1d-v1": {
+      "activityId": "collision-1d-v1",
+      "version": 1,
+      "dataVersion": 1,
+      "parameters": {
+        "mass1": 2.0,
+        "mass2": 1.0,
+        "velocity1": 3.0,
+        "velocity2": 0.0,
+        "restitution": 1.0
+      },
+      "value": 1.0,
+      "unit": "m/s",
+      "domain": "Urto istantaneo unidimensionale fra due corpi isolati: corpo1 a sinistra di corpo2, in avvicinamento u1>u2. Masse positive; coefficiente di restituzione 0≤e≤1. Quantità di moto conservata; energia cinetica conservata solo per e=1. Nessun attrito, forza esterna, rotazione, penetrazione o andamento temporale dell’urto.",
+      "editorialStatus": "DRAFT",
+      "distribution": "BUNDLED_FIRST_PARTY",
+      "numericalCheck": "analytical",
+      "observables": [
+        {
+          "key": "velocity1AfterMS",
+          "label": "Velocità finale corpo1",
+          "value": 1.0,
+          "unit": "m/s"
+        },
+        {
+          "key": "velocity2AfterMS",
+          "label": "Velocità finale corpo2",
+          "value": 4.0,
+          "unit": "m/s"
+        },
+        {
+          "key": "energyBeforeJ",
+          "label": "Energia cinetica prima",
+          "value": 9.0,
+          "unit": "J"
+        },
+        {
+          "key": "energyAfterJ",
+          "label": "Energia cinetica dopo",
+          "value": 9.0,
+          "unit": "J"
+        },
+        {
+          "key": "energyLossJ",
+          "label": "Energia cinetica trasformata",
+          "value": 0.0,
+          "unit": "J"
+        }
+      ],
+      "velocity1AfterMS": 1.0,
+      "velocity2AfterMS": 4.0,
+      "momentumBeforeKgMS": 6.0,
+      "momentumAfterKgMS": 6.0,
+      "energyBeforeJ": 9.0,
+      "energyAfterJ": 9.0,
+      "energyLossJ": 0.0,
+      "plots": [
+        {
+          "id": "velocity",
+          "label": "Velocità prima e dopo",
+          "unit": "m/s",
+          "categories": [
+            "Corpo1",
+            "Corpo2"
+          ],
+          "series": [
+            {
+              "label": "Prima",
+              "values": [
+                3.0,
+                0.0
+              ]
+            },
+            {
+              "label": "Dopo",
+              "values": [
+                1.0,
+                4.0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "energy",
+          "label": "Bilancio di energia cinetica",
+          "unit": "J",
+          "categories": [
+            "Prima",
+            "Dopo",
+            "Trasformata"
+          ],
+          "series": [
+            {
+              "label": "Energia",
+              "values": [
+                9.0,
+                9.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "bernoulli-v1": {
+      "activityId": "bernoulli-v1",
+      "version": 1,
+      "dataVersion": 1,
+      "parameters": {
+        "density": 1000.0,
+        "area1": 0.01,
+        "area2": 0.005,
+        "speed1": 2.0,
+        "pressure1": 120000.0,
+        "height1": 0.0,
+        "height2": 0.0,
+        "g": 9.81
+      },
+      "value": 114000.0,
+      "unit": "Pa",
+      "domain": "Fluido ideale incomprimibile, regime stazionario lungo la stessa linea di corrente, senza pompe, turbine o dissipazioni. Q=A·v e p+ρv²/2+ρgh costante. Pressioni assolute positive; entrambe le velocità ≤100m/s. Una pressione positiva non esclude la cavitazione: tensione di vapore, viscosità, profilo delle velocità e comprimibilità non sono verificati da questo modello.",
+      "editorialStatus": "DRAFT",
+      "distribution": "BUNDLED_FIRST_PARTY",
+      "numericalCheck": "analytical",
+      "observables": [
+        {
+          "key": "speed2MS",
+          "label": "Velocità nella seconda sezione",
+          "value": 4.0,
+          "unit": "m/s"
+        },
+        {
+          "key": "flowM3S",
+          "label": "Portata volumetrica",
+          "value": 0.02,
+          "unit": "m³/s"
+        },
+        {
+          "key": "pressure2Pa",
+          "label": "Pressione assoluta nella seconda sezione",
+          "value": 114000.0,
+          "unit": "Pa"
+        }
+      ],
+      "speed2MS": 4.0,
+      "flowM3S": 0.02,
+      "pressure2Pa": 114000.0,
+      "energyDensity1Pa": 122000.0,
+      "energyDensity2Pa": 122000.0,
+      "plots": [
+        {
+          "id": "speed",
+          "label": "Velocità nelle due sezioni",
+          "unit": "m/s",
+          "categories": [
+            "Sezione1",
+            "Sezione2"
+          ],
+          "series": [
+            {
+              "label": "Velocità",
+              "values": [
+                2.0,
+                4.0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "energy",
+          "label": "Termini del bilancio per unità di volume",
+          "unit": "Pa",
+          "categories": [
+            "Sezione1",
+            "Sezione2"
+          ],
+          "series": [
+            {
+              "label": "Pressione",
+              "values": [
+                120000.0,
+                114000.0
+              ]
+            },
+            {
+              "label": "Cinetico",
+              "values": [
+                2000.0,
+                8000.0
+              ]
+            },
+            {
+              "label": "Gravitazionale",
+              "values": [
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "point-charge-v1": {
+      "activityId": "point-charge-v1",
+      "version": 1,
+      "dataVersion": 1,
+      "parameters": {
+        "charge": 1e-09,
+        "position": 0.3,
+        "testCharge": 2e-09
+      },
+      "value": 100.0,
+      "unit": "N/C",
+      "domain": "Carica puntiforme fissata all’origine nel vuoto; sonda sull’asse x con |x|≥0,01m. k≈9·10⁹N·m²/C² è un’approssimazione didattica dichiarata, non una costante SI esatta. Campo con segno lungo x, potenziale nullo all’infinito. Carica di prova ideale: nessuna perturbazione della sorgente, materiali, moto o campo magnetico.",
+      "editorialStatus": "DRAFT",
+      "distribution": "BUNDLED_FIRST_PARTY",
+      "numericalCheck": "analytical",
+      "observables": [
+        {
+          "key": "electricFieldXNC",
+          "label": "Componente x del campo elettrico",
+          "value": 100.0,
+          "unit": "N/C"
+        },
+        {
+          "key": "potentialV",
+          "label": "Potenziale rispetto all’infinito",
+          "value": 30.0,
+          "unit": "V"
+        },
+        {
+          "key": "forceXN",
+          "label": "Forza sulla carica di prova",
+          "value": 2.0000000000000002e-07,
+          "unit": "N"
+        },
+        {
+          "key": "potentialEnergyJ",
+          "label": "Energia potenziale della carica di prova",
+          "value": 6.000000000000001e-08,
+          "unit": "J"
+        }
+      ],
+      "coulombConstant": 9000000000.0,
+      "electricFieldXNC": 100.0,
+      "potentialV": 30.0,
+      "forceXN": 2.0000000000000002e-07,
+      "potentialEnergyJ": 6.000000000000001e-08,
+      "plots": [
+        {
+          "id": "field",
+          "label": "Campo lungo il lato selezionato",
+          "xUnit": "m",
+          "unit": "N/C",
+          "x": [
+            0.15,
+            0.3,
+            0.6
+          ],
+          "series": [
+            {
+              "label": "Eₓ",
+              "values": [
+                400.0,
+                100.0,
+                25.0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "potential",
+          "label": "Potenziale lungo il lato selezionato",
+          "xUnit": "m",
+          "unit": "V",
+          "x": [
+            0.15,
+            0.3,
+            0.6
+          ],
+          "series": [
+            {
+              "label": "V",
+              "values": [
+                60.0,
+                30.0,
+                15.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "thin-lens-v1": {
+      "activityId": "thin-lens-v1",
+      "version": 1,
+      "dataVersion": 1,
+      "parameters": {
+        "focalLength": 0.1,
+        "objectDistance": 0.3,
+        "objectHeight": 0.005
+      },
+      "value": 0.15,
+      "unit": "m",
+      "domain": "Lente sottile ideale in aria, approssimazione paraassiale; oggetto reale a sinistra. 1/f=1/u+1/v, u>0; f positivo convergente, negativo divergente; v positivo immagine reale a destra, negativo virtuale a sinistra. m=−v/u. Altezza ≤0,1·min(u,|f|). Esclusa la fascia |u−f|≤10⁻⁴max(u,|f|), numericamente mal condizionata vicino al fuoco. Nessuna aberrazione, diffrazione o misura sperimentale della lente.",
+      "editorialStatus": "DRAFT",
+      "distribution": "BUNDLED_FIRST_PARTY",
+      "numericalCheck": "analytical",
+      "observables": [
+        {
+          "key": "imageDistanceM",
+          "label": "Posizione firmata dell’immagine",
+          "value": 0.15,
+          "unit": "m"
+        },
+        {
+          "key": "magnification",
+          "label": "Ingrandimento trasversale con segno",
+          "value": -0.5,
+          "unit": "1"
+        },
+        {
+          "key": "imageHeightM",
+          "label": "Altezza firmata dell’immagine",
+          "value": -0.0025,
+          "unit": "m"
+        }
+      ],
+      "imageDistanceM": 0.15,
+      "magnification": -0.5,
+      "imageHeightM": -0.0025,
+      "imageKind": "real",
+      "raySegments": [
+        {
+          "label": "Raggio parallelo incidente",
+          "style": "solid",
+          "points": [
+            [
+              -0.3,
+              0.005
+            ],
+            [
+              0,
+              0.005
+            ]
+          ]
+        },
+        {
+          "label": "Raggio parallelo rifratto",
+          "style": "solid",
+          "points": [
+            [
+              0,
+              0.005
+            ],
+            [
+              0.15,
+              -0.0024999999999999988
+            ]
+          ]
+        },
+        {
+          "label": "Raggio per il centro ottico",
+          "style": "solid",
+          "points": [
+            [
+              -0.3,
+              0.005
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0.15,
+              -0.0025
+            ]
+          ]
+        }
+      ],
+      "plots": [
+        {
+          "id": "height",
+          "label": "Altezze con segno",
+          "unit": "m",
+          "categories": [
+            "Oggetto",
+            "Immagine"
+          ],
+          "series": [
+            {
+              "label": "Altezza",
+              "values": [
+                0.005,
+                -0.0025
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -32,6 +32,18 @@ Il codice scientifico è originale; JSXGraph disegna dati, non è un solver.
 
 ## In corso e gap
 
+Aggiornamento successivo al checkpoint iniziale: catalogo e consumer UI comuni
+implementati nel namespace S01;43 test Core,4 HTTP e6 UI PASS nella verifica
+corrente. I test UI mockano solo il grafico: non sono E2E della libreria.
+Il confine HTTP usa sessioni Core persistite e prova revoca401, peer403,
+CAS409 e richieste invalide422, ma la factory non è ancora montata nell'app
+condivisa. Vecchie snapshot senza supportUsed restano ignote; gli aiuti
+consultati possono essere registrati senza dedurne autonomia o voto.
+Correzione StrictMode verificata RED/GREEN. Licenze complete preservate;
+decisione REA/tre candidati e timeout reale in REA-REUSE.md. Il solo symlink
+locale ignorato a JSXGraph permette test privati, non un'installazione pulita.
+Root manifest/lock e composizione restano writer S00/S10, non READY.
+
 1. Catalogo parametrico+UI comune con previsione/manipolazione/spiegazione/transfer,
    grafici/tabelle, errore/offline e reopen reale. HookS00/S10 e fonte riusabileS03
    richiesti; non inventare ActivityEvidence lessonRef/fase nella freezeattuale.

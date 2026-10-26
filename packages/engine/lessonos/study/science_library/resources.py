@@ -37,7 +37,7 @@ def _text(value, maximum, *, nonempty=False):
 
 
 def _validate(value):
-    if not isinstance(value, dict) or set(value) != _KEYS:
+    if not isinstance(value, dict) or set(value) not in (_KEYS, _KEYS | {'supportUsed'}):
         raise StudyError('invalid_science_snapshot')
     if (type(value['schemaVersion']) is not int or value['schemaVersion'] != 1
             or type(value['capabilityVersion']) is not int or not 1 <= value['capabilityVersion'] <= 1_000_000
@@ -52,6 +52,12 @@ def _validate(value):
             raise StudyError('invalid_science_snapshot')
     _text(value['note'], 4000)
     _text(value['prediction'], 200)
+    if 'supportUsed' in value:
+        used = value['supportUsed']
+        if (not isinstance(used, list) or len(used) > 2
+                or any(not isinstance(item, str) or item not in ('explanation', 'domain') for item in used)
+                or len(set(used)) != len(used)):
+            raise StudyError('invalid_science_snapshot')
     encoded = canonical(value)
     if len(encoded.encode('utf8')) > 20_000:
         raise StudyError('science_snapshot_too_large', 413)
@@ -63,16 +69,23 @@ def _supported(snapshot):
             and snapshot['implementationSha256'] == implementation_sha256())
 
 
-def new_snapshot(capability_id, parameters, *, note='', prediction=''):
+def new_snapshot(capability_id, parameters, *, note='', prediction='', support_used=None):
+    if support_used is not None and not isinstance(support_used, (list, tuple)):
+        raise StudyError('invalid_science_snapshot')
     result = evaluate(capability_id, parameters)
     return _validate({'schemaVersion': 1, 'capabilityId': capability_id, 'capabilityVersion': 1,
                       'implementationSha256': implementation_sha256(),
-                      'parameters': result['parameters'], 'note': note, 'prediction': prediction})
+                      'parameters': result['parameters'], 'note': note, 'prediction': prediction,
+                      **({'supportUsed': list(support_used)} if support_used is not None else {})})
 
 
 def _reference(value):
     if not isinstance(value, str) or not 1 <= len(value) <= 128 or '\x00' in value:
         raise StudyError('invalid_science_reference')
+    try:
+        value.encode('utf8')
+    except UnicodeError:
+        raise StudyError('invalid_science_reference') from None
     return value
 
 

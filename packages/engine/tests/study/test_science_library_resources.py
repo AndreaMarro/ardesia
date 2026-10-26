@@ -99,3 +99,21 @@ def test_update_cannot_rebind_to_another_edition_or_resource_kind(tmp_path):
     with pytest.raises(StudyError):
         api().save(store, student, 'fluidi', state(), 'wrong-kind', resource_id=note['id'], expected_revision=note['revisionId'])
     store.close()
+
+
+def test_support_used_preserves_unknown_legacy_and_rejects_invalid_flags(tmp_path):
+    store, _, student, *_ = setup_store(tmp_path)
+    legacy = api().save(store, student, 'fluidi', state(), 'legacy')
+    assert 'supportUsed' not in api().read(store, student, legacy['resource']['id'])['snapshot']
+    current = api().new_snapshot('collision-1d-v1', {}, support_used=['domain'])
+    saved = api().save(store, student, 'fluidi', current, 'help')
+    assert api().read(store, student, saved['resource']['id'])['snapshot']['supportUsed'] == ['domain']
+    for bad in (True, 'domain', ['unknown'], ['domain', 'domain'], [{}]):
+        with pytest.raises(StudyError) as error:
+            api().new_snapshot('collision-1d-v1', {}, support_used=bad)
+        assert error.value.code == 'invalid_science_snapshot'
+    invalid = state()
+    invalid['note'] = '\ud800'
+    with pytest.raises(StudyError):
+        api().save(store, student, 'fluidi', invalid, 'invalid-utf8')
+    store.close()

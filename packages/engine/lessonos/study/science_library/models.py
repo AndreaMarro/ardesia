@@ -3,6 +3,26 @@ import math
 
 from ..models import StudyError
 
+_PARAMETER_SPECS = {'collision-1d-v1': {'mass1': (2, 1e-06, 1000000.0),
+                     'mass2': (1, 1e-06, 1000000.0),
+                     'velocity1': (3, -10000.0, 10000.0),
+                     'velocity2': (0, -10000.0, 10000.0),
+                     'restitution': (1, 0, 1)},
+ 'bernoulli-v1': {'density': (1000, 0.1, 20000),
+                  'area1': (0.01, 1e-06, 10),
+                  'area2': (0.005, 1e-06, 10),
+                  'speed1': (2, 0.001, 100),
+                  'pressure1': (120000, 1, 100000000.0),
+                  'height1': (0, -100, 100),
+                  'height2': (0, -100, 100),
+                  'g': (9.81, 0.01, 30)},
+ 'point-charge-v1': {'charge': (1e-09, -1e-05, 1e-05),
+                     'position': (0.3, -1000, 1000),
+                     'testCharge': (2e-09, -1e-05, 1e-05)},
+ 'thin-lens-v1': {'focalLength': (0.1, -10, 10),
+                  'objectDistance': (0.3, 0.01, 100),
+                  'objectHeight': (0.005, 1e-06, 0.1)}}
+
 
 def _parameters(value, specification):
     if not isinstance(value, dict) or set(value) - set(specification):
@@ -27,9 +47,7 @@ def _result(activity, parameters, domain, value, unit, observables, **data):
 
 
 def _collision(p):
-    p = _parameters(p, {'mass1': (2, 1e-6, 1e6), 'mass2': (1, 1e-6, 1e6),
-                        'velocity1': (3, -1e4, 1e4), 'velocity2': (0, -1e4, 1e4),
-                        'restitution': (1, 0, 1)})
+    p = _parameters(p, _PARAMETER_SPECS['collision-1d-v1'])
     m1, m2, u1, u2, e = (p[k] for k in ('mass1', 'mass2', 'velocity1', 'velocity2', 'restitution'))
     if u1 <= u2:
         raise StudyError('bodies_not_approaching')
@@ -63,10 +81,7 @@ def _collision(p):
 
 
 def _bernoulli(p):
-    p = _parameters(p, {'density': (1000, .1, 20000), 'area1': (.01, 1e-6, 10),
-                        'area2': (.005, 1e-6, 10), 'speed1': (2, .001, 100),
-                        'pressure1': (120000, 1, 1e8), 'height1': (0, -100, 100),
-                        'height2': (0, -100, 100), 'g': (9.81, .01, 30)})
+    p = _parameters(p, _PARAMETER_SPECS['bernoulli-v1'])
     rho, a1, a2, speed, pressure, h1, h2, g = (
         p[k] for k in ('density', 'area1', 'area2', 'speed1', 'pressure1', 'height1', 'height2', 'g'))
     flow = a1 * speed
@@ -98,8 +113,7 @@ def _bernoulli(p):
 
 
 def _point_charge(p):
-    p = _parameters(p, {'charge': (1e-9, -1e-5, 1e-5),
-                        'position': (.3, -1000, 1000), 'testCharge': (2e-9, -1e-5, 1e-5)})
+    p = _parameters(p, _PARAMETER_SPECS['point-charge-v1'])
     q, x, probe = (p[k] for k in ('charge', 'position', 'testCharge'))
     r = abs(x)
     if r < .01:
@@ -127,8 +141,7 @@ def _point_charge(p):
 
 
 def _thin_lens(p):
-    p = _parameters(p, {'focalLength': (.1, -10, 10), 'objectDistance': (.3, .01, 100),
-                        'objectHeight': (.005, 1e-6, .1)})
+    p = _parameters(p, _PARAMETER_SPECS['thin-lens-v1'])
     f, u, h = (p[k] for k in ('focalLength', 'objectDistance', 'objectHeight'))
     if abs(f) < .01 or h > .1 * min(u, abs(f)):
         raise StudyError('outside_paraxial_domain')
