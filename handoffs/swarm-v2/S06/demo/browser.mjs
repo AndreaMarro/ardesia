@@ -1,0 +1,75 @@
+import {chromium} from 'playwright';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const base='http://127.0.0.1:5360';
+const root=fileURLToPath(new URL('./',import.meta.url)).replace(/\/$/,'');
+const outputs=path.resolve(process.env.S06_OUTPUTS||path.join(root,'.artifacts'));await mkdir(outputs,{recursive:true});
+const access=JSON.parse(await readFile(root+'/access.json','utf8'));
+const browser=await chromium.launch({headless:true});
+const errors=[],expectedErrors=[],checks=[];let deliberatelyOffline=false,revoking=false;
+const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+context.setDefaultTimeout(15000);
+const page=await context.newPage();
+page.on('pageerror',e=>errors.push(e.message));
+page.on('console',m=>{if(m.type()!=='error')return;const text=m.text();if(deliberatelyOffline&&text.includes('net::ERR_INTERNET_DISCONNECTED')||revoking&&text.includes('401'))expectedErrors.push(text);else errors.push(text);});
+const check=(name,truth)=>{if(!truth)throw Error(name);checks.push(name);};
+async function click(name){await page.getByRole('button',{name,exact:true}).click();}
+try{
+ const login=await context.request.post(base+'/study/session',{data:{token:access.student}});check('real-cookie-login',login.ok());
+ await page.goto(base);await page.getByRole('heading',{name:'Scegli da dove cominciare.'}).waitFor();
+ check('identity-title',(await page.title())==='Ardesia · Studio autonomo S06');
+ await page.screenshot({path:outputs+'/S06-obiettivi-1440.png',fullPage:true});
+ // First objective is the bounded original spring lesson.
+ await page.getByRole('button',{name:'Scegli questo obiettivo'}).first().click();
+ await page.getByLabel('La tua idea iniziale').fill('Cerco la relazione tra forza applicata ed allungamento.');
+ await click('Comincia la spiegazione');await click('Esplora il modello');
+ await page.getByLabel('Forza applicata [N]',{exact:true}).selectOption('8');
+ await page.getByText('RISULTATO DEL MODELLO CORE',{exact:true}).waitFor();
+ check('core-spring-simulation',await page.getByRole('img',{name:/Molla in equilibrio/}).isVisible());
+ await page.screenshot({path:outputs+'/S06-modello-1440.png',fullPage:true});
+ await click('Passa alla prova');
+ await page.getByLabel('Il tuo valore [m]',{exact:true}).fill('999');
+ await page.getByLabel('Il tuo procedimento').fill('Prima ipotesi: confronto la forza con la costante elastica.');
+ await click('Chiedi un indizio');await page.getByText('Aiuto registrato',{exact:true}).waitFor();
+ await click('Consegna e confronta');await page.getByText('Valore o unità non coincidono con il modello.',{exact:false}).waitFor();
+ check('receipt-visible',await page.getByText(/consegna confermata\./).isVisible());
+ await page.reload();await page.getByLabel('Il tuo valore [m]',{exact:true}).waitFor();
+ check('solution-hidden-after-reload',await page.getByRole('button',{name:'Mostra il confronto del tentativo'}).isVisible());
+ check('feedback-not-auto-revealed',await page.getByText('Modello: 0.2 m.',{exact:false}).count()===0);
+ await click('Recupera dalla fonte');await page.getByRole('heading',{name:'Ritrova il passaggio'}).waitFor();
+ await click('Affronta un problema diverso');
+ await page.getByLabel('Il tuo valore [m]',{exact:true}).fill('0.075');await page.getByLabel('Il tuo procedimento').fill('Nel nuovo problema divido la forza per la costante elastica.');
+ await click('Consegna e confronta');await page.getByText('Il valore e l’unità coincidono con il modello.',{exact:false}).waitFor();
+ await click('Organizza il ripasso');await page.getByRole('heading',{name:'Un punto da cui ripartire.'}).waitFor();
+ await page.getByLabel('Scegli quando ripassare').selectOption('7');
+ await page.getByText(/Data scelta da te: ripasso fra 7 giorni/).first().waitFor();
+ check('explainable-editable-review',true);
+ await page.screenshot({path:outputs+'/S06-ripasso-1440.png',fullPage:true});
+ await click('Ricomincia il ripasso');await page.getByLabel('La tua idea iniziale').fill('Rivedo le unità');await click('Comincia la spiegazione');await click('Esplora il modello');await click('Passa alla prova');
+ await page.getByLabel('Il tuo valore [m]',{exact:true}).fill('0.21');await page.getByLabel('Il tuo procedimento').fill('Bozza offline personale, da verificare.');
+ await page.getByText('Bozza e lettura sul dispositivo',{exact:true}).click();await click('Salva bozza e passaggio sul dispositivo');
+ await page.getByText('Salvato sul dispositivo. La bozza non è una consegna.',{exact:true}).waitFor();
+ deliberatelyOffline=true;await context.setOffline(true);await click('Riapri e verifica il percorso');
+ await page.getByRole('status').filter({hasText:'Connessione assente'}).waitFor();
+ check('offline-does-not-submit',await page.getByRole('button',{name:'Consegna e confronta',exact:true}).isDisabled());
+ await page.setViewportSize({width:390,height:844});
+ check('mobile-no-horizontal-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.screenshot({path:outputs+'/S06-offline-390.png',fullPage:true});
+ await context.setOffline(false);deliberatelyOffline=false;await click('Riapri e verifica il percorso');
+ await page.getByText('Accesso e revisione riconfermati.',{exact:false}).waitFor();
+ check('draft-kept-after-reconnect',await page.getByLabel('Il tuo procedimento').inputValue()==='Bozza offline personale, da verificare.');
+ // A second browser context obtains a new real cookie without copying browser storage.
+ const second=await browser.newContext({viewport:{width:390,height:844}});
+ await second.request.post(base+'/study/session',{data:{token:access.student}});
+ const other=await second.newPage();await other.goto(base);await other.getByLabel('Il tuo valore [m]',{exact:true}).waitFor({timeout:15000});
+ check('second-browser-core-resume',await other.getByRole('heading',{name:'Metti alla prova il modello'}).isVisible());
+ await second.close();
+ revoking=true;await context.request.post(base+'/study/session/revoke-all',{data:{}});await click('Riapri e verifica il percorso');
+ await page.getByRole('alert').waitFor();check('revocation-removes-private-task',await page.getByLabel('Il tuo procedimento').count()===0);
+ check('revocation-removes-offline-copy',await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes('independent-study.v1.offline')).length===0));
+ check('no-unexpected-console-errors',errors.length===0);
+ await writeFile(outputs+'/browser-result.json',JSON.stringify({status:'PASS',checks,errors,expectedErrors},null,2));
+ console.log(JSON.stringify({status:'PASS',checks:checks.length,errors,expectedErrors}));
+}catch(e){await page.screenshot({path:outputs+'/S06-browser-failure.png',fullPage:true}).catch(()=>{});await writeFile(outputs+'/browser-result.json',JSON.stringify({status:'FAIL',checks,errors,error:String(e)},null,2));throw e;}
+finally{await browser.close();}

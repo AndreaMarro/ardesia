@@ -10,7 +10,7 @@ export function StudyModel({simulation}:{simulation:NonNullable<StudyState['simu
  if(simulation.activityId==='dc-resistance-v1')return <ScientificElectricalModel result={result as unknown as ElectricalResult}/>;
  if(simulation.activityId==='harmonic-wave-v1')return <ScientificWaveModel result={result as unknown as WaveResult}/>;
  if(simulation.activityId==='kinematics-v1')return <ScientificKinematicsModel result={result as unknown as KinematicsResult}/>;
- if(simulation.activityId==='hooke-v1')return <PublicSpringModel force={Number(simulation.parameters.force)} maxExtension={Math.max(result.value,.5)} result={result as unknown as SpringResult} points={[]}/>;
+ if(simulation.activityId==='hooke-v1')return <PublicSpringModel force={Number(simulation.parameters.force)} maxExtension={Math.max(result.value,.5)} result={result as unknown as SpringResult} points={[{force:Number(simulation.parameters.force),extension:result.value}]}/>;
  if(simulation.activityId==='taylor-exp-v1'){
   const p={x:Number(simulation.parameters.x),degree:Number(simulation.parameters.degree)};
   return <TaylorPlot result={readTaylorResult(result,p)} x={p.x}/>;
