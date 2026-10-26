@@ -122,7 +122,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
   if(loadError)return <section className="science-library"><h2>Revisione non disponibile</h2><p role="alert">{loadError}</p><button onClick={()=>setReload(v=>v+1)}>Riprova il caricamento</button></section>;
   if(!draft||draft.unsupported||draft.readonly||!capability)return <section className="science-library"><h2>Quaderno scientifico · revisione conservata</h2>
     <p>{draft?.unsupported?'Questa versione dello strumento non è disponibile.':'Questa revisione è condivisa in sola lettura.'}</p>
-    <label>Il tuo ragionamento<textarea readOnly rows={6} value={draft?.note||''}/></label>
+    <label>Il tuo ragionamento<textarea aria-label="Il tuo ragionamento" readOnly rows={6} value={draft?.note||''}/></label>
     <p>I dati restano leggibili senza eseguire il modello. Nessuna soluzione viene ricostruita con un’altra versione.</p>
     {draft?.ref&&<a href={exactLink(draft.ref)}>Collegamento alla revisione esatta</a>}</section>;
   const valid=parameters()!==null;
@@ -152,7 +152,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
         {opened.includes('explanation')&&<div>{capability.explanation.map((p,i)=><p key={i}>{p}</p>)}</div>}
         <button type="button" aria-expanded={opened.includes('domain')} onClick={()=>openSupport('domain')}>Ipotesi e limiti</button>{opened.includes('domain')&&<p>{capability.domain}</p>}
         <p className="science-fine">{draft.supportUsed===undefined?'Gli aiuti della revisione precedente non erano registrati.':draft.supportUsed.length?'Hai aperto un aiuto in questa configurazione.':'Nessun aiuto aperto in questo laboratorio; non è una prova di autonomia.'}</p></section>
-      <section className="science-notebook"><h4>Una traccia da ritrovare</h4><label>Il tuo ragionamento<textarea rows={5} maxLength={4000} value={draft.note} onChange={e=>change({note:e.target.value},false)}/></label>
+      <section className="science-notebook"><h4>Una traccia da ritrovare</h4><label>Il tuo ragionamento<textarea aria-label="Il tuo ragionamento" rows={5} maxLength={4000} value={draft.note} onChange={e=>change({note:e.target.value},false)}/></label>
         <p>Salva configurazione e testo nel tuo quaderno privato. Le modifiche restano aperte finché il salvataggio non viene confermato.</p>
         <button type="button" disabled={saving||(!pending.current&&!valid)} onClick={()=>void save()}>{saving?'Salvataggio in corso…':pending.current?'Riprova il salvataggio in attesa':'Salva nel quaderno'}</button>
         {notice&&<p role="status">{notice}</p>}{draft.ref&&<a href={exactLink(draft.ref)}>Collegamento alla revisione esatta</a>}</section>

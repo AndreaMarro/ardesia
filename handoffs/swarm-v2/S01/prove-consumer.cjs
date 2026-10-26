@@ -18,7 +18,7 @@ const compare=p=>p.getByRole('button',{name:'Confronta la previsione',exact:true
 async function result(p,value){await expect(p.getByTestId('science-result')).toContainText(value);await expect(p.getByText('Usa i controlli per esplorare il grafico; i dati del modello non cambiano.')).toBeVisible();await expect(p.locator('.science-graph svg')).toHaveCount(1);}
 async function noOverflow(p){expect(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
 (async()=>{
- let browser;
+ let browser,debugPage;
  try{
   start(python,[path.join(__dirname,'local-api.py'),'--directory',out],'api');
   start(process.execPath,[path.join(root,'node_modules/vite/bin/vite.js'),'--config',path.join(__dirname,'vite.proof.config.ts')],'vite');
@@ -27,7 +27,7 @@ async function noOverflow(p){expect(await p.evaluate(()=>document.documentElemen
   browser=await chromium.launch({headless:true});
   const context=await browser.newContext({baseURL:base,viewport:{width:1440,height:1050},reducedMotion:'reduce'});
   const login=await context.request.post('/study/session',{data:{token:fixture.actors['s01-student'].token}});expect(login.status()).toBe(200);
-  const page=await context.newPage(),requests=[];page.setDefaultTimeout(10000);
+  const page=await context.newPage(),requests=[];debugPage=page;page.setDefaultTimeout(10000);
   page.on('pageerror',e=>report.errors.push(e.message));
   page.on('request',r=>{requests.push(r.url());if(!r.url().startsWith(base)&&!r.url().startsWith('data:'))report.externalRequests.push(r.url());});
   await page.goto(base+entry);await expect(page.getByRole('heading',{name:'Urto e bilancio di energia',exact:true})).toBeVisible();
@@ -73,7 +73,8 @@ async function noOverflow(p){expect(await p.evaluate(()=>document.documentElemen
   await pred(f).fill('1');await compare(f).tap();await expect(f.getByText('Il grafico interattivo non è disponibile. Restano la vista statica e tutti i valori in tabella.')).toBeVisible();await expect(f.locator('.science-plot-area>svg')).toHaveCount(1);
   await f.getByText('Dati equivalenti del grafico',{exact:true}).tap();await expect(f.getByRole('table')).toBeVisible();await noOverflow(f);await f.screenshot({path:path.join(out,'science-fallback-touch-390.png'),fullPage:true});check('blocked lazy library retains SVG + numbers + table with real touch');await fallback.close();
   expect(report.errors).toEqual([]);expect(report.externalRequests).toEqual([]);check('no page errors or external requests');report.status='PASS';
- }catch(error){report.status='FAIL';report.failure=String(error.stack||error);process.exitCode=1;}
+ }catch(error){report.status='FAIL';report.failure=String(error.stack||error);process.exitCode=1;
+  if(debugPage&&!debugPage.isClosed()){report.failurePageText=await debugPage.locator('body').innerText().catch(()=>null);await debugPage.screenshot({path:path.join(out,'consumer-failure.png'),fullPage:true}).catch(()=>{});}}
  finally{
   if(browser)await browser.close();for(const child of children)child.kill('SIGTERM');
   await Promise.all(children.map(child=>child.exitCode!==null?Promise.resolve():new Promise(r=>child.once('exit',r))));
