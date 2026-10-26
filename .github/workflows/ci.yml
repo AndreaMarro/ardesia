@@ -52,6 +52,42 @@ jobs:
           path: apps/web/test-results/physics-pathways.*
           if-no-files-found: warn
           retention-days: 14
+      - name: Independent study and science library on the current merge tree
+        env:
+          ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+          ARDESIA_S00_SCIENCE_EVIDENCE: ${{ runner.temp }}/science-composition
+          S06_SOURCE_MANIFEST: ${{ runner.temp }}/study-source-manifest.json
+        run: |
+          git rev-parse HEAD > "$RUNNER_TEMP/consumer-source-commit.txt"
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          paths = ['apps/web/src/App.tsx', 'services/study-api/study_api/app.py', 'apps/web/src/components/SourceViewer.tsx']
+          manifest = {'scope': 'actual CI checkout, clean HEAD checked before and after browser', 'files': [
+              {'path': p, 'candidateSha256': hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths]}
+          Path(os.environ['S06_SOURCE_MANIFEST']).write_text(json.dumps(manifest))
+          PY
+          services/study-api/.venv/bin/python handoffs/swarm-v2/S00/prove-study.py --output "$RUNNER_TEMP/study-composition"
+          node handoffs/swarm-v2/S00/prove-science.cjs
+          test "$(git rev-parse HEAD)" = "$(cat "$RUNNER_TEMP/consumer-source-commit.txt")"
+          test -z "$(git status --porcelain -- apps/web/src services/study-api packages/engine/lessonos)"
+      - name: Integrated consumer browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integrated-consumers-${{ github.sha }}
+          # Allowlist proofs; never upload a fixture DB or access file left by an OOM.
+          path: |
+            ${{ runner.temp }}/study-composition/result.json
+            ${{ runner.temp }}/study-composition/*.png
+            ${{ runner.temp }}/study-composition/api.log
+            ${{ runner.temp }}/science-composition/consumer-report.json
+            ${{ runner.temp }}/science-composition/*.png
+            ${{ runner.temp }}/science-composition/api.log
+            ${{ runner.temp }}/study-source-manifest.json
+            ${{ runner.temp }}/consumer-source-commit.txt
+          if-no-files-found: warn
+          retention-days: 14
 
   study-api:
     name: study-api (HTTP + shared Core)

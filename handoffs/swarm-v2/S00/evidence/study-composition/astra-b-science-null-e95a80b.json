@@ -1,0 +1,111 @@
+{
+  "candidate": "e95a80b393589b71da2846aa98814dc1a034b730",
+  "scope": "Product create_app, FastAPI TestClient, actual HttpOnly cookie sessions and SQLite; no network/browser",
+  "originalRevision": "461b7c55e0c14b98b9f603e63a4b6bad",
+  "currentRevision": "56b6c51a44a24e43bc5cf958fdbb9eb0",
+  "checks": [
+    {
+      "name": "explicit_original",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS",
+      "details": {
+        "error": null,
+        "resourceRef": {
+          "resourceId": "fb7947113b9240658c044038f7c0fc42",
+          "revisionId": "461b7c55e0c14b98b9f603e63a4b6bad"
+        },
+        "computedVelocity": 1.0
+      }
+    },
+    {
+      "name": "explicit_current",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS",
+      "details": {
+        "error": null,
+        "resourceRef": {
+          "resourceId": "fb7947113b9240658c044038f7c0fc42",
+          "revisionId": "56b6c51a44a24e43bc5cf958fdbb9eb0"
+        },
+        "computedVelocity": 0.0
+      }
+    },
+    {
+      "name": "null_revision",
+      "expectedStatus": 422,
+      "actualStatus": 200,
+      "status": "FAIL",
+      "details": {
+        "error": null,
+        "resourceRef": {
+          "resourceId": "fb7947113b9240658c044038f7c0fc42",
+          "revisionId": null
+        },
+        "computedVelocity": 0.0
+      }
+    },
+    {
+      "name": "empty_revision",
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS",
+      "details": {
+        "error": "invalid_science_reference",
+        "resourceRef": null,
+        "computedVelocity": null
+      }
+    },
+    {
+      "name": "unknown_revision",
+      "expectedStatus": 404,
+      "actualStatus": 404,
+      "status": "PASS",
+      "details": {
+        "error": "not_found",
+        "resourceRef": null,
+        "computedVelocity": null
+      }
+    },
+    {
+      "name": "numeric_revision",
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS",
+      "details": {
+        "error": "invalid_science_reference",
+        "resourceRef": null,
+        "computedVelocity": null
+      }
+    },
+    {
+      "name": "missing_revision_key",
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS",
+      "details": {
+        "error": "invalid_science_request"
+      }
+    },
+    {
+      "name": "private_access_student",
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "status": "PASS",
+      "details": {
+        "error": "forbidden"
+      }
+    },
+    {
+      "name": "private_access_teacher",
+      "expectedStatus": 403,
+      "actualStatus": 403,
+      "status": "PASS",
+      "details": {
+        "error": "forbidden"
+      }
+    }
+  ],
+  "finding": "A null revision must not silently select the latest revision; explicit original gives 1 m/s, latest gives 0 m/s."
+}

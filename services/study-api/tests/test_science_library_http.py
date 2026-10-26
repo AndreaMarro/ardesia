@@ -128,3 +128,31 @@ def test_product_factory_uses_actual_cookie_and_rejection_signal(boundary):
         rejected = client.get(url)
         assert rejected.status_code == 401
         assert rejected.headers['X-Study-Session-Rejected'] == 'cookie'
+
+
+def test_product_compare_requires_explicit_revision_even_after_a_new_revision(boundary):
+    _, store, student, peer, tokens = boundary
+    from study_api.app import create_app
+    with TestClient(create_app(store.path, demo=True)) as client:
+        assert client.post('/study/session', json={'token': tokens[student.id]}).status_code == 200
+        base = '/study/editions/science-edition/science-library/resources'
+        first = client.post(base, json={'snapshot': new_snapshot('collision-1d-v1', {})},
+                            headers={'Idempotency-Key': 'original'}).json()['resource']
+        second = client.post(base+'/'+first['id']+'/revise', json={
+            'expectedRevision': first['revisionId'],
+            'snapshot': new_snapshot('collision-1d-v1', {'mass1': 1})},
+            headers={'Idempotency-Key': 'changed'}).json()['resource']
+        path = '/study/science-library/resources/'+first['id']+'/compare'
+        for resource, expected in [(first, 1), (second, 0)]:
+            response = client.post(path, json={'revisionId': resource['revisionId'], 'prediction': '1'})
+            assert response.status_code == 200
+            assert response.json()['result']['velocity1AfterMS'] == expected
+            assert response.json()['resourceRef']['revisionId'] == resource['revisionId']
+        for invalid in (None, '', 42):
+            response = client.post(path, json={'revisionId': invalid, 'prediction': '1'})
+            assert response.status_code == 422
+            assert response.json()['error'] == 'invalid_science_reference'
+        assert client.post(path, json={'revisionId': 'unknown', 'prediction': '1'}).status_code == 404
+        assert client.post(path, json={'prediction': '1'}).status_code == 422
+        assert client.post('/study/session', json={'token': tokens[peer.id]}).status_code == 200
+        assert client.post(path, json={'revisionId': first['revisionId'], 'prediction': '1'}).status_code == 403

@@ -153,6 +153,7 @@ def save(store, principal, edition_id, snapshot, key, *, resource_id=None, expec
 
 
 def compare(store, principal, resource_id, revision_id, prediction):
+    _reference(revision_id)
     saved = read(store, principal, resource_id, revision_id)
     if not isinstance(prediction, str) or not prediction.strip():
         raise StudyError('prediction_required')

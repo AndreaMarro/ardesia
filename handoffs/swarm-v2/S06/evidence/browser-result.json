@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "checks": [
+    "real-cookie-login",
+    "identity-title",
+    "core-spring-simulation",
+    "receipt-visible",
+    "solution-hidden-after-reload",
+    "feedback-not-auto-revealed",
+    "explainable-editable-review",
+    "offline-does-not-submit",
+    "mobile-no-horizontal-overflow",
+    "draft-kept-after-reconnect",
+    "second-browser-core-resume",
+    "revocation-removes-private-task",
+    "revocation-removes-offline-copy",
+    "no-unexpected-console-errors"
+  ],
+  "errors": [],
+  "expectedErrors": [
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ]
+}

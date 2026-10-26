@@ -1,0 +1,69 @@
+{
+  "name": "py-fsrs",
+  "version": "6.3.2",
+  "commit": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+  "repository": "https://github.com/open-spaced-repetition/py-fsrs",
+  "license": "MIT",
+  "adopted": "Complete scheduler, card/state/rating, review log and JSON/replay APIs",
+  "not_adopted": [
+    "Optimizer and its torch/numpy/pandas/tqdm extras",
+    "real-person review-log CSV",
+    "logo/assets"
+  ],
+  "files": [
+    {
+      "source": "fsrs/card.py",
+      "sourceSha256": "be433000a1b839b222420233b9019e905f88efda3901e2efd51c3fdb5754f0ab",
+      "adaptedSha256": "4b83f33352f2d576929fbef9fdbfb43597a1e7b568926f249f10c020c2808cb1",
+      "adaptations": [
+        "package-relative imports",
+        "typing.Self from stdlib, project requires Python>=3.12"
+      ]
+    },
+    {
+      "source": "fsrs/scheduler.py",
+      "sourceSha256": "dd04d86ba98ee22106f6bbdb7eede00fa3c848dbf15d18e33db4584f333bac46",
+      "adaptedSha256": "342c8d75ed1573099688074c610a10892b380b936d9006c973a875782ec84199",
+      "adaptations": [
+        "package-relative imports",
+        "typing.Self from stdlib, project requires Python>=3.12"
+      ]
+    },
+    {
+      "source": "fsrs/review_log.py",
+      "sourceSha256": "79a4afdc25fcf1abf764b50fdce0e52d37fc7656b8894eda6630b60b0ece1047",
+      "adaptedSha256": "25f3db8bb900192d793e2368397aefbdfbe1c64bc6fd808e20b00dc3d09d646f",
+      "adaptations": [
+        "package-relative imports",
+        "typing.Self from stdlib, project requires Python>=3.12"
+      ]
+    },
+    {
+      "source": "fsrs/rating.py",
+      "sourceSha256": "01bc939a22f7e728ebd9a999dda77a9dc2b7fcfec4f392beea4b11ea7019b85e",
+      "adaptedSha256": "01bc939a22f7e728ebd9a999dda77a9dc2b7fcfec4f392beea4b11ea7019b85e",
+      "adaptations": [
+        "package-relative imports",
+        "typing.Self from stdlib, project requires Python>=3.12"
+      ]
+    },
+    {
+      "source": "fsrs/state.py",
+      "sourceSha256": "3ed5d9c98cad65f3fd8e3a31d1904eddc88ee3b6a7ead22585d850ce27fc51f4",
+      "adaptedSha256": "3ed5d9c98cad65f3fd8e3a31d1904eddc88ee3b6a7ead22585d850ce27fc51f4",
+      "adaptations": [
+        "package-relative imports",
+        "typing.Self from stdlib, project requires Python>=3.12"
+      ]
+    }
+  ],
+  "licenseSha256": "021bff58ad2685d7e5b30d307429bc7cfdca108ad620ce889abb38d7acd89ace",
+  "upstreamTests": {
+    "source": "tests/test_basic.py",
+    "sourceSha256": "5653d6c9c35be675088b92895a7f499b178b8e04bce79e4d835770e24bb7986c",
+    "selectedContracts": 41,
+    "totalBasicContracts": 42,
+    "excluded": "test_Optimizer_lazy_loading only: optimizer/training not adopted",
+    "adaptedSha256": "4fe194c0ec6942609292ef889016c56739752185549c7943d4415a613db1b666"
+  }
+}

@@ -1,0 +1,2879 @@
+{
+  "sourceCommit": "132755936f41849a2d36e7eb3750f17cde30db26",
+  "sourceFiles": [
+    {
+      "path": "apps/studio/src/study/AccessPanel.tsx",
+      "sha256": "1432da6b96e375a9359f3de2acfdc886fa27b1b9409f3273de59d703a3537a4a"
+    },
+    {
+      "path": "apps/studio/src/study/ContextDrawer.tsx",
+      "sha256": "383f7718e14c51313c694df01fb7921cf90c0c4f306ea3d05bd9253c47120d1e"
+    },
+    {
+      "path": "apps/studio/src/study/CoursePackPreview.tsx",
+      "sha256": "b2f5b054b24713d56681c304dcd735f64c6245bdc2e47bafb291b84ec33dbcee"
+    },
+    {
+      "path": "apps/studio/src/study/GroupEditionView.tsx",
+      "sha256": "977d40763dbd92dc0f427d54a5183ed6dc62b6fe722ecb5a6a900f80c1f38112"
+    },
+    {
+      "path": "apps/studio/src/study/NotebookPanel.tsx",
+      "sha256": "f2b5199b17a94f687db26cb18f58ec14da0941bf462638966af8b01eb1bcbef3"
+    },
+    {
+      "path": "apps/studio/src/study/PhysicsActivity.tsx",
+      "sha256": "3d20bf7ac955285c349782c4e0531a002f61553156a7f369cdd451010631de0f"
+    },
+    {
+      "path": "apps/studio/src/study/PublicCourseView.tsx",
+      "sha256": "2a0fa6bbc4a8f65a82e5a6b8c3ff77efd02f651e03f23171d3c57ad988aa9a80"
+    },
+    {
+      "path": "apps/studio/src/study/ReviewPanel.tsx",
+      "sha256": "ea98b9e556ec1d030838f7660080d88f6beffe2be2057bae0c906b2cbf8775ad"
+    },
+    {
+      "path": "apps/studio/src/study/StudyApp.tsx",
+      "sha256": "de0574cc85cf54e0b22db53ef8b386adca889fcec1cf630d6dc5d406f4c13fda"
+    },
+    {
+      "path": "apps/studio/src/study/StudyPostit.tsx",
+      "sha256": "a95544c5d413c92d65809f6b10a03470f33cd3b335c984cff56d1501b13c0cf0"
+    },
+    {
+      "path": "apps/studio/src/study/StudyWorkspace.tsx",
+      "sha256": "83e1f81e2dc55d5eb00ac9ef27727d85598da35efa2d16ea5db05fdf53f7ce92"
+    },
+    {
+      "path": "apps/studio/src/study/SubmissionPanel.tsx",
+      "sha256": "cacb913f0359161268450c3f7a94ec7393ab43f0cf09a3c876ef12242999f0b5"
+    },
+    {
+      "path": "apps/studio/src/study/__tests__/CoursePackPreview.test.tsx",
+      "sha256": "32c4040fe275d0fe4846a56c00063e010fa4fd0aaad4f6200798725bb740b89b"
+    },
+    {
+      "path": "apps/studio/src/study/__tests__/PhysicsActivity.test.tsx",
+      "sha256": "0a3588fcbdb227e6e1fc8cd4363c49f5aa68f3e5b517e564d083bb32c644074e"
+    },
+    {
+      "path": "apps/studio/src/study/__tests__/StudyPostit.test.tsx",
+      "sha256": "ba7146efc629ed2a50400e4dd456f924a2ef0c66ac83c6e693f5d872c3576e24"
+    },
+    {
+      "path": "apps/studio/src/study/__tests__/SubmissionPanel.test.tsx",
+      "sha256": "1ecf1a8ffb76ae0b2ff18db03e4e747d68169caeaa6d376ba4c909aaaf0bad9f"
+    },
+    {
+      "path": "apps/studio/src/study/apiClient.ts",
+      "sha256": "09c95ab6af2ff6e24891f40cb16ccc1d368320e2a9ed24301c319dfcec5f1224"
+    },
+    {
+      "path": "apps/studio/src/study/contracts.ts",
+      "sha256": "4665846d6a97cf50f4246dc4274655594d6ec4dd78dd6355094649811b03b49e"
+    },
+    {
+      "path": "apps/studio/src/study/notebookPreview.ts",
+      "sha256": "0562b8815dff13c6b061ba675d2c15a328cc8e016ee17bda3c6b9d182efdb4ed"
+    },
+    {
+      "path": "apps/studio/src/study/originalAsset.ts",
+      "sha256": "a2d9daf74334ea5c6f0ebe8567fe54b321ff315735a4bccdabdfd1d9a9515934"
+    },
+    {
+      "path": "apps/studio/src/study/postit.ts",
+      "sha256": "8436239dc1f11f7c533f564846ff88819cc9789a3ca7a2a8a01eb51aaf4311fd"
+    },
+    {
+      "path": "apps/studio/src/study/scientificNotebookSnapshot.ts",
+      "sha256": "4cd4f1d81ce150f28a719f80310ac7d293d059c3f0f32f7a511cd40cd0e11eb2"
+    },
+    {
+      "path": "apps/studio/src/study/sessionBoundary.ts",
+      "sha256": "8815685010197f71f33c33332e478aba19928e8a8c0046e9734b4997393cc083"
+    },
+    {
+      "path": "apps/studio/src/study/study.css",
+      "sha256": "a341a9b3902758beb5807c8e83f3407e0d37548656c534b288d78b7d7c80df3b"
+    },
+    {
+      "path": "apps/studio/src/study/uploadOriginal.ts",
+      "sha256": "75de9332e4eaad5e52d140d98bae302a77d1ffdd85a1aebed0e8707a5adc9cfa"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "f37ec2794d9e6d09c3b421a386c4af5e41f96a396b031762a6a8c9f8d05ef906"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "ee4968db3718e930a9140e2277ba7e42131ae5509af29c494fb301126ba43041"
+    },
+    {
+      "path": "apps/web/src/__tests__/access-capabilities.test.tsx",
+      "sha256": "a1af46b085aa99dceb681f7affcd5fd6390a776b327e38a415579c742864ea35"
+    },
+    {
+      "path": "apps/web/src/__tests__/accessibility-semantics.test.tsx",
+      "sha256": "58cdf729fcd2131705bd1e217dc814f2f43c37db20f328cfd8e49d7458a69160"
+    },
+    {
+      "path": "apps/web/src/__tests__/classroom-course-boundary.test.tsx",
+      "sha256": "c157ecb1b02b6eb4e1d2fa3457ef67b8ef8033676c0d937ac1fd4a2e9cdccaa9"
+    },
+    {
+      "path": "apps/web/src/__tests__/classroom-loading.test.tsx",
+      "sha256": "4011a8254678ff6e2e9e6959ff0931710c6c86d84e85cdb0e5b0f39c16075af5"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-dispatch.test.ts",
+      "sha256": "66fa65dde90a831713b80e358701a6d8796a84a05914c2e8a06aaeef567ff11c"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-drafts.test.tsx",
+      "sha256": "b453642a9e5257b146b97df051c731f1c54cf4e245f4884f1dbefbd38981b2e7"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-learning.test.tsx",
+      "sha256": "c26de9dbfaa346b95d1be499d790aa3e116d1466053da871b72ad45b75eae1a3"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-pack-disclosure.test.tsx",
+      "sha256": "c54f4f7d36a1032fd2184336bf1409db87cbd8f4ebcc15b9a249b858722dc098"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-review-boundary.test.tsx",
+      "sha256": "011438f7a9eacf44cd04966fb78f9785dcc33607d265c10953da33714399c54d"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-submission.test.tsx",
+      "sha256": "b6f7b84406b6d2954c9b469c2093efff22e8e5fd6945f5445f7b065babe7ab02"
+    },
+    {
+      "path": "apps/web/src/__tests__/course-workspace.test.tsx",
+      "sha256": "d504d2787b4e461d31f55bf3f50268777baeb6e0837897078afeff4e3b00b6ec"
+    },
+    {
+      "path": "apps/web/src/__tests__/curriculum-catalog.test.tsx",
+      "sha256": "2b41033e86be5ae0c3295adb74582732bad2855cc697a66e7b2e1fb83b2d9667"
+    },
+    {
+      "path": "apps/web/src/__tests__/diary-activity-provenance.test.tsx",
+      "sha256": "8f4c5749d817249adcebf5b0c6d37775f95e79d81fa39ea8b9b72c1ba76dcbe8"
+    },
+    {
+      "path": "apps/web/src/__tests__/edition-management.test.tsx",
+      "sha256": "7dca4b2dd9b21de30b1d7c2faa5bc446243891634f32f64e2d568ffd33a4519a"
+    },
+    {
+      "path": "apps/web/src/__tests__/edition-register.test.tsx",
+      "sha256": "b68f30697186eaf5de3e120af9ac755160bdf81cbb3bbe79a57789dc5171e169"
+    },
+    {
+      "path": "apps/web/src/__tests__/exam-bank.test.tsx",
+      "sha256": "44a3fca7770856d99ae0171b73a80d930ba8d7518b304e4a37a4decdf1698b35"
+    },
+    {
+      "path": "apps/web/src/__tests__/exam-cas.test.tsx",
+      "sha256": "44591989f400dd07c377985e67fb0ae405d59564a8718a897d1d2821e244c912"
+    },
+    {
+      "path": "apps/web/src/__tests__/exam.test.tsx",
+      "sha256": "b8d029add557087010ce80525b96f9682916b0ec3479c91437928f7353c53eac"
+    },
+    {
+      "path": "apps/web/src/__tests__/four-course-submission.test.tsx",
+      "sha256": "2805455230dad41a996b73bee0a099b89a2d0a2b2ed9b5209a4396b95f0341c2"
+    },
+    {
+      "path": "apps/web/src/__tests__/lesson-passage-authoring-bridge.test.tsx",
+      "sha256": "777a9fd6eafb2c0680c93e908d1efad801ce4bad446c0b6990bf91b997a39adc"
+    },
+    {
+      "path": "apps/web/src/__tests__/lesson-passage-presentation.test.tsx",
+      "sha256": "0a6558d31cdf4d12451ac053b04e8643d9f1e09ff29fd3935f0becddd7d94348"
+    },
+    {
+      "path": "apps/web/src/__tests__/lesson-studio-bridge.test.ts",
+      "sha256": "23e4c3ecc435dbec51545cb927f392abde591b9e67c3c3ee6ae4da08303a0ec5"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-draft.test.tsx",
+      "sha256": "e4254c95eb4fcce44d475e081439629e04030e6b3d5cccba072817c440f25121"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-geometry.test.ts",
+      "sha256": "285bc0368d576d8c8c1367d4b14716461ebc393c18df045f5b10a377db48b267"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-math.test.ts",
+      "sha256": "8a985a434671f7e62bae5b7a35e7fc832fea1c25e689a3236f34837661b882c8"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-placement.test.tsx",
+      "sha256": "8b2ad34848f81708415c0d86ddacc00341a935a491f7e31f47ca896afa69762d"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-portable-model.test.ts",
+      "sha256": "865719a1e3372339706b67ee77d1dc8f1f341b10c3c4e63c1f57472d5867f637"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-portable-reader.test.tsx",
+      "sha256": "fbe2422a4eebfbc96bf39a339f083c2b48b5cad426ca6710d85f2695f0f190b0"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-preview.test.tsx",
+      "sha256": "5cfdbc2cfe9971d615ff3333edba0d93af3d471a12dbf7bd94ce0353b3ff0bc8"
+    },
+    {
+      "path": "apps/web/src/__tests__/notebook-submission.test.tsx",
+      "sha256": "de5243c00d5149645cef4dce3d92ea0e06d4ca4af21c71f49bf1862886df1abf"
+    },
+    {
+      "path": "apps/web/src/__tests__/original-asset.test.ts",
+      "sha256": "7fddfec66bd1f9d87c982ca2e361021a9b36987acfbc67aa9b6ca929a4ae5eda"
+    },
+    {
+      "path": "apps/web/src/__tests__/pdf-reader.test.tsx",
+      "sha256": "70e172435e15b0c0ad76bfdba54ac2fe6957961aa06b2341abf53bf25c437792"
+    },
+    {
+      "path": "apps/web/src/__tests__/pdf-worker.test.ts",
+      "sha256": "aea3b349fc72d46a9899eb031d803633b3e1dc723993c8c0b3f26ccf34b8b56f"
+    },
+    {
+      "path": "apps/web/src/__tests__/physics-question-bank.test.tsx",
+      "sha256": "6cbd46242612352a8ca1ab3d18b0aa29a7e78de44cd3904e414d47d73ea66b4b"
+    },
+    {
+      "path": "apps/web/src/__tests__/poiseuille-episode.test.tsx",
+      "sha256": "7d1bd113db16130ac8db6d3c67e47bebfde73aa3605bf19243dbc9f084fa9fe4"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-draft.test.ts",
+      "sha256": "1d869ef36f2db555c0b0180a33b08036750f58f84b46257c48a3258d6444a2bf"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-experience.test.tsx",
+      "sha256": "1f4d00d10656d7d997ccc70660e0cf9ac01cc264442c117eb87aa8d61c5db076"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-hydrostatic.test.tsx",
+      "sha256": "54ba0d921d4ce28d61bcb9a93b27d84c6124a2148ed661fab009f73aae26f05a"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-preview.test.tsx",
+      "sha256": "96d234ed1679196de0ace225c13079592aab23231a4a3680e80d89d94aed4816"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-projection.test.ts",
+      "sha256": "30d3ad738a0c48d05aec661940517cfb4e5b29301066c9c397f04e8e61dc57d7"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-spring.test.tsx",
+      "sha256": "552cf13eb6a4df8cbf8b5c0d0f509dd45749a2f38f4edf33536e8ec890f7b172"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-static.test.tsx",
+      "sha256": "80f2e9c1fcb5fee04e088f0455e7bec237e02f73ba21ffa46e2a4796f46f5d58"
+    },
+    {
+      "path": "apps/web/src/__tests__/public-storage-fixture.ts",
+      "sha256": "19e064441bd61eb7f99930808f3532f3b6fe40ec5e7c14deefd59a40d9732313"
+    },
+    {
+      "path": "apps/web/src/__tests__/question-bank-review.test.tsx",
+      "sha256": "fa3925c5968a1a34ccd6ba5da53a92f35d4f73e86fae6b12cacff08193123c16"
+    },
+    {
+      "path": "apps/web/src/__tests__/rea-interaction-transfer.test.tsx",
+      "sha256": "bd1bb3ec607ce3573adba1b5069257509618e4806f3aca5e8c7d0b731b3ab6fd"
+    },
+    {
+      "path": "apps/web/src/__tests__/register-commands.test.tsx",
+      "sha256": "200df7622f9ae3863ef80d280b6b90586b6d5560cf9f6beeb580308f77a045a5"
+    },
+    {
+      "path": "apps/web/src/__tests__/register-fixtures.ts",
+      "sha256": "1df26744bb08c1238df8dc680d4838bf04c24fa636b24600fe6c18450cee9288"
+    },
+    {
+      "path": "apps/web/src/__tests__/register-payment-pin.test.tsx",
+      "sha256": "713fc018420a52046150801810220a00990a2a91990caf9a7bfd1d61b1d89e16"
+    },
+    {
+      "path": "apps/web/src/__tests__/register-reading.test.tsx",
+      "sha256": "79f1f5d24d72f17265267b5e8eac57fef8944f8ea46e0ba92fcae13efd063c57"
+    },
+    {
+      "path": "apps/web/src/__tests__/resource-composer.test.tsx",
+      "sha256": "dff02d726fefb5f1853ee166bf3c4fc4ea3b1708e8ccccbffae37f79168a1e47"
+    },
+    {
+      "path": "apps/web/src/__tests__/review-refresh.test.tsx",
+      "sha256": "2b04263ee5430a6f3bfe05535dfd02555feef2edba06c5180cb7360216e74939"
+    },
+    {
+      "path": "apps/web/src/__tests__/scalar-experience.test.tsx",
+      "sha256": "d05cd61f8b39b26c63d29234018c19c315eee051eae62990e0e85897a5af0683"
+    },
+    {
+      "path": "apps/web/src/__tests__/scientific-kinematics.test.tsx",
+      "sha256": "ea6dbcfc78ed50b5a14b2feddd02cf3ac09833b2b4f7e4aae7744a278f383a33"
+    },
+    {
+      "path": "apps/web/src/__tests__/scientific-models.test.tsx",
+      "sha256": "6eaa10e50652c3fbe4ae5954bd995744ee5517b79c2357284a73918ebd3c7086"
+    },
+    {
+      "path": "apps/web/src/__tests__/session-boundary.test.tsx",
+      "sha256": "e16cb5b61db8a09a0c32891dbc439df29f38b60c2e00c7a6cab431d113e3849d"
+    },
+    {
+      "path": "apps/web/src/__tests__/session-legacy.test.tsx",
+      "sha256": "882970e0ff7a029b4db64eb3ca519b3077aa967d4b601040478345a51881072d"
+    },
+    {
+      "path": "apps/web/src/__tests__/session-transport.test.ts",
+      "sha256": "2f77fa128d8f5c01a3835a42ebc1edeaf2af03e0df78515ae986d054279e49c1"
+    },
+    {
+      "path": "apps/web/src/__tests__/source-board.test.tsx",
+      "sha256": "6242b5d120b67e1e129ba0e15106f0b8f065c67bda6b695f591328aafe014f61"
+    },
+    {
+      "path": "apps/web/src/__tests__/source-context-identity.test.tsx",
+      "sha256": "bf674a365872e63e1d6e5a427881b6ca617b8d18086ce4c08c6cb5c3934c3f9c"
+    },
+    {
+      "path": "apps/web/src/__tests__/taylor-classroom.test.tsx",
+      "sha256": "89947dd54345a23277e588e71f1d36993b010cd26440d6820e473343d30edb48"
+    },
+    {
+      "path": "apps/web/src/__tests__/taylor-plot.test.tsx",
+      "sha256": "d8dbc31b286a166b0f7415a11f1a51ab0bdba02bf2686401804ac1e3a10df817"
+    },
+    {
+      "path": "apps/web/src/__tests__/workflows.test.tsx",
+      "sha256": "f2cc1a6320d0b1559e15bc25b5224c56713dff30c5cd4b0248d5fa55c9b9fc41"
+    },
+    {
+      "path": "apps/web/src/api.ts",
+      "sha256": "cb7df7e903838e47de82662e27171e6ee4cad0698b08d6537c246b5367f003ea"
+    },
+    {
+      "path": "apps/web/src/components/AssetPreview.tsx",
+      "sha256": "af7952cc4b462ee45819ea6a6b946214e59ab438b39d4c63b9ebada6f766c02d"
+    },
+    {
+      "path": "apps/web/src/components/CourseLearningWorkspace.tsx",
+      "sha256": "ba92fb2d5135b385eed35c4170c62f67979c6efb77827d439a478af7fc125f66"
+    },
+    {
+      "path": "apps/web/src/components/CoursePackDisclosure.tsx",
+      "sha256": "417a6f0fe1b0f011094d635b0812fcb980e2890dbb492f36b06562adbfe02191"
+    },
+    {
+      "path": "apps/web/src/components/CurriculumCatalog.tsx",
+      "sha256": "8de35abb3e1c40c52210d93f062fe2b081519e0b621550731630a745b3bfc9f3"
+    },
+    {
+      "path": "apps/web/src/components/EditionManager.tsx",
+      "sha256": "237f3304ca31330b51b9607c904bbccf7524c9b6fafd9c1a89f99f225e310d0c"
+    },
+    {
+      "path": "apps/web/src/components/EditionNavigation.tsx",
+      "sha256": "f114755d3a1e1d7128c5fbd1200c9430ac7ffb0e8c72790065c3846cd6518d90"
+    },
+    {
+      "path": "apps/web/src/components/EditionOfferPreview.tsx",
+      "sha256": "06b913314d1af2b2e5d2576d7101d9bbd9d8e523c0c37583ab38bcac9a7b84d4"
+    },
+    {
+      "path": "apps/web/src/components/Feedback.tsx",
+      "sha256": "3615ee556015f7615200d9a50c007e799385e9a2401119c85e04b0ee5d1b619c"
+    },
+    {
+      "path": "apps/web/src/components/HydrostaticModel.tsx",
+      "sha256": "5acee70e9955a87dcf80ba2d94e1ace071fa040db6e573d30bba141974d1af49"
+    },
+    {
+      "path": "apps/web/src/components/LessonPassage.tsx",
+      "sha256": "5bc83b3275130767f849f6ccf53d1ecb8b2c7dd52c3376515391e80428d8d610"
+    },
+    {
+      "path": "apps/web/src/components/Login.tsx",
+      "sha256": "401160531e5d4983846c2ce917d2e40f14058e8f199c321ad74e3e8a4f466bba"
+    },
+    {
+      "path": "apps/web/src/components/PhysicsLab.tsx",
+      "sha256": "ef5027f7ff6c97fdb50e30003f3b7d7fd38da5392f4036283665c22c699247fb"
+    },
+    {
+      "path": "apps/web/src/components/PhysicsPathways.tsx",
+      "sha256": "15220eca75d08aa2fdedda2b1b77fc52588238dbc3e4f3bf4e4f72b9d81c2711"
+    },
+    {
+      "path": "apps/web/src/components/PhysicsQuestionBank.tsx",
+      "sha256": "6cd1f14196d1e24ba4dccf2332621f7c72fb27e843ab9af10555ae03933c4e7d"
+    },
+    {
+      "path": "apps/web/src/components/PoiseuilleEpisode.tsx",
+      "sha256": "fd0d368f81e5f205dfabfabe24b3b6b76d3f0dd8d3eee33de335854365523b90"
+    },
+    {
+      "path": "apps/web/src/components/PoiseuilleVisual.tsx",
+      "sha256": "6b7e45bdf0fc0a2afffa7f1fb99d8cbcdb1dca0a65fe107c61206dedf48b2efd"
+    },
+    {
+      "path": "apps/web/src/components/PredictionEvidence.tsx",
+      "sha256": "d7f58654e56b21defe11d80c269423069c69c11cdb788de8ad5a6b87d65fb0b2"
+    },
+    {
+      "path": "apps/web/src/components/PublicDraftControls.tsx",
+      "sha256": "1c9f30758f5166d2f308f8cb98ef64d88a2199033609facbe74bb36a2dcdd8ab"
+    },
+    {
+      "path": "apps/web/src/components/PublicHydrostaticLab.tsx",
+      "sha256": "9abdd7cd70154421e7bce7a3ecf868c32af68185e7f626ede565c949e546f2be"
+    },
+    {
+      "path": "apps/web/src/components/PublicLessonDemo.tsx",
+      "sha256": "e6f0e2e9bdb8ecd00fc97f878adf9ab66195e755155b71c87d38e8575a420f2c"
+    },
+    {
+      "path": "apps/web/src/components/PublicSpringLab.tsx",
+      "sha256": "52977667c401208640d2d8996ec96d7e025b5397b4a1f67c6d08921ee872beda"
+    },
+    {
+      "path": "apps/web/src/components/PublicSpringModel.tsx",
+      "sha256": "5d1f941662f0ffaf4c04fc39ae334b34d0766fe4103d51f7c59a890b15e73f95"
+    },
+    {
+      "path": "apps/web/src/components/QuestionBankReview.tsx",
+      "sha256": "0e4f2bec797cbf54a8e006a766cae82c4b3bfbdf5ecbe83c40507cd07af020e8"
+    },
+    {
+      "path": "apps/web/src/components/ResourceEditor.tsx",
+      "sha256": "37dae80e24733f0589370ceb755e3ff5fbca1d8f69c25eb8bb228e1bd3bb6716"
+    },
+    {
+      "path": "apps/web/src/components/ScalarExperienceEpisode.tsx",
+      "sha256": "ddc4d9d0f36f1f27a277e54b6b5aec3217a223e350bf85a3e2461610c814f8fa"
+    },
+    {
+      "path": "apps/web/src/components/ScientificElectricalModel.tsx",
+      "sha256": "7cd28a8e54f216c11717b8c54de395cdcc4725e6eb0826b3a295cb4ae9ed47b9"
+    },
+    {
+      "path": "apps/web/src/components/ScientificKinematicsModel.tsx",
+      "sha256": "94d8333dd2cc75bd4fff2e6dd5297d788edb529b293eb11954cde167701bfbcf"
+    },
+    {
+      "path": "apps/web/src/components/ScientificWaveModel.tsx",
+      "sha256": "5061d9c2c23de73371f603e14511cb22caff3136cc0a6cf6b98b99f0dfaa432a"
+    },
+    {
+      "path": "apps/web/src/components/Shell.tsx",
+      "sha256": "298ba36d438486f4fd5eb07a6b6cd5d41ff543c921d28adbe974a1685829a174"
+    },
+    {
+      "path": "apps/web/src/components/SourceBoard.tsx",
+      "sha256": "20f6f8bc60396d7d3ac0443976b807f0a25eda745719fd6e8953ce1370be16fb"
+    },
+    {
+      "path": "apps/web/src/components/SourceLibrary.tsx",
+      "sha256": "39193f8bab277feb0633125ff9ed74921f3c853075ff4021c36a4570ea5bf715"
+    },
+    {
+      "path": "apps/web/src/components/SourceViewer.tsx",
+      "sha256": "bf5e7cf46855601b940c9e9ec042c08566731ae5b37e4037249d2f84786ae221"
+    },
+    {
+      "path": "apps/web/src/components/TaylorLab.tsx",
+      "sha256": "045a707c8614ada0b5395d4f9e813eb446a4923c4de8beb0a2af88328c94f58f"
+    },
+    {
+      "path": "apps/web/src/components/TaylorPlot.css",
+      "sha256": "44c4041a49431dd361d5551ec16de34b9449d7cb0964696117c39c01b85e9ad9"
+    },
+    {
+      "path": "apps/web/src/components/TaylorPlot.tsx",
+      "sha256": "399436c871b85d782952d93dc70927c6aa9cfba2006ed04ae31e1c74e359b8e6"
+    },
+    {
+      "path": "apps/web/src/components/curriculum-catalog.css",
+      "sha256": "4a5c3a7c398b923bace521301ebdb466125571ca470ced3fafabef72ce03e43a"
+    },
+    {
+      "path": "apps/web/src/components/edition-admin.css",
+      "sha256": "b8fb83a2dd9a6ae9ffd8f8e167b2a53d7ce39f9508ef6ad789507793e3fcf739"
+    },
+    {
+      "path": "apps/web/src/components/experienceTypes.ts",
+      "sha256": "c5310d5f2f9d3d14dc9eaccb814867f5e132ef68c2786f2d5a66b07f94537c36"
+    },
+    {
+      "path": "apps/web/src/components/lessonPassageReference.ts",
+      "sha256": "03c4db18c33ce0c98784409034bc13715617603662b6fc29e03af97df1598695"
+    },
+    {
+      "path": "apps/web/src/components/lessonStudioBridge.ts",
+      "sha256": "53b6792556ed230fb27e973346b4c7d818485a713c4597d03a0170efaa86bdf2"
+    },
+    {
+      "path": "apps/web/src/components/physics-question-bank.css",
+      "sha256": "22bb63dfedc44d80632b2dc35bdaffad549009fec166c8e2cad8747090ee991c"
+    },
+    {
+      "path": "apps/web/src/components/question-bank-review.css",
+      "sha256": "e494573f6d47b6c5320a856d52e8bd233588f5901f0ec550b16fa6a5f45a0652"
+    },
+    {
+      "path": "apps/web/src/components/scientific-models.css",
+      "sha256": "878e7d578023157dc21ae6f0eca808868257747360dbfbbf18630a9c5c6e6d41"
+    },
+    {
+      "path": "apps/web/src/components/sessionDraftCache.ts",
+      "sha256": "a7b2f1ab61edf2532ed78885aed5b0bffebf8168aa4f82a584d9ea07bca2cd73"
+    },
+    {
+      "path": "apps/web/src/components/sourceBoardModel.ts",
+      "sha256": "301085316dabd1d63251857d3c0a359fa8c5cfefae19f9e191cab6c617fc18f7"
+    },
+    {
+      "path": "apps/web/src/components/useResourceComposer.ts",
+      "sha256": "515e7644ba65032c113cf3131008f0b858a86cd71f257ccd34bbcb916c87356b"
+    },
+    {
+      "path": "apps/web/src/components/useSourceBoard.ts",
+      "sha256": "3c5b7ae9fea100eefdf45ab8fca0d8473485f627234e0abc79d4a1f258edd754"
+    },
+    {
+      "path": "apps/web/src/course.ts",
+      "sha256": "78f4bf86ef34fd8eb42a05643349cb3b1dffb824be3678dc93a52476aaa32c9e"
+    },
+    {
+      "path": "apps/web/src/courseLearning.ts",
+      "sha256": "37fd4e7942a3791d58fa9e846fc7dc4c3a8d62ae561299d99651297974b4a3f3"
+    },
+    {
+      "path": "apps/web/src/editionAdmin.ts",
+      "sha256": "332fd3c62f6bb2ac1b98297f3aff08b222c7233635724d01426cab7eb75a6124"
+    },
+    {
+      "path": "apps/web/src/features/Classroom.tsx",
+      "sha256": "affb7966ce7c1f77da643f90fde5894d7c83cf62fa95fa68284372cf0f09a294"
+    },
+    {
+      "path": "apps/web/src/features/Courses.tsx",
+      "sha256": "032de388ae72d68a7480ffd82e52bf04793c6f69e31b1e5bf5e750d6fcdb88e9"
+    },
+    {
+      "path": "apps/web/src/features/Diary.tsx",
+      "sha256": "9638184f98cb82280487de3b57c2d125d580d22a2313bb52c57b6e108748bac9"
+    },
+    {
+      "path": "apps/web/src/features/Exam.tsx",
+      "sha256": "0f34f178c81a988972539d0857219c7b44d138ebe6c6ee15a1d8212e82c6538d"
+    },
+    {
+      "path": "apps/web/src/features/Materials.tsx",
+      "sha256": "a057ae7015748f23bc8695213387921d8216934ee41b46c229a01ba75e59bf9e"
+    },
+    {
+      "path": "apps/web/src/features/Public.tsx",
+      "sha256": "5018851c1acaa21488ea42f9bd58de386f5443eba97f20998a3c9fe25b7cbecb"
+    },
+    {
+      "path": "apps/web/src/features/PublicCoursePlayer.css",
+      "sha256": "cdb2e4b080067a2d9b56742cddfc5e92c733b13a2f9b753e368ec2aef255beaa"
+    },
+    {
+      "path": "apps/web/src/features/PublicCoursePlayer.tsx",
+      "sha256": "55a4b10cad00e80bf169dc83cd02bc3d0c8696f9139149cd35f97fda7efdc2a6"
+    },
+    {
+      "path": "apps/web/src/features/PublicExperience.css",
+      "sha256": "4d85160dc76d97a35a2075765e74d6460367ed0c6adee8f26973d2a8d8859015"
+    },
+    {
+      "path": "apps/web/src/features/PublicExperience.tsx",
+      "sha256": "1813cb48f84aeb4c60170e92e1a6949a19935a4ac7246474696cc107093ce343"
+    },
+    {
+      "path": "apps/web/src/features/Review.tsx",
+      "sha256": "49fbf682aee041761b39003ab1ecfc985433f7892ba06552bd9cd5797119f834"
+    },
+    {
+      "path": "apps/web/src/features/Today.tsx",
+      "sha256": "ad44839182022e3601c2819251e193dd31b50eb4b64f155107ef64ae7c30e637"
+    },
+    {
+      "path": "apps/web/src/features/Work.tsx",
+      "sha256": "2cd34bb8973640e7969da1e6450d8f84a0eaa616386022ac1db770ae38c6b072"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/IndependentStudy.css",
+      "sha256": "864e0ae03091036e4aff988417091eaf04f8e9fd278a781d169e96c7e94f79bf"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/IndependentStudy.test.tsx",
+      "sha256": "c9252c6d86b7d9393bcb607ba4f47cf63ae37ee4585c97618b4a5ade2450a005"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/IndependentStudy.tsx",
+      "sha256": "e0f8610504c1226536016ae6627dba9e46a8a56b51d92d40b211f18100046169"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/SourceProjection.test.tsx",
+      "sha256": "453a7e2d114b71908b726db419a0172690569cf400cd54b1666350969c752113"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/SourceProjection.tsx",
+      "sha256": "60d12d815a10634ecd9eded0981dd5ba6be298f1d9f77dd087875149c8b824dd"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/SourceViewer.integration.test.tsx",
+      "sha256": "dcca0e3b1691ec4d51ed8cc92cea4c86983be23411ba4b2140debd92b6b34dab"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/StudyModel.test.tsx",
+      "sha256": "9cf26241c295a9f58a1d19a9876ef745b940b9813feb4f9199d3acd49169fb03"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/StudyModel.tsx",
+      "sha256": "1be16e6264e11422a786cd701c8f1170cf4c3234ca246df7963fe0bcbe4417aa"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/modelLabels.ts",
+      "sha256": "bbc48b9091e532c51a94e6df63a94faf430c532344c2bd6383bef2a9567226a6"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/storage.test.ts",
+      "sha256": "288dd50074dc3842783b62754ddc1f7014fb9b17af06b961176d314c4fb6e625"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/storage.ts",
+      "sha256": "140ca7ffb66718e1415789ec8a605edc25979e9b9e59adf0d6c3ccb360e1e54c"
+    },
+    {
+      "path": "apps/web/src/features/independent-study/types.ts",
+      "sha256": "bd045fc9e76b5cadf549f7f5a70b6c1de3ecce66ff9ed75198bdd4efca2b7043"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/CommandSearch.tsx",
+      "sha256": "8c3908f99e5a8700c9bd37138027f57441adf56f5d17cf7de49a32e283950e26"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/ProductShell.tsx",
+      "sha256": "2447ac37a7d423fc871c968cb39a3ad5943ca2c3a59a5e9f56cfdab29bdc49a3"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/SurfaceState.tsx",
+      "sha256": "5d69247693b2ee043cd53596e9618b74ddf3940e6f3a0b0928910c1c79bf2ec7"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/__tests__/navigation.test.ts",
+      "sha256": "ac6f80f9031ef5ee2e1ff4a7a2f7f5dc2fceda87d27ff59b9b36dea866d8dc8d"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/__tests__/shell.test.tsx",
+      "sha256": "d8e48c7491f020c46b92ef7356787d3f471f1e483b9eecc55ba986029a24f788"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/__tests__/states.test.tsx",
+      "sha256": "79dbf8e80ecd626777ed455ec1790de3b360681edfedc23f6646f63f9a161423"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/lab.html",
+      "sha256": "48eea94b52b2ec08d7ebcac7a8368c097b6c6425a435858cfdc1e4cd90b15375"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/lab.tsx",
+      "sha256": "fa0a742737124e468808824fcf02a993c34d74cefb58bbf032de731c3e8fd643"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/navigation.ts",
+      "sha256": "60dfcb303ae57624beedbd770402d16583e982a927416a5429ffdf11701c8e5f"
+    },
+    {
+      "path": "apps/web/src/features/product-shell/product-shell.css",
+      "sha256": "ed5d9030b64ef8e5ee7c10af093ab7a77507822b40e2273a28e950d0d493f2fc"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/CalendarExport.test.tsx",
+      "sha256": "b3c3a2871c73af29867d4c663f5646d4b64fc222bd866cf5ab61dfe8a816cb4a"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/CalendarExport.tsx",
+      "sha256": "d0dacee60028ad3466ba5883e6e93a00534125c1aed2744d832208a43c36df4b"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/TutorOperations.test.tsx",
+      "sha256": "501b4add53fb75868033a73642f803e9612ddbb218289ceec2b67dc3dde86c17"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/TutorOperations.tsx",
+      "sha256": "d905ba93a7f3151736bcb25e41e2e36c08ae6d281a97046e87e8098c951c1d32"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/model.test.ts",
+      "sha256": "0e93c42fc3d8f7f0822404024212094725b1c51af062f39683c5f4e478f0fdc2"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/model.ts",
+      "sha256": "3cdb4d0572e15c43dd96b7e200471ceb8ece6a64c446e493149aea31d0aad5c9"
+    },
+    {
+      "path": "apps/web/src/features/tutor-operations/tutor-operations.css",
+      "sha256": "7d1ba514079c8492cd47d1758e31572a9053c24a7360788b30f8f61dc835bab3"
+    },
+    {
+      "path": "apps/web/src/generated/courseLearningData.ts",
+      "sha256": "294a8b961843800021b1262bc29f1485d365e8e72eb19679c7b5736aa10b9c7c"
+    },
+    {
+      "path": "apps/web/src/generated/publicPreviewData.ts",
+      "sha256": "ece6cb1e23fe97145e594bb5fd5789bf202342aabe7c357a75c22144f0687534"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/AnnotationLayer.tsx",
+      "sha256": "20963338ae01bcfe8abbc183189aa88c4c57fbb974c27dd06b188f575f48bc51"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/FormulaField.tsx",
+      "sha256": "ff518c6bd822caa9d59f64b8c5cd1f2c08e9f7fc0e9e0323161ba2d6dfc9c75e"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/FormulaPreview.tsx",
+      "sha256": "814ca10889d6991430c2d9f83f550042ae859f18c146d444297cab2721a773f1"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/NotebookEditor.tsx",
+      "sha256": "60f3eb4e67cf39e2b4f9828b5fecfab504d11d00be9569fcb85ede7de7e79a7e"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/NotebookReading.tsx",
+      "sha256": "c7b19fb130fc2dd2934ee35fd1dfaa7e76287ccded14161c5cff2a4536c896bb"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/PdfReader.tsx",
+      "sha256": "4dd9ace6bf914cab5dd797984e3f61f27c13b4cae4bb180776814f7008ccd77f"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/PortableNotebook.tsx",
+      "sha256": "35dea492c9c9b49821f917ca7ecd44ec1d7fc4a42e994b1298a2b441e4d7b1ba"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/ScientificNotebooks.tsx",
+      "sha256": "a621ac4f524869753e972ff3f8f568509a03fd24abf36cd0e5111647776934cc"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/mathField.ts",
+      "sha256": "3324c0ab51737a0652bbb25407e55df7d02e828ca2a49daed72d9b8ae6267369"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/model.ts",
+      "sha256": "35250d0f573eb3da4a09904bad5765623ae8408327d3e428cda6e7caa6932680"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/notebook.css",
+      "sha256": "ade06fde6ab432484ef6b364e5df19d0b3295170f09a7634fc410a26f493e2f4"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/pdfDocument.ts",
+      "sha256": "7b5c646a757ffca10d251bd74d330503c00d7e7c1004ecfe62e71ec6d6956cee"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/portablePdf.ts",
+      "sha256": "01b73c425e132bab1eed9014a78f25fab1960f78ff4d3ba6834b67257d55bae3"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/renderPdfPage.ts",
+      "sha256": "7bf97aab52439acffcb7c7921c988a29e1f3e31e181a4aec32026ec991f9e2c0"
+    },
+    {
+      "path": "apps/web/src/integrations/notebook/useNotebookDraft.ts",
+      "sha256": "3c3d84802adc8bd452fb0460780a0645baea9985a9b46ca8a7d6f300bd20032e"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "f592547ec595974c25cc12d62d93a5331d4d4d0d2555ac361470a376468b2e4f"
+    },
+    {
+      "path": "apps/web/src/public-main.tsx",
+      "sha256": "5be9ec2bc21c889d9ba7a1c0a6a9f9b257ecc9f53fa5492c959e69abc21ae742"
+    },
+    {
+      "path": "apps/web/src/publicDraft.ts",
+      "sha256": "bd0e915fb575d6be869e4c4a62d73188b7741428cb200d0d3e5ada061e6b848f"
+    },
+    {
+      "path": "apps/web/src/publicPreview.ts",
+      "sha256": "337bbb78369e143c3aae28434f901f6b650d76ff9f299c416d4d5faa32eb8caf"
+    },
+    {
+      "path": "apps/web/src/register/AttendanceRegister.tsx",
+      "sha256": "180718a162b80757641ad1bd097719867843d226968da59516607cf09841d0ce"
+    },
+    {
+      "path": "apps/web/src/register/EditionRegister.tsx",
+      "sha256": "6a7259325890919f2b58e2a539d771088c8da7fe925dfe072da705ef2524aa34"
+    },
+    {
+      "path": "apps/web/src/register/ManualPayments.tsx",
+      "sha256": "7fc47d0c574645ae9d29aa23c0ff72ca332d087273aeeb1d48a27d484bcf654e"
+    },
+    {
+      "path": "apps/web/src/register/PaymentRevisionRefresh.tsx",
+      "sha256": "ed429ecb9d1fdb61c92437cbbf991f1d846e8df2a932b04a766c7ce231d24f46"
+    },
+    {
+      "path": "apps/web/src/register/RecordHistory.tsx",
+      "sha256": "6ebdf5fe6596dff73f552b6bf36b35086592e5dbdaab4383f3bfbdeccaf6bac4"
+    },
+    {
+      "path": "apps/web/src/register/RegisterContent.tsx",
+      "sha256": "53ab743f270beb5c4cffc95495238048c3b0b69efd1070e501c68d182ee29293"
+    },
+    {
+      "path": "apps/web/src/register/contracts.ts",
+      "sha256": "1e5cb81dab04a7f2cb8f7dd3fecec53959e0839deb0ba39f90e8034d9f690f44"
+    },
+    {
+      "path": "apps/web/src/register/register.css",
+      "sha256": "f5a38df2f75da942fdf8ebb1e20e66e60517f20af60cb335b1b6d20297e1e90d"
+    },
+    {
+      "path": "apps/web/src/register/useRegisterCommand.ts",
+      "sha256": "5a332f38da682c5bd956808f6e78948c73b8bb3da2b7b4144a90f7899af10a82"
+    },
+    {
+      "path": "apps/web/src/register/useRegisterRead.ts",
+      "sha256": "fb727baf1cc2829127c8853f1235ed3c45d89fbaa379966006563e258051b4a4"
+    },
+    {
+      "path": "apps/web/src/register/validation.ts",
+      "sha256": "43ebd2e2e660d2ab3c90c4aba3174a63924035a5b8701db5d438a85728c88fe5"
+    },
+    {
+      "path": "apps/web/src/styles.css",
+      "sha256": "5ce58f553cf678d09be1017e90351ffb7742335eb71a9509b01fcf1e02128c6b"
+    },
+    {
+      "path": "apps/web/src/useCourseWorkspace.ts",
+      "sha256": "85bcd048ca53967d65951b0974c3508a304ded1cc21ddf74dd707b848126674e"
+    },
+    {
+      "path": "apps/web/src/vite-env.d.ts",
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "apps/web/vite.config.ts",
+      "sha256": "6628cbcd7db886a28820060869de135a29b09789b2000dcbc62bb112c9e59673"
+    },
+    {
+      "path": "handoffs/swarm-v2/S06/composition/browser.mjs",
+      "sha256": "38ff4057dcef2de0ec9ce8adad99aeaa45a475122fa6e4df7fcfedd6f20c5776"
+    },
+    {
+      "path": "handoffs/swarm-v2/S06/composition/server.py",
+      "sha256": "139ca5d878669f9bcc9cbd9556347667c99858cad36a641f3dace2ddc302571b"
+    },
+    {
+      "path": "handoffs/swarm-v2/S06/composition/test_factory_composition.py",
+      "sha256": "f4b78506da4e948468191e11819632b48164fac333a15a47a90fb2ef3a90080d"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "d063b91f32e3b461e6a5e33987389b755a0186f8457f8e9b7ac77929f508712f"
+    },
+    {
+      "path": "packages/engine/lessonos/__init__.py",
+      "sha256": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/__init__.py",
+      "sha256": "4e8ec34a0be2f341ddf113c3e73c95baa55b4eea8cd7bf8fae1f3243a865ed21"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/adapter.py",
+      "sha256": "c2ae0aafff7a455b57f5ed0a0a60fc51f809ebf001d437c09379a104ae7713f6"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/convert.py",
+      "sha256": "1dfb93504ff5ce8515ce48cd07c044ffbd56b0d18f2b660756b317fab81b6c87"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/models.py",
+      "sha256": "bc34d12ef740904efadb8356684352c97a36b76ee67eae4cab5a32be38844aa2"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/pipeline.py",
+      "sha256": "7d5cbe464f0e958dfa11615be80c6325f6040e7c8cfa08487b206b2997440f45"
+    },
+    {
+      "path": "packages/engine/lessonos/asr/transcribe.py",
+      "sha256": "028296786436de46798dbe8a85b3c3431101a172f6d0c567a20fea2fad6a7bef"
+    },
+    {
+      "path": "packages/engine/lessonos/capsule/__init__.py",
+      "sha256": "9ac6219c0d46bd06118e4b88927e19d632d0ef90db71d97074a2b0d8251fc381"
+    },
+    {
+      "path": "packages/engine/lessonos/capsule/assembly.py",
+      "sha256": "146339a4892299809323b2a29dd036de13a2eb38a851dbefed42d863188bf73d"
+    },
+    {
+      "path": "packages/engine/lessonos/capsule/extraction.py",
+      "sha256": "efedea8bd2d8a19af6e1e4f09b667b7ebd33f00dce23ce5583119274dd27eea9"
+    },
+    {
+      "path": "packages/engine/lessonos/capsule/parsing.py",
+      "sha256": "e19a05ae3f2fd1833e6f9a783cc002052c2029ab72cff795e7daf769ec4ae676"
+    },
+    {
+      "path": "packages/engine/lessonos/capsule/segmentation.py",
+      "sha256": "c595c4c2cf9000ec88f6e0b0550c04a86311fb2c4c3c4370e88d07d475aec62e"
+    },
+    {
+      "path": "packages/engine/lessonos/cli.py",
+      "sha256": "cfd4c649768f9e0c3d92676281f39686d9a8d36223c9476248fdd3824cd03785"
+    },
+    {
+      "path": "packages/engine/lessonos/consent.py",
+      "sha256": "83a3c028f74fff714722342a48d52ecbe0f5af7931b4470131dd46152fd89920"
+    },
+    {
+      "path": "packages/engine/lessonos/course/__init__.py",
+      "sha256": "8f268f2576c79d801ba60b96805859f85fd12c3f6b17498ce2815803accaf1c7"
+    },
+    {
+      "path": "packages/engine/lessonos/course/atoms.py",
+      "sha256": "9e9c3cb6b420407bff069733da7d54fc8cc0a02e6005fbdb96aea63395638187"
+    },
+    {
+      "path": "packages/engine/lessonos/course/blueprint.py",
+      "sha256": "937653b8ebf4fa2c0f2c5f142322496821356796c78fd3871ace98dd349a565e"
+    },
+    {
+      "path": "packages/engine/lessonos/course/folder_loader.py",
+      "sha256": "534c96722d2add1fa82b3174c8782c9f9e3a02331a0d9fb703bebd346718fb9a"
+    },
+    {
+      "path": "packages/engine/lessonos/course/lineage.py",
+      "sha256": "2bbfa8b740018e05eb57a66b45b6c89b273d05c8856366c505f4903437288bdb"
+    },
+    {
+      "path": "packages/engine/lessonos/course/planner.py",
+      "sha256": "6cea7b259aeeb658b9188e47f19517d39c498857c77ff21551833096916165ba"
+    },
+    {
+      "path": "packages/engine/lessonos/course/schema.py",
+      "sha256": "12df99a60967f948538fdd40e5b4e81ed093d5d0c18d25518a45252ac345b1cb"
+    },
+    {
+      "path": "packages/engine/lessonos/course/teacher_review.py",
+      "sha256": "efdbfb78393733b90554cd0a66ced3041f5d3590cfbc288c1b436705ee729791"
+    },
+    {
+      "path": "packages/engine/lessonos/dispensa.py",
+      "sha256": "8cc5ca5b6654fab97d32bd55dc36d90201d4278d9db9215739b1894661c430ff"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/__init__.py",
+      "sha256": "4003acbdb024301ac04656807998e0c2008e54ab3f54df4006da013bc0e3b185"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/metrics.py",
+      "sha256": "3359c8b8ea29ff0eb0753de2446a9c019440412464fb1f05135bb32a4bb1e804"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/models.py",
+      "sha256": "d358bd5074612470cd064f2f2840176aa713c964a63aca6d4c4ea60c5370ef96"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/realtime.py",
+      "sha256": "0524b53b76f1e66a321f5009ea37a1349a5f010e2b291afa47d85d0c9cff4332"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/realtime_raw.py",
+      "sha256": "d666eb884105960f3c5ebb1dd59233bfdfc26e802b8423515cb1c6c47ad27d1f"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/retrieval.py",
+      "sha256": "5e0ae68aa0653033597adc878101f26a7670396f6e18c4e8012ab21634703b95"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/runner.py",
+      "sha256": "8a214e3c3db6e1d952ec399534be19fa94b94dc36ca99429d32106abe5801391"
+    },
+    {
+      "path": "packages/engine/lessonos/eval/test_cases.py",
+      "sha256": "cefa003257d2a092d822a2509c76d5d2fe0d09f89e61224b59f225eaff5ed3ea"
+    },
+    {
+      "path": "packages/engine/lessonos/export/__init__.py",
+      "sha256": "2186ae28927aad78166449694ece407b5b34c247a4a895ed96c4925464191f3d"
+    },
+    {
+      "path": "packages/engine/lessonos/export/docling_adapter.py",
+      "sha256": "e002b0ccb5c28d9994e086f3cc3e23fcd1108b494c4623c7106975a05e21969b"
+    },
+    {
+      "path": "packages/engine/lessonos/export/liascript.py",
+      "sha256": "2019f5e17659023cb75c620c184810f3eb0c5891b1d4fbd02769b9bb86aa2605"
+    },
+    {
+      "path": "packages/engine/lessonos/export/markdown_course.py",
+      "sha256": "3fb521757f85c9bfbd2f69d7bb8d8552a0ccd0e312ed94227a1c24449e50d586"
+    },
+    {
+      "path": "packages/engine/lessonos/export/moodle_xml.py",
+      "sha256": "8d4ce6e2eec8ce1592c24be5de75ca260445d13fb9c031e33258a0af9d374433"
+    },
+    {
+      "path": "packages/engine/lessonos/export/obsidian_vault.py",
+      "sha256": "1df6b69a58c8bb38818cd422932879b45cc8590c4c0d10314900e9e6fbec87ca"
+    },
+    {
+      "path": "packages/engine/lessonos/export/quarto.py",
+      "sha256": "f6a0aa4dd784926381b459f566e0c6c3c5a9c4e8d20a41967a6a1256bfad7757"
+    },
+    {
+      "path": "packages/engine/lessonos/export/source_extractor.py",
+      "sha256": "34b4fc396cb9d9094fc722cfae688ce92150bb113438e3a5394a7f114baa2ce7"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/__init__.py",
+      "sha256": "fe1847b8b9d785ac167649ed90daacef99bf7479b6f414e490bdd7ad569cbf30"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/aggregator.py",
+      "sha256": "cd0e2cee3588d921a547db8924fb062811e582e43c3ce6d0639a9ef0f766cff5"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/builder.py",
+      "sha256": "b6ba5055ca35f72faec9eb0fc39297c62d4d9c8953d294c818014d8cf0a1ea39"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/didactic_delta.py",
+      "sha256": "db4b84412c014b9d0b55ed55d1e4d8c611916ef20a5a4e343f186a00100ac1f5"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/grounding.py",
+      "sha256": "c4fa1c2d928c8d1528ab4a442ab63669b9d7fb9d55a2ded00eddfea1b6b123b5"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/learning_debt.py",
+      "sha256": "bf7a552d6e18afb81539fd596b7b4474be3b70f1e4ed6ac5981ad4eb05d5dc86"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/next_lesson_planner.py",
+      "sha256": "d5ecad6f36ce228a447cf87e7631d5dc137869e4fb06831c5152635915a5a156"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/path_memory.py",
+      "sha256": "2740ced78ec2cbcc86190315c14cfe00adc8abc737de322787fa9dbe2e114425"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/queries.py",
+      "sha256": "c601f2d8dbcc797f10360b0d51b676af81d44596ceeab17e6408d7e5a568ead5"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/resolution.py",
+      "sha256": "da08a5b48ce215b2b9fca87507d4445c2ee1c5760962bd3790a3692f0fd41f6f"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/suggest.py",
+      "sha256": "2697a4fe378b972c80184e2985da36e1d8f4bee1447de7d9083c09c8a3792dbc"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/utils.py",
+      "sha256": "17c526e74a9005bf979a5237ee8a817a23450357960137820a9c96e3d710cb57"
+    },
+    {
+      "path": "packages/engine/lessonos/graph/writer.py",
+      "sha256": "4d4c98a0589d0ac923c4d7269137f49374306d95c411d58964f0d76e374f00b6"
+    },
+    {
+      "path": "packages/engine/lessonos/ingest/__init__.py",
+      "sha256": "5749c832a3e4df990b68fb4935efc9594bc5a837597246e88cd4abbe11bd5d46"
+    },
+    {
+      "path": "packages/engine/lessonos/ingest/bundle.py",
+      "sha256": "664c446bb2f6b25c1717317e3b1f4a50dd484247df5228b878d5a6b522f66fe6"
+    },
+    {
+      "path": "packages/engine/lessonos/ingest/chunker.py",
+      "sha256": "ecebbfececcebb9eead9cd5f2986cfbd6ce591b2eb10c606e38fdf0edf6ad8fa"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/__init__.py",
+      "sha256": "94c4a84bfaeb4fc12ec07a0d64af136dad6672132392589db2b8a7f20c6041a1"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/_retry.py",
+      "sha256": "161fbe4431974f268260e1291c49ccd4fecac51d0ce93b81b689d05f37a80304"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/cost_ledger.py",
+      "sha256": "167ec8676350a07ea12b2fbe7567feea0fe7b23acb60d523b886c65e7775ce0a"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/deepseek.py",
+      "sha256": "333eef003baf45515409928e87ef332cb37296f75f218e417949be5fdca06eb0"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/kimi.py",
+      "sha256": "098c98a5e61e90d1d07f430bb4bfc905f48a1a973eec6ab92af3928654155557"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/router.py",
+      "sha256": "51f2eebaae239115149f6b7cdfa09fa442a979be4bd6a47609573a313ebe1803"
+    },
+    {
+      "path": "packages/engine/lessonos/llm/task_policy.py",
+      "sha256": "c80c08bf4e1b2dcabbafc6a44b91cde44bc74c051f17ada7cac0b89509aaed8c"
+    },
+    {
+      "path": "packages/engine/lessonos/mcp/__init__.py",
+      "sha256": "f285246978d433e692728c2daf7da09e4c46d64bb3b93f5ceac3185bcd245611"
+    },
+    {
+      "path": "packages/engine/lessonos/mcp/grounded_memory.py",
+      "sha256": "5dfc7750c84637b351c34dae8d0b6303c6a984237ddda48cf877a139c9f13cfb"
+    },
+    {
+      "path": "packages/engine/lessonos/models/__init__.py",
+      "sha256": "52f40da3416063d85d6a25ac0bbda60350342458a4bca654e0cd75c8a9260e89"
+    },
+    {
+      "path": "packages/engine/lessonos/models/crm.py",
+      "sha256": "0271ee306d3afc8606cb77c6e6b55c22811f447f882c0916f0ed0a85eccd7eff"
+    },
+    {
+      "path": "packages/engine/lessonos/models/entities.py",
+      "sha256": "280ad8bdf58db7dbc49ead0a168b7a4340f563d360c9b32b7b478af02da51122"
+    },
+    {
+      "path": "packages/engine/lessonos/models/ledger.py",
+      "sha256": "979fd1ae51db2a0771deb3cad431317353dd6844a2ebd3103ed3b6cb4c4e71e5"
+    },
+    {
+      "path": "packages/engine/lessonos/observations.py",
+      "sha256": "a85d09a48031c40bfe1751d6b5143eb45d9432bfc3459042b0c5c33f376d2c53"
+    },
+    {
+      "path": "packages/engine/lessonos/pipeline.py",
+      "sha256": "e4fbfe2447f7606f5f15a9b555d715b73edc6f28bf88e53d688f3dfb29d022e8"
+    },
+    {
+      "path": "packages/engine/lessonos/recap_export.py",
+      "sha256": "e98f9a82b7519c3204bc1cc0171a076570de2b98d7e66707d08afdb1bef83b3c"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/__init__.py",
+      "sha256": "75707ceafffd88d49ea4b20f4a99acf1ae651b9e0f43d3806f53ee28d3f05f10"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/dense.py",
+      "sha256": "695e2cf997a06926b23bb18cb4f2f2e80c03f5532adc840534153bfb4eb1966b"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/expansion.py",
+      "sha256": "5309b6102da33af0e2628f01ff487c70c4922f20ada44fab977add6325aaba06"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/fts.py",
+      "sha256": "b5dc19f86b2eb2447e7bb46794bcadc43f3b89d48d144b574bbf6a1c0f068b3c"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/hybrid.py",
+      "sha256": "d45410ab180a6dc41aca25e6a7b6af12a303bddd717b753ca252b6c264dae99d"
+    },
+    {
+      "path": "packages/engine/lessonos/retrieval/teacher.py",
+      "sha256": "808c2cd2ac53c7ee0fb7b8e7185c29e7898e2458e2367bca96755ac63ba05f07"
+    },
+    {
+      "path": "packages/engine/lessonos/status.py",
+      "sha256": "4b0c19f41f3e1416e378f29cd0f72b802a1b6fef5712ad35a30320bb5b420ee7"
+    },
+    {
+      "path": "packages/engine/lessonos/store/__init__.py",
+      "sha256": "2e974b93cf4ec7582941118b414c4a05e7674c56be18cfee3f9ce145bcf39a6c"
+    },
+    {
+      "path": "packages/engine/lessonos/store/base.py",
+      "sha256": "31dd62f158e1531be9ccbd58f4e83da935b8134b9dd7216969d2bac7808b0460"
+    },
+    {
+      "path": "packages/engine/lessonos/store/fixture_loader.py",
+      "sha256": "1fa52a3e4ea30d2df4feb895ef1be2c85fc6d9bb700539957e091fddf48a1dce"
+    },
+    {
+      "path": "packages/engine/lessonos/store/sqlite.py",
+      "sha256": "69e3c51c089444618b76131eb522f28db0b5f6a9cedaa82707048a3a6b8cf20d"
+    },
+    {
+      "path": "packages/engine/lessonos/study/__init__.py",
+      "sha256": "f7cd44fae24d4d0161f3929643873f8e4ea6d50e90fd5396a96f31e5bc5c9fc3"
+    },
+    {
+      "path": "packages/engine/lessonos/study/activities.py",
+      "sha256": "cc6bd930284544bcd8cb43328b14769f1c6e642efa7eef1e55bfc111e7a375bb"
+    },
+    {
+      "path": "packages/engine/lessonos/study/admin_ledger.py",
+      "sha256": "e2a557b493e2f89584a38ef25ec96375ec1691a51f5b5de63cb8726a02ca5e56"
+    },
+    {
+      "path": "packages/engine/lessonos/study/ai_jobs.py",
+      "sha256": "695457d3856080a6376f057880620448817654174df6191b4912fd073871ef58"
+    },
+    {
+      "path": "packages/engine/lessonos/study/assets.py",
+      "sha256": "9f3b57027cec45a15b667bb06f8f6fbfe248ba69b376a01a231582f1ab433405"
+    },
+    {
+      "path": "packages/engine/lessonos/study/attendance.py",
+      "sha256": "9d9c9db8aeb130019ca1263a88bd5dc17f1ef869a8a11a50d389211c111fbd2c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/blobs.py",
+      "sha256": "a38d906b8cc726b9a8a754024af91b6e988de27d85ec4a994236deafd9b98ded"
+    },
+    {
+      "path": "packages/engine/lessonos/study/calendar.py",
+      "sha256": "ec536df6fba3ed16fb0ef6f1e122d81bd8c67f09b5ff25798ff1e0e8062bc63d"
+    },
+    {
+      "path": "packages/engine/lessonos/study/calendar_mock.py",
+      "sha256": "3bd2fee7d1ec5074859e7a72435af519d372c881eb657a17604a6f72bd3c4cfa"
+    },
+    {
+      "path": "packages/engine/lessonos/study/calendar_port.py",
+      "sha256": "55216f38e0d3666bdd0f35fc7b771bc7006dc9f4483489b34adc4ead30a80603"
+    },
+    {
+      "path": "packages/engine/lessonos/study/calendar_time.py",
+      "sha256": "12836e71a9c7507678dd0b959dec0d9855fe875af91bda636804a3248b8ecc79"
+    },
+    {
+      "path": "packages/engine/lessonos/study/catalog.py",
+      "sha256": "b075c151175fd2a227fcad23a4e15906384fe379c0cc3c8b990e3777f104f518"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/fisica-semestre-filtro-v1.json",
+      "sha256": "8a32a8052092e1490afaa0ddef63b53cdc8f7a06b52eec165e92bb77f309b98c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/learning-compositions-v1.json",
+      "sha256": "073d52a83c7759d0926fb17b8996ba8188fbd5b08d8440af98df40b096e9f58d"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/learning-experiences-v1.json",
+      "sha256": "60b21d873f177fa6dc9cee5223c2a9638d535e641867bde12ea515a9fc5360f6"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/learning-experiences-v2.json",
+      "sha256": "c3392e0cb62a45ad66d59bb2046a756fbc99f0ddee0f32a55a6333f06da2bc01"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-curriculum-2026-v1.json",
+      "sha256": "4dfdbd4b0358d6270521208f5af66e6fc69ff6c3a1c0cb1c64861734a0b7ab7f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-pathways-v1.json",
+      "sha256": "07c115c4fbb37d99945688c79e2d082e5170d2be05d3f7a4424be43059dc6e54"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/generation-failures.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/manifest.json",
+      "sha256": "15110c78e3b615eb4a3a50c8d33c179a6e35cd9495e2f6764b29cd9485850896"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/question.schema.json",
+      "sha256": "d94cc9f637ab4c6f19fd300507d32d7a76c971315f43b39d2224da51e53edb13"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U1-01.json",
+      "sha256": "679ad061bdd77bcde2f4cfcaa7f28d91d693c1ca78c7e4c454d942aaec14c694"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-01.json",
+      "sha256": "c96078ec4fabf9c86cb76d09e86e079127cb5f136d58dfe4b0614525fd96bf17"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-02.json",
+      "sha256": "542b01ce15f3e735f4ae83c2dece4c597c31626d083b851b82942e060740715f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-03.json",
+      "sha256": "40cced973a548d292f64415e2ef09a45d53325ea75e8039e36a979db994143b1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-04.json",
+      "sha256": "78b540e0bf35105eb6a849b3fa85937b84071c8080425e7b7ddf8f2e2d5eb980"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-05.json",
+      "sha256": "ca4b67d9fca458788cd042232205f5bf7282b18529cf23571dca7acedb003260"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-06.json",
+      "sha256": "3ed00200df3de10c5f73e819a253021207c7071ed0140be136c35d3dbc9305a0"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-01.json",
+      "sha256": "10054c831ff185bc7412f5f7dd68c1cefc7feea26889fac792856ffa3f9e0e8b"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json",
+      "sha256": "8773e764bf72bb14dfb8613f28fb9118e73de75bcc289c4dbf63e14cff4431f2"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-03.json",
+      "sha256": "f91a9585e8334d0e3e6861d20711c7008f1e16955e8b8ecd3e5c26ae730d0f3f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-04.json",
+      "sha256": "d781e78ea810d8cf95430f3b544af44eabf02088f90300bacb8399fc21894693"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-05.json",
+      "sha256": "df12f4657bef73dcb5c0d24f2e099d6534abce442b7615c511b74a670f392e1f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-01.json",
+      "sha256": "dd28d70f85f8bbb4063f65973dd6ec398b424620a1d98694cc79541cb37c9d55"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-02.json",
+      "sha256": "aaac791b1d778fa845633e06245ca6071fe9c18f8aa0316ee7b1301f5c0e4aa9"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-01.json",
+      "sha256": "3eed8f64e97002c31d1e55bb612508d5e71766fee62f3d02fc6c3e994b6be863"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-02.json",
+      "sha256": "66ade7951eecbdbea93c529a628b01c2e8bf393959f757a2cf82aeb03cabb95c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+      "sha256": "417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-04.json",
+      "sha256": "dd52bd4155f765395f5cd10f89259dd35a1dab194da5942ee067e73578a1ff16"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-05.json",
+      "sha256": "e8f90aea8c862df7110419c599fbd2b7160d32b370a098146feb303553194378"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-01.json",
+      "sha256": "a981cd7c03f402ee7b2f66e1de79e9f2cea686ffe3178cd19bcb8d17b66c122a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-02.json",
+      "sha256": "fc81a187db9ee2f6d17bf299b333defd87a754ad04fc7efaddd2c40737ecc24d"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-03.json",
+      "sha256": "0bd13e1748174df8c30e06641ad153b8e44ab98df47f31c9f1aba7f925f88077"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-04.json",
+      "sha256": "179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-05.json",
+      "sha256": "383a0881e644ab8d95bde40b9b3b3a748eaf0baaeaab941e895077251fd087fe"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+      "sha256": "609dec0246ff1cd1b89afed2ea7258c0f65ff8e853735ce9196fe24829fc1233"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+      "sha256": "43ad92dba82bc16829a60f11071965f30bf0d8e115def3c1dc5eb2a3e229aeb7"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-03.json",
+      "sha256": "6db63e941006bc0ceed36d502c46b1d48d814a82c12874e6121e37c3d25a904e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/validation-report.json",
+      "sha256": "db05497aa749115425af69205dc0c1c2ef118664a6d3a6adb70291de0c4685d7"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/relazioni-fluidi-v1.json",
+      "sha256": "5cb12ea9ab8dd8b367f7ef71e10c7ab7e3e254e8d1ef684bcf3da7a8c343a3b4"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/sf-elettricita-magnetismo-v1.json",
+      "sha256": "bb16023290c2f5e55f370f4612485e8e7cdf6f63d7582d7cd51ec708c4442269"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/sf-fluidi-termodinamica-v1.json",
+      "sha256": "980cce0784395c54e4eaa9035b77461991005c9e4af5a414f6d70f53897203a9"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/sf-onde-ottica-radiazioni-v1.json",
+      "sha256": "ef195b6ec8d299ad64380d91f610583202048464d6dcf4bf9d0c016e9cf830a8"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/sf-strumenti-meccanica-v1.json",
+      "sha256": "0cb81422c9325d635509bee3f044344e627ff6387353296e4075f2550cf07ffc"
+    },
+    {
+      "path": "packages/engine/lessonos/study/content/taylor-exp-v1.json",
+      "sha256": "096fa4ea702f6290721fd2df2e07e16c8817d87a272da36bc7e58d3029757fd6"
+    },
+    {
+      "path": "packages/engine/lessonos/study/context.py",
+      "sha256": "cae9d8820db648fc243e84dd800dac1348575dede6d6a7d1f39374a9f6226a1a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/course_models.py",
+      "sha256": "4a93deaca52bb36f7d6eb08a1f1360e4f860580ebaf121f6340b638fa92988fe"
+    },
+    {
+      "path": "packages/engine/lessonos/study/coursepack.py",
+      "sha256": "d7f4979795d74146da62cc4d2b63c4f11672b3f0df2ffffb7186f5908c362bba"
+    },
+    {
+      "path": "packages/engine/lessonos/study/curriculum_inventory.py",
+      "sha256": "816652dc1030ba659e6c41779667416fe313022ae6aed6fdd008a167dfb0ec1b"
+    },
+    {
+      "path": "packages/engine/lessonos/study/curriculum_pathways.py",
+      "sha256": "fdbb9ef5411a7db8b12a6067b7f7d1df6d7b18ad0f26aa89add2318bc62eed02"
+    },
+    {
+      "path": "packages/engine/lessonos/study/diary.py",
+      "sha256": "07b007616e56565a0ff268593cc0d1b4a86ccd19618a8ba0bd7cffd18c0c5392"
+    },
+    {
+      "path": "packages/engine/lessonos/study/editions.py",
+      "sha256": "9c0c52dd4499769231eb7ebab7263522cb07cb6aad1fa4230c54b51ac71f0e53"
+    },
+    {
+      "path": "packages/engine/lessonos/study/electrical.py",
+      "sha256": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819"
+    },
+    {
+      "path": "packages/engine/lessonos/study/exam.py",
+      "sha256": "dbb9728a975d5eebc02ac9a28b5e330aca64dcb400559cca361a91da558b077b"
+    },
+    {
+      "path": "packages/engine/lessonos/study/exam_bank.py",
+      "sha256": "ad07185fe4b98e372c97a719c2526ecd94329efe84db8fb70dc8ec013a6a3791"
+    },
+    {
+      "path": "packages/engine/lessonos/study/feedback.py",
+      "sha256": "d3b10585aacad3914decf1e8deacc8c9b9289a049141ea6d60ca9d5068e44c6f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/four_courses.py",
+      "sha256": "b0dafdd6bfd9cdccbb3c7f66be43479ce1bb96dcba00f101e346ce66897beadf"
+    },
+    {
+      "path": "packages/engine/lessonos/study/groups.py",
+      "sha256": "a693447412a6e1282e19cda76eb507d83e94ebdedcaa578ae897f85f24213c05"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/__init__.py",
+      "sha256": "e867b19a2fe2d554d8522e95d39da87c6814c6ea9a444d71f9c744dbce11bab1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/content.py",
+      "sha256": "f33417a6ec7a1d7f95628b3689da5f235ea70073f5fcfb498e81e24a5a0334a6"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/review_scheduler.py",
+      "sha256": "20422786ef8579373855288cf1defc1507df638fb3a05eaf7597e966777e2e3c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/routes.py",
+      "sha256": "71cf139f490d77511472630bb2ffb764e03cd8e2f44174924b87e729881b7619"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/__init__.py",
+      "sha256": "6da7169c54631b88718aec776ecf728792cd5b878d03b038befef4f0797e407a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/LICENSE",
+      "sha256": "021bff58ad2685d7e5b30d307429bc7cfdca108ad620ce889abb38d7acd89ace"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/NOTICE.md",
+      "sha256": "a768e6fb9eb48e82f8b68cb91bac9f0f11532b62086bd86ab2011c21a45053ec"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/PROVENANCE.json",
+      "sha256": "19dd79877d32da4057ad350f7662229ea068cb061a3631536234792ac9f19a85"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/__init__.py",
+      "sha256": "4d24a1f00ba1252e4e6d580dc20823247f78bfabec66da9013e9eb4ae550b755"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/card.py",
+      "sha256": "4b83f33352f2d576929fbef9fdbfb43597a1e7b568926f249f10c020c2808cb1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/rating.py",
+      "sha256": "01bc939a22f7e728ebd9a999dda77a9dc2b7fcfec4f392beea4b11ea7019b85e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/review_log.py",
+      "sha256": "25f3db8bb900192d793e2368397aefbdfbe1c64bc6fd808e20b00dc3d09d646f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/scheduler.py",
+      "sha256": "342c8d75ed1573099688074c610a10892b380b936d9006c973a875782ec84199"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/state.py",
+      "sha256": "3ed5d9c98cad65f3fd8e3a31d1904eddc88ee3b6a7ead22585d850ce27fc51f4"
+    },
+    {
+      "path": "packages/engine/lessonos/study/interests.py",
+      "sha256": "06cd6a803dcd0819ad5438db17e046454817cc10ddc3b7bfe738026574fcb4fa"
+    },
+    {
+      "path": "packages/engine/lessonos/study/kinematics.py",
+      "sha256": "5bde268b1f20d4e2a56cb695caa2840129573b1a119eade82fc0005df79809fc"
+    },
+    {
+      "path": "packages/engine/lessonos/study/learning_experiences.py",
+      "sha256": "d6363256ea662bc7192e44bc3cbead1a9e428bf0bb3c0afdf0d897efd4192ce4"
+    },
+    {
+      "path": "packages/engine/lessonos/study/lock.py",
+      "sha256": "5888d0e98c10fb45c01c411df3303a282b902af175f076a44deb8e41e5830224"
+    },
+    {
+      "path": "packages/engine/lessonos/study/manual_payments.py",
+      "sha256": "f07b021cbf0c56cd0d5b95aad229c6bd154a4b08815405daa4a21bf4db70a6ac"
+    },
+    {
+      "path": "packages/engine/lessonos/study/models.py",
+      "sha256": "134e9c25b72ac9b53b31d243d2e1f6b414d9ddbb3d5ffb9f6fb5ae8c8278e7be"
+    },
+    {
+      "path": "packages/engine/lessonos/study/operations.py",
+      "sha256": "4ef15b7bb2fa8238ba53e204f49c93dc3667f4b59489cfea8080729deb32c634"
+    },
+    {
+      "path": "packages/engine/lessonos/study/portable.py",
+      "sha256": "efcc324ea5124d9ed25053b3629d699934a85536e98cb42c22229a6cfdfd509e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/postgres.py",
+      "sha256": "13ff2ec20ef6432be493c619b0709447a42624042f32952939a7f1beda19a86f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/public_preview.py",
+      "sha256": "d9840365acb0ecdd1612dc3259b5a825bf1a346e279ed785240336380ff783f1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/quantity.py",
+      "sha256": "bfc41aabe79b18475c641e36d2a78b713b680e761bff3e627fcea1504615c69a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/question_bank.py",
+      "sha256": "2aca10bcae23ff02e97460be8eacc92c0a346cc37f4b7b392d74d3a2db217e0f"
+    },
+    {
+      "path": "packages/engine/lessonos/study/question_bank_approvals.py",
+      "sha256": "8a848c2e06ce1d53012e9a0a9d10e529f23aad1392cd938316560d47b8c343f6"
+    },
+    {
+      "path": "packages/engine/lessonos/study/readiness.py",
+      "sha256": "cce4a9fd22e82d381fcbd7eec8e2a72858996584e6d0015ea5fea7f0308a1ed5"
+    },
+    {
+      "path": "packages/engine/lessonos/study/schema.sql",
+      "sha256": "e1680f2d33c9bd25a831ab059f4702cbcc4fd5467cdec1a8a863192c4b22c4ee"
+    },
+    {
+      "path": "packages/engine/lessonos/study/schema_contract.py",
+      "sha256": "947a72e86cf185b06fb374b4208436e3fb1014fb19fdea4c7dad3c7911b2ec70"
+    },
+    {
+      "path": "packages/engine/lessonos/study/scientific_notebook.py",
+      "sha256": "75b2eeac6b1b66b2df1e49b203ea0edc02e4a2f2989c56e96073c2a8ff668914"
+    },
+    {
+      "path": "packages/engine/lessonos/study/spring.py",
+      "sha256": "9b4838c4474de7189077630d86195504b8951a584340e571e1bdd566162f54a7"
+    },
+    {
+      "path": "packages/engine/lessonos/study/store.py",
+      "sha256": "a68c8665c8642000dd5d71ef0c0dd7d09b4fc46e161fea58d31fc3aad2e3619d"
+    },
+    {
+      "path": "packages/engine/lessonos/study/submissions.py",
+      "sha256": "a89e23b4ed621f458045a7de51927678b2ec66ae57992c715250a007aee2dd6a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/taylor.py",
+      "sha256": "af513414377075096487ee204e09fb2846c7fd9e62550aa2b1937217145d73a1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/thermodynamics.py",
+      "sha256": "2a9511986c2f6089f82430cfda07a51a9a8521ebf03455ce5ad69c375cec5500"
+    },
+    {
+      "path": "packages/engine/lessonos/study/transactions.py",
+      "sha256": "32423766935868b4ef0a639d63b792d399c71293d96a905279a871299cb83402"
+    },
+    {
+      "path": "packages/engine/lessonos/study/uploads.py",
+      "sha256": "54070eff1339dfd5de63ff8ad2706e02de2ed858761a9ccf6d5e17910827769a"
+    },
+    {
+      "path": "packages/engine/lessonos/study/view_layout.py",
+      "sha256": "fa401412796ccf6a0bb4621f940ba5b7da1aa3967d996af971f829c147a9603c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/waves.py",
+      "sha256": "bdc7af2e860dd1b48519294eaef2a6536f87c2e1064dfc0259b05f2228e50add"
+    },
+    {
+      "path": "packages/engine/lessonos/style.py",
+      "sha256": "5c675deb13e5f8064825f6ee3e8014d798603699037d886c507f2a46052aa7c4"
+    },
+    {
+      "path": "packages/engine/lessonos/summarizer.py",
+      "sha256": "55b1072a8bfe6c15a5ebeb00abe8b830c3d3dc4f50fa6b0f81d670a093d18b94"
+    },
+    {
+      "path": "packages/engine/lessonos/teacher_book.py",
+      "sha256": "de407f9a116a5c4c4e0df87391a48fa301f20770aedf9d76265cd8f30d09f231"
+    },
+    {
+      "path": "packages/engine/lessonos/teacher_book_renderer.py",
+      "sha256": "75d7f2f90f9a8e12ad8fe69560352737ff5f3d2f195f55b0ea8fb7772a261a58"
+    },
+    {
+      "path": "services/study-api/study_api/__init__.py",
+      "sha256": "37bfc0365038d00455c27162d3aa4a44819ac0a38263eab65374392c884993eb"
+    },
+    {
+      "path": "services/study-api/study_api/admin_routes.py",
+      "sha256": "d43811661e2259869fe82e4d8ccb94e30648dea2ee9b0240ad74dee5eba6d1ac"
+    },
+    {
+      "path": "services/study-api/study_api/app.py",
+      "sha256": "b1ca2425e1d6611382c78e54df53febed6d010b103caca740c9163f828511cee"
+    },
+    {
+      "path": "services/study-api/study_api/beta_probe.py",
+      "sha256": "2229e3235929c69fd02646e4696969ce6ad57d60500d449742df885331b42fd2"
+    },
+    {
+      "path": "services/study-api/study_api/body_admission.py",
+      "sha256": "04f8ef602aa350ec00fe63f637655d9fd710cd9a581d9285dd3d8ca2e67c875d"
+    },
+    {
+      "path": "services/study-api/study_api/calendar_routes.py",
+      "sha256": "4e538a6a04aa4d143b1bad4167787e0f34e5c82c660aa1e60e75ffa9361d2233"
+    },
+    {
+      "path": "services/study-api/study_api/diary_routes.py",
+      "sha256": "e711d27089b0a34da9bf291b30ce9b3f8133f5381afb21353f930ce688fbe55d"
+    },
+    {
+      "path": "services/study-api/study_api/public_app.py",
+      "sha256": "144f6c05f5bc5ca04342d6f597fa85dc0bd407c50dce113623d5097f307fa87c"
+    },
+    {
+      "path": "services/study-api/study_api/question_bank_routes.py",
+      "sha256": "c1de78d07cbdfb70e5a89eaf93d7a00c982137fc061a6d7075ce4b6a819a0efb"
+    },
+    {
+      "path": "services/study-api/study_api/register_routes.py",
+      "sha256": "199687866f12e955ff25cb85a2eec3601cf0419ab933b80011cf1a98d68a29f2"
+    },
+    {
+      "path": "services/study-api/study_api/runtime.py",
+      "sha256": "028f15a46c050bb56afc4bbaa1b34bb055cf1daae333861206065af2a40aaf34"
+    }
+  ],
+  "distFiles": [
+    {
+      "path": "assets/Classroom-BO-ZoJa3.js",
+      "sha256": "a39423292326225610d99328966d3002816054d8c02d0bcf1fb558511172dfb2"
+    },
+    {
+      "path": "assets/Classroom-YR0RcAcI.css",
+      "sha256": "32c28d752b6091abe3406b8e95e50d83fb7349d2ac81f596595f30965b8f82af"
+    },
+    {
+      "path": "assets/CourseLearningWorkspace-ChhLFetL.css",
+      "sha256": "27edd8ccf1c81dbc43e14c0d2c2c5b5fa3067c67b5a26c765ea3c9e9463c6fb0"
+    },
+    {
+      "path": "assets/CourseLearningWorkspace-HBc4n6mo.js",
+      "sha256": "d9b5bf0c5d0d66be5f4e1da6b249012a1bf96c6121a58a50fbefdc54a202859b"
+    },
+    {
+      "path": "assets/CoursePackDisclosure-1y5dJXvB.js",
+      "sha256": "b901541c1482f05235794499464af30002acb479c329fe28546893580c71f7b7"
+    },
+    {
+      "path": "assets/Courses-BtN_Wn_9.js",
+      "sha256": "bd6d7b51c917cbaccec9ec216a7c55ddd691777af4875659b76bfedbd645ba52"
+    },
+    {
+      "path": "assets/Courses-DHEXbkhK.css",
+      "sha256": "488f61d1cd4b59cd579c8f8e5acd6c7af575e50aeff97b063d8bdc99dbb54fb6"
+    },
+    {
+      "path": "assets/Exam-BbLZ9K8X.js",
+      "sha256": "02b383ead72605f82e7f9f2ae6fe94641afa6519d9a36306d59dd79a3059f0eb"
+    },
+    {
+      "path": "assets/Feedback-KvqIwqKy.js",
+      "sha256": "0fa3a59d12abade3d24841cb1f91f7bcb016e58ac696f5c3628040e1a5fd899a"
+    },
+    {
+      "path": "assets/IndependentStudy-8wCg-GvA.css",
+      "sha256": "608c4d18e59cabf3e9bf9f8d2940a456ec3e5a068e911a38019991b68f4203bb"
+    },
+    {
+      "path": "assets/IndependentStudy-CNbnGXWW.js",
+      "sha256": "073dcf59118378278eda84bfff6c47a4c2c0dc08f15ad503e1508bdd53c72232"
+    },
+    {
+      "path": "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    {
+      "path": "assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "assets/KaTeX_Main-Bold-Cx986IdX.woff2",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "path": "assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    {
+      "path": "assets/KaTeX_Main-Italic-NWA7e6Wa.woff2",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "path": "assets/KaTeX_Main-Regular-B22Nviop.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    {
+      "path": "assets/KaTeX_Math-Italic-t53AETM-.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    {
+      "path": "assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    {
+      "path": "assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "assets/KaTeX_Script-Regular-D3wIWfF6.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "assets/KaTeX_Size1-Regular-mCD8mA8B.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "assets/KaTeX_Size2-Regular-Dy4dx90m.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "assets/LessonPassage-DXKRKFXw.js",
+      "sha256": "a452c2419db9301428b074adacf20eeceab42d96ec4a2f7bd7d543850268087d"
+    },
+    {
+      "path": "assets/Login-mZIKOhHS.js",
+      "sha256": "d2a0d58c388a4330d9de728a7609e0a7677da5bc0ae9ba61f101e77d65cb800a"
+    },
+    {
+      "path": "assets/Materials-Byhi1gSv.js",
+      "sha256": "1a1869aba2924ad2862472548d50520005e85ee265141980446ed4a8115898be"
+    },
+    {
+      "path": "assets/PortableNotebook-CjL3DDEW.js",
+      "sha256": "5de5bd73b3e83bb56216acaa13f8a9ed232b0cbd4eb4c33da1e62a4131fdddb0"
+    },
+    {
+      "path": "assets/PredictionEvidence-BtlBVjng.js",
+      "sha256": "b22eb2ac7c0bd91facb9bfb3b2f46412223ae3572fb008cc69792c760f969c56"
+    },
+    {
+      "path": "assets/PublicLessonDemo-HECR_bvR.js",
+      "sha256": "1262d84dba6b369ce7207cc43c7cdcd813becbe94f0da966c8a24cac8fa857d2"
+    },
+    {
+      "path": "assets/PublicSpringModel-BW9d6oM9.css",
+      "sha256": "3fad79780edcfe405c5a28da35ef71d81a26d6c7d84b8575a27ac34bda5aeb76"
+    },
+    {
+      "path": "assets/PublicSpringModel-BXIGV-fk.js",
+      "sha256": "caa75f1602c9e7b530012ab11ed86510ca48d7140bd5924cc17fa972fd42a6d3"
+    },
+    {
+      "path": "assets/RegisterContent-Dmegpb0a.js",
+      "sha256": "c27ae639797f466a5cca0466b50ef6b9aee1a00726390bc0da475bc7c886f261"
+    },
+    {
+      "path": "assets/Review-CXGuTfjH.js",
+      "sha256": "5d8d2417ba249f5df4195127a2e1aafddc09f26fe69fb0eda6260469982e1fa0"
+    },
+    {
+      "path": "assets/ScalarExperienceEpisode-DKvLo0OG.js",
+      "sha256": "5efc3ad000c090a140b93c21b144a968efc6d8d116b8ab3cbf0fe46ddf6fe18c"
+    },
+    {
+      "path": "assets/ScientificNotebooks-CrYJXgQJ.js",
+      "sha256": "a6cd3e34a32f6bfffa08b4c53d6cf4ea1f49cdc91f967cddb3d7b57523cbdc12"
+    },
+    {
+      "path": "assets/SourceViewer-BVBSLj-P.css",
+      "sha256": "0db87b23a6536fe07f0c2bcce973ac78225a608b45b2c81d42eb780933d7c265"
+    },
+    {
+      "path": "assets/SourceViewer-NgZ8KG1A.js",
+      "sha256": "1c8f0eb6c1fa5e3b92cd2b58aba03d6b8214da4109bbde3121266400a24499cc"
+    },
+    {
+      "path": "assets/TaylorPlot-BMw9XzW9.js",
+      "sha256": "3aa2539bd5181656cfa14ad42867c73ba24efd3f742fd04c3b3670dd94cbccec"
+    },
+    {
+      "path": "assets/TaylorPlot-C1YQfFMj.css",
+      "sha256": "8ce8f57662a8f2b872ca33da42126891c1f420bade7be19c0b5fa385affabbd6"
+    },
+    {
+      "path": "assets/Work-BZHgg6Rh.js",
+      "sha256": "308e1fbfefbbe171914499a0b1cb54ed65a1d05351d42f3331ca0b67200c4ff4"
+    },
+    {
+      "path": "assets/index-DELAnRZ1.js",
+      "sha256": "fe2dde032c81adf8d0c20998f8a8c3e162923e485e8262977afb86c08228b25e"
+    },
+    {
+      "path": "assets/index-Dd_XdPYV.css",
+      "sha256": "bb0e295638ea09076416bcac37d34d477329b3b7f9ad9ab8f8aac5c74b3b3d64"
+    },
+    {
+      "path": "assets/jsx-runtime-Ciy6MWcZ.js",
+      "sha256": "3efe1c1c29e2567ae5a4243948426b8765a7bc1563ee6eda8e40d313b94c9ee1"
+    },
+    {
+      "path": "assets/lessonPassageReference-BWaxCt6-.js",
+      "sha256": "1a6e547a2a9dba9408b33868070c08b8ffd430b8a09e1cc16380ce5ada03be91"
+    },
+    {
+      "path": "assets/mathField-BZGFzauE.css",
+      "sha256": "abb65f4e59d5dcb22516b4fe04408ce0611a69c18a95b24c4c49547feb9e2965"
+    },
+    {
+      "path": "assets/mathField-BmUTcO2S.js",
+      "sha256": "d64e99318938ceccd393d4ef7f309a98e3f96038b3f4ce188102a8acf2f2a02c"
+    },
+    {
+      "path": "assets/modelLabels-CGFnsdVS.js",
+      "sha256": "fa45a8d824d47892cedc0bc635cb0f27db4afff3992cd364bbb0667137539974"
+    },
+    {
+      "path": "assets/pdf-C-yeEcoe.js",
+      "sha256": "0f426ebde3b3e54feee278d5e710b349aaef6ba77306813bbcc23a3bb2b5b7f8"
+    },
+    {
+      "path": "assets/pdf.worker.min-CjEcRF4W.mjs",
+      "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18"
+    },
+    {
+      "path": "assets/pdf.worker.min-JZtJ3Z5d.js",
+      "sha256": "3688d884eb897100293de3d4866d69023f61202001fdca89a0cc10998b03f8eb"
+    },
+    {
+      "path": "assets/sessionDraftCache-7QMRewGB.js",
+      "sha256": "bf788d6ba8c32662bf3342b6c8b3bf0bd1019dcffbac6b04a7cbba05760b93fd"
+    },
+    {
+      "path": "assets/useRegisterRead-CGwPRagB.js",
+      "sha256": "99d06649d7a90bb19c779f48ca4927605a82a6991c94e388d57bacfe173ba1c7"
+    },
+    {
+      "path": "assets/useResourceComposer-Br_1wAjq.js",
+      "sha256": "8526d250fa5d605c6a45ea58235cc10714874fcba3f745005c106d7bb72dc267"
+    },
+    {
+      "path": "courses/audio/elettricita-magnetismo.wav",
+      "sha256": "5cfa85881ddd393f3d96584776c831326481576df7cf432f4e24e4110874b000"
+    },
+    {
+      "path": "courses/audio/fluidi-termodinamica.wav",
+      "sha256": "a2ce70cb072e9ffd8bf3aebff4779708a2b26343bf2253be6027a9ec7a7e9e44"
+    },
+    {
+      "path": "courses/audio/onde-ottica-radiazioni.wav",
+      "sha256": "c869e74ca179658a044aa348639f07aa72b4bcc9e1dd921d32aeb62d2a1f6bc6"
+    },
+    {
+      "path": "courses/audio/strumenti-meccanica.wav",
+      "sha256": "8d786204dbac225e870fb5eccb536188747fbaa32a9bcc750e5a9adc63b97c2f"
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "99cf741296888dff56450debd14ea55d8933e473b3ab6a15c99697339c39a1d4"
+    },
+    {
+      "path": "index.html",
+      "sha256": "ad01f7f93073b1889133b7f4bf9b7e2927000bf58c064287c497d67e8c8a4492"
+    },
+    {
+      "path": "lesson-demo/poiseuille.wav",
+      "sha256": "530c78a6075ea26949265a80fe9efc7d23083cf638cb600ec52fb42ddc873989"
+    },
+    {
+      "path": "mathlive/0.111.1/LICENSE.txt",
+      "sha256": "3caebd18611959ca725ab976a004d408017eb1d7093d6c9b9b09c5a4790eaff8"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_AMS-Regular.woff2",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Fraktur-Bold.woff2",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Fraktur-Regular.woff2",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Main-Bold.woff2",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Main-BoldItalic.woff2",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Main-Italic.woff2",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Main-Regular.woff2",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Math-BoldItalic.woff2",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Math-Italic.woff2",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_SansSerif-Bold.woff2",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_SansSerif-Italic.woff2",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_SansSerif-Regular.woff2",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Script-Regular.woff2",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Size1-Regular.woff2",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Size2-Regular.woff2",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Size3-Regular.woff2",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Size4-Regular.woff2",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "path": "mathlive/0.111.1/fonts/KaTeX_Typewriter-Regular.woff2",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "path": "mathlive/0.111.1/manifest.json",
+      "sha256": "38cd59262fd5fc04188af25d80c984cbf3d1908acd82b8c033c971016e60b8ea"
+    },
+    {
+      "path": "pdfjs/6.4.299/LICENSE",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-EUC-H.bcmap",
+      "sha256": "d92a261336dc18b8c03a46eb4d462382d33f4338fa195d303256b2031434c874"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-EUC-V.bcmap",
+      "sha256": "61670bebc4e4827b67230c054fd0d820d6e30c3584d02e386804e62bbedc032a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-H.bcmap",
+      "sha256": "ece6415b853d61e1b2560165151407d35cf16e6556932b85a13ea75276b77402"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-RKSJ-H.bcmap",
+      "sha256": "696b1f973c97623496703809eaaa5f9b40696c77540057413f4b826a08edfa7b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-RKSJ-V.bcmap",
+      "sha256": "53cb6d560ab377da48cf65d6dcacb0bdb31f13fab7066c580de38c12a73a7ff9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78-V.bcmap",
+      "sha256": "289000f02fd34872b6975503217f33abae6bee676e7d28f640473a67c8db1712"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78ms-RKSJ-H.bcmap",
+      "sha256": "a2442595218f5f8bd8e1b42188e368587d876cfe0cc4cd87196f077c878f72e2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/78ms-RKSJ-V.bcmap",
+      "sha256": "f8ddceba96bfd9d3740bd1789ee30d1f47c78371520a8084f71f7df58f19be0b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/83pv-RKSJ-H.bcmap",
+      "sha256": "44040051ec818fe09b9703472bea72efd2759d5eeb5ff0d77c718d6bb5e6d1df"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90ms-RKSJ-H.bcmap",
+      "sha256": "c13e043e85ff715b75bb03801e8fd0fb8f3a75e4a48496faa6baaf92b5b48ba1"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90ms-RKSJ-V.bcmap",
+      "sha256": "499bb916ce1adbe4289b6e5811f4dc20eb238cdc2ffad20cf26ae56716885bab"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90msp-RKSJ-H.bcmap",
+      "sha256": "7b8b3b8bbf821702e9a4df9f3596ce292380c8c1b0925dedadbb4e4b2d80498b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90msp-RKSJ-V.bcmap",
+      "sha256": "6296c2b5c07dca8128e96d5296d621a3268803d4fa0e5812a21e52fe2802aacb"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90pv-RKSJ-H.bcmap",
+      "sha256": "fb5103f03d3a34547e18d316e52b6d9b26e485c662999222f84d2ba54c2e4fa8"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/90pv-RKSJ-V.bcmap",
+      "sha256": "7bcb5ad2ba55b9662ce379e16c2d9cc2b82d621a579807353741172e4af615c2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Add-H.bcmap",
+      "sha256": "a2ffab28b990998181bcca9b0e914bb2207820f100ae31d5c469444892e5ad8e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Add-RKSJ-H.bcmap",
+      "sha256": "b29f4b52e2465d0485856d5e69f1ba69927deb2848d8fd328c8035583b35bb7e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Add-RKSJ-V.bcmap",
+      "sha256": "2aa2232c283a3f5d0997c2834a36cead0b79ce2657944cfeed08140c293460ff"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Add-V.bcmap",
+      "sha256": "25125d3b1be64e86b2df5b3344170b45a42bcaa0b46e43a34314ef73c166e542"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-0.bcmap",
+      "sha256": "8c65be9d51a9f269a547dc12460707aaf4031ab67ebe8a2900f4b4cc6b3e450e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-1.bcmap",
+      "sha256": "73152bc1a59cc594b414ac6068be48e5512b96ae85920c40e32a99269fdb0c04"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-2.bcmap",
+      "sha256": "a1b8d353bdef9584c820464e8f1c9e2013d64ebf433cba0aa831dddf515818c2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-3.bcmap",
+      "sha256": "2ffc0c75c79fafde506163d3c08c390d183251009f3fbf6ae50d1167d14b9570"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-4.bcmap",
+      "sha256": "98a1f470c878c6b9691a4d7aef776af8ac9b55f5587c9fafa00547f3bf655716"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-5.bcmap",
+      "sha256": "ddd6e29955eb8cb545f2ebd09c628c3bbda5023256eda1b728f743c75fb77829"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-6.bcmap",
+      "sha256": "317bb2db71e0e5b7b0c47b75de1da915c2e22f65f0c0861507f9ca7ba238f8a2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-CNS1-UCS2.bcmap",
+      "sha256": "e665837f2197c6bd08cd8955ad4d6932cee2398e2e328b25b00e6bfb3bd72af9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-0.bcmap",
+      "sha256": "8b81cce8a11d510e505704953cfa4e4ab080c1a0cab991145a3512ee433946b9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-1.bcmap",
+      "sha256": "0426983081788ec7202703e71f1efa4b860f75b936994236010b39d89251a81e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-2.bcmap",
+      "sha256": "e67b37a83b160ab3831306a71a605893b24454ee81ac9b6123bf2d3984d268d5"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-3.bcmap",
+      "sha256": "aa299afc3e12a28726147305f191be28c7498078c8b182ece7886ac79cd99078"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-4.bcmap",
+      "sha256": "8fbd7d74c2ddb1350c1cecce54a73fde3f5453093d4bed445283ec0033d2097f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-5.bcmap",
+      "sha256": "c22cb2fcff24112fa31dab2111bdc51957006576d31aad5a25e67793ac01428c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-GB1-UCS2.bcmap",
+      "sha256": "20507620260c0c935c35afc1e70e5888aa7125d5ec7ffc03cef1959feb2c1641"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-0.bcmap",
+      "sha256": "464f08905236f5703b1f5cf8358767c8b18e6bcc808840d081f1de2c7ab38134"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-1.bcmap",
+      "sha256": "4c823848722187d1ffe75ae3f5f9126ccd2d7895a05fad14c919fb119e037008"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-2.bcmap",
+      "sha256": "7810fb808e367e70429e90a9478fe6a3fdc3e214f25c7582ce9c2da6a242315c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-3.bcmap",
+      "sha256": "84deb1828711ad3d390c9899c38abce1bf619d65ff7bf1a326ec95acc45f08f8"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-4.bcmap",
+      "sha256": "3f8a4f974919c2b8bae5d10175ffa2673be140481e00840542c85d48ef184067"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-5.bcmap",
+      "sha256": "1d3ce4ff28d977f8cf37a912ae4ec811f4175c3167b1ec0b2567feec3e79e1db"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-6.bcmap",
+      "sha256": "5609797b9401b30be72ef9645da62a87829f058c3be4b5c623383119f584b1d9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Japan1-UCS2.bcmap",
+      "sha256": "66c5d0dc4964f4093e77b194023f3a0f689324028ec8330e1e1d0570bcba7c2f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Korea1-0.bcmap",
+      "sha256": "dfb8c3874f0e5a8c3acf597d2c12d2b63e90bc5e4f0fce990ec4c56077d80b32"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Korea1-1.bcmap",
+      "sha256": "62f277b7b1c441c007797ae707d5c37258d029ce4661a2b911e2e1ee35e6adc1"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Korea1-2.bcmap",
+      "sha256": "1d77068af462f96d7ad28ad7e7d43eef6423c685b479d7dc25ff5df38db0380d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Adobe-Korea1-UCS2.bcmap",
+      "sha256": "857b723088be97255053562bfa41bd1075a7f7910d3bab59a0645c8bbc7060ff"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/B5-H.bcmap",
+      "sha256": "718ad0ffbef4c34f8f3f31292c462e519cd567a5511fc8b346c60010d64f4ef9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/B5-V.bcmap",
+      "sha256": "b5c37383517477620ced927b6b4ffd4f4cc6230d8051b5b46a21d6768e07f7d8"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/B5pc-H.bcmap",
+      "sha256": "bab6028aead1d6149400e904ab10cfd319082d826473ed4c582c8eeed920f17e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/B5pc-V.bcmap",
+      "sha256": "41543142b9767f3b76133899fc8453282b01ad3c653acaeea42d78c5a7d08c63"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS-EUC-H.bcmap",
+      "sha256": "e8f89cd61e6486b948205da46499d659ed0aed949b7095fd3c8e95ffe2b0e7a9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS-EUC-V.bcmap",
+      "sha256": "cae422bec2ac6dbe86bf921cec942bacd2d0b733ffcca5f91b3ba14e917025a0"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS1-H.bcmap",
+      "sha256": "e8487971ab20cd16f3de3e8ac56ec994b72b658ad113f2818239dfd5108f501a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS1-V.bcmap",
+      "sha256": "42df8076aaa7574505e7304af83a3323ec032c4177d64b1309db8c043d594a8a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS2-H.bcmap",
+      "sha256": "bc6024d274d440f0625c69e25f37036ef6cb6689432ceaa160d3432a2a716ca7"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/CNS2-V.bcmap",
+      "sha256": "2e4f70a8afd23a121030fc2e5b5f3816e903b11e7ba8b8c09654b31c80399c38"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETHK-B5-H.bcmap",
+      "sha256": "d2f10fa519336bc4efcc7b6deb9604b75429946b40d82e311cb3a97a1994c89a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETHK-B5-V.bcmap",
+      "sha256": "1fea3fd0d9f0f679f80505800851ef2e4131d81127e18c006938ffa2f4c8b247"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETen-B5-H.bcmap",
+      "sha256": "87ee6b3f5bfda5fe26fa35431264c7d73070d10dbbf398a75185d63ae322c18d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETen-B5-V.bcmap",
+      "sha256": "47dc0d2c21e3bde317947aec1675ceabc1d5460a60bf9c24334b8c407a17172c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETenms-B5-H.bcmap",
+      "sha256": "d5f5a73da4173b7da9a3a20e16f26f9cd5d12deb1553409919e0cec6fd37fdee"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/ETenms-B5-V.bcmap",
+      "sha256": "18252fca90f472f479af1bddd60d6ab51c8e1b55dcf6845951426504934543e0"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/EUC-H.bcmap",
+      "sha256": "f9939cd57fccdc65c5d9f4c205fd497ebdbd283643308da5663801a8c1d9c595"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/EUC-V.bcmap",
+      "sha256": "1283a50a706507c4436da83ede9ad7a4440be25378f2e96f6c81a430081426a3"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Ext-H.bcmap",
+      "sha256": "4000ed4e61a1c668ef453bbd0603cfa383defa793abd46a57ed870d7f527350b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Ext-RKSJ-H.bcmap",
+      "sha256": "e0d2f0df337660e73813238dd4a725f11f0621b90f3273857db253d0e7694caa"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Ext-RKSJ-V.bcmap",
+      "sha256": "f617a22b6d67febb187990952006c91a9f5a4db21155d268c656252d0c21985d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Ext-V.bcmap",
+      "sha256": "c2087fb845a9e3acea0c2922cd40e6af67e11957bec74dcd597f1285edd490ce"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GB-EUC-H.bcmap",
+      "sha256": "928bad06fd84a48f5ba7150d7716609119fb660f2aaa73eccad81ddab9b9d203"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GB-EUC-V.bcmap",
+      "sha256": "a9ad88ac2479da529b16dc48abc5952332e27bc355335f91df5729a587533324"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GB-H.bcmap",
+      "sha256": "1018c777a8910b5bb46d7d54a4aee9d51ca5cff8addb2b41c969d9101cb3fd1c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GB-V.bcmap",
+      "sha256": "0b96789143c0bbf9f1641ae7165b3456dccd14dabffcbb0bd654d5bf6f94f863"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBK-EUC-H.bcmap",
+      "sha256": "2103fed28650ede096a2281104a1a8a4304dae0db414342c636867522307123b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBK-EUC-V.bcmap",
+      "sha256": "a7fd35dd14d9dbdb955f34e6c0630618b6620dfd09d4283b2f65a65ce77fcaea"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBK2K-H.bcmap",
+      "sha256": "3d919ae72af16c5cc6846ec87a4326a9f125e493c59d3628429d35c2c95fe8c4"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBK2K-V.bcmap",
+      "sha256": "b927fdfd595c07ce9158bf2ec13f4641b2e83b01c70989dadfabd6ed7c6ac2dc"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBKp-EUC-H.bcmap",
+      "sha256": "d15ebd8e81fb4fe8a244f1b1e877922e03500ac69eddf5001093e502430451d2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBKp-EUC-V.bcmap",
+      "sha256": "fdc736d46e642625dccc8ad8c59f2c69fc7db7a13f2e799c6c6b779e707bb97a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBT-EUC-H.bcmap",
+      "sha256": "dc5f44e48a39f3367ae28665027d8ab1d8cedb5a9dcc5068a900acd6709f60f9"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBT-EUC-V.bcmap",
+      "sha256": "a1ad24e63653b8aa388c18fa5e498f007564e43dde699a9f91ccb4645c999be8"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBT-H.bcmap",
+      "sha256": "8afda745a505763f3ff54c8126eeb48ef376ea9ed07d9f42ff9a22c5c547ec57"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBT-V.bcmap",
+      "sha256": "cdc2ec5c3c7c7033290c9a8894878202f08674eb9b1ae7d36218430326768771"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBTpc-EUC-H.bcmap",
+      "sha256": "7b23e2f7bfdb6c918f567b7324bf858f398bd8cd5f268d74ece19a3c91bf4f32"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBTpc-EUC-V.bcmap",
+      "sha256": "d7a1b13ead9ab511cf2cd01de6ce8b02aa8e8767e84895337d7a3b67f039f93b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBpc-EUC-H.bcmap",
+      "sha256": "3c4a4eb82f05abe51f6650985c630e180438bfdd491318f5d20d2ec29236e1c3"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/GBpc-EUC-V.bcmap",
+      "sha256": "215bdfa2842705624b4cf4cd29b8e3c720f1e192365e0305c11030a424c84d7c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/H.bcmap",
+      "sha256": "a0233e21047ec00b852125b243cbcf30abee511155b6d8159c24f944384bc9ee"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKdla-B5-H.bcmap",
+      "sha256": "5242bce18fb13ab4cc59b146a03eba36e4ce42667eeff09e10981a9d2aa4996b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKdla-B5-V.bcmap",
+      "sha256": "2e0537f786c0791d41a925f72bad2d4e7268aa6cbf15a1400a722672cec38e2c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKdlb-B5-H.bcmap",
+      "sha256": "fdc8159984bf5dbe475c0d5dfcb621ecee4dea07c38c668bd77f4c679e23b9b3"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKdlb-B5-V.bcmap",
+      "sha256": "b249eb9dcb915ab45057c5d4d7aa55ef88d0efbb092af6bae0b2d4705d139abf"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKgccs-B5-H.bcmap",
+      "sha256": "ab64c7fc5e9b2e97750cc4f269b0da14fd8649e49151b7598c8df86599bac591"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKgccs-B5-V.bcmap",
+      "sha256": "02ebdf7cdffb5395fb21091cd58a013a18ae5388922822f9dc6292ef16b98956"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKm314-B5-H.bcmap",
+      "sha256": "bfd8bbde6b36a9da4c1c902c74121a30d9807a7079a00eeea218be6adc223cef"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKm314-B5-V.bcmap",
+      "sha256": "2a64a815cfb6fdd480674a868762e3d161fda17543b20c9209978559f0667164"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKm471-B5-H.bcmap",
+      "sha256": "49d7c037758826b5b6c0fa329c35bbf25d3943197754e72ecd30c6fb04d745e6"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKm471-B5-V.bcmap",
+      "sha256": "be24c109e78aa4fe3c1f27d30aab3ed0741e783fa1b6b6c2719741072b54b132"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKscs-B5-H.bcmap",
+      "sha256": "08599378f41d96b40537adef6e6edcc4a787bc63f5accf47c026df4905a13914"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/HKscs-B5-V.bcmap",
+      "sha256": "d073542b7dad1c4cbf01c1af5f0cd13218d1281a491956e310c55702fc8705c4"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Hankaku.bcmap",
+      "sha256": "b454701f7aecd7856769016dfd04ca64280a060f2c67a2466d50b4395d24974e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Hiragana.bcmap",
+      "sha256": "2ed669394756dd9458651cd9995ab29ab691ecb7686659003306cdf22767a414"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-EUC-H.bcmap",
+      "sha256": "6784e16dbc5861c036c23d3e55f0d4ba0975a3e464da0ee8e49bcfff0be070c4"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-EUC-V.bcmap",
+      "sha256": "fdb36bad85e9924823d49db374067988e024cf80fc894711f2c9178951cbbe95"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-H.bcmap",
+      "sha256": "c1f6d61f1d3304fd539a65ae72624fa567ecc3853bf52e283958a7a2515b3eee"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-Johab-H.bcmap",
+      "sha256": "939993d213f68db763bf156217c217ae23af082b91a0eacecf3d11eb4ff8ef8c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-Johab-V.bcmap",
+      "sha256": "5d61967aac0e666def721e8b8d0fed8f95a879a14f2e76ce516c3d11c621e519"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSC-V.bcmap",
+      "sha256": "d7da5afd9f1fe74816d79c9325f0139a4efb6438664ebfdf9a7aa92f3034360f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCms-UHC-H.bcmap",
+      "sha256": "5b70d8f6a4fa9e2283dc649f0ff95d906d56efbee50a20e8d2faec3a8fed078e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCms-UHC-HW-H.bcmap",
+      "sha256": "a5e6ba22aceb02fdedee11bfb9ed138463d89e85b87810b9f075b469d936f8ec"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCms-UHC-HW-V.bcmap",
+      "sha256": "890332a6a26880d463a12f2a6ff048bf9cf7e45077cfb1ca8815b89baa7bf411"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCms-UHC-V.bcmap",
+      "sha256": "1631b531c9a40c8cbe24c2317dba107362e49fa6e18af620414d627c111d570c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCpc-EUC-H.bcmap",
+      "sha256": "709480682c55cedbb0124b9960d78e28febeee0df2e34607d61aac6601647ec7"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/KSCpc-EUC-V.bcmap",
+      "sha256": "031707887d6fc2378a36cdb6775334fd7a236c3f95048d8436abf43fe26fc49d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Katakana.bcmap",
+      "sha256": "3b6ca6642fbf8822da00d5e58a8aa275216d5c32dbf2bd73e934197fc9fc5c53"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/LICENSE",
+      "sha256": "aa92ab5a472974865a96fd4a4e9c13bb41bf6fe1b309cb6b8da48bc9e19839a2"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/NWP-H.bcmap",
+      "sha256": "286c6c9e335da330928a01edc3c97a3a623f1f7f3c42762b0a7dc2f651b1a78f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/NWP-V.bcmap",
+      "sha256": "3a75fb7b59adfb172710758c425d8ac6c93fd5360a64dd4afd5dd04e60ab4b4d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/RKSJ-H.bcmap",
+      "sha256": "a70de61a22a898f693f02cc011c3e3cff2e10aaa7cddb4661e456a21ae859f78"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/RKSJ-V.bcmap",
+      "sha256": "68c1a64506471a524ea5cfc3b3a9f8f70031989a6bd95427b1351f33ccf50b06"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/Roman.bcmap",
+      "sha256": "1c6b3ef9d9e5cb1aa329142ce9414b90f9b6d7f9182a2a9e927378dab8f0d43f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UCS2-H.bcmap",
+      "sha256": "779428116752f34e2490a1941d24e4634c71e3c22d053b811d2090ae2fb3c704"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UCS2-V.bcmap",
+      "sha256": "1e5cc184b850ea44abc2df8ae5674279df668e8edf5e2a1a2ea2bd77adbd280f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF16-H.bcmap",
+      "sha256": "32ff139b3c7b91d6ad25f994701f3ce7b242906022c418fd73e6493fc228bfe5"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF16-V.bcmap",
+      "sha256": "278eb1e68d1a236c60ef59472cf0176ee0d45f364285e76ca12419a08d46fb9a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF32-H.bcmap",
+      "sha256": "bf26eb67fe19ee5ba915799e80ca72408400aa8342fdf6a244a4f44de8f97336"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF32-V.bcmap",
+      "sha256": "f7da3caf83ceb1cb37936fa10700d9ba6e9c3f72c5bc9724e3ac79bff0c0179e"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF8-H.bcmap",
+      "sha256": "2f2a742bcd1a84a148a4a518b9eed51a8f9c6ca5ed3bc5e2e41fff97de5dc2d8"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniCNS-UTF8-V.bcmap",
+      "sha256": "b7c3f10780a8c62dd1c8ff6c30dc1e4e23b6cdc87c3a96fcd514cc98ffd3af9d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UCS2-H.bcmap",
+      "sha256": "9201569b402e81ad8860650bd86350c4fa28e5dd5971f05fcacaf40f51de18ed"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UCS2-V.bcmap",
+      "sha256": "f10282335e4d64203bc2a653a3a47d745ec76c8ae04549f4d50180c1899be216"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF16-H.bcmap",
+      "sha256": "386fd39581245c034da016a92d23f3df1117d169f996100050b264fc09a84e35"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF16-V.bcmap",
+      "sha256": "0473cfbba612b92dd9918f0ff8aee9112897c48e0ffdc0eb82da3144ed8ea84a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF32-H.bcmap",
+      "sha256": "f48a145dc4e3ed1dca1dde7111716a72306a2a4191ab05c6bae3a5c3a961cd2f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF32-V.bcmap",
+      "sha256": "106acc49b7118bdef944e32107b4f348238f3929a0a15d3b7aab7b9101535993"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF8-H.bcmap",
+      "sha256": "f217b439c80ee5fa1bc2cf6d1defcc319f8d84483d166a00ee199e05a68588df"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniGB-UTF8-V.bcmap",
+      "sha256": "a64df947632878eacc532fa193c735c92a383b7d66e6f8374ac193af7c64fc63"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UCS2-H.bcmap",
+      "sha256": "ad2352f40870880fbf7f8ee5abadff743fbd025fbf9830b8ada472d1c5e4da0b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UCS2-HW-H.bcmap",
+      "sha256": "16e87edca954177c0881c874859d6783220925d821b5cdfb8755b61ebd93f9ce"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UCS2-HW-V.bcmap",
+      "sha256": "1973457e2c0192819947e56068625b34fb9a72ecc8a476ce6d7eaae5f73e2e5c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UCS2-V.bcmap",
+      "sha256": "42a133d8e2ce9dd6d2288018e01592d2bf2435b326d39b94ea0b6e6a44ac33d3"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF16-H.bcmap",
+      "sha256": "f6a89c5688978548c83fcee990e205bc63c74274d5c69b49032a3bd4c49a05ee"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF16-V.bcmap",
+      "sha256": "c67126fc7c73850855186bb0d6482ac0a365057e0b58778c4ab9f234683fef53"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF32-H.bcmap",
+      "sha256": "96195950ce0fe24443d8eb426fa6b88534ec421d7bef9046f0b2362809cfba73"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF32-V.bcmap",
+      "sha256": "ed4dafda402bdd19c4d5d8bf2ab41473c0f86f384552b4c7b963d6627daedeb1"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF8-H.bcmap",
+      "sha256": "798fb0bf06ab0788d1f6a91c2db7de581612eef03c628f10e8f7ecd8f70ab448"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS-UTF8-V.bcmap",
+      "sha256": "1021611424f913b2df0bfdbe94bd327c04e224ec89d8e821c6501ea3d21f4265"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF16-H.bcmap",
+      "sha256": "710a32d7cb43fd6bd9dbf30da5971f8c941590f74441e208d852c2be0e74cc97"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF16-V.bcmap",
+      "sha256": "3b149aff5c5707b57fb3215d1775852c8b1f413ec0f679ea628f25cf87fe098d"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF32-H.bcmap",
+      "sha256": "8d2658e18741af7937d586a57c89729a6fec0d86121197c1f8518aa58b29cdfb"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF32-V.bcmap",
+      "sha256": "6dd475782f2897648a683c48b2fa015a15b8f06856760bddc8a17a63f418bacb"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF8-H.bcmap",
+      "sha256": "691c614ce432b3e62486efb54e5c84c6da5afe9b51b21253bde4758feb484183"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJIS2004-UTF8-V.bcmap",
+      "sha256": "40a8c7ea2d46711c5f78fc9a878a7db68b1543ba5cd60ecf14f519a2deb829b7"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISPro-UCS2-HW-V.bcmap",
+      "sha256": "6826f94d789d7bf1960668c1c5819c34c9585c1b23152fbc19ee81c7df08524b"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISPro-UCS2-V.bcmap",
+      "sha256": "493de9fd1a08f7946065d8ab58f0c3c9fe489f5a0f109f2d05a3169b4bd5789f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISPro-UTF8-V.bcmap",
+      "sha256": "6181d382cf736c5e09492e8be9f26f31fa25b7462253f23ab16646af432cad81"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISX0213-UTF32-H.bcmap",
+      "sha256": "692044e1fb33445668632bc9fe7386805c624864be1ddeb29d65bb0c99fc630c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISX0213-UTF32-V.bcmap",
+      "sha256": "dd54e16ca7bffb3a886242549b2bf7d78a277087f7c60d2636f118c21a5b0646"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISX02132004-UTF32-H.bcmap",
+      "sha256": "f80ea5a989be30ccda5a8804baef6d3b4b044d2b339bf8b31c671b2466171cf6"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniJISX02132004-UTF32-V.bcmap",
+      "sha256": "94c22bd99e771c5fbe0dd8dc39850570d4db0075074aca13e272813edd7cc57f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UCS2-H.bcmap",
+      "sha256": "a1081396ab4adb6f4a5b6c15f896963c244c1c9bcb65ce5616d06096a1b9811c"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UCS2-V.bcmap",
+      "sha256": "6cab547431958fbdc1d401d06ebd4dd61a73f5509a10f974df32bcbca11a2e43"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF16-H.bcmap",
+      "sha256": "42d35b396286499dfae1737a07adb3a64500df37b426580bfb1d3ea872938519"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF16-V.bcmap",
+      "sha256": "5bdb7390c80dcc136cb47d41dc7460082560969c17322ee739fe3020fb642410"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF32-H.bcmap",
+      "sha256": "3a01ec51ed1b828101351e337ffb8250abe11880032e5210f881170fed2588de"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF32-V.bcmap",
+      "sha256": "dfda895eceaed081af030dbbb962b49629eea817fc3c02bae15db93d0c68acd7"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF8-H.bcmap",
+      "sha256": "3fac9c65145f72d7d42157a3b9c5ed6904632184e6a0888f2b828699afd2002f"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/UniKS-UTF8-V.bcmap",
+      "sha256": "9ecc6cf30dd354b9778ddba163b6cc7302b087ce9f39d1ba73472d2b75ed13ca"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/V.bcmap",
+      "sha256": "b9ad1c0c09ff14bca52f9a28a9767eb857ad0e8946e64ba14c7387a7eb69866a"
+    },
+    {
+      "path": "pdfjs/6.4.299/cmaps/WP-Symbol.bcmap",
+      "sha256": "543923bead225732aba30976690ee89095a19628277b5863efecc2c728d5d7bf"
+    },
+    {
+      "path": "pdfjs/6.4.299/iccs/CGATS001Compat-v2-micro.icc",
+      "sha256": "73e1ba37d2bad5bab2a964f40a9eed96209666efc067c3322626214bbef234a0"
+    },
+    {
+      "path": "pdfjs/6.4.299/iccs/LICENSE",
+      "sha256": "286e4fd7b447330b2c88e23890e3cd0a9d38cb398d4a59cb247f578ccbda3213"
+    },
+    {
+      "path": "pdfjs/6.4.299/manifest.json",
+      "sha256": "09f67a36fd869ab8d1db314f48c9e8365f3ca919fb65218966251d2ea9ce1740"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitDingbats.pfb",
+      "sha256": "845c752392b6c914fb989c75a08b7792b88f542d2499042ef2889f8c814a16ed"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitFixed.pfb",
+      "sha256": "b6c8fe53f134b8b6d4578cd2d544df4cee9624c4efa8d51a560fb40ea296101b"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitFixedBold.pfb",
+      "sha256": "f1b7159702973f54fc86254ea38bcf3712b2a736eb3a0995751e9f4bb45ad603"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitFixedBoldItalic.pfb",
+      "sha256": "8a000945843bd31add06aee63bf9fd41b7578b4f3242a4b7cd46349ad9d24d4d"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitFixedItalic.pfb",
+      "sha256": "5007faf8320fa1fcc08b8894b356ad976f60b992ba29ee5272578bbdebaf3876"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitSerif.pfb",
+      "sha256": "4f57d2b9d884af8f907bf22df6019b52d86cbf6214fdbd02b1ae05472a543f35"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitSerifBold.pfb",
+      "sha256": "0bdf4b04e964139818d51eda03d566ba999fc3ba2421b1c6c51f9dc969022e80"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitSerifBoldItalic.pfb",
+      "sha256": "a406cac82583bf98175cb62c87ed5e95c45fbb34eece63a10b0a13e793cb2e10"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitSerifItalic.pfb",
+      "sha256": "610ae0687198045c4db5d1a6650fd5e92536631706382eb8b72e38df578d0ae9"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/FoxitSymbol.pfb",
+      "sha256": "47967d055530e7357088a08403115425643ec2cdfd6201ba8af0fbd7116c1539"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LICENSE_FOXIT",
+      "sha256": "b578cdd2345840ada550bd12519533812320d5f1d21cf4c1c7e1b1b0a31c98b7"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LICENSE_LIBERATION",
+      "sha256": "d2c4d5b3e115a519cb58eb691aa64538397e2611f9ebe801392cf9667997e7dc"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LiberationSans-Bold.ttf",
+      "sha256": "361c61b82d575c5c35fd9157fda8b0194bcfcd0d88ea8521a4fb5dd53d33dddc"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LiberationSans-BoldItalic.ttf",
+      "sha256": "a224075ac17495ad0a3af3bc0a419ac0704a8b3fd1095456201fb9b095fc281d"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LiberationSans-Italic.ttf",
+      "sha256": "832b4406dbef23628800d3aaad21048534ac84d7e3ad955be83b8172ed8ef512"
+    },
+    {
+      "path": "pdfjs/6.4.299/standard_fonts/LiberationSans-Regular.ttf",
+      "sha256": "f8ace1f892b2bd9dc1792ba7f097fa7588f84fed48321480e04de5390828221f"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_JBIG2",
+      "sha256": "9e66b7f1b934a28b37f3bc4dac97915de1674271e79a0a88182a18ed9731b4d1"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_OPENJPEG",
+      "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_PDFJS_JBIG2",
+      "sha256": "aad3cce09842e00e9e11ad5e8fef8cc02fbc3a3768fe2f007443b9cee37aaee5"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_PDFJS_OPENJPEG",
+      "sha256": "717fc62da03292dbb4dd0c8280bd4ce7bb8550dcf31d772bc93455fb50313425"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_PDFJS_QCMS",
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/LICENSE_QCMS",
+      "sha256": "36d847ae882f6574ebc72f56a4f354e4f104fde4a584373496482e97d52d31bc"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/jbig2.wasm",
+      "sha256": "466f45c2a61a698152fb5400c27e56ff2ceb73dcb71fde3fc366a502308eaab0"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/jbig2_nowasm_fallback.js",
+      "sha256": "68686ced624a48c42f84cdaa482ec44b72b0de4dc84a0df903af1fb7b45b5d9a"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/openjpeg.wasm",
+      "sha256": "95e5002597af0824004aa57b1900fe019715db389e37640b1e58395e42f00cc5"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/openjpeg_nowasm_fallback.js",
+      "sha256": "9047b34b6bc142d85e4b0aa1b08b0b9baad4c6f8b7ac87641b9e8f90eb6fd23e"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/qcms_bg.wasm",
+      "sha256": "663d86126d5f5fcb1c61490f94353e2a8375660b8c5498ab3ebab5a34b08800e"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/quickjs-eval.js",
+      "sha256": "fe7930418e869791ce892567dbd0bc4698152b7e550b5cefa553992c56ddc325"
+    },
+    {
+      "path": "pdfjs/6.4.299/wasm/quickjs-eval.wasm",
+      "sha256": "7bcacc9f22cacf7e9b23866d2a6d1639693d40c7f144e41b7c69ed37ba9cbe8f"
+    }
+  ]
+}

@@ -1,0 +1,972 @@
+{
+  "evidence_id": "ev_729d2036324c4a76d331950ebeead6d8f089bf6af4c39a345b4e7bc823623bd5",
+  "subject": null,
+  "provider": {
+    "id": "rea-process",
+    "name": "REA process capture",
+    "version": "3"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.process-capture",
+  "operation": "capture_process_scenario",
+  "parameters": {
+    "executable_name": "python",
+    "argument_count": 1,
+    "event_count": 0,
+    "filesystem_observation_path_count": 1,
+    "normalization": {
+      "paths": false,
+      "pids": true,
+      "ports": true,
+      "time_bucket_ms": 10,
+      "patterns": []
+    }
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "manifest": {
+      "rea_version": "6.7.0",
+      "provider_version": "3",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "pty_backend": "node-pty",
+      "started_at": "2026-10-26T00:45:27.735Z",
+      "completed_at": "2026-10-26T00:45:30.185Z",
+      "scenario": {
+        "executable": "/private/tmp/ardesia-r1-20261024/packages/engine/.venv/bin/python",
+        "arguments": [
+          "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/acquisition/probe_fsrs.py"
+        ],
+        "working_directory": "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/ardesia-s06",
+        "environment": {
+          "PYTHONPATH": "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/ardesia-s06/packages/engine"
+        },
+        "filesystem_observation_paths": [
+          "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/acquisition/fsrs-probe-result.json"
+        ],
+        "terminal": {
+          "columns": 120,
+          "rows": 40,
+          "scrollback": 100
+        },
+        "events": [],
+        "timeout_ms": 10000,
+        "idle_timeout_ms": 30000,
+        "settle_ms": 100,
+        "limits": {
+          "output_bytes": 12000,
+          "files": 40,
+          "file_bytes": 60000,
+          "processes": 32,
+          "filesystem_depth": 2
+        },
+        "normalization": {
+          "paths": false,
+          "pids": true,
+          "ports": true,
+          "time_bucket_ms": 10,
+          "patterns": []
+        },
+        "finalization_ms": 1000,
+        "executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab"
+      },
+      "comparison_contract": {
+        "working_directory": "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/ardesia-s06",
+        "environment": {
+          "PYTHONPATH": "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/ardesia-s06/packages/engine"
+        },
+        "ambient_environment": "unknown",
+        "filesystem_observation_paths": [
+          "/Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/acquisition/fsrs-probe-result.json"
+        ],
+        "terminal": {
+          "columns": 120,
+          "rows": 40,
+          "scrollback": 100
+        },
+        "events": [],
+        "timeout_ms": 10000,
+        "idle_timeout_ms": 30000,
+        "settle_ms": 100,
+        "finalization_ms": 1000,
+        "limits": {
+          "output_bytes": 12000,
+          "files": 40,
+          "file_bytes": 60000,
+          "processes": 32,
+          "filesystem_depth": 2
+        },
+        "normalization": {
+          "paths": false,
+          "pids": true,
+          "ports": true,
+          "time_bucket_ms": 10,
+          "patterns": []
+        },
+        "port_normalization_version": "contextual-endpoints-v2",
+        "rendered_line_format": "trailing-spaces-trimmed-v1"
+      },
+      "full_scenario_sha256": "d250209987b69b75b5361a6c9143ad923393b9ddbcc38c260cbbdaee12d9f84c",
+      "comparison_contract_sha256": "2de7cab289362dde02b1bd552091d07cb25359e385e35b5a14597ac259794626",
+      "selected_executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab",
+      "executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab",
+      "executable_identity": {
+        "state": "path_metadata_unchanged",
+        "reason": null
+      },
+      "normalization_sha256": "5c58aa1aa890197f15f9c59ef755d01120e6e07f356fa1ef2f20787e63b6fa87"
+    },
+    "normalization": {
+      "paths": false,
+      "pids": true,
+      "ports": true,
+      "time_bucket_ms": 10,
+      "patterns": []
+    },
+    "frames": [
+      {
+        "sequence": 0,
+        "at_ms": 1770,
+        "data": "{\"component\": \"py-fsrs\", \"version\": \"6.3.2\", \"pin\": \"9446cb06605c597a063aeee49f7d188d42e34dc2\", \"outcomes\": {\"Again\": {\"delaySeconds\": 60.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 1, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Hard\": {\"delaySeconds\": 330.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 2, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Good\": {\"delaySeconds\": 600.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 3, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Easy\": {\"delaySeconds\": 691200.0, \"state\": 2, \"log\": {\"card_id\": 1, \"rating\": 4, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}}, \"previewInputUnchanged\": true, \"serializationRoundtrip\": true, \"threeReviewReplayExact\": true, \"naiveClockRejected\": true, \"networkUsed\": false, \"optimizerImported\": false}\r\n"
+      }
+    ],
+    "rendered_frames": [
+      {
+        "sequence": 0,
+        "at_ms": 1770,
+        "columns": 120,
+        "rows": 40,
+        "cursor_x": 0,
+        "cursor_y": 8,
+        "active_buffer": "normal",
+        "lines": [
+          "{\"component\": \"py-fsrs\", \"version\": \"6.3.2\", \"pin\": \"9446cb06605c597a063aeee49f7d188d42e34dc2\", \"outcomes\": {\"Again\": {\"",
+          "delaySeconds\": 60.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 1, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"rev",
+          "iew_duration\": null}}, \"Hard\": {\"delaySeconds\": 330.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 2, \"review_datetime\":",
+          " \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Good\": {\"delaySeconds\": 600.0, \"state\": 1, \"log\": {\"card_id\":",
+          "1, \"rating\": 3, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Easy\": {\"delaySeconds\": 6912",
+          "00.0, \"state\": 2, \"log\": {\"card_id\": 1, \"rating\": 4, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\":",
+          "null}}}, \"previewInputUnchanged\": true, \"serializationRoundtrip\": true, \"threeReviewReplayExact\": true, \"naiveClockRejec",
+          "ted\": true, \"networkUsed\": false, \"optimizerImported\": false}",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "serialized_state": "{\"component\": \"py-fsrs\", \"version\": \"6.3.2\", \"pin\": \"9446cb06605c597a063aeee49f7d188d42e34dc2\", \"outcomes\": {\"Again\": {\"delaySeconds\": 60.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 1, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Hard\": {\"delaySeconds\": 330.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 2, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Good\": {\"delaySeconds\": 600.0, \"state\": 1, \"log\": {\"card_id\": 1, \"rating\": 3, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}, \"Easy\": {\"delaySeconds\": 691200.0, \"state\": 2, \"log\": {\"card_id\": 1, \"rating\": 4, \"review_datetime\": \"2026-10-26T00:00:00+00:00\", \"review_duration\": null}}}, \"previewInputUnchanged\": true, \"serializationRoundtrip\": true, \"threeReviewReplayExact\": true, \"naiveClockRejected\": true, \"networkUsed\": false, \"optimizerImported\": false}\u001b[1B\u001b[61D"
+      }
+    ],
+    "interaction_events": [],
+    "exit": {
+      "code": 0,
+      "signal": 0,
+      "reason": "exited"
+    },
+    "settlement": {
+      "state": "unverifiable",
+      "elapsed_ms": 600,
+      "cleanup_outcome": "cleaned"
+    },
+    "process_samples": [],
+    "filesystem_checkpoints": [
+      {
+        "name": "before",
+        "at_ms": 0,
+        "files": [],
+        "effects": [],
+        "truncated": false
+      },
+      {
+        "name": "after_settlement",
+        "at_ms": 2446,
+        "files": [
+          {
+            "path": "root_0:.",
+            "mode": 33188,
+            "size": 1200,
+            "type": "file",
+            "sha256": "e4256a265de88a9021818b769da8a2f224c2450a8d0a0cf992d987093a71feee",
+            "symlink_target": null
+          }
+        ],
+        "effects": [
+          {
+            "path": "root_0:.",
+            "status": "created",
+            "before": null,
+            "after": {
+              "path": "root_0:.",
+              "mode": 33188,
+              "size": 1200,
+              "type": "file",
+              "sha256": "e4256a265de88a9021818b769da8a2f224c2450a8d0a0cf992d987093a71feee",
+              "symlink_target": null
+            }
+          }
+        ],
+        "truncated": false
+      }
+    ],
+    "event_journal": [
+      {
+        "capture_order": 0,
+        "collection": "filesystem_checkpoints",
+        "index": 0
+      },
+      {
+        "capture_order": 1,
+        "collection": "frames",
+        "index": 0
+      },
+      {
+        "capture_order": 2,
+        "collection": "lifecycle",
+        "index": 0
+      },
+      {
+        "capture_order": 3,
+        "collection": "rendered_frames",
+        "index": 0
+      },
+      {
+        "capture_order": 4,
+        "collection": "lifecycle",
+        "index": 1
+      },
+      {
+        "capture_order": 5,
+        "collection": "filesystem_checkpoints",
+        "index": 1
+      }
+    ],
+    "files_before": [],
+    "files_after": [
+      {
+        "path": "root_0:.",
+        "mode": 33188,
+        "size": 1200,
+        "type": "file",
+        "sha256": "e4256a265de88a9021818b769da8a2f224c2450a8d0a0cf992d987093a71feee",
+        "symlink_target": null
+      }
+    ],
+    "filesystem_effects": [
+      {
+        "path": "root_0:.",
+        "status": "created",
+        "before": null,
+        "after": {
+          "path": "root_0:.",
+          "mode": 33188,
+          "size": 1200,
+          "type": "file",
+          "sha256": "e4256a265de88a9021818b769da8a2f224c2450a8d0a0cf992d987093a71feee",
+          "symlink_target": null
+        }
+      }
+    ],
+    "truncated": false,
+    "truncation_details": {
+      "raw_terminal": {
+        "budget_bytes": 12000,
+        "observed_bytes": 903,
+        "retained_bytes": 903,
+        "observed_frames": 1,
+        "retained_frames": 1
+      },
+      "rendered_terminal": {
+        "budget_bytes": 12000,
+        "observed_bytes": 1809,
+        "retained_bytes": 1809,
+        "observed_frames": 1,
+        "retained_frames": 1
+      },
+      "normalized_terminal": {
+        "budget_bytes": 12000,
+        "retained_bytes": 903,
+        "omitted_frames": 0
+      },
+      "filesystem_before": {
+        "files_limit": 40,
+        "depth_limit": 2,
+        "enumeration_truncated": false,
+        "enumeration_reasons": [],
+        "enumeration_omissions": [],
+        "hash_budget_bytes": 60000,
+        "hashed_bytes": 0,
+        "hash_omissions": []
+      },
+      "filesystem_after": {
+        "files_limit": 40,
+        "depth_limit": 2,
+        "enumeration_truncated": false,
+        "enumeration_reasons": [],
+        "enumeration_omissions": [],
+        "hash_budget_bytes": 60000,
+        "hashed_bytes": 1200,
+        "hash_omissions": []
+      },
+      "process": {
+        "sample_limit": 32,
+        "sampling_partial": false,
+        "retained_samples": 0,
+        "sample_limit_reached": false,
+        "sampling_failures": 0,
+        "first_sampling_failure": null,
+        "coverage": "sampled"
+      }
+    },
+    "limitations": [
+      "The executable digest is a prelaunch file sample; matching path metadata immediately after spawn does not prove an atomic operating-system image binding.",
+      "Process trees are sampled and may omit short-lived descendants.",
+      "Filesystem observations are before/after snapshots, not syscall traces.",
+      "Inherited host environment variables are not recorded and may affect results."
+    ],
+    "residual_unknowns": [
+      {
+        "scope": "process",
+        "reason": "Process trees are sampled and may omit short-lived descendants."
+      },
+      {
+        "scope": "process",
+        "reason": "The executable digest is a prelaunch file sample; operating-system image binding is not atomically observed."
+      },
+      {
+        "scope": "environment",
+        "reason": "Inherited host environment variables are not recorded."
+      },
+      {
+        "scope": "network",
+        "reason": "Network activity is not observed by this capture."
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29579 could not be verified; it was left untouched: platform_binary_environment_withheld"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29583 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29586 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29589 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29590 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29591 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29592 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29594 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29595 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29596 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29597 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29598 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29599 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29602 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29604 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29606 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29607 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29608 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29610 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29614 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29617 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29619 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29620 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29621 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29622 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29624 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29627 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29632 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29635 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29638 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29640 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29642 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29644 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29646 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29648 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29649 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29650 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29653 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29657 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29659 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29660 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29661 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29662 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29663 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29664 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29665 could not be verified; it was left untouched: platform_binary_environment_withheld"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29667 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29668 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29669 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29670 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29672 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29674 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29678 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29679 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29680 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29684 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29686 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29687 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29688 could not be verified; it was left untouched: platform_binary_environment_withheld"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29689 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29690 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29691 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29692 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29693 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29694 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29702 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29715 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29726 could not be verified; it was left untouched: platform_binary_environment_withheld"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29728 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29777 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29800 could not be verified; it was left untouched: sysctl_failed_22"
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 29849 could not be verified; it was left untouched: sysctl_failed_22"
+      }
+    ],
+    "cleanup": {
+      "owned_process_group": "verified",
+      "temporary_root": "removed",
+      "unverified_processes": [
+        {
+          "pid": 29579,
+          "reason": "platform_binary_environment_withheld"
+        },
+        {
+          "pid": 29583,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29586,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29589,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29590,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29591,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29592,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29594,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29595,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29596,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29597,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29598,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29599,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29602,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29604,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29606,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29607,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29608,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29610,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29614,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29617,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29619,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29620,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29621,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29622,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29624,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29627,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29632,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29635,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29638,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29640,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29642,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29644,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29646,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29648,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29649,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29650,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29653,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29657,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29659,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29660,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29661,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29662,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29663,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29664,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29665,
+          "reason": "platform_binary_environment_withheld"
+        },
+        {
+          "pid": 29667,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29668,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29669,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29670,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29672,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29674,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29678,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29679,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29680,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29684,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29686,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29687,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29688,
+          "reason": "platform_binary_environment_withheld"
+        },
+        {
+          "pid": 29689,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29690,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29691,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29692,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29693,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29694,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29702,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29715,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29726,
+          "reason": "platform_binary_environment_withheld"
+        },
+        {
+          "pid": 29728,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29777,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29800,
+          "reason": "sysctl_failed_22"
+        },
+        {
+          "pid": 29849,
+          "reason": "sysctl_failed_22"
+        }
+      ]
+    }
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "darwin-arm64",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "isolation": "process"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "The executable digest is a prelaunch file sample; matching path metadata immediately after spawn does not prove an atomic operating-system image binding.",
+    "Process trees are sampled and may omit short-lived descendants.",
+    "Filesystem observations are before/after snapshots, not syscall traces.",
+    "Inherited host environment variables are not recorded and may affect results."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

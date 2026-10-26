@@ -96,3 +96,35 @@ Continuare STESSA317 fino a merge/postmerge e preview protetta pertinente; Sourc
 ## S00 —19gruppi nel prodotto e verifica visuale corretta,26 ottobre2026
 
 Prodotto317 b701e531:38mirati/53CoreHTTP/typecheck/build aggregate verdi,19browser actualApp+Materiali+Core/CSP e nuovo mobile390. I precedenti18PASS non bastavano: grafico nel PNG390 tagliato durante resize; controprova misuraSVGvecchio, attesa ora sul predicato geometrico, nuovi pixel completi con review indipendente. Renderer invariato, bug permanente non dimostrato. Originali e smentite conservati in evidence/science-composition; non attribuire463fullWeb preP2 alla head attuale senza CI. Prima chiudere laSTESSA317 attraverso CI esatta/merge-tree/merge/postCI e preview protetta byte-verificata, poi altri consumer.0/200, Core remoto503 e Studio interno restano limiti;5task ultimaRUNLOG con primi passi/dipendenze/accettazione/prove. Memoria append-only, non riscrivere il passato.
+
+
+## S00 — ripresa e terminale317,26 ottobre2026
+
+317 MERGED: main e95a80b393589b71da2846aa98814dc1a034b730, treee667e356 uguale alla head7b9a4189 verificata, CIpostmerge40370053167SUCCESS. Nuova preview privata fonteprodotto b701e531: https://ardesia-fisica-preview-gh2h25wc0-andreas-projects-6d4e9791.vercel.app/ops/release/ , dpl_DC99opdh3H2jtAtf1d1Zwt2na5tV,805HTTPS PASS. Grantrevocato/fileprivatoeliminato/302SSO; produzione invariata. Vecchi upload e terminale pendenti sono storia, non stato corrente. Leggere ricevute science-terminal e ultimaRUNLOG.
+
+Prossima309già in composizione su main317, stessaPR/worktreeS00study: preservare entrambi typedreader e installercanonici.502Web/95CoreHTTP verdi prima della review;3REDlogout/late200 e cache malformata richiedono nuoviGREEN, browser, CI/merge/postCI. Non ereditare i verdi e non chiudere316prima dell'integrazione reale309. Patch325 da riallineare al candidatofisso successivo; failure40371391113 dopo317 è guarddi composizione, non loaderregredito dimostrato. S00 writer unico RUNLOG/NEXT, tutti ricordano/leggono/appendono lo storico senza riscrivere passato.
+
+Quattro corsi ancora0/52,0/57,0/33,0/58; Core remoto503 e Studiointerno restano limiti. I5task ultimaRUNLOG mantengono primi passi,dipendenze,accettazione e prove.
+
+
+### 309: correzioni di review prima della prova browser
+
+I3REDsessioni e13REDcache sono stati corretti; fullWeb521 ebuild PASS, poi secondo revisore ha trovato chiaviprototipo:5REDeffettivi corretti con mappeetichette aprototiponullo e fasi con vocabolariounico.63mirati ebuild/typecheck PASS; seconda controprova del revisoreGREEN. Log/limiti preservati in handoffs/swarm-v2/S00/evidence/study-composition. RisultatiCore non salvati nel cacheoffline, omissione esplicitaUI, inputconservati. Prima di dichiarare309pronta eseguire proveApp sulla nuovaSHAferma e7required/merge-tree;316rimaneaperta finoall'integrazione vera.
+
+
+### 309: FAILbrowser da conservare e nuovaCI da leggere
+
+Fonte ae71864: buildPASS, browser5check poi timeoutEsegui modello, una solaPOSTdiagnostica+GET200/zeroJSerror. Controprova successivaFAILprima avviofixture20s, browserNON_RUN; host8GBswap osservato,causaNONPROVATA. Stopheavy locali, nessun timeoutalzato oetichettaflaky. Runneroriginale ora cattura eventiDOM e azionirete suFAIL; jobWebCI esistente esegueS06+science confactoryreale, manifestbytecorrenti/HEADpulita. Artefatti inallowlist per nonpubblicareSQLite/token inOOM. Prima leggi nuovahead/CI/prove:309nonèintegrata,316nonchiudereancora.317rimaneMERGED/CIpostverde/805HTTPSprivati verificati.
+
+
+### Finding B-05 sulla main317, correzione nel candidato309
+
+ASTRA B/A hanno verificato che compare scientifico accettava revisionId:null e usava la versione corrente. S00 ha riprodotto RED nella factory reale e corretto la validazione prima del read;6HTTP PASS, due revisioni con risultati distinti e ACL conservati. Il read opzionale rimane previsto per i suoi consumer. Prove in science-null-{red,green}.log.gz e astra-b-science-null-e95a80b.json. Non dichiarare questa correzione già integrata o distribuita: attendere la nuova head309 e i suoi gate. Il FAIL browser locale resta aperto e i5task dell'ultima RUNLOG restano prioritari.
+
+
+### S00 — browser composto verificato in CI, 26 ottobre 2026
+
+Su head309 `9da49952`, job Web40375681120 SUCCESS: 34 controlli Studio autonomo e19 science nella merge SHA92607baf. Report e screenshot in `handoffs/swarm-v2/S00/evidence/study-composition/ci-9da-consumers/`. Il FAIL locale resta non attribuito: il verde remoto non ne dimostra la causa. B-05 corretto successivamente in `50b07bea`, 6 HTTP GREEN; attendere CI della nuova head, review, merge ordinario e post-merge prima di chiamare 309 integrata o chiudere316. Main resta e95 finché GitHub non prova il contrario. S19 ha preparato solo localmente la patch API contro9da; pubblicarla soltanto dopo la nuova main, senza trasformare la preparazione in integrazione. Conservare cinque task e limiti dell'ultima RUNLOG; memoria append-only.
+
+
+Nota successiva: B-05 ha anche controprova indipendente ASTRA B9/9 sulla fonte50b07bea; il log RED conteneva valori della fixture sintetica e la relativa riga è ora redatta con ricevuta/digest, senza cambiare l'asserzione. La candidata5513 era già stata pubblicata; nessuna riscrittura della cronologia o credenziale di produzione identificata. Leggere la nuova head effettiva, non trasferire automaticamente il verde9da.
