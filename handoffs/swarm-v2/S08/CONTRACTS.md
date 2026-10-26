@@ -31,3 +31,7 @@ Consumer reale: CaptionImport → MediaIndexEditor → StudyResource lesson-medi
 Errori espliciti: file illeggibile/nonUTF8/oltre soglia, blocco orfano, zero/troppi cue, tempi invalidi/sovrapposti/fuori durata, testo oltre limiti. Nessun clipping, retiming, riordino o salvataggio parziale. Una modifica della bozza, chiusura/unmount o writeCore pendente invalida l'anteprima. La fonte ritirata blocca save/export e lascia la bozza editabile. Non introduce grant ai byte, consent authority, endpoint, schemaDB o attività/receipt alternativi.
 
 Raccordo packaging concluso nel solo namespace: distribuzione server media-captions0.0.18 MIT e tipi ufficiali immutati,29file con hash. Nessuna patch ai manifest richiesta dopo commento6405805776; vecchia proposta superseduta. Il futuro mount sottotitoli nel player richiede ancora contratto ownerStudio per la revisione indice autorizzata sulla stessa registrazione/sessione/hash.
+
+## Addendum 26 ottobre — player sincronizzato, fonte1eb71382
+
+La frase storica «sottotitoli montati nel player da implementare» è superata da questo batch. [Rapporto nuovo](NATIVE-PLAYER-REPORT.md): consumerStudio/Core e TextTrack reali,44Web+27Studio+17tokenPASS, typecheckStudioforzato senza root/WebdepsPASS, browserfinale9gruppiPASS1440/390. Source `1eb713820dba483726504fd8c79d71cb19a3dc4d`; CI della consegna finale da rileggere. Fallimenti81/89 e byte raw conservati; REA passivo89 distinto dalla prova finale e dai parserstatici. Merge/deployS00 non eseguiti. Nessun DONE o ascoltoumano/Safari/remoto dichiarato.

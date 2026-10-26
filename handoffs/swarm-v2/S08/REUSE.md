@@ -19,3 +19,7 @@ Gli asset QA sono WAV sintetici generati dal runner (onda sinusoidale, non voce 
 Il testo precedente descrive il primo batch e resta intatto. Il successivo incremento93deff59, candidato con main48251a32, adotta **media-captions0.0.18 MIT**: distribuzione server e tipi ufficiali immutati,29file byte-esatti, pin/integrità/licenze e manutenzione nel manifest locale. Parsing/tokenizzazione VTT/SRT lazy → anteprima/cancel → bozza → stesse revisioni Core → ricerca/export. Nessun manifest/lock condiviso o servizio modificato.
 
 Tre candidati comparati, REA su variante prod e vendorizzato finale, limiti, correzioni, review e prove sono in [CAPTIONS-ACQUISITION.md](CAPTIONS-ACQUISITION.md). La prima proposta npm è superseduta e mai applicata; decisione finale ADAPT con distribuito locale verificato. Il mandato media remoto resta aperto.
+
+## Addendum 26 ottobre — player sincronizzato, fonte1eb71382
+
+La frase storica «sottotitoli montati nel player da implementare» è superata da questo batch. [Rapporto nuovo](NATIVE-PLAYER-REPORT.md): consumerStudio/Core e TextTrack reali,44Web+27Studio+17tokenPASS, typecheckStudioforzato senza root/WebdepsPASS, browserfinale9gruppiPASS1440/390. Source `1eb713820dba483726504fd8c79d71cb19a3dc4d`; CI della consegna finale da rileggere. Fallimenti81/89 e byte raw conservati; REA passivo89 distinto dalla prova finale e dai parserstatici. Merge/deployS00 non eseguiti. Nessun DONE o ascoltoumano/Safari/remoto dichiarato.

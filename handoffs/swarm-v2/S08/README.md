@@ -40,3 +40,7 @@ I paragrafi precedenti sono lo snapshot del primo batch: la frase iniziale sui c
 [Rapporto di acquisizione, REA, licenze, correzioni e limiti](CAPTIONS-ACQUISITION.md). Fonte prodotto48251a32, base main992d1a0b:29test namespacePASS,12test upstreamPASS, review circoscritta con P2risolto, tutti i checkCI verdi e browser realeCorePASS desktop/mobile. [Risultato browser](captions-browser-result.json), screenshot/hash in [manifest](captions-validation.json). Browser/audio del primo batch e nuova prova import restano distinti. La nuova prova non esercita i byte audio.
 
 Stato IMPLEMENTATO/TESTATO, READY_FOR_INTEGRATION; merge/deploy restanoS00. Il codice dei media remoti resta incompleto. La proposta iniziale dei manifest npm è conservata solo come esperimento superseduto in rea/superseded-media-captions-dependency.patch: non applicarla.
+
+## Addendum 26 ottobre — player sincronizzato, fonte1eb71382
+
+La frase storica «sottotitoli montati nel player da implementare» è superata da questo batch. [Rapporto nuovo](NATIVE-PLAYER-REPORT.md): consumerStudio/Core e TextTrack reali,44Web+27Studio+17tokenPASS, typecheckStudioforzato senza root/WebdepsPASS, browserfinale9gruppiPASS1440/390. Source `1eb713820dba483726504fd8c79d71cb19a3dc4d`; CI della consegna finale da rileggere. Fallimenti81/89 e byte raw conservati; REA passivo89 distinto dalla prova finale e dai parserstatici. Merge/deployS00 non eseguiti. Nessun DONE o ascoltoumano/Safari/remoto dichiarato.

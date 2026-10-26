@@ -17,3 +17,7 @@ PYTHONPATH=packages/engine:services/study-api python -m pytest services/study-ap
 ```
 
 Il runner prova Chromium con media sintetici locali. Non prova ascolto umano, Safari/device fisico, video remoto, Range/segmenti HTTP protetti, sottotitoli incorporati nel player, revoca di copie scaricate o efficacia didattica. La prima run UI ha avuto un timeout di selezione; la successiva prova completa è distinta. Le esecuzioni ampie sul Mac sotto carico hanno prodotto timeout in exam-cas non modificato: non dichiararle verdi né rinominare il caso flaky. Conservare comandi ed esiti nella validazione finale.
+
+## Addendum 26 ottobre — replay con sottotitoli
+
+Stesse porte/runtime/database nuovo dei punti1–2. Avviare `ARDESIA_MEDIA_ACCESS=<directory-nuova>/access.json ARDESIA_MEDIA_OUTPUT=<output-nuovo> node handoffs/swarm-v2/S08/playback-browser-proof.mjs` dalla root. Non impostare REA_SIGNAL per la normale esecuzione; CDP5483 e segnale opzionali solo per osservazione autorizzata della propria fixture. Script genera journal/WAV e indici Core; niente byte/studenti reali. Il secondo browser finale usa status403/401 esatti e zero seek/track. Restano i limiti espliciti nel rapporto nuovo. Prima di unire il codice, eseguire typecheck/test/build dei due workspace dai rispettivi lock; i27testStudio e44Web si eseguono con poolthreads/maxWorkers1/no-file-parallelism e timeouttest/hook/teardown30000.
