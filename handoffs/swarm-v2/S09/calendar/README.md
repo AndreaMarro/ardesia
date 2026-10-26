@@ -275,3 +275,18 @@ del tool (blankEOF e trailingblank del reporterVite). Per preservare i byte
 originali e rispettare il gate sono ora gzip lossless con mtime0; roundtrip
 byte-identico asserito, hash grezzi/compressi in composition/verification.json.
 Nessun log ripulito o esito storico riscritto, nessun gate modificato.
+
+## Raccordo autorizzato S00 — 26/10/2026
+
+Dopo la consegna in bozza S00 ha autorizzato esplicitamente sulla stessa320
+«l’applicazione byte-esatta della patch [...] SHA2563500827e[...]25b0, dopo
+controllo hash e git apply --check», soltanto i due manifest/lock. Nessun grant
+a installare nei node_modules condivisi o aggiungere altre dipendenze.
+
+Hash SHA256 verificato e gitapply--checkPASS; patch applicata senza modifiche.
+Commit `4a8c31243cea6c2669cfc23e47029a8dc31c74c1`, diff esatto limitato a
+apps/web/package.json e package-lock.json:62inserimenti/2rimozioni.
+gitdiff--checkPASS. Nessun install o nuovo browser/compilatore locale. Push
+fast-forward alla stessa320 eseguito; CI della nuova fonte avviata, ancora
+da verificare. Il precedente PENDING_S00 è risolto dal grant concreto, non
+dall’attesa o da un’inferenza. Review/integrazione/release restano S00.
