@@ -7,7 +7,7 @@ export function removeHostedFirebaseConfig(code: string): string {
 
 export function localFontFallback(code: string, base: string): string {
   // Exact shape in the locked 0.18.1 browser component; fail on vendor drift.
-  const upstream = /`https:\/\/esm\.sh\/\$\{([A-Za-z_$][\w$]*)\.PKG_NAME\?`\$\{\1\.PKG_NAME\}@\$\{\1\.PKG_VERSION\}`:"@excalidraw\/excalidraw"\}\/dist\/prod\/`/g
+  const upstream = /`https:\/\/esm\.sh\/\$\{([A-Za-z_$][\w$]*)\.PKG_NAME\s*\?\s*`\$\{\1\.PKG_NAME\}@\$\{\1\.PKG_VERSION\}`\s*:\s*"@excalidraw\/excalidraw"\}\/dist\/prod\/`/g
   return code.replace(upstream, `new URL(${JSON.stringify(base + 'excalidraw-assets/')},globalThis.location.origin).href`)
 }
 

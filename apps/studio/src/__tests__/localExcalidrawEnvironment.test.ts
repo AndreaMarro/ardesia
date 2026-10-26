@@ -24,3 +24,11 @@ it.each(["/", "/studio/"])("replaces the locked CDN font fallback with local ass
   expect(embedded).not.toContain("https://esm.sh/")
   expect(embedded).toContain(JSON.stringify(base + "excalidraw-assets/"))
 })
+
+it("keeps development sources compatible with the same local environment", () => {
+  const root = fileURLToPath(new URL("../../node_modules/@excalidraw/excalidraw/", import.meta.url))
+  const fonts = readFileSync(`${root}/dist/dev/chunk-4FTI6OG3.js`, "utf8")
+  expect(localFontFallback(fonts, "/studio/")).not.toContain("https://esm.sh/")
+  const config = readFileSync(`${root}/dist/dev/chunk-AWQI2HM3.js`, "utf8")
+  expect(removeHostedFirebaseConfig(config)).not.toMatch(/\bAIza[0-9A-Za-z_-]{35}\b/)
+})
