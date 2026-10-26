@@ -1,0 +1,63 @@
+import {test,expect} from '@playwright/test';
+import {readFile,writeFile} from 'node:fs/promises';
+const directory=process.env.S04_DATA_DIR!,outputs=process.env.S04_OUTPUT_DIR!;
+test('real CAS worker, Core revisions, cold reopen, domain error, responsive, logout and student isolation',async({page})=>{
+ const access=JSON.parse(await readFile(`${directory}/demo-access.json`,'utf8'));
+ const errors:string[]=[],expectedConsole:string[]=[];let expectedConflictUrl='';
+ page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'){if(expectedConflictUrl&&message.location().url===expectedConflictUrl&&message.text().includes('409 (Conflict)'))expectedConsole.push(message.text());else errors.push(message.text())}});
+ page.on('dialog',dialog=>void dialog.accept());
+ expect((await page.request.post('/study/session',{data:{token:access.tokens['tutor-synthetic']}})).ok()).toBe(true);
+ await page.setViewportSize({width:390,height:844});await page.goto('/?view=classroom');
+ const open=async()=>{
+  await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).click();
+  await page.getByText('Qualità della banca e casi da verificare',{exact:true}).click();
+  await page.getByRole('button',{name:/Controprova matematica ·/}).first().click({timeout:120000});
+  await expect(page.getByRole('region',{name:'Laboratorio matematico del revisore'}).getByLabel('Fogli privati salvati')).toBeVisible();
+ };
+ await open();const lab=page.getByRole('region',{name:'Laboratorio matematico del revisore'});
+ await expect(lab.locator('math-field')).toHaveCount(2);
+ const started=Date.now();await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible({timeout:30000});
+ const coldCalculationMs=Date.now()-started;
+ await expect(lab.getByText('Derivata di A:')).toContainText('2');
+ await lab.getByRole('button',{name:'Esempio: divisione e dominio'}).click();
+ await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('region',{name:'Risultato della controprova'}).getByText('x ≠ 0',{exact:true})).toBeVisible();
+ const note=`S04 CAS sintetico ${Date.now()}: verificare dominio e unità.`;
+ await lab.getByLabel('Osservazioni sul foglio').fill(note);
+ const created=page.waitForResponse(response=>response.url().endsWith('/study/resources')&&response.request().method()==='POST');
+ await lab.getByRole('button',{name:'Salva foglio privato'}).click();const saved=await (await created).json();
+ expect(saved.visibility).toBe('private');expect(saved.kind).toBe('assessment-quality-worksheet-v1');
+ await expect(lab.getByText('Foglio privato salvato nel Core. Puoi riaprirlo dopo il ricaricamento.')).toBeVisible();
+ await page.reload();await open();
+ await lab.getByLabel('Fogli privati salvati').selectOption(saved.id);
+ await expect(lab.getByLabel('Osservazioni sul foglio')).toHaveValue(note);
+ await expect(lab.getByRole('region',{name:'Risultato della controprova'})).toHaveCount(0);
+ await lab.getByLabel('Valori da sostituire').fill('x=0');await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('alert')).toContainText('fuori dal dominio');
+ await lab.getByLabel('Valori da sostituire').fill('x=3');await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible();
+ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
+  await page.setViewportSize(viewport);await lab.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:`${outputs}/S04-CAS-${viewport.width}.png`});
+ }
+ // Actual Core compare-and-swap conflict from another writer. The UI keeps its draft.
+ const remote=await page.request.post(`/study/resources/${saved.id}/revise`,{data:{expectedRevision:saved.revisionId,text:saved.text}});
+ expect(remote.ok()).toBe(true);
+ await lab.getByLabel('Osservazioni sul foglio').fill(note+' bozza locale');
+ expectedConflictUrl=`http://127.0.0.1:5454/study/resources/${saved.id}/revise`;
+ const conflict=page.waitForResponse(response=>response.url()===expectedConflictUrl&&response.status()===409);
+ await lab.getByRole('button',{name:'Salva foglio privato'}).focus();await page.keyboard.press('Enter');await conflict;
+ await expect(lab.getByText(/Un’altra scheda ha aggiornato/)).toBeVisible();
+ await expect(lab.getByLabel('Osservazioni sul foglio')).toHaveValue(note+' bozza locale');
+ const current=(await remote.json()).revisionId;
+ expect((await page.request.get(`/study/resources/${saved.id}`)).ok()).toBe(true);
+ await page.getByRole('button',{name:/Esci dall’account/}).click();await expect(lab).toHaveCount(0);
+ expect((await page.request.get(`/study/resources/${saved.id}`)).status()).toBe(401);
+ expect((await page.request.post('/study/session',{data:{token:access.tokens['student-01']}})).ok()).toBe(true);
+ expect((await page.request.get(`/study/resources/${saved.id}`)).status()).toBe(403);
+ expect((await page.request.get('/study/editions/fluidi/question-banks/physics-semestre-2026/review/questions')).status()).toBe(403);
+ expect(errors).toEqual([]);
+ await writeFile(`${outputs}/S04-CAS-browser.json`,JSON.stringify({coldCalculationMs,resourceId:saved.id,initialRevision:saved.revisionId,currentRevision:current,note,viewports:[1440,390],worker:'real bundled donor',core:'real SQLite/API',consoleErrors:errors,expectedConflictConsole:expectedConsole},null,2));
+});
