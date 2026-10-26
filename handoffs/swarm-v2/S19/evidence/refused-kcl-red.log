@@ -1,0 +1,18 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_kcl_topology_alone_does_not_assess_a_circuit_refused_by_the_lesson ____
+
+    def test_kcl_topology_alone_does_not_assess_a_circuit_refused_by_the_lesson():
+        from hashlib import sha256
+        d=circuit();d['components'].append({'id':'V2','kind':'V','a':'b','b':'0','value':'7'})
+        d['trace']={'schema':'student-trace.v1','circuit_fingerprint':sha256(netlist(d).encode()).hexdigest(),'steps':[{'transcription':'KCL','operation':'kcl','first':'b','second':'+V1,+R1,+V2'}]}
+>       assert diagnose(d)['outcome']=='not_assessable'
+E       AssertionError: assert 'valid_so_far' == 'not_assessable'
+E         
+E         - not_assessable
+E         + valid_so_far
+
+plugins/s19-circuit-lab/tests/test_adapter.py:196: AssertionError
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_adapter.py::test_kcl_topology_alone_does_not_assess_a_circuit_refused_by_the_lesson
+1 failed in 2.27s
