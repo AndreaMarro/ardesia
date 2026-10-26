@@ -101,10 +101,10 @@ test.each(['student','teacher'] as const)('root navigation opens personal memory
  }));
  render(<App/>);
  const navigation=within(await screen.findByRole('navigation',{name:'Navigazione principale'}));
- fireEvent.click(navigation.getByRole('button',{name:'Memoria delle idee',exact:true}));
+ fireEvent.click(navigation.getByRole('button',{name:'Memoria delle idee'}));
  expect(await screen.findByRole('heading',{name:'Memoria delle idee.'})).toBeTruthy();
  expect(new URLSearchParams(location.search).get('view')).toBe('memory');
- fireEvent.click(navigation.getByRole('button',{name:'Oggi',exact:true}));
+ fireEvent.click(navigation.getByRole('button',{name:'Oggi'}));
  fireEvent.click(screen.getByRole('button',{name:'Cerca nello spazio · Ctrl o ⌘ K'}));
  const dialog=within(await screen.findByRole('dialog'));
  fireEvent.change(dialog.getByRole('searchbox'),{target:{value:'idee'}});
