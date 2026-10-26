@@ -143,6 +143,7 @@ export default function App() {
           key={sessionVersion}
           me={me}
           view={view}
+          enabledViews={views}
           onView={navigate}
           onLogout={() => void logout()}
           editions={course.editions}

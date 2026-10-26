@@ -91,6 +91,28 @@ test('personal memory is reachable from the authenticated app without an edition
  expect(screen.getByRole('button',{name:'Nuova idea'})).toBeTruthy();
 });
 
+test.each(['student','teacher'] as const)('root navigation opens personal memory without an edition for %s',async role=>{
+ vi.stubGlobal('scrollTo',vi.fn());
+ vi.stubGlobal('fetch',vi.fn(async(path:string)=>{
+  if(path==='/study/me')return json({...me,role});
+  if(path.startsWith('/study/editions?'))return json({items:[],nextCursor:null});
+  if(path==='/study/memory')return json({...packet,notes:[],nodes:[],edges:[]});
+  throw Error(path);
+ }));
+ render(<App/>);
+ const navigation=within(await screen.findByRole('navigation',{name:'Navigazione principale'}));
+ fireEvent.click(navigation.getByRole('button',{name:'Memoria delle idee',exact:true}));
+ expect(await screen.findByRole('heading',{name:'Memoria delle idee.'})).toBeTruthy();
+ expect(new URLSearchParams(location.search).get('view')).toBe('memory');
+ fireEvent.click(navigation.getByRole('button',{name:'Oggi',exact:true}));
+ fireEvent.click(screen.getByRole('button',{name:'Cerca nello spazio · Ctrl o ⌘ K'}));
+ const dialog=within(await screen.findByRole('dialog'));
+ fireEvent.change(dialog.getByRole('searchbox'),{target:{value:'idee'}});
+ fireEvent.click(dialog.getByRole('button',{name:/Memoria delle idee/}));
+ expect(await screen.findByRole('heading',{name:'Memoria delle idee.'})).toBeTruthy();
+ expect(screen.queryByRole('dialog')).toBeNull();
+});
+
 test('refresh discards an editor snapshot when its source is no longer authorized',async()=>{
  let withdrawn=false;
  vi.stubGlobal('fetch',vi.fn(async(path:string)=>{
