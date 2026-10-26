@@ -1,0 +1,75 @@
+{
+  "synthetic": true,
+  "baseURL": "http://127.0.0.1:54909",
+  "browser": "Chromium",
+  "browserPlugin": "Absent; repository Playwright used",
+  "checks": [
+    "CoursePack Taylor: create/date/capacity/preview/offer through actual UI",
+    "Real HTTP last-seat race, exact replay, 10 members and 2 waiting",
+    "Actual attendance and manual payment UI persist canonical records",
+    "Keyboard disclosure; CSV and confirmed ICS downloads, no invite/alarm",
+    "Reload and responsive 1440/390, no horizontal overflow",
+    "Other tutor/student administrative403; enrolled student personal workspace200",
+    "Actual session revocation removes private data"
+  ],
+  "editionId": "4d9425a55aac4220b2b482f5ab835fe9",
+  "admission": {
+    "interestCount": 0,
+    "activeHoldCount": 0,
+    "confirmedCount": 10,
+    "waitlistedCount": 2
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "expectedRevocationConsole": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "result": "PASS",
+  "productSha": "eb77cab5f97bd48f6a54ff252425e12b4b222554",
+  "mainBase": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 1000
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "browser-evidence.json",
+      "bytes": 1295,
+      "sha256": "f9a4afbe6694d5af53affb6a9c82c01378e8c7be4881ddf04bcddcbd7a9358e4"
+    },
+    {
+      "name": "gestionale-1440.png",
+      "bytes": 144399,
+      "sha256": "ad0bf3002d97d141a8bc25cbb52aab5cd9b7863ac83ba774421539fe61c9abeb"
+    },
+    {
+      "name": "gestionale-390.png",
+      "bytes": 68936,
+      "sha256": "03785001a3c6cc65ffc097770b0832e02454de4736436b110cea6ccb6237b11b"
+    },
+    {
+      "name": "incassi-pagina.csv",
+      "bytes": 328,
+      "sha256": "7e8bdd35ed0f21fdbcfba5b38011fcbd819982d7330a6607107c2d380d68b467"
+    },
+    {
+      "name": "incontri.ics",
+      "bytes": 1383,
+      "sha256": "148bdc521882516d0f3a17913a0aba4990c5f98ac86230a327d086ee1b57edce"
+    },
+    {
+      "name": "presenze.csv",
+      "bytes": 6580,
+      "sha256": "6f97b763de52d06e4606ca6dc88a68eb8f2bf2e8711db06c36579bbc9742a0ba"
+    }
+  ]
+}
