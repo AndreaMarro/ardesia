@@ -836,3 +836,18 @@ Per rendere permanente il controllo dei consumer, stesso jobWebCI esteso in sequ
 5. **P0 quattrocorsi/remoto:** primo passoU1-01 e backendCoreArdesia autorizzato; dipendenzeeditoriaumana/identità/storage/restore; accettazione200targetprogressivi e percorso remoto; evidenza ricevute/versioniapprovate,oggi0/200.
 
 **Addendum di review del verificatore309.** Prima della nuovaCI, due rischi del reporter sono stati corretti: upload inallowlist per non includereDB/access dopoOOM, e scrittura immediata delFAIL minimo prima di interrogare unrenderer eventualmente bloccato. Arricchimento diagnostico conbudgetseparato3s perquery/screenshot, percorso originale15sinvariato. WrapperCI registraSHA e ricontrollaHEAD/sorgenti dopo entrambiS06+S01; non attribuire il solo guardS06 alsecondorunner. SintassiJS/Python/diff PASS; runremoto ancora da leggere. I5task prioritizzati dell'ultima voce restano validi e iFAIL non sono risolti per decreto.
+
+
+## 26 ottobre 2026 — S00: correzione B-05 del riferimento scientifico
+
+ASTRA B ha riprodotto sulla main e95a80b un P2 non coperto dai precedenti 53 test: compare con revisionId:null selezionava la versione corrente tramite read opzionale e restituiva un riferimento senza revisione. ASTRA A ha confermato il percorso nel codice. La controprova distingue due revisioni: originale con velocità finale 1 m/s, corrente con 0 m/s; null dava 0 e HTTP200. Gli altri otto controlli, compresi peer/docente403, passavano: nessun bypass ACL dimostrato. Questo limita la precedente attestazione del contratto science; la storia della317 rimane invariata, con questa smentita successiva esplicita.
+
+S00 ha aggiunto una regressione nella factory reale con cookie HttpOnly e due revisioni: RED200 anziché422 in2,95s. Correzione di una riga, _reference(revision_id) prima del read in compare. Il read opzionale degli altri consumer rimane previsto; nessun nuovo parser o storage. Tutti i6HTTP science passano in22,66s, inclusi null/vuoto/numero rifiutati, identità e risultati originali/correnti conservati, sconosciuto404, chiave assente422 e peer403. Log indipendente e RED/GREEN S00 conservati in evidence/study-composition. La modifica è nella stessa309; non è ancora nella main o nella preview317 e non chiude il FAIL browser locale309.
+
+### NEXT PRIORITY TASKS — contratto scientifico corretto nel candidato
+
+1. **P0 verifica309:** primo passo leggere il browser strumentato nella CI della head effettiva; dipendenze runner originale, fixture reale e manifest corrente; accettazione percorso completo e diagnosi senza timeout indeboliti; evidenza eventi, risposte, sourceSHA e FAIL precedenti.
+2. **P0 integrazione della correzione:** primo passo pubblicare la nuova head nella stessa309 e attendere i7required; dipendenze review e main aggiornata; accettazione merge ordinario e postCI, null sempre422; evidenza SHA, tree, test e ricevuta terminale.
+3. **P1 convergenza consumer:** primo passo chiudere316 soltanto dopo309 realmente integrata e riallineare325/315/313; dipendenze installer e reader esatti; accettazione nessuna doppia autorità o fonte obsoleta; evidenza UI, HTTP e CI del merge tree.
+4. **P1 Studio e risorse locali:** primo passo verificare capacità host e comporre311/318/319/322 in una finestra isolata; dipendenze consenso, CAS e serializer; accettazione ultimo segmento, revoca e round-trip su nuovo store; evidenza prove reali e licenze.
+5. **P0 quattro corsi e remoto:** primo passo U1-01 consegnabile e backend Ardesia autorizzato; dipendenze revisione umana, identità, storage e restore; accettazione progressiva dei200obiettivi e percorso remoto docente-studente; evidenza ricevute/versioni approvate, oggi ancora0/200.

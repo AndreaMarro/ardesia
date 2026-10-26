@@ -115,3 +115,8 @@ I3REDsessioni e13REDcache sono stati corretti; fullWeb521 ebuild PASS, poi secon
 ### 309: FAILbrowser da conservare e nuovaCI da leggere
 
 Fonte ae71864: buildPASS, browser5check poi timeoutEsegui modello, una solaPOSTdiagnostica+GET200/zeroJSerror. Controprova successivaFAILprima avviofixture20s, browserNON_RUN; host8GBswap osservato,causaNONPROVATA. Stopheavy locali, nessun timeoutalzato oetichettaflaky. Runneroriginale ora cattura eventiDOM e azionirete suFAIL; jobWebCI esistente esegueS06+science confactoryreale, manifestbytecorrenti/HEADpulita. Artefatti inallowlist per nonpubblicareSQLite/token inOOM. Prima leggi nuovahead/CI/prove:309nonèintegrata,316nonchiudereancora.317rimaneMERGED/CIpostverde/805HTTPSprivati verificati.
+
+
+### Finding B-05 sulla main317, correzione nel candidato309
+
+ASTRA B/A hanno verificato che compare scientifico accettava revisionId:null e usava la versione corrente. S00 ha riprodotto RED nella factory reale e corretto la validazione prima del read;6HTTP PASS, due revisioni con risultati distinti e ACL conservati. Il read opzionale rimane previsto per i suoi consumer. Prove in science-null-{red,green}.log.gz e astra-b-science-null-e95a80b.json. Non dichiarare questa correzione già integrata o distribuita: attendere la nuova head309 e i suoi gate. Il FAIL browser locale resta aperto e i5task dell'ultima RUNLOG restano prioritari.
