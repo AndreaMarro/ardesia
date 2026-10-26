@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "meaning": "Observed registry; proposed roles are not proof that all chats have started. No orchestrator or authority for product identity.",
+  "rendezvous": "https://github.com/AndreaMarro/ardesia/pull/306",
+  "streams": [
+    {
+      "id": "S00",
+      "title": "Regia, integrazione e rilascio",
+      "who": "Continuazione della sessione A attuale, non una nuova A concorrente",
+      "own": "handoffs/swarm-v2/S00/**; manifest di release, root lockfile, CI e collegamenti di composizione non delegati. RUNLOG/NEXT hanno un solo writer: S00.",
+      "ui": "release, registro operativo e collegamento delle superfici",
+      "domain": "integrazione e confini trasversali",
+      "status": "START",
+      "threadId": "01a16d5c-cbb6-7363-ac7e-638ccd6c324d",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed"
+    },
+    {
+      "id": "S01",
+      "title": "Strumenti STEM, simulazioni e capacità Kirchhoff",
+      "who": "Continuazione della sessione B attuale, dopo salvaguardia del lavoro in corso",
+      "own": "Nuovi moduli science-library, adapter/renderer assegnati, test e ricette. I modelli electrical.py, waves.py, kinematics.py e relativi consumer ancora in #306 non si modificano in concorrenza con A.",
+      "ui": "apps/web/src/features/science-library/** (namespace proposto)",
+      "domain": "packages/engine/lessonos/study/science_library/** (namespace proposto)",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": "01a174e8-4cba-71b3-97ab-f0f9511aa4f3",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "knownPriorThread": "01a174e8-4cba-71b3-97ab-f0f9511aa4f3",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404868980"
+    },
+    {
+      "id": "S02",
+      "title": "Direzione visiva, UI/UX e sistema di componenti",
+      "who": "Nuova sessione",
+      "own": "Sistema visuale e navigazione comune; il root App.tsx rimane S00 fino a delega esplicita. Componenti di feature restano ai loro owner, che adottano token e contratti del sistema.",
+      "ui": "apps/web/src/features/product-shell/** e componenti/tokens esistenti esplicitamente assegnati",
+      "domain": "Nessun nuovo dominio, login, dati studente o grader",
+      "status": "DRAFT_PR_TESTING",
+      "threadId": "01a1755b-e268-7302-aabd-c8956cfb795e",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404938748",
+      "pr": 308
+    },
+    {
+      "id": "S03",
+      "title": "Creazione corsi, lezioni e pubblicazione editoriale",
+      "who": "Nuova sessione",
+      "own": "Authoring e composizione, non banca matematica o memoria. Consuma CoursePack/versioni/review esistenti; modifiche schema tramite S10.",
+      "ui": "apps/web/src/features/course-authoring/**",
+      "domain": "packages/engine/lessonos/study/course_authoring/**",
+      "status": "AWAITING_OBSERVED_START",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed"
+    },
+    {
+      "id": "S04",
+      "title": "Banca esercizi, programma MUR e qualità scientifica",
+      "who": "Nuova sessione; riusa il lavoro della C conclusa/ruolo DeepSeek senza riavviarlo",
+      "own": "Pipeline scientifica, inventario e generazione/versionamento; non cambia il gate di approvazione né il core dei tentativi. Fonti private restano private.",
+      "ui": "apps/web/src/features/assessment-quality/**",
+      "domain": "packages/engine/lessonos/study/assessment_quality/** e nuovi contenuti in namespace assegnati",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404909749"
+    },
+    {
+      "id": "S05",
+      "title": "Memoria delle idee, grafi, fonti e diario degli errori",
+      "who": "Nuova sessione",
+      "own": "Proiezioni e retrieval del contesto autorizzato, non un secondo database autorevole né il planner di S06.",
+      "ui": "apps/web/src/features/learning-memory/**",
+      "domain": "packages/engine/lessonos/study/learning_memory/**",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404852487"
+    },
+    {
+      "id": "S06",
+      "title": "Studio autonomo, feedback, ripasso e progressione",
+      "who": "Nuova sessione",
+      "own": "Percorso autonomo/planner e spiegazione della scelta, usando tentativi/review/memoria Core. S05 possiede le proiezioni di memoria; S04 i contenuti; S03 l’authoring.",
+      "ui": "apps/web/src/features/independent-study/**",
+      "domain": "packages/engine/lessonos/study/independent_study/**",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404828130"
+    },
+    {
+      "id": "S07",
+      "title": "Aula condivisa, scrittura simultanea e conflitti",
+      "who": "Nuova sessione",
+      "own": "Operazioni di collaborazione/ink/awareness. Room.tsx, store e journal esistenti vanno modificati solo con file ownership assegnata; S08 possiede i media.",
+      "ui": "apps/studio/src/collaboration-v2/**",
+      "domain": "Adapter del trasporto collaborativo con autenticazione del Core; nuovo provider solo se necessario e approvato",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404843262"
+    },
+    {
+      "id": "S08",
+      "title": "Videoteca, registrazioni, trascrizioni e replay contestuale",
+      "who": "Nuova sessione",
+      "own": "Catalogo e fruizione media, capitoli/ancore/trascrizioni. Consenso/sessioni/revoca rimangono autorità Core; server e storage sono S10.",
+      "ui": "apps/web/src/features/lesson-media/**",
+      "domain": "packages/engine/lessonos/study/lesson_media/** e adapter di elaborazione media",
+      "status": "CHAT_OBSERVED_NO_START_CHECKPOINT",
+      "threadId": "01a1755d-e529-7741-b8ce-18e66602e23b",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed"
+    },
+    {
+      "id": "S09",
+      "title": "Gestionale corsi, persone, calendario ed economia",
+      "who": "Nuova sessione",
+      "own": "Workflow amministrativi e UI tutor; non nuova contabilità, auth o servizio pagamenti parallelo.",
+      "ui": "apps/web/src/features/tutor-operations/**",
+      "domain": "Estensioni di editions/groups/attendance/calendar/manual_payments già canoniche tramite delega file",
+      "status": "DRAFT_PR_TESTING",
+      "threadId": "01a1755f-19e7-73e3-8492-eb6d0137a861",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404862258",
+      "pr": 307
+    },
+    {
+      "id": "S10",
+      "title": "Backend remoto, identità, storage, API e Vercel",
+      "who": "Nuova sessione",
+      "own": "S10 possiede progettazione/implementazione API/auth/migrazioni; S00 integra e distribuisce. Config comuni e segreti si cambiano solo attraverso canale autorizzato, senza valori nei report.",
+      "ui": "Adapter API/sessione condivisi assegnati, diagnostica operativa protetta",
+      "domain": "services/study-api, migrazioni/database/autorizzazioni e adapter storage, con ownership esplicita",
+      "status": "AWAITING_OBSERVED_START",
+      "threadId": null,
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed"
+    },
+    {
+      "id": "S11",
+      "title": "Dati di apprendimento, misure e privacy",
+      "who": "Nuova sessione",
+      "own": "Schema degli eventi didattici e dashboard, non fonte dei voti o profilo opaco. S10 valida ingest/auth/retention; S05 possiede memoria individuale.",
+      "ui": "apps/web/src/features/learning-insights/**",
+      "domain": "packages/engine/lessonos/study/learning_insights/** e proiezioni analitiche minimizzate",
+      "status": "IMPLEMENTING_OBSERVED",
+      "threadId": "01a1755f-d475-7c72-927c-c3b97436aa61",
+      "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+      "startEvidence": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404863462"
+    }
+  ],
+  "observedAt": "2026-10-25T23:53:25.882088+00:00"
+}
