@@ -4,7 +4,7 @@ import type {GraphView,MemoryPacket} from './model';
 const styles:StylesheetJson=[
  {selector:'node',style:{label:'data(label)',width:124,height:48,shape:'round-rectangle',
   'background-color':'#e8ece3','border-color':'#355d4e','border-width':1,'font-size':13,
-  color:'#202b2b','text-valign':'center','text-halign':'center','text-wrap':'wrap','text-max-width':112}},
+  color:'#202b2b','text-valign':'center','text-halign':'center','text-wrap':'wrap','text-max-width':'112px'}},
  {selector:'node[kind="source"]',style:{'background-color':'#fff1d8','border-color':'#986a32'}},
  {selector:'node[kind="concept"]',style:{shape:'ellipse','background-color':'#e5eaf5','border-color':'#64769b'}},
  {selector:'node[kind="review"],node[kind="observation"]',style:{'background-color':'#f4e8e2','border-color':'#a44932'}},
@@ -53,7 +53,7 @@ export function focusNeighborhood(cy:Core,id:string|null):string[] {
 
 export function arrangeGraph(cy:Core,layout:GraphView['layout']) {
  cy.layout({name:layout,animate:false,padding:32,spacingFactor:1.4,
-  boundingBox:cy.headless()?{x1:0,y1:0,w:900,h:620}:undefined}).run();
+  boundingBox:!cy.container()?{x1:0,y1:0,w:900,h:620}:undefined}).run();
 }
 
 export function restoreGraphView(cy:Core,view:GraphView) {
