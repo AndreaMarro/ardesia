@@ -292,3 +292,21 @@ chiude direttamente window.mathVirtualKeyboard.hide() quando visibile, API
 pubblica della stessa tastiera condivisa. Test aggiornato a verificare il
 controller e assenza di comandi sul mathfield in distruzione. Nessuna nuova
 prova nativa prima di questa correzione e nessun PASS runtime anticipato.
+
+## 26 ottobre 2026 — cleanup nativo verificato e ultimo hover visuale
+
+Dopo release S08/6412811391, ps analizzato senza processi pesanti; presa in
+306/6412863321. Native15 su prodotto21c8462, test/runner38d5540: EXIT0,4controlli
+PASS e zero errori inattesi. Controller keyboard false e plate fuori viewport
+dopo chiusura, poi remount/close. Bounds e hit-test prima e sopra la tastiera
+verificati. In sequenza, host16PASS/3file/13.11s, flag30s invariati. Rilascio
+306/6412895833 dopo completion e porta55140CLOSED. Nessun altro heavy in coda.
+
+Ispezione screenshot15 ha poi rilevato un ultimo difetto solo visuale: il
+hover generico st-card imposta m-fill con alpha0.05, lasciando trasparire titolo
+e toolbar del canvas nel pannello. Bounds e hit-test sono validi ma non provano
+opacità/readability. Delta9ba4a64 imposta paper opaco sul solo hover composer;
+runner forza hover e controlla background computato, oltre alle prove già
+esistenti. Nessun nuovo host/fullsuite necessario per questo CSS. Una sola
+controprova/screenshot pending dopo release S07, il cui browser è osservato
+attivo; nessuna sovrapposizione richiesta o processo altrui toccato.
