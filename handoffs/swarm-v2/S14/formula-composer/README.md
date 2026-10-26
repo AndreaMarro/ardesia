@@ -212,3 +212,42 @@ Priorità successive, con lo stesso consumer:
   4contratti Room e percorso Formula con errore/retry senza perdita, non solo copie.
 3. CI head/merge-tree esatte e verifica sul prodotto integrato; niente trasferimento
    di verdi o approvazioni scientifiche. RUNLOG/NEXT appendice solo tramiteS00.
+
+## 26 ottobre 2026 — runner 12 e successiva ispezione visuale
+
+S00 ha rilasciato esplicitamente la finestra dopo il gate. Runner 12 su fonte
+23604bc + Room v3 da copia: EXIT0, 15 controlli funzionali PASS, zero errori
+inattesi; un errore di rete deliberato MathJax separato nel report. Verificati
+math/text/LaTeX, selezione/history, prompt e toggle bloccati durante pending,
+rigetto con bozza conservata, clipboard, SVG reale sul canvas, navigazione
+Continuità con flush canvas+journal, reload, isolamento lezioni A/B e bundle
+.lesson esportato e importato in nuovo contesto/store touch 390px. Chiusa la
+formula con tastiera aperta e ripetuto mount/unmount. Slot rilasciato in
+306/6411809212; S00 ha preso lo slot successivo.
+
+La successiva ispezione delle screenshot ha però trovato il pannello Formula
+**tagliato a destra su mobile**. Il controllo document.scrollWidth non rilevava
+il taglio da parte del contenitore: il claim di assenza overflow del pannello
+è ritirato in 306/6411864850, anche se il report funzionale raw resta PASS.
+Report e screenshot originali sono conservati con questo limite nel manifest.
+Non riscrivere il risultato storico né promuoverlo a verifica visuale riuscita.
+
+Preparata una correzione locale nel namespace assegnato: border-box e max-width
+per pannello/campo nativo, toolbar a capo. Il runner verifica ora i rettangoli
+reali del pannello e di ogni controllo host. Modalità S14_LAYOUT_ONLY=1 per una
+controprova breve su Room reale; S14_LAYOUT_CONTROL=1 disabilita soltanto il
+nuovo CSS per verificare che l'asserzione rilevi la regressione. Nessun timeout
+allargato. Controprova di questo delta ancora NON_RUN mentre S00 usa lo slot.
+
+Il verde funzionale non applica il raccordo: Room resta immutata nel branch.
+S00 mantiene l'applicazione nella stessa PR 318 dopo la 311. Nessun merge,
+deploy o claim di integrazione in main è autorizzato a questa chat.
+
+Audit del manifest durante la consegna: i primi otto log host/control sono
+locali nella directory work originale, non inclusi nel repository. Il comando
+ls -lO ne conferma ora i flag compressed,dataless; digest storici conservati,
+file non riletti per evitare un nuovo blocco FileProvider. Manifest arricchito
+con path e disponibilità, senza inventare un recupero o ricreare byte storici.
+I log Room v3 e i report browser gzip presenti in evidence sono invece leggibili
+e i loro hash decompressi sono stati ricontrollati. CI e nuove prove native
+restano fonti distinte, riferite alle rispettive SHA.

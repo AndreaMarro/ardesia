@@ -42,3 +42,25 @@ Il revisore ha lasciato esplicitamente non verificati: desktop/mobile,
 accessibilità e focus effettivi, persistenza/round-trip, futura Room S07,
 typecheck/build/CI. Queste attività restano nel piano di verifica; nessun
 rilievo minore differito e nessun rilievo P2 respinto.
+
+## Addendum 26 ottobre 2026 — v3 e prova nativa
+
+Le istruzioni v2 sopra sono storiche: la candidata attuale è esclusivamente
+`room-insert-math-v3.patch`. La v3 aggiunge chiusura del menu mobile all'apertura
+di Formula; 4 RED con Room originale → 4 PASS su copie candidate. Sorgente
+Room non applicata, integrazione riservata da S00 nella stessa PR dopo la 311.
+
+Runner 12 su fonte 23604bc + Room v3 da copia ha verificato 15 comportamenti
+nativi con EXIT0 e zero errori inattesi, incluso export/import in store nuovo.
+La lettura visuale ha però trovato clipping del pannello a 390px: il controllo
+sul solo document.scrollWidth era insufficiente. Il PASS raw rimane storico
+con questo limite; nessuna certificazione visuale di mobile al checkpoint 12.
+Il delta 5142865 corregge il contenimento CSS e aggiunge rettangoli di pannello,
+campo e controlli. Controprova breve e review del solo delta ancora pendenti.
+
+Follow-up review statica indipendente su 23604bc→5142865: nessun finding nel
+CSS/import, controllo negativo limita la disattivazione al solo CSS nuovo.
+Il revisore ha segnalato il limite delle asserzioni solo orizzontali prima
+della tastiera; estese in d269cb8 a top/bottom e verifica del pannello sopra
+la tastiera aperta nella sola viewport 390×844. Nessuna prova attribuita al
+revisore, nessuna certificazione di ogni altezza/formula o dello shadow DOM.

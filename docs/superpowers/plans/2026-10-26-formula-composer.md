@@ -37,7 +37,7 @@ inserimento riuscito; reject indica failure. Callback invariata.
 - [x] Attivare insert/executeCommand/canUndo/canRedo nativi e cleanup listener.
 - [x] Verificare GREEN mirato e produrre patch puntuale Room con controprova.
 - [ ] Verificare typecheck, build, browser reale e round-trip con writer consumer.
-- [ ] Review separata, commit, draft PR, handoff e checkpoint GitHub306.
+- [x] Review separata, commit, draft PR, handoff e checkpoint GitHub306.
 
 ## Ledger
 
@@ -46,3 +46,10 @@ risolte nel perimetro autorizzato. S00 ha delegato il composer, preservando Room
 S07. Il raccordo deve essere applicato dal writer prima di dichiarare DONE.
 
 2026-10-26: review indipendente3P2 accettati; patch consumer su copie3RED→3GREEN. Browser inizialeFAIL conservato; claim modeLaTeX rettificato dopo rilettura del risultato. Aggiunto complete prima dei template, host15PASS. Raccordo sorgenteRoom non applicato; native controprova pendente.
+
+2026-10-26: patch v3 con chiusura menu mobile; 4 controlli consumer RED→GREEN
+su copie, 15 host PASS. Runner 12: 15 comportamenti nativi PASS, round-trip
+reale incluso; ispezione screenshot trova pannello mobile tagliato, claim
+scrollWidth insufficiente ritirato. Delta 5142865 nel namespace composer;
+controprova layout pendente. Review/commit/draft PR318/handoff/306 eseguiti;
+integrazione del writer Room e gate sul prodotto consolidato restano aperti.
