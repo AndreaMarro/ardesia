@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import FullCalendar, { useCalendarController, type EventClickInfo } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/react/daygrid";
 import timeGridPlugin from "@fullcalendar/react/timegrid";
@@ -25,6 +25,7 @@ function startingDate(items: Appointment[]) {
 /** A read-only projection: calendar state never changes Core dates or attendance. */
 export default function TutorCalendar({ editions, tutorId }: { editions: Edition[]; tutorId: string }) {
   const controller = useCalendarController();
+  const fieldId = useId();
   const [filter, setFilter] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
   const [initialView] = useState(() => window.matchMedia("(max-width: 640px)").matches ? "listWeek" : "dayGridMonth");
@@ -43,12 +44,12 @@ export default function TutorCalendar({ editions, tutorId }: { editions: Edition
     <p className="section-meta">Agenda del docente · Europe/Rome</p>
     <p>Solo incontri delle tue edizioni caricate, comprese le date passate. I dati si rileggono al caricamento della pagina.</p>
     <div className="tutor-calendar-filters">
-      <label>Edizioni nel calendario<select value={filter} onChange={(event) => {
+      <div><label htmlFor={`${fieldId}-edition`}>Edizioni nel calendario</label><select id={`${fieldId}-edition`} value={filter} onChange={(event) => {
         const id = event.target.value; setFilter(id); setSelected(null);
         const date = startingDate(source.appointments.filter((item) => !id || item.edition.id === id));
         if (date) controller.gotoDate(date);
-      }}><option value="">Tutte le mie edizioni</option>{choices.map((edition) => <option key={edition.id} value={edition.id}>{courseTitle(edition)} · {edition.id.slice(0, 8)}</option>)}</select></label>
-      <label>Vai alla data<input type="date" onChange={(event) => { if (event.target.value) controller.gotoDate(event.target.value); }} /></label>
+      }}><option value="">Tutte le mie edizioni</option>{choices.map((edition) => <option key={edition.id} value={edition.id}>{courseTitle(edition)} · {edition.id.slice(0, 8)}</option>)}</select></div>
+      <div><label htmlFor={`${fieldId}-date`}>Vai alla data</label><input id={`${fieldId}-date`} type="date" onChange={(event) => { if (event.target.value) controller.gotoDate(event.target.value); }} /></div>
     </div>
     <div className="tutor-calendar-toolbar" role="group" aria-label="Navigazione calendario">
       <div><button type="button" aria-label="Periodo precedente" onClick={() => controller.prev()}>←</button><button type="button" onClick={() => controller.today()}>Oggi</button><button type="button" aria-label="Periodo successivo" onClick={() => controller.next()}>→</button></div>

@@ -159,3 +159,9 @@ S15 ha proposto icalendar7.3.0 test-only in307/6405772410; risposta effettiva
 6405917529: DEFER al batch interoperabilitàICS perché questo renderer non cambia
 serializzatore/receipt. Conservare byte/hash storici; oracolo e conformitàfisica
 CRLF/folding distinti, nessuna adozione già asserita.
+
+26/10/2026, fonte b91ac19c: browser run6 FAIL sulla ricerca label esatta del
+filtro. Eventi v7 presenti (prima asserzione2PASS); console/pageerror vuoti.
+Correzione consumer: associazioni label/for esplicite con useId, evitando che
+le opzioni del select entrino nel testo della label implicita. Test e browser
+da ripetere; non aumento timeout.

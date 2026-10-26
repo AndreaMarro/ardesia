@@ -1,6 +1,6 @@
 .tutor-calendar { margin: 16px 0; padding: 20px 0; border-top: 1px solid var(--line); min-width: 0; }
 .tutor-calendar-filters { display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
-.tutor-calendar-filters label { display: grid; gap: 4px; font-size: 13px; max-width: 100%; }
+.tutor-calendar-filters > div { display: grid; gap: 4px; font-size: 13px; max-width: 100%; }
 .tutor-calendar-filters input, .tutor-calendar-filters select { min-height: 44px; max-width: 100%; }
 .tutor-calendar-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; }
 .tutor-calendar-toolbar h4 { margin: 0; font-size: 19px; }
@@ -20,6 +20,6 @@
 .tutor-calendar-licenses pre { max-height: 320px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 @media (max-width: 640px) {
   .tutor-calendar-toolbar h4 { order: -1; width: 100%; }
-  .tutor-calendar-filters label { width: 100%; }
+  .tutor-calendar-filters > div { width: 100%; }
   .tutor-calendar-grid:has(.tutor-calendar-view-timeGridWeek) > div { min-width: 620px; }
 }
