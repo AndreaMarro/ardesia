@@ -55,7 +55,7 @@
     }
   },
   "verification": {
-    "utilityTestsPassed": 7,
+    "utilityTestsPassed": 8,
     "rehearsalRoomTestsPassed": 4,
     "nativeE2E": {
       "status": "PASS",
@@ -63,7 +63,8 @@
       "browser": "Chromium 148.0.7778.96",
       "source": "handoffs/swarm-v2/S14/native-proof/native-result.json",
       "composition": "S07 0d809591 + exact Room/helper hashes, not a main commit",
-      "scope": "local synthetic real SDK/WorkspaceStore/bundle; keyboard opener only, no remote ACL"
+      "scope": "local synthetic real SDK/WorkspaceStore/bundle; keyboard opener only, no remote ACL",
+      "notRerunForBoundaryFix": true
     },
     "composedTypecheck": "EXIT0",
     "postMerge": "NOT_RUN"
@@ -79,5 +80,12 @@
     "status": "CORRECTED_PARENT_RED_GREEN_AND_REVIEWED_BY_INSPECTION",
     "source": "handoffs/swarm-v2/S14/REVIEW.md",
     "reviewerTestsRun": false
+  },
+  "boundaryFix": {
+    "evidence": "handoffs/swarm-v2/S14/boundary-fix.json",
+    "sourceBaseline": "62e1747d78df2dae17e201c7b87c06ac5fcd6332",
+    "utilityTestsPassed": 8,
+    "deliveryTypecheckExit": 0,
+    "consumerComposition": "NOT_RUN_FOR_THIS_FIX"
   }
 }

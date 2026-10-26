@@ -12,14 +12,14 @@ function invalid(): never {
   throw new Error("Raccolta non valida o troppo grande. Usa fino a 100 schemi e 2000 elementi (2 MiB).")
 }
 
-function freeze(value: unknown, depth = 0): void {
+function inspectTree(value: unknown, depth = 0, freezeNodes = false): void {
   if (depth > 80) invalid()
   if (value && typeof value === "object") {
     if (Object.hasOwn(value, "ardesiaInkV1")) {
       throw new Error("I tratti collaborativi restano nel proprio spazio: non possono essere copiati nella raccolta della lezione.")
     }
-    for (const child of Object.values(value)) freeze(child, depth + 1)
-    Object.freeze(value)
+    for (const child of Object.values(value)) inspectTree(child, depth + 1, freezeNodes)
+    if (freezeNodes) Object.freeze(value)
   }
 }
 
@@ -46,10 +46,13 @@ export function snapshotLibraryItems(value: unknown): LibraryItems {
       }
     }
   }
+  // Inspect the original tree before JSON can erase own undefined markers.
+  // Only the cloned snapshot is frozen; the SDK retains ownership of its input.
+  inspectTree(value)
   const json = JSON.stringify(value)
   if (new TextEncoder().encode(json).length > LIBRARY_LIMITS.bytes) invalid()
   const snapshot: unknown = JSON.parse(json)
-  freeze(snapshot)
+  inspectTree(snapshot, 0, true)
   return snapshot as LibraryItems
 }
 

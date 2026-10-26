@@ -52,4 +52,17 @@ describe("lesson library snapshot", () => {
     const serialized = sceneWithLibrary(JSON.stringify({ elements: [] }), [])
     expect(JSON.parse(serialized).libraryItems).toEqual([])
   })
+
+  it("rejects own nested projection markers before JSON can erase them without mutating the SDK input", () => {
+    for (const marker of [undefined, null, false]) {
+      const copied = { ...item().elements[0], customData: { ardesiaInkV1: marker } }
+      const input = [{ ...item(), elements: [{ ...item().elements[0], customData: { copied } }] }]
+      expect(Object.hasOwn(copied.customData, "ardesiaInkV1")).toBe(true)
+      expect(() => snapshotLibraryItems(input)).toThrow(/tratti collaborativi/)
+      expect(Object.hasOwn(copied.customData, "ardesiaInkV1")).toBe(true)
+      expect(copied.customData.ardesiaInkV1).toBe(marker)
+      expect(Object.isFrozen(input)).toBe(false)
+      expect(Object.isFrozen(copied)).toBe(false)
+    }
+  })
 })

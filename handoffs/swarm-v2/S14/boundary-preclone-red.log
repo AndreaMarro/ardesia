@@ -1,0 +1,33 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-s14-boundary-fix-20261026/apps/studio
+
+ ❯ src/whiteboard-library/libraryScene.test.ts (6 tests | 1 failed) 191ms
+     × rejects own nested projection markers before JSON can erase them without mutating the SDK input 65ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/libraryScene.test.ts > lesson library snapshot > rejects own nested projection markers before JSON can erase them without mutating the SDK input
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ src/whiteboard-library/libraryScene.test.ts:61:49
+     59|       const input = [{ ...item(), elements: [{ ...item().elements[0], …
+     60|       expect(Object.hasOwn(copied.customData, "ardesiaInkV1")).toBe(tr…
+     61|       expect(() => snapshotLibraryItems(input)).toThrow(/tratti collab…
+       |                                                 ^
+     62|       expect(Object.hasOwn(copied.customData, "ardesiaInkV1")).toBe(tr…
+     63|       expect(copied.customData.ardesiaInkV1).toBe(marker)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  19:23:45
+   Duration  2.17s (transform 600ms, setup 519ms, import 296ms, tests 191ms, environment 0ms)
+
