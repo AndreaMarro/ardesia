@@ -92,3 +92,8 @@ GrantTTL1800 revocato; link vecchio e client fresco302→SSO, file0600 eliminato
 ## Correzione visuale e diagnostico successivi
 
 Review indipendente trovaP2 banner sovrapposto, RED reale su build4; fixCSS in corso nella stessa314, nessun GREEN anticipato.4viewport sono Aula, Studio solo1440. Gate locale congelato2311/2FAIL, diverso da CIStudio2313PASS/5skip. Commit durante test aveva invalidato la SHA compilata; controprova1RED e52GREEN aHEADferma. MathJax15721ms/limite15000 non spiegato definitivamente dal solo rerun. Secondo gate conserva JSON originale, script/soglie immutati; nessun ulteriore commit durante esecuzione. Leggere nuovi report prima di riferire un esito finale. Vecchi manifest output dataless non vengono letti/cancellati per costruire il pacchetto fresco.
+
+
+## 26 ottobre2026 — esito successivo verificato
+
+La decisione umana è stata fornita e il ciclo concluso: gate congelato2314PASS/0FAIL incluso replay, HEAD573/script invariati; raw e receipt in evidence/approved-gate.314 MERGED ordinariamente su a00f2f40091aecf69e58ebaba42cf70d748e4066, treeab509d3 identico al merge-tree, CIpostmerge40319487576SUCCESS. Vecchi/tmp assenti al resume: precedente processo interrotto senza esito, recuperata stessaHEAD da remoto in percorso persistente e verifica rieseguita, nessun PASS inventato. Produzione invariata e previewfonte158/800HTTPS distinta;0/200 e limiti remoti/licenze rimangono. La nota BLOCKED_HUMAN_DECISION precedente è snapshot storico, non stato attuale. Prossimo raccordo317 in worktreescience, ancoraNON_IMPLEMENTATO nellaUI.

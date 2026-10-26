@@ -77,3 +77,10 @@ Nuova preview privata https://ardesia-fisica-preview-bjr7xic5r-andreas-projects-
 ### S00 — ciclo mirato autorizzato direttamente dal proprietario
 
 26 ottobre2026: autorizzato «senza indebolire i gate». Misura reale del confronto Buffer2,27MB:9,085s/helperstrutturale e0,132ms/native, build36–84ms; entrambi rifiutano4corruzioni di byte. Applicata patch1riga equivalente, gate/pool/timeout invariati. Non riproporre la domanda già autorizzata né cancellare i2FAIL storici. Eseguire mirato/gate sulla nuovaHEADferma, poi CI/merge/postCI dellaSTESSA314. Previewfonte15825e70 resta800HTTPS e non cambia per soli test. Report e script in handoffs/swarm-v2/S00; successivi317/309/311/318/319 e quattro corsi0/200 restano obiettivi, con5task ultimaRUNLOG.
+
+
+## S00 — esito terminale314 verificato,26 ottobre2026
+
+314 MERGED su maina00f2f40091aecf69e58ebaba42cf70d748e4066, treeab509d3 uguale al merge-tree, CIpostmerge40319487576SUCCESS. Gate congelato2314/0 con replay reale, sorgente573ee34d eHEAD/script invariati. Il blocco umano e i2FAIL precedenti restano storici: autorizzazione diretta, misura costoMatcher e patch byte-equivalente verificata li superano senza cambiare soglie. Vecchi/tmp scomparsi: esecuzione lì interrotta senza esito, recupero persistente ~/Developer/ardesia-s00-20261026/repo e log evidence/approved-gate. Non rifare la314 o chiedere l'autorizzazione già data.
+
+Prossimo incarico concreto nella STESSA317, non nuovaPR: checkoutscience S00 da2e9cea03 +main314,4test URI esattiRED/GREEN; UI/API/typedreader NONancora composti. Prima raccordare ownership Materials313/SourceViewer309-315/app.py312, già contattati. Conservare modelliS01 e vecchieprove senza trasferirle alla nuovaSHA. Preview privata dpl_G2Tqz6efx2PMHv3n9B71VZVYS3wy fonte15825e70/800HTTPS distinta daHEADprova; produzione invariata. Core remoto503, Studio soltanto interna e quattro corsi0/200. Cinque task prioritizzati con dipendenze/accettazione/evidenza nell'ultimaRUNLOG; memoria append-only.
