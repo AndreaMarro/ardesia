@@ -68,3 +68,15 @@ test("IME confirmation and composition arrows do not navigate away from the sear
   fireEvent.submit(screen.getByRole("search"));
   expect(navigate).toHaveBeenCalledWith("today");
 });
+
+test("mounted-route availability controls both navigation and command results", () => {
+  const navigate=vi.fn();
+  render(<Shell me={me} view="today" enabledViews={["today", "independent-study"]} onView={navigate} onLogout={() => {}}>Contenuto</Shell>);
+  const nav=screen.getByRole("navigation",{name:"Navigazione principale"});
+  expect(within(nav).getAllByRole("button")).toHaveLength(2);
+  expect(within(nav).queryByRole("button",{name:"Lezione"})).toBeNull();
+  fireEvent.click(screen.getByRole("button",{name:/Cerca nello spazio/}));
+  fireEvent.change(screen.getByRole("searchbox"),{target:{value:"autonomo"}});
+  fireEvent.click(within(screen.getByRole("dialog")).getByRole("button",{name:/Studio autonomo/}));
+  expect(navigate).toHaveBeenCalledWith("independent-study");
+});

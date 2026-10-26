@@ -8,9 +8,11 @@ import "./product-shell.css";
 export type ShellProps = {
   me: StudyMe; view: View; onView: (view: View) => void; onLogout: () => void; children: ReactNode;
   editions?: Edition[]; editionId?: string | null; onEdition?: (id: string) => void; editionPagination?: EditionPagination;
+  /** Availability supplied by the root after mounting a route; never an ACL. */
+  enabledViews?: readonly View[];
 };
-export function ProductShell({ me, view, onView, onLogout, children, editions = [], editionId, onEdition, editionPagination }: ShellProps) {
-  const tutor = me.role === "teacher", items = destinations(tutor);
+export function ProductShell({ me, view, onView, onLogout, children, editions = [], editionId, onEdition, editionPagination, enabledViews }: ShellProps) {
+  const tutor = me.role === "teacher", items = destinations(tutor, enabledViews);
   const current = items.find(item => item.id === view), edition = editions.find(item => item.id === editionId);
   const previousView = useRef(view);
   const [offline, setOffline] = useState(() => !navigator.onLine);
