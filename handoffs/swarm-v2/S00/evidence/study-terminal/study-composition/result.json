@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "sourceCommit": "d7dc3917d695c80d027c91df21577e06ec649232",
+  "sourceFiles": [
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "420ea73565c800704adaa98bf8073e5ae880e2fdece359d511572562ff6ea71b"
+    },
+    {
+      "path": "services/study-api/study_api/app.py",
+      "sha256": "c7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26"
+    },
+    {
+      "path": "apps/web/src/components/SourceViewer.tsx",
+      "sha256": "1f398fdf4720ffee21121993253f3c1dc081ae16e580d4d0308b8b334a015de2"
+    }
+  ],
+  "checks": [
+    "cookie-login-0",
+    "legacy-public-fixture-available",
+    "compiled-app-csp-self",
+    "real-root-navigation",
+    "one-main-landmark",
+    "work-source-projection-before-transfer",
+    "compiled-root-complete-receipts-and-rating",
+    "ordinary-note-created",
+    "machine-resources-hidden-from-materials",
+    "machine-resources-remain-canonical",
+    "edition-switch-has-no-previous-plan",
+    "edition-return-keeps-source",
+    "cookie-login-12",
+    "fresh-session-source-receipts-exact",
+    "compiled-root-touch-undo",
+    "compiled-root-mobile-no-overflow",
+    "cookie-login-16",
+    "teacher-no-phantom-route",
+    "teacher-no-planner-fetch",
+    "teacher-api-remains-forbidden",
+    "unicode-submission-in-canonical-queue",
+    "teacher-editorial-source-has-no-raw-selection",
+    "unicode-fixture-is-actual-source",
+    "actual-pointer-selected-exact-fragment",
+    "unicode-citation-accepted-by-real-core",
+    "cookie-login-25",
+    "not-enrolled-no-phantom-route",
+    "not-enrolled-no-planner-fetch",
+    "not-enrolled-api-remains-forbidden",
+    "cookie-login-29",
+    "peer-plan-forbidden",
+    "root-revocation-clears-private-plan",
+    "root-revocation-clears-local-copy",
+    "zero-browser-errors"
+  ],
+  "errors": [],
+  "totalMilliseconds": 9593,
+  "scope": "Installed PR309 source: compiled actual App + Shell316 + actual create_app, synthetic local database; no remote deployment"
+}

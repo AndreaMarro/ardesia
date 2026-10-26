@@ -128,3 +128,12 @@ Su head309 `9da49952`, job Web40375681120 SUCCESS: 34 controlli Studio autonomo 
 
 
 Nota successiva: B-05 ha anche controprova indipendente ASTRA B9/9 sulla fonte50b07bea; il log RED conteneva valori della fixture sintetica e la relativa riga è ora redatta con ricevuta/digest, senza cambiare l'asserzione. La candidata5513 era già stata pubblicata; nessuna riscrittura della cronologia o credenziale di produzione identificata. Leggere la nuova head effettiva, non trasferire automaticamente il verde9da.
+
+
+## S00 — esito terminale309/316 e base per il seguito,26 ottobre2026
+
+**309 e316 sono MERGED**, main `d7dc3917d695c80d027c91df21577e06ec649232`, treee1f62518 identico al merge tree verificato. CI della head 40378097214 e **post-merge 40379757071 SUCCESS**; report post-merge 34 Study + 19 Science PASS con manifest esatto in `handoffs/swarm-v2/S00/evidence/study-terminal/`. Commenti terminali309#6424498231 e316#6424498826. Non ripartire dai vecchi checkpoint draft o chiedere nuovamente autorizzazione al merge. Il FAIL locale resta non attribuito; l'integrazione non lo trasforma in una diagnosi.
+
+S19 ha la base reale per riallineare la stessa #325; prima leggere la nuova head/CI, poi comporre il consumer e verificare merge/post-merge. Memoria #315, Back/Forward, media #313 e Room 311/318/319/322/324 restano raccordi espliciti, non consumer completati dalla sola ancestry. Backend remoto assente: servono adapter/entrypoint/policy hosted, non soltanto URL; guardie loopback locali da conservare. S10 non identificato, nessun riuso ELAB. Matrice di 60 probe disponibile ma tutti i journey remoti restano BLOCKED (503). lessonRef/fase esatti nella ricevuta sono un gap da riprodurre prima di progettare il contratto additivo.
+
+Produzione dei 5 esempi e preview #317 restano invariate, quattro corsi0/52, 0/57, 0/33, 0/58. Seguire i 5 task dell'ultima RUNLOG con primi passi, dipendenze, accettazione ed evidenze. Storico append-only, un writer S00, smentite datate e provate. Questo addendum va portato nel prossimo consumer integrato; gli esiti terminali sono già pubblicati nelle PR, senza creare una PR solo per documentazione.
