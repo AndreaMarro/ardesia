@@ -1,7 +1,7 @@
 import {useEffect,useId,useRef,useState} from 'react';
 import type {Board} from 'jsxgraph';
 import type {ScienceResult} from './types';
-import noticesUrl from './THIRD_PARTY_NOTICES.txt?url';
+import noticesUrl from './THIRD_PARTY_NOTICES.txt?url&no-inline';
 
 type Line={label:string;xs:number[];ys:number[];dashed?:boolean;categorical?:boolean};
 const fmt=(n:number)=>n.toLocaleString('it-IT',{maximumSignificantDigits:4,useGrouping:false});
