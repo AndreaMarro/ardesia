@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { dateLabel, type Edition, type StudyMe } from "../../api";
+import { type Edition, type StudyMe } from "../../api";
 import { studySessionEpoch } from "../../../../studio/src/study/sessionBoundary";
 import { courseTitle } from "../../course";
 import { ErrorNotice, Loading } from "../../components/Feedback";
@@ -7,7 +7,7 @@ import { euro, registerPath, type Attendance, type Payments } from "../../regist
 import type { AdminEdition } from "../../editionAdmin";
 import { isAttendance, isPayments } from "../../register/validation";
 import { useRegisterRead } from "../../register/useRegisterRead";
-import { agenda, attendanceCsv, download, economics, paymentsCsv } from "./model";
+import { agenda, appointmentLabel, attendanceCsv, download, economics, paymentsCsv } from "./model";
 import { CalendarExport } from "./CalendarExport";
 import "./tutor-operations.css";
 
@@ -26,7 +26,7 @@ function Operations({ me, edition, editions, epoch }: { me: StudyMe; edition: Ed
       <div><h3>Prossimi appuntamenti</h3><p>{schedule.appointments.length} incontri da terminare · {schedule.hours.toLocaleString("it-IT", { maximumFractionDigits: 1 })} ore residue nelle edizioni caricate.</p>
         {schedule.conflicts.length > 0 && <p role="alert">Ci sono appuntamenti sovrapposti: rileggi le date delle edizioni interessate.</p>}
         {schedule.appointments.length ? <ol>{schedule.appointments.slice(0, 4).map((item) => <li key={`${item.edition.id}:${item.ordinal}`}>
-          <strong>{dateLabel(new Date(item.start).toISOString(), item.edition.timezone)}</strong><span>{courseTitle(item.edition)} · incontro {item.ordinal} · {item.edition.timezone}</span>
+          <strong>{appointmentLabel(new Date(item.start).toISOString(), item.edition.timezone)}</strong><span>{courseTitle(item.edition)} · incontro {item.ordinal} · {item.edition.timezone}</span>
         </li>)}</ol> : <p>Nessun appuntamento futuro nelle edizioni caricate.</p>}
       </div>
       <div><h3>Edizione corrente</h3><p>{courseTitle(edition)}</p><p>{edition.sessions.length} incontri · {edition.capacity} posti<br />Prezzo indicativo: {euro(edition.priceMinor)} per persona</p><CalendarExport editionId={edition.id} ready={edition.sessions.length === 4 && edition.state !== "cancelled"} /></div>

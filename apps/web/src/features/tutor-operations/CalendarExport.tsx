@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { studyBlob } from "../../../../studio/src/study/apiClient";
-import { requestKey, studyRequest, dateLabel, StudyApiError } from "../../api";
+import { requestKey, studyRequest, StudyApiError } from "../../api";
 import { ErrorNotice } from "../../components/Feedback";
-import { download } from "./model";
+import { appointmentLabel, download } from "./model";
 
 type CalendarPreview = {
   previewId: string; previewHash: string; sourceVersion: string;
@@ -62,7 +62,7 @@ export function CalendarExport({ editionId, ready }: { editionId: string; ready:
     {error && <ErrorNotice message={error} />}
     {preview && <div className="tutor-calendar-preview" role="region" aria-label="Anteprima calendario">
       <h4>Controlla i quattro appuntamenti</h4><p>Fuso: {preview.plan.timezone}. Il file non invia inviti o promemoria.</p>
-      <ol>{preview.plan.sessions.map((session) => <li key={session.sessionId}>{dateLabel(session.startUtc, preview.plan.timezone)} — {dateLabel(session.endUtc, preview.plan.timezone)}</li>)}</ol>
+      <ol>{preview.plan.sessions.map((session) => <li key={session.sessionId}>{appointmentLabel(session.startUtc, preview.plan.timezone)} — {appointmentLabel(session.endUtc, preview.plan.timezone)}</li>)}</ol>
       <button className="button-primary" disabled={busy} onClick={() => void run(true)}>Conferma e scarica .ics</button>{" "}
       <button disabled={busy} onClick={() => { setPreview(null); keys.current = { preview: requestKey(), confirm: requestKey() }; }}>Chiudi anteprima</button>
     </div>}

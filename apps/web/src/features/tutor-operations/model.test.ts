@@ -1,6 +1,15 @@
 import { expect, test } from "vitest";
-import { agenda, attendanceCsv, csv, economics, paymentsCsv } from "./model";
+import { agenda, appointmentLabel, attendanceCsv, csv, economics, paymentsCsv } from "./model";
 import { attendance, attendanceRecord, edition, emptyPayments, payment } from "../../__tests__/register-fixtures";
+
+test("appointments show clock time, year and the distinct offsets of Rome's repeated hour", () => {
+  const evening = appointmentLabel("2026-11-03T17:00:00Z", "Europe/Rome");
+  expect(evening).toContain("2026"); expect(evening).toContain("18:00");
+  const first = appointmentLabel("2026-10-25T00:30:00Z", "Europe/Rome");
+  const second = appointmentLabel("2026-10-25T01:30:00Z", "Europe/Rome");
+  expect(first).toContain("02:30"); expect(second).toContain("02:30");
+  expect(first).toMatch(/(?:GMT|UTC)\+2/); expect(second).toMatch(/(?:GMT|UTC)\+1/);
+});
 
 test("workload uses real elapsed time across Rome DST and excludes cancelled/other tutors", () => {
   const sessions = [{ start: "2026-10-25T02:30:00+02:00", end: "2026-10-25T03:00:00+01:00" }];

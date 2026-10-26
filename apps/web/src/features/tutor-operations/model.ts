@@ -3,6 +3,14 @@ import type { Attendance, Payments } from "../../register/contracts";
 
 export type Appointment = { edition: Edition; ordinal: number; start: number; end: number };
 
+/** Explicit offsets disambiguate Rome's repeated hour in a confirmation. */
+export function appointmentLabel(instant: string, timezone: string) {
+  return new Intl.DateTimeFormat("it-IT", {
+    year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit",
+    timeZone: timezone, timeZoneName: "shortOffset",
+  }).format(new Date(instant));
+}
+
 /** Only the verified tutor's editions enter this projection. UTC measures duration. */
 export function agenda(editions: Edition[], tutorId: string, now: number) {
   const appointments: Appointment[] = editions

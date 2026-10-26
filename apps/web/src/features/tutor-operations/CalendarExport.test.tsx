@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/re
 import { CalendarExport } from "./CalendarExport";
 import { json } from "../../__tests__/register-fixtures";
 import { download } from "./model";
-vi.mock("./model", () => ({ download: vi.fn() }));
+vi.mock("./model", async () => ({ ...await vi.importActual<typeof import("./model")>("./model"), download: vi.fn() }));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); vi.clearAllMocks(); });
 const preview = () => ({ previewId: "a".repeat(32), previewHash: "b".repeat(64), sourceVersion: "c".repeat(64),
   plan: { editionId: "fluidi", provider: "ics", timezone: "Europe/Rome", sessions: [1, 2, 3, 4].map((ordinal) => ({
@@ -17,6 +17,7 @@ test("calendar requires a visible preview before confirmation and uses the real 
   render(<CalendarExport editionId="fluidi" ready />);
   fireEvent.click(screen.getByRole("button", { name: "Prepara calendario .ics" }));
   await screen.findByRole("region", { name: "Anteprima calendario" });
+  expect(screen.getAllByRole("listitem")[0].textContent).toMatch(/2026.*18:00.*(?:GMT|UTC)\+1.*19:30/);
   expect(fetcher).toHaveBeenCalledTimes(1);
   fireEvent.click(screen.getByRole("button", { name: "Conferma e scarica .ics" }));
   await waitFor(() => expect(download).toHaveBeenCalledTimes(1));
