@@ -1,0 +1,19 @@
+{
+  "synthetic": true,
+  "browserTimezone": "Pacific/Honolulu",
+  "calendarTimezone": "Europe/Rome",
+  "checks": [
+    "Real HTTP dates with both DST occurrences; historical events; browser Honolulu renders Rome; keyboard selection; filter and edition link",
+    "All four donor views, previous/next roundtrip; 1440/820/390 no page overflow; mobile week scrolls inside calendar and touch switches view",
+    "Reload rereads same Core dates; no browser calendar persistence or duplicate store",
+    "Actual401 revocation removes calendar and all tutor data"
+  ],
+  "editionId": "ff3432ddd09944c5861d4d2c18526cdf",
+  "firstOpenMs": 1450,
+  "result": "PASS",
+  "errors": [],
+  "consoleErrors": [],
+  "expectedRejections": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ]
+}

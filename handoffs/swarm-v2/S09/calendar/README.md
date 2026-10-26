@@ -174,3 +174,60 @@ aggiunta regressione con date passate/future e nome accessibile esatto.
 26/10/2026: regressioni dopo label/filtro **3 PASS** in6,64s, calendario
 reale, nessun mock. Il filtro conserva il mese storico quando esistono anche
 incontri futuri. Suite namespace18PASS precedente distinta da questo rerun3.
+
+## Prova conclusa — 26/10/2026, fonte542921b6
+
+Browser reale **PASS**, uscita0, applicazione identica a fe355ff2. Il runner
+`../prove-calendar.mjs` usa un solo Chromium, cookie reali/API originaria e
+SQLite sintetico. Otto incontri di due edizioni dello stesso tutor, date
+configurate via HTTP Core, nessuna risposta di rete mockata. Browser
+Pacific/Honolulu, calendario Europe/Rome: primo incontro attraversa il cambio
+d'ora (02:00 GMT+2 →02:30 GMT+1 in90min), secondo parte02:30 GMT+1. I due eventi
+sono adiacenti, non sovrapposti; le due02:30 distinte sono anche coperte dal test
+reale del componente. Filtro conserva periodo e dettaglio/link corrispondono.
+
+Tastiera: apertura disclosure e attivazione evento con Enter; quattro viste,
+roundtrip prev/next. Screenshot desktop1440 mese, tablet820 settimana,
+mobile390 lista; nessun overflow della pagina. Settimana mobile scorre nella
+propria griglia, tap reale cambia vista. Reload rilegge le date Core; revoca
+reale401 elimina calendario e intero pannello tutor. Errori console/pageerror
+inattesi0; un401 atteso registrato separatamente. Prima apertura1450ms osservata
+in questo scenario, non benchmark generale. `calendar-evidence.json` e tre
+screenshot nel presente percorso; `artifacts.json` conserva byte/SHA256.
+Screenshot desktop/mobile ispezionati visivamente: testo, controlli e dettaglio
+leggibili; titolo lungo compattato nell'evento, completo nel dettaglio.
+
+**REA runtime riuscita distinta dalle azioni:** REA CDP provider versione2,
+HeadlessChrome148.0.7778.96,
+Evidence `ev_02650d0a6c3f6e6218cb871bb7e4f20e34ce8c5eb5dd300131a4d1c7190e61d6`.
+Osservazione passiva della medesima pagina autentica dopo le azioni del runner:
+DOM/accessibility del calendario, filtro e incontri. Non ha eseguito azioni.
+Copertura policy_filtered e attach_limited, nessuna sezione troncata o
+indisponibile; sorgenti/cookie/body/storage intenzionalmente esclusi, attività
+di rete precedente non ricostruita. Zero richieste durante la breve finestra
+non prova assenza generale di rete. Identità dell'artefatto non fornita dal
+provider; fonte attribuita al processo Vite nel worktree e al commit del runner.
+
+Bundle portabile completo `outputs/S09_REA_RUNTIME.bundle.json`:188458byte,
+SHA256 `dc36123df5cd3a10353a5bf2fd2550c5f6cbbd60d9b189e02b983414aa922da0`.
+`rea-runtime-summary.json` conserva limiti e nodi rilevanti. Prima di questa
+osservazione `capture_browser_scenario` è FALLITO con execution_failure e
+cleanup_incomplete, senza Evidence di azioni riuscite: errore integrale in
+`rea-scenario-failure.json`. Non ripetuto a input invariato, nessuna configurazione
+o installazione modificata. Browser esistente poi chiuso dal runner (uscita0),
+nessun Chromium54929 residuo. API61433/Vite61436 terminati dopo verifica comandi
+propri, rilascio effettivo GitHub6406114368. Nessun processo altrui toccato.
+
+Review indipendente source-only successiva alle correzioni: nessun finding
+azionabile; nessun test/browser aggiuntivo eseguito dal reviewer, nessuna firma
+umana. Verifica live separata del primo batch:307MERGED in992d1a0b e
+postmergeCI40251190531SUCCESS. Questo non attesta il nuovo calendario.
+
+### Stato di integrazione al presente checkpoint
+
+Consumer locale e E2E completi; **packaging condiviso ancora PENDING_S00**.
+La patchesatta dei due manifest è pronta e verificata, ma non è autorizzato un
+vendor per evitare la coda del writer. Una revisione locale non sostituisce
+npmci/CI sul commit finale. Nessun rilascio remoto o DONE del batch acquisizione
+finché S00 non integra dipendenze, PR/check e main. L'interfaccia usa solo date
+già presenti nel Core: non sblocca pricing, rinvii, recuperi o disponibilità.
