@@ -44,7 +44,7 @@ test('uncertain save freezes edits and retries byte-identical command/key; confl
  render(<GraphExplorer data={data} onOpen={vi.fn()} onReload={reload}/>);
  fireEvent.change(screen.getByLabelText('Disposizione del grafo'),{target:{value:'grid'}});
  fireEvent.click(screen.getByRole('button',{name:'Salva disposizione'}));await screen.findByRole('alert');
- expect((screen.getByRole('group') as HTMLFieldSetElement).disabled).toBe(true);
+ expect((screen.getByRole('group',{name:'Disposizione e collegamenti'}) as HTMLFieldSetElement).disabled).toBe(true);
  fireEvent.click(screen.getByRole('button',{name:'Riprova salvataggio disposizione'}));
  await screen.findByText(/Un’altra finestra/);expect(requests[0]).toEqual(requests[1]);
  expect((screen.getByRole('button',{name:'Riprova salvataggio disposizione'}) as HTMLButtonElement).disabled).toBe(true);
