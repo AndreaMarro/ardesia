@@ -1,5 +1,6 @@
 /* Keep the panel and native field inside the available canvas width. */
 .st-card.st-composer-panel {
+  z-index: 500;
   box-sizing: border-box;
   max-width: calc(100% - 24px);
 }

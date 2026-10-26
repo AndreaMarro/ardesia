@@ -43,8 +43,13 @@ async function touchBounds(page, keyboardVisible = false) {
       const r = control.getBoundingClientRect()
       return { label: control.getAttribute('aria-label') || control.textContent, left: r.left, right: r.right, top: r.top, bottom: r.bottom }
     })
+    const foreground = [...panel.querySelectorAll('button, math-field, .st-card-title')].map(control => {
+      const r = control.getBoundingClientRect()
+      const hit = document.elementFromPoint((r.left + r.right) / 2, (r.top + r.bottom) / 2)
+      return { label: control.getAttribute('aria-label') || control.textContent, aboveCanvas: hit !== null && panel.contains(hit) }
+    })
     const plate = document.querySelector('.ML__keyboard.is-visible .MLK__plate')?.getBoundingClientRect()
-    return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, viewport: window.innerWidth, height: window.innerHeight, keyboardTop: plate?.top, controls }
+    return { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, viewport: window.innerWidth, height: window.innerHeight, keyboardTop: plate?.top, controls, foreground }
   })
   expect(bounds.top).toBeGreaterThanOrEqual(0)
   expect(bounds.bottom).toBeLessThanOrEqual(bounds.height)
@@ -60,6 +65,7 @@ async function touchBounds(page, keyboardVisible = false) {
     expect(control.left, control.label).toBeGreaterThanOrEqual(bounds.left)
     expect(control.right, control.label).toBeLessThanOrEqual(bounds.right)
   }
+  for (const control of bounds.foreground) expect(control.aboveCanvas, control.label).toBe(true)
   check(`touch composer panel, field and host controls fit at 390x844${keyboardVisible ? ' above open keyboard' : ''}`, bounds)
 }
 async function scene(page, room) {
