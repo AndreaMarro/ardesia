@@ -1,0 +1,22 @@
+{
+  "status": "FAIL",
+  "scope": "Local real consumer + proposed in-memory owner API composition; not merged/deployed",
+  "checks": [
+    "real shell + cookie + no result or JSXGraph before prediction",
+    "keyboard manipulation + canonical collision result + real JSXGraph",
+    "second representation + equivalent table + keyboard zoom",
+    "canonical visible course fluidi-termodinamica",
+    "canonical visible course elettricita-magnetismo",
+    "canonical visible course onde-ottica-radiazioni",
+    "lens canonical rays selected with explicit unequal scales"
+  ],
+  "screenshots": [],
+  "errors": [],
+  "externalRequests": [],
+  "savedRef": {
+    "resourceId": "f8410a5683eb4b6fada9dc5440b3ba48",
+    "revisionId": "d2d998beb3dc4b3e99ea113545bc9576"
+  },
+  "failure": "Error: expect(locator).toHaveValue(expected) failed\n\nLocator: getByLabel('Il tuo ragionamento', { exact: true })\nExpected: \"Ragionamento sintetico S01: controllo segno e scala.\"\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.have.value\" with timeout 5000ms\n  - waiting for getByLabel('Il tuo ragionamento', { exact: true })\n\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toHaveValue (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-s01-science-library-20261026/handoffs/swarm-v2/S01/prove-consumer.cjs:57:69",
+  "finishedAt": "2026-10-26T01:21:29.809Z"
+}

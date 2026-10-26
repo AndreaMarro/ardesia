@@ -1,0 +1,23 @@
+
+ RUN  v4.1.8 /private/tmp/ardesia-s01-science-library-20261026/apps/web
+
+ ❯ src/features/science-library/__tests__/validateResult.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/science-library/__tests__/validateResult.test.ts [ src/features/science-library/__tests__/validateResult.test.ts ]
+Error: Cannot find module '../validateResult' imported from /private/tmp/ardesia-s01-science-library-20261026/apps/web/src/features/science-library/__tests__/validateResult.test.ts
+ ❯ src/features/science-library/__tests__/validateResult.test.ts:2:1
+      1| import {describe,expect,it} from 'vitest';
+      2| import {checkResult} from '../validateResult';
+       | ^
+      3| import fixtures from './fixtures.json';
+      4| import type {Capability} from '../types';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  02:16:39
+   Duration  215ms (transform 46ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

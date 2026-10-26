@@ -1,0 +1,83 @@
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(11,15): error TS2352: Conversion of type '{ schemaVersion: number; referenceScope: string; capabilities: ({ id: string; version: number; implementationSha256: string; title: string; primaryOutput: { label: string; unit: string; }; explanation: string[]; ... 4 more ...; parameters: { ...; }[]; } | { ...; } | { ...; } | { ...; })[]; courses: { ...; }[]; }' to type 'Catalog' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'capabilities' are incompatible.
+    Type '({ id: string; version: number; implementationSha256: string; title: string; primaryOutput: { label: string; unit: string; }; explanation: string[]; transfer: { mass1: number; mass2: number; velocity1: number; ... 15 more ...; objectHeight?: undefined; }; domain: string; distribution: string; editorialStatus: string...' is not comparable to type 'Capability[]'.
+      Type '{ id: string; version: number; implementationSha256: string; title: string; primaryOutput: { label: string; unit: string; }; explanation: string[]; transfer: { mass1: number; mass2: number; velocity1: number; ... 15 more ...; objectHeight?: undefined; }; domain: string; distribution: string; editorialStatus: string;...' is not comparable to type 'Capability'.
+        Type '{ id: string; version: number; implementationSha256: string; title: string; primaryOutput: { label: string; unit: string; }; explanation: string[]; transfer: { focalLength: number; objectDistance: number; ... 16 more ...; testCharge?: undefined; }; domain: string; distribution: string; editorialStatus: string; param...' is not comparable to type 'Capability'.
+          Types of property 'transfer' are incompatible.
+            Type '{ focalLength: number; objectDistance: number; objectHeight: number; mass1?: undefined; mass2?: undefined; velocity1?: undefined; velocity2?: undefined; restitution?: undefined; density?: undefined; ... 9 more ...; testCharge?: undefined; }' is not comparable to type 'Parameters'.
+              Property '"mass1"' is incompatible with index signature.
+                Type 'undefined' is not comparable to type 'number'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(16,3): error TS2322: Type 'Mock<(_edition: any, snapshot: any) => Promise<{ result: ScienceResult; prediction: any; assessment: string; }>>' is not assignable to type '(editionId: string, snapshot: Snapshot, signal: AbortSignal) => Promise<Comparison>'.
+  Type 'Promise<{ result: ScienceResult; prediction: any; assessment: string; }>' is not assignable to type 'Promise<Comparison>'.
+    Type '{ result: ScienceResult; prediction: any; assessment: string; }' is not assignable to type 'Comparison'.
+      Types of property 'assessment' are incompatible.
+        Type 'string' is not assignable to type '"MODEL_COMPARISON_NOT_A_GRADE"'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(24,72): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(26,77): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(32,72): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(35,77): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(44,59): error TS2322: Type 'Mock<() => Promise<unknown>>' is not assignable to type '(editionId: string, snapshot: Snapshot, signal: AbortSignal) => Promise<Comparison>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<Comparison>'.
+    Type 'unknown' is not assignable to type 'Comparison'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(45,141): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(46,159): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(54,141): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(56,72): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(59,86): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(77,163): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(79,68): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined, waitForElementOptions?: waitForOptions | undefined): Promise<HTMLElement>', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(80,164): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(81,117): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+  Overload 2 of 2, '(role: ByRoleMatcher, options?: ByRoleOptions | undefined): HTMLElement', gave the following error.
+    Object literal may only specify known properties, and 'exact' does not exist in type 'ByRoleOptions'.
+src/features/science-library/ScientificPlot.tsx(33,57): error TS2353: Object literal may only specify known properties, and 'enabled' does not exist in type 'ZoomOptions'.

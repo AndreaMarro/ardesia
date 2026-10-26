@@ -1,0 +1,4 @@
+src/features/science-library/__tests__/ScienceLibrary.test.tsx(44,59): error TS2322: Type 'Mock<() => Promise<unknown>>' is not assignable to type '(editionId: string, snapshot: Snapshot, signal: AbortSignal) => Promise<Comparison>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<Comparison>'.
+    Type 'unknown' is not assignable to type 'Comparison'.
+src/features/science-library/ScientificPlot.tsx(36,56): error TS2353: Object literal may only specify known properties, and 'keyboard' does not exist in type 'Partial<BoardAttributes>'.

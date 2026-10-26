@@ -511,3 +511,8 @@ Fonte2c522f96, base992d1a0b, PR314. CSP privata richiede script locali: emesso i
 ### 26 ottobre2026 — ciclo S00 autorizzato, nessuna soglia cambiata
 
 Proprietario autorizza ciclo mirato dopo stop precedente. Misura bundle2,27MB: build36–84ms, helper deep9,085s/heapcirca+698MB, native0,132ms; controprove primo/ultimobyte rifiutate per bundle/licenza da entrambi. Applicato Buffer.equals esatto al posto di toEqual, conservati build reale e tutti i requisiti. Nessun pool/timeout/gate modificato. Mirato e gate della nuovaHEAD non anticipati; durante l'esecuzione niente commit. Previewprodotto158/800HTTPS distinta daHEAD di test/prove. Log e limiti nel handoffS00.
+
+
+### 26 ottobre2026 —314 integrata e verifica conclusa
+
+Gate congelato fonte573ee34d:2314PASS/0FAIL con replay reale,5skip unit storici, typecheck/HEAD/script verificati. Nuovo testMathJax32,67ms senza cambiare byte/licenza/soglie; review separata senza finding. Recupero persistente dopo vecchi/tmp assenti, processo precedente senza esito non contatoPASS.314MERGED maina00f2f40, treeab509d3 uguale al verificato, postCI40319487576SUCCESS. Preview fonte158/800HTTPS distinta e produzione invariata; Core remoto503,scopeStudio interno e0/200 restano. Raw/receipt in handoffs/swarm-v2/S00/evidence/approved-gate, memoria aggiornata senza cancellare iFAIL.

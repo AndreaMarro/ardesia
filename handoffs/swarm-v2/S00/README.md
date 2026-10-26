@@ -92,3 +92,51 @@ GrantTTL1800 revocato; link vecchio e client fresco302→SSO, file0600 eliminato
 ## Correzione visuale e diagnostico successivi
 
 Review indipendente trovaP2 banner sovrapposto, RED reale su build4; fixCSS in corso nella stessa314, nessun GREEN anticipato.4viewport sono Aula, Studio solo1440. Gate locale congelato2311/2FAIL, diverso da CIStudio2313PASS/5skip. Commit durante test aveva invalidato la SHA compilata; controprova1RED e52GREEN aHEADferma. MathJax15721ms/limite15000 non spiegato definitivamente dal solo rerun. Secondo gate conserva JSON originale, script/soglie immutati; nessun ulteriore commit durante esecuzione. Leggere nuovi report prima di riferire un esito finale. Vecchi manifest output dataless non vengono letti/cancellati per costruire il pacchetto fresco.
+
+
+## 26 ottobre2026 — esito successivo verificato
+
+La decisione umana è stata fornita e il ciclo concluso: gate congelato2314PASS/0FAIL incluso replay, HEAD573/script invariati; raw e receipt in evidence/approved-gate.314 MERGED ordinariamente su a00f2f40091aecf69e58ebaba42cf70d748e4066, treeab509d3 identico al merge-tree, CIpostmerge40319487576SUCCESS. Vecchi/tmp assenti al resume: precedente processo interrotto senza esito, recuperata stessaHEAD da remoto in percorso persistente e verifica rieseguita, nessun PASS inventato. Produzione invariata e previewfonte158/800HTTPS distinta;0/200 e limiti remoti/licenze rimangono. La nota BLOCKED_HUMAN_DECISION precedente è snapshot storico, non stato attuale. Prossimo raccordo317 in worktreescience, ancoraNON_IMPLEMENTATO nellaUI.
+
+
+## 26 ottobre 2026 — libreria scientifica nel prodotto, fonte b701e531
+
+La stessa PR317 monta ora la libreria nei Materiali e la factory API reale.
+Quattro strumenti originali Core (urto, Bernoulli, campo/potenziale, lente) sono
+riusati dalle quattro viste di percorso. Previsione, parametri, grafici, aiuti,
+problema diverso e note private persistono con CAS/retry e revisione esatta.
+Il reader conserva le note senza eseguire automaticamente un modello; vietato
+l'editor JSON generico. I salvataggi hanno titoli distinti e il ciclo mobile
+ha ordine parametri→risultato, focus e ritorno ai dati senza animazione.
+
+Prove:53Core/HTTP,38mirati Web dopo review, typecheck e build aggregate PASS.
+FullWeb463 prima dei2fix visuali; CI finale della nuova head resta l'autorità
+per la suite completa successiva. Browser reale19gruppi PASS da App→Materiali,
+factory/cookie/Core effettivi e CSP canonica, due risorse, cold reopen, transfer,
+offline retry, peer403/revoca e quattro larghezze più nuovo contesto mobile390.
+I precedenti18PASS non certificavano il grafico dopo resize: PNG tagliato
+conservato, misurato SVG550px contro contenitore369px prima dell'aggiornamento;
+ora il runner attende il predicato sulle dimensioni e sulle forme proiettate.
+Nessun fix del renderer o guasto permanente dichiarato. Review indipendente
+sui nuovi pixel e hash in evidence/science-composition/ULTIMA-REVIEW.md.
+
+Riproduzione dalla root (porta55511 libera, dati sintetici usa-e-getta):
+
+```sh
+uv sync --project services/study-api --frozen --python 3.13
+npm ci --no-audit --no-fund
+npm run build:web
+node handoffs/swarm-v2/S00/prove-science.cjs
+PYTHONPATH=packages/engine:services/study-api services/study-api/.venv/bin/python -m pytest packages/engine/tests/study/test_science_library_runtime_identity.py services/study-api/tests/test_science_library_http.py -q
+```
+
+Il runner crea e rimuove DB/sessioni sintetici; conserva report e PNG nel
+percorso stampato. ARDESIA_S00_SCIENCE_EVIDENCE può indicare una cartella fresca.
+Il probe-science-resize.cjs con ARDESIA_RESIZE_OUT separa stato immediato/500ms
+e apertura nuova390; GEOMETRY_MISMATCH è un'osservazione, non un exit test verde.
+Nessun gateway remoto, produzione o iscrizione reale viene creato.
+
+Preview preparata fonte prodotto b701e531, manifest8f56c1ac…; il deployment
+provider e il terminale PR si attestano successivamente, non si deducono dalla
+build. Public5esempi invariati; Core remoto mancante e0/200 completamenti
+restano limiti. JSXGraph non è un plugin installabile e il confronto non è voto.
