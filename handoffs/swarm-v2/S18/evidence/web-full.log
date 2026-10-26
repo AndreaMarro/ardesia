@@ -1,0 +1,23 @@
+
+> ardesia-monorepo@0.1.0 test:web
+> npm run test --workspace @ardesia/web --maxWorkers=1
+
+npm warn Unknown cli config "--maxWorkers". This will stop working in the next major version of npm.
+
+> @ardesia/web@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+
+(node:32744) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32756) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32806) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  69 passed (69)
+      Tests  449 passed (449)
+   Start at  17:05:52
+   Duration  31.49s (transform 11.51s, setup 0ms, import 30.86s, tests 71.21s, environment 95.17s)

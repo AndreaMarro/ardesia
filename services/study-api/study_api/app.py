@@ -474,7 +474,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.post('/study/submissions')
     def submission(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import submit
-        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'))
+        return submit(store,authenticate(request,store),body.get('editionId'),body.get('activityId'),body.get('assetRefs',[]),body.get('text',''),request.headers.get('Idempotency-Key',''),body.get('parentId'),body.get('sourceRefs',[]),body.get('diaryThreadId'),body.get('activityParameters'),body.get('activityEvidence'),body.get('courseLesson'))
 
     @app.get('/study/receipts/{receipt_id}')
     def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
@@ -523,6 +523,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         authenticate(request,store)
         return inspect_notebook(body)
 
+    from lessonos.study.independent_study.routes import install_routes as install_independent_study_routes
+    install_independent_study_routes(app, store_dependency, authenticate)
     from .admin_routes import install_admin_routes
     install_admin_routes(app,store_dependency,authenticate)
     from .register_routes import install_register_routes
@@ -534,6 +536,15 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     from .calendar_routes import install_calendar_routes
     from lessonos.study.calendar_mock import MockCalendar
     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
+
+    from lessonos.study.science_library.routes import install_science_library_routes
+    install_science_library_routes(app, store_dependency, authenticate)
+
+    from s19_circuit_lab.routes import install
+    install(app, store_dependency, authenticate)
+
+    from .living_sources import install_living_sources
+    install_living_sources(app, authenticate, store_dependency, Path(db_path).parent/'blobs')
 
     if studio_frontend:
         from fastapi.staticfiles import StaticFiles

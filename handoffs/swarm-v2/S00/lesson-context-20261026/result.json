@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "source": {
+    "commit": "b26f4e426fff44a67f8410beb6f435390ac66fde",
+    "files": {
+      "apps/web/src/features/Classroom.tsx": "6d45cb6556fceb8334520e0626ce33be11242704f40a172391d2d29914f5f03b",
+      "apps/web/src/features/PublicCoursePlayer.tsx": "a2f077252d1be59235b7b2cab5cfc382b2bd05e5bf321c4ed14f89c33c1082c1",
+      "apps/web/src/features/Work.tsx": "89fa6d775b2d4e8fddfd495ed7850315051e5d539d47420e5b7e2b9ac2f17a51",
+      "apps/studio/src/study/SubmissionPanel.tsx": "f7f9e6ab04a6a9d530be937d817be1426dfcb14524ef6cc2d78b86e572f463d2",
+      "packages/engine/lessonos/study/course_lesson_context.py": "5a22383ad9108af4716a7a6372750ee6fa84e3d0b71d1ef68ad6c0d6ef1e25fa",
+      "packages/engine/lessonos/study/submissions.py": "331fac835546cfc9091d562a25889fe3dca00c27fac2cbda6e583b0b4b9674b4",
+      "services/study-api/study_api/app.py": "14fb8dbc03587b04d033be42677614cb2442255bb346dbb2b6335cf212f2c025"
+    }
+  },
+  "browser": "148.0.7778.96",
+  "checks": [
+    {
+      "name": "lost response retries original exact lesson and immutable command",
+      "details": {
+        "receiptId": "183b73e59b02452f910f16d4d95da663",
+        "lessonRef": {
+          "id": "original-demo-kinematics",
+          "version": 1,
+          "sha256": "8e2b8c42ccd329f5e9d0e47b5efb612a4cef9e36b42522774dc138d2ddef405a"
+        }
+      }
+    },
+    {
+      "name": "practice and transfer stay distinct in the actual receipt",
+      "details": "a797b566c9cf48e68c56e352d2af3e86"
+    },
+    {
+      "name": "teacher feedback returns through actual Review and student Work",
+      "details": true
+    },
+    {
+      "name": "non-entry lesson retry restores exact transfer and parent revision",
+      "details": "6106bc68c21f498db2b86093fcc92c84"
+    },
+    {
+      "name": "responsive exact lesson 1440",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive exact lesson 820",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive exact lesson 390",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive exact lesson 360",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "real server restart, fresh browser, durable feedback and peer denial",
+      "details": {
+        "receipts": 3,
+        "peer": 403
+      }
+    },
+    {
+      "name": "no page errors, external requests or product edits during proof",
+      "details": true
+    }
+  ],
+  "timings": {
+    "lessonOpenMs": 1115.838564,
+    "coldServerAndBrowserReopenMs": 1546.786631
+  },
+  "errors": [],
+  "external": []
+}

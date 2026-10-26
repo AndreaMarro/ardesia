@@ -1,0 +1,41 @@
+{
+  "schema": "ardesia.s06-registry-proposal/1",
+  "date": "2026-10-26",
+  "registryRead": {"schema": "ardesia.research-targets/3", "count": 139},
+  "sharedRegistryModified": false,
+  "assignIdsBy": "S12/S15 after deduplication; preserve existing identifiers",
+  "candidates": [
+    {
+      "name": "py-fsrs", "version": "6.3.2", "url": "https://github.com/open-spaced-repetition/py-fsrs",
+      "commit": "9446cb06605c597a063aeee49f7d188d42e34dc2", "license": "MIT",
+      "owner": "S06", "module": "independent-study", "status": "INVESTIGATED", "decision": "ADAPT",
+      "observed": "Source, tests and real REA process: rating, serialization, replay, timezone rejection",
+      "reuseAllowed": "MIT scheduler/card/state/rating/review-log with license and attribution",
+      "capability": "Versioned self-reported spaced review with four previews and undo",
+      "dependencies": "No new runtime dependency; stdlib typing.Self and relative imports",
+      "replaces": "Optional successor to original provisional 1/3-day heuristic, only after explicit learner rating",
+      "acceptance": "Core/HTTP/UI, retry/CAS, undo, override, reopen, revocation, exact-head CI and S00 real consumer composition",
+      "integration": "Implemented in S06 namespace; shared composition and merge pending, not ADOPTED in product"
+    },
+    {
+      "name": "ts-fsrs", "version": "5.4.2", "url": "https://github.com/open-spaced-repetition/ts-fsrs",
+      "commit": "bb71e35a2f5af5a5ac6cce9ef7c41ad24855721d", "license": "MIT",
+      "owner": "S06", "module": "independent-study", "status": "INVESTIGATED", "decision": "DEFER",
+      "observed": "Pinned official source/license/manifest", "reuseAllowed": "MIT with notice",
+      "capability": "JS FSRS scheduler", "dependencies": "Node>=20 per pinned manifest; no imported code",
+      "replaces": "Same scheduling role as selected native Python donor",
+      "acceptance": "Would require Core-authoritative JS runtime bridge and same integration proofs",
+      "reason": "Avoid second runtime/authority while adopting maintained native Python subsystem"
+    },
+    {
+      "name": "SuperMemo2", "version": "3.0.1", "url": "https://github.com/alankan886/SuperMemo2",
+      "commit": "0aaf428cf362b976f49a2dece5e01211785caec2", "license": "MIT",
+      "owner": "S06", "module": "independent-study", "status": "INVESTIGATED", "decision": "DEFER",
+      "observed": "Pinned official source/license/metadata; archived 2026-06-26",
+      "reuseAllowed": "MIT with notice", "capability": "Python SM2 scheduler", "dependencies": "attrs; no imported code",
+      "replaces": "Same scheduling role as selected FSRS donor",
+      "acceptance": "Same Core/UI/reopen/negative proofs plus explicit archived-project maintenance ownership",
+      "reason": "Archived project and avoidable runtime dependency compared with maintained native donor"
+    }
+  ]
+}

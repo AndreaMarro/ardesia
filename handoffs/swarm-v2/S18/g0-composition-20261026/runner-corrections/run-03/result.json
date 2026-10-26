@@ -1,0 +1,134 @@
+{
+  "status": "FAIL",
+  "stage": "first assisted receipt",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n3 !== 2\n",
+  "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n3 !== 2\n\n    at file:///tmp/ardesia-g0-proof/golden.mjs:265:59",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "db37754b52fe42a1851661ba3f949a0a",
+        "revisionId": "659b0c2ec8ef459d91b2888550aa5bee"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    },
+    {
+      "name": "Native PDF equation selection, structured formula and lesson association saved in Core",
+      "status": "PASS",
+      "annotation": {
+        "resourceId": "b9eb0156ee444c5a96180b5b1d5391d9",
+        "revisionId": "b63b203c3b9143599092dee6212686e8"
+      },
+      "target": {
+        "contextId": "1800419be08341a7a85324d92c199127",
+        "documentSha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf",
+        "page": 1,
+        "rects": [
+          [
+            0.06299233001658376,
+            0.12455301616915414,
+            0.2511983336896248,
+            0.019900497512437845
+          ]
+        ],
+        "resourceId": "db37754b52fe42a1851661ba3f949a0a",
+        "revisionId": "659b0c2ec8ef459d91b2888550aa5bee",
+        "text": {
+          "end": 60,
+          "exact": "Q = pi r^4 Dp / (8 eta L)",
+          "model": "native-pdfjs-items-concat-utf16-v1",
+          "prefix": "Poiseuille: prima scegli il vincolo",
+          "start": 35,
+          "suffix": "Moto laminare; fluido newtoniano incompr"
+        }
+      }
+    },
+    {
+      "name": "Real Aula popup handshake, explicit teacher consent, Room object, recording and canonical chapter writer",
+      "status": "PASS"
+    },
+    {
+      "name": "Teacher explicitly publishes the real Studio descriptor and transcript to the same Core",
+      "status": "PASS",
+      "passage": {
+        "resourceId": "9c0f310f701e4a28b1da515fa6cc19b0",
+        "revisionId": "c000279ffd6c4708a84fcd016cc79e3c"
+      },
+      "recording": "495eb7de-1246-4f3a-81db-369248b5ad0e",
+      "lesson": "aula-fluidi",
+      "objectRefs": [
+        {
+          "elementId": "zQqy_9vbuVeRZA2Ans66P",
+          "version": 2,
+          "label": "Poiseuille: Q = π r⁴ Δp / (8 η L). Prima scegli se fissare Δp oppure Q."
+        }
+      ],
+      "audioSha256": "2df051c5c6d8162b585d2400792216ec48eb9310ac7a0d47eb0a8c1e76cf1c3b"
+    },
+    {
+      "name": "Teacher exports actual .lesson bundle after Room journal flush",
+      "status": "PASS",
+      "bundleSha256": "ed24273262ac2390a554166966276116948a3de9e9ef7fe8cc663bb30886894d",
+      "bytes": 21376
+    },
+    {
+      "name": "Actual Materials editor saves typed media index pointing to exact PDF annotation revision",
+      "status": "PASS",
+      "index": {
+        "resourceId": "3a9585a837e7456da9a8986e9abd7c5d",
+        "revisionId": "aad16c1a3c53461a8f8d70701afbf44e"
+      },
+      "source": {
+        "id": "9c0f310f701e4a28b1da515fa6cc19b0",
+        "revisionId": "c000279ffd6c4708a84fcd016cc79e3c",
+        "sha256": "41d6dbfcea2b52595227678142e401e0df03ef56bac2da875e83204d3cbdc857"
+      },
+      "link": {
+        "resourceId": "b9eb0156ee444c5a96180b5b1d5391d9",
+        "revisionId": "b63b203c3b9143599092dee6212686e8",
+        "label": "Annotazione PDF · Poiseuille: mantieni fisso il vincolo. A Δp costante Q cresce con r⁴; a Q costante isola Δp."
+      }
+    },
+    {
+      "name": "Fresh student browser explicitly imports teacher .lesson using product UI; no shared OPFS or injected archive",
+      "status": "PASS"
+    },
+    {
+      "name": "SourceViewer opens exact Materials in a separate tab, preserving original dirty Journey and checkpoint URL",
+      "status": "PASS"
+    },
+    {
+      "name": "Student imported archive validates pinned recording, audio bytes, board object and Core caption revisions; real playback reaches end",
+      "status": "PASS"
+    },
+    {
+      "name": "After player, student reads exact linked PDF annotation and formula; saved Journey retains distinct annotation primary plus consulted passage help",
+      "status": "PASS"
+    },
+    {
+      "name": "Prediction remains explicit; real PhysicsLab keyboard manipulation and Core numerical evaluation return ratio 16",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [],
+  "product": {
+    "head": "ec5f19076d07f5a71b6151d8cd89bf33c8713a64",
+    "tree": "0e5fc123984d4a925f3ae3d5f6c7cb325c4a4cbe",
+    "web": {
+      "fileCount": 350,
+      "sha256": "61b709a28f3cf96613fbe4287dcb6fab90c7af199da96c71be63a4a84ebaa9e9"
+    },
+    "studio": {
+      "fileCount": 483,
+      "sha256": "eba74268f133d88c4b3d6eaba81c23e01e536c66fed0c280d952fd1a9532be8c"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "coreProcessIds": [
+    25399
+  ]
+}

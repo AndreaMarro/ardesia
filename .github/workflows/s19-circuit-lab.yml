@@ -1,0 +1,80 @@
+name: S19 circuit laboratory
+on:
+  pull_request:
+    paths:
+      - 'plugins/s19-circuit-lab/**'
+      - 'packages/engine/lessonos/study/**'
+      - 'services/study-api/**'
+      - 'apps/studio/src/study/**'
+      - 'apps/web/src/**'
+      - 'package-lock.json'
+      - 'handoffs/swarm-v2/S19/*.patch'
+      - '.github/workflows/s19-circuit-lab.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/s19-circuit-lab/**'
+      - 'packages/engine/lessonos/study/**'
+      - 'services/study-api/**'
+      - 'apps/studio/src/study/**'
+      - 'apps/web/src/**'
+      - 'package-lock.json'
+      - 'handoffs/swarm-v2/S19/*.patch'
+      - '.github/workflows/s19-circuit-lab.yml'
+permissions:
+  contents: read
+jobs:
+  s19:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 26.5.1
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+      - name: Install pinned independent environment and upstream engine
+        run: |
+          uv venv --python 3.13 .s19-venv
+          uv pip install --python .s19-venv/bin/python --require-hashes -r plugins/s19-circuit-lab/requirements-dev.lock
+          python3 plugins/s19-circuit-lab/scripts/install_engine.py --cache "$RUNNER_TEMP/kirchhoff-s19" --python "$GITHUB_WORKSPACE/.s19-venv/bin/python"
+          uv pip install --python .s19-venv/bin/python --no-deps -e plugins/s19-circuit-lab
+      - name: Scientific checks, real Core and exact owner-patch composition
+        run: .s19-venv/bin/python -m pytest plugins/s19-circuit-lab/tests
+      - name: Isolated frontend lock and build
+        run: |
+          npm --prefix plugins/s19-circuit-lab/web ci --ignore-scripts --workspaces=false
+          python3 plugins/s19-circuit-lab/scripts/audit_dependencies.py --check
+          npm --prefix plugins/s19-circuit-lab/web run build -- --mode test
+          cd plugins/s19-circuit-lab/web
+          npx playwright install --with-deps chromium
+      - name: Real browser with real Core, synthetic identities only
+        env:
+          S19_PYTHON: ${{ github.workspace }}/.s19-venv/bin/python
+        run: plugins/s19-circuit-lab/scripts/run_browser.sh
+      - name: Build the actual Web consumer and production laboratory
+        run: |
+          npm ci --ignore-scripts
+          npm run build:web
+          npm --prefix plugins/s19-circuit-lab/web run build
+          test ! -e plugins/s19-circuit-lab/web/dist/tests/host.html
+      - name: Course to teacher review on the actual factory
+        env:
+          S19_PYTHON: ${{ github.workspace }}/.s19-venv/bin/python
+          S19_PRODUCT: '1'
+          S19_SCREENSHOT_DIR: ${{ runner.temp }}/s19-product
+        run: |
+          plugins/s19-circuit-lab/scripts/run_browser.sh
+          git diff --exit-code
+      - name: Product consumer evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s19-product-${{ github.sha }}
+          # Explicit allowlist: never publish session fixtures, cookies or the DB.
+          path: |
+            ${{ runner.temp }}/s19-product/*.json
+            ${{ runner.temp }}/s19-product/*.png
+          if-no-files-found: warn
+          retention-days: 14

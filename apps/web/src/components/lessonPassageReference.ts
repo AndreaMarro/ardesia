@@ -1,4 +1,6 @@
+import { circuitSummary } from "../features/circuit-lab/resourceSummary";
 import type { StudyResource } from "../api";
+import { scienceSummary } from "../features/science-library/resourceSummary";
 
 export type LessonPassageDescriptor = {
   schema: "ardesia.lesson-passage.v1";
@@ -66,6 +68,24 @@ export function readLessonPassage(resource: StudyResource): LessonPassage | null
 
 /** A display projection: never changes source bytes, revisions or selection offsets. */
 export function displaySourceTitle(resource: StudyResource, limit = 85): string {
+  if(resource.kind==='living-source'||resource.kind==='living-annotation'){
+    const label=resource.kind==='living-source'?'PDF originale':'Annotazione PDF';
+    try{
+      const value=JSON.parse(resource.text) as Record<string,unknown>;
+      const blocks=Array.isArray(value?.blocks)?value.blocks:[];
+      const explanation=blocks.find(block=>block&&typeof block==='object'&&block.kind==='explanation'&&typeof block.text==='string');
+      const title=resource.kind==='living-source'?value?.title:explanation?.text;
+      return (label+(typeof title==='string'&&title.trim()?' · '+title.trim().split('\n')[0]:'')).slice(0,limit);
+    }catch{return label;}
+  }
+  if (resource.kind === "s19-circuit") {
+    const source = circuitSummary(resource);
+    return (source ? `Circuito DC · ${source.quantity === "voltage" ? "tensione" : "corrente"} su ${source.target}` : "Circuito DC non leggibile").slice(0, limit);
+  }
+  if (resource.kind === "science-resource") {
+    const summary=scienceSummary(resource);
+    return ("Esperimento scientifico"+(summary?" · "+(summary.note.trim().split("\n")[0]||summary.capabilityId):" non leggibile")).slice(0,limit);
+  }
   const passage = readLessonPassage(resource);
   if (passage) {
     const title = passage.descriptor.objectRefs.map(ref => ref.label).join(" · ");

@@ -1,0 +1,54 @@
+--- a/apps/studio/src/Room.tsx
++++ b/apps/studio/src/Room.tsx
+@@ -783,13 +783,22 @@
+   }
+
+   async function insertMath(latex: string) {
+-    if (!apiRef.current || !latex.trim()) return
++    const canvas = apiRef.current
++    const journal = journalRef.current
+     try {
++      if (!canvas || !journal) throw new Error("Lavagna non pronta: riprova tra un istante.")
++      if (!latex.trim()) throw new Error("Scrivi una formula prima di inserirla.")
+       const { dataURL, width, height } = await latexToImage(latex)
++      if (apiRef.current !== canvas || journalRef.current !== journal) {
++        throw new Error("La lezione è cambiata durante l'inserimento. Riprova nella lezione corrente.")
++      }
+       addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
+-      journalRef.current?.recordMathInsert(latex)
++      journal.recordMathInsert(latex)
+     } catch (err) {
+-      setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
++      if (apiRef.current === canvas && journalRef.current === journal) {
++        setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
++      }
++      throw err
+     }
+   }
+
+--- a/apps/studio/src/__tests__/Room.integration.test.tsx
++++ b/apps/studio/src/__tests__/Room.integration.test.tsx
+@@ -98,12 +98,12 @@
+
+ vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
+ // Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
+-let capturedOnInsert: ((latex: string) => void) | null = null
++let capturedOnInsert: ((latex: string) => void | Promise<void>) | null = null
+ const composerModuleState = vi.hoisted(() => ({ loads: 0 }))
+ vi.mock("../MathComposer", () => {
+   composerModuleState.loads += 1
+   return ({
+-  default: (props: { onInsert: (latex: string) => void }) => {
++  default: (props: { onInsert: (latex: string) => void | Promise<void> }) => {
+     capturedOnInsert = props.onInsert
+     return "mock-math-composer"
+   },
+@@ -3286,7 +3286,7 @@
+       expect(capturedOnInsert).toBeTypeOf("function")
+     }, { timeout: 5000, interval: 10 })
+
+-    capturedOnInsert!("x^2")
++    await expect(capturedOnInsert!("x^2")).rejects.toThrow("MathJax CDN load failed")
+
+     await vi.waitFor(() => {
+       const err = document.querySelector(".st-err")

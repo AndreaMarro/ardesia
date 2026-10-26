@@ -61,7 +61,7 @@ def assemble(destination: Path, marketing: Path, experience: Path, *, web: Path 
                     'publicEntry': '/', 'experienceEntry': '/esperienza/?percorso=fluidi-termodinamica',
                     'commercialAction': 'manifestazione di interesse; nessuna iscrizione, account o pagamento',
                     'privateBeta': web is not None, 'privateDataIncluded': False,
-                    'requiresProtectedPreview':bool(course_manifest and course_manifest.get('releaseScope')=='PRIVATE_EDITORIAL_REVIEW'),
+                    'requiresProtectedPreview':web is not None or bool(course_manifest and course_manifest.get('releaseScope')=='PRIVATE_EDITORIAL_REVIEW'),
                     'source': source or {}, 'assetsSha256': assets}
         (destination / 'candidate-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
         return manifest
@@ -92,10 +92,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--include-private', action='store_true')
+    parser.add_argument('--learning-journey', action='store_true',
+                        help='Enable the verified private student journey and record the build flag')
     parser.add_argument('--editorial-review', action='store_true',help='Full original DRAFT material; PROTECTED PREVIEW ONLY, never public release')
     parser.add_argument('--review-examples', action='store_true',
                         help='Opt in to private editorial preview examples; excluded from the public demo by default')
     args = parser.parse_args()
+    if args.learning_journey and not args.include_private:
+        parser.error('learning_journey_requires_private_clients')
     output = args.output.resolve()
     if output.exists():
         parser.error('fresh_output_directory_required')
@@ -120,7 +124,8 @@ def main() -> None:
                          'courses':[{'pathId':c['pathId'],'completedObjectives':c['completedObjectives'],'requiredObjectives':c['requiredObjectives'],
                                      'packRef':c['packRef'],'lessons':[l['lessonRef'] for l in c['lessons']]} for c in course_data['courses']]}
         if args.include_private:
-            run(['npm', 'run', 'build:web'])
+            run(['npm', 'run', 'build:web'], env={**os.environ,
+                'VITE_S20_LEARNING_JOURNEY': '1' if args.learning_journey else '0'})
             run(['npm', '--prefix', 'apps/studio', 'run', 'build'], env={**os.environ, 'ARDESIA_STUDIO_BASE': '/studio/'})
         head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
         diff = subprocess.check_output(['git', 'diff', '--binary', 'HEAD', '--', '.github/workflows', 'apps/web', 'apps/studio', 'apps/marketing-01', 'bin', 'packages/engine/lessonos', 'services/study-api'], cwd=ROOT)
@@ -130,6 +135,7 @@ def main() -> None:
                             studio=ROOT / 'apps/studio/dist' if args.include_private else None,
                             course_manifest=course_manifest,
                             source={'commit': head, 'trackedDiffSha256': hashlib.sha256(diff).hexdigest(),
+                                    'buildFlags': {'learningJourney': args.learning_journey},
                                     'sourceTreeSha256': inventory['sha256'], 'sourceFileCount': len(inventory['files']),
                                     'note': 'source tree and asset hashes identify the exact build, including uncommitted sources'})
     (output / 'source-manifest.json').write_text(json.dumps(inventory, indent=2) + '\n')

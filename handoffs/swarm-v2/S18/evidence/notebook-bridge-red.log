@@ -1,0 +1,23 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web
+
+ ❯ src/features/living-sources/notebookBridge.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/living-sources/notebookBridge.test.ts [ src/features/living-sources/notebookBridge.test.ts ]
+Error: Cannot find module './notebookBridge' imported from /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/apps/web/src/features/living-sources/notebookBridge.test.ts
+ ❯ src/features/living-sources/notebookBridge.test.ts:2:1
+      1| import {it,expect} from 'vitest';
+      2| import { notebookCopyState } from './notebookBridge';
+       | ^
+      3| import type { LivingSource,SourceTarget } from './model';
+      4| it('preserves full exact target and all regions even when the explanat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  17:00:17
+   Duration  225ms (transform 26ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

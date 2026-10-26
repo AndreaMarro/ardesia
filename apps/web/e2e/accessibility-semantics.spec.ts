@@ -82,7 +82,7 @@ for (const width of [390, 1440]) {
       await expect(page.locator(".edition-row")).toHaveCount(2);
       await expect(page.getByRole("region", { name: edition.title })).toHaveCount(0);
       await expect(page.getByRole("article", { name: edition.title })).toHaveCount(2);
-      await expect(page.locator(".sidebar").getByRole("link", { name: /^ardesia\s*\.$/ })).toBeVisible();
+      await expect(page.getByRole("complementary", { name: "Navigazione e account" }).getByRole("link", { name: /^ardesia\s*\.$/ })).toBeVisible();
       await page.keyboard.press("Tab");
       await expect(page.getByRole("link", { name: "Vai al contenuto" })).toBeFocused();
       await page.keyboard.press("Enter");

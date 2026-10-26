@@ -1,0 +1,5 @@
+import React,{useEffect,useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import {IndependentStudy} from '@s06/IndependentStudy.tsx';
+import '@s06styles';
+function Demo(){const [me,setMe]=useState(null),[edition,setEdition]=useState('strumenti-meccanica');useEffect(()=>{fetch('/study/me').then(r=>r.json()).then(setMe);},[]);return <><nav style={{padding:'20px',display:'flex',flexWrap:'wrap',gap:16,alignItems:'center',borderBottom:'1px solid #dfe1d9'}}><strong style={{fontSize:'25px',fontFamily:'Georgia'}}>ardesia.</strong><span style={{marginLeft:'20px'}}>Prova locale sintetica S06</span><label style={{display:'flex',flexWrap:'wrap',gap:8,marginLeft:'auto',maxWidth:'100%'}}>Percorso <select style={{maxWidth:'100%'}} value={edition} onChange={e=>setEdition(e.target.value)}>{['strumenti-meccanica','fluidi-termodinamica','elettricita-magnetismo','onde-ottica-radiazioni','analisi-1'].map(e=><option key={e}>{e}</option>)}</select></label></nav>{me?.id?<IndependentStudy me={me} editionId={edition}/>:<p>Accedi con la sessione sintetica del runner.</p>}</>};createRoot(document.getElementById('root')).render(<Demo/>);

@@ -1,0 +1,345 @@
+{
+  "evidence_id": "ev_4a005126404174adbb02174cb7d01b8c3b82f53efc9e6dda7bf9bd710edd9be0",
+  "subject": null,
+  "provider": {
+    "id": "rea-process",
+    "name": "REA process capture",
+    "version": "3"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.process-capture",
+  "operation": "capture_process_scenario",
+  "parameters": {
+    "executable_name": "python",
+    "argument_count": 2,
+    "event_count": 0,
+    "filesystem_observation_path_count": 0,
+    "normalization": {
+      "paths": false,
+      "pids": true,
+      "ports": true,
+      "time_bucket_ms": 10,
+      "patterns": []
+    }
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "manifest": {
+      "rea_version": "6.7.0",
+      "provider_version": "3",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "pty_backend": "node-pty",
+      "started_at": "2026-10-26T16:23:19.048Z",
+      "completed_at": "2026-10-26T16:23:20.121Z",
+      "scenario": {
+        "executable": "/Users/andreamarro/Developer/ardesia-s00-20261026/science/services/study-api/.venv/bin/python",
+        "arguments": [
+          "/Users/andreamarro/Developer/ardesia-s00-20261026/evidence/science-review/stale-pyc-counterproof.py",
+          "--source-init"
+        ],
+        "working_directory": "/Users/andreamarro/Developer/ardesia-s00-20261026/science",
+        "environment": {},
+        "filesystem_observation_paths": [],
+        "terminal": {
+          "columns": 100,
+          "rows": 30,
+          "scrollback": 100
+        },
+        "events": [],
+        "timeout_ms": 10000,
+        "idle_timeout_ms": 5000,
+        "settle_ms": 100,
+        "limits": {
+          "output_bytes": 100000,
+          "files": 10000,
+          "file_bytes": 10000000,
+          "processes": 20,
+          "filesystem_depth": 16
+        },
+        "normalization": {
+          "paths": false,
+          "pids": true,
+          "ports": true,
+          "time_bucket_ms": 10,
+          "patterns": []
+        },
+        "executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab"
+      },
+      "comparison_contract": {
+        "working_directory": "/Users/andreamarro/Developer/ardesia-s00-20261026/science",
+        "environment": {},
+        "ambient_environment": "unknown",
+        "filesystem_observation_paths": [],
+        "terminal": {
+          "columns": 100,
+          "rows": 30,
+          "scrollback": 100
+        },
+        "events": [],
+        "timeout_ms": 10000,
+        "idle_timeout_ms": 5000,
+        "settle_ms": 100,
+        "limits": {
+          "output_bytes": 100000,
+          "files": 10000,
+          "file_bytes": 10000000,
+          "processes": 20,
+          "filesystem_depth": 16
+        },
+        "normalization": {
+          "paths": false,
+          "pids": true,
+          "ports": true,
+          "time_bucket_ms": 10,
+          "patterns": []
+        },
+        "port_normalization_version": "contextual-endpoints-v2",
+        "rendered_line_format": "trailing-spaces-trimmed-v1"
+      },
+      "full_scenario_sha256": "3c2d9b1d22fea142b9c66c86ad6c1fd0aa7bc7a0f989aa50e1ea573c70397906",
+      "comparison_contract_sha256": "e78dc897d03a1a0bd630cbc683c6dc5e038c61779c147ec6fddd3fdb5b878780",
+      "selected_executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab",
+      "executable_sha256": "091704d2238fa5d3d95299894a24d02fa0cf0f874d7b1cd019f9a19b767628ab",
+      "executable_identity": {
+        "state": "path_metadata_unchanged",
+        "reason": null
+      },
+      "normalization_sha256": "5c58aa1aa890197f15f9c59ef755d01120e6e07f356fa1ef2f20787e63b6fa87"
+    },
+    "normalization": {
+      "paths": false,
+      "pids": true,
+      "ports": true,
+      "time_bucket_ms": 10,
+      "patterns": []
+    },
+    "frames": [
+      {
+        "sequence": 0,
+        "at_ms": 650,
+        "data": "{\r\n  \"case\": \"source changed, TIMESTAMP pyc remains valid by same size and mtime\",\r\n  \"candidate\": \"actual checkout init\",\r\n  \"python\": \"3.13.14 (main, Jun 23 2026, 15:20:43) [Clang 22.1.3 ]\",\r\n  \"oldSourceSha256\": \"dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78\",\r\n  \"diskSourceSha256\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\",\r\n  \"expectedValueForDiskSource\": 88.88888888888889,\r\n  \"actual\": {\r\n    \"value\": 88.88888888888889,\r\n    \"declaredHash\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\"\r\n  },\r\n  \"identityMatchesExecutedSource\": true\r\n}\r\n"
+      }
+    ],
+    "rendered_frames": [
+      {
+        "sequence": 0,
+        "at_ms": 650,
+        "columns": 100,
+        "rows": 30,
+        "cursor_x": 0,
+        "cursor_y": 13,
+        "active_buffer": "normal",
+        "lines": [
+          "{",
+          "  \"case\": \"source changed, TIMESTAMP pyc remains valid by same size and mtime\",",
+          "  \"candidate\": \"actual checkout init\",",
+          "  \"python\": \"3.13.14 (main, Jun 23 2026, 15:20:43) [Clang 22.1.3 ]\",",
+          "  \"oldSourceSha256\": \"dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78\",",
+          "  \"diskSourceSha256\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\",",
+          "  \"expectedValueForDiskSource\": 88.88888888888889,",
+          "  \"actual\": {",
+          "    \"value\": 88.88888888888889,",
+          "    \"declaredHash\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\"",
+          "  },",
+          "  \"identityMatchesExecutedSource\": true",
+          "}",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "serialized_state": "{\r\n  \"case\": \"source changed, TIMESTAMP pyc remains valid by same size and mtime\",\r\n  \"candidate\": \"actual checkout init\",\r\n  \"python\": \"3.13.14 (main, Jun 23 2026, 15:20:43) [Clang 22.1.3 ]\",\r\n  \"oldSourceSha256\": \"dd1ffac3bdc46466b0bbead5902db4f63753ca17265f53d124771ac3630b2c78\",\r\n  \"diskSourceSha256\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\",\r\n  \"expectedValueForDiskSource\": 88.88888888888889,\r\n  \"actual\": {\r\n    \"value\": 88.88888888888889,\r\n    \"declaredHash\": \"a5c1e33febddce8a376785bf9ca5e1d9748d0bcade422140038a65d6d1f05dc5\"\r\n  },\r\n  \"identityMatchesExecutedSource\": true\r\n}\u001b[1B\u001b[1D"
+      }
+    ],
+    "interaction_events": [],
+    "exit": {
+      "code": 0,
+      "signal": 0,
+      "reason": "exited"
+    },
+    "settlement": {
+      "state": "unverifiable",
+      "elapsed_ms": 337,
+      "cleanup_outcome": "cleaned"
+    },
+    "process_samples": [],
+    "filesystem_checkpoints": [
+      {
+        "name": "before",
+        "at_ms": 0,
+        "files": [],
+        "effects": [],
+        "truncated": false
+      },
+      {
+        "name": "after_settlement",
+        "at_ms": 1073,
+        "files": [],
+        "effects": [],
+        "truncated": false
+      }
+    ],
+    "event_journal": [
+      {
+        "capture_order": 0,
+        "collection": "filesystem_checkpoints",
+        "index": 0
+      },
+      {
+        "capture_order": 1,
+        "collection": "frames",
+        "index": 0
+      },
+      {
+        "capture_order": 2,
+        "collection": "rendered_frames",
+        "index": 0
+      },
+      {
+        "capture_order": 3,
+        "collection": "lifecycle",
+        "index": 0
+      },
+      {
+        "capture_order": 4,
+        "collection": "lifecycle",
+        "index": 1
+      },
+      {
+        "capture_order": 5,
+        "collection": "filesystem_checkpoints",
+        "index": 1
+      }
+    ],
+    "files_before": [],
+    "files_after": [],
+    "filesystem_effects": [],
+    "truncated": false,
+    "truncation_details": {
+      "raw_terminal": {
+        "budget_bytes": 100000,
+        "observed_bytes": 613,
+        "retained_bytes": 613,
+        "observed_frames": 1,
+        "retained_frames": 1
+      },
+      "rendered_terminal": {
+        "budget_bytes": 100000,
+        "observed_bytes": 1206,
+        "retained_bytes": 1206,
+        "observed_frames": 1,
+        "retained_frames": 1
+      },
+      "normalized_terminal": {
+        "budget_bytes": 100000,
+        "retained_bytes": 613,
+        "omitted_frames": 0
+      },
+      "filesystem_before": {
+        "files_limit": 10000,
+        "depth_limit": 16,
+        "enumeration_truncated": false,
+        "enumeration_reasons": [],
+        "enumeration_omissions": [],
+        "hash_budget_bytes": 10000000,
+        "hashed_bytes": 0,
+        "hash_omissions": []
+      },
+      "filesystem_after": {
+        "files_limit": 10000,
+        "depth_limit": 16,
+        "enumeration_truncated": false,
+        "enumeration_reasons": [],
+        "enumeration_omissions": [],
+        "hash_budget_bytes": 10000000,
+        "hashed_bytes": 0,
+        "hash_omissions": []
+      },
+      "process": {
+        "sample_limit": 20,
+        "sampling_partial": false,
+        "retained_samples": 0,
+        "sample_limit_reached": false,
+        "sampling_failures": 0,
+        "first_sampling_failure": null,
+        "coverage": "sampled"
+      }
+    },
+    "limitations": [
+      "The executable digest is a prelaunch file sample; matching path metadata immediately after spawn does not prove an atomic operating-system image binding.",
+      "Process trees are sampled and may omit short-lived descendants.",
+      "Filesystem observations are before/after snapshots, not syscall traces.",
+      "Inherited host environment variables are not recorded and may affect results.",
+      "No filesystem observation paths were selected; filesystem effects remain unknown."
+    ],
+    "residual_unknowns": [
+      {
+        "scope": "process",
+        "reason": "Process trees are sampled and may omit short-lived descendants."
+      },
+      {
+        "scope": "process",
+        "reason": "The executable digest is a prelaunch file sample; operating-system image binding is not atomically observed."
+      },
+      {
+        "scope": "environment",
+        "reason": "Inherited host environment variables are not recorded."
+      },
+      {
+        "scope": "network",
+        "reason": "Network activity is not observed by this capture."
+      },
+      {
+        "scope": "filesystem",
+        "reason": "No filesystem observation paths were selected; filesystem effects remain unknown."
+      },
+      {
+        "scope": "process",
+        "reason": "Ownership of unrelated process 36916 could not be verified; it was left untouched: platform_binary_environment_withheld"
+      }
+    ],
+    "cleanup": {
+      "owned_process_group": "verified",
+      "temporary_root": "removed",
+      "unverified_processes": [
+        {
+          "pid": 36916,
+          "reason": "platform_binary_environment_withheld"
+        }
+      ]
+    }
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "darwin-arm64",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "isolation": "process"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "The executable digest is a prelaunch file sample; matching path metadata immediately after spawn does not prove an atomic operating-system image binding.",
+    "Process trees are sampled and may omit short-lived descendants.",
+    "Filesystem observations are before/after snapshots, not syscall traces.",
+    "Inherited host environment variables are not recorded and may affect results.",
+    "No filesystem observation paths were selected; filesystem effects remain unknown."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

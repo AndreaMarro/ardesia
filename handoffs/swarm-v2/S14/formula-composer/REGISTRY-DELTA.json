@@ -1,0 +1,50 @@
+{
+  "schema": "ardesia.registry-delta/1",
+  "shared_registry_modified": false,
+  "count_observed": 139,
+  "owner": "S14-formula-composer",
+  "updates": [
+    {
+      "id": "TARGET-081",
+      "name": "MathLive",
+      "version": "0.111.1",
+      "decision": "ADAPT",
+      "status": "IMPLEMENTED_HOST_NATIVE_VERIFIED_PENDING_S00_ROOM",
+      "consumer": "Room toolbar Formula → MathComposer",
+      "evidence": "FINAL.md, PROVENANCE.json, REVIEW.md, evidence/final-source-inventory.json",
+      "limits": "Native composition verified locally; Roomv3 patch not applied to shared source. S00 integration, final-head CI, merge-tree and post-merge verification remain required."
+    },
+    {
+      "id": "TARGET-013",
+      "name": "Goodnotes",
+      "version": "7.1.30",
+      "decision": "DEFER",
+      "status": "METADATA_OBSERVED_UI_TIMEOUT",
+      "potential_use": "reference input/audio/replay; no proprietary code copied",
+      "evidence": "PROVENANCE.json",
+      "limits": "no runtime/native UI claim"
+    }
+  ],
+  "unassigned_candidates": [
+    {
+      "proposed_id": null,
+      "name": "MathQuill",
+      "url": "https://github.com/mathquill/mathquill",
+      "license_observed": "MPL-2.0",
+      "owner": "S14-formula-composer",
+      "status": "DEFER",
+      "potential_use": "alternative structured math input",
+      "reason": "second editor duplicates MathLive already pinned; not acquired; S00 assigns ID only after deduplication"
+    },
+    {
+      "proposed_id": null,
+      "name": "KaTeX",
+      "url": "https://github.com/KaTeX/KaTeX",
+      "license_observed": "MIT",
+      "owner": "S14-formula-composer",
+      "status": "DEFER_FOR_THIS_BATCH",
+      "potential_use": "static math rendering and fonts, separately from input history",
+      "reason": "not a structured editor; retain MathJax existing SVG contract; S00 deduplicates against transitive assets before assigning ID"
+    }
+  ]
+}

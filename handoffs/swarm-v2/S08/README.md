@@ -44,3 +44,11 @@ Stato IMPLEMENTATO/TESTATO, READY_FOR_INTEGRATION; merge/deploy restanoS00. Il c
 ## Addendum 26 ottobre — player sincronizzato, fonte1eb71382
 
 La frase storica «sottotitoli montati nel player da implementare» è superata da questo batch. [Rapporto nuovo](NATIVE-PLAYER-REPORT.md): consumerStudio/Core e TextTrack reali,44Web+27Studio+17tokenPASS, typecheckStudioforzato senza root/WebdepsPASS, browserfinale9gruppiPASS1440/390. Source `1eb713820dba483726504fd8c79d71cb19a3dc4d`; CI della consegna finale da rileggere. Fallimenti81/89 e byte raw conservati; REA passivo89 distinto dalla prova finale e dai parserstatici. Merge/deployS00 non eseguiti. Nessun DONE o ascoltoumano/Safari/remoto dichiarato.
+
+## Addendum 26 ottobre — composizione S08 + S17 nel prodotto
+
+Il prodotto `d13f331907c7f72f26ddcdfd79c9fe508d660a3a` unisce main a #313 ed assorbe il head #322 con mount reali in Room e ReplayView. [Composizione, regressioni, browser Core e autore/import](composition-20261026/INTEGRATION.md): writer/media/cursore unici, preflight condiviso, guard sempre montato, capitoli nel bundle; note private omesse senza port Core autentico. Nessun deployment o completamento dei media remoti dichiarato.
+
+## Addendum 26 ottobre — consenso anche senza oggetti
+
+[Follow-up34e1db4](consent-20261026/README.md): lo stesso guard ora copre tutti i take v2, senza creare marker fittizi. RED controc35,55test/typecheckPASS; browser esatto34e1db4 verifica revoca da Room con waveform visibile/nascosta ed esclude fine naturale. Nessuna modifica Room o grant remoto. Chunk legacy senza identità esplicita e copie esterne restano limiti dichiarati.

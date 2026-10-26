@@ -5,19 +5,17 @@ import MathComposer from "../MathComposer"
 
 // Mock mathlive — il costruttore MathfieldElement non esiste in jsdom
 vi.mock("mathlive", () => {
-  const mfProto = {
-    value: "",
-    style: { cssText: "" },
-    focus: vi.fn(),
-    remove: vi.fn(),
+  class MathfieldElement extends HTMLElement {
+    static fontsDirectory = ""
+    static soundsDirectory: string | null = null
+    value = ""
+    mathVirtualKeyboardPolicy = "auto"
+    canUndo() { return false }
+    canRedo() { return false }
+    executeCommand = vi.fn()
+    insert = vi.fn()
   }
-  function MathfieldElement() {
-    const inst = Object.create(mfProto)
-    inst.mathVirtualKeyboardPolicy = "auto"
-    return inst
-  }
-  MathfieldElement.fontsDirectory = ""
-  MathfieldElement.soundsDirectory = null
+  customElements.define("composer-math-field", MathfieldElement)
   return { MathfieldElement }
 })
 

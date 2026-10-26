@@ -1,0 +1,287 @@
+{
+  "status": "PASS",
+  "browser": "148.0.7778.96",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "7c66eec34b04496d82bf21152c5cf31e",
+        "revisionId": "75a93494d7bb43cb8a372c4851c6b397"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    },
+    {
+      "name": "Native PDF equation selection, structured formula and lesson association saved in Core",
+      "status": "PASS",
+      "annotation": {
+        "resourceId": "620063b486a04d31a3b34fd0c431ab4d",
+        "revisionId": "497d2ddc89404c73a16582615e72a466"
+      },
+      "target": {
+        "contextId": "91958d5be34a4118aa208dcefe13a2a9",
+        "documentSha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf",
+        "page": 1,
+        "rects": [
+          [
+            0.06299233001658376,
+            0.12455301616915414,
+            0.2511983336896248,
+            0.019900497512437845
+          ]
+        ],
+        "resourceId": "7c66eec34b04496d82bf21152c5cf31e",
+        "revisionId": "75a93494d7bb43cb8a372c4851c6b397",
+        "text": {
+          "end": 60,
+          "exact": "Q = pi r^4 Dp / (8 eta L)",
+          "model": "native-pdfjs-items-concat-utf16-v1",
+          "prefix": "Poiseuille: prima scegli il vincolo",
+          "start": 35,
+          "suffix": "Moto laminare; fluido newtoniano incompr"
+        }
+      }
+    },
+    {
+      "name": "Teacher opens and manipulates the same scientific object through the actual Aula and Core",
+      "status": "PASS"
+    },
+    {
+      "name": "Same teacher inserts the Poiseuille formula with native MathLive and selects its rendered board object for the recording",
+      "status": "PASS",
+      "canonicalLatex": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L}"
+    },
+    {
+      "name": "Real Aula popup handshake, explicit teacher consent, Room object, recording and canonical chapter writer",
+      "status": "PASS"
+    },
+    {
+      "name": "Teacher explicitly publishes the real Studio descriptor and transcript to the same Core",
+      "status": "PASS",
+      "passage": {
+        "resourceId": "c265b9d63794417fb746b57c0ceb40dc",
+        "revisionId": "2979c281615e48df92ddd3f5d878d1a7"
+      },
+      "recording": "585ac9ed-2ec4-40c7-b43f-67a0283a1b20",
+      "lesson": "aula-fluidi",
+      "objectRefs": [
+        {
+          "elementId": "kYJp5idXRz1zLs_Hdyfxz",
+          "version": 2,
+          "label": "Poiseuille: Q = π r⁴ Δp / (8 η L). Prima scegli se fissare Δp oppure Q."
+        },
+        {
+          "elementId": "uYVl03jdiA6xSmpjO6FTu",
+          "version": 3,
+          "label": "Immagine"
+        }
+      ],
+      "audioSha256": "a120221c4d24c64cda4061d80c4741e6acc5bca52f1ce646da7b9caded36e3af"
+    },
+    {
+      "name": "Portable lesson binds the native formula SVG and journal event to the exact recorded object before audio",
+      "status": "PASS",
+      "elementId": "uYVl03jdiA6xSmpjO6FTu",
+      "version": 3,
+      "svgSha256": "408cca6b3e8ed94959897efd97c108d2b4dad4b727a89f5c9e3824d597a77671"
+    },
+    {
+      "name": "Teacher exports actual .lesson bundle after Room journal flush",
+      "status": "PASS",
+      "bundleSha256": "579fead890cd10f16761e47db808eb20dc73ad04f1aeeecb4d7aa947ac6a416a",
+      "bytes": 32262,
+      "producerCommit": "7c9412637140d4d516a1befaac044e7388520cc9",
+      "exactAudioSha256": "a120221c4d24c64cda4061d80c4741e6acc5bca52f1ce646da7b9caded36e3af",
+      "exactBoardObjectVersions": true,
+      "exactChapter": true
+    },
+    {
+      "name": "Actual Materials editor saves typed media index pointing to exact PDF annotation revision",
+      "status": "PASS",
+      "index": {
+        "resourceId": "fa9964ba100b4cb0bcc5c1c5e631881e",
+        "revisionId": "1427f76dbf664e3ea9327334871eb362"
+      },
+      "source": {
+        "id": "c265b9d63794417fb746b57c0ceb40dc",
+        "revisionId": "2979c281615e48df92ddd3f5d878d1a7",
+        "sha256": "a29f02c9202e9d2b5cf61b0239db96b71ccc59213d44e89860a565770d5fe46c"
+      },
+      "link": {
+        "resourceId": "620063b486a04d31a3b34fd0c431ab4d",
+        "revisionId": "497d2ddc89404c73a16582615e72a466",
+        "label": "Annotazione PDF · Poiseuille: mantieni fisso il vincolo. A Δp costante Q cresce con r⁴; a Q costante isola Δp."
+      }
+    },
+    {
+      "name": "Fresh student browser explicitly imports teacher .lesson using product UI; no shared OPFS or injected archive",
+      "status": "PASS"
+    },
+    {
+      "name": "SourceViewer opens exact Materials in a separate tab, preserving original dirty Journey and checkpoint URL",
+      "status": "PASS"
+    },
+    {
+      "name": "Student imported archive validates pinned recording, audio bytes, board object and Core caption revisions; real playback reaches end",
+      "status": "PASS"
+    },
+    {
+      "name": "After player, student reads exact linked PDF annotation and formula; saved Journey retains distinct annotation primary plus consulted passage help",
+      "status": "PASS"
+    },
+    {
+      "name": "Prediction remains explicit; real PhysicsLab keyboard manipulation and Core numerical evaluation return ratio 16",
+      "status": "PASS"
+    },
+    {
+      "name": "First real Core receipt binds procedure, formula, prediction, exact PDF annotation and distinct exact audio help",
+      "status": "PASS",
+      "receiptId": "73d76ddf7eee47e98f1cbfdeb81919b9",
+      "sourceRefs": [
+        {
+          "contextId": "edition-fluidi-g0-synthetic-student",
+          "resourceId": "591346c08959447081a579ef76fa76c8",
+          "revisionId": "41bc2028654043debdd1faf21ed623b1"
+        },
+        {
+          "contextId": "14257b63eb3e447db8c623ea3a97d59c",
+          "resourceId": "620063b486a04d31a3b34fd0c431ab4d",
+          "revisionId": "497d2ddc89404c73a16582615e72a466"
+        },
+        {
+          "contextId": "c8994aa5ac564d67abb38a3b88d3e5e7",
+          "resourceId": "c265b9d63794417fb746b57c0ceb40dc",
+          "revisionId": "2979c281615e48df92ddd3f5d878d1a7"
+        }
+      ],
+      "lessonPassageRef": {
+        "resourceId": "c265b9d63794417fb746b57c0ceb40dc",
+        "revisionId": "2979c281615e48df92ddd3f5d878d1a7"
+      }
+    },
+    {
+      "name": "Same teacher opens actual Review UI and publishes feedback; same student reads it beside original receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "Next canonical problem clears prior answer and help; explicit renewed consultation produces distinct receipt with Q fixed and ratio 1/16",
+      "status": "PASS",
+      "receiptId": "8f3a72da02534181858091d912560bad",
+      "stepId": "fixed-flow"
+    },
+    {
+      "name": "New Core process and fresh browser restore second receipt, first teacher feedback and exact references from same database; explicit bundle reimport restores local archive",
+      "status": "PASS"
+    },
+    {
+      "name": "Cold historical receipt reopens its PDF annotation, exact media revision and reimported replay through canonical UI",
+      "status": "PASS"
+    },
+    {
+      "name": "Composed journey responsive at 1440px without body overflow or PDF CSS leak",
+      "status": "PASS",
+      "shell": {
+        "position": "fixed",
+        "maxWidth": "none",
+        "width": 252,
+        "mainTop": 0
+      }
+    },
+    {
+      "name": "Composed journey responsive at 820px without body overflow or PDF CSS leak",
+      "status": "PASS",
+      "shell": {
+        "position": "relative",
+        "maxWidth": "none",
+        "width": 820,
+        "mainTop": 154.5
+      }
+    },
+    {
+      "name": "Composed journey responsive at 390px without body overflow or PDF CSS leak",
+      "status": "PASS",
+      "shell": {
+        "position": "relative",
+        "maxWidth": "none",
+        "width": 390,
+        "mainTop": 179
+      }
+    },
+    {
+      "name": "Composed journey responsive at 360px without body overflow or PDF CSS leak",
+      "status": "PASS",
+      "shell": {
+        "position": "relative",
+        "maxWidth": "none",
+        "width": 360,
+        "mainTop": 179
+      }
+    },
+    {
+      "name": "Enrolled peer cannot read student private checkpoint or receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual unavailable exact media revision fails closed while a current passage exists; no latest fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "Frozen source and production builds unchanged; no page errors, external requests or server failures",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [
+    {
+      "stage": "responsive and ACL",
+      "status": 404,
+      "path": "/study/resources/c265b9d63794417fb746b57c0ceb40dc/revisions/g0-unavailable-revision"
+    }
+  ],
+  "product": {
+    "head": "7c9412637140d4d516a1befaac044e7388520cc9",
+    "tree": "56646b79a95146c63708aee00d5a55fe33b4e9b6",
+    "web": {
+      "fileCount": 322,
+      "sha256": "d2e6956603ded732f126989e666d7980b008c20e0d50ce7bd4784d367f69f276"
+    },
+    "studio": {
+      "fileCount": 484,
+      "sha256": "170806363006158bdd4db3e2c3b6deb78d8a910a071caea3aa66ef5200f02444"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "source": {
+    "resourceId": "7c66eec34b04496d82bf21152c5cf31e",
+    "revisionId": "75a93494d7bb43cb8a372c4851c6b397"
+  },
+  "annotation": {
+    "resourceId": "620063b486a04d31a3b34fd0c431ab4d",
+    "revisionId": "497d2ddc89404c73a16582615e72a466"
+  },
+  "passage": {
+    "resourceId": "c265b9d63794417fb746b57c0ceb40dc",
+    "revisionId": "2979c281615e48df92ddd3f5d878d1a7"
+  },
+  "index": {
+    "resourceId": "fa9964ba100b4cb0bcc5c1c5e631881e",
+    "revisionId": "1427f76dbf664e3ea9327334871eb362"
+  },
+  "receipts": [
+    "73d76ddf7eee47e98f1cbfdeb81919b9",
+    "8f3a72da02534181858091d912560bad"
+  ],
+  "coreProcessIds": [
+    47540,
+    47800
+  ],
+  "limits": [
+    "Synthetic actors and original fixture, local SQLite/blob adapter only; not G1 or provider readiness",
+    "Microphone device synthetic; real MediaRecorder and playback exercised, not human listening or hardware validation",
+    ".lesson bytes explicitly exported/imported; textual Core reference grants no remote audio or authority",
+    "S20 private rollout flag explicitly enabled; default remains OFF",
+    "Receipt and feedback prove delivery/continuity, not mastery, scientific approval, course completion or public release"
+  ]
+}

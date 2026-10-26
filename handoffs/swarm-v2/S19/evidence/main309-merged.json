@@ -1,0 +1,39 @@
+{
+  "scope": "main309 merged, prior to S19 refresh push",
+  "main": "d7dc3917d695c80d027c91df21577e06ec649232",
+  "pullRequest309": {
+    "headRefOid": "080e39b7b743465144ce22b1a1b3f0cba2e1b54f",
+    "mergeCommit": {
+      "oid": "d7dc3917d695c80d027c91df21577e06ec649232"
+    },
+    "mergedAt": "2026-10-26T18:40:03Z",
+    "state": "MERGED",
+    "url": "https://github.com/AndreaMarro/ardesia/pull/309"
+  },
+  "tree": "e1f625187eb196cdc5b7b6b30948e9dddc2a5c2f",
+  "parents": [
+    "e95a80b393589b71da2846aa98814dc1a034b730",
+    "080e39b7b743465144ce22b1a1b3f0cba2e1b54f"
+  ],
+  "manifestChecks": [
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "420ea73565c800704adaa98bf8073e5ae880e2fdece359d511572562ff6ea71b",
+      "matches": true
+    },
+    {
+      "path": "services/study-api/study_api/app.py",
+      "sha256": "c7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/components/SourceViewer.tsx",
+      "sha256": "1f398fdf4720ffee21121993253f3c1dc081ae16e580d4d0308b8b334a015de2",
+      "matches": true
+    }
+  ],
+  "appMatchesPrepared9da": true,
+  "postMergeCIRun": 40379757071,
+  "postMergeCIStateAtS00Confirmation": "queued; no green inherited",
+  "s00ConfirmedMain": "d7dc3917d695c80d027c91df21577e06ec649232"
+}

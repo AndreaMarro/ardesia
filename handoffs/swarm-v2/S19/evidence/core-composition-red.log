@@ -1,0 +1,19 @@
+F...                                                                     [100%]
+=================================== FAILURES ===================================
+___________ test_core_resource_cas_cold_reopen_and_no_stored_answers ___________
+
+core = (<lessonos.study.store.StudyStore object at 0x1098f0ec0>, Principal(id='s19-tutor', role='teacher'), Principal(id='s19-student', role='student'), Principal(id='s19-peer', role='student'))
+
+    def test_core_resource_cas_cold_reopen_and_no_stored_answers(core):
+        s,t,u,p=core;d=deepcopy(DEFAULT_DOCUMENT)
+        r=save(s,u,'s19-dc',d,'save-1')
+        assert 'answer' not in json.loads(r['text'])
+        path=s.path
+>       with StudyStore(path) as fresh:
+             ^^^^^^^^^^^^^^^^
+E       TypeError: 'StudyStore' object does not support the context manager protocol
+
+plugins/s19-circuit-lab/tests/test_core.py:27: TypeError
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_core.py::test_core_resource_cas_cold_reopen_and_no_stored_answers
+1 failed, 3 passed in 28.46s

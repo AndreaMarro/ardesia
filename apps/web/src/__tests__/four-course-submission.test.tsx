@@ -10,8 +10,9 @@ beforeEach(installPublicBrowserStorage);
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 test('retry selects the original model and changing lessons cannot carry its parent into another model',async()=>{
  const course=learningCourses.courses[0];const sent:Record<string,unknown>[]=[];
+ const originalLesson=course.lessons.find(l=>l.activityId==='kinematics-v1')!;
  const me={id:'student-synthetic',role:'student' as const,synthetic:true as const};
- const data={enrolled:true,edition:{id:'mechanics',teacherId:'owner',capacity:10,priceMinor:0,state:'collecting',sessions:[],timezone:'Europe/Rome',...course.packRef,entryActivityId:'hooke-v1'},resources:[],submissions:[{id:'retry-kin',student_id:me.id,activity_id:'kinematics-v1',source_refs:[]}],layouts:[],layoutSaved:true,layoutVersion:'a'.repeat(64)} as unknown as Workspace;
+ const data={enrolled:true,edition:{id:'mechanics',teacherId:'owner',capacity:10,priceMinor:0,state:'collecting',sessions:[],timezone:'Europe/Rome',...course.packRef,entryActivityId:'hooke-v1'},resources:[],submissions:[{id:'retry-kin',student_id:me.id,activity_id:'kinematics-v1',source_refs:[],courseContext:{lessonRef:originalLesson.lessonRef,phase:'practice'}}],layouts:[],layoutSaved:true,layoutVersion:'a'.repeat(64)} as unknown as Workspace;
  vi.stubGlobal('fetch',vi.fn(async(path:string,init?:RequestInit)=>{
   if(path.startsWith('/study/course-learning'))return new Response(JSON.stringify({course}));
   if(path==='/study/submissions'){sent.push(JSON.parse(init!.body as string));return new Response(JSON.stringify({receiptId:'receipt-'+sent.length,revision:sent.length}));}
@@ -24,7 +25,7 @@ test('retry selects the original model and changing lessons cannot carry its par
  fireEvent.change(screen.getByLabelText('La tua spiegazione'),{target:{value:'Uso la coordinata x e il tempo dichiarato.'}});
  fireEvent.click(screen.getByRole('button',{name:'Consegna'}));
  await waitFor(()=>expect(sent).toHaveLength(1));
- expect(sent[0]).toMatchObject({activityId:'kinematics-v1',parentId:'retry-kin'});
+ expect(sent[0]).toMatchObject({activityId:'kinematics-v1',parentId:'retry-kin',courseLesson:{lessonRef:originalLesson.lessonRef,phase:'practice'}});
  await screen.findByText(/Consegnato · ricevuta receipt-1/);
  const spring=course.lessons.find(l=>l.activityId==='hooke-v1')!;
  fireEvent.click(screen.getByRole('button',{name:'1. '+spring.title}));

@@ -1,0 +1,142 @@
+# S00 — integrazione V2, batch iniziale (26 ottobre 2026)
+
+Base osservata: `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`, PR306 già MERGED.
+Branch: `codex/swarm-v2-s00-integration-20261026`. Il registro `streams.json`
+contiene osservazioni, non dichiara avviati tutti i dodici writer.
+
+## Consumer e confine del batch
+
+La pipeline esistente costruiva Web e Studio ma l'export Vercel eliminava entrambi.
+Il nuovo export esplicito conserva Aula `/` e Studio `/studio/` sullo stesso host;
+`/ops/release/` consente all'operatore di aprirli e controllare le tre SHA distinte.
+Non cambia la produzione pubblica, le cinque dimostrazioni o il gate editoriale.
+L'editoriale DRAFT resta una distribuzione separata. Non installa un backend:
+ogni `/study` risponde503 `backend_not_configured`, anche per metodi di scrittura.
+Questo è un incremento del canale di integrazione, non una beta autenticata remota
+né un'accettazione completa del percorso «Studia da solo».
+
+La CSP ammette solo script locali. La review ha identificato che Formula dipendeva
+ancora da un CDN: il browser bundle completo **MathJax3.2.1** viene ora emesso dalla
+dipendenza già nel lock, senza importare il suo entry CJS. Licenza Apache-2.0
+distribuita con l'asset; nessun package/lock nuovo. Font ed altre licenze esistenti
+restano invariati. La dimensione extra lazy è misurata nella prova di build.
+
+## Riproduzione
+
+Usare Node26.5.1/root lock e il runtime Studio previsto dal suo lock/CI.
+
+```sh
+python3 -m unittest discover -s bin/tests -p 'test_teaching*.py'
+npm --prefix apps/studio run typecheck
+npm --prefix apps/studio exec -- vitest run src/__tests__/latexToImage.test.ts src/__tests__/localMathJax.test.ts --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000
+python3 bin/build_teaching_candidate.py --include-private --output /tmp/ardesia-s00-candidate-FRESH
+python3 bin/web/prepare_vercel_preview.py --candidate /tmp/ardesia-s00-candidate-FRESH --private-integrated --output /tmp/ardesia-s00-prepared-FRESH
+python3 bin/web/prepare_vercel_upload.py --prepared /tmp/ardesia-s00-prepared-FRESH --protected-integrated-preview --output /tmp/ardesia-s00-upload-FRESH.json
+```
+
+Le directory devono essere nuove; il file upload contiene solo asset del prodotto,
+mai credenziali. Il preparatore non esegue deploy e il payload non imposta
+`target=production`. S00 verifica il progetto `prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`
+e SSO preview attivo usando la connessione autorizzata. Nessuna modifica DNS,
+registrazione globale REA, secret o autorizzazione applicativa viene implicata.
+
+Prova browser ripetibile della directory preparata:
+
+```sh
+python3 bin/web/serve_teaching_candidate.py --private-integrated --directory /tmp/ardesia-s00-prepared-FRESH/.vercel/output/static --port 5416
+node handoffs/swarm-v2/S00/verify-preview.mjs --prepared /tmp/ardesia-s00-prepared-FRESH --origin http://127.0.0.1:5416 --output /tmp/ardesia-s00-proof-FRESH
+```
+
+Per Vercel usare l'origine immutabile e `--access-file` con un grant operatore
+temporaneo0600, mai committato o scritto nei report. Il runner verifica prima
+quattro URL senza grant, poi hash di tutti gli asset, API503,404 editoriali,
+UI360/390/820/1440, tastiera, movimento ridotto e inserimento SVG reale con
+MathJax locale. Non crea un account né simula risposte Core; il grant SSO è
+distinto dall'identità applicativa. Revocare il grant al termine.
+
+## Stato delle prove
+
+- Pipeline26 test PASS nell'ultima esecuzione prima dell'ultimo affinamento del
+  controesempio upload; ripetizione finale richiesta prima di dichiarare verde.
+- RED reale Formula: expected stessa origine, received jsDelivr. Nuovo loader e
+  plugin implementati, GREEN/browser/build ancora da eseguire nello slot S00.
+- Review tecnica separata: corretti aggiunta/link durante copia e doppia lettura
+  hash/payload. La review non è approvazione umana o scientifica.
+- REA CLI6.7.0 verificata; nessun tool MCP REA esposto. Nessuna nuova Evidence di
+  analisi build dichiarata finché non eseguita sul candidato reale.
+- Main, CI, PR, integrazione e deployment sono registrati al checkpoint finale;
+  questo rapporto iniziale non li anticipa. I quattro corsi restano INCOMPLETE,
+ 200 obiettivi proposti e zero accettazioni complete.
+
+## Prossimi batch
+
+1. Ricevere READY S02/S09, verificare merge-tree e integrare senza cambiare protection.
+2. Collegare gli installer Core e «Studia da solo» con S10/S06 e prove di identità,
+   fonti, tentativi/feedback e ripresa; nessuna seconda autorità.
+3. Distribuire la candidata privata integrata e collegare l'attestazione provider
+   a main osservata/head/sorgente/hash degli asset. Backend mancante resta esplicito.
+
+
+## Checkpoint finale locale successivo
+
+Fonte2c522f96; main992d1a0b. Dieci mirati Studio e27pipelinePASS; build4pulita e791check browser localePASS. Notice234font/9famiglie e codiceMIT emessi, copyright separati; Liberation1.05legacy/source non verificato impedisce una dichiarazione di pubblicazioneStudio. Review tecnica separata senza finding comprovati,7requiredSUCCESS sulla fonte.307/308 integrate e CI post-merge verdi;314 ancora da terminare con provaVercel. Upload dal checkpoint persistente, primo create400missing_files, nessuna pubblicazione anticipata. RAW/test/screenshot nel pacchetto locale output2026-10-26-s00-integration; finalizzare receipt provider e rapporto dopo esecuzione. Il vecchio checkpoint26test e GREEN non eseguito è storico, non cancellato. Decisione di riuso completa in REA-REUSE.md.
+
+
+## Prova remota effettiva successiva
+
+Deployment `dpl_CESVaUARu9iX9zZuwZSqRjj8W1U8` READY, URL protetto [registro operatore](https://ardesia-fisica-preview-kpdx7h80d-andreas-projects-6d4e9791.vercel.app/ops/release/). Fonte2c522f96, manifest86af3158… invariato;796 HTTPS PASS,27 pipeline ripetuti PASS.768 asset esatti,4 gate anonimi, API503/DRAFT404, quattro larghezze,focus/reduced-motion e Formula SVG reale locale,zero errori/richieste esterne. Receipt e prova nel sottopercorso evidence; il provider non espone un refGit utile (Unknown), quindi non lo si deduce.
+
+GrantTTL1800 revocato; link vecchio e client fresco302→SSO, file0600 eliminato. La mia prima asserzione401/403 e il reporting401 erano troppo restrittivi/prematuri: rettificati in6411382351 e RUNLOG, originale conservato. Produzione dpl_7BQB2RrpkNdAsFgQ4MktHgfdnS1z verificata invariata. Nessun backend remoto o rollback eseguito. Prova locale791 distinta da remota796. Gate congelato e finalizzazione314 si registrano con i propri esiti, non dedotti da READY.
+
+
+## Correzione visuale e diagnostico successivi
+
+Review indipendente trovaP2 banner sovrapposto, RED reale su build4; fixCSS in corso nella stessa314, nessun GREEN anticipato.4viewport sono Aula, Studio solo1440. Gate locale congelato2311/2FAIL, diverso da CIStudio2313PASS/5skip. Commit durante test aveva invalidato la SHA compilata; controprova1RED e52GREEN aHEADferma. MathJax15721ms/limite15000 non spiegato definitivamente dal solo rerun. Secondo gate conserva JSON originale, script/soglie immutati; nessun ulteriore commit durante esecuzione. Leggere nuovi report prima di riferire un esito finale. Vecchi manifest output dataless non vengono letti/cancellati per costruire il pacchetto fresco.
+
+
+## 26 ottobre2026 — esito successivo verificato
+
+La decisione umana è stata fornita e il ciclo concluso: gate congelato2314PASS/0FAIL incluso replay, HEAD573/script invariati; raw e receipt in evidence/approved-gate.314 MERGED ordinariamente su a00f2f40091aecf69e58ebaba42cf70d748e4066, treeab509d3 identico al merge-tree, CIpostmerge40319487576SUCCESS. Vecchi/tmp assenti al resume: precedente processo interrotto senza esito, recuperata stessaHEAD da remoto in percorso persistente e verifica rieseguita, nessun PASS inventato. Produzione invariata e previewfonte158/800HTTPS distinta;0/200 e limiti remoti/licenze rimangono. La nota BLOCKED_HUMAN_DECISION precedente è snapshot storico, non stato attuale. Prossimo raccordo317 in worktreescience, ancoraNON_IMPLEMENTATO nellaUI.
+
+
+## 26 ottobre 2026 — libreria scientifica nel prodotto, fonte b701e531
+
+La stessa PR317 monta ora la libreria nei Materiali e la factory API reale.
+Quattro strumenti originali Core (urto, Bernoulli, campo/potenziale, lente) sono
+riusati dalle quattro viste di percorso. Previsione, parametri, grafici, aiuti,
+problema diverso e note private persistono con CAS/retry e revisione esatta.
+Il reader conserva le note senza eseguire automaticamente un modello; vietato
+l'editor JSON generico. I salvataggi hanno titoli distinti e il ciclo mobile
+ha ordine parametri→risultato, focus e ritorno ai dati senza animazione.
+
+Prove:53Core/HTTP,38mirati Web dopo review, typecheck e build aggregate PASS.
+FullWeb463 prima dei2fix visuali; CI finale della nuova head resta l'autorità
+per la suite completa successiva. Browser reale19gruppi PASS da App→Materiali,
+factory/cookie/Core effettivi e CSP canonica, due risorse, cold reopen, transfer,
+offline retry, peer403/revoca e quattro larghezze più nuovo contesto mobile390.
+I precedenti18PASS non certificavano il grafico dopo resize: PNG tagliato
+conservato, misurato SVG550px contro contenitore369px prima dell'aggiornamento;
+ora il runner attende il predicato sulle dimensioni e sulle forme proiettate.
+Nessun fix del renderer o guasto permanente dichiarato. Review indipendente
+sui nuovi pixel e hash in evidence/science-composition/ULTIMA-REVIEW.md.
+
+Riproduzione dalla root (porta55511 libera, dati sintetici usa-e-getta):
+
+```sh
+uv sync --project services/study-api --frozen --python 3.13
+npm ci --no-audit --no-fund
+npm run build:web
+node handoffs/swarm-v2/S00/prove-science.cjs
+PYTHONPATH=packages/engine:services/study-api services/study-api/.venv/bin/python -m pytest packages/engine/tests/study/test_science_library_runtime_identity.py services/study-api/tests/test_science_library_http.py -q
+```
+
+Il runner crea e rimuove DB/sessioni sintetici; conserva report e PNG nel
+percorso stampato. ARDESIA_S00_SCIENCE_EVIDENCE può indicare una cartella fresca.
+Il probe-science-resize.cjs con ARDESIA_RESIZE_OUT separa stato immediato/500ms
+e apertura nuova390; GEOMETRY_MISMATCH è un'osservazione, non un exit test verde.
+Nessun gateway remoto, produzione o iscrizione reale viene creato.
+
+Preview preparata fonte prodotto b701e531, manifest8f56c1ac…; il deployment
+provider e il terminale PR si attestano successivamente, non si deducono dalla
+build. Public5esempi invariati; Core remoto mancante e0/200 completamenti
+restano limiti. JSXGraph non è un plugin installabile e il confronto non è voto.

@@ -52,13 +52,13 @@ def _invalidate_projection(c,resource_id):
             c.execute('DELETE FROM segments WHERE seg_id=?',('study-'+row['review_id'],))
 
 
-def revise_resource(store,principal,resource_id,expected_revision,text):
+def revise_resource(store,principal,resource_id,expected_revision,text, *, key=None):
     resource=store.get_resource(principal,resource_id)
     if resource['ownerId']!=principal.id:raise StudyError('forbidden',403)
     if resource['kind']=='scientific-notebook':raise StudyError('notebook_command_required')
     if not isinstance(text,str) or not 1<=len(text)<=20_000:raise StudyError('invalid_text')
     revision=identifier()
-    with store.transaction() as c:
+    def apply(c):
         current=c.execute('SELECT current_revision FROM study_resources WHERE id=?',(resource_id,)).fetchone()
         if current is None:raise StudyError('forbidden',403)
         if current[0]!=expected_revision:raise StudyError('stale_revision',409)
@@ -68,7 +68,14 @@ def revise_resource(store,principal,resource_id,expected_revision,text):
         if updated.rowcount!=1:raise StudyError('stale_revision',409)
         _invalidate_projection(c,resource_id)
         store._event(c,principal,'resource.revised',resource_id,{'revisionId':revision})
-    return store.get_resource(principal,resource_id)
+        return store.get_resource(principal,resource_id)
+
+    if key is not None:
+        from .transactions import execute_command
+        return execute_command(store,principal,'resource.revised',key,
+            {'resourceId':resource_id,'expectedRevision':expected_revision,'text':text},apply)
+    with store.transaction() as c:
+        return apply(c)
 
 
 def delete_resource(store,principal,resource_id):

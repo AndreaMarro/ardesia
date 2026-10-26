@@ -1,0 +1,77 @@
+PASS compiled real Materials and original PDF render
+PASS upstream PDF find controller searches native text
+PASS teacher native-text equation plus structured formula saved in Core
+ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByRole('heading', { name: 'Annotazione della lezione' })
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 60000ms
+  - waiting for getByRole('heading', { name: 'Annotazione della lezione' })
+
+    at captureRawStack (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright-core/lib/coreBundle.js:3130:17)
+    at callMatcherAsStep (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12873:57)
+    at Object.toBeVisible (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12863:23)
+    at /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/handoffs/swarm-v2/S18/proof/browser.mjs:35:210 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByRole('heading', { name: 'Annotazione della lezione' })\n" +
+      'Expected: visible\n' +
+      'Timeout: 60000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 60000ms\n' +
+      "  - waiting for getByRole('heading', { name: 'Annotazione della lezione' })\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 60000ms',
+      "  - waiting for getByRole('heading', { name: 'Annotazione della lezione' })"
+    ],
+    timeout: 60000,
+    ariaSnapshot: '- link "Vai al contenuto":\n' +
+      '  - /url: "#content"\n' +
+      '- complementary "Navigazione e account":\n' +
+      '  - link "ardesia.":\n' +
+      '    - /url: /\n' +
+      '    - text: ardesia .\n' +
+      '  - paragraph: Il tuo spazio\n' +
+      '  - text: Edizione corrente\n' +
+      '  - combobox "Edizione corrente":\n' +
+      `    - 'option "Fisica: relazioni e fluidi · fluidi" [selected]'\n` +
+      '  - navigation "Navigazione principale":\n' +
+      '    - button "Oggi"\n' +
+      '    - button "I miei corsi"\n' +
+      '    - button "Lezione"\n' +
+      '    - button "Il mio lavoro"\n' +
+      '    - button "Prova di fisica"\n' +
+      '    - button "Materiali"\n' +
+      '  - paragraph: Un’idea prende forma. Un filo rimane.\n' +
+      '  - button "S Spazio studente Esci dall’account"\n' +
+      '- banner:\n' +
+      '  - text: "Fisica: relazioni e fluidi"\n' +
+      '  - strong: Il mio lavoro\n' +
+      '  - button "Cerca nello spazio · Ctrl o ⌘ K": Cerca nello spazio\n' +
+      '- text: Ambiente di prova · dati sintetici\n' +
+      '- main:\n' +
+      '  - navigation "Il mio lavoro":\n' +
+      '    - button "Diario degli errori"\n' +
+      '    - button "Consegne e feedback" [pressed]\n' +
+      '    - button "Quaderno"\n' +
+      '  - heading "Le tue consegne." [level=1]\n' +
+      '  - paragraph: Ogni tentativo resta visibile con il suo originale, la ricevuta e l’intervento del tutor.\n' +
+      '  - article:\n' +
+      '    - heading "Tentativo 1 · Laboratorio Fluidi" [level=2]\n' +
+      '    - text: Ricevuto dal servizio\n' +
+      '    - paragraph: Studio il passaggio idrostatico e lo uso per la pressione del fluido.\n' +
+      '    - group: Originali, versione e ricevuta\n' +
+      '    - button "Prepara un nuovo tentativo"'
+  }
+}

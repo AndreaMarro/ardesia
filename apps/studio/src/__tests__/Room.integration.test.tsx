@@ -33,6 +33,7 @@ import type { WorkspaceStoreOptions } from "../store/WorkspaceStore"
 
 const mockExcalidrawHarness = vi.hoisted(() => ({
   updateSceneCalls: [] as Array<{ elements?: Array<{ id?: string }> }>,
+  sceneElements: [] as Array<Record<string, unknown>>,
   cleanupTrace: null as string[] | null,
   throwOnUnsubDown: false,
   pointerDown: null as (() => void) | null,
@@ -46,7 +47,7 @@ vi.mock("@excalidraw/excalidraw", () => {
         setTimeout(() => {
           const unsubs: Array<() => void> = []
           props.excalidrawAPI({
-            getSceneElements: vi.fn(() => []),
+            getSceneElements: vi.fn(() => mockExcalidrawHarness.sceneElements),
             updateScene: vi.fn((scene: { elements?: Array<{ id?: string }> }) => {
               mockExcalidrawHarness.updateSceneCalls.push(scene)
             }),
@@ -93,17 +94,18 @@ vi.mock("@excalidraw/excalidraw", () => {
     convertToExcalidrawElements: vi.fn((els: any) => els),
     serializeAsJSON: vi.fn(() => serialized),
     getSceneVersion: vi.fn(() => 1),
+    getCommonBounds: vi.fn(() => [0, 0, 0, 0]),
   }
 })
 
 vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
 // Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
-let capturedOnInsert: ((latex: string) => void) | null = null
+let capturedOnInsert: ((latex: string) => void | Promise<void>) | null = null
 const composerModuleState = vi.hoisted(() => ({ loads: 0 }))
 vi.mock("../MathComposer", () => {
   composerModuleState.loads += 1
   return ({
-  default: (props: { onInsert: (latex: string) => void }) => {
+  default: (props: { onInsert: (latex: string) => void | Promise<void> }) => {
     capturedOnInsert = props.onInsert
     return "mock-math-composer"
   },
@@ -221,6 +223,7 @@ beforeEach(() => {
   document.body.innerHTML = '<div id="root"></div>'
   delete (window as any).__MAESTRO_TEST__
   mockExcalidrawHarness.updateSceneCalls = []
+  mockExcalidrawHarness.sceneElements = []
   mockExcalidrawHarness.cleanupTrace = null
   mockExcalidrawHarness.throwOnUnsubDown = false
   mockExcalidrawHarness.pointerDown = null
@@ -411,6 +414,33 @@ describe("Room ↔ WorkspaceStore integration", () => {
       { timeout: 1500, interval: 50 },
     )
     root.unmount()
+  })
+
+  it("preserves living lesson editorial through the Room writer without copying private fields", async () => {
+    const { store } = await createMockStore()
+    const editorial = {
+      v: 1, lessonId: "test-room-1", moments: [{
+        id: "poiseuille-chapter", title: "Portata fissata", kind: "chapter",
+        lessonId: "test-room-1", sessionId: "10000000-0000-4000-8000-000000000001",
+        recordingId: "20000000-0000-4000-8000-000000000002", sha256: "a".repeat(64), epoch: 2500,
+        objectRefs: [{ elementId: "poiseuille", version: 2, label: "Δp e raggio" }],
+      }],
+    }
+    await store.saveScene("test-room-1", JSON.stringify({ type: "excalidraw", elements: [], livingLesson: editorial, privateNotes: { student: "never export this" } }))
+    const save = vi.spyOn(store, "saveScene")
+    const root = createRoot(document.getElementById("root")!)
+    try {
+      const RoomModule = await import("../Room")
+      root.render(<RoomModule.default store={store} />)
+      await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+      const { Excalidraw } = await import("@excalidraw/excalidraw")
+      const onChange = vi.mocked(Excalidraw).mock.calls.at(-1)![0].onChange!
+      onChange([], { isLoading: false } as any, {})
+      await vi.waitFor(() => expect(save).toHaveBeenCalled(), { timeout: 1500 })
+      const persisted = JSON.parse((await store.loadScene("test-room-1"))!)
+      expect(persisted.livingLesson).toEqual(editorial)
+      expect(persisted).not.toHaveProperty("privateNotes")
+    } finally { root.unmount() }
   })
 
   it("mostra errore visibile in header quando saveScene fallisce (quota)", async () => {
@@ -3260,11 +3290,139 @@ describe("AUDIO-V2: il docente controlla la cattura", () => {
   })
 })
 
-describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offline = supportato)", () => {
-  it("latexToImage rigetta (CDN MathJax giu): risuperficia il messaggio nel chip st-err", async () => {
+describe("insertMath: renderer failure, retry and Room lifecycle", () => {
+  it("places a formula below current live content without moving existing or deleted objects", async () => {
     capturedOnInsert = null
     const { latexToImage } = await import("../latexToImage")
-    vi.mocked(latexToImage).mockRejectedValueOnce(new Error("MathJax CDN load failed"))
+    const { getCommonBounds } = await import("@excalidraw/excalidraw")
+    vi.mocked(latexToImage).mockResolvedValueOnce({ dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 96, height: 24 })
+    const annotation = { id: "teacher-annotation", type: "text", x: 160, y: 120, width: 395, height: 64.8, isDeleted: false }
+    const deleted = { ...annotation, id: "deleted", y: 4000, isDeleted: true }
+    mockExcalidrawHarness.sceneElements = [annotation, deleted]
+    vi.mocked(getCommonBounds).mockReturnValueOnce([160, 120, 555, 184.8])
+    const { store } = await createMockStore()
+    const root = createRoot(document.getElementById("root")!)
+    try {
+      const RoomModule = await import("../Room")
+      root.render(<RoomModule.default store={store} />)
+      await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+      Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
+      await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
+      await capturedOnInsert!("E=mc^2")
+      expect(getCommonBounds).toHaveBeenCalledWith([annotation])
+      expect(mockExcalidrawHarness.updateSceneCalls).toHaveLength(1)
+      expect(mockExcalidrawHarness.updateSceneCalls[0].elements).toEqual([
+        annotation, deleted, expect.objectContaining({ type: "image", x: 160, y: 208.8 }),
+      ])
+    } finally { root.unmount() }
+  })
+
+  it("dismisses the tools menu when opening the formula composer", async () => {
+    capturedOnInsert = null
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+    document.querySelector<HTMLButtonElement>('[aria-label="Apri menu"]')!.click()
+    await vi.waitFor(() => expect(document.querySelector(".st-actions-open")).not.toBeNull())
+    Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
+    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
+    expect(document.querySelector(".st-actions-open")).toBeNull()
+    root.unmount()
+  })
+
+  it("keeps the outer formula toggle closed to duplicate requests until failure settles", async () => {
+    capturedOnInsert = null
+    const { latexToImage } = await import("../latexToImage")
+    let rejectRender!: (reason: Error) => void
+    const renderPending = new Promise<never>((_resolve, reject) => { rejectRender = reject })
+    vi.mocked(latexToImage).mockReturnValueOnce(renderPending)
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+    const toggle = Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!
+    toggle.click()
+    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
+    const request = Promise.resolve(capturedOnInsert!("x^2"))
+    void request.catch(() => {})
+    await vi.waitFor(() => expect(toggle.disabled).toBe(true))
+    toggle.click()
+    expect(document.body.textContent).toContain("mock-math-composer")
+    await expect(capturedOnInsert!("y^2")).rejects.toThrow("Attendi l'inserimento")
+    expect(latexToImage).toHaveBeenCalledTimes(1)
+    rejectRender(new Error("render fallito"))
+    await expect(request).rejects.toThrow("render fallito")
+    await vi.waitFor(() => expect(toggle.disabled).toBe(false))
+    expect(document.body.textContent).toContain("mock-math-composer")
+    vi.mocked(latexToImage).mockResolvedValueOnce({ dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 24, height: 16 })
+    await expect(capturedOnInsert!("x^2")).resolves.toBeUndefined()
+    expect(latexToImage).toHaveBeenCalledTimes(2)
+    expect(mockExcalidrawHarness.updateSceneCalls).toHaveLength(1)
+    expect(mockExcalidrawHarness.updateSceneCalls[0].elements).toEqual([
+      expect.objectContaining({ type: "image", width: 24, height: 16 }),
+    ])
+    root.unmount()
+  })
+
+  it("rejects a deferred formula when the Room lifecycle changes before rendering finishes", async () => {
+    capturedOnInsert = null
+    const { latexToImage } = await import("../latexToImage")
+    let finishRender!: (image: { dataURL: string; width: number; height: number }) => void
+    const renderPending = new Promise<{ dataURL: string; width: number; height: number }>(resolve => { finishRender = resolve })
+    vi.mocked(latexToImage).mockReturnValueOnce(renderPending)
+    const { store } = await createMockStore()
+    vi.spyOn(store, "loadScene").mockResolvedValue(null)
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+    Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
+    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
+    const request = Promise.resolve(capturedOnInsert!("x^2"))
+    void request.catch(() => {})
+    const replacement = await createMockStore()
+    const loaded = vi.spyOn(replacement.store, "loadScene").mockResolvedValue(null)
+    root.render(<RoomModule.default store={replacement.store} />)
+    await vi.waitFor(() => expect(loaded).toHaveBeenCalled())
+    const writes = mockExcalidrawHarness.updateSceneCalls.length
+    finishRender({ dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 24, height: 16 })
+    await expect(request).rejects.toThrow("La lezione è cambiata")
+    expect(mockExcalidrawHarness.updateSceneCalls).toHaveLength(writes)
+    root.unmount()
+  })
+
+  it("rejects a deferred formula after the Room unmounts without mutating its canvas", async () => {
+    capturedOnInsert = null
+    const { latexToImage } = await import("../latexToImage")
+    let finishRender!: (image: { dataURL: string; width: number; height: number }) => void
+    vi.mocked(latexToImage).mockReturnValueOnce(new Promise(resolve => { finishRender = resolve }))
+    const { store } = await createMockStore()
+    document.body.removeAttribute("data-mock-excalidraw-api")
+    const root = createRoot(document.getElementById("root")!)
+    const RoomModule = await import("../Room")
+    root.render(<RoomModule.default store={store} />)
+    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
+    await vi.waitFor(() => expect(document.body.getAttribute("data-mock-excalidraw-api")).toBe("1"))
+    Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
+    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
+    const request = Promise.resolve(capturedOnInsert!("x^2"))
+    void request.catch(() => {})
+    root.unmount()
+    const writes = mockExcalidrawHarness.updateSceneCalls.length
+    finishRender({ dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 24, height: 16 })
+    await expect(request).rejects.toThrow("La lezione è cambiata")
+    expect(mockExcalidrawHarness.updateSceneCalls).toHaveLength(writes)
+  })
+
+  it("latexToImage rigetta: risuperficia il messaggio nel chip st-err", async () => {
+    capturedOnInsert = null
+    const { latexToImage } = await import("../latexToImage")
+    vi.mocked(latexToImage).mockRejectedValueOnce(new Error("MathJax local bundle load failed"))
 
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
@@ -3286,12 +3444,12 @@ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offlin
       expect(capturedOnInsert).toBeTypeOf("function")
     }, { timeout: 5000, interval: 10 })
 
-    capturedOnInsert!("x^2")
+    await expect(capturedOnInsert!("x^2")).rejects.toThrow("MathJax local bundle load failed")
 
     await vi.waitFor(() => {
       const err = document.querySelector(".st-err")
       expect(err?.textContent).toContain("Inserimento formula non riuscito")
-      expect(err?.textContent).toContain("MathJax CDN load failed")
+      expect(err?.textContent).toContain("MathJax local bundle load failed")
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()

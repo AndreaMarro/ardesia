@@ -1,0 +1,202 @@
+{
+  "adopted": {
+    "package": "pdfjs-dist",
+    "version": "6.4.299",
+    "build": "d0991a0d5",
+    "license": "Apache-2.0",
+    "locked": {
+      "version": "6.4.299",
+      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-6.4.299.tgz",
+      "integrity": "sha512-AVl138zALtfaAPvADulE0PZThbYzCBS79nL4pOSL/6Sm/4AH5A21BD9VHt97OlCuzJuCpmeZtAtkinisF4Vb1g==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=22.13.0 || >=24"
+      },
+      "optionalDependencies": {
+        "@napi-rs/canvas": "^1.0.10"
+      }
+    },
+    "files": [
+      {
+        "path": "pdfjs-dist/package.json",
+        "bytes": 711,
+        "sha256": "8103b756525a79ec119558e9796062228290acfd5178a6b7fc93e6979511f604"
+      },
+      {
+        "path": "pdfjs-dist/LICENSE",
+        "bytes": 10174,
+        "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+      },
+      {
+        "path": "pdfjs-dist/web/pdf_viewer.mjs",
+        "bytes": 319973,
+        "sha256": "2e112bf95cf962bcc9d3ace10d5bc74b3c5095245baa3eacd6bbbb9fc9a940a3"
+      },
+      {
+        "path": "pdfjs-dist/web/pdf_viewer.css",
+        "bytes": 168569,
+        "sha256": "1f3c7c3c692d4da2334d0386d2286ec040a37db8654e02b8704b11262bc9bf49"
+      },
+      {
+        "path": "pdfjs-dist/build/pdf.mjs",
+        "bytes": 860818,
+        "sha256": "dd13af821c9c3e1778653340d6539a1ba07bc56cba40073a4c727864cf0c232a"
+      },
+      {
+        "path": "pdfjs-dist/build/pdf.worker.min.mjs",
+        "bytes": 1264342,
+        "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18"
+      },
+      {
+        "path": "pdfjs-dist/types/web/pdf_viewer.d.ts",
+        "bytes": 24560,
+        "sha256": "ab7c7c48f6a3d3f2db49332de9069ccccee35087120cc24dbe20da3a17abd6d2"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "name": "@annotorious/annotorious",
+      "version": "3.9.5",
+      "license": "BSD-3-Clause",
+      "dependencies": {
+        "uuid": "^14.0.2",
+        "rbush": "^4.0.1",
+        "dequal": "^2.0.3",
+        "simplify-js": "^1.2.4",
+        "@annotorious/core": "3.9.5"
+      },
+      "dist": {
+        "shasum": "cd5a6b2c17bb8672b2e8819b1833873320f65e8e",
+        "tarball": "https://registry.npmjs.org/@annotorious/annotorious/-/annotorious-3.9.5.tgz",
+        "fileCount": 177,
+        "integrity": "sha512-cKXReeqzsrh/VKLL4nVjWVaI7323OD0Tf3NN7+MTg0niTA/qqLBF7Q1/HuP8MDwDYupMi/lgLVLhCRPxoNB5iQ==",
+        "signatures": [
+          {
+            "sig": "MEQCIGwzzseSjGVqqF0RESOoxLBi7kqk/27RLbxSuO0jFctyAiBo4it4w/G9cprnO7q4INQQ1+2Vqcicn4jNwzPqBm+uCQ==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+            "sig": "MEYCIQCSFXm9bKS73K771vS+qwOFP9O7fCuQIwxvhxp3iJJzxwIhAJzotZepy8hctKzx1qgEWPVCPfL7JkJbxK2y54yh4q+O"
+          }
+        ],
+        "unpackedSize": 1415260
+      },
+      "sha256": "50c013f70a566ab0e19e49773e30a65801daf643e315ce4ff94bd3dfb4af2651",
+      "inspectedFiles": [
+        {
+          "path": "package/src/model/w3c/W3CImageFormatAdapter.ts",
+          "bytes": 4814,
+          "sha256": "43cff3bea76f044d8bfba118c932ff192fc24b7d346f296857b69ce8f34c6d87"
+        }
+      ]
+    },
+    {
+      "name": "@blocknote/core",
+      "version": "0.56.0",
+      "license": "MPL-2.0",
+      "dependencies": {
+        "lib0": "1.0.0-rc.36",
+        "@tiptap/pm": "^3.31.3",
+        "emoji-mart": "^5.6.0",
+        "@tiptap/core": "^3.31.3",
+        "@shikijs/types": "^4.4.3",
+        "fast-deep-equal": "^3.1.3",
+        "@emoji-mart/data": "^1.2.1",
+        "prosemirror-view": "^1.42.5",
+        "prosemirror-model": "^1.25.11",
+        "prosemirror-state": "^1.4.4",
+        "@tiptap/extensions": "^3.31.3",
+        "prosemirror-tables": "^1.8.5",
+        "prosemirror-highlight": "^0.15.3",
+        "prosemirror-transform": "^1.12.1",
+        "@tiptap/extension-bold": "^3.31.3",
+        "@tiptap/extension-code": "^3.31.3",
+        "@tiptap/extension-text": "^3.31.3",
+        "@tiptap/extension-italic": "^3.31.3",
+        "@tiptap/extension-strike": "^3.31.3",
+        "@tiptap/extension-underline": "^3.31.3",
+        "@handlewithcare/prosemirror-inputrules": "^0.1.4"
+      },
+      "dist": {
+        "shasum": "efeec81b72f56f4dab2dd43b354acfa7086f85fd",
+        "tarball": "https://registry.npmjs.org/@blocknote/core/-/core-0.56.0.tgz",
+        "fileCount": 943,
+        "integrity": "sha512-6h8CNv1RSgQM5q/fU2zvidrd3BdvNO+KzlAXazLGM69m5Ii1Ix8iUI2pMKFt+sNKz87s8a8iWyxHZozaIOTHnw==",
+        "signatures": [
+          {
+            "sig": "MEUCIQCva2mdEw9KO4RGuIlO24WJH5m2rhF8K6xXFzUJQqmZCAIgDh1ODjHNRqkSKZ+ZVfqT1FT/gvKZJ7GLtfYi91EmgGM=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+            "sig": "MEUCIBq5v1N3K3A25YfoM4uih9IGe5SXZ0YPY1B1P3CX5HKaAiEAkqMyR2KXeok3lzptnww/8qtRzAZbqswM73EGaQGD9S0="
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/@blocknote%2fcore@0.56.0",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 11009966
+      },
+      "sha256": "3c66e020c8c1430cb0158dcff83716db25122a983a5bba63a88b79e08fb8f009",
+      "inspectedFiles": [
+        {
+          "path": "package/LICENSE",
+          "bytes": 16724,
+          "sha256": "4b89d4518bd135ab4ee154a7bce722246b57a98c3d7efc1a09409898160c2bd1"
+        },
+        {
+          "path": "package/src/editor/BlockNoteEditor.ts",
+          "bytes": 52149,
+          "sha256": "7e2d84879021d27b059568ec286d1e73065d238ed9cb46acb923e51be8f3c401"
+        },
+        {
+          "path": "package/src/blocks/BlockNoteSchema.ts",
+          "bytes": 1854,
+          "sha256": "5fb34b8cf7793e14001ea5a4ee69d5cda82b1dd39bf515d9687c0f2c25bddf2a"
+        },
+        {
+          "path": "package/src/api/blockManipulation/commands/insertBlocks/insertBlocks.ts",
+          "bytes": 3145,
+          "sha256": "bd813300d65a4cca23d0c01a1d09154d81d1bba298b8e5cd59fc062897dda098"
+        }
+      ]
+    },
+    {
+      "name": "openseadragon",
+      "version": "6.1.1",
+      "license": "BSD-3-Clause",
+      "dependencies": null,
+      "dist": {
+        "integrity": "sha512-g4iKe2q8B642SaBT3+x4ZF3/8b1TxPPydyjmtrOLgDrlYWMKd9ZXM+1Cb/xa9DVySkvs/7l6HR1nHKfD5F3Tsw==",
+        "shasum": "fcdb1a106b4e2440ed4336b5eff4a79c0a3390e6",
+        "tarball": "https://registry.npmjs.org/openseadragon/-/openseadragon-6.1.1.tgz",
+        "fileCount": 48,
+        "unpackedSize": 5786100,
+        "signatures": [
+          {
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+            "sig": "MEQCIFzhiSQ9fx4sPIY3kxaex2zVQEhSR14CH6Tijm0fXMHgAiADXRCYpu5lduC+A5ATWb3oyi63/uN4Y1FiPvCGgiu6ow=="
+          }
+        ]
+      },
+      "sha256": "b4ab2942f33b90e0448e4d20fc5ed14cee049f1f3ae49d70afd4b05e9a2f92d0",
+      "inspectedFiles": [
+        {
+          "path": "package/build/openseadragon/openseadragon.js",
+          "bytes": 1354249,
+          "sha256": "86b60a9088c8c162bef278bbf22e070958ded16acf4627a73e206c95ea42831e"
+        },
+        {
+          "path": "package/LICENSE.txt",
+          "bytes": 1525,
+          "sha256": "17da96b26ac706d2cbd06d4555dedb43026782f4943faf0156fe7acf89454228"
+        }
+      ]
+    }
+  ]
+}

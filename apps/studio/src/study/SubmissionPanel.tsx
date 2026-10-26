@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { requestKey, studyRequest, StudyApiError } from "./apiClient";
-import type { PostitReference, StudyMe } from "./contracts";
+import type { CourseLessonContext, PostitReference, StudyMe, SubmissionCourseContext } from "./contracts";
 import { uploadOriginal } from "./uploadOriginal";
 type SubmissionPayload = {
   editionId: string;
@@ -10,6 +10,7 @@ type SubmissionPayload = {
   assetRefs: string[];
   parentId: string | null;
   sourceRefs: PostitReference[];
+  courseLesson?: CourseLessonContext;
 };
 type Draft = {
   text: string;
@@ -21,14 +22,7 @@ type Draft = {
 type Receipt = {
   receiptId: string;
   revision: number;
-  courseContext?: {
-    modelId: string | null;
-    courseId?: string;
-    packId?: string;
-    packVersion?: number;
-    packSha256?: string;
-    parameters: Record<string, unknown> | null;
-  };
+  courseContext?: SubmissionCourseContext;
 };
 type Props = {
   me: StudyMe;
@@ -38,6 +32,7 @@ type Props = {
   editionId?: string;
   activityId?: string;
   activityParameters?: Record<string, unknown>;
+  courseLesson?: CourseLessonContext;
   prediction?: string;
   activityReady?: boolean;
   requireProcedure?: boolean;
@@ -51,6 +46,7 @@ export function SubmissionPanel({
   editionId = "fluidi",
   activityId = "poiseuille-v1",
   activityParameters,
+  courseLesson,
   prediction,
   activityReady = true,
   requireProcedure = false,
@@ -218,6 +214,7 @@ export function SubmissionPanel({
         editionId,
         activityId,
         ...(activityParameters === undefined ? {} : { activityParameters }),
+        ...(courseLesson === undefined ? {} : { courseLesson }),
         text: prediction
           ? `Previsione: ${prediction}\n\nProcedimento: ${draft.text}`
           : draft.text,
@@ -257,6 +254,11 @@ export function SubmissionPanel({
       if (failure instanceof StudyApiError && failure.status === 409 && failure.message === "stale_source") {
         update(value => value.key === sentKey ? { ...value, pending: undefined, key: requestKey() } : value);
         if (mounted.current) setMessage("La fonte è stata aggiornata. Riapri il quaderno o la fonte, collega la versione salvata e consegna di nuovo. La spiegazione è conservata.");
+        return;
+      }
+      if (failure instanceof StudyApiError && ['stale_course_lesson', 'course_lesson_unavailable', 'course_lesson_activity_mismatch', 'course_lesson_parameters_mismatch', 'parent_course_lesson_mismatch', 'invalid_course_lesson'].includes(failure.message)) {
+        update(value => value.key === sentKey ? { ...value, pending: undefined, key: requestKey() } : value);
+        if (mounted.current) setMessage("La lezione o la fase non corrisponde al tentativo richiesto. Riapri la revisione indicata dalla consegna. La spiegazione è conservata; nessun invio è stato confermato.");
         return;
       }
       if (mounted.current)
@@ -370,6 +372,9 @@ export function SubmissionPanel({
                 {receipt.courseContext.packSha256}
               </p>
             )}
+            {receipt.courseContext?.lessonRef && <p>
+              Lezione {receipt.courseContext.lessonRef.id} · versione {receipt.courseContext.lessonRef.version} · {receipt.courseContext.phase === 'transfer' ? 'Problema diverso' : 'Pratica'}
+            </p>}
             <p>
               {receiptVerified
                 ? "Ricezione confermata dal servizio. La verifica del procedimento spetta al tutor."

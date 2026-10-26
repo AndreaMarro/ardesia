@@ -1,21 +1,33 @@
-// LaTeX → SVG via MathJax CDN (bundle browser, niente CJS/require → niente guerra con Vite).
-// Lazy-load UNA volta al primo uso: l'app parte anche offline; solo l'inserimento-formula tocca la rete.
+// Browser bundle from the existing MathJax lock, loaded once from Studio's origin.
+// Keep the CJS package entry out of Vite and retain the Apache-2.0 notice.
 let _ready: Promise<void> | null = null
 
 function loadMathJax(): Promise<void> {
   if (_ready) return _ready
   _ready = new Promise<void>((resolve, reject) => {
-    ;(window as any).MathJax = { svg: { fontCache: "none" }, startup: { typeset: false } }
+    const assets = new URL(`${import.meta.env.BASE_URL}mathjax/`, window.location.origin)
+    ;(window as any).MathJax = {
+      svg: { fontCache: "none" }, startup: { typeset: false },
+      loader: { paths: { mathjax: assets.href } },
+    }
     const s = document.createElement("script")
-    s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    s.src = new URL("tex-svg-full.js", assets).href
     s.async = true
+    const fail = (reason: unknown) => {
+      _ready = null
+      s.remove()
+      reject(reason)
+    }
     s.onload = () => {
       const mj = (window as any).MathJax
-      mj?.startup?.promise ? mj.startup.promise.then(() => resolve()) : resolve()
+      const complete = () => {
+        if (typeof mj?.tex2svg !== "function") fail(new Error("MathJax SVG API unavailable"))
+        else resolve()
+      }
+      mj?.startup?.promise ? mj.startup.promise.then(complete, fail) : complete()
     }
     s.onerror = () => {
-      _ready = null // blip CDN transitorio non deve bloccare i tentativi futuri
-      reject(new Error("MathJax CDN load failed"))
+      fail(new Error("MathJax local bundle load failed"))
     }
     document.head.appendChild(s)
   })

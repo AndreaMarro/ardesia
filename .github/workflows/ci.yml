@@ -31,6 +31,8 @@ jobs:
       - run: npm run typecheck:web
       - run: npm run test:web
       - run: npm run build:web
+        env:
+          VITE_S20_LEARNING_JOURNEY: '1'
       - name: Public static build (all cases must match Core)
         run: npm run build:web:public
       - name: Install browser for the backend-free public preview
@@ -40,6 +42,43 @@ jobs:
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
       - name: Install the disposable Study API environment
         run: uv sync --project services/study-api --frozen --python 3.13
+      - name: Exact lesson, sources and student journey on the compiled merge tree
+        env:
+          ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: python3 bin/qa/verify-integrated-consumers.py --output "$RUNNER_TEMP/g0-integrated-consumers"
+      - name: Build the ordinary Studio paired with Aula for the unified G0
+        env:
+          ARDESIA_STUDIO_BASE: /studio/
+        run: |
+          npm ci --prefix apps/studio --no-audit --no-fund
+          npm run build --prefix apps/studio
+      - name: Unified teacher and student G0, followed by PDF composition geometry
+        env:
+          ARDESIA_G0_OUTPUT: ${{ runner.temp }}/g0-unified
+          ARDESIA_G0_STATE: ${{ runner.temp }}/g0-unified/private-state
+          ARDESIA_G0_RESULT: ${{ runner.temp }}/g0-unified/result.json
+          ARDESIA_G0_LAYOUT_OUTPUT: ${{ runner.temp }}/g0-unified-layout
+          ARDESIA_G0_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+        run: |
+          node handoffs/swarm-v2/S18/g0-composition-20261026/verify-golden.mjs
+          node handoffs/swarm-v2/S18/g0-composition-20261026/verify-layout.mjs
+      - name: Integrated journey evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g0-integrated-consumers-${{ github.sha }}
+          # Synthetic private fixture/session files are outside this directory.
+          path: |
+            ${{ runner.temp }}/g0-integrated-consumers/**/*.json
+            ${{ runner.temp }}/g0-integrated-consumers/**/*.png
+            ${{ runner.temp }}/g0-integrated-consumers/**/*.log
+            ${{ runner.temp }}/g0-unified/result.json
+            ${{ runner.temp }}/g0-unified/*.png
+            ${{ runner.temp }}/g0-unified/core-server.log
+            ${{ runner.temp }}/g0-unified-layout/layout.json
+            ${{ runner.temp }}/g0-unified-layout/*.png
+          if-no-files-found: warn
+          retention-days: 14
       - name: Teacher physics pathways in a real browser, on disposable SQLite
         env:
           ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
@@ -50,6 +89,42 @@ jobs:
         with:
           name: web-physics-pathways-${{ github.sha }}
           path: apps/web/test-results/physics-pathways.*
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Independent study and science library on the current merge tree
+        env:
+          ARDESIA_STUDY_PYTHON: ${{ github.workspace }}/services/study-api/.venv/bin/python
+          ARDESIA_S00_SCIENCE_EVIDENCE: ${{ runner.temp }}/science-composition
+          S06_SOURCE_MANIFEST: ${{ runner.temp }}/study-source-manifest.json
+        run: |
+          git rev-parse HEAD > "$RUNNER_TEMP/consumer-source-commit.txt"
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          paths = ['apps/web/src/App.tsx', 'services/study-api/study_api/app.py', 'apps/web/src/components/SourceViewer.tsx']
+          manifest = {'scope': 'actual CI checkout, clean HEAD checked before and after browser', 'files': [
+              {'path': p, 'candidateSha256': hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths]}
+          Path(os.environ['S06_SOURCE_MANIFEST']).write_text(json.dumps(manifest))
+          PY
+          services/study-api/.venv/bin/python handoffs/swarm-v2/S00/prove-study.py --output "$RUNNER_TEMP/study-composition"
+          node handoffs/swarm-v2/S00/prove-science.cjs
+          test "$(git rev-parse HEAD)" = "$(cat "$RUNNER_TEMP/consumer-source-commit.txt")"
+          test -z "$(git status --porcelain -- apps/web/src services/study-api packages/engine/lessonos)"
+      - name: Integrated consumer browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integrated-consumers-${{ github.sha }}
+          # Allowlist proofs; never upload a fixture DB or access file left by an OOM.
+          path: |
+            ${{ runner.temp }}/study-composition/result.json
+            ${{ runner.temp }}/study-composition/*.png
+            ${{ runner.temp }}/study-composition/api.log
+            ${{ runner.temp }}/science-composition/consumer-report.json
+            ${{ runner.temp }}/science-composition/*.png
+            ${{ runner.temp }}/science-composition/api.log
+            ${{ runner.temp }}/study-source-manifest.json
+            ${{ runner.temp }}/consumer-source-commit.txt
           if-no-files-found: warn
           retention-days: 14
 

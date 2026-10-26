@@ -229,11 +229,17 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
         );
         return;
       }
+      // Internal resources are read by their typed consumers. The generic
+      // workspace must never cache or expose their JSON as editable notes.
+      const visibleWorkspace = { ...value, resources: value.resources.filter(resource => ![
+        "learning-journey-checkpoint", "independent-study-plan-v1",
+        "independent-study-source-v1", "independent-study-attempt-v1",
+      ].includes(resource.kind)) };
       cache.current.delete(editionId);
-      cache.current.set(editionId, value);
+      cache.current.set(editionId, visibleWorkspace);
       while (cache.current.size > 16)
         cache.current.delete(cache.current.keys().next().value!);
-      setData(value);
+      setData(visibleWorkspace);
     } catch (failure) {
       if (valid()) {
         if (failure instanceof StudyApiError && failure.sessionRejected)

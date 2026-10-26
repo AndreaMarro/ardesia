@@ -1,0 +1,105 @@
+{
+  "status": "FAIL",
+  "error": "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  - 1\n+ Received  + 4\n\n- Array []\n+ Array [\n+   \"offsetParent is not set -- cannot scroll\",\n+   \"offsetParent is not set -- cannot scroll\",\n+ ]",
+  "checks": [
+    {
+      "name": "outline and thumbnail navigation",
+      "details": true
+    },
+    {
+      "name": "compiled real Materials and original PDF render",
+      "details": {
+        "url": "http://127.0.0.1:5419/?view=materials&edition=fluidi&living=%7B%22resourceId%22%3A%22c6415f78926049dd9b11647dbd5f88a2%22%2C%22revisionId%22%3A%2208282cd7328a4ca58826dbe184cd2408%22%2C%22kind%22%3A%22living-source%22%2C%22lesson%22%3A%7B%22lessonId%22%3A%22idrostatica%22%2C%22activityId%22%3A%22poiseuille-v1%22%7D%7D",
+        "pages": 2
+      }
+    },
+    {
+      "name": "upstream PDF find controller searches native text",
+      "details": "0 / 0"
+    },
+    {
+      "name": "teacher native-text equation plus structured formula saved in Core",
+      "details": "314bd14eba094e1a89c09b1f8d05505d"
+    },
+    {
+      "name": "student real activity delivery opens exact shared annotation via SourceViewer",
+      "details": 200
+    },
+    {
+      "name": "personal note cold page reload restores exact source and selection",
+      "details": "633d99a424b3431db0633fa3276900ab"
+    },
+    {
+      "name": "graphical page region stored separately from native text",
+      "details": [
+        [
+          0.05555555555555555,
+          0.052083333333333336,
+          0.09722222222222224,
+          0.07291666666666666
+        ]
+      ]
+    },
+    {
+      "name": "historical annotation revision preserves page and zoom/pan resume",
+      "details": "097e5eabf9aa470aaa3534e10a5f8126"
+    },
+    {
+      "name": "actual existing NotebookEditor creates and persists personal notebook",
+      "details": "a0b2a3205264425fa55ff830f72a3a15"
+    },
+    {
+      "name": "UI export/import includes original bytes and exact origin revision",
+      "details": "f90d5ac2f054478896ea63f13ccaeb96"
+    },
+    {
+      "name": "two document versions keep historical byte identity",
+      "details": "f9c80350a00e4e3b8906f33fba28c340"
+    },
+    {
+      "name": "responsive keyboard reduced-motion 1440",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 820",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 390",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "accessible native-text and keyboard region fallback",
+      "details": {
+        "reducedMotion": true
+      }
+    },
+    {
+      "name": "peer cannot access personal annotation",
+      "details": 403
+    },
+    {
+      "name": "session revocation removes private reader and original URL",
+      "details": true
+    },
+    {
+      "name": "server process restart restores source, note and notebook from same Core",
+      "details": true
+    },
+    {
+      "name": "deleted exact source removes the reader without latest fallback",
+      "details": true
+    }
+  ],
+  "errors": [
+    "offsetParent is not set -- cannot scroll",
+    "offsetParent is not set -- cannot scroll"
+  ],
+  "external": []
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "S19 patch applicability and syntax on exact merged main309; no runtime test",
+  "main": "d7dc3917d695c80d027c91df21577e06ec649232",
+  "pullRequest309": {
+    "headRefOid": "080e39b7b743465144ce22b1a1b3f0cba2e1b54f",
+    "mergeCommit": {
+      "oid": "d7dc3917d695c80d027c91df21577e06ec649232"
+    },
+    "mergedAt": "2026-10-26T18:40:03Z",
+    "state": "MERGED",
+    "url": "https://github.com/AndreaMarro/ardesia/pull/309"
+  },
+  "tree": "e1f625187eb196cdc5b7b6b30948e9dddc2a5c2f",
+  "parents": [
+    "e95a80b393589b71da2846aa98814dc1a034b730",
+    "080e39b7b743465144ce22b1a1b3f0cba2e1b54f"
+  ],
+  "manifestChecks": [
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "420ea73565c800704adaa98bf8073e5ae880e2fdece359d511572562ff6ea71b",
+      "matches": true
+    },
+    {
+      "path": "services/study-api/study_api/app.py",
+      "sha256": "c7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/components/SourceViewer.tsx",
+      "sha256": "1f398fdf4720ffee21121993253f3c1dc081ae16e580d4d0308b8b334a015de2",
+      "matches": true
+    }
+  ],
+  "appMatchesPrepared9da": true,
+  "postMergeCIRun": 40379757071,
+  "postMergeCIStateAtS00Confirmation": "queued; no green inherited",
+  "s00ConfirmedMain": "d7dc3917d695c80d027c91df21577e06ec649232",
+  "inputSha256": {
+    "packages/engine/lessonos/study/catalog.py": "b075c151175fd2a227fcad23a4e15906384fe379c0cc3c8b990e3777f104f518",
+    "services/study-api/study_api/app.py": "c7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26",
+    "packages/engine/lessonos/study/context.py": "cae9d8820db648fc243e84dd800dac1348575dede6d6a7d1f39374a9f6226a1a",
+    "apps/web/src/features/Courses.tsx": "032de388ae72d68a7480ffd82e52bf04793c6f69e31b1e5bf5e750d6fcdb88e9"
+  },
+  "checks": [
+    {
+      "patch": "integration.patch",
+      "mode": "check",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "integration.patch",
+      "mode": "apply",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "integration.patch",
+      "mode": "reverse-check",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "consumer.patch",
+      "mode": "check",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "consumer.patch",
+      "mode": "apply",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "consumer.patch",
+      "mode": "reverse-check",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "patchSha256": {
+    "integration.patch": "4bb9205842ceb89341b0c19fa734ed85948beb32f9f27e0aa3e8f63582ea050b",
+    "consumer.patch": "3ac911a55427d84b22c0c6169043208960ef9f4d8a9ea1c7f1e72400f257b986"
+  },
+  "outputSha256": {
+    "packages/engine/lessonos/study/catalog.py": "a690c9a85b486a9d6be72b19cdb754aaaa8ad08c9933c1ab77881df7fd9a17d0",
+    "services/study-api/study_api/app.py": "09716bc704c6e6891f5fa7e62f7ee5ca0e27e60bb0df1a9d3a845cb6d204bac1",
+    "packages/engine/lessonos/study/context.py": "120b0a0835fd2edfbc7019ef9bc4c66617d0c4686a79b3a6edaa484df788dda1",
+    "apps/web/src/features/Courses.tsx": "7890c975ae662a22f8b438fb061f3224bb674711331472e93549ac10e69a4cca"
+  },
+  "pythonSyntax": "3 modules PASS",
+  "sharedFilesChanged": false,
+  "composerChanged": false,
+  "heavyLocalTestsStarted": false,
+  "next": "Push only S19 handoff/evidence refresh in same325, then read new CI on exact source and merge SHA"
+}

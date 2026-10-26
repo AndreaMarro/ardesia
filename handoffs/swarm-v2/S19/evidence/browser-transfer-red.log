@@ -1,0 +1,53 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep transfer circuit
+
+
+Running 1 test using 1 worker
+
+(node:32673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:242:1 › transfer circuit gets a distinct Core resource (5.6s)
+
+
+  1) [desktop] › tests/lab.spec.ts:242:1 › transfer circuit gets a distinct Core resource ──────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+
+
+      12 |   await expect(
+      13 |     page.getByRole("heading", { name: "Il circuito, passo dopo passo." }),
+    > 14 |   ).toBeVisible();
+         |     ^
+      15 | });
+      16 |
+      17 | test("DC prediction, supported and unsupported steps, mutation and Core cold reopen", async ({
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:14:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-transfer-circuit-gets-a-distinct-Core-resource-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-transfer-circuit-gets-a-distinct-Core-resource-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-transfer-circuit-gets-a-distinct-Core-resource-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-transfer-circuit-gets-a-distinct-Core-resource-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/lab.spec.ts:242:1 › transfer circuit gets a distinct Core resource ───────────

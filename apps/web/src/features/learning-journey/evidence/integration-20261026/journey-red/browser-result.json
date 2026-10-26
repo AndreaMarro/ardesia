@@ -1,0 +1,124 @@
+{
+  "origin": "http://127.0.0.1:5460",
+  "checks": [
+    {
+      "name": "actual App + ProductShell + integrated Classroom mount loads",
+      "status": "PASS"
+    },
+    {
+      "name": "MathLive runtime not requested on opening the journey",
+      "status": "PASS"
+    },
+    {
+      "name": "existing classroom tools remain reachable and the journey draft survives return",
+      "status": "PASS"
+    },
+    {
+      "name": "exact source revision + keyboard focus trap + Escape restore",
+      "status": "PASS"
+    },
+    {
+      "name": "checkpoint persisted by real Core",
+      "status": "PASS",
+      "checkpointId": "51fb12ed19824f31afb2580717b66466"
+    },
+    {
+      "name": "missing exact checkpoint never opens another saved journey without explicit recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "existing PhysicsLab: keyboard manipulation and actual Core evaluation",
+      "status": "PASS"
+    },
+    {
+      "name": "network unavailable: answer preserved and save retry succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "cold reopen of lost response: same frozen request and exactly one Core receipt",
+      "status": "PASS",
+      "receiptId": "b44dce42b0e04b71bca0c3d35540d295"
+    },
+    {
+      "name": "synthetic tutor command + actual Core feedback read in same view",
+      "status": "PASS"
+    },
+    {
+      "name": "peer cannot read private checkpoint or receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "different canonical step opens without previous answer",
+      "status": "PASS"
+    },
+    {
+      "name": "refresh restores second step receipt and exact source",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 360 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 390 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 820 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "responsive viewport 1440 without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "run",
+      "status": "FAIL",
+      "message": "expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Il tuo spazio di studio' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Il tuo spazio di studio' })\n",
+      "stack": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Il tuo spazio di studio' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Il tuo spazio di studio' })\n\n    at captureRawStack (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBeVisible (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /workspace/scratch/4d73e8ddb2b6/ardesia-s20/apps/web/src/features/learning-journey/verification/browser.mjs:171:79"
+    }
+  ],
+  "errors": [],
+  "expectedNetwork": [
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+    "Failed to load resource: net::ERR_FAILED"
+  ],
+  "requests": [
+    "/assets/index-DeZKlvUF.js",
+    "/assets/jsx-runtime-B6doAwFl.js",
+    "/assets/api-CG4KpFaG.js",
+    "/assets/Feedback-KgW_0op9.js",
+    "/assets/publicPreview-Cu9wFRxx.js",
+    "/assets/PoiseuilleVisual-D-rR01cn.js",
+    "/assets/PublicLessonDemo-CegRF6OG.js",
+    "/assets/sessionDraftCache-C2exqmLf.js",
+    "/assets/PhysicsLab-bT-RwPrX.js",
+    "/assets/modelLabels-BQ8JYqEc.js",
+    "/assets/index-CmgHQAvR.css",
+    "/assets/Classroom-C_ICH-BP.js",
+    "/assets/LessonPassage-CmSnfpss.js",
+    "/assets/lessonPassageReference-BZnbO1-B.js",
+    "/assets/resourceSummary-BiZDVptL.js",
+    "/assets/ScientificNotebooks-DeOi6Bqu.js",
+    "/assets/SourceViewer-BGNg3gpR.js",
+    "/assets/CircuitSource-BSntSphk.js",
+    "/assets/resourceNavigation-CVxW4D82.js",
+    "/assets/FormulaField-D3lb74If.js",
+    "/assets/FormulaPreview-BBiEvMMk.js",
+    "/assets/SourceViewer-BVBSLj-P.css",
+    "/assets/TaylorPlot-DkyjAz2x.js",
+    "/assets/TaylorPlot-C1YQfFMj.css",
+    "/assets/useResourceComposer-DO8K1bhV.js",
+    "/assets/Classroom-YR0RcAcI.css",
+    "/assets/LearningJourney-Cps6zM8U.js",
+    "/assets/PredictionEvidence-ChtNsdDg.js",
+    "/assets/LearningJourney-Bj-LWTEn.css",
+    "/assets/mathField-BZoEXCiQ.js",
+    "/assets/mathField-BZGFzauE.css",
+    "/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+    "/assets/KaTeX_Math-Italic-t53AETM-.woff2"
+  ],
+  "browser": "148.0.7778.96",
+  "limitation": "Synthetic local Core and the ordinary integrated App build with VITE_S20_LEARNING_JOURNEY=1; Chromium emulation, not a user study, scientific approval or hosted-backend verification."
+}

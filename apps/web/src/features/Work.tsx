@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { AttemptText } from "./circuit-lab/AttemptText";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import type { StudyMe, Workspace } from "../api";
-import { baseActivity, courseScope } from "../course";
+import { baseActivity, courseScope, courseLessonFromContext } from "../course";
 import { Diary } from "./Diary";
 import { SourceViewer } from "../components/SourceViewer";
 import { AssetPreview } from "../components/AssetPreview";
@@ -85,6 +86,7 @@ function WorkScope({
                   key={submission.id}
                   submission={submission}
                   baseActivityId={baseActivity(data.edition)}
+                  courseLessonRetry={data.edition.packId?.startsWith("sf-") === true}
                   onRetry={onRetry}
                 />
               ))}
@@ -98,10 +100,12 @@ function WorkScope({
 function Delivery({
   submission,
   baseActivityId,
+  courseLessonRetry,
   onRetry,
 }: {
   submission: Workspace["submissions"][number];
   baseActivityId: string | null;
+  courseLessonRetry: boolean;
   onRetry: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -122,7 +126,7 @@ function Delivery({
             : "Ricevuto dal servizio"}
         </span>
       </div>
-      <p className="original-text">{submission.text}</p>
+      <AttemptText text={submission.text} />
       <PredictionEvidence value={submission.activityEvidence} />
       {submission.feedback.map(
         (f) =>
@@ -150,10 +154,14 @@ function Delivery({
               <AssetPreview key={id} id={id} index={i + 1} />
             ))}
             <p className="id-text">Ricevuta {submission.receipt_id}</p>
+            {submission.courseContext?.lessonRef && <p>
+              Lezione {submission.courseContext.lessonRef.id} · versione {submission.courseContext.lessonRef.version} · {submission.courseContext.phase === 'transfer' ? 'Problema diverso' : 'Pratica'}
+            </p>}
           </>
         )}
       </details>
-      {baseActivityId !== null && submission.activity_id === baseActivityId && (
+      {((baseActivityId !== null && submission.activity_id === baseActivityId)
+        || (courseLessonRetry && courseLessonFromContext(submission.courseContext))) && (
         <button onClick={() => onRetry(submission.id)}>
           Prepara un nuovo tentativo
         </button>

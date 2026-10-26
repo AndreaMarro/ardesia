@@ -1,0 +1,570 @@
+:root {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #253b35;
+  background: #f5f4ef;
+  font-synthesis: none;
+  font-size: 15px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+button,
+a,
+summary {
+  cursor: pointer;
+}
+button {
+  border: 1px solid #b9c8bf;
+  background: #fffdf8;
+  border-radius: 6px;
+  padding: 10px 15px;
+  color: #294b40;
+  font-weight: 600;
+}
+button:hover {
+  background: #edf3eb;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #be6f3c;
+  outline-offset: 3px;
+}
+.primary {
+  background: #285f55;
+  color: #fff;
+  border-color: #285f55;
+}
+.primary:hover {
+  background: #164c43;
+}
+a {
+  color: inherit;
+}
+.s19 {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 42px 40px;
+}
+.lab-header {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid #d9ded5;
+}
+.wordmark {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+  color: #263d32;
+}
+.wordmark span {
+  color: #be6f3c;
+}
+.lab-header > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #738174;
+}
+.lab-header > a:last-child {
+  margin-left: auto;
+  font-size: 12px;
+  text-decoration: none;
+}
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0 32px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #7a8c79;
+  font-weight: 700;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(36px, 4vw, 55px);
+  font-weight: 400;
+  line-height: 1.07;
+  letter-spacing: -1.7px;
+  margin: 18px 0;
+}
+p {
+  line-height: 1.6;
+}
+.intro p {
+  color: #6d786c;
+  font-size: 14px;
+}
+.intro aside {
+  border-left: 1px solid #d9ded5;
+  padding: 6px 0 6px 28px;
+  max-width: 350px;
+}
+.status {
+  font-size: 10px;
+  letter-spacing: 1px;
+  background: #e9eddf;
+  border: 1px solid #d9e0cd;
+  padding: 8px 12px;
+  border-radius: 30px;
+  color: #587447;
+}
+.intro button {
+  font-size: 12px;
+  margin-top: 5px;
+}
+.lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(315px, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.workbench,
+.reasoning,
+.lesson,
+.persistence {
+  background: #fffef9;
+  border: 1px solid #dce2d6;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 16px #203c3004;
+}
+h2 {
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
+  margin: 0 0 14px;
+}
+h3 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.section-head > span {
+  font-size: 11px;
+  color: #7a8878;
+}
+.caption {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #7a8477;
+}
+.flow-stage {
+  height: 380px;
+  margin: 18px -12px;
+  border: 1px solid #e1e7db;
+  border-radius: 6px;
+  background: #f6f8f0;
+}
+.junction {
+  background: #fffdf7;
+  border: 2px solid #66836f;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 4px 10px #294b4010;
+}
+.junction > span {
+  position: absolute;
+  bottom: 56px;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #40594a;
+}
+.junction b {
+  font-size: 16px;
+  color: #315d4e;
+}
+.react-flow__handle {
+  width: 12px;
+  height: 12px;
+  background: #416f61;
+  border: 2px solid white;
+}
+.react-flow__attribution {
+  font-size: 9px;
+}
+.component-editor {
+  display: grid;
+  grid-template-columns: 0.8fr 1.1fr 1fr 1fr;
+  gap: 10px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #60725e;
+  margin: 12px 0;
+}
+input,
+select,
+textarea {
+  border: 1px solid #cfd8c9;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  min-width: 0;
+  background: #fff;
+  color: #243e33;
+  font-size: 13px;
+  font-weight: 400;
+}
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+.question {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.reasoning button {
+  width: 100%;
+  margin: 12px 0 0;
+}
+.reasoning hr {
+  height: 1px;
+  border: 0;
+  background: #dce2d6;
+  margin: 26px 0;
+}
+.diagnosis {
+  padding: 16px;
+  border-radius: 6px;
+  background: #eaf1e9;
+  font-size: 12px;
+  margin-top: 18px;
+}
+.diagnosis.first_invalid {
+  background: #f9eee4;
+}
+.diagnosis.not_assessable {
+  background: #f1efe6;
+}
+.diagnosis p {
+  margin: 8px 0;
+}
+.diagnosis small {
+  font-size: 11px;
+  color: #63725e;
+}
+.operation-message {
+  font-size: 13px;
+  min-height: 24px;
+  padding-left: 4px;
+}
+.lesson {
+  margin: 20px 0;
+}
+.answer {
+  font-size: 30px;
+  font-family: Georgia, serif;
+  color: #255b4e;
+}
+.answer small {
+  display: block;
+  font:
+    11px ui-sans-serif,
+    system-ui;
+  color: #7b8877;
+  margin-top: 8px;
+}
+.lesson-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 26px;
+  margin-top: 22px;
+}
+.lesson-grid nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lesson-grid nav button {
+  text-align: left;
+  border-color: transparent;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.45;
+  display: flex;
+  gap: 12px;
+  font-weight: 400;
+}
+.lesson-grid nav button span {
+  color: #92a18d;
+  font-size: 10px;
+  line-height: 1.9;
+}
+.lesson-grid nav button.active {
+  border-color: #cbd9c8;
+  background: #edf2e7;
+  color: #295947;
+}
+.lesson-grid article {
+  padding: 0 12px;
+}
+.lesson-grid article > p {
+  color: #6b7b66;
+  font-size: 14px;
+}
+.certified-svg {
+  overflow: auto;
+  max-width: 100%;
+  background: #fff;
+}
+.certified-svg svg {
+  display: block;
+  min-width: 320px;
+  max-width: 100%;
+  height: auto;
+  max-height: 440px;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f2f5eb;
+  padding: 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+details {
+  margin-top: 14px;
+  font-size: 12px;
+}
+summary {
+  color: #62765b;
+  font-size: 12px;
+}
+details p,
+code {
+  overflow-wrap: anywhere;
+}
+details p {
+  color: #75806f;
+}
+.persistence {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.75fr);
+  gap: 40px;
+}
+.persistence p,
+footer p {
+  font-size: 12px;
+  color: #778570;
+}
+.save-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+}
+.save-controls p {
+  margin: 0;
+  font-size: 10px;
+}
+footer {
+  padding: 28px 0 0;
+}
+.exports {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.exports button {
+  font-size: 11px;
+  background: transparent;
+}
+.import {
+  position: relative;
+  border: 1px solid #b9c8bf;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 0;
+  overflow: hidden;
+}
+.import input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.import:focus-within {
+  outline: 3px solid #be6f3c;
+  outline-offset: 3px;
+}
+@media (max-width: 850px) {
+  .s19 {
+    padding: 0 20px 28px;
+  }
+  .lab-header {
+    gap: 18px;
+    height: 70px;
+  }
+  .lab-header > span {
+    display: none;
+  }
+  .intro {
+    padding: 28px 0;
+    align-items: start;
+  }
+  .intro aside {
+    max-width: 260px;
+  }
+  .intro p br {
+    display: none;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+  .flow-stage {
+    height: 350px;
+  }
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+  .lesson-grid nav {
+    flex-direction: row;
+    overflow: auto;
+  }
+  .lesson-grid nav button {
+    min-width: 160px;
+  }
+  .persistence {
+    gap: 20px;
+  }
+}
+@media (max-width: 520px) {
+  .s19 {
+    padding: 0 12px 24px;
+  }
+  .intro {
+    display: block;
+  }
+  .intro aside {
+    border: 0;
+    padding: 4px 0;
+    max-width: none;
+  }
+  .intro aside p {
+    display: none;
+  }
+  .intro aside button {
+    margin-top: 15px;
+  }
+  .intro h1 {
+    font-size: 39px;
+  }
+  .workbench,
+  .reasoning,
+  .lesson,
+  .persistence {
+    padding: 18px;
+  }
+  .component-editor {
+    grid-template-columns: 1fr 1fr;
+  }
+  .flow-stage {
+    height: 310px;
+  }
+  .section-head {
+    align-items: start;
+  }
+  .section-head > span {
+    font-size: 10px;
+    text-align: right;
+    max-width: 80px;
+  }
+  .persistence {
+    grid-template-columns: 1fr;
+  }
+  .answer {
+    font-size: 25px;
+  }
+  .lesson-grid article {
+    padding: 0;
+  }
+  .lesson h2 {
+    max-width: 190px;
+  }
+  .exports {
+    gap: 7px;
+  }
+  .question {
+    gap: 8px;
+  }
+  .wordmark {
+    font-size: 28px;
+  }
+  .lab-header > a:last-child {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Keep electrical IDs inside measured nodes, including at the viewport edge. */
+.junction > span {
+  position: static;
+  font-size: 14px;
+  color: #294b40;
+  font-weight: 700;
+}
+.junction b {
+  display: none;
+}

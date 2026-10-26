@@ -2,6 +2,7 @@ import {useRef,useState} from 'react';
 import {describeError,requestKey,studyRequest,type StudyResource} from '../../api';
 import {matchesSource,parseIndex,INDEX_KIND,type MediaIndex} from './model';
 import {CaptionImport} from './CaptionImport';
+import {displaySourceTitle} from '../../components/lessonPassageReference';
 
 export function MediaIndexEditor({source,indexResource,initial,resources,onSaved}:{source:StudyResource;indexResource:StudyResource|null;initial:MediaIndex;resources:StudyResource[];onSaved:(r:StudyResource)=>void}){
   const [draft,setDraft]=useState<MediaIndex>(initial),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
@@ -60,7 +61,7 @@ export function MediaIndexEditor({source,indexResource,initial,resources,onSaved
     </select></label>
     <button type="button" disabled={frozen||!attachment||draft.links.length>=20} onClick={()=>{
       const r=resources.find(r=>r.id===attachment);if(!r)return;
-      if(!draft.links.some(l=>l.resourceId===r.id&&l.revisionId===r.revisionId))patch({...draft,links:[...draft.links,{resourceId:r.id,revisionId:r.revisionId,label:r.kind==='lesson-passage'?'Altro passaggio della lezione':r.text.split('\n')[0].slice(0,160)||'Fonte collegata'}]});setAttachment('');
+      if(!draft.links.some(l=>l.resourceId===r.id&&l.revisionId===r.revisionId))patch({...draft,links:[...draft.links,{resourceId:r.id,revisionId:r.revisionId,label:r.kind==='lesson-passage'?'Altro passaggio della lezione':displaySourceTitle(r,160)}]});setAttachment('');
     }}>Collega la revisione selezionata</button>
     {draft.links.map((link,i)=><p key={link.resourceId+link.revisionId}>{link.label} <button type="button" disabled={frozen} onClick={()=>patch({...draft,links:draft.links.filter((_,n)=>n!==i)})}>Rimuovi collegamento {i+1}</button></p>)}
     {!valid&&<p role="status">Controlla titolo, testi e tempi: i frammenti devono essere ordinati, senza sovrapposizioni e dentro la registrazione; i capitoli devono avere tempi distinti e crescenti.</p>}

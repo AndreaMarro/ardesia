@@ -1,0 +1,27 @@
+{
+  "reviewedAt": "2026-10-26T17:51:51.778307+00:00",
+  "scope": "PR309 + integrated main317 working merge, not committed final source",
+  "base": "e95a80b393589b71da2846aa98814dc1a034b730",
+  "incoming": "350d65a4c795c324cb836808abd9d2e2b39869ad",
+  "files": {
+    "apps/web/src/components/SourceViewer.tsx": "1f398fdf4720ffee21121993253f3c1dc081ae16e580d4d0308b8b334a015de2",
+    "services/study-api/study_api/app.py": "c7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26",
+    "apps/web/src/features/independent-study/storage.ts": "7e017d3a80bee10e74b62ba567c79253b7f228a829c354c75984c5995a408ac7",
+    "apps/web/src/features/independent-study/storage.test.ts": "06d049497d2b4e11019b260fa73a372b21b0689612e067711dbfea165432c2fe"
+  },
+  "tests": {
+    "red": {
+      "failed": 13,
+      "passed": 7
+    },
+    "green": {
+      "passed": 20,
+      "failed": 0
+    }
+  },
+  "limits": [
+    "Static integration review; no independent browser or full suite run.",
+    "Reviewer became builder only for explicitly delegated storage files; parent must independently reread this delta.",
+    "No claim of remote Core availability, final CI, merge or four completed courses."
+  ]
+}

@@ -5,6 +5,7 @@ import {SourceViewer} from '../../components/SourceViewer';
 import {MediaIndexEditor} from './MediaIndexEditor';
 import {clock,defaultIndex,INDEX_KIND,matchesSource,parseIndex,replayAt,toVtt} from './model';
 import {captionReplayUrl} from './playback';
+import {lessonMediaLink,readLessonMediaRoute} from './navigation';
 import './lesson-media.css';
 
 function associated(resources:StudyResource[],source:StudyResource){
@@ -13,25 +14,45 @@ function associated(resources:StudyResource[],source:StudyResource){
   }).sort((a,b)=>a.resource.id.localeCompare(b.resource.id));
 }
 export function LessonMediaLibrary({me,data,onUpdate}:{me:StudyMe;data:Workspace;onUpdate:()=>Promise<void>}){
-  const [query,setQuery]=useState(''),[selected,setSelected]=useState<string|null>(()=>new URLSearchParams(location.search).get('mediaSource'));
+  const [query,setQuery]=useState(''),[route,setRoute]=useState(()=>readLessonMediaRoute(location.search));
+  const [historical,setHistorical]=useState<StudyResource|null>(null),[routeError,setRouteError]=useState(''),[retry,setRetry]=useState(0);
   const passages=data.resources.filter(r=>r.editionId===data.edition.id&&Boolean(defaultIndex(r)));
+  const selected=route?.kind==='exact'?route.reference.resourceId:route?.kind==='legacy'?route.resourceId:null;
+  const revision=route?.kind==='exact'?route.reference.revisionId:null;
+  const matching=route?.kind==='exact'?passages.find(r=>r.id===selected&&r.revisionId===revision):undefined;
+  useEffect(()=>{
+    let active=true;const controller=new AbortController();setHistorical(null);setRouteError('');
+    if(route?.kind!=='exact'||matching)return;
+    const ref=route.reference;
+    void studyRequest<StudyResource>(`/resources/${encodeURIComponent(ref.resourceId)}/revisions/${encodeURIComponent(ref.revisionId)}`,undefined,{signal:controller.signal}).then(r=>{
+      if(!active)return;
+      if(r.id!==ref.resourceId||r.revisionId!==ref.revisionId||r.editionId!==data.edition.id||!defaultIndex(r))throw Error('media_reference_mismatch');
+      setHistorical(r);
+    }).catch(e=>{if(active)setRouteError(describeError(e,'La revisione richiesta del passaggio non è disponibile. Nessun altro passaggio è stato aperto.'));});
+    return()=>{active=false;controller.abort();};
+  },[selected,revision,route?.kind,matching?.id,matching?.revisionId,data.edition.id,retry]);
   const search=query.trim().toLocaleLowerCase('it-IT');
   const filtered=passages.filter(r=>{
     const indices=associated(data.resources,r);const p=readLessonPassage(r)!;
     return [p.transcript,...p.descriptor.objectRefs.map(o=>o.label),...indices.flatMap(v=>[v.index.title,...v.index.cues.map(c=>c.text),...v.index.chapters.map(c=>c.title)])].join('\n').toLocaleLowerCase('it-IT').includes(search);
   });
-  const current=passages.find(r=>r.id===selected);
-  function choose(id:string){setSelected(id);const url=new URL(location.href);url.searchParams.set('mediaSource',id);history.replaceState(null,'',url);}
-  if(!passages.length)return null;
+  const current=route?.kind==='exact'?(matching??(historical?.id===selected&&historical.revisionId===revision&&historical.editionId===data.edition.id?historical:null))
+    :route?.kind==='legacy'?passages.find(r=>r.id===selected):null;
+  function choose(source:StudyResource){const reference={resourceId:source.id,revisionId:source.revisionId};setRoute({kind:'exact',reference});history.replaceState(history.state,'',lessonMediaLink(reference,data.edition.id,location.search));}
+  if(!passages.length&&!route)return null;
   return <section className="lesson-media" aria-labelledby="lm-title">
     <header className="lm-heading"><div><span className="eyebrow">Dalla lezione al quaderno</span><h2 id="lm-title">Ritrova un passaggio.</h2>
       <p>Registrazioni, parole e oggetti della lavagna restano collegati. Ogni apertura conserva la propria identità.</p></div><span className="lm-count">{passages.length} {passages.length===1?'passaggio':'passaggi'}</span></header>
     <label className="lm-search">Cerca nelle trascrizioni e nei capitoli<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Una parola, un vincolo, una spiegazione…"/></label>
     <div className="lm-layout"><nav aria-label="Passaggi registrati"><ul className="lm-list">
       {filtered.map(r=>{const p=readLessonPassage(r)!,index=associated(data.resources,r)[0]?.index??defaultIndex(r)!;
-        return <li key={r.id}><button aria-pressed={selected===r.id} onClick={()=>choose(r.id)}><strong>{index.title}</strong><span>{clock(index.durationMs)} · {p.descriptor.recordingId.slice(0,12)}</span><small>{p.transcript.slice(0,120)}</small></button></li>;})}
+        return <li key={r.id}><button aria-pressed={selected===r.id&&(!revision||revision===r.revisionId)} onClick={()=>choose(r)}><strong>{index.title}</strong><span>{clock(index.durationMs)} · {p.descriptor.recordingId.slice(0,12)}</span><small>{p.transcript.slice(0,120)}</small></button></li>;})}
     </ul>{!filtered.length&&<p role="status">Nessun passaggio corrisponde alla ricerca.</p>}</nav>
-    {current?<MediaDetail key={`${me.id}:${current.id}:${current.revisionId}`} me={me} candidate={current} resources={data.resources} onUpdate={onUpdate}/>:<div className="lm-empty"><h3>Riprendi il filo della lezione.</h3><p>Scegli un passaggio. La trascrizione è leggibile anche quando l’audio resta in un altro archivio locale.</p></div>}
+    {route?.kind==='invalid'?<p role="alert">Il riferimento al passaggio non è valido. Nessun altro passaggio è stato aperto.</p>
+      :routeError?<div><p role="alert">{routeError}</p><button onClick={()=>setRetry(value=>value+1)}>Rileggi il passaggio dal Core</button></div>
+      :current?<MediaDetail key={`${me.id}:${current.id}:${current.revisionId}`} me={me} candidate={current} resources={data.resources} onUpdate={onUpdate}/>
+      :route?.kind==='exact'?<p role="status">Apro la revisione richiesta del passaggio…</p>
+      :<div className="lm-empty"><h3>Riprendi il filo della lezione.</h3><p>Scegli un passaggio. La trascrizione è leggibile anche quando l’audio resta in un altro archivio locale.</p></div>}
     </div>
   </section>;
 }

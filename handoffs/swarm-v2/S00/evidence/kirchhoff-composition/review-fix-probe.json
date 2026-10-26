@@ -1,0 +1,61 @@
+{
+  "scope": "actual uncommitted source, synthetic temporary database, independent review; no browser",
+  "checks": [
+    "teacher-before-submit-403",
+    "teacher-exact-R1-after-R2",
+    "teacher-current-unsubmitted-R2-403",
+    "peer-exact-R1-403",
+    "update-retry-original-ack",
+    "accepted-submit-retry-without-engine-after-R2",
+    "old-revision-new-attempt-409",
+    "one-accepted-submission",
+    "double-writer-one-CAS-winner",
+    "three-revisions-after-two-writers",
+    "unicode-export-import-identical",
+    "real-factory-installs-S19",
+    "cookie-session-established",
+    "F1-engine-unavailable-is-503",
+    "F2-json-export-without-engine-preserves-inputs",
+    "engine-unavailable-reopen-keeps-inputs",
+    "revoke-current-session",
+    "revoked-cookie-cannot-open-exact-R1",
+    "revoked-membership-denies-accepted-retry"
+  ],
+  "sha256Before": {
+    "plugins/s19-circuit-lab/s19_circuit_lab/core.py": "7615cedfbdb755cc99fca62d7f3957d471068bbe1f857d7af26159d20649e7b7",
+    "plugins/s19-circuit-lab/s19_circuit_lab/adapter.py": "ddf3eba7a99ee5af344b3dee8ce76792ce76bb4279e9682eacde1dbf0c003669",
+    "plugins/s19-circuit-lab/s19_circuit_lab/routes.py": "1bdc15080306634dbeead27250df549daa6cde147353d7fb7c39a76695d6cc43",
+    "packages/engine/lessonos/study/context.py": "120b0a0835fd2edfbc7019ef9bc4c66617d0c4686a79b3a6edaa484df788dda1",
+    "services/study-api/study_api/app.py": "09716bc704c6e6891f5fa7e62f7ee5ca0e27e60bb0df1a9d3a845cb6d204bac1"
+  },
+  "doubleWriter": [
+    "saved",
+    "stale_revision"
+  ],
+  "unicodeExportBytes": 8345,
+  "unavailableEngine": {
+    "solve": {
+      "status": 503,
+      "error": "s19_engine_unavailable",
+      "assessmentState": null
+    },
+    "exportJson": {
+      "status": 200,
+      "error": null,
+      "assessmentState": null
+    },
+    "reopen": {
+      "status": 200,
+      "error": null,
+      "assessmentState": "UNAVAILABLE"
+    }
+  },
+  "sha256After": {
+    "plugins/s19-circuit-lab/s19_circuit_lab/core.py": "7615cedfbdb755cc99fca62d7f3957d471068bbe1f857d7af26159d20649e7b7",
+    "plugins/s19-circuit-lab/s19_circuit_lab/adapter.py": "ddf3eba7a99ee5af344b3dee8ce76792ce76bb4279e9682eacde1dbf0c003669",
+    "plugins/s19-circuit-lab/s19_circuit_lab/routes.py": "1bdc15080306634dbeead27250df549daa6cde147353d7fb7c39a76695d6cc43",
+    "packages/engine/lessonos/study/context.py": "120b0a0835fd2edfbc7019ef9bc4c66617d0c4686a79b3a6edaa484df788dda1",
+    "services/study-api/study_api/app.py": "09716bc704c6e6891f5fa7e62f7ee5ca0e27e60bb0df1a9d3a845cb6d204bac1"
+  },
+  "sourceStableDuringProbe": true
+}

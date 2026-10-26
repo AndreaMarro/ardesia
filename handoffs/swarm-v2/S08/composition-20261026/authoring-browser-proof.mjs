@@ -1,0 +1,57 @@
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import {join,resolve} from 'node:path';
+import {mkdir,writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const repo=fileURLToPath(new URL('../../../../',import.meta.url));
+const {chromium}=await import(pathToFileURL(join(repo,'node_modules/playwright/index.mjs')).href);
+const output=resolve(process.env.ARDESIA_MEDIA_OUTPUT??'/tmp/ardesia-media-authoring');await mkdir(output,{recursive:true});
+const studio=process.env.ARDESIA_MEDIA_STUDIO_URL??'http://127.0.0.1:5482';
+const browser=await chromium.launch({headless:true,executablePath:process.env.ARDESIA_CHROMIUM??'/tmp/ardesia-browsers/chromium-1223/chrome-linux64/chrome',args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']});
+const context=await browser.newContext({permissions:['microphone'],viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+const errors=[],checks=[];let fresh;
+const observe=page=>{page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text())});page.setDefaultTimeout(30000);};
+try{
+ const room='s08-s17-poiseuille-author';const page=await context.newPage();observe(page);await page.goto(studio+'/#'+room);
+ await page.getByRole('button',{name:'Registra e collega un passaggio'}).click();
+ assert.equal(await page.getByRole('checkbox',{name:'Solo il mio microfono docente'}).isChecked(),false);
+ assert.equal(await page.getByRole('button',{name:'Registra audio',exact:true}).isDisabled(),true);
+ await page.getByLabel('Annotazione del docente',{exact:true}).fill('Poiseuille: Q fissata, Δp ∝ 1/r⁴');
+ await page.getByRole('button',{name:'Annota passaggio',exact:true}).click();
+ await page.locator('.st-linked-source').getByText(/Poiseuille: Q fissata/).waitFor();
+ await page.getByRole('checkbox',{name:'Solo il mio microfono docente'}).check();
+ await page.getByRole('button',{name:'Registra audio',exact:true}).click();
+ await page.getByRole('status').getByText('Registrazione in corso',{exact:true}).waitFor();
+ // Capture duration is part of the real MediaRecorder journey, not a mocked clock.
+ await page.waitForTimeout(1200);
+ await page.getByRole('button',{name:'Termina registrazione',exact:true}).click();
+ await page.getByText('Audio salvato nella lezione.',{exact:true}).waitFor();
+ await page.locator('summary').filter({hasText:'Dai un nome al passaggio salvato'}).click();
+ await page.getByLabel('Titolo del passaggio',{exact:true}).fill('Portata costante');
+ await page.getByRole('button',{name:'Salva capitolo',exact:true}).click();
+ await page.getByText('Capitolo salvato nella lezione. Lo ritrovi in Rivedi e nel file .lesson.',{exact:true}).waitFor();
+ checks.push('Room prodotto: microfono OFF e comando disabilitato, annotazione esplicita, consenso docente, MediaRecorder reale su dispositivo sintetico, capitolo salvato dal writer canonico');
+ await page.getByRole('link',{name:'Materiali',exact:true}).click();
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Esporta .lesson',exact:true}).click();const download=await downloadPromise;const bundle=join(output,'poiseuille.lesson');await download.saveAs(bundle);
+ checks.push('Navigazione da Room esegue flush; Materiali esporta il vero bundle .lesson');
+ fresh=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});const imported=await fresh.newPage();observe(imported);
+ await imported.goto(studio+'/?vista=lezioni-salvate#'+room);
+ await imported.getByLabel('Seleziona bundle .lesson',{exact:true}).setInputFiles(bundle);
+ await imported.getByRole('button',{name:'Importa il bundle',exact:true}).click();
+ await imported.getByText(/^Import completato:/).waitFor();
+ checks.push('Browser nuovo: preview e import confermato dai controlli prodotto, senza store o identità simulati');
+ await imported.goto(studio+'/?vista=replay#'+room);
+ await imported.getByRole('navigation',{name:'Marker e capitoli della lezione'}).getByRole('button',{name:'Capitolo · Portata costante',exact:true}).click();
+ await imported.getByText('Waveform pronta',{exact:true}).waitFor();
+ const momentUrl=imported.url();await imported.reload();await imported.getByText('Waveform pronta',{exact:true}).waitFor();
+ assert.equal(imported.url(),momentUrl);assert.equal(await imported.locator('audio').count(),1);assert.equal(await imported.getByLabel('Nota privata',{exact:true}).count(),0);
+ assert.equal(await imported.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ assert.ok((await imported.locator('.st-replay-canvas').boundingBox()).height>200);
+ await imported.getByRole('button',{name:'Ricomincia',exact:true}).click();await imported.getByRole('button',{name:'Ascolta',exact:true}).click();
+ await imported.waitForFunction(()=>document.querySelector('audio')?.ended===true);
+ await imported.screenshot({path:join(output,'imported-replay-390.png'),fullPage:true});
+ checks.push('Replay importato: capitolo e pin esatti sopravvivono a cold reload, waveform e media unico riproducono fino alla fine; nessun campo di note private senza Core');
+ assert.deepEqual(errors,[]);
+ const result={status:'PASS',browser:browser.version(),checks,errors,limits:['Microfono sintetico Chromium, non ascolto umano né device fisico','Archivio e bundle locali; nessun audio remoto o grant Core inventato','Nessuna equivalenza tra ascolto e apprendimento']};
+ await writeFile(join(output,'authoring-browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+}catch(error){await writeFile(join(output,'failure.json'),JSON.stringify({status:'FAIL',error:String(error),errors,pages:[...context.pages(),...(fresh?.pages()??[])].map(page=>page.url())},null,2)+'\n');for(const [i,page] of [...context.pages(),...(fresh?.pages()??[])].entries()){await page.screenshot({path:join(output,'failure-'+i+'.png'),fullPage:true}).catch(()=>{});await writeFile(join(output,'failure-'+i+'.txt'),await page.locator('body').innerText().catch(()=>''));}throw error;}
+finally{await context.close();await fresh?.close();await browser.close();}

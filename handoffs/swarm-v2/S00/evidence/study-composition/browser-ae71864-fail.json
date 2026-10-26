@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "sourceCommit": "ae71864da2e93e49315dbbc8f73f74174f448084",
+  "checks": [
+    "cookie-login-0",
+    "legacy-public-fixture-available",
+    "compiled-app-csp-self",
+    "real-root-navigation",
+    "one-main-landmark"
+  ],
+  "errors": [],
+  "error": "TimeoutError: locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Esegui il modello' })\u001b[22m\n"
+}

@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "scope": "PR 325 head f80dc4d; integration patch composed on temporary copies; no main mount or deployment",
+  "sourceHead": "f80dc4d2998d83ff8f7c4fd3116bd75c5021873c",
+  "pullRequest": {
+    "headRefOid": "f80dc4d2998d83ff8f7c4fd3116bd75c5021873c",
+    "isDraft": true,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:20:24Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882911/job/121723325876",
+        "name": "s19",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "S19 circuit laboratory"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:11:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325674",
+        "name": "web (typecheck + test + build)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:12:10Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882898/job/121723324355",
+        "name": "marketing",
+        "startedAt": "2026-10-26T17:08:58Z",
+        "status": "COMPLETED",
+        "workflowName": "marketing-static"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:09:12Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882929/job/121723324350",
+        "name": "PR contract (owner + acceptance + evidence)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "pr-contract"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:11:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325777",
+        "name": "study-api (HTTP + shared Core)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:09:34Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325676",
+        "name": "study-mcp (official SDK stdio + HTTP)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:22:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325608",
+        "name": "studio (typecheck + test + build)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:10:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325514",
+        "name": "engine (pytest)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:21:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325734",
+        "name": "e2e golden path (advisory)",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-26T17:09:38Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882926/job/121723325867",
+        "name": "hygiene (NUL + secrets + boundary + whitespace)",
+        "startedAt": "2026-10-26T17:08:58Z",
+        "status": "COMPLETED",
+        "workflowName": "ci"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "CodeRabbit",
+        "startedAt": "2026-10-26T17:08:59Z",
+        "state": "SUCCESS",
+        "targetUrl": ""
+      }
+    ],
+    "url": "https://github.com/AndreaMarro/ardesia/pull/325"
+  },
+  "s19Run": {
+    "conclusion": "success",
+    "createdAt": "2026-10-26T17:08:55Z",
+    "event": "pull_request",
+    "headSha": "f80dc4d2998d83ff8f7c4fd3116bd75c5021873c",
+    "jobs": [
+      {
+        "completedAt": "2026-10-26T17:20:24Z",
+        "conclusion": "success",
+        "databaseId": 121723325876,
+        "name": "s19",
+        "startedAt": "2026-10-26T17:08:57Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-26T17:08:59Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-26T17:08:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:09:07Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "number": 2,
+            "startedAt": "2026-10-26T17:08:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:09:12Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+            "number": 3,
+            "startedAt": "2026-10-26T17:09:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:09:15Z",
+            "conclusion": "success",
+            "name": "Run astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86",
+            "number": 4,
+            "startedAt": "2026-10-26T17:09:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:09:19Z",
+            "conclusion": "success",
+            "name": "Install pinned independent environment and upstream engine",
+            "number": 5,
+            "startedAt": "2026-10-26T17:09:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:09:22Z",
+            "conclusion": "success",
+            "name": "Scientific checks, real Core and exact owner-patch composition",
+            "number": 6,
+            "startedAt": "2026-10-26T17:09:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:07Z",
+            "conclusion": "success",
+            "name": "Isolated frontend lock and build",
+            "number": 7,
+            "startedAt": "2026-10-26T17:09:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:21Z",
+            "conclusion": "success",
+            "name": "Real browser with real Core, synthetic identities only",
+            "number": 8,
+            "startedAt": "2026-10-26T17:20:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:21Z",
+            "conclusion": "success",
+            "name": "Post Run astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86",
+            "number": 14,
+            "startedAt": "2026-10-26T17:20:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:21Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+            "number": 15,
+            "startedAt": "2026-10-26T17:20:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:21Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "number": 16,
+            "startedAt": "2026-10-26T17:20:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:20:21Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-26T17:20:21Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882911/job/121723325876"
+      }
+    ],
+    "status": "completed",
+    "updatedAt": "2026-10-26T17:20:25Z",
+    "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40365882911"
+  },
+  "logExtract": [
+    "s19\tRun actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5\t2026-10-26T17:09:07.6095876Z HEAD is now at 4119739 Merge f80dc4d2998d83ff8f7c4fd3116bd75c5021873c into a00f2f40091aecf69e58ebaba42cf70d748e4066",
+    "s19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:09:22.4794470Z 37 passed, 1 warning in 1.96s",
+    "s19\tIsolated frontend lock and build\t2026-10-26T17:09:23.6187174Z found 0 vulnerabilities",
+    "s19\tIsolated frontend lock and build\t2026-10-26T17:09:23.6749119Z 27 runtime/typing package notices verified",
+    "s19\tReal browser with real Core, synthetic identities only\t2026-10-26T17:20:21.0001426Z   24 passed (12.7s)"
+  ]
+}

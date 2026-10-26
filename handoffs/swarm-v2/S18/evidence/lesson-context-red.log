@@ -1,0 +1,23 @@
+PASS compiled real Materials and original PDF render
+PASS upstream PDF find controller searches native text
+PASS teacher native-text equation plus structured formula saved in Core
+PASS student real activity delivery opens exact shared annotation via SourceViewer
+ExpectError: expect(received).toEqual(expected) // deep equality
+
+Expected: {"activityId": "poiseuille-v1", "lessonId": "idrostatica"}
+Received: null
+    at captureRawStack (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright-core/lib/coreBundle.js:3130:17)
+    at callMatcherAsStep (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12873:57)
+    at Object.toEqual (/Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/node_modules/playwright/lib/matchers/expect.js:12863:23)
+    at /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/handoffs/swarm-v2/S18/proof/browser.mjs:36:313 {
+  matcherResult: {
+    actual: null,
+    expected: { lessonId: 'idrostatica', activityId: 'poiseuille-v1' },
+    message: 'expect(received).toEqual(expected) // deep equality\n' +
+      '\n' +
+      'Expected: {"activityId": "poiseuille-v1", "lessonId": "idrostatica"}\n' +
+      'Received: null',
+    name: 'toEqual',
+    pass: false
+  }
+}

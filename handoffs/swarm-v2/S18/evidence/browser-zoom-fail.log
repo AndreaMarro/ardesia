@@ -1,0 +1,12 @@
+PASS compiled real Materials and original PDF render
+PASS upstream PDF find controller searches native text
+PASS teacher native-text equation plus structured formula saved in Core
+PASS student real activity delivery opens exact shared annotation via SourceViewer
+PASS personal note cold page reload restores exact source and selection
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Sposta', exact: true })[22m
+
+    at /Users/andreamarro/Documents/Codex/2026-10-26/e-2/work/ardesia-s18/handoffs/swarm-v2/S18/proof/browser.mjs:38:123 {
+  name: 'TimeoutError'
+}

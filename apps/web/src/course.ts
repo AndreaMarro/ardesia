@@ -1,4 +1,5 @@
 import type { Edition, StudyMe } from "./api";
+import type { CourseLessonContext, SubmissionCourseContext } from "../../studio/src/study/contracts";
 export type LabActivityId = "taylor-exp-v1" | "poiseuille-v1" | "hooke-v1" | "ideal-gas-v1" | "dc-resistance-v1" | "harmonic-wave-v1" | "kinematics-v1";
 
 /** The renderer has two explicit capabilities, not a default physics solver. */
@@ -34,6 +35,15 @@ export type ActivityCommit = {
   activityId: string;
   parameters: Record<string, number | string>;
   prediction: string;
+  courseLesson?: CourseLessonContext;
 };
+export function courseLessonFromContext(context?: SubmissionCourseContext): CourseLessonContext | undefined {
+  return context?.lessonRef && context.phase ? {lessonRef: context.lessonRef, phase: context.phase} : undefined;
+}
+export function sameCourseLesson(left?: CourseLessonContext, right?: CourseLessonContext): boolean {
+  if (!left || !right) return left === right;
+  return left.phase === right.phase && left.lessonRef.id === right.lessonRef.id
+    && left.lessonRef.version === right.lessonRef.version && left.lessonRef.sha256 === right.lessonRef.sha256;
+}
 export const isDateConfirmed = (edition: Edition) =>
   ["offered", "confirmed", "running", "completed"].includes(edition.state);

@@ -79,7 +79,14 @@ def test_pathway_pins_and_unavailable_state_are_explicit_metadata(tmp_path, monk
             assert result.status_code == 200
             assert result.json()['inventory']['pathways'] is None
             assert result.json()['inventory']['pathwaysError'] == 'curriculum_pathways_unavailable'
-            assert len(result.json()['inventory']['programmes']) == 6
+            programmes = result.json()['inventory']['programmes']
+            assert len(programmes) == 7
+            assert programmes == payload['programmes']
+            assert {item['packId'] for item in programmes} == {
+                'relazioni-fluidi-v1', 'taylor-exp-v1', 's19-circuit-dc-v1',
+                'sf-strumenti-meccanica-v1', 'sf-fluidi-termodinamica-v1',
+                'sf-elettricita-magnetismo-v1', 'sf-onde-ottica-radiazioni-v1',
+            }
         for table in ('study_editions','study_question_bank_reviews','study_question_bank_approvals'):
             assert store.connection.execute('SELECT COUNT(*) FROM '+table).fetchone()[0] == 0
     finally:

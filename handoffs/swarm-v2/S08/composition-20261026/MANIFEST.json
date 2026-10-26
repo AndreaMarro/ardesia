@@ -1,0 +1,859 @@
+{
+  "productSourceCommit": "d13f331907c7f72f26ddcdfd79c9fe508d660a3a",
+  "productTree": "723b186541cca0541a331e965f57a9b5d766120d",
+  "browserRuntimeBuildSha": "9a8ac5fd58da10780194278e2fc5b35d74f7687b",
+  "browserRuntimeNote": "Vite servers started before product commit; actual final runtime source bytes are pinned below. No deployed exact-SHA claim.",
+  "studioFrozenTests": {
+    "files": 12,
+    "passed": 154
+  },
+  "webTests": {
+    "files": 9,
+    "passed": 67
+  },
+  "coreTests": {
+    "passed": 9
+  },
+  "browser": "Chromium148.0.7778.96",
+  "sourceFiles": [
+    {
+      "path": "apps/studio/package-lock.json",
+      "bytes": 252812,
+      "sha256": "3a21672e17d365f325b8a51a50fb3c52516f409d97131f748b3e475e9b0e6f80"
+    },
+    {
+      "path": "apps/studio/src/LessonPassageAuthor.tsx",
+      "bytes": 12455,
+      "sha256": "888a8907203208980caf9369d392c294ead9656f8c63320cdbf2a4361a58f819"
+    },
+    {
+      "path": "apps/studio/src/ReplayView.tsx",
+      "bytes": 24738,
+      "sha256": "d880ae1184b944b9057e9122b0150940feff18507d47333ea4ab46c1f3c4530a"
+    },
+    {
+      "path": "apps/studio/src/Room.tsx",
+      "bytes": 52974,
+      "sha256": "27dc61cdf12c4be7f931a37dd721488f5e57adc9b376d8afe2ec85e5ecfaa99a"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/IntegratedLivingReplay.tsx",
+      "bytes": 2075,
+      "sha256": "c80d072c0e128ba4d363ad6311678b21218d25c5cc0aeca91c5b0a384818fa99"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/LivingLessonReplay.tsx",
+      "bytes": 12549,
+      "sha256": "39079df8a2a1830fdd2bf0e20aac72fada0042cc0c6d4ac1da69d192f7c6d655"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/archiveAccess.ts",
+      "bytes": 666,
+      "sha256": "eb336a0189e74497d92df2e44479da711b60342ddf6a92e11b488cd07d902177"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/CanonicalReplay.tsx",
+      "bytes": 120,
+      "sha256": "81fb843a4a9eda8f26fb79adb412c63f54785514fe28d7bb8603845588dc0c12"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/canonical-patch.mjs",
+      "bytes": 3611,
+      "sha256": "a7bb0cb9b32da43d59b87d9635b5e28dc8953d50308aec357abe4a5287ed7c8e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/main.tsx",
+      "bytes": 17808,
+      "sha256": "9727d1c5d1fc04a12d3605e72561a9bd4518fb76af87b819960726553461cefd"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/style.css",
+      "bytes": 4791,
+      "sha256": "40b355f0d4e83ccda717ab938090d850efc02059ac920da8879af186f15d6d3e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/verify-browser.mjs",
+      "bytes": 7107,
+      "sha256": "9a7991d8b7b57c5e3e9e9bc0897697eb12c9c7dda47e866949978c439bb1b60a"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/verify-patch.mjs",
+      "bytes": 1175,
+      "sha256": "e464c4da4409e3a189d35cddeca001af6a81576344f329d98052cfc0dab05467"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/consumer/verify-track-ended.mjs",
+      "bytes": 3166,
+      "sha256": "602a46190058403248f15652decc047666a4cee6827ded91cff25cdecf764bfa"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/docs/ACQUISITION.json",
+      "bytes": 1315,
+      "sha256": "596aa57fa0fc8f071684a8c4fe789811a03f0b48ce1a9e5f0fd620b01aead10c"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/docs/PATCH-BASE.json",
+      "bytes": 248,
+      "sha256": "60cc2d1781217a9ca2aab8f7eb1cb2066d58ba7943240ddf13b12352d02e221d"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/index.ts",
+      "bytes": 470,
+      "sha256": "daba395bea201795f965a4c51a099d8e3ddd7eb6a0d1d6d00efa4ea3267ffd9e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/integrated-replay.css",
+      "bytes": 1418,
+      "sha256": "29daa01685b71979347b8116c0ad8d6dfe5f2841357b8f254cf06f36c76d1837"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/intentFence.ts",
+      "bytes": 243,
+      "sha256": "f4bc41acd3bcc871c514f07ba46320a159a961c4957309a3982cd7cb303d2f75"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/model.ts",
+      "bytes": 5512,
+      "sha256": "3df658e6beb9388cc29fe3b0099fe32998c14784af7ad045274113cb4b2e911b"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/playbackLease.ts",
+      "bytes": 695,
+      "sha256": "c348d200e0b923d08f696adf69e8690b48c6b1cc2c6635a7e43e7b0a345e5f4e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/replayCursor.ts",
+      "bytes": 379,
+      "sha256": "b8a6fd6215d6cb60bef664dbfba34c6c2e3652631d696d7c60645902d0fca038"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/serialization.ts",
+      "bytes": 542,
+      "sha256": "f81e940874ce92a6865d04d8ce905d749549d862e0681ec3013bca347161845e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/action-lifetime.test.tsx",
+      "bytes": 6149,
+      "sha256": "78034b573f94a75dd7bd8476accaacf63dc8db7cdac520ae0fe0465e637b4e5c"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/audio-roundtrip.test.ts",
+      "bytes": 3864,
+      "sha256": "429092bc47aebab9429161d97bf487c73a890bd2b97c21fb23c8fe2cea9d3fb6"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/lifetime.test.ts",
+      "bytes": 2294,
+      "sha256": "f49cc28c21cf8652227e2d5d88d2f71f8e3f78f2657744ab3ba0c2afd6be6947"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/model.test.ts",
+      "bytes": 2927,
+      "sha256": "5a961ec48528bfe404fc606c318d63f1e33f35d3917b748ab1e4e322ed4568bc"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/note-lifetime.test.tsx",
+      "bytes": 3181,
+      "sha256": "6dc2e5a6f0a1c06b093521f0ea2dbf25e21e33dfc826b3bb6fe60a208b736642"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/playback.test.ts",
+      "bytes": 1180,
+      "sha256": "0ca96937a83b476e17bbf70463f6acd816ea6e40964a6273811eb0e6ced6adb2"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/s07-serializer.test.ts",
+      "bytes": 1812,
+      "sha256": "54f5cb80fb2dc23b5f982d7b070f587f3d958948740c862dc37adf186152899e"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/tests/serialization.test.ts",
+      "bytes": 1891,
+      "sha256": "17ce74fe423b4377d648bb1dd51aa9b0ab5711d33ad617fbf355efb9879e0b82"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/PROVENANCE.json",
+      "bytes": 3087,
+      "sha256": "e8c485092583c3a574496ce8cef9e32560b553bda93cbeb513023430bf10c440"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/base-plugin.d.ts",
+      "bytes": 887,
+      "sha256": "e3954ab905c6b7b87abd112e8f4c37865e63a7c3e0d089e2a533bd6614e254f2"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/decoder.d.ts",
+      "bytes": 425,
+      "sha256": "962676fc76734f8c4a160a25e753fce17ddfc94898524c6257ee42aaeb5f92fc"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/dom.d.ts",
+      "bytes": 500,
+      "sha256": "0fb59682975069330ff1ae73ff3536dcd8b3f882d1f499eac023fd5ab22b4662"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/draggable.d.ts",
+      "bytes": 289,
+      "sha256": "5b1f280be9de3c5d633027f3923e49afd9783a9482d1e6c39c8f400f291feaff"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/event-emitter.d.ts",
+      "bytes": 1148,
+      "sha256": "9edcaa14e241f336ce11fbb13dfad933a5b2bf82dac5adb263dccfc40b890476"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/fetcher.d.ts",
+      "bytes": 216,
+      "sha256": "33292dc7ab88a4696fc071619945bd16eb3b2474ddf74802e0a397b967a1ff42"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/fft.d.ts",
+      "bytes": 2486,
+      "sha256": "1c6284dc67bf85ee9459e7ae0bc6abf9046fde7c24412f42a039da1a518b7edd"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/player.d.ts",
+      "bytes": 1987,
+      "sha256": "e7a4acd437c3e337f6580360cfe0827f00bfc94641ece1b7af4d5f75dfe4dbdf"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/envelope.d.ts",
+      "bytes": 2221,
+      "sha256": "c8981328ee21af565c1f7b4a23098eb8c9c3c86627b9f8c13a6ff70094740065"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/hover.d.ts",
+      "bytes": 1844,
+      "sha256": "c3d5132d2cf8c5851210fb6308a08a1fa2edf2f895e985e216ffe8c4b5b2f619"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/minimap.d.ts",
+      "bytes": 2462,
+      "sha256": "70bcd088bde0437933b9c0c58ff69b07578d7e94542d19d65cad7a6407232a5c"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/record.d.ts",
+      "bytes": 3727,
+      "sha256": "f4e6fb0f3d0d5b1a8acf6d60201c6abf51a9425cd056c277da304d7f13aa6e81"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/regions.d.ts",
+      "bytes": 5898,
+      "sha256": "f577ff1ae353353956318efa64f64f25af824adfe7cc3dddbda324170e95b4a0"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/regions.esm.d.ts",
+      "bytes": 62,
+      "sha256": "1169c2c2f79ed45bfd8e4fa590fcac9bd103626c9c76cb4a35c17b2edd9bacd8"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/regions.esm.js",
+      "bytes": 14069,
+      "sha256": "e85c9f32e74a6098a82338e49c2be6ad422aa272e34ea5c81debcbe65a11df45"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/spectrogram-windowed.d.ts",
+      "bytes": 4962,
+      "sha256": "0e79832983e681687ca68b150f26bf3a0f2585f7b347c6da7ce429d597f05279"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/spectrogram-worker.d.ts",
+      "bytes": 116,
+      "sha256": "045cd017b7b1ff43f14292d0ba23887252d3f9544c04b0bb68b6572dae100d3a"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/spectrogram.d.ts",
+      "bytes": 6366,
+      "sha256": "b6813c8dc0eb887048dc117cb3a2ecc2aaf6ba8d2816bc029347fdf9050bfbfe"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/timeline.d.ts",
+      "bytes": 2488,
+      "sha256": "fb65aad48dbca462339695ad35492377d307ceb0f2feefeb2a6cb42664942264"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/timeline.esm.d.ts",
+      "bytes": 64,
+      "sha256": "262336e7618d05c849cae105a5fc1a20b6449383a308be61f16868c6d7c2f0c4"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/timeline.esm.js",
+      "bytes": 5520,
+      "sha256": "ce477d4c0d115dcb5f312407f1406a23663c507b69df55b4d788ed21411719a4"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/plugins/zoom.d.ts",
+      "bytes": 2571,
+      "sha256": "b2cf2b1d06137e5faa6ec6d51825ab0cb64739485711302ef024f85d5f46bca2"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/renderer-utils.d.ts",
+      "bytes": 4262,
+      "sha256": "a0ce6820a598688d0e2b94be794ffc0dcea71cf4359df89eb0e5de00715f609c"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/renderer.d.ts",
+      "bytes": 2126,
+      "sha256": "14cf9a0f7159fe96d5695340d1f9a43517fb94c9883ba834295a267fefc8e756"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/timer.d.ts",
+      "bytes": 276,
+      "sha256": "a2ea239d1b92188b180a6261db400b17f0ab5d345fdf10d6d12e6e74c1666fb3"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/types.d.ts",
+      "bytes": 14163,
+      "sha256": "ff896786c8395b0c4607bf8be8a17b6c289085b2efaf06588423f9005fe2c658"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/wavesurfer.d.ts",
+      "bytes": 9893,
+      "sha256": "883615d82d7dc5da92c05947fa2e1cb3f90d863d84501abcc4207b5397249b17"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/wavesurfer.esm.d.ts",
+      "bytes": 68,
+      "sha256": "9977171de17ca19deeb028d659e4b6b5a019222fb894e76477e946bb014a03a9"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/wavesurfer.esm.js",
+      "bytes": 33872,
+      "sha256": "06f5808a5000bdbbb7ecf432935694a4f9ab6a0577856995aef4073e348648ca"
+    },
+    {
+      "path": "apps/studio/src/features/living-lesson/vendor/wavesurfer/webaudio.d.ts",
+      "bytes": 2438,
+      "sha256": "ef33b53e0ce5b28c831b9e9a4d78166578a484d0d1693e0a0b0f92d96c44ac17"
+    },
+    {
+      "path": "apps/studio/src/lesson-media/ReplayCaptions.test.tsx",
+      "bytes": 6376,
+      "sha256": "c0373447b957793126bd2ba5b76055766cd638b171fae3680b7c01e6b13a2bf3"
+    },
+    {
+      "path": "apps/studio/src/lesson-media/ReplayCaptions.tsx",
+      "bytes": 6990,
+      "sha256": "18db33bca3177c5aaad0f5174b3fbdc61b02f23327f3fde2275fa4775e93106a"
+    },
+    {
+      "path": "apps/studio/src/lesson-media/replay-captions.css",
+      "bytes": 1632,
+      "sha256": "7c843f1bf761cd1e3f6e6b335fb2956b25e8998f5f9cdfc71164052421e6f0e6"
+    },
+    {
+      "path": "apps/web/src/features/Materials.tsx",
+      "bytes": 7181,
+      "sha256": "cfb502c4ed2111d23c617cabbee48b363e996917770af6dc95060a1164adf8c1"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/CaptionImport.tsx",
+      "bytes": 5855,
+      "sha256": "0c7375a2c5a6331ad1519317187ef78d2ac230f6336b6e4e5924db3e7a1d9c43"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/LessonMediaLibrary.tsx",
+      "bytes": 12182,
+      "sha256": "94f6ef471c435840fe7f91b6d5869d584930eef314856dd25bdc9046ab177c5c"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/MediaIndexEditor.tsx",
+      "bytes": 7045,
+      "sha256": "f8f56482ec5b2b4bcceda8395df9541c2dcae09054c4e30c774b9c65ce6aac0c"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/caption-import.test.tsx",
+      "bytes": 5666,
+      "sha256": "8cddf2d178b4d38a7886ef297ea5b149106e75e8dd7b94e8810b380aff2cb9e8"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/captions.test.ts",
+      "bytes": 4426,
+      "sha256": "4663206ef95dd8112b212d2472e405099c186c685dc4725f5ca72c89748aef54"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/captions.ts",
+      "bytes": 4883,
+      "sha256": "44aa4d3b8039bcb7cb044fa2100d982d4238a2af5127a01636cb6dee6c1fa983"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/fixture.ts",
+      "bytes": 846,
+      "sha256": "ca88c86e2e2f7b2219a6a1de7c3a165c4c11c2ebe4fa125b6578bbfc43b8753c"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/lesson-media.css",
+      "bytes": 3697,
+      "sha256": "1a749c410be673708ba67dec285e19ddad40846bbd247a4ae411870f3215d8b0"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/library.test.tsx",
+      "bytes": 6834,
+      "sha256": "5e6966336b83d11228a59d0cdca8c23527a9b64fba0669efcb8aca7ef61c5c56"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/media-captions.LICENSE.txt",
+      "bytes": 1068,
+      "sha256": "c377e02bad580746331e91b3e525456cc46b944e6ebc429acabf9df3a6d65729"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/model.test.ts",
+      "bytes": 2142,
+      "sha256": "37d4627998aab55ecd1f6981e6a4dd81491040e208b7ed0231b25b1d4bd67a2b"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/model.ts",
+      "bytes": 4999,
+      "sha256": "9c1927ee87cc224e5ca566670d3f0654614b8ec9851ccfc27b5bc331bab56573"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/nativeCaptions.ts",
+      "bytes": 1866,
+      "sha256": "5126b2e8b3bab9e633e744da4a65e7c08980a56af4c7d1a945b9c57e4db252a1"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/playback.test.ts",
+      "bytes": 4923,
+      "sha256": "96dc0efe844fece1e2a1a51b6b05e54943e4d832a80c40276adede5909f9d825"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/playback.ts",
+      "bytes": 5294,
+      "sha256": "815c1f51b7d889fc29c0d60504148557a061c743309f047876c93c68de4787d2"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/LICENSE",
+      "bytes": 1068,
+      "sha256": "c377e02bad580746331e91b3e525456cc46b944e6ebc429acabf9df3a6d65729"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/PROVENANCE.json",
+      "bytes": 3485,
+      "sha256": "996ebc662d4d25f21d3050f4382d43a71d6adfd0d83deb2e4630a030bd060168"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server.d.ts",
+      "bytes": 105,
+      "sha256": "c63561e9b49388f69a901f309f05298b4912508c827fe2d772573b714a79b234"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server.js",
+      "bytes": 374,
+      "sha256": "7de433c0356807e39fa69fbb4ca66cb8cf0edf3d1e97ef82fe2122f9587a861f"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server/errors.js",
+      "bytes": 2078,
+      "sha256": "ec6cf4f814c871b59a78f2a264eb551fe77a816b5985571f4fc0546d62482e2a"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server/index.js",
+      "bytes": 40503,
+      "sha256": "94265e390ee5b5ed45023897a8bf6f448384272b8e120dc8f22dde0aa22ab6b3"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server/srt-parser.js",
+      "bytes": 1048,
+      "sha256": "9d0fd08f30387c4a188f6d5e9b42f12d4cb1535828c9770401a56ad43c78451d"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/server/ssa-parser.js",
+      "bytes": 10352,
+      "sha256": "5d01f18b3fcce6a5bb25dee8c2705c526f21167dadb4d479132477792743f555"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/index.d.ts",
+      "bytes": 445,
+      "sha256": "59afeb5953fb89261227eee5f1799672d2392d711f73acb78b6b3f24052951f5"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/errors.d.ts",
+      "bytes": 730,
+      "sha256": "21de0be02b90461d822a0923f3bece763c133cb006a910dd5d82924cdcec58b5"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/parse-error.d.ts",
+      "bytes": 557,
+      "sha256": "2e7edcbab276bdaf58e0f0fb41730fa0f2ff313bb49298f88f1a2ca14b2e0861"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/parse-response.d.ts",
+      "bytes": 380,
+      "sha256": "349f8d3c16262ddc0c320423b7926fafd808d2afcab33040ce1c1898832e2061"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/parse-text.d.ts",
+      "bytes": 323,
+      "sha256": "e05529350b302ebe89be69d6dd6d8c7b0e2951b687dc76dc254270f7c16288ee"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/text-transform.d.ts",
+      "bytes": 767,
+      "sha256": "0b4c856009064629059225be909433b92100964a916b0bd1c461692718bafe81"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/parse/types.d.ts",
+      "bytes": 3055,
+      "sha256": "404f780b46c5b8ec2365fce9d02f08c87b4705894fd4139454044d18795f083f"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/srt/srt-parser.d.ts",
+      "bytes": 397,
+      "sha256": "040bd95c16bbffb1c030eeb51d3ed799dad33e06863f2c539477ddfa1e505ea5"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/ssa/ssa-parser.d.ts",
+      "bytes": 1381,
+      "sha256": "151dcd648088777565038d9980050b0ad5dc3a5e2316d9ae1a6d8327085a801b"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/utils/style.d.ts",
+      "bytes": 328,
+      "sha256": "192e6a3da6d67d04809c706bef46637cc8ccff283a31aa173eedf5e5ee75092a"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/utils/timing.d.ts",
+      "bytes": 95,
+      "sha256": "42f33e6fb3cfc8ae4d4b92282779a2ac37a2459df2514f5003fd1024ab0ca61b"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/utils/unit.d.ts",
+      "bytes": 271,
+      "sha256": "ba0ec097dbfb664124177dc50463b1754651df13b02def2f0a3eeef0acf11cc5"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/overlay/box.d.ts",
+      "bytes": 1321,
+      "sha256": "5d2af2e738b5eb932647514d3e93f0529a6693eb9cdf820f695a2006b4fdacdf"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/overlay/position-cue.d.ts",
+      "bytes": 419,
+      "sha256": "ad0618614eaeca2aae1e881ebfb56e7db0e0e06b1bd30efe39104f8fd689ec8c"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/overlay/position-region.d.ts",
+      "bytes": 199,
+      "sha256": "cd8b0c3cca6fa2eac48c5fb82b568b2f6cb5fd3bf15d68dbaebd56a782f42b77"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/overlay/render-overlay.d.ts",
+      "bytes": 1188,
+      "sha256": "60032d1272a81bb1c6223c7b73b25582f04afe35c0ea6a0bae97eba41f325db5"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/render-cue.d.ts",
+      "bytes": 538,
+      "sha256": "fd98670309b2b2a1a6368aaa9d9247acdf5228f3fbe056b54879f6c00f8b67db"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/text-cue.d.ts",
+      "bytes": 1682,
+      "sha256": "d32bb5832dbe38545fb75182f828892c62615b541f00f0315bd9001a56ca9eea"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/tokenize-cue.d.ts",
+      "bytes": 1669,
+      "sha256": "183ab05144f44904351e48a1c830cfd3af0a0e5ed5daa3efae83cab8dbeca8ee"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/vtt-cue.d.ts",
+      "bytes": 2822,
+      "sha256": "bb131427faf014ff5f79618ae26b37f9a882965df2a691527ca611932090c392"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/vtt-header.d.ts",
+      "bytes": 70,
+      "sha256": "98008edca6b09e0b918cba457a53ec3a069738cf19a5fdcf07410b9ac11d9412"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/vtt-parser.d.ts",
+      "bytes": 1873,
+      "sha256": "e3661c3c666fc6fbe59be3eb2237e9db5e11f9e154cb4bb6617377a1ce2ab74b"
+    },
+    {
+      "path": "apps/web/src/features/lesson-media/vendor/media-captions/types/vtt/vtt-region.d.ts",
+      "bytes": 1132,
+      "sha256": "0e92eb2b7b13aab8df24b0aa13429381e451fb615cf09339fee6811c15dc4b16"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 100077,
+      "sha256": "754adb6b5b1e92d266a4826c33aa213ab1f5c5fd2c38950e3f0417bfa0c05b76"
+    },
+    {
+      "path": "packages/engine/lessonos/study/lesson_media/__init__.py",
+      "bytes": 5749,
+      "sha256": "de708809912379c8277722f105408ef7b3acdad0f2b70d99ebc14d5353057e67"
+    }
+  ],
+  "sourceFileMapSha256": "7db380ba180f363db0ff59860b4e3cf60d8a15f92f350c35d2889fbe5dcad550",
+  "artifacts": [
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/INTEGRATION.md",
+      "bytes": 9500,
+      "sha256": "5d4a406312a48e0fb031fa5ef1413cffc8daa0173fe924767f76cf4ff19d6d0c"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/authoring-browser-proof.mjs",
+      "bytes": 6167,
+      "sha256": "7ef6c18a880adfefe69dd1a01398ef1da10aab283971218cfcd5cd0ac3d321bc"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/authoring-first.log.gz",
+      "bytes": 515,
+      "sha256": "c4aeb458c75cd6f5e4d8d98deea60fa91f5b4131ab03a29ace2871328437a067"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/authoring-browser-result.json",
+      "bytes": 848,
+      "sha256": "2365c186ade7c356ebb6fc70068e7529f5ca2524615af5304e18a37e570171a1"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/composition-1440.png",
+      "bytes": 62705,
+      "sha256": "fa07e0ee27a9c7603af03095b11b63be1157324036d402c72d697a1d2afb70db"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/composition-360.png",
+      "bytes": 44818,
+      "sha256": "462b88564160a9242352a7e2e85e61d9aff82415053fd5607fec52a58f99cc81"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/composition-390.png",
+      "bytes": 45303,
+      "sha256": "00a7827561c30f5540c503abcd112313ebca56ff8cd0201b9eaa612c0e3f6582"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/composition-820.png",
+      "bytes": 55839,
+      "sha256": "c219cd865ab513ebf043afffdc4ca3df5e2d09fa96173914d6bb357e7a0321df"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/composition-browser-result.json",
+      "bytes": 2600,
+      "sha256": "59293b66b4618b5ee9cbc7ee32cc031a3c7c643fa8563f8cad1888ec04a58554"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/imported-replay-390.png",
+      "bytes": 39405,
+      "sha256": "2e0145a95a3d434f6332adbf3777f6b6c78d1cf36101c25bff0e652709e4cce6"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/s08-native-captions-desktop.png",
+      "bytes": 58140,
+      "sha256": "339aadcdc721e19d0e970b250f2106ba596468be686c80f3349104865bbac203"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser/s08-native-captions-mobile.png",
+      "bytes": 36942,
+      "sha256": "c15d2ddd89242d219246d326bf6ef44593bb325869ddb5f17aae10d6b942908e"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-before-panel-390.png",
+      "bytes": 49992,
+      "sha256": "1bf9c588f0fa7bfed4cacd526f114cce3f0eb3b6e8c6deffe484805ba88b9c31"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-before-panel-result.json",
+      "bytes": 2542,
+      "sha256": "52f6d328a49658c3041aab16db2524cae5d070f27d22672a88f700615c0e0d87"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-final.log.gz",
+      "bytes": 1241,
+      "sha256": "168b7d4ef9d0419ad03a0f92c913e511c44a3562f1d797c25bd852183327c136"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-first.log.gz",
+      "bytes": 287,
+      "sha256": "6b8acc6ffe9f596ee680e6f34e94f0672723208c772f59456d1926cb4fd2ce7d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-proof.mjs",
+      "bytes": 19903,
+      "sha256": "4e5286e3a2ca7225e4cddd96c383f5873b7d2e34228c43dd46d612b74df55be4"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-responsive-final.log.gz",
+      "bytes": 1269,
+      "sha256": "78a2a2e99019cf23beb677798fae605386f11dea5282c7aee0cc3760dfdb23d8"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/core-targeted-final.log.gz",
+      "bytes": 321,
+      "sha256": "e38acafa95acc00d84aa2c04f1c42e255d2ab581cf9697bcbca8f63d363bfcbb"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/core-targeted.log.gz",
+      "bytes": 23,
+      "sha256": "7ce67f16b2bfa8d4c4e2bd54c809f374215dc733f1f705d19e6683129e4a9f29"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/host-contract-before-panel.log.gz",
+      "bytes": 144,
+      "sha256": "b822a2269e221ef440f861e83b3fd90617e6755a223ac811932853a992dcd923"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/host-contract.log.gz",
+      "bytes": 144,
+      "sha256": "d91191403fac9e0a037cea73701c4da20101263713acd8b5f23b850712cce867"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-green.log.gz",
+      "bytes": 443,
+      "sha256": "5d10787b15b0e79a42ea255e9761ebf9f6e8e7f8cbc0d5a29c7970312dd5ac0a"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-red.log.gz",
+      "bytes": 1359,
+      "sha256": "6633504e4abbd8c148c9431b6a7e9ef7a508eb8edfb339d98de076a620ef2e15"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-startup-sandbox-failure.log.gz",
+      "bytes": 717,
+      "sha256": "7c0dafe5a6885e7e6916ab2a5c8908b78a5fdfc5d77af14332712543724c0b0b"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/studio-frozen.log.gz",
+      "bytes": 475,
+      "sha256": "f23fc79197eb117fe45434ed77c4ea04f1aac48ee52682c8a414ff46fb838dd3"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/studio-targeted.log.gz",
+      "bytes": 456,
+      "sha256": "03e00709af468ee779706814437f16364b508c079234897f34ce69abb758d27d"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/typecheck-final.log.gz",
+      "bytes": 137,
+      "sha256": "dfc12ea6a40279009408e53e0045009ff9a32c74f103b4b32e2929145b0e9dfd"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/typecheck.log.gz",
+      "bytes": 217,
+      "sha256": "b8e4125a22621edba443097bded56d78934353d598faaac0117a55106c0e55f9"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/web-targeted.log.gz",
+      "bytes": 383,
+      "sha256": "040500d705e2fffbbe06cffe25738f91ea53317d580d40f1a183571184bfd8fb"
+    },
+    {
+      "path": "handoffs/swarm-v2/S08/composition-20261026/web-typecheck.log.gz",
+      "bytes": 182,
+      "sha256": "0a4f7c4da90abf5c71631b19b134aa0e1a1704fcb02ff22b56b7aab8c63be21c"
+    }
+  ],
+  "syntheticExportedBundle": {
+    "filename": "poiseuille.lesson",
+    "bytes": 21439,
+    "sha256": "baa156816239191d350d68bf5a659fcf82ddcca7dd39de3e88f7f9eed56c802d",
+    "includedInGit": false
+  },
+  "remoteMutation": false,
+  "losslessLogPackaging": [
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/authoring-first.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/authoring-first.log.gz",
+      "rawSha256": "2365c186ade7c356ebb6fc70068e7529f5ca2524615af5304e18a37e570171a1",
+      "gzipSha256": "c4aeb458c75cd6f5e4d8d98deea60fa91f5b4131ab03a29ace2871328437a067"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/host-contract.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/host-contract.log.gz",
+      "rawSha256": "a0fa98681ac65df06e5e99dc65378c0c8aca618be08093d201b905c3ecd6b597",
+      "gzipSha256": "d91191403fac9e0a037cea73701c4da20101263713acd8b5f23b850712cce867"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/browser-responsive-final.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-responsive-final.log.gz",
+      "rawSha256": "59293b66b4618b5ee9cbc7ee32cc031a3c7c643fa8563f8cad1888ec04a58554",
+      "gzipSha256": "78a2a2e99019cf23beb677798fae605386f11dea5282c7aee0cc3760dfdb23d8"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/browser-first.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-first.log.gz",
+      "rawSha256": "dc8dc48123eaa1ea2bb432466ad3b4ead48d6dbaac8f82292f3128cb1df54d21",
+      "gzipSha256": "6b8acc6ffe9f596ee680e6f34e94f0672723208c772f59456d1926cb4fd2ce7d"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/web-typecheck.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/web-typecheck.log.gz",
+      "rawSha256": "aabbc0631a26cb1b84275dbdb73606a3107cdea11b356af42277b545d2a74049",
+      "gzipSha256": "0a4f7c4da90abf5c71631b19b134aa0e1a1704fcb02ff22b56b7aab8c63be21c"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/studio-frozen.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/studio-frozen.log.gz",
+      "rawSha256": "f282f1fc4d9efd7c321fec7b64072682e5c495a515351518b52e3bb82e11d624",
+      "gzipSha256": "f23fc79197eb117fe45434ed77c4ea04f1aac48ee52682c8a414ff46fb838dd3"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/core-targeted-final.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/core-targeted-final.log.gz",
+      "rawSha256": "60e5dd61ad33e1b2e21b77655741df373e3f631ce0e376a75d01691551ed78b3",
+      "gzipSha256": "e38acafa95acc00d84aa2c04f1c42e255d2ab581cf9697bcbca8f63d363bfcbb"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/host-contract-before-panel.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/host-contract-before-panel.log.gz",
+      "rawSha256": "64286ad9c8398cd57f9dc7e48ddcb1803568c3a5d7d77442b9edb5af48ac1cde",
+      "gzipSha256": "b822a2269e221ef440f861e83b3fd90617e6755a223ac811932853a992dcd923"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/mount-startup-sandbox-failure.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-startup-sandbox-failure.log.gz",
+      "rawSha256": "54365d519cea455f16546b74442de27d4bf4bbc5843471b6909584098132d629",
+      "gzipSha256": "7c0dafe5a6885e7e6916ab2a5c8908b78a5fdfc5d77af14332712543724c0b0b"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/web-targeted.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/web-targeted.log.gz",
+      "rawSha256": "069549e3ce8e20742478ce36cd8634bf4062c7cc90b4017b13aa951762e82a9a",
+      "gzipSha256": "040500d705e2fffbbe06cffe25738f91ea53317d580d40f1a183571184bfd8fb"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/studio-targeted.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/studio-targeted.log.gz",
+      "rawSha256": "e39c2e2ff94c201c34b5d174c2c35ce2b1d794dd3280bc3a69ab9fd841abbd76",
+      "gzipSha256": "03e00709af468ee779706814437f16364b508c079234897f34ce69abb758d27d"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/core-targeted.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/core-targeted.log.gz",
+      "rawSha256": "d09f0ad06d6e59b908037317d6c044f7ababd3466cb46d5b901cf6f0855baf04",
+      "gzipSha256": "7ce67f16b2bfa8d4c4e2bd54c809f374215dc733f1f705d19e6683129e4a9f29"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/mount-green.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-green.log.gz",
+      "rawSha256": "666fa26792bc23eb82d3afc2aa027b3bcbeb04000add45f0263abe4a86f77432",
+      "gzipSha256": "5d10787b15b0e79a42ea255e9761ebf9f6e8e7f8cbc0d5a29c7970312dd5ac0a"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/mount-red.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/mount-red.log.gz",
+      "rawSha256": "2a35b84c6d0e0d72bb042427fe5cfdfff0e0185c49fc9b141fd1b455cee98683",
+      "gzipSha256": "6633504e4abbd8c148c9431b6a7e9ef7a508eb8edfb339d98de076a620ef2e15"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/typecheck-final.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/typecheck-final.log.gz",
+      "rawSha256": "9c7434f6f8529c3fcaf302b1d5c8352c7af5628d3b56a5270b38cfd326a0cf8d",
+      "gzipSha256": "dfc12ea6a40279009408e53e0045009ff9a32c74f103b4b32e2929145b0e9dfd"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/typecheck.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/typecheck.log.gz",
+      "rawSha256": "806e8f5403100a2874f9a402e7c41dc94461fdc5ecfa150f41781562ad08fb04",
+      "gzipSha256": "b8e4125a22621edba443097bded56d78934353d598faaac0117a55106c0e55f9"
+    },
+    {
+      "rawPath": "handoffs/swarm-v2/S08/composition-20261026/browser-final.log",
+      "path": "handoffs/swarm-v2/S08/composition-20261026/browser-final.log.gz",
+      "rawSha256": "52f6d328a49658c3041aab16db2524cae5d070f27d22672a88f700615c0e0d87",
+      "gzipSha256": "168b7d4ef9d0419ad03a0f92c913e511c44a3562f1d797c25bd852183327c136"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { CircuitLabLink } from "./circuit-lab/CircuitSource";
 import { EditionManager } from "../components/EditionManager";
 import { GroupEditionView } from "../../../studio/src/study/GroupEditionView";
 import { AccessPanel } from "../../../studio/src/study/AccessPanel";
@@ -77,6 +78,7 @@ export function Courses({
           </div>
           <div className="edition-row-action">
             <span>{editionState[edition.state] ?? edition.state}</span>
+            {edition.packId === "s19-circuit-dc-v1" && <CircuitLabLink editionId={edition.id} />}
             <button
               className="button-primary"
               onClick={() => {

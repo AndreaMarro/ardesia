@@ -4,6 +4,8 @@ import {
   courseSubject,
   baseActivity,
   courseScope,
+  courseLessonFromContext,
+  sameCourseLesson,
   type ActivityCommit,
 } from "../course";
 import { TaylorLab } from "../components/TaylorLab";
@@ -21,6 +23,7 @@ import { PoiseuilleEpisode } from "../components/PoiseuilleEpisode";
 const ScalarExperienceEpisode = lazy(() => import("../components/ScalarExperienceEpisode").then(module => ({default: module.ScalarExperienceEpisode})));
 
 const CourseLearningWorkspace=lazy(()=>import('../components/CourseLearningWorkspace').then(m=>({default:m.CourseLearningWorkspace})));
+const LearningJourney = lazy(() => import("./learning-journey/LearningJourney").then(module => ({ default: module.LearningJourney })));
 
 type Props = {
   me: StudyMe;
@@ -30,7 +33,25 @@ type Props = {
 };
 
 export function Classroom(props: Props) {
+  if (import.meta.env.VITE_S20_LEARNING_JOURNEY === "1" && props.me.role === "student"
+      && props.data.enrolled && baseActivity(props.data.edition) === "poiseuille-v1")
+    return <JourneyClassroom key={courseScope(props.me, props.data.edition)} {...props} />;
   return <ClassroomScope key={courseScope(props.me, props.data.edition)} {...props} />;
+}
+
+function JourneyClassroom(props: Props) {
+  const [tools, setTools] = useState(false);
+  // A requested correction must keep its existing parent-bound submission flow.
+  // Notes, the scientific notebook and the other experiments remain reachable.
+  const showJourney = !tools && !props.parentId;
+  return <>
+    {!props.parentId && <button className="button-quiet" onClick={() => setTools(value => !value)}>
+      {showJourney ? "Apri gli strumenti dell’aula" : "Riprendi il percorso guidato"}
+    </button>}
+    {showJourney
+      ? <Suspense fallback={<Loading>Apro il percorso di studio…</Loading>}><LearningJourney me={props.me} data={props.data} /></Suspense>
+      : <ClassroomScope {...props} />}
+  </>;
 }
 
 function ClassroomScope({
@@ -53,6 +74,7 @@ function ClassroomScope({
     submission.id === parentId && submission.student_id === me.id,
   ) : undefined;
   const retryParentId = retrySubmission?.activity_id === (commit?.activityId || activityId)
+    && sameCourseLesson(courseLessonFromContext(retrySubmission?.courseContext), commit?.courseLesson)
     ? retrySubmission.id : null;
   const composer = useResourceComposer({
     actorId: me.id,
@@ -91,7 +113,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id}/></Suspense>) : activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
@@ -185,6 +207,7 @@ function ClassroomScope({
                 editionId={data.edition.id}
                 activityId={commit?.activityId||activityId}
                 activityParameters={commit?.parameters}
+                courseLesson={commit?.courseLesson}
                 prediction={commit?.prediction}
                 activityReady={commit!==null}
                 requireProcedure

@@ -1,0 +1,16 @@
+{
+  "pin": "jsxgraph@1.14.0",
+  "scenario": "Isolated geometry API, no product integration or scientific authority claim",
+  "checks": [
+    "real-svg-board",
+    "native-keyboard-input-synchronizes-point",
+    "actual-pointer-drag-updates-parameter",
+    "supplied-data-curve-replaced-on-existing-board",
+    "20-remounts-one-board-one-svg"
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 0\nReceived: 1\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBe (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-s01-evidence-20261026/jsxgraph-spike/run.cjs:27:123",
+  "distributionBytes": 993978,
+  "distributionGzipBytes": 258797
+}

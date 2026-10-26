@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState, useRef, useEffect, useCallback, useMemo, type ChangeEvent, type KeyboardEvent } from "react"
-import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, exportToCanvas, serializeAsJSON } from "@excalidraw/excalidraw"
+import { Excalidraw, MainMenu, WelcomeScreen, convertToExcalidrawElements, exportToCanvas, getCommonBounds, serializeAsJSON } from "@excalidraw/excalidraw"
 import "@excalidraw/excalidraw/index.css"
 import { EXCALIDRAW_CONFIG } from "./design/excalidrawConfig"
 import { latexToImage } from "./latexToImage"
@@ -34,9 +34,12 @@ import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 import { SessionAudioRecorder } from "./store/SessionAudioRecorder"
-import type { AudioObjectReference } from "./store/audioRecording"
+import { recordingSession, type AudioObjectReference, type AudioRecordingRef } from "./store/audioRecording"
 import LessonPassageAuthor from "./LessonPassageAuthor"
 import { wrapPassageAnnotation } from "./store/passageAnnotation"
+import { preserveEditorial } from "./features/living-lesson/serialization"
+import { attachEditorial, parseEditorial, resolveMoment, type LessonMoment } from "./features/living-lesson/model"
+import { loadReplayTimeline } from "./store/replayTimeline"
 
 const MathComposer = lazy(() => import("./MathComposer"))
 
@@ -114,6 +117,8 @@ export default function Room({
     [room, actualStore, lessonOsOpener],
   )
   const [mathOn, setMathOn] = useState(false)
+  const [mathPending, setMathPending] = useState(false)
+  const mathInsertPendingRef = useRef(false)
   const [saved, setSaved] = useState(false)
   const [lifecycleState, setLifecycleState] = useState<RoomLifecycleState>(() => ({
     generation: lifecycleGeneration,
@@ -511,15 +516,12 @@ export default function Room({
     }, 700)
   }
 
-  /** Esegue il salvataggio con i dati più recenti (dal debounce o da flush) */
-  async function _doSave() {
-    const elements = latestElementsRef.current
-    const appState = latestAppStateRef.current
-    const files = latestFilesRef.current
-    if (!elements) return
+  /** One scene writer for board edits and editorial markers. Every read-modify-
+   * write runs inside the same queue, so a delayed board save cannot erase a marker. */
+  async function queueSceneWrite(serialize: () => Promise<string>) {
     const run = _pendingSave.current.then(async () => {
       try {
-        const serialized = serializeAsJSON(elements, appState, files, "local")
+        const serialized = await serialize()
         await actualStore.saveScene(room, serialized)
         setStorageError(null)
         setSaved(true)
@@ -536,6 +538,39 @@ export default function Room({
       () => {},
     )
     await run
+  }
+
+  /** Esegue il salvataggio con i dati più recenti (dal debounce o da flush). */
+  async function _doSave() {
+    const elements = latestElementsRef.current
+    const appState = latestAppStateRef.current
+    const files = latestFilesRef.current
+    if (!elements) return
+    await queueSceneWrite(async () => {
+      const previous = await actualStore.loadScene(room)
+      return preserveEditorial(serializeAsJSON(elements, appState, files, "local"), previous ? JSON.parse(previous) : {}, room)
+    })
+  }
+
+  async function addLessonMoment(recording: AudioRecordingRef, title: string, kind: LessonMoment['kind']): Promise<void> {
+    if (studentView || replayView || recapView || recordingSession(recording).lessonId !== room) throw new Error('Passaggio non modificabile da questa vista.')
+    await flushLiveLesson()
+    const moment: LessonMoment = {
+      id: crypto.randomUUID(), title: title.trim(), kind,
+      ...recordingSession(recording), recordingId: recording.recordingId,
+      sha256: recording.sha256, epoch: recording.endEpoch,
+      objectRefs: [...recording.objectRefs],
+    }
+    await queueSceneWrite(async () => {
+      const serialized = await actualStore.loadScene(room)
+      if (!serialized) throw new Error('Salva la lavagna prima di aggiungere il passaggio.')
+      const scene = JSON.parse(serialized)
+      const timeline = await loadReplayTimeline(actualStore, room)
+      const resolved = resolveMoment(room, timeline, moment, scene.files ?? {})
+      if (resolved.recording.availability !== 'available') throw new Error('La registrazione non è disponibile o è stata revocata.')
+      const editorial = parseEditorial(scene, room)
+      return JSON.stringify(attachEditorial(scene, { ...editorial, moments: [...editorial.moments, moment] }))
+    })
   }
 
   /** Flush immediato: cancella il debounce e salva subito. Attende il completamento. */
@@ -783,13 +818,33 @@ export default function Room({
   }
 
   async function insertMath(latex: string) {
-    if (!apiRef.current || !latex.trim()) return
+    if (mathInsertPendingRef.current) throw new Error("Attendi l'inserimento della formula in corso.")
+    mathInsertPendingRef.current = true
+    setMathPending(true)
+    const canvas = apiRef.current
+    const journal = journalRef.current
     try {
+      if (!canvas || !journal) throw new Error("Lavagna non pronta: riprova tra un istante.")
+      if (!latex.trim()) throw new Error("Scrivi una formula prima di inserirla.")
       const { dataURL, width, height } = await latexToImage(latex)
-      addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
-      journalRef.current?.recordMathInsert(latex)
+      if (apiRef.current !== canvas || journalRef.current !== journal) {
+        throw new Error("La lezione è cambiata durante l'inserimento. Riprova nella lezione corrente.")
+      }
+      // Keep existing annotations readable. Excalidraw supplies bounds including
+      // rotation; deleted objects must not push the next formula off the board.
+      const liveElements = canvas.getSceneElements().filter((element: { isDeleted?: boolean }) => !element.isDeleted)
+      const y = liveElements.length ? Math.max(120, getCommonBounds(liveElements)[3] + 24) : 120
+      addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y }])
+      journal.recordMathInsert(latex)
+      fitBoardContent()
     } catch (err) {
-      setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
+      if (apiRef.current === canvas && journalRef.current === journal) {
+        setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
+      }
+      throw err
+    } finally {
+      mathInsertPendingRef.current = false
+      setMathPending(false)
     }
   }
 
@@ -1018,7 +1073,7 @@ export default function Room({
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
           )}
-          <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
+          <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
           <button
@@ -1038,7 +1093,7 @@ export default function Room({
       </header>
       )}
 
-      {!studentView && sessionAudio && <LessonPassageAuthor key={sessionAudio.identity.sessionId} recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} selectedObjects={selectedObjects} onLinkSelection={linkSelectedPassage} onFit={fitBoardContent} />}
+      {!studentView && sessionAudio && <LessonPassageAuthor key={sessionAudio.identity.sessionId} recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} selectedObjects={selectedObjects} onLinkSelection={linkSelectedPassage} onFit={fitBoardContent} onAddMoment={addLessonMoment} />}
 
       {/* Drawer lezioni */}
       {drawerOpen && (

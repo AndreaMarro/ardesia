@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "stage": "teacher PDF annotation and formula",
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Collega selezione testuale', exact: true })\u001b[22m\n",
+  "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Collega selezione testuale', exact: true })\u001b[22m\n\n    at /tmp/ardesia-g0-proof/golden.mjs:106:88",
+  "checks": [
+    {
+      "name": "Teacher uploads the original Poiseuille PDF through Materials; Core hash equals original bytes",
+      "status": "PASS",
+      "source": {
+        "resourceId": "1d56b7ad681440b8acc73e6b407da696",
+        "revisionId": "636195fb4ecb408eb61a955cffff54a4"
+      },
+      "sha256": "e54adf6731e33628abd2d5a7bf0ae48bd824afcc1b4dc07e10c1ee99fda033cf"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "network": [],
+  "product": {
+    "head": "ec5f19076d07f5a71b6151d8cd89bf33c8713a64",
+    "tree": "0e5fc123984d4a925f3ae3d5f6c7cb325c4a4cbe",
+    "web": {
+      "fileCount": 350,
+      "sha256": "61b709a28f3cf96613fbe4287dcb6fab90c7af199da96c71be63a4a84ebaa9e9"
+    },
+    "studio": {
+      "fileCount": 483,
+      "sha256": "eba74268f133d88c4b3d6eaba81c23e01e536c66fed0c280d952fd1a9532be8c"
+    },
+    "composition": "ordinary compiled Web and Studio, real create_app; no source transformation, mocks or success backend",
+    "webFlag": "VITE_S20_LEARNING_JOURNEY=1 (private proof only; default remains OFF)"
+  },
+  "coreProcessIds": [
+    24633
+  ]
+}

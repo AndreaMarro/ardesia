@@ -7,6 +7,7 @@ import {ScientificWaveModel,type WaveResult} from '../components/ScientificWaveM
 import {PublicSpringModel} from '../components/PublicSpringModel';
 import './PublicCoursePlayer.css';
 import type {ActivityCommit} from '../course';
+import type {CourseLessonContext} from '../../../studio/src/study/contracts';
 
 const labels:Record<string,string>={force:'Forza applicata [N]',stiffness:'Rigidità [N/m]',moles:'Quantità di sostanza [mol]',temperatureK:'Temperatura assoluta [K]',pressurePa:'Pressione assoluta [Pa]',voltage:'Tensione [V]',resistance1:'Resistenza R₁ [Ω]',resistance2:'Resistenza R₂ [Ω]',topology:'Collegamento',speed:'Velocità di propagazione [m/s]',frequency:'Frequenza [Hz]',positionX:'Posizione iniziale x₀ [m]',velocityX:'Velocità iniziale vₓ₀ [m/s]',time:'Tempo di simulazione [s]'};
 const fmt=(value:number)=>value.toLocaleString('it-IT',{maximumFractionDigits:6});
@@ -20,28 +21,30 @@ export function PublicCoursePlayer(){
   <details className="course-baseline"><summary>Programma, copertura e provenienza</summary><p>Baseline {learningCourses.baseline.year}: {learningCourses.baseline.familyCount} famiglie editoriali e {learningCourses.baseline.requiredObjectives} sotto-obiettivi. Una famiglia non vale un singolo obiettivo e una demo non equivale a un corso completo.</p><p>Fonte universitaria verificata, accesso diretto al PDF MUR non riuscito; nessuna uguaglianza dei byte con il file ministeriale attestata.</p><p><a href={learningCourses.baseline.source.pdf} target="_blank" rel="noreferrer">Syllabus ospitato dall’università</a> · <a href={learningCourses.baseline.source.crosscheck} target="_blank" rel="noreferrer">Programma universitario 2026/27</a></p></details>
  </main><footer><a href="/#contatto">Informazioni sui microcorsi</a><span>Ardesia · Fisica da capire.</span></footer></div>;
 }
-export function CourseScope({course,allowLocalDrafts=true,onCommit,initialActivityId}:{course:CourseRecord;allowLocalDrafts?:boolean;onCommit?:(value:ActivityCommit|null)=>void;initialActivityId?:string}){
+export function CourseScope({course,allowLocalDrafts=true,onCommit,initialActivityId,initialCourseLesson}:{course:CourseRecord;allowLocalDrafts?:boolean;onCommit?:(value:ActivityCommit|null)=>void;initialActivityId?:string;initialCourseLesson?:CourseLessonContext}){
  const [cached]=useState<ReturnType<typeof readCourseDraft>>(()=>allowLocalDrafts?readCourseDraft(course):{kind:'none'});
  const query=new URLSearchParams(location.search),scoped=allowLocalDrafts||query.get('courseLessonPath')===course.pathId,requested=scoped?query.get(allowLocalDrafts?'lezione':'courseLesson'):null;
- const retryLesson=initialActivityId?course.lessons.find(l=>l.activityId===initialActivityId):undefined;
+ const retryLesson=initialCourseLesson?course.lessons.find(l=>l.id===initialCourseLesson.lessonRef.id):undefined;
+ const retryUnavailable=initialCourseLesson?(!retryLesson||retryLesson.lessonRef.sha256!==initialCourseLesson.lessonRef.sha256||retryLesson.lessonRef.version!==initialCourseLesson.lessonRef.version||Boolean(initialActivityId&&retryLesson.activityId!==initialActivityId)) : Boolean(initialActivityId);
  const initial=retryLesson||course.lessons.find(l=>l.id===(requested||(cached.kind==='current'?cached.data.lessonId:'')))||course.lessons[0];
  const [selected,setSelected]=useState(initial?.id);
  const lesson=course.lessons.find(l=>l.id===selected);
+ if(retryUnavailable)return <><h1>Riferimento non disponibile</h1><p>Non è possibile identificare la lezione e la fase esatta di questo tentativo. Riapri la consegna originale; nessun altro passaggio viene selezionato.</p></>;
  if(!lesson)return <><h1>Materiali in preparazione</h1><p>Nessuna lezione rilasciata per questo percorso.</p></>;
  const revision=scoped&&!retryLesson?query.get(allowLocalDrafts?'rev':'courseRev'):null;
  if((!retryLesson&&requested&&!course.lessons.some(l=>l.id===requested))||(revision&&revision!==lesson.lessonRef.sha256))return <><h1>Riferimento non disponibile</h1><p>La revisione richiesta non è disponibile. Non la sostituiamo con un’altra lezione.</p><a href={'/corsi/'+course.pathId+'/'}>Apri la versione corrente</a></>;
  return <><div className="course-overview"><p className="section-meta">{course.unitIds.join(' + ')} · percorso in costruzione</p><h1>{course.title}</h1><p>Un passaggio originale da studiare e provare. Completezza del corso: {course.completedObjectives}/{course.requiredObjectives} sotto-obiettivi con tutte le prove richieste. Stato editoriale DRAFT, senza approvazione umana attestata.</p></div>
  <nav className="course-sequence" aria-label="Sequenza delle lezioni">{course.lessons.map((l,i)=><button key={l.id} aria-pressed={l.id===selected} onClick={()=>{setSelected(l.id);onCommit?.(null);const u=new URL(location.href);u.searchParams.set(allowLocalDrafts?'lezione':'courseLesson',l.id);u.searchParams.delete(allowLocalDrafts?'rev':'courseRev');if(!allowLocalDrafts)u.searchParams.set('courseLessonPath',course.pathId);history.replaceState(null,'',u);}}>{i+1}. {l.title}</button>)}</nav>
- <Lesson key={lesson.id} course={course} lesson={lesson} allowLocalDrafts={allowLocalDrafts} onCommit={onCommit}/>
+ <Lesson key={lesson.id} course={course} lesson={lesson} allowLocalDrafts={allowLocalDrafts} onCommit={onCommit} initialPhase={lesson.id===initialCourseLesson?.lessonRef.id?initialCourseLesson.phase:undefined}/>
  {course.editorialMaterials&&<EditorialMaterials course={course}/>}
  <details className="course-gaps"><summary>Che cosa manca al corso completo</summary><ul>{course.gaps.map(g=><li key={g}>{g}</li>)}</ul><p>Diagnostica, valutazione finale e ripresa fra docente e studente sono criteri distinti: la bozza locale non li sostituisce.</p><ol>{course.objectiveFamilies.map(f=><li key={f.id}><strong>{f.id} · {f.title}</strong><ul>{f.subtargets.map(s=><li key={s.id}>{s.label} · da verificare</li>)}</ul></li>)}</ol></details>
  <a className="button-primary course-contact" href={'/?percorso='+course.pathId+'#contatto'}>Chiedi informazioni su questo percorso</a></>;
 }
-function Lesson({course,lesson,allowLocalDrafts,onCommit}:{course:CourseRecord;lesson:CourseLesson;allowLocalDrafts:boolean;onCommit?:(value:ActivityCommit|null)=>void}){
+function Lesson({course,lesson,allowLocalDrafts,onCommit,initialPhase}:{course:CourseRecord;lesson:CourseLesson;allowLocalDrafts:boolean;onCommit?:(value:ActivityCommit|null)=>void;initialPhase?:CourseLessonContext['phase']}){
  const [cached]=useState<ReturnType<typeof readCourseDraft>>(()=>allowLocalDrafts?readCourseDraft(course,lesson.id):{kind:'none'});
  const previous=cached.kind==='current'&&cached.data.lessonId===lesson.id?cached.data:null;
- const [phase,setPhase]=useState<'practice'|'transfer'>(previous?.phase||'practice');
- const [parameters,setParameters]=useState(previous?.parameters||lesson.practice.parameters||{});
+ const [phase,setPhase]=useState<'practice'|'transfer'>(initialPhase||previous?.phase||'practice');
+ const [parameters,setParameters]=useState(initialPhase?lesson[initialPhase].parameters||{}:previous?.parameters||lesson.practice.parameters||{});
  const [prediction,setPrediction]=useState(previous?.prediction||''),[note,setNote]=useState(previous?.note||'');
  const [support,setSupport]=useState<string[]>(previous?.supportUsed||[]),[opened,setOpened]=useState<string[]>([]);
  const [revealed,setRevealed]=useState(false),[notice,setNotice]=useState('');
@@ -60,7 +63,7 @@ function Lesson({course,lesson,allowLocalDrafts,onCommit}:{course:CourseRecord;l
    lesson.activityId==='hooke-v1'?<PublicSpringModel force={Number(parameters.force)} result={result as unknown as {value:number;elasticEnergyJ:number}|null} maxExtension={.5} points={lesson.modelCases?.filter(c=>c.parameters.stiffness===parameters.stiffness).map(c=>({force:Number(c.parameters.force),extension:c.result.value}))||[]}/>:
    lesson.activityId==='kinematics-v1'?<ScientificKinematicsModel result={result as unknown as KinematicsResult|null}/>:lesson.activityId==='ideal-gas-v1'?<GasModel result={result}/>:<p>Questo passaggio usa il ragionamento e la soluzione commentata; non ha ancora un oggetto interattivo.</p>}
   {result&&<div className="lab-result" data-testid="course-result"><p>Valore del modello</p><strong>{fmt(result.value)} {result.unit}</strong><p>Confronta con la tua previsione: {prediction}. Il confronto non è un voto.</p></div>}
- </section><form className="course-controls" onSubmit={e=>{e.preventDefault();if(valid){setRevealed(true);if(selected&&lesson.activityId)onCommit?.({activityId:lesson.activityId,parameters,prediction:prediction+(support.length?' [Assistenza richiesta: '+support.join(', ')+']':' [Nessun aiuto richiesto in questa sessione; non prova autonomia]')});}}}>
+ </section><form className="course-controls" onSubmit={e=>{e.preventDefault();if(valid){setRevealed(true);if(selected&&lesson.activityId)onCommit?.({activityId:lesson.activityId,parameters,courseLesson:{lessonRef:lesson.lessonRef,phase},prediction:prediction+(support.length?' [Assistenza richiesta: '+support.join(', ')+']':' [Nessun aiuto richiesto in questa sessione; non prova autonomia]')});}}}>
   {lesson.controls&&Object.entries(lesson.controls).filter(([,values])=>values.length>1).map(([key,values])=><label key={key}>{labels[key]||key}<select value={parameters[key]} onChange={e=>{const next=values.find(v=>String(v)===e.target.value)!;setParameters({...parameters,[key]:next});setRevealed(false);setPrediction('');setPhase('practice');onCommit?.(null);}}>{values.map(v=><option key={v} value={v}>{v==='series'?'Serie':v==='parallel'?'Parallelo':String(v)}</option>)}</select></label>)}
   <label>{lesson.modelCases?'La tua previsione numerica':'La tua risposta o il tuo ragionamento'}<input ref={input} inputMode={lesson.modelCases?'decimal':'text'} maxLength={lesson.modelCases?40:2000} value={prediction} onChange={e=>{setPrediction(e.target.value);setRevealed(false);onCommit?.(null);}}/></label><p>Unità richiesta: {scenario.answer.unit}. Prima ragiona, poi confronta.</p>
   <button className="button-primary" disabled={!valid}>Confronta la previsione</button>

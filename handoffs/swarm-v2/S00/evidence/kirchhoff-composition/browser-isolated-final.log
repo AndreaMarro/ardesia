@@ -1,0 +1,64 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop
+
+(node:74913) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 16 tests using 1 worker
+
+(node:74914) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74914) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74914) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/lab.spec.ts:22:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (2.8s)
+  ✓   2 [desktop] › tests/lab.spec.ts:93:1 › keyboard and touch select nodes and reconnect branches through accessible controls (816ms)
+  ✓   3 [desktop] › tests/lab.spec.ts:123:1 › late numerical response cannot survive a changed circuit (427ms)
+  ✓   4 [desktop] › tests/lab.spec.ts:144:1 › portable JSON contains inputs and import recalculates; forged proof is refused (630ms)
+  ✓   5 [desktop] › tests/lab.spec.ts:177:1 › editing during an acknowledged save preserves revision and newer draft (1.2s)
+  ✓   6 [desktop] › tests/lab.spec.ts:224:1 › procedure editor persists before verification and hydrates on cold reopen (832ms)
+  ✓   7 [desktop] › tests/lab.spec.ts:257:1 › controlled host preserves an edit made while save acknowledgement is pending (553ms)
+  ✓   8 [desktop] › tests/lab.spec.ts:285:1 › moving a node while a save is pending leaves the layout dirty (583ms)
+  ✓   9 [desktop] › tests/lab.spec.ts:315:1 › host transport 401 clears private state even after an intervening edit (533ms)
+  ✓  10 [desktop] › tests/lab.spec.ts:342:34 › host transport 403 removes private state after a concurrent edit (652ms)
+  ✓  11 [desktop] › tests/lab.spec.ts:342:34 › host transport 404 removes private state after a concurrent edit (960ms)
+  ✓  12 [desktop] › tests/lab.spec.ts:359:1 › a late forbidden response for A cannot erase authorized document B (618ms)
+  ✓  13 [desktop] › tests/lab.spec.ts:389:1 › transfer circuit gets a distinct Core resource (908ms)
+  ✓  14 [desktop] › tests/lab.spec.ts:417:1 › unavailable engine still reopens private inputs and notes (736ms)
+  ✓  15 [desktop] › tests/lab.spec.ts:454:1 › Core session revocation removes the private circuit and result (568ms)
+  ✓  16 [desktop] › tests/lab.spec.ts:475:1 › downloaded Unicode input bytes round-trip without rewriting the file (1.4s)
+
+  16 passed (16.3s)
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=touch
+
+(node:74983) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 16 tests using 1 worker
+
+(node:74984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74984) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [touch] › tests/lab.spec.ts:22:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (1.8s)
+  ✓   2 [touch] › tests/lab.spec.ts:93:1 › keyboard and touch select nodes and reconnect branches through accessible controls (681ms)
+  ✓   3 [touch] › tests/lab.spec.ts:123:1 › late numerical response cannot survive a changed circuit (447ms)
+  ✓   4 [touch] › tests/lab.spec.ts:144:1 › portable JSON contains inputs and import recalculates; forged proof is refused (519ms)
+  ✓   5 [touch] › tests/lab.spec.ts:177:1 › editing during an acknowledged save preserves revision and newer draft (711ms)
+  ✓   6 [touch] › tests/lab.spec.ts:224:1 › procedure editor persists before verification and hydrates on cold reopen (922ms)
+  ✓   7 [touch] › tests/lab.spec.ts:257:1 › controlled host preserves an edit made while save acknowledgement is pending (454ms)
+  ✓   8 [touch] › tests/lab.spec.ts:285:1 › moving a node while a save is pending leaves the layout dirty (459ms)
+  ✓   9 [touch] › tests/lab.spec.ts:315:1 › host transport 401 clears private state even after an intervening edit (507ms)
+  ✓  10 [touch] › tests/lab.spec.ts:342:34 › host transport 403 removes private state after a concurrent edit (882ms)
+  ✓  11 [touch] › tests/lab.spec.ts:342:34 › host transport 404 removes private state after a concurrent edit (502ms)
+  ✓  12 [touch] › tests/lab.spec.ts:359:1 › a late forbidden response for A cannot erase authorized document B (532ms)
+  ✓  13 [touch] › tests/lab.spec.ts:389:1 › transfer circuit gets a distinct Core resource (653ms)
+  ✓  14 [touch] › tests/lab.spec.ts:417:1 › unavailable engine still reopens private inputs and notes (525ms)
+  ✓  15 [touch] › tests/lab.spec.ts:454:1 › Core session revocation removes the private circuit and result (436ms)
+  ✓  16 [touch] › tests/lab.spec.ts:475:1 › downloaded Unicode input bytes round-trip without rewriting the file (898ms)
+
+  16 passed (12.2s)

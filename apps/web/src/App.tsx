@@ -7,13 +7,14 @@ import {
 } from "./api";
 import { useCourseWorkspace } from "./useCourseWorkspace";
 import { clearResourceDrafts } from "./components/sessionDraftCache";
+import { clearActorOffline } from "./features/independent-study/storage";
 import { signOutStudySession } from "../../studio/src/study/apiClient";
 import {
   activateStudySession, beginStudySessionCheck, isStudySessionEpoch, studySessionEpoch,
   StudySessionChangedError, subscribeStudySessionEnd,
 } from "../../studio/src/study/sessionBoundary";
 import { PhysicsLab } from "./components/PhysicsLab";
-import { Shell, type View } from "./components/Shell";
+import { Shell, legacyViews, type View } from "./components/Shell";
 import { ErrorNotice, Loading } from "./components/Feedback";
 import { Public } from "./features/Public";
 import { Today } from "./features/Today";
@@ -38,15 +39,10 @@ const Materials = lazy(() =>
 const Exam = lazy(() =>
   import("./features/Exam").then((m) => ({ default: m.Exam })),
 );
-const views: View[] = [
-  "today",
-  "courses",
-  "classroom",
-  "work",
-  "review",
-  "exam",
-  "materials",
-];
+const IndependentStudy = lazy(() =>
+  import("./features/independent-study/IndependentStudy").then((m) => ({ default: m.IndependentStudy })),
+);
+const views: View[] = [...legacyViews, "independent-study"];
 function initialView(): View {
   const requested = new URLSearchParams(location.search).get("view");
   return views.includes(requested as View) ? (requested as View) : "today";
@@ -62,8 +58,12 @@ export default function App() {
   const sessionVersion = studySessionEpoch();
   const course = useCourseWorkspace(me, sessionVersion);
   const { data, refresh } = course;
+  const studyEnabled = me?.role === "student" && !!data?.enrolled;
+  const mountedViews = studyEnabled ? views : legacyViews;
+  const currentView = view === "independent-study" && !studyEnabled ? "today" : view;
   useEffect(() => {
     return subscribeStudySessionEnd(({ reason }) => {
+      if (me) clearActorOffline(me.id);
       setMe(null);
       setChecking(false);
       clearResourceDrafts();
@@ -77,7 +77,7 @@ export default function App() {
       history.replaceState(null, "", url);
       setView("today");
     });
-  }, []);
+  }, [me?.id]);
   useEffect(() => {
     const pop = () => {
       setView(initialView()); setParentId(null);
@@ -120,7 +120,8 @@ export default function App() {
     setView(next);
     const url = new URL(location.href);
     url.searchParams.set("view", next);
-    history.replaceState({}, "", url);
+    if (next === view) history.replaceState({}, "", url);
+    else history.pushState({}, "", url);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   async function logout() {
@@ -140,7 +141,8 @@ export default function App() {
         <Shell
           key={sessionVersion}
           me={me}
-          view={view}
+          view={currentView}
+          enabledViews={mountedViews}
           onView={navigate}
           onLogout={() => void logout()}
           editions={course.editions}
@@ -169,7 +171,7 @@ export default function App() {
               </p>
             )}
           {!course.listing && !course.error && course.editions.length === 0 ? (
-            me.role === "teacher" && view === "courses" ? (
+            me.role === "teacher" && currentView === "courses" ? (
               <Suspense fallback={<Loading />}>
                 <Courses
                   me={me}
@@ -218,9 +220,9 @@ export default function App() {
                 <Loading>Sto aprendo questa parte del tuo spazio…</Loading>
               }
             >
-              {view === "today" ? (
+              {currentView === "today" ? (
                 <Today me={me} data={data} onView={navigate} />
-              ) : view === "courses" ? (
+              ) : currentView === "courses" ? (
                 <Courses
                   me={me}
                   data={data}
@@ -230,7 +232,9 @@ export default function App() {
                   onUpdate={refresh}
                   onClassroom={() => navigate("classroom")}
                 />
-              ) : view === "classroom" ? (
+              ) : currentView === "independent-study" && studyEnabled ? (
+                <IndependentStudy me={me} editionId={data.edition.id} sessionVersion={sessionVersion} />
+              ) : currentView === "classroom" ? (
                 <Classroom
                   me={me}
                   data={data}
@@ -240,7 +244,7 @@ export default function App() {
                     setParentId(null);
                   }}
                 />
-              ) : view === "work" ? (
+              ) : currentView === "work" ? (
                 <Work
                   me={me}
                   data={data}
@@ -250,15 +254,15 @@ export default function App() {
                     navigate("classroom");
                   }}
                 />
-              ) : view === "review" && me.role === "teacher" ? (
+              ) : currentView === "review" && me.role === "teacher" ? (
                 <Review
                   data={data}
                   onUpdate={refresh}
                   onDiary={() => navigate("work")}
                 />
-              ) : view === "exam" && me.role === "student" ? (
+              ) : currentView === "exam" && me.role === "student" ? (
                 <Exam data={data} />
-              ) : view === "materials" ? (
+              ) : currentView === "materials" ? (
                 <Materials me={me} data={data} onUpdate={refresh} />
               ) : (
                 <Today me={me} data={data} onView={navigate} />

@@ -1,0 +1,145 @@
+{
+  "status": "PASS",
+  "browser": "148.0.7778.96",
+  "checks": [
+    {
+      "name": "outline and thumbnail navigation",
+      "details": true
+    },
+    {
+      "name": "compiled real Materials and original PDF render",
+      "details": {
+        "url": "http://127.0.0.1:5419/?view=materials&edition=fluidi&living=%7B%22resourceId%22%3A%2266e7dfba0953496b8d1efb48d479ffdc%22%2C%22revisionId%22%3A%223a63e2023af44816a9a12b373a080948%22%2C%22kind%22%3A%22living-source%22%2C%22lesson%22%3A%7B%22lessonId%22%3A%22idrostatica%22%2C%22activityId%22%3A%22poiseuille-v1%22%7D%7D",
+        "pages": 2
+      }
+    },
+    {
+      "name": "upstream PDF find controller searches native text",
+      "details": "1 / 1"
+    },
+    {
+      "name": "teacher native-text equation plus structured formula saved in Core",
+      "details": "d8c775c8475647fdb6761f582d68cca9"
+    },
+    {
+      "name": "teacher also highlights and shares the graphical region",
+      "details": "ae2dc45897174663b158cba78763e84c"
+    },
+    {
+      "name": "student real activity delivery opens exact shared annotation via SourceViewer",
+      "details": 200
+    },
+    {
+      "name": "personal note cold page reload restores exact source and selection",
+      "details": "df609b8950ca4642ad5a4248e1b29dce"
+    },
+    {
+      "name": "acknowledged save survives native browser refresh",
+      "details": "441bd0575df24c86a477a3424605f57a"
+    },
+    {
+      "name": "graphical page region stored separately from native text",
+      "details": [
+        [
+          0.05555555555555555,
+          0.052083333333333336,
+          0.09722222222222224,
+          0.07291666666666666
+        ]
+      ]
+    },
+    {
+      "name": "historical annotation revision preserves page and zoom/pan resume",
+      "details": "441bd0575df24c86a477a3424605f57a"
+    },
+    {
+      "name": "actual existing NotebookEditor creates and persists personal notebook",
+      "details": "3e4e2034339944598f1e8ae2cc9fa5eb"
+    },
+    {
+      "name": "different same-page note gets a distinct retry-safe notebook",
+      "details": "425f8ab739b6433d9877cb2d69903c2d"
+    },
+    {
+      "name": "UI export/import includes original bytes and exact origin revision",
+      "details": "f6d1a7f1a9fd47e2a55fe6f2ca5f30b4"
+    },
+    {
+      "name": "document JavaScript and active link annotations never execute",
+      "details": true
+    },
+    {
+      "name": "two document versions keep historical byte identity",
+      "details": "5bbaca24588545b28512478ca957c51a"
+    },
+    {
+      "name": "responsive keyboard reduced-motion 1440",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 820",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 390",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "responsive keyboard reduced-motion 360",
+      "details": {
+        "overflow": false
+      }
+    },
+    {
+      "name": "accessible native-text and keyboard region fallback",
+      "details": {
+        "reducedMotion": true
+      }
+    },
+    {
+      "name": "peer cannot access personal annotation",
+      "details": 403
+    },
+    {
+      "name": "session revocation removes private reader and original URL",
+      "details": true
+    },
+    {
+      "name": "server process restart restores source, note and notebook from same Core",
+      "details": true
+    },
+    {
+      "name": "deleted exact source removes the reader without latest fallback",
+      "details": true
+    },
+    {
+      "name": "console and network",
+      "details": {
+        "errors": [],
+        "external": []
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "product": {
+    "head": "48fa62eaf793c83ee4755be54484988b4169190d",
+    "files": {
+      "apps/web/src/features/Materials.tsx": "d831d19b5d7cf6823c042476f02de7be9db91ecbce146adbbbf2fa2c43f280ee",
+      "apps/web/src/components/SourceViewer.tsx": "a87254d0e17fca5bcbdd9665c31156fb5c4e5b232975dcacd0ec6a140814f6e7",
+      "services/study-api/study_api/app.py": "f909ccc9fbb5fb1ebe07707ebc48991cb49a359f91161ea07555782a4aa23dae",
+      "handoffs/swarm-v2/S18/proof/serve.py": "a04a6cd123ee1ae12565e58af60f488ff41d34f474ae97e362f00bf7e970037b"
+    },
+    "composition": "product-source-no-in-memory-patches"
+  },
+  "source": "3a63e2023af44816a9a12b373a080948",
+  "shared": "d8c775c8475647fdb6761f582d68cca9",
+  "personal": "df609b8950ca4642ad5a4248e1b29dce",
+  "notebook": "3e4e2034339944598f1e8ae2cc9fa5eb"
+}

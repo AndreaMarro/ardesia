@@ -1,0 +1,12 @@
+{
+  "checks": [
+    {
+      "name": "run",
+      "status": "FAIL",
+      "message": "expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Il tuo spazio di studio', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Il tuo spazio di studio', exact: true })\n",
+      "stack": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('dialog', { name: 'Il tuo spazio di studio', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByRole('dialog', { name: 'Il tuo spazio di studio', exact: true })\n\n    at captureRawStack (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBeVisible (/workspace/scratch/4d73e8ddb2b6/ardesia/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /workspace/scratch/4d73e8ddb2b6/ardesia-s20/apps/web/src/features/learning-journey/verification/dialog.mjs:26:94"
+    }
+  ],
+  "errors": [],
+  "browser": "148.0.7778.96"
+}
