@@ -619,3 +619,15 @@ e cambiare l'ordine dei task in base alla nuova prova.
 3. **P0 percorsoautonomo:** primo passo leggereCONTRACTS06 einstallerAPIownerS10; dipendenze writer/APIauthattuali efontiesatte; accettazionetentativoassistito/autonomo,receipt,feedback,nuovaprova,cold/revoca; evidenzaHTTP/UIreali, nomockonly.
 4. **P1 modelli/plugin e200target:** primo passo consumerS01lazy eschedeS04 senzaautopubblicare; dipendenze pin/licenze eeditorapprovals; accettazioneoggettiCore riusabili neiquattrocorsi eprogressoperobiettivoreale; evidenzaREA/controprove/versioni eapprovaldistinta.
 5. **P1 handoffterminale:** primo passo aggiornare questocheckpoint con soli esiti eseguiti; dipendenze merge/deployeffettivi; accettazionereportconmain/head/source/deploymentseparati e3–5task; evidenza RUNLOG/NEXT/handoff/commento, nonDONEanticipato.
+
+
+## 26 ottobre 2026 — richiamo del proprietario: storico append-only
+
+Il proprietario specifica «ricordare, leggere e aggiornare lo storico, senza modificare il passato». S00 ha inviato il richiamo e poi la precisazione testuale alle11chatCodexattive rilevate;11/11invii riusciti per entrambi i messaggi. Le voci storiche del RUNLOG non vengono riscritte: risultati nuovi e smentite si aggiungono datati, con riferimento e prova. Ogni owner aggiorna il proprio handoff; RUNLOG/NEXT mantengono S00 come writer unico. Il mandato comune REA-FIRST integra i ruoli senza abbandonare i batch avviati. RegistryTARGETS139 letto da S00; MCPREA6.7.0 nuovamente esposto e verificato dopo precedenteassenza, che resta un fatto storico del checkpoint precedente. Il caricamento Vercel interrotto aveva solo caricato blobimmutabili, non creato o pubblicato alcun deployment; conteggio finale non attestato e ripresa idempotente richiesta.
+
+### NEXT PRIORITY TASKS — richiamo di memoria
+
+1. **P0 conservarerisultati:** primo passo ricevere appendici owner conSHA/test/limiti; dipendenze head attuali; accettazione aggiunte datate senza perdita delle voci precedenti; evidenza diffRUNLOG/handoff e messaggi11/11.
+2. **P0 batchS00:** primo passo completare noticefonts/provapreviewprivata; dipendenze dirittiesatti,CIhead eSSO; accettazione merge/deployverificati senzaAPI finta; evidenza manifest/provider/negativi.
+3. **P0 integrareREADY:** primo passo rileggere307/main/checks attuali; dipendenze mergetree/review; accettazione stato terminale epostmerge; evidenzaSHA/run/percorso reale.
+4. **P1 riusostrutturato:** primo passo consegnare aS12/S15 sceltaS00 fra trecandidati delregistry; dipendenzeprovenienza/licenze/consumer; accettazioneREUSE/ADAPTmotivato eimplementato; evidenzaREA econsumer,nondocumentosolo.
