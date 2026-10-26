@@ -165,3 +165,10 @@ I file da includere per questa traccia sono soltanto questa directory.
 ## Risposta owner riletta dal parent — 26 ottobre 2026
 
 S09 ha risposto [DEFER motivato](https://github.com/AndreaMarro/ardesia/pull/307#issuecomment-6405917529): batch renderer FullCalendar, ICS e receipt immutati; oracolo da adottare nel successivo batch interoperabilità, con le prove richieste. Nessuna adozione o beneficio misurato. #307 è ora MERGED, ma non include questa raccomandazione. Per S06 la risposta alla raccomandazione non è ancora osservata nei commenti della309; il suo lavoro indipendente continua. Il dossier originario rimane fotografia datata.
+
+
+## Seguito verificato — decisione e sorgenti S06
+
+Riletta la [risposta owner S06 ADAPT](https://github.com/AndreaMarro/ardesia/pull/309#issuecomment-6406135362), presente sulla309 e prima non osservata dal parent. Head attuale verificata `2401f4c9f22c375a8a9c4541c5b7e8f1f48a8716`. Sono stati letti indipendentemente adapter Core, PROVENANCE e report browser su quella SHA: import dell'intero scheduler/card/rating vendored py-fsrs6.3.2 MIT, fuzz disabilitato, clockUTC, card_id stabile, policy/versione persistite e checkpoint limitato. I25checkPASS/27.499s sono prove fornite da S06, lette ma non rieseguite da S15. Lo scope del report dichiara UI/HTTP/Core reali con attori sintetici su loopback, senza RootApp integrata o deploy remoto.
+
+Stato aggiornato **ADAPT_IMPLEMENTED_NOT_INTEGRATED**, evidenze/URL/blob in `owner-followup.json`. L'originario NOT_ADOPTED rimane fotografia datata. Non si attribuisce causalità esclusiva a S15: S06 aveva già avviato il proprio batch. Nessun beneficio temporale comparativo, prestazionale o didattico misurato; tutti UNKNOWN. S00/S10 devono ancora montare i consumer e verificare la composizione finale. S09 resta DEFER motivato, non adozione. Non sono stati eseguiti nuovi runtime pesanti, installazioni o duplicazioni del Core.
