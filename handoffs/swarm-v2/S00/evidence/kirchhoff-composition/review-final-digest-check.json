@@ -1,0 +1,38 @@
+{
+  "desktop": {
+    "status": "PASS",
+    "sourceCommit": "dd60fca5c85b0e9660928c64b600028faae3be0e",
+    "matches": {
+      "services/study-api/study_api/app.py": true,
+      "packages/engine/lessonos/study/catalog.py": true,
+      "packages/engine/lessonos/study/context.py": true,
+      "apps/web/src/features/Courses.tsx": true,
+      "apps/web/src/components/SourceViewer.tsx": true,
+      "apps/web/src/features/Materials.tsx": true,
+      "plugins/s19-circuit-lab/web/src/CircuitLab.tsx": true
+    },
+    "errors": []
+  },
+  "touch": {
+    "status": "PASS",
+    "sourceCommit": "dd60fca5c85b0e9660928c64b600028faae3be0e",
+    "matches": {
+      "services/study-api/study_api/app.py": true,
+      "packages/engine/lessonos/study/catalog.py": true,
+      "packages/engine/lessonos/study/context.py": true,
+      "apps/web/src/features/Courses.tsx": true,
+      "apps/web/src/components/SourceViewer.tsx": true,
+      "apps/web/src/features/Materials.tsx": true,
+      "plugins/s19-circuit-lab/web/src/CircuitLab.tsx": true
+    },
+    "errors": []
+  },
+  "independentCoreProbeMatchesCurrent": {
+    "plugins/s19-circuit-lab/s19_circuit_lab/core.py": true,
+    "plugins/s19-circuit-lab/s19_circuit_lab/adapter.py": true,
+    "plugins/s19-circuit-lab/s19_circuit_lab/routes.py": true,
+    "packages/engine/lessonos/study/context.py": true,
+    "services/study-api/study_api/app.py": true
+  },
+  "reviewedAtUtc": "2026-10-26T20:00:17.168241+00:00"
+}

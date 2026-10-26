@@ -1,0 +1,67 @@
+.....................F.....F..                                           [100%]
+=================================== FAILURES ===================================
+________________ test_huge_layout_integer_is_a_validation_error ________________
+
+    def test_huge_layout_integer_is_a_validation_error():
+        d=circuit();d['layout']={'a':{'x':10**400,'y':0}}
+>       with pytest.raises(ValueError):read_document(d)
+                                       ^^^^^^^^^^^^^^^^
+
+plugins/s19-circuit-lab/tests/test_adapter.py:189:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:124: in read_document
+    or any(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <dict_valueiterator object at 0x1089ac4f0>
+
+        or any(
+>           type(x) not in (float, int) or not math.isfinite(x) or abs(x) > 10000
+                                               ^^^^^^^^^^^^^^^^
+            for x in pos.values()
+        )
+    ):
+E   OverflowError: int too large to convert to float
+
+plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:125: OverflowError
+_____ test_revision_save_retries_return_the_original_core_acknowledgement ______
+
+core = (<lessonos.study.store.StudyStore object at 0x10894a030>, Principal(id='s19-tutor', role='teacher'), Principal(id='s19-student', role='student'), Principal(id='s19-peer', role='student'))
+
+    def test_revision_save_retries_return_the_original_core_acknowledgement(core):
+        s,t,u,p=core;r=save(s,u,'s19-dc',deepcopy(DEFAULT_DOCUMENT),'create-1')
+        d=deepcopy(DEFAULT_DOCUMENT);d['components'][2]['value']='400'
+        first=save(s,u,'s19-dc',d,'update-once',r['id'],r['revisionId'])
+>       retry=save(s,u,'s19-dc',d,'update-once',r['id'],r['revisionId'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plugins/s19-circuit-lab/tests/test_core.py:126:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+plugins/s19-circuit-lab/s19_circuit_lab/core.py:52: in save
+    return revise_resource(store, principal, resource_id, expected_revision, text)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/s19-integration-hljvbigu/packages/engine/lessonos/study/context.py:78: in revise_resource
+    return apply(c)
+           ^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+c = <sqlite3.Connection object at 0x1088efd30>
+
+    def apply(c):
+        current=c.execute('SELECT current_revision FROM study_resources WHERE id=?',(resource_id,)).fetchone()
+        if current is None:raise StudyError('forbidden',403)
+>       if current[0]!=expected_revision:raise StudyError('stale_revision',409)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       lessonos.study.models.StudyError: stale_revision
+
+/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/s19-integration-hljvbigu/packages/engine/lessonos/study/context.py:64: StudyError
+=============================== warnings summary ===============================
+../s19-env/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/s19-env/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_adapter.py::test_huge_layout_integer_is_a_validation_error
+FAILED plugins/s19-circuit-lab/tests/test_core.py::test_revision_save_retries_return_the_original_core_acknowledgement
+2 failed, 28 passed, 1 warning in 2.69s

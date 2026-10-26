@@ -34,3 +34,7 @@ MAI toccare `eval/gate.sh` - MAI auto-merge a `main` - MAI deploy senza OK Andre
 ## Note
 - Il prodotto **standalone `elab-tutor`** (repo separato) resta in **STANDBY**; qui vive la sua incarnazione-**plugin** (`plugins/elab-tutor`), da decoupling progressivo.
 - Mappa di navigazione dettagliata: **`ARDESIA-MAP.md`**.
+
+## Consegne coordinate — 26 ottobre 2026
+
+[Indice del lavoro degli stream Ardesia](handoffs/swarm-v2/README.md): codice, PR, prove riproducibili, provenienza e gap; snapshot datati distinti dallo stato attuale di GitHub.

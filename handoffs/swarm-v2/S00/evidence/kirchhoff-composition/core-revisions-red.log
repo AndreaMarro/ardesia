@@ -1,0 +1,20 @@
+........FF....                                                           [100%]
+=================================== FAILURES ===================================
+_______ test_exact_reopen_keeps_submitted_revision_and_owner_editability _______
+plugins/s19-circuit-lab/tests/test_core.py:182: in test_exact_reopen_keeps_submitted_revision_and_owner_editability
+    historical = reopen(s, actor, first["id"], revision_id=first["revisionId"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: reopen() got an unexpected keyword argument 'revision_id'
+___ test_accepted_submit_retry_survives_new_revision_and_unavailable_engine ____
+plugins/s19-circuit-lab/tests/test_core.py:213: in test_accepted_submit_retry_survives_new_revision_and_unavailable_engine
+    assert submit_attempt(s, u, first["id"], first["revisionId"], "accepted") == receipt
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plugins/s19-circuit-lab/s19_circuit_lab/core.py:76: in submit_attempt
+    resource, d = _source(store, principal, resource_id, expected_revision)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plugins/s19-circuit-lab/s19_circuit_lab/core.py:28: in _source
+    raise StudyError("stale_revision", 409)
+E   lessonos.study.models.StudyError: stale_revision
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_core.py::test_exact_reopen_keeps_submitted_revision_and_owner_editability
+FAILED plugins/s19-circuit-lab/tests/test_core.py::test_accepted_submit_retry_survives_new_revision_and_unavailable_engine

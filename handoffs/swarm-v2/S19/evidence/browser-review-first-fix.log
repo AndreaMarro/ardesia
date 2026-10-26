@@ -1,0 +1,127 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test
+
+
+Running 20 tests using 1 worker
+
+(node:32366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/lab.spec.ts:17:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (2.4s)
+  ✓   2 [desktop] › tests/lab.spec.ts:88:1 › keyboard and touch select nodes and reconnect branches through accessible controls (917ms)
+  ✓   3 [desktop] › tests/lab.spec.ts:118:1 › late numerical response cannot survive a changed circuit (458ms)
+  ✓   4 [desktop] › tests/lab.spec.ts:139:1 › portable JSON contains inputs and import recalculates; forged proof is refused (570ms)
+  ✓   5 [desktop] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft (624ms)
+  ✓   6 [desktop] › tests/lab.spec.ts:194:1 › procedure editor persists before verification and hydrates on cold reopen (516ms)
+  ✓   7 [desktop] › tests/lab.spec.ts:209:1 › controlled host preserves an edit made while save acknowledgement is pending (419ms)
+  ✘   8 [desktop] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty (5.5s)
+(node:32413) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32413) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [desktop] › tests/lab.spec.ts:230:1 › host transport 401 clears private state even after an intervening edit (601ms)
+  ✓  10 [desktop] › tests/lab.spec.ts:242:1 › Core session revocation removes the private circuit and result (407ms)
+(node:32419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [touch] › tests/lab.spec.ts:17:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (2.5s)
+  ✓  12 [touch] › tests/lab.spec.ts:88:1 › keyboard and touch select nodes and reconnect branches through accessible controls (596ms)
+  ✓  13 [touch] › tests/lab.spec.ts:118:1 › late numerical response cannot survive a changed circuit (350ms)
+  ✓  14 [touch] › tests/lab.spec.ts:139:1 › portable JSON contains inputs and import recalculates; forged proof is refused (467ms)
+  ✓  15 [touch] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft (653ms)
+  ✓  16 [touch] › tests/lab.spec.ts:194:1 › procedure editor persists before verification and hydrates on cold reopen (594ms)
+  ✓  17 [touch] › tests/lab.spec.ts:209:1 › controlled host preserves an edit made while save acknowledgement is pending (460ms)
+  ✘  18 [touch] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty (5.4s)
+(node:32449) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32449) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [touch] › tests/lab.spec.ts:230:1 › host transport 401 clears private state even after an intervening edit (532ms)
+  ✓  20 [touch] › tests/lab.spec.ts:242:1 › Core session revocation removes the private circuit and result (442ms)
+
+
+  1) [desktop] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeDisabled[2m([22m[2m)[22m failed
+
+    Locator:  getByRole('button', { name: 'Consegna al docente', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeDisabled" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: 'Consegna al docente', exact: true })[22m
+    [2m    14 × locator resolved to <button>Consegna al docente</button>[22m
+    [2m       - unexpected value "enabled"[22m
+
+
+      225 |  const node=page.getByRole('group',{name:'Nodo a',exact:true});await node.focus();await page.keyboard.press('ArrowRight');release();
+      226 |  await expect(page.getByRole('button',{name:'Salva revisione Core',exact:true})).toBeEnabled();
+    > 227 |  await expect(page.getByRole('button',{name:'Consegna al docente',exact:true})).toBeDisabled();
+          |                                                                                 ^
+      228 | });
+      229 |
+      230 | test("host transport 401 clears private state even after an intervening edit",async({page})=>{
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:227:81
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [touch] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeDisabled[2m([22m[2m)[22m failed
+
+    Locator:  getByRole('button', { name: 'Consegna al docente', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeDisabled" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: 'Consegna al docente', exact: true })[22m
+    [2m    14 × locator resolved to <button>Consegna al docente</button>[22m
+    [2m       - unexpected value "enabled"[22m
+
+
+      225 |  const node=page.getByRole('group',{name:'Nodo a',exact:true});await node.focus();await page.keyboard.press('ArrowRight');release();
+      226 |  await expect(page.getByRole('button',{name:'Salva revisione Core',exact:true})).toBeEnabled();
+    > 227 |  await expect(page.getByRole('button',{name:'Consegna al docente',exact:true})).toBeDisabled();
+          |                                                                                 ^
+      228 | });
+      229 |
+      230 | test("host transport 401 clears private state even after an intervening edit",async({page})=>{
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:227:81
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-touch/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-touch/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-touch/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-moving-a-node-while-a--2fe37-ing-leaves-the-layout-dirty-touch/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty
+    [touch] › tests/lab.spec.ts:221:1 › moving a node while a save is pending leaves the layout dirty
+  18 passed (29.2s)

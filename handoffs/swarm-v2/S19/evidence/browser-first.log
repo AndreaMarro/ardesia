@@ -1,0 +1,113 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test
+
+
+Running 10 tests using 1 worker
+
+(node:29444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/lab.spec.ts:7:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (2.2s)
+  ✘   2 [desktop] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls (5.8s)
+(node:29459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/lab.spec.ts:51:1 › late numerical response cannot survive a changed circuit (624ms)
+  ✓   4 [desktop] › tests/lab.spec.ts:60:1 › portable JSON contains inputs and import recalculates; forged proof is refused (520ms)
+  ✓   5 [desktop] › tests/lab.spec.ts:69:1 › Core session revocation removes the private circuit and result (505ms)
+(node:29486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [touch] › tests/lab.spec.ts:7:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (1.7s)
+  ✘   7 [touch] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls (5.8s)
+(node:29529) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29529) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [touch] › tests/lab.spec.ts:51:1 › late numerical response cannot survive a changed circuit (1.3s)
+  ✓   9 [touch] › tests/lab.spec.ts:60:1 › portable JSON contains inputs and import recalculates; forged proof is refused (1.1s)
+  ✓  10 [touch] › tests/lab.spec.ts:69:1 › Core session revocation removes the private circuit and result (699ms)
+
+
+  1) [desktop] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('answer')
+    Expected substring: [32m"12 V"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('answer')[22m
+
+
+      46 |  await editor.selectOption('R2');await page.getByLabel('Dal nodo',{exact:true}).selectOption('b');
+      47 |  await page.getByRole('button',{name:'Calcola e mostra le equazioni'}).click();
+    > 48 |  await expect(page.getByTestId('answer')).toContainText('12 V');
+         |                                           ^
+      49 | });
+      50 |
+      51 | test('late numerical response cannot survive a changed circuit',async({page})=>{
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:48:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [touch] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('answer')
+    Expected substring: [32m"12 V"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('answer')[22m
+
+
+      46 |  await editor.selectOption('R2');await page.getByLabel('Dal nodo',{exact:true}).selectOption('b');
+      47 |  await page.getByRole('button',{name:'Calcola e mostra le equazioni'}).click();
+    > 48 |  await expect(page.getByTestId('answer')).toContainText('12 V');
+         |                                           ^
+      49 | });
+      50 |
+      51 | test('late numerical response cannot survive a changed circuit',async({page})=>{
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:48:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-touch/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-touch/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-touch/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-touch/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+    [touch] › tests/lab.spec.ts:38:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+  8 passed (24.8s)

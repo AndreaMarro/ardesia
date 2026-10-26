@@ -1,0 +1,56 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep downloaded Unicode
+
+(node:71953) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:71956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71956) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:71956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (7.1s)
+
+
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByText('Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByText('Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.', { exact: true })[22m
+
+
+      461 |     name: downloaded.suggestedFilename(), mimeType: "application/json", buffer: bytes,
+      462 |   });
+    > 463 |   await expect(page.getByText("Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.", { exact: true })).toBeVisible();
+          |                                                                                                                                      ^
+      464 |   await expect(page.getByLabel("Note", { exact: true })).toHaveValue(document.notes);
+      465 | });
+      466 |
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:463:134
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 

@@ -1,0 +1,15 @@
+...F.                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_missing_or_invalidated_engine_keeps_input_export_and_reports_unavailable _
+plugins/s19-circuit-lab/tests/test_http.py:93: in test_missing_or_invalidated_engine_keeps_input_export_and_reports_unavailable
+    assert export.status_code == 200
+E   assert 422 == 200
+E    +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+=============================== warnings summary ===============================
+../../../Documents/Codex/2026-10-26/e-3/work/s19-env/lib/python3.13/site-packages/fastapi/testclient.py:1
+  $S19_ENV/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_http.py::test_missing_or_invalidated_engine_keeps_input_export_and_reports_unavailable

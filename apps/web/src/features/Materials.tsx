@@ -70,7 +70,7 @@ export function Materials({
                           ? "Privata"
                           : "Condivisa con il gruppo"}{" "}
                         ·{" "}
-                        {r.kind === "science-resource" ? "Esperimento" : r.kind === "attempt-source"
+                        {r.kind === "s19-circuit" ? "Circuito DC" : r.kind === "science-resource" ? "Esperimento" : r.kind === "attempt-source"
                           ? "Tentativo"
                           : r.kind === "notes"
                             ? "Nota"
@@ -140,7 +140,7 @@ export function Materials({
                   contextId: current.contextId,
                 }}
               />
-              {current.ownerId === me.id && current.kind !== "science-resource" && (
+              {current.ownerId === me.id && current.kind !== "science-resource" && current.kind !== "s19-circuit" && (
                 <details className="disclosure-panel">
                   <summary>Modifica e salva una nuova versione</summary>
                   <ResourceEditor

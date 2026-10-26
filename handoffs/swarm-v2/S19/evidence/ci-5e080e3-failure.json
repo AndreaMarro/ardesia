@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "sourceHead": "5e080e3ed6ce5798bda2ca25cee92fc8e6934674",
+  "composedBase": "e95a80b393589b71da2846aa98814dc1a034b730",
+  "mergeCheckoutPrefix": "cc6b538",
+  "phase": "conftest import before test collection",
+  "s19Run": {
+    "conclusion": "failure",
+    "event": "pull_request",
+    "headSha": "5e080e3ed6ce5798bda2ca25cee92fc8e6934674",
+    "jobs": [
+      {
+        "completedAt": "2026-10-26T17:44:43Z",
+        "conclusion": "failure",
+        "databaseId": 121742758887,
+        "name": "s19",
+        "startedAt": "2026-10-26T17:44:13Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-26T17:44:16Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-26T17:44:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:24Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "number": 2,
+            "startedAt": "2026-10-26T17:44:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:30Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+            "number": 3,
+            "startedAt": "2026-10-26T17:44:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:34Z",
+            "conclusion": "success",
+            "name": "Run astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86",
+            "number": 4,
+            "startedAt": "2026-10-26T17:44:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "success",
+            "name": "Install pinned independent environment and upstream engine",
+            "number": 5,
+            "startedAt": "2026-10-26T17:44:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "failure",
+            "name": "Scientific checks, real Core and exact owner-patch composition",
+            "number": 6,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "skipped",
+            "name": "Isolated frontend lock and build",
+            "number": 7,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "skipped",
+            "name": "Real browser with real Core, synthetic identities only",
+            "number": 8,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "skipped",
+            "name": "Post Run astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86",
+            "number": 14,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:40Z",
+            "conclusion": "skipped",
+            "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+            "number": 15,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "number": 16,
+            "startedAt": "2026-10-26T17:44:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-26T17:44:41Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-26T17:44:41Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40371391113/job/121742758887"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/AndreaMarro/ardesia/actions/runs/40371391113"
+  },
+  "failedLog": "s19\tScientific checks, real Core and exact owner-patch composition\t\ufeff2026-10-26T17:44:40.1580517Z ##[group]Run .s19-venv/bin/python -m pytest plugins/s19-circuit-lab/tests\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.1581102Z ^[[36;1m.s19-venv/bin/python -m pytest plugins/s19-circuit-lab/tests^[[0m\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.1643512Z shell: /usr/bin/bash -e {0}\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.1643785Z env:\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.1644049Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.1644380Z ##[endgroup]\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8589259Z ImportError while loading conftest '/home/runner/work/ardesia/ardesia/plugins/s19-circuit-lab/tests/conftest.py'.\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8734519Z plugins/s19-circuit-lab/tests/conftest.py:7: in <module>\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8735283Z     import compose_candidate\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8736396Z plugins/s19-circuit-lab/scripts/compose_candidate.py:42: in <module>\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8737050Z     raise RuntimeError(\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8738381Z E   RuntimeError: S19 owner patch does not match this base or its exact integrated form. Refresh the handoff: error: patch failed: services/study-api/study_api/app.py:535\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.8739838Z E   error: services/study-api/study_api/app.py: patch does not apply\ns19\tScientific checks, real Core and exact owner-patch composition\t2026-10-26T17:44:40.9040309Z ##[error]Process completed with exit code 4.\n",
+  "next": "S00 explicitly requires immutable PR309 composition candidate before updating only the S19 handoff patch; composer guard unchanged."
+}

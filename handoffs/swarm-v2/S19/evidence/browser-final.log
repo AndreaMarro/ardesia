@@ -1,0 +1,160 @@
+curl: (7) Failed to connect to 127.0.0.1 port 5198 after 2 ms: Couldn't connect to server
+curl: (7) Failed to connect to 127.0.0.1 port 5198 after 1 ms: Couldn't connect to server
+curl: (7) Failed to connect to 127.0.0.1 port 5198 after 2 ms: Couldn't connect to server
+curl: (7) Failed to connect to 127.0.0.1 port 5198 after 0 ms: Couldn't connect to server
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test
+
+
+Running 22 tests using 1 worker
+
+(node:34499) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34499) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [desktop] › tests/lab.spec.ts:17:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (14.7s)
+(node:34694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [desktop] › tests/lab.spec.ts:88:1 › keyboard and touch select nodes and reconnect branches through accessible controls (52.4s)
+(node:34874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [desktop] › tests/lab.spec.ts:118:1 › late numerical response cannot survive a changed circuit (16.1s)
+  ✓   4 [desktop] › tests/lab.spec.ts:139:1 › portable JSON contains inputs and import recalculates; forged proof is refused (6.1s)
+  ✘   5 [desktop] › tests/lab.spec.ts:172:1 › editing during an acknowledged save preserves revision and newer draft (31.2s)
+(node:35077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [desktop] › tests/lab.spec.ts:219:1 › procedure editor persists before verification and hydrates on cold reopen (12.7s)
+  ✓   7 [desktop] › tests/lab.spec.ts:252:1 › controlled host preserves an edit made while save acknowledgement is pending (14.0s)
+  ✘   8 [desktop] › tests/lab.spec.ts:280:1 › moving a node while a save is pending leaves the layout dirty (7.8s)
+
+
+  1) [desktop] › tests/lab.spec.ts:17:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByText('Passaggi supportati corretti fin qui', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByText('Passaggi supportati corretti fin qui', { exact: true })[22m
+
+
+      28 |   await expect(
+      29 |     page.getByText("Passaggi supportati corretti fin qui", { exact: true }),
+    > 30 |   ).toBeVisible();
+         |     ^
+      31 |   await expect(page.getByTestId("answer")).toContainText("8 V");
+      32 |   await page.getByLabel("Secondo riferimento", { exact: true }).fill("+R1,+R2");
+      33 |   await expect(page.getByTestId("answer")).toHaveCount(0);
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:30:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-DC-prediction-supporte-fad09-tation-and-Core-cold-reopen-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-DC-prediction-supporte-fad09-tation-and-Core-cold-reopen-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-DC-prediction-supporte-fad09-tation-and-Core-cold-reopen-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-DC-prediction-supporte-fad09-tation-and-Core-cold-reopen-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/lab.spec.ts:88:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+
+    [31mTest timeout of 45000ms exceeded.[39m
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('answer')
+    Expected substring: [32m"12 V"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('answer')[22m
+
+
+      113 |     .getByRole("button", { name: "Calcola e mostra le equazioni" })
+      114 |     .click();
+    > 115 |   await expect(page.getByTestId("answer")).toContainText("12 V");
+          |                                            ^
+      116 | });
+      117 |
+      118 | test("late numerical response cannot survive a changed circuit", async ({
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:115:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-keyboard-and-touch-sel-59028-through-accessible-controls-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests/lab.spec.ts:172:1 › editing during an acknowledged save preserves revision and newer draft
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  getByLabel('Valore componente', { exact: true })
+    Expected: [32m"[7m4[27m00"[39m
+    Received: [31m"[7m2[27m00"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
+    [2m  - waiting for getByLabel('Valore componente', { exact: true })[22m
+    [2m    10 × locator resolved to <input value="200" aria-label="Valore componente"/>[22m
+    [2m       - unexpected value "200"[22m
+
+
+      214 |   await expect(
+      215 |     page.getByLabel("Valore componente", { exact: true }),
+    > 216 |   ).toHaveValue("400");
+          |     ^
+      217 | });
+      218 |
+      219 | test("procedure editor persists before verification and hydrates on cold reopen", async ({
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:216:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests/lab.spec.ts:17:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen
+    [desktop] › tests/lab.spec.ts:88:1 › keyboard and touch select nodes and reconnect branches through accessible controls
+    [desktop] › tests/lab.spec.ts:172:1 › editing during an acknowledged save preserves revision and newer draft
+  1 interrupted
+    [desktop] › tests/lab.spec.ts:280:1 › moving a node while a save is pending leaves the layout dirty
+  14 did not run
+  4 passed (4.8m)

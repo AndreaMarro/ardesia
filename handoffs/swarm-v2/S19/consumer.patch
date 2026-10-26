@@ -1,0 +1,10 @@
+--- a/apps/web/src/features/Courses.tsx
++++ b/apps/web/src/features/Courses.tsx
+@@ -77,6 +77,7 @@
+           </div>
+           <div className="edition-row-action">
+             <span>{editionState[edition.state] ?? edition.state}</span>
++            {edition.packId === "s19-circuit-dc-v1" && <a className="button-secondary" href={`/s19/circuit-lab/?edition=${encodeURIComponent(edition.id)}`}>Apri laboratorio circuiti DC</a>}
+             <button
+               className="button-primary"
+               onClick={() => {

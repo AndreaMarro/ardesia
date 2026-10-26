@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AttemptText } from "./circuit-lab/AttemptText";
 import { NotebookPanel } from "../../../studio/src/study/NotebookPanel";
 import type { StudyMe, Workspace } from "../api";
 import { baseActivity, courseScope } from "../course";
@@ -122,7 +123,7 @@ function Delivery({
             : "Ricevuto dal servizio"}
         </span>
       </div>
-      <p className="original-text">{submission.text}</p>
+      <AttemptText text={submission.text} />
       <PredictionEvidence value={submission.activityEvidence} />
       {submission.feedback.map(
         (f) =>

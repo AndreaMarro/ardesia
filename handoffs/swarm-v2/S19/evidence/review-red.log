@@ -1,0 +1,102 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+____ test_unbounded_trace_exponents_are_rejected_before_upstream_arithmetic ____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10ba476f0>
+
+    def test_unbounded_trace_exponents_are_rejected_before_upstream_arithmetic(monkeypatch):
+        import kirchhoff.domain.student_trace as upstream
+        original=upstream.Fraction
+        def bounded(value=0,*args,**kwargs):
+            if isinstance(value,str) and 'e' in value.lower():
+                raise AssertionError('Unsafe exponent reached upstream arithmetic')
+            return original(value,*args,**kwargs)
+        monkeypatch.setattr(upstream,'Fraction',bounded)
+        d=circuit();from hashlib import sha256
+        d['trace']={'schema':'student-trace.v1','circuit_fingerprint':sha256(netlist(d).encode()).hexdigest(),'steps':[{'transcription':'V','operation':'tensione','first':'R2','second':'a,0','claimed_value':'1e1000000000'}]}
+>       with pytest.raises(ValueError):diagnose(d)
+                                       ^^^^^^^^^^^
+
+plugins/s19-circuit-lab/tests/test_adapter.py:184:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:147: in diagnose
+    return diagnose_payload(netlist(d), d["trace"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../kirchhoff-engine/src/kirchhoff/pipeline/student_trace.py:22: in diagnose_payload
+    return diagnose(ir, semantic, netlist)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../kirchhoff-engine/src/kirchhoff/domain/student_trace.py:242: in diagnose
+    claimed = Fraction(step.claimed_value)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = '1e1000000000', args = (), kwargs = {}
+
+    def bounded(value=0,*args,**kwargs):
+        if isinstance(value,str) and 'e' in value.lower():
+>           raise AssertionError('Unsafe exponent reached upstream arithmetic')
+E           AssertionError: Unsafe exponent reached upstream arithmetic
+
+plugins/s19-circuit-lab/tests/test_adapter.py:179: AssertionError
+________________ test_huge_layout_integer_is_a_validation_error ________________
+
+    def test_huge_layout_integer_is_a_validation_error():
+        d=circuit();d['layout']={'a':{'x':10**400,'y':0}}
+>       with pytest.raises(ValueError):read_document(d)
+                                       ^^^^^^^^^^^^^^^^
+
+plugins/s19-circuit-lab/tests/test_adapter.py:189:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:117: in read_document
+    or any(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <dict_valueiterator object at 0x10baea9d0>
+
+        or any(
+>           type(x) not in (float, int) or not math.isfinite(x) or abs(x) > 10000
+                                               ^^^^^^^^^^^^^^^^
+            for x in pos.values()
+        )
+    ):
+E   OverflowError: int too large to convert to float
+
+plugins/s19-circuit-lab/s19_circuit_lab/adapter.py:118: OverflowError
+_____ test_revision_save_retries_return_the_original_core_acknowledgement ______
+
+core = (<lessonos.study.store.StudyStore object at 0x10baf1160>, Principal(id='s19-tutor', role='teacher'), Principal(id='s19-student', role='student'), Principal(id='s19-peer', role='student'))
+
+    def test_revision_save_retries_return_the_original_core_acknowledgement(core):
+        s,t,u,p=core;r=save(s,u,'s19-dc',deepcopy(DEFAULT_DOCUMENT),'create-1')
+        d=deepcopy(DEFAULT_DOCUMENT);d['components'][2]['value']='400'
+        first=save(s,u,'s19-dc',d,'update-once',r['id'],r['revisionId'])
+>       retry=save(s,u,'s19-dc',d,'update-once',r['id'],r['revisionId'])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plugins/s19-circuit-lab/tests/test_core.py:126:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+plugins/s19-circuit-lab/s19_circuit_lab/core.py:47: in save
+    resource, _ = _source(store, principal, resource_id, expected_revision)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <lessonos.study.store.StudyStore object at 0x10baf1160>
+principal = Principal(id='s19-student', role='student')
+resource_id = 'caebcc60cf7c4afe8afef3d10968225f'
+expected_revision = '3166cfaaf89240539a81d667c759d87b'
+
+    def _source(store, principal, resource_id, expected_revision=None):
+        resource = store.get_resource(principal, resource_id)
+        _scope(store, principal, resource["editionId"])
+        if resource["kind"] != KIND:
+            raise StudyError("s19_wrong_resource")
+        if expected_revision is not None and resource["revisionId"] != expected_revision:
+>           raise StudyError("stale_revision", 409)
+E           lessonos.study.models.StudyError: stale_revision
+
+plugins/s19-circuit-lab/s19_circuit_lab/core.py:28: StudyError
+=========================== short test summary info ============================
+FAILED plugins/s19-circuit-lab/tests/test_adapter.py::test_unbounded_trace_exponents_are_rejected_before_upstream_arithmetic
+FAILED plugins/s19-circuit-lab/tests/test_adapter.py::test_huge_layout_integer_is_a_validation_error
+FAILED plugins/s19-circuit-lab/tests/test_core.py::test_revision_save_retries_return_the_original_core_acknowledgement
+3 failed in 0.25s

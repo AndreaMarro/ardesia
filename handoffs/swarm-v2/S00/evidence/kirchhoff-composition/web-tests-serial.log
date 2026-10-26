@@ -1,0 +1,21 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run --maxWorkers=1 --no-file-parallelism
+
+
+ RUN  v4.1.8 $WORKTREE/apps/web
+
+(node:74589) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74596) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74600) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74703) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  76 passed (76)
+      Tests  530 passed (530)
+   Start at  20:47:30
+   Duration  102.12s (transform 3.00s, setup 0ms, import 11.48s, tests 28.84s, environment 48.83s)
+

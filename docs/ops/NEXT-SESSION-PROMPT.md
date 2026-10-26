@@ -137,3 +137,14 @@ Nota successiva: B-05 ha anche controprova indipendente ASTRA B9/9 sulla fonte50
 S19 ha la base reale per riallineare la stessa #325; prima leggere la nuova head/CI, poi comporre il consumer e verificare merge/post-merge. Memoria #315, Back/Forward, media #313 e Room 311/318/319/322/324 restano raccordi espliciti, non consumer completati dalla sola ancestry. Backend remoto assente: servono adapter/entrypoint/policy hosted, non soltanto URL; guardie loopback locali da conservare. S10 non identificato, nessun riuso ELAB. Matrice di 60 probe disponibile ma tutti i journey remoti restano BLOCKED (503). lessonRef/fase esatti nella ricevuta sono un gap da riprodurre prima di progettare il contratto additivo.
 
 Produzione dei 5 esempi e preview #317 restano invariate, quattro corsi0/52, 0/57, 0/33, 0/58. Seguire i 5 task dell'ultima RUNLOG con primi passi, dipendenze, accettazione ed evidenze. Storico append-only, un writer S00, smentite datate e provate. Questo addendum va portato nel prossimo consumer integrato; gli esiti terminali sono già pubblicati nelle PR, senza creare una PR solo per documentazione.
+
+
+## Addendum S00 — 26 ottobre 2026: composizione #325 e indice di tutte le consegne
+
+Leggere il nuovo [indice degli stream](../../handoffs/swarm-v2/README.md) e il [report Kirchhoff](../../handoffs/swarm-v2/S00/kirchhoff-composition.md). Il registro fotografa 20 PR/19 fonti di chat su main d7; le sue 7 integrate/13 aperte sono un checkpoint, non lo stato futuro. Non ripartire dai blocchi già superati di #304, #309 o #316. RUNLOG conserva risultati, errori, correzioni e 5 task con accettazione.
+
+S00 ha composto il consumer S19 nella stessa #325: fonti con revisione esatta, copia privata, retry canonico, input JSON recuperabili senza motore, revoca e risposte tardive isolate. Prove locali: 530 Web, 45 S19 Python, 8 context, 32 browser componenti e 2 journey reali desktop/touch. Nuova CI, merge e post-merge vanno verificati sulla SHA corrente; non riciclare i verdi della vecchia head b64. Il task immediato è chiudere correttamente questa integrazione.
+
+Dopo l'esito terminale, affrontare backend hosted e lessonRef/fase esatti; poi comporre memoria/media/Room usando i contratti esistenti. Nessuna nuova PR per prolungare artificialmente il lavoro. S03/S10/S12/S13 senza pacchetto autonomo verificato restano gap, non attività completate. Le 60 prove remote sono ancora preparate, zero eseguite. I quattro corsi rimangono 0/52, 0/57, 0/33, 0/58; DRAFT e approvazione umana restano distinti dai test verdi.
+
+Pubblicare su GitHub codice, prove curate e handoff nel perimetro autorizzato, senza trascrizioni private o credenziali. Gli snapshot e le conclusioni precedenti si conservano: aggiungere una correzione datata con prova, mai riscrivere il passato.

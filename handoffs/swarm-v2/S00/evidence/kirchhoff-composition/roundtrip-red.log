@@ -1,0 +1,49 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep downloaded Unicode
+
+(node:71174) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:71175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71175) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:71175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (2.1s)
+
+
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m20000[39m
+    Received:   [31m19420[39m
+
+      453 |   const downloaded = await pending;
+      454 |   const bytes = fs.readFileSync((await downloaded.path())!);
+    > 455 |   expect(bytes.byteLength).toBeGreaterThan(20000);
+          |                            ^
+      456 |   expect(bytes.byteLength).toBeLessThanOrEqual(64000);
+      457 |   expect(JSON.parse(bytes.toString("utf8"))).toEqual(document);
+      458 |   await page.getByRole("button", { name: "Affronta un circuito nuovo" }).click();
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:455:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 

@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-10-26T19:49:27.460367+00:00",
+  "publish": [
+    {
+      "file": "REGISTRY-20261026.json",
+      "bytes": 528302,
+      "sha256": "c784f9cb32653caa8bbe58f83cc80cf8a0c1a5bd8894e35f0224c9f18bd3c7ea"
+    },
+    {
+      "file": "REGISTRY-20261026.md",
+      "bytes": 17325,
+      "sha256": "7e750fd9e5b0843a18f2649dc968e3fd309428ca4fbece88030741c78f792ced"
+    }
+  ],
+  "doNotPublish": [
+    "chat-source-map-local.json",
+    "private-cache/",
+    "collect_pr_inventory.py",
+    "build_registry.py",
+    "raw CI logs, traces, SQLite, cookies/tokens, private access URLs, chat transcripts and private absolute paths"
+  ],
+  "sourceMain": "d7dc3917d695c80d027c91df21577e06ec649232",
+  "containsChatTranscripts": false,
+  "containsPrivateAbsolutePaths": false,
+  "rawSourceMap": "LOCAL_ONLY_NOT_PUBLIC",
+  "publicationCandidates": [
+    "REGISTRY-20261026.json",
+    "REGISTRY-20261026.md",
+    "PUBLICATION-MANIFEST-20261026.json"
+  ],
+  "localReadLimit": "First freeze uses already-read/hash-pinned analysis records; further local outputs remain explicit gaps. FileProvider reads were stopped rather than extending collection.",
+  "recommendedGitLocation": "handoffs/swarm-v2/S00/evidence/chat-consolidation/ (same current consumer PR; no second governance registry)"
+}

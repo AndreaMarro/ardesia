@@ -1,0 +1,125 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test
+
+(node:72773) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 26 tests using 1 worker
+
+(node:72779) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72779) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:72779) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/lab.spec.ts:18:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (3.8s)
+  ✓   2 [desktop] › tests/lab.spec.ts:89:1 › keyboard and touch select nodes and reconnect branches through accessible controls (1.5s)
+  ✓   3 [desktop] › tests/lab.spec.ts:119:1 › late numerical response cannot survive a changed circuit (979ms)
+  ✓   4 [desktop] › tests/lab.spec.ts:140:1 › portable JSON contains inputs and import recalculates; forged proof is refused (1.1s)
+  ✓   5 [desktop] › tests/lab.spec.ts:173:1 › editing during an acknowledged save preserves revision and newer draft (2.2s)
+  ✓   6 [desktop] › tests/lab.spec.ts:220:1 › procedure editor persists before verification and hydrates on cold reopen (1.6s)
+  ✓   7 [desktop] › tests/lab.spec.ts:253:1 › controlled host preserves an edit made while save acknowledgement is pending (777ms)
+  ✓   8 [desktop] › tests/lab.spec.ts:281:1 › moving a node while a save is pending leaves the layout dirty (815ms)
+  ✓   9 [desktop] › tests/lab.spec.ts:311:1 › host transport 401 clears private state even after an intervening edit (944ms)
+  ✓  10 [desktop] › tests/lab.spec.ts:338:1 › transfer circuit gets a distinct Core resource (916ms)
+  ✓  11 [desktop] › tests/lab.spec.ts:366:1 › unavailable engine still reopens private inputs and notes (846ms)
+  ✓  12 [desktop] › tests/lab.spec.ts:403:1 › Core session revocation removes the private circuit and result (521ms)
+  ✘  13 [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (5.2s)
+(node:72838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:72838) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:72838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [touch] › tests/lab.spec.ts:18:1 › DC prediction, supported and unsupported steps, mutation and Core cold reopen (1.4s)
+  ✓  15 [touch] › tests/lab.spec.ts:89:1 › keyboard and touch select nodes and reconnect branches through accessible controls (585ms)
+  ✓  16 [touch] › tests/lab.spec.ts:119:1 › late numerical response cannot survive a changed circuit (361ms)
+  ✓  17 [touch] › tests/lab.spec.ts:140:1 › portable JSON contains inputs and import recalculates; forged proof is refused (558ms)
+  ✓  18 [touch] › tests/lab.spec.ts:173:1 › editing during an acknowledged save preserves revision and newer draft (691ms)
+  ✓  19 [touch] › tests/lab.spec.ts:220:1 › procedure editor persists before verification and hydrates on cold reopen (588ms)
+  ✓  20 [touch] › tests/lab.spec.ts:253:1 › controlled host preserves an edit made while save acknowledgement is pending (562ms)
+  ✓  21 [touch] › tests/lab.spec.ts:281:1 › moving a node while a save is pending leaves the layout dirty (639ms)
+  ✓  22 [touch] › tests/lab.spec.ts:311:1 › host transport 401 clears private state even after an intervening edit (581ms)
+  ✓  23 [touch] › tests/lab.spec.ts:338:1 › transfer circuit gets a distinct Core resource (625ms)
+  ✓  24 [touch] › tests/lab.spec.ts:366:1 › unavailable engine still reopens private inputs and notes (797ms)
+  ✓  25 [touch] › tests/lab.spec.ts:403:1 › Core session revocation removes the private circuit and result (625ms)
+  ✘  26 [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (5.2s)
+
+
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+
+
+      13 |   await expect(
+      14 |     page.getByRole("heading", { name: "Il circuito, passo dopo passo." }),
+    > 15 |   ).toBeVisible();
+         |     ^
+      16 | });
+      17 |
+      18 | test("DC prediction, supported and unsupported steps, mutation and Core cold reopen", async ({
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:15:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+
+
+      13 |   await expect(
+      14 |     page.getByRole("heading", { name: "Il circuito, passo dopo passo." }),
+    > 15 |   ).toBeVisible();
+         |     ^
+      16 | });
+      17 |
+      18 | test("DC prediction, supported and unsupported steps, mutation and Core cold reopen", async ({
+        at $WORKTREE/plugins/s19-circuit-lab/web/tests/lab.spec.ts:15:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-downloaded-Unicode-inp-67c5c--without-rewriting-the-file-touch/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+    [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  24 passed (38.4s)

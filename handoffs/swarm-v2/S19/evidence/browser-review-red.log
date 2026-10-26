@@ -1,0 +1,98 @@
+
+> @ardesia/s19-circuit-lab@0.1.0 test
+> playwright test --project=desktop --grep acknowledged save|procedure editor
+
+
+Running 2 tests using 1 worker
+
+(node:31843) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31843) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft (6.5s)
+(node:31868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/lab.spec.ts:194:1 › procedure editor persists before verification and hydrates on cold reopen (6.0s)
+
+
+  1) [desktop] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByText('Input salvati nella revisione privata Core.', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByText('Input salvati nella revisione privata Core.', { exact: true })[22m
+
+
+      187 |   await page.unroute('**/study/s19/circuits');
+      188 |   await page.getByRole('button',{name:'Salva revisione Core',exact:true}).click();
+    > 189 |   await expect(page.getByText('Input salvati nella revisione privata Core.',{exact:true})).toBeVisible();
+          |                                                                                            ^
+      190 |   expect(new URL(page.url()).searchParams.get('resource')).toBe(resource);
+      191 |   await page.reload();await expect(page.getByLabel('Valore componente',{exact:true})).toHaveValue('400');
+      192 | });
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:189:92
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-editing-during-an-ackn-05f47-es-revision-and-newer-draft-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests/lab.spec.ts:194:1 › procedure editor persists before verification and hydrates on cold reopen
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  getByLabel('Operazione', { exact: true })
+    Expected: [32m"tensione"[39m
+    Received: [31m"kcl"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
+    [2m  - waiting for getByLabel('Operazione', { exact: true })[22m
+    [2m    14 × locator resolved to <select aria-label="Operazione">…</select>[22m
+    [2m       - unexpected value "kcl"[22m
+
+
+      201 |   await expect(page.getByText('Input salvati nella revisione privata Core.',{exact:true})).toBeVisible();
+      202 |   await page.reload();
+    > 203 |   await expect(page.getByLabel('Operazione',{exact:true})).toHaveValue('tensione');
+          |                                                            ^
+      204 |   await expect(page.getByLabel('Primo riferimento',{exact:true})).toHaveValue('R2');
+      205 |   await expect(page.getByLabel('Valore del passaggio',{exact:true})).toHaveValue('8');
+      206 |   await expect(page.getByText('Passaggi supportati corretti fin qui',{exact:true})).toBeVisible();
+        at /Users/andreamarro/Documents/Codex/2026-10-26/e-3/work/ardesia-s19/plugins/s19-circuit-lab/web/tests/lab.spec.ts:203:60
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/lab-procedure-editor-persi-077aa-and-hydrates-on-cold-reopen-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/lab-procedure-editor-persi-077aa-and-hydrates-on-cold-reopen-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/lab-procedure-editor-persi-077aa-and-hydrates-on-cold-reopen-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/lab-procedure-editor-persi-077aa-and-hydrates-on-cold-reopen-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests/lab.spec.ts:176:1 › editing during an acknowledged save preserves revision and newer draft
+    [desktop] › tests/lab.spec.ts:194:1 › procedure editor persists before verification and hydrates on cold reopen
