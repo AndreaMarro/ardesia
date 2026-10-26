@@ -5,15 +5,18 @@ import LivingLessonReplay from '../LivingLessonReplay'
 import { WorkspaceStore } from '../../../store/WorkspaceStore'
 import type { LessonAccess,LessonMoment } from '../model'
 import type { ReplayCursor } from '../replayCursor'
+import { readAudioSession, audioSha256 } from '../../../store/audioRecording'
 async function fixture(){
  const store=new WorkspaceStore();await store.init()
  const identity={lessonId:'action-test',sessionId:crypto.randomUUID()}
  const created=await store.createSessionOnce(identity,{created:1000});if(created.kind!=='created'&&created.kind!=='idempotent')throw Error(created.kind)
  await store.updateSessionAudioCAS(identity,{expectedSha256:created.snapshot.sha256,audioConsent:true,audioStartEpoch:1000})
  const id=crypto.randomUUID()
- const moment:LessonMoment={id:'a',title:'A',kind:'marker',...identity,recordingId:id,sha256:'a'.repeat(64),epoch:2000,objectRefs:[{elementId:'x',version:1,label:'x'}]}
+ const data=new Blob(['x'],{type:'audio/wav'});const digest=await audioSha256(data)
+ const assetPath=`raw/${identity.lessonId}/${identity.sessionId}/audio/${id}.wav`;await store.write(assetPath,data)
+ const moment:LessonMoment={id:'a',title:'A',kind:'marker',...identity,recordingId:id,sha256:digest,epoch:2000,objectRefs:[{elementId:'x',version:1,label:'x'}]}
  const audio=document.createElement('audio');audio.src='blob:synthetic-unit';audio.pause=vi.fn();audio.play=vi.fn().mockResolvedValue(undefined)
- const cursor:ReplayCursor={media:audio,recording:{v:1,recordingId:id,assetPath:`raw/${identity.lessonId}/${identity.sessionId}/audio/${id}.wav`,sha256:moment.sha256,mimeType:'audio/wav',bytes:1,startEpoch:1000,endEpoch:2000,durationMs:1000,objectRefs:moment.objectRefs,availability:'available',data:new Blob(['x'])},timeline:{events:[],recordings:[],audioChunks:[],firstEventTime:1000,lastEventTime:2000},epoch:2000,seekEpoch:vi.fn()}
+ const cursor:ReplayCursor={media:audio,recording:{v:1,recordingId:id,assetPath,sha256:moment.sha256,mimeType:'audio/wav',bytes:1,startEpoch:1000,endEpoch:2000,durationMs:1000,objectRefs:moment.objectRefs,availability:'available',data},timeline:{events:[],recordings:[],audioChunks:[],firstEventTime:1000,lastEventTime:2000},epoch:2000,seekEpoch:vi.fn()}
  return {store,moment,audio,cursor}
 }
 it.each(['authorization','session'] as const)('ignores a late %s failure after selecting another passage',async phase=>{
@@ -40,4 +43,30 @@ it('restarts the canonical epoch even before media metadata exposes its end',asy
  expect(f.audio.currentTime).toBe(0);expect(f.audio.readyState).toBe(0)
  fireEvent.click(view.getByText('Ascolta'));await waitFor(()=>expect(f.cursor.seekEpoch).toHaveBeenCalledWith(1000));expect(f.audio.play).toHaveBeenCalled()
  cleanup()
+})
+
+it('rejects cached media after an OFF/ON consent transition between polling ticks',async()=>{
+ const f=await fixture();const access:LessonAccess={allowed:()=>true,subscribe:()=>()=>{},authorize:async()=>true};const unavailable=vi.fn()
+ const view=render(<LivingLessonReplay {...f} lessonId={f.moment.lessonId} editorial={{v:1,lessonId:f.moment.lessonId,moments:[f.moment]}} access={access} onUnavailable={unavailable}/>)
+ await waitFor(()=>expect((view.getByText('Ascolta') as HTMLButtonElement).disabled).toBe(false))
+ vi.useFakeTimers()
+ try{
+  const identity={lessonId:f.moment.lessonId,sessionId:f.moment.sessionId}
+  const initial=await readAudioSession(f.store,identity);if(!initial)throw Error('missing fixture session')
+  const off=await f.store.updateSessionAudioCAS(identity,{expectedSha256:initial.sha256,audioConsent:false,audioStartEpoch:null})
+  if(off.kind!=='updated')throw Error(off.kind)
+  const on=await f.store.updateSessionAudioCAS(identity,{expectedSha256:off.snapshot.sha256,audioConsent:true,audioStartEpoch:1000})
+  if(on.kind!=='updated')throw Error(on.kind)
+  expect(on.snapshot.sha256).not.toBe(initial.sha256)
+  fireEvent.click(view.getByText('Ascolta'))
+  await vi.waitFor(()=>expect(unavailable).toHaveBeenCalledWith(expect.stringMatching(/sessione.*modificat/i)))
+  expect(f.audio.play).not.toHaveBeenCalled()
+ }finally{cleanup();vi.useRealTimers()}
+})
+it('rejects a cached cursor whose canonical media has been purged before mounting',async()=>{
+ const f=await fixture();await f.store.delete(f.cursor.recording!.assetPath)
+ const access:LessonAccess={allowed:()=>true,subscribe:()=>()=>{},authorize:async()=>true};const unavailable=vi.fn()
+ const view=render(<LivingLessonReplay {...f} lessonId={f.moment.lessonId} editorial={{v:1,lessonId:f.moment.lessonId,moments:[f.moment]}} access={access} onUnavailable={unavailable}/>)
+ try{await waitFor(()=>expect(unavailable).toHaveBeenCalledWith(expect.stringMatching(/audio.*indisponibil/i)));expect(f.audio.play).not.toHaveBeenCalled()}
+ finally{cleanup()}
 })
