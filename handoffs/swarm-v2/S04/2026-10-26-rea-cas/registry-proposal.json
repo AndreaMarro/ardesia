@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "owner": "S04",
+  "date": "2026-10-26",
+  "existingIdsPreserved": ["TARGET-047", "TARGET-048", "TARGET-049", "TARGET-081", "TARGET-084", "TARGET-109"],
+  "proposal": {
+    "name": "Cortex Compute Engine",
+    "url": "https://github.com/cortex-js/compute-engine",
+    "version": "0.152.0",
+    "gitHead": "cdabf49318f13bfca08f644d2514aecbd51ad69f",
+    "license": "MIT",
+    "decision": "ADAPT",
+    "status": "ADOPTED_IN_CANDIDATE_BRANCH_PENDING_INTEGRATION",
+    "capability": "Private symbolic/numeric reviewer workbench with existing Core worksheets and version CAS",
+    "consumer": "apps/web/src/features/assessment-quality",
+    "replaces": "No grader or ledger; replaces manual implementation of CAS algebra/parser/differentiation",
+    "dependencies": "Three unchanged shipped ESM files plus existing MathLive0.111.1; npm dependency proposal superseded, no rootlock edits",
+    "evidence": "rea-summary.json, vendor-manifest.json, donor-probes.json, 13 namespace tests; final consumer E2E/CI in delivery evidence",
+    "limitations": "Static REA partial; domain restrictions partial; never autoapproves; colors declared MIT without included LICENSE, recorded notice gap",
+    "ownerAction": "S12/S15 deduplicate against latest registry and assign an ID only there"
+  }
+}

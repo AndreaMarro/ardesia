@@ -9,9 +9,9 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  expect((await page.request.post('/study/session',{data:{token:access.tokens['tutor-synthetic']}})).ok()).toBe(true);
  await page.setViewportSize({width:390,height:844});await page.goto('/?view=classroom');
  const open=async()=>{
-  await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).click();
-  await page.locator('.question-review-queue button').first().click();
-  await page.getByRole('button',{name:'Controprova del quesito selezionato',exact:true}).click();
+  await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).tap();
+  await page.locator('.question-review-queue button').first().tap();
+  await page.getByRole('button',{name:'Controprova del quesito selezionato',exact:true}).tap();
   await expect(page.getByRole('region',{name:'Laboratorio matematico del revisore'}).getByLabel('Fogli privati salvati')).toBeVisible();
  };
  await open();const lab=page.getByRole('region',{name:'Laboratorio matematico del revisore'});
@@ -29,17 +29,31 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  await lab.getByRole('button',{name:'Salva foglio privato'}).click();const saved=await (await created).json();
  expect(saved.visibility).toBe('private');expect(saved.kind).toBe('assessment-quality-worksheet-v1');
  await expect(lab.getByText('Foglio privato salvato nel Core. Puoi riaprirlo dopo il ricaricamento.')).toBeVisible();
+ // New sheet with byte-identical content is an independent Core creation.
+ await lab.getByRole('button',{name:'Nuovo foglio',exact:true}).click();
+ await lab.getByRole('button',{name:'Esempio: divisione e dominio'}).click();
+ await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible();
+ await lab.getByLabel('Osservazioni sul foglio').fill(note);
+ const duplicateResponse=page.waitForResponse(response=>response.url().endsWith('/study/resources')&&response.request().method()==='POST');
+ await lab.getByRole('button',{name:'Salva foglio privato'}).click();
+ const duplicate=await (await duplicateResponse).json();
+ expect(duplicate.text).toBe(saved.text);expect(duplicate.id).not.toBe(saved.id);
  await page.reload();await open();
  await lab.getByLabel('Fogli privati salvati').selectOption(saved.id);
  await expect(lab.getByLabel('Osservazioni sul foglio')).toHaveValue(note);
  await expect(lab.getByRole('region',{name:'Risultato della controprova'})).toHaveCount(0);
  await lab.getByLabel('Valori da sostituire').fill('x=0');await lab.getByRole('button',{name:'Esegui controprova'}).click();
  await expect(lab.getByRole('alert')).toContainText('fuori dal dominio');
+ await lab.getByLabel('Valori da sostituire').fill('x=1.5/2');
+ await lab.getByRole('button',{name:'Esegui controprova'}).click();
+ await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible();
  await lab.getByLabel('Valori da sostituire').fill('x=3');await lab.getByRole('button',{name:'Esegui controprova'}).click();
  await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible();
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await page.setViewportSize(viewport);await lab.scrollIntoViewIfNeeded();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.evaluate(()=>{if(document.activeElement instanceof HTMLElement)document.activeElement.blur()});
   await lab.screenshot({path:`${outputs}/S04-CAS-${viewport.width}.png`});
  }
  // Actual Core compare-and-swap conflict from another writer. The UI keeps its draft.
@@ -59,5 +73,5 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  expect((await page.request.get(`/study/resources/${saved.id}`)).status()).toBe(403);
  expect((await page.request.get('/study/editions/fluidi/question-banks/physics-semestre-2026/review/questions')).status()).toBe(403);
  expect(errors).toEqual([]);
- await writeFile(`${outputs}/S04-CAS-browser.json`,JSON.stringify({coldCalculationMs,resourceId:saved.id,initialRevision:saved.revisionId,currentRevision:current,note,viewports:[1440,390],worker:'real bundled donor',core:'real SQLite/API',consoleErrors:errors,expectedConflictConsole:expectedConsole},null,2));
+ await writeFile(`${outputs}/S04-CAS-browser.json`,JSON.stringify({coldCalculationMs,resourceId:saved.id,initialRevision:saved.revisionId,currentRevision:current,independentIdenticalWorksheetId:duplicate.id,decimalFractionAccepted:true,note,viewports:[1440,390],worker:'real bundled donor',core:'real SQLite/API',consoleErrors:errors,expectedConflictConsole:expectedConsole},null,2));
 });

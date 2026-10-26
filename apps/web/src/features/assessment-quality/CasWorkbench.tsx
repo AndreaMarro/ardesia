@@ -59,7 +59,7 @@ export default function CasWorkbench({
     pending = useRef(false),
     mounted = useRef(true),
     generation = useRef(0);
-  const idempotency = useRef({ text: "", key: "" });
+  const idempotency = useRef({ text: "", key: "", target: "" });
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     heading.current?.focus();
@@ -251,8 +251,14 @@ export default function CasWorkbench({
         result,
       } satisfies Worksheet);
       if (text.length > 18000) throw new Error("worksheet_too_large");
-      if (idempotency.current.text !== text)
-        idempotency.current = { text, key: requestKey() };
+      const target = resource
+        ? `${resource.id}/${resource.revisionId}`
+        : "create";
+      if (
+        idempotency.current.text !== text ||
+        idempotency.current.target !== target
+      )
+        idempotency.current = { text, key: requestKey(), target };
       const options = {
         signal: controller.signal,
         headers: { "Idempotency-Key": idempotency.current.key },
@@ -357,6 +363,9 @@ export default function CasWorkbench({
     )
       return;
     generation.current++;
+    // A new sheet is a new creation attempt, even when its content is identical.
+    // Failed-response retries retain the key until this explicit boundary.
+    idempotency.current = { text: "", key: "", target: "" };
     job.current?.abort();
     pending.current = false;
     setBusy("");
@@ -421,26 +430,33 @@ export default function CasWorkbench({
           <div className="aq-source">
             <strong>{detail.question.title}</strong>
             <p>
-              Versione {binding?.questionVersion} · {questionId}
+              Versione corrente {detail.questionVersion} · {questionId}
             </p>
             <details>
-              <summary>Quesito e risposta di riferimento</summary>
+              <summary>Quesito e risposta correnti</summary>
               <p>{detail.question.prompt}</p>
               <p>
                 {detail.question.answer.text} · unità:{" "}
                 {detail.question.answer.unit || "non indicata"}
               </p>
               <p className="assessment-quality-hash">
-                Fonte SHA-256: {binding?.contentSha256}
+                Fonte corrente SHA-256: {detail.contentSha256}
               </p>
             </details>
           </div>
           {stale && (
-            <p role="alert">
-              Questo foglio riguarda una versione precedente del quesito. Resta
-              consultabile; inizia un nuovo foglio per verificare la versione
-              corrente.
-            </p>
+            <>
+              <p role="alert">
+                Questo foglio riguarda una versione precedente del quesito.
+                Resta consultabile; inizia un nuovo foglio per verificare la
+                versione corrente.
+              </p>
+              <p className="assessment-quality-hash">
+                Foglio: versione {binding?.questionVersion} · SHA-256{" "}
+                {binding?.contentSha256}. Il testo storico non è contenuto nel
+                foglio; sopra è mostrata la fonte corrente.
+              </p>
+            </>
           )}
           <div className="aq-sheet-actions">
             <button type="button" disabled={Boolean(busy)} onClick={newSheet}>

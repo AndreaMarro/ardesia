@@ -27,6 +27,27 @@ test("captures excluded denominator before donor canonicalizes x/x to one", () =
     calculate({ ...input, left: "x/x", right: "1", values: "x=0" }),
   ).toThrow(/dominio/);
 });
+
+test("exposes the zero-exponent domain before encountering the degenerate zero-to-zero power", () => {
+  expect(
+    calculate({ ...input, left: "x^0", right: "1", values: "x=2" })
+      .restrictions,
+  ).toContain("x ≠ 0");
+  expect(() =>
+    calculate({ ...input, left: "x^0", right: "1", values: "x=0" }),
+  ).toThrow();
+});
+
+test("supports decimal and scientific numerators accepted by the value grammar", () => {
+  expect(
+    calculate({ ...input, left: "x", right: "0", values: "x=1.5/2" }).left
+      .atValues,
+  ).toBe("0.75");
+  expect(
+    calculate({ ...input, left: "x", right: "0", values: "x=1e-2/2" }).left
+      .atValues,
+  ).toBe("0.005");
+});
 test("square root branch and unequal expressions never become a universal equality", () => {
   const result = calculate({
     ...input,

@@ -161,7 +161,7 @@ export function calculate(input: CasInput): CasResult {
         power.im !== 0
       )
         fail("Esponente numerico richiesto, modulo massimo 128.");
-      if (power.re < 0) guard(args[0], "nonzero");
+      if (power.re <= 0) guard(args[0], "nonzero");
       if (!Number.isInteger(power.re)) guard(args[0], "nonnegative");
     }
   }
@@ -174,7 +174,12 @@ export function calculate(input: CasInput): CasResult {
   const substitutions = Object.fromEntries(
     Object.entries(values).map(([key, value]) => [
       key,
-      Array.isArray(value) ? ce.box(["Rational", ...value]) : ce.number(value),
+      Array.isArray(value)
+        ? ce.box([
+            value.every(Number.isSafeInteger) ? "Rational" : "Divide",
+            ...value,
+          ])
+        : ce.number(value),
     ]),
   );
   for (const guard of guards) {
