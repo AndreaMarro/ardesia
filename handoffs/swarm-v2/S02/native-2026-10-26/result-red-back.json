@@ -1,0 +1,15 @@
+{
+  "source": "b6cba73dfec35a243da3e4c322ba58546b1ca3fb",
+  "shellSource": "3326ac2e30624248c01b67f2ac876671e5ed3886",
+  "privateRootPatch": "S05 enabledViews prop only",
+  "browser": "148.0.7778.96",
+  "checks": [
+    "real S05 memory entered from mounted Shell nav; unmounted independent-study stays hidden",
+    "real Core note save, exact content retrieved and memory URL/context preserved by reload"
+  ],
+  "errors": [],
+  "screenshots": [],
+  "status": "FAIL",
+  "failure": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Memoria delle idee.', exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 10000ms\n  - waiting for getByRole('heading', { name: 'Memoria delle idee.', exact: true })\n\n    at captureRawStack (/private/tmp/ardesia-r2-20261024/node_modules/playwright-core/lib/coreBundle.js:3130:17)\n    at callMatcherAsStep (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12873:57)\n    at Object.toBeVisible (/private/tmp/ardesia-r2-20261024/node_modules/playwright/lib/matchers/expect.js:12863:23)\n    at /private/tmp/ardesia-s02-native-3326-b6cb-20261026/qa/verify.mjs:42:102",
+  "totalMs": 12378.914541
+}

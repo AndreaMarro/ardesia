@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, expect, test, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { Shell } from "../../../components/Shell";
 
 afterEach(cleanup);
@@ -67,4 +67,36 @@ test("IME confirmation and composition arrows do not navigate away from the sear
   fireEvent.keyDown(search, {key:"Enter"});
   fireEvent.submit(screen.getByRole("search"));
   expect(navigate).toHaveBeenCalledWith("today");
+});
+
+test("mounted-route availability controls both navigation and command results", () => {
+  const navigate=vi.fn();
+  render(<Shell me={me} view="today" enabledViews={["today", "independent-study"]} onView={navigate} onLogout={() => {}}>Contenuto</Shell>);
+  const nav=screen.getByRole("navigation",{name:"Navigazione principale"});
+  expect(within(nav).getAllByRole("button")).toHaveLength(2);
+  expect(within(nav).queryByRole("button",{name:"Lezione"})).toBeNull();
+  fireEvent.click(screen.getByRole("button",{name:/Cerca nello spazio/}));
+  fireEvent.change(screen.getByRole("searchbox"),{target:{value:"autonomo"}});
+  fireEvent.click(within(screen.getByRole("dialog")).getByRole("button",{name:/Studio autonomo/}));
+  expect(navigate).toHaveBeenCalledWith("independent-study");
+});
+
+test("an open command dialog contains focus and uses current routes after a destination disappears", async () => {
+  const previousNavigate = vi.fn(), currentNavigate = vi.fn();
+  const { rerender } = render(<Shell me={me} view="today" enabledViews={["today", "memory"]} onView={previousNavigate} onLogout={() => {}}>Contenuto</Shell>);
+  fireEvent.click(screen.getByRole("button", { name: /Cerca nello spazio/ }));
+  const dialog = screen.getByRole("dialog", { name: "Dove vuoi andare?" });
+  const memory = within(dialog).getByRole("button", { name: /Memoria delle idee/ });
+  memory.focus();
+  expect(document.activeElement).toBe(memory);
+
+  rerender(<Shell me={me} view="today" enabledViews={["today"]} onView={currentNavigate} onLogout={() => {}}>Contenuto</Shell>);
+  expect(within(dialog).queryByRole("button", { name: /Memoria delle idee/ })).toBeNull();
+  await waitFor(() => expect(dialog.contains(document.activeElement)).toBe(true));
+  const search = screen.getByRole("searchbox", { name: "Cerca una destinazione" });
+  search.focus();
+  fireEvent.keyDown(search, { key: "Enter" });
+  fireEvent.submit(screen.getByRole("search"));
+  expect(previousNavigate).not.toHaveBeenCalled();
+  expect(currentNavigate).toHaveBeenCalledExactlyOnceWith("today");
 });

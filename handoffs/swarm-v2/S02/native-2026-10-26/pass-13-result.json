@@ -1,0 +1,34 @@
+{
+  "source": "b6cba73dfec35a243da3e4c322ba58546b1ca3fb",
+  "shellSource": "3326ac2e30624248c01b67f2ac876671e5ed3886",
+  "privateRootPatch": "S05 enabledViews prop + proposed navigate pushState; private QA only",
+  "browser": "148.0.7778.96",
+  "checks": [
+    "real S05 memory entered from mounted Shell nav; unmounted independent-study stays hidden",
+    "real Core note save, exact content retrieved and memory URL/context preserved by reload",
+    "command selection focuses main; native back/forward restores real memory route",
+    "real nav/search, focus, emulated touch and no document overflow at 1440px",
+    "real nav/search, focus, emulated touch and no document overflow at 820px",
+    "real nav/search, focus, emulated touch and no document overflow at 390px",
+    "student without an edition reaches memory before course gate through real Root",
+    "teacher gets the same mounted memory destination",
+    "isolated real Shell fixture: route removal, containment, Escape return, Tab loop and arrows at 1440x900",
+    "isolated real Shell fixture: route removal, containment, Escape return, Tab loop and arrows at 820x900",
+    "isolated real Shell fixture: route removal, containment, Escape return, Tab loop and arrows at 390x844",
+    "isolated real Shell fixture: route removal, containment, Escape return, Tab loop and arrows at 390x320",
+    "zero unexpected page/console errors across real consumer and isolated focus fixture"
+  ],
+  "errors": [],
+  "screenshots": [
+    "command-1440.png",
+    "memory-1440.png",
+    "command-820.png",
+    "memory-820.png",
+    "command-390.png",
+    "memory-390.png"
+  ],
+  "automaticMs": 5427.06,
+  "reaSignal": false,
+  "status": "PASS",
+  "totalMs": 50473.069125
+}
