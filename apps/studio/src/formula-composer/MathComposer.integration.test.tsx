@@ -51,7 +51,10 @@ describe("formula host lifecycle", () => {
     const mf = field()
     const keyboard = window.mathVirtualKeyboard
     Object.defineProperty(keyboard, "visible", { configurable: true, writable: true, value: true })
-    const hide = vi.spyOn(keyboard, "hide")
+    const hide = vi.spyOn(keyboard, "hide").mockImplementation(() => {
+      expect(mf.nativeConnected).toBe(true)
+      keyboard.visible = false
+    })
     const command = vi.spyOn(mf, "executeCommand")
     const remove = vi.spyOn(mf, "remove")
     view.unmount()
