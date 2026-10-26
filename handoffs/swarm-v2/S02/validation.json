@@ -1,0 +1,86 @@
+{
+  "baseSha": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+  "productSourceSha": "c0423828d0881b30e3b92c5b03a45ecbc1644e39",
+  "pullRequest": "https://github.com/AndreaMarro/ardesia/pull/308",
+  "environment": "loopback Vite5420 + canonical StudyAPI5421, synthetic SQLite, Node22.14.0, Chrome155 on shared8GiB Mac",
+  "localChecks": {
+    "typecheckHead": "PASS",
+    "productShellTests": "8 PASS in final combined run",
+    "existingSemanticsBaseline": "4 PASS",
+    "existingSemanticsFinalIsolated": "4 PASS",
+    "combinedFinal": "10 PASS / 2 FAIL: first timeout5000ms, second multiple-main assertion; preserved, cause not established",
+    "reviewerOriginal7": "6 PASS / 1 TIMEOUT",
+    "IME": "RED focus assertion -> GREEN",
+    "shortViewport": "RED results height8px -> GREEN reachable results at390x320 with large text",
+    "realAPIJourney": "4 PASS:3widths+teacher/logout",
+    "consoleLatest": "PASS0 app/lab error or warning; previous favicon404 retained and fixed",
+    "geometry": "document width no overflow390/820/1440; CSSzoom200% checked, native zoom/device NOT_RUN"
+  },
+  "performance": {
+    "environment": "Vite development, loopback SQLite, existing Chrome155 on shared8GiB Mac; no throttling; three warm browser samples, not production CWV/p75",
+    "samples": [
+      {
+        "ttfbMs": 95.59999999403954,
+        "dclMs": 1440.3999999761581,
+        "fcpMs": 1556,
+        "lcp": 2156,
+        "cls": 0.05808315972222222,
+        "classroomLoaded": false,
+        "resources": 41
+      },
+      {
+        "ttfbMs": 33.30000001192093,
+        "dclMs": 872.5,
+        "fcpMs": 896,
+        "lcp": 1256,
+        "cls": 0.05808315972222222,
+        "classroomLoaded": false,
+        "resources": 41
+      },
+      {
+        "ttfbMs": 39.900000005960464,
+        "dclMs": 409.89999997615814,
+        "fcpMs": 428,
+        "lcp": 1036,
+        "cls": 0.05808315972222222,
+        "classroomLoaded": false,
+        "resources": 41
+      }
+    ],
+    "lazyClassroomAfterNavigation": true,
+    "errors": [],
+    "INP": "NOT_MEASURED",
+    "productionTargets": "Targets and observations are separate; no production conformance claimed"
+  },
+  "CI": {
+    "firstPrContract": "FAIL owner must be a GitHub login; corrected body without empty commit",
+    "correctedPrContract": "SUCCESS40246547850 on c0423828",
+    "fullCI": "IN_PROGRESS40246447377 on c0423828 at snapshot; exact final head checked through PR",
+    "noGateWeakened": true
+  },
+  "integration": {
+    "merge": "NOT_RUN: S00 owns integration",
+    "deployment": "NOT_RUN: new features private only",
+    "ownerAdoptionS01S06S08": "PENDING explicit consumer evidence",
+    "humanScientificReview": "NOT_RUN",
+    "screenReaderAndRealDevice": "NOT_RUN"
+  },
+  "evidenceDigests": {
+    "performance.log": "d7fd85aa6193103d48828257a54154dc433b85da95305afb0da88be0b0491dff",
+    "shell-red.log": "7a6adbcbd1b949954496cce4af998544da7ac8bbff9e60500adc77f70cb39928",
+    "semantics-isolated-final.log": "113e9a864d47975d65752d7afd0162c7f57c32ba2af1af97307be2fbc91d1647",
+    "typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "targeted-final.log": "062df39943c2c1d456134ce8681cc7473690d5fea04ad74cda0c6876317e4e3b",
+    "short-direct-red.log": "e3bfc24cc2d4f63b444a0fd48330189a47b79c9c0a38db1e261dd60734208670",
+    "typecheck.log": "ff3f8fec4b18c240988a82ace689cb208fcf36b4e38f176e85adfe44ab4c9738",
+    "product-shell-green.log": "cd4a869215f1cb0a69224b8f37642e3f76e6f540e47274ccc4353b2d380cfb41",
+    "ime-red.log": "cb8fb7bb97948109a5a357dc56f22b78a2c7b0c65abcba15af2764d1dfc86006",
+    "typecheck-head.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "short-red.log": "b58a69098351b8b2bce4e09326701278161740087005fb98d9aa82f5b87acf85",
+    "short-green.log": "5928a5ac7ff509be5199ce2197a2cd0c3ccb64d7572eeeb22ea7af23db3cf2fb",
+    "states-red.log": "5ae68df1f2c6cbdffb1b9c2f4f9c57fac2ed38ccb5d1d3e663ef3341970c6101",
+    "shell-green.log": "a57b00705ddbce5cdeb2528de8f3664a08997032b61adda094010c07b8f04f8d",
+    "e2e.log": "ba851f8e1fbb990c6e8a48c3e4ca4494e16edc056fdd9d49da14b113f083310d",
+    "ime-green.log": "5811f52ee80fc48556686a075917b0fff34a6af03fd2ad1366b64bd488713402"
+  }
+}
