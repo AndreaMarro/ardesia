@@ -285,3 +285,10 @@ nativo attribuito alla f66. Spostata costruzione/pulizia imperativa in
 useLayoutEffect; il test modella ora invalidazione del target su disconnect
 e verifica la chiusura effettiva mentre connesso. Controprova ancora pendente,
 nessun nuovo browser avviato durante lo slot S08.
+
+Seconda lettura statica del cleanup 60395e9: executeCommand accoda un frame con
+proxy del modello che viene subito distrutto. Evitato quel wrapper: il cleanup
+chiude direttamente window.mathVirtualKeyboard.hide() quando visibile, API
+pubblica della stessa tastiera condivisa. Test aggiornato a verificare il
+controller e assenza di comandi sul mathfield in distruzione. Nessuna nuova
+prova nativa prima di questa correzione e nessun PASS runtime anticipato.

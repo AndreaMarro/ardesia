@@ -78,3 +78,12 @@ usare useLayoutEffect per costruzione/pulizia dell'elemento imperativo e
 chiudere quando è ancora connesso. Il mock ora invalida il target su disconnect
 e richiede keyboardHidden effettivo, oltre all'ordine. Nessun runtime attribuito
 al revisore; controprova nativa e host di questa correzione ancora pendenti.
+
+Follow-up sulla 60395e9: il wrapper executeCommand accoda inoltre un frame
+makeProxy sul modello che remove sta per distruggere. Secondo rilievo concreto
+accettato prima di eseguire il browser: il cleanup usa direttamente l'API
+pubblica window.mathVirtualKeyboard.hide(), senza wrapper del mathfield.
+Rimane useLayoutEffect per la gestione DOM imperativa. Test del controller
+condiviso richiede visible=false e nessun comando del mathfield durante il
+cleanup; ordine prima della disconnessione conservato. Versioni intermedie
+f66/60395 non sono mai state dichiarate native PASS. Nuova controprova pending.

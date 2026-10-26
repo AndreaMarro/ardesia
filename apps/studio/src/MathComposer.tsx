@@ -58,9 +58,9 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
       mfRef.current = null
       mf.removeEventListener("input", sync)
       mf.removeEventListener("undo-state-change", sync)
-      // MathLive disposes its command target on DOM disconnect. Layout
-      // cleanup runs while the field is connected, before React removes it.
-      mf.executeCommand("hideVirtualKeyboard")
+      // Close the shared controller directly: the mathfield command wrapper
+      // queues an update against the model that is about to be disposed.
+      if (window.mathVirtualKeyboard?.visible) window.mathVirtualKeyboard.hide()
       mf.remove()
     }
   }, [hintId])

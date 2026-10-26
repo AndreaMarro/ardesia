@@ -27,6 +27,9 @@ vi.mock("mathlive", () => {
     }
     insert(value: string) { this.value += value; return true }
   }
+  Object.defineProperty(window, "mathVirtualKeyboard", {
+    configurable: true, value: { visible: false, hide() { this.visible = false } },
+  })
   customElements.define("test-math-field", TestMathfield)
   return { MathfieldElement: TestMathfield }
 })
@@ -46,12 +49,16 @@ describe("formula host lifecycle", () => {
   it("hides the shared native keyboard while the mathfield is still connected", () => {
     const view = render(<MathComposer onInsert={() => {}} onClose={() => {}} />)
     const mf = field()
-    const hide = vi.spyOn(mf, "executeCommand")
+    const keyboard = window.mathVirtualKeyboard
+    Object.defineProperty(keyboard, "visible", { configurable: true, writable: true, value: true })
+    const hide = vi.spyOn(keyboard, "hide")
+    const command = vi.spyOn(mf, "executeCommand")
     const remove = vi.spyOn(mf, "remove")
     view.unmount()
-    expect(mf.keyboardHidden).toBe(true)
+    expect(keyboard.visible).toBe(false)
+    expect(command).not.toHaveBeenCalled()
     expect(mf.nativeConnected).toBe(false)
-    expect(hide).toHaveBeenCalledWith("hideVirtualKeyboard")
+    expect(hide).toHaveBeenCalledOnce()
     expect(hide.mock.invocationCallOrder[0]).toBeLessThan(remove.mock.invocationCallOrder[0]!)
   })
 
