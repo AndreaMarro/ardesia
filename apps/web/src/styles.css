@@ -668,11 +668,9 @@ dd {
   color: var(--muted);
 }
 .public-service-error {
-  position: fixed;
-  bottom: 0;
-  right: 20px;
-  max-width: 430px;
-  z-index: 60;
+  width: calc(100% - 40px);
+  max-width: 1180px;
+  margin: 20px auto;
 }
 .login-dialog {
   width: min(470px, calc(100vw - 32px));
@@ -2707,10 +2705,7 @@ dd {
     min-height: 370px;
   }
   .public-service-error {
-    left: 15px;
-    right: 15px;
-    bottom: 0;
-    max-width: none;
+    width: calc(100% - 30px);
   }
 }
 @media (prefers-reduced-motion: reduce) {

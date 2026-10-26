@@ -1,5 +1,35 @@
 # Prossimo incarico: completare i quattro microcorsi di Fisica
 
+## Addendum operativo corrente — S00, 26 ottobre 2026
+
+Il proprietario ha adottato esplicitamente «Esegui S00 in questa A». La306 è
+MERGED su `37e0fe828e47b7c81784c2eb48a1b9776dd859ed`, CI post-merge40242587363
+e readiness40242587350 SUCCESS: non rifare quella convergenza. Il mandato V2
+prevede12 stream concorrenti, una PR implementativa attiva per stream, nessun
+limite globale di3. S00 integra/distribuisce e aggiorna RUNLOG/NEXT; S02 shell,
+S10 API/auth/schema/storage. Non creare nuove chat dalla sessione S00.
+
+Leggere [handoff S00](../../handoffs/swarm-v2/S00/README.md) e registro dei writer,
+poi rendezvous [commenti306](https://github.com/AndreaMarro/ardesia/pull/306).
+I ruoli proposti non provano che tutte le chat abbiano START osservato. Rileggere
+PR307/308/309 e successive sulla head effettiva, senza ereditarne il verde.
+Room è temporaneamente di S07 per l'adapter opzionale; Courses di S09 per il mount
+tutor; RootApp resta S00. Deleghe e coda sono nei commenti6404992331/6405061639.
+Host8GiB: un solo slot pesante alla volta, niente processi altrui terminati.
+
+Primo batch S00: export **privato esplicito** Web `/`+Studio `/studio/`, registro
+operatore `/ops/release/`; pubblico e review editoriale restano separati. Il
+backend non configurato risponde503, non un finto login. La CSP privata richiede
+MathJax locale dal lock esistente. Stato corrente e prove terminali vanno letti
+nell'handoff/PR: implementazione e26 test pipeline non equivalgono a integrazione
+o beta remota. SSO Vercel resta un gate operatore distinto dai permessi Core.
+
+Il prossimo risultato deve collegare consumer pronti alla main attraverso check
+del merge-tree, poi CI post-merge e preview protetta effettiva. «Studia da solo»
+richiede contratto S06/S10, fonti esatte, submit/receipt/feedback e cold/revoca;
+nessun nuovo ledger. Mantieni espliciti0/52,0/57,0/33,0/58 completamenti e gli
+obiettivi validi sotto. Il vecchio conteggio0PR era storico, non stato attuale.
+
 Aggiornato il 25 ottobre 2026. #304 e#305 sono integrate: non ripartire dal vecchio blocco review. L’incremento corrente è nella sola [PR306](https://github.com/AndreaMarro/ardesia/pull/306), prodotto `05d2bc9911aff3862906ac5a71769bc726dfbcea`; i commit successivi aggiungono prove e memoria. Prima di lavorare leggere il [registro con esito terminale e CI post-merge](https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6404424520), verificare main/PR/Vercel attuali e rigenerare `python3 bin/state/project_state.py`. Una consegna datata non certifica il presente.
 
 Leggere [consegna e rollback](four-courses-2026-10-25/README.md), [matrice dei quattro corsi](../../matrici/QUATTRO_CORSI.md), [200 schede](four-courses-2026-10-25/objective-evidence.json), ultimo RUNLOG, AGENTS, CANON-INDEX, ADR-0004 e protocollo memoria. Conservare il denominatore 52/57/33/58: **zero obiettivi con accettazione completa**. Le43 lezioni e38 famiglie DRAFT nella review protetta e i5 esempi pubblici non sono quattro corsi completi.
@@ -16,3 +46,34 @@ A resta unico integratore/deployer e writer della memoria comune. B cura modelli
 4. **P1 — Qualità umana e compatibilità.** Primo passo: ascoltare le quattro clip e verificare Safari/device reale; correggere «Unità richiesta: .» nella review qualitativa. Dipendenze: operatore, dati sintetici e permessi. Accettazione: testo/audio comprensibili e recuperabili, focus/font/movimento ridotto corretti. Evidenza: gesti e limiti espliciti. Goodnotes osservato solo nei metadati della versione 7.1.30: non dichiarare Goodnotes6, UI o replay collaudati.
 
 Prima della consegna aggiornare RUNLOG con risultati, errori/correzioni, alternative, prove e limiti; terminare con 3–5 task che abbiano primo passo, dipendenze, accettazione ed evidenza. Aggiornare NEXT e provenienza. Il mandato resta aperto finché tutti e quattro i corsi non superano i criteri. Non creare una nuova PR per prolungare artificialmente un’attività aperta: verificare prima l’esito effettivo della 306.
+
+
+## Addendum S00 successivo — 26 ottobre 2026, candidata2c522f96
+
+308 e307 sono MERGED, main992d1a0b e CI post-merge40251190531SUCCESS. Il vecchio stato delle loro draft è storico.314 ha fonte2c522f96,7requiredSUCCESS,27pipeline/10Studio mirati e791browser locali; uploadVercel ancora in corso e nessun nuovo deployment attestato a questo checkpoint. Leggere il rapportoS00/rendezvous306 per esito terminale e URL effettivi, senza ereditare un verde da un'altraSHA. Sorgenti runtime del build pulite, i commit successivi di memoria non cambiano i suoi asset.
+
+Prima chiudere314 attraverso provaHTTPS/merge/postmerge e ricevuta provider, poi integrare i consumer già pronti dalla main aggiornata. S10START rimane non osservato: gli installer condivisi richiedono writer esplicito, non endpoint finti. La finestra S01perJSXGraph è stata rilasciata; patch manifest/lock1.14.0 autoreS00 consegnata e verificata dall'owner. FontLiberation1.05legacy nonOFL e source esatto non verificato: Studio solo preview interna, nessuna pubblicazione implicita. Pubblico5demo invariato, quattro corsi ancora0/200accettazioni complete.
+
+Ricordare, leggere e aggiornare lo storico senza modificare il passato: voci e conclusioni precedenti rimangono, smentite aggiunte datate con prove. Handoff di ogni owner e appendici aS00, RUNLOG/NEXT un solo writer. Non chiamare DONE unaPR aperta, una chiusura senza integrazione, una demo mock o unaCI di altrahead.
+
+
+## Addendum S00 — preview HTTPS effettiva,26 ottobre2026
+
+La314 ha ora una preview protetta reale: https://ardesia-fisica-preview-kpdx7h80d-andreas-projects-6d4e9791.vercel.app/ops/release/ , deploymentdpl_CESVaUARu9iX9zZuwZSqRjj8W1U8, fonte2c522f96.796controlli HTTPS PASS; grant revocato e file privato cancellato,302 versoSSO verificato. La vecchia nota upload in corso resta storica. Non confondere READY provider con beta: API503, nessun backend remoto o ACL studente certificato. Produzione invariata; Studio solo interna per limite Liberationlegacy. Receipt/runner in handoffs/swarm-v2/S00/; rileggere esito terminale314 e CI post-merge prima di ripartire.
+
+S00 ha congelato la317 su2e9cea03 e prende il raccordo installer API, RootApp e typedreader science-resource nella STESSA PR dopo314 terminale. Nessun nuovo ramo dipendente o PR per prolungarla. Prima prove sulla composizione finale, poi integrazione e distribuzione pertinente.309/316,311/318/319 e calendario320 seguono per consumer, non ordine dei numeri. Delega S09 limitata alla patch3500827e… già consegnata, nessuna reinstallazione dei node_modules condivisi. Conservare0/52,0/57,0/33,0/58 e i5task dell'ultima voce RUNLOG; storico append-only, smentite datate e provate.
+
+
+### S00: correzione successiva alla prova796
+
+La prova796 resta storica sulla build4. Review visuale indipendente trovaP2 banner sovrapposto: CSS corretto e RED reale conservato, nuovo build/GREEN richiesti prima del merge314. Gate locale2311PASS/2FAIL non va nascosto dietro7requiredCIverdi; controprova mostra errore di commit durante test/SHA compilata e52miratiPASS aHEADferma. MathJax15,7s contro15s non completamente attribuito. Leggere nuovo handoff/rendezvous314 e mantenereHEADimmutabile durante test. Nessuna soglia,gate ocronologia modificata; quattro corsi ancora0/200.
+
+
+## S00 — checkpoint800HTTPS, decisione diagnostica richiesta
+
+Nuova preview privata https://ardesia-fisica-preview-bjr7xic5r-andreas-projects-6d4e9791.vercel.app/ops/release/ , deploymentdpl_G2Tqz6efx2PMHv3n9B71VZVYS3wy, fonte15825e70,795locali/800HTTPS e7requiredCI40294401864 verdi; grant revocato e produzione invariata. Vecchia preview796 resta storico distinto. Due gate locali falliti, ultimo2312/1 su localMathJax, replayNON_RUN; non nasconderlo dietroCIverde. Dopo regola stopAGENTSStudio§5,314 è temporaneamenteBLOCKED_HUMAN_DECISION: leggere handoffs/swarm-v2/S00/DIAGNOSTIC-DECISION.md e patch byte-equivalente NON applicata. Prima misurare build/confronto e bytecorrotto, nessuna soglia alzata o rerun identico; poi ciclo autorizzato e chiusura con merge/postCI.317 resta stessaPR congelata2e9cea03 per raccordoS00 dopo314. Quattro corsi ancora0/200, Core remoto503 e limite licenzaStudio invariati; seguire5task ultimaRUNLOG e memoriaappend-only.
+
+
+### S00 — ciclo mirato autorizzato direttamente dal proprietario
+
+26 ottobre2026: autorizzato «senza indebolire i gate». Misura reale del confronto Buffer2,27MB:9,085s/helperstrutturale e0,132ms/native, build36–84ms; entrambi rifiutano4corruzioni di byte. Applicata patch1riga equivalente, gate/pool/timeout invariati. Non riproporre la domanda già autorizzata né cancellare i2FAIL storici. Eseguire mirato/gate sulla nuovaHEADferma, poi CI/merge/postCI dellaSTESSA314. Previewfonte15825e70 resta800HTTPS e non cambia per soli test. Report e script in handoffs/swarm-v2/S00; successivi317/309/311/318/319 e quattro corsi0/200 restano obiettivi, con5task ultimaRUNLOG.
