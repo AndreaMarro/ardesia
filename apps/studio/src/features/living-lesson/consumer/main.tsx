@@ -110,7 +110,7 @@ function Lesson({lessonId,onExit}:{lessonId:string;onExit:()=>void}){
  async function marker(kind:'marker'|'chapter'){
   const markerIntent=selection.current.begin()
   if(!selected || !timeline)throw Error('Seleziona una registrazione')
-  const moment={...selected,id:crypto.randomUUID(),title:title.trim()||'Passaggio',kind,epoch:at}
+  const moment={...selected,id:crypto.randomUUID(),title:title.trim()||'Passaggio',kind,epoch:Math.floor(at)}
   resolveMoment(lessonId,timeline,moment,scene.current.files??{})
   const next={...editorialRef.current,moments:[...editorialRef.current.moments,moment]};editorialRef.current=next;setEditorial(next);await save();if(!markerIntent()||!permitted.current)return;setTitle('');await select(moment)
  }
