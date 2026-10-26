@@ -34,6 +34,25 @@ async function openFormula(page) {
   await button.click()
   await expect(page.locator('math-field')).toBeVisible()
 }
+async function touchBounds(page) {
+  // A clipped absolute panel does not increase document.scrollWidth. Check
+  // its actual bounds and every host control rather than the document alone.
+  const bounds = await page.locator('.st-composer-panel').evaluate(panel => {
+    const rect = panel.getBoundingClientRect()
+    const controls = [...panel.querySelectorAll('button, math-field, .st-composer-field')].map(control => {
+      const r = control.getBoundingClientRect()
+      return { label: control.getAttribute('aria-label') || control.textContent, left: r.left, right: r.right }
+    })
+    return { left: rect.left, right: rect.right, viewport: window.innerWidth, controls }
+  })
+  expect(bounds.left).toBeGreaterThanOrEqual(0)
+  expect(bounds.right).toBeLessThanOrEqual(bounds.viewport)
+  for (const control of bounds.controls) {
+    expect(control.left, control.label).toBeGreaterThanOrEqual(bounds.left)
+    expect(control.right, control.label).toBeLessThanOrEqual(bounds.right)
+  }
+  check('touch composer panel, field and host controls fit inside viewport', bounds)
+}
 async function scene(page, room) {
   return page.evaluate(async roomId => {
     const h = window.__MAESTRO_TEST__
@@ -67,7 +86,7 @@ try {
   const config = resolve(scratch, 'vite.config.ts')
   await writeFile(config, `import base from ${JSON.stringify(resolve(root, 'apps/studio/vite.config.ts'))};
 import {readFileSync} from 'node:fs';
-export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, server:{...base.server,fs:{allow:[...(base.server.fs.allow??[]),...${JSON.stringify(dependencyRoots)}]}}, plugins:[{name:'s14-candidate-room-copy',enforce:'pre',load(id){if(id.split('?')[0]===${JSON.stringify(resolve(root, 'apps/studio/src/Room.tsx'))})return readFileSync(${JSON.stringify(resolve(scratch, 'apps/studio/src/Room.tsx'))},'utf8')}},...(base.plugins??[])]};`)
+export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, server:{...base.server,fs:{allow:[...(base.server.fs.allow??[]),...${JSON.stringify(dependencyRoots)}]}}, plugins:[{name:'s14-candidate-room-copy',enforce:'pre',load(id){if(${JSON.stringify(process.env.S14_LAYOUT_CONTROL === '1')}&&id.split('?')[0]===${JSON.stringify(resolve(root,'apps/studio/src/formula-composer/MathComposer.css'))})return '';if(id.split('?')[0]===${JSON.stringify(resolve(root, 'apps/studio/src/Room.tsx'))})return readFileSync(${JSON.stringify(resolve(scratch, 'apps/studio/src/Room.tsx'))},'utf8')}},...(base.plugins??[])]};`)
   server = spawn(process.execPath, [resolve(root, 'node_modules/vite/bin/vite.js'), '--config', config, '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { cwd: resolve(root, 'apps/studio'), stdio: ['ignore', 'pipe', 'pipe'] })
   server.on('exit', (code, signal) => { report.serverExit = { code, signal } })
   for (const stream of [server.stdout, server.stderr]) stream.on('data', chunk => { serverLog += chunk })
@@ -85,6 +104,32 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
     if (match[1].startsWith('/')) await fetch(new URL(match[1], origin))
   }
   browser = await chromium.launch({ headless: true })
+  if (process.env.S14_LAYOUT_ONLY === '1') {
+    report.scope = process.env.S14_LAYOUT_CONTROL === '1' ? 'layout control: scoped CSS disabled' : 'focused touch layout and native keyboard lifecycle'
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })
+    const page = await context.newPage(); lastPage = page; watch(page)
+    await page.goto(`${origin}/#s14-formula-layout`)
+    await expect(page.locator('.excalidraw').first()).toBeVisible({ timeout: 60000 })
+    await openFormula(page)
+    await touchBounds(page)
+    const keyboard = page.getByRole('button', { name: 'tastiera matematica', exact: true })
+    for (const visible of [true, false, true]) {
+      await keyboard.click()
+      await expect.poll(() => page.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(visible)
+    }
+    await expect(page.locator('.ML__keyboard.is-visible .MLK__plate')).toBeInViewport({ ratio: 0.99 })
+    await page.screenshot({ path: resolve(output, 'formula-mobile-keyboard.png') })
+    check('touch native keyboard opens, closes and opens with plate visible')
+    await page.getByRole('button', { name: 'chiudi', exact: true }).click()
+    await expect(page.locator('math-field')).toHaveCount(0)
+    await expect.poll(() => page.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(false)
+    await openFormula(page)
+    await page.getByRole('button', { name: 'chiudi', exact: true }).click()
+    await expect(page.locator('math-field')).toHaveCount(0)
+    check('touch close hides native keyboard and composer remounts')
+    if (report.errors.length) throw new Error(`Unexpected browser errors: ${JSON.stringify(report.errors)}`)
+    report.result = 'PASS'
+  } else {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, permissions: ['clipboard-read', 'clipboard-write'] })
   const page = await context.newPage(); lastPage = page; watch(page)
   let releaseFirst, requestedFirst
@@ -192,6 +237,7 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
   await expect.poll(() => countImages(mobile, room)).toBe(1)
   check('bundle imported in new browser store and reopened on touch viewport')
   await openFormula(mobile)
+  await touchBounds(mobile)
   const keyboard = mobile.getByRole('button', { name: 'tastiera matematica', exact: true })
   let before = await mobile.evaluate(() => window.mathVirtualKeyboard.visible)
   await keyboard.click()
@@ -215,6 +261,7 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
   check('repeat native composer mount/unmount')
   if (report.errors.length) throw new Error(`Unexpected browser errors: ${JSON.stringify(report.errors)}`)
   report.result = 'PASS'
+  }
 } catch (error) {
   report.result = 'FAIL'; report.failure = String(error); console.error(error); process.exitCode = 1
   if (lastPage && !lastPage.isClosed()) {

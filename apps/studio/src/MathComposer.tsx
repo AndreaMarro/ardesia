@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react"
 import { MathfieldElement } from "mathlive"
 import { IconFunction, IconCheck } from "./design/icons"
+import "./formula-composer/MathComposer.css"
 
 // Vite serves/emits the fonts from the locked MathLive package at this local base.
 // Guard per ambienti senza DOM reale (jsdom test, SSR).
@@ -140,7 +141,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
           </button>
         ))}
       </div>
-      <div className="st-card-line" role="group" aria-label="Modifica formula">
+      <div className="st-card-line st-formula-tools" role="group" aria-label="Modifica formula">
         <button className="st-ghost" disabled={pending || !history.undo} onClick={() => command("undo")}>annulla</button>
         <button className="st-ghost" disabled={pending || !history.redo} onClick={() => command("redo")}>ripeti</button>
         <button className="st-ghost" disabled={pending} onClick={() => command("toggleVirtualKeyboard")}>tastiera matematica</button>

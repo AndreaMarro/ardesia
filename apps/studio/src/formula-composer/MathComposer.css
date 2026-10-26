@@ -1,0 +1,16 @@
+/* Keep the panel and native field inside the available canvas width. */
+.st-card.st-composer-panel {
+  box-sizing: border-box;
+  max-width: calc(100% - 24px);
+}
+
+.st-composer-panel .st-composer-field,
+.st-composer-panel math-field {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.st-composer-panel .st-formula-tools {
+  flex-wrap: wrap;
+}
