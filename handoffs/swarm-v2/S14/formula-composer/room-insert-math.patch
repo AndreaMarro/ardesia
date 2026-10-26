@@ -2,7 +2,7 @@
 +++ b/apps/studio/src/Room.tsx
 @@ -783,13 +783,22 @@
    }
- 
+
    async function insertMath(latex: string) {
 -    if (!apiRef.current || !latex.trim()) return
 +    const canvas = apiRef.current
@@ -25,11 +25,11 @@
 +      throw err
      }
    }
- 
+
 --- a/apps/studio/src/__tests__/Room.integration.test.tsx
 +++ b/apps/studio/src/__tests__/Room.integration.test.tsx
 @@ -98,12 +98,12 @@
- 
+
  vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
  // Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
 -let capturedOnInsert: ((latex: string) => void) | null = null
@@ -46,9 +46,9 @@
 @@ -3286,7 +3286,7 @@
        expect(capturedOnInsert).toBeTypeOf("function")
      }, { timeout: 5000, interval: 10 })
- 
+
 -    capturedOnInsert!("x^2")
 +    await expect(capturedOnInsert!("x^2")).rejects.toThrow("MathJax CDN load failed")
- 
+
      await vi.waitFor(() => {
        const err = document.querySelector(".st-err")

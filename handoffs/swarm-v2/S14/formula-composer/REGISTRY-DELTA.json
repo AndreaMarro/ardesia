@@ -1,0 +1,29 @@
+{
+  "schema": "ardesia.registry-delta/1",
+  "shared_registry_modified": false,
+  "count_observed": 139,
+  "owner": "S14-formula-composer",
+  "updates": [
+    {
+      "id": "TARGET-081",
+      "name": "MathLive",
+      "version": "0.111.1",
+      "decision": "ADAPT",
+      "status": "IMPLEMENTED_HOST_CONSUMER_PATCH_TESTED_NOT_INTEGRATED",
+      "consumer": "Room toolbar Formula → MathComposer",
+      "evidence": "PROVENANCE.json, REVIEW.md",
+      "limits": "native browser pending; shared Room patch not applied"
+    },
+    {
+      "id": "TARGET-013",
+      "name": "Goodnotes",
+      "version": "7.1.30",
+      "decision": "DEFER",
+      "status": "METADATA_OBSERVED_UI_TIMEOUT",
+      "potential_use": "reference input/audio/replay; no proprietary code copied",
+      "evidence": "PROVENANCE.json",
+      "limits": "no runtime/native UI claim"
+    }
+  ],
+  "unassigned_candidates": []
+}

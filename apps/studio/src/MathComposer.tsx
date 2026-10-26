@@ -63,7 +63,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
     const mf = mfRef.current
     if (!mf || pendingRef.current) return
     mf.focus()
-    mf.insert(latex, { format: "latex", insertionMode: "replaceSelection", selectionMode: "placeholder" })
+    mf.insert(latex, { format: "latex", mode: "math", insertionMode: "replaceSelection", selectionMode: "placeholder" })
     setEmpty(!mf.value.trim())
     setHistory({ undo: mf.canUndo(), redo: mf.canRedo() })
   }
@@ -98,6 +98,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
     if (!v) return
     pendingRef.current = true
     mf.readOnly = true
+    mf.disabled = true
     setPending(true)
     setError(null)
     setNotice(null)
@@ -113,6 +114,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
       pendingRef.current = false
       if (mfRef.current === mf) {
         mf.readOnly = false
+        mf.disabled = false
         setPending(false)
       }
     }

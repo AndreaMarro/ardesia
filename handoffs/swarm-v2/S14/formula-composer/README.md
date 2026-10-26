@@ -99,3 +99,24 @@ aggiunto misurabile va dichiarato solo dopo il consumer reale e il round-trip.
    presenti e isolati. Prova sul consumer patchato, non solo callback.
 4. **P1 integrazione.** Review separata, CI head esatta e merge sequenziale S00;
    verifica post-merge. Nessuna pubblicazione o approvazione scientifica implicita.
+
+## 26 ottobre 2026, 02:22 CET — review e correzioni successive
+
+Primo commit21f979e3 nella draft PR318. Il suo CI hygiene è FAIL per context
+blank con spazi finali nel file patch; non era un problema del prodotto.
+Corretti i blank senza cambiare i gate, `git diff --check origin/main` PASS.
+Il primo verde host13 resta la fotografia sopra; dopo due P2 riprodotti in
+review il nuovo checkpoint è14PASS/3file,2.50s, senza errori non gestiti.
+
+Review indipendente e adjudication in REVIEW.md. `mode: math` esplicito e
+`disabled` completo durante pending correggono le assunzioni sbagliate sulle
+API del donor. La patchv1 è SUPERSEDED_NOT_APPLIED; la v2 aggiunge anche mutex
+Room e blocco del toggle esterno. Control Room originale3FAIL →copie candidate
+3PASS, senza editRoom nel diff. Raccordo reale ancora affidato aS00 dopoS07.
+Prove complete browser/native/round-trip restano NON_RUN a questo checkpoint;
+la finestra effettiva è occupata daS01, dietro releaseS04/S05/S09.
+
+Nuovi log raw locali: formula-review-red.log, formula-review-green.log,
+room-patch-red.log, room-patch-green.log. Non si promuove una prova di copie a
+prova di main o ambiente pubblicato. I prossimi quattro task sopra rimangono
+validi, con la sola sostituzione del nome patchv1 con patchv2.

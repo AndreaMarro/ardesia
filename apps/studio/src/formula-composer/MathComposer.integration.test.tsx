@@ -11,6 +11,7 @@ vi.mock("mathlive", () => {
     static soundsDirectory: string | null = null
     value = ""
     readOnly = false
+    disabled = false
     mathVirtualKeyboardPolicy = "auto"
     canUndo() { return false }
     canRedo() { return false }
@@ -23,7 +24,7 @@ vi.mock("mathlive", () => {
 
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 function field() {
-  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean }
+  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean; disabled: boolean; insert: (value: string, options?: unknown) => boolean }
 }
 function deferred() {
   let resolve!: () => void
@@ -45,9 +46,11 @@ describe("formula host lifecycle", () => {
     expect((button as HTMLButtonElement).disabled).toBe(true)
     expect((screen.getByRole("button", { name: "chiudi" }) as HTMLButtonElement).disabled).toBe(true)
     expect(field().readOnly).toBe(true)
+    expect(field().disabled).toBe(true)
     expect(close).not.toHaveBeenCalled()
     await act(async () => { pending.resolve(); await pending.promise })
     expect(close).toHaveBeenCalledOnce()
+    expect(field().disabled).toBe(false)
   })
 
   it("retains the expression on rejection and retries the same draft", async () => {
@@ -105,5 +108,14 @@ describe("formula host lifecycle", () => {
     await act(async () => { fireEvent.click(screen.getByRole("button", { name: "copia LaTeX" })) })
     expect(write).toHaveBeenCalledWith("a+b")
     expect(screen.getByRole("status").textContent).toContain("copiato")
+  })
+
+  it("requests math-mode structural insertion even when the native cursor is in text", () => {
+    render(<MathComposer onInsert={() => {}} onClose={() => {}} />)
+    const insert = vi.spyOn(field(), "insert")
+    fireEvent.click(screen.getByRole("button", { name: "frazione" }))
+    expect(insert).toHaveBeenCalledWith("\\frac{#0}{#?}", {
+      format: "latex", mode: "math", insertionMode: "replaceSelection", selectionMode: "placeholder",
+    })
   })
 })
