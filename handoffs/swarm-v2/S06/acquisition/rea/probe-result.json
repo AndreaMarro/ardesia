@@ -1,0 +1,53 @@
+{
+  "component": "py-fsrs",
+  "version": "6.3.2",
+  "pin": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+  "outcomes": {
+    "Again": {
+      "delaySeconds": 60.0,
+      "state": 1,
+      "log": {
+        "card_id": 1,
+        "rating": 1,
+        "review_datetime": "2026-10-26T00:00:00+00:00",
+        "review_duration": null
+      }
+    },
+    "Hard": {
+      "delaySeconds": 330.0,
+      "state": 1,
+      "log": {
+        "card_id": 1,
+        "rating": 2,
+        "review_datetime": "2026-10-26T00:00:00+00:00",
+        "review_duration": null
+      }
+    },
+    "Good": {
+      "delaySeconds": 600.0,
+      "state": 1,
+      "log": {
+        "card_id": 1,
+        "rating": 3,
+        "review_datetime": "2026-10-26T00:00:00+00:00",
+        "review_duration": null
+      }
+    },
+    "Easy": {
+      "delaySeconds": 691200.0,
+      "state": 2,
+      "log": {
+        "card_id": 1,
+        "rating": 4,
+        "review_datetime": "2026-10-26T00:00:00+00:00",
+        "review_duration": null
+      }
+    }
+  },
+  "previewInputUnchanged": true,
+  "serializationRoundtrip": true,
+  "threeReviewReplayExact": true,
+  "naiveClockRejected": true,
+  "networkUsed": false,
+  "optimizerImported": false
+}

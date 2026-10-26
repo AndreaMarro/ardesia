@@ -1,0 +1,103 @@
+[
+  {
+    "id": "react-aria-package",
+    "url": "https://raw.githubusercontent.com/adobe/react-spectrum/main/packages/react-aria-components/package.json",
+    "sha256": "d20310416ec52b03156f97b5910ac290a5e88f7b7467e26dd9bc5513c9731c1b",
+    "bytes": 2857,
+    "retrievedDate": "2026-10-26",
+    "file": "react-aria-package.json",
+    "name": "react-aria-components",
+    "version": "1.22.1",
+    "license": "Apache-2.0",
+    "dependencies": {
+      "@internationalized/date": "^3.12.4",
+      "@internationalized/string": "^3.2.10",
+      "@react-types/shared": "^3.37.0",
+      "@swc/helpers": "^0.5.0",
+      "client-only": "^0.0.1",
+      "react-aria": "3.53.1",
+      "react-stately": "3.51.0",
+      "use-sync-external-store": "^1.6.0"
+    },
+    "peerDependencies": {
+      "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1",
+      "react-dom": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1"
+    }
+  },
+  {
+    "id": "react-aria-license",
+    "url": "https://raw.githubusercontent.com/adobe/react-spectrum/main/LICENSE",
+    "sha256": "7dfe6526888bac51759c99f9a51262ba2711a8c12a067f2181609dd9a4066b84",
+    "bytes": 11335,
+    "retrievedDate": "2026-10-26",
+    "file": "react-aria-license.txt"
+  },
+  {
+    "id": "ariakit-package",
+    "url": "https://raw.githubusercontent.com/ariakit/ariakit/main/packages/ariakit-react/package.json",
+    "sha256": "46d2462e68a312943fd08e08cba09c208d80a157411e389f7a16ac68a8418fc9",
+    "bytes": 2251,
+    "retrievedDate": "2026-10-26",
+    "file": "ariakit-package.json",
+    "name": "@ariakit/react",
+    "version": "0.4.42",
+    "license": "MIT",
+    "dependencies": {
+      "@ariakit/react-components": "workspace:*"
+    },
+    "peerDependencies": {
+      "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+      "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    }
+  },
+  {
+    "id": "ariakit-license",
+    "url": "https://raw.githubusercontent.com/ariakit/ariakit/main/packages/ariakit-react/license",
+    "sha256": "593be4976c018fcd06599fc4c679b8f35c7cf055bc53726e991fd724d132732a",
+    "bytes": 1079,
+    "retrievedDate": "2026-10-26",
+    "file": "ariakit-license.txt"
+  },
+  {
+    "id": "ariakit-licensing-scope",
+    "url": "https://raw.githubusercontent.com/ariakit/ariakit/main/readme.md",
+    "sha256": "656921efaaea3713f6a31c480271ec39e244fc2f78b3f1c37fc8857a6446ab78",
+    "bytes": 4250,
+    "retrievedDate": "2026-10-26",
+    "file": "ariakit-licensing-scope.txt"
+  },
+  {
+    "id": "radix-installed",
+    "name": "@radix-ui/react-dialog",
+    "version": "1.3.1",
+    "license": "MIT",
+    "dependencies": {
+      "aria-hidden": "^1.2.4",
+      "react-remove-scroll": "^2.7.2",
+      "@radix-ui/primitive": "1.2.0",
+      "@radix-ui/react-compose-refs": "1.1.5",
+      "@radix-ui/react-context": "1.3.0",
+      "@radix-ui/react-dismissable-layer": "1.2.1",
+      "@radix-ui/react-focus-guards": "1.2.0",
+      "@radix-ui/react-focus-scope": "1.3.1",
+      "@radix-ui/react-id": "1.1.4",
+      "@radix-ui/react-portal": "1.2.0",
+      "@radix-ui/react-presence": "1.1.11",
+      "@radix-ui/react-primitive": "2.2.0",
+      "@radix-ui/react-slot": "1.5.0",
+      "@radix-ui/react-use-controllable-state": "1.3.0",
+      "@radix-ui/react-use-layout-effect": "1.1.4"
+    },
+    "peerDependencies": {
+      "@types/react": "*",
+      "@types/react-dom": "*",
+      "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+      "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
+    },
+    "files": {
+      "package.json": "263dbd07d8e4ead9e43603b8a4a97e17ee50362f82096012207445ec13d71b0a",
+      "LICENSE": "0e80a2d229d2fd4fc7e8636142ec5d0ff0bc031f14c15b682e2ac01dfd5b5138",
+      "dist/index.mjs": "e32c21a189358f22749c171f666bddea31ae2ebe5e8c4d6c5c8aedd3916a04d7"
+    }
+  }
+]

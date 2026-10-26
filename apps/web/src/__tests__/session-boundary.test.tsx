@@ -3,6 +3,7 @@ import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../App";
 import { readResourceDraft, writeResourceDraft } from "../components/sessionDraftCache";
+import { installPublicBrowserStorage } from "./public-storage-fixture";
 
 const me = { id: "session-student", role: "student", synthetic: true };
 const edition = { id: "fluidi", teacherId: "tutor", capacity: 10, priceMinor: 3900,
@@ -47,6 +48,33 @@ beforeEach(() => {
   }));
 });
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); history.replaceState(null, "", "/"); });
+
+test.each(["logout", "rejected"])("%s clears independent-study device copies after leaving its view", async (reason) => {
+  installPublicBrowserStorage();
+  const prefix = "ardesia.independent-study.v1.";
+  const owned = [
+    prefix + "offline." + JSON.stringify([me.id, "fluidi"]),
+    prefix + "offline." + JSON.stringify([me.id, "mechanics"]),
+    prefix + JSON.stringify({actor: me.id, edition: "mechanics", revision: "old"}),
+  ];
+  for (const key of owned) localStorage.setItem(key, "private device copy");
+  const peer = prefix + "offline." + JSON.stringify(["other-student", "fluidi"]);
+  localStorage.setItem(peer, "other actor");
+  localStorage.setItem("unrelated", "keep");
+  if (reason === "rejected") {
+    await openDelivery();
+    await screen.findByRole("dialog");
+  } else {
+    render(<App />);
+    fireEvent.click(await screen.findByRole("button", {name: "Consegne e feedback"}));
+    await screen.findByText("PROCEDIMENTO PRIVATO C7");
+    fireEvent.click(screen.getByRole("button", {name: /Esci/}));
+    await screen.findByRole("button", {name: "Accedi al tuo spazio"});
+  }
+  for (const key of owned) expect(localStorage.getItem(key)).toBeNull();
+  expect(localStorage.getItem(peer)).toBe("other actor");
+  expect(localStorage.getItem("unrelated")).toBe("keep");
+});
 
 async function openDelivery() {
   render(<App />);
