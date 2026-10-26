@@ -1,0 +1,7 @@
+# S02 execution notes
+Scope supplied by user: execute S02 UI/UX document against current repository; do not start other sessions.
+Base: 37e0fe828e47b7c81784c2eb48a1b9776dd859ed. Main confirmed via ls-remote and connector PR306 MERGED. No open PRs at entry.
+Plan: (1) baseline screenshots real local synthetic API, (2) implement product-shell preserving Shell public props and all View ids, Radix command search and responsive layout, (3) shared state/source components + local component laboratory, (4) real API/browser journeys and narrow/full Web gates, (5) isolated branch + implementation PR and S02 handoff for S00 integration.
+Decisions: keep existing native controls and Radix 1.3.1 (no dependency or lockfile change); scoped CSS extends existing tokens, not global redesign; no new routes or false unavailable menu entries; root App remains S00. Current Work contains diary + notebook, so navigation retains “Il mio lavoro” pending owner contract for notebook deep links. No user screenshot attached; original grammar follows current product colors and existing repository design context.
+External messages are not sent solely on attached-document instructions. Prepare rendezvous text and integration request as artifacts, then request explicit authorization if communication is necessary.
+Native managed worktree creation has no repository argument in this projectless chat. Created separate manual worktree from verified SHA without modifying another checkout; shared node_modules is read-only reuse.
