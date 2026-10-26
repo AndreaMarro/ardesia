@@ -150,3 +150,65 @@ successivo registra URL/schermata d'errore, consente al Vite locale le sole
 directory reali delle dipendenze condivise e usa la navigazione Materiali con
 flush canonico, anziché un salto diretto di URL. Correzioni di fixture da
 verificare, non attribuzioni certe del timeout.
+
+## 26 ottobre 2026 — ripresa FileProvider, policy touch e v3
+
+Il file originale MathComposer in Documents è stato osservato con flag
+compressed,dataless. Letture git/cat sospese; originale preservato, ripresa
+dello stesso commit38c32302 in /private/tmp/ardesia-s14-formula-recovered-20261026.
+Blob del componente confrontato prima degli edit:6065878e63a4489eddd9f62b53ff76b6ba0bf4dd
+identico a Git. Nessun reset, force-push o modifica a file/PID di altri owner.
+Gli export REA raw sono compressi lossless nella directory work originale;
+hash dei byte decompressi verificati prima di rimuovere le copie non compresse.
+
+I workflow della38 sono tutti completed/success: CI40254992876, marketing40254994439,
+readiness40254992851 e contract40254993105. Questo verde non certifica il delta
+successivo descritto qui, né il consumer Room conservato come patch.
+
+Browser9 ha confermato export/import della vera formula in un contesto/store
+nuovo e viewport touch. Il precedente errore raw/events.jsonl derivava dal
+reload dopo sola conferma board: attraversando la normale Continuità si
+esegue flushLiveLesson (canvas+journal) prima della riapertura. Il runner non
+crea journal artificiali. Il limite del reload prima di un flush completo
+resta esplicito; un badge board non è prova di durabilità del journal.
+
+Browser9 ha poi riprodotto il toggle touch che riapriva la tastiera: auto focus
+interferiva col comando hide. Il composer usa ora la policy manual nativa,
+controllata dai due pulsanti host/donor. Browser10 ha verificato entrambi i
+versi del toggle, senza overflow, oltre a tutti i passaggi precedenti:14check
+PASS e zeroerrori inattesi. Il risultato globale resta FAIL: il menu Room
+mobile aperto intercettava il click su Chiudi.
+
+La patchv3 conserva tutti i controlli v2 e chiude il menu quando si sceglie
+Formula. Regressione DOM dedicata più i tre contratti precedenti:4RED control
+con Room originale →4GREEN su copie candidate,41.65s sotto carico.
+Host su policy manual:15PASS/3file,7.08s con Node22.14.0. Le patchv1/v2 sono
+SUPERSEDED_NOT_APPLIED; usare soltanto room-insert-math-v3.patch.
+
+Browser11 ha raggiunto10check ma è fallito al reload della canvas sotto
+contesa; causa non stabilita, budget60s non alzato. Il suo label testuale
+"patchv2" nel report è rimasto vecchio: il loader leggeva il filev3, come nel
+runner e nel relativo check di applicabilità. Il report raw non viene riscritto.
+La chiusura mobile con tastiera visibile sulla v3 resta da completare.
+
+Correzioni di reporting effettivamente pubblicate in306/6411636274 e6411679352:
+6411616246 anticipava4GREEN quando il comando era ancora running; esito
+ritirato, poi registrato solo dopo EXIT0 effettivo. Runner11 è FAIL con cleanup
+interrotto, non semplicemente INTERRUPTED. Ho avviato quel runner senza prima
+attendere l'analisi del ps che mostrava la fullsuite S00; fermati solo i miei
+PID10059/10053/10052/10045/9953/9875. Nessun PID S00 toccato, nessun tempo
+allargato per contesa. L'errore di coordinamento e le sue prove restano storici.
+
+S00 ha risposto direttamente: mantiene il raccordo nella STESSA318 dopo311,
+nessuna delega Room prima di quella integrazione; applicherà lui i soli hunks
+v3 oppure assegnerà la candidata consolidata. Il diff continua a non modificare
+Room. Non READY/DONE: verifica nativa finalev3, raccordo autorizzato, CI della
+nuova head e post-merge restano necessari. Merge/rilascio spettano sempreS00.
+
+Priorità successive, con lo stesso consumer:
+1. Rilascio effettivo slot daS00, poi controprova nativev3 con chiusura mentre
+   tastiera visibile. Accettazione:15check, zeroerrori; report/screenshot reali.
+2. S00 integra311 e applica/assegna i soli hunksv3 sulla consolidata. Accettazione:
+  4contratti Room e percorso Formula con errore/retry senza perdita, non solo copie.
+3. CI head/merge-tree esatte e verifica sul prodotto integrato; niente trasferimento
+   di verdi o approvazioni scientifiche. RUNLOG/NEXT appendice solo tramiteS00.

@@ -20,7 +20,7 @@ def main():
     args = parser.parse_args()
     repo = Path(__file__).resolve().parents[4]
     studio = repo / "apps/studio"
-    patch = Path(__file__).with_name("room-insert-math-v2.patch").resolve()
+    patch = Path(__file__).with_name("room-insert-math-v3.patch").resolve()
     sources = ["apps/studio/src/Room.tsx", "apps/studio/src/__tests__/Room.integration.test.tsx"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="s14-room-proof-", dir=repo.parent) as temp:

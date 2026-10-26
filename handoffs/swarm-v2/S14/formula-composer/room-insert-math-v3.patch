@@ -1,0 +1,154 @@
+--- a/apps/studio/src/Room.tsx
++++ b/apps/studio/src/Room.tsx
+@@ -114,6 +114,8 @@
+     [room, actualStore, lessonOsOpener],
+   )
+   const [mathOn, setMathOn] = useState(false)
++  const [mathPending, setMathPending] = useState(false)
++  const mathInsertPendingRef = useRef(false)
+   const [saved, setSaved] = useState(false)
+   const [lifecycleState, setLifecycleState] = useState<RoomLifecycleState>(() => ({
+     generation: lifecycleGeneration,
+@@ -783,13 +785,28 @@
+   }
+
+   async function insertMath(latex: string) {
+-    if (!apiRef.current || !latex.trim()) return
++    if (mathInsertPendingRef.current) throw new Error("Attendi l'inserimento della formula in corso.")
++    mathInsertPendingRef.current = true
++    setMathPending(true)
++    const canvas = apiRef.current
++    const journal = journalRef.current
+     try {
++      if (!canvas || !journal) throw new Error("Lavagna non pronta: riprova tra un istante.")
++      if (!latex.trim()) throw new Error("Scrivi una formula prima di inserirla.")
+       const { dataURL, width, height } = await latexToImage(latex)
++      if (apiRef.current !== canvas || journalRef.current !== journal) {
++        throw new Error("La lezione è cambiata durante l'inserimento. Riprova nella lezione corrente.")
++      }
+       addImages([{ dataURL, mimeType: "image/svg+xml", width, height, x: 160, y: 120 }])
+-      journalRef.current?.recordMathInsert(latex)
++      journal.recordMathInsert(latex)
+     } catch (err) {
+-      setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
++      if (apiRef.current === canvas && journalRef.current === journal) {
++        setStorageError("Inserimento formula non riuscito: " + (err as Error).message)
++      }
++      throw err
++    } finally {
++      mathInsertPendingRef.current = false
++      setMathPending(false)
+     }
+   }
+
+@@ -1018,7 +1035,7 @@
+               onNavigate={(href) => { void navigateToSurface(href) }}
+             />
+           )}
+-          <button onClick={() => setMathOn(v => !v)} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
++          <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
+           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
+           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
+           <button
+--- a/apps/studio/src/__tests__/Room.integration.test.tsx
++++ b/apps/studio/src/__tests__/Room.integration.test.tsx
+@@ -98,12 +98,12 @@
+
+ vi.mock("@excalidraw/excalidraw/index.css", () => ({}))
+ // Cattura onInsert per esercitare Room.insertMath (il composer vero e' pesante).
+-let capturedOnInsert: ((latex: string) => void) | null = null
++let capturedOnInsert: ((latex: string) => void | Promise<void>) | null = null
+ const composerModuleState = vi.hoisted(() => ({ loads: 0 }))
+ vi.mock("../MathComposer", () => {
+   composerModuleState.loads += 1
+   return ({
+-  default: (props: { onInsert: (latex: string) => void }) => {
++  default: (props: { onInsert: (latex: string) => void | Promise<void> }) => {
+     capturedOnInsert = props.onInsert
+     return "mock-math-composer"
+   },
+@@ -3261,6 +3261,75 @@
+ })
+
+ describe("insertMath: il fallimento di latexToImage usa il chip d'errore (offline = supportato)", () => {
++  it("dismisses the tools menu when opening the formula composer", async () => {
++    capturedOnInsert = null
++    const { store } = await createMockStore()
++    vi.spyOn(store, "loadScene").mockResolvedValue(null)
++    const root = createRoot(document.getElementById("root")!)
++    const RoomModule = await import("../Room")
++    root.render(<RoomModule.default store={store} />)
++    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
++    document.querySelector<HTMLButtonElement>('[aria-label="Apri menu"]')!.click()
++    await vi.waitFor(() => expect(document.querySelector(".st-actions-open")).not.toBeNull())
++    Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
++    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
++    expect(document.querySelector(".st-actions-open")).toBeNull()
++    root.unmount()
++  })
++
++  it("keeps the outer formula toggle closed to duplicate requests until failure settles", async () => {
++    capturedOnInsert = null
++    const { latexToImage } = await import("../latexToImage")
++    let rejectRender!: (reason: Error) => void
++    const renderPending = new Promise<never>((_resolve, reject) => { rejectRender = reject })
++    vi.mocked(latexToImage).mockReturnValueOnce(renderPending)
++    const { store } = await createMockStore()
++    vi.spyOn(store, "loadScene").mockResolvedValue(null)
++    const root = createRoot(document.getElementById("root")!)
++    const RoomModule = await import("../Room")
++    root.render(<RoomModule.default store={store} />)
++    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
++    const toggle = Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!
++    toggle.click()
++    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
++    const request = Promise.resolve(capturedOnInsert!("x^2"))
++    void request.catch(() => {})
++    await vi.waitFor(() => expect(toggle.disabled).toBe(true))
++    toggle.click()
++    expect(document.body.textContent).toContain("mock-math-composer")
++    await expect(capturedOnInsert!("y^2")).rejects.toThrow("Attendi l'inserimento")
++    rejectRender(new Error("render fallito"))
++    await expect(request).rejects.toThrow("render fallito")
++    await vi.waitFor(() => expect(toggle.disabled).toBe(false))
++    expect(document.body.textContent).toContain("mock-math-composer")
++    root.unmount()
++  })
++
++  it("rejects a deferred formula when the Room lifecycle changes before rendering finishes", async () => {
++    capturedOnInsert = null
++    const { latexToImage } = await import("../latexToImage")
++    let finishRender!: (image: { dataURL: string; width: number; height: number }) => void
++    const renderPending = new Promise<{ dataURL: string; width: number; height: number }>(resolve => { finishRender = resolve })
++    vi.mocked(latexToImage).mockReturnValueOnce(renderPending)
++    const { store } = await createMockStore()
++    vi.spyOn(store, "loadScene").mockResolvedValue(null)
++    const root = createRoot(document.getElementById("root")!)
++    const RoomModule = await import("../Room")
++    root.render(<RoomModule.default store={store} />)
++    await vi.waitFor(() => expect(document.body.textContent).toContain("mock-excalidraw"))
++    Array.from(document.querySelectorAll("button")).find(b => b.textContent?.trim() === "formula")!.click()
++    await vi.waitFor(() => expect(capturedOnInsert).toBeTypeOf("function"))
++    const request = Promise.resolve(capturedOnInsert!("x^2"))
++    void request.catch(() => {})
++    const replacement = await createMockStore()
++    const loaded = vi.spyOn(replacement.store, "loadScene").mockResolvedValue(null)
++    root.render(<RoomModule.default store={replacement.store} />)
++    await vi.waitFor(() => expect(loaded).toHaveBeenCalled())
++    finishRender({ dataURL: "data:image/svg+xml;base64,PHN2Zy8+", width: 24, height: 16 })
++    await expect(request).rejects.toThrow("La lezione è cambiata")
++    root.unmount()
++  })
++
+   it("latexToImage rigetta (CDN MathJax giu): risuperficia il messaggio nel chip st-err", async () => {
+     capturedOnInsert = null
+     const { latexToImage } = await import("../latexToImage")
+@@ -3286,7 +3355,7 @@
+       expect(capturedOnInsert).toBeTypeOf("function")
+     }, { timeout: 5000, interval: 10 })
+
+-    capturedOnInsert!("x^2")
++    await expect(capturedOnInsert!("x^2")).rejects.toThrow("MathJax CDN load failed")
+
+     await vi.waitFor(() => {
+       const err = document.querySelector(".st-err")

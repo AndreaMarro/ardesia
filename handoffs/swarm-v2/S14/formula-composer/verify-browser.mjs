@@ -17,8 +17,8 @@ const mathjaxPath = require.resolve('mathjax-full/es5/tex-svg-full.js')
 const scratch = await mkdtemp(resolve(root, '../s14-browser-'))
 const dependencyRoots = await Promise.all(['node_modules', 'apps/studio/node_modules'].map(path => realpath(resolve(root, path))))
 await mkdir(output, { recursive: true })
-const report = { origin, composition: 'Room patch v2 + real MathComposer; source Room unchanged', checks: [], errors: [], expectedFailures: [] }
-let browser, server, lastPage
+const report = { origin, browserPath: 'Browser plugin absent; repository Playwright harness', composition: 'Room patch v3 + real MathComposer; source Room unchanged', checks: [], errors: [], expectedFailures: [] }
+let browser, server, lastPage, serverLog = ''
 function check(name, data = true) { report.checks.push({ name, data }); console.log(`PASS ${name}`) }
 async function native(page, action, value) {
   return page.locator('math-field').evaluate((mf, input) => {
@@ -62,21 +62,27 @@ try {
     await mkdir(dirname(resolve(scratch, source)), { recursive: true })
     await cp(resolve(root, source), resolve(scratch, source))
   }
-  const patched = spawnSync('patch', ['-p1', '--batch', '-i', resolve(here, 'room-insert-math-v2.patch')], { cwd: scratch, encoding: 'utf8' })
+  const patched = spawnSync('patch', ['-p1', '--batch', '-i', resolve(here, 'room-insert-math-v3.patch')], { cwd: scratch, encoding: 'utf8' })
   if (patched.status !== 0) throw new Error(patched.stdout + patched.stderr)
   const config = resolve(scratch, 'vite.config.ts')
   await writeFile(config, `import base from ${JSON.stringify(resolve(root, 'apps/studio/vite.config.ts'))};
 import {readFileSync} from 'node:fs';
 export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, server:{...base.server,fs:{allow:[...(base.server.fs.allow??[]),...${JSON.stringify(dependencyRoots)}]}}, plugins:[{name:'s14-candidate-room-copy',enforce:'pre',load(id){if(id.split('?')[0]===${JSON.stringify(resolve(root, 'apps/studio/src/Room.tsx'))})return readFileSync(${JSON.stringify(resolve(scratch, 'apps/studio/src/Room.tsx'))},'utf8')}},...(base.plugins??[])]};`)
-  let serverLog = ''
   server = spawn(process.execPath, [resolve(root, 'node_modules/vite/bin/vite.js'), '--config', config, '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { cwd: resolve(root, 'apps/studio'), stdio: ['ignore', 'pipe', 'pipe'] })
+  server.on('exit', (code, signal) => { report.serverExit = { code, signal } })
   for (const stream of [server.stdout, server.stderr]) stream.on('data', chunk => { serverLog += chunk })
   const deadline = Date.now() + 60000
   while (true) {
-    if (server.exitCode !== null) throw new Error(`Vite exited: ${serverLog}`)
+    if (server.exitCode !== null || server.signalCode !== null) throw new Error(`Vite exited: ${serverLog}`)
     try { if ((await fetch(origin)).ok) break } catch {}
     if (Date.now() > deadline) throw new Error(`Vite timeout: ${serverLog}`)
     await new Promise(resolve => setTimeout(resolve, 200))
+  }
+  // This scenario measures behavior, not Vite's cold source compilation.
+  // Warm only the real editor module/dependency; do not lengthen UI assertions.
+  const editorSource = await (await fetch(`${origin}/src/MathComposer.tsx`)).text()
+  for (const match of editorSource.matchAll(/["']([^"']*mathlive[^"']*\.js[^"']*)["']/g)) {
+    if (match[1].startsWith('/')) await fetch(new URL(match[1], origin))
   }
   browser = await chromium.launch({ headless: true })
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, permissions: ['clipboard-read', 'clipboard-write'] })
@@ -146,6 +152,17 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
   await expect(page.locator('math-field')).toHaveCount(0)
   await expect.poll(() => countImages(page, room)).toBe(1)
   check('real MathJax SVG inserted in Excalidraw and saved')
+  // The normal UI boundary flushes canvas AND journal before cold reopen.
+  await page.locator('[data-view-nav-item="continuita"]').click()
+  await expect(page.getByTestId('continuity-surface')).toHaveAttribute('data-state', 'sessions')
+  await page.locator('[data-view-nav-item="lezione"]').click()
+  await expect(page.locator('.excalidraw').first()).toBeVisible({ timeout: 60000 })
+  expect(await page.evaluate(async () => {
+    const h = window.__MAESTRO_TEST__
+    const journal = await h.store.read(h.PATHS.JOURNAL)
+    return journal ? (await journal.text()).includes('journal.math.insert') : false
+  })).toBe(true)
+  check('normal Continuity navigation flushes formula journal before reopen')
   await page.reload()
   await expect(page.locator('.excalidraw').first()).toBeVisible({ timeout: 60000 })
   await expect.poll(() => countImages(page, room)).toBe(1)
@@ -186,6 +203,10 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
   await mobile.screenshot({ path: resolve(output, 'formula-mobile.png') })
   expect(await mobile.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   check('touch keyboard toggles both ways without horizontal overflow')
+  await keyboard.click()
+  await expect.poll(() => mobile.evaluate(() => window.mathVirtualKeyboard.visible)).toBe(true)
+  await expect(mobile.locator('.ML__keyboard.is-visible .MLK__plate')).toBeInViewport({ ratio: 0.99 })
+  await mobile.screenshot({ path: resolve(output, 'formula-mobile-keyboard.png') })
   await mobile.getByRole('button', { name: 'chiudi', exact: true }).click()
   await expect(mobile.locator('math-field')).toHaveCount(0)
   await openFormula(mobile)
@@ -203,6 +224,7 @@ export default {...base, cacheDir:${JSON.stringify(resolve(scratch, 'cache'))}, 
 } finally {
   await browser?.close()
   server?.kill('SIGTERM')
+  await writeFile(resolve(output, 'vite.log'), serverLog)
   await writeFile(resolve(output, 'report.json'), JSON.stringify(report, null, 2) + '\n')
   await rm(scratch, { recursive: true, force: true })
 }

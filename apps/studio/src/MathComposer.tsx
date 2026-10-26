@@ -37,7 +37,9 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
     if (!host.current) return
     const mf = new MathfieldElement()
     mf.value = "\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"
-    mf.mathVirtualKeyboardPolicy = "auto"
+    // Explicit host/native controls avoid auto-on-focus reopening the touch
+    // keyboard while a toolbar command is trying to hide it.
+    mf.mathVirtualKeyboardPolicy = "manual"
     mf.style.cssText = "width:100%;min-height:64px;font-size:30px;"
     mf.setAttribute("aria-label", "Formula matematica")
     mf.setAttribute("aria-describedby", hintId)
