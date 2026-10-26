@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { it,expect,vi } from 'vitest'
-import { render,fireEvent,waitFor,cleanup } from '@testing-library/react'
+import { render,fireEvent,waitFor,cleanup,act } from '@testing-library/react'
 import LivingLessonReplay from '../LivingLessonReplay'
 import type { LessonMoment,PrivateNotes } from '../model'
 import type { WorkspaceStore } from '../../../store/WorkspaceStore'
@@ -22,5 +22,16 @@ it('waits for note load and ignores a save rejection from the previous context',
  load('note B');await waitFor(()=>expect((view.getByLabelText('Nota privata') as HTMLTextAreaElement).value).toBe('note B'))
  rejectSave(Error('late A failure'));await Promise.resolve()
  expect(failed).not.toHaveBeenCalled();expect(view.queryByText('late A failure')).toBeNull();expect((view.getByLabelText('Nota privata') as HTMLTextAreaElement).value).toBe('note B')
+ cleanup()
+})
+
+it('clears private text when access is invalidated before a media element exists',async()=>{
+ let allowed=true;const listeners=new Set<()=>void>()
+ const scopedAccess={allowed:()=>allowed,subscribe:(fn:()=>void)=>{listeners.add(fn);return()=>{listeners.delete(fn)}},authorize:async()=>allowed}
+ const view=render(<LivingLessonReplay store={{} as WorkspaceStore} lessonId='notes' moment={a} editorial={{v:1,lessonId:'notes',moments:[a]}} access={scopedAccess} cursor={cursor} notes={{read:async()=> 'private A',write:async()=>{}}} onUnavailable={()=>{}}/>)
+ await waitFor(()=>expect((view.getByLabelText('Nota privata') as HTMLTextAreaElement).value).toBe('private A'))
+ act(()=>{allowed=false;for(const fn of listeners)fn()})
+ expect((view.getByLabelText('Nota privata') as HTMLTextAreaElement).value).toBe('')
+ expect((view.getByLabelText('Nota privata') as HTMLTextAreaElement).disabled).toBe(true)
  cleanup()
 })

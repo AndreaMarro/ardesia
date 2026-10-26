@@ -20,6 +20,7 @@ export default function LivingLessonReplay({ store, lessonId, moment, editorial,
   const [playing, setPlaying] = useState(false)
   const [note, setNote] = useState('')
   const [noteReady, setNoteReady] = useState(false)
+  const [noteScope, setNoteScope] = useState<{ moment: LessonMoment; notes: PrivateNotes | undefined; access: LessonAccess } | null>(null)
   const [noteStatus, setNoteStatus] = useState('')
   const playActions = useRef(createIntentFence())
   const noteActions = useRef(createIntentFence())
@@ -30,16 +31,19 @@ export default function LivingLessonReplay({ store, lessonId, moment, editorial,
   const recordingKey = recording ? JSON.stringify([recording.assetPath, recording.recordingId, recording.sha256, recording.startEpoch, recording.endEpoch]) : ''
   const seconds = recording && cursor.epoch !== null ? (cursor.epoch - recording.startEpoch) / 1000 : 0
   const duration = recording ? recording.durationMs / 1000 : 0
+  const currentNote = noteScope?.moment === moment && noteScope.notes === notes && noteScope.access === access
+  const currentNoteReady = currentNote && noteReady
 
   useEffect(() => () => { playActions.current.invalidate(); noteActions.current.invalidate() }, [moment, media, access])
   useEffect(() => {
     let active = true
-    setNote(''); setNoteReady(!notes); setNoteStatus('')
+    setNote(''); setNoteReady(!notes); setNoteScope({ moment, notes, access }); setNoteStatus('')
+    const unsubscribe = access.subscribe(() => { active = false; noteActions.current.invalidate(); setNote(''); setNoteReady(false); setNoteScope(null); setNoteStatus('Accesso alla nota terminato') })
     if (notes) void notes.read(moment).then(value => {
       if (active) { setNote(value); setNoteReady(true) }
     }).catch(error => { if (active) setNoteStatus('Nota non disponibile: ' + (error as Error).message) })
-    return () => { active = false }
-  }, [notes, moment])
+    return () => { active = false; unsubscribe() }
+  }, [notes, moment, access])
 
   useEffect(() => {
     const host = container.current
@@ -118,7 +122,7 @@ export default function LivingLessonReplay({ store, lessonId, moment, editorial,
   async function saveNote() {
     const current = noteActions.current.begin()
     try {
-      if (!notes || !noteReady || !await access.authorize(moment)) { if (current()) throw Error('Nota non autorizzata'); return }
+      if (!notes || !currentNoteReady || !await access.authorize(moment)) { if (current()) throw Error('Nota non autorizzata'); return }
       if (!current() || !access.allowed()) return
       await notes.write(moment, note)
       if (current() && access.allowed()) setNoteStatus('Nota privata salvata')
@@ -129,6 +133,6 @@ export default function LivingLessonReplay({ store, lessonId, moment, editorial,
     <div ref={container} className="ll-wave" aria-label="Waveform e timeline" /><p role="status">{status}</p>
     <div className="ll-actions"><button disabled={status === 'Caricamento waveform…'} onClick={() => void toggle()}>{playing ? 'Pausa' : 'Ascolta'}</button><button onClick={() => { media?.pause(); if (recording) cursor.seekEpoch(recording.startEpoch) }}>Ricomincia</button><label>Posizione audio<input aria-label="Posizione audio" type="range" min="0" max={duration} step="0.01" value={Math.max(0, Math.min(seconds, duration))} onChange={event => { if (recording) cursor.seekEpoch(recording.startEpoch + Number(event.target.value) * 1000) }} /></label><output>{seconds.toFixed(1)} / {duration.toFixed(1)} s</output></div>
     <div className="ll-caption">{captionContent ?? 'Trascrizione non presente per questo istante.'}</div>
-    {notes && <div className="ll-note"><label>Nota privata<textarea aria-label="Nota privata" disabled={!noteReady} value={note} maxLength={4000} onChange={event => setNote(event.target.value)} /></label><button disabled={!noteReady} onClick={() => void saveNote()}>Salva nota privata</button><span role="status">{noteStatus}</span></div>}
+    {notes && <div className="ll-note"><label>Nota privata<textarea aria-label="Nota privata" disabled={!currentNoteReady} value={currentNote ? note : ''} maxLength={4000} onChange={event => setNote(event.target.value)} /></label><button disabled={!currentNoteReady} onClick={() => void saveNote()}>Salva nota privata</button><span role="status">{currentNote ? noteStatus : !access.allowed() ? 'Accesso alla nota terminato' : ''}</span></div>}
   </section>
 }
