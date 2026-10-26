@@ -58,6 +58,7 @@ jobs:
           ARDESIA_S00_SCIENCE_EVIDENCE: ${{ runner.temp }}/science-composition
           S06_SOURCE_MANIFEST: ${{ runner.temp }}/study-source-manifest.json
         run: |
+          git rev-parse HEAD > "$RUNNER_TEMP/consumer-source-commit.txt"
           python3 - <<'PY'
           import hashlib, json, os
           from pathlib import Path
@@ -68,6 +69,8 @@ jobs:
           PY
           services/study-api/.venv/bin/python handoffs/swarm-v2/S00/prove-study.py --output "$RUNNER_TEMP/study-composition"
           node handoffs/swarm-v2/S00/prove-science.cjs
+          test "$(git rev-parse HEAD)" = "$(cat "$RUNNER_TEMP/consumer-source-commit.txt")"
+          test -z "$(git status --porcelain -- apps/web/src services/study-api packages/engine/lessonos)"
       - name: Integrated consumer browser evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -82,6 +85,7 @@ jobs:
             ${{ runner.temp }}/science-composition/*.png
             ${{ runner.temp }}/science-composition/api.log
             ${{ runner.temp }}/study-source-manifest.json
+            ${{ runner.temp }}/consumer-source-commit.txt
           if-no-files-found: warn
           retention-days: 14
 

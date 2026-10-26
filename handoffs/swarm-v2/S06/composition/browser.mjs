@@ -118,5 +118,24 @@ try{
  assertCleanSource();
  await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'PASS',sourceCommit,sourceFiles,checks,errors,totalMilliseconds:Math.round(performance.now()-started),scope:'Installed PR309 source: compiled actual App + Shell316 + actual create_app, synthetic local database; no remote deployment'},null,2)+'\n');
  console.log(JSON.stringify({status:'PASS',checks:checks.length,errors}));
-}catch(e){const diagnostics=[];for(const p of observedPages){if(p.isClosed())continue;try{diagnostics.push(await p.evaluate(()=>({events:window.__studyEvents,view:document.querySelector('.independent-study')?.textContent})));await p.screenshot({path:path.join(outputs,'failure-'+diagnostics.length+'.png'),fullPage:true});}catch{/* Preserve the original failure even if its page crashed. */}}await writeFile(path.join(outputs,'result.json'),JSON.stringify({status:'FAIL',sourceCommit,checks,errors,actions,diagnostics,error:String(e)},null,2)+'\n');throw e;}
+}catch(e){
+ const failure={status:'FAIL',sourceCommit,checks,errors,actions,error:String(e)};
+ // Preserve the original failure before querying a potentially stalled renderer.
+ await writeFile(path.join(outputs,'result.json'),JSON.stringify(failure,null,2)+'\n');
+ const diagnostics=[];
+ for(const p of observedPages){
+  if(p.isClosed())continue;
+  let timer;
+  try{
+   const snapshot=await Promise.race([
+    p.evaluate(()=>({events:window.__studyEvents,view:document.querySelector('.independent-study')?.textContent})),
+    new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('diagnostic_renderer_timeout')),3000);}),
+   ]);
+   diagnostics.push(snapshot);
+   await p.screenshot({path:path.join(outputs,'failure-'+diagnostics.length+'.png'),fullPage:true,timeout:3000});
+  }catch(error){diagnostics.push({unavailable:String(error)});}
+  finally{clearTimeout(timer);}
+ }
+ await writeFile(path.join(outputs,'result.json'),JSON.stringify({...failure,diagnostics},null,2)+'\n');throw e;
+}
 finally{await browser.close();}
