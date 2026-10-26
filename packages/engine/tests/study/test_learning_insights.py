@@ -239,3 +239,14 @@ def test_verified_transfer_moves_from_actionable_suggestion_to_grounded_recovery
     assert result['suggestions'] == []
     assert result['recoveries'][0]['threadId'] == thread['threadId']
     assert result['recoveries'][0]['provenance'] == 'CORE_REVIEWED_TRANSFER'
+
+
+def test_source_context_is_resolved_from_authorized_canonical_revision(tmp_path):
+    store, tutor, student, *_ = setup_store(tmp_path)
+    attempt(store, student)
+    for principal in (student, tutor):
+        projected = dashboard(store, principal, 'fluidi')['attempts'][0]['sourceRefs'][0]
+        canonical = store.get_resource_revision(principal, projected['resourceId'], projected['revisionId'])
+        assert projected['contextId'] == canonical['contextId']
+        assert projected['resourceId'] == canonical['id']
+        assert projected['revisionId'] == canonical['revisionId']

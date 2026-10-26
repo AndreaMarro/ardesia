@@ -2,7 +2,7 @@ export type InsightAttempt = {
   receiptId: string; activityId: string; studentId: string; parentId: string | null;
   receivedAt: number; modelVersion: number | null;
   packRef: { packId: string; packVersion: number; packSha256: string };
-  sourceRefs: { resourceId: string; revisionId: string }[];
+  sourceRefs: { resourceId: string; revisionId: string; contextId?: string }[];
   sourceState: "CURRENT" | "HISTORICAL"; supportUsed: string[];
   assistance: "SUPPORT_REQUESTED" | "NO_SUPPORT_REQUESTED" | "NOT_RECORDED";
   outcome: "MATCH" | "MISMATCH" | "NOT_CHECKED";
