@@ -178,3 +178,6 @@ Fonte golden locale7c941263,26PASS, prove e limiti in `handoffs/swarm-v2/S00/g0-
 
 
 Addendum CI G0: la head011246b ha raggiunto GitHub con tree esatto; S19 ha fermato il preparatore storico della patch325. Correzione: binding ai moduli attuali,49test locali PASS e3negativi sulle copie temporanee. Non saltare S19 o riusare la vecchia CI: verificare nuova head313, sette required più S19, merge ordinario e pushprima Preview. Evidenza in `handoffs/swarm-v2/S00/g0-final-20261026/s19-ci/`.
+
+
+Addendum navigazione G0: b8 ha passato golden26, layout, Studio e S19; Web ha fermato il test storico della cronologia. Due RED conservati: aspettativa Shell obsoleta e perdita effettiva dell’unità nel cambio edizione. La correzione minima preserva URL esatto e passa browser+22unitari. Rileggere head e CI della313 prima di merge e Preview; prove in g0-final-20261026/pathway-history-ci.

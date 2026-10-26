@@ -280,7 +280,10 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
     // authorized entries in this actor's current discovery page.
     selectionOwner.current = actor;
     url.searchParams.set("edition", id);
-    history.replaceState(null, "", url);
+    // Explicit course navigation must retain the previous exact lesson/catalog
+    // location. Discovery and popstate reconciliation still replace their entry.
+    if (id === editionId) history.replaceState(null, "", url);
+    else history.pushState(null, "", url);
     setEditionId(id);
   }
   function reloadEditions(id: string) {
