@@ -45,6 +45,7 @@ export function PdfSurface({
   const [runtime, setRuntime] = useState<ReaderRuntime | null>(null),
     [error, setError] = useState("");
   const [, setTick] = useState(0);
+  const [attempt, setAttempt] = useState(0);
   const [zoomValue, setZoomValue] = useState("page-width");
   const [page, setPage] = useState(1),
     [mode, setMode] = useState<"text" | "region" | "pan">("text"),
@@ -111,6 +112,15 @@ export function PdfSurface({
               setMatches(`${matchesCount.current} / ${matchesCount.total}`);
           },
         );
+        void r.failure.then(() => {
+          if (!ac.signal.aborted) {
+            r.destroy();
+            setRuntime(null);
+            setError(
+              "La lettura del PDF si è interrotta. Puoi riprovare o scaricare l’originale.",
+            );
+          }
+        });
         setRuntime(r);
         void r.viewer.pagesPromise.then(() => {
           if (!ac.signal.aborted) r.viewer.currentScaleValue = "page-width";
@@ -129,7 +139,7 @@ export function PdfSurface({
       ac.abort();
       active?.destroy();
     };
-  }, [blob, source.document.pageCount]);
+  }, [blob, source.document.pageCount, attempt]);
   useEffect(() => {
     if (!runtime) return;
     let valid = true;
@@ -425,7 +435,14 @@ export function PdfSurface({
         </div>
       )}
       {anchorNotice && <p role="status">{anchorNotice}</p>}
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <div>
+          <p role="alert">{error}</p>
+          <button onClick={() => setAttempt((n) => n + 1)}>
+            Riprova lettura PDF
+          </button>
+        </div>
+      )}
       <div className="ls-document-layout">
         <aside className="ls-pages" aria-label="Pagine e sezioni">
           <details open>

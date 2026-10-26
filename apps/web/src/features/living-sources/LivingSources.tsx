@@ -1,3 +1,4 @@
+import { livingSourceLocation } from "./lessonBridge";
 import { useRef, useState } from "react";
 import {
   describeError,
@@ -49,6 +50,21 @@ export function LivingSources({
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   const pending = useRef(false);
+  function selectEntry(
+    entry: Pick<StudyResource, "id" | "revisionId" | "contextId" | "kind">,
+  ) {
+    setSelected(entry);
+    history.replaceState(
+      history.state,
+      "",
+      livingSourceLocation(
+        location.href,
+        reference(entry),
+        entry.kind as "living-source" | "living-annotation",
+        route?.lesson ?? lesson,
+      ),
+    );
+  }
   const entries = new Map(
     [...data.resources, ...extra]
       .filter(
@@ -86,7 +102,7 @@ export function LivingSources({
         { headers: { "Idempotency-Key": "living-source:" + asset.id } },
       );
       ticket.signal.throwIfAborted();
-      setSelected(r);
+      selectEntry(r);
       setExtra((v) => [...v, r]);
       await onUpdate();
     } catch (e) {
@@ -122,7 +138,7 @@ export function LivingSources({
       );
       ticket.signal.throwIfAborted();
       setExtra((v) => [...v, r]);
-      setSelected(r);
+      selectEntry(r);
       await onUpdate();
     } catch (e) {
       setError(
@@ -177,7 +193,7 @@ export function LivingSources({
           <button
             key={r.id}
             aria-pressed={r.id === selected?.id}
-            onClick={() => setSelected(r)}
+            onClick={() => selectEntry(r)}
           >
             {r.kind === "living-source"
               ? sourceTitle(r.text)
@@ -212,7 +228,7 @@ export function LivingSources({
           lesson={route?.lesson ?? lesson}
           onUse={onUse}
           onSaved={(r) => {
-            setSelected(r);
+            selectEntry(r);
             setExtra((v) => [...v.filter((x) => x.id !== r.id), r]);
             void onUpdate().catch(() => {});
           }}

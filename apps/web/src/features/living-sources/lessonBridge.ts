@@ -19,9 +19,7 @@ export function livingSourceLink(
   });
   return "/?" + query;
 }
-export function readLivingRoute(
-  search: string,
-): {
+export function readLivingRoute(search: string): {
   ref: LivingReference;
   kind: "living-source" | "living-annotation";
   lesson?: LivingAnnotation["lesson"];
@@ -57,4 +55,19 @@ export function readLivingRoute(
   } catch {
     return null;
   }
+}
+
+/** Preserve shell/edition/history state; only this feature's exact-reference query changes. */
+export function livingSourceLocation(
+  currentUrl: string,
+  ref: LivingReference,
+  kind: "living-source" | "living-annotation",
+  lesson?: LivingAnnotation["lesson"],
+): string {
+  const url = new URL(currentUrl);
+  url.searchParams.set(
+    "living",
+    JSON.stringify({ ...ref, kind, ...(lesson ? { lesson } : {}) }),
+  );
+  return url.href;
 }

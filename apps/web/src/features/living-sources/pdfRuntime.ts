@@ -1,17 +1,19 @@
-import type { PDFDocumentProxy, PDFDocumentLoadingTask } from "pdfjs-dist";
+import type { PDFDocumentProxy } from "pdfjs-dist";
 import type {
   EventBus,
   PDFViewer,
   PDFLinkService,
 } from "pdfjs-dist/web/pdf_viewer.mjs";
+import { openPdf, type PdfTask } from "../../integrations/notebook/pdfDocument";
 export type ReaderRuntime = {
   pdf: PDFDocumentProxy;
   viewer: PDFViewer;
   links: PDFLinkService;
   bus: EventBus;
+  failure: Promise<Error>;
   destroy: () => void;
 };
-/** Adopt the full installed upstream viewer; no second PDF.js, CDN, fake worker or scripting manager. */
+/** Full installed upstream viewer over the existing retryable, isolated PDF loader. */
 export async function createReader(
   blob: Blob,
   container: HTMLDivElement,
@@ -19,15 +21,9 @@ export async function createReader(
   signal: AbortSignal,
 ): Promise<ReaderRuntime> {
   const pdfjs = await import("pdfjs-dist");
-  const [upstream, workerUrl] = await Promise.all([
-    import("pdfjs-dist/web/pdf_viewer.mjs"),
-    import("pdfjs-dist/build/pdf.worker.min.mjs?url"),
-  ]);
+  const upstream = await import("pdfjs-dist/web/pdf_viewer.mjs");
   signal.throwIfAborted();
-  const port = new Worker(workerUrl.default, { type: "module" });
-  const worker = pdfjs.PDFWorker.create({ port });
-  let task: PDFDocumentLoadingTask | undefined;
-  let viewer: PDFViewer | undefined;
+  let task: PdfTask | undefined, viewer: PDFViewer | undefined;
   let closed = false;
   const destroy = () => {
     if (closed) return;
@@ -35,34 +31,17 @@ export async function createReader(
     signal.removeEventListener("abort", destroy);
     viewer?.setDocument(null);
     void task?.destroy().catch(() => {});
-    worker.destroy();
-    port.terminate();
   };
   signal.addEventListener("abort", destroy, { once: true });
   try {
     const bytes = await blob.arrayBuffer();
     signal.throwIfAborted();
-    const base = new URL(
-      `${import.meta.env.BASE_URL}pdfjs/6.4.299/`,
-      location.href,
-    ).href;
-    task = pdfjs.getDocument({
-      data: new Uint8Array(bytes),
-      worker,
-      enableXfa: false,
-      stopAtErrors: true,
-      cMapUrl: base + "cmaps/",
-      cMapPacked: true,
-      standardFontDataUrl: base + "standard_fonts/",
-      iccUrl: base + "iccs/",
-      wasmUrl: base + "wasm/",
-      canvasMaxAreaInBytes: 16 * 1024 * 1024,
-    });
+    task = await openPdf(bytes, signal);
     const pdf = await task.promise;
     signal.throwIfAborted();
     if (pdf.numPages < 1 || pdf.numPages > 20) throw Error("pdf_page_limit");
-    const bus = new upstream.EventBus();
-    const links = new upstream.PDFLinkService({ eventBus: bus });
+    const bus = new upstream.EventBus(),
+      links = new upstream.PDFLinkService({ eventBus: bus });
     const find = new upstream.PDFFindController({
       eventBus: bus,
       linkService: links,
@@ -78,14 +57,13 @@ export async function createReader(
       textLayerMode: 1,
       enableAutoLinking: false,
       maxCanvasPixels: 8 * 1024 * 1024,
-      // Upstream 6.4.299 supports AbortSignal cleanup; its generated d.ts omits it.
       ...{ abortSignal: signal },
     });
     links.externalLinkEnabled = false;
     links.setViewer(viewer);
     links.setDocument(pdf);
     viewer.setDocument(pdf);
-    return { pdf, viewer, links, bus, destroy };
+    return { pdf, viewer, links, bus, failure: task.failure, destroy };
   } catch (error) {
     destroy();
     throw error;
