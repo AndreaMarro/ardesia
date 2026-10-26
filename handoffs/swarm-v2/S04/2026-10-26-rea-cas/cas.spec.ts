@@ -15,6 +15,10 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
   await expect(page.getByRole('region',{name:'Laboratorio matematico del revisore'}).getByLabel('Fogli privati salvati')).toBeVisible();
  };
  await open();const lab=page.getByRole('region',{name:'Laboratorio matematico del revisore'});
+ const noticeUrl=await lab.getByRole('link',{name:'Provenienza e licenze del motore'}).getAttribute('href');
+ expect(noticeUrl?.startsWith('data:')).toBe(false);
+ const noticeResponse=await page.request.get(noticeUrl!);expect(noticeResponse.status()).toBe(200);
+ expect(await noticeResponse.text()).toBe(await readFile(new URL('../../../../apps/web/src/features/assessment-quality/THIRD_PARTY_NOTICES.txt',import.meta.url),'utf8'));
  await expect(lab.locator('math-field')).toHaveCount(2);
  const started=Date.now();await lab.getByRole('button',{name:'Esegui controprova'}).click();
  await expect(lab.getByRole('heading',{name:'Scarto simbolico nullo'})).toBeVisible({timeout:30000});
@@ -73,5 +77,5 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  expect((await page.request.get(`/study/resources/${saved.id}`)).status()).toBe(403);
  expect((await page.request.get('/study/editions/fluidi/question-banks/physics-semestre-2026/review/questions')).status()).toBe(403);
  expect(errors).toEqual([]);
- await writeFile(`${outputs}/S04-CAS-browser.json`,JSON.stringify({coldCalculationMs,resourceId:saved.id,initialRevision:saved.revisionId,currentRevision:current,independentIdenticalWorksheetId:duplicate.id,decimalFractionAccepted:true,note,viewports:[1440,390],worker:'real bundled donor',core:'real SQLite/API',consoleErrors:errors,expectedConflictConsole:expectedConsole},null,2));
+ await writeFile(`${outputs}/S04-CAS-browser.json`,JSON.stringify({coldCalculationMs,resourceId:saved.id,initialRevision:saved.revisionId,currentRevision:current,independentIdenticalWorksheetId:duplicate.id,decimalFractionAccepted:true,licenseAssetByteMatch:true,note,viewports:[1440,390],worker:'real bundled donor',core:'real SQLite/API',consoleErrors:errors,expectedConflictConsole:expectedConsole},null,2));
 });

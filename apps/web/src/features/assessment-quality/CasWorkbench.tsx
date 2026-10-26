@@ -13,7 +13,7 @@ import {
   WORKSHEET_KIND,
 } from "./worksheet";
 import type { Binding, Worksheet } from "./worksheet";
-import notices from "./THIRD_PARTY_NOTICES.txt?url";
+import notices from "./THIRD_PARTY_NOTICES.txt?url&no-inline";
 type Detail = {
   questionVersion: number;
   contentSha256: string;
