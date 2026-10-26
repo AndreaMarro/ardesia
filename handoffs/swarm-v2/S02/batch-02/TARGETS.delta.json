@@ -1,0 +1,24 @@
+{
+  "status": "PROPOSAL_FOR_REGISTRY_OWNER_NOT_APPLIED",
+  "registryBase": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+  "registrySha256": "df6d75716ab99dbd79d98d666818e56f75a9ebcd2dcb9a61e0a60516c2ad1141",
+  "preserveExistingIdsAndEvidence": true,
+  "updates": [{
+    "id": "TARGET-117",
+    "owner": "S02",
+    "status": "ADOPTED",
+    "adoptionScope": "@radix-ui/react-dialog 1.3.1 in ProductShell/CommandSearch, merged PR308 main8e0737b1; existing Login also uses this package. Does not claim adoption of the whole Radix/shadcn catalog.",
+    "decision": "REUSE",
+    "license": "MIT",
+    "observe": "Installed dist static imports, exports, controllable state and modal composition; partial REA graph, no runtime inferred.",
+    "reuse": "Published package API and modal/focus/portal/dismissal/scroll subsystem under its existing lock pin; no new package or copied website assets.",
+    "substitutes": "Handwritten focus trap, portal, focus guards, scroll locking and outside dismissal",
+    "proof": "PR308 Core/browser evidence + post-merge CI; PR316 availability unit/CI; new dynamic route test passes. New S05/S06 Root mount and native dynamic-focus E2E still pending.",
+    "evidence": "handoffs/swarm-v2/S02/batch-02/ACQUISITION.md",
+    "dependencyInventory": "handoffs/swarm-v2/S02/batch-02/installed-license-inventory.json"
+  }],
+  "candidateProposalsWithoutAssignedId": [
+    {"name":"React Aria Components","versionObserved":"1.22.1 upstream manifest","status":"INVESTIGATED","decision":"DEFER","scope":"Modal and overlay/collection system","reason":"No demonstrated gap justifies a second interaction system in current Shell; not installed, benchmark not run.","license":"Apache-2.0","owner":"S02"},
+    {"name":"Ariakit React","versionObserved":"0.4.42 upstream manifest","status":"INVESTIGATED","decision":"DEFER","scope":"Dialog/store/combobox package only","reason":"Current Radix meets demonstrated Shell needs. Package MIT; repository app and Plus examples have different rights, excluded.","license":"MIT in packages/ariakit-react/license","owner":"S02"}
+  ]
+}
