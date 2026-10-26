@@ -2,7 +2,8 @@ import {useEffect,useRef,useState} from 'react';
 import {describeError,requestKey,type StudyMe} from '../../api';
 import {scienceApi} from './scienceApi';
 import {ScientificPlot} from './ScientificPlot';
-import type {Capability,Catalog,Comparison,Parameters,ResourceRef,SavedScience,ScienceApi,ScienceResult,Snapshot} from './types';
+import {checkResult} from './validateResult';
+import type {Capability,Catalog,Parameters,ResourceRef,SavedScience,ScienceApi,ScienceResult,Snapshot} from './types';
 import './science-library.css';
 
 export type ScienceLibraryProps={me:StudyMe;editionId:string;api?:ScienceApi;resourceRef?:ResourceRef;
@@ -29,20 +30,6 @@ function message(error:unknown){
     invalid_science_context:'La risorsa non corrisponde al contesto aperto.',
   } as Record<string,string>)[code]||describeError(error,'La rete o il servizio non rispondono. Il testo aperto resta qui; puoi riprovare.');
 }
-function checkResult(value:Comparison,c:Capability,p:Parameters):ScienceResult{
-  const r=value.result;
-  if(!r||r.activityId!==c.id||r.version!==c.version||r.dataVersion!==1||r.unit!==c.primaryOutput.unit
-    ||!Number.isFinite(r.value)||Math.abs(r.value)>1e100||value.assessment!=='MODEL_COMPARISON_NOT_A_GRADE'
-    ||!r.parameters||typeof r.parameters!=='object'||Array.isArray(r.parameters)
-    ||JSON.stringify(Object.keys(r.parameters).sort())!==JSON.stringify(Object.keys(p).sort())
-    ||Object.entries(p).some(([k,v])=>r.parameters[k]!==v)
-    ||!Array.isArray(r.observables)||!r.observables.length
-    ||r.observables.some(o=>!Number.isFinite(o.value)||Math.abs(o.value)>1e100)
-    ||!Array.isArray(r.plots)||r.plots.some(plot=>!Array.isArray(plot.series)
-      ||plot.series.some(s=>!Array.isArray(s.values)||s.values.length>1000||s.values.some(n=>!Number.isFinite(n)||Math.abs(n)>1e100))))throw new Error('incompatible_science_result');
-  return r;
-}
-
 export function ScienceLibrary(props:ScienceLibraryProps){
   const key=JSON.stringify([props.me.id,props.me.role,props.editionId,props.resourceRef?.resourceId,props.resourceRef?.revisionId]);
   return <ScienceWorkspace key={key} {...props}/>;
@@ -169,7 +156,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
         <p>Salva configurazione e testo nel tuo quaderno privato. Le modifiche restano aperte finché il salvataggio non viene confermato.</p>
         <button type="button" disabled={saving||(!pending.current&&!valid)} onClick={()=>void save()}>{saving?'Salvataggio in corso…':pending.current?'Riprova il salvataggio in attesa':'Salva nel quaderno'}</button>
         {notice&&<p role="status">{notice}</p>}{draft.ref&&<a href={exactLink(draft.ref)}>Collegamento alla revisione esatta</a>}</section>
-      <details className="science-provenance"><summary>Versione e origine</summary><p>Definizione {capability.id}, versione {capability.version}. Modello originale Ardesia nel Core; renderer first-party. Questo oggetto non è ancora un plugin installabile.</p><p>Le viste di percorso riusano la definizione; permessi e revisioni delle risorse restano legati alla loro edizione.</p></details>
+      <details className="science-provenance"><summary>Versione e origine</summary><p>Definizione {capability.id}, versione {capability.version}. Modello originale Ardesia; grafico JSXGraph 1.14.0, licenza MIT. Questo oggetto non è ancora un plugin installabile.</p><p>Le viste di percorso riusano la definizione; permessi e revisioni delle risorse restano legati alla loro edizione.</p></details>
     </article>
   </section>;
 }

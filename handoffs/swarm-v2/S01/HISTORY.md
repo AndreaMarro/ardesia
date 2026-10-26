@@ -107,3 +107,28 @@ porta la dipendenza ora risolvibile e le correzioni alla CI remota. Draft non
 significa READY: E2E consumer e composizione S00 restano da eseguire.
 Precedenza locale alle finestreS06/S05/S08 già richieste; nessun reset o
 interruzione dei loro processi. Restano valide le5azioni prioritarie sopra.
+
+## 26 ottobre 2026 — PR317 e CI della head66ff7608
+
+Una sola PRdraft317 verso main992d1a0b, head66ff760897a0e479babeca5778ec5814df98d342.
+CI40252385304 TUTTA SUCCESS, incluso Web typecheck/test/build e Studio;
+marketing40252385090SUCCESS. Il primo contract40252385212 falliva perché
+avevo messo il ruolo nel campo owner; sostituito con il loginGitHub corretto,
+contract40252558935SUCCESS. Lo statusCodeRabbitSUCCESS è una review saltata
+perché draft, non un giudizio sul codice. Nessun merge/deploy autonomo.
+
+Nuova validazione del trasporto prima di numeri/grafici: dataset canonici di
+tutti4gli strumenti ammessi, ascisse/raggi non finiti, lunghezze discordanti,
+serie oltre limite, configurazione errata e parametri assenti respinti.
+Modulo prima assente (suite non raccolta), poi7PASS/140ms in ambienteNode;
+non trasformare il mancato import in7casi funzionali falliti. I6testUI
+precedenti restano separati, da rieseguire sul consumer aggiornato.
+Non è un nuovo verificatore fisico: la validazione riguarda forma e legame
+con la richiesta. Il calcolo rimane nel Core.
+
+FOUR-COURSE-GAPS.md e aggregato Core effettivo:9/10/7/12famiglie;
+52/57/33/58target;11/11/8/13lezioniDRAFT;0completamenti certificati.
+Nessuna soluzione editoriale esportata nella fotografia aggregata.
+S00 ha assegnato il prossimo slotS01 dopo la sua breve prova su5418;
+nessuna prova S01 anticipata. Restano da chiudere E2Econsumer, misura build,
+composizione Root/API autorizzata e successivo rilascio diS00.
