@@ -125,3 +125,6 @@ ASTRA B/A hanno verificato che compare scientifico accettava revisionId:null e u
 ### S00 — browser composto verificato in CI, 26 ottobre 2026
 
 Su head309 `9da49952`, job Web40375681120 SUCCESS: 34 controlli Studio autonomo e19 science nella merge SHA92607baf. Report e screenshot in `handoffs/swarm-v2/S00/evidence/study-composition/ci-9da-consumers/`. Il FAIL locale resta non attribuito: il verde remoto non ne dimostra la causa. B-05 corretto successivamente in `50b07bea`, 6 HTTP GREEN; attendere CI della nuova head, review, merge ordinario e post-merge prima di chiamare 309 integrata o chiudere316. Main resta e95 finché GitHub non prova il contrario. S19 ha preparato solo localmente la patch API contro9da; pubblicarla soltanto dopo la nuova main, senza trasformare la preparazione in integrazione. Conservare cinque task e limiti dell'ultima RUNLOG; memoria append-only.
+
+
+Nota successiva: B-05 ha anche controprova indipendente ASTRA B9/9 sulla fonte50b07bea; il log RED conteneva valori della fixture sintetica e la relativa riga è ora redatta con ricevuta/digest, senza cambiare l'asserzione. La candidata5513 era già stata pubblicata; nessuna riscrittura della cronologia o credenziale di produzione identificata. Leggere la nuova head effettiva, non trasferire automaticamente il verde9da.
