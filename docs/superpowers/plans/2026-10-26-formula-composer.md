@@ -33,9 +33,9 @@ handoffs/swarm-v2/S14/formula-composer/**; patch Room consegnata separatamente.
 **Interfaces:** onInsert(latex: string): void | Promise<void>, resolve indica
 inserimento riuscito; reject indica failure. Callback invariata.
 
-- [ ] Scrivere e osservare RED per pending, error/retry, unmount e clipboard.
-- [ ] Attivare insert/executeCommand/canUndo/canRedo nativi e cleanup listener.
-- [ ] Verificare GREEN mirato e produrre patch puntuale Room con controprova.
+- [x] Scrivere e osservare RED per pending, error/retry, unmount e clipboard.
+- [x] Attivare insert/executeCommand/canUndo/canRedo nativi e cleanup listener.
+- [x] Verificare GREEN mirato e produrre patch puntuale Room con controprova.
 - [ ] Verificare typecheck, build, browser reale e round-trip con writer consumer.
 - [ ] Review separata, commit, draft PR, handoff e checkpoint GitHub306.
 
@@ -44,3 +44,5 @@ inserimento riuscito; reject indica failure. Callback invariata.
 2026-10-26: esecuzione richiesta dall'utente con «continua»; scelte ordinarie
 risolte nel perimetro autorizzato. S00 ha delegato il composer, preservando Room
 S07. Il raccordo deve essere applicato dal writer prima di dichiarare DONE.
+
+2026-10-26: review indipendente3P2 accettati; patch consumer su copie3RED→3GREEN. Browser inizialeFAIL conservato; claim modeLaTeX rettificato dopo rilettura del risultato. Aggiunto complete prima dei template, host15PASS. Raccordo sorgenteRoom non applicato; native controprova pendente.

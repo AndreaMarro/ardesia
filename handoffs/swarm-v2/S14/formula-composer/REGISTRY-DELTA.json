@@ -25,5 +25,26 @@
       "limits": "no runtime/native UI claim"
     }
   ],
-  "unassigned_candidates": []
+  "unassigned_candidates": [
+    {
+      "proposed_id": null,
+      "name": "MathQuill",
+      "url": "https://github.com/mathquill/mathquill",
+      "license_observed": "MPL-2.0",
+      "owner": "S14-formula-composer",
+      "status": "DEFER",
+      "potential_use": "alternative structured math input",
+      "reason": "second editor duplicates MathLive already pinned; not acquired; S00 assigns ID only after deduplication"
+    },
+    {
+      "proposed_id": null,
+      "name": "KaTeX",
+      "url": "https://github.com/KaTeX/KaTeX",
+      "license_observed": "MIT",
+      "owner": "S14-formula-composer",
+      "status": "DEFER_FOR_THIS_BATCH",
+      "potential_use": "static math rendering and fonts, separately from input history",
+      "reason": "not a structured editor; retain MathJax existing SVG contract; S00 deduplicates against transitive assets before assigning ID"
+    }
+  ]
 }

@@ -24,7 +24,7 @@ vi.mock("mathlive", () => {
 
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 function field() {
-  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean; disabled: boolean; insert: (value: string, options?: unknown) => boolean }
+  return document.querySelector("test-math-field") as HTMLElement & { value: string; readOnly: boolean; disabled: boolean; insert: (value: string, options?: unknown) => boolean; executeCommand: (selector: string) => boolean }
 }
 function deferred() {
   let resolve!: () => void
@@ -117,5 +117,14 @@ describe("formula host lifecycle", () => {
     expect(insert).toHaveBeenCalledWith("\\frac{#0}{#?}", {
       format: "latex", mode: "math", insertionMode: "replaceSelection", selectionMode: "placeholder",
     })
+  })
+
+  it("commits native LaTeX composition before inserting a template", () => {
+    render(<MathComposer onInsert={() => {}} onClose={() => {}} />)
+    const complete = vi.spyOn(field(), "executeCommand")
+    const insert = vi.spyOn(field(), "insert")
+    fireEvent.click(screen.getByRole("button", { name: "frazione" }))
+    expect(complete).toHaveBeenCalledWith("complete")
+    expect(complete.mock.invocationCallOrder[0]).toBeLessThan(insert.mock.invocationCallOrder[0]!)
   })
 })

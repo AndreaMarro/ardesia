@@ -12,6 +12,7 @@ vi.mock("mathlive", () => {
     mathVirtualKeyboardPolicy = "auto"
     canUndo() { return false }
     canRedo() { return false }
+    executeCommand = vi.fn()
     insert = vi.fn()
   }
   customElements.define("composer-math-field", MathfieldElement)

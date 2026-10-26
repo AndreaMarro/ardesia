@@ -63,6 +63,7 @@ export default function MathComposer({ onClose, onInsert }: { onClose: () => voi
     const mf = mfRef.current
     if (!mf || pendingRef.current) return
     mf.focus()
+    mf.executeCommand("complete")
     mf.insert(latex, { format: "latex", mode: "math", insertionMode: "replaceSelection", selectionMode: "placeholder" })
     setEmpty(!mf.value.trim())
     setHistory({ undo: mf.canUndo(), redo: mf.canRedo() })

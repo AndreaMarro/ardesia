@@ -120,3 +120,33 @@ Nuovi log raw locali: formula-review-red.log, formula-review-green.log,
 room-patch-red.log, room-patch-green.log. Non si promuove una prova di copie a
 prova di main o ambiente pubblicato. I prossimi quattro task sopra rimangono
 validi, con la sola sostituzione del nome patchv1 con patchv2.
+
+## 26 ottobre 2026 — primo browser nativo e rettifica
+
+Finestra dichiarata in306/6406210315 e rilasciata6406231996. Tre tentativi:
+il primo non avvia il browser perché il runner risolveva MathJax dal workspace
+sbagliato; il secondo si ferma sul selettore status, che includeva anche la
+live-region interna MathLive; il terzo raggiunge il salvataggio/rientro ma va
+in timeout aspettando il download .lesson. Nessun PASS di export/import.
+Report raw dei tentativi2/3 conservati lossless; nessun errore scartato.
+
+La rilettura del report3 ha scoperto una conclusione prematura del runner:
+in modalità LaTeX il valore restava `x+1`, ma il test verificava solo l'assenza
+di `#0/#?`. Quel singolo PASS precedente e il claim modeLaTeX nel checkpoint
+6406231996 sono **NON_CONCLUSIVI**. L'asserzione ora richiede anche la frazione.
+Il donor richiede di completare prima il gruppo LaTeX: aggiunto il comando
+complete, con nuova regressione host RED→GREEN. Host successivo15PASS/3file,
+1.73s. Test nativo da ripetere sulla nuova fonte.
+
+Già osservati nel browser: prompt bloccato, toggle Room bloccato, rigetto con
+stessa bozza, selezione/strutture in math e text, undo/redo, clipboard, SVG
+MathJax reale sul canvas, save/reload e isolamento dalla seconda lezione.
+Non sono certificazione di main. Anche la visibilità fisica della tastiera
+richiede un'asserzione DOM: il flag visible e la prima screenshot non bastano.
+Il runner ora la esige.
+
+Nel report3 compaiono anche6risposte403; causa non ancora stabilita. Il runner
+successivo registra URL/schermata d'errore, consente al Vite locale le sole
+directory reali delle dipendenze condivise e usa la navigazione Materiali con
+flush canonico, anziché un salto diretto di URL. Correzioni di fixture da
+verificare, non attribuzioni certe del timeout.
