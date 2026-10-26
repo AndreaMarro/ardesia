@@ -14,4 +14,14 @@ export function saveOffline(actor:string,edition:string,state:StudyState){
 export function readOffline(actor:string,edition:string):{savedAt:number;state:StudyState}|null{
  try{const raw=localStorage.getItem(prefix+'offline.'+JSON.stringify([actor,edition]));if(!raw||raw.length>50000)return null;const d=JSON.parse(raw);const s=d.state;const strings=(v:unknown)=>Array.isArray(v)&&v.every(x=>typeof x==='string');if(!s||s.editionId!==edition||typeof s.id!=='string'||typeof s.revisionId!=='string'||typeof s.lessonRef?.sha256!=='string'||!Number.isFinite(d.savedAt)||!strings(s.phases)||!strings(s.prerequisites)||!strings(s.phaseSupport)||!Array.isArray(s.attempts)||s.attempts.length!==0||s.pendingAttempt!==null||typeof s.title!=='string'||typeof s.phase!=='string'||!s.phases.includes(s.phase)||typeof s.sourceRef?.revisionId!=='string'||typeof s.sourceRef?.resourceId!=='string'||s.source&&(!strings(s.source.explanation)||!strings(s.source.recap))||s.hints&&!strings(s.hints)||s.task&&(typeof s.task.prompt!=='string'||typeof s.task.unit!=='string'||!s.task.parameters||typeof s.task.parameters!=='object')||s.simulation&&(!s.simulation.parameters||!s.simulation.controls))return null;return d;}catch{return null;}
 }
-export function clearOffline(actor:string,edition:string){try{localStorage.removeItem(prefix+'offline.'+JSON.stringify([actor,edition]));}catch{/* Optional cache. */}}
+export function clearOffline(actor:string,edition:string){
+ try{
+  localStorage.removeItem(prefix+'offline.'+JSON.stringify([actor,edition]));
+  const remove:string[]=[];
+  for(let i=0;i<localStorage.length;i++){
+   const candidate=localStorage.key(i);if(!candidate?.startsWith(prefix+'{'))continue;
+   try{const scope=JSON.parse(candidate.slice(prefix.length));if(scope.actor===actor&&scope.edition===edition)remove.push(candidate);}catch{/* Ignore unrelated malformed storage. */}
+  }
+  remove.forEach(k=>localStorage.removeItem(k));
+ }catch{/* Optional cache. */}
+}

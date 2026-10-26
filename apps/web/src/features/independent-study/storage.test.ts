@@ -21,3 +21,14 @@ test('a corrupt offline cache cannot become a rendered course or confirmed recei
  localStorage.setItem('ardesia.independent-study.v1.offline.'+JSON.stringify(['a','e']),JSON.stringify({savedAt:1,state:{id:'s',editionId:'e',lessonRef:{sha256:'fake'}}}));
  expect(readOffline('a','e')).toBeNull();
 });
+
+test('removing the device copy clears earlier revisions for this actor and edition only',async()=>{
+ const {clearOffline}=await import('./storage');
+ const s={actor:'a',edition:'e',session:'s',revision:'r1',lesson:'h',phase:'practice'};
+ saveDraft(s,{value:'1',reasoning:'old private draft'});
+ saveDraft({...s,revision:'r2'},{value:'2',reasoning:'current private draft'});
+ saveDraft({...s,actor:'b'},{value:'3',reasoning:'another actor'});
+ clearOffline('a','e');
+ expect(readDraft(s)).toBeNull();expect(readDraft({...s,revision:'r2'})).toBeNull();
+ expect(readDraft({...s,actor:'b'})).toMatchObject({value:'3'});
+});
