@@ -13,3 +13,9 @@
 - API/Vite propri56408/56417 terminati dopo browser, nessun PID altrui toccato. [Rilascio slot](https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6406008304).
 
 La prima CI verde ff384000 e il suo browser14PASS rimangono prove del primo incremento. Non sono promossi a verde dell'acquisizione. Commit finale/CI e composizione shared saranno appendici successive. Il candidato resta READY_FOR_INTEGRATION solo dopo le prove esatte; DONE richiede integrazione e ambiente appropriato.
+
+## Chiusura codice e raccordo alla main
+
+Commit acquisizione `267425d9`; merge ordinario della main `992d1a0b5cdf40d94259d3be698a4d6c5dcc1231` in `32b002e2914185a5d0fb7989762399daf19e06f6`, senza conflitti o forcepush. Nessuna modifica al prodotto S06 nel merge: inventario27file verificato byte per byte dopo l'allineamento. `git apply --check` della patch installerAPI e whitespace PASS.
+
+Ultimo comando dominio:37PASS in27.85s (26Core+11adapter), incluso secondo ciclo/undo. Donor41PASS e HTTP5PASS restano le verifiche separate delle stesse sorgenti; totale83 contratti pertinenti, senza dichiarare un'unica nuova esecuzione83. Web11PASS e browser25PASS sulle stesse sorgenti inventariate. Review separata: nessun altro difetto azionabile, un P2 messaggi risolto con regressioni. CI della head di consegna da leggere separatamente dopo push; non viene presunta da questi PASS locali.
