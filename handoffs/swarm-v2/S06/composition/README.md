@@ -50,3 +50,6 @@ La compressione conserva il patchtestuale byte-esatto senza introdurre trailing-
 ## Aggiornamento successivo: delega umana e installazione
 
 La fase proposta sopra descrive il checkpoint c6453718. Dopo «Delega S06 sui tre file», il raccordo è installato nella stessa PR309 con Shell316@28d70a5. Per lo stato successivo usare [installed-2026-10-26.md](installed-2026-10-26.md); la patch e il manifest precedenti rimangono storici, non vanno riapplicati al ramo installato.
+
+
+**Aggiornamento su maina00f2f4:** la base è avanzata con314 durante la consegna. Merge ordinario nel ramoS06 su3ea05cce, nuova verifica130test/build e34browserPASS/9.479s. [Prove dopo aggiornamento](after-main-a00/README.md). I checkpoint132/e0 rimangono storia, nuovaCI da leggere sulla headsuccessiva di sola consegna.

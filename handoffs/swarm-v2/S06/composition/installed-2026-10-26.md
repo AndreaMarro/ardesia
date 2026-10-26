@@ -41,3 +41,6 @@ READY_FOR_INTEGRATION resta distinto da INTEGRATO o DISTRIBUITO. La delega rimuo
 **Esito dopo correzione:**45Web S06+Shell PASS (inclusi4nuovi casiUnicode), build/typecheck PASS. Revisore ha riletto il delta e il RED e non segnala finding residui. Prove native/CI finali ancora distinte e da registrare. Log raw compressi lossless in installed-evidence/ con hash e round-trip.
 
 **Prova nativa successiva su132755936f41849a2d36e7eb3750f17cde30db26:**34PASS/9.315s/0errori sull’App compilata effettiva, Core/Auth/SQLite veri. Inventario427sorgenti/291filedist verificato prima/dopo, HEAD e sorgenti pulite. [Risultato e limiti](installed-validation.md), screenshot e rawlog nel namespace installed-evidence. Server/browser chiusi, slot rilasciato. La CI finale resta da verificare sulla prossima head di consegna.
+
+
+**Aggiornamento su maina00f2f4:** la base è avanzata con314 durante la consegna. Merge ordinario nel ramoS06 su3ea05cce, nuova verifica130test/build e34browserPASS/9.479s. [Prove dopo aggiornamento](after-main-a00/README.md). I checkpoint132/e0 rimangono storia, nuovaCI da leggere sulla headsuccessiva di sola consegna.
