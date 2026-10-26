@@ -15,9 +15,9 @@ Running 1 test using 1 worker
   ✘  1 [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (7.1s)
 
 
-  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: expect(locator).toBeVisible() failed
 
     Locator: getByText('Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.', { exact: true })
     Expected: visible
@@ -25,8 +25,8 @@ Running 1 test using 1 worker
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-    [2m  - waiting for getByText('Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.', { exact: true })[22m
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Input importati e ricalcolati. Il file non attribuisce permessi o certificazioni.', { exact: true })
 
 
       461 |     name: downloaded.suggestedFilename(), mimeType: "application/json", buffer: bytes,
@@ -53,4 +53,4 @@ Running 1 test using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   1 failed
-    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file

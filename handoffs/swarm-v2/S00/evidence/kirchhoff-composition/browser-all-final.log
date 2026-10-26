@@ -56,9 +56,9 @@ Running 32 tests using 1 worker
   ✘  32 [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file (5.6s)
 
 
-  1) [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result 
+  1) [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: expect(locator).toBeVisible() failed
 
     Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
     Expected: visible
@@ -66,8 +66,8 @@ Running 32 tests using 1 worker
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
 
 
       16 |   await expect(
@@ -93,9 +93,9 @@ Running 32 tests using 1 worker
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  2) [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: expect(locator).toBeVisible() failed
 
     Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
     Expected: visible
@@ -103,8 +103,8 @@ Running 32 tests using 1 worker
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
 
 
       16 |   await expect(
@@ -131,6 +131,6 @@ Running 32 tests using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   2 failed
-    [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result 
-    [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+    [touch] › tests/lab.spec.ts:453:1 › Core session revocation removes the private circuit and result
+    [touch] › tests/lab.spec.ts:474:1 › downloaded Unicode input bytes round-trip without rewriting the file
   30 passed (44.4s)

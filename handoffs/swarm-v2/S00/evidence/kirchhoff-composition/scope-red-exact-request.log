@@ -15,18 +15,18 @@ Running 1 test using 1 worker
   ✘  1 [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B (9.4s)
 
 
-  1) [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B 
+  1) [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+    Error: expect(locator).toHaveValue(expected) failed
 
     Locator: getByLabel('Note', { exact: true })
-    Expected: [32m"AUTHORIZED B"[39m
+    Expected: "AUTHORIZED B"
     Timeout: 5000ms
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
-    [2m  - waiting for getByLabel('Note', { exact: true })[22m
+      - Expect "toHaveValue" with timeout 5000ms
+      - waiting for getByLabel('Note', { exact: true })
 
 
       382 |   const denied = page.waitForResponse((r) => r.url().includes(a.id)); release(); await denied;
@@ -53,4 +53,4 @@ Running 1 test using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   1 failed
-    [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B 
+    [desktop] › tests/lab.spec.ts:358:1 › a late forbidden response for A cannot erase authorized document B

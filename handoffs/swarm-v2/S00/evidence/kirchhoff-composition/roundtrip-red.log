@@ -15,12 +15,12 @@ Running 1 test using 1 worker
   ✘  1 [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (2.1s)
 
 
-  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
 
-    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+    Error: expect(received).toBeGreaterThan(expected)
 
-    Expected: > [32m20000[39m
-    Received:   [31m19420[39m
+    Expected: > 20000
+    Received:   19420
 
       453 |   const downloaded = await pending;
       454 |   const bytes = fs.readFileSync((await downloaded.path())!);
@@ -46,4 +46,4 @@ Running 1 test using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   1 failed
-    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file

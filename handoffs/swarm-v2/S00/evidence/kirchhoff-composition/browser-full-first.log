@@ -45,9 +45,9 @@ Running 26 tests using 1 worker
   ✘  26 [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file (5.2s)
 
 
-  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  1) [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: expect(locator).toBeVisible() failed
 
     Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
     Expected: visible
@@ -55,8 +55,8 @@ Running 26 tests using 1 worker
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
 
 
       13 |   await expect(
@@ -82,9 +82,9 @@ Running 26 tests using 1 worker
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-  2) [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+  2) [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+    Error: expect(locator).toBeVisible() failed
 
     Locator: getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
     Expected: visible
@@ -92,8 +92,8 @@ Running 26 tests using 1 worker
     Error: element(s) not found
 
     Call log:
-    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-    [2m  - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })[22m
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Il circuito, passo dopo passo.' })
 
 
       13 |   await expect(
@@ -120,6 +120,6 @@ Running 26 tests using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   2 failed
-    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
-    [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file 
+    [desktop] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
+    [touch] › tests/lab.spec.ts:428:1 › downloaded Unicode input bytes round-trip without rewriting the file
   24 passed (38.4s)

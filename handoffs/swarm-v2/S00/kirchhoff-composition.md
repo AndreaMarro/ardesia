@@ -72,3 +72,7 @@ Quattro corsi:0/52,0/57,0/33,0/58 completamente accettati. L'integrazione di un 
 ## Review decorrelata e risorse locali
 
 Claude Code2.1.246 è stato invocato prima del commit con il revisore read-only del repository, ma ha terminato prima della review: OAuth scaduto e refresh non riuscito. Esito NOT_RUN, nessuna approvazione Claude. La review indipendente Codex con controprove reali è conservata; CI e policy GitHub restano obbligatorie. Il disco è sceso a109MiB durante il lavoro; rimossa soltanto node_modules rigenerabile del worktree S00 dopo i test. Sorgenti, lock e prove conservati. Nessuna pulizia di altre chat o configurazioni globali.
+
+## Rettifica editoriale delle prove
+
+Il primo controllo staged ha rilevato spazi finali nei log appena aggiunti; la sequenza di comandi non si è fermata e il commit d3a1d39b è stato pubblicato. Correzione separata e tracciata nella stessa PR: rimossi colori ANSI e whitespace dai soli log di questa consegna, mantenuti gli hash originali e aggiornati quelli pubblicati nel manifest. Nessun risultato o asserzione modificato; controllo diff ripetuto con arresto su errore.

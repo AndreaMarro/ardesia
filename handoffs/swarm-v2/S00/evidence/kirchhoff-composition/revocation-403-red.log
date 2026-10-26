@@ -15,20 +15,20 @@ Running 1 test using 1 worker
   ✘  1 [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit (6.7s)
 
 
-  1) [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit 
+  1) [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit
 
-    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveCount[2m([22m[32mexpected[39m[2m)[22m failed
+    Error: expect(locator).toHaveCount(expected) failed
 
     Locator:  getByLabel('Note', { exact: true })
-    Expected: [32m0[39m
-    Received: [31m1[39m
+    Expected: 0
+    Received: 1
     Timeout:  5000ms
 
     Call log:
-    [2m  - Expect "toHaveCount" with timeout 5000ms[22m
-    [2m  - waiting for getByLabel('Note', { exact: true })[22m
-    [2m    14 × locator resolved to 1 element[22m
-    [2m       - unexpected value "1"[22m
+      - Expect "toHaveCount" with timeout 5000ms
+      - waiting for getByLabel('Note', { exact: true })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
 
 
       350 |   await page.getByLabel("Note", { exact: true }).fill("PRIVATE ACCESS EDIT");
@@ -55,4 +55,4 @@ Running 1 test using 1 worker
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
   1 failed
-    [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit 
+    [desktop] › tests/lab.spec.ts:340:1 › host transport 403 removes private state after a concurrent edit
