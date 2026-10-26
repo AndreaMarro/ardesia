@@ -235,7 +235,7 @@ function ReviewQueue({ editionId, bankId }: { editionId: string; bankId: string 
   }
   return <section className="physics-bank" aria-label="Revisione scientifica privata">
     <header><h2>Rivedi, poi decidi se pubblicare.</h2><p>La coda e le osservazioni sono private. Il materiale originale resta immutato; ogni decisione riguarda una versione precisa in questa edizione.</p></header>
-    <AssessmentQuality base={base} onSelect={setSelected} disabled={busy} />
+    <AssessmentQuality base={base} onSelect={setSelected} selectedQuestionId={selected} disabled={busy} />
     <form className="physics-bank-filters" onSubmit={event => { event.preventDefault(); filter("q", search); }}>
       <label>Argomento della revisione<select value={filters.unitId} disabled={busy} onChange={event => filter("unitId", event.target.value)}>
         <option value="">Tutti gli argomenti</option>{physicsUnits.map(([id, title]) => <option key={id} value={id}>{title}</option>)}</select></label>

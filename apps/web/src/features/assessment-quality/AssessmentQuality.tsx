@@ -13,9 +13,8 @@ const labels:Record<string,string>={invalid_schema:'Struttura da correggere',ans
 const count=(value:number)=>value.toLocaleString('it-IT');
 const CasWorkbench=lazy(()=>import('./CasWorkbench'));
 
-function Dashboard({base,onSelect,disabled}:{base:string;onSelect:(id:string)=>void;disabled:boolean}){
+function Dashboard({base,onSelect,disabled,onOpenCas,casOpen}:{base:string;onSelect:(id:string)=>void;disabled:boolean;onOpenCas:(id:string)=>void;casOpen:boolean}){
  const [report,setReport]=useState<Report|null>(null),[error,setError]=useState(''),[scope,setScope]=useState('quarantined');
- const [casQuestion,setCasQuestion]=useState<string|null>(null);
  const [cursors,setCursors]=useState<(string|null)[]>([null]),[refresh,setRefresh]=useState(0);
  const cursor=cursors[cursors.length-1];
  useEffect(()=>{
@@ -31,7 +30,6 @@ function Dashboard({base,onSelect,disabled}:{base:string;onSelect:(id:string)=>v
    <button type='button' disabled={disabled||(!report&&!error)} onClick={()=>setRefresh(value=>value+1)}>Aggiorna audit</button></header>
   {error&&<ErrorNotice message={error} onRetry={()=>setRefresh(value=>value+1)}/>}
   {!error&&!report&&<Loading>Ricalcolo l’inventario della banca…</Loading>}
-  {casQuestion&&<Suspense fallback={<Loading>Carico il laboratorio matematico…</Loading>}><CasWorkbench key={`${base}/${casQuestion}`} base={base} questionId={casQuestion} onClose={()=>setCasQuestion(null)}/></Suspense>}
   {report&&<>
    {Boolean(report.dossiers?.length)&&<section aria-label='Primo batch editoriale'><h4>Quattro famiglie, una per corso</h4><p>Proposte originali per la revisione: 32 seed per famiglia, separati dai 4.000 record esistenti. Il quesito di riferimento mantiene la propria versione e il proprio gate.</p>{report.dossiers?.map(dossier=><details key={dossier.id}><summary>{dossier.title} · bozza di autore</summary><p>Seed 0–31 · {dossier.distinctParameterSets} combinazioni di parametri distinte.</p><p>{dossier.preview.prompt}</p><p>{dossier.preview.domain}</p><ol>{dossier.preview.steps.map(step=><li key={step}>{step}</li>)}</ol><p>Risposta proposta: {dossier.preview.answer} {dossier.preview.unit}</p><h5>Distrattori e feedback</h5><ul>{dossier.preview.distractors.map(item=><li key={item.answer}>{item.answer}: {item.feedback}</li>)}</ul><h5>Problema di trasferimento</h5><p>{dossier.preview.transfer.prompt}</p><p>{dossier.preview.transfer.answer}</p><p>{dossier.preview.transfer.feedback}</p><p>{dossier.limits}</p><p className='assessment-quality-hash'>Bozza v{dossier.previewVersion} · SHA-256 {dossier.previewSha256}</p><button type='button' disabled={disabled} onClick={()=>onSelect(dossier.questionId)}>Apri il quesito di riferimento · {dossier.title}</button></details>)}</section>}
    <dl className='assessment-quality-metrics'>
@@ -47,7 +45,7 @@ function Dashboard({base,onSelect,disabled}:{base:string;onSelect:(id:string)=>v
     <option value='quarantined'>In quarantena</option><option value='unverified'>Numerici non verificati</option><option value='all'>Tutti i record</option></select></label>
    <p role='status'>{count(report.total)} record con questo filtro · pagina {cursors.length}</p>
    <ul className='assessment-quality-queue'>{report.items.map(item=><li key={item.id}><div><strong>{item.title}</strong><p>{item.unitId} · {item.issues.length?item.issues.map(issue=>labels[issue]??issue).join(' · '):'Nessun problema rilevato dai controlli eseguiti.'}</p></div>
-    <div className='aq-queue-actions'><button type='button' disabled={disabled} onClick={()=>onSelect(item.id)}>Rivedi {item.title}</button><button type='button' disabled={disabled} onClick={()=>setCasQuestion(item.id)}>Controprova matematica · {item.title}</button></div></li>)}</ul>
+    <div className='aq-queue-actions'><button type='button' disabled={disabled} onClick={()=>onSelect(item.id)}>Rivedi {item.title}</button><button type='button' disabled={disabled||casOpen} onClick={()=>onOpenCas(item.id)}>Controprova matematica · {item.title}</button></div></li>)}</ul>
    {!report.items.length&&<p>Nessun caso con questo filtro. I limiti dell’audit restano validi.</p>}
    <nav className='button-row' aria-label='Pagine dell’audit'><button type='button' disabled={disabled||cursors.length===1} onClick={()=>setCursors(previous=>previous.slice(0,-1))}>Audit precedenti</button><button type='button' disabled={disabled||!report.nextCursor} onClick={()=>setCursors(previous=>[...previous,report.nextCursor])}>Audit successivi</button></nav>
    <details><summary>Metodo, versione e limiti</summary><p>{report.auditVersion}</p><p className='assessment-quality-hash'>Banca SHA-256: {report.bankSha256}</p><ul>{report.limitations.map(limit=><li key={limit}>{limit}</li>)}</ul><p>La quarantena è una segnalazione per la revisione; questo audit non modifica il gate di pubblicazione.</p></details>
@@ -55,7 +53,12 @@ function Dashboard({base,onSelect,disabled}:{base:string;onSelect:(id:string)=>v
  </section>;
 }
 
-export function AssessmentQuality(props:{base:string;onSelect:(id:string)=>void;disabled:boolean}){
+export function AssessmentQuality(props:{base:string;onSelect:(id:string)=>void;selectedQuestionId?:string|null;disabled:boolean}){
  const [open,setOpen]=useState(false);
- return <details className='assessment-quality-disclosure' onToggle={event=>setOpen(event.currentTarget.open)}><summary>Qualità della banca e casi da verificare</summary>{open&&<Dashboard key={props.base} {...props}/>}</details>;
+ const [question,setQuestion]=useState<string|null>(null);
+ return <>
+  <div className='aq-direct'><button type='button' disabled={props.disabled||!props.selectedQuestionId||Boolean(question)} onClick={()=>setQuestion(props.selectedQuestionId??null)}>Controprova del quesito selezionato</button>{!props.selectedQuestionId&&<p>Seleziona un quesito nella coda per aprire il laboratorio matematico privato.</p>}</div>
+  {question&&<Suspense fallback={<Loading>Carico il laboratorio matematico…</Loading>}><CasWorkbench key={`${props.base}/${question}`} base={props.base} questionId={question} onClose={()=>setQuestion(null)}/></Suspense>}
+  <details className='assessment-quality-disclosure' onToggle={event=>setOpen(event.currentTarget.open)}><summary>Qualità della banca e casi da verificare</summary>{open&&<Dashboard key={props.base} {...props} onOpenCas={setQuestion} casOpen={Boolean(question)}/>}</details>
+ </>;
 }

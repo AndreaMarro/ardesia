@@ -43,3 +43,9 @@ La variante finale acquisisce **tre file ESM ufficiali byte-immutati** nel names
 La patch compute-engine-dependency.patch resta prova storica della prima proposta, **NON APPLICARE** alla variante vendorizzata. Richiesta manifest6406015138 superata da questa variante se i gate sul consumer finale passano; hook qualityAPI ancora richiesto a S00. Rimosso il link locale al pacchetto npm prima dei gate finali: il risultato deve essere riproducibile con le sole dipendenze già bloccate.
 
 Main992d1a0b incorporata con merge ordinario successivo; comprende primo batchS09, nessun namespaceS04 da main. La prima lettura GitHub era limitata alla pagina100 e perdeva nuovi checkpoint; correzione: paginazione completa, segnalazioneS06 della concorrenza tsc conservata. Nessuna cancellazione di storia.
+
+## Addendum consumer diretto — successivo al commit38867e3f
+
+Il laboratorio finale è raggiungibile anche senza l'installer qualityAPI: la selezione della coda canonica passa al mount S04 tramite **una prop** selectedQuestionId, nello stesso raccordo QuestionBankReview delegato daS00 nel commento6405061639; onSelect=setSelected e ReviewEditor/ApprovalGate sono preservati. Il pulsante del quesito selezionato apre un foglio legato alla fonte corrente via endpoint teacher esistente. Cambiare selezione non sostituisce il foglio aperto: va prima chiuso con il controllo della bozza non salvata. Il dashboard condivide questo stesso laboratorio, non crea un secondo mount. Il solo audit massivo continua a richiedere l'hookS10/S00 precedente.
+
+`serve-core.py` prepara esclusivamente attori sintetici e serve la **create_app produttiva senza hook o monkeypatch**. La prova finale deve usare questo percorso. Il primo E2E9,9s era sul percorso audit con hook e npm; rimane valido solo per quella variante. Questo addendum supera il limite iniziale «intero laboratorio dipendente dall'hook», non dichiara integrato l'audit.

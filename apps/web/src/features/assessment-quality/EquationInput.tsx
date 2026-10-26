@@ -27,8 +27,10 @@ export function EquationInput({
         MathfieldElement.soundsDirectory = null;
         const mf = new MathfieldElement();
         field.current = mf;
+        mf.defaultMode = "math";
         mf.value = current.current.value;
         mf.readOnly = current.current.disabled;
+        mf.disabled = current.current.disabled;
         mf.setAttribute("aria-label", `Formula ${label}`);
         mf.mathVirtualKeyboardPolicy = "auto";
         mf.addEventListener("input", () => current.current.onChange(mf.value));
@@ -48,6 +50,7 @@ export function EquationInput({
     if (field.current) {
       if (field.current.value !== value) field.current.value = value;
       field.current.readOnly = disabled;
+      field.current.disabled = disabled;
     }
   }, [value, disabled]);
   return (

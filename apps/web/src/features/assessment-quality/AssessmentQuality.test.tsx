@@ -2,6 +2,7 @@
 import {afterEach,expect,test,vi} from 'vitest';
 import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {AssessmentQuality} from './AssessmentQuality';
+vi.mock('./CasWorkbench',()=>({default:({questionId,onClose}:{questionId:string;onClose:()=>void})=><section aria-label='Laboratorio simulato solo per test del mount'><span>Fonte {questionId}</span><button onClick={onClose}>Chiudi test</button></section>}));
 const report={auditVersion:'s04-quality-1',bankSha256:'a'.repeat(64),publishedRecords:0,
  editorialBaseline:{total:200,meaning:'internal_editorial_subobjectives',delta:0},
  summary:{records:4000,distinctRecords:3999,templateFamilies:250,quarantined:2,verifiedNumeric:400,unverifiedNumeric:1000,failedNumeric:1,notApplicableNumeric:2599},
@@ -35,4 +36,17 @@ test('revoked access clears report and offers retry without cached solutions',as
  fireEvent.click(screen.getByRole('button',{name:'Aggiorna audit'}));
  await waitFor(()=>expect(screen.queryByRole('button',{name:/Rivedi Moto uniforme/})).toBeNull());
  expect(await screen.findByRole('alert')).toBeTruthy();
+});
+test('selected-question launcher works without audit and preserves the open worksheet across selection changes',async()=>{
+ const fetcher=vi.fn();vi.stubGlobal('fetch',fetcher);
+ const props={base:'/editions/fluidi/question-banks/physics',onSelect:vi.fn(),disabled:false};
+ const view=render(<AssessmentQuality {...props} selectedQuestionId='q1'/>);
+ fireEvent.click(screen.getByRole('button',{name:'Controprova del quesito selezionato'}));
+ await screen.findByText('Fonte q1');expect(fetcher).not.toHaveBeenCalled();
+ view.rerender(<AssessmentQuality {...props} selectedQuestionId='q2'/>);
+ expect(screen.getByText('Fonte q1')).toBeTruthy();
+ expect(screen.getByRole('button',{name:'Controprova del quesito selezionato'})).toHaveProperty('disabled',true);
+ fireEvent.click(screen.getByRole('button',{name:'Chiudi test'}));
+ fireEvent.click(screen.getByRole('button',{name:'Controprova del quesito selezionato'}));
+ await screen.findByText('Fonte q2');expect(fetcher).not.toHaveBeenCalled();
 });

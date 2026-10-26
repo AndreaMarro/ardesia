@@ -10,8 +10,8 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  await page.setViewportSize({width:390,height:844});await page.goto('/?view=classroom');
  const open=async()=>{
   await page.getByText('Revisione scientifica dei quesiti · spazio docente',{exact:true}).click();
-  await page.getByText('Qualità della banca e casi da verificare',{exact:true}).click();
-  await page.getByRole('button',{name:/Controprova matematica ·/}).first().click({timeout:120000});
+  await page.locator('.question-review-queue button').first().click();
+  await page.getByRole('button',{name:'Controprova del quesito selezionato',exact:true}).click();
   await expect(page.getByRole('region',{name:'Laboratorio matematico del revisore'}).getByLabel('Fogli privati salvati')).toBeVisible();
  };
  await open();const lab=page.getByRole('region',{name:'Laboratorio matematico del revisore'});
@@ -40,7 +40,7 @@ test('real CAS worker, Core revisions, cold reopen, domain error, responsive, lo
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await page.setViewportSize(viewport);await lab.scrollIntoViewIfNeeded();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.screenshot({path:`${outputs}/S04-CAS-${viewport.width}.png`});
+  await lab.screenshot({path:`${outputs}/S04-CAS-${viewport.width}.png`});
  }
  // Actual Core compare-and-swap conflict from another writer. The UI keeps its draft.
  const remote=await page.request.post(`/study/resources/${saved.id}/revise`,{data:{expectedRevision:saved.revisionId,text:saved.text}});
