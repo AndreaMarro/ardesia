@@ -36,3 +36,23 @@ La head implementativa `f80dc4d2998d83ff8f7c4fd3116bd75c5021873c` della [PR325](
 Precisazione che supera la precedente frase S01: SourceSnapshot da solo può accettare una cache pyc timestamp stale. La correzione S19 verifica i byte Python contro i Gitblob del pin e li congela prima degli import, compila direttamente quei byte e rifiuta import Kirchhoff precedenti non controllati. Il test sul package installato riproduce la baseline vulnerabile e risolve il partitore8V con il confine protetto.
 
 S00 resta il writer della composizione principale e dei registri condivisi. Le patch minimali di questo handoff sono ancora candidate, da rileggere sulla base scelta da S00; il verde della PR non attesta main integrata, distribuzione remota o approvazione umana del contenuto. Nessun test pesante locale rilanciato durante la ripresa.
+
+### Checkpoint successivo: nuova base e raccordo da riallineare
+
+Su head documentale `5e080e3`, la lane S19 del run40371391113 fallisce prima della collection: la main e95a80b successiva a317 aggiunge science_library nello stesso contesto della patch installer. Il verde f80 sulla basea00 rimane storico e non copre questa composizione. [Failure conservato](evidence/ci-5e080e3-failure.json), [diagnosi e sequenza](validation.md#cambio-della-base-durante-la-ripresa). S00 chiede di attendere il candidato immutabile309 prima del riallineamento esclusivo di patch/handoff; guard stretta del composer invariata, file condivisi intatti.
+
+### Preparazione locale successiva: candidato309 fissato
+
+Ricevuto da S00 il candidato `9da49952491445b93349e3f7b7f75bb9e323e074`. Patch installer aggiornata solo localmente al contesto esatto science_library; consumer patch invariata. I tre hash del manifest S00 coincidono; entrambe le patch passano check/apply/check inverso su copie del candidato e i tre moduli Python composti passano sintassi. [Prove leggere](evidence/patch-candidate-9da4995.json). Composer, runtime e file condivisi intatti. Preparazione non committata né pubblicata: attendere main309 effettiva prima del push325 e della CI completa; nessun test pesante locale e nessuna attribuzione dei vecchi verdi a questo candidato.
+
+### Conferma successiva richiesta dal proprietario
+
+S00 e GitHub confermano309 ancora OPEN/DRAFT e main e95a80b, senza merge. S00 prepara la successiva head locale50b07bea nella stessa309 e comunicherà la main effettiva dopo gate e merge; app.py riferito invariato. [Checkpoint verificato](evidence/main309-status.json). Raccordo S19 conservato localmente; condizione per commit/push325 e CI nuova ancora non soddisfatta.
+
+### Seguito proattivo autorizzato dal proprietario
+
+Attivato il controllo periodico di questa chat `s19-riallinea-pr-325-dopo-merge-309`, ogni5minuti, silenzioso a stato invariato. Appena309 è effettivamente in main e S00 ne conferma la SHA, ricontrolla i file esatti, completa il riallineamento nel solo namespaceS19, pubblica nella stessa325 e legge tutta la CI della nuova head. Mantiene guard e storico, evita test pesanti locali senza finestraS00 e si disattiva a lavoro concluso. Il checkpoint operativo aggiornato rimane negli outputs della chat.
+
+### Main309 confermata: riallineamento pronto al push
+
+PR309 MERGED e main effettiva `d7dc3917d695c80d027c91df21577e06ec649232`, confermate da S00 e GitHub. Riletti i file esatti: tre pin del manifest coincidono e app.py è identico al candidato9da. Patch aggiornate verificate sulla main integrata con check/apply/check inverso e sintassi dei tre moduli Python composti; nessun test pesante locale. [Prova del merge](evidence/main309-merged.json), [prova delle patch](evidence/patch-main-d7dc3917.json). Il riallineamento pubblica solo namespaceS19 nella stessa325; composer e file condivisi intatti. Leggere la nuova CI effettiva prima di dichiarare i gate verdi; integrazione principale S19, merge325 e deploy restano diS00.

@@ -10,9 +10,9 @@
      ('taylor-exp-v1', 1): ('taylor-exp-v1.json', 'analisi-1', 'Analisi 1: Taylor e resto', 'analisi',
 --- a/services/study-api/study_api/app.py
 +++ b/services/study-api/study_api/app.py
-@@ -535,6 +535,9 @@
-     from lessonos.study.calendar_mock import MockCalendar
-     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())
+@@ -540,6 +540,9 @@
+     from lessonos.study.science_library.routes import install_science_library_routes
+     install_science_library_routes(app, store_dependency, authenticate)
 
 +    from s19_circuit_lab.routes import install
 +    install(app, store_dependency, authenticate)

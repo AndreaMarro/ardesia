@@ -27,3 +27,23 @@ CI a6be7b92 prova35Python/24browser, con indisponibilità motore; il limite dopo
 Riletta la stessa PR325, senza riavvio del lavoro: head implementativa `f80dc4d2998d83ff8f7c4fd3116bd75c5021873c`. Il run40365882911 prova37PythonPASS1.96s e24browserPASS12.7s, incluse source/pyc e indisponibilità;27notices,0vulnerabilità npm. Tutti i sette controlli richiesti più marketing/e2e advisory risultanoSUCCESS sulla stessa head. Evidenza conservata in `evidence/ci-f80dc4d-summary.json`; il checkout CI è il merge sintetico4119739 sulla basea00f2f40. Nessuna attribuzione dei vecchi verdi alla correzione: qui la correzione è eseguita nel nuovo run.
 
 Aggiornamento solo additivo del handoff, non dei registriRUNLOG/NEXT. Nessun processo S19 o listener5198 al controllo; nessun carico di test locale aggiunto aS17. Restano pendenti composizioneS00 dei file condivisi nella stessaPR, journey sulla main composta, revisione scientificaS03 e distribuzione autorizzata;S13 resta indipendente. L'eventuale commit documentale successivo richiede lettura distinta della propria CI. Non dichiarare DONE/prodotto verificato/merge/deploy per questa tranche.
+
+### Delta della composizione dopo317
+
+La head documentale5e080e3 incontra main e95a80b nel merge CIcc6b538. LaneS19FAIL run40371391113, exit4 prima della collection: app.py535 della patch non si applica perché science_library è ora installata fra calendar e static mount. Failure conservato in `evidence/ci-5e080e3-failure.json`; nessuna prova matematica/browser eseguita in quel run. La headf80 era verde solo sulla basea00. S00 ordina di attendere il candidato immutabile309, che modifica ancora il bloccoinstaller, poi riallineare solo patch/handoff e rileggere CI completa. Composer invariato, nessun fuzzy apply, file comuni intatti e nessun nuovo test locale pesante.
+
+### Candidato309 fissato: preparazione esclusivamente locale
+
+S00 comunica9da49952491445b93349e3f7b7f75bb9e323e074 e vieta push325 fino alla main309 effettiva. Verificati i tre hash del suo manifest; app.pyc7bd8da7f46f8b3201944c763f90f36ea4c6719f90795f9637a4aa72f514ab26. Vecchia patch riproduceFAILapp535 sul candidato. Aggiornato solo il contesto esatto del hunk installer S19 dopo science_library e prima degli static mount; consumer invariata. Sei operazioni check/apply/check inverso PASS, sintassi dei tre moduli Python composti PASS. Evidenza `evidence/patch-candidate-9da4995.json`. Nessun test runtime/browser eseguito, nessun file condiviso o composer cambiato, nessun commit/push. Prossimo passo: ricevere main309 effettiva, ricontrollare SHA/input e pubblicare il riallineamento nella stessa325 con CI nuova; verdi f80 non trasferibili.
+
+### Controllo condizione di pubblicazione
+
+Richiesta umana: verificare conS00 main309 e, se confermata, riallineare/push325 e CI nuova. Esito: S00 conferma309OPEN/DRAFT; GitHub conferma nessun merge e main e95a80b393589b71da2846aa98814dc1a034b730. S00 prepara localmente50b07bea0859000e0ba697a9e1fb684afb6d14f5, app.py invariato, e comunicherà main effettiva dopo gate/merge. Checkpoint in `evidence/main309-status.json`. Condizione non soddisfatta: preparazione e storico conservati, nessun commit/push o prova pesante S19. Nessun verde della futura head309 riferito daS00 è presentato come esecuzione S19.
+
+### Autorizzazione al seguito proattivo
+
+Il proprietario richiede di restare coordinati conS00 e completare autonomamente riallineamento/push325 e CI della nuova head appena309 è in main. Attivo heartbeat della stessa chat ogni5minuti, id `s19-riallinea-pr-325-dopo-merge-309`; verificato ACTIVE, nessun duplicato. Silenzio a stato invariato, prosecuzione dal checkpoint senza duplicare commit/runner, sola ownershipS19 e nessun verde ereditato. Disattivare il controllo dopo completamento e verifica CI. S00 informato; nessun push anticipato o test pesante locale.
+
+### Main309 effettiva e avvio del push325
+
+S00 e GitHub confermano309MERGED alle18:40:03Z e main d7dc3917d695c80d027c91df21577e06ec649232, tree e1f625187eb196cdc5b7b6b30948e9dddc2a5c2f. Condizione umana per pubblicare soddisfatta. Riletti file e manifest su quella SHA: tre pin coincidono, app.py identico a9da. Sei operazioni check/apply/check inverso delle due patch PASS; tre moduli Python composti passano sintassi. Evidenze `main309-merged.json` e `patch-main-d7dc3917.json`. Pubblicare solo patch/handoff/evidenze S19 nella stessa325, poi leggere CI nuova head e merge checkout; nessun verde storico trasferito. Composer, runtime e file comuni intatti, nessun test pesante locale. CI post-merge30940379757071 solo accodata alla conferma S00, non presunta verde. Conservato FAIL40371391113.
