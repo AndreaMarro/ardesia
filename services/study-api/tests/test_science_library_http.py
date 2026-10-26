@@ -1,5 +1,8 @@
 """Real HTTP/factory boundary with persisted Core sessions, synthetic identities."""
 import importlib
+from pathlib import Path
+import runpy
+import sys
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -105,3 +108,26 @@ def test_draft_evaluation_is_canonical_but_never_a_submission_or_grade(boundary)
     assert client.post(url, json=body, headers=headers(tokens, student)).status_code == 409
     body['actorId'] = peer.id
     assert client.post(url, json=body, headers=headers(tokens, student)).status_code == 422
+
+
+def test_candidate_owner_composition_uses_actual_cookie_and_rejection_signal(boundary):
+    # The proposed two-line owner patch is composed only in memory. Existing
+    # create_app supplies cookie authentication, admission and session rejection.
+    _, store, student, peer, tokens = boundary
+    root = Path(__file__).resolve().parents[3]
+    sys.path.insert(0, str(root/'services/study-api'))
+    try:
+        create = runpy.run_path(str(root/'handoffs/swarm-v2/S01/local-api.py'))['create_candidate']
+        candidate, source_hash = create(store.path)
+    finally:
+        sys.path.pop(0)
+    assert len(source_hash) == 64
+    url = '/study/editions/science-edition/science-library/catalog'
+    with TestClient(candidate) as client:
+        assert client.post('/study/session', json={'token': tokens[student.id]}).status_code == 200
+        assert client.get(url).status_code == 200
+        # Login exchanges the body token for a fresh HttpOnly cookie session.
+        store.revoke_session(client.cookies.get('study_session'))
+        rejected = client.get(url)
+        assert rejected.status_code == 401
+        assert rejected.headers['X-Study-Session-Rejected'] == 'cookie'
