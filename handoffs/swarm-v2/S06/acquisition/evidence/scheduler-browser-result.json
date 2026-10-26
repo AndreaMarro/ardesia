@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "checks": [
+    "real-cookie-login",
+    "four-real-preview-choices",
+    "no-inferred-mastery",
+    "rating-reachable-by-tab",
+    "rating-again",
+    "rating-again-keeps-sources-and-help",
+    "undo-again",
+    "rating-hard",
+    "rating-hard-keeps-sources-and-help",
+    "undo-hard",
+    "rating-good",
+    "rating-good-keeps-sources-and-help",
+    "undo-good",
+    "rating-easy",
+    "rating-easy-keeps-sources-and-help",
+    "undo-easy",
+    "manual-date-is-not-new-review",
+    "reload-keeps-rated-schedule",
+    "fresh-cookie-login",
+    "cold-context-keeps-source-receipts",
+    "mobile-no-horizontal-overflow",
+    "touch-rating-saved",
+    "revocation-hides-private-review",
+    "revocation-clears-offline-review",
+    "no-unexpected-browser-errors"
+  ],
+  "errors": [],
+  "timings": [
+    {
+      "operation": "again-and-undo",
+      "milliseconds": 389
+    },
+    {
+      "operation": "hard-and-undo",
+      "milliseconds": 589
+    },
+    {
+      "operation": "good-and-undo",
+      "milliseconds": 476
+    },
+    {
+      "operation": "easy-and-undo",
+      "milliseconds": 642
+    }
+  ],
+  "totalMilliseconds": 27499,
+  "scope": "Real UI/HTTP/Core on loopback with synthetic actors, not integrated RootApp or remote deployment"
+}

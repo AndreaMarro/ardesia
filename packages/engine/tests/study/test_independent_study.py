@@ -179,6 +179,55 @@ def test_pending_retry_keeps_exact_input_whitespace(course,monkeypatch):
     assert recovered['receipt']['state']=='received'
     assert s.connection.execute('SELECT COUNT(*) FROM study_submissions').fetchone()[0]==1
 
+def begin_review(s,a):
+    state=begin_practice(s,a)
+    attempt(s,a,state['id'],state['revisionId'],{'value':999,'unit':'m','reasoning':'Ipotesi'},'review-first')
+    state=move(s,a,resume(s,a,state['id']),'recover');state=move(s,a,state,'next')
+    attempt(s,a,state['id'],state['revisionId'],{'value':0.075,'unit':'m','reasoning':'Confronto F/k'},'review-transfer')
+    return move(s,a,resume(s,a,state['id']),'finish')
+
+@pytest.mark.parametrize('rating,delay',[('again',60),('hard',330),('good',600),('easy',8*86400)])
+def test_real_core_explicit_scheduler_rating_replay_override_undo(course,rating,delay):
+    s,t,a,b=course;before=begin_review(s,a)
+    assert before['reviewScheduler']['rated'] is False and 'scheduler' not in before
+    payload=(s,a,before['id'],before['revisionId'],'rate',{'rating':rating},'self-report')
+    rated=act(*payload)
+    assert rated['reviewAt']==1000+delay and rated['mastery']=='NOT_INFERRED'
+    assert rated['reviewScheduler']['rated'] is True and rated['reviewScheduler']['choices']==[]
+    assert act(*payload)==rated
+    assert len(rated['attempts'])==2 and rated['assistanceHistory']==before['assistanceHistory']
+    with pytest.raises(StudyError,match='study_rating_already_recorded'):move(s,a,rated,'rate',rating='good')
+    with pytest.raises(StudyError,match='forbidden'):act(s,b,rated['id'],rated['revisionId'],'undo-rating',{},'peer')
+    manual=move(s,a,rated,'schedule',days=7)
+    assert manual['reviewAt']==1000+7*86400 and manual['reviewScheduler']['manualOverride']['days']==7
+    raw=json.loads(s.get_resource(a,manual['id'])['text'])
+    assert raw['scheduler']['card']['due']==json.loads(s.get_resource_revision(a,rated['id'],rated['revisionId'])['text'])['scheduler']['card']['due']
+    undone=move(s,a,manual,'undo-rating')
+    assert undone['reviewAt']==before['reviewAt'] and undone['reviewReason']==before['reviewReason']
+    assert undone['reviewScheduler']['rated'] is False and len(undone['attempts'])==2
+    # The undone rating remains an immutable revision, not an erased event.
+    historical=s.get_resource_revision(a,rated['id'],rated['revisionId'])
+    assert json.loads(historical['text'])['scheduler']['lastRating']==rating
+
+def test_scheduler_cold_reopen_keeps_card_sources_and_revocation(course):
+    s,t,a,b=course;state=move(s,a,begin_review(s,a),'rate',rating='good')
+    database=s.path
+    reopened=StudyStore(database,clock=lambda:1001,initialize=False)
+    try:
+        restored=resume(reopened,a,state['id'])
+        assert restored['reviewScheduler']==state['reviewScheduler']
+        assert restored['reviewAt']==1600 and restored['sourceRef']==state['sourceRef']
+        assert [x['receipt']['receiptId'] for x in restored['attempts']]==[x['receipt']['receiptId'] for x in state['attempts']]
+    finally:reopened.close()
+    s.connection.execute('DELETE FROM study_members WHERE edition_id=? AND student_id=?',('mechanics',a.id))
+    s.connection.commit()
+    with pytest.raises(StudyError):resume(s,a,state['id'])
+
+def test_scheduler_rejects_client_card_and_leaves_the_revision_unchanged(course):
+    s,t,a,b=course;state=begin_review(s,a)
+    with pytest.raises(StudyError):move(s,a,state,'rate',rating='good',card={'due':'2099-01-01'})
+    assert resume(s,a,state['id'])['revisionId']==state['revisionId']
+
 def test_receipt_grants_tutor_only_exact_submitted_lesson_source_not_the_private_plan(course):
     s,t,a,b=course;state=begin_practice(s,a)
     attempt(s,a,state['id'],state['revisionId'],{'value':0.2,'unit':'m','reasoning':'F/k'},'source-tutor')

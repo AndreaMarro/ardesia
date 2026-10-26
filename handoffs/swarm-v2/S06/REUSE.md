@@ -11,3 +11,7 @@ Fonti ufficiali consultate il26ottobre2026:
 REA skill effettiva letta: metadata version42,207tool dichiarati; istruisce a saltare REA per analisi ordinaria di repository sorgente completo. Si sono usati sorgenti/test Ardesia per il riuso presente. Nessuna cattura, decompilazione o scenario runtime donor eseguito; non attribuire capacità o risparmi non misurati. Costo totale e confronto con implementazione alternativaUNKNOWN. Non eseguiti provider/doctor/installazioni per aggiungere attività senza bisogno.
 
 Scenario implementato: da obiettivo a diagnostica e fonte, modello parametrico, tentativo canonico, confronto/indizi, recupero, problema diverso, ripasso e riapertura. Manutenzione: namespace S06, tipi condivisi futuri a S10. Rimozione/rollback: rimuovere soli hook UI/API di composizione; risorse e ricevute rimangono Core per consultazione/esportazione, senza migrazioni distruttive. Materiali DRAFT mantengono humanApproval=false.
+
+## Addendum del 26 ottobre 2026 — mandato REA-FIRST
+
+Il testo precedente è la fotografia del primo incremento e rimane intatto. Nuovo confronto immutabile di tre scheduler, acquisizione py-fsrs6.3.2 MIT, REA processo reale, provenance/test e consumer in [acquisition/README.md](acquisition/README.md). Corregge esplicitamente il riferimento al README mainv6 di ts-fsrs: il tag stabile5.4.2 richiede Node>=20. Nessun esito storico viene riscritto.

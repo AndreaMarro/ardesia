@@ -1,0 +1,1062 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-3/work/ardesia-s06/apps/web
+
+ ❯ src/features/independent-study/IndependentStudy.test.tsx (4 tests | 2 failed) 2352ms
+   × records an explicit self report and undo then reloads authoritative state 1014ms
+   × an invalid rating stays an input error without claiming a lost connection 1016ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/independent-study/IndependentStudy.test.tsx > records an explicit self report and undo then reloads authoritative state
+TestingLibraryElementError: Unable to find role="button" and name `/Ricordato Ripasso/`
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-busy[39m=[32m"false"[39m
+      [33maria-label[39m=[32m"Studio autonomo"[39m
+      [33mclass[39m=[32m"independent-study"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"is-heading"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mIL TUO PERCORSO · SENZA TUTOR ONLINE[0m
+        [36m</p>[39m
+        [36m<h1>[39m
+          [0mStudia da solo.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mUn obiettivo alla volta. Capisci il modello, mettilo alla prova e ritrova il punto da cui ripartire.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"is-status"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mRisorse e ricevute nel Core · controllo numerico deterministico, senza provider AI.[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33maria-disabled[39m=[32m"false"[39m
+        [33mclass[39m=[32m"button-quiet"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mRiapri e verifica il percorso[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"is-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"is-sidebar"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mOBIETTIVO SCELTO[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mMolla[0m
+          [36m</h2>[39m
+          [36m<ol[39m
+            [33mclass[39m=[32m"is-steps"[39m
+          [36m>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m1[0m
+              [36m</span>[39m
+              [0mDa dove parti[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m2[0m
+              [36m</span>[39m
+              [0mProva[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m3[0m
+              [36m</span>[39m
+              [0mProblema diverso[0m
+            [36m</li>[39m
+          [36m</ol>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"is-reason"[39m
+          [36m>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"is-field"[39m
+          [36m>[39m
+            [0mScegli quando ripassare[0m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Scegli quando ripassare"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mModifica il piano[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m1[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"3"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m3[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"7"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m7[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"14"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m14[0m
+                [0m giorni[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mScegli un altro obiettivo[0m
+          [36m</button>[39m
+        [36m</aside>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio del percorso"[39m
+          [33mclass[39m=[32m"is-card"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRiprendi nel tempo[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mUn punto da cui ripartire.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mIl percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"Piano di ripasso"[39m
+            [33mclass[39m=[32m"is-review"[39m
+          [36m>[39m
+            [36m<h3>[39m
+              [0mCome hai ricordato?[0m
+            [36m</h3>[39m
+            [36m<p>[39m
+              [0mUna tua scelta, non un voto.[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-review-choices"[39m
+            [36m>[39m
+              [36m<button>[39m
+                [36m<strong>[39m
+                  [0mRicordato[0m
+                [36m</strong>[39m
+                [36m<span>[39m
+                  [0mRipasso [0m
+                  [0m26 ottobre alle ore 02:10[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mCome viene proposta la data[0m
+              [36m</summary>[39m
+              [36m<p>[39m
+                [0mFSRS propone intervalli dalla tua autovalutazione e dai ripassi precedenti. Gli aiuti osservati rimangono nella cronologia; eventuali aiuti esterni non sono determinati. Il primo piano usa parametri generali, senza stima personale di efficacia.[0m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</section>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mRicomincia il ripasso[0m
+          [36m</button>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"is-save"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mBozza e lettura sul dispositivo[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mSu un dispositivo personale puoi conservare il passaggio visibile e il testo. La copia non conferma accesso, voto o sincronizzazione.[0m
+            [36m</p>[39m
+            [36m<button>[39m
+              [0mSalva bozza e passaggio sul dispositivo[0m
+            [36m</button>[39m
+            [36m<button>[39m
+              [0mRimuovi la copia locale[0m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mDubbi, contestazione e richiesta al docente[0m
+            [36m</summary>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"is-field"[39m
+            [36m>[39m
+              [0mDescrivi il dubbio[0m
+              [36m<textarea[39m
+                [33mmaxlength[39m=[32m"4000"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mContesta il feedback[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mRegistra richiesta al docente[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mFonte e revisione esatte[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mLezione [0m
+              [0mspring[0m
+              [0m · versione [0m
+              [0m1[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"is-reference"[39m
+            [36m>[39m
+              [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mRisorsa [0m
+              [0msource[0m
+              [0m · revisione [0m
+              [0moriginal[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"is-limit"[39m
+      [36m>[39m
+        [0mMateriali originali DRAFT. Nessuna approvazione scientifica attestata. Il flusso copre pochi esempi dei corsi, non tutti i 200 sotto-obiettivi.[0m
+      [36m</footer>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-busy[39m=[32m"false"[39m
+      [33maria-label[39m=[32m"Studio autonomo"[39m
+      [33mclass[39m=[32m"independent-study"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"is-heading"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mIL TUO PERCORSO · SENZA TUTOR ONLINE[0m
+        [36m</p>[39m
+        [36m<h1>[39m
+          [0mStudia da solo.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mUn obiettivo alla volta. Capisci il modello, mettilo alla prova e ritrova il punto da cui ripartire.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"is-status"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mRisorse e ricevute nel Core · controllo numerico deterministico, senza provider AI.[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33maria-disabled[39m=[32m"false"[39m
+        [33mclass[39m=[32m"button-quiet"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mRiapri e verifica il percorso[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"is-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"is-sidebar"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mOBIETTIVO SCELTO[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mMolla[0m
+          [36m</h2>[39m
+          [36m<ol[39m
+            [33mclass[39m=[32m"is-steps"[39m
+          [36m>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m1[0m
+              [36m</span>[39m
+              [0mDa dove parti[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m2[0m
+              [36m</span>[39m
+              [0mProva[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m3[0m
+              [36m</span>[39m
+              [0mProblema diverso[0m
+            [36m</li>[39m
+          [36m</ol>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"is-reason"[39m
+          [36m>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"is-field"[39m
+          [36m>[39m
+            [0mScegli quando ripassare[0m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Scegli quando ripassare"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mModifica il piano[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m1[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"3"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m3[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"7"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m7[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"14"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m14[0m
+                [0m giorni[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mScegli un altro obiettivo[0m
+          [36m</button>[39m
+        [36m</aside>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio del percorso"[39m
+          [33mclass[39m=[32m"is-card"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRiprendi nel tempo[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mUn punto da cui ripartire.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mIl percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"Piano di ripasso"[39m
+            [33mclass[39m=[32m"is-review"[39m
+          [36m>[39m
+            [36m<h3>[39m
+              [0mCome hai ricordato?[0m
+            [36m</h3>[39m
+            [36m<p>[39m
+              [0mUna tua scelta, non un voto.[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-review-choices"[39m
+            [36m>[39m
+              [36m<button>[39m
+                [36m<strong>[39m
+                  [0mRicordato[0m
+                [36m</strong>[39m
+                [36m<span>[39m
+                  [0mRipasso [0m
+                  [0m26 ottobre alle ore 02:10[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mCome viene proposta la data[0m
+              [36m</summary>[39m
+              [36m<p>[39m
+                [0mFSRS propone intervalli dalla tua autovalutazione e dai ripassi precedenti. Gli aiuti osservati rimangono nella cronologia; eventuali aiuti esterni non sono determinati. Il primo piano usa parametri generali, senza stima personale di efficacia.[0m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</section>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mRicomincia il ripasso[0m
+          [36m</button>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"is-save"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mBozza e lettura sul dispositivo[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mSu un dispositivo personale puoi conservare il passaggio visibile e il testo. La copia non conferma accesso, voto o sincronizzazione.[0m
+            [36m</p>[39m
+            [36m<button>[39m
+              [0mSalva bozza e passaggio sul dispositivo[0m
+            [36m</button>[39m
+            [36m<button>[39m
+              [0mRimuovi la copia locale[0m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mDubbi, contestazione e richiesta al docente[0m
+            [36m</summary>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"is-field"[39m
+            [36m>[39m
+              [0mDescrivi il dubbio[0m
+              [36m<textarea[39m
+                [33mmaxlength[39m=[32m"4000"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mContesta il feedback[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mRegistra richiesta al docente[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mFonte e revisione esatte[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mLezione [0m
+              [0mspring[0m
+              [0m · versione [0m
+              [0m1[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"is-reference"[39m
+            [36m>[39m
+              [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mRisorsa [0m
+              [0msource[0m
+              [0m · revisione [0m
+              [0moriginal[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"is-limit"[39m
+      [36m>[39m
+        [0mMateriali originali DRAFT. Nessuna approvazione scientifica attestata. Il flusso copre pochi esempi dei corsi, non tutti i 200 sotto-obiettivi.[0m
+      [36m</footer>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../../../../../../../../../private/tmp/ardesia-r2-20261024/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../../../../../../../private/tmp/ardesia-r2-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/independent-study/IndependentStudy.test.tsx:39:31
+     37|  }));
+     38|  render(<IndependentStudy editionId="mechanics" me={{id:'student-a',ro…
+     39|  fireEvent.click(await screen.findByRole('button',{name:/Ricordato Rip…
+       |                               ^
+     40|  fireEvent.click(await screen.findByRole('button',{name:'Annulla l’aut…
+     41|  await screen.findByRole('button',{name:/Ricordato Ripasso/});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/features/independent-study/IndependentStudy.test.tsx > an invalid rating stays an input error without claiming a lost connection
+TestingLibraryElementError: Unable to find role="button" and name `/Ricordato Ripasso/`
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-busy[39m=[32m"false"[39m
+      [33maria-label[39m=[32m"Studio autonomo"[39m
+      [33mclass[39m=[32m"independent-study"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"is-heading"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mIL TUO PERCORSO · SENZA TUTOR ONLINE[0m
+        [36m</p>[39m
+        [36m<h1>[39m
+          [0mStudia da solo.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mUn obiettivo alla volta. Capisci il modello, mettilo alla prova e ritrova il punto da cui ripartire.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"is-status"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mRisorse e ricevute nel Core · controllo numerico deterministico, senza provider AI.[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33maria-disabled[39m=[32m"false"[39m
+        [33mclass[39m=[32m"button-quiet"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mRiapri e verifica il percorso[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"is-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"is-sidebar"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mOBIETTIVO SCELTO[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mMolla[0m
+          [36m</h2>[39m
+          [36m<ol[39m
+            [33mclass[39m=[32m"is-steps"[39m
+          [36m>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m1[0m
+              [36m</span>[39m
+              [0mDa dove parti[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m2[0m
+              [36m</span>[39m
+              [0mProva[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m3[0m
+              [36m</span>[39m
+              [0mProblema diverso[0m
+            [36m</li>[39m
+          [36m</ol>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"is-reason"[39m
+          [36m>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"is-field"[39m
+          [36m>[39m
+            [0mScegli quando ripassare[0m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Scegli quando ripassare"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mModifica il piano[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m1[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"3"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m3[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"7"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m7[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"14"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m14[0m
+                [0m giorni[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mScegli un altro obiettivo[0m
+          [36m</button>[39m
+        [36m</aside>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio del percorso"[39m
+          [33mclass[39m=[32m"is-card"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRiprendi nel tempo[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mUn punto da cui ripartire.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mIl percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"Piano di ripasso"[39m
+            [33mclass[39m=[32m"is-review"[39m
+          [36m>[39m
+            [36m<h3>[39m
+              [0mCome hai ricordato?[0m
+            [36m</h3>[39m
+            [36m<p>[39m
+              [0mAutovalutazione[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-review-choices"[39m
+            [36m>[39m
+              [36m<button>[39m
+                [36m<strong>[39m
+                  [0mRicordato[0m
+                [36m</strong>[39m
+                [36m<span>[39m
+                  [0mRipasso [0m
+                  [0m26 ottobre alle ore 02:10[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mCome viene proposta la data[0m
+              [36m</summary>[39m
+              [36m<p>[39m
+                [0mFSRS propone intervalli dalla tua autovalutazione e dai ripassi precedenti. Gli aiuti osservati rimangono nella cronologia; eventuali aiuti esterni non sono determinati. Il primo piano usa parametri generali, senza stima personale di efficacia.[0m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</section>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mRicomincia il ripasso[0m
+          [36m</button>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"is-save"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mBozza e lettura sul dispositivo[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mSu un dispositivo personale puoi conservare il passaggio visibile e il testo. La copia non conferma accesso, voto o sincronizzazione.[0m
+            [36m</p>[39m
+            [36m<button>[39m
+              [0mSalva bozza e passaggio sul dispositivo[0m
+            [36m</button>[39m
+            [36m<button>[39m
+              [0mRimuovi la copia locale[0m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mDubbi, contestazione e richiesta al docente[0m
+            [36m</summary>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"is-field"[39m
+            [36m>[39m
+              [0mDescrivi il dubbio[0m
+              [36m<textarea[39m
+                [33mmaxlength[39m=[32m"4000"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mContesta il feedback[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mRegistra richiesta al docente[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mFonte e revisione esatte[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mLezione [0m
+              [0mspring[0m
+              [0m · versione [0m
+              [0m1[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"is-reference"[39m
+            [36m>[39m
+              [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mRisorsa [0m
+              [0msource[0m
+              [0m · revisione [0m
+              [0moriginal[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"is-limit"[39m
+      [36m>[39m
+        [0mMateriali originali DRAFT. Nessuna approvazione scientifica attestata. Il flusso copre pochi esempi dei corsi, non tutti i 200 sotto-obiettivi.[0m
+      [36m</footer>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-busy[39m=[32m"false"[39m
+      [33maria-label[39m=[32m"Studio autonomo"[39m
+      [33mclass[39m=[32m"independent-study"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"is-heading"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"section-meta"[39m
+        [36m>[39m
+          [0mIL TUO PERCORSO · SENZA TUTOR ONLINE[0m
+        [36m</p>[39m
+        [36m<h1>[39m
+          [0mStudia da solo.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mUn obiettivo alla volta. Capisci il modello, mettilo alla prova e ritrova il punto da cui ripartire.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"is-status"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mRisorse e ricevute nel Core · controllo numerico deterministico, senza provider AI.[0m
+      [36m</p>[39m
+      [36m<button[39m
+        [33maria-disabled[39m=[32m"false"[39m
+        [33mclass[39m=[32m"button-quiet"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mRiapri e verifica il percorso[0m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"is-layout"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"is-sidebar"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mOBIETTIVO SCELTO[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mMolla[0m
+          [36m</h2>[39m
+          [36m<ol[39m
+            [33mclass[39m=[32m"is-steps"[39m
+          [36m>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m1[0m
+              [36m</span>[39m
+              [0mDa dove parti[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m2[0m
+              [36m</span>[39m
+              [0mProva[0m
+            [36m</li>[39m
+            [36m<li>[39m
+              [36m<span>[39m
+                [0m3[0m
+              [36m</span>[39m
+              [0mProblema diverso[0m
+            [36m</li>[39m
+          [36m</ol>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"is-reason"[39m
+          [36m>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"is-field"[39m
+          [36m>[39m
+            [0mScegli quando ripassare[0m
+            [36m<select[39m
+              [33maria-label[39m=[32m"Scegli quando ripassare"[39m
+            [36m>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mModifica il piano[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m1[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"3"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m3[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"7"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m7[0m
+                [0m giorni[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"14"[39m
+              [36m>[39m
+                [0mFra [0m
+                [0m14[0m
+                [0m giorni[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mScegli un altro obiettivo[0m
+          [36m</button>[39m
+        [36m</aside>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio del percorso"[39m
+          [33mclass[39m=[32m"is-card"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"section-meta"[39m
+          [36m>[39m
+            [0mRiprendi nel tempo[0m
+          [36m</p>[39m
+          [36m<h2>[39m
+            [0mUn punto da cui ripartire.[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mIl percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.[0m
+          [36m</p>[39m
+          [36m<p>[39m
+            [0mObiettivo scelto da te[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"Piano di ripasso"[39m
+            [33mclass[39m=[32m"is-review"[39m
+          [36m>[39m
+            [36m<h3>[39m
+              [0mCome hai ricordato?[0m
+            [36m</h3>[39m
+            [36m<p>[39m
+              [0mAutovalutazione[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-review-choices"[39m
+            [36m>[39m
+              [36m<button>[39m
+                [36m<strong>[39m
+                  [0mRicordato[0m
+                [36m</strong>[39m
+                [36m<span>[39m
+                  [0mRipasso [0m
+                  [0m26 ottobre alle ore 02:10[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<details>[39m
+              [36m<summary>[39m
+                [0mCome viene proposta la data[0m
+              [36m</summary>[39m
+              [36m<p>[39m
+                [0mFSRS propone intervalli dalla tua autovalutazione e dai ripassi precedenti. Gli aiuti osservati rimangono nella cronologia; eventuali aiuti esterni non sono determinati. Il primo piano usa parametri generali, senza stima personale di efficacia.[0m
+              [36m</p>[39m
+            [36m</details>[39m
+          [36m</section>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mRicomincia il ripasso[0m
+          [36m</button>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"is-save"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mBozza e lettura sul dispositivo[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mSu un dispositivo personale puoi conservare il passaggio visibile e il testo. La copia non conferma accesso, voto o sincronizzazione.[0m
+            [36m</p>[39m
+            [36m<button>[39m
+              [0mSalva bozza e passaggio sul dispositivo[0m
+            [36m</button>[39m
+            [36m<button>[39m
+              [0mRimuovi la copia locale[0m
+            [36m</button>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mDubbi, contestazione e richiesta al docente[0m
+            [36m</summary>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"is-field"[39m
+            [36m>[39m
+              [0mDescrivi il dubbio[0m
+              [36m<textarea[39m
+                [33mmaxlength[39m=[32m"4000"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"is-actions"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mContesta il feedback[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mRegistra richiesta al docente[0m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</details>[39m
+          [36m<details>[39m
+            [36m<summary>[39m
+              [0mFonte e revisione esatte[0m
+            [36m</summary>[39m
+            [36m<p>[39m
+              [0mLezione [0m
+              [0mspring[0m
+              [0m · versione [0m
+              [0m1[0m
+            [36m</p>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"is-reference"[39m
+            [36m>[39m
+              [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mRisorsa [0m
+              [0msource[0m
+              [0m · revisione [0m
+              [0moriginal[0m
+            [36m</p>[39m
+          [36m</details>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"is-limit"[39m
+      [36m>[39m
+        [0mMateriali originali DRAFT. Nessuna approvazione scientifica attestata. Il flusso copre pochi esempi dei corsi, non tutti i 200 sotto-obiettivi.[0m
+      [36m</footer>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../../../../../../../../../private/tmp/ardesia-r2-20261024/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../../../../../../../private/tmp/ardesia-r2-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/independent-study/IndependentStudy.test.tsx:48:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 7 passed (9)
+   Start at  01:56:16
+   Duration  9.03s (transform 1.07s, setup 0ms, import 2.01s, tests 2.52s, environment 13.71s)
+

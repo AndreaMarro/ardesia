@@ -8,6 +8,7 @@ import json
 import math
 from copy import deepcopy
 from .content import lessons, resolve
+from .review_scheduler import preview, apply_rating, undo_rating
 from ..activities import evaluate_activity
 from ..catalog import edition_pack
 from ..models import StudyError
@@ -104,6 +105,10 @@ def _view(store, principal, resource, state):
             'editorialStatus': lesson['editorialStatus'], 'humanApproval': lesson['humanApproval'],
             'prerequisites': lesson.get('prerequisites', []), 'solutionVisible': False}
     view['attempts'] = _attempts(store, principal, resource, state, lesson)
+    # Internal numerical card parameters are not learner ability scores.
+    view.pop('scheduler', None)
+    if phase == 'review':
+        view['reviewScheduler'] = preview(state, resource['id'], store.clock())
     if phase in ('practice', 'transfer'):
         task = lesson[phase]
         view['task'] = {k: deepcopy(task[k]) for k in ('prompt', 'parameters')}
@@ -218,11 +223,17 @@ def act(store, principal, resource_id, expected_revision, action, fields, key):
             assisted = bool(last['feedback']['assistance']['observed'])
             days = 3 if last['feedback']['numericCorrect'] and not assisted else 1
             value['reviewAt'] = store.clock() + days * 86400
+            value.pop('reviewOverride', None)
             value['reviewReason'] = ('Nuova prova numerica senza aiuti richiesti in questa fase: ripasso suggerito fra 3 giorni.'
                                      if days == 3 else 'Errore numerico o prova assistita: ripasso suggerito domani.')
         elif action == 'schedule' and type(fields.get('days')) is int and fields['days'] in (1, 3, 7, 14):
             value['reviewAt'] = store.clock() + fields['days'] * 86400
             value['reviewReason'] = 'Data scelta da te: ripasso fra ' + str(fields['days']) + ' giorni; nessuna mastery inferita.'
+            value['reviewOverride'] = {'basis': 'learner_date_choice', 'days': fields['days']}
+        elif action == 'rate' and set(fields) == {'rating'}:
+            value = apply_rating(value, resource_id, store.clock(), fields['rating'])
+        elif action == 'undo-rating' and not fields and phase == 'review':
+            value = undo_rating(value)
         elif action in ('tutor', 'dispute'):
             value['tutorRequest' if action == 'tutor' else 'dispute'] = {'text': _text(fields.get('text')), 'status': 'RECORDED_NOT_SENT'}
         elif action == 'restart' and phase == 'review':

@@ -8,7 +8,7 @@ import {StudyModel} from './StudyModel';
 import {modelLabels,parameterValue,supportLabel} from './modelLabels';
 const labels:Record<string,string>={diagnostic:'Da dove parti',explanation:'Capisci',simulation:'Esplora',practice:'Prova',recovery:'Torna alla fonte',transfer:'Problema diverso',review:'Riprendi nel tempo'};
 const endpoint='/independent-study';
-const date=(n:number)=>new Date(n*1000).toLocaleDateString('it-IT',{day:'numeric',month:'long'});
+const date=(n:number)=>new Date(n*1000).toLocaleString('it-IT',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Rome'});
 
 type Props={editionId:string;me:StudyMe;sessionVersion?:number};
 export function IndependentStudy(props:Props){
@@ -35,7 +35,10 @@ function StudySession({editionId,me}:Props){
   if(e instanceof StudySessionChangedError||e instanceof StudyApiError&&[401,403,404].includes(e.status)){
    clearOffline(me.id,editionId);setState(null);setCatalog(null);setValue('');setReasoning('');pending.current=null;setDenied(true);
    setError(e instanceof StudySessionChangedError||e.status===401?'La sessione è scaduta o revocata. Accedi di nuovo.':'L’accesso al percorso non è più disponibile.');
-  }else if(e instanceof StudyApiError&&e.status===409){setError('Il percorso è cambiato in un’altra scheda. Riaprilo: la bozza rimane sullo schermo.');}
+  }else if(e instanceof StudyApiError&&e.message==='study_scheduler_unavailable'){setError('Il piano usa una versione del calendario che questa applicazione non può leggere. Serve un aggiornamento compatibile; la cronologia Core è conservata.');}
+  else if(e instanceof StudyApiError&&e.message==='study_clock_regressed'){setError('L’orario del servizio precede l’ultimo ripasso registrato. Attendi il ripristino dell’orario del servizio: nessuna nuova autovalutazione è stata salvata.');}
+  else if(e instanceof StudyApiError&&e.status===409){setError('Operazione non applicabile alla revisione corrente. Riapri il percorso per verificare lo stato; la bozza rimane sullo schermo.');}
+  else if(e instanceof StudyApiError&&e.status===422){setError('La scelta non è valida. Controlla i dati e riprova.');}
   else{setError(describeError(e,'Connessione non disponibile. Il testo rimane qui; nessuna consegna è confermata senza ricevuta.'));setOffline(true);}
  }
  async function run(operation:()=>Promise<void>){
@@ -59,7 +62,7 @@ function StudySession({editionId,me}:Props){
  async function action(name:string,fields:Record<string,unknown>={}){
   if(!state||offline)return;
   const id=state.id;
-  await run(async()=>{const next=await studyRequest<StudyState>(endpoint+'/'+id+'/actions',{revisionId:state.revisionId,action:name,fields},{headers:{'Idempotency-Key':requestKey()}});if(alive.current){adopt(next);if(name==='tutor'||name==='dispute')setMessage('Richiesta conservata nel percorso. Nessun messaggio esterno è stato inviato.');}});
+  await run(async()=>{await studyRequest<StudyState>(endpoint+'/'+id+'/actions',{revisionId:state.revisionId,action:name,fields},{headers:{'Idempotency-Key':requestKey()}});const next=await studyRequest<StudyState>(endpoint+'/'+id);if(alive.current){adopt(next);if(name==='tutor'||name==='dispute')setMessage('Richiesta conservata nel percorso. Nessun messaggio esterno è stato inviato.');}});
  }
  async function sendAttempt(){
   if(!state||offline)return;
@@ -119,7 +122,15 @@ function StudySession({editionId,me}:Props){
       {showFeedback&&<><p>{latest.feedback.message}</p><p>Modello: {latest.feedback.expectedValue} {latest.feedback.unit}. Il procedimento resta da verificare con la rubrica.</p><ul>{latest.feedback.rubric.map(r=><li key={r}>{r}</li>)}</ul><p>{latest.feedback.assistance.observed.length?'Prova assistita: '+latest.feedback.assistance.observed.map(supportLabel).join(', '):'Nessun aiuto richiesto in questa fase osservato.'} Aiuti esterni non determinati. Nessuna mastery inferita.</p></>}
       <button className="button-primary" disabled={blocked} onClick={()=>void action(state.phase==='transfer'?'finish':'recover')}>{state.phase==='transfer'?'Organizza il ripasso':'Recupera dalla fonte'}</button></div>}
     </>}
-    {state.phase==='review'&&<><h2>Un punto da cui ripartire.</h2><p>Il percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.</p><p>{state.reviewReason}</p><button className="button-primary" disabled={blocked} onClick={()=>void action('restart')}>Ricomincia il ripasso</button></>}
+    {state.phase==='review'&&<><h2>Un punto da cui ripartire.</h2><p>Il percorso conserva i tentativi e gli aiuti. La coincidenza numerica non certifica l’apprendimento.</p><p>{state.reviewReason}</p>
+     {state.reviewScheduler&&<section className="is-review" aria-label="Piano di ripasso"><h3>Come hai ricordato?</h3><p>{state.reviewScheduler.explanation}</p>
+      {!state.reviewScheduler.rated&&<div className="is-review-choices">{state.reviewScheduler.choices.map(choice=><button key={choice.rating} aria-label={'Autovalutazione: '+choice.label+', ripasso '+date(choice.due)} disabled={blocked} onClick={()=>void action('rate',{rating:choice.rating})}><strong>{choice.label}</strong><span>Ripasso {date(choice.due)}</span></button>)}</div>}
+      {state.reviewScheduler.rated&&<p role="status">Autovalutazione registrata. La data proposta è nel tuo piano.</p>}
+      {state.reviewScheduler.canUndo&&<button disabled={blocked} onClick={()=>void action('undo-rating')}>Annulla l’autovalutazione</button>}
+      {state.reviewScheduler.manualOverride&&<p>Hai scelto una data personale. Questa modifica non conta come un nuovo ripasso.</p>}
+      <details><summary>Come viene proposta la data</summary><p>FSRS propone intervalli dalla tua autovalutazione e dai ripassi precedenti. Gli aiuti osservati rimangono nella cronologia; eventuali aiuti esterni non sono determinati. Il primo piano usa parametri generali, senza stima personale di efficacia.</p></details>
+     </section>}
+     <button className="button-primary" disabled={blocked} onClick={()=>void action('restart')}>Ricomincia il ripasso</button></>}
     <details className="is-save"><summary>Bozza e lettura sul dispositivo</summary><p>Su un dispositivo personale puoi conservare il passaggio visibile e il testo. La copia non conferma accesso, voto o sincronizzazione.</p>
      <button disabled={busy} onClick={()=>{const a=saveDraft(scope(state),{value,reasoning});const b=saveOffline(me.id,editionId,state);setMessage(a&&b?'Salvato sul dispositivo. La bozza non è una consegna.':'Spazio del browser non disponibile. Il testo resta sullo schermo.');}}>Salva bozza e passaggio sul dispositivo</button>
      <button onClick={()=>{eraseDraft(scope(state));clearOffline(me.id,editionId);setMessage('Copia locale rimossa. Le ricevute Core rimangono nel percorso.');}}>Rimuovi la copia locale</button></details>

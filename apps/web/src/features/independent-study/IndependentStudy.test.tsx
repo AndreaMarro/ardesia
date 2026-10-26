@@ -24,3 +24,35 @@ test('keeps a single main landmark when mounted inside the application shell',as
  render(<main aria-label="Applicazione"><IndependentStudy editionId="mechanics" me={{id:'student-a',role:'student',synthetic:true}}/></main>);
  await screen.findByText('Trova x.');expect(screen.getAllByRole('main')).toHaveLength(1);
 });
+
+test('records an explicit self report and undo then reloads authoritative state',async()=>{
+ const scheduler={engine:'py-fsrs',version:'6.3.2',basis:'learner_self_report',rated:false,lastRating:null,canUndo:false,manualOverride:null,explanation:'Una tua scelta, non un voto.',choices:[{rating:'good',label:'Ricordato',due:1761437400}]};
+ let current={...base,task:undefined,phase:'review',reviewScheduler:scheduler};const commands:unknown[]=[];
+ vi.stubGlobal('fetch',vi.fn(async(path:string,options?:RequestInit)=>{
+  if(path.endsWith('/actions')){
+   const command=JSON.parse(options!.body as string);commands.push(command);
+   current={...current,revisionId:current.revisionId+'x',reviewScheduler:{...scheduler,rated:command.action==='rate',canUndo:command.action==='rate',choices:command.action==='rate'?[]:scheduler.choices}};
+  }
+  return new Response(JSON.stringify(path.endsWith('/session')||path.endsWith('/actions')?current:{objectives:[],sessions:[{id:'session'}],reason:'Riprendi',coverageWarning:'DRAFT'}));
+ }));
+ render(<IndependentStudy editionId="mechanics" me={{id:'student-a',role:'student',synthetic:true}}/>);
+ fireEvent.click(await screen.findByRole('button',{name:/Autovalutazione: Ricordato/}));
+ fireEvent.click(await screen.findByRole('button',{name:'Annulla l’autovalutazione'}));
+ await screen.findByRole('button',{name:/Autovalutazione: Ricordato/});
+ expect(commands).toMatchObject([{action:'rate',fields:{rating:'good'}},{action:'undo-rating',fields:{}}]);
+});
+
+test('an invalid rating stays an input error without claiming a lost connection',async()=>{
+ vi.stubGlobal('fetch',vi.fn(async(path:string)=>path.endsWith('/actions')?new Response(JSON.stringify({error:'invalid_study_rating'}),{status:422}):new Response(JSON.stringify(path.endsWith('/session')?{...base,phase:'review',task:undefined,reviewScheduler:{rated:false,canUndo:false,choices:[{rating:'good',label:'Ricordato',due:1761437400}],explanation:'Autovalutazione'}}:{objectives:[],sessions:[{id:'session'}]}))));
+ render(<IndependentStudy editionId="mechanics" me={{id:'student-a',role:'student',synthetic:true}}/>);
+ fireEvent.click(await screen.findByRole('button',{name:/Autovalutazione: Ricordato/}));
+ expect((await screen.findByRole('alert')).textContent).toContain('scelta non è valida');
+ expect(screen.queryByText(/Connessione assente o non verificata/)).toBeNull();
+});
+
+test.each([['study_scheduler_unavailable','Serve un aggiornamento compatibile'],['study_clock_regressed','L’orario del servizio precede']])('explains %s without suggesting an endless reopen loop',async(code,message)=>{
+ vi.stubGlobal('fetch',vi.fn(async()=>new Response(JSON.stringify({error:code}),{status:409})));
+ render(<IndependentStudy editionId="mechanics" me={{id:'student-a',role:'student',synthetic:true}}/>);
+ expect((await screen.findByRole('alert')).textContent).toContain(message);
+ expect(screen.queryByText(/Connessione assente o non verificata/)).toBeNull();
+});

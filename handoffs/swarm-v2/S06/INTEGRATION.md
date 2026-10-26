@@ -36,3 +36,9 @@ Delta canonico ActivityEvidence.lessonRef/fase resta S10: nessun campo inventato
 ## Limiti di prodotto
 
 Cinque esempi Fisica consentiti e un modulo Taylor già registrato; materiali tutti DRAFT, non lezioni approvate o quattro corsi completi. Le38 qualitative e i200target non diventano consegne/accettazioni per effetto del planner. Prerequisiti sono indicazioni dei pack, non recuperi dedicati completi. Richieste tutor e contestazioni sono persistite private `RECORDED_NOT_SENT`: nessun messaggio esterno o disponibilità nel registro docente dichiarati. Scheduler originale trasparente1/3giorni+override1/3/7/14; nessuna efficacia didattica attestata. Copie offline opt-in del solo passaggio visibile e input; nessun invio senza riconferma Core, nessuna falsa sincronizzazione.
+
+## Addendum acquisizione del 26 ottobre 2026
+
+Il quadro precedente rimane lo snapshot originario. L'incremento FSRS aggiunge soltanto `rate` con fields esatti `{rating:'again'|'hard'|'good'|'easy'}` e `undo-rating` con fields vuoti agli stessi endpoint/installer. Nessun hook, schema o dipendenza aggiuntivi. Il card versionato rimane nello stato Core; la view espone `reviewScheduler` con opzioni/date/stato, non stability/difficulty interpretate come capacità. Versione sconosciuta/clock regredito falliscono con codici409 specifici e spiegazione UI. Data personale e annullamento non cancellano tentativi, fonti, aiuti o revisioni storiche. La conclusione mantiene il piano provvisorio1/3giorni: solo una scelta esplicita attiva FSRS.
+
+Provenienza/policy/licenza/prove e delta registro proposto in acquisition/. La composizione shared rimane S00/S10. Per Shell finale S02#316, dopo il vero mount passare da Root la lista effettiva `enabledViews`; non rendere visibile una route priva di consumer. S06 non modifica Shell/App o il registro139.

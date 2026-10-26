@@ -26,3 +26,7 @@ Il primo runner termina revocando le sessioni sintetiche. Il runner keyboard-tou
 `workflow.py` verifica sei lezioni,12tentativi, retry idempotente e riapertura in nuove sessioni cookie. `browser.mjs` verifica14comportamenti della molla, desktop/mobile, offline/reconnect/secondo browser/revoca. `keyboard-touch.mjs` verificaTab e tap reali. I fallimenti conservati documentano nome accessibile ambiguo e classificazione del distacco rete deliberato; nessun timeout è stato aumentato.
 
 La composizione del demo aggancia il modulo S06 all'installer esistente passando authenticate/store_dependency reali. Non certifica un hook già inmain, un backend remoto o un rilascio pubblico. L'HTMLdemo è solo harness e non una shell sostitutiva. I percorsi personali presenti nelle prove locali non sono dipendenze del runner portabile.
+
+## Addendum scheduler del 26 ottobre 2026
+
+Su un DEMO_RUN nuovo eseguire `S06_OUTPUTS=/percorso/evidenze node handoffs/swarm-v2/S06/demo/scheduler-browser.mjs`. Verifica25controlli nel consumer completo, quattro rating e undo, override, nuova sessione, tastiera/touch e revoca. Termina revocando tutte le sessioni sintetiche. Non riusare quel token per il runner precedente senza nuova emissione Core. Il probe donor separato è `PYTHONPATH=packages/engine python handoffs/swarm-v2/S06/acquisition/rea/probe.py`; scrive solo probe-result.local.json nel proprio namespace, da non confondere con l'output della cattura storica REA.
