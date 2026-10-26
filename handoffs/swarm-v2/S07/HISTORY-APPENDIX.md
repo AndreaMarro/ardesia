@@ -26,3 +26,14 @@ S14 formula ha segnalato not-ready/rethrow e identità API/journal dopo await la
 ### ProsecuzioneFocus26ottobre2026, prima della headfinale
 
 Ownerutente ha richiesto continua: nuova capacità nello stesso311, DRAFTduranteverifica. Nativefocus17PASS49.948s e REApassiva2record sullo stessoChromium, includonoSpacepan e penna+focusdurantepointerdown con cattura atomica prima del cambio pagina; proofsourcece+guardie byteinventariate, non nuovaAPI/server. Review5P2 e relativi6RED/13GREEN prima del raffinamentodoubletask, errori/logoriginali gzip+SHA preservati. Slotrilasciato6412994325, Room77/pacchetti/Coreintatti per compatibilitàS14. Dettagli e limiti in focus-presentation/README; snapshotpubblicazione/CI dopo commit finale da leggereGitHub. Nessuna memoria comune editata.
+
+
+## Chiusura prova esatta — 2026-10-26T11:16:14.717185+01:00
+
+Su sourcecommit2a1286a0707952fd303f5815a7d65ccd1bde67bb il runnerNative terminaEXIT0/20PASS in12.376s, zeroerrori console/page/HTTP. Verifica GitSHA della buildVite in3contesti,2pagine stessoSHA; oltre ai17casi precedenti rifiuta focus a revisioneerrata senza muovere camera/rendereFollow, poi ripristina l'adesione su nuovo input valido. Prova calda, non benchmarkcomparabile a49.948s. JSON/log/screenshot/sourceinventory separati in evidence/native-exact; la prova17 eREA precedenti restano intatte.
+
+Sourceapp2a128 è identica ad a383, che ha43namespacePASS e fullStudio2347PASS/5skipstorici224filePASS/1skip, typecheck/build e tutti7requiredSUCCESS; marketing/no-deploySUCCESS. Non contiamo CodeRabbitdraftskipped come review. Goldenadvisory era ancora in installChromium all'ultima lettura: nessuna attesa esterna è trasformata in verde. CI2a128 e successivo commit di sola memoria da leggere sulcheckpointGitHub prima delmerge.
+
+Review tecnica finale limitata: nessunresiduo nel doubletimer o guardiafocusinvalido; nessun test/browser/compiler eseguito dalreviewer e nessuna firmaumana. Tutti i sorgentiStudio/manifest/lock confrontatiSHA256 e verificati; Room.tsx conserva blob e1200c21e2a5b6e7ceaf59a5d1cc0991d62a2d2a. Gli ultimi commit sono solo prove/runner/storico; nessun nuovo endpoint/provider/identità/lock oAPI/Core.
+
+Browser eVite propri chiusi,5470/5477libere, release6413451014. Fixture runtime rimossi dalla rootStudio. CapacitàTESTATA per hostadapter, READY_FOR_INTEGRATION dopoCIheadobbligatori: integrazione/composizione/rilascioS00 e grant/trasporto/storage remotoS10 restano esplicitamente NONDONE. Next3batch/primi passi/dipendenze/accettazioni sono sopra; nessuna memoria comune concorrente e storico non riscritto.
