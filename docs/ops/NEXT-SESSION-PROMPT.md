@@ -120,3 +120,8 @@ Fonte ae71864: buildPASS, browser5check poi timeoutEsegui modello, una solaPOSTd
 ### Finding B-05 sulla main317, correzione nel candidato309
 
 ASTRA B/A hanno verificato che compare scientifico accettava revisionId:null e usava la versione corrente. S00 ha riprodotto RED nella factory reale e corretto la validazione prima del read;6HTTP PASS, due revisioni con risultati distinti e ACL conservati. Il read opzionale rimane previsto per i suoi consumer. Prove in science-null-{red,green}.log.gz e astra-b-science-null-e95a80b.json. Non dichiarare questa correzione già integrata o distribuita: attendere la nuova head309 e i suoi gate. Il FAIL browser locale resta aperto e i5task dell'ultima RUNLOG restano prioritari.
+
+
+### S00 — browser composto verificato in CI, 26 ottobre 2026
+
+Su head309 `9da49952`, job Web40375681120 SUCCESS: 34 controlli Studio autonomo e19 science nella merge SHA92607baf. Report e screenshot in `handoffs/swarm-v2/S00/evidence/study-composition/ci-9da-consumers/`. Il FAIL locale resta non attribuito: il verde remoto non ne dimostra la causa. B-05 corretto successivamente in `50b07bea`, 6 HTTP GREEN; attendere CI della nuova head, review, merge ordinario e post-merge prima di chiamare 309 integrata o chiudere316. Main resta e95 finché GitHub non prova il contrario. S19 ha preparato solo localmente la patch API contro9da; pubblicarla soltanto dopo la nuova main, senza trasformare la preparazione in integrazione. Conservare cinque task e limiti dell'ultima RUNLOG; memoria append-only.
