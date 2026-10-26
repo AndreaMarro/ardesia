@@ -26,6 +26,7 @@ const Classroom = lazy(() =>
 const Work = lazy(() =>
   import("./features/Work").then((m) => ({ default: m.Work })),
 );
+const MemoryView = lazy(() => import("./features/learning-memory/MemoryView").then(m => ({default:m.MemoryView})));
 const Login = lazy(() =>
   import("./components/Login").then((m) => ({ default: m.Login })),
 );
@@ -39,6 +40,7 @@ const Exam = lazy(() =>
   import("./features/Exam").then((m) => ({ default: m.Exam })),
 );
 const views: View[] = [
+  "memory",
   "today",
   "courses",
   "classroom",
@@ -168,7 +170,11 @@ export default function App() {
                 “Precedenti” per rileggere le altre pagine.
               </p>
             )}
-          {!course.listing && !course.error && course.editions.length === 0 ? (
+          {view === "memory" ? (
+            <Suspense fallback={<Loading />}>
+              <MemoryView key={`${me.id}:${sessionVersion}`} me={me} resources={data?.resources ?? []} />
+            </Suspense>
+          ) : !course.listing && !course.error && course.editions.length === 0 ? (
             me.role === "teacher" && view === "courses" ? (
               <Suspense fallback={<Loading />}>
                 <Courses

@@ -15,7 +15,7 @@ export function SourceViewer({
   onSelect,
   onLoaded,
 }: {
-  reference: PostitReference;
+  reference: Pick<PostitReference, "resourceId" | "revisionId"> & Partial<Pick<PostitReference, "contextId">>;
   onSelect?: (start: number, end: number, quote: string) => void;
   onLoaded?: (resource: StudyResource) => void;
 }) {

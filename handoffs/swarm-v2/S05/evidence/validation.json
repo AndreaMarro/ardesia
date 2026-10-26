@@ -1,0 +1,26 @@
+{
+  "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+  "environment": "local synthetic SQLite + Chrome 155; no deployment",
+  "coreHttp": {
+    "passed": 55,
+    "warning": "Starlette TestClient/httpx deprecation"
+  },
+  "ui": {
+    "passed": 8
+  },
+  "typecheck": {
+    "exitCode": 0
+  },
+  "browser": {
+    "passed": 10,
+    "errors": [],
+    "viewports": [
+      1440,
+      390
+    ]
+  },
+  "fullLocalSuites": "initial full web interrupted with timing failures; not green",
+  "integration": "NOT_MERGED",
+  "deployment": "NOT_RUN",
+  "approval": "NO_HUMAN_APPROVAL"
+}

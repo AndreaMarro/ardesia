@@ -529,6 +529,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     install_register_routes(app,store_dependency,authenticate)
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
+    from .learning_memory_routes import install_learning_memory_routes
+    install_learning_memory_routes(app, store_dependency, authenticate)
     from .question_bank_routes import install_question_bank_routes
     install_question_bank_routes(app, store_dependency, authenticate)
     from .calendar_routes import install_calendar_routes

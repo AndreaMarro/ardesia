@@ -1,0 +1,537 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/features/learning-memory/MemoryView.test.tsx --maxWorkers=1 --testTimeout=30000 -t saving|refresh discards
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx (7 tests | 2 failed | 5 skipped) 26299ms
+   × saving not understood returns a persisted note to the visible list 19853ms
+   × refresh discards an editor snapshot when its source is no longer authorized 6434ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-memory/MemoryView.test.tsx > saving not understood returns a persisted note to the visible list
+TestingLibraryElementError: Unable to find role="button" and name "Apri Da chiarire"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"learning-memory"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-heading memory-heading"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"memory-eyebrow"[39m
+        [36m>[39m
+          [0mIL TUO QUADERNO PERSONALE[0m
+        [36m</span>[39m
+        [36m<h1>[39m
+          [0mMemoria delle idee.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mRitrova una spiegazione, riprendi una domanda, cambia idea. Ogni collegamento conserva la sua fonte.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mNuova idea[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mEsporta quaderno[0m
+          [36m</button>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"memory-import"[39m
+          [36m>[39m
+            [0mImporta quaderno[0m
+            [36m<input[39m
+              [33maccept[39m=[32m"application/json,.json"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button>[39m
+            [0mAggiorna memoria[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPrivato, anche senza un corso. Le classificazioni sono tue annotazioni: non certificano competenze.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"memory-search"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mfor[39m=[32m"memory-query"[39m
+        [36m>[39m
+          [0mCerca nelle idee e nelle fonti[0m
+        [36m</label>[39m
+        [36m<div>[39m
+          [36m<input[39m
+            [33mid[39m=[32m"memory-query"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Un concetto, una domanda, un passaggio…"[39m
+            [33mtype[39m=[32m"search"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<form[39m
+        [33maria-label[39m=[32m"Scrivi nel quaderno"[39m
+        [33mclass[39m=[32m"memory-editor"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mDa dove riparti?[0m
+        [36m</h2>[39m
+        [36m<fieldset[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<legend[39m
+            [33mclass[39m=[32m"sr-only"[39m
+          [36m>[39m
+            [0mContenuto dell’idea[0m
+          [36m</legend>[39m
+          [36m<label>[39m
+            [0mTitolo[0m
+            [36m<input[39m
+              [33mmaxlength[39m=[32m"160"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mvalue[39m=[32m"Da chiarire"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mLa tua nota[0m
+            [36m<textarea[39m
+              [33mmaxlength[39m=[32m"4000"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mrows[39m=[32m"4"[39m
+            [36m>[39m
+              [0mPerché la pressione è fissata?[0m
+            [36m</textarea>[39m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-form-grid"[39m
+          [36m>[39m
+            [36m<label>[39m
+              [0mCome descrivi questo passaggio?[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"idea"[39m
+                [36m>[39m
+                  [0mIdea[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"annotation"[39m
+                [36m>[39m
+                  [0mAnnotazione[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"observation"[39m
+                [36m>[39m
+                  [0mOsservazione[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"hypothesis"[39m
+                [36m>[39m
+                  [0mIpotesi[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"correction"[39m
+                [36m>[39m
+                  [0mRettifica[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"undetermined"[39m
+                [36m>[39m
+                  [0mNon determinato[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"not_understood"[39m
+                [36m>[39m
+                  [0mNon ho capito[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mConcetti, separati da virgola[0m
+              [36m<input[39m
+                [33mmaxlength[39m=[32m"780"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+          [36m</div>[39m
+          [36m<label>[39m
+            [0mCollega una fonte dell’edizione aperta[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mScegli una fonte per aggiungerla[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+        [36m</fieldset>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mSalvataggio…[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mAnnulla[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-toolbar"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m0[0m
+          [0m [0m
+          [0midee[0m
+          [0m · [0m
+          [0m0[0m
+          [0m fonti · [0m
+          [0m0[0m
+          [0m relazioni[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Vista della memoria"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mQuaderno[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mGrafo dei collegamenti[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-layout"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Idee e collegamenti"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-empty"[39m
+          [36m>[39m
+            [36m<h2>[39m
+              [0mNessuna idea salvata.[0m
+            [36m</h2>[39m
+            [36m<p>[39m
+              [0mUna domanda aperta è un buon punto da cui ripartire.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"learning-memory"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-heading memory-heading"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"memory-eyebrow"[39m
+        [36m>[39m
+          [0mIL TUO QUADERNO PERSONALE[0m
+        [36m</span>[39m
+        [36m<h1>[39m
+          [0mMemoria delle idee.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mRitrova una spiegazione, riprendi una domanda, cambia idea. Ogni collegamento conserva la sua fonte.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mNuova idea[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mEsporta quaderno[0m
+          [36m</button>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"memory-import"[39m
+          [36m>[39m
+            [0mImporta quaderno[0m
+            [36m<input[39m
+              [33maccept[39m=[32m"application/json,.json"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button>[39m
+            [0mAggiorna memoria[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPrivato, anche senza un corso. Le classificazioni sono tue annotazioni: non certificano competenze.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"memory-search"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mfor[39m=[32m"memory-query"[39m
+        [36m>[39m
+          [0mCerca nelle idee e nelle fonti[0m
+        [36m</label>[39m
+        [36m<div>[39m
+          [36m<input[39m
+            [33mid[39m=[32m"memory-query"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Un concetto, una domanda, un passaggio…"[39m
+            [33mtype[39m=[32m"search"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<form[39m
+        [33maria-label[39m=[32m"Scrivi nel quaderno"[39m
+        [33mclass[39m=[32m"memory-editor"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mDa dove riparti?[0m
+        [36m</h2>[39m
+        [36m<fieldset[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<legend[39m
+            [33mclass[39m=[32m"sr-only"[39m
+          [36m>[39m
+            [0mContenuto dell’idea[0m
+          [36m</legend>[39m
+          [36m<label>[39m
+            [0mTitolo[0m
+            [36m<input[39m
+              [33mmaxlength[39m=[32m"160"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mvalue[39m=[32m"Da chiarire"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mLa tua nota[0m
+            [36m<textarea[39m
+              [33mmaxlength[39m=[32m"4000"[39m
+              [33mrequired[39m=[32m""[39m
+              [33mrows[39m=[32m"4"[39m
+            [36m>[39m
+              [0mPerché la pressione è fissata?[0m
+            [36m</textarea>[39m
+          [36m</label>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-form-grid"[39m
+          [36m>[39m
+            [36m<label>[39m
+              [0mCome descrivi questo passaggio?[0m
+              [36m<select>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"idea"[39m
+                [36m>[39m
+                  [0mIdea[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"annotation"[39m
+                [36m>[39m
+                  [0mAnnotazione[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"observation"[39m
+                [36m>[39m
+                  [0mOsservazione[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"hypothesis"[39m
+                [36m>[39m
+                  [0mIpotesi[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"correction"[39m
+                [36m>[39m
+                  [0mRettifica[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"undetermined"[39m
+                [36m>[39m
+                  [0mNon determinato[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"not_understood"[39m
+                [36m>[39m
+                  [0mNon ho capito[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label>[39m
+              [0mConcetti, separati da virgola[0m
+              [36m<input[39m
+                [33mmaxlength[39m=[32m"780"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+          [36m</div>[39m
+          [36m<label>[39m
+            [0mCollega una fonte dell’edizione aperta[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mScegli una fonte per aggiungerla[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+        [36m</fieldset>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mSalvataggio…[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mAnnulla[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-toolbar"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m0[0m
+          [0m [0m
+          [0midee[0m
+          [0m · [0m
+          [0m0[0m
+          [0m fonti · [0m
+          [0m0[0m
+          [0m relazioni[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Vista della memoria"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mQuaderno[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mGrafo dei collegamenti[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-layout"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Idee e collegamenti"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-empty"[39m
+          [36m>[39m
+            [36m<h2>[39m
+              [0mNessuna idea salvata.[0m
+            [36m</h2>[39m
+            [36m<p>[39m
+              [0mUna domanda aperta è un buon punto da cui ripartire.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/learning-memory/MemoryView.test.tsx:58:22
+     56|  fireEvent.change(screen.getByLabelText('Come descrivi questo passaggi…
+     57|  fireEvent.click(screen.getByRole('button',{name:'Salva nel quaderno'}…
+     58|  expect(await screen.findByRole('button',{name:'Apri Da chiarire'})).t…
+       |                      ^
+     59| });
+     60|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/features/learning-memory/MemoryView.test.tsx > refresh discards an editor snapshot when its source is no longer authorized
+AssertionError: expected <textarea required …(2)></textarea> to be null
+
+- Expected:
+null
+
++ Received:
+<textarea
+  maxlength="4000"
+  required=""
+  rows="4"
+>
+  Il vincolo è la pressione.
+</textarea>
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx:107:49
+    105|  withdrawn=true;fireEvent.click(screen.getByRole('button',{name:'Aggio…
+    106|  await screen.findByText('Nessuna idea salvata.');
+    107|  expect(screen.queryByLabelText('La tua nota')).toBeNull();
+       |                                                 ^
+    108| });
+    109|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 5 skipped (7)
+   Start at  00:43:03
+   Duration  80.27s (transform 20.01s, setup 0ms, import 25.65s, tests 26.30s, environment 21.83s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error command failed
+npm error command sh -c vitest run src/features/learning-memory/MemoryView.test.tsx --maxWorkers=1 --testTimeout=30000 -t 'saving|refresh discards'

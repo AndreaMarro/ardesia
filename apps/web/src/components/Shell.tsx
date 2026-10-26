@@ -7,6 +7,7 @@ export type View =
   | "courses"
   | "classroom"
   | "work"
+  | "memory"
   | "review"
   | "exam"
   | "materials";
@@ -18,6 +19,7 @@ const items: {
   studentOnly?: boolean;
   icon: string;
 }[] = [
+  { id: "memory", label: "Memoria delle idee", icon: "M5 4h14v16H5zM9 8h6M9 12h6M9 16h4" },
   { id: "today", label: "Oggi", icon: "M3 10 12 3l9 7v11h-6v-7H9v7H3Z" },
   {
     id: "courses",

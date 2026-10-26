@@ -1,0 +1,541 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/features/learning-memory/MemoryView.test.tsx --maxWorkers=1 --testTimeout=30000 -t changing graph
+
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx (7 tests | 1 failed | 6 skipped) 12596ms
+   × changing graph node during an unfinished note read clears the spinner 12589ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-memory/MemoryView.test.tsx > changing graph node during an unfinished note read clears the spinner
+TestingLibraryElementError: Unable to find role="heading" and name "Fonte originale"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"learning-memory"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-heading memory-heading"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"memory-eyebrow"[39m
+        [36m>[39m
+          [0mIL TUO QUADERNO PERSONALE[0m
+        [36m</span>[39m
+        [36m<h1>[39m
+          [0mMemoria delle idee.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mRitrova una spiegazione, riprendi una domanda, cambia idea. Ogni collegamento conserva la sua fonte.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mNuova idea[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mEsporta quaderno[0m
+          [36m</button>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"memory-import"[39m
+          [36m>[39m
+            [0mImporta quaderno[0m
+            [36m<input[39m
+              [33maccept[39m=[32m"application/json,.json"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button>[39m
+            [0mAggiorna memoria[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPrivato, anche senza un corso. Le classificazioni sono tue annotazioni: non certificano competenze.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"memory-search"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mfor[39m=[32m"memory-query"[39m
+        [36m>[39m
+          [0mCerca nelle idee e nelle fonti[0m
+        [36m</label>[39m
+        [36m<div>[39m
+          [36m<input[39m
+            [33mid[39m=[32m"memory-query"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Un concetto, una domanda, un passaggio…"[39m
+            [33mtype[39m=[32m"search"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-toolbar"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m2[0m
+          [0m [0m
+          [0midee[0m
+          [0m · [0m
+          [0m1[0m
+          [0m fonti · [0m
+          [0m2[0m
+          [0m relazioni[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Vista della memoria"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mQuaderno[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mGrafo dei collegamenti[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-layout"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Idee e collegamenti"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-graph"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mSegui una relazione per aprire l’oggetto e la sua revisione. Gli stessi collegamenti sono disponibili da tastiera.[0m
+            [36m</p>[39m
+            [36m<ul[39m
+              [33maria-label[39m=[32m"Nodi del grafo"[39m
+              [33mclass[39m=[32m"memory-graph-nodes"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-note"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mIdea[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-note"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mIdea[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione due[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-source"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mFonte[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mFonte originale[0m
+                [36m</button>[39m
+              [36m</li>[39m
+            [36m</ul>[39m
+            [36m<ul[39m
+              [33maria-label[39m=[32m"Relazioni del grafo"[39m
+              [33mclass[39m=[32m"memory-graph-edges"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<button>[39m
+                  [0mLezione due[0m
+                [36m</button>[39m
+                [36m<span>[39m
+                  [0m → [0m
+                  [0mriprende[0m
+                  [0m → [0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+                [36m<span>[39m
+                  [0m → [0m
+                  [0mcita[0m
+                  [0m → [0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mFonte originale[0m
+                [36m</button>[39m
+              [36m</li>[39m
+            [36m</ul>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<aside[39m
+          [33maria-label[39m=[32m"Dettaglio del collegamento"[39m
+          [33mclass[39m=[32m"memory-detail"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mApertura dell’idea…[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33mclass[39m=[32m"source-viewer"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"source-heading"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mFonte privata[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mRevisione [0m
+                [0moriginal[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"original-text"[39m
+            [36m>[39m
+              [0mPassaggio originale[0m
+            [36m</p>[39m
+            [36m<details[39m
+              [33mclass[39m=[32m"provenance"[39m
+            [36m>[39m
+              [36m<summary>[39m
+                [0mFonte, versione e contesto[0m
+              [36m</summary>[39m
+              [36m<dl>[39m
+                [36m<dt>[39m
+                  [0mRisorsa[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0msource-one[0m
+                [36m</dd>[39m
+                [36m<dt>[39m
+                  [0mRevisione originale[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0moriginal-revision[0m
+                [36m</dd>[39m
+                [36m<dt>[39m
+                  [0mHash della revisione[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+                [36m</dd>[39m
+              [36m</dl>[39m
+              [36m<button>[39m
+                [0mApri il contesto di lavoro[0m
+              [36m</button>[39m
+              [0m [0m
+            [36m</details>[39m
+          [36m</section>[39m
+        [36m</aside>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"learning-memory"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-heading memory-heading"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"memory-eyebrow"[39m
+        [36m>[39m
+          [0mIL TUO QUADERNO PERSONALE[0m
+        [36m</span>[39m
+        [36m<h1>[39m
+          [0mMemoria delle idee.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mRitrova una spiegazione, riprendi una domanda, cambia idea. Ogni collegamento conserva la sua fonte.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button-primary"[39m
+          [36m>[39m
+            [0mNuova idea[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mEsporta quaderno[0m
+          [36m</button>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"memory-import"[39m
+          [36m>[39m
+            [0mImporta quaderno[0m
+            [36m<input[39m
+              [33maccept[39m=[32m"application/json,.json"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+          [36m</label>[39m
+          [36m<button>[39m
+            [0mAggiorna memoria[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"fine-print"[39m
+        [36m>[39m
+          [0mPrivato, anche senza un corso. Le classificazioni sono tue annotazioni: non certificano competenze.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"memory-search"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mfor[39m=[32m"memory-query"[39m
+        [36m>[39m
+          [0mCerca nelle idee e nelle fonti[0m
+        [36m</label>[39m
+        [36m<div>[39m
+          [36m<input[39m
+            [33mid[39m=[32m"memory-query"[39m
+            [33mmaxlength[39m=[32m"200"[39m
+            [33mplaceholder[39m=[32m"Un concetto, una domanda, un passaggio…"[39m
+            [33mtype[39m=[32m"search"[39m
+            [33mvalue[39m=[32m""[39m
+          [36m/>[39m
+          [36m<button[39m
+            [33mtype[39m=[32m"submit"[39m
+          [36m>[39m
+            [0mCerca[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-toolbar"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0m2[0m
+          [0m [0m
+          [0midee[0m
+          [0m · [0m
+          [0m1[0m
+          [0m fonti · [0m
+          [0m2[0m
+          [0m relazioni[0m
+        [36m</p>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Vista della memoria"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"false"[39m
+          [36m>[39m
+            [0mQuaderno[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-pressed[39m=[32m"true"[39m
+          [36m>[39m
+            [0mGrafo dei collegamenti[0m
+          [36m</button>[39m
+        [36m</nav>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-layout"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Idee e collegamenti"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"memory-graph"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mSegui una relazione per aprire l’oggetto e la sua revisione. Gli stessi collegamenti sono disponibili da tastiera.[0m
+            [36m</p>[39m
+            [36m<ul[39m
+              [33maria-label[39m=[32m"Nodi del grafo"[39m
+              [33mclass[39m=[32m"memory-graph-nodes"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-note"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mIdea[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-note"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mIdea[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione due[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"memory-node memory-node-source"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mFonte[0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mFonte originale[0m
+                [36m</button>[39m
+              [36m</li>[39m
+            [36m</ul>[39m
+            [36m<ul[39m
+              [33maria-label[39m=[32m"Relazioni del grafo"[39m
+              [33mclass[39m=[32m"memory-graph-edges"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<button>[39m
+                  [0mLezione due[0m
+                [36m</button>[39m
+                [36m<span>[39m
+                  [0m → [0m
+                  [0mriprende[0m
+                  [0m → [0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+              [36m</li>[39m
+              [36m<li>[39m
+                [36m<button>[39m
+                  [0mLezione uno[0m
+                [36m</button>[39m
+                [36m<span>[39m
+                  [0m → [0m
+                  [0mcita[0m
+                  [0m → [0m
+                [36m</span>[39m
+                [36m<button>[39m
+                  [0mFonte originale[0m
+                [36m</button>[39m
+              [36m</li>[39m
+            [36m</ul>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<aside[39m
+          [33maria-label[39m=[32m"Dettaglio del collegamento"[39m
+          [33mclass[39m=[32m"memory-detail"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"loading-state"[39m
+            [33mrole[39m=[32m"status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+            [36m/>[39m
+            [0mApertura dell’idea…[0m
+          [36m</p>[39m
+          [36m<section[39m
+            [33mclass[39m=[32m"source-viewer"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"source-heading"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mFonte privata[0m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mRevisione [0m
+                [0moriginal[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"original-text"[39m
+            [36m>[39m
+              [0mPassaggio originale[0m
+            [36m</p>[39m
+            [36m<details[39m
+              [33mclass[39m=[32m"provenance"[39m
+            [36m>[39m
+              [36m<summary>[39m
+                [0mFonte, versione e contesto[0m
+              [36m</summary>[39m
+              [36m<dl>[39m
+                [36m<dt>[39m
+                  [0mRisorsa[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0msource-one[0m
+                [36m</dd>[39m
+                [36m<dt>[39m
+                  [0mRevisione originale[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0moriginal-revision[0m
+                [36m</dd>[39m
+                [36m<dt>[39m
+                  [0mHash della revisione[0m
+                [36m</dt>[39m
+                [36m<dd>[39m
+                  [0maaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa[0m
+                [36m</dd>[39m
+              [36m</dl>[39m
+              [36m<button>[39m
+                [0mApri il contesto di lavoro[0m
+              [36m</button>[39m
+              [0m [0m
+            [36m</details>[39m
+          [36m</section>[39m
+        [36m</aside>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper ../../node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/learning-memory/MemoryView.test.tsx:125:22
+    123|  fireEvent.click(nodes.getByRole('button',{name:'Lezione uno'}));
+    124|  fireEvent.click(nodes.getByRole('button',{name:'Fonte originale'}));
+    125|  expect(await screen.findByRole('heading',{name:'Fonte originale',leve…
+       |                      ^
+    126|  await act(async()=>finish(json({...first,backlinks:[]})));
+    127|  expect(screen.queryByRole('heading',{name:'Lezione uno',level:2})).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  00:45:59
+   Duration  63.19s (transform 6.34s, setup 0ms, import 9.65s, tests 12.60s, environment 36.79s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error command failed
+npm error command sh -c vitest run src/features/learning-memory/MemoryView.test.tsx --maxWorkers=1 --testTimeout=30000 -t 'changing graph'
