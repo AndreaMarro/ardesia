@@ -23,7 +23,7 @@ export function PublicCourseTeasers() {
               <span>{course.unitIds.join(" · ")}</span>
             </p>
             <h3>{course.title}</h3>
-            <p>{course.availableLessons} {course.availableLessons === 1 ? "lezione dimostrativa" : "lezioni dimostrative"} disponibile{course.availableLessons === 1 ? "" : "i"}.</p>
+            <p>{course.availableLessons} {course.availableLessons === 1 ? "lezione dimostrativa" : "lezioni dimostrative"} {course.availableLessons === 1 ? "disponibile" : "disponibili"}.</p>
             <p className="public-course-tile-status">Percorso in preparazione · {course.completedObjectives}/{course.requiredObjectives} obiettivi accettati</p>
             <a href={`/corsi/${course.pathId}/`} aria-label={`Apri il percorso ${course.title}`}>
               Apri il percorso <span aria-hidden="true">↗</span>
