@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, expect, test, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import App from "../App";
 import { readResourceDraft, writeResourceDraft } from "../components/sessionDraftCache";
@@ -24,6 +24,12 @@ let reply: () => Promise<Response> = async () => rejection();
 let logoutResponse: () => Promise<Response> = async () => json({ ok: true });
 let actor = me;
 
+// These assertions exercise session boundaries, independently of first-time
+// compilation of the real Work and Insights modules.
+beforeAll(async () => {
+  await Promise.all([import("../features/Work"), import("../features/learning-insights/LearningInsights")]);
+});
+
 beforeEach(() => {
   actor = me;
   child = "json";
@@ -41,6 +47,11 @@ beforeEach(() => {
         asset_refs: child === "binary" ? ["original"] : [],
         source_refs: child === "json" ? submission.source_refs : [] }] });
     if (path.startsWith("/study/diary?")) return json({ threads: [], confirmedOpenCount: 0, candidateCount: 0 });
+    if (path.startsWith("/study/learning-insights?")) return json({
+      schemaVersion: 1, editionId: edition.id, role: actor.role, attempts: [], suggestions: [], comparisons: [],
+      recoveries: [], optionalEvents: [], cohortSuppressed: false, summary: null,
+      preferences: { enabled: false, consentId: null, noticeVersion: null, notice: null, essentialStudyAvailable: true }, limits: [],
+    });
     if (path.startsWith("/study/resources/") || path.startsWith("/study/assets/")) return reply();
     if (path === "/study/health") return json({ capabilities: { invitationCodes: false } });
     if (path === "/study/course") return json({ ...edition, scope: "DRAFT pubblico" });
@@ -66,6 +77,7 @@ test.each(["logout", "rejected"])("%s clears independent-study device copies aft
     await screen.findByRole("dialog");
   } else {
     render(<App />);
+    await act(async () => { await vi.dynamicImportSettled(); });
     fireEvent.click(await screen.findByRole("button", {name: "Consegne e feedback"}));
     await screen.findByText("PROCEDIMENTO PRIVATO C7");
     fireEvent.click(screen.getByRole("button", {name: /Esci/}));
@@ -78,7 +90,7 @@ test.each(["logout", "rejected"])("%s clears independent-study device copies aft
 
 async function openDelivery() {
   render(<App />);
-  await import("../features/Work");
+  await act(async () => { await vi.dynamicImportSettled(); });
   fireEvent.click(await screen.findByRole("button", { name: "Consegne e feedback" }));
   await screen.findByText("PROCEDIMENTO PRIVATO C7");
   const details = screen.getByText("Originali, versione e ricevuta").closest("details")!;
@@ -127,6 +139,7 @@ test("an anonymous initial authentication boundary remains public without openin
 test("explicit logout clears the private application even when server revocation is unconfirmed", async () => {
   logoutResponse = async () => json({ error: "server_busy", serverRevocation: "UNCONFIRMED" }, 503);
   render(<App />);
+  await act(async () => { await vi.dynamicImportSettled(); });
   fireEvent.click(await screen.findByRole("button", { name: "Consegne e feedback" }));
   await screen.findByText("PROCEDIMENTO PRIVATO C7");
   fireEvent.click(screen.getByRole("button", { name: /Esci/ }));
