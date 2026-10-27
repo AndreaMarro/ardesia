@@ -715,6 +715,19 @@ dd {
   margin: 80px auto;
   padding: 20px;
 }
+.core-unavailable {
+  max-width: 780px;
+}
+.core-unavailable > .wordmark {
+  margin-bottom: 44px;
+}
+.core-unavailable-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-bottom: 28px;
+}
 /* A course-first studio, with the classroom as a course destination. */
 .ps-sidebar {
   position: fixed;

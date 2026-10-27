@@ -198,3 +198,18 @@ Il Core hosted e il trasporto collaborativo non sono certificati: non eliminare 
 
 
 Delta finale dipendenze: audit npm completo e produzione0suWeb/Studio;293testStudio,96Web, typecheck e build entrambi, PDF e Mermaid nativi PASS. Tutti i4manifest/lock copiati con verifica base3228 e byte equivalenti al worktree testato. Vite/Vitest aggiornati entro i major esistenti, nessun force o downgrade. Pubblicare insieme al resolver Git; nuova CI richiesta, poi stessa SHA per demo pubblica, client protetti e preview editoriale43lezioni DRAFT. La review non modifica i297campi humanApproval false o la copertura0/200.
+
+
+### Addendum PRO — 27 ottobre 2026: recupero dell'ingresso privato503
+
+Il difetto reale della root privata è corretto nel diff isolato `pro/private-entry-recovery` su base main `fd9d7ed8997996564aef4ada97e972786c07dd33`: `/me`503/rete non deve montare il percorso Public che richiede il Core. `App.tsx` ora mostra indisponibilità esplicita, Studio locale, stato del rilascio e retry canonico;401 e demo pubblica rimangono separati. Sei nuovi test,31regressioni mirate, typecheck e build Web PASS; RED originale e correzione dell'aspettativa accessibile Esci conservati nella cronologia della verifica. Browser locale opzionale NOT_RUN per eseguibile Chromium mancante, non prova di un guasto prodotto. Leggere l'ultima RUNLOG per comandi, limiti e quattro task con accettazione.
+
+Prima azione del coordinatore: pubblicare i cinque file del diff nella nuova PR, leggere CI della SHA esatta, merge e post-merge; quindi ricostruire e provare il pacchetto privato canonico su HTTPS protetto. Non modificare gli artefatti già preparati in modo da farli apparire provenienti dalla nuova fonte. Il build locale non è una ricevuta Vercel. La sequenza QA è `/` → `/studio/` → `/ops/release/` e controllo `/study/*`503; applicare la matrice locale/remoto dichiarata nella RUNLOG. Core hosted, collaborazione, corsi e autenticazione applicativa remoti restano bloccati; conservare SSO, guardie locali e separazione dalla demo pubblica.
+
+
+Seguito browser503: col Chrome for Testing esistente indicato dal coordinatore, il probe locale sulla build Web ha passato390/1280px, tastiera/link/retry, nessun overflow e zero pageError. API503 sintetica esplicita: questo verde non sostituisce la prova HTTPS della nuova release. Il precedente NOT_RUN riguardava soltanto la risoluzione automatica dell’eseguibile Playwright.
+
+
+### PR327 — correzione mirata del test focus,27 ottobre2026
+
+La head637354c3 ha Web697PASS/1FAIL, non CI tutta verde: ScienceLibrary aspettava il nodoDOM e controllava sincronicamente un focus applicato da useEffect. Il solo test ora attende la stessa condizione con waitFor, senza timeout maggiori, assertion rimosse o runtime modificato. Suite mirata7/7PASS in tre esecuzioni locali. Prima azione: pubblicare test+due note nella stessa327, leggere nuovahead e required checks effettivi; poi merge/post-CI e rebuild per la provenienza della nuovaSHA. Pacchetti637 intermedi, nessun deploy finale attestato. I quattro passi dell'ultima RUNLOG conservano dipendenze e prove; Core hosted e accettazione corsi restano limiti distinti.

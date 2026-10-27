@@ -53,6 +53,8 @@ function initialView(): View {
 export default function App() {
   const [me, setMe] = useState<StudyMe | null>(null),
     [checking, setChecking] = useState(true),
+    [sessionCheckAttempt, setSessionCheckAttempt] = useState(0),
+    [coreUnavailable, setCoreUnavailable] = useState<"not-configured" | "unavailable" | null>(null),
     [view, setView] = useState<View>(initialView),
     [error, setError] = useState(""),
     [loginOpen, setLoginOpen] = useState(false),
@@ -69,6 +71,7 @@ export default function App() {
       if (me) clearActorOffline(me.id);
       setMe(null);
       setChecking(false);
+      setCoreUnavailable(null);
       clearResourceDrafts();
       setParentId(null);
       setError("");
@@ -106,10 +109,10 @@ export default function App() {
         }
       })
       .catch((e) => {
-        if (active && isStudySessionEpoch(epoch) && !(e instanceof StudySessionChangedError) && !(e instanceof StudyApiError && e.status === 401))
-          setError(
-            "La connessione allo spazio di lavoro non è disponibile. Il laboratorio resta accessibile quando il servizio risponde.",
-          );
+        if (!active || !isStudySessionEpoch(epoch) || e instanceof StudySessionChangedError) return;
+        if (e instanceof StudyApiError && e.status === 401) return;
+        setCoreUnavailable(e instanceof StudyApiError && e.message === "backend_not_configured"
+          ? "not-configured" : "unavailable");
       })
       .finally(() => {
         if (active && isStudySessionEpoch(epoch)) setChecking(false);
@@ -118,7 +121,12 @@ export default function App() {
       active = false;
       controller.abort();
     };
-  }, []);
+  }, [sessionCheckAttempt]);
+  function retrySessionCheck() {
+    setChecking(true);
+    setCoreUnavailable(null);
+    setSessionCheckAttempt((attempt) => attempt + 1);
+  }
   function navigate(next: View) {
     setView(next);
     const url = new URL(location.href);
@@ -137,6 +145,29 @@ export default function App() {
         <span className="wordmark">ardesia.</span>
         <Loading />
       </div>
+    );
+  if (!me && coreUnavailable)
+    return (
+      <main className="app-loading core-unavailable" aria-labelledby="core-unavailable-title">
+        <p className="wordmark">ardesia.</p>
+        <header className="page-heading">
+          <h1 id="core-unavailable-title">
+            {coreUnavailable === "not-configured" ? "Il Core non è configurato" : "Il Core non è disponibile"}
+          </h1>
+          <p role="status">
+            Il servizio che gestisce accesso, corsi e condivisione non è disponibile.
+            Puoi aprire lo Studio locale per preparare una lezione e riprovare la connessione.
+          </p>
+        </header>
+        <nav className="core-unavailable-actions" aria-label="Accessi disponibili">
+          <a className="button-primary" href="/studio/">Apri Studio</a>
+          <a href="/ops/release/">Stato del rilascio</a>
+          <button type="button" onClick={retrySessionCheck}>Riprova la connessione</button>
+        </nav>
+        <p className="fine-print">
+          Le lezioni locali restano in questo browser. Esporta un file .lesson per conservarne una copia.
+        </p>
+      </main>
     );
   return (
     <>
