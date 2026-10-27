@@ -27,12 +27,12 @@ class OverlapTest(unittest.TestCase):
             audit.summarize({'pullRequests': [{'number': 1, 'files': []}, {'number': 1, 'files': []}]})
 
     def test_pages_and_live_base_epoch(self):
-        original = {'base': {'ref': 'main'}, 'head': {'sha': 'h'}, 'number': 12, 'draft': True}
+        original = {'base': {'ref': 'main'}, 'head': {'sha': 'h'}, 'number': 12, 'draft': True, 'state': 'open'}
         def fake(path, pages=False):
             if '/branches/' in path: return {'commit': {'sha': 'base'}}
             if 'pulls?state=' in path: return [original]
             if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
-            return {'head': {'sha': 'h'}}
+            return {'head': {'sha': 'h'}, 'base': {'ref': 'main'}, 'state': 'open'}
         with patch.object(audit, 'gh', side_effect=fake):
             result = audit.live('AndreaMarro/ardesia', 'main')
         self.assertEqual(result['status'], 'MEASURED')
@@ -40,12 +40,12 @@ class OverlapTest(unittest.TestCase):
         self.assertEqual(result['unstablePrs'], [])
 
     def test_detects_racing_pr_head(self):
-        original = {'base': {'ref': 'main'}, 'head': {'sha': 'old'}, 'number': 12, 'draft': True}
+        original = {'base': {'ref': 'main'}, 'head': {'sha': 'old'}, 'number': 12, 'draft': True, 'state': 'open'}
         def fake(path, pages=False):
             if '/branches/' in path: return {'commit': {'sha': 'base'}}
             if 'pulls?state=' in path: return [original]
             if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
-            return {'head': {'sha': 'new'}}
+            return {'head': {'sha': 'new'}, 'base': {'ref': 'main'}, 'state': 'open'}
         with patch.object(audit, 'gh', side_effect=fake):
             result = audit.live('AndreaMarro/ardesia', 'main')
         self.assertEqual(result['status'], 'STALE_SNAPSHOT_RETRY')
