@@ -190,3 +190,11 @@ Base osservata dc353639. Il ramo `pro/recovery-convergence-20261027` compone310/
 La nuova root build produce Web+Studio privati con il preparatore canonico, non soltanto Studio; conserva SSO, /study503 e deployment Git disabilitato. Il progetto pubblico va aggiornato separatamente dai soli asset PUBLIC_DEMONSTRATION. Prima di riprendere leggere la PR di convergenza per head, sette required, merge/post-CI e deployment effettivi: questo addendum è pre-release, non una ricevuta di pubblicazione.
 
 Il Core hosted e il trasporto collaborativo non sono certificati: non eliminare guardie sintetiche/loopback o trasformare SSO Vercel in autorizzazione applicativa. I quattro corsi restano0/200 accettati,38 lezioni qualitative DRAFT e5esempi pubblici. Ordine operativo: terminalizzare integrazione e deploy, poi runtime remoto verificato, poi accettazione scientifica progressiva con prove docente–studente. Nessun uso del servizio Codex, costo nuovo o modifica distruttiva.
+
+
+### PR326 — gate e primo errore provider,27 ottobre2026
+
+3228d319/tree8f201e2f ha sette required SUCCESS su merge checkout0f693c74, CI40543687309. Primo GitSource privato dpl_C8hME...ERROR per origin/main assente nel clone del ramo: resolver corretto con15prove, incluse Git shallow reale e main distinto daHEAD. Non chiamare la preview READY o la suite locale interrotta PASS. Aggiornamento dipendenze Studio motivato da11avvisi npm produzione: richiede nuova head con CI e nuova build provider. La demo pubblica e il privato devono infine essere verificati sui deployment reali; nessuna ricezione di file o ramo aperto equivale al rilascio. Leggere PR326 per gli esiti successivi, non fermarsi a questo checkpoint.
+
+
+Delta finale dipendenze: audit npm completo e produzione0suWeb/Studio;293testStudio,96Web, typecheck e build entrambi, PDF e Mermaid nativi PASS. Tutti i4manifest/lock copiati con verifica base3228 e byte equivalenti al worktree testato. Vite/Vitest aggiornati entro i major esistenti, nessun force o downgrade. Pubblicare insieme al resolver Git; nuova CI richiesta, poi stessa SHA per demo pubblica, client protetti e preview editoriale43lezioni DRAFT. La review non modifica i297campi humanApproval false o la copertura0/200.

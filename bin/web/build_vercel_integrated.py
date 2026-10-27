@@ -35,6 +35,44 @@ def git_sha(ref: str) -> str:
         ['git', 'rev-parse', '--verify', ref], cwd=ROOT, text=True).strip())
 
 
+def resolve_main_sha(explicit: str | None = None) -> str:
+    """Resolve main without requiring a branch ref in a shallow Git checkout.
+
+    Only the configured origin is queried; no fetch, ref update or credential
+    setup is performed. Remote stderr may contain a credential-bearing URL, so
+    diagnostics identify the failed operation and exit code without echoing it.
+    """
+    if explicit is not None:
+        return exact_sha(explicit)
+    local = subprocess.run(
+        ['git', 'rev-parse', '--verify', '--quiet', 'refs/remotes/origin/main^{commit}'],
+        cwd=ROOT, text=True, capture_output=True, check=False)
+    if local.returncode == 0:
+        return exact_sha(local.stdout.strip())
+    if local.returncode != 1:
+        raise ValueError(f'local_origin_main_lookup_failed: git exit {local.returncode}')
+    print('Local origin/main is absent; resolving refs/heads/main from the configured origin.',
+          file=sys.stderr)
+    try:
+        remote = subprocess.run(
+            ['git', 'ls-remote', '--exit-code', '--refs', 'origin', 'refs/heads/main'],
+            cwd=ROOT, text=True, capture_output=True, check=False, timeout=30,
+            env={**os.environ, 'GIT_TERMINAL_PROMPT': '0'})
+    except subprocess.TimeoutExpired:
+        raise ValueError('origin_main_lookup_timed_out: git ls-remote exceeded 30 seconds') from None
+    if remote.returncode == 2:
+        raise ValueError('origin_main_missing: configured origin has no refs/heads/main')
+    if remote.returncode:
+        raise ValueError(f'origin_main_lookup_failed: git ls-remote exit {remote.returncode}')
+    records = remote.stdout.splitlines()
+    if len(records) != 1:
+        raise ValueError('origin_main_missing_or_ambiguous: expected exactly one remote ref')
+    fields = records[0].split('\t')
+    if len(fields) != 2 or fields[1] != 'refs/heads/main':
+        raise ValueError('origin_main_invalid: expected an exact refs/heads/main record')
+    return exact_sha(fields[0])
+
+
 def build(*, main_sha: str | None = None) -> dict:
     project = os.environ.get('VERCEL_PROJECT_ID')
     if project is not None and project != PRIVATE_PROJECT_ID:
@@ -43,7 +81,7 @@ def build(*, main_sha: str | None = None) -> dict:
     if os.environ.get('ARDESIA_COURSE_REVIEW_DATA'):
         raise ValueError('editorial_sidecar_not_allowed')
     head = git_sha('HEAD')
-    main = exact_sha(main_sha) if main_sha is not None else git_sha('refs/remotes/origin/main')
+    main = resolve_main_sha(main_sha)
     vercel = ROOT / '.vercel'
     output = vercel / 'output'
     receipt_path = vercel / 'ardesia-preview-manifest.json'
@@ -82,12 +120,15 @@ def build(*, main_sha: str | None = None) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--main-sha', default=os.environ.get('ARDESIA_MAIN_SHA'),
-                        help='Exact observed main SHA; defaults to ARDESIA_MAIN_SHA or local origin/main')
+                        help='Exact observed main SHA; defaults to ARDESIA_MAIN_SHA, local origin/main, or the configured origin')
     args = parser.parse_args()
     try:
         receipt = build(main_sha=args.main_sha)
     except (ValueError, OSError, subprocess.CalledProcessError) as error:
-        print('Integrated Vercel build failed: ' + type(error).__name__, file=sys.stderr)
+        # ValueError messages are controlled validation diagnostics. OSError and
+        # subprocess errors can contain paths or command details: keep them terse.
+        detail = str(error) if isinstance(error, ValueError) else type(error).__name__
+        print('Integrated Vercel build failed: ' + detail, file=sys.stderr)
         return 1
     print(f"Prepared {len(receipt['staticAssetsSha256'])} protected Web + Studio assets in .vercel/output; "
           'backend NOT_CONFIGURED; no deployment performed')
