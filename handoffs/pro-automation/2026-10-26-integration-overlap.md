@@ -117,3 +117,23 @@ Keep the smallest merchantable product as **one exact G0 Physics teacher→stude
 5. **P1 / Core MCP / draft-only safe WRITE.** Reuse feedback candidates and teacher-reviewed correction service; require tenant+actor, submission/source version, idempotency, CAS, durable audit, revocation, 403 and 409 negatives; never publish without distinct human approval. No claim ChatGPT Pro host supports writes before an official live capability test.
 
 **CLOSED this cycle:** exact provider-source provenance comparison and notification to the #313 integration owner. **NOT_CLOSED:** deployment of G0, remote pilot/G1, physical audio, REA capture, MCP write, scientific course approvals. No production write, merge, REA capture, students/PII, expense or policy mutation was performed.
+
+## Delta 27 ottobre — G0/Memory conflict and Web CI red
+
+**Nuovo incremento distinto dal controllo di deploy precedente.** Review formale pubblicata nella [PR #315](https://github.com/AndreaMarro/ardesia/pull/315#pullrequestreview-5662922402) sulla head `c6ba842f523fd7af32000a137306e765fa2ab548`: `PASS — REVIEW_PUBLISHED`, nessun merge. `App.tsx` di #315 (blob `f7e4528d`) parte dal mondo pre-G0, senza `IndependentStudy`, filtro `mountedViews`, cleanup offline e navigazione push/back/forward della main `dc353639` (blob `b4271473`); `SourceViewer` #315 (blob `3c0604d`) non contiene i renderer/adapter circuito, science, PDF/audio e studio autonomo presenti nel blob main `f174fb5`. Rischio di conflitto semantico in composizione, **non regressione già dimostrata in main**. Il gate richiesto a S00 è l'uso simultaneo dei nuovi componenti Memory e dei consumer G0, con una singola identità Core, history, revoca e provenienza.
+
+**CI corrente #321** sulla head `ac540ac9099ba941520ebaf250274bf8c8b691b1`: il [job Web 122033855651](https://github.com/AndreaMarro/ardesia/actions/runs/40457271243/job/122033855651) è `FAIL`, con 621 test PASS / 1 FAIL in 94 file. `ScienceLibrary.test.tsx` richiede focus sul risultato mobile, ma `document.activeElement` resta `body`; la sorgente `ScienceLibrary.tsx` tenta il focus in `useEffect([result])` in media query mobile. La [diagnosi e controprova richiesta](https://github.com/AndreaMarro/ardesia/pull/321#issuecomment-6435188812) è nel thread; NON chiamarlo flaky senza riproduzione, non alzare timeout o eliminare l'oracolo. La main G0 `dc353639` mantiene invece 9 check completed/success, sul proprio SHA.
+
+**Knowledge plane:** `ardesia-knowledge/main/00-CURRENT.md` è uno snapshot generato al 25 luglio, `sync/current/00-CURRENT.md` è al 22 agosto 2026, entrambi `DEGRADED`. L'ultimo SHA della branch `sync/current` letto da GitHub è `627b8ffa361245645d57f4303e40bdc642561edc`, non il remote fissato nel documento generato. Sono osservazioni storiche, non ragioni per riscrivere il vault Obsidian o i file di stato derivati. Serve un delta coordinato col single-writer knowledge, senza forzare un sync.
+
+**REA:** `BLOCKED_RUNTIME`: Desktop Commander non ha device collegati e la CLI `rea` non è installata nel container di questa esecuzione; nessuna capture nuova dichiarata. Da documentazione [REA browser-scenario-contract](https://github.com/morluto/rea/blob/main/docs/browser-scenario-contract.md) una prova UI senza navigazione richiede attesa dello stato e DOM/AX o screenshot, non soltanto la URL finale.
+
+### NEXT PRIORITY TASKS (snapshot 27 ottobre)
+
+1. **P0 / S00 — preview G0 exact-source**: confermare SHA+hash dei byte/SSO/viewport di una nuova protected preview e distinguere API503 da beta remota; evidence deployment.
+2. **P0 / S00+S05 — composizione Memory/G0**: conciliare #315 e main, provare Memory senza corso, IndependentStudy con corso, SourceViewer PDF/audio/science, revoca/back-forward; accettazione solo su SHA composta.
+3. **P0 / S10 — backend remoto Core**: Auth+Storage persistenti autorizzati, due browser sintetici, 401/403, riavvio, received/review/cold reopen e revoca; no ELAB import.
+4. **P1 / S01/Web — discriminare CI #321**: log+activeElement/matchMedia dopo effect su merge ref esatta, RED/GREEN senza gate indeboliti; blocker per merge #321, non provato blocker main.
+5. **P0 / revisore editoriale — 1/200**: convalidare un obiettivo completo con spiegazione, modello corretto, feedback, nuovo problema e approvazione umana; non dichiarare automaticamente approvati i DRAFT.
+
+**CLOSED oggi:** due interventi read-only persistiti su GitHub (#315 review, #321 diagnosi CI). **NOT_RUN/BLOCKED:** patch applicativa, green CI di #321, nuova preview, G1 remoto, REA runtime, update diretto della knowledge plane. Nessun merge, produzione, DNS, pagamenti o dati reali modificati.
