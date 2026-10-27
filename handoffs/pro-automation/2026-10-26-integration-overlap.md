@@ -72,3 +72,48 @@ No private student data, recordings, deployment, DNS, costs, settings, merge or 
 - **Provenance/REA:** primary `morluto/rea` browser-scenario contract confirms deterministic declared Playwright actions with explicit screenshot/DOM/accessibility captures; passive CDP observation is a different surface and cannot establish prior actions or backend equivalence. Reconstruction-readiness verification explicitly separates real static observations from synthetic evaluator conformance. No authorized connected Desktop Commander device was found for this run: live REA capture **BLOCKED**, not simulated. Source: https://github.com/morluto/rea/blob/main/docs/browser-scenario-contract.md and https://github.com/morluto/rea/blob/main/docs/reconstruction-readiness.md .
 - **Memory fallback:** private `ardesia-knowledge/00-CURRENT.md` was read and self-labels `DEGRADED` with July 25 freshness; it is not the October truth. Root `AGENTS.md` and next-session instructions were read; common memory files remain owned by S00, and `docs/ops/ARDESIA-KNOWLEDGE-PACKET-FOR-AGENTS.md` plus `NEXT-AUTOMATION-PACKET.md` could not be resolved on the current main. AgentMemory REST unavailable without connected device. This addendum and the GitHub review preserve the finding without rewriting shared history. **DO NOT merge** merely on the strength of the file overlap report.
 - **Next action:** root integrator S00 should decide whether to patch the census race under the existing PR #321 and then compose the actual consumer/backend pilot; maintain the previous seven-item `NEXT PRIORITY TASKS` ordering above, especially P0 remote teacher/student data continuity. The 26 October pilot is **BLOCKED** for an independently verified remote end-to-end round trip, not merely delayed by a static preview check.
+
+---
+
+## Addendum 27 ottobre — G0 merged, controlled-preview provenance check
+
+**Micro-goal closed:** independently reconcile the **actual GitHub main** against the **actual Vercel deployment file manifest**; publish an actionable mismatch warning on the merged integration PR. This is a read-only delivery audit, **not** a new product canon, merged code or remote beta test. Observation date: 2026-10-27, Europe/Rome (early morning).
+
+### Evidence, exact sources, and dispositions
+
+| Claim | Observation | Outcome |
+| --- | --- | --- |
+| Integrated G0 on GitHub | `main=dc353639739baf556154b16386561b4213f641a5`, merged #313 at 2026-10-26 23:05 UTC | **PASS — MERGED** |
+| Post-merge required/protective CI | GitHub `/commits/dc353.../check-runs`: Web, Studio, Engine, API, MCP, S19, hygiene, advisory golden, no-deploy-check all `completed/success`; push run 40417272080 | **PASS on exact SHA**; does not certify hosted clients |
+| Latest *canonical* Vercel private preview | Project `prj_cLYaIqgzRZJFZGDcAsyvZBDzhgT8`, newest deployment `dpl_DC99opdh3H2jtAtf1d1Zwt2na5tV` READY created 2026-10-26 17:38:28 UTC | **PASS — provider record read**, earlier than merge |
+| Source of deployed preview | Read `src/public/release-manifest.json` from the deployment's Vercel files API: `sourceProduct=b701e531e62037da2acd0f75a75e50659b0f682b`, `mainObserved=a00f2f40091aecf69e58ebaba42cf70d748e4066`; `backend=NOT_CONFIGURED`, `remoteReady=false` | **NOT_G0_EXACT_MAIN / BLOCKED_REMOTE**; byte-level G0 deployment certification **NOT_RUN** |
+| Backend status provenance | Same deployment file `src/public/_integration/backend-unavailable.json` = `backend_not_configured` and `remoteReady=false` | **PASS — backend intentionally absent in current static artifact**; no HTTP-authority test inferred |
+| Production separation | Deployment `dpl_7BQB2RrpkNdAsFgQ4MktHgfdnS1z` READY, target production, Git source `05d2bc9911aff3862906ac5a71769bc726dfbcea`; preview SSO enabled | **PASS — current provider metadata**, no mutation |
+| Seven remaining concurrent PRs | GitHub open pull list at check: #310, #311, #312, #315, #319, #320, #321 | **OBSERVED**, not branch integration |
+| Knowledge plane | `ardesia-knowledge/00-CURRENT.md` still says `DEGRADED`, observed 2026-07-25 09:57Z; `00-INDEX.md` is dated July 24 | **STALE_HISTORICAL**; no edits because Obsidian/truth-plane owns the source |
+| REA available on this runner | No connected authorized REA host or executable/CLI access; primary source `morluto/rea` docs consulted | **BLOCKED_RUNTIME**, zero new captures/transfer; no software copying |
+| Editable corrections through Study MCP | `services/study-mcp/README.md` documents four GET, stdio and loopback-only session; no MCP Apps UI or write actions | **READ_ONLY**; draft-only write remains **SPECIFIED, NOT_RUN** |
+
+This observation does not claim a live HTTP/browser probe of SSO; the deployed **file contents** are independently read from Vercel, and that is sufficient for the source mismatch. The #313 thread now holds the delta as [independent post-merge comment](https://github.com/AndreaMarro/ardesia/pull/313#issuecomment-6434276841), so S00 can act without reading this PR branch.
+
+### The three most consequential corrections today
+
+1. **Do not call G0 published at its merged SHA.** The exact integrated journey is now real on `main` with green post-merge CI, a major advance over October 26. But the newest Vercel private client belongs to source `b701e531`. The existing SSO preview and local Golden are not proof of remote multiuser persistence or deployed G0 at `dc3536`.
+2. **Avoid doing more UI acquisitions instead of exposing a durable Core.** A static preview with `/study=503` makes the new LessonOS/audio→whiteboard→feedback pathway unusable as an invited remote tutor/student pilot, however polished. Backend/Auth/Storage/revoke/cold-restoration is now the dominant G1 dependency, without removing local-first.
+3. **Do not turn REA playback environments into production evidence.** REA's newly documented `environment-build` and replay-oriented MCP server can accelerate **agent training, behavioral contracts and offline donor comparisons** from approved captures, including simulated state changes based on observed effects. They do not establish application authorization, durable backend writes, unobserved feature completeness or distribution rights. Reference: https://github.com/morluto/rea/blob/main/docs/agent-environments.md ; browser CDP inspection is passive and origin-bounded: https://github.com/morluto/rea/blob/main/docs/browser-observation.md .
+
+### Recommendation and gates through 2 November
+
+Keep the smallest merchantable product as **one exact G0 Physics teacher→student journey plus four honest, not-yet-complete course offers**; no claim of full mastery, broad SaaS readiness or 200 editorial approvals. Preserve single Core, existing CoursePack/Kirchhoff contracts and optional ZERO-LLM runtime. Do not start an MCP remote writer, plugin marketplace or new course-wide authoring shell before the canonical backend and identity boundaries are tested.
+
+**Next single mission for S00:** freeze current main (or newer exact SHA); prepare existing `bin/build_teaching_candidate.py` → `bin/web/prepare_vercel_preview.py --private-integrated` → `bin/web/prepare_vercel_upload.py --protected-integrated-preview` pipeline, and, within already-authorized preview-only policy, prove a fresh *protected* deployment matches `sourceProduct`, manifest digests, all assets and SSO anonymous deny using `handoffs/swarm-v2/S00/verify-preview.mjs`. `/study=503` must remain explicit until a real backend is provisioned and verified. Do not touch production, DNS, payments or DRAFT approval.
+
+### NEXT PRIORITY TASKS
+
+1. **P0 / S00 / exact G0 Preview.** Input `main@dc3536`, existing candidate pipeline and provider project; accept **only** new protected Preview, immutable deployment ID, source+asset digest match, SSO denied anonymous, four viewports, 503 honest; no new cost, no production. Before this, deployment source **BLOCKED**.
+2. **P0 / S10+S00 / hosted Study Auth+Storage authority.** First derive config and threat model from current loopback guards; no ELAB services. Accept two real synthetic remote browsers across server restart with tutor/student isolation (401/403), review receipt and revocation. Current state **NOT_RUN/BLOCKED**.
+3. **P0 / editorial / one approved objective.** Select a single lesson from denominators 52/57/33/58; require correct conceptual explanation, scientifically validated simulation, authentic new transfer problem and human approval. Remaining **0/200** by last canonical snapshot.
+4. **P1 / S00 / outstanding PR integration.** Rebase and review #310/#311/#312/#315/#319/#320/#321 only at their current heads; first resolve post-G0 ownership/scene writer and semantic dependency rather than trusting file overlap counts. Test merged SHA/rollback for each.
+5. **P1 / Core MCP / draft-only safe WRITE.** Reuse feedback candidates and teacher-reviewed correction service; require tenant+actor, submission/source version, idempotency, CAS, durable audit, revocation, 403 and 409 negatives; never publish without distinct human approval. No claim ChatGPT Pro host supports writes before an official live capability test.
+
+**CLOSED this cycle:** exact provider-source provenance comparison and notification to the #313 integration owner. **NOT_CLOSED:** deployment of G0, remote pilot/G1, physical audio, REA capture, MCP write, scientific course approvals. No production write, merge, REA capture, students/PII, expense or policy mutation was performed.
