@@ -51,4 +51,40 @@ class OverlapTest(unittest.TestCase):
         self.assertEqual(result['status'], 'STALE_SNAPSHOT_RETRY')
         self.assertEqual(result['unstablePrs'], [12])
 
+
+    def test_detects_retarget_with_same_head_sha(self):
+        original = {'base': {'ref': 'main'}, 'head': {'sha': 'h'},
+                    'number': 12, 'draft': True, 'state': 'open'}
+        retargeted = {**original, 'base': {'ref': 'feature'}}
+        enumerations = []
+        def fake(path, pages=False):
+            if '/branches/' in path: return {'commit': {'sha': 'base'}}
+            if 'pulls?state=' in path:
+                enumerations.append(True)
+                return [original] if len(enumerations) == 1 else [retargeted]
+            if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
+            return retargeted
+        with patch.object(audit, 'gh', side_effect=fake):
+            result = audit.live('AndreaMarro/ardesia', 'main')
+        self.assertEqual(result['status'], 'STALE_SNAPSHOT_RETRY')
+        self.assertEqual(result['unstablePrs'], [12])
+
+    def test_detects_new_open_pr_during_scan(self):
+        original = {'base': {'ref': 'main'}, 'head': {'sha': 'h'},
+                    'number': 12, 'draft': True, 'state': 'open'}
+        newcomer = {'base': {'ref': 'main'}, 'head': {'sha': 'h2'},
+                    'number': 13, 'draft': False, 'state': 'open'}
+        enumerations = []
+        def fake(path, pages=False):
+            if '/branches/' in path: return {'commit': {'sha': 'base'}}
+            if 'pulls?state=' in path:
+                enumerations.append(True)
+                return [original] if len(enumerations) == 1 else [original, newcomer]
+            if '/files?' in path: return [{'filename': 'apps/studio/src/Room.tsx'}]
+            return original
+        with patch.object(audit, 'gh', side_effect=fake):
+            result = audit.live('AndreaMarro/ardesia', 'main')
+        self.assertEqual(result['status'], 'STALE_SNAPSHOT_RETRY')
+        self.assertTrue(result['inventoryChanged'])
+
 if __name__ == '__main__': unittest.main()
