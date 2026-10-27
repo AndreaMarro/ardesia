@@ -1,0 +1,58 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-4/work/ardesia-s07/apps/studio
+
+ ❯ src/collaboration-v2/__tests__/layer.test.ts (8 tests | 1 failed) 194ms
+   × large add/undo/redo cycles remain within the encoded budget and reopen at every accepted mutation 95ms
+ ❯ src/collaboration-v2/__tests__/session.test.ts (6 tests | 1 failed) 30ms
+   × cold retry after undo sends the exact unconfirmed bytes and accepts the original receipt 11ms
+ ❯ src/collaboration-v2/__tests__/sceneBoundary.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/collaboration-v2/__tests__/sceneBoundary.test.ts [ src/collaboration-v2/__tests__/sceneBoundary.test.ts ]
+Error: Cannot find module '../sceneBoundary' imported from /Users/andreamarro/Documents/Codex/2026-10-26/es-4/work/ardesia-s07/apps/studio/src/collaboration-v2/__tests__/sceneBoundary.test.ts
+ ❯ src/collaboration-v2/__tests__/sceneBoundary.test.ts:2:1
+      1| import { expect, test } from 'vitest'
+      2| import { CompletedInkCapture, legacyBoardScene } from '../sceneBoundar…
+       | ^
+      3| const pdf = { id: 'pdf', type: 'image' }, old = { id: 'old', type: 'fr…
+      4| const fresh = { id: 'new', type: 'freedraw' }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/collaboration-v2/__tests__/layer.test.ts > large add/undo/redo cycles remain within the encoded budget and reopen at every accepted mutation
+AssertionError: expected 615878 to be less than or equal to 524288
+ ❯ src/collaboration-v2/__tests__/layer.test.ts:84:39
+     82|     try { layer.add(large('large-' + i)); if (layer.canUndo) layer.und…
+     83|     catch (error) { expect(String(error)).toMatch(/ink_(capacity|updat…
+     84|     expect(layer.encode().byteLength).toBeLessThanOrEqual(512 * 1024)
+       |                                       ^
+     85|     const cold = InkLayer.restore(scope(), layer.snapshot()); cold.des…
+     86|     if (bounded) break
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/collaboration-v2/__tests__/session.test.ts > cold retry after undo sends the exact unconfirmed bytes and accepts the original receipt
+AssertionError: expected 'error' to be 'committed' // Object.is equality
+
+Expected: "committed"
+Received: "error"
+
+ ❯ src/collaboration-v2/__tests__/session.test.ts:67:35
+     65|     return receipt
+     66|   } })
+     67|   expect(reopened.state().status).toBe('committed')
+       |                                   ^
+     68| })
+     69|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  2 failed | 12 passed (14)
+   Start at  01:00:48
+   Duration  696ms (transform 71ms, setup 42ms, import 117ms, tests 224ms, environment 0ms)

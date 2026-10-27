@@ -1,0 +1,34 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx (10 tests | 1 failed) 522ms
+   × a successful node read also retires other revoked labels in the graph 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-memory/MemoryView.test.tsx > a successful node read also retires other revoked labels in the graph
+AssertionError: expected <button></button> to be null
+
+- Expected:
+null
+
++ Received:
+<button>
+  Fonte originale
+</button>
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx:168:114
+    166|  revoked=true;fireEvent.click(within(screen.getByRole('list',{name:'No…
+    167|  await screen.findByRole('heading',{name:publicNode.label,level:2});
+    168|  expect(within(screen.getByRole('list',{name:'Nodi del grafo'})).query…
+       |                                                                                                                  ^
+    169|  expect(screen.queryByRole('option',{name:'Fonte originale'})).toBeNul…
+    170| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  02:01:01
+   Duration  2.04s (transform 619ms, setup 0ms, import 506ms, tests 522ms, environment 689ms)

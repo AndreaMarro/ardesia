@@ -1,0 +1,429 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+
+ ❯ src/features/learning-memory/GraphExplorer.test.tsx (3 tests | 1 failed) 260ms
+   × uncertain save freezes edits and retries byte-identical command/key; conflict requires a fresh server view 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-memory/GraphExplorer.test.tsx > uncertain save freezes edits and retries byte-identical command/key; conflict requires a fresh server view
+TestingLibraryElementError: Found multiple elements with the role "group"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<fieldset[39m
+  [33mclass[39m=[32m"memory-graph-controls"[39m
+  [33mdisabled[39m=[32m""[39m
+[36m>[39m
+  [36m<legend>[39m
+    [0mDisposizione e collegamenti[0m
+  [36m</legend>[39m
+  [36m<label>[39m
+    [0mDisposizione del grafo[0m
+    [36m<select>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"grid"[39m
+      [36m>[39m
+        [0mGriglia[0m
+      [36m</option>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"breadthfirst"[39m
+      [36m>[39m
+        [0mLivelli[0m
+      [36m</option>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"circle"[39m
+      [36m>[39m
+        [0mCerchio[0m
+      [36m</option>[39m
+    [36m</select>[39m
+  [36m</label>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"memory-actions"[39m
+  [36m>[39m
+    [36m<button>[39m
+      [0mInquadra tutto[0m
+    [36m</button>[39m
+    [36m<button[39m
+      [33maria-label[39m=[32m"Ingrandisci grafo"[39m
+    [36m>[39m
+      [0m+[0m
+    [36m</button>[39m
+    [36m<button[39m
+      [33maria-label[39m=[32m"Riduci grafo"[39m
+    [36m>[39m
+      [0m−[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<label>[39m
+    [0mNodo da esplorare[0m
+    [36m<select>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m""[39m
+      [36m>[39m
+        [0mTutti i nodi[0m
+      [36m</option>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"one"[39m
+      [36m>[39m
+        [0mLezione uno[0m
+      [36m</option>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"two"[39m
+      [36m>[39m
+        [0mLezione due[0m
+      [36m</option>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"source"[39m
+      [36m>[39m
+        [0mFonte esatta[0m
+      [36m</option>[39m
+    [36m</select>[39m
+  [36m</label>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"memory-actions"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33mdisabled[39m=[32m""[39m
+    [36m>[39m
+      [0mApri nodo selezionato[0m
+    [36m</button>[39m
+    [36m<button[39m
+      [33mdisabled[39m=[32m""[39m
+    [36m>[39m
+      [0mMostra vicinanze[0m
+    [36m</button>[39m
+    [36m<button>[39m
+      [0mMostra tutti i collegamenti[0m
+    [36m</button>[39m
+  [36m</div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"memory-form-grid"[39m
+  [36m>[39m
+    [36m<label>[39m
+      [0mDa[0m
+      [0m · percorso nel grafo[0m
+      [36m<select>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m""[39m
+        [36m>[39m
+          [0mScegli un nodo[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"one"[39m
+        [36m>[39m
+          [0mLezione uno[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"two"[39m
+        [36m>[39m
+          [0mLezione due[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"source"[39m
+        [36m>[39m
+          [0mFonte esatta[0m
+        [36m</option>[39m
+      [36m</select>[39m
+    [36m</label>[39m
+    [36m<label>[39m
+      [0mA[0m
+      [0m · percorso nel grafo[0m
+      [36m<select>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m""[39m
+        [36m>[39m
+          [0mScegli un nodo[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"one"[39m
+        [36m>[39m
+          [0mLezione uno[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"two"[39m
+        [36m>[39m
+          [0mLezione due[0m
+        [36m</option>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"source"[39m
+        [36m>[39m
+          [0mFonte esatta[0m
+        [36m</option>[39m
+      [36m</select>[39m
+    [36m</label>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m>[39m
+    [0mTrova collegamento[0m
+  [36m</button>[39m
+[36m</fieldset>[39m
+
+Ignored nodes: comments, script, style
+[36m<details[39m
+  [33mclass[39m=[32m"memory-graph-license"[39m
+[36m>[39m
+  [36m<summary>[39m
+    [0mLicenza del grafo · Cytoscape 3.34.0[0m
+  [36m</summary>[39m
+  [36m<pre>[39m
+    [0mCopyright (c) 2016-2026, The Cytoscape Consortium.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the “Software”), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.[0m
+  [36m</pre>[39m
+[36m</details>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-label[39m=[32m"Esplora il grafo"[39m
+      [33mclass[39m=[32m"memory-explorer"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mTrascina i nodi, esplora le vicinanze o cerca un percorso. Puoi aprire ogni oggetto anche dall’elenco sotto il disegno.[0m
+      [36m</p>[39m
+      [36m<p[39m
+        [33mrole[39m=[32m"alert"[39m
+      [36m>[39m
+        [0mSalvataggio non confermato. Riprova lo stesso tentativo oppure ricarica la disposizione dal server.[0m
+      [36m</p>[39m
+      [36m<fieldset[39m
+        [33mclass[39m=[32m"memory-graph-controls"[39m
+        [33mdisabled[39m=[32m""[39m
+      [36m>[39m
+        [36m<legend>[39m
+          [0mDisposizione e collegamenti[0m
+        [36m</legend>[39m
+        [36m<label>[39m
+          [0mDisposizione del grafo[0m
+          [36m<select>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"grid"[39m
+            [36m>[39m
+              [0mGriglia[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"breadthfirst"[39m
+            [36m>[39m
+              [0mLivelli[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"circle"[39m
+            [36m>[39m
+              [0mCerchio[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button>[39m
+            [0mInquadra tutto[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Ingrandisci grafo"[39m
+          [36m>[39m
+            [0m+[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Riduci grafo"[39m
+          [36m>[39m
+            [0m−[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<label>[39m
+          [0mNodo da esplorare[0m
+          [36m<select>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m""[39m
+            [36m>[39m
+              [0mTutti i nodi[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"one"[39m
+            [36m>[39m
+              [0mLezione uno[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"two"[39m
+            [36m>[39m
+              [0mLezione due[0m
+            [36m</option>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"source"[39m
+            [36m>[39m
+              [0mFonte esatta[0m
+            [36m</option>[39m
+          [36m</select>[39m
+        [36m</label>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mApri nodo selezionato[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mdisabled[39m=[32m""[39m
+          [36m>[39m
+            [0mMostra vicinanze[0m
+          [36m</button>[39m
+          [36m<button>[39m
+            [0mMostra tutti i collegamenti[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"memory-form-grid"[39m
+        [36m>[39m
+          [36m<label>[39m
+            [0mDa[0m
+            [0m · percorso nel grafo[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mScegli un nodo[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"one"[39m
+              [36m>[39m
+                [0mLezione uno[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"two"[39m
+              [36m>[39m
+                [0mLezione due[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"source"[39m
+              [36m>[39m
+                [0mFonte esatta[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+          [36m<label>[39m
+            [0mA[0m
+            [0m · percorso nel grafo[0m
+            [36m<select>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m""[39m
+              [36m>[39m
+                [0mScegli un nodo[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"one"[39m
+              [36m>[39m
+                [0mLezione uno[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"two"[39m
+              [36m>[39m
+                [0mLezione due[0m
+              [36m</option>[39m
+              [36m<option[39m
+                [33mvalue[39m=[32m"source"[39m
+              [36m>[39m
+                [0mFonte esatta[0m
+              [36m</option>[39m
+            [36m</select>[39m
+          [36m</label>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [0mTrova collegamento[0m
+        [36m</button>[39m
+      [36m</fieldset>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"fine-print"[39m
+      [36m>[39m
+        [0mDisegno non disponibile in questo ambiente. I controlli e l’elenco dei collegamenti rimangono utilizzabili.[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"memory-actions"[39m
+      [36m>[39m
+        [36m<button>[39m
+          [0mRiprova salvataggio disposizione[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mRicarica disposizione[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"fine-print"[39m
+      [36m>[39m
+        [0mLa disposizione è personale e salvata nel tuo account. Una ricerca salva solo le posizioni dei nodi visibili; gli altri verranno ridisposti alla riapertura.[0m
+      [36m</p>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"memory-graph-license"[39m
+      [36m>[39m
+        [36m<summary>[39m
+          [0mLicenza del grafo · Cytoscape 3.34.0[0m
+        [36m</summary>[39m
+        [36m<pre>[39m
+          [0mCopyright (c) 2016-2026, The Cytoscape Consortium.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the “Software”), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.[0m
+        [36m</pre>[39m
+      [36m</details>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError ../../node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError ../../node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/learning-memory/GraphExplorer.test.tsx:47:17
+     45|  fireEvent.change(screen.getByLabelText('Disposizione del grafo'),{tar…
+     46|  fireEvent.click(screen.getByRole('button',{name:'Salva disposizione'}…
+     47|  expect((screen.getByRole('group') as HTMLFieldSetElement).disabled).t…
+       |                 ^
+     48|  fireEvent.click(screen.getByRole('button',{name:'Riprova salvataggio …
+     49|  await screen.findByText(/Un’altra finestra/);expect(requests[0]).toEq…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 32 passed (33)
+   Start at  02:16:45
+   Duration  4.95s (transform 791ms, setup 0ms, import 1.10s, tests 1.24s, environment 1.92s)

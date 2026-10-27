@@ -181,3 +181,12 @@ Addendum CI G0: la head011246b ha raggiunto GitHub con tree esatto; S19 ha ferma
 
 
 Addendum navigazione G0: b8 ha passato golden26, layout, Studio e S19; Web ha fermato il test storico della cronologia. Due RED conservati: aspettativa Shell obsoleta e perdita effettiva dell’unità nel cambio edizione. La correzione minima preserva URL esatto e passa browser+22unitari. Rileggere head e CI della313 prima di merge e Preview; prove in g0-final-20261026/pathway-history-ci.
+
+
+## Addendum PRO — 27 ottobre 2026: convergenza delle sette PR residue
+
+Base osservata dc353639. Il ramo `pro/recovery-convergence-20261027` compone310/311/312/315/319/320/321 preservando gli originali: non rifare acquisizioni o aprire sistemi paralleli. Consumer reali: calendario, audit nella factory API, memoria/grafo, insight con caricamento isolato, raccolta Room sul writer scena/editoriale esistente. Corretto il filtro penna prima della coda per conservare il tratto al cambio lifecycle. Recovery corsi e ritorno alla pratica verificati con RED prima del fix. Leggere l'ultima RUNLOG per prove e limiti; il primo commit recovery conteneva solo test e non va presentato come completamento.
+
+La nuova root build produce Web+Studio privati con il preparatore canonico, non soltanto Studio; conserva SSO, /study503 e deployment Git disabilitato. Il progetto pubblico va aggiornato separatamente dai soli asset PUBLIC_DEMONSTRATION. Prima di riprendere leggere la PR di convergenza per head, sette required, merge/post-CI e deployment effettivi: questo addendum è pre-release, non una ricevuta di pubblicazione.
+
+Il Core hosted e il trasporto collaborativo non sono certificati: non eliminare guardie sintetiche/loopback o trasformare SSO Vercel in autorizzazione applicativa. I quattro corsi restano0/200 accettati,38 lezioni qualitative DRAFT e5esempi pubblici. Ordine operativo: terminalizzare integrazione e deploy, poi runtime remoto verificato, poi accettazione scientifica progressiva con prove docente–studente. Nessun uso del servizio Codex, costo nuovo o modifica distruttiva.

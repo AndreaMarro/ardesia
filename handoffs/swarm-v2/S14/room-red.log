@@ -1,0 +1,480 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/s14-composition/apps/studio
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx (2 tests | 2 failed) 2218ms
+   × opens the native collection and persists a library-only edit through the existing Room save queue 1166ms
+   × does not overwrite a corrupt collection after the SDK reports an initial empty library 1050ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/RoomLibrary.test.tsx > opens the native collection and persists a library-only edit through the existing Room save queue
+AssertionError: expected undefined to be type of 'function'
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mArdesia · studio[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"st-studio-shell"[39m
+        [33mstyle[39m=[32m"position: fixed; inset: 0px; display: flex; flex-direction: column;"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"st-bar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-brand"[39m
+            [33mtitle[39m=[32m"Ardesia Studio — la lavagna che ricorda"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-word"[39m
+            [36m>[39m
+              [0mArdesia[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"st-bdot"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-sub"[39m
+            [36m>[39m
+              [0mstudio[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<span[39m
+            [33maria-label[39m=[32m"Assegna un nome a questa lezione"[39m
+            [33mclass[39m=[32m"st-name"[39m
+            [33mrole[39m=[32m"button"[39m
+            [33mtabindex[39m=[32m"0"[39m
+            [33mtitle[39m=[32m"Assegna un nome a questa lezione (id: library-consumer)"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-name-text"[39m
+            [36m>[39m
+              [0mlibrary-consumer[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-name-prompt"[39m
+            [36m>[39m
+              [0mdai un nome[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-indicator st-local"[39m
+              [33mtitle[39m=[32m"Senza cartella, i dati restano solo in questo browser"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"st-led"[39m
+              [36m/>[39m
+              [0msolo in questo browser[0m
+              [0m — [0m
+              [36m<button[39m
+                [33mclass[39m=[32m"st-indicator-connect"[39m
+              [36m>[39m
+                [0mscegli cartella…[0m
+              [36m</button>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-quiet st-export-advice"[39m
+              [33mtitle[39m=[32m"Questo browser non conserva la memoria della lezione: esporta il file .lesson a fine lezione."[39m
+            [36m>[39m
+              [0mda esportare a fine lezione[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Apri menu"[39m
+            [33mclass[39m=[32m"st-menu-btn"[39m
+          [36m>[39m
+            [0m☰[0m
+          [36m</button>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-actions"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Viste Ardesia"[39m
+              [33mdata-view-nav[39m=[32m"true"[39m
+              [33mstyle[39m=[32m"display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 10px; background: rgba(21, 38, 56, 0.06);"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33maria-current[39m=[32m"page"[39m
+                [33mdata-view-nav-item[39m=[32m"lezione"[39m
+                [33mhref[39m=[32m"/#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(31, 63, 99); text-decoration: none; white-space: nowrap; background: rgb(255, 255, 255); box-shadow: 0 1px 3px rgba(21,38,56,0.18);"[39m
+                [33mtitle[39m=[32m"Lavagna e plugin della lezione corrente"[39m
+              [36m>[39m
+                [0mLezione[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mdata-view-nav-item[39m=[32m"continuita"[39m
+                [33mhref[39m=[32m"/?vista=continuita#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(65, 85, 109); text-decoration: none; white-space: nowrap;"[39m
+                [33mtitle[39m=[32m"Chiusura, replay e ripresa della lezione"[39m
+              [36m>[39m
+                [0mContinuità[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mdata-view-nav-item[39m=[32m"materiali"[39m
+                [33mhref[39m=[32m"/?vista=lezioni-salvate#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(65, 85, 109); text-decoration: none; white-space: nowrap;"[39m
+                [33mtitle[39m=[32m"Export, import e recovery della lezione"[39m
+              [36m>[39m
+                [0mMateriali[0m
+              [36m</a>[39m
+            [36m</nav>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mformula[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inserisci immagine, PDF o .lesson"[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mmedia[0m
+            [36m</button>[39m
+            [36m<input[39m
+              [33maccept[39m=[32m"image/*,application/pdf,.lesson"[39m
+              [33mstyle[39m=[32m"display: none;"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inserisci Simulation Plugin sulla lavagna"[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+              [33mdata-founder-plugin-id[39m=[32m"io.ardesia.simulation"[39m
+              [33mdata-plugin-trust-tier[39m=[32m"builtin-reviewed"[39m
+              [33mdata-plugin-version[39m=[32m"2.0.0"[39m
+            [36m>[39m
+              [0msim[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mlezioni[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio della lezione"[39m
+          [33mclass[39m=[32m"st-passage-author"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-passage-strip"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"lesson-passage-panel"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33mclass[39m=[32m"st-passage-trigger"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"14"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.75"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"14"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [36m<span>[39m
+                [0mRegistra e collega un passaggio[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [0m+[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-passage-stage"[39m
+            [36m>[39m
+              [0mLa lavagna resta il tuo spazio[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inquadra lavagna"[39m
+              [33mclass[39m=[32m"st-passage-fit st-ghost"[39m
+            [36m>[39m
+              [0mInquadra[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"st-studio-canvas"[39m
+          [33mstyle[39m=[32m"flex: 1 1 0%; position: relative; min-height: 0px;"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mdata-testid[39m=[32m"native-canvas"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx:62:61
+     60|   await store.init()
+     61|   render(<Room store={store} />)
+     62|   await waitFor(() => expect(native.props?.onLibraryChange).toBeTypeOf…
+       |                                                             ^
+     63|   fireEvent.click(document.querySelector('[aria-label="Apri raccolta d…
+     64|   expect(native.toggle).toHaveBeenCalledWith({ name: "library" })
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/whiteboard-library/RoomLibrary.test.tsx > does not overwrite a corrupt collection after the SDK reports an initial empty library
+AssertionError: expected undefined to be type of 'function'
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mArdesia · studio[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"st-studio-shell"[39m
+        [33mstyle[39m=[32m"position: fixed; inset: 0px; display: flex; flex-direction: column;"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"st-bar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-brand"[39m
+            [33mtitle[39m=[32m"Ardesia Studio — la lavagna che ricorda"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-word"[39m
+            [36m>[39m
+              [0mArdesia[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"st-bdot"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-sub"[39m
+            [36m>[39m
+              [0mstudio[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<span[39m
+            [33maria-label[39m=[32m"Assegna un nome a questa lezione"[39m
+            [33mclass[39m=[32m"st-name"[39m
+            [33mrole[39m=[32m"button"[39m
+            [33mtabindex[39m=[32m"0"[39m
+            [33mtitle[39m=[32m"Assegna un nome a questa lezione (id: library-consumer)"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-name-text"[39m
+            [36m>[39m
+              [0mlibrary-consumer[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-name-prompt"[39m
+            [36m>[39m
+              [0mdai un nome[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-status"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-indicator st-local"[39m
+              [33mtitle[39m=[32m"Senza cartella, i dati restano solo in questo browser"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"st-led"[39m
+              [36m/>[39m
+              [0msolo in questo browser[0m
+              [0m — [0m
+              [36m<button[39m
+                [33mclass[39m=[32m"st-indicator-connect"[39m
+              [36m>[39m
+                [0mscegli cartella…[0m
+              [36m</button>[39m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-quiet st-export-advice"[39m
+              [33mtitle[39m=[32m"Questo browser non conserva la memoria della lezione: esporta il file .lesson a fine lezione."[39m
+            [36m>[39m
+              [0mda esportare a fine lezione[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Apri menu"[39m
+            [33mclass[39m=[32m"st-menu-btn"[39m
+          [36m>[39m
+            [0m☰[0m
+          [36m</button>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-actions"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Viste Ardesia"[39m
+              [33mdata-view-nav[39m=[32m"true"[39m
+              [33mstyle[39m=[32m"display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 10px; background: rgba(21, 38, 56, 0.06);"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33maria-current[39m=[32m"page"[39m
+                [33mdata-view-nav-item[39m=[32m"lezione"[39m
+                [33mhref[39m=[32m"/#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(31, 63, 99); text-decoration: none; white-space: nowrap; background: rgb(255, 255, 255); box-shadow: 0 1px 3px rgba(21,38,56,0.18);"[39m
+                [33mtitle[39m=[32m"Lavagna e plugin della lezione corrente"[39m
+              [36m>[39m
+                [0mLezione[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mdata-view-nav-item[39m=[32m"continuita"[39m
+                [33mhref[39m=[32m"/?vista=continuita#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(65, 85, 109); text-decoration: none; white-space: nowrap;"[39m
+                [33mtitle[39m=[32m"Chiusura, replay e ripresa della lezione"[39m
+              [36m>[39m
+                [0mContinuità[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mdata-view-nav-item[39m=[32m"materiali"[39m
+                [33mhref[39m=[32m"/?vista=lezioni-salvate#library-consumer"[39m
+                [33mstyle[39m=[32m"min-height: 44px; display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: rgb(65, 85, 109); text-decoration: none; white-space: nowrap;"[39m
+                [33mtitle[39m=[32m"Export, import e recovery della lezione"[39m
+              [36m>[39m
+                [0mMateriali[0m
+              [36m</a>[39m
+            [36m</nav>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mformula[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inserisci immagine, PDF o .lesson"[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mmedia[0m
+            [36m</button>[39m
+            [36m<input[39m
+              [33maccept[39m=[32m"image/*,application/pdf,.lesson"[39m
+              [33mstyle[39m=[32m"display: none;"[39m
+              [33mtype[39m=[32m"file"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inserisci Simulation Plugin sulla lavagna"[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+              [33mdata-founder-plugin-id[39m=[32m"io.ardesia.simulation"[39m
+              [33mdata-plugin-trust-tier[39m=[32m"builtin-reviewed"[39m
+              [33mdata-plugin-version[39m=[32m"2.0.0"[39m
+            [36m>[39m
+              [0msim[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"st-ghost"[39m
+            [36m>[39m
+              [0mlezioni[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Passaggio della lezione"[39m
+          [33mclass[39m=[32m"st-passage-author"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"st-passage-strip"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"lesson-passage-panel"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33mclass[39m=[32m"st-passage-trigger"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"14"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.75"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"14"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [36m<span>[39m
+                [0mRegistra e collega un passaggio[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [0m+[0m
+              [36m</span>[39m
+            [36m</button>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"st-passage-stage"[39m
+            [36m>[39m
+              [0mLa lavagna resta il tuo spazio[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Inquadra lavagna"[39m
+              [33mclass[39m=[32m"st-passage-fit st-ghost"[39m
+            [36m>[39m
+              [0mInquadra[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"st-studio-canvas"[39m
+          [33mstyle[39m=[32m"flex: 1 1 0%; position: relative; min-height: 0px;"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mdata-testid[39m=[32m"native-canvas"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx:75:61
+     73|   await store.saveScene("library-consumer", original)
+     74|   render(<Room store={store} />)
+     75|   await waitFor(() => expect(native.props?.onLibraryChange).toBeTypeOf…
+       |                                                             ^
+     76|   native.props.onLibraryChange([])
+     77|   native.props.onChange([], {}, {})
+ ❯ runWithExpensiveErrorDiagnosticsDisabled ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback ../../../../../../../../../../private/tmp/ardesia-r2-20261024/apps/studio/node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:54:14
+   Duration  5.78s (transform 719ms, setup 68ms, import 1.41s, tests 2.22s, environment 1.93s)

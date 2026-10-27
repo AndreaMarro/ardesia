@@ -1,0 +1,54 @@
+{
+  "base": "37e0fe828e47b7c81784c2eb48a1b9776dd859ed",
+  "branch": "codex/s11-learning-insights-20261026",
+  "status": "READY_FOR_INTEGRATION",
+  "local": {
+    "coreHttpRegression": {
+      "passed": 91,
+      "warning": "Starlette TestClient/httpx deprecation; no failing tests"
+    },
+    "webFeatureTests": {
+      "passed": 7
+    },
+    "browser": {
+      "passed": 16,
+      "unexpectedErrors": 0,
+      "expectedNegative": "401 on deliberate logout/refresh"
+    },
+    "typecheck": "PASS (tsc -p apps/web/tsconfig.json --noEmit, exit0)",
+    "viewports": [
+      [
+        1440,
+        1000
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "data": "synthetic only"
+  },
+  "sourceFiles": {
+    "apps/web/src/features/learning-insights/LearningInsights.test.tsx": "bbb3082e28ea7925440a17b66c1781a813e835f99676def5938d25462e476d04",
+    "apps/web/src/features/learning-insights/LearningInsights.tsx": "11a5913d9c530da2c1cce7335ec01a0304aed802f34d1906dbef6340480cd0ca",
+    "apps/web/src/features/learning-insights/contracts.ts": "b512c299c49f5efb407a2b23262b6dadc96369e84221d27fd3da6485d18e2df8",
+    "apps/web/src/features/learning-insights/learning-insights.css": "6ece21427be8a147e3112483612f51d8961af5b6d83dd3b62adfc1428e631ad7",
+    "packages/engine/lessonos/study/learning_insights/__init__.py": "603d3e273f5d63f4b1ee13d177f128f5646cce268428bc511c55bbf933ca01b0",
+    "packages/engine/lessonos/study/learning_insights/maintenance.py": "4b4c70103cf4d22a5187db5cb529953b38e61fa1f718a6d7c08f64dc57e89f76",
+    "packages/engine/lessonos/study/learning_insights/routes.py": "5c540c113d4b6e716b749124eadf74dbe1c38504312ce57c52c43d2957828bc2"
+  },
+  "screenshots": {
+    "s11-mobile.png": "28a0c7e3127f83ba50e29d4d3c30f5955c60eb609c5cb426aa04b157de629c95",
+    "s11-desktop.png": "98e38a104b961dc9a56bb9e456bb3931cf48e2e104b2dec6dded0e2788e8272b"
+  },
+  "integration": {
+    "sharedApiMount": false,
+    "shellMount": false,
+    "actualRestoreHook": false,
+    "postgresTested": false,
+    "merged": false,
+    "deployed": false,
+    "humanScientificOrPrivacyApproval": false
+  },
+  "remoteCi": "not yet run on this branch"
+}

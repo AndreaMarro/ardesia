@@ -1,0 +1,10 @@
+--- a/apps/web/src/App.tsx
++++ b/apps/web/src/App.tsx
+@@ -143,6 +143,7 @@
+           key={sessionVersion}
+           me={me}
+           view={view}
++          enabledViews={views}
+           onView={navigate}
+           onLogout={() => void logout()}
+           editions={course.editions}

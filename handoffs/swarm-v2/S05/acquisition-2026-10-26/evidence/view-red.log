@@ -1,0 +1,136 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+______ test_graph_view_is_persistent_personal_and_reopens_without_course _______
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_is_persistent_0')
+
+    def test_graph_view_is_persistent_personal_and_reopens_without_course(tmp_path):
+        store=StudyStore(tmp_path/'memory.sqlite')
+        actor=store.create_principal('student-alone','student');peer=store.create_principal('student-peer','student')
+        note=create_note(store,actor)
+>       saved=memory.save_view(store,actor,view(note),'save-view')
+              ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:26: AttributeError
+_________ test_view_compare_and_swap_and_retry_do_not_duplicate_events _________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_view_compare_and_swap_and0')
+
+    def test_view_compare_and_swap_and_retry_do_not_duplicate_events(tmp_path):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       first=memory.save_view(store,actor,view(note),'once')
+              ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:38: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change0] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali0')
+change = {'zoom': nan}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change1] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali1')
+change = {'zoom': 9}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change2] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali2')
+change = {'pan': {'x': 0, 'y': inf}}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change3] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali3')
+change = {'positions': [{'id': 'someone-else', 'x': 1, 'y': 2}]}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change4] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali4')
+change = {'layout': 'javascript'}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change5] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_graph_view_rejects_invali5')
+change = {'positions': [{'id': 'x', 'x': 0, 'y': 0, 'text': 'SECRET'}]}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:50: AttributeError
+____ test_retired_source_layout_is_filtered_on_reads_and_idempotent_replay _____
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-112/test_retired_source_layout_is_0')
+
+    def test_retired_source_layout_is_filtered_on_reads_and_idempotent_replay(tmp_path):
+        store,teacher,actor,*_=setup_store(tmp_path)
+        source=store.create_resource(teacher,'fluidi','notes','Fonte che sarà ritirata','group')
+        note=create_note(store,actor,source)
+        graph=memory.get_memory(store,actor);source_id=next(n['id'] for n in graph['nodes'] if n['kind']=='source')
+        payload={**view(note),'positions':[{'id':source_id,'x':120,'y':80}]}
+>       memory.save_view(store,actor,payload,'save')
+        ^^^^^^^^^^^^^^^^
+E       AttributeError: module 'lessonos.study.learning_memory' has no attribute 'save_view'
+
+packages/engine/tests/study/test_learning_memory_view.py:60: AttributeError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_is_persistent_personal_and_reopens_without_course
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_view_compare_and_swap_and_retry_do_not_duplicate_events
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change0]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change1]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change2]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change3]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change4]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change5]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_retired_source_layout_is_filtered_on_reads_and_idempotent_replay
+9 failed in 0.74s

@@ -1,0 +1,17 @@
+
+> ardesia-monorepo@0.1.0 typecheck:web
+> npm run typecheck --workspace @ardesia/web
+
+
+> @ardesia/web@0.1.0 typecheck
+> tsc -b --noEmit
+
+src/features/learning-memory/graphAdapter.ts(7,84): error TS2322: Type 'number' is not assignable to type 'PropertyValue<NodeSingular, string> | undefined'.
+src/features/learning-memory/graphAdapter.ts(56,18): error TS2339: Property 'headless' does not exist on type 'Core'.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 1
+npm error path /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+npm error command failed
+npm error command sh -c tsc -b --noEmit

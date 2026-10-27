@@ -1,14 +1,9 @@
 {
-  "framework": "vite",
-  "installCommand": "npm --prefix apps/studio ci",
-  "buildCommand": "npm --prefix apps/studio run build",
-  "outputDirectory": "apps/studio/dist",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci && npm --prefix apps/studio ci",
+  "buildCommand": "python3 bin/web/build_vercel_integrated.py",
+  "outputDirectory": ".vercel/output",
   "git": {
     "deploymentEnabled": false
   }

@@ -1,0 +1,39 @@
+{
+  "runtime": {
+    "node": "22.14.0",
+    "python": "3.13.2"
+  },
+  "runtimeProductDependenciesAdded": false,
+  "packages": [
+    {
+      "name": "property-graph",
+      "version": "4.1.0",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/property-graph/-/property-graph-4.1.0.tgz",
+      "sha512": "AvPcP7XECNWy4LGmFQ77k7un4lSKM4eS29PTvW4ck95uYeLxXPWJM7hLuBqK91FaHqCcgJvIUCuNJjjxKE7VKQ==",
+      "downloadBytes": 13794
+    },
+    {
+      "name": "@gltf-transform/core",
+      "version": "4.5.1",
+      "license": "MIT",
+      "url": "https://registry.npmjs.org/@gltf-transform/core/-/core-4.5.1.tgz",
+      "sha512": "OWgBYssKHKoXMIrMb2N20jXqWRnMP9HdtcTFQBEAJtz4P+OOxx5fozl5eAeK7nktIs5uDE/lu4NbkE5VCZaR9g==",
+      "downloadBytes": 409248
+    },
+    {
+      "name": "gltf-validator",
+      "version": "2.0.0-dev.3.10",
+      "license": "Apache-2.0",
+      "url": "https://registry.npmjs.org/gltf-validator/-/gltf-validator-2.0.0-dev.3.10.tgz",
+      "sha512": "odJ4k0tRkGXiDGn78yDBg+fBbAIvBnXxh3RwAta0emSxGtyagFE8B4xELB1oYe3S5RD8Ci3uZAsZaascH2LAEQ==",
+      "downloadBytes": 110015
+    }
+  ],
+  "sourceInspection": {
+    "path": "@gltf-transform/core/src/io/platform-io.ts",
+    "sha256": "3ee2d0f642f75d4f6f668cae354f8714124a082f0e5bab2f8ac2fa2a7df62726",
+    "range": "159\u2013196",
+    "finding": "writeBinary uses the standard GLB2 header, JSON/BIN chunks and four-byte padding; no native exporter or scene renderer required."
+  }
+}

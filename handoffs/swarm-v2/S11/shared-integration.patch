@@ -1,0 +1,58 @@
+--- a/services/study-api/study_api/app.py
++++ b/services/study-api/study_api/app.py
+@@ -27,7 +27,7 @@
+
+ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studio_frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
+                request_store_limit=16, request_store_wait=.5, calendar_provider=None,
+-               request_body_budget=128*1024*1024, request_body_wait=.5):
++               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None):
+     if not demo:
+         raise ValueError('synthetic_only: production authentication and consent require M2')
+     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
+@@ -523,6 +523,8 @@
+         authenticate(request,store)
+         return inspect_notebook(body)
+
++    from lessonos.study.learning_insights.routes import install_routes as install_learning_insights_routes
++    install_learning_insights_routes(app,store_dependency,authenticate,notice=learning_insights_notice)
+     from .admin_routes import install_admin_routes
+     install_admin_routes(app,store_dependency,authenticate)
+     from .register_routes import install_register_routes
+--- a/packages/engine/lessonos/study/operations.py
++++ b/packages/engine/lessonos/study/operations.py
+@@ -264,6 +264,8 @@
+         resume_erasures(stage)
+         store=StudyStore(stage/'study.sqlite')
+         try:
++            from .learning_insights.maintenance import invalidate_after_restore
++            invalidate_after_restore(store,apply=True)
+             with store.transaction() as c:c.execute('DELETE FROM study_sessions');c.execute('DELETE FROM study_invitations')
+         finally:store.close()
+         result=check_data(stage)
+--- a/apps/web/src/App.tsx
++++ b/apps/web/src/App.tsx
+@@ -17,6 +17,7 @@
+ import { ErrorNotice, Loading } from "./components/Feedback";
+ import { Public } from "./features/Public";
+ import { Today } from "./features/Today";
++const LearningInsights = lazy(() => import("./features/learning-insights/LearningInsights").then(m => ({default:m.LearningInsights})));
+ const Courses = lazy(() =>
+   import("./features/Courses").then((m) => ({ default: m.Courses })),
+ );
+@@ -241,6 +242,7 @@
+                   }}
+                 />
+               ) : view === "work" ? (
++                <>
+                 <Work
+                   me={me}
+                   data={data}
+@@ -250,6 +252,8 @@
+                     navigate("classroom");
+                   }}
+                 />
++                <LearningInsights me={me} editionId={data.edition.id}/>
++                </>
+               ) : view === "review" && me.role === "teacher" ? (
+                 <Review
+                   data={data}

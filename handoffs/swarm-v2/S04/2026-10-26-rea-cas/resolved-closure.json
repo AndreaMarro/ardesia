@@ -1,0 +1,43 @@
+{
+  "": {
+    "dependencies": {
+      "@cortex-js/compute-engine": "^0.152.0"
+    }
+  },
+  "node_modules/@arnog/colors": {
+    "version": "0.7.3",
+    "resolved": "https://registry.npmjs.org/@arnog/colors/-/colors-0.7.3.tgz",
+    "integrity": "sha512-D7h3f498cu68+pI54eNl1UIm5xbs1uX5ggBTuFpLs3YQ17lqlWAmJ6d+tuvyLvJEzciN2YYR6D+9K8NfBGJGkQ==",
+    "license": "MIT"
+  },
+  "node_modules/@cortex-js/compute-engine": {
+    "version": "0.152.0",
+    "resolved": "https://registry.npmjs.org/@cortex-js/compute-engine/-/compute-engine-0.152.0.tgz",
+    "integrity": "sha512-4gYJtfr+6mQ/ezq+SASkwpWcLZvcMet0b7HjH4P30Q1dQCwGTqZOc9/BNRDFrIuvLfsIhcVfu2jJXqSV3/RojQ==",
+    "license": "MIT",
+    "dependencies": {
+      "@arnog/colors": "^0.7.0",
+      "complex.js": "^2.4.3"
+    },
+    "bin": {
+      "epsil": "dist/esm-min/cli/epsil.js"
+    },
+    "engines": {
+      "node": ">=22.3.0",
+      "npm": ">=10.5.0"
+    }
+  },
+  "node_modules/complex.js": {
+    "version": "2.4.3",
+    "resolved": "https://registry.npmjs.org/complex.js/-/complex.js-2.4.3.tgz",
+    "integrity": "sha512-UrQVSUur14tNX6tiP4y8T4w4FeJAX3bi2cIv0pu/DTLFNxoq7z2Yh83Vfzztj6Px3X/lubqQ9IrPp7Bpn6p4MQ==",
+    "license": "MIT",
+    "engines": {
+      "node": "*"
+    },
+    "funding": {
+      "type": "github",
+      "url": "https://github.com/sponsors/rawify"
+    }
+  }
+}

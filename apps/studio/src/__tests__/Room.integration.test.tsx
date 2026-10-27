@@ -51,6 +51,7 @@ vi.mock("@excalidraw/excalidraw", () => {
             updateScene: vi.fn((scene: { elements?: Array<{ id?: string }> }) => {
               mockExcalidrawHarness.updateSceneCalls.push(scene)
             }),
+            updateLibrary: vi.fn(async () => []),
             addFiles: vi.fn(),
             onPointerDown: vi.fn((callback: () => void) => {
               mockExcalidrawHarness.pointerDown = callback
@@ -700,7 +701,7 @@ describe("Room ↔ WorkspaceStore integration", () => {
     await vi.waitFor(() => {
       const props = vi.mocked(Excalidraw).mock.calls.at(-1)?.[0]
       expect(props).toBeDefined()
-      expect(props!.initialData).toEqual({ appState: EXCALIDRAW_CONFIG.newRoomAppState })
+      expect(props!.initialData).toEqual({ appState: EXCALIDRAW_CONFIG.newRoomAppState, libraryItems: [] })
     }, { timeout: 5000, interval: 10 })
 
     root.unmount()

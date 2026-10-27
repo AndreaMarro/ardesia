@@ -27,7 +27,7 @@ class ResourceBody(BaseModel):
 
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studio_frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
                request_store_limit=16, request_store_wait=.5, calendar_provider=None,
-               request_body_budget=128*1024*1024, request_body_wait=.5):
+               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
@@ -525,14 +525,20 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     from lessonos.study.independent_study.routes import install_routes as install_independent_study_routes
     install_independent_study_routes(app, store_dependency, authenticate)
+    from lessonos.study.learning_insights.routes import install_routes as install_learning_insights_routes
+    install_learning_insights_routes(app,store_dependency,authenticate,notice=learning_insights_notice)
     from .admin_routes import install_admin_routes
     install_admin_routes(app,store_dependency,authenticate)
     from .register_routes import install_register_routes
     install_register_routes(app,store_dependency,authenticate)
     from .diary_routes import install_diary_routes
     install_diary_routes(app, store_dependency, authenticate)
+    from .learning_memory_routes import install_learning_memory_routes
+    install_learning_memory_routes(app, store_dependency, authenticate)
     from .question_bank_routes import install_question_bank_routes
     install_question_bank_routes(app, store_dependency, authenticate)
+    from lessonos.study.assessment_quality.routes import install_assessment_quality_routes
+    install_assessment_quality_routes(app, store_dependency, authenticate)
     from .calendar_routes import install_calendar_routes
     from lessonos.study.calendar_mock import MockCalendar
     install_calendar_routes(app,store_dependency,authenticate,calendar_provider if calendar_provider is not None else MockCalendar())

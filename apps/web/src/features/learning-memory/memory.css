@@ -1,0 +1,78 @@
+.learning-memory{--memory-line:var(--line,#ddd8ce);--memory-paper:var(--surface,#fffdf8);--memory-accent:var(--accent-text,#345e52);max-width:1280px;margin:auto}
+.memory-eyebrow{display:block;font-size:.68rem;font-weight:750;letter-spacing:.14em;color:var(--memory-accent);margin-bottom:.8rem}
+.memory-heading{border-bottom:1px solid var(--memory-line);padding-bottom:1.5rem}
+.memory-heading h1{max-width:16ch}
+.memory-heading>p{max-width:65ch}
+.memory-actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1rem 0}
+.learning-memory button,.memory-import{min-height:44px}
+.memory-import{display:inline-flex;align-items:center;position:relative;overflow:hidden;border:1px solid var(--memory-line);border-radius:8px;padding:.5rem .9rem;cursor:pointer}
+.memory-import input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}
+.memory-import:focus-within{outline:2px solid var(--memory-accent);outline-offset:3px}
+.memory-search{padding:1.25rem 0}
+.memory-search>label{font-weight:650;display:block;margin-bottom:.5rem}
+.memory-search>div{display:flex;gap:.5rem}
+.memory-search input{flex:1;min-width:0}
+.memory-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 0;border-top:1px solid var(--memory-line);margin-bottom:1rem}
+.memory-toolbar p{font-size:.8rem}
+.memory-toolbar nav{display:flex;gap:.3rem}
+.learning-memory .memory-toolbar button[aria-pressed=true],.learning-memory .memory-toolbar button[aria-pressed=true]:hover{background:var(--green,#355d4e);color:var(--surface,#fffefa);border-color:var(--green,#355d4e)}
+.memory-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+.memory-layout:has(.memory-detail){grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.memory-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:1rem}
+.memory-card{background:var(--memory-paper);padding:1.25rem;border:1px solid var(--memory-line);border-radius:12px;overflow-wrap:anywhere}
+.memory-card h2{font-size:1.15rem;line-height:1.35;margin:.8rem 0}
+.memory-card h2 button{font:inherit;text-align:left;padding:0;background:none;border:0;color:inherit;width:100%}
+.memory-card p{font-size:.9rem;line-height:1.6;white-space:pre-wrap}
+.memory-card small{display:block;margin-top:1.2rem;color:var(--muted,#666);font-size:.73rem}
+.memory-class{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--memory-accent)}
+.memory-class-not_understood{color:#985226}
+.memory-class-correction{color:#3155a1}
+.memory-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.memory-tags span{font-size:.72rem;background:var(--bg,#f1eee7);padding:.2rem .5rem;border-radius:5px}
+.memory-empty{border:1px dashed var(--memory-line);border-radius:12px;padding:2rem;text-align:center}
+.memory-detail{padding:1.5rem;background:var(--memory-paper);border:1px solid var(--memory-line);border-radius:12px;min-width:0;overflow-wrap:anywhere;align-self:start}
+.memory-detail h2{font-size:1.5rem;margin-top:0}
+.memory-detail section,.memory-detail>details{margin-top:1.4rem;border-top:1px solid var(--memory-line);padding-top:1rem}
+.memory-detail blockquote{margin:.8rem 0;padding-left:1rem;border-left:3px solid var(--memory-accent);white-space:pre-wrap}
+.memory-link{display:block;text-align:left;margin:.3rem 0;max-width:100%;overflow-wrap:anywhere}
+.memory-editor{padding:1.5rem;border:1px solid var(--memory-line);border-radius:12px;margin:1rem 0;background:var(--memory-paper)}
+.memory-editor>fieldset{border:0;padding:0}
+.memory-editor label{display:grid;gap:.4rem;margin:.8rem 0;font-size:.85rem;font-weight:600}
+.memory-editor textarea,.memory-editor input:not([type=checkbox]),.memory-editor select{width:100%;max-width:100%;box-sizing:border-box}
+.memory-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.memory-editor fieldset fieldset{border:1px solid var(--memory-line);padding:.6rem 1rem;margin:1rem 0}
+.memory-editor .memory-check{display:flex;align-items:center;gap:.6rem;min-height:44px}
+.memory-source-chip{padding:.5rem .8rem;border-left:3px solid var(--memory-accent);overflow-wrap:anywhere}
+.memory-source-chip button{margin-left:.5rem}
+.memory-notice{padding:.8rem 1rem;border-left:3px solid var(--memory-accent);background:var(--memory-paper)}
+.memory-graph-nodes,.memory-graph-edges{list-style:none;padding:0}
+.memory-graph-nodes{display:flex;flex-wrap:wrap;gap:.8rem}
+.memory-node{display:grid;gap:.4rem;padding:.8rem;border:1px solid var(--memory-line);border-radius:12px;max-width:100%;background:var(--memory-paper)}
+.memory-node>span{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em}
+.memory-node button{max-width:100%;overflow-wrap:anywhere}
+.memory-node-source{border-color:var(--memory-accent)}
+.memory-node-concept{border-radius:24px}
+.memory-graph-edges{display:grid;gap:.6rem}
+.memory-graph-edges li{padding:.6rem 0;border-bottom:1px solid var(--memory-line);font-size:.8rem}
+.memory-graph-edges button{font:inherit;overflow-wrap:anywhere;max-width:100%}
+.memory-explorer{border:1px solid var(--memory-line);border-radius:12px;padding:1rem;min-width:0;background:var(--memory-paper)}
+.memory-graph-controls{border:0;padding:0;min-width:0}
+.memory-graph-controls label{display:grid;gap:.4rem;margin:.8rem 0;font-size:.85rem}
+.memory-graph-controls select{width:100%;max-width:100%;min-height:44px}
+.memory-graph-canvas{height:460px;min-width:0;margin:1rem 0;border:1px solid var(--memory-line);border-radius:8px;background:#fafbf8;touch-action:none}
+.memory-explorer .memory-actions{margin:.8rem 0}
+.memory-explorer ol{padding-left:1.4rem}
+.memory-graph-license{margin-top:1rem;font-size:.75rem}
+.memory-graph-license pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
+.memory-history article{border-left:2px solid var(--memory-line);padding-left:1rem}
+.learning-memory :focus-visible{outline:2px solid var(--memory-accent);outline-offset:3px}
+@media(max-width:900px){.memory-layout:has(.memory-detail){grid-template-columns:1fr}
+.memory-toolbar{align-items:start;flex-direction:column}
+.memory-detail{padding:1rem}
+}
+@media(max-width:520px){.memory-form-grid{grid-template-columns:1fr;gap:0}
+.memory-search>div{flex-wrap:wrap}
+.memory-search input{flex-basis:100%}
+.memory-editor{padding:1rem}
+.memory-actions{gap:.4rem}
+}

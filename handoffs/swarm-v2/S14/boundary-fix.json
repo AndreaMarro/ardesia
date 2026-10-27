@@ -1,0 +1,56 @@
+{
+  "schema": "ardesia.s14-library-boundary-fix/1",
+  "baselineHead": "62e1747d78df2dae17e201c7b87c06ac5fcd6332",
+  "prBase": "992d1a0b5cdf40d94259d3be698a4d6c5dcc1231",
+  "finding": "https://github.com/AndreaMarro/ardesia/pull/319#issuecomment-6421291933",
+  "cause": "Nested own ardesiaInkV1:undefined was erased by JSON before the recursive check",
+  "fix": "Inspect original tree before JSON; inspect and freeze only copied snapshot; preserve SDK input",
+  "files": [
+    {
+      "path": "apps/studio/src/whiteboard-library/libraryScene.ts",
+      "gitBlob": "429a3ab9a51214976189fdfa0a839aed05b8c08e",
+      "sha256": "a78c0df45773553cc20986bba1f26ab122ecfeae68d7e7da91cb44433032eaa0"
+    },
+    {
+      "path": "apps/studio/src/whiteboard-library/libraryScene.test.ts",
+      "gitBlob": "8ee8e9b4536e38c36af25e4fd5d3f306c0cdeaa3",
+      "sha256": "c20b6261737afcb877aba452eab71cb24903e4af9c9af90deb3355897b279b9e"
+    }
+  ],
+  "red": {
+    "log": "boundary-preclone-red.log",
+    "testsPassed": 5,
+    "testsFailed": 1,
+    "exit": 1,
+    "reason": "New nested undefined marker test did not throw"
+  },
+  "green": {
+    "log": "boundary-preclone-green.log",
+    "testsPassed": 8,
+    "testsFailed": 0,
+    "exit": 0,
+    "scope": "Two namespace test files including canonical WorkspaceStore/bundle roundtrip"
+  },
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc -b --noEmit",
+    "exit": 0,
+    "log": "boundary-typecheck.log",
+    "scope": "Delivery checkout; Room consumer patch not mounted"
+  },
+  "environment": {
+    "runtime": "Node26.5.1",
+    "vitest": "4.1.8",
+    "cacheLockByteIdentical": true,
+    "cacheSource": "Existing S17 dependencies read through per-package links; own cache/build-info directories",
+    "installedPackages": false,
+    "earlyHarnessErrors": [
+      "Wrong relative redirection path: Vitest never started",
+      "App-bundled Node24 blocked existing rolldown native binding by Team ID; moved to installed Node, did not change signing or reinstall packages"
+    ],
+    "warning": "Node26 localStorage experimental warning retained in green log; not a browser console error"
+  },
+  "consumerComposition": "NOT_RUN_FOR_THIS_FIX",
+  "nativeProofs": "Previous native reports remain qualified by their old source hashes; no transfer to the new helper or future composed Room",
+  "sharedFilesModified": [],
+  "mergeDeploy": "S00_ONLY"
+}

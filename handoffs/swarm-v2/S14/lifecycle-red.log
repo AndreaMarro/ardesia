@@ -1,0 +1,84 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/s14-composition/apps/studio
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx (4 tests | 2 failed) 1837ms
+   × ignores a retired SDK library callback after the store lifecycle changes 123ms
+   × retains a valid library edit delivered while a rejected edit repair is completing 59ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/RoomLibrary.test.tsx > ignores a retired SDK library callback after the store lifecycle changes
+AssertionError: expected [ { id: 'axes', …(3) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "created": 0,
++     "elements": [
++       {
++         "height": 0,
++         "id": "axis",
++         "type": "arrow",
++         "width": 20,
++         "x": 0,
++         "y": 0,
++       },
++     ],
++     "id": "axes",
++     "status": "unpublished",
++   },
++ ]
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx:98:82
+     96|   retired([item])
+     97|   await (window as any).__MAESTRO_TEST__.flushPersist()
+     98|   expect(JSON.parse((await second.loadScene("library-consumer"))!).lib…
+       |                                                                                  ^
+     99| })
+    100|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/whiteboard-library/RoomLibrary.test.tsx > retains a valid library edit delivered while a rejected edit repair is completing
+AssertionError: expected [] to deeply equal [ { id: 'axes', …(3) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "created": 0,
+-     "elements": [
+-       {
+-         "height": 0,
+-         "id": "axis",
+-         "type": "arrow",
+-         "width": 20,
+-         "x": 0,
+-         "y": 0,
+-       },
+-     ],
+-     "id": "axes",
+-     "status": "unpublished",
+-   },
+- ]
++ []
+
+ ❯ src/whiteboard-library/RoomLibrary.test.tsx:111:81
+    109|   native.props.onLibraryChange([item])
+    110|   await (window as any).__MAESTRO_TEST__.flushPersist()
+    111|   expect(JSON.parse((await store.loadScene("library-consumer"))!).libr…
+       |                                                                                 ^
+    112| })
+    113|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  02:15:35
+   Duration  5.23s (transform 825ms, setup 42ms, import 1.38s, tests 1.84s, environment 1.71s)
