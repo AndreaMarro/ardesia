@@ -53,6 +53,8 @@ def summarize(snapshot):
             'observedAt': snapshot.get('observedAt'),
             'baseShaBefore': snapshot.get('baseShaBefore'),
             'baseShaAfter': snapshot.get('baseShaAfter'),
+            'inventoryChanged': snapshot.get('inventoryChanged', False),
+            'unstablePrs': snapshot.get('unstablePrs', []),
             'openPrs': len(prs), 'overlaps': rows,
             'prs': [{'number': pr['number'], 'headSha': pr.get('headSha'),
                      'draft': pr.get('draft', False), 'baseRef': pr.get('baseRef')}
@@ -88,7 +90,19 @@ def live(repo, base):
     root = f'repos/{repo}'
     sha = lambda: gh(f'{root}/branches/{base}')['commit']['sha']
     before = sha()
-    entries = gh(f'{root}/pulls?state=open&per_page=100', pages=True)
+    endpoint = f'{root}/pulls?state=open&per_page=100'
+    entries = gh(endpoint, pages=True)
+
+    def base_inventory(items):
+        # An unmodified main SHA and stable old PR heads are insufficient:
+        # a PR can open, close, or retarget during file pagination.
+        return sorted(
+            (pr['number'], pr['base']['ref'], pr['head']['sha'],
+             pr['state'], bool(pr.get('draft', False)))
+            for pr in items if pr['base']['ref'] == base
+        )
+
+    original_inventory = base_inventory(entries)
     prs = []
     unstable = []
     for pr in entries:
@@ -100,13 +114,19 @@ def live(repo, base):
             paths.append(file['filename'])
             if file.get('status') == 'renamed' and file.get('previous_filename'):
                 paths.append(file['previous_filename'])
-        if gh(f"{root}/pulls/{pr['number']}")['head']['sha'] != pr['head']['sha']:
+        current = gh(f"{root}/pulls/{pr['number']}")
+        if (current['head']['sha'] != pr['head']['sha'] or
+                current['base']['ref'] != base or current['state'] != 'open'):
             unstable.append(pr['number'])
         prs.append({'number': pr['number'], 'files': paths,
-                    'headSha': pr['head']['sha'], 'baseRef': base, 'draft': pr['draft']})
+                    'headSha': pr['head']['sha'], 'baseRef': base,
+                    'draft': pr['draft']})
+    final_inventory = base_inventory(gh(endpoint, pages=True))
+    inventory_changed = original_inventory != final_inventory
     after = sha()
-    return {'status': 'MEASURED' if before == after and not unstable else 'STALE_SNAPSHOT_RETRY',
-            'unstablePrs': unstable,
+    return {'status': 'MEASURED' if before == after and not unstable and not inventory_changed
+            else 'STALE_SNAPSHOT_RETRY',
+            'unstablePrs': unstable, 'inventoryChanged': inventory_changed,
             'observedAt': datetime.now(timezone.utc).isoformat(),
             'baseShaBefore': before, 'baseShaAfter': after, 'pullRequests': prs}
 
@@ -115,6 +135,7 @@ def format_markdown(result):
     lines = ['# Concurrent PR file overlaps', '',
              f"State: **{result['status']}**; open PRs: **{result['openPrs']}**",
              f"Base before/after: {result['baseShaBefore']} / {result['baseShaAfter']}",
+             f"Inventory changed: {result['inventoryChanged']}; unstable PRs: {result['unstablePrs']}",
              '', '| Path | PRs | Kind |', '|---|---|---|']
     for r in result['overlaps']:
         lines.append(f"| {r['path']} | {', '.join('#'+str(n) for n in r['prs'])} | {r['kind']} |")
