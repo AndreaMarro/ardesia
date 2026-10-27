@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "sourceBase": "0d809591ca47a3c87878548d59b343d62e7ff7a8",
+  "sourceFiles": {
+    "apps/studio/src/Room.tsx": "9065b39ea470898e548be4bffb46ea1c98022efa0576db398303a147be8ef5c1",
+    "apps/studio/src/whiteboard-library/libraryScene.ts": "63e81356f54782445232092436de6e261c594b9475c9178736a4579743042aab",
+    "apps/studio/src/whiteboard-library/libraryImport.ts": "d4487da80d329f49e439f739abb2ac279c7118c16d49eb7da1c0d7a4c65a4b41"
+  },
+  "scope": "local Room composition with real Excalidraw and canonical WorkspaceStore/bundle; no remote ACL certification",
+  "checks": [
+    {
+      "name": "real Room ready",
+      "status": "PASS",
+      "elapsedMs": 497
+    },
+    {
+      "name": "native collection inserts a component and canonical Room autosaves",
+      "status": "PASS"
+    },
+    {
+      "name": "cold page reload retains board and collection",
+      "status": "PASS"
+    },
+    {
+      "name": "UI export includes exact native collection in canonical bundle",
+      "status": "PASS",
+      "sha256": "7cffcb19646b2d644831d3b2721c15b0538f4591b91a0769113d190470e49610"
+    },
+    {
+      "name": "UI import replaces native library including legacy empty collection",
+      "status": "PASS"
+    },
+    {
+      "name": "quota error is visible; next real edit retries the retained draft",
+      "status": "PASS"
+    },
+    {
+      "name": "390px collection visible without document overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "collection opener reachable by keyboard",
+      "status": "PASS",
+      "nativeTileKeyboardWorkflow": "NOT_VERIFIED"
+    },
+    {
+      "name": "existing local read-only student view has no collection write opener",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "browserVersion": "148.0.7778.96",
+  "browserCleanup": "CLOSED_OWNED_BROWSER"
+}

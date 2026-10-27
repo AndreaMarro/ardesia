@@ -1,0 +1,23 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/ardesia-acquisition/apps/studio
+
+ ❯ src/whiteboard-library/libraryScene.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/libraryScene.test.ts [ src/whiteboard-library/libraryScene.test.ts ]
+Error: Cannot find module './libraryScene' imported from /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/ardesia-acquisition/apps/studio/src/whiteboard-library/libraryScene.test.ts
+ ❯ src/whiteboard-library/libraryScene.test.ts:2:1
+      1| import { describe, expect, it } from "vitest"
+      2| import { libraryFromScene, sceneWithLibrary, snapshotLibraryItems } fr…
+       | ^
+      3|
+      4| const item = () => ({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  01:40:38
+   Duration  322ms (transform 41ms, setup 46ms, import 0ms, tests 0ms, environment 0ms)

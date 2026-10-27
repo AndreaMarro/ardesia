@@ -1,0 +1,248 @@
+{
+  "schema": "ardesia.s15-reuse-sources/1",
+  "observed_at_utc": "2026-10-26T00:42:20.280385+00:00",
+  "scope": "read-only source/license/version audit; report files only",
+  "sources": [
+    {
+      "repository": "collective/icalendar",
+      "version": "7.3.0",
+      "tag": "v7.3.0",
+      "tag_object": "138c8453db34fbb584bbcbc592fd7bd4b972e8ef",
+      "source_head": "138c8453db34fbb584bbcbc592fd7bd4b972e8ef",
+      "license": "BSD-2-Clause",
+      "release_url": "https://github.com/collective/icalendar/releases/tag/v7.3.0",
+      "files_read": [
+        {
+          "path": "LICENSE.rst",
+          "bytes": 1313,
+          "sha256": "b947bc38239297209e92af36c02baad1099ec65a93104ca326b85a9dbb3cac50",
+          "url": "https://github.com/collective/icalendar/blob/138c8453db34fbb584bbcbc592fd7bd4b972e8ef/LICENSE.rst"
+        },
+        {
+          "path": "pyproject.toml",
+          "bytes": 12033,
+          "sha256": "19140303e66a4f4c3245a45eb466f13ab606eca491747085edbafe83aeb62c43",
+          "url": "https://github.com/collective/icalendar/blob/138c8453db34fbb584bbcbc592fd7bd4b972e8ef/pyproject.toml"
+        },
+        {
+          "path": "src/icalendar/cal/calendar.py",
+          "bytes": 21809,
+          "sha256": "934f7f4da664f27a491526bf1524a5c47055653a7d437756db8f81b62682d89c",
+          "url": "https://github.com/collective/icalendar/blob/138c8453db34fbb584bbcbc592fd7bd4b972e8ef/src/icalendar/cal/calendar.py"
+        },
+        {
+          "path": "src/icalendar/parser/content_line.py",
+          "bytes": 11491,
+          "sha256": "fd3f687bd664f20342dc86654d7b6bbaf2005312e78170b00d081548ada8d8aa",
+          "url": "https://github.com/collective/icalendar/blob/138c8453db34fbb584bbcbc592fd7bd4b972e8ef/src/icalendar/parser/content_line.py"
+        }
+      ],
+      "downloaded_package": false,
+      "installed": false,
+      "runtime_executed": false,
+      "upstream_tests_run": false,
+      "source_id": "ICALENDAR-7.3.0",
+      "metadata_source": "https://pypi.org/pypi/icalendar/7.3.0/json",
+      "python_requirement": ">=3.10",
+      "runtime_dependencies_observed": [
+        "python-dateutil",
+        "tzdata>=2025.3",
+        "typing-extensions~=4.10 if Python<3.13"
+      ],
+      "license_scope": "Package source/binary redistribution requires copyright, conditions and disclaimer; docs/assets/transitive closure not independently cleared by this source license.",
+      "use_scope": "proposed test-only parser oracle; no source vendoring"
+    },
+    {
+      "repository": "open-spaced-repetition/py-fsrs",
+      "version": "6.3.2",
+      "tag": "v6.3.2",
+      "tag_object": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+      "source_head": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+      "license": "MIT",
+      "release_url": "https://github.com/open-spaced-repetition/py-fsrs/releases/tag/v6.3.2",
+      "files_read": [
+        {
+          "path": "LICENSE",
+          "bytes": 1079,
+          "sha256": "021bff58ad2685d7e5b30d307429bc7cfdca108ad620ce889abb38d7acd89ace",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/LICENSE"
+        },
+        {
+          "path": "pyproject.toml",
+          "bytes": 1197,
+          "sha256": "87dd6f9fae8ab4e5a17a9d482b5911998d22ae2d295bd52bf4dfce38d00f62d0",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/pyproject.toml"
+        },
+        {
+          "path": "fsrs/scheduler.py",
+          "bytes": 30155,
+          "sha256": "dd04d86ba98ee22106f6bbdb7eede00fa3c848dbf15d18e33db4584f333bac46",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/fsrs/scheduler.py"
+        },
+        {
+          "path": "fsrs/card.py",
+          "bytes": 4864,
+          "sha256": "be433000a1b839b222420233b9019e905f88efda3901e2efd51c3fdb5754f0ab",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/fsrs/card.py"
+        },
+        {
+          "path": "fsrs/review_log.py",
+          "bytes": 3170,
+          "sha256": "79a4afdc25fcf1abf764b50fdce0e52d37fc7656b8894eda6630b60b0ece1047",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/fsrs/review_log.py"
+        },
+        {
+          "path": "fsrs/rating.py",
+          "bytes": 214,
+          "sha256": "01bc939a22f7e728ebd9a999dda77a9dc2b7fcfec4f392beea4b11ea7019b85e",
+          "url": "https://github.com/open-spaced-repetition/py-fsrs/blob/9446cb06605c597a063aeee49f7d188d42e34dc2/fsrs/rating.py"
+        }
+      ],
+      "downloaded_package": false,
+      "installed": false,
+      "runtime_executed": false,
+      "upstream_tests_run": false,
+      "source_id": "PY-FSRS-6.3.2",
+      "metadata_source": "https://pypi.org/pypi/fsrs/6.3.2/json",
+      "python_requirement": ">=3.10",
+      "runtime_dependencies_observed": [
+        "typing-extensions"
+      ],
+      "optional_optimizer_dependencies_observed": [
+        "torch",
+        "numpy",
+        "pandas",
+        "tqdm"
+      ],
+      "license_scope": "MIT notice and permission text retained when redistributing source/substantial portions; transitive dependency licenses need their own locked-closure review.",
+      "use_scope": "proposed complete scheduler in Core Python; exclude optimizer extras"
+    },
+    {
+      "repository": "open-spaced-repetition/ts-fsrs",
+      "version": "5.4.2",
+      "tag": "v5.4.2",
+      "tag_object": "b7565428f035b824affc3b400980055399890c75",
+      "source_head": "bb71e35a2f5af5a5ac6cce9ef7c41ad24855721d",
+      "license": "MIT",
+      "release_url": "https://github.com/open-spaced-repetition/ts-fsrs/releases/tag/v5.4.2",
+      "files_read": [
+        {
+          "path": "LICENSE",
+          "bytes": 1079,
+          "sha256": "8b83a73dd2894ff553d6de6113064b3ad9dfad3f839837b61f3b183881131d01",
+          "url": "https://github.com/open-spaced-repetition/ts-fsrs/blob/bb71e35a2f5af5a5ac6cce9ef7c41ad24855721d/LICENSE"
+        },
+        {
+          "path": "packages/fsrs/LICENSE",
+          "bytes": 1079,
+          "sha256": "8b83a73dd2894ff553d6de6113064b3ad9dfad3f839837b61f3b183881131d01",
+          "url": "https://github.com/open-spaced-repetition/ts-fsrs/blob/bb71e35a2f5af5a5ac6cce9ef7c41ad24855721d/packages/fsrs/LICENSE"
+        },
+        {
+          "path": "packages/fsrs/package.json",
+          "bytes": 2235,
+          "sha256": "239f5976869d45ebb2abaeac73d1357b5b25c0ab4f8268846aaa276b61718633",
+          "url": "https://github.com/open-spaced-repetition/ts-fsrs/blob/bb71e35a2f5af5a5ac6cce9ef7c41ad24855721d/packages/fsrs/package.json"
+        }
+      ],
+      "downloaded_package": false,
+      "installed": false,
+      "runtime_executed": false,
+      "upstream_tests_run": false,
+      "source_id": "TS-FSRS-5.4.2",
+      "metadata_source": "https://registry.npmjs.org/ts-fsrs/5.4.2",
+      "engine_requirement": {
+        "node": ">=20.0.0"
+      },
+      "runtime_dependencies_observed": [],
+      "license_scope": "MIT for root and published package; lock/distribution closure still needs verification before adoption.",
+      "use_scope": "comparison only; not recommended as second runtime scheduler"
+    },
+    {
+      "source_id": "RFC-5545",
+      "name": "Internet Calendaring and Scheduling Core Object Specification",
+      "version": "RFC 5545 (September 2009)",
+      "url": "https://www.rfc-editor.org/rfc/rfc5545",
+      "sections_read": [
+        "copyright and license notice",
+        "3.1 content lines / folding",
+        "3.3.11 TEXT",
+        "3.6.1 VEVENT",
+        "3.8.4.7 UID",
+        "3.8.7.4 SEQUENCE"
+      ],
+      "rights": "IETF Trust/BCP78 document terms; extracted Code Components require Simplified BSD notice. Proposal consumes an API and paraphrases rules, does not copy RFC code.",
+      "runtime_executed": false
+    }
+  ],
+  "consumers": [
+    {
+      "pr": 309,
+      "source_head": "ff38400012594ab2fad16d4721305e50532ae31a",
+      "files_read": [
+        {
+          "path": "packages/engine/lessonos/study/independent_study/__init__.py",
+          "sha256": "e7ee7d510e7c43ff57143c104da21a66b8dba8f3d870cba207129acc209739cf",
+          "url": "https://github.com/AndreaMarro/ardesia/blob/ff38400012594ab2fad16d4721305e50532ae31a/packages/engine/lessonos/study/independent_study/__init__.py"
+        },
+        {
+          "path": "handoffs/swarm-v2/S06/REUSE.md",
+          "sha256": "4254026103b5d15c3fc06d567c647abd1b08084d0751c43d8781b09b71714524",
+          "url": "https://github.com/AndreaMarro/ardesia/blob/ff38400012594ab2fad16d4721305e50532ae31a/handoffs/swarm-v2/S06/REUSE.md"
+        }
+      ]
+    },
+    {
+      "pr": 307,
+      "source_head": "595fbb79650b7b3a6699f7117f542c79226638d9",
+      "files_read": [
+        {
+          "path": "apps/web/src/features/tutor-operations/model.ts",
+          "sha256": "57e92fc4203b3ae11bab7d08d1c7492605e2b1af60525537006edce0c2ccfdd2",
+          "url": "https://github.com/AndreaMarro/ardesia/blob/595fbb79650b7b3a6699f7117f542c79226638d9/apps/web/src/features/tutor-operations/model.ts"
+        },
+        {
+          "path": "apps/web/src/features/tutor-operations/CalendarExport.tsx",
+          "sha256": "d0dacee60028ad3466ba5883e6e93a00534125c1aed2744d832208a43c36df4b",
+          "url": "https://github.com/AndreaMarro/ardesia/blob/595fbb79650b7b3a6699f7117f542c79226638d9/apps/web/src/features/tutor-operations/CalendarExport.tsx"
+        },
+        {
+          "path": "handoffs/swarm-v2/S09/README.md",
+          "sha256": "f10c74ebd74d9c2881d24cb66862e81660d8f5a8d02dada6da16b61b0c18c617",
+          "url": "https://github.com/AndreaMarro/ardesia/blob/595fbb79650b7b3a6699f7117f542c79226638d9/handoffs/swarm-v2/S09/README.md"
+        }
+      ]
+    },
+    {
+      "base": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+      "path": "packages/engine/lessonos/study/calendar_time.py",
+      "sha256": "12836e71a9c7507678dd0b959dec0d9855fe875af91bda636804a3248b8ecc79",
+      "url": "https://github.com/AndreaMarro/ardesia/blob/8e0737b114f147735ef4daf062285e1dbe4064e3/packages/engine/lessonos/study/calendar_time.py"
+    },
+    {
+      "base": "8e0737b114f147735ef4daf062285e1dbe4064e3",
+      "path": "packages/engine/lessonos/study/calendar.py",
+      "sha256": "ec536df6fba3ed16fb0ef6f1e122d81bd8c67f09b5ff25798ff1e0e8062bc63d",
+      "url": "https://github.com/AndreaMarro/ardesia/blob/8e0737b114f147735ef4daf062285e1dbe4064e3/packages/engine/lessonos/study/calendar.py"
+    }
+  ],
+  "coordination_observed": [
+    {
+      "id": 6405629157,
+      "url": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6405629157",
+      "meaning": "S06 now evaluates explicit self-rating and versioned card/review-log in canonical plan; not an adoption receipt."
+    },
+    {
+      "id": 6405615343,
+      "url": "https://github.com/AndreaMarro/ardesia/pull/306#issuecomment-6405615343",
+      "meaning": "S09 owns full-calendar renderer comparison; S15 oracle does not supersede it."
+    }
+  ],
+  "verification_limits": [
+    "Source inspection only; no package installation, donor runtime, tests, build or browser.",
+    "PyPI and npm metadata queried via curl; initial Python urllib fetch failed local CA validation, no TLS verification bypass used.",
+    "REA skill42 read; ordinary complete-source analysis routed to repository/API tools per skill; no REA readiness/provider/scenario invocation.",
+    "Primary-source contents retained by immutable links and SHA256, not represented as installed package byte provenance.",
+    "Generator was inadvertently invoked before read-only exception noticed; parent already owned generated state and instructed it be left as-is. Product files were not edited by S15."
+  ]
+}

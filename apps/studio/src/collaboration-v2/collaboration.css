@@ -1,0 +1,33 @@
+.ink-collaboration { box-sizing: border-box; padding: 18px 22px 14px; color: var(--study-ink); background: var(--study-paper); border-bottom: 1px solid var(--study-line); font-family: var(--m-font-ui); }
+.ink-collaboration * { box-sizing: border-box; }
+.ink-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+.ink-eyebrow { font-size: 10px; letter-spacing: 1.5px; font-weight: 600; color: var(--study-muted); }
+.ink-heading h2 { margin: 5px 0 0; font: 400 25px/1.15 var(--m-font-display); letter-spacing: -.4px; }
+.ink-page-count { font-size: 12px; color: var(--study-muted); font-variant-numeric: tabular-nums; }
+.ink-controls { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+.ink-controls fieldset { padding: 0; margin: 0; border: 0; }
+.ink-controls legend, .ink-controls label { display: flex; flex-direction: column; gap: 5px; padding: 0; margin-bottom: 5px; font-size: 11px; color: var(--study-muted); }
+.ink-controls label { margin-bottom: 0; }
+.ink-controls button, .ink-controls select { min-height: 44px; padding: 8px 12px; border: 1px solid var(--study-control-line); border-radius: 8px; background: var(--study-surface); color: var(--study-ink); font: 500 12px/1.3 var(--m-font-ui); cursor: pointer; }
+.ink-controls button:disabled, .ink-controls select:disabled { opacity: .5; cursor: default; }
+.ink-segment { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--study-line); border-radius: 10px; background: var(--study-surface); }
+.ink-segment button { border-color: transparent; min-height: 38px; }
+.ink-segment [aria-pressed="true"] { color: var(--study-accent); background: var(--study-banner); border-color: var(--study-control-line); }
+.ink-undo { display: flex; gap: 6px; }
+.ink-controls .ink-save { margin-left: auto; background: var(--study-accent); color: var(--study-surface); border-color: var(--study-accent); }
+.ink-controls .ink-follow { display: flex; flex-direction: row; align-items: center; min-height: 44px; gap: 7px; color: var(--study-ink); }
+.ink-follow input { width: 18px; height: 18px; accent-color: var(--study-accent); }
+.ink-status { margin-top: 13px; font-size: 11px; line-height: 1.6; color: var(--study-muted); }
+.ink-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border: 1px solid currentColor; border-radius: 50%; color: var(--study-muted); }
+.ink-dot-committed { background: var(--study-accent); border-color: var(--study-accent); }
+.ink-hint { margin: 5px 0 0; max-width: 90ch; font-size: 11px; line-height: 1.6; color: var(--study-muted); }
+.ink-error { font-size: 12px; color: var(--m-error); }
+.ink-collaboration :focus-visible { outline: 2px solid var(--study-accent); outline-offset: 3px; }
+@media (max-width: 600px) {
+  .ink-collaboration { padding: 14px 12px 12px; }
+  .ink-heading h2 { font-size: 23px; }
+  .ink-controls { gap: 10px; }
+  .ink-controls fieldset, .ink-undo { flex: 1 1 auto; }
+  .ink-controls .ink-save { margin-left: 0; flex: 1 1 100%; }
+  .ink-status { overflow-wrap: anywhere; }
+}

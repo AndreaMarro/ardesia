@@ -1,0 +1,101 @@
+{
+  "source": {
+    "resourceId": "document:sha256:ec2b62c5f0182ff21fd8de565173c3016b624d7b22abd6f60d088cfdc5aa78ff",
+    "revisionId": "synthetic-v1",
+    "sha256": "ec2b62c5f0182ff21fd8de565173c3016b624d7b22abd6f60d088cfdc5aa78ff",
+    "pageCount": 2
+  },
+  "browser": "148.0.7778.96",
+  "node": "v22.14.0",
+  "sourceCommit": "876b4ddba24328a2454ed156e0bab6e5e0cb6bb0",
+  "results": [
+    {
+      "case": "personal and shared controls explicitly concern pen strokes",
+      "pass": true
+    },
+    {
+      "case": "native build provenance matches the requested commit",
+      "pass": true
+    },
+    {
+      "case": "three contexts exact PDF source",
+      "pass": true
+    },
+    {
+      "case": "viewer has no publishing command",
+      "pass": true
+    },
+    {
+      "case": "native viewport publisher resolves page two",
+      "pass": true
+    },
+    {
+      "case": "no movement before participant consent",
+      "pass": true
+    },
+    {
+      "case": "following keeps personal zoom",
+      "pass": true
+    },
+    {
+      "case": "native Space pan holds camera while pointer stays down",
+      "pass": true
+    },
+    {
+      "case": "queued pan focus applied after release with own zoom",
+      "pass": true
+    },
+    {
+      "case": "duplicate and reordered focus do not pull camera back",
+      "pass": true
+    },
+    {
+      "case": "native pen starts on actual canvas",
+      "pass": true
+    },
+    {
+      "case": "focus waits while native pen is still down",
+      "pass": true
+    },
+    {
+      "case": "native pointer-up captures stroke on original page before focus",
+      "pass": true
+    },
+    {
+      "case": "independent peer still controls its own view",
+      "pass": true
+    },
+    {
+      "case": "wrong source revision rejects focus without moving camera",
+      "pass": true
+    },
+    {
+      "case": "a valid presentation restores opt-in after invalid focus",
+      "pass": true
+    },
+    {
+      "case": "incoming focus does not erase a publication failure",
+      "pass": true
+    },
+    {
+      "case": "explicit retry confirms the publication",
+      "pass": true
+    },
+    {
+      "case": "mobile follow controls do not overflow",
+      "pass": true
+    },
+    {
+      "case": "InkSession revocation removes follow and rejects later camera movement",
+      "pass": true
+    },
+    {
+      "case": "host revocation aborts pending publication without false success",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "durationMs": 8466,
+  "transport": "synthetic host port and explicit packet transfer, no Core auth/server/websocket",
+  "mobile": "Chromium emulation; no physical device"
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "S07 proposal for registry owner; not an automatic registry mutation",
+  "observed_date": "2026-10-26",
+  "targets": [
+    {
+      "existing_id": "TARGET-080",
+      "name": "Excalidraw",
+      "version": "0.18.1",
+      "status": "ADOPTED",
+      "decision": "REUSE",
+      "observable": "existing renderer, pointerDown originalElements and restoreElements",
+      "rights": "MIT; upstream package notices preserved",
+      "capability": "existing canvas/PDF kept; scoped ink projection",
+      "owner": "S07",
+      "dependencies": "existing closure unchanged",
+      "replaces": "no second canvas",
+      "proof": "Room browser and restoredInk tests",
+      "integration": "existing product; S07 optional adapter in PR311"
+    },
+    {
+      "existing_id": "TARGET-088",
+      "name": "Yjs",
+      "version": "13.6.27",
+      "status": "ADOPTED",
+      "decision": "ADAPT",
+      "observable": "licensed source/API; real updates, causal merge, UndoManager",
+      "rights": "MIT; pin/integrity in DONOR.md and Studio lock",
+      "capability": "per-author merge and local undo, pending/committed/retry",
+      "owner": "S07",
+      "dependencies": [
+        "lib0 0.2.119",
+        "isomorphic.js 0.2.5"
+      ],
+      "replaces": "full-scene LWW for scoped ink; no Core replacement",
+      "proof": "28 namespace tests and Room E2E; final CI referenced separately",
+      "integration": "branch adapter only; Core transport activation pending S10/S00"
+    },
+    {
+      "existing_id": "TARGET-089",
+      "name": "tldraw",
+      "version": "5.5.2 observed main package, not installed/pinned",
+      "status": "INVESTIGATED",
+      "decision": "DEFER",
+      "observable": "public source/docs and production licensing terms",
+      "rights": "SDK production needs license key; no rights assumed",
+      "capability": "alternative complete canvas/sync engine",
+      "owner": "S07/S14",
+      "dependencies": "separate SDK store/editor/schema and production agreement",
+      "replaces": "would replace Excalidraw and historical format",
+      "proof": "migration/rights/runtime absent; not adopted",
+      "integration": "none"
+    },
+    {
+      "proposed_new_target": "Hocuspocus; registry owner assigns permanent id after deduplication",
+      "name": "Hocuspocus",
+      "version": "4.7.1 observed main package, not installed/pinned",
+      "status": "INVESTIGATED",
+      "decision": "DEFER",
+      "observable": "public MIT source/API; Yjs websocket backend hooks",
+      "rights": "MIT source inspected; no code copied",
+      "capability": "Core-owned authenticated Yjs server transport",
+      "owner": "S10 with S07/S12/S15 consultation",
+      "dependencies": "common, async-mutex, crossws, kleur, lib0; peers y-protocols/yjs; Node>=22",
+      "replaces": "could implement injected InkTransport; not new identity/database",
+      "proof": "must test Core grants/revocation/reconnect/storage on server",
+      "integration": "none; highest-value next acquisition after Core contract"
+    }
+  ]
+}

@@ -1,0 +1,1836 @@
+
+> @ardesia/web@0.1.0 test
+> vitest run src/features/learning-insights/LearningInsights.test.tsx --maxWorkers=1
+
+
+ RUN  v4.1.8 /private/tmp/ardesia-s11-integration-20261026/apps/web
+
+ ❯ src/features/learning-insights/LearningInsights.test.tsx (9 tests | 1 failed) 1335ms
+   × bounds receipt cards and resets pagination when a filter changes 695ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-insights/LearningInsights.test.tsx > bounds receipt cards and resets pagination when a filter changes
+TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "model-0"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Quello che hai provato.":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"insights-title"[39m
+    [33mclass[39m=[32m"learning-insights"[39m
+  [36m/>[39m
+
+  Name "Le prove, a colpo d’occhio":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"explorer-title"[39m
+    [33mclass[39m=[32m"insights-explorer"[39m
+  [36m/>[39m
+
+  Name "Le prove svolte":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"attempts-title"[39m
+  [36m/>[39m
+
+  Name "Da riprendere insieme":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"suggestions-title"[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "I dati, sotto controllo":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"privacy-title"[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"page-heading"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"insights-eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"insights-eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"insights-eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Quello che hai provato.":
+  [36m<h1[39m
+    [33mid[39m=[32m"insights-title"[39m
+  [36m/>[39m
+
+  Name "Le prove, a colpo d’occhio":
+  [36m<h2[39m
+    [33mid[39m=[32m"explorer-title"[39m
+  [36m/>[39m
+
+  Name "Le prove svolte":
+  [36m<h2[39m
+    [33mid[39m=[32m"attempts-title"[39m
+  [36m/>[39m
+
+  Name "model-50":
+  [36m<h3 />[39m
+
+  Name "model-51":
+  [36m<h3 />[39m
+
+  Name "model-52":
+  [36m<h3 />[39m
+
+  Name "model-53":
+  [36m<h3 />[39m
+
+  Name "model-54":
+  [36m<h3 />[39m
+
+  Name "model-55":
+  [36m<h3 />[39m
+
+  Name "model-56":
+  [36m<h3 />[39m
+
+  Name "model-57":
+  [36m<h3 />[39m
+
+  Name "model-58":
+  [36m<h3 />[39m
+
+  Name "model-59":
+  [36m<h3 />[39m
+
+  Name "model-60":
+  [36m<h3 />[39m
+
+  Name "Da riprendere insieme":
+  [36m<h2[39m
+    [33mid[39m=[32m"suggestions-title"[39m
+  [36m/>[39m
+
+  Name "I dati, sotto controllo":
+  [36m<h2[39m
+    [33mid[39m=[32m"privacy-title"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Aggiorna":
+  [36m<button />[39m
+
+  Name "Esporta i dati visibili":
+  [36m<button />[39m
+
+  Name "Azzera filtri":
+  [36m<button />[39m
+
+  Name "Apri prova 1":
+  [36m<button />[39m
+
+  Name "Apri prova 2":
+  [36m<button />[39m
+
+  Name "Apri prova 3":
+  [36m<button />[39m
+
+  Name "Apri prova 4":
+  [36m<button />[39m
+
+  Name "Apri prova 5":
+  [36m<button />[39m
+
+  Name "Apri prova 6":
+  [36m<button />[39m
+
+  Name "Apri prova 7":
+  [36m<button />[39m
+
+  Name "Apri prova 8":
+  [36m<button />[39m
+
+  Name "Apri prova 9":
+  [36m<button />[39m
+
+  Name "Apri prova 10":
+  [36m<button />[39m
+
+  Name "Apri prova 11":
+  [36m<button />[39m
+
+  Name "Apri prova 12":
+  [36m<button />[39m
+
+  Name "Apri prova 13":
+  [36m<button />[39m
+
+  Name "Apri prova 14":
+  [36m<button />[39m
+
+  Name "Apri prova 15":
+  [36m<button />[39m
+
+  Name "Apri prova 16":
+  [36m<button />[39m
+
+  Name "Apri prova 17":
+  [36m<button />[39m
+
+  Name "Apri prova 18":
+  [36m<button />[39m
+
+  Name "Apri prova 19":
+  [36m<button />[39m
+
+  Name "Apri prova 20":
+  [36m<button />[39m
+
+  Name "Apri prova 21":
+  [36m<button />[39m
+
+  Name "Apri prova 22":
+  [36m<button />[39m
+
+  Name "Apri prova 23":
+  [36m<button />[39m
+
+  Name "Apri prova 24":
+  [36m<button />[39m
+
+  Name "Apri prova 25":
+  [36m<button />[39m
+
+  Name "Precedenti":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Successive":
+  [36m<button />[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Segnala difficoltà":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Schede precedenti":
+  [36m<button />[39m
+
+  Name "Schede successive":
+  [36m<button[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"insights-status"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  Name "":
+  [36m<dt />[39m
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  Name "":
+  [36m<dd />[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Filtra le prove conservate":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"insights-filters"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  Name "":
+  [36m<details />[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Modello":
+  [36m<select />[39m
+
+  Name "Verifica":
+  [36m<select />[39m
+
+  Name "Aiuti registrati":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Tutti i modelli":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "model-0":
+  [36m<option />[39m
+
+  Name "model-1":
+  [36m<option />[39m
+
+  Name "model-10":
+  [36m<option />[39m
+
+  Name "model-11":
+  [36m<option />[39m
+
+  Name "model-12":
+  [36m<option />[39m
+
+  Name "model-13":
+  [36m<option />[39m
+
+  Name "model-14":
+  [36m<option />[39m
+
+  Name "model-15":
+  [36m<option />[39m
+
+  Name "model-16":
+  [36m<option />[39m
+
+  Name "model-17":
+  [36m<option />[39m
+
+  Name "model-18":
+  [36m<option />[39m
+
+  Name "model-19":
+  [36m<option />[39m
+
+  Name "model-2":
+  [36m<option />[39m
+
+  Name "model-20":
+  [36m<option />[39m
+
+  Name "model-21":
+  [36m<option />[39m
+
+  Name "model-22":
+  [36m<option />[39m
+
+  Name "model-23":
+  [36m<option />[39m
+
+  Name "model-24":
+  [36m<option />[39m
+
+  Name "model-25":
+  [36m<option />[39m
+
+  Name "model-26":
+  [36m<option />[39m
+
+  Name "model-27":
+  [36m<option />[39m
+
+  Name "model-28":
+  [36m<option />[39m
+
+  Name "model-29":
+  [36m<option />[39m
+
+  Name "model-3":
+  [36m<option />[39m
+
+  Name "model-30":
+  [36m<option />[39m
+
+  Name "model-31":
+  [36m<option />[39m
+
+  Name "model-32":
+  [36m<option />[39m
+
+  Name "model-33":
+  [36m<option />[39m
+
+  Name "model-34":
+  [36m<option />[39m
+
+  Name "model-35":
+  [36m<option />[39m
+
+  Name "model-36":
+  [36m<option />[39m
+
+  Name "model-37":
+  [36m<option />[39m
+
+  Name "model-38":
+  [36m<option />[39m
+
+  Name "model-39":
+  [36m<option />[39m
+
+  Name "model-4":
+  [36m<option />[39m
+
+  Name "model-40":
+  [36m<option />[39m
+
+  Name "model-41":
+  [36m<option />[39m
+
+  Name "model-42":
+  [36m<option />[39m
+
+  Name "model-43":
+  [36m<option />[39m
+
+  Name "model-44":
+  [36m<option />[39m
+
+  Name "model-45":
+  [36m<option />[39m
+
+  Name "model-46":
+  [36m<option />[39m
+
+  Name "model-47":
+  [36m<option />[39m
+
+  Name "model-48":
+  [36m<option />[39m
+
+  Name "model-49":
+  [36m<option />[39m
+
+  Name "model-5":
+  [36m<option />[39m
+
+  Name "model-50":
+  [36m<option />[39m
+
+  Name "model-51":
+  [36m<option />[39m
+
+  Name "model-52":
+  [36m<option />[39m
+
+  Name "model-53":
+  [36m<option />[39m
+
+  Name "model-54":
+  [36m<option />[39m
+
+  Name "model-55":
+  [36m<option />[39m
+
+  Name "model-56":
+  [36m<option />[39m
+
+  Name "model-57":
+  [36m<option />[39m
+
+  Name "model-58":
+  [36m<option />[39m
+
+  Name "model-59":
+  [36m<option />[39m
+
+  Name "model-6":
+  [36m<option />[39m
+
+  Name "model-60":
+  [36m<option />[39m
+
+  Name "model-7":
+  [36m<option />[39m
+
+  Name "model-8":
+  [36m<option />[39m
+
+  Name "model-9":
+  [36m<option />[39m
+
+  Name "Tutti gli esiti":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "Concorde con il modello":
+  [36m<option[39m
+    [33mvalue[39m=[32m"MATCH"[39m
+  [36m/>[39m
+
+  Name "Da confrontare":
+  [36m<option[39m
+    [33mvalue[39m=[32m"MISMATCH"[39m
+  [36m/>[39m
+
+  Name "Non verificato":
+  [36m<option[39m
+    [33mvalue[39m=[32m"NOT_CHECKED"[39m
+  [36m/>[39m
+
+  Name "Tutte le condizioni":
+  [36m<option[39m
+    [33mvalue[39m=[32m"all"[39m
+  [36m/>[39m
+
+  Name "Aiuto richiesto":
+  [36m<option[39m
+    [33mvalue[39m=[32m"SUPPORT_REQUESTED"[39m
+  [36m/>[39m
+
+  Name "Nessun aiuto richiesto":
+  [36m<option[39m
+    [33mvalue[39m=[32m"NO_SUPPORT_REQUESTED"[39m
+  [36m/>[39m
+
+  Name "Aiuti non registrati":
+  [36m<option[39m
+    [33mvalue[39m=[32m"NOT_RECORDED"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "Legenda degli aiuti":
+  [36m<ul[39m
+    [33maria-label[39m=[32m"Legenda degli aiuti"[39m
+    [33mclass[39m=[32m"insights-key"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"insights-attempts"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  Name "":
+  [36m<ul />[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  --------------------------------------------------
+  table:
+
+  Name "Ricevute autorizzate nella vista corrente":
+  [36m<table />[39m
+
+  --------------------------------------------------
+  caption:
+
+  Name "Ricevute autorizzate nella vista corrente":
+  [36m<caption />[39m
+
+  --------------------------------------------------
+  rowgroup:
+
+  Name "":
+  [36m<thead />[39m
+
+  Name "":
+  [36m<tbody />[39m
+
+  --------------------------------------------------
+  row:
+
+  Name "Modello Verifica Aiuti Evidenza":
+  [36m<tr />[39m
+
+  Name "model-0 Da confrontare Aiuto richiesto Apri prova 1":
+  [36m<tr />[39m
+
+  Name "model-1 Da confrontare Aiuto richiesto Apri prova 2":
+  [36m<tr />[39m
+
+  Name "model-2 Da confrontare Aiuto richiesto Apri prova 3":
+  [36m<tr />[39m
+
+  Name "model-3 Da confrontare Aiuto richiesto Apri prova 4":
+  [36m<tr />[39m
+
+  Name "model-4 Da confrontare Aiuto richiesto Apri prova 5":
+  [36m<tr />[39m
+
+  Name "model-5 Da confrontare Aiuto richiesto Apri prova 6":
+  [36m<tr />[39m
+
+  Name "model-6 Da confrontare Aiuto richiesto Apri prova 7":
+  [36m<tr />[39m
+
+  Name "model-7 Da confrontare Aiuto richiesto Apri prova 8":
+  [36m<tr />[39m
+
+  Name "model-8 Da confrontare Aiuto richiesto Apri prova 9":
+  [36m<tr />[39m
+
+  Name "model-9 Da confrontare Aiuto richiesto Apri prova 10":
+  [36m<tr />[39m
+
+  Name "model-10 Da confrontare Aiuto richiesto Apri prova 11":
+  [36m<tr />[39m
+
+  Name "model-11 Da confrontare Aiuto richiesto Apri prova 12":
+  [36m<tr />[39m
+
+  Name "model-12 Da confrontare Aiuto richiesto Apri prova 13":
+  [36m<tr />[39m
+
+  Name "model-13 Da confrontare Aiuto richiesto Apri prova 14":
+  [36m<tr />[39m
+
+  Name "model-14 Da confrontare Aiuto richiesto Apri prova 15":
+  [36m<tr />[39m
+
+  Name "model-15 Da confrontare Aiuto richiesto Apri prova 16":
+  [36m<tr />[39m
+
+  Name "model-16 Da confrontare Aiuto richiesto Apri prova 17":
+  [36m<tr />[39m
+
+  Name "model-17 Da confrontare Aiuto richiesto Apri prova 18":
+  [36m<tr />[39m
+
+  Name "model-18 Da confrontare Aiuto richiesto Apri prova 19":
+  [36m<tr />[39m
+
+  Name "model-19 Da confrontare Aiuto richiesto Apri prova 20":
+  [36m<tr />[39m
+
+  Name "model-20 Da confrontare Aiuto richiesto Apri prova 21":
+  [36m<tr />[39m
+
+  Name "model-21 Da confrontare Aiuto richiesto Apri prova 22":
+  [36m<tr />[39m
+
+  Name "model-22 Da confrontare Aiuto richiesto Apri prova 23":
+  [36m<tr />[39m
+
+  Name "model-23 Da confrontare Aiuto richiesto Apri prova 24":
+  [36m<tr />[39m
+
+  Name "model-24 Da confrontare Aiuto richiesto Apri prova 25":
+  [36m<tr />[39m
+
+  --------------------------------------------------
+  columnheader:
+
+  Name "Modello":
+  [36m<th />[39m
+
+  Name "Verifica":
+  [36m<th />[39m
+
+  Name "Aiuti":
+  [36m<th />[39m
+
+  Name "Evidenza":
+  [36m<th />[39m
+
+  --------------------------------------------------
+  cell:
+
+  Name "model-0":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 1":
+  [36m<td />[39m
+
+  Name "model-1":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 2":
+  [36m<td />[39m
+
+  Name "model-2":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 3":
+  [36m<td />[39m
+
+  Name "model-3":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 4":
+  [36m<td />[39m
+
+  Name "model-4":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 5":
+  [36m<td />[39m
+
+  Name "model-5":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 6":
+  [36m<td />[39m
+
+  Name "model-6":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 7":
+  [36m<td />[39m
+
+  Name "model-7":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 8":
+  [36m<td />[39m
+
+  Name "model-8":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 9":
+  [36m<td />[39m
+
+  Name "model-9":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 10":
+  [36m<td />[39m
+
+  Name "model-10":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 11":
+  [36m<td />[39m
+
+  Name "model-11":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 12":
+  [36m<td />[39m
+
+  Name "model-12":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 13":
+  [36m<td />[39m
+
+  Name "model-13":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 14":
+  [36m<td />[39m
+
+  Name "model-14":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 15":
+  [36m<td />[39m
+
+  Name "model-15":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 16":
+  [36m<td />[39m
+
+  Name "model-16":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 17":
+  [36m<td />[39m
+
+  Name "model-17":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 18":
+  [36m<td />[39m
+
+  Name "model-18":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 19":
+  [36m<td />[39m
+
+  Name "model-19":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 20":
+  [36m<td />[39m
+
+  Name "model-20":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 21":
+  [36m<td />[39m
+
+  Name "model-21":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 22":
+  [36m<td />[39m
+
+  Name "model-22":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 23":
+  [36m<td />[39m
+
+  Name "model-23":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 24":
+  [36m<td />[39m
+
+  Name "model-24":
+  [36m<td />[39m
+
+  Name "Da confrontare":
+  [36m<td />[39m
+
+  Name "Aiuto richiesto":
+  [36m<td />[39m
+
+  Name "Apri prova 25":
+  [36m<td />[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Pagine delle prove":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Pagine delle prove"[39m
+  [36m/>[39m
+
+  Name "Pagine delle schede":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Pagine delle schede"[39m
+    [33mclass[39m=[32m"insights-card-pages"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"insights-card"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "":
+  [36m<aside />[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Condividi osservazioni d’uso facoltative":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33maria-labelledby[39m=[32m"insights-title"[39m
+      [33mclass[39m=[32m"learning-insights"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-heading"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"insights-eyebrow"[39m
+        [36m>[39m
+          [0mIl percorso, con le sue fonti[0m
+        [36m</p>[39m
+        [36m<h1[39m
+          [33mid[39m=[32m"insights-title"[39m
+        [36m>[39m
+          [0mQuello che hai provato.[0m
+        [36m</h1>[39m
+        [36m<p>[39m
+          [0mTentativi, aiuti richiesti e passaggi da riprendere. Ogni indicazione conserva la propria evidenza.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"insights-toolbar"[39m
+      [36m>[39m
+        [36m<button>[39m
+          [0mAggiorna[0m
+        [36m</button>[39m
+        [36m<button>[39m
+          [0mEsporta i dati visibili[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"insights-status"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m/>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"insights-eyebrow"[39m
+      [36m>[39m
+        [0mRiepilogo dell’intera edizione[0m
+      [36m</p>[39m
+      [36m<dl[39m
+        [33mclass[39m=[32m"insights-metrics"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<dt>[39m
+            [0mTentativi conservati[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0m1[0m
+          [36m</dd>[39m
+        [36m</div>[39m
+        [36m<div>[39m
+          [36m<dt>[39m
+            [0mCon verifica deterministica[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0m1[0m
+          [36m</dd>[39m
+        [36m</div>[39m
+        [36m<div>[39m
+          [36m<dt>[39m
+            [0mCon aiuto richiesto[0m
+          [36m</dt>[39m
+          [36m<dd>[39m
+            [0m1[0m
+          [36m</dd>[39m
+        [36m</div>[39m
+      [36m</dl>[39m
+      [36m<fieldset[39m
+        [33mclass[39m=[32m"insights-filters"[39m
+      [36m>[39m
+        [36m<legend>[39m
+          [0mFiltra le prove conservate[0m
+        [36m</legend>[39m
+        [36m<label>[39m
+          [0mModello[0m
+          [36m<select>[39m
+            [36m<option[39m
+              [33mvalue[39m=[32m"all"[39m
+            [36m>[39m
+              [0mTutti i modelli[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-0[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-1[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-10[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-11[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-12[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-13[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-14[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-15[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-16[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-17[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-18[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-19[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-2[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-20[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-21[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-22[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-23[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-24[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-25[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-26[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-27[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-28[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-29[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-3[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-30[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-31[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-32[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-33[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-34[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-35[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-36[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-37[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-38[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-39[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-4[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-40[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-41[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-42[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-43[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-44[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-45[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-46[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-47[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-48[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-49[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-5[0m
+            [36m</option>[39m
+            [36m<option>[39m
+              [0mmodel-50[0m
+            [36m</option>[39m
+     ...
+ ❯ Object.getElementError ../../../ardesia-r1-20261024/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../../ardesia-r1-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../../ardesia-r1-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../../ardesia-r1-20261024/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/features/learning-insights/LearningInsights.test.tsx:116:17
+    114|   expect(screen.queryByRole("navigation",{name:"Pagine delle schede"})…
+    115|   fireEvent.click(screen.getByRole("button",{name:"Azzera filtri"}));
+    116|   expect(screen.getByRole("heading",{name:"model-0"})).toBeTruthy();
+       |                 ^
+    117|   expect(view.container.querySelectorAll('.insights-attempts > li')).t…
+    118| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  09:12:56
+   Duration  3.68s (transform 420ms, setup 0ms, import 439ms, tests 1.34s, environment 1.64s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/ardesia-s11-integration-20261026/apps/web
+npm error workspace @ardesia/web@0.1.0
+npm error location /private/tmp/ardesia-s11-integration-20261026/apps/web
+npm error command failed
+npm error command sh -c vitest run src/features/learning-insights/LearningInsights.test.tsx --maxWorkers=1

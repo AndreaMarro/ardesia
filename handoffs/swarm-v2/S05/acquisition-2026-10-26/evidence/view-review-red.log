@@ -1,0 +1,79 @@
+....FF.....F                                                             [100%]
+=================================== FAILURES ===================================
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change2] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-122/test_graph_view_rejects_invali2')
+change = {'zoom': 100000000000000000...0000000000000000000}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'zoom':10**400},{'pan':{'x':10**400,'y':0}},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_memory_view.py:50:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+packages/engine/lessonos/study/learning_memory/view.py:57: in save_view
+    'zoom':_coordinate(body['zoom'],.2,4),'pan':_point(body['pan'])}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 100000000000000000...0000000000000000000, low = 0.2, high = 4
+
+    def _coordinate(value,low=-1_000_000,high=1_000_000):
+>       if type(value) not in (int,float) or not math.isfinite(value) or not low<=value<=high:
+                                                 ^^^^^^^^^^^^^^^^^^^^
+E       OverflowError: int too large to convert to float
+
+packages/engine/lessonos/study/learning_memory/view.py:31: OverflowError
+_ test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change3] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-122/test_graph_view_rejects_invali3')
+change = {'pan': {'x': 100000000000000000...0000000000000000000, 'y': 0}}
+
+    @pytest.mark.parametrize('change',[{'zoom':float('nan')},{'zoom':9},{'zoom':10**400},{'pan':{'x':10**400,'y':0}},{'pan':{'x':0,'y':float('inf')}},
+        {'positions':[{'id':'someone-else','x':1,'y':2}]},{'layout':'javascript'},{'positions':[{'id':'x','x':0,'y':0,'text':'SECRET'}]}])
+    def test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields(tmp_path,change):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+>       with pytest.raises(StudyError):memory.save_view(store,actor,{**view(note),**change},'bad')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_memory_view.py:50:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+packages/engine/lessonos/study/learning_memory/view.py:57: in save_view
+    'zoom':_coordinate(body['zoom'],.2,4),'pan':_point(body['pan'])}
+                                                ^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/learning_memory/view.py:39: in _point
+    result={'x':_coordinate(value['x']),'y':_coordinate(value['y'])}
+                ^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = 100000000000000000...0000000000000000000, low = -1000000, high = 1000000
+
+    def _coordinate(value,low=-1_000_000,high=1_000_000):
+>       if type(value) not in (int,float) or not math.isfinite(value) or not low<=value<=high:
+                                                 ^^^^^^^^^^^^^^^^^^^^
+E       OverflowError: int too large to convert to float
+
+packages/engine/lessonos/study/learning_memory/view.py:31: OverflowError
+____ test_lost_response_retry_cannot_silently_adopt_a_newer_windows_version ____
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-122/test_lost_response_retry_canno0')
+
+    def test_lost_response_retry_cannot_silently_adopt_a_newer_windows_version(tmp_path):
+        store,_,actor,*_=setup_store(tmp_path);note=create_note(store,actor)
+        first=view(note)
+        memory.save_view(store,actor,first,'window-a')  # Response lost on the network.
+        second={**view(note,1),'positions':[{'id':note['id'],'x':444,'y':555}]}
+        saved=memory.save_view(store,actor,second,'window-b')
+>       with pytest.raises(StudyError,match='stale_revision'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE StudyError
+
+packages/engine/tests/study/test_learning_memory_view.py:72: Failed
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change2]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_graph_view_rejects_invalid_coordinates_unknown_nodes_and_content_fields[change3]
+FAILED packages/engine/tests/study/test_learning_memory_view.py::test_lost_response_retry_cannot_silently_adopt_a_newer_windows_version
+3 failed, 9 passed in 11.80s

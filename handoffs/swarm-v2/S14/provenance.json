@@ -1,0 +1,91 @@
+{
+  "schema": "ardesia.s14-library-acquisition/1",
+  "source": {
+    "package": "@excalidraw/excalidraw",
+    "version": "0.18.1",
+    "license": "MIT",
+    "targetId": "TARGET-080"
+  },
+  "decision": "ADAPT",
+  "integrationStatus": "UTILITY_IMPLEMENTED_CONSUMER_PATCH_PENDING_S00",
+  "newRuntimeDependencies": [],
+  "newVendoredDonorFiles": [],
+  "artifactSelection": [
+    {
+      "path": "package.json",
+      "bytes": 3427,
+      "sha256": "402f54fc7de128b25d22bd4d905fb46dbcdbe2ce6efee567d4da0fc79a29aab1"
+    },
+    {
+      "path": "dist/dev/index.js",
+      "bytes": 1147428,
+      "sha256": "e10e24df153077770849c7d68f9a8f5db3bb1eb1576d909d1e3c9a5b024d1882"
+    }
+  ],
+  "rea": {
+    "operation": "analyze_javascript_application",
+    "parentEvidenceId": "ev_141adffef099f600f7c8790f9e10df626514bc6d924b61e21ae1d5e9641bebe7",
+    "selectedContainerSha256": "0036b20d1c2f74c6fad50c2f5ae7ba48cbd596835708527819611c840b1e2148",
+    "mode": "static-inert-artifact",
+    "scope": "Two selected shipped files, not complete npm closure; chunks and sourcemaps excluded",
+    "coverage": "PARTIAL",
+    "maxSemanticNodes": 6000,
+    "maxSemanticUnknowns": 3000,
+    "unknownRetentionTruncated": true,
+    "parseFailures": 0,
+    "runtimeScenario": {
+      "evidenceId": "ev_050c9816d98e4d70a206473b8b9198d90c8ec793fe46e24da5ebe24e4df66ebe",
+      "actionsCompleted": 10,
+      "coverage": "complete scenario actions, not full product",
+      "console": "font403 in dev symlink harness; corrected path-specific config independently verified by native runner",
+      "summary": "handoffs/swarm-v2/S14/rea-native-summary.json"
+    },
+    "exportedCompleteLedger": "Retained outside Git as losslessly compressed work/rea-library-evidence.json.gz"
+  },
+  "consumer": {
+    "path": "apps/studio/src/Room.tsx",
+    "patch": "handoffs/swarm-v2/S14/room-library.patch",
+    "base": "0d809591ca47a3c87878548d59b343d62e7ff7a8",
+    "authority": "S00 integration; S07 existing Room adapter ownership",
+    "appliedInDeliveryBranch": false,
+    "appliedInIsolatedRehearsal": true,
+    "nativeSidebar": {
+      "name": "default",
+      "tab": "library"
+    }
+  },
+  "verification": {
+    "utilityTestsPassed": 8,
+    "rehearsalRoomTestsPassed": 4,
+    "nativeE2E": {
+      "status": "PASS",
+      "checks": 9,
+      "browser": "Chromium 148.0.7778.96",
+      "source": "handoffs/swarm-v2/S14/native-proof/native-result.json",
+      "composition": "S07 0d809591 + exact Room/helper hashes, not a main commit",
+      "scope": "local synthetic real SDK/WorkspaceStore/bundle; keyboard opener only, no remote ACL",
+      "notRerunForBoundaryFix": true
+    },
+    "composedTypecheck": "EXIT0",
+    "postMerge": "NOT_RUN"
+  },
+  "benefit": {
+    "expected": "Reuse native complete library editor/import/export/insertion rather than build a second asset editor",
+    "timeSaved": "UNKNOWN",
+    "runtimePerformanceDelta": "UNKNOWN",
+    "learningEffect": "NOT_MEASURED"
+  },
+  "review": {
+    "findings": 2,
+    "status": "CORRECTED_PARENT_RED_GREEN_AND_REVIEWED_BY_INSPECTION",
+    "source": "handoffs/swarm-v2/S14/REVIEW.md",
+    "reviewerTestsRun": false
+  },
+  "boundaryFix": {
+    "evidence": "handoffs/swarm-v2/S14/boundary-fix.json",
+    "sourceBaseline": "62e1747d78df2dae17e201c7b87c06ac5fcd6332",
+    "utilityTestsPassed": 8,
+    "deliveryTypecheckExit": 0,
+    "consumerComposition": "NOT_RUN_FOR_THIS_FIX"
+  }
+}

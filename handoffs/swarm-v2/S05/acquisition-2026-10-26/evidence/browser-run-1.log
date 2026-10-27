@@ -1,0 +1,17 @@
+PASS page identity, meaningful authenticated content, no overlay
+PASS second lesson -> backlink -> exact first lesson source
+PASS StrictMode create, cold reload, correction and immutable history
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Error: strict mode violation: getByLabel('A · percorso nel grafo') resolved to 2 elements:
+    1) <select>…</select> aka getByLabel('Da · percorso nel grafoScegli')
+    2) <select>…</select> aka getByLabel('A · percorso nel grafoScegli un nodoIl vincolo prima del calcoloportatavincoliLezione 1 · Il vincolo prima del calcoloRiprendo il confronto della seconda lezioneLezione 2 · Un nuovo confrontoUn’idea per il prossimo esperimentoriuso tra materieIDEA QA S05Tentativo consegnatoReview pubblicataradius-powerReview dell’osservazione', { exact: true })
+
+Call log:
+[2m  - waiting for getByLabel('A · percorso nel grafo')[22m
+
+    at /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/handoffs/swarm-v2/S05/acquisition-2026-10-26/graph_browser_qa.mjs:56:50
+
+Node.js v22.14.0

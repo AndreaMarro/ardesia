@@ -1,0 +1,55 @@
+PASS page identity, meaningful authenticated content, no overlay
+PASS second lesson -> backlink -> exact first lesson source
+PASS StrictMode create, cold reload, correction and immutable history
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toContainText(expected) failed
+
+Locator: getByRole('status')
+Expected substring: "Disposizione salvata"
+Error: strict mode violation: getByRole('status') resolved to 2 elements:
+    1) <p role="status" class="memory-notice">Idea salvata nel quaderno.</p> aka getByText('Idea salvata nel quaderno.')
+    2) <p role="status">Disposizione salvata · revisione 1.</p> aka getByText('Disposizione salvata ·')
+
+Call log:
+  - Expect "to.have.text" with timeout 30000ms
+  - waiting for getByRole('status')
+    3 × locator resolved to <p role="status" class="memory-notice">Idea salvata nel quaderno.</p>
+      - unexpected value "Idea salvata nel quaderno."
+
+    at captureRawStack (/Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/node_modules/playwright-core/lib/coreBundle.js:3130:17)
+    at callMatcherAsStep (/Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/node_modules/playwright/lib/matchers/expect.js:12873:57)
+    at Object.toContainText (/Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/node_modules/playwright/lib/matchers/expect.js:12863:23)
+    at /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/handoffs/swarm-v2/S05/acquisition-2026-10-26/graph_browser_qa.mjs:60:41 {
+  matcherResult: {
+    name: 'toContainText',
+    expected: 'Disposizione salvata',
+    message: 'expect(locator).toContainText(expected) failed\n' +
+      '\n' +
+      "Locator: getByRole('status')\n" +
+      'Expected substring: "Disposizione salvata"\n' +
+      "Error: strict mode violation: getByRole('status') resolved to 2 elements:\n" +
+      `    1) <p role="status" class="memory-notice">Idea salvata nel quaderno.</p> aka getByText('Idea salvata nel quaderno.')\n` +
+      `    2) <p role="status">Disposizione salvata · revisione 1.</p> aka getByText('Disposizione salvata ·')\n` +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.text" with timeout 30000ms\n' +
+      "  - waiting for getByRole('status')\n" +
+      '    3 × locator resolved to <p role="status" class="memory-notice">Idea salvata nel quaderno.</p>\n' +
+      '      - unexpected value "Idea salvata nel quaderno."\n',
+    pass: false,
+    actual: undefined,
+    log: [
+      '  - Expect "to.have.text" with timeout 30000ms',
+      "  - waiting for getByRole('status')",
+      '    3 × locator resolved to <p role="status" class="memory-notice">Idea salvata nel quaderno.</p>',
+      '      - unexpected value "Idea salvata nel quaderno."'
+    ],
+    timeout: undefined,
+    ariaSnapshot: undefined
+  }
+}
+
+Node.js v22.14.0

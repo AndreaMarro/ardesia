@@ -18,6 +18,7 @@ import { Shell, legacyViews, type View } from "./components/Shell";
 import { ErrorNotice, Loading } from "./components/Feedback";
 import { Public } from "./features/Public";
 import { Today } from "./features/Today";
+const LearningInsights = lazy(() => import("./features/learning-insights/LearningInsights").then(m => ({default:m.LearningInsights})));
 const Courses = lazy(() =>
   import("./features/Courses").then((m) => ({ default: m.Courses })),
 );
@@ -27,6 +28,7 @@ const Classroom = lazy(() =>
 const Work = lazy(() =>
   import("./features/Work").then((m) => ({ default: m.Work })),
 );
+const MemoryView = lazy(() => import("./features/learning-memory/MemoryView").then(m => ({default:m.MemoryView})));
 const Login = lazy(() =>
   import("./components/Login").then((m) => ({ default: m.Login })),
 );
@@ -42,7 +44,8 @@ const Exam = lazy(() =>
 const IndependentStudy = lazy(() =>
   import("./features/independent-study/IndependentStudy").then((m) => ({ default: m.IndependentStudy })),
 );
-const views: View[] = [...legacyViews, "independent-study"];
+const sharedViews: View[] = [...legacyViews, "memory"];
+const views: View[] = [...sharedViews, "independent-study"];
 function initialView(): View {
   const requested = new URLSearchParams(location.search).get("view");
   return views.includes(requested as View) ? (requested as View) : "today";
@@ -59,7 +62,7 @@ export default function App() {
   const course = useCourseWorkspace(me, sessionVersion);
   const { data, refresh } = course;
   const studyEnabled = me?.role === "student" && !!data?.enrolled;
-  const mountedViews = studyEnabled ? views : legacyViews;
+  const mountedViews = studyEnabled ? views : sharedViews;
   const currentView = view === "independent-study" && !studyEnabled ? "today" : view;
   useEffect(() => {
     return subscribeStudySessionEnd(({ reason }) => {
@@ -170,7 +173,11 @@ export default function App() {
                 “Precedenti” per rileggere le altre pagine.
               </p>
             )}
-          {!course.listing && !course.error && course.editions.length === 0 ? (
+          {currentView === "memory" ? (
+            <Suspense fallback={<Loading />}>
+              <MemoryView key={`${me.id}:${sessionVersion}`} me={me} resources={data?.resources ?? []} />
+            </Suspense>
+          ) : !course.listing && !course.error && course.editions.length === 0 ? (
             me.role === "teacher" && currentView === "courses" ? (
               <Suspense fallback={<Loading />}>
                 <Courses
@@ -245,15 +252,20 @@ export default function App() {
                   }}
                 />
               ) : currentView === "work" ? (
-                <Work
-                  me={me}
-                  data={data}
-                  onUpdate={refresh}
-                  onRetry={(id) => {
-                    setParentId(id);
-                    navigate("classroom");
-                  }}
-                />
+                <>
+                  <Work
+                    me={me}
+                    data={data}
+                    onUpdate={refresh}
+                    onRetry={(id) => {
+                      setParentId(id);
+                      navigate("classroom");
+                    }}
+                  />
+                  <Suspense fallback={<Loading>Apro le evidenze del corso…</Loading>}>
+                    <LearningInsights me={me} editionId={data.edition.id}/>
+                  </Suspense>
+                </>
               ) : currentView === "review" && me.role === "teacher" ? (
                 <Review
                   data={data}

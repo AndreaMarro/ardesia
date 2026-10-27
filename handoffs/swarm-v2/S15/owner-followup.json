@@ -1,0 +1,57 @@
+{
+  "status": "ADAPT_IMPLEMENTED_NOT_INTEGRATED",
+  "ownerDecision": "https://github.com/AndreaMarro/ardesia/pull/309#issuecomment-6406135362",
+  "recommendation": "https://github.com/AndreaMarro/ardesia/pull/309#issuecomment-6405772120",
+  "consumerHead": "2401f4c9f22c375a8a9c4541c5b7e8f1f48a8716",
+  "upstream": {
+    "name": "py-fsrs",
+    "version": "6.3.2",
+    "commit": "9446cb06605c597a063aeee49f7d188d42e34dc2",
+    "license": "MIT"
+  },
+  "independentlyRead": [
+    {
+      "path": "packages/engine/lessonos/study/independent_study/review_scheduler.py",
+      "gitBlobSha": "d734d1f6d2d3c513cd3c73e30104fc35ad3edbbf",
+      "url": "https://github.com/AndreaMarro/ardesia/blob/2401f4c9f22c375a8a9c4541c5b7e8f1f48a8716/packages/engine/lessonos/study/independent_study/review_scheduler.py"
+    },
+    {
+      "path": "packages/engine/lessonos/study/independent_study/vendor/pyfsrs/PROVENANCE.json",
+      "gitBlobSha": "057d29d9f9d5262a0d62209bc006480bd7ae804f",
+      "url": "https://github.com/AndreaMarro/ardesia/blob/2401f4c9f22c375a8a9c4541c5b7e8f1f48a8716/packages/engine/lessonos/study/independent_study/vendor/pyfsrs/PROVENANCE.json"
+    },
+    {
+      "path": "handoffs/swarm-v2/S06/acquisition/evidence/scheduler-browser-result.json",
+      "gitBlobSha": "173da4fc1b90f9024fc4517f2425b7c04f1e3756",
+      "url": "https://github.com/AndreaMarro/ardesia/blob/2401f4c9f22c375a8a9c4541c5b7e8f1f48a8716/handoffs/swarm-v2/S06/acquisition/evidence/scheduler-browser-result.json"
+    }
+  ],
+  "sourceObservations": [
+    "Core adapter imports complete vendored Card/Rating/Scheduler subsystem",
+    "Scheduler(enable_fuzzing=False, maximum_interval=365)",
+    "Policy hash from complete serialized scheduler and version 6.3.2 persisted with adapter schema",
+    "Stable card_id derived from Core resource identity",
+    "UTC backend review time; four explicit learner self-reports",
+    "Bounded previous checkpoint and one current review log; complete audit remains in Core revisions",
+    "No optimizer or new client authority introduced"
+  ],
+  "ownerProvidedRuntimeEvidence": {
+    "independentlyRerun": false,
+    "status": "PASS",
+    "checkCount": 25,
+    "totalMilliseconds": 27499,
+    "scope": "Real UI/HTTP/Core on loopback with synthetic actors, not integrated RootApp or remote deployment"
+  },
+  "integration": "PR309 still open; S00/S10 consumer composition and final environment checks pending. No production/DONE claim.",
+  "benefit": {
+    "comparativeTimeSaved": "UNKNOWN",
+    "pedagogicalEffect": "UNKNOWN",
+    "performanceImprovement": "UNKNOWN"
+  },
+  "s09": {
+    "status": "DEFER",
+    "decision": "https://github.com/AndreaMarro/ardesia/pull/307#issuecomment-6405917529",
+    "reason": "Independent ICS parser deferred to interoperability batch; FullCalendar renderer does not change canonical ICS serializer/receipts."
+  },
+  "method": "Ordinary source reads of complete authorized source are more useful than REA extraction here; no new runtime capture invented."
+}

@@ -80,3 +80,47 @@ test('opening assistance invalidates a previously prepared unassisted submission
  fireEvent.click(screen.getByRole('button',{name:'Apri la spiegazione'}));
  expect(commit.mock.calls.at(-1)?.[0]).toBeNull();
 });
+
+test('qualitative practice omits empty units and can return from transfer without losing notes or assistance',async()=>{
+ const {CourseScope}=await import('../features/PublicCoursePlayer');
+ const original=learningCourses.courses[0];
+ const lesson={...original.lessons[0],id:'qualitative-example',activityId:undefined,modelCases:undefined,controls:undefined,
+  practice:{prompt:'Spiega il vincolo del primo problema.',answer:{value:'Prima risposta.',unit:''},feedback:['Controlla il primo vincolo.']},
+  transfer:{prompt:'Spiega il vincolo del problema diverso.',answer:{value:'Seconda risposta.',unit:''},feedback:['Controlla il nuovo vincolo.']}};
+ render(<CourseScope course={{...original,lessons:[lesson]}}/>);
+ expect(screen.queryByText(/Unità richiesta:/)).toBeNull();
+ fireEvent.click(screen.getByRole('button',{name:'Apri la spiegazione'}));
+ fireEvent.change(screen.getByLabelText('Il tuo quaderno: ragionamento e domande'),{target:{value:'Confronto i vincoli.'}});
+ fireEvent.change(screen.getByLabelText('La tua risposta o il tuo ragionamento'),{target:{value:'Il primo vincolo.'}});
+ fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+ fireEvent.click(screen.getByRole('button',{name:'Un problema diverso'}));
+ expect(screen.getByText(lesson.transfer.prompt)).toBeTruthy();
+ fireEvent.click(screen.getByRole('button',{name:'Torna al primo problema'}));
+ expect(screen.getByText(lesson.practice.prompt)).toBeTruthy();
+ expect((screen.getByLabelText('La tua risposta o il tuo ragionamento') as HTMLInputElement).value).toBe('');
+ expect((screen.getByLabelText('Il tuo quaderno: ragionamento e domande') as HTMLTextAreaElement).value).toBe('Confronto i vincoli.');
+ expect(screen.getByText(/Assistenza richiesta:/)).toBeTruthy();
+ expect(screen.queryByText('Soluzione editoriale in revisione')).toBeNull();
+ expect(screen.queryByRole('button',{name:'Torna al primo problema'})).toBeNull();
+});
+
+test('returning from a committed transfer clears the commit and restores the practice parameters and phase',async()=>{
+ const {CourseScope}=await import('../features/PublicCoursePlayer');
+ const course=learningCourses.courses.find(c=>c.pathId==='elettricita-magnetismo')!;
+ const lesson=course.lessons[0],commit=vi.fn();
+ render(<CourseScope course={course} allowLocalDrafts={false} onCommit={commit}/>);
+ fireEvent.change(screen.getByLabelText('La tua previsione numerica'),{target:{value:'1'}});
+ fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+ fireEvent.click(screen.getByRole('button',{name:'Un problema diverso'}));
+ fireEvent.change(screen.getByLabelText('La tua previsione numerica'),{target:{value:'1'}});
+ fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+ expect(commit.mock.calls.at(-1)?.[0]).toMatchObject({parameters:lesson.transfer.parameters,courseLesson:{lessonRef:lesson.lessonRef,phase:'transfer'}});
+ fireEvent.click(screen.getByRole('button',{name:'Torna al primo problema'}));
+ expect(commit).toHaveBeenLastCalledWith(null);
+ expect(screen.queryByTestId('course-result')).toBeNull();
+ expect((screen.getByLabelText('La tua previsione numerica') as HTMLInputElement).value).toBe('');
+ expect(screen.getByText(lesson.practice.prompt)).toBeTruthy();
+ fireEvent.change(screen.getByLabelText('La tua previsione numerica'),{target:{value:'1'}});
+ fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
+ expect(commit.mock.calls.at(-1)?.[0]).toMatchObject({parameters:lesson.practice.parameters,courseLesson:{lessonRef:lesson.lessonRef,phase:'practice'}});
+});

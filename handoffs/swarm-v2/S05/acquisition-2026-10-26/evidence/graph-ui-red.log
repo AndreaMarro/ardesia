@@ -1,0 +1,36 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/ardesia-s05/apps/web
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx (9 tests | 1 failed) 622ms
+   × opening a projected graph node rechecks access before showing its details 56ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/learning-memory/MemoryView.test.tsx > opening a projected graph node rechecks access before showing its details
+AssertionError: expected <h2 tabindex="-1"></h2> to be null
+
+- Expected:
+null
+
++ Received:
+<h2
+  tabindex="-1"
+>
+  Fonte originale
+</h2>
+
+ ❯ src/features/learning-memory/MemoryView.test.tsx:153:73
+    151|  revoked=true;fireEvent.click(within(screen.getByRole('list',{name:'No…
+    152|  await screen.findByRole('alert');
+    153|  expect(screen.queryByRole('heading',{name:'Fonte originale',level:2})…
+       |                                                                         ^
+    154|  expect(screen.queryByRole('list',{name:'Nodi del grafo'})).toBeNull();
+    155| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 11 passed (12)
+   Start at  01:54:42
+   Duration  3.94s (transform 719ms, setup 0ms, import 763ms, tests 875ms, environment 1.81s)

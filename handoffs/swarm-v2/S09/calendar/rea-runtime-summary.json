@@ -1,0 +1,225 @@
+{
+  "evidence_id": "ev_02650d0a6c3f6e6218cb871bb7e4f20e34ce8c5eb5dd300131a4d1c7190e61d6",
+  "provider": {
+    "id": "rea-cdp-browser",
+    "name": "REA Chrome DevTools Protocol observation provider",
+    "version": "2"
+  },
+  "confidence": "observed",
+  "authority": "external-service",
+  "sourceCommit": "542921b6",
+  "browser": {
+    "product": "HeadlessChrome/148.0.7778.96",
+    "protocol_version": "1.3",
+    "revision": "537.36 (@8625e066febc721e015ea99842da12901eb7ed73)",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+    "js_version": "14.8.178.14"
+  },
+  "target": {
+    "target_id": "2B373649D8FA06EE425E35445C5F7D34",
+    "type": "page",
+    "title": "Ardesia — piccoli gruppi, idee chiare",
+    "url": "http://127.0.0.1:54909/?view=courses&edition=fluidi",
+    "origin": "http://127.0.0.1:54909",
+    "attached": null
+  },
+  "capture_window": {
+    "started_at": "2026-10-26T01:19:10.674Z",
+    "ended_at": "2026-10-26T01:19:12.140Z",
+    "observation_ms": 500
+  },
+  "completeness": {
+    "status": "policy_filtered",
+    "conditions": [
+      "attach_limited",
+      "policy_filtered"
+    ],
+    "policy_filtered_sections": [
+      "json_body_shapes",
+      "script_sources",
+      "scripts",
+      "source_maps",
+      "storage_keys",
+      "websocket_shapes"
+    ],
+    "attach_limited_sections": [
+      "console_events",
+      "metadata",
+      "network_requests",
+      "websocket_connections",
+      "websocket_frames"
+    ],
+    "truncated_sections": [],
+    "unavailable_sections": [],
+    "excluded": [
+      {
+        "section": "json_body_shapes",
+        "reason": "not_approved",
+        "count": null
+      },
+      {
+        "section": "script_sources",
+        "reason": "not_approved",
+        "count": 76
+      },
+      {
+        "section": "scripts",
+        "reason": "unattributed_origin",
+        "count": 14
+      },
+      {
+        "section": "source_maps",
+        "reason": "unsupported_url",
+        "count": 64
+      },
+      {
+        "section": "storage_keys",
+        "reason": "not_approved",
+        "count": null
+      },
+      {
+        "section": "websocket_shapes",
+        "reason": "not_approved",
+        "count": null
+      }
+    ],
+    "dropped_events": {
+      "scripts": 0,
+      "network_requests": 0,
+      "console_events": 0,
+      "websocket_connections": 0,
+      "websocket_frames": 0,
+      "webmcp_tools": 0,
+      "timeline_events": 0,
+      "total": 0
+    }
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Observation starts when REA attaches; prior network and console activity is unavailable.",
+    "Raw network headers, bodies, cookies, storage values, console objects, and WebSocket payloads are never retained; explicitly requested primitive console text is retained verbatim, while payload captures retain value-free shapes.",
+    "Source maps are reported only as declarative URLs and are not fetched.",
+    "URL-less scripts and console events without an allowed source URL are excluded because their origin cannot be proven.",
+    "CDP discovery omitted the target attachment state; attached is reported as unknown.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "matchingAccessibleNodes": [
+    {
+      "node_id": "1047",
+      "parent_id": "1151",
+      "role": "region",
+      "name": "Calendario delle tue edizioni",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "669",
+      "parent_id": "1051",
+      "role": "combobox",
+      "name": "Edizioni nel calendario",
+      "description": null,
+      "ignored": false,
+      "states": [
+        {
+          "name": "expanded",
+          "value": false
+        },
+        {
+          "name": "focusable",
+          "value": true
+        },
+        {
+          "name": "hasPopup",
+          "value": "menu"
+        },
+        {
+          "name": "invalid",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "node_id": "1052",
+      "parent_id": "640",
+      "role": "StaticText",
+      "name": "Edizioni nel calendario",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "-1000000175",
+      "parent_id": "1052",
+      "role": "InlineTextBox",
+      "name": "Edizioni nel calendario",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "1092",
+      "parent_id": "1091",
+      "role": "button",
+      "name": "02:00–02:30 Fisica: relazioni e fluidi · 1",
+      "description": null,
+      "ignored": false,
+      "states": [
+        {
+          "name": "focusable",
+          "value": true
+        }
+      ]
+    },
+    {
+      "node_id": "1098",
+      "parent_id": "1097",
+      "role": "button",
+      "name": "02:30–04:00 Analisi 1: Taylor e resto · 1",
+      "description": null,
+      "ignored": false,
+      "states": [
+        {
+          "name": "focusable",
+          "value": true
+        }
+      ]
+    },
+    {
+      "node_id": "1096",
+      "parent_id": "678",
+      "role": "StaticText",
+      "name": "Fisica: relazioni e fluidi · 1",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "1102",
+      "parent_id": "680",
+      "role": "StaticText",
+      "name": "Analisi 1: Taylor e resto · 1",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "-1000000193",
+      "parent_id": "1096",
+      "role": "InlineTextBox",
+      "name": "Fisica: relazioni e fluidi · 1",
+      "description": null,
+      "ignored": false,
+      "states": []
+    },
+    {
+      "node_id": "-1000000195",
+      "parent_id": "1102",
+      "role": "InlineTextBox",
+      "name": "Analisi 1: Taylor e resto · 1",
+      "description": null,
+      "ignored": false,
+      "states": []
+    }
+  ]
+}

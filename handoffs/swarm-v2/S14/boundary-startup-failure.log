@@ -1,0 +1,36 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: Cannot find native binding. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+    at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:507:36
+    at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:9:49
+    at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/parse-Bg2pr2Q5.mjs:3:46
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async start (file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/vitest/dist/chunks/cac.C9xsMMkH.js:2339:27)
+    at async CAC.run (file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/vitest/dist/chunks/cac.C9xsMMkH.js:2318:2) {
+  [cause]: Error: dlopen(/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node, 0x0001): tried: '/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node' (code signature in <52E9914D-86B5-31C9-AB56-37DD33A6F0B5> '/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node' not valid for use in process: mapping process and mapped file (non-platform) have different Team IDs), '/System/Volumes/Preboot/Cryptexes/OS/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node' (no such file), '/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node' (code signature in <52E9914D-86B5-31C9-AB56-37DD33A6F0B5> '/private/tmp/ardesia-s17-20261026/apps/studio/node_modules/@rolldown/binding-darwin-arm64/rolldown-binding.darwin-arm64.node' not valid for use in process: mapping process and mapped file (non-platform) have different Team IDs)
+      at Object..node (node:internal/modules/cjs/loader:2087:18)
+      at Module.load (node:internal/modules/cjs/loader:1651:32)
+      at Module._load (node:internal/modules/cjs/loader:1443:12)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.require (node:internal/modules/cjs/loader:1674:12)
+      at require (node:internal/modules/helpers:157:16)
+      at requireNative (file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:219:22)
+      at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:475:18
+      at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:9:49
+      at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/parse-Bg2pr2Q5.mjs:3:46 {
+    code: 'ERR_DLOPEN_FAILED',
+    cause: Error: Cannot find module './rolldown-binding.darwin-arm64.node'
+    Require stack:
+    - /private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs
+        at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+        ... 6 lines matching cause stack trace ...
+        at require (node:internal/modules/helpers:157:16)
+        at requireNative (file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:214:13)
+        at file:///private/tmp/ardesia-s17-20261026/apps/studio/node_modules/rolldown/dist/shared/binding-CXquf8ay.mjs:475:18 {
+      code: 'MODULE_NOT_FOUND',
+      requireStack: [Array],
+      cause: [Error]
+    }
+  }
+}

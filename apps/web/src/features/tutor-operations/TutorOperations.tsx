@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { type Edition, type StudyMe } from "../../api";
 import { studySessionEpoch } from "../../../../studio/src/study/sessionBoundary";
 import { courseTitle } from "../../course";
@@ -9,7 +9,10 @@ import { isAttendance, isPayments } from "../../register/validation";
 import { useRegisterRead } from "../../register/useRegisterRead";
 import { agenda, appointmentLabel, attendanceCsv, download, economics, paymentsCsv } from "./model";
 import { CalendarExport } from "./CalendarExport";
+import { CalendarBoundary } from "./CalendarBoundary";
 import "./tutor-operations.css";
+
+const TutorCalendar = lazy(() => import("./TutorCalendar"));
 
 export function TutorOperations({ me, edition, editions }: { me: StudyMe; edition: Edition; editions: Edition[] }) {
   const epoch = studySessionEpoch();
@@ -19,6 +22,7 @@ export function TutorOperations({ me, edition, editions }: { me: StudyMe; editio
 
 function Operations({ me, edition, editions, epoch }: { me: StudyMe; edition: Edition; editions: Edition[]; epoch: number }) {
   const [open, setOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   const schedule = agenda(editions, me.id, Date.now());
   return <section className="tutor-operations" aria-label="Gestione operativa tutor">
     <div className="section-title"><div><p className="section-meta">La tua regia</p><h2>Persone, incontri e registri.</h2></div><span className="tutor-mode">Ambiente di test</span></div>
@@ -31,6 +35,9 @@ function Operations({ me, edition, editions, epoch }: { me: StudyMe; edition: Ed
       </div>
       <div><h3>Edizione corrente</h3><p>{courseTitle(edition)}</p><p>{edition.sessions.length} incontri · {edition.capacity} posti<br />Prezzo indicativo: {euro(edition.priceMinor)} per persona</p><CalendarExport editionId={edition.id} ready={edition.sessions.length === 4 && edition.state !== "cancelled"} /></div>
     </div>
+    <details open={calendarOpen} onToggle={(event) => setCalendarOpen(event.currentTarget.open)}><summary>Calendario delle edizioni</summary>
+      {calendarOpen && <CalendarBoundary><Suspense fallback={<Loading>Carico il calendario…</Loading>}><TutorCalendar editions={editions} tutorId={me.id} /></Suspense></CalendarBoundary>}
+    </details>
     <details open={open} onToggle={(event) => setOpen(event.currentTarget.open)}><summary>Posti, persone e riepilogo economico</summary>
       {open && <OperationsRead me={me} edition={edition} epoch={epoch} />}
     </details>

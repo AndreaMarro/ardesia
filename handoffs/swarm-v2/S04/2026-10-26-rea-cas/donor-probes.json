@@ -1,0 +1,164 @@
+{
+  "version": "0.152.0",
+  "probes": [
+    {
+      "latex": "x/x",
+      "raw": [
+        "Divide",
+        "x",
+        "x"
+      ],
+      "simplified": 1,
+      "valid": true
+    },
+    {
+      "latex": "x+x",
+      "raw": [
+        "Add",
+        "x",
+        "x"
+      ],
+      "simplified": [
+        "Multiply",
+        2,
+        "x"
+      ],
+      "valid": true
+    },
+    {
+      "latex": "2x",
+      "raw": [
+        "InvisibleOperator",
+        2,
+        "x"
+      ],
+      "simplified": [
+        "Multiply",
+        2,
+        "x"
+      ],
+      "valid": true
+    },
+    {
+      "latex": "\\sqrt{x^2}",
+      "raw": [
+        "Sqrt",
+        [
+          "Power",
+          "x",
+          2
+        ]
+      ],
+      "simplified": [
+        "Abs",
+        "x"
+      ],
+      "valid": true
+    },
+    {
+      "latex": "\\frac{1}{3}+\\frac{1}{6}",
+      "raw": [
+        "Add",
+        [
+          "Divide",
+          1,
+          3
+        ],
+        [
+          "Divide",
+          1,
+          6
+        ]
+      ],
+      "simplified": [
+        "Rational",
+        1,
+        2
+      ],
+      "valid": true
+    },
+    {
+      "latex": "x:=2",
+      "raw": [
+        "Assign",
+        "x",
+        2
+      ],
+      "simplified": [
+        "Assign",
+        "x",
+        2
+      ],
+      "valid": true
+    },
+    {
+      "latex": "\\operatorname{Random}()",
+      "raw": [
+        "Random"
+      ],
+      "simplified": [
+        "Random"
+      ],
+      "valid": true
+    },
+    {
+      "latex": "\\operatorname{foo}(x)",
+      "raw": [
+        "InvisibleOperator",
+        "foo",
+        [
+          "Delimiter",
+          "x"
+        ]
+      ],
+      "simplified": [
+        "foo",
+        "x"
+      ],
+      "valid": true
+    },
+    {
+      "latex": "x^999999",
+      "raw": [
+        "InvisibleOperator",
+        [
+          "Power",
+          "x",
+          9
+        ],
+        99999
+      ],
+      "simplified": [
+        "Multiply",
+        99999,
+        [
+          "Power",
+          "x",
+          9
+        ]
+      ],
+      "valid": true
+    },
+    {
+      "latex": "x^{999999}",
+      "raw": [
+        "Power",
+        "x",
+        999999
+      ],
+      "simplified": [
+        "Power",
+        "x",
+        999999
+      ],
+      "valid": true
+    }
+  ],
+  "sharedEngineAfterAssignment": 3,
+  "independentNewEngine": [
+    "Add",
+    "x",
+    1
+  ],
+  "limits": "Controlled Node replay; no UI/Core assertions or proof of all symbolic cases."
+}

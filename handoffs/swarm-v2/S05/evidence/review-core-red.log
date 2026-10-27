@@ -1,0 +1,89 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+________ test_malformed_signed_import_has_a_domain_error_and_is_atomic _________
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-90/test_malformed_signed_import_h0')
+
+    def test_malformed_signed_import_has_a_domain_error_and_is_atomic(tmp_path):
+        from hashlib import sha256
+        store, _, student, *_ = setup_store(tmp_path)
+        for links in ([{}], [[]], [None], [True]):
+            content = {'format':'ardesia-learning-memory/1', 'notes':[{'id':'imported', **draft(links=links)}]}
+            archive = {**content, 'sha256':sha256(json.dumps(content,ensure_ascii=False,sort_keys=True,
+                separators=(',',':')).encode()).hexdigest()}
+>           with pytest.raises(StudyError): memory.import_memory(store, student, archive, 'malformed')
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+packages/engine/tests/study/test_learning_memory.py:165:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+packages/engine/lessonos/study/learning_memory/__init__.py:280: in import_memory
+    return execute_command(store, principal, 'memory.import.v1', key, archive, apply)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+packages/engine/lessonos/study/transactions.py:30: in execute_command
+    body=apply(c)
+         ^^^^^^^^
+packages/engine/lessonos/study/learning_memory/__init__.py:271: in apply
+    if not isinstance(note['links'], list) or any(link not in mapping for link in note['links']):
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x10ab6b6a0>
+
+>   if not isinstance(note['links'], list) or any(link not in mapping for link in note['links']):
+                                                  ^^^^^^^^^^^^^^^^^^^
+E   TypeError: unhashable type: 'dict'
+
+packages/engine/lessonos/study/learning_memory/__init__.py:271: TypeError
+_ test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone[False] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-90/test_erasure_cannot_promote_an0')
+deleted = False
+
+    @pytest.mark.parametrize('deleted', [False, True])
+    def test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone(tmp_path, deleted):
+        from lessonos.study.submissions import submit
+        from lessonos.study.operations import erase_student
+        store, teacher, student, *_ = setup_store(tmp_path)
+        source = store.create_resource(student, 'fluidi', 'notes', 'Fonte privata da eliminare')
+        submit(store,student,'fluidi','poiseuille-v1',[],'Procedimento','submission',
+            source_refs=[{'resourceId':source['id'],'revisionId':source['revisionId']}])
+        note = memory.save_note(store,teacher,draft('Nota del tutor',classification='observation'),'teacher-note')
+        memory.save_note(store,teacher,draft('Nota rettificata',classification='correction',sourceRefs=[reference(source)]),
+            'correct',note_id=note['id'],expected_version=1)
+        if deleted: memory.delete_note(store,teacher,note['id'],2,'delete')
+        erase_student(store.path.parent,student.id,apply=True)
+        visible = memory.get_memory(store,teacher)['notes']
+>       assert not any(n['title']=='Nota del tutor' or n['classification']=='observation' for n in visible)
+E       assert not True
+E        +  where True = any(<generator object test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone.<locals>.<genexpr> at 0x10abca8e0>)
+
+packages/engine/tests/study/test_learning_memory.py:183: AssertionError
+_ test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone[True] _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-90/test_erasure_cannot_promote_an1')
+deleted = True
+
+    @pytest.mark.parametrize('deleted', [False, True])
+    def test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone(tmp_path, deleted):
+        from lessonos.study.submissions import submit
+        from lessonos.study.operations import erase_student
+        store, teacher, student, *_ = setup_store(tmp_path)
+        source = store.create_resource(student, 'fluidi', 'notes', 'Fonte privata da eliminare')
+        submit(store,student,'fluidi','poiseuille-v1',[],'Procedimento','submission',
+            source_refs=[{'resourceId':source['id'],'revisionId':source['revisionId']}])
+        note = memory.save_note(store,teacher,draft('Nota del tutor',classification='observation'),'teacher-note')
+        memory.save_note(store,teacher,draft('Nota rettificata',classification='correction',sourceRefs=[reference(source)]),
+            'correct',note_id=note['id'],expected_version=1)
+        if deleted: memory.delete_note(store,teacher,note['id'],2,'delete')
+        erase_student(store.path.parent,student.id,apply=True)
+        visible = memory.get_memory(store,teacher)['notes']
+>       assert not any(n['title']=='Nota del tutor' or n['classification']=='observation' for n in visible)
+E       assert not True
+E        +  where True = any(<generator object test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone.<locals>.<genexpr> at 0x10abca400>)
+
+packages/engine/tests/study/test_learning_memory.py:183: AssertionError
+=========================== short test summary info ============================
+FAILED packages/engine/tests/study/test_learning_memory.py::test_malformed_signed_import_has_a_domain_error_and_is_atomic
+FAILED packages/engine/tests/study/test_learning_memory.py::test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone[False]
+FAILED packages/engine/tests/study/test_learning_memory.py::test_erasure_cannot_promote_an_older_note_version_or_resurrect_a_tombstone[True]
+3 failed, 12 deselected in 7.89s

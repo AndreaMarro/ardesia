@@ -1,0 +1,148 @@
+{
+  "head": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+  "checks": [
+    {
+      "id": 121330077145,
+      "name": "PR contract (owner + acceptance + evidence)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246837146/job/121330077145",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802463,
+      "name": "studio (typecheck + test + build)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802463",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802444,
+      "name": "study-mcp (official SDK stdio + HTTP)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802444",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802427,
+      "name": "e2e golden path (advisory)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802427",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802407,
+      "name": "hygiene (NUL + secrets + boundary + whitespace)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802407",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802401,
+      "name": "study-api (HTTP + shared Core)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802401",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802333,
+      "name": "web (typecheck + test + build)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802333",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329802158,
+      "name": "engine (pytest)",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747223/job/121329802158",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2
+      }
+    },
+    {
+      "id": 121329801890,
+      "name": "marketing",
+      "head_sha": "e5e0d6424fbefe36895ac46fc75311f6fa386444",
+      "status": "in_progress",
+      "conclusion": null,
+      "details_url": "https://github.com/AndreaMarro/ardesia/actions/runs/40246747222/job/121329801890",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 0
+      }
+    }
+  ],
+  "runId": 40246747223,
+  "requiredChecks": "7 SUCCESS; marketing separate and still in progress at observation",
+  "counts": {
+    "web": {
+      "passed": 420,
+      "files": 61
+    },
+    "engine": {
+      "passed": 2783,
+      "skipped": 29
+    },
+    "studyApi": {
+      "passed": 1100,
+      "skipped": 18
+    }
+  },
+  "overlap": "Do not sum shared suites."
+}

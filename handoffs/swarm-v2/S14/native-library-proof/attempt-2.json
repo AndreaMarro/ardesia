@@ -1,0 +1,20 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "native pending selection adds a second collection item and autosaves",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "sourceFiles": {
+    "apps/studio/src/Room.tsx": "9065b39ea470898e548be4bffb46ea1c98022efa0576db398303a147be8ef5c1",
+    "apps/studio/src/whiteboard-library/libraryScene.ts": "63e81356f54782445232092436de6e261c594b9475c9178736a4579743042aab",
+    "apps/studio/src/whiteboard-library/libraryImport.ts": "d4487da80d329f49e439f739abb2ac279c7118c16d49eb7da1c0d7a4c65a4b41"
+  },
+  "browser": "148.0.7778.96",
+  "createdItemId": "3cdQeoeIxldEXWS_1mhiD",
+  "failure": "page.waitForEvent: Timeout 15000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================\n    at /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/prove-library-edit.mjs:38:29",
+  "dom": "Ardesia\nSTUDIO\ns14-edit\ndai un nome\nsolo in questo browser —\nscegli cartella…\nLezione\nContinuità\nMateriali\nraccolta\nformula\nmedia\nsim\nlezioni\nRegistra e collega un passaggio\n+\nLa lavagna resta il tuo spazio\nInquadra\nPer spostare la tela, tieni premuta la rotellina del mouse o la barra spaziatrice mentre trascini oppure usa lo strumento mano\nForme\n1\n2\n3\n4\n5\n6\n7\n8\n0\nLibreria\nAzioni sulla Tela\n100%\nLibreria Personale\nLibreria di Excalidraw\nNessun elemento ancora aggiunto...\nSfoglia librerie",
+  "cleanup": "CLOSED_OWNED_BROWSER"
+}

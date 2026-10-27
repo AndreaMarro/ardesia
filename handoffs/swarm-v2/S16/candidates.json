@@ -1,0 +1,87 @@
+{
+  "observedOn": "2026-10-26",
+  "method": "Primary asset/exporter pages, licenses and pinned complete exporter source; no donor binary downloaded",
+  "assetCandidates": [
+    {
+      "name": "Poly Haven Chemistry Set",
+      "url": "https://polyhaven.com/a/chemistry_set",
+      "rightsUrl": "https://polyhaven.com/license",
+      "author": "Jiří Ptáček",
+      "license": "CC0-1.0",
+      "observation": "Page lists glTF, 42K triangles, 1.1 m width and a 39.88 MB selected download. Individual equipment calibration was not inspected.",
+      "decision": "NOT_ADOPTED: listed scene exceeds this lot's 6000-triangle/256KiB ceilings; original ideal geometry has explicit dimensions. Page only, no binary measured."
+    },
+    {
+      "name": "Poly Haven Magnifying Glass 01",
+      "url": "https://polyhaven.com/a/magnifying_glass_01",
+      "rightsUrl": "https://polyhaven.com/license",
+      "author": "Nazar Borodavka",
+      "license": "CC0-1.0",
+      "observation": "Page lists glTF, 7K triangles, 0.3 m height and a 5.89 MB selected download. Optical surface parameters are unverified.",
+      "decision": "NOT_ADOPTED: whole prop exceeds chosen mesh budget and does not establish requested lens curvature. No binary downloaded."
+    },
+    {
+      "name": "Khronos glTF Sample Assets — Box",
+      "url": "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Box/README.md",
+      "rightsUrl": "https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/Box/README.md#legal",
+      "author": "Cesium, 2017",
+      "license": "CC-BY-4.0",
+      "observation": "One mesh/material cube useful as a format fixture; repository requires checking each model's own README rights.",
+      "decision": "NOT_ADOPTED: no scientific vessel/piston/lens role; no fixture geometry copied."
+    },
+    {
+      "name": "Kenney Space Kit",
+      "url": "https://kenney.nl/assets/space-kit",
+      "rightsUrl": "https://kenney.nl/assets/space-kit",
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "observation": "Primary page labels 150 3D files and CC0, in a spacecraft/planet theme.",
+      "decision": "NOT_ADOPTED: subject does not satisfy this equipment pack; no binary downloaded."
+    },
+    {
+      "name": "Sketchfab downloadable assets",
+      "url": "https://sketchfab.com/licenses",
+      "rightsUrl": "https://sketchfab.com/licenses",
+      "license": "UNKNOWN_NOT_ESTABLISHED",
+      "observation": "License page returned 403; help article was inaccessible. No asset-specific permission checked.",
+      "decision": "BLOCKED_FOR_REUSE: no access or rights inferred from search results; no binary downloaded."
+    }
+  ],
+  "exporterCandidates": [
+    {
+      "name": "glTF Transform core",
+      "url": "https://gltf-transform.dev/modules/core/classes/NodeIO",
+      "rightsUrl": "https://raw.githubusercontent.com/donmccurdy/glTF-Transform/main/LICENSE.md",
+      "license": "MIT",
+      "decision": "ADOPTED_BUILD_ONLY: core 4.5.1 with property-graph 4.1.0; no renderer, DOM shim, textures or native dependency required. Pinned tarball/source/notices retained."
+    },
+    {
+      "name": "Three.js GLTFExporter",
+      "url": "https://threejs.org/docs/pages/GLTFExporter.html",
+      "rightsUrl": "https://raw.githubusercontent.com/mrdoob/three.js/dev/LICENSE",
+      "license": "MIT",
+      "decision": "NOT_ADOPTED: mature standard exporter, but this bounded asset producer does not need the scene engine dependency or Node export shims. Does not constrain S13's renderer choice."
+    },
+    {
+      "name": "pygltflib",
+      "url": "https://github.com/avaturn/pygltflib",
+      "rightsUrl": "https://raw.githubusercontent.com/avaturn/pygltflib/master/LICENSE",
+      "license": "MIT",
+      "decision": "NOT_ADOPTED: useful glTF/GLB serializer but manual buffer assembly and Python dependencies add no benefit over NodeIO for this pack. No package installed."
+    }
+  ],
+  "rea": {
+    "skill": "/Users/andreamarro/.agents/skills/reverse-engineer-anything/SKILL.md",
+    "decision": "NOT_REQUIRED_FOR_COMPLETE_SOURCE_ANALYSIS",
+    "reason": "No claim relies on closed package behavior, binary decompilation or donor runtime. The complete pinned exporter source was available and inspected; skill explicitly routes ordinary source analysis away from REA.",
+    "providerSessionOpened": false,
+    "runtimeEvidence": "NOT_RUN",
+    "costSaving": "UNKNOWN"
+  },
+  "standard": {
+    "name": "glTF 2.0",
+    "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html",
+    "sourceRead": "https://raw.githubusercontent.com/KhronosGroup/glTF/main/specification/2.0/Specification.adoc",
+    "usedFor": "Standard GLB delivery, meter units, right-handed coordinates and geometry/material attributes; no standard text or sample geometry copied"
+  }
+}

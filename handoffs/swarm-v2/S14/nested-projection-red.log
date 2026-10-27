@@ -1,0 +1,25 @@
+
+ RUN  v4.1.8 /Users/andreamarro/Documents/Codex/2026-10-26/ese-2/work/ardesia-acquisition/apps/studio
+
+ ❯ src/whiteboard-library/libraryScene.test.ts (5 tests | 1 failed) 19ms
+     × rejects malformed, duplicate, oversized and collaborative collections without silently emptying them 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/whiteboard-library/libraryScene.test.ts > lesson library snapshot > rejects malformed, duplicate, oversized and collaborative collections without silently emptying them
+AssertionError: expected [Function] to throw an error
+ ❯ src/whiteboard-library/libraryScene.test.ts:46:51
+     44|       Array.from({ length: 101 }, (_, id) => ({ ...item(), id: String(…
+     45|       [{ ...item(), name: "a".repeat(2 * 1024 * 1024) }]]) {
+     46|       expect(() => snapshotLibraryItems(invalid)).toThrow()
+       |                                                   ^
+     47|     }
+     48|     expect(() => libraryFromScene({ libraryItems: null })).toThrow()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  01:51:23
+   Duration  364ms (transform 93ms, setup 68ms, import 50ms, tests 19ms, environment 0ms)

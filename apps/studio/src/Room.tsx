@@ -41,6 +41,13 @@ import { preserveEditorial } from "./features/living-lesson/serialization"
 import { attachEditorial, parseEditorial, resolveMoment, type LessonMoment } from "./features/living-lesson/model"
 import { loadReplayTimeline } from "./store/replayTimeline"
 
+import { legacyBoardScene } from "./collaboration-v2/sceneBoundary"
+import { LessonLibraryState, sceneWithLibrary, snapshotLibraryItems } from "./whiteboard-library/libraryScene"
+import { validateLibraryLesson } from "./whiteboard-library/libraryImport"
+import type { RoomInkAdapter } from "./collaboration-v2/RoomCollaboration"
+import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types"
+
+const RoomCollaboration = lazy(() => import("./collaboration-v2/RoomCollaboration").then(module => ({ default: module.RoomCollaboration })))
 const MathComposer = lazy(() => import("./MathComposer"))
 
 // Room id nello hash dell'URL: il link che mandi allo studente apre la STESSA stanza video.
@@ -98,15 +105,27 @@ function withSurfaceFlushTimeout(operation: Promise<void>): Promise<void> {
 
 export default function Room({
   store,
+  collaboration,
   lessonOsOpener = openLessonOsSession,
   navigate = navigateDocument,
 }: {
   store?: WorkspaceStore
+  collaboration?: RoomInkAdapter
   lessonOsOpener?: LessonOsSessionOpener
   navigate?: (href: string) => void
 }) {
   const actualStore = store ?? workspaceStore
+  const [collaborationApi, setCollaborationApi] = useState<ExcalidrawImperativeAPI | null>(null)
+  const [collaborationRevoked, setCollaborationRevoked] = useState(false)
+  useEffect(() => {
+    if (!collaboration) { setCollaborationRevoked(false); return }
+    const revoked = () => setCollaborationRevoked(true)
+    setCollaborationRevoked(collaboration.signal.aborted)
+    collaboration.signal.addEventListener("abort", revoked, { once: true })
+    return () => collaboration.signal.removeEventListener("abort", revoked)
+  }, [collaboration])
   const [room] = useState(getRoomId)
+  const collaborativeWriting = !!collaboration && collaboration.roomId === room && !collaborationRevoked
   // Snapshot a mount: la decisione vista studente/docente NON cambia tra render
   // (recorder creati una volta sola nell'effect — UI e storage devono restare coerenti)
   const studentView = useMemo(() => isStudentView(), [])
@@ -157,6 +176,9 @@ export default function Room({
   /** Consiglio "da esportare" (spec #35 §4.3): motivo in linguaggio docente, null = tutto ok */
   const [exportAdvice, setExportAdvice] = useState<string | null>(null)
 
+  const lessonLibrary = useRef(new LessonLibraryState())
+  const libraryGeneration = useRef<symbol | null>(null)
+  const legacyInkIds = useRef(new Set<string>())
   const apiRef = useRef<any>(null)
   const saveTimer = useRef<number | null>(null)
   // Flag per evitare che persist() richiami saveScene durante il caricamento iniziale
@@ -184,6 +206,7 @@ export default function Room({
   // All'avvio, inizializza lo store e carica la scena dal driver attivo (localStorage).
   useEffect(() => {
     const generation = lifecycleGeneration
+    libraryGeneration.current = generation
     let cancelled = false
     let activity: ActiveLessonRegistration | null = null
     let registrationPromise: Promise<ActiveLessonRegistration> | null = null
@@ -216,6 +239,7 @@ export default function Room({
       window.clearTimeout(saveTimer.current)
       saveTimer.current = null
     }
+    legacyInkIds.current = new Set()
     latestElementsRef.current = null
     latestAppStateRef.current = null
     latestFilesRef.current = null
@@ -231,6 +255,7 @@ export default function Room({
     setRooms([])
     setLoadingRooms(false)
     setSceneData(null)
+    lessonLibrary.current = new LessonLibraryState()
     setExportAdvice(null)
     setSessionAudio(null)
     setSelectedObjects([])
@@ -443,7 +468,14 @@ export default function Room({
           try {
             const parsed = JSON.parse(data)
             if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
-            setSceneData(parsed)
+            if (Array.isArray(parsed.elements)) {
+              parsed.elements = legacyBoardScene(parsed.elements)
+              legacyInkIds.current = new Set(parsed.elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
+            }
+            try { lessonLibrary.current.load(parsed) } catch (error) {
+              setStorageError("Raccolta non caricata: " + (error as Error).message)
+            }
+            setSceneData({ ...parsed, libraryItems: lessonLibrary.current.items })
             if (journalRef.current && parsed?.elements) {
               journalRef.current.seed(parsed.elements)
             }
@@ -468,6 +500,7 @@ export default function Room({
     })()
     return () => {
       cancelled = true
+      if (libraryGeneration.current === generation) libraryGeneration.current = null
       // Pulisci il debounce timer persist() se ancora in sospeso
       if (saveTimer.current) {
         window.clearTimeout(saveTimer.current)
@@ -545,10 +578,17 @@ export default function Room({
     const elements = latestElementsRef.current
     const appState = latestAppStateRef.current
     const files = latestFilesRef.current
+    const libraryItems = lessonLibrary.current.items
+    const libraryError = lessonLibrary.current.error
     if (!elements) return
+    // Capture this lifecycle's ink boundary before the queue can wait. A new
+    // store lifecycle replaces legacyInkIds while the old save is draining.
+    const board = legacyBoardScene(elements as Parameters<typeof serializeAsJSON>[0], collaboration ? legacyInkIds.current : undefined)
     await queueSceneWrite(async () => {
+      if (libraryError) throw libraryError
       const previous = await actualStore.loadScene(room)
-      return preserveEditorial(serializeAsJSON(elements, appState, files, "local"), previous ? JSON.parse(previous) : {}, room)
+      const serialized = sceneWithLibrary(serializeAsJSON(board, appState, files, "local"), libraryItems)
+      return preserveEditorial(serialized, previous ? JSON.parse(previous) : {}, room)
     })
   }
 
@@ -584,7 +624,17 @@ export default function Room({
 
   /** Rende durevoli entrambe le fonti live prima di lasciare la Room. */
   async function flushLiveLesson(): Promise<void> {
+    const api = apiRef.current
+    const owner = lessonLibrary.current
+    const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && apiRef.current === api && lessonLibrary.current === owner
     await audioRef.current?.stop()
+    if (!stillCurrent()) throw new Error("La lezione è cambiata durante il salvataggio: riprova nella lezione corrente.")
+    if (!studentView && api?.updateLibrary) {
+      // Excalidraw queues library imports but does not await onLibraryChange.
+      // This no-op waits for its queue before the canonical scene save fence.
+      await api.updateLibrary({ libraryItems: (items: unknown) => items })
+    }
+    if (!stillCurrent()) throw new Error("La lezione è cambiata durante il salvataggio: riprova nella lezione corrente.")
     await flushPersist()
     await journalRef.current?.flush()
   }
@@ -607,7 +657,7 @@ export default function Room({
     const all = [...current, ...elements]
     api.updateScene({ elements: all, appState: { selectedElementIds: { [element.id]: true } } })
     // Publish the actual object/version before the audio marker can reference it.
-    journal.recordChange(all)
+    journal.recordChange(legacyBoardScene(all, collaboration ? legacyInkIds.current : undefined))
     await journal.flush()
     latestElementsRef.current = all
     latestAppStateRef.current = api.getAppState?.() ?? EXCALIDRAW_CONFIG.newRoomAppState
@@ -619,7 +669,7 @@ export default function Room({
 
   function boardSelection(elements: readonly any[], appState: any): readonly AudioObjectReference[] {
     const ids = appState?.selectedElementIds ?? {}
-    return elements.filter((element) => ids[element.id] && !element.isDeleted && Number.isSafeInteger(element.version) && element.version > 0).slice(0, 21).map((element) => ({
+    return legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined).filter((element) => ids[element.id] && !element.isDeleted && Number.isSafeInteger(element.version) && element.version > 0).slice(0, 21).map((element) => ({
       elementId: element.id, version: element.version,
       label: String(element.text?.replace(/\s+/g, " ").trim() || ({ rectangle: "Riquadro", ellipse: "Cerchio", freedraw: "Disegno", arrow: "Freccia", image: "Immagine", line: "Linea" } as Record<string, string>)[element.type] || "Oggetto della lavagna").slice(0, 240),
     }))
@@ -631,7 +681,7 @@ export default function Room({
     const elements = api.getSceneElements()
     const refs = boardSelection(elements, api.getAppState())
     if (refs.length === 0 || refs.length > 20) throw new Error("Seleziona da uno a venti oggetti sulla lavagna.")
-    journal.recordChange(elements)
+    journal.recordChange(legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined))
     await journal.flush()
     latestElementsRef.current = elements
     latestAppStateRef.current = api.getAppState()
@@ -653,9 +703,10 @@ export default function Room({
     }
     const selection = boardSelection(elements, appState)
     setSelectedObjects((previous) => JSON.stringify(previous) === JSON.stringify(selection) ? previous : selection)
-    persist(elements, appState, files)
+    const baseElements = legacyBoardScene(elements, collaboration ? legacyInkIds.current : undefined)
+    persist(baseElements, appState, files)
     if (!initialLoadDone.current) return
-    journalRef.current?.recordChange(elements)
+    journalRef.current?.recordChange(baseElements)
   }
 
   /** Chiude il drawer e restituisce il focus al controllo che l'ha aperto (WCAG 2.4.3) */
@@ -864,6 +915,15 @@ export default function Room({
     }
     try {
       if (lessonFile) {
+        const owner = lessonLibrary.current
+        const api = apiRef.current
+        const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && apiRef.current === api && lessonLibrary.current === owner
+        // Drain old writes before the import transaction replaces this board.
+        if (saveTimer.current) { window.clearTimeout(saveTimer.current); saveTimer.current = null }
+        await _pendingSave.current
+        if (!stillCurrent()) return
+        await validateLibraryLesson(file)
+        if (!stillCurrent()) return
         // P32 R10: passa l'event-log LessonOS così il bundle può ripristinare la
         // memoria didattica. Restore SOLO su log vuoto (disaster-recovery); nella
         // Room live il log ha già lesson.started ⇒ esito atteso "skipped-non-empty".
@@ -873,18 +933,24 @@ export default function Room({
           lessonOsRef.current?.store,
         )
         const sceneJson = await actualStore.loadScene(room)
+        if (!stillCurrent()) return
         if (!sceneJson) throw new Error("board.excalidraw non trovato nel bundle")
         const parsed = JSON.parse(sceneJson)
         if (!parsed || typeof parsed !== "object") throw new Error("scena non valida")
-        const elements = Array.isArray(parsed.elements) ? parsed.elements : []
+        const elements = Array.isArray(parsed.elements) ? legacyBoardScene(parsed.elements) : []
+        legacyInkIds.current = new Set(elements.filter((element: any) => element.type === "freedraw").map((element: any) => element.id))
+        parsed.elements = elements
         const appState = { ...EXCALIDRAW_CONFIG.newRoomAppState, ...parsed.appState }
         const files = parsed.files ?? {}
+        owner.load(parsed)
         setSceneData(parsed)
         latestElementsRef.current = elements
         latestAppStateRef.current = appState
         latestFilesRef.current = files
         journalRef.current?.seed(elements)
-        apiRef.current.updateScene({ elements, appState, files })
+        api.updateScene({ elements, appState, files })
+        await api.updateLibrary({ libraryItems: owner.items, merge: false })
+        if (!stillCurrent()) return
         // Telemetria mai silenziosa (§4.4): un restore FALLITO va detto al docente
         // (il board è importato; è la memoria didattica a non essere tornata).
         if (importResult.lessonOsRestore.kind === "failed") {
@@ -974,7 +1040,7 @@ export default function Room({
   ) : replayView ? (
     <ReplayView store={actualStore} room={room} />
   ) : (
-    <div className="st-studio-shell" style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
+    <div className="st-studio-shell" data-ink-room={collaboration?.roomId} style={{ position: "fixed", inset: 0, display: "flex", flexDirection: "column" }}>
       {studentView ? (
         /* Vista studente: solo wordmark + chip, niente bottoni docente */
         <header className="st-bar st-bar-student">
@@ -1073,6 +1139,7 @@ export default function Room({
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
           )}
+          {!studentView && <button type="button" className="st-ghost" aria-label="Apri raccolta della lezione" onClick={() => { apiRef.current?.toggleSidebar({ name: "default", tab: "library" }); setMenuOpen(false) }}>raccolta</button>}
           <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
@@ -1150,6 +1217,10 @@ export default function Room({
         </div>
       )}
 
+      {collaboration && collaboration.roomId === room && <Suspense fallback={<p role="status">Apertura layer…</p>}>
+        <RoomCollaboration adapter={collaboration} api={collaborationApi} store={actualStore} />
+      </Suspense>}
+      {collaboration && collaboration.roomId !== room && <p role="alert">Il layer appartiene a un’altra lezione.</p>}
       <div className="st-studio-canvas" style={{ flex: 1, position: "relative", minHeight: 0 }}>
         {studentView && !sceneData && (
           /* Vista studente senza scena salvata: spiega cosa vedrà e cosa fare intanto. */
@@ -1165,10 +1236,11 @@ export default function Room({
             langCode={EXCALIDRAW_CONFIG.langCode}
             theme={EXCALIDRAW_CONFIG.theme}
             aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
-            viewModeEnabled={studentView}
+            viewModeEnabled={collaboration ? !collaborativeWriting : studentView}
             UIOptions={EXCALIDRAW_CONFIG.UIOptions}
             excalidrawAPI={(eapi) => {
               apiRef.current = eapi
+              if (collaboration) setCollaborationApi(current => current === eapi ? current : eapi)
               if (typeof eapi.onPointerDown === "function") {
                 const unsubDown = eapi.onPointerDown(() => {
                   journalRef.current?.recordPointerDown()
@@ -1204,10 +1276,32 @@ export default function Room({
               // senza appState (import/export esterni) non perde Nunito/ink/canvas
               sceneData
                 ? { ...sceneData, appState: { ...EXCALIDRAW_CONFIG.newRoomAppState, ...sceneData.appState } }
-                : { appState: EXCALIDRAW_CONFIG.newRoomAppState }
+                : { appState: EXCALIDRAW_CONFIG.newRoomAppState, libraryItems: lessonLibrary.current.items }
             }
             // In vista studente la lavagna è sola-lettura: nessun persist/journal
-            onChange={studentView ? undefined : handleChange}
+            onLibraryChange={studentView ? undefined : (items) => {
+              if (libraryGeneration.current !== lifecycleGeneration) return
+              const owner = lessonLibrary.current
+              const api = apiRef.current
+              const stillCurrent = () => libraryGeneration.current === lifecycleGeneration && lessonLibrary.current === owner && apiRef.current === api
+              try {
+                owner.change(items)
+                if (api) persist(latestElementsRef.current ?? api.getSceneElementsIncludingDeleted(), latestAppStateRef.current ?? api.getAppState(), latestFilesRef.current ?? api.getFiles())
+              } catch (error) {
+                setStorageError((error as Error).message)
+                if (!owner.error && api) {
+                  // Rebase repair on the latest SDK state: a valid queued edit
+                  // must survive. Never suppress another operation's callback.
+                  void api.updateLibrary({ libraryItems: (current: unknown) => {
+                    if (!stillCurrent()) return current
+                    try { return snapshotLibraryItems(current) } catch { return owner.items }
+                  }, merge: false }).catch((failure: Error) => {
+                    if (stillCurrent()) setStorageError(failure.message)
+                  })
+                }
+              }
+            }}
+            onChange={studentView && !collaborativeWriting ? undefined : handleChange}
             validateEmbeddable={/^maestro-tool:\/\//}
             // Host per i tool embed (slice 4): write-back dei piazzamenti nello
             // state dell'embed → la persistenza segue quella della scena. In

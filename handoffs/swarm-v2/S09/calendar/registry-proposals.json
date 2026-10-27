@@ -1,0 +1,51 @@
+{
+  "schema": "ardesia.s09.registry-proposals.v1",
+  "date": "2026-10-26",
+  "owner": "S09",
+  "baseRegistryCount": 139,
+  "idAllocation": "S12/S15 retain central IDs; no IDs assigned by this delta",
+  "targets": [
+    {
+      "key": "fullcalendar-standard-react",
+      "source": "https://registry.npmjs.org/@fullcalendar/react/7.1.3",
+      "version": "7.1.3",
+      "license": "MIT Standard only; complete closure in provenance.json",
+      "observability": "published source and controlled Ardesia consumer",
+      "rights": "npm Standard package reuse with notices; no Premium adoption",
+      "capability": "month/timegrid week/day/list, date navigation, IANA timezone, accessible event interaction",
+      "replaces": "original calendar grid/navigation otherwise absent; existing upcoming agenda retained",
+      "dependencies": ["@fullcalendar/core@7.1.3", "@full-ui/headless-calendar@7.1.3", "temporal-polyfill@1.0.1", "temporal-spec@1.0.0", "temporal-utils@1.0.1"],
+      "decision": "ADAPT",
+      "status": "INVESTIGATED",
+      "proofRequired": "declared dependencies; exact-head CI/build; real consumer E2E/DST/ACL/revocation and responsive evidence; S00 integration"
+    },
+    {
+      "key": "react-big-calendar",
+      "source": "https://registry.npmjs.org/react-big-calendar/1.20.0",
+      "version": "1.20.0",
+      "license": "MIT",
+      "observability": "public source/docs/manifest; runtime not executed",
+      "rights": "licensed source candidate, no code adopted",
+      "capability": "React calendar with localizer",
+      "dependencies": "16 declared direct dependencies; see source manifest",
+      "replaces": "alternative to FullCalendar, not a second concurrent engine",
+      "decision": "DEFER",
+      "status": "INVESTIGATED",
+      "proofRequired": "exact localizer timezone and popup keyboard verification if adopted"
+    },
+    {
+      "key": "schedule-x",
+      "source": "https://registry.npmjs.org/@schedule-x/calendar/4.9.1",
+      "version": "calendar4.9.1/react4.1.0",
+      "license": "MIT core/wrapper; commercial extras excluded",
+      "observability": "public source/docs/manifest; runtime not executed",
+      "rights": "licensed source candidate, no code adopted",
+      "capability": "Temporal calendar and React adapter",
+      "dependencies": ["preact", "@preact/signals", "temporal-polyfill@0.3.2", "theme/events-service as selected"],
+      "replaces": "alternative to FullCalendar, not a second concurrent engine",
+      "decision": "DEFER",
+      "status": "INVESTIGATED",
+      "proofRequired": "Core timestamp mapping, keyboard and exact closure before adoption"
+    }
+  ]
+}

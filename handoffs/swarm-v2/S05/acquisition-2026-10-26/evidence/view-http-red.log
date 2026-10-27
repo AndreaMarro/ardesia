@@ -1,0 +1,25 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_view_http_reopens_only_for_the_session_owner_and_requires_current_version _
+
+tmp_path = PosixPath('/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/pytest-of-andreamarro/pytest-116/test_view_http_reopens_only_fo0')
+
+    def test_view_http_reopens_only_for_the_session_owner_and_requires_current_version(tmp_path):
+        store,_,actor,peer,_=setup_store(tmp_path)
+        with TestClient(create_app(store.path,demo=True)) as client:
+>           assert client.get('/study/memory/view').status_code==401
+E           AssertionError: assert 404 == 401
+E            +  where 404 = <Response [404 Not Found]>.status_code
+E            +    where <Response [404 Not Found]> = get('/study/memory/view')
+E            +      where get = <starlette.testclient.TestClient object at 0x109d4a510>.get
+
+services/study-api/tests/test_learning_memory_view_http.py:9: AssertionError
+=============================== warnings summary ===============================
+../s05-venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  /Users/andreamarro/Documents/Codex/2026-10-26/es-2/work/s05-venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED services/study-api/tests/test_learning_memory_view_http.py::test_view_http_reopens_only_for_the_session_owner_and_requires_current_version
+1 failed, 1 warning in 2.04s
