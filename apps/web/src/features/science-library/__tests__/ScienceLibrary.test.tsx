@@ -26,7 +26,7 @@ describe('science library consumer state',()=>{
   fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'1'}});
   fireEvent.click(screen.getByRole('button',{name:'Confronta la previsione'}));
   const result=await screen.findByTestId('science-result');
-  expect(document.activeElement).toBe(result);
+  await waitFor(()=>expect(document.activeElement).toBe(result));
   fireEvent.click(screen.getByRole('button',{name:'Modifica i dati'}));
   expect(document.activeElement).toBe(screen.getByLabelText('Massa del corpo1 [kg]'));
  });

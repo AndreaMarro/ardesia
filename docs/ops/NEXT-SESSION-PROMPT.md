@@ -208,3 +208,8 @@ Prima azione del coordinatore: pubblicare i cinque file del diff nella nuova PR,
 
 
 Seguito browser503: col Chrome for Testing esistente indicato dal coordinatore, il probe locale sulla build Web ha passato390/1280px, tastiera/link/retry, nessun overflow e zero pageError. API503 sintetica esplicita: questo verde non sostituisce la prova HTTPS della nuova release. Il precedente NOT_RUN riguardava soltanto la risoluzione automatica dell’eseguibile Playwright.
+
+
+### PR327 — correzione mirata del test focus,27 ottobre2026
+
+La head637354c3 ha Web697PASS/1FAIL, non CI tutta verde: ScienceLibrary aspettava il nodoDOM e controllava sincronicamente un focus applicato da useEffect. Il solo test ora attende la stessa condizione con waitFor, senza timeout maggiori, assertion rimosse o runtime modificato. Suite mirata7/7PASS in tre esecuzioni locali. Prima azione: pubblicare test+due note nella stessa327, leggere nuovahead e required checks effettivi; poi merge/post-CI e rebuild per la provenienza della nuovaSHA. Pacchetti637 intermedi, nessun deploy finale attestato. I quattro passi dell'ultima RUNLOG conservano dipendenze e prove; Core hosted e accettazione corsi restano limiti distinti.
