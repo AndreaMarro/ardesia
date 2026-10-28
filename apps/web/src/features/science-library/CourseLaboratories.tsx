@@ -8,6 +8,7 @@ import {CoreFluidLab} from './CoreFluidLab';
 import {scienceApi} from './scienceApi';
 import type {Capability,SavedScience} from './types';
 const models:Record<string,string[]>={
+ 'ds-2026-u3-01':['pascal'],
  'ds-2026-u3-02':['manometer','hydrostatic','pascal','buoyancy'],
  'ds-2026-u3-03':['continuity','venturi'],'ds-2026-u3-04':['poiseuille','hydraulic-network'],
  'ds-2026-u3-05':['capillary'],'ds-2026-u5-01':['ideal-gas'],
@@ -28,6 +29,7 @@ export function CourseLaboratories({host,lesson,phase,stepId,initialActivityId,o
  return <section className="course-laboratories" aria-label="Laboratori della lezione"><h3>Metti alla prova il fenomeno</h3>
   {error?<><p role="alert">{error}</p><button onClick={()=>setRetry(x=>x+1)}>Riprova</button></>:loading?<p role="status">Apro il laboratorio…</p>:!cap?<p role="alert">Il laboratorio richiesto non è disponibile per questa lezione. Nessun altro modello viene aperto.</p>:<>
    {available.length>1&&<label>Fenomeno da esplorare<select value={selected} onChange={e=>{if(e.target.value!==selected&&!confirmCourseExit(exitScope,['laboratory']))return;setSelected(e.target.value as typeof selected);onCommit?.(null);host.onInvalidated();}}>{available.map(c=><option key={c.id} value={c.fluidLab!.modelId}>{c.title}</option>)}</select></label>}
+   {lesson.id==='ds-2026-u3-01'&&<p>In questo passaggio mantieni fissa la forza di ingresso e varia l’area di ingresso. Confronta la tua previsione con l’incremento di pressione F₁/A₁ nella tabella delle misure, in pascal. La forza di uscita F₂, mostrata dal torchio in newton, è una grandezza diversa.</p>}
    <CoreFluidLab key={JSON.stringify([lesson.lessonRef,phase,cap.id,saved?.resource.id,saved?.resource.revisionId])} me={host.me} editionId={host.editionId} capability={cap} saved={saved} courseLesson={{lessonRef:lesson.lessonRef,phase,...(stepId?{stepId}:{})}} onCommit={onCommit} onSaved={host.onSaved} onInvalidated={host.onInvalidated}/>
   </>}
  </section>;
