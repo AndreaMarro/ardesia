@@ -4,7 +4,8 @@ import sys
 
 _SERVICE_ROOT = Path(__file__).resolve().parent
 _REPOSITORY_ROOT = _SERVICE_ROOT.parents[1]
-sys.path[:0] = [str(_REPOSITORY_ROOT / 'packages' / 'engine'), str(_SERVICE_ROOT)]
+sys.path[:0] = [str(_SERVICE_ROOT / '_core'),
+                str(_REPOSITORY_ROOT / 'packages' / 'engine'), str(_SERVICE_ROOT)]
 
 from study_api.remote import app_from_env
 

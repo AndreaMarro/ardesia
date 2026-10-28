@@ -90,3 +90,28 @@ The trusted TLS/proxy requirement above still applies to Vercel: hosted proof
 must confirm ASGI receives HTTPS, the canonical alias Host, and the actual
 browser Origin. Do not make arbitrary forwarded client headers authoritative to
 work around a failed boundary. No platform-specific trust bypass is added.
+
+### Isolated service build and canonical package bundling
+
+The service-scoped `vercel.json` selects FastAPI, frozen uv installation, the
+`python3 build_shared_core.py` build command, automatic Python output, and no Git
+triggered deployments. It overrides the monorepo Studio/npm build configuration.
+Do not override this build command with an empty command: it stages the canonical
+`lessonos` and `s19_circuit_lab` package trees, including their package-relative
+content, into the ignored `_core/` deployment artifact. The entry loads this
+artifact first and the function explicitly includes `_core/**`. No source package
+or domain implementation is forked; each build copies the canonical checkout.
+Outside-root sources must still be enabled at build time. Editable dependency
+`.pth` paths and `../../` ZIP paths are insufficient for runtime packaging.
+
+`nodeVersion` is intentionally absent: the current official `vercel.json` schema
+does not define it. Clear inherited Node-specific project settings through the
+project/deployment configuration where needed. Keep preview credentials private.
+
+The [official FastAPI documentation](https://vercel.com/docs/frameworks/backend/fastapi)
+keys function options by entrypoint, and the
+[Python runtime documentation](https://vercel.com/docs/functions/runtimes/python)
+describes bundle inclusion/exclusion. The
+[official Python builder](https://github.com/vercel/vercel/blob/main/packages/python/src/index.ts)
+consumes `includeFiles` as globs relative to the service root; explicit staging
+keeps every function ZIP path inside that root.
