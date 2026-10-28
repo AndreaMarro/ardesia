@@ -347,3 +347,22 @@ it.each(['absent', 'deleted', 'locked', 'identity', 'owner', 'different-tool', '
   expect(write).not.toHaveBeenCalled(); expect(save).not.toHaveBeenCalled()
   expect(await bytes(store)).toEqual(before)
 })
+
+it('explains decimal-point entry beside the real number controls without changing their validation', () => {
+  const change = vi.fn()
+  render(<FluidThermoLab initialSnapshot={newLabSnapshot('poiseuille')} onSnapshotChange={change} />)
+  const guidance = screen.getByText('Per i numeri decimali usa il punto, ad esempio 0.0015. I valori visualizzati possono avere la virgola.')
+  const radius = screen.getByRole('spinbutton', { name: 'Raggio interno [m]' }) as HTMLInputElement
+  expect(radius.type).toBe('number')
+  expect(radius.getAttribute('aria-describedby')?.split(' ')).toContain(guidance.id)
+  const unusedFlow = screen.getByRole('spinbutton', { name: 'Portata imposta [m³/s]' })
+  const ids = unusedFlow.getAttribute('aria-describedby')!.split(' ')
+  expect(ids).toContain(guidance.id)
+  expect(ids.map(id => document.getElementById(id)?.textContent).join(' ')).toContain('non utilizzato come parametro indipendente')
+  fireEvent.change(radius, { target: { value: '0.0015' } })
+  expect(change.mock.lastCall![0].configuration.parameters.radius).toBe(.0015)
+  change.mockClear()
+  fireEvent.change(radius, { target: { value: '15' } })
+  expect(screen.getByRole('alert').textContent).toContain('Raggio interno')
+  expect(change).not.toHaveBeenCalled()
+})
