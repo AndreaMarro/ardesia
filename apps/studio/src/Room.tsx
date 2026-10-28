@@ -11,6 +11,7 @@ import { JournalRecorder, toLegacyJournalEvent } from "./store/JournalRecorder"
 import { ReplayEngine, decodeJournalJsonl, serializeEvents, deserializeEvents } from "./store/ReplayEngine"
 import { IconAlert } from "./design/icons"
 import ViewNav from "./design/ViewNav"
+import { studioHref } from "./store/studioLocation"
 import { isStudentView } from "./store/studentView"
 import {
   openLessonOsSession,
@@ -1137,6 +1138,7 @@ export default function Room({
               onNavigate={(href) => { void navigateToSurface(href) }}
             />
           )}
+          {!studentView && <button type="button" className="st-ghost" onClick={() => { void navigateToSurface(studioHref(`?vista=replay#${encodeURIComponent(room)}`)) }}>Rivedi la lezione</button>}
           {!studentView && <button type="button" className="st-ghost" aria-label="Apri raccolta della lezione" onClick={() => { apiRef.current?.toggleSidebar({ name: "default", tab: "library" }); setMenuOpen(false) }}>raccolta</button>}
           {!studentView&&<button type="button" className="st-ghost" aria-expanded={scienceOpen} onClick={()=>setScienceOpen(v=>!v)}>laboratori</button>}
           <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
