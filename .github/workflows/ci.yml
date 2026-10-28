@@ -280,8 +280,10 @@ jobs:
         run: python3 bin/ci/secret_scan.py
       - name: secret scan tests
         run: python3 bin/ci/test_secret_scan.py
-      - name: ELAB standalone boundary (ratchet)
-        run: python3 bin/ci/elab_boundary_gate.py
+      - name: Removed plugin boundary (zero tolerance)
+        run: |
+          python3 bin/ci/elab_boundary_gate.py
+          python3 bin/ci/test_elab_boundary_gate.py
       # hygiene e' un check REQUIRED su main: la regola "nessun filtro di base
       # sotto pull_request" vive qui perche' un commento nel workflow lo si
       # cancella senza che nessuno se ne accorga, un check rosso no.
@@ -343,6 +345,4 @@ jobs:
           git fetch --no-tags origin "$BASE_REF"
           base="$(git merge-base "origin/$BASE_REF" HEAD)"
           test -n "$base" || { echo "merge-base vuoto: origin/$BASE_REF vs HEAD" >&2; exit 1; }
-          # sim/solver/engine è vendored byte-identico da ELAB (drift-guard
-          # sha256 nei test): il whitespace del sorgente canonico non si tocca.
-          git diff --check "$base" HEAD -- . ':(exclude)apps/studio/sim/solver/engine/'
+          git diff --check "$base" HEAD -- .

@@ -750,12 +750,8 @@ describe("FB-3A exact build provenance", () => {
   })
 
   it("preserva dedupe React, alias, server allow-list e optimizeDeps", () => {
-    const aliases = viteConfig.resolve?.alias as Record<string, string>
     expect(viteConfig.resolve?.dedupe).toEqual(["react", "react-dom"])
-    expect(aliases).toEqual({
-      "@elab-tutor-plugin": fileURLToPath(new URL("../../../../plugins/elab-tutor/src", import.meta.url)),
-      "@elab-pack": fileURLToPath(new URL("../../../../packs/elab-tutor", import.meta.url)),
-    })
+    expect(viteConfig.resolve?.alias).toBeUndefined()
     expect(viteConfig.server?.fs?.allow).toEqual([
       fileURLToPath(new URL("../../../..", import.meta.url)),
     ])

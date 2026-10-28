@@ -10,7 +10,7 @@
 import { describe, expect, it } from "vitest"
 import { analyzeBreadboardOccupancy } from "../../sim/breadboard/occupancy.ts"
 import type { BreadboardCircuit } from "../../sim/breadboard/geometry.ts"
-import verifiedScene from "../../sim/fixtures/elab-scene-v2-verified-synthetic.json"
+const verifiedScene = { pinAssignments: { "r1:a": "bb1:f3" }, wires: [{ from: "supply:+", to: "bb1:g3" }] }
 
 function circuitOf(overrides: Partial<BreadboardCircuit>): BreadboardCircuit {
   return { pinAssignments: {}, wires: [], ...overrides }

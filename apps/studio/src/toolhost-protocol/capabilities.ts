@@ -12,7 +12,7 @@ export const CapabilitiesSchema = z.strictObject({
   "lesson.event.emit": z.strictObject({}).optional(),
   // Famiglia `service.*`: NON è una facoltà del Core (board/graph/lesson/storage/ui),
   // è l'uso host-mediato del servizio di un ALTRO modulo. Serve a comporre — un Pack
-  // disciplinare (ELABTutor) usa il Simulation Plugin senza importarne il codice.
+  // disciplinare (plugin consumer) usa il Simulation Plugin senza importarne il codice.
   // Il nome dichiara la famiglia: il secondo servizio sarà additivo, non una riscrittura.
   // `apiVersion` è pinnata a manifest: un tool non può scoprire a runtime un contratto
   // diverso da quello per cui è stato revisionato.

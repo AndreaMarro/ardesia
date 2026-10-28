@@ -1,3 +1,4 @@
+import { isRetiredPlugin } from "../toolhost/retiredPlugins"
 import { ESSENTIAL_PLUGINS, type PluginReadiness } from "../toolhost/essentialPlugins"
 import type { LessonOsEvent } from "../lessonos/eventlog"
 import type { PluginRegistryEntry } from "../lessonos/teacherDashboardProjection"
@@ -5,7 +6,6 @@ import type { PluginMarketplaceItem } from "../toolhost/marketplace/marketplaceI
 
 export type PluginWindowKind =
   | "simulation"
-  | "elab-tutor"
   | "essential"
   | "function"
   | "drawing-hd"
@@ -68,22 +68,6 @@ export type PluginWindowRegistryEntry = PluginRegistryEntry & {
 
 const BUILTIN_PLUGIN_ITEMS: readonly PluginWindowCatalogItem[] = [
   catalogItem({
-    pluginId: "io.ardesia.simulation",
-    title: "Simulatore",
-    description: "Post-it simulatore con provider, diagnostica e output del solver agganciati all'istanza.",
-    kind: "simulation",
-    readiness: "ready",
-    version: "0.1.0",
-  }),
-  catalogItem({
-    pluginId: "io.elab.tutor",
-    title: "ELABTutor",
-    description: "Post-it consumer che usa il runtime del simulatore condiviso, senza fork del canvas.",
-    kind: "elab-tutor",
-    readiness: "ready",
-    version: "0.1.0",
-  }),
-  catalogItem({
     pluginId: "com.ardesia.plugin-functions",
     title: "Funzioni",
     description: "Superficie funzioni per azioni compatte, normali o espanse nel post-it.",
@@ -113,10 +97,11 @@ export function buildDefaultPluginWindowCatalog({
     ),
     ...marketplaceItems.map(marketplacePluginToCatalogItem),
     ...userCreated,
-  ]
+  ].filter((item) => !isRetiredPlugin(item.pluginId))
 }
 
 export function createPluginWindowInsertRequest(item: PluginWindowCatalogItem): PluginWindowInsertRequest {
+  if (isRetiredPlugin(item.pluginId)) throw new Error(`retired plugin: ${item.pluginId}`)
   return {
     item,
     lessonOsEvent: {
@@ -160,7 +145,7 @@ export function pluginRegistryFromCatalog(
       id: item.pluginId,
       version: item.version,
       publisher: item.publisher,
-      kind: item.kind === "elab-tutor" ? "pack" : "tool",
+      kind: "tool",
       readiness: item.readiness,
       pluginKind: item.kind,
       source: item.source,

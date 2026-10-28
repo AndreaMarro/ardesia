@@ -6,7 +6,7 @@
 //
 // È un REPORT diagnostico completo (tutti i conflitti, ordinati), non un
 // throw-first: l'autorità fail-closed sul percorso di solve resta
-// elabSceneAdapter. Qui si serve chi sta montando liberamente e deve vedere
+// adapter di scena. Qui si serve chi sta montando liberamente e deve vedere
 // TUTTO ciò che non sta in piedi, non solo il primo errore.
 
 import { isBreadboardHole, isBreadboardRail } from "./geometry.ts"

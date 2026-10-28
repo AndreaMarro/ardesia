@@ -1,6 +1,6 @@
 // Determina se l'URL richiede la vista "lezioni salvate"
 // (?vista=lezioni-salvate): la route di prodotto che monta SavedLessonsPanel
-// sul client LessonOS reale. Stesso pattern di isElabLabView/isToolLabView.
+// sul client LessonOS reale. Stesso pattern di isvista legacyView/isToolLabView.
 //
 // Configurazione fail-closed:
 // - baseUrl: localStorage (override operativo) → VITE_LESSONOS_BASE_URL.

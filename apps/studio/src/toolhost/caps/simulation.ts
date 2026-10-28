@@ -1,4 +1,4 @@
-// P0-E — capability `service.simulation`: un modulo (ELABTutor Pack eseguibile)
+// P0-E — capability `service.simulation`: un modulo (plugin consumer)
 // USA il Simulation Plugin attraverso l'host, senza importarne il codice.
 //
 // Questo file NON importa nulla da `sim/`: il servizio arriva iniettato come
@@ -39,7 +39,7 @@
 // confronto vale 32 bit e non di piu'. Due scene che differiscono solo per l'id
 // del componente danno entrambe `22e6771a`, e una collisione contro un bersaglio
 // si TROVA in ~640k tentativi (344 ms). Sugli id davvero generati dal prodotto
-// (`${type}-libero-${n}`, elabCanvasAdapter.ts) la collisione accidentale non è
+// (`${type}-libero-${n}`, adapter del canvas) la collisione accidentale non è
 // raggiungibile — trovarla richiede una ricerca, che un errore non esegue — ma
 // chi si appoggia a questi confronti deve sapere quanto pesano.
 

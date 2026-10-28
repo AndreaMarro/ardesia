@@ -1,6 +1,5 @@
 // LessonOS — emittente error.observed, sostanza pura (P0 dopo #67+#68+#70).
-// Sorgente: le `common_mistakes` della fase CHIEDI del lesson-path (Pack
-// elab-tutor) e i `concepts_learned` della fase CONCLUDI. Il mapping
+// Sorgente: common_mistakes e concepts_learned della lezione. Il mapping
 // errore→concetto NON esiste nel dato e NON viene inventato: lo sceglie il
 // docente sulla superficie di marcatura; qui solo estrazione e costruzione
 // del payload bus "error.observed" (eventBus.ts), che il binding host
@@ -72,6 +71,7 @@ export function listLessonConcepts(lessonPath: LessonPathPhases): LessonConcept[
 
 export interface MistakeObservedInput {
   experimentId: string
+  evidence: string[]
   observation: MistakeObservation
   /** Concetto SCELTO dal docente (nessun default: il modulo non attribuisce da solo). */
   concept: LessonConcept
@@ -88,6 +88,6 @@ export function mistakeObservedBusEvent(input: MistakeObservedInput): MistakeObs
     ...(input.studentId !== undefined ? { studentId: input.studentId } : {}),
     labels: { it: input.observation.mistake },
     t: input.t,
-    evidence: [`pack:io.elab.tutor:${input.experimentId}`],
+    evidence: [...input.evidence],
   }
 }
