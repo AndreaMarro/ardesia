@@ -6,6 +6,7 @@ import {
   type Workspace,
 } from "../api";
 import { EmptyState, ErrorNotice, Loading } from "../components/Feedback";
+import { replaceCourseHistory, useCourseDraft } from "../courseExitGuard";
 
 type Rules = {
   totalQuestions: number;
@@ -19,7 +20,21 @@ type Rules = {
   maxScore: number;
 };
 
-type ExamPack = {
+type DraftReference = {
+  simulationId?: string;
+  editorialStatus?: "DRAFT" | "PUBLISHED";
+  humanApproval?: boolean;
+  releaseScope?: string;
+  feedbackAuthority?: string;
+  scopeWarning?: string;
+};
+
+type Simulation = DraftReference & {
+  id: string; title: string; ready: boolean; durationSeconds: number;
+  questionCount: number; rules: Rules;
+};
+
+type ExamPack = DraftReference & {
   id: string;
   version: number;
   title: string;
@@ -69,7 +84,7 @@ type ResultQuestion = {
   familyId?: string;
 };
 
-type ExamResult = {
+type ExamResult = DraftReference & {
   scoreTenths: number;
   maxTenths: number;
   score: number;
@@ -85,7 +100,7 @@ type ExamResult = {
   };
 };
 
-type ExamSummary = {
+type ExamSummary = DraftReference & {
   id: string;
   editionId: string;
   status: "in_progress" | "submitted" | "expired";
@@ -101,7 +116,7 @@ type ExamSummary = {
   answerRevision?: number;
 };
 
-type ExamAttempt = {
+type ExamAttempt = DraftReference & {
   id: string;
   editionId: string;
   packId: string;
@@ -121,7 +136,7 @@ type ExamAttempt = {
   result: ExamResult | null;
 };
 
-type ExamList = { attempts: ExamSummary[]; pack: ExamPack | null };
+type ExamList = { attempts: ExamSummary[]; pack: ExamPack | null; simulations?: Simulation[] };
 
 type AnswerMap = Record<string, number | string | null>;
 
@@ -160,8 +175,33 @@ function dateLabel(instant: number | null) {
   }).format(new Date(instant * 1000));
 }
 
-export function Exam({ data }: { data: Workspace }) {
+function isDraft(reference: DraftReference) {
+  return reference.humanApproval === false || reference.releaseScope === "PRIVATE_SYNTHETIC_ACCEPTANCE";
+}
+
+function DraftNotice({ reference }: { reference: DraftReference }) {
+  return <>{isDraft(reference) && <p role="note">DRAFT · ambito privato di accettazione sintetica. Riscontro di riferimento; approvazione umana non eseguita.</p>}
+    {reference.scopeWarning && <p>{reference.scopeWarning}</p>}</>;
+}
+
+function simulationHref(editionId: string, simulationId: string) {
+  return `/?${new URLSearchParams({ view: "exam", edition: editionId, simulation: simulationId })}`;
+}
+
+function examError(failure: unknown) {
+  const code = failure instanceof Error ? failure.message : "";
+  if (code === "exam_active_simulation_conflict") return "È già in corso un’altra simulazione. Puoi riprenderla esplicitamente qui sotto.";
+  if (["exam_simulation_not_found", "exam_simulation_unavailable", "invalid_exam_simulation"].includes(code)) return "Questa simulazione non è disponibile per l’edizione selezionata. Scegli una delle simulazioni disponibili.";
+  if (code === "exam_selection_mismatch") return "La prova ricevuta non corrisponde alla selezione. Riapri l’elenco delle simulazioni.";
+  return describeError(failure);
+}
+
+export function Exam({ data, simulationId }: { data: Workspace; simulationId?: string }) {
+  const initialQuery = useRef(new URLSearchParams(window.location.search).get("simulation") ?? undefined);
+  const routeSimulation = simulationId ?? initialQuery.current;
+  const [requestedSimulation, setRequestedSimulation] = useState(routeSimulation);
   const editionId = data.edition.id;
+  const exitDraft = useCourseDraft("assessment");
   const [listing, setListing] = useState<ExamList | null>(null);
   const [exam, setExam] = useState<ExamAttempt | null>(null);
   const [answers, setAnswers] = useState<AnswerMap>({});
@@ -184,6 +224,7 @@ export function Exam({ data }: { data: Workspace }) {
   const answersRef = useRef<AnswerMap>({});
   const examRef = useRef<ExamAttempt | null>(null);
   const flushRef = useRef<() => void>(() => undefined);
+  const routeEpoch = useRef(0);
 
   const refresh = useCallback(async (active = true) => {
     const value = await studyRequest<ExamList>(
@@ -195,21 +236,42 @@ export function Exam({ data }: { data: Workspace }) {
 
   useEffect(() => {
     let active = true;
+    routeEpoch.current += 1;
     setLoading(true);
     setError("");
     setExam(null);
     setListing(null);
-    void refresh()
+    setRequestedSimulation(routeSimulation);
+    dirty.current = false;
+    pendingRef.current = false;
+    examRef.current = null;
+    void refresh(false)
+      .then(async (value) => {
+        if (!active) return;
+        setListing(value);
+        if (routeSimulation) {
+          if (!value.simulations?.some((item) => item.id === routeSimulation)) {
+            setError("Questa simulazione non appartiene all’edizione selezionata o non è disponibile.");
+            return;
+          }
+          const matching = value.attempts.find((item) => item.status === "in_progress" && item.simulationId === routeSimulation);
+          if (matching) {
+            const restored = await studyRequest<ExamAttempt>(`/exams/${encodeURIComponent(matching.id)}`);
+            if (active) open(restored, routeSimulation);
+          }
+        }
+      })
       .catch((failure) => {
-        if (active) setError(describeError(failure));
+        if (active) setError(examError(failure));
       })
       .finally(() => {
         if (active) setLoading(false);
       });
     return () => {
       active = false;
+      routeEpoch.current += 1;
     };
-  }, [refresh]);
+  }, [refresh, routeSimulation]);
 
   useEffect(() => {
     answersRef.current = answers;
@@ -219,7 +281,16 @@ export function Exam({ data }: { data: Workspace }) {
     examRef.current = exam;
   }, [exam]);
 
-  function open(next: ExamAttempt) {
+  function open(next: ExamAttempt, expectedSimulation?: string) {
+    if (next.editionId !== editionId || (expectedSimulation !== undefined && next.simulationId !== expectedSimulation))
+      throw new Error("exam_selection_mismatch");
+    if (next.simulationId) {
+      replaceCourseHistory(simulationHref(editionId, next.simulationId));
+      setRequestedSimulation(next.simulationId);
+    }
+    exitDraft.confirm(exitDraft.checkpoint());
+    examRef.current = next;
+    answersRef.current = next.answers ?? {};
     dirty.current = false;
     pendingRef.current = false;
     revisionRef.current = next.answerRevision ?? 0;
@@ -234,42 +305,48 @@ export function Exam({ data }: { data: Workspace }) {
   }
 
   async function start() {
+    const epoch = routeEpoch.current;
     setStarting(true);
     setError("");
     try {
-      open(
-        await studyRequest<ExamAttempt>(
-          "/exams",
-          { editionId },
-          { method: "POST" },
-        ),
+      const next = await studyRequest<ExamAttempt>(
+        "/exams", { editionId, ...(requestedSimulation ? { simulationId: requestedSimulation } : {}) },
+        { method: "POST" },
       );
+      if (epoch === routeEpoch.current) open(next, requestedSimulation);
     } catch (failure) {
-      setError(describeError(failure));
+      if (epoch !== routeEpoch.current) return;
+      setError(examError(failure));
+      if (failure instanceof Error && failure.message === "exam_active_simulation_conflict") await refresh().catch(() => undefined);
     } finally {
-      setStarting(false);
+      if (epoch === routeEpoch.current) setStarting(false);
     }
   }
 
   async function reopen(id: string) {
+    const epoch = routeEpoch.current;
     setLoading(true);
     setError("");
     try {
-      open(await studyRequest<ExamAttempt>(`/exams/${id}`));
+      const known = listing?.attempts.find((item) => item.id === id);
+      const next = await studyRequest<ExamAttempt>(`/exams/${encodeURIComponent(id)}`);
+      if (epoch === routeEpoch.current) open(next, known?.simulationId);
     } catch (failure) {
-      setError(describeError(failure));
+      if (epoch === routeEpoch.current) setError(examError(failure));
     } finally {
-      setLoading(false);
+      if (epoch === routeEpoch.current) setLoading(false);
     }
   }
 
   function answer(questionId: string, value: number | string) {
+    exitDraft.changed();
     dirty.current = true;
     setSaved("idle");
     setAnswers((previous) => ({ ...previous, [questionId]: value }));
   }
 
   const reloadAfterConflict = useCallback(async (attemptId: string) => {
+    const generation = exitDraft.checkpoint();
     const fresh = await studyRequest<ExamAttempt>(`/exams/${attemptId}`);
     examRef.current = fresh;
     revisionRef.current = fresh.answerRevision ?? 0;
@@ -277,12 +354,13 @@ export function Exam({ data }: { data: Workspace }) {
     setExam(fresh);
     setAnswers(fresh.answers ?? {});
     setSaved("error");
+    exitDraft.confirm(generation);
     dirty.current = false;
     pendingRef.current = false;
     setError(
       "Le risposte sono state salvate in un’altra scheda. Ho ricaricato l’ultima versione: controlla e riprova.",
     );
-  }, []);
+  }, [exitDraft]);
 
   const flush = useCallback(async () => {
     const currentExam = examRef.current;
@@ -293,6 +371,7 @@ export function Exam({ data }: { data: Workspace }) {
     }
     const snapshot = answersRef.current;
     const baseRevision = revisionRef.current;
+    const generation = exitDraft.checkpoint();
     savingRef.current = true;
     pendingRef.current = false;
     setSaved("saving");
@@ -307,6 +386,7 @@ export function Exam({ data }: { data: Workspace }) {
       dirty.current = changedDuringSave;
       pendingRef.current = changedDuringSave;
       setSaved(changedDuringSave ? "saving" : "saved");
+      if (!changedDuringSave) exitDraft.confirm(generation);
     } catch (failure) {
       if (
         failure instanceof StudyApiError &&
@@ -329,7 +409,7 @@ export function Exam({ data }: { data: Workspace }) {
         window.setTimeout(() => flushRef.current(), 0);
       }
     }
-  }, [reloadAfterConflict]);
+  }, [reloadAfterConflict, exitDraft]);
 
   useEffect(() => {
     flushRef.current = () => void flush();
@@ -362,6 +442,7 @@ export function Exam({ data }: { data: Workspace }) {
         setConfirming(true);
         return;
       }
+      const generation = exitDraft.checkpoint();
       submittingRef.current = true;
       setSubmitting(true);
       setConfirming(false);
@@ -377,6 +458,7 @@ export function Exam({ data }: { data: Workspace }) {
         setRemaining(0);
         setSaved("idle");
         dirty.current = false;
+        exitDraft.confirm(generation);
         await refresh().catch(() => undefined);
       } catch (failure) {
         if (
@@ -393,7 +475,7 @@ export function Exam({ data }: { data: Workspace }) {
         setSubmitting(false);
       }
     },
-    [answers, confirming, exam, refresh, reloadAfterConflict],
+    [answers, confirming, exam, refresh, reloadAfterConflict, exitDraft],
   );
 
   useEffect(() => {
@@ -439,7 +521,11 @@ export function Exam({ data }: { data: Workspace }) {
   const openAttempt = listing?.attempts.find(
     (attempt) => attempt.status === "in_progress",
   );
+  const simulations = listing?.simulations ?? [];
+  const selectedSimulation = simulations.find((item) => item.id === requestedSimulation);
+  const invalidSelection = Boolean(requestedSimulation && listing && !selectedSimulation);
   const examReady = listing?.pack?.ready !== false;
+  const differentActive = Boolean(openAttempt && requestedSimulation && openAttempt.simulationId !== requestedSimulation);
   return (
     <>
       <header className="page-heading">
@@ -452,21 +538,41 @@ export function Exam({ data }: { data: Workspace }) {
         </p>
       </header>
       {error && <ErrorNotice message={error} />}
+      {simulations.length > 0 && <section aria-label="Simulazioni tematiche disponibili">
+        <h2>Scegli la simulazione</h2>
+        <ul>{simulations.map((item) => <li key={item.id}>
+          <a href={simulationHref(editionId, item.id)} aria-current={item.id === requestedSimulation ? "page" : undefined}>{item.title}</a>
+          <p>{item.questionCount} quesiti · {item.durationSeconds / 60} minuti · {item.ready ? "Disponibile" : "Non disponibile"}</p>
+          <DraftNotice reference={item} />
+        </li>)}</ul>
+      </section>}
+      {selectedSimulation && <section aria-labelledby="simulation-start-title" className="exam-start">
+        <div><h2 id="simulation-start-title">{selectedSimulation.title}</h2>
+          <DraftNotice reference={selectedSimulation} />
+          <p>{selectedSimulation.questionCount} quesiti: {selectedSimulation.rules.mcq} scelte e {selectedSimulation.rules.completion} completamenti in {selectedSimulation.durationSeconds / 60} minuti.</p>
+          <p>{selectedSimulation.rules.scoring} Le correzioni compaiono solo dopo la consegna o la scadenza.</p>
+        </div>
+        <button className="button-primary" disabled={starting || !selectedSimulation.ready || Boolean(openAttempt)} onClick={() => void start()}>
+          {starting ? "Preparazione…" : "Inizia la simulazione"}
+        </button>
+      </section>}
       {openAttempt ? (
         <section className="exam-resume" aria-labelledby="exam-resume-title">
           <div>
             <p className="exam-kicker">Prova interrotta</p>
-            <h2 id="exam-resume-title">Riprendi da dove eri.</h2>
+            <h2 id="exam-resume-title">{differentActive ? "È in corso un’altra simulazione." : "Riprendi da dove eri."}</h2>
+            {openAttempt.simulationId && <p>{simulations.find((item) => item.id === openAttempt.simulationId)?.title ?? openAttempt.simulationId}</p>}
+            <DraftNotice reference={openAttempt} />
             <p>
               Il tempo continua a scorrere. Le risposte salvate restano
               disponibili sul servizio.
             </p>
           </div>
           <button className="button-primary" onClick={() => void reopen(openAttempt.id)}>
-            Riprendi la prova
+            {differentActive ? "Riprendi l’altra simulazione" : "Riprendi la prova"}
           </button>
         </section>
-      ) : listing?.pack ? (
+      ) : simulations.length > 0 || invalidSelection ? null : listing?.pack ? (
         <section className="exam-start" aria-labelledby="exam-start-title">
           <div>
             <p className="exam-kicker">{listing.pack.subtitle}</p>
@@ -505,16 +611,18 @@ export function Exam({ data }: { data: Workspace }) {
           </EmptyState>
         )
       )}
-      <ExamHistory attempts={listing?.attempts ?? []} onOpen={reopen} />
+      <ExamHistory attempts={listing?.attempts ?? []} simulations={simulations} onOpen={reopen} />
     </>
   );
 }
 
 function ExamHistory({
   attempts,
+  simulations,
   onOpen,
 }: {
   attempts: ExamSummary[];
+  simulations: Simulation[];
   onOpen: (id: string) => void;
 }) {
   if (attempts.length === 0)
@@ -533,6 +641,8 @@ function ExamHistory({
             <button onClick={() => onOpen(attempt.id)}>
               <span>
                 <strong>{statusLabel[attempt.status]}</strong>
+                {attempt.simulationId && <small>{simulations.find((item) => item.id === attempt.simulationId)?.title ?? attempt.simulationId}</small>}
+                {isDraft(attempt) && <small>DRAFT · riscontro di riferimento · approvazione umana non eseguita</small>}
                 <small>{dateLabel(attempt.startedAt)}</small>
               </span>
               <span className="exam-history-score">
@@ -598,6 +708,7 @@ function ExamRunner({
           <strong>{clock(remaining)}</strong>
         </div>
       </header>
+      <DraftNotice reference={exam} />
       <div className="exam-progress">
         <span>
           Domanda {current + 1} di {exam.questions.length}
@@ -772,6 +883,8 @@ function ExamResultView({
           omessa. Le spiegazioni restano disponibili qui.
         </p>
       </header>
+      <DraftNotice reference={exam} />
+      {isDraft(exam) && <p>Il punteggio confronta le risposte con il riferimento DRAFT.</p>}
       {result.validity && !result.validity.valid && (
         <div className="exam-invalid" role="alert">
           <strong>Prova non valida.</strong> La revisione scientifica di uno o
@@ -781,7 +894,7 @@ function ExamResultView({
       )}
       <section className="exam-score" aria-label="Esito della prova">
         <div>
-          <span>Punteggio</span>
+          <span>{isDraft(exam) ? "Punteggio di riferimento" : "Punteggio"}</span>
           <strong>{scoreLabel(result.scoreTenths)}</strong>
           <small>su 31,0</small>
         </div>
