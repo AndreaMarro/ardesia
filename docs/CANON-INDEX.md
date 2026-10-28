@@ -8,6 +8,8 @@ Questo indice ordina l'autorità dei documenti; non certifica il deploy corrente
 
 | Argomento | Documento di riferimento | Ambito |
 | --- | --- | --- |
+| Ricostruzione integrale storica della visione e requisiti | [Specifiche consolidate del 28 ottobre](product/ARDESIA_specifiche_integrali_ricostruite_2026-10-28.md) | Sintesi datata di PRD luglio, V4, chat/fonti disponibili e PR correnti al checkpoint. **Non sostituisce** questo indice, i canoni, il codice e i gate live; evitare di trattare proposte o PR aperte come funzioni rilasciate |
+| Atlante 36 modelli visuali e Lavagna W0 | [Indice modelli](design/visual-reference-library/README.md), [Atlante HTML con anteprime incorporate](design/visual-reference-library/ARDESIA_atlante_visivo_36_modelli_2026-10-28.html), [Criteri di accettazione](design/visual-reference-library/ACCEPTANCE.md) | Mockup del 27 ottobre con collegamenti a specifiche e prove richieste. **Non** attestano un runtime, approvazioni o installazioni plugin |
 | Identità e priorità di prodotto | [PRODUCT-CANON](PRODUCT-CANON.md), addendum 24 ottobre | Visione e decisioni; capacità non ancora integrate dichiarate come tali |
 | Core e confini provider | [ADR-0004](adr/ADR-0004-study-core-and-provider-boundaries.md) e [ARCHITECTURE-CANON](ARCHITECTURE-CANON.md), addendum | Dominio nel monorepo canonico; nessun secondo Core |
 | Storia, inventario, debito e prove | [Consegna di convergenza](deliveries/2026-10-24-convergence/README.md) | Snapshot fissato alla base e al diff dichiarati; mappa dei documenti richiesti dal mandato |
