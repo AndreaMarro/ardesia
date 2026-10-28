@@ -13,7 +13,7 @@ for (const width of [360, 390, 820, 1440]) {
     await page.goto("/esperienza/?percorso=fluidi-termodinamica");
     await expect(page).toHaveTitle(/Ardesia Fisica/);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Un tubo più largo.Che cosa cambia?");
-    await expect(page.getByRole("link", { name: "Chiedi disponibilità" })).toHaveAttribute("href", "/?percorso=fluidi-termodinamica#contatto");
+    await expect(page.getByRole("link", { name: "Apri il microcorso" })).toHaveAttribute("href", "/corsi/fluidi-termodinamica/");
     await expect(page.getByRole("textbox", { name: "Contatto sintetico" })).toHaveCount(0);
     await expect(page.getByRole("button", { name: /Accedi/ })).toHaveCount(0);
     await expect(page.getByTestId("physics-ratio")).toHaveCount(0);
@@ -91,9 +91,9 @@ for (const width of [360, 390, 820, 1440]) {
 
 test("public mount preserves course context, exact files and a closed static network policy", async ({ page, request }) => {
   await page.goto("/esperienza/?percorso=elettricita-magnetismo");
-  await expect(page.getByRole("link", {name: "Chiedi disponibilità"})).toHaveAttribute("href", "/?percorso=elettricita-magnetismo#contatto");
+  await expect(page.getByRole("link", {name: "Apri il microcorso"})).toHaveAttribute("href", "/corsi/elettricita-magnetismo/");
   await page.goto("/esperienza/?percorso=unknown");
-  await expect(page.getByRole("link", {name: "Chiedi disponibilità"})).toHaveAttribute("href", "/?percorso=fluidi-termodinamica#contatto");
+  await expect(page.getByRole("link", {name: "Apri il microcorso"})).toHaveAttribute("href", "/corsi/fluidi-termodinamica/");
   const home = await request.get("/esperienza/");
   expect(home.headers()["content-security-policy"]).toContain("connect-src 'none'");
   expect(home.headers()["content-security-policy"]).toContain("media-src 'self'");
@@ -136,4 +136,23 @@ test("mean-transport motion pauses exactly, resumes, and reset returns to an unr
   await expect(page.getByLabel("Grandezza fissata")).toHaveValue("pressure");
   await expect(page.getByTestId("physics-ratio")).toHaveCount(0);
   await expect(page.locator(".flow-tracer")).toHaveCount(0);
+});
+
+
+test("public entry exposes the four canonical microcourses without a fake registration", async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.goto("/esperienza/");
+  await expect(page.getByRole("heading", {name: "Quattro percorsi. Una fisica da capire."})).toBeVisible();
+  for (const [slug, title] of [
+    ["strumenti-meccanica", "Strumenti e meccanica"],
+    ["fluidi-termodinamica", "Fluidi e termodinamica"],
+    ["elettricita-magnetismo", "Elettricità e magnetismo"],
+    ["onde-ottica-radiazioni", "Onde, ottica e radiazioni"],
+  ]) {
+    const link = page.getByRole("link", {name: `Apri il percorso ${title}`});
+    await expect(link).toHaveAttribute("href", `/corsi/${slug}/`);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.getByRole("button", {name: /Iscriviti|Paga ora/})).toHaveCount(0);
+  await expect(page.getByText(/in revisione/).first()).toBeVisible();
 });

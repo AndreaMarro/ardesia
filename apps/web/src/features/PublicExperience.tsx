@@ -1,7 +1,9 @@
 import {PhysicsLab} from "../components/PhysicsLab";
 import {PublicHydrostaticLab} from "../components/PublicHydrostaticLab";
 import {PublicSpringLab} from "../components/PublicSpringLab";
-import {useState} from "react";
+import {lazy, Suspense, useState} from "react";
+
+const PublicCourseTeasers = lazy(() => import("./PublicCourseTeasers").then(module => ({default: module.PublicCourseTeasers})));
 import "./PublicExperience.css";
 
 const courseIds = ["strumenti-meccanica", "fluidi-termodinamica", "elettricita-magnetismo", "onde-ottica-radiazioni"];
@@ -18,7 +20,7 @@ export function PublicExperience() {
   });
   const requested = new URLSearchParams(location.search).get("percorso");
   const course = requested && courseIds.includes(requested) ? requested : model === "spring" ? "strumenti-meccanica" : "fluidi-termodinamica";
-  const contact = "/?" + new URLSearchParams({percorso: course}) + "#contatto";
+  const courseHref = `/corsi/${course}/`;
   function chooseExperiment(entry: (typeof experiments)[number]) {
     const url = new URL(location.href);
     url.searchParams.set("modello", entry.slug);
@@ -27,16 +29,19 @@ export function PublicExperience() {
   }
   return <div className="public-experience">
     <a className="skip-link" href="#esperimento">Vai all’esperimento</a>
-    <header className="experience-header"><a className="wordmark" href="/">ardesia.</a><a href={contact}>Torna al percorso</a></header>
-    <main id="esperimento" tabIndex={-1}>
+    <header className="experience-header"><a className="wordmark" href="/">ardesia.</a><a href="/corsi/">Quattro microcorsi</a></header>
+    <main>
       <div className="experience-heading"><p>Una lezione da provare</p><h1>{experiments.find(entry => entry.id === model)?.title}</h1><p>Prima un’idea, poi un esperimento. Tre piccoli modelli di Fisica per mettere alla prova il ragionamento: flusso, pressione e forze.</p></div>
-      <div className="experience-models" role="group" aria-label="Scegli un esperimento di Fisica">
+      <Suspense fallback={<div role="status" className="public-courses-loading">Apro i quattro microcorsi…</div>}>
+        <PublicCourseTeasers />
+      </Suspense>
+      <div id="esperimento" tabIndex={-1} className="experience-models" role="group" aria-label="Scegli un esperimento di Fisica">
         {experiments.map(entry => <button key={entry.id} aria-pressed={model === entry.id} onClick={() => chooseExperiment(entry)}>{entry.label}</button>)}
       </div>
       {model === "poiseuille" ? <PhysicsLab publicPreview numericPrediction publicPersistence /> : model === "hydrostatic" ? <PublicHydrostaticLab /> : <PublicSpringLab />}
-      <section className="experience-next"><div><h2>Riparti dal ragionamento.</h2><p>Questa demo esplora tre situazioni circoscritte. Nel mini-corso il tutor riprende i passaggi con te e propone una prova diversa.</p></div><a className="button-primary" href={contact}>Chiedi disponibilità</a></section>
+      <section className="experience-next"><div><h2>Riparti dal ragionamento.</h2><p>Questa demo esplora tre situazioni circoscritte. Nel mini-corso il tutor riprende i passaggi con te e propone una prova diversa.</p></div><a className="button-primary" href={courseHref}>Apri il microcorso</a></section>
       <p className="experience-disclosure">Demo pubblica · nessun account richiesto. Scenari originali DEMO, separati dalla banca di quesiti. I numeri sono verificati dal motore scientifico; l’approvazione editoriale umana è distinta. Il confronto non è un voto né una valutazione del tuo apprendimento. Puoi salvare facoltativamente una bozza solo in questo browser.</p>
     </main>
-    <footer><a href={contact}>Programma e informazioni sul percorso</a><span>Ardesia · uno spazio per capire.</span></footer>
+    <footer><a href="/corsi/">Tutti e quattro i microcorsi</a><span>Ardesia · uno spazio per capire.</span></footer>
   </div>;
 }
