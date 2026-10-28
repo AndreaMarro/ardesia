@@ -15,3 +15,136 @@
 @media (prefers-reduced-motion: reduce) {
   .public-spring-model * {animation: none !important; transition: none !important;}
 }
+
+
+/* One clear entry from the public physics experience into the four canonical microcourses. */
+.public-courses-entry {
+  margin: clamp(24px, 4vw, 60px) auto 38px;
+  max-width: 1216px;
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #f0f0e9;
+}
+.public-courses-loading {
+  padding: 28px;
+  min-height: 108px;
+  color: var(--muted);
+}
+.public-courses-intro {
+  display: flex;
+  gap: 28px;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+.public-courses-intro h2 {
+  font-size: clamp(27px, 3.2vw, 44px);
+  max-width: 22ch;
+  margin: 0 0 12px;
+}
+.public-courses-intro p:not(.public-courses-eyebrow) {
+  margin: 0;
+  max-width: 65ch;
+  color: var(--muted);
+}
+.public-courses-eyebrow {
+  font-size: 11px;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--action);
+  margin-bottom: 9px;
+}
+.public-courses-all {
+  flex-shrink: 0;
+  font-size: 14px;
+  min-height: 44px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  text-underline-offset: 4px;
+}
+.public-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.public-course-tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 263px;
+  border: 1px solid #dbdfd5;
+  border-radius: 12px;
+  padding: 22px 20px;
+  background: var(--surface);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.public-course-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(24, 46, 36, .07);
+}
+.public-course-tile-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+.public-course-tile-meta span:first-child {
+  font-weight: 700;
+  color: var(--action);
+}
+.public-course-tile h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(21px, 2vw, 27px);
+  line-height: 1.12;
+  letter-spacing: -.03em;
+  font-weight: 400;
+  margin-bottom: 13px;
+}
+.public-course-tile > p:not(.public-course-tile-meta) {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+.public-course-tile .public-course-tile-status {
+  font-size: 11px;
+}
+.public-course-tile > a {
+  margin-top: auto;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  color: var(--action);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 650;
+}
+.public-course-tile > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 1100px) {
+  .public-courses-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .public-course-tile { min-height: 225px; }
+}
+@media (max-width: 620px) {
+  .public-courses-entry { padding: 16px; margin: 20px 0 30px; }
+  .public-courses-intro { display: block; }
+  .public-courses-all { margin-top: 13px; }
+  .public-courses-grid { grid-template-columns: 1fr; }
+  .public-course-tile { min-height: 0; }
+  .public-course-tile-meta { margin-bottom: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-course-tile { transition: none; }
+  .public-course-tile:hover { transform: none; }
+}

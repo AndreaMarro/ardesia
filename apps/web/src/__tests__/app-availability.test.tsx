@@ -68,7 +68,7 @@ test.each(["initial", "after retry"])("an anonymous 401 %s preserves the public 
   const login = await screen.findByRole("button", { name: "Accedi al tuo spazio" });
   expect(screen.queryByRole("heading", { name: /Il Core/ })).toBeNull();
   expect(screen.queryByRole("dialog")).toBeNull();
-  expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(true);
+  await waitFor(() => expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(true));
   expect(fetch.mock.calls.some(([path]) => path.startsWith("/study/editions?"))).toBe(false);
   fireEvent.click(login);
   await screen.findByRole("dialog", { name: "Ritrova il tuo spazio." });
