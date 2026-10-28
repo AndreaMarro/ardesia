@@ -26,7 +26,11 @@ import { isReplayView } from "./store/isReplayView"
 import ReplayView from "./ReplayView"
 import EmptyState from "./design/EmptyState"
 // Generic dispatch has no bundled simulator registration side effects.
-import { normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import {registerFluidThermoTool,createFluidThermoEmbed} from "../plugins/fluid-thermo/register"
+import {labDefinitions,defaultParameters} from "../plugins/fluid-thermo/definitions"
+import type {LabId} from "../plugins/fluid-thermo/types"
+import {createPluginWindowInsertRequest,buildDefaultPluginWindowCatalog,pluginMountedEventFromInsertRequest} from "./design/pluginWindowCatalog"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
@@ -43,6 +47,9 @@ import { LessonLibraryState, sceneWithLibrary, snapshotLibraryItems } from "./wh
 import { validateLibraryLesson } from "./whiteboard-library/libraryImport"
 import type { RoomInkAdapter } from "./collaboration-v2/RoomCollaboration"
 import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types"
+
+// Explicit first-party bootstrap uses the existing deny-by-default registry.
+registerFluidThermoTool()
 
 const RoomCollaboration = lazy(() => import("./collaboration-v2/RoomCollaboration").then(module => ({ default: module.RoomCollaboration })))
 const MathComposer = lazy(() => import("./MathComposer"))
@@ -151,6 +158,7 @@ export default function Room({
   const [storeMode, setStoreMode] = useState<StorageMode>("localStorage")
   /** Hamburger menu mobile */
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scienceOpen,setScienceOpen]=useState(false),[scienceModel,setScienceModel]=useState<LabId>("hydrostatic")
   /** Nome lezione (da meta.json) — null = non ancora caricato */
   const [lessonName, setLessonName] = useState<string | null>(null)
   /** Stato rename inline */
@@ -865,6 +873,20 @@ export default function Room({
     apiRef.current.updateScene({ elements: [...apiRef.current.getSceneElements(), ...els] })
   }
 
+  function insertScientificLaboratory() {
+    const api=apiRef.current
+    if(!api||studentView)return
+    const current=api.getSceneElements()
+    const inserted=buildSimulationInsert(current,"io.ardesia.fluid-thermo")
+    if(!inserted){setStorageError("Laboratorio non disponibile.");return}
+    const embed=createFluidThermoEmbed(inserted.embedId,{schemaVersion:1,modelId:scienceModel,modelVersion:1,parameters:defaultParameters(scienceModel)})
+    const elements=convertToExcalidrawElements([embed as any])
+    api.updateScene({elements:[...current,...elements],appState:{selectedElementIds:{[inserted.embedId]:true}}})
+    const item=buildDefaultPluginWindowCatalog().find(p=>p.pluginId==="io.ardesia.fluid-thermo")
+    if(item){const event=pluginMountedEventFromInsertRequest(createPluginWindowInsertRequest(item),{instanceId:inserted.embedId,elementId:inserted.embedId,room,t:Date.now()});void lessonOsRef.current?.store?.append(event).catch(()=>setStorageError("Laboratorio inserito; registrazione evento non confermata."))}
+    setScienceOpen(false);setMenuOpen(false);fitBoardContent()
+  }
+
   async function insertMath(latex: string) {
     if (mathInsertPendingRef.current) throw new Error("Attendi l'inserimento della formula in corso.")
     mathInsertPendingRef.current = true
@@ -1112,6 +1134,7 @@ export default function Room({
             />
           )}
           {!studentView && <button type="button" className="st-ghost" aria-label="Apri raccolta della lezione" onClick={() => { apiRef.current?.toggleSidebar({ name: "default", tab: "library" }); setMenuOpen(false) }}>raccolta</button>}
+          {!studentView&&<button type="button" className="st-ghost" aria-expanded={scienceOpen} onClick={()=>setScienceOpen(v=>!v)}>laboratori</button>}
           <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
@@ -1122,6 +1145,7 @@ export default function Room({
       </header>
       )}
 
+      {!studentView&&scienceOpen&&<section className="st-science-authoring" aria-label="Inserisci un laboratorio scientifico"><label>Fenomeno<select value={scienceModel} onChange={e=>setScienceModel(e.target.value as LabId)}>{labDefinitions.map(l=><option key={l.id} value={l.id}>{l.title}</option>)}</select></label><button type="button" onClick={insertScientificLaboratory}>Inserisci nella lezione</button><button type="button" onClick={()=>setScienceOpen(false)}>Chiudi laboratori</button><p>Configura dati e preset nella lavagna. Lo stato segue il salvataggio e la cronologia della lezione.</p></section>}
       {!studentView && sessionAudio && <LessonPassageAuthor key={sessionAudio.identity.sessionId} recorder={sessionAudio} store={actualStore} onAnnotate={annotatePassage} selectedObjects={selectedObjects} onLinkSelection={linkSelectedPassage} onFit={fitBoardContent} onAddMoment={addLessonMoment} />}
 
       {/* Drawer lezioni */}
