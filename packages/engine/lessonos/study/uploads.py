@@ -82,11 +82,19 @@ def recover_uploads(store, blobs, *, limit=100):
         raise StudyError('forbidden', 403)
     if type(limit) is not int or not 1 <= limit <= 1000:
         raise StudyError('invalid_recovery_limit')
-    rows = store.connection.execute("SELECT id FROM study_upload_intents WHERE state='cleanup_required' OR (state='pending' AND expires_at<=?) ORDER BY created_at,id LIMIT ?", (store.clock(), limit)).fetchall()
+    # A remote operator transport can enumerate candidates and execute the same
+    # locked protocol inside the provider worker. Never split a DB lock and
+    # privileged deletion across processes. Ordinary stores keep the local path.
+    candidates = getattr(store, 'upload_recovery_candidates', None)
+    rows = candidates(limit) if candidates is not None else store.connection.execute(
+        "SELECT id FROM study_upload_intents WHERE state='cleanup_required' OR (state='pending' AND expires_at<=?) ORDER BY created_at,id LIMIT ?",
+        (store.clock(), limit)).fetchall()
+    atomic_recover = getattr(blobs, 'recover_upload_intent', None)
     result = {'cleaned': 0, 'failed': 0, 'skipped': 0}
     for row in rows:
         try:
-            result['cleaned' if _clean(store, blobs, row['id']) else 'skipped'] += 1
+            cleaned = atomic_recover(row['id']) if atomic_recover is not None else _clean(store, blobs, row['id'])
+            result['cleaned' if cleaned else 'skipped'] += 1
         except Exception:
             result['failed'] += 1
     return result
