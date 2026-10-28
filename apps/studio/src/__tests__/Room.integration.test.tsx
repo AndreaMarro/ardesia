@@ -2632,7 +2632,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     }
   })
 
-  it.each(["continuita", "replay"])("il cambio superficie %s attende il journal e conserva l'ultimo evento prima della route", async (surface) => {
+  it.each(["continuita", "replay", "materiali"])("il cambio superficie %s attende il journal e conserva l'ultimo evento prima della route", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()
@@ -2675,7 +2675,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       allowWrite.resolve()
       await vi.waitFor(() => {
         expect(navigate).toHaveBeenCalledWith(
-          `/?vista=${surface}#test-room-1`,
+          `/?vista=${surface === "materiali" ? "lezioni-salvate" : surface}#test-room-1`,
         )
       })
       const journal = await store.read(roomPaths("test-room-1").journal)
@@ -2713,7 +2713,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 
-  it.each(["continuita", "replay"])("un errore scena annulla il cambio superficie %s invece di navigare con dati persi", async (surface) => {
+  it.each(["continuita", "replay", "materiali"])("un errore scena annulla il cambio superficie %s invece di navigare con dati persi", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     vi.spyOn(store, "saveScene").mockRejectedValue(new Error("scene offline"))
@@ -2742,7 +2742,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 
-  it.each(["continuita", "replay"])("un flush sospeso scade senza cambiare route e libera il cambio superficie %s", async (surface) => {
+  it.each(["continuita", "replay", "materiali"])("un flush sospeso scade senza cambiare route e libera il cambio superficie %s", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()

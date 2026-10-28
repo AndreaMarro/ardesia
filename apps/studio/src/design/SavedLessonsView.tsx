@@ -5,6 +5,7 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react"
 import ViewNav from "./ViewNav"
 import EmptyState from "./EmptyState"
+import { studioHref } from "../store/studioLocation"
 import { workspaceStore, type WorkspaceStore } from "../store/WorkspaceStore"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import type { EnvelopeEventLogStore, EventLogStore } from "../lessonos/eventlog"
@@ -21,6 +22,7 @@ type MaterialsStore = Pick<
   | "init"
   | "connectFolder"
   | "exportLesson"
+  | "previewLessonBlob"
   | "previewLessonBlobForRoom"
   | "importLessonBlobForRoom"
   | "recoverPendingLessonImport"
@@ -102,6 +104,9 @@ export default function SavedLessonsView({
   const [message, setMessage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const operationActive = useRef(false)
+  const originalFileInput = useRef<HTMLInputElement>(null)
+  const [importTarget, setImportTarget] = useState<"current" | "original">("current")
+  const [openedLesson, setOpenedLesson] = useState<string | null>(null)
 
   useEffect(() => {
     if (room === null) return
@@ -147,12 +152,23 @@ export default function SavedLessonsView({
     }
   }
 
-  const previewFile = async (file: File, legacyClaim?: Readonly<{ userConfirmed: true }>) => {
-    if (room === null) return
+  const previewFile = async (
+    file: File,
+    legacyClaim?: Readonly<{ userConfirmed: true }>,
+    target: "current" | "original" = "current",
+  ) => {
+    if (room === null || operationActive.current) return
+    setImportTarget(target)
+    setOpenedLesson(null)
     setSelectedFile(file)
     setPreview(null)
     await run("preview", async () => {
-      const next = await store.previewLessonBlobForRoom(file, room, legacyClaim)
+      const next = target === "original"
+        ? await store.previewLessonBlob(file)
+        : await store.previewLessonBlobForRoom(file, room, legacyClaim)
+      if (target === "original" && next.identity.kind !== "embedded") {
+        throw new Error("Il bundle non contiene un’identità di lezione verificabile. Per un bundle legacy, usa il ripristino nella lezione corrente con assegnazione esplicita.")
+      }
       setPreview(next)
       setMessage(next.commitReady
         ? "Bundle verificato. Il commit richiede una conferma separata."
@@ -160,10 +176,10 @@ export default function SavedLessonsView({
     })
   }
 
-  const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFile = (event: ChangeEvent<HTMLInputElement>, target: "current" | "original" = "current") => {
     const file = event.currentTarget.files?.[0]
     event.currentTarget.value = ""
-    if (file) void previewFile(file)
+    if (file) void previewFile(file, undefined, target)
   }
 
   const handleExport = () => {
@@ -181,6 +197,9 @@ export default function SavedLessonsView({
         throw new Error("Cartella non collegata: selezione annullata o browser non supportato.")
       }
       setMode(store.mode)
+      setPreview(null)
+      setSelectedFile(null)
+      setOpenedLesson(null)
       setMessage("Cartella locale collegata.")
     })
   }
@@ -193,21 +212,23 @@ export default function SavedLessonsView({
       preview?.commitReady !== true ||
       preview.identity.kind === "unassigned"
     ) return
+    const targetRoom = importTarget === "original" ? preview.identity.lessonId : room
     void run("commit", async () => {
       const result = preview.identity.kind === "claimed"
         ? await store.importLessonBlobForRoom(
           selectedFile,
-          room,
+          targetRoom,
           eventLog,
           { userConfirmed: true },
         )
-        : await store.importLessonBlobForRoom(selectedFile, room, eventLog)
+        : await store.importLessonBlobForRoom(selectedFile, targetRoom, eventLog)
       const outcome = restoreMessage(result.lessonOsRestore)
       if (resultFailed(result)) {
         setError(outcome)
         return
       }
       setMessage(outcome)
+      if (importTarget === "original") setOpenedLesson(targetRoom)
       setPreview(null)
       setSelectedFile(null)
     })
@@ -222,6 +243,8 @@ export default function SavedLessonsView({
       }
       const next = room === null
         ? null
+        : importTarget === "original"
+        ? await store.previewLessonBlob(selectedFile)
         : await store.previewLessonBlobForRoom(
           selectedFile,
           room,
@@ -292,15 +315,32 @@ export default function SavedLessonsView({
                     accept=".lesson,application/zip"
                     aria-label="Seleziona bundle .lesson"
                     disabled={busy !== null || eventLog === null}
-                    onChange={handleFile}
+                    onChange={(event) => handleFile(event)}
                   />
                 </label>
+                <button
+                  type="button"
+                  className="st-ghost"
+                  disabled={busy !== null || eventLog === null}
+                  onClick={() => originalFileInput.current?.click()}
+                >Apri lezione salvata</button>
+                <input
+                  ref={originalFileInput}
+                  type="file"
+                  hidden
+                  accept=".lesson,application/zip"
+                  aria-label="Seleziona lezione salvata da aprire"
+                  disabled={busy !== null || eventLog === null}
+                  onChange={(event) => handleFile(event, "original")}
+                />
               </div>
+              <p style={mutedStyle}>Seleziona un bundle per ripristinare la lezione corrente, oppure apri una lezione salvata mantenendo la sua identità originale.</p>
             </section>
 
             {preview !== null && (
               <section style={cardStyle} aria-labelledby="materials-preview-title">
-                <h2 id="materials-preview-title" style={titleStyle}>Anteprima import</h2>
+                <h2 id="materials-preview-title" style={titleStyle}>{importTarget === "original" ? "Anteprima lezione salvata" : "Anteprima import"}</h2>
+                {importTarget === "original" && <p style={mutedStyle}>L’import usa l’identità originale indicata sotto. Controlla i file che verranno creati o sostituiti prima di confermare.</p>}
                 <dl style={factsStyle}>
                   <div><dt style={termStyle}>Identità</dt><dd style={valueStyle}>{identityLabel(preview)}</dd></div>
                   <div><dt style={termStyle}>LessonOS</dt><dd style={valueStyle}>{preview.lessonOs}</dd></div>
@@ -365,15 +405,22 @@ export default function SavedLessonsView({
                     }
                     onClick={handleCommit}
                   >
-                    {busy === "commit" ? "Importo…" : "Importa il bundle"}
+                    {busy === "commit" ? "Importo…" : importTarget === "original" ? "Conferma import nella lezione originale" : "Importa il bundle"}
                   </button>
-                  <span style={mutedStyle}>Il preview non modifica la lezione.</span>
+                  <button type="button" className="st-ghost" disabled={busy !== null} onClick={() => {
+                    setPreview(null)
+                    setSelectedFile(null)
+                    setMessage(null)
+                    setError(null)
+                  }}>Annulla import</button>
+                  <span style={mutedStyle}>L’anteprima non modifica la lezione.</span>
                 </div>
               </section>
             )}
 
             {error !== null && <p role="alert" style={errorStyle}>{error}</p>}
             {message !== null && <p role="status" style={messageStyle}>{message}</p>}
+            {openedLesson !== null && <a className="st-primary" href={studioHref(`#${encodeURIComponent(openedLesson)}`)}>Apri la lezione importata</a>}
           </div>
         )}
       </main>
