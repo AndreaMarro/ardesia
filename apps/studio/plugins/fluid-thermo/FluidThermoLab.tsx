@@ -10,6 +10,13 @@ import './fluid-thermo.css';
 const Scene = lazy(()=>import('./LabScene3D').then(m=>({default:m.LabScene3D})));
 const fmt=(n:number)=>n.toLocaleString('it-IT',{maximumSignificantDigits:6,useGrouping:false});
 const choices:Record<string,string[]>={path:['Isoterma reversibile','Isobara reversibile','Isocora reversibile','Adiabatica reversibile','Libera espansione isolata'],topology:['Resistenze in serie','Resistenze in parallelo'],boundary:['Differenza di pressione fissata','Portata fissata'],surfaceMode:['Capillare','Goccia sferica · una interfaccia','Bolla saponosa · due interfacce']};
+const inactiveParameterNote='Valore archiviato non utilizzato come parametro indipendente dal vincolo selezionato.';
+// Presentation only: preserve archived/raw values and the evaluator's validation.
+function inactiveParameter(modelId:LabId,key:string,parameters:Record<string,string|number>):boolean{
+  if(modelId==='process')return (key==='volume2'&&Number(parameters.path)===2)||(key==='temperature2K'&&Number(parameters.path)!==2);
+  if(modelId==='poiseuille')return (key==='flowRate'&&Number(parameters.boundary)===0)||(key==='pressureDifference'&&Number(parameters.boundary)===1);
+  return modelId==='capillary'&&Number(parameters.surfaceMode)!==0&&['contactAngleDeg','density','gravity'].includes(key);
+}
 class SceneBoundary extends Component<{children:ReactNode;onUnavailable:()=>void},{failed:boolean}>{
   state={failed:false};
   static getDerivedStateFromError(){return {failed:true};}
@@ -45,6 +52,7 @@ export function FluidThermoLab(props:FluidThermoLabProps){
 }
 function LabReadonlyView({snapshot}:{snapshot:LabSnapshot}){
   const [view,setView]=useState(snapshot.view);
+  const instance=useId();
   const definition=getLab(snapshot.configuration.modelId),parameters=snapshot.configuration.parameters;
   const result=useMemo(()=>evaluateLab(definition.id,parameters),[definition.id,parameters]);
   return <section className="fluid-thermo" aria-label="Laboratorio registrato · sola lettura" data-lab-id={definition.id}>
@@ -58,7 +66,7 @@ function LabReadonlyView({snapshot}:{snapshot:LabSnapshot}){
       <div className="ft-observation"><span>Risultati ricalcolati dai parametri registrati</span><strong>{fmt(result.primary.value)} <small>{result.primary.unit}</small></strong><p>{result.primary.label}</p><p>Il confronto originale non è conservato nello snapshot. Questi risultati non attestano un confronto o una valutazione svolti durante la lezione.</p></div>
       {result.warnings.map(w=><p className="ft-warning" key={w}>{w}</p>)}
     </div><div className="ft-controls"><h4>Dati registrati del sistema</h4>
-      <dl>{definition.parameters.map(field=><div className="ft-parameter" key={field.key}><dt>{field.label} [{field.unit}]</dt><dd aria-label={`${field.label} [${field.unit}]`}>{choices[field.key]?.[parameters[field.key]]??String(parameters[field.key])}</dd></div>)}</dl>
+      <dl>{definition.parameters.map(field=>{const inactive=inactiveParameter(definition.id,field.key,parameters),noteId=instance+'-'+field.key+'-inactive';return <div className="ft-parameter" key={field.key}><dt>{field.label} [{field.unit}]</dt><dd aria-label={`${field.label} [${field.unit}]`} aria-describedby={inactive?noteId:undefined}>{choices[field.key]?.[parameters[field.key]]??String(parameters[field.key])}</dd>{inactive&&<dd id={noteId} style={{gridColumn:'1 / -1',fontSize:'.85em'}}>{inactiveParameterNote}</dd>}</div>;})}</dl>
       <h4>Previsione registrata</h4><p style={{whiteSpace:'pre-wrap'}}>{snapshot.prediction||'Nessuna previsione registrata.'}</p>
       <h4>Osservazioni registrate</h4><p style={{whiteSpace:'pre-wrap'}}>{snapshot.note||'Nessuna osservazione registrata.'}</p>
       <p>Aiuti indicati nello snapshot: {snapshot.supportUsed.length?snapshot.supportUsed.map(kind=>kind==='model'?'modello':'suggerimento').join(', '):'nessuno indicato'}. Questo dato non attesta autonomia.</p>
@@ -123,10 +131,10 @@ function LabWorkspace({initial,onSnapshotChange,onInteraction,onSave,allowModelS
       </>:<div className="ft-invalid" role="alert">{current.error}<p>Correggi il valore per riprendere il confronto.</p></div>}
       {revealed&&current.result?.warnings.map(w=><p className="ft-warning" key={w}>{w}</p>)}
     </div><div className="ft-controls"><h4>Dati del sistema</h4>
-      {definition.parameters.map(field=>{const inactive=definition.id==='process'&&((field.key==='volume2'&&Number(values.path)===2)||(field.key==='temperature2K'&&Number(values.path)!==2));
+      {definition.parameters.map(field=>{const inactive=inactiveParameter(definition.id,field.key,values),disabled=definition.id==='process'&&inactive,noteId=instance+'-'+field.key+'-inactive';
         return <div className={'ft-parameter'+(choices[field.key]?' ft-choice':'')} key={field.key}><label htmlFor={instance+'-'+field.key}>{field.label} <span>[{field.unit}]</span></label>
-        {choices[field.key]?<select id={instance+'-'+field.key} value={values[field.key]} onChange={e=>parameter(field.key,e.target.value)}>{choices[field.key].map((label,i)=><option value={i} key={i}>{label}</option>)}</select>:<><input id={instance+'-'+field.key} type="number" disabled={inactive} min={field.min} max={field.max} step="any" value={values[field.key]??''} onChange={e=>parameter(field.key,e.target.value)}/>
-        <input type="range" disabled={inactive} aria-label={field.label+' · cursore'} min={field.min} max={field.max} step={field.step} value={Number(values[field.key])||field.min} onChange={e=>parameter(field.key,e.target.value)}/></>}</div>;})}
+        {choices[field.key]?<select id={instance+'-'+field.key} value={values[field.key]} onChange={e=>parameter(field.key,e.target.value)}>{choices[field.key].map((label,i)=><option value={i} key={i}>{label}</option>)}</select>:<><input id={instance+'-'+field.key} type="number" disabled={disabled} aria-describedby={inactive?noteId:undefined} min={field.min} max={field.max} step="any" value={values[field.key]??''} onChange={e=>parameter(field.key,e.target.value)}/>
+        <input type="range" disabled={disabled} aria-describedby={inactive?noteId:undefined} aria-label={field.label+' · cursore'} min={field.min} max={field.max} step={field.step} value={Number(values[field.key])||field.min} onChange={e=>parameter(field.key,e.target.value)}/></>}{inactive&&<small id={noteId} style={{gridColumn:'1 / -1'}}>{inactiveParameterNote}</small>}</div>;})}
       <label>Scenario riproducibile<select value="" onChange={e=>{const preset=definition.presets.find(p=>p.id===e.target.value);if(preset)apply({...snapshot,configuration:{...snapshot.configuration,parameters:{...defaultParameters(definition.id),...preset.parameters}},prediction:'',supportUsed:[]},'preset');}}><option value="">Scegli un confronto…</option>{definition.presets.map(p=><option key={p.id} value={p.id}>{p.title}</option>)}</select></label>
       <form onSubmit={e=>{e.preventDefault();if(current.result&&snapshot.prediction.trim()){setRevealed(true);update(snapshot,'compare');}}}>
         <label>La tua previsione<input maxLength={200} value={snapshot.prediction} onChange={e=>{setRevealed(false);update({...snapshot,prediction:e.target.value},'prediction');}} placeholder="Che cosa cambierà? In quale direzione?"/></label>

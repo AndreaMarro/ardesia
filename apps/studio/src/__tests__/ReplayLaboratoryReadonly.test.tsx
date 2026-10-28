@@ -14,6 +14,8 @@ import { renderToolCanvasEmbeddable } from '../toolhost/ToolCanvasEmbeddable'
 import { createFluidThermoEmbed, registerFluidThermoTool } from '../../plugins/fluid-thermo/register'
 import { FluidThermoLab } from '../../plugins/fluid-thermo/FluidThermoLab'
 import { newLabSnapshot } from '../../plugins/fluid-thermo/snapshot'
+import { getLab } from '../../plugins/fluid-thermo/definitions'
+import type { LabId } from '../../plugins/fluid-thermo/types'
 import { EMBED_DATA_KEY } from '../toolhost/caps/board'
 import { buildDefaultPluginWindowCatalog, createPluginWindowInsertRequest } from '../design/pluginWindowCatalog'
 import { createPostitFromPluginWindowInsert } from '../design/multiPostitWorkbenchModel'
@@ -208,4 +210,79 @@ it.each(['null', 'throw'] as const)('makes a readonly renderer returning %s unav
   render(renderToolCanvasEmbeddable({ id: 'exact', link: 'maestro-tool://org.test.readonly/exact' }, undefined, { readOnly: true }))
   expect(screen.getByRole('alert').textContent).toContain('non disponibile')
   expect(mutable).not.toHaveBeenCalled()
+})
+
+
+const inactiveCases: [LabId, string, number, string[]][] = [
+  ['poiseuille', 'boundary', 0, ['flowRate']],
+  ['poiseuille', 'boundary', 1, ['pressureDifference']],
+  ['capillary', 'surfaceMode', 0, []],
+  ['capillary', 'surfaceMode', 1, ['contactAngleDeg', 'density', 'gravity']],
+  ['capillary', 'surfaceMode', 2, ['contactAngleDeg', 'density', 'gravity']],
+  ...[0, 1, 2, 3, 4].map(path => ['process', 'path', path, [path === 2 ? 'volume2' : 'temperature2K']] as [LabId, string, number, string[]]),
+]
+it.each(inactiveCases)('distinguishes archived inactive parameters from independent data in %s %s=%s', (modelId, mode, value, inactive) => {
+  const snapshot = newLabSnapshot(modelId)
+  snapshot.configuration.parameters[mode] = value
+  if (modelId === 'process' && value === 2) snapshot.configuration.parameters.volume2 = snapshot.configuration.parameters.volume1
+  freeze(snapshot)
+  const before = JSON.stringify(snapshot), change = vi.fn(), interaction = vi.fn(), save = vi.fn()
+  render(<FluidThermoLab readOnly initialSnapshot={snapshot} onSnapshotChange={change} onInteraction={interaction} onSave={save} />)
+  const lab = readonlyLab()
+  for (const field of getLab(modelId).parameters) {
+    const archived = within(lab).getByLabelText(`${field.label} [${field.unit}]`)
+    const marker = within(archived.parentElement!).queryByText('Valore archiviato non utilizzato come parametro indipendente dal vincolo selezionato.')
+    expect(Boolean(marker)).toBe(inactive.includes(field.key))
+    if (inactive.includes(field.key)) {
+      expect(archived.textContent).toBe(String(snapshot.configuration.parameters[field.key]))
+      expect(archived.getAttribute('aria-describedby')).toBe(marker!.id)
+    }
+  }
+  if (modelId === 'poiseuille') {
+    expect(within(lab).getByLabelText('Differenza di pressione imposta [Pa]').textContent).toBe('100')
+    expect(within(lab).getByLabelText('Portata imposta [m³/s]').textContent).toBe('1e-7')
+    const table = within(lab).getByRole('table', { name: 'Misure ricalcolate' })
+    const row = within(table).getByRole('row', { name: value === 0 ? /Portata volumetrica/ : /Differenza di pressione/ })
+    const expected = value === 0 ? Math.PI * .001 ** 4 * 100 / (8 * .001 * .5) : 1e-7 * 8 * .001 * .5 / (Math.PI * .001 ** 4)
+    expect(within(row).getByRole('cell', { name: expected.toLocaleString('it-IT', { maximumSignificantDigits: 6, useGrouping: false }) })).toBeTruthy()
+  }
+  expect(JSON.stringify(snapshot)).toBe(before)
+  expect(change).not.toHaveBeenCalled(); expect(interaction).not.toHaveBeenCalled(); expect(save).not.toHaveBeenCalled()
+})
+
+it.each(inactiveCases)('shares the same inactive presentation in the draft controls for %s %s=%s', (modelId, mode, value, inactive) => {
+  const snapshot = newLabSnapshot(modelId)
+  snapshot.configuration.parameters[mode] = value
+  if (modelId === 'process' && value === 2) snapshot.configuration.parameters.volume2 = snapshot.configuration.parameters.volume1
+  render(<FluidThermoLab initialSnapshot={snapshot} />)
+  for (const field of getLab(modelId).parameters) {
+    const input = screen.getByRole(field.key === mode || field.key === 'path' || field.key === 'boundary' || field.key === 'surfaceMode' ? 'combobox' : 'spinbutton', { name: `${field.label} [${field.unit}]` }) as HTMLInputElement
+    expect(input.disabled).toBe(modelId === 'process' && inactive.includes(field.key))
+    expect(Boolean(within(input.parentElement!).queryByText('Valore archiviato non utilizzato come parametro indipendente dal vincolo selezionato.'))).toBe(inactive.includes(field.key))
+  }
+})
+
+
+it.each([
+  ['poiseuille', 'boundary', 0, 1, 'pressureDifference', 100],
+  ['poiseuille', 'boundary', 1, 0, 'flowRate', 1e-7],
+  ['capillary', 'surfaceMode', 0, 1, 'contactAngleDeg', 30],
+  ['capillary', 'surfaceMode', 0, 2, 'density', 1000],
+  ['capillary', 'surfaceMode', 0, 1, 'gravity', 9.81],
+] as [LabId, string, number, number, string, number][])('recovers an empty raw %s parameter after changing %s without disabling it', (modelId, mode, from, to, key, restored) => {
+  const snapshot = newLabSnapshot(modelId), change = vi.fn()
+  snapshot.configuration.parameters[mode] = from
+  render(<FluidThermoLab initialSnapshot={snapshot} onSnapshotChange={change} />)
+  const definition = getLab(modelId), field = definition.parameters.find(field => field.key === key)!, modeField = definition.parameters.find(field => field.key === mode)!
+  const input = screen.getByRole('spinbutton', { name: `${field.label} [${field.unit}]` }) as HTMLInputElement
+  fireEvent.change(input, { target: { value: '' } })
+  fireEvent.change(screen.getByRole('combobox', { name: `${modeField.label} [${modeField.unit}]` }), { target: { value: to } })
+  expect(screen.getByRole('alert').textContent).toContain('Completa tutti i parametri')
+  expect(input.disabled).toBe(false); expect(input.value).toBe('')
+  expect(within(input.parentElement!).getByText('Valore archiviato non utilizzato come parametro indipendente dal vincolo selezionato.')).toBeTruthy()
+  expect(change).not.toHaveBeenCalled()
+  fireEvent.change(input, { target: { value: String(restored) } })
+  expect(screen.queryByRole('alert')).toBeNull()
+  const emitted = change.mock.lastCall![0]
+  expect(emitted.configuration.parameters).toEqual({ ...snapshot.configuration.parameters, [mode]: to, [key]: restored })
 })
