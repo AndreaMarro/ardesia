@@ -116,3 +116,15 @@ test("a private course deep link opens login without requesting a public offerin
   await screen.findByRole("dialog", { name: "Ritrova il tuo spazio." });
   expect(location.search).toContain("edition=private-fluidi");
 });
+
+test("a private view after session teardown opens login without requesting a public offering", async () => {
+  history.replaceState(null, "", "/?view=today");
+  const fetch = service(anonymous);
+  render(<App />);
+  await screen.findByRole("heading", { name: "Ritrova il tuo corso." });
+  expect(fetch.mock.calls.map(([path]) => path)).toEqual(["/study/me"]);
+  fireEvent.click(screen.getByRole("button", { name: "Accedi al tuo spazio" }));
+  await screen.findByRole("dialog", { name: "Ritrova il tuo spazio." });
+  expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(false);
+  expect(location.search).toBe("?view=today");
+});

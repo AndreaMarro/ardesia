@@ -323,7 +323,7 @@ export default function App() {
       ) : (
         <>
           <Public
-            privateEntry={new URLSearchParams(location.search).has('edition')}
+            privateEntry={new URLSearchParams(location.search).has('edition')||new URLSearchParams(location.search).has('view')}
             onLogin={() => {
               setLoginTrigger(document.activeElement as HTMLElement);
               setLoginOpen(true);
