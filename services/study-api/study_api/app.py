@@ -1,4 +1,4 @@
-"""Loopback-only synthetic M1 adapter. No production authentication claims."""
+"""Shared synthetic Core adapter; loopback default, explicit remote acceptance."""
 import json,sqlite3,os
 from contextlib import asynccontextmanager
 import math
@@ -8,7 +8,9 @@ from pathlib import Path
 from fastapi import Request, Response, Depends, Query
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
+from fastapi.exceptions import RequestValidationError
+from fastapi.exception_handlers import request_validation_exception_handler
 from lessonos.study.models import StudyError
 from lessonos.study.store import StudyStore, MAX_EDITION_CURSOR_LENGTH
 from lessonos.study import portable as notebook_portable
@@ -16,6 +18,11 @@ from lessonos.study import portable as notebook_portable
 
 class SessionBody(BaseModel):
     token: str = Field(min_length=1, max_length=8192)
+
+
+class PasswordBody(BaseModel):
+    email: str = Field(min_length=3, max_length=320)
+    password: SecretStr = Field(min_length=1, max_length=1024)
 
 
 class ResourceBody(BaseModel):
@@ -36,6 +43,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         raise ValueError('invalid_store_admission')
     from .body_admission import BodyBudgetFastAPI, body_limit, boundary_error, validate_body_admission
     validate_body_admission(request_body_budget, request_body_wait)
+    controlled_remote = bool(getattr(runtime, 'controlled_remote', False))
+    if controlled_remote and not secure_cookies:
+        raise ValueError('remote_secure_cookies_required')
+    request_boundary = runtime.boundary_error if controlled_remote else boundary_error
     from lessonos.study.operations import resume_erasures
     startup_error=None
     if runtime is None:
@@ -66,7 +77,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     app = BodyBudgetFastAPI(title='Ardesia Study — synthetic M1', version='0.1.0',
                             body_budget=request_body_budget, body_wait=request_body_wait,
-                            busy_response=busy_response)
+                            busy_response=busy_response, boundary=request_boundary)
+
+    if controlled_remote:
+        @app.exception_handler(RequestValidationError)
+        async def safe_credential_validation(request, exc):
+            if request.url.path == '/study/session/login':
+                return JSONResponse({'error':'invalid_credentials'}, status_code=422)
+            return await request_validation_exception_handler(request, exc)
 
     @app.exception_handler(StudyError)
     async def domain_error(request, exc):
@@ -93,7 +111,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
             return JSONResponse({'error':'storage_unavailable'},status_code=503)
 
     @asynccontextmanager
-    async def admitted_store(token=''):
+    async def admitted_store(token='', *, token_provider=None):
         # Admission precedes remote Auth, DB opening and worker dispatch. This
         # is a per-app scope bound, independent of the ordinary worker budget.
         try:
@@ -103,6 +121,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
             raise StudyError('server_busy',503) from None
         try:
             def open_store():
+                nonlocal token
+                if token_provider is not None:token = token_provider()
                 if startup_error is not None:raise StudyError(*startup_error)
                 return runtime.open(token) if runtime else StudyStore(db_path,check_same_thread=False,initialize=False)
             # Shields surround ownership transfer and disposal separately;
@@ -140,7 +160,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
-        denied = boundary_error(request.scope)
+        denied = request_boundary(request.scope)
         if denied:
             return JSONResponse({'error':denied}, status_code=403)
         if request.method not in ('GET','HEAD','OPTIONS'):
@@ -153,7 +173,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
                 data.extend(chunk)
                 if len(data)>limit:return JSONResponse({'error':'notebook_budget_exceeded' if notebook_inspect else 'payload_too_large'},status_code=413)
             request._body=bytes(data)
-            if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
+            if (request.url.path in ('/study/session','/study/invitations/accept','/study/interests')
+                    or controlled_remote and request.url.path == '/study/session/login'):
                 try:allowed,retry=await allow_attempt(request)
                 except StudyError as error:
                     logout_intent=request.method=='DELETE' and request.url.path=='/study/session'
@@ -206,9 +227,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.get('/study/health')
     async def health():
-        return {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16],
+        result = {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16],
             'persistence':'postgres' if runtime else 'sqlite','authentication':'supabase' if runtime else 'synthetic_session',
             'capabilities':{'invitationCodes':runtime is None}}
+        if controlled_remote:
+            result['capabilities']['passwordLogin'] = True
+            result.update(mode=runtime.mode, syntheticOnly=True, releaseSha=runtime.release_sha,
+                          productionReady=False)
+        return result
 
     @app.get('/study/ops/health')
     def readiness(request: Request, store=Depends(store_dependency)):
@@ -232,6 +258,21 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         token = store.issue_session(principal)
         response.set_cookie('study_session', token, max_age=3600, **cookie_options)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
+
+    if controlled_remote:
+        @app.post('/study/session/login')
+        async def password_session(body: PasswordBody, response: Response):
+            token = ''
+            def password_token():
+                nonlocal token
+                token = runtime.password_token(body.email, body.password.get_secret_value())
+                return token
+            # Capacity is reserved before password Auth, GET user and DB open.
+            # An old rejected cookie cannot replace this explicit credential.
+            async with admitted_store(token_provider=password_token) as store:
+                principal = await run_in_threadpool(runtime.principal, store)
+            response.set_cookie('study_session', token, max_age=3600, **cookie_options)
+            return {'id':principal.id,'role':principal.role,'synthetic':True,'authentication':'supabase'}
 
     @app.post('/study/invitations/accept')
     def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
