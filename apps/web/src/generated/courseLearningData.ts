@@ -7180,7 +7180,7 @@ export const courseLearningData = {
       "packRef": {
         "packId": "sf-fluidi-termodinamica-v1",
         "packVersion": 1,
-        "packSha256": "22b8c73df53cabfc59163c02cc58104c7ab16c16471bcc3cc9766e662b0de5f6"
+        "packSha256": "dec46e2117ae9896b8c59ccef3f27d3e7487d4dec9c5af60684ef792c4dc04de"
       },
       "title": "Fluidi e termodinamica",
       "unitIds": [
@@ -7636,10 +7636,10 @@ export const courseLearningData = {
             "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
             "steps": [
               "Isola il volume: V=nRT/p.",
-              "Il numeratore vale 1·8,31446261815324·300=2494,2 J.",
-              "V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L."
+              "Il numeratore vale nRT=1·8,31446261815324·300=2494,338785445972 J.",
+              "V=nRT/p≈0,02494338785446 m³, cioè circa 24,943388 L."
             ],
-            "answerDisplay": "V=0,02494338785446 m³."
+            "answerDisplay": "V≈0,02494338785446 m³."
           },
           "practice": {
             "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
@@ -7748,7 +7748,7 @@ export const courseLearningData = {
           "recap": [
             "pV=nRT richiede unità coerenti e temperatura assoluta."
           ],
-          "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,2 J. V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L. Risultato: V=0,02494338785446 m³.",
+          "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale nRT=1·8,31446261815324·300=2494,338785445972 J. V=nRT/p≈0,02494338785446 m³, cioè circa 24,943388 L. Risultato: V≈0,02494338785446 m³.",
           "scientificEvidence": [
             "pV=nRT richiede unità coerenti e temperatura assoluta.",
             "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
@@ -7760,7 +7760,7 @@ export const courseLearningData = {
           "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
           "releaseScope": "PUBLIC_DEMONSTRATION",
           "activityId": "ideal-gas-v1",
-          "authorCorrection": "2026-10-28 CHAT1B: corrected display 0,02494338785446 m³ = 24,943388 L; no human approval.",
+          "authorCorrection": "2026-10-28 CHAT1B: nRT=2494,338785445972 J; volume conversion and approximation signs made consistent. No human approval.",
           "provenanceRef": {
             "authorRole": "DeepSeek content session",
             "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
@@ -7772,7 +7772,7 @@ export const courseLearningData = {
           "lessonRef": {
             "id": "original-demo-u5-01",
             "version": 1,
-            "sha256": "747f0a01e1aa7675546ffe9ed63119c7454dd7dc8d79898c1895fffca8d90382"
+            "sha256": "789e6d724dfda834ace9182e185a27e5ac865d61f16e4e1c99cf93aaa0204172"
           },
           "modelCases": [
             {
