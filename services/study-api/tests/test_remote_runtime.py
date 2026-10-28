@@ -229,6 +229,7 @@ def test_password_result_passes_real_user_verification_then_existing_postgres_se
                      {'auth_user_id': '00000000-0000-0000-0000-000000000001',
                       'auth_session_id': '00000000-0000-0000-0000-000000000002'}]
     assert isinstance(result.blobs, SupabaseBlobs)
+    assert result.synthetic_acceptance is True
 
 
 @pytest.mark.parametrize('token,response', [

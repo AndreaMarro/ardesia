@@ -98,6 +98,13 @@ class RemoteSupabaseRuntime(SupabaseRuntime):
         self.data_directory = Path(data_directory)
         self._opener = urllib.request.build_opener(_NoRedirect())
 
+    def open(self, token=''):
+        store = super().open(token)
+        # Trusted server configuration only: browser bodies/claims cannot opt
+        # an ordinary runtime into synthetic draft lesson acceptance.
+        store.synthetic_acceptance = self.mode == MODE
+        return store
+
     def boundary_error(self, scope):
         headers = Headers(scope=scope)
         hosts = headers.getlist('host')
