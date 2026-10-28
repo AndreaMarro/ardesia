@@ -14,7 +14,24 @@ CONTENT = ROOT / 'packages/engine/lessonos/study/content'
 def read(path):
     return json.loads(path.read_text())
 
+def acceptance_ready(row):
+    acceptance = row['acceptance']
+    if any(acceptance.get(field) != 'PASS' for field in ('scientificReview', 'interactionTest', 'humanReview')):
+        return False
+    evidence = acceptance.get('evidenceResults', {})
+    return all(evidence.get(name, {}).get('result') == 'PASS'
+               and evidence[name].get('reference')
+               and evidence[name].get('revisionSha256')
+               for name in acceptance['requiredEvidence'])
+
 class ScienceContractTest(unittest.TestCase):
+    def test_fail_or_missing_review_cannot_be_accepted(self):
+        row = {'acceptance': {'scientificReview': 'NOT_RUN', 'interactionTest': 'PASS', 'humanReview': 'FAIL', 'requiredEvidence': ['exact_revision_review']}}
+        self.assertFalse(acceptance_ready(row))
+        row['acceptance'].update(scientificReview='PASS', humanReview='PASS')
+        self.assertFalse(acceptance_ready(row))
+        row['acceptance']['evidenceResults'] = {'exact_revision_review': {'result': 'PASS', 'reference': 'review-record', 'revisionSha256': 'a' * 64}}
+        self.assertTrue(acceptance_ready(row))
     def test_exact_57_canonical_targets_have_resolving_references(self):
         matrix = read(DOC / 'coverage-matrix.json')
         baseline = read(CONTENT / 'physics-curriculum-2026-v1.json')
@@ -35,13 +52,14 @@ class ScienceContractTest(unittest.TestCase):
             self.assertIn(row['transfer']['lessonId'], lessons)
             self.assertTrue(row['prerequisites'])
             self.assertTrue(row['typicalError']['correction'])
+            self.assertTrue(row['typicalError']['misconception'])
+            self.assertEqual(row['typicalError']['recovery']['lessonId'], row['explanation']['lessonId'])
             self.assertGreaterEqual(len(row['acceptance']['requiredEvidence']), 7)
             self.assertIn(row['status'], ['DRAFT', 'VALIDATED_TECHNICALLY', 'REVIEWED_HUMAN', 'ACCEPTED'])
         self.assertEqual(matrix['acceptedCount'], sum(r['status'] == 'ACCEPTED' for r in matrix['rows']))
         for row in matrix['rows']:
             if row['status'] == 'ACCEPTED':
-                self.assertEqual(row['acceptance']['interactionTest'], 'PASS')
-                self.assertNotEqual(row['acceptance']['humanReview'], 'NOT_RUN')
+                self.assertTrue(acceptance_ready(row))
 
     def test_ten_labs_have_testable_controls_limits_and_followup(self):
         labs = read(DOC / 'laboratory-specifications.json')['labs']
