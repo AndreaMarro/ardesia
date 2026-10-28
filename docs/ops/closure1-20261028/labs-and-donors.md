@@ -1,20 +1,26 @@
 # Laboratori e donor — registro 1C
 
-Fotografia del 2026-10-28T11:08:57+00:00; base HEAD `97ad038332e012a97ce7b26a79a273dd38307825` con implementazione root concorrente nel working tree. **Stato: NON_DONE**. Questo registro documenta provenienza e accettazione; non pubblica lezioni e non attribuisce voti. Il JSON adiacente conserva i digest dei file letti e i dettagli per modello.
+Fotografia aggiornata al 2026-10-28T11:52:52+00:00; HEAD codice `55123ab3755e2a2268a98cbae54c67ca15fb1891` verificata localmente, CI attiva comunicata dal root; Web ancora in corso alla fotografia. **Stato: NON_DONE**. Questo registro documenta provenienza e accettazione; non pubblica lezioni e non attribuisce voti. Il JSON distingue la HEAD corrente, i digest storici e le prove riferite a `3ba428ce`.
 
 Sono presenti 16 modelli originali e 32 preset, con 48 collegamenti a 45 atomici distinti. `definitions.ts` e `fluid_catalog.json` concordano sugli ID. Le indagini REA funzionali sono **12**, con **65 azioni dichiarate** (incluse attese esplicite), **77 stati iniziali/step** e **155 controlli di integrità**. I tentativi aggiuntivi falliti non aumentano il conteggio. Le assimilazioni accettate sono **0**: le 14 corrispondenze sotto sono `PENDING_CONSUMER_ACCEPTANCE`.
 
 ## Stato delle prove
 
-| Prova | Esito riferito alla fotografia | Limite |
+| Prova | Esito e SHA | Limite |
 | --- | --- | --- |
-| Numerica, snapshot e geometria locale | 29 PASS, log `vitest-models.log`, ore 11:32:15 | Prova storica precedente agli ultimi cambiamenti; non certifica il working tree corrente. |
-| Suite combinata UI | 49 PASS, 1 FAIL sul lazy import 3D | Correzione da rieseguire e verificare dal root. |
-| CI HEAD `97ad0383` | Web e Studio SUCCESS; Engine 5 FAIL; API 6 FAIL | Cinque hash attesi obsoleti; API anche cardinalità 4 contro 20. Fix non ancora certificati qui. |
-| Browser Ardesia | NOT_PASS | Rilevati problemi di stato e WebGL/StrictMode; correzioni in corso. Nessuna scena 3D o dispositivo dichiarato PASS. |
-| Consumer Core/lezioni | PENDING_1A / PENDING_CONSUMER_ACCEPTANCE | ID di lezione dalla mappa 1B; route pubblicate e prova save/reopen ancora mancanti. |
+| Web modello/UI locale | 69 PASS, riferiti dal root alla HEAD `55123ab3` | Include anti-leak sui 16 modelli e profilo Poiseuille; non è un esito CI o consumer Core. |
+| Python fluidi/runtime identity | 47 PASS, riferiti dal root alla HEAD `55123ab3` | Nessuna suite rieseguita da questo worker. |
+| Typecheck Web | PASS, comunicato dal root sulla HEAD `55123ab3` | Separato da build e CI. |
+| Review tecnica mirata | Nessun ulteriore P1/P2 comunicato dopo le correzioni | Non è approvazione umana. |
+| Review indipendente 1B | 54/54 PASS sulla SHA esatta `55123ab3755e2a2268a98cbae54c67ca15fb1891` | Rerun in copia minimale non cloud comunicato da 1B al root; verifica scientifica, non browser o approvazione umana. |
+| CI `3ba428ce` storica | Engine, API, Studio ed e2e SUCCESS; Web FAILURE per proiezione pubblica STALE | `publicPreviewData` e `courseLearningData` poi rigenerati; 1A deve rigenerare dopo tutti i merge. |
+| CI `55123ab3` alla fotografia | Engine, API, Studio, MCP, hygiene ed e2e SUCCESS; **Web IN_PROGRESS** | Stato verificato e comunicato dal root; nessun esito Web o verde complessivo anticipato. |
+| Browser del componente `3ba428ce` | 16 manipolazioni 2D e 8 scene WebGL2 tramite SwiftShader; camera, fallback/context loss, tastiera e viewport verificati | Harness locale; non GPU fisica, tablet fisico, Safari, lezione pubblicata o persistenza Core. Precede il fix anti-leak successivo. |
+| Consumer Core/lezioni | PENDING_1A / PENDING_CONSUMER_ACCEPTANCE | Preview integrata, route esatte e prova save/reopen ancora mancanti. |
 
-I log privati e i loro SHA256 sono nel JSON. La CI della HEAD storica non trasferisce il proprio esito ai byte modificati. La mappa 1B è stata letta con digest; è una review del source, non un’accettazione di tutti i sotto-obiettivi. Gli atomici definitivi qui sotto provengono dal catalogo attuale.
+Il rapporto browser letto è `outputs/laboratori-20261028/report.json`; il diagnostico dei tempi è `work/feedback-measurement.json`. Il JSON adiacente conserva i digest e i manifest sorgente. Le prove locali 69/47/typecheck e la review finale sono documentate in `outputs/validation-55123ab3.json`, letto con digest: è una **trascrizione** dei risultati tool completati, non un raw log inventato; gli originali restano nella history del root. Sessioni: 17515, 69 PASS in 4.04 s; 82716, 47 PASS in 8.69 s; 46934, typecheck exit 0. Il check della proiezione `courseLearningData` è PASS sulla stessa HEAD, con rigenerazione integrata ancora richiesta. Questo worker non ha eseguito test, typecheck o build. I vecchi log `vitest-ui-final.log` e `typecheck-web-final.log` sono iCloud `compressed,dataless` e non sono stati idratati.
+
+I precedenti 29 PASS, 49 PASS/1 FAIL e i fallimenti CI `97ad0383` restano nel JSON come storia, senza descrivere lo stato finale. I verdi CI e browser `3ba428ce` non vengono trasferiti alla HEAD successiva o al merge tree. La mappa 1B è una review del source, non un’accettazione di tutti i sotto-obiettivi; gli atomici definitivi restano quelli di definitions/catalog.
 
 ## Contratto e consumer
 
@@ -22,26 +28,28 @@ Un solo plugin: `io.ardesia.fluid-thermo` versione `1.0.0`, modello/versione con
 
 Consumer condiviso `apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx`; confine Web `apps/web/src/features/science-library/FluidThermoActivity.tsx`; registrazione Studio `apps/studio/plugins/fluid-thermo/register.tsx`. La presenza di questi confini non prova il montaggio nelle lezioni. Installazioni, wrapper e re-export non sono assimilazioni scientifiche.
 
+Il fix anti-leak della HEAD `55123ab3` nasconde misure, etichette risolte e grafici quantitativi 2D fino a previsione e confronto esplicito. La modifica di previsione o parametri azzera il confronto; il profilo e i vettori di Poiseuille sono inclusi. Le regressioni locali finali coprono tutti i 16 modelli. Il confronto numerico non attribuisce un voto né certifica da solo un tentativo autonomo.
+
 ## Matrice dei 16 modelli
 
-Tutte le righe restano **NON_DONE**. `3D candidata` indica un flag di catalogo e un’implementazione da verificare, non una scena già accettata. La vista 2D e i dati equivalenti usano lo stesso risultato analitico.
+Tutte le righe restano **NON_DONE**. `3D software (3ba)` indica una scena WebGL2 osservata nel componente locale sulla SHA `3ba428ce`, non un’accettazione hardware o Core. La vista 2D e i dati equivalenti usano lo stesso risultato analitico; il fix anti-leak `55123ab3` è successivo alla prova browser.
 
 | Modello / activityId | Atomici definitivi | Viste | Lezione proposta da 1B | REA di comportamento |
 | --- | --- | --- | --- | --- |
 | `manometer` / `manometer-lab-v1` | U3-02.06 | 2D | ds-2026-u3-02 | C1 |
 | `hydrostatic` / `hydrostatic-lab-v1` | U3-02.01, U3-01.02 | 2D | ds-2026-u3-02 | C1 |
-| `pascal` / `pascal-lab-v1` | U3-02.02 | 2D + 3D candidata | ds-2026-u3-02 | Nessun nuovo donor runtime |
-| `buoyancy` / `buoyancy-lab-v1` | U3-02.03, U3-02.04 | 2D + 3D candidata | ds-2026-u3-02 | C3 |
-| `continuity` / `continuity-lab-v1` | U3-03.01, U3-03.04 | 2D + 3D candidata | ds-2026-u3-03 | C4 |
-| `venturi` / `venturi-lab-v1` | U3-03.04, U3-03.05 | 2D + 3D candidata | ds-2026-u3-03 | C4, C5 |
-| `poiseuille` / `poiseuille-lab-v1` | U3-04.01, U3-04.02, U3-04.03, U3-04.04 | 2D + 3D candidata | ds-2026-u3-04 | C6 |
+| `pascal` / `pascal-lab-v1` | U3-02.02 | 2D + 3D software (3ba) | ds-2026-u3-02 | Nessun nuovo donor runtime |
+| `buoyancy` / `buoyancy-lab-v1` | U3-02.03, U3-02.04 | 2D + 3D software (3ba) | ds-2026-u3-02 | C3 |
+| `continuity` / `continuity-lab-v1` | U3-03.01, U3-03.04 | 2D + 3D software (3ba) | ds-2026-u3-03 | C4 |
+| `venturi` / `venturi-lab-v1` | U3-03.04, U3-03.05 | 2D + 3D software (3ba) | ds-2026-u3-03 | C4, C5 |
+| `poiseuille` / `poiseuille-lab-v1` | U3-04.01, U3-04.02, U3-04.03, U3-04.04 | 2D + 3D software (3ba) | ds-2026-u3-04 | C6 |
 | `hydraulic-network` / `hydraulic-network-lab-v1` | U3-04.05 | 2D | ds-2026-u3-04 | C7 |
-| `capillary` / `capillary-lab-v1` | U3-05.01, U3-05.03, U3-05.04, U3-05.05 | 2D + 3D candidata | ds-2026-u3-05 | Nessun nuovo donor runtime |
-| `ideal-gas` / `ideal-gas-lab-v1` | U5-01.02, U5-01.04, U5-01.05 | 2D + 3D candidata | ds-2026-u5-01 | C9 |
+| `capillary` / `capillary-lab-v1` | U3-05.01, U3-05.03, U3-05.04, U3-05.05 | 2D + 3D software (3ba) | ds-2026-u3-05 | Nessun nuovo donor runtime |
+| `ideal-gas` / `ideal-gas-lab-v1` | U5-01.02, U5-01.04, U5-01.05 | 2D + 3D software (3ba) | ds-2026-u5-01 | C9 |
 | `calorimetry` / `calorimetry-lab-v1` | U5-02.01, U5-02.02, U5-02.03, U5-02.07 | 2D | ds-2026-u5-02 | C10 |
 | `phase-change` / `phase-change-lab-v1` | U5-02.05, U5-02.06 | 2D | ds-2026-u5-02 | C11 |
 | `heat-transfer` / `heat-transfer-lab-v1` | U5-03.01, U5-03.02, U5-03.03 | 2D | ds-2026-u5-03 | C12 |
-| `process` / `process-lab-v1` | U5-02.04, U5-04.01, U5-04.02, U5-04.03, U5-04.04, U5-04.05, U5-04.06, U5-04.07, U5-04.08, U5-05.02, U5-05.06 | 2D + 3D candidata | ds-2026-u5-04 | C9 |
+| `process` / `process-lab-v1` | U5-02.04, U5-04.01, U5-04.02, U5-04.03, U5-04.04, U5-04.05, U5-04.06, U5-04.07, U5-04.08, U5-05.02, U5-05.06 | 2D + 3D software (3ba) | ds-2026-u5-04 | C9 |
 | `carnot` / `carnot-lab-v1` | U5-05.03, U5-05.04, U5-05.05 | 2D | ds-2026-u5-05 | C15 |
 | `entropy` / `entropy-lab-v1` | U5-05.02, U5-05.06, U5-05.08 | 2D | ds-2026-u5-05 | C16 |
 
@@ -111,7 +119,7 @@ Con TH=650 K e TC=350 K la modalità “heat pump” del donor mostra Qc/|W|=1.1
 
 Sono riusati `assets/scientific3d/calibrated-vessel.glb` (29,116 byte, 704 triangoli) e `piston-cylinder.glb` (39,240 byte, 1,156 triangoli), con digest e provenienza S16 nel JSON e nel manifest originale. Nessuna texture o risorsa esterna. La trasformazione nel renderer usa unità di scena normalizzate: le graduazioni sono illustrative, non misure in ml della geometria trasformata; i vettori hanno scala relativa.
 
-Per il pistone, `sceneGeometry.ts` mantiene altezza lineare con il volume e posizione coerente fra S16 e geometria parametrica. S16 è usato solo nella corsa geometrica dichiarata; fuori corsa resta la geometria originale parametrica. Il test delle coordinate non sostituisce la prova visuale. Otto modelli dichiarano una vista 3D: almeno cinque scene utili e i relativi fallback devono ancora essere accettati dal root. GPU, tablet e dispositivo fisico restano NOT_RUN.
+Per il pistone, `sceneGeometry.ts` mantiene altezza lineare con il volume e posizione coerente fra S16 e geometria parametrica. S16 è usato solo nella corsa geometrica dichiarata; fuori corsa resta la geometria originale parametrica. Il test delle coordinate non sostituisce la prova visuale. Otto scene hanno creato WebGL2 effettivo tramite SwiftShader nel componente locale su `3ba428ce`, con camera e conservazione della bozza in fallback/context loss. Questa prova non certifica la HEAD successiva, GPU fisica, tablet fisico, Safari o consumer Core. Tali verifiche restano NOT_RUN/PENDING secondo il proprio ambito.
 
 ## Diritti e fonti primarie
 
@@ -131,6 +139,8 @@ I GLB originali sono regolati da `assets/scientific3d/RIGHTS.md`: `LicenseRef-Ar
 
 Somma delle durate REA delle 12 catture accettate: **270,061 ms (270.061 s)**. La somma dei wall time CLI disponibili è **263.000 s su 11 scope**; C1 non ha quel dato. Sono orologi e coperture diversi, quindi non si sommano tra loro. A parte: discovery PhET fallita 532.848 s; primo C4 fallito 36.552 s di wall time CLI. Il tempo totale di indagine e il costo controfattuale rimangono **UNKNOWN**. Queste misure includono navigazione/artefatti e non misurano la reattività di Ardesia.
 
-p95 dei controlli Ardesia, fps desktop/tablet e prestazioni su hardware: **NOT_RUN**. Beneficio didattico e risparmio controfattuale: **NOT_MEASURED / UNKNOWN**.
+Il rapporto browser su `3ba428ce` misura **270.4 ms p95 input→frame, 20 campioni** nel componente. Il diagnostico successivo misura **0.2 ms p95 modello, 100 campioni**, **17.8 ms p95 input→commit DOM, 20 campioni** e **280.1 ms p95 input→frame, 20 campioni**. Host: **8 GiB RAM, 8 CPU**, load average **74.94** nella prima finestra (59.06 e 60.49 nelle altre). Il diagnostico non pinna una SHA nel JSON: non è una prova esatta della HEAD finale.
 
-Restano: prove verdi delle correzioni sulla nuova SHA; verifica reale delle scene e del fallback; route 1A esatte e save/reopen nel Core; accettazione di almeno otto corrispondenze visibili; CI e merge tree coerenti. Questo worker si ferma ai due registri assegnati e non avvia nuovi donor.
+Il target visivo di **100 ms non è raggiunto nelle misure e non è attestato su hardware**. Modello e commit DOM non sostituiscono il tempo al frame; il carico alto descrive l’ambiente, senza rendere superato il target. p95 dell’intero prodotto, fps desktop/tablet, GPU/tablet fisici e Safari restano **NOT_RUN / NON ATTESTATI**. Beneficio didattico e risparmio controfattuale: **NOT_MEASURED / UNKNOWN**.
+
+Restano: conclusione Web CI della HEAD `55123ab3` e verifica del merge tree; preview integrata e route Core esatte da 1A con save/reopen e isolamento; misure proporzionate del target visivo; accettazione di almeno otto corrispondenze sul consumer reale. 1A deve rigenerare le proiezioni pubbliche e `courseLearningData` dopo tutti i merge. Le 14 assimilazioni rimangono `PENDING_CONSUMER_ACCEPTANCE` e il lavoro `NON_DONE`. Questo worker si ferma ai due registri assegnati, senza nuovi donor, commit, test o build.
