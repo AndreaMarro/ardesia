@@ -23029,7 +23029,7 @@ export const courseLearningData = {
   ],
   "bankIncluded": false,
   "coreSourcesSha256": {
-    "activities.py": "cc6bd930284544bcd8cb43328b14769f1c6e642efa7eef1e55bfc111e7a375bb",
+    "activities.py": "eff472dbc567ba258499452283eeeef2154213f92a76027d55dfd2421a82639c",
     "catalog.py": "a690c9a85b486a9d6be72b19cdb754aaaa8ad08c9933c1ab77881df7fd9a17d0",
     "four_courses.py": "1ad437e3ebe54c1da38174fbef9cdb2553830f8ce84c7127049f5728fa4831fe",
     "course_models.py": "4a93deaca52bb36f7d6eb08a1f1360e4f860580ebaf121f6340b638fa92988fe",
