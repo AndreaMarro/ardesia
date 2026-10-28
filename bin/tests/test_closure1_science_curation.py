@@ -64,6 +64,8 @@ class CurationTest(unittest.TestCase):
             self.assertTrue(all(qs[i]['descriptors']['scope']=='syllabus_core' for i in ids))
             self.assertEqual(sum(qs[i]['taxonomy']['unitId']=='U3' for i in ids),15)
             self.assertEqual(sum(qs[i]['taxonomy']['unitId']=='U5' for i in ids),16)
+            self.assertEqual({r['objectiveIds'][0].split('.')[0] for r in refs},
+                             {'U3-01','U3-02','U3-03','U3-04','U3-05','U5-01','U5-02','U5-03','U5-04','U5-05'})
             self.assertEqual(sim['scoring'],{'correct':1,'incorrect':-0.1,'omitted':0})
         self.assertFalse(sets[0]&sets[1])
 

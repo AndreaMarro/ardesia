@@ -3,13 +3,18 @@
   "owner": "CHAT 1B",
   "reviewedImplementation": {
     "pullRequest": 331,
-    "scope": "Source inspection of the exact file blobs listed; browser NOT_RUN by 1B",
+    "scope": "Exact Git source inspection and54 independent numerical/domain checks by1B; browser NOT_RUN by1B. Human review NOT_RUN.",
     "branch": "codex/closure1c-labs-20261028",
     "sourceBlobShas": {
-      "definitions.ts": "48f82be327541ab99bb587b4aabbf9acf6c6793f",
-      "models.ts": "610647974a5307fb1d43c0b23af54565031bf282",
-      "fluid_models.py": "5f1821cc51a848bcfe76794ddede2264fdc47a89"
-    }
+      "fluid_catalog.json": "e023d921478b7967bddfa7314eafae39e7abb801",
+      "fluid_catalog.py": "07094e46e1991acf984500ea23d8995701f3f8b0",
+      "fluid_models.py": "30f1a6fdc682d7560e9cfcc177411ca96a2b84a2",
+      "definitions.ts": "efe663cebaf3ef6c002bd80103c5837156f8668b",
+      "models.ts": "6b416568a0ced8141895d46d2d18ea882d222a7a"
+    },
+    "commit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+    "numericalEvidence": "laboratory-independent-validation.json",
+    "humanReview": "NOT_RUN"
   },
   "mappings": [
     {
@@ -23,7 +28,7 @@
         "U3-02.06"
       ],
       "limitation": "Segno e dislivello; barometro di Torricelli non implementato.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "hydrostatic",
@@ -37,7 +42,7 @@
         "U3-01.02"
       ],
       "limitation": "Profondità e pressione; forma del recipiente non è un parametro.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "pascal",
@@ -50,7 +55,7 @@
         "U3-02.02"
       ],
       "limitation": "Forza e corsa relative; nessun lavoro creato.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "buoyancy",
@@ -64,7 +69,7 @@
         "U3-02.04"
       ],
       "limitation": "Immersione imposta separata da equilibrio libero.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "continuity",
@@ -78,7 +83,7 @@
         "U3-03.04"
       ],
       "limitation": "Velocità medie, portata fissata; non profilo locale.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "venturi",
@@ -92,7 +97,7 @@
         "U3-03.05"
       ],
       "limitation": "Ideale con quota; applicazione biologica discussa nella lezione.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "poiseuille",
@@ -108,7 +113,7 @@
         "U3-04.04"
       ],
       "limitation": "Vincoli Δp o Q, gradiente da interpretare nel profilo.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "hydraulic-network",
@@ -121,7 +126,7 @@
         "U3-04.05"
       ],
       "limitation": "Due resistenze lineari; chiusura ramo e pompa Q non ancora dichiarate.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "capillary",
@@ -136,8 +141,8 @@
         "U3-05.04",
         "U3-05.05"
       ],
-      "limitation": "Quantitativo con legge fornita; gamma dipende dal modello. Grafico da limitare al dominio Bond.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "limitation": "Quantitativo con legge fornita; geometrie capillare/goccia/bolla distinte. La curva capillare resta nel dominio Bond≤0,25. Nessuna dinamica di bagnamento.",
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "ideal-gas",
@@ -152,7 +157,7 @@
         "U5-01.05"
       ],
       "limitation": "Equazione di stato; nessuna storia di Q o W dedotta dal punto finale.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "calorimetry",
@@ -168,7 +173,7 @@
         "U5-02.07"
       ],
       "limitation": "Due corpi senza fase né recipiente; estensione recipiente svolta nella lezione.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "phase-change",
@@ -181,8 +186,8 @@
         "U5-02.05",
         "U5-02.06"
       ],
-      "limitation": "Ghiaccio, fusione e acqua fino a100°C; condensazione ed evaporazione discusse nei testi, non simulate.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "limitation": "Ghiaccio, fusione e acqua fino a 100°C; condensazione ed evaporazione discusse nei testi, non simulate.",
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "heat-transfer",
@@ -197,27 +202,31 @@
         "U5-03.03"
       ],
       "limitation": "Tre configurazioni distinte, non sommare automaticamente le tre potenze.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "process",
       "capabilityId": "process-lab-v1",
       "laboratorySpecId": "lab-spec-u5-04",
       "lessonIds": [
-        "ds-2026-u5-04"
+        "ds-2026-u5-04",
+        "ds-2026-u5-05"
       ],
       "objectiveIds": [
         "U5-02.04",
         "U5-04.01",
         "U5-04.02",
         "U5-04.03",
+        "U5-04.04",
         "U5-04.05",
         "U5-04.06",
         "U5-04.07",
-        "U5-04.08"
+        "U5-04.08",
+        "U5-05.02",
+        "U5-05.06"
       ],
-      "limitation": "Quattro trasformazioni reversibili; libera espansione e altri irreversibili esclusi.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "limitation": "Quattro cammini reversibili e libera espansione isolata ideale. Il caso irreversibile mostra solo gli stati iniziale e finale di equilibrio separati; nessun cammino p–V intermedio né area di lavoro inventata. Isocora vincola V₂=V₁.",
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "carnot",
@@ -232,7 +241,7 @@
         "U5-05.05"
       ],
       "limitation": "Ciclo reversibile costruito; confronto con macchina irreversibile nei problemi.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     },
     {
       "labId": "entropy",
@@ -247,14 +256,15 @@
         "U5-05.08"
       ],
       "limitation": "Due corpi finiti; statistica dei microstati discussa nel testo, non simulata.",
-      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; CONSUMER_BROWSER_PENDING"
     }
   ],
   "unimplementedSpecifications": [
     "Direct density/force-area laboratory in lab-spec-u3-01",
     "Barometer-specific interaction",
-    "Free expansion path comparison without fictitious intermediate states",
     "Explicit microstate counting model"
   ],
-  "acceptance": "No objective ACCEPTED by this mapping; IDs do not certify all subtargets of a family."
+  "acceptance": "No objective ACCEPTED by this mapping; IDs do not certify all subtargets of a family.",
+  "mappedAtomicObjectiveCount": 45,
+  "objectiveLinkCount": 48
 }

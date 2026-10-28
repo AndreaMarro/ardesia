@@ -9,10 +9,10 @@ Data: 28 ottobre 2026. La selezione riusa esclusivamente `physics-semestre-2026-
 | Quesiti a scelta multipla | 120 | Cinque alternative; chiavi e distrattori simbolici controllati nei campioni |
 | Concettuali/compiti individuali | 39 | Esaminati separatamente dai modelli numerici con review AI |
 | Problemi svolti selezionati | 40 | Quaranta lawFamily distinte, tutte le dieci famiglie didattiche presenti; soluzioni e passaggi già nella banca |
-| Simulazioni tematiche | 2 | 31 quesiti disgiunti ciascuna:21 scelta multipla + 10 completamento, 50 min;15 U3 + 16 U5; 31 lawFamily distinte per simulazione |
+| Simulazioni tematiche | 2 | 31 quesiti disgiunti ciascuna:21 scelta multipla + 10 completamento, 50 min;15 U3 + 16 U5; 31 lawFamily distinte e tutte le dieci famiglie didattiche per simulazione |
 | Prove atomiche del corso | 57 | Rubrica e transfer specifico della tranche lezioni; non sommate ai 199 per gonfiare il conteggio |
 
-La difficoltà editoriale della selezione è:112 base, 5 facili, 80 medie, 2 difficili. Non è una calibrazione empirica. La progressione passa da calcolo/concetto a inversi e confronti di processi; le etichette non attestano risultati con studenti. I modelli quantitativi che eccedono il nucleo esplicito sono distinti come `PROVIDED_LAW_EXTENSION`; non entrano nelle simulazioni selezionate. Le simulazioni seguono il formato MUR2026/27 ma sono U3/U5: non rappresentano la distribuzione dell’intera prova nazionale.
+La difficoltà editoriale della selezione è:112 base, 5 facili, 80 medie, 2 difficili. Non è una calibrazione empirica. La progressione passa da calcolo/concetto a inversi e confronti di processi; le etichette non attestano risultati con studenti. I modelli quantitativi che eccedono il nucleo esplicito sono distinti come `PROVIDED_LAW_EXTENSION`; non entrano nelle simulazioni selezionate. Un test di copertura ha rilevato che la selezione iniziale privilegiava le prime unità: il campionamento è stato corretto e ora ogni simulazione rappresenta tutte le dieci famiglie. Le simulazioni seguono il formato MUR2026/27 ma sono U3/U5: non rappresentano la distribuzione dell’intera prova nazionale.
 
 ## Oracoli e controprove
 

@@ -99,10 +99,10 @@
         "prompt": "Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V.",
         "steps": [
           "Isola il volume: V=nRT/p.",
-          "Il numeratore vale 1·8,31446261815324·300=2494,2 J.",
-          "V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L."
+          "Il numeratore vale nRT=1·8,31446261815324·300=2494,338785445972 J.",
+          "V=nRT/p≈0,02494338785446 m³, cioè circa 24,943388 L."
         ],
-        "answerDisplay": "V=0,02494338785446 m³."
+        "answerDisplay": "V≈0,02494338785446 m³."
       },
       "practice": {
         "prompt": "Gas ideale in equilibrio: n=1 mol, T=300 K, p assoluta=100000 Pa, R=8,31446261815324 J/(mol K). Trova V in m³.",
@@ -139,7 +139,7 @@
       "recap": [
         "pV=nRT richiede unità coerenti e temperatura assoluta."
       ],
-      "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,2 J. V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L. Risultato: V=0,02494338785446 m³.",
+      "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale nRT=1·8,31446261815324·300=2494,338785445972 J. V=nRT/p≈0,02494338785446 m³, cioè circa 24,943388 L. Risultato: V≈0,02494338785446 m³.",
       "scientificEvidence": [
         "pV=nRT richiede unità coerenti e temperatura assoluta.",
         "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
@@ -151,7 +151,7 @@
       "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
       "releaseScope": "PUBLIC_DEMONSTRATION",
       "activityId": "ideal-gas-v1",
-      "authorCorrection": "2026-10-28 CHAT1B: corrected display 0,02494338785446 m³ = 24,943388 L; no human approval.",
+      "authorCorrection": "2026-10-28 CHAT1B: nRT=2494,338785445972 J; volume conversion and approximation signs made consistent. No human approval.",
       "provenanceRef": {
         "authorRole": "DeepSeek content session",
         "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
@@ -10478,18 +10478,6 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u3-density-01",
-          "version": 1,
-          "sha256": "9664a850b93b292ebde65e702df2a5831b7982f4f63891ed7412ed6dadebc91b",
-          "objectiveIds": [
-            "U3-01.03"
-          ],
-          "lessonId": "ds-2026-u3-01",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
           "id": "u3-stevino-gauge-01",
           "version": 1,
           "sha256": "fb6c4bfd50cabff9c602b528f115a74329455991ffba0e082d2fc3015a5de378",
@@ -10502,25 +10490,37 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u3-layered-liquids-01",
+          "id": "u3-volume-flow-01",
           "version": 1,
-          "sha256": "e930a43842a745dd8164532f5177d81d0f0791b492048ea0563be0a9bd4e8424",
+          "sha256": "b19792ae3997c75c015fefc0befeac6a0532934ead8256dd40b932a521f59594",
           "objectiveIds": [
-            "U3-02.01"
+            "U3-03.01"
           ],
-          "lessonId": "ds-2026-u3-02",
+          "lessonId": "ds-2026-u3-03",
           "role": "practice",
           "difficulty": "base",
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u3-communicating-columns-01",
+          "id": "u3-hydraulic-series-01",
           "version": 1,
-          "sha256": "2a6b342bcb304d57ab386421abe52838d0a9cf61508ef6274e8845d4ea539350",
+          "sha256": "3ef283b507b6db66be3521b07c5677f4a8f251c0f9480817d1f467f0b5102057",
           "objectiveIds": [
-            "U3-02.01"
+            "U3-04.05"
           ],
-          "lessonId": "ds-2026-u3-02",
+          "lessonId": "ds-2026-u3-04",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-soap-film-force-01",
+          "version": 1,
+          "sha256": "beb9acf399718d730ca45618879d1d5f6f4c9ec5f1bda1f913c5f8cfae0f88ae",
+          "objectiveIds": [
+            "U3-05.01"
+          ],
+          "lessonId": "ds-2026-u3-05",
           "role": "practice",
           "difficulty": "base",
           "scope": "CORE_APPLICATION"
@@ -10533,402 +10533,6 @@
             "U5-01.04"
           ],
           "lessonId": "ds-2026-u5-01",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-ideal-gas-pressure-01",
-          "version": 1,
-          "sha256": "bdc27dcf92d88242c5ad89978f4d3f6c0a7cd1bf4bf8f85fd8a734a3772b6267",
-          "objectiveIds": [
-            "U5-01.05"
-          ],
-          "lessonId": "ds-2026-u5-01",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-gas-density-01",
-          "version": 1,
-          "sha256": "cc3a2d1d2fb0f71958a43c20c580b7738d6b983676670923a2b3f66d24a9d403",
-          "objectiveIds": [
-            "U5-01.05"
-          ],
-          "lessonId": "ds-2026-u5-01",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isothermal-chambers-01",
-          "version": 1,
-          "sha256": "ed0bd7c33eae3004f7c34d80547d9a7ac3b2c8e6ce40f6e8a88f9cf6d5de6ac5",
-          "objectiveIds": [
-            "U5-01.05"
-          ],
-          "lessonId": "ds-2026-u5-01",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isothermal-work-01",
-          "version": 1,
-          "sha256": "c2e2437d4158e7b1694e4d6daf9087874aacdea395851cadb0ddc60e19229904",
-          "objectiveIds": [
-            "U5-04.05"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-differential-manometer-09",
-          "version": 1,
-          "sha256": "4f8015dafd6c5a0c567eb616b100b6cb7f8770b2bbbed6ff0da4806a83dd5551",
-          "objectiveIds": [
-            "U3-02.06"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-vertical-wall-force-03",
-          "version": 1,
-          "sha256": "0a544cf6f18bca5bc405019f9e5384173197e4fa4fa1cc5e87e5d86274af19b4",
-          "objectiveIds": [
-            "U3-02.01"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-hydraulic-force-03",
-          "version": 1,
-          "sha256": "ccc976b944f5bb7d0b0a6167087242fff95f4e0bbe4bab48bcc2d05e266d20ff",
-          "objectiveIds": [
-            "U3-02.02"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-hydraulic-stroke-09",
-          "version": 1,
-          "sha256": "c0c872e17fcbdee8afa0404131a89d5d4280303f3ebe8f42a77d105aff0b93f8",
-          "objectiveIds": [
-            "U3-02.02"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-archimedes-force-03",
-          "version": 1,
-          "sha256": "bd00f644d9da77a052b9730f577aecd8f1a42f45925c7d407e7426cc7cf76697",
-          "objectiveIds": [
-            "U3-02.03"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-floating-fraction-03",
-          "version": 1,
-          "sha256": "5475e0153a16278334d926deeb4b14346a2159548e5e3888a44dc0f6e65c3250",
-          "objectiveIds": [
-            "U3-02.04"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-apparent-weight-09",
-          "version": 1,
-          "sha256": "50f145b6341408af28db58b04d88450c15c4c33e01873f2e3cb90ffb41883af7",
-          "objectiveIds": [
-            "U3-02.03"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-maximum-payload-09",
-          "version": 1,
-          "sha256": "9bd32da92d30cbf8662b10aed680965bc5be1eadd0bf14d6cc81328d49ac4125",
-          "objectiveIds": [
-            "U3-02.04"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-two-liquid-floating-09",
-          "version": 1,
-          "sha256": "926318d6b1dc4000da12f25f15a1af6f04ef272898496691342ffbd4fffd4e3f",
-          "objectiveIds": [
-            "U3-02.03",
-            "U3-02.04"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-hydrostatic-weighing-09",
-          "version": 1,
-          "sha256": "58db06503fcb327a17e449c5aaadf699ee7194d6c6396de5c3c0c40f69a76154",
-          "objectiveIds": [
-            "U3-02.03",
-            "U3-01.03"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isochoric-heat-03",
-          "version": 1,
-          "sha256": "b8863a212f53a2050c6fbfc787fe1cb9c6854336b1c6ad878efad5b7b744b399",
-          "objectiveIds": [
-            "U5-04.06"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isobaric-monatomic-heat-03",
-          "version": 1,
-          "sha256": "7e194477c0c1349a796fe4f69062935530fef011ffb581241df7d1fb199b7d04",
-          "objectiveIds": [
-            "U5-04.01",
-            "U5-02.04"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isobaric-work-03",
-          "version": 1,
-          "sha256": "dedcc4492f32a5ddf4058f405b8e5db201015368d5187f2c8311f324d3ed5a11",
-          "objectiveIds": [
-            "U5-04.02",
-            "U5-04.07"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-first-law-expansion-03",
-          "version": 1,
-          "sha256": "6be8accd551d0be83152a24dd7a5b8899d26839751adf0ecd1c9e651edb167c7",
-          "objectiveIds": [
-            "U5-02.01"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-compression-heating-09",
-          "version": 1,
-          "sha256": "30ec51eecb899cae8316b20489eaf4528b7e9e35892322179dce85740c1f7faa",
-          "objectiveIds": [
-            "U5-04.03"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-cyclic-work-09",
-          "version": 1,
-          "sha256": "5c655ba950f008f00bb6f49b6caa25d5488d3c3c8682cf9810758597993d1593",
-          "objectiveIds": [
-            "U5-05.03"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-engine-efficiency-03",
-          "version": 1,
-          "sha256": "83e9ef65714fbb0ea941161edf45375e8853b3a4439fb8d20a3dff0d49527a01",
-          "objectiveIds": [
-            "U5-05.01"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-engine-average-power-09",
-          "version": 1,
-          "sha256": "e77c9ac0ea1427c89eb1fb20c9b9b3c69d61b2b0e5a7b0c65f52e8b98cbe8a93",
-          "objectiveIds": [
-            "U5-05.04"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-carnot-efficiency-03",
-          "version": 1,
-          "sha256": "3a19f906ee7d60acfe374ce950c996e5847296e19eca80df8f4c14d199646312",
-          "objectiveIds": [
-            "U5-05.05"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-carnot-work-temperature-gap-09",
-          "version": 1,
-          "sha256": "a750e964bd2344ab7b9117cd5ea8a399d71713cebba8f64e8c4a2af26742c136",
-          "objectiveIds": [
-            "U5-05.03",
-            "U5-05.05"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-free-expansion-pressure-03",
-          "version": 1,
-          "sha256": "842d15a8664ebffcecb1774b9a81ddd872d2d590229f66e169325eb79baf0e4a",
-          "objectiveIds": [
-            "U5-04.04",
-            "U5-05.02"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "conceptual",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        }
-      ],
-      "sourceId": "MUR-DM941-2026",
-      "status": "VALIDATED_TECHNICALLY",
-      "humanReview": "NOT_RUN"
-    },
-    {
-      "id": "closure1-fluid-thermal-mock-2",
-      "title": "Simulazione tematica originale 2: Fluidi e termodinamica",
-      "scope": "THEMATIC_U3_U5",
-      "scopeWarning": "Formato 2026/27 verificato; selezione tematica U3/U5, non riproduce la distribuzione dell’intera prova nazionale di Fisica.",
-      "profileId": "semestre-2026",
-      "durationSeconds": 3000,
-      "scoring": {
-        "correct": 1,
-        "incorrect": -0.1,
-        "omitted": 0
-      },
-      "questionRefs": [
-        {
-          "id": "u3-differential-manometer-01",
-          "version": 1,
-          "sha256": "57dba1210ea6a818c495ea116bc34ee34337da7092e755fe0f6c1b6d5b761d9a",
-          "objectiveIds": [
-            "U3-02.06"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-vertical-wall-force-01",
-          "version": 1,
-          "sha256": "9186379e0e386cf606d707c24a55bbe9fc3ddf6b7a034782a4e26cfdc4ee4b23",
-          "objectiveIds": [
-            "U3-02.01"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-hydraulic-force-01",
-          "version": 1,
-          "sha256": "d86102c6b4d0f8d02cfb2f237314f5bb1be3935433c02531981be7e06442863c",
-          "objectiveIds": [
-            "U3-02.02"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-hydraulic-stroke-01",
-          "version": 1,
-          "sha256": "3fdfaac3ec2d31f1eec2f12e1a1bd302187f24c33ba5ee7a5fbf58588c2f1a07",
-          "objectiveIds": [
-            "U3-02.02"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-archimedes-force-01",
-          "version": 1,
-          "sha256": "8869b1b4ca87540da7a81bd2aa3918b4e32053cbe56cd4387388af616bef349c",
-          "objectiveIds": [
-            "U3-02.03"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isochoric-heat-01",
-          "version": 1,
-          "sha256": "8a9a3e33000a5f2fce560dd9c6cfa888c7970967eca72838377be2b40fcc465f",
-          "objectiveIds": [
-            "U5-04.06"
-          ],
-          "lessonId": "ds-2026-u5-04",
           "role": "practice",
           "difficulty": "base",
           "scope": "CORE_APPLICATION"
@@ -10947,12 +10551,23 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u5-isobaric-work-01",
+          "id": "u5-plane-conduction-01",
           "version": 1,
-          "sha256": "08e019cde6d64b78ebfa0f869a686baf02ccbc8b993df7ccd1bea20f6f776f8d",
+          "sha256": "56be330212ba751dda2280e49227f80627a2df1b2a6c56bca259edb9d36d3ba6",
           "objectiveIds": [
-            "U5-04.02",
-            "U5-04.07"
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isothermal-work-01",
+          "version": 1,
+          "sha256": "c2e2437d4158e7b1694e4d6daf9087874aacdea395851cadb0ddc60e19229904",
+          "objectiveIds": [
+            "U5-04.05"
           ],
           "lessonId": "ds-2026-u5-04",
           "role": "practice",
@@ -10960,38 +10575,14 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u5-first-law-expansion-01",
+          "id": "u5-cyclic-work-01",
           "version": 1,
-          "sha256": "808aea266c5d54c357d8b0accd98599e9f6f9894764fc5861c387ddec2a65301",
+          "sha256": "e2afebc806be80d29878d3a7536e0fb29f153b87c69e844c86d9022eb0c1b9f0",
           "objectiveIds": [
-            "U5-04.03"
+            "U5-05.03"
           ],
-          "lessonId": "ds-2026-u5-04",
+          "lessonId": "ds-2026-u5-05",
           "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-compression-heating-01",
-          "version": 1,
-          "sha256": "b7bf635f2b05bdbb32b69fba24b5cce40f084e8654dade425316f3394f182aab",
-          "objectiveIds": [
-            "U5-04.03"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "practice",
-          "difficulty": "base",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-pressure-area-03",
-          "version": 1,
-          "sha256": "c987c5454153e795d7e4dad18e04cb9644fb9d4eeb6bebf633722fcd73c9f8da",
-          "objectiveIds": [
-            "U3-01.02"
-          ],
-          "lessonId": "ds-2026-u3-01",
-          "role": "conceptual",
           "difficulty": "base",
           "scope": "CORE_APPLICATION"
         },
@@ -11005,18 +10596,6 @@
           "lessonId": "ds-2026-u3-01",
           "role": "practice",
           "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-stevino-gauge-03",
-          "version": 1,
-          "sha256": "c95ba3bce3e719d1eb6b9f30148ced231cdc9bed4a7380e349f64be2267f8c20",
-          "objectiveIds": [
-            "U3-02.01"
-          ],
-          "lessonId": "ds-2026-u3-02",
-          "role": "conceptual",
-          "difficulty": "base",
           "scope": "CORE_APPLICATION"
         },
         {
@@ -11044,28 +10623,15 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u3-floating-fraction-09",
+          "id": "u3-differential-manometer-09",
           "version": 1,
-          "sha256": "e26bcfe5e71602ed6d8691bac18cf4bc919d6f7ab9be79fb5932afa7e0369a4f",
+          "sha256": "4f8015dafd6c5a0c567eb616b100b6cb7f8770b2bbbed6ff0da4806a83dd5551",
           "objectiveIds": [
-            "U3-02.04"
+            "U3-02.06"
           ],
           "lessonId": "ds-2026-u3-02",
           "role": "practice",
           "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u3-volume-flow-03",
-          "version": 1,
-          "sha256": "b090522774545901681be68d922bd8e3b5f52eb3f0114b1057b78a62570c738e",
-          "objectiveIds": [
-            "U3-03.01",
-            "U3-04.02"
-          ],
-          "lessonId": "ds-2026-u3-03",
-          "role": "conceptual",
-          "difficulty": "base",
           "scope": "CORE_APPLICATION"
         },
         {
@@ -11105,15 +10671,39 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u5-temperature-difference-03",
+          "id": "u3-poiseuille-flow-01",
           "version": 1,
-          "sha256": "77226028e34318e94972d8dd9a3968620b6f25aae76aa1eef3a84fe57832fd31",
+          "sha256": "a6da0f82d46387a0b482b4cd009aa65e6816eec225a6fe376d86bdcd0c6b21a6",
           "objectiveIds": [
-            "U5-01.04"
+            "U3-04.04"
           ],
-          "lessonId": "ds-2026-u5-01",
-          "role": "conceptual",
+          "lessonId": "ds-2026-u3-04",
+          "role": "practice",
           "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-hydraulic-parallel-06",
+          "version": 1,
+          "sha256": "c4a906a108929efbd5112c1396e5c1eb18b80bd376e38a57f60157094890659f",
+          "objectiveIds": [
+            "U3-04.05"
+          ],
+          "lessonId": "ds-2026-u3-04",
+          "role": "conceptual",
+          "difficulty": "facile",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-surface-work-09",
+          "version": 1,
+          "sha256": "34640698e5ea8af0c51333e26def4b23b6acea77face70a5e6aa3e71776ef239",
+          "objectiveIds": [
+            "U3-05.01"
+          ],
+          "lessonId": "ds-2026-u3-05",
+          "role": "practice",
+          "difficulty": "medio",
           "scope": "CORE_APPLICATION"
         },
         {
@@ -11141,76 +10731,27 @@
           "scope": "CORE_APPLICATION"
         },
         {
-          "id": "u5-isothermal-chambers-06",
+          "id": "u5-first-law-expansion-03",
           "version": 1,
-          "sha256": "b8557c37bcb69b060e8c9c35b0e7d39d6357e60aeebb2280bdd6e44d1912a930",
+          "sha256": "6be8accd551d0be83152a24dd7a5b8899d26839751adf0ecd1c9e651edb167c7",
           "objectiveIds": [
-            "U5-01.05"
-          ],
-          "lessonId": "ds-2026-u5-01",
-          "role": "conceptual",
-          "difficulty": "facile",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-isothermal-work-09",
-          "version": 1,
-          "sha256": "a050ddfb64f70b081aca2c3995cfd846aa80e1e1557600913ec292e6163641d3",
-          "objectiveIds": [
-            "U5-04.05"
+            "U5-02.01"
           ],
           "lessonId": "ds-2026-u5-04",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-engine-efficiency-09",
-          "version": 1,
-          "sha256": "9803655733ef37cb47396df4f34ff1cae5c931753cb750c30d73afadc081f6aa",
-          "objectiveIds": [
-            "U5-05.04"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-carnot-efficiency-09",
-          "version": 1,
-          "sha256": "8d5249b51d841a938b0cf47e3268694432b00e0df7d879c9dbb73d5243995430",
-          "objectiveIds": [
-            "U5-05.05"
-          ],
-          "lessonId": "ds-2026-u5-05",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-free-expansion-pressure-09",
-          "version": 1,
-          "sha256": "151bf9240d40c78914475813657ede5a0c0054e13ee2e3b6e4f6441ec22556ac",
-          "objectiveIds": [
-            "U5-01.05",
-            "U5-04.04"
-          ],
-          "lessonId": "ds-2026-u5-04",
-          "role": "practice",
-          "difficulty": "medio",
-          "scope": "CORE_APPLICATION"
-        },
-        {
-          "id": "u5-sensible-heat-03",
-          "version": 1,
-          "sha256": "68fe01209b631d55046d6c2d62eb58ed7d1e215f9563aee13d803419c9fd1eea",
-          "objectiveIds": [
-            "U5-01.01"
-          ],
-          "lessonId": "ds-2026-u5-02",
           "role": "conceptual",
           "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-sensible-heat-09",
+          "version": 1,
+          "sha256": "695ee322f0a8606ad30d88b96335db387f0b3ce1893797127f9f3daaf5022079",
+          "objectiveIds": [
+            "U5-02.03"
+          ],
+          "lessonId": "ds-2026-u5-02",
+          "role": "practice",
+          "difficulty": "medio",
           "scope": "CORE_APPLICATION"
         },
         {
@@ -11226,6 +10767,376 @@
           "scope": "CORE_APPLICATION"
         },
         {
+          "id": "u5-composite-wall-series-09",
+          "version": 1,
+          "sha256": "5d4135375f55f3bfc3f791f00275c953f18b0f5b27bac345607931694b5e0ec4",
+          "objectiveIds": [
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-parallel-thermal-panels-09",
+          "version": 1,
+          "sha256": "fe4fc7e76242d4b4fb474d76d6a885d11d5bdc019dfc9b7b984655f22d0c53db",
+          "objectiveIds": [
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isochoric-heat-03",
+          "version": 1,
+          "sha256": "b8863a212f53a2050c6fbfc787fe1cb9c6854336b1c6ad878efad5b7b744b399",
+          "objectiveIds": [
+            "U5-04.06"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isobaric-work-03",
+          "version": 1,
+          "sha256": "dedcc4492f32a5ddf4058f405b8e5db201015368d5187f2c8311f324d3ed5a11",
+          "objectiveIds": [
+            "U5-04.02",
+            "U5-04.07"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-engine-efficiency-03",
+          "version": 1,
+          "sha256": "83e9ef65714fbb0ea941161edf45375e8853b3a4439fb8d20a3dff0d49527a01",
+          "objectiveIds": [
+            "U5-05.01"
+          ],
+          "lessonId": "ds-2026-u5-05",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-engine-average-power-09",
+          "version": 1,
+          "sha256": "e77c9ac0ea1427c89eb1fb20c9b9b3c69d61b2b0e5a7b0c65f52e8b98cbe8a93",
+          "objectiveIds": [
+            "U5-05.04"
+          ],
+          "lessonId": "ds-2026-u5-05",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        }
+      ],
+      "sourceId": "MUR-DM941-2026",
+      "status": "VALIDATED_TECHNICALLY",
+      "humanReview": "NOT_RUN",
+      "coveragePolicy": "All ten canonical families represented by the primary objective actually assessed; 15 U3+16 U5, distinct lawFamily within each simulation and disjoint question IDs between simulations."
+    },
+    {
+      "id": "closure1-fluid-thermal-mock-2",
+      "title": "Simulazione tematica originale 2: Fluidi e termodinamica",
+      "scope": "THEMATIC_U3_U5",
+      "scopeWarning": "Formato 2026/27 verificato; selezione tematica U3/U5, non riproduce la distribuzione dell’intera prova nazionale di Fisica.",
+      "profileId": "semestre-2026",
+      "durationSeconds": 3000,
+      "scoring": {
+        "correct": 1,
+        "incorrect": -0.1,
+        "omitted": 0
+      },
+      "questionRefs": [
+        {
+          "id": "u3-density-01",
+          "version": 1,
+          "sha256": "9664a850b93b292ebde65e702df2a5831b7982f4f63891ed7412ed6dadebc91b",
+          "objectiveIds": [
+            "U3-01.03"
+          ],
+          "lessonId": "ds-2026-u3-01",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-layered-liquids-01",
+          "version": 1,
+          "sha256": "e930a43842a745dd8164532f5177d81d0f0791b492048ea0563be0a9bd4e8424",
+          "objectiveIds": [
+            "U3-02.01"
+          ],
+          "lessonId": "ds-2026-u3-02",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-mass-flow-01",
+          "version": 1,
+          "sha256": "543e37d01acdf6137bdf7f6f1de5dc8ca2601cbff26baa9208d1add2ef0d5aa0",
+          "objectiveIds": [
+            "U3-03.01"
+          ],
+          "lessonId": "ds-2026-u3-03",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-hydraulic-parallel-01",
+          "version": 1,
+          "sha256": "0a6abe556c569024fd772789348cd8319462e8036089f1fc5f1fc6403e2590a5",
+          "objectiveIds": [
+            "U3-04.05"
+          ],
+          "lessonId": "ds-2026-u3-04",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-surface-work-01",
+          "version": 1,
+          "sha256": "8fea0037e3fe6b75f41b336594611b6324803f952b0ac2fd6e864c5b29d5cbca",
+          "objectiveIds": [
+            "U3-05.01"
+          ],
+          "lessonId": "ds-2026-u3-05",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-ideal-gas-pressure-01",
+          "version": 1,
+          "sha256": "bdc27dcf92d88242c5ad89978f4d3f6c0a7cd1bf4bf8f85fd8a734a3772b6267",
+          "objectiveIds": [
+            "U5-01.05"
+          ],
+          "lessonId": "ds-2026-u5-01",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-sensible-heat-01",
+          "version": 1,
+          "sha256": "1f1673a3b3b4287850784e933b1d6e7dac0b70a6185693111cc3574c0d5ce2a1",
+          "objectiveIds": [
+            "U5-02.03"
+          ],
+          "lessonId": "ds-2026-u5-02",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-composite-wall-series-01",
+          "version": 1,
+          "sha256": "a10c4411a32c36ef1add504bfd9f232975cbd301e46ebd3e05a2ba942df870e1",
+          "objectiveIds": [
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isochoric-heat-01",
+          "version": 1,
+          "sha256": "8a9a3e33000a5f2fce560dd9c6cfa888c7970967eca72838377be2b40fcc465f",
+          "objectiveIds": [
+            "U5-04.06"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-engine-efficiency-01",
+          "version": 1,
+          "sha256": "c04ce014e19c01d12f18f28d6354b78049f01b8d5e89d7e3f3fc0d5cab4bd3e0",
+          "objectiveIds": [
+            "U5-05.04"
+          ],
+          "lessonId": "ds-2026-u5-05",
+          "role": "practice",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-pressure-area-03",
+          "version": 1,
+          "sha256": "c987c5454153e795d7e4dad18e04cb9644fb9d4eeb6bebf633722fcd73c9f8da",
+          "objectiveIds": [
+            "U3-01.02"
+          ],
+          "lessonId": "ds-2026-u3-01",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-stevino-gauge-03",
+          "version": 1,
+          "sha256": "c95ba3bce3e719d1eb6b9f30148ced231cdc9bed4a7380e349f64be2267f8c20",
+          "objectiveIds": [
+            "U3-02.01"
+          ],
+          "lessonId": "ds-2026-u3-02",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-vertical-wall-force-03",
+          "version": 1,
+          "sha256": "0a544cf6f18bca5bc405019f9e5384173197e4fa4fa1cc5e87e5d86274af19b4",
+          "objectiveIds": [
+            "U3-02.01"
+          ],
+          "lessonId": "ds-2026-u3-02",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-hydraulic-force-03",
+          "version": 1,
+          "sha256": "ccc976b944f5bb7d0b0a6167087242fff95f4e0bbe4bab48bcc2d05e266d20ff",
+          "objectiveIds": [
+            "U3-02.02"
+          ],
+          "lessonId": "ds-2026-u3-02",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-volume-flow-03",
+          "version": 1,
+          "sha256": "b090522774545901681be68d922bd8e3b5f52eb3f0114b1057b78a62570c738e",
+          "objectiveIds": [
+            "U3-03.01",
+            "U3-04.02"
+          ],
+          "lessonId": "ds-2026-u3-03",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-junction-balance-09",
+          "version": 1,
+          "sha256": "0caefe51550d032989ac572109c3c0d97c66f95865c2dfc40f15baf0b5c05a5c",
+          "objectiveIds": [
+            "U3-03.04"
+          ],
+          "lessonId": "ds-2026-u3-03",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-mixing-mass-balance-09",
+          "version": 1,
+          "sha256": "8e37065af3e634cc3f379ce6ec55e7913b028277f0e452028ad6e635fe5047a8",
+          "objectiveIds": [
+            "U3-03.04"
+          ],
+          "lessonId": "ds-2026-u3-03",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-poiseuille-flow-03",
+          "version": 1,
+          "sha256": "ada845ef8085ea09d858fdbc55bfad062b59c8f50324cfac15297a77418c2fc7",
+          "objectiveIds": [
+            "U3-04.04"
+          ],
+          "lessonId": "ds-2026-u3-04",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-hydraulic-series-06",
+          "version": 1,
+          "sha256": "5353174bd81944d346f348ce8b0f891dddf9f63109ef5f627a645a33b8afd267",
+          "objectiveIds": [
+            "U3-04.05"
+          ],
+          "lessonId": "ds-2026-u3-04",
+          "role": "conceptual",
+          "difficulty": "facile",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u3-soap-film-force-09",
+          "version": 1,
+          "sha256": "ac15419bac1b5b35ccc3591acafd95261ab9d6925ea6b55dff85d8e01c35fe19",
+          "objectiveIds": [
+            "U3-05.01"
+          ],
+          "lessonId": "ds-2026-u3-05",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-temperature-difference-03",
+          "version": 1,
+          "sha256": "77226028e34318e94972d8dd9a3968620b6f25aae76aa1eef3a84fe57832fd31",
+          "objectiveIds": [
+            "U5-01.04"
+          ],
+          "lessonId": "ds-2026-u5-01",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isothermal-chambers-06",
+          "version": 1,
+          "sha256": "b8557c37bcb69b060e8c9c35b0e7d39d6357e60aeebb2280bdd6e44d1912a930",
+          "objectiveIds": [
+            "U5-01.05"
+          ],
+          "lessonId": "ds-2026-u5-01",
+          "role": "conceptual",
+          "difficulty": "facile",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isobaric-monatomic-heat-09",
+          "version": 1,
+          "sha256": "6751ae3bf034a01b4afcb93832d36206c7d56cb11eea7c6430bc1d71fdfdfa88",
+          "objectiveIds": [
+            "U5-02.04",
+            "U5-04.07"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
           "id": "u5-temperature-after-heating-09",
           "version": 1,
           "sha256": "0fbb8a817cf20644c12a05f2b4c505a436b0e8e47b0c54d15e2d5251414ca18c",
@@ -11236,11 +11147,98 @@
           "role": "practice",
           "difficulty": "medio",
           "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-two-body-calorimetry-03",
+          "version": 1,
+          "sha256": "3ce434c316632687b78042dce9aff5209fbc915d32bd7be9ba082e39cb3bec77",
+          "objectiveIds": [
+            "U5-02.02",
+            "U5-02.03"
+          ],
+          "lessonId": "ds-2026-u5-02",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-plane-conduction-03",
+          "version": 1,
+          "sha256": "c4685dc35ee4df06b3d81964c08e567f423ec00919ce82c8d3a78448eb28efb5",
+          "objectiveIds": [
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-interface-temperature-09",
+          "version": 1,
+          "sha256": "428fe9d9be5cb7efdcdddf00213e71ac41b61e121dd0ab15e09448280dc19827",
+          "objectiveIds": [
+            "U5-03.01"
+          ],
+          "lessonId": "ds-2026-u5-03",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isothermal-work-09",
+          "version": 1,
+          "sha256": "a050ddfb64f70b081aca2c3995cfd846aa80e1e1557600913ec292e6163641d3",
+          "objectiveIds": [
+            "U5-04.05"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-isobaric-work-09",
+          "version": 1,
+          "sha256": "de47834e7d0b27d2cce3284078c144628ce7c3c03120ae38f3c6f876efcf514c",
+          "objectiveIds": [
+            "U5-04.02",
+            "U5-04.07"
+          ],
+          "lessonId": "ds-2026-u5-04",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-cyclic-work-09",
+          "version": 1,
+          "sha256": "5c655ba950f008f00bb6f49b6caa25d5488d3c3c8682cf9810758597993d1593",
+          "objectiveIds": [
+            "U5-05.03"
+          ],
+          "lessonId": "ds-2026-u5-05",
+          "role": "practice",
+          "difficulty": "medio",
+          "scope": "CORE_APPLICATION"
+        },
+        {
+          "id": "u5-carnot-efficiency-03",
+          "version": 1,
+          "sha256": "3a19f906ee7d60acfe374ce950c996e5847296e19eca80df8f4c14d199646312",
+          "objectiveIds": [
+            "U5-05.05"
+          ],
+          "lessonId": "ds-2026-u5-05",
+          "role": "conceptual",
+          "difficulty": "base",
+          "scope": "CORE_APPLICATION"
         }
       ],
       "sourceId": "MUR-DM941-2026",
       "status": "VALIDATED_TECHNICALLY",
-      "humanReview": "NOT_RUN"
+      "humanReview": "NOT_RUN",
+      "coveragePolicy": "All ten canonical families represented by the primary objective actually assessed; 15 U3+16 U5, distinct lawFamily within each simulation and disjoint question IDs between simulations."
     }
   ],
   "diagnosticQuestionRefs": [
