@@ -54,7 +54,8 @@ def test_catalog_requires_real_core_session_and_contains_no_answer(boundary):
     assert client.get(path).status_code == 401
     r = client.get(path, headers=headers(tokens, student))
     assert r.status_code == 200
-    assert len(r.json()['capabilities']) == 4
+    assert len(r.json()['capabilities']) == 20
+    assert len({item['id'] for item in r.json()['capabilities']}) == 20
     assert all('value' not in item and 'result' not in item for item in r.json()['capabilities'])
 
 

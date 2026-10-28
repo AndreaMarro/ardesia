@@ -40,6 +40,7 @@ function Chart({series,labels,marker,point,fillArea=false,xLabel,yLabel,footer}:
   <Label x={87} y={24} anchor="start" size={12}>{yLabel}</Label><Label x={550} y={289} anchor="end" size={12}>{xLabel}</Label>
   {fillArea&&fill.length>1&&<polygon points={`${px(fill[0][0])},${zeroY} ${fill.map(([x,y])=>`${px(x)},${py(y)}`).join(' ')} ${px(fill[fill.length-1][0])},${zeroY}`} fill={accent} opacity=".12"/>}
   {series.map((s,i)=><g key={s.label}><polyline points={poly(s)} fill="none" stroke={palette[i%palette.length]} strokeWidth="2.5" strokeDasharray={i===2?'7 4':undefined} strokeLinejoin="round"/>
+   {s.points.length===1&&<circle cx={px(s.points[0][0])} cy={py(s.points[0][1])} r="5" fill={palette[i%palette.length]}/>}
    {series.length>1&&s.points.length>2&&<path d={`M${px(s.points[Math.floor(s.points.length/2)][0])} ${py(s.points[Math.floor(s.points.length/2)][1])}L${px(s.points[Math.floor(s.points.length/2)+1][0])} ${py(s.points[Math.floor(s.points.length/2)+1][1])}`} stroke={palette[i%palette.length]} markerEnd={`url(#${marker})`}/>}</g>)}
   {point&&<g><circle cx={px(point[0])} cy={py(point[1])} r="6" fill={accent} stroke="white" strokeWidth="2"/><path d={`M${px(point[0])} ${py(point[1])+8}V248`} stroke={accent} opacity=".5" strokeDasharray="3 4"/></g>}
   {series.length>1&&series.map((s,i)=><g key={'legend'+i}><path d={`M${90+(i%2)*240} ${305+Math.floor(i/2)*20}h18`} stroke={palette[i%palette.length]} strokeWidth="3" strokeDasharray={i===2?'7 4':undefined}/><Label x={115+(i%2)*240} y={309+Math.floor(i/2)*20} anchor="start" size={11}>{labels?.[i]||s.label}</Label></g>)}
@@ -165,7 +166,7 @@ function Diagram({definition:d,parameters:p,result:r,marker}:{definition:LabDefi
     <Label x={300} y={283}>Superficie: {fmt(p.hotTemperatureK)} K · ambiente: {fmt(p.coldTemperatureK)} K</Label><Label x={300} y={309} size={12}>Potenza firmata nella convenzione superficie → ambiente.</Label><Label x={300} y={330} size={11}>I tre valori non si sommano senza un modello di accoppiamento.</Label></g>;
   }
   case 'process':
-   return <Chart series={r.series} marker={marker} point={[value(r,'finalVolume'),value(r,'finalPressure')]} xLabel="Volume V [m³]" yLabel="Pressione assoluta p [Pa]" fillArea footer={`W = ${metric(r,'work')} · Q = ${metric(r,'heat')} · ΔU = ${metric(r,'internalEnergyChange')}`}/>;
+   return <Chart series={r.series} marker={marker} point={[value(r,'finalVolume'),value(r,'finalPressure')]} xLabel="Volume V [m³]" yLabel="Pressione assoluta p [Pa]" fillArea={p.path!==4} footer={p.path===4?'Libera espansione: solo stati di equilibrio, nessun cammino intermedio.':`W = ${metric(r,'work')} · Q = ${metric(r,'heat')} · ΔU = ${metric(r,'internalEnergyChange')}`}/>;
   case 'carnot':
    return <Chart series={r.series} marker={marker} labels={['Isoterma calda','Adiabatica: espansione','Isoterma fredda','Adiabatica: compressione']} xLabel="Volume V [m³]" yLabel="Pressione assoluta p [Pa]"/>;
   case 'entropy':

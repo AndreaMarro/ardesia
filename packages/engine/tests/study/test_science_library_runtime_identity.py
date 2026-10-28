@@ -16,6 +16,15 @@ import tempfile
 import unittest
 
 
+def implementation_digest(engine):
+    """Independent expected identity, including catalog and every model source."""
+    identity = hashlib.sha256()
+    for name in ('fluid_catalog.json', 'fluid_catalog.py', 'fluid_models.py', 'models.py'):
+        source = (engine / 'lessonos/study/science_library' / name).read_bytes()
+        identity.update(name.encode('utf8') + b'\0' + len(source).to_bytes(8, 'big') + source)
+    return identity.hexdigest()
+
+
 def fresh_process(engine):
     sys.path.insert(0, str(engine))
     from lessonos.study.models import StudyError
@@ -49,7 +58,7 @@ def live_process(engine, stage):
 
     model_path = engine / 'lessonos/study/science_library/models.py'
     before = model_path.read_bytes()
-    loaded_hash = hashlib.sha256(before).hexdigest()
+    loaded_hash = implementation_digest(engine)
     before_value = models.evaluate('point-charge-v1', {})['value']
     payload = {}
     store = None
@@ -71,7 +80,7 @@ def live_process(engine, stage):
     snapshot = resources.new_snapshot('point-charge-v1', {})
     report = {
         'stage': stage, 'loadedHash': loaded_hash,
-        'diskHash': hashlib.sha256(model_path.read_bytes()).hexdigest(),
+        'diskHash': implementation_digest(engine),
         'snapshotHash': snapshot['implementationSha256'],
         'beforeValue': before_value, 'loadedValue': models.evaluate('point-charge-v1', {})['value'],
     }
@@ -93,6 +102,25 @@ def live_process(engine, stage):
 
 
 class RuntimeIdentityTests(unittest.TestCase):
+    def test_new_catalog_and_model_bytes_are_part_of_the_loaded_identity(self):
+        engine = Path(__file__).resolve().parents[2]
+        with tempfile.TemporaryDirectory(prefix='fluid-identity-') as temporary:
+            copy = Path(temporary) / 'engine'
+            shutil.copytree(engine / 'lessonos', copy / 'lessonos', ignore=shutil.ignore_patterns('__pycache__'))
+            previous = implementation_digest(copy)
+            for name in ('fluid_catalog.json', 'fluid_catalog.py', 'fluid_models.py'):
+                path = copy / 'lessonos/study/science_library' / name
+                # Whitespace preserves semantics and is still an exact-byte revision.
+                path.write_bytes(path.read_bytes() + b'\n')
+                expected = implementation_digest(copy)
+                self.assertNotEqual(expected, previous)
+                fresh = subprocess.run([sys.executable, '-I', '-B', __file__, '--fresh', str(copy)],
+                                       input='{}', capture_output=True, text=True, timeout=15, check=True)
+                actual = json.loads(fresh.stdout)
+                self.assertEqual(actual['snapshotHash'], expected)
+                self.assertEqual(actual['value'], 100)
+                previous = expected
+
     def test_timestamp_bytecode_cache_cannot_mislabel_the_executed_source(self):
         engine = Path(__file__).resolve().parents[2]
         with tempfile.TemporaryDirectory(prefix='science-pyc-') as temporary:
@@ -108,10 +136,11 @@ class RuntimeIdentityTests(unittest.TestCase):
             self.assertEqual(len(changed), len(original))
             path.write_bytes(changed)
             os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+            expected_identity = implementation_digest(copy)
             fresh = subprocess.run([sys.executable, '-I', '-B', __file__, '--fresh', str(copy)],
                                    input='{}', capture_output=True, text=True, timeout=15, check=True)
             actual = json.loads(fresh.stdout)
-        self.assertEqual(actual['snapshotHash'], hashlib.sha256(changed).hexdigest())
+        self.assertEqual(actual['snapshotHash'], expected_identity)
         self.assertAlmostEqual(actual['value'], 88.88888888888889)
 
     def probe(self, stage):

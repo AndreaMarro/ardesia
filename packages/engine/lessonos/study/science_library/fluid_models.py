@@ -78,7 +78,7 @@ def _calculate(model_id, p):
         measurements = [primary, m('pressure', 'Incremento di pressione', 'Pa', pressure),
                         m('forceRatio', 'Rapporto delle forze F₂/F₁ (rapporto delle aree)', '1', p['outputArea'] / p['inputArea']),
                         m('displacementRatio', 'Rapporto spostamenti Δx₂/Δx₁', '1', p['inputArea'] / p['outputArea'])]
-        curves = [s('Forza di uscita a forza di ingresso fissata', 'N', 'm²', sample(lambda area: pressure * area, .001, max(.01, p['outputArea'] * 1.5)))]
+        curves = [s('Forza di uscita a forza di ingresso fissata', 'N', 'm²', sample(lambda area: pressure * area, .001, min(1, max(.01, p['outputArea'] * 1.5))))]
     elif model_id == 'buoyancy':
         displaced = p['volume'] * p['submergedFraction']
         force, weight = p['fluidDensity'] * p['gravity'] * displaced, p['bodyDensity'] * p['gravity'] * p['volume']
@@ -152,7 +152,8 @@ def _calculate(model_id, p):
             rise = pressure / (p['density'] * p['gravity'])
             primary = m('rise', 'Risalita capillare firmata', 'm', rise)
             measurements = [primary, m('pressureDifference', 'p_gas−p_liquido alla superficie', 'Pa', pressure), m('curvature', 'Curvatura sferica firmata 1/R', '1/m', curvature), m('contactAngleDeg', 'Angolo di contatto nel liquido', '°', p['contactAngleDeg']), m('bondNumber', 'Numero di Bond', '1', bond)]
-            curves = [s('Risalita al variare del raggio', 'm', 'm', sample(lambda radius: 2 * p['surfaceTension'] * cosine / (p['density'] * p['gravity'] * radius), .00005, .002))]
+            maximum_radius = min(.002, math.sqrt(.25 * p['surfaceTension'] / (p['density'] * p['gravity'])))
+            curves = [s('Risalita al variare del raggio', 'm', 'm', sample(lambda radius: 2 * p['surfaceTension'] * cosine / (p['density'] * p['gravity'] * radius), .00005, maximum_radius))]
             warnings.append('Menisco sferico approssimato. La forma vicino al raccordo con il serbatoio e la dinamica non sono calcolate.')
     elif model_id == 'ideal-gas':
         pressure = p['moles'] * R * p['temperatureK'] / p['volume']
@@ -160,7 +161,8 @@ def _calculate(model_id, p):
             raise StudyError('invalid_physical_domain')
         primary = m('pressure', 'Pressione assoluta', 'Pa', pressure)
         measurements = [primary, m('volume', 'Volume del gas', 'm³', p['volume']), m('temperatureK', 'Temperatura assoluta', 'K', p['temperatureK']), m('pv', 'Prodotto pV', 'J', pressure * p['volume']), m('nrt', 'Prodotto nRT', 'J', p['moles'] * R * p['temperatureK'])]
-        curves = [s('Isoterma a n e T fissati', 'Pa', 'm³', sample(lambda volume: p['moles'] * R * p['temperatureK'] / volume, max(.00001, p['volume'] / 3), min(.01, p['volume'] * 3)))]
+        minimum_volume = max(.00001, p['volume'] / 3, p['moles'] * R * p['temperatureK'] / 1e8 * (1 + 4 * math.ulp(1.0)))
+        curves = [s('Isoterma a n e T fissati', 'Pa', 'm³', sample(lambda volume: p['moles'] * R * p['temperatureK'] / volume, minimum_volume, min(.01, p['volume'] * 3)))]
     elif model_id == 'calorimetry':
         c1, c2, final, q1, q2 = _thermal(p)
         primary = m('equilibriumTemperature', 'Temperatura di equilibrio', 'K', final)
@@ -176,7 +178,12 @@ def _calculate(model_id, p):
         fraction = max(0, min(1, (q - ice_heat) / fusion))
         primary = m('temperatureC', 'Temperatura del sistema', '°C', temperature)
         measurements = [primary, m('meltFraction', 'Frazione di massa fusa', '1', fraction), m('heatToMeltStart', 'Calore per raggiungere 0°C', 'J', ice_heat), m('fusionHeat', 'Calore per fondere tutta la massa', 'J', fusion), m('heatToMeltEnd', 'Calore totale per terminare la fusione', 'J', ice_heat + fusion)]
-        curves = [s('Curva di riscaldamento', '°C', 'J', [[0, p['initialTemperatureC']], [ice_heat, 0], [ice_heat + fusion, 0], [end, 100]])]
+        maximum_heat = min(end, 3e6)
+        points = [point for point in [[0, p['initialTemperatureC']], [ice_heat, 0], [ice_heat + fusion, 0], [end, 100]] if point[0] <= maximum_heat]
+        if points[-1][0] < maximum_heat:
+            last_temperature = p['initialTemperatureC'] + maximum_heat / (p['mass'] * 2100) if maximum_heat < ice_heat else 0 if maximum_heat <= ice_heat + fusion else (maximum_heat - ice_heat - fusion) / (p['mass'] * 4186)
+            points.append([maximum_heat, last_temperature])
+        curves = [s('Curva di riscaldamento', '°C', 'J', points)]
     elif model_id == 'heat-transfer':
         delta = p['hotTemperatureK'] - p['coldTemperatureK']
         conduction = p['conductivity'] * p['area'] * delta / p['thickness']
@@ -187,28 +194,36 @@ def _calculate(model_id, p):
         curves = [s('Potenze in tre configurazioni distinte', 'W', '1', [[1, conduction], [2, convection], [3, radiation]])]
         warnings.append('Il flusso netto è negativo nella convenzione superficie→ambiente: le temperature scelte invertono il verso del trasferimento.' if delta < 0 else 'I tre valori si riferiscono a configurazioni diverse: non sono tre contributi da sommare senza un modello di accoppiamento.')
     elif model_id == 'process':
+        free_expansion = p['path'] == 4
+        if p['path'] == 2 and abs(p['volume2'] - p['volume1']) > 1e-12 * max(p['volume1'], p['volume2']):
+            raise StudyError('invalid_physical_domain')
+        if free_expansion and p['volume2'] <= p['volume1']:
+            raise StudyError('invalid_physical_domain')
         first_pressure = p['moles'] * R * p['temperatureK'] / p['volume1']
         final_volume = p['volume1'] if p['path'] == 2 else p['volume2']
-        final_temperature = (p['temperatureK'] if p['path'] == 0 else p['temperatureK'] * final_volume / p['volume1'] if p['path'] == 1 else p['temperature2K'] if p['path'] == 2 else p['temperatureK'] * (p['volume1'] / final_volume) ** (GAMMA - 1))
+        final_temperature = (p['temperatureK'] if p['path'] == 0 or free_expansion else p['temperatureK'] * final_volume / p['volume1'] if p['path'] == 1 else p['temperature2K'] if p['path'] == 2 else p['temperatureK'] * (p['volume1'] / final_volume) ** (GAMMA - 1))
         final_pressure = p['moles'] * R * final_temperature / final_volume
         if not 50 <= final_temperature <= 2000 or max(first_pressure, final_pressure) > 1e8:
             raise StudyError('invalid_physical_domain')
         internal = p['moles'] * CV * (final_temperature - p['temperatureK'])
-        work = p['moles'] * R * p['temperatureK'] * math.log(final_volume / p['volume1']) if p['path'] == 0 else first_pressure * (final_volume - p['volume1']) if p['path'] == 1 else 0 if p['path'] == 2 else -internal
-        heat = 0 if p['path'] == 3 else internal + work
-        entropy = p['moles'] * CV * math.log(final_temperature / p['temperatureK']) + p['moles'] * R * math.log(final_volume / p['volume1'])
-        if p['path'] == 2:
+        work = p['moles'] * R * p['temperatureK'] * math.log(final_volume / p['volume1']) if p['path'] == 0 else first_pressure * (final_volume - p['volume1']) if p['path'] == 1 else 0 if p['path'] == 2 or free_expansion else -internal
+        heat = 0 if p['path'] == 3 or free_expansion else internal + work
+        entropy = 0 if p['path'] == 3 else p['moles'] * CV * math.log(final_temperature / p['temperatureK']) + p['moles'] * R * math.log(final_volume / p['volume1'])
+        if free_expansion:
+            curves = [s('Solo stato iniziale di equilibrio', 'Pa', 'm³', [[p['volume1'], first_pressure]]), s('Solo stato finale di equilibrio', 'Pa', 'm³', [[final_volume, final_pressure]])]
+        elif p['path'] == 2:
             points = [[p['volume1'], first_pressure], [p['volume1'], final_pressure]]
+            curves = [s('Cammino p–V', 'Pa', 'm³', points)]
         else:
             def pressure_at(volume):
                 if p['path'] == 0:
                     return p['moles'] * R * p['temperatureK'] / volume
                 return first_pressure if p['path'] == 1 else first_pressure * (p['volume1'] / volume) ** GAMMA
             points = sample(pressure_at, p['volume1'], final_volume, 61)
+            curves = [s('Cammino p–V', 'Pa', 'm³', points)]
         primary = m('work', 'Lavoro compiuto dal gas', 'J', work)
-        measurements = [primary, m('heat', 'Calore ricevuto dal gas', 'J', heat), m('internalEnergyChange', 'Variazione di energia interna', 'J', internal), m('finalTemperature', 'Temperatura finale', 'K', final_temperature), m('finalPressure', 'Pressione finale', 'Pa', final_pressure), m('finalVolume', 'Volume finale effettivo', 'm³', final_volume), m('entropyChange', 'Variazione di entropia del gas', 'J/K', 0 if abs(entropy) < 1e-12 else entropy)]
-        curves = [s('Cammino p–V', 'Pa', 'm³', points)]
-        warnings.append('Nel cammino isocoro volume2 non è imposto: il volume finale resta volume1. La temperatura finale è temperature2K.' if p['path'] == 2 else 'La temperatura finale è determinata dal cammino; il parametro temperature2K è usato solo nell’isocora.')
+        measurements = [primary, m('heat', 'Calore ricevuto dal gas', 'J', heat), m('internalEnergyChange', 'Variazione di energia interna', 'J', internal), m('finalTemperature', 'Temperatura finale', 'K', final_temperature), m('finalPressure', 'Pressione finale', 'Pa', final_pressure), m('finalVolume', 'Volume finale effettivo', 'm³', final_volume), m('entropyChange', 'Variazione di entropia del gas', 'J/K', entropy), m('totalEntropyChange', 'Variazione di entropia totale', 'J/K', entropy if free_expansion else 0)]
+        warnings.append('Libera espansione isolata nel vuoto: nessun cammino di equilibrio intermedio è definito. I due punti non vanno collegati; nessuna area del grafico rappresenta il lavoro, che è zero. ΔS_gas=ΔS_totale>0.' if free_expansion else 'Cammino isocoro: volume finale uguale al volume iniziale; la temperatura finale è temperature2K.' if p['path'] == 2 else 'La temperatura finale è determinata dal cammino; il parametro temperature2K è usato solo nell’isocora.')
     elif model_id == 'carnot':
         hot, cold, heat = p['hotTemperatureK'], p['coldTemperatureK'], p['heatInput']
         if hot <= cold:

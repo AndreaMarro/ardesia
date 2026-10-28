@@ -20,7 +20,7 @@ export function registerFluidThermoTool(){
   registerSimulationTool(PLUGIN_ID,{embedId:'fluid-thermo-lab',createEmbed:createFluidThermoEmbed,
     validate(value){try{validateSnapshot(value);return {ok:true,errors:[]};}catch(error){return {ok:false,errors:[error instanceof Error?error.message:'Snapshot non valido.']};}},
     render(element,link,host){
-      return <FluidThermoLab initialSnapshot={stored(element)??newLabSnapshot()} onSnapshotChange={snapshot=>host?.persistEmbedState?.(link.embedId,snapshot,PLUGIN_ID)}/>;
+      return <FluidThermoLab authoringTools allowModelSelection initialSnapshot={stored(element)??newLabSnapshot()} onSnapshotChange={snapshot=>host?.persistEmbedState?.(link.embedId,snapshot,PLUGIN_ID)}/>;
     }});
 }
 export {exportLabSnapshot,importLabSnapshot};

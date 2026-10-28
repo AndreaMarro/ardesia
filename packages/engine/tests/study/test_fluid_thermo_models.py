@@ -13,6 +13,13 @@ def run(model, **patch):
     return evaluate_fluid_lab(identity, {**default_fluid_parameters(identity), **patch})
 
 
+@pytest.mark.parametrize('identity', list(FLUID_LAB_DEFINITIONS))
+def test_fluid_models_use_the_existing_authoritative_activity_dispatch(identity):
+    from lessonos.study.activities import evaluate_activity
+    parameters = default_fluid_parameters(identity)
+    assert evaluate_activity(identity, parameters) == evaluate_fluid_lab(identity, parameters)
+
+
 def measure(result, key):
     return next(item['value'] for item in result['observables'] if item['key'] == key)
 
@@ -53,6 +60,7 @@ def test_pressure_goldens_and_pascal_work_conservation():
     pascal = run('pascal', inputForce=100, inputArea=.01, outputArea=.05)
     assert pascal['value'] == 500
     assert pascal['value'] * measure(pascal, 'displacementRatio') == pytest.approx(100)
+    assert all(.001 <= area <= 1 for area, force in run('pascal', outputArea=1)['labResult']['series'][0]['points'])
 
 
 def test_archimedes_and_continuity_not_free_energy():
@@ -80,6 +88,8 @@ def test_bernoulli_height_and_poiseuille_boundary_modes():
     assert measure(larger, 'flowRate') == measure(fixed_flow, 'flowRate')
     with pytest.raises(StudyError):
         run('poiseuille', radius=.005, pressureDifference=1000, viscosity=.0005)
+    assert all(abs(position) <= .001 * (1 + 1e-12) and -1e-12 <= speed <= measure(standard, 'maxSpeed') * (1 + 1e-12)
+               for position, speed in standard['labResult']['series'][0]['points'])
 
 
 def test_hydraulic_network_topology_and_laplace_interfacial_count():
@@ -98,12 +108,20 @@ def test_hydraulic_network_topology_and_laplace_interfacial_count():
     assert measure(drop, 'rise') == 0
     assert measure(bubble, 'rise') == 0
     assert run('capillary', surfaceMode=1, radius=.001, surfaceTension=.072, contactAngleDeg=120)['value'] == drop['value']
+    bounded = run('capillary', density=1000, gravity=10, surfaceTension=.072, radius=.001)
+    assert all(.00005 <= radius <= .002 and 1000 * 10 * radius ** 2 / .072 <= .25 + 1e-12
+               for radius, height in bounded['labResult']['series'][0]['points'])
 
 
 def test_gas_calorimetry_and_latent_heat_goldens():
     gas = run('ideal-gas', moles=1, temperatureK=300, volume=.01)
     assert gas['value'] == pytest.approx(249433.8785445972)
     assert measure(gas, 'pv') == pytest.approx(measure(gas, 'nrt'))
+    high_pressure = run('ideal-gas', moles=1, temperatureK=1500, volume=.000125)
+    for volume, pressure in high_pressure['labResult']['series'][0]['points']:
+        assert .00001 <= volume <= .01
+        assert pressure <= 1e8
+        run('ideal-gas', moles=1, temperatureK=1500, volume=volume)
     calorimetry = run('calorimetry', mass1=.2, mass2=.4, temperature1K=350, temperature2K=290)
     assert calorimetry['value'] == pytest.approx(310)
     assert measure(calorimetry, 'heat1') + measure(calorimetry, 'heat2') == pytest.approx(0, abs=1e-8)
@@ -113,6 +131,8 @@ def test_gas_calorimetry_and_latent_heat_goldens():
     assert run('phase-change', mass=1, initialTemperatureC=-20, heat=417860)['value'] == pytest.approx(10)
     with pytest.raises(StudyError):
         run('phase-change', mass=.1, initialTemperatureC=0, heat=1e6)
+    large = run('phase-change', mass=5, initialTemperatureC=-50, heat=0)
+    assert all(heat <= 3e6 and temperature <= 100 for heat, temperature in large['labResult']['series'][0]['points'])
 
 
 def test_transfer_direction_and_first_law_for_four_reversible_paths():
@@ -123,12 +143,48 @@ def test_transfer_direction_and_first_law_for_four_reversible_paths():
     for key in ('conduction', 'convection', 'radiation'):
         assert measure(reverse, key) == pytest.approx(-measure(forward, key))
     for path in (0, 1, 2, 3):
-        data = run('process', path=path)
+        data = run('process', path=path, volume2=.001 if path == 2 else .002)
         assert measure(data, 'heat') - measure(data, 'work') == pytest.approx(measure(data, 'internalEnergyChange'), abs=1e-10)
+        assert measure(data, 'totalEntropyChange') == 0
+        assert all(.00001 <= volume <= .1 and 0 < pressure <= 1e8
+                   for curve in data['labResult']['series'] for volume, pressure in curve['points'])
     assert measure(run('process', path=0), 'internalEnergyChange') == 0
-    assert run('process', path=2)['value'] == 0
+    assert run('process', path=2, volume2=.001)['value'] == 0
+    with pytest.raises(StudyError):
+        run('process', path=2, volume2=.002)
     assert measure(run('process', path=3), 'heat') == 0
     assert measure(run('process', path=3), 'entropyChange') == pytest.approx(0, abs=1e-12)
+
+
+def test_isolated_free_expansion_has_no_equilibrium_path_or_work_area():
+    free = run('process', path=4, moles=.1, temperatureK=300, volume1=.001, volume2=.002)
+    assert free['value'] == 0
+    assert measure(free, 'heat') == 0
+    assert measure(free, 'internalEnergyChange') == 0
+    assert measure(free, 'finalTemperature') == 300
+    assert measure(free, 'finalPressure') == pytest.approx(124716.9392722986)
+    assert measure(free, 'entropyChange') == pytest.approx(.576314632164398, abs=1e-12)
+    assert measure(free, 'totalEntropyChange') == measure(free, 'entropyChange')
+    assert len(free['labResult']['series']) == 2
+    assert all(len(curve['points']) == 1 for curve in free['labResult']['series'])
+    assert all(len(plot['x']) == 1 for plot in free['plots'])
+    assert 'non vanno collegati' in ' '.join(free['labResult']['warnings'])
+    reversible = run('process', path=0, moles=.1, temperatureK=300, volume1=.001, volume2=.002)
+    assert measure(reversible, 'finalPressure') == measure(free, 'finalPressure')
+    assert reversible['value'] > 0
+    assert measure(reversible, 'totalEntropyChange') == 0
+    for final_volume in (.001, .0005):
+        with pytest.raises(StudyError):
+            run('process', path=4, volume2=final_volume)
+    # Independent 1B golden, n=1 mol and volume ratio 2.
+    one_mole = run('process', path=4, moles=1, temperatureK=300, volume1=.001, volume2=.002)
+    assert measure(one_mole, 'finalPressure') == pytest.approx(one_mole['labResult']['series'][0]['points'][0][1] / 2)
+    assert measure(one_mole, 'finalTemperature') == 300
+    assert all(measure(one_mole, key) == 0 for key in ('heat', 'work', 'internalEnergyChange'))
+    assert measure(one_mole, 'entropyChange') == pytest.approx(5.763146321644, abs=1e-12)
+    assert measure(one_mole, 'totalEntropyChange') == measure(one_mole, 'entropyChange')
+    assert len(one_mole['labResult']['series']) == 2
+    assert all(len(curve['points']) == 1 for curve in one_mole['labResult']['series'])
 
 
 def test_carnot_and_finite_body_entropy_balances():
