@@ -60,6 +60,32 @@ function replayToolIdentity(element: Record<string, unknown> | undefined): strin
     ? link.toolId : null
 }
 
+/** Excalidraw 0.18.1 builds these controls internally: MainMenu's trigger
+ * has no naming prop and resetZoom's aria-label omits its visible percentage.
+ * Adapt only the Replay canvas DOM until the SDK exposes equivalent overrides.
+ */
+function labelReplaySdkControls(canvas: HTMLElement): () => void {
+  const updateNames = () => {
+    for (const menu of canvas.querySelectorAll<HTMLButtonElement>(".excalidraw button.main-menu-trigger.dropdown-menu-button")) {
+      const referencedName = (menu.getAttribute("aria-labelledby") ?? "").split(/\s+/)
+        .some(id => id && menu.ownerDocument.getElementById(id)?.textContent?.trim())
+      if (!menu.getAttribute("aria-label")?.trim() && !referencedName && !menu.getAttribute("title")?.trim() && !menu.textContent?.trim()) {
+        menu.setAttribute("aria-label", "Menu della lavagna")
+      }
+    }
+    for (const zoom of canvas.querySelectorAll<HTMLButtonElement>(".excalidraw button.reset-zoom-button")) {
+      const percentage = zoom.textContent?.trim()
+      if (!percentage || !/^\d+(?:[.,]\d+)?\s?%$/.test(percentage)) continue
+      const label = `Ripristina ingrandimento (${percentage})`
+      if (zoom.getAttribute("aria-label") !== label) zoom.setAttribute("aria-label", label)
+    }
+  }
+  updateNames()
+  const observer = new MutationObserver(updateNames)
+  observer.observe(canvas, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ["aria-label", "aria-labelledby", "title"] })
+  return () => observer.disconnect()
+}
+
 export default function ReplayView({ store, room, renderExtension, replayFiles, selectedRecordingId, range }: ReplayViewProps) {
   const [loaded, setLoaded] = useState<ReplayLoad | null>(null)
   // Legare il risultato alla fonte nasconde già al primo render di B i dati
@@ -161,6 +187,11 @@ export default function ReplayView({ store, room, renderExtension, replayFiles, 
     const keepActive = identity !== null && identity === replayToolIdentity(active?.element)
     api.updateScene({ elements: scene as any, appState: { activeEmbeddable: keepActive ? { ...active, element } : null } })
   }, [scene, apiReady])
+
+  useEffect(() => {
+    if (!apiReady || !canvasRef.current) return
+    return labelReplaySdkControls(canvasRef.current)
+  }, [apiReady, store, room])
 
   function fitScene() {
     const selected = focusedObject && scene.find((element) => element.id === focusedObject.elementId && element.version === focusedObject.version)
