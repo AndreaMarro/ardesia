@@ -36,7 +36,7 @@ def _text(value, maximum, *, nonempty=False):
 
 
 def _validate(value):
-    if not isinstance(value, dict) or set(value) not in (_KEYS, _KEYS | {'supportUsed'}):
+    if not isinstance(value, dict) or not _KEYS <= set(value) or set(value) - (_KEYS | {'supportUsed', 'labSnapshot', 'courseLesson'}):
         raise StudyError('invalid_science_snapshot')
     if (type(value['schemaVersion']) is not int or value['schemaVersion'] != 1
             or type(value['capabilityVersion']) is not int or not 1 <= value['capabilityVersion'] <= 1_000_000
@@ -54,18 +54,25 @@ def _validate(value):
     if 'supportUsed' in value:
         used = value['supportUsed']
         if (not isinstance(used, list) or len(used) > 2
-                or any(not isinstance(item, str) or item not in ('explanation', 'domain') for item in used)
+                or any(not isinstance(item, str) or item not in (('model', 'hint') if 'labSnapshot' in value else ('explanation', 'domain')) for item in used)
                 or len(set(used)) != len(used)):
             raise StudyError('invalid_science_snapshot')
-    encoded = canonical(value)
-    if len(encoded.encode('utf8')) > 20_000:
+    from .lab_snapshot import validate
+    try:
+        validate(value)
+        encoded = canonical(value)
+        size = len(encoded.encode('utf8'))
+    except (ValueError, TypeError, UnicodeError):
+        raise StudyError('invalid_science_snapshot') from None
+    if size > 20_000:
         raise StudyError('science_snapshot_too_large', 413)
     return json.loads(encoded)
 
 
 def _supported(snapshot):
     return (snapshot['capabilityId'] in _HANDLERS and snapshot['capabilityVersion'] == 1
-            and snapshot['implementationSha256'] == implementation_sha256())
+            and snapshot['implementationSha256'] == implementation_sha256()
+            and snapshot.get('labSnapshot', {}).get('pluginVersion', '1.0.0') == '1.0.0')
 
 
 def new_snapshot(capability_id, parameters, *, note='', prediction='', support_used=None):
@@ -100,7 +107,8 @@ def read(store, principal, resource_id, revision_id=None):
         snapshot = _validate(json.loads(resource['text']))
     except (ValueError, TypeError):
         raise StudyError('invalid_science_snapshot') from None
-    return {'resource': resource, 'snapshot': snapshot, 'supported': _supported(snapshot)}
+    updated = store.connection.execute('SELECT created_at FROM study_revisions WHERE id=? AND resource_id=?', (resource['revisionId'], resource['id'])).fetchone()
+    return {'resource': resource, 'snapshot': snapshot, 'supported': _supported(snapshot), 'updatedAt': updated['created_at']}
 
 
 def save(store, principal, edition_id, snapshot, key, *, resource_id=None, expected_revision=None):
@@ -108,8 +116,13 @@ def save(store, principal, edition_id, snapshot, key, *, resource_id=None, expec
     snapshot = _validate(snapshot)
     if not _supported(snapshot):
         raise StudyError('capability_version_unavailable', 409)
+    from .lab_snapshot import authorize
+    authorize(store, principal, edition_id, snapshot)
     result = evaluate(snapshot['capabilityId'], snapshot['parameters'])
-    snapshot['parameters'] = result['parameters']
+    if 'labSnapshot' in snapshot and snapshot['parameters'] != result['parameters']:
+        raise StudyError('invalid_science_snapshot')
+    if 'labSnapshot' not in snapshot:
+        snapshot['parameters'] = result['parameters']
     text = canonical(snapshot)
     if resource_id is None:
         if expected_revision is not None:

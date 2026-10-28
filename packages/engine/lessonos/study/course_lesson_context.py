@@ -35,14 +35,18 @@ def freeze_course_lesson(store, principal, edition_id, activity_id, value, param
     lesson = next((item for item in pack['lessons'] if item['id'] == ref['id']), None)
     if lesson is None:
         raise StudyError('course_lesson_unavailable', 409)
-    expected = lesson_reference(lesson)
+    expected = lesson.get('lessonRef') or lesson_reference(lesson)
     if ref != expected:
         raise StudyError('stale_course_lesson', 409)
+    if (activity_id == 'course-reasoning-v1' and not lesson.get('activityId')):
+        lesson = {**lesson, 'activityId': activity_id}
     if lesson.get('activityId') != activity_id or value['phase'] not in lesson:
         raise StudyError('course_lesson_activity_mismatch', 409)
     # Changing model controls is practice. A transfer label identifies the
     # lesson's declared new situation, never arbitrary practice parameters.
-    if value['phase'] == 'transfer' and parameters != lesson['transfer'].get('parameters'):
+    if activity_id == 'course-reasoning-v1' and parameters != {}:
+        raise StudyError('course_lesson_parameters_mismatch', 409)
+    if activity_id != 'course-reasoning-v1' and value['phase'] == 'transfer' and parameters != lesson['transfer'].get('parameters'):
         raise StudyError('course_lesson_parameters_mismatch', 409)
     return {'lessonRef': expected, 'phase': value['phase']}
 
