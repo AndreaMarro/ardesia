@@ -1,6 +1,6 @@
 import {createContext,useContext,useEffect,useRef,useState,type ReactNode} from 'react';
 
-export type CourseDraftPart='lesson'|'laboratory'|'assessment';
+export type CourseDraftPart='lesson'|'laboratory'|'assessment'|'diagnostic';
 export type CourseDraftScope={enabled:boolean;identity:symbol};
 type Draft={scope:CourseDraftScope;part:CourseDraftPart;generation:number;dirty:boolean;mounted:boolean;notify:()=>void};
 const Scope=createContext<CourseDraftScope|null>(null);
