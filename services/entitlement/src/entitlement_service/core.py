@@ -1,6 +1,6 @@
 """Port 1:1 di apps/studio/src/entitlements/entitlementCore.ts (NOTTE-11).
 
-Catena: license key ELAB-XXXX-XXXX-XXXX-XXXX -> redeem_license_key ->
+Catena: license key ARDESIA-XXXX-XXXX-XXXX-XXXX -> redeem_license_key ->
 EntitlementRecord {schoolId, classId, featureLookupKey, expiresAt} ->
 issue_access_token (token 128-bit CSPRNG consegnato SOLO via MailSink;
 nello store solo SHA-256 + TTL 15 min + used) -> redeem_access_token ->
@@ -34,7 +34,7 @@ from .store import Store, read_json, write_json
 KEY_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"
 KEY_GROUPS = 4
 KEY_GROUP_LEN = 4
-LICENSE_KEY_PATTERN = re.compile(r"^ELAB(-[A-HJ-NP-Z2-9]{4}){4}$")
+LICENSE_KEY_PATTERN = re.compile(r"^ARDESIA(-[A-HJ-NP-Z2-9]{4}){4}$")
 
 TOKEN_TTL_MS = 15 * 60_000  # norma magic-link 10-15 min (OWASP-aligned)
 TOKEN_BYTES = 16  # 128 bit
@@ -92,7 +92,7 @@ def generate_license_key() -> str:
         "".join(secrets.choice(KEY_ALPHABET) for _ in range(KEY_GROUP_LEN))
         for _ in range(KEY_GROUPS)
     )
-    return "ELAB-" + "-".join(groups)
+    return "ARDESIA-" + "-".join(groups)
 
 
 def register_license_key(store: Store, raw_key: str, scope: Scope, expires_at: int) -> str:
@@ -118,6 +118,9 @@ def redeem_license_key(store: Store, raw_key: str, now: int) -> dict[str, Any]:
     """Redeem one-time della chiave -> EntitlementRecord attivo.
     Ogni fallimento (sconosciuta, già usata, scaduta, corrotta) restituisce la
     STESSA risposta generica: mai rivelare quale controllo è fallito."""
+    # Retired distribution formats cannot grant access; existing records stay intact.
+    if LICENSE_KEY_PATTERN.fullmatch(raw_key) is None:
+        return invalid()
     key_hash = sha256_hex(raw_key)
     license_record = read_json(store, license_path(key_hash))
     if (

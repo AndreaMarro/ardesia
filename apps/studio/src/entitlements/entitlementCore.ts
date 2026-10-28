@@ -1,9 +1,9 @@
-// Entitlement scuola/classe ELAB (Obiettivo C) — core puro local-first.
+// Entitlement scuola/classe ARDESIA (Obiettivo C) — core puro local-first.
 //
 // Catena (modellata su Stripe Entitlements + OWASP Session Management /
 // Forgot Password, vedi External Research Ledger NOTTE-11):
 //
-//   license key  ELAB-XXXX-XXXX-XXXX-XXXX   (artefatto di DISTRIBUZIONE)
+//   license key  ARDESIA-XXXX-XXXX-XXXX-XXXX   (artefatto di DISTRIBUZIONE)
 //     → redeemLicenseKey → EntitlementRecord {schoolId, classId,
 //         featureLookupKey, expiresAt}                     (stato locale)
 //     → issueAccessToken → token 128-bit CSPRNG consegnato SOLO via
@@ -35,7 +35,7 @@ export interface EntitlementStore {
 const KEY_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"
 const KEY_GROUPS = 4
 const KEY_GROUP_LEN = 4
-export const LICENSE_KEY_PATTERN = /^ELAB(-[A-HJ-NP-Z2-9]{4}){4}$/
+export const LICENSE_KEY_PATTERN = /^ARDESIA(-[A-HJ-NP-Z2-9]{4}){4}$/
 
 const TOKEN_TTL_MS = 15 * 60_000 // norma magic-link 10-15 min (OWASP-aligned)
 const TOKEN_BYTES = 16 // 128 bit
@@ -119,11 +119,11 @@ async function writeJson(store: EntitlementStore, path: string, value: unknown):
   await store.write(path, new Blob([JSON.stringify(value)], { type: "application/json" }))
 }
 
-/** Chiave di licenza ELAB-XXXX-XXXX-XXXX-XXXX (~79 bit, artefatto di distribuzione). */
+/** Chiave di licenza ARDESIA-XXXX-XXXX-XXXX-XXXX (~79 bit, artefatto di distribuzione). */
 export function generateLicenseKey(): string {
   const groups: string[] = []
   for (let i = 0; i < KEY_GROUPS; i += 1) groups.push(randomFromAlphabet(KEY_GROUP_LEN))
-  return `ELAB-${groups.join("-")}`
+  return `ARDESIA-${groups.join("-")}`
 }
 
 /** Registra una chiave emessa: nello store SOLO l'hash + scope + scadenza. */
@@ -159,6 +159,8 @@ export async function redeemLicenseKey(
   rawKey: string,
   now: number,
 ): Promise<RedeemKeyResult> {
+  // Full match rejects retired distribution keys without changing stored grants.
+  if (LICENSE_KEY_PATTERN.exec(rawKey)?.[0] !== rawKey) return INVALID
   const keyHash = await sha256Hex(rawKey)
   const license = await readJson<StoredLicense>(store, licensePath(keyHash))
   if (

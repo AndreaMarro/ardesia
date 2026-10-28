@@ -6,10 +6,19 @@ provider email reale, nessun segreto committato, storage file-based locale.
 "GDPR-ready" qui è un claim **tecnico** (misure: pseudonimizzazione, export,
 erasure, retention) — **non** un claim di conformità legale.
 
+## Formato delle chiavi di distribuzione
+
+Le nuove chiavi usano `ARDESIA-XXXX-XXXX-XXXX-XXXX`. Il riscatto rifiuta
+le vecchie chiavi di distribuzione `ELAB-`, anche se ancora registrate e non
+utilizzate, con la stessa risposta generica `invalid`. Non esiste conversione
+automatica fra i prefissi. I grant già riscattati, gli identificatori, gli hash
+e i token di accesso già emessi conservano formato, scope, scadenza e revoca.
+Questa modifica del formato non distribuisce servizi e non migra dati.
+
 ## Architettura
 
 ```
-POST /license/register  (authority)  chiave ELAB-XXXX-XXXX-XXXX-XXXX generata
+POST /license/register  (authority)  chiave ARDESIA-XXXX-XXXX-XXXX-XXXX generata
         │                            server-side, restituita UNA volta;
         ▼                            nello store solo sha256(chiave)
 POST /license/redeem                 one-time → EntitlementRecord
@@ -102,10 +111,10 @@ Esempio flusso completo (feature sandbox `tutor-monthly-15eur`):
 curl -s -X POST localhost:8390/license/register \
   -H "X-API-Key: $ENTITLEMENT_API_KEY" -H 'content-type: application/json' \
   -d '{"schoolId":"scuola-1","classId":"3B","expiresAt":1790000000000}'
-# → {"ok":true,"licenseKey":"ELAB-....","keyHash":"…"}
+# → {"ok":true,"licenseKey":"ARDESIA-....","keyHash":"…"}
 
 curl -s -X POST localhost:8390/license/redeem \
-  -H 'content-type: application/json' -d '{"licenseKey":"ELAB-...."}'
+  -H 'content-type: application/json' -d '{"licenseKey":"ARDESIA-...."}'
 # → {"ok":true,"entitlement":{...}}   (fallimento: {"ok":false,"reason":"invalid"})
 
 curl -s -X POST localhost:8390/token/issue \

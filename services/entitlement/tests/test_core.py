@@ -31,7 +31,7 @@ from entitlement_service.core import (
     timing_safe_equal_hex,
 )
 from entitlement_service.mail import MemoryMailSink
-from entitlement_service.store import FileStore
+from entitlement_service.store import FileStore, read_json, write_json
 
 NOW = 1_760_000_000_000
 SCOPE = {
@@ -65,7 +65,9 @@ def register(store, key: str) -> None:
 
 def test_generated_key_matches_pattern() -> None:
     for _ in range(20):
-        assert re.fullmatch(LICENSE_KEY_PATTERN, generate_license_key())
+        key = generate_license_key()
+        assert re.fullmatch(r"ARDESIA(-[A-HJ-NP-Z2-9]{4}){4}", key)
+        assert re.fullmatch(LICENSE_KEY_PATTERN, key)
 
 
 def test_register_stores_only_hash(tmp_path) -> None:
@@ -293,3 +295,44 @@ def test_compare_is_constant_time_primitive() -> None:
 
     source = inspect.getsource(core)
     assert "compare_digest" in source
+
+
+# Distribution-format change does not migrate or rebind redeemed access records.
+def test_rejects_registered_legacy_or_noncanonical_keys_without_writes(tmp_path) -> None:
+    for key in ("ELAB-AAAA-BBBB-CCCC-DDDD", "ARDESIA-AAAA-BBBB-CCCC-DDDD\n"):
+        store = make_store(tmp_path)
+        register(store, key)
+        before = scan_files(tmp_path)
+        assert redeem_license_key(store, key, NOW) == INVALID
+        assert redeem_license_key(store, key.replace("ELAB-", "ARDESIA-", 1), NOW) == INVALID
+        assert scan_files(tmp_path) == before
+        assert check_access(store, dict(SCOPE), NOW) is False
+
+
+def test_pattern_rejects_legacy_prefix() -> None:
+    assert LICENSE_KEY_PATTERN.fullmatch("ARDESIA-AAAA-BBBB-CCCC-DDDD")
+    assert not LICENSE_KEY_PATTERN.fullmatch("ELAB-AAAA-BBBB-CCCC-DDDD")
+
+
+def test_existing_grant_and_outstanding_token_remain_valid_without_rebind(tmp_path) -> None:
+    store = make_store(tmp_path)
+    key = "ELAB-AAAA-BBBB-CCCC-DDDD"
+    key_hash = sha256_hex(key)
+    raw_token = "0123456789abcdef" * 2
+    token_hash = sha256_hex(raw_token)
+    entitlement = dict(SCOPE, id="existing-grant", redeemedAt=NOW - 1000, expiresAt=EXPIRES, revokedAt=None)
+    record_path = "entitlements/records/existing-grant.json"
+    license_path = f"entitlements/licenses/{key_hash}.json"
+    scope_path = "entitlements/by-scope/scuola-1/3B/tutor-monthly-15eur/latest.json"
+    write_json(store, license_path, dict(SCOPE, v=1, keyHash=key_hash, expiresAt=EXPIRES, redeemed=True))
+    write_json(store, record_path, entitlement)
+    write_json(store, scope_path, {"id": entitlement["id"]})
+    write_json(store, f"entitlements/tokens/{token_hash}.json", {"v": 1, "tokenHash": token_hash, "entitlementId": entitlement["id"], "issuedAt": NOW - 1000, "expiresAt": NOW + TOKEN_TTL_MS, "used": False})
+    original_records = {path: read_json(store, path) for path in (record_path, license_path, scope_path)}
+    assert redeem_license_key(store, key, NOW) == INVALID
+    assert check_access(store, dict(SCOPE), NOW) is True
+    result = redeem_access_token(store, raw_token, NOW)
+    assert result["ok"] is True
+    assert result["session"]["entitlementId"] == entitlement["id"]
+    assert {path: read_json(store, path) for path in original_records} == original_records
+    assert redeem_access_token(store, raw_token, NOW + 1) == INVALID
