@@ -17,7 +17,6 @@ type PluginWindowProps = {
 
 const KIND_FILTERS: ReadonlyArray<{ kind: PluginWindowKind | "all"; label: string }> = [
   { kind: "simulation", label: "Simulatore" },
-  { kind: "elab-tutor", label: "ELABTutor" },
   { kind: "essential", label: "Essenziali" },
   { kind: "function", label: "Funzioni" },
   { kind: "drawing-hd", label: "Disegno HD" },
@@ -37,7 +36,7 @@ export default function PluginWindow({
     () => items ?? buildDefaultPluginWindowCatalog({ marketplaceItems, userCreated }),
     [items, marketplaceItems, userCreated],
   )
-  const [selectedKind, setSelectedKind] = useState<PluginWindowKind | "all">("simulation")
+  const [selectedKind, setSelectedKind] = useState<PluginWindowKind | "all">("all")
   const [query, setQuery] = useState("")
   const visibleItems = filterPluginWindowCatalog(catalog, selectedKind, query)
 
@@ -150,8 +149,6 @@ function kindLabel(kind: PluginWindowKind): string {
   switch (kind) {
     case "simulation":
       return "Simulatore"
-    case "elab-tutor":
-      return "ELABTutor"
     case "essential":
       return "Essenziale"
     case "function":

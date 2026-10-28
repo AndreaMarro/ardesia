@@ -8,7 +8,8 @@ import { createRoot } from "react-dom/client"
 import { act, Component, type ReactNode } from "react"
 import { PATHS, type WorkspaceDriver, type FileEntry } from "../store/types"
 import { hasEmoji } from "./emojiGuard"
-import { createMultiPostitWorkbenchPostits } from "../design/multiPostitWorkbenchModel"
+import { createPostitFromPluginWindowInsert } from "../design/multiPostitWorkbenchModel"
+import { buildDefaultPluginWindowCatalog, createPluginWindowInsertRequest } from "../design/pluginWindowCatalog"
 import { createPluginPostitBoardScene } from "../design/multiPostitBoardPersistence"
 import { exportLesson } from "../store/lessonBundle"
 import {
@@ -19,8 +20,6 @@ import {
 import { studioProducerIdentity } from "../core/contracts/eventEnvelope"
 import { createEventLogStore } from "../lessonos/indexedDbEventLog"
 import { roomPaths } from "../store/roomPaths"
-import { FOUNDER_BETA_PLUGINS } from "../toolhost/founderBetaPlugin"
-import { REFERENCE_SIM_TOOL_ID } from "../toolhost/ToolCanvasEmbeddable"
 import {
   createLessonMutationCoordinator,
   type MutationLockBroker,
@@ -2053,41 +2052,6 @@ describe("FB-3C: ownership Room della sessione LessonOS", () => {
     root.unmount()
   })
 
-  it("allowlist Founder Beta contiene un solo plugin first-party senza capability remote", async () => {
-    expect(FOUNDER_BETA_PLUGINS).toHaveLength(1)
-    const plugin = FOUNDER_BETA_PLUGINS[0]
-    expect(plugin.id).toBe(REFERENCE_SIM_TOOL_ID)
-    expect(plugin.trustTier).toBe("builtin-reviewed")
-    expect(plugin.manifest.publisher).toEqual({
-      id: "maestro-sdk",
-      pubkey: "ed25519:Jr4+9LNWwK1Mxs6qCzr+qgLZI72pbGZaXEZ87HALHFk=",
-    })
-    expect(plugin.manifest.privacy.dataOut).toBe("none")
-    expect(plugin.manifest.capabilities["net.fetch"]).toBeUndefined()
-    expect(plugin.manifest.capabilities["llm.generate"]).toBeUndefined()
-    expect(plugin.manifest.capabilities["board.write"]).toEqual({ scope: "own-embeds" })
-
-    const handle = await openInMemorySession()
-    const opener: LessonOsSessionOpener = vi.fn(async () => handle)
-    const appendFactSpy = vi.spyOn(handle, "appendFact")
-    const { store } = await createMockStore()
-    vi.spyOn(store, "loadScene").mockResolvedValue(null)
-    const root = createRoot(document.getElementById("root")!)
-    const RoomModule = await import("../Room")
-    root.render(<RoomModule.default store={store} lessonOsOpener={opener} />)
-
-    await vi.waitFor(() => {
-      expect((window as any).__MAESTRO_TEST__?.lessonOs?.current).toBe(handle)
-      expect(document.querySelectorAll("[data-founder-plugin-id]")).toHaveLength(1)
-    })
-    const rows = await handle.store.readEnvelopesBySession("test-room-1", SESSION_A)
-    expect(rows).toHaveLength(1)
-    expect(rows.some((row) => row.kind.includes("audio"))).toBe(false)
-    expect(rows.flatMap((row) => row.evidence).some((item) => item.ref.startsWith("audio:"))).toBe(false)
-    expect(appendFactSpy).not.toHaveBeenCalled()
-    root.unmount()
-  })
-
   it("non apre sessioni in vista studente", async () => {
     const { isStudentView } = await import("../store/studentView")
     vi.mocked(isStudentView).mockReturnValue(true)
@@ -3049,7 +3013,7 @@ describe("handleFile: i fallimenti import-file usano il chip d'errore (UX coeren
 
   it("import .lesson dalla Room scrive la board nel path della stanza e aggiorna Excalidraw", async () => {
     const { store: sourceStore } = await createMockStore()
-    const boardScene = createPluginPostitBoardScene(createMultiPostitWorkbenchPostits())
+    const boardScene = createPluginPostitBoardScene([createPostitFromPluginWindowInsert(createPluginWindowInsertRequest(buildDefaultPluginWindowCatalog()[0]), [])])
     await sourceStore.saveScene("test-room-1", JSON.stringify(boardScene))
     await sourceStore.write(
       roomPaths("test-room-1").journal,

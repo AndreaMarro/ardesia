@@ -3,8 +3,8 @@
 // se registrato qui (deny-by-default). Nessuna superficie di sicurezza toccata:
 // il registry governa solo il render dell'embed, non capability/protocollo.
 
+import { isRetiredPlugin } from "./retiredPlugins";
 import type { ReactElement } from "react";
-import type { SolveOptions, SolveResult, SolverExperiment } from "../../sim/solver/elabSolver";
 import type { LessonOsEvent } from "../lessonos/eventlog";
 
 /** Forma strutturale dell'elemento embeddable Excalidraw (twin di EmbedLike). */
@@ -56,10 +56,48 @@ export interface SimulationToolEntry {
   solve?(experiment: SolverExperiment, options?: SolveOptions): SolveResult;
 }
 
+export interface SolverComponent {
+  id: string
+  type: string
+  value?: number
+  color?: string | null
+}
+
+export interface SolverConnection {
+  from: string
+  to: string
+  color?: string
+}
+
+export interface SolverExperiment {
+  components: SolverComponent[]
+  connections: SolverConnection[]
+  pinAssignments?: Record<string, string>
+}
+
+export interface SolveResult {
+  ok: boolean
+  componentStates: Record<string, { on?: boolean } & Record<string, unknown>>
+  currents: Record<string, number>
+  nodeVoltages: Record<string, number>
+  diagnostics: {
+    shortCircuit: boolean
+    disconnectedPins: Array<{ compId: string; pinName: string; pinRef: string }>
+    overloadWarnings: Array<{ compId: string; type?: string; message?: string }>
+  }
+  warnings: string[]
+}
+
+export interface SolveOptions {
+  sceneLedForwardVolts?: number
+}
+
+
 const registry = new Map<string, SimulationToolEntry>();
 
 /** Registra (o sovrascrive) un tool per il dispatch degli embed maestro-tool://. */
 export function registerSimulationTool(toolId: string, entry: SimulationToolEntry): void {
+  if (isRetiredPlugin(toolId)) throw new Error(`retired plugin: ${toolId}`);
   registry.set(toolId, entry);
 }
 

@@ -25,12 +25,9 @@ import RecapView from "./RecapView"
 import { isReplayView } from "./store/isReplayView"
 import ReplayView from "./ReplayView"
 import EmptyState from "./design/EmptyState"
-// NB: l'import da ToolCanvasEmbeddable è anche ciò che REGISTRA i tool reference
-// nel registry (registrazione a module-scope): non rimuoverlo lasciando solo
-// getSimulationTool, o il registry risulterebbe vuoto.
-import { buildSimulationInsert, normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+// Generic dispatch has no bundled simulator registration side effects.
+import { normalizeDuplicatedToolEmbeds, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 import { persistRoomEmbedStateThroughToolHost } from "./toolhost/roomWriteBack"
-import { FOUNDER_BETA_PLUGIN } from "./toolhost/founderBetaPlugin"
 import { roomPaths, validateRoomId } from "./store/roomPaths"
 import type { ActiveLessonRegistration } from "./store/lessonMutationLock"
 import { SessionAudioRecorder } from "./store/SessionAudioRecorder"
@@ -990,31 +987,6 @@ export default function Room({
     }
   }
 
-  function insertSimulationPlugin(experimentId?: string) {
-    if (!apiRef.current) {
-      setStorageError("Lavagna non pronta: riprova tra un istante.")
-      return
-    }
-
-    // P0-C multi-istanza: ogni click = un NUOVO post-it del Simulation Plugin,
-    // con embedId unico e stato proprio (la prima istanza tiene l'id storico).
-    // Il tool arriva dal registry (deny-by-default), non da id/factory hard-codati.
-    const currentElements = apiRef.current.getSceneElements()
-    const insert = buildSimulationInsert(
-      currentElements as readonly { id?: string }[],
-      experimentId,
-    )
-    if (!insert) {
-      setStorageError("Simulation Plugin non disponibile.")
-      return
-    }
-
-    apiRef.current.updateScene({
-      elements: [...currentElements, insert.embed],
-      appState: { selectedElementIds: { [insert.embedId]: true } },
-    })
-    apiRef.current.scrollToContent?.([insert.embed], { fitToContent: true })
-  }
   if (lifecycleGate === "pending") {
     return (
       <div
@@ -1143,16 +1115,6 @@ export default function Room({
           <button disabled={mathPending} onClick={() => { if (mathInsertPendingRef.current) return; setMathOn(v => !v); setMenuOpen(false) }} className={`st-ghost${mathOn ? " st-on" : ""}`}>formula</button>
           <button onClick={() => fileInputRef.current?.click()} className="st-ghost" aria-label="Inserisci immagine, PDF o .lesson">media</button>
           <input ref={fileInputRef} type="file" accept="image/*,application/pdf,.lesson" style={{ display: "none" }} onChange={handleFile} />
-          <button
-            onClick={() => insertSimulationPlugin()}
-            className="st-ghost"
-            aria-label="Inserisci Simulation Plugin sulla lavagna"
-            data-founder-plugin-id={FOUNDER_BETA_PLUGIN.id}
-            data-plugin-version={FOUNDER_BETA_PLUGIN.version}
-            data-plugin-trust-tier={FOUNDER_BETA_PLUGIN.trustTier}
-          >
-            sim
-          </button>
           <button onClick={toggleDrawer} className={`st-ghost${drawerOpen ? " st-on" : ""}`}>
             lezioni
           </button>
@@ -1352,7 +1314,7 @@ export default function Room({
                 <div className="st-welcome-guide">
                   <p>Tutto quello che scrivi si salva da solo, qui sul tuo computer.</p>
                   <p>Per le formule premi «formula», per slide e immagini «media».</p>
-                  <p>Il simulatore integrato è l'unico plugin disponibile in questa beta.</p>
+                  <p>I plugin installati sono disponibili attraverso ToolHost.</p>
                 </div>
               </WelcomeScreen.Center>
               <WelcomeScreen.Hints.ToolbarHint>

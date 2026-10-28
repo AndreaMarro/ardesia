@@ -4,9 +4,6 @@
 // documentName (spec bridge §2.3: configurazione, non euristica).
 
 import type { ManualRegistry } from "./journalBridge"
-// Import di valore verso manualConfig; manualConfig importa solo il TIPO
-// ManualRegistryEntry da qui (type-only, eraso a runtime: nessun ciclo reale).
-import { ELAB_MANUAL_ENTRIES } from "./manualConfig"
 
 export interface ManualRegistryEntry {
   /** Id manuale in forma EvidenceRef-namespace, es. "manual:vol1". */
@@ -43,8 +40,8 @@ export function staticManualRegistry(
 }
 
 /**
- * Registry attivo di default a runtime: config manuali ELAB reale (C1),
- * keyed su hash sha256 dell'intero PDF — vedi provenienza in manualConfig.ts.
+ * Registry attivo di default a runtime: nessun manuale precaricato; le voci sono fornite esplicitamente dal consumer,
+ * Le voci del consumer sono keyed su hash sha256 dell'intero PDF.
  * documentId non in config → undefined → nessun material.cited (fail-closed).
  */
-export const defaultManualRegistry: ManualRegistry = staticManualRegistry(ELAB_MANUAL_ENTRIES)
+export const defaultManualRegistry: ManualRegistry = staticManualRegistry({})

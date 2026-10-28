@@ -7,9 +7,7 @@ import sys
 
 # Files that legitimately embed raw control bytes (e.g. property tests
 # feeding literal NUL input). Keep this list justified and short.
-ALLOWLIST = {
-    "plugins/elab-tutor/tests/unit/unlim-intent-flags-property.test.js",
-}
+ALLOWLIST: set[str] = set()
 
 TEXT_EXTENSIONS = {
     ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".py", ".md", ".json",

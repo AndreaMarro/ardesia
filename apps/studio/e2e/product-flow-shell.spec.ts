@@ -27,10 +27,7 @@ test("flusso docente: Lezione → Continuità → Materiali → stessa Lezione",
   await expect(nav).not.toContainText("ELABTutor")
   await expect(nav).not.toContainText("Marketplace")
 
-  const founderPlugin = page.locator("[data-founder-plugin-id]")
-  await expect(founderPlugin).toHaveCount(1)
-  await expect(founderPlugin).toHaveAttribute("data-founder-plugin-id", "io.ardesia.simulation")
-  await expect(founderPlugin).toHaveAttribute("data-plugin-trust-tier", "builtin-reviewed")
+  await expect(page.locator("[data-founder-plugin-id]")).toHaveCount(0)
   const lessonActions = page.locator(".st-actions")
   for (const excluded of [
     "invita studente",
