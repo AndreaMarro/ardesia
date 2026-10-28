@@ -143,6 +143,7 @@ def create_remote_app(configuration, data_directory, **options):
     """Reuse create_app, its admission and every existing Core route/store."""
     from .app import create_app
     runtime = RemoteSupabaseRuntime(configuration, data_directory)
+    options.setdefault('frontend_spa', True)
     return create_app(Path(data_directory) / 'postgres.lock', demo=True,
                       secure_cookies=True, runtime=runtime, **options)
 
@@ -156,4 +157,8 @@ def app_from_env():
     if not data_directory:
         raise ValueError('remote_data_directory_required')
     os.umask(0o077)
-    return create_remote_app(configuration, data_directory)
+    frontend = Path(__file__).resolve().parents[1] / '_frontend'
+    if frontend.exists() and not (frontend / 'index.html').is_file():
+        raise ValueError('remote_frontend_index_required')
+    return create_remote_app(configuration, data_directory,
+                             frontend=frontend if frontend.exists() else None)
