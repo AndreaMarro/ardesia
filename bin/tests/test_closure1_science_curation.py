@@ -12,6 +12,16 @@ class CurationTest(unittest.TestCase):
     def setUp(self):
         self.pack=json.loads(PACK.read_text())
 
+    def test_acceptance_matrix_uses_current_prompt_rubric_and_expected_evidence(self):
+        matrix=json.loads((ROOT/'docs/ops/closure1-20261028/coverage-matrix.json').read_text())
+        items={q['id']:q for q in self.pack['atomicFinalAssessment']}
+        for row in matrix['rows']:
+            item=items[row['exercise']['itemId']]
+            self.assertEqual(row['acceptance']['prompt'],item['prompt'])
+            self.assertEqual(row['acceptance']['rubricRef']['itemId'],item['id'])
+            self.assertEqual(row['acceptance']['expectedEvidence']['initial'],item['answer'])
+            self.assertEqual(row['acceptance']['expectedEvidence']['transfer'],item['transfer']['expectedEvidence'])
+
     def test_selected_bank_refs_are_distinct_versioned_and_resolve(self):
         selection=self.pack['curatedPractice']
         bank=CONTENT/'physics-semestre-2026-bank'

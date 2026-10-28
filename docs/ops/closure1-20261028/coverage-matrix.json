@@ -48,7 +48,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Che cosa distingue la risposta statica di un fluido da quella di un solido a uno sforzo tangenziale?",
+        "prompt": "Quale differenza c’è fra la risposta statica di un fluido e quella di un solido a uno sforzo tangenziale?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -65,7 +65,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-01.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua, il solido può sostenerlo.",
+          "transfer": "Il fluido non sostiene taglio statico; la superficie e le pressioni si assestano, mentre il solido può equilibrarlo con deformazione finita."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -120,7 +129,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una forza normale16N agisce su0,004m². Trova la pressione.",
+        "prompt": "Una forza normale di 16 N è distribuita uniformemente su 0,004 m². Qual è la pressione media?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -137,7 +146,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-01.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "4000 Pa.",
+          "transfer": "Entrambe 50000 Pa: F/A uguale, forze diverse. Serve convertire cm² in m²."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -202,7 +220,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Massa1,5kg in volume0,002m³: quale densità?",
+        "prompt": "Un campione omogeneo ha massa 1,5 kg e volume 0,002 m³. Qual è la densità?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -219,7 +237,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-01.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "750 kg/m³.",
+          "transfer": "0,5 kg,0,4 L,1250 kg/m³; massa e volume si dimezzano, densità no."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -289,7 +316,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "La legge p=p0+ρgh vale automaticamente in un tubo con veloce flusso dissipativo?",
+        "prompt": "La relazione p=p₀+ρgh descrive automaticamente la pressione in un tubo con flusso veloce e dissipativo? Motiva.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -306,7 +333,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-01.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: è una relazione idrostatica; il moto richiede considerare energia e perdite appropriate.",
+          "transfer": "Stevino è statica; nel moto dissipativo una differenza di pressione sostiene il flusso. Serve un bilancio dinamico."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -367,7 +403,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Olioρ=800kg/m³,g=10m/s²,profondità0,5m. Qual è l’incremento di pressione?",
+        "prompt": "Olio in quiete: ρ=800 kg/m³, g=10 m/s², profondità 0,5 m. Qual è l’incremento di pressione rispetto alla superficie?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -384,7 +420,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "4000 Pa, da aggiungere alla pressione sulla superficie.",
+          "transfer": "Uguale: incremento ρgh indipendente dalla forma, con liquido connesso/condizioni superficiali uguali e quiete."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -485,7 +530,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un aumento di pressione di2000Pa raggiunge un pistone di0,01m². Quale aumento di forza ideale?",
+        "prompt": "Un incremento di pressione di 2000 Pa raggiunge un pistone di area 0,01 m². Qual è l’aumento ideale di forza?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -502,7 +547,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "20 N, per Pascal eF=ΔpA.",
+          "transfer": "A_grande=10 A_piccola; s_grande=s_piccola/10; lavoro ideale uguale. Alla stessa quota si confrontano le pressioni."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -578,7 +632,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un volume immerso0,002m³ sposta fluidoρ=900kg/m³,g=10. Qual è la spinta?",
+        "prompt": "Un corpo sposta un volume di liquido di 0,002 m³. La densità del liquido è 900 kg/m³ e g=10 m/s². Trova modulo e verso della spinta.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -595,7 +649,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "18 N verso l’alto.",
+          "transfer": "Stessa spinta ρ_f gV; tensioni diverse secondo peso e verso del vincolo. Uguaglianza spinta-peso solo se equilibrio libero senza altre forze."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -691,7 +754,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un corpo omogeneoρ=750 galleggia in fluidoρ=1000kg/m³. Quale frazione immersa?",
+        "prompt": "Un corpo omogeneo di densità 750 kg/m³ galleggia liberamente in un liquido di densità 1000 kg/m³. Quale frazione del volume è immersa?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -708,7 +771,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "0,75=75%.",
+          "transfer": "Aumentano volume immerso e spinta fino a ρ_f gV_tot; limite sul carico, non spinta illimitata."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -794,7 +866,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Perché in un barometro ideale una colonna di liquido può misurare la pressione atmosferica?",
+        "prompt": "Perché un barometro ideale può misurare la pressione atmosferica mediante l’altezza di una colonna di liquido?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -811,7 +883,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "La differenza di pressione fra atmosfera e spazio superiore quasi vuoto equilibraρgh.",
+          "transfer": "Il dislivello verticale h con p_atm−p_vapore=ρgh; la lunghezza lungo il tubo non sostituisce h."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -861,7 +942,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un manometro conρ=1000kg/m³,g=10,dislivello0,03m misura quale differenza di pressione?",
+        "prompt": "Un manometro contiene liquido di densità 1000 kg/m³. Il dislivello verticale fra i menischi è 0,03 m; le densità dei gas sono trascurabili e g=10 m/s². Qual è il modulo della differenza di pressione?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -878,7 +959,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-02.06",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "300 Pa; conta il dislivello verticale.",
+          "transfer": "Sinistra maggiore: al livello del menisco sinistro la pressione nel ramo destro è p_destra+ρgΔh."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -938,7 +1028,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "In2s attraversano un tubo6L. Qual è la portata volumetrica?",
+        "prompt": "In 2 s attraversano una sezione del tubo 6 L di liquido. Qual è la portata volumetrica media?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -955,7 +1045,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "3 L/s=0,003 m³/s.",
+          "transfer": "Q=12 mL/s=12·10⁻⁶ m³/s; A=3·10⁻⁶ m²; v=4 m/s. Volume/tempo diverso da lunghezza/tempo."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1050,7 +1149,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee?",
+        "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee? Distingui le due descrizioni.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1067,7 +1166,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
+          "transfer": "Medie temporalmente stazionarie; campo istantaneo fluttuante non rigorosamente stazionario. Separare tempo e spazio."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1116,7 +1224,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Quale struttura del moto caratterizza il flusso laminare ideale in un tubo?",
+        "prompt": "Quale organizzazione del moto caratterizza un flusso laminare? Può presentare velocità diverse fra parete e asse?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1133,7 +1241,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Strati ordinati senza rimescolamento turbolento; possono avere velocità diverse fra parete e asse.",
+          "transfer": "No: strati ordinati possono avere velocità diverse. Il profilo viscoso è compatibile con assenza di rimescolamento turbolento."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1182,7 +1299,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Fluido incomprimibile:A1=6cm²,v1=2m/s,A2=3cm². Qual èv2?",
+        "prompt": "Un fluido incomprimibile scorre senza accumulo né diramazioni: A₁=6 cm², v₁=2 m/s, A₂=3 cm². Trova v₂.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1199,7 +1316,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "4m/s; portata conservata.",
+          "transfer": "Area a1/9, velocità9volte maggiore; Q=Av, nessun accumulo. Dichiarare portata fissata."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1304,7 +1430,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "In flusso ideale orizzontaleρ=1000,la velocità passa da2a3m/s. Qual èp2−p1?",
+        "prompt": "Lungo la stessa linea di corrente di un flusso ideale stazionario orizzontale, ρ=1000 kg/m³ e la velocità passa da 2 a 3 m/s. Trova p₂−p₁.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1321,7 +1447,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "−2500 Pa da Bernoulli.",
+          "transfer": "No: p2−p1=ρ(v1²−v2²)/2−ρgΔz; contributi opposti, servono dati. Ipotesi di Bernoulli esplicite."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1451,7 +1586,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "In un restringimento e una dilatazione ideali allo stesso flusso e quota,come si confrontano velocità e pressione statica?",
+        "prompt": "Confronta restringimento e dilatazione di un vaso ideale alla stessa quota e portata. Come cambiano velocità e pressione statica? Dichiara un limite dell’applicazione al sangue reale.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1468,7 +1603,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-03.06",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Nel restringimento velocità maggiore e pressione minore; nella dilatazione l’opposto, senza estendere questo a una diagnosi reale.",
+          "transfer": "Bernoulli senza perdite è ideale; viscosità e separazione dissipano energia meccanica in interna. Pareti e pulsazione limitano il confronto."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1518,7 +1662,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Perché un fluido reale può richiedere differenza di pressione per mantenere portata in tubo orizzontale?",
+        "prompt": "Perché un fluido reale può richiedere una differenza di pressione per mantenere una portata costante in un tubo orizzontale?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1535,7 +1679,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-04.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+          "transfer": "Potenza ΔpQ fornita dalla pompa compensava dissipazione; cessato il sostegno il moto evolve e poi si arresta, esclusi altri dislivelli o fonti."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1601,7 +1754,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Nel profilo parabolico laminare in tubo qual è il rapporto velocità massima/media?",
+        "prompt": "Nel profilo parabolico laminare sviluppato di un tubo circolare, con aderenza alla parete, qual è il rapporto fra velocità massima e media?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1618,7 +1771,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-04.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "2, con aderenza alla parete e ipotesi di Poiseuille.",
+          "transfer": "u(r/2)=0,75u_max; u_media=0,5u_max. È un grafico velocità-posizione trasversale, non traiettoria."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1689,7 +1851,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Che cosa misura il gradiente di velocità fra due strati vicini?",
+        "prompt": "Che cosa misura il gradiente di velocità fra strati vicini e come si collega alla viscosità newtoniana?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1706,7 +1868,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-04.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "La variazione della velocità per distanza trasversale; nel fluido newtoniano collega sforzo tangenziale e viscosità.",
+          "transfer": "du/ds=0 sull’asse, modulo maggiore alla parete; massimo di u non coincide con massimo della pendenza."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1767,7 +1938,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "AΔp,L eη fissati,il raggio aumenta del fattore3. Quale rapporto di portata ideale?",
+        "prompt": "Nel modello di Poiseuille, Δp, L e η sono fissati e il raggio aumenta di un fattore 3. Qual è Q₂/Q₁?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1784,7 +1955,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-04.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "81, poiché Q∝r^4.",
+          "transfer": "16; resistenza16volte maggiore, Δp=RQ. A pressione fissata sarebbe Q/16."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1865,7 +2045,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Due resistenze idraulicheR e3R in serie e parallelo: quali equivalenti?",
+        "prompt": "Due resistenze idrauliche lineari valgono R e 3R. Trova la resistenza equivalente prima in serie e poi in parallelo.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1882,7 +2062,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-04.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "4R in serie; 3R/4 in parallelo, nel modello lineare.",
+          "transfer": "A Δp costante Q_ramo rimasto invariata e totale dimezzata; a Q_tot costante Δp e Q_ramo rimasto raddoppiano."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -1972,7 +2161,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Quali unità equivalenti ha la tensione superficiale?",
+        "prompt": "Quali sono due unità equivalenti della tensione superficiale? Collega ciascuna al suo significato fisico.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -1989,7 +2178,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-05.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "N/m come forza per lunghezza e J/m² come lavoro reversibile per area creata, nelle condizioni dichiarate.",
+          "transfer": "F=2γl, raddoppia; contare due superfici e usare N/m perγ. Modello di pellicola sottile."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2059,7 +2257,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "A parità di tensione superficiale,perché una goccia piccola può mostrare effetti di superficie più importanti rispetto al peso?",
+        "prompt": "A tensione superficiale costante, perché gli effetti superficiali sono più importanti rispetto al peso per gocce geometricamente simili più piccole?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2076,7 +2274,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-05.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Il rapporto superficie/volume cresce riducendo la dimensione; il peso scala col volume.",
+          "transfer": "Area scala comeL² e volume/peso comeL³; rapporto superficie/volume cresce come1/L. Non implica cheγcambi."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2125,7 +2332,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "La risalita capillare avviene per ogni coppia liquido-parete?",
+        "prompt": "Un liquido sale in ogni capillare indipendentemente dalla parete? Spiega il ruolo della bagnabilità.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2142,7 +2349,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-05.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: dipende anche dalla bagnabilità; un menisco non bagnante può produrre depressione.",
+          "transfer": "Coseni+1/2 e−1/2: stesso modulo, risalita e depressione opposte. Angolo misurato attraverso il liquido."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2191,7 +2407,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una superficie piana ideale possiede salto di pressione dovuto alla sola curvatura?",
+        "prompt": "Un’interfaccia piana in equilibrio semplice presenta un salto di pressione dovuto alla sola curvatura? Distingui salto e pressione assoluta.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2208,7 +2424,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-05.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: la curvatura è nulla; non ne segue che la pressione assoluta siazero.",
+          "transfer": "Nella goccia curva le tensioni hanno risultante normale e richiedono salto; superficie piana senza altre forze ha salto nullo nel modello."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2257,7 +2482,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Fra due gocce dello stesso liquido con raggi3mm e6mm,quale ha maggior salto di pressione qualitativo perLaplace?",
+        "prompt": "Due gocce sferiche dello stesso liquido, alla stessa tensione superficiale, hanno raggi 3 mm e 6 mm. Quale presenta maggiore sovrapressione interna? Motiva qualitativamente.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2274,7 +2499,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U3-05.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Quella da3mm, con curvatura maggiore.",
+          "transfer": "Due superfici nella bolla contro una nella goccia:4γ/r contro2γ/r, rapporto2; equilibrio bordo/area. Quantitativo con legge fornita."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2329,7 +2563,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Analizzi un gas dentro un cilindro:come chiami il gas e il resto con cui può scambiare energia?",
+        "prompt": "Scegli come oggetto di analisi il gas dentro un cilindro. Definisci sistema, ambiente e confine, distinguendo chiuso e isolato.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2346,7 +2580,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-01.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Il gas è il sistema; il resto è ambiente e il confine lo separa. Chiuso: niente scambio di materia; isolato: niente scambio di materia né energia.",
+          "transfer": "Sistema chiuso alla materia; può ricevere calore attraverso parete, lavoro di espansione nullo; non isolato necessariamente."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2401,7 +2644,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Per un gas in equilibrio quali variabili descrivono pressione,volume e temperatura e con quali unitàSI?",
+        "prompt": "Quali variabili p, V e T descrivono un gas uniforme in equilibrio e quali sono le loro unità SI? Quale ulteriore quantità occorre nell’equazione di stato?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2418,7 +2661,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-01.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "p in Pa, V in m³, T in K, insieme alla quantità di sostanza.",
+          "transfer": "n,V,m ed energia interna estensive raddoppiano; p,T intensive restano uguali. Stato uniforme ipotizzato."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2467,7 +2719,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Il calore scambiato è una funzione di stato come l’energia interna?",
+        "prompt": "Il calore scambiato è una funzione di stato come l’energia interna? Spiega la distinzione.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2484,7 +2736,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-01.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: Q dipende dal percorso; U è funzione di stato.",
+          "transfer": "ΔU=ΔS=0; Q_net=W_net può essere diverso da0. Le funzioni di stato non coincidono con gli scambi di percorso."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2539,7 +2800,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Converti−20°C in kelvin.",
+        "prompt": "Converti −20 °C in kelvin e spiega se una differenza di 20 °C equivale a una differenza di 20 K.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2556,7 +2817,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-01.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "253,15 K. Gli intervalli di 20 °C e 20 K hanno uguale ampiezza; gli zeri delle scale sono diversi.",
+          "transfer": "p2/p1=313,15/293,15≈1,06822, non2. La traslazione dello zero non si cancella nei rapporti."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2626,7 +2896,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Gas ideale:n=2mol,T=250K,p=100000Pa,R=8,31446261815324J/(mol K). QualeV?",
+        "prompt": "Gas ideale in equilibrio: n=2 mol, T=250 K, p assoluta=100000 Pa. Con R=8,31446261815324 J/(mol K), trova V in m³.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2643,7 +2913,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-01.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "0,0415723130907662 m³; usa pressione assoluta e kelvin.",
+          "transfer": "p_abs=200000Pa; V=0,01247169392723m³. Usare100000Pa darebbe volume doppio."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2738,7 +3017,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un corpo ha energia interna:è corretto chiamarla calore contenuto?",
+        "prompt": "È corretto chiamare l’energia interna di un corpo «calore contenuto»? Definisci il calore come trasferimento.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2755,7 +3034,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: calore è energia trasferita per differenza di temperatura.",
+          "transfer": "Calore è trasferimento; lavoro e calore possono compensarsi e U tornare iniziale. Occorre percorso e bilancio."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2810,7 +3098,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una capacità termica40J/K riceve120J senza transizioni. Quanto cresceT?",
+        "prompt": "Un corpo di capacità termica costante 40 J/K assorbe 120 J, senza transizioni e nelle condizioni a cui si riferisce la capacità. Quanto aumenta T?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2827,7 +3115,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "3 K.",
+          "transfer": "C=mc, quindi capacità ed energia della seconda doppie; stesso calore specifico con stesse condizioni."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2892,7 +3189,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Massa0,5kg,c=800J/(kg K). Quale capacità termica?",
+        "prompt": "Un campione ha massa 0,5 kg e calore specifico 800 J/(kg K). Qual è la sua capacità termica totale?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2909,7 +3206,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "400 J/K.",
+          "transfer": "c inJ/(kgK) descrive variazioneT in una fase; L inJ/kg descrive massa trasformata a condizioni di transizione."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -2974,7 +3280,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Per una mole di gas ideale quanto valeCp−Cv e perchéCp è maggiore?",
+        "prompt": "Per un gas ideale, quanto vale C_P,m−C_V,m fra capacità molari? Perché quella a pressione costante è maggiore?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -2991,7 +3297,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "C_P, m−C_V, m=R; a pressione costante parte del calore alimenta il lavoro di espansione.",
+          "transfer": "ΔU uguale; Q_isobaro maggiore perché include W=nRΔT. Cp−Cv=R per capacità molari ideali."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3056,7 +3371,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Durante fusione ideale a pressione fissata,con due fasi in equilibrio,aggiungere calore cambia necessariamenteT?",
+        "prompt": "Durante la fusione di una sostanza pura a pressione fissata, con due fasi in equilibrio, aggiungere calore fa necessariamente aumentare T?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3073,7 +3388,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: può cambiare la frazione di fase a temperatura costante.",
+          "transfer": "Evaporazione dalla superficie anche sotto ebollizione; richiede energia e può raffreddare. Ebollizione coinvolge formazione bolle e condizioni di pressione."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3153,7 +3477,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "ConL=2·10^5J/kg,quale calore assorbito per trasformare0,03kg nella fase che richiede quelL?",
+        "prompt": "Un processo assorbe calore latente specifico L=2·10⁵ J/kg. Quanta energia richiede la trasformazione di 0,03 kg già alla temperatura di transizione?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3170,7 +3494,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.06",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "6000 J; la legge e il segno del processo vanno dichiarati.",
+          "transfer": "Fonde metà massa se L costante e perdite nulle; resta miscela aT_fusione. Cambiano fase ed energia interna, nonT durante il plateau."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3275,7 +3608,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Due corpi isolati dal resto scambiano caloreQ1=+70J. Quanto valeQ2 se il recipiente è trascurabile e non ci sono altri scambi?",
+        "prompt": "Due corpi isolati dall’esterno scambiano soltanto calore. Il primo riceve Q₁=+70 J. Quanto vale Q₂ se il recipiente ha capacità trascurabile?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3292,7 +3625,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-02.07",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "−70 J; somma dei calori uguale zero.",
+          "transfer": "T_f=(60+3·20)/4=30 °C. C(30−60)+3C(30−20)=0; media pesata."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3392,7 +3734,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una sbarra metallica trasferisce energia dal capo caldo al freddo senza moto macroscopico del materiale. Quale meccanismo?",
+        "prompt": "Una sbarra metallica ferma trasferisce energia dal capo caldo al freddo, senza moto macroscopico di materiale. Quale meccanismo è coinvolto?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3409,7 +3751,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-03.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Conduzione.",
+          "transfer": "Resistenza doppia, potenza metà; interfaccia alla media delle temperature per resistenze uguali e regime stazionario."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3514,7 +3865,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità. Quale meccanismo di trasporto?",
+        "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità in un campo gravitazionale. Quale meccanismo di trasporto è coinvolto?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3531,7 +3882,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-03.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Convezione naturale.",
+          "transfer": "Convezione forzata e coefficiente h; k del tessuto non è h. Evaporazione va distinta se presente."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3601,7 +3961,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Due superfici alla stessa temperatura emettono radiazione? Com’è lo scambio netto nel modello di equilibrio?",
+        "prompt": "Un corpo e il grande ambiente che lo circonda sono alla stessa temperatura assoluta positiva, in equilibrio radiativo. Il corpo emette? Qual è lo scambio netto?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3618,7 +3978,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-03.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Sì, emettono entrambe; lo scambio netto è zero.",
+          "transfer": "Emette e assorbe potenze uguali generalmente non nulle; P_net=0. Non serve un mezzo materiale."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3693,7 +4062,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una funzioneU torna allo stesso valore dopo un ciclo termodinamico. Quanto valeΔUciclo?",
+        "prompt": "Il gas percorre un ciclo termodinamico. Quanto vale ΔU sul ciclo e quale proprietà giustifica la risposta?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3710,7 +4079,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "0, perché l’energia interna è funzione di stato.",
+          "transfer": "ΔU uguale perché stato; daQ=ΔU+W segueQ2−Q1=W2−W1. Valori capacità dipendono dal modello del gas."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3765,7 +4143,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un gas riceveQ=+90J e compieW=+40J sull’ambiente. Dichiara i segni e trovaΔU.",
+        "prompt": "Un gas riceve Q=+90 J e compie W=+40 J sull’ambiente. Dichiara la convenzione e calcola ΔU, trascurando variazioni energetiche macroscopiche.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3782,7 +4160,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Q entrante, W fatto dal gas: ΔU=Q−W=+50 J.",
+          "transfer": "W=p_extΔV; p_gas può non essere definita uniformemente. Integrare pressione del gas richiede quasistaticità meccanica."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3847,7 +4234,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "La leggeΔU=Q−W permette a energia di scomparire?",
+        "prompt": "La relazione ΔU=Q−W ammette scomparsa di energia? Spiega quali contributi vengono bilanciati attraverso il confine del sistema.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3864,7 +4251,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: esprime il bilancio fra energia interna e trasferimenti attraverso il confine.",
+          "transfer": "Q=−50J,W=−120J,ΔU=Q−W=70J. Energia entrante come lavoro supera il calore ceduto."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -3934,7 +4330,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un processo con attrito può essere invertito lasciando sistema e ambiente esattamente come prima senza altri effetti?",
+        "prompt": "Un processo con attrito può essere invertito ripristinando esattamente sistema e ambiente, senza altri effetti? Motiva.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -3951,7 +4347,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: è irreversibile; invertire solo il moto non annulla la produzione di entropia.",
+          "transfer": "No: dissipazione e riscaldamento dell’ambiente; quasistatico non basta, occorre assenza di produzione entropica."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4016,7 +4421,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Per un gas ideale in isoterma,ΔU=0 implicaQ=0?",
+        "prompt": "Per un gas ideale in una trasformazione isoterma, ΔU=0 impone Q=0? Collega calore e lavoro nella convenzione del corso.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4033,7 +4438,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: Q=W; calore e lavoro possono essere entrambi non nulli.",
+          "transfer": "Isoterma reversibile ΔU=0 eQ=W>0; liberaQ=W=0, stessaΔU ma percorso diverso. Calore dell’ambiente alimenta il lavoro reversibile."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4098,7 +4512,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "In una trasformazione isocora quasi statica quale lavoro di espansione?",
+        "prompt": "In una trasformazione isocora, quale valore ha il lavoro di espansione p,V? Quale vincolo lo determina?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4115,7 +4529,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.06",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "0 J perchéΔV=0.",
+          "transfer": "W_pV=0;Q=ΔU può essere positivo. Rigido impedisce variazioneV, non conduzione termica."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4180,7 +4603,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un gas si espande quasi staticamente a2·10^5Pa di0,001m³. Quale lavoro fatto dal gas?",
+        "prompt": "Un gas si espande quasistaticamente contro pressione costante 2·10⁵ Pa, aumentando il volume di 0,001 m³. Qual è il lavoro fatto dal gas?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4197,7 +4620,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.07",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "+200 J.",
+          "transfer": "Tutti negativi:V eT calano;W fatto dal gas<0;ΔU<0;Q=ΔU+W<0. Usare convenzione e gas ideale."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4272,7 +4704,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Una compressione adiabatica ideale con60J di lavoro fatto sul gas ha qualeQ eΔU?",
+        "prompt": "Un gas viene compresso adiabaticamente: l’ambiente compie 60 J sul gas. Trova Q, W fatto dal gas e ΔU.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4289,7 +4721,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-04.08",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Q=0; W fatto dal gas=−60 J; ΔU=+60 J.",
+          "transfer": "Q=0 quindiΔU=−W<0 eT diminuisce; pV^γ richiede reversibilità e capacità costanti. Libera espansione è caso diverso conW=0."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4339,7 +4780,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un motore ciclico assorbe calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale principio lo esclude?",
+        "prompt": "Un motore ciclico preleva calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale enunciato lo esclude?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4356,7 +4797,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.01",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Secondo principio, enunciato di Kelvin-Planck; Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+          "transfer": "Il lavoro consumato è un ulteriore effetto; è vietato che l’unico effetto sia il passaggio di calore freddo→caldo."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4422,7 +4872,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un processo spontaneo può conservare energia ed essere comunque irreversibile?",
+        "prompt": "Un processo può conservare energia ed essere comunque irreversibile? Spiega quale controllo ulteriore manca al solo bilancio energetico.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4439,7 +4889,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.02",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Sì: conservazione energetica non impone reversibilità né entropia totale costante.",
+          "transfer": "Aumenta entropia e non si ricomprime spontaneamente ripristinando ambiente; conservazione è distinta da reversibilità."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4495,7 +4954,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Che cosa definisce un ciclo e quanto cambia una funzione di stato al termine?",
+        "prompt": "Che cosa definisce un ciclo termodinamico e quanto varia una funzione di stato al suo termine?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4512,7 +4971,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.03",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Ritorno allo stato iniziale; variazione netta della funzione di stato zero.",
+          "transfer": "Q_net=300J,ΔU=0; lavoro e calore dipendono dai tratti, non sono funzioni di stato."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4583,7 +5051,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Macchina assorbe1000J e cede700J in un ciclo. Quale rendimento?",
+        "prompt": "Una macchina ciclica riceve 1000 J e cede 700 J. Calcola lavoro netto e rendimento.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4600,7 +5068,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.04",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "0,3=30%; W=300 J.",
+          "transfer": "W=300J;η=300/1200=0,25. Denominatore calore ricevuto dal serbatoio caldo, non netto."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4671,7 +5148,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Fra termostati500K e400K,quale limite diCarnot?",
+        "prompt": "Qual è il rendimento massimo di un motore che opera fra serbatoi a 500 K e 400 K? Dichiara quando il limite può essere uguagliato.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4688,7 +5165,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.05",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "η_C=1−400/500=0,20=20%; uguaglianza soltanto nel limite reversibile fra gli stessi serbatoi.",
+          "transfer": "η_C=1−300/500=0,40;60% impossibile nel modello a due serbatoi. Conservazione sola non basta."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4764,7 +5250,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un sottosistema cede entropia all’ambiente e diminuisceS. Questo viola sempre il secondo principio?",
+        "prompt": "L’entropia di un sottosistema diminuisce mentre cede energia all’ambiente. Questo viola necessariamente il secondo principio? Quale complesso occorre esaminare?",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4781,7 +5267,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.06",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "No: si deve valutareΔStotale di sistema e ambiente; deve essere non negativa per l’universo isolato.",
+          "transfer": "Percorso reversibile isoterma di riferimento:ΔS=nRln2>0. S dipende dagli estremi, Q_rev non coincide conQ_reale."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4867,7 +5362,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Nell’interpretazione statistica,più configurazioni microscopiche compatibili con un macro-stato tendono a quale entropia?",
+        "prompt": "Nell’interpretazione statistica con microstati equiprobabili, come cambia S aumentando la molteplicità Ω compatibile con il macrostato? Spiega il ruolo del logaritmo.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4884,7 +5379,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.07",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "S aumenta con lnΩ; S=k_B lnΩ nel modello equiprobabile. Il logaritmo rende additive le entropie quando le molteplicità di sistemi indipendenti si moltiplicano.",
+          "transfer": "Ω_tot=Ω1Ω2 e ln prodotto=lnΩ1+lnΩ2; specificare equiprobabilità e indipendenza, non una metafora visiva."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
@@ -4950,7 +5454,7 @@
         "status": "OBJECTIVE_SPECIFIC_PRESENT"
       },
       "acceptance": {
-        "prompt": "Un flusso spontaneo di100J da500K a250K aumenta o diminuisce l’entropia totale dei due termostati? Quanto?",
+        "prompt": "Si trasferiscono spontaneamente 100 J da un termostato a 500 K a uno a 250 K. Trova le due variazioni di entropia e la loro somma.",
         "criteria": [
           "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
           "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
@@ -4967,7 +5471,16 @@
         ],
         "scientificReview": "AI_REVIEWED_TECHNICALLY",
         "interactionTest": "NOT_RUN",
-        "humanReview": "NOT_RUN"
+        "humanReview": "NOT_RUN",
+        "rubricRef": {
+          "collection": "atomicFinalAssessment",
+          "itemId": "final-U5-05.08",
+          "pointer": "/rubric"
+        },
+        "expectedEvidence": {
+          "initial": "Serbatoio caldo: −100/500=−0,2 J/K; freddo: +100/250=+0,4 J/K; somma: +0,2 J/K.",
+          "transfer": "Caldo−1J/K,freddo+2J/K,totale+1J/K. La diminuzione di una parte è ammessa; naturale caldo→freddo nel complesso isolato."
+        }
       },
       "status": "VALIDATED_TECHNICALLY",
       "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
