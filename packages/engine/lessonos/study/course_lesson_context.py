@@ -17,6 +17,21 @@ class CourseLessonContext(TypedDict):
     stepId: NotRequired[str]
     assessmentRef: NotRequired[LessonReference]
     assessmentPrompt: NotRequired[str]
+    assessmentCollection: NotRequired[Literal['atomicFinalAssessment','diagnostic']]
+    assessmentObjectiveId: NotRequired[str]
+
+
+def resolve_assessment(pack, reference):
+    """Resolve one unambiguous authored atomic or diagnostic revision."""
+    from .store import canonical, digest
+    matches = [(collection,item) for collection in ('atomicFinalAssessment','diagnostic')
+               for item in pack.get(collection,[]) if item['id'] == reference['id']]
+    if len(matches) != 1:
+        raise StudyError('stale_course_assessment',409)
+    collection,item = matches[0]
+    if reference != {'id':item['id'],'version':1,'sha256':digest(canonical(item))}:
+        raise StudyError('stale_course_assessment',409)
+    return collection,item
 
 
 def freeze_course_lesson(store, principal, edition_id, activity_id, value, parameters) -> CourseLessonContext | None:
@@ -59,19 +74,22 @@ def freeze_course_lesson(store, principal, edition_id, activity_id, value, param
                 or not isinstance(assessment_ref['sha256'], str) or not re.fullmatch(r'[a-f0-9]{64}', assessment_ref['sha256'])):
             raise StudyError('invalid_course_assessment')
         from .catalog import edition_pack, load_pack
-        from .store import canonical, digest
         binding = edition_pack(store, edition_id)
         canonical_pack = load_pack(binding['packId'], binding['packVersion'])
-        item = next((item for item in canonical_pack.get('atomicFinalAssessment', [])
-                     if item['id'] == assessment_ref['id']), None)
-        if item is None or assessment_ref != {'id':item['id'], 'version':1, 'sha256':digest(canonical(item))}:
-            raise StudyError('stale_course_assessment', 409)
+        collection,item = resolve_assessment(canonical_pack,assessment_ref)
+        if collection == 'diagnostic':
+            if value['phase'] != 'practice':
+                raise StudyError('course_assessment_phase_unavailable',409)
+            target = item.get('recoveryTarget',{})
+            if target.get('lessonId') != lesson['id'] or target.get('objectiveId') != item['objectiveId']:
+                raise StudyError('course_assessment_objective_mismatch',409)
         if item['objectiveId'] not in lesson['objectiveIds'] or item['courseId'] != binding['courseId']:
             raise StudyError('course_assessment_objective_mismatch', 409)
         prompt = item.get('prompt') if value['phase'] == 'practice' else item.get('transfer', {}).get('prompt')
         if not isinstance(prompt, str) or not prompt.strip():
             raise StudyError('course_assessment_phase_unavailable', 409)
-        assessment_context = {'assessmentRef':dict(assessment_ref), 'assessmentPrompt':prompt}
+        assessment_context = {'assessmentRef':dict(assessment_ref), 'assessmentPrompt':prompt,
+                              'assessmentCollection':collection,'assessmentObjectiveId':item['objectiveId']}
     from .science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
     lab = FLUID_LAB_DEFINITIONS.get(activity_id)
     if lab is not None and not any(

@@ -66,6 +66,9 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             result=evaluate(activity_id,activity_parameters)
             course_context.update({'modelId':activity_id,'modelVersion':1,'parameters':result['parameters']})
         if manual:course_context.update({'modelId':None,'modelVersion':None,'reviewMode':'MANUAL_REVIEW_REQUIRED'})
+        if manual and 'assessmentRef' in course_context:
+            from .assessment_support import freeze_assistance
+            course_context['assistance']=freeze_assistance(store,c,principal,edition_id,course_context)
         evidence=None
         if activity_evidence is not None:
             from .learning_experiences import freeze_activity_evidence

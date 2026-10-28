@@ -33,8 +33,8 @@ def test_all_57_safe_atomic_prompts_are_reachable_and_teacher_rubrics_stay_uncha
     reachable = {objective for lesson in coursepack_for_edition(store, student, 'course')['lessons']
                  if lesson['activityId'] == 'course-reasoning-v1' for objective in lesson['objectiveIds']}
     for safe, original in zip(projected, canonical_pack['atomicFinalAssessment'], strict=True):
-        assert set(safe) == {'id', 'objectiveId', 'prompt', 'transfer', 'assessmentRef'}
-        assert set(safe['transfer']) == {'prompt'}
+        assert set(safe) == {'id', 'objectiveId', 'prompt', 'transfer', 'assessmentRef', 'hintCount'}
+        assert set(safe['transfer']) == {'prompt','hintCount'}
         assert safe['assessmentRef'] == assessment_ref(original)
         assert safe['prompt'] == original['prompt']
         assert safe['transfer']['prompt'] == original['transfer']['prompt']

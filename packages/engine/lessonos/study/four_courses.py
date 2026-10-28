@@ -25,11 +25,30 @@ def lesson_reference(lesson):
 
 def learner_assessment_items(pack):
     """Original atomic prompts only; assessment keys and rubrics stay private."""
+    from .assessment_support import authored_hints
     return [{'id':item['id'], 'objectiveId':item['objectiveId'], 'prompt':item['prompt'],
-             'transfer':{'prompt':item['transfer']['prompt']},
+             'hintCount':len(authored_hints(item,'practice')),
+             'transfer':{'prompt':item['transfer']['prompt'],'hintCount':len(authored_hints(item,'transfer'))},
              'assessmentRef':{'id':item['id'], 'version':1, 'sha256':digest(canonical(item))}}
             for item in pack.get('atomicFinalAssessment', [])
             if isinstance(item.get('transfer'), dict) and isinstance(item['transfer'].get('prompt'), str)]
+
+
+def learner_diagnostic_items(pack):
+    """Only authored entry prompts and exact recovery provenance, no answer key."""
+    lessons = {lesson['id']:lesson for lesson in pack['lessons']}
+    result = []
+    for item in pack.get('diagnostic', []):
+        target = item['recoveryTarget']
+        lesson = lessons.get(target['lessonId'])
+        if (lesson is None or target['objectiveId'] != item['objectiveId']
+                or item['objectiveId'] not in lesson['objectiveIds']):
+            raise StudyError('course_assessment_objective_mismatch',409)
+        result.append({'id':item['id'],'objectiveId':item['objectiveId'],'prompt':item['prompt'],
+                       'recoveryTarget':{key:target[key] for key in ('objectiveId','lessonId')},
+                       'assessmentRef':{'id':item['id'],'version':1,'sha256':digest(canonical(item))},
+                       'lessonRef':lesson_reference(lesson)})
+    return result
 
 
 def synthetic_learner(store, principal):
@@ -92,7 +111,7 @@ def course_projection(*,review=False,synthetic=False):
             if synthetic and not review:lesson=learner_lesson(item)
             elif 'activityId' not in lesson:lesson['activityId']='course-reasoning-v1'
             lessons.append(lesson)
-        courses.append({**({'assessmentItems':learner_assessment_items(pack)} if synthetic and not review else {}),**(supplementary_materials(pack,review=review) if review or synthetic else {}),'pathId':path,'packId':pack_id,'packRef':{k:descriptor[k] for k in ('packId','packVersion','packSha256')},
+        courses.append({**({'assessmentItems':learner_assessment_items(pack),'diagnosticItems':learner_diagnostic_items(pack)} if synthetic and not review else {}),**(supplementary_materials(pack,review=review) if review or synthetic else {}),'pathId':path,'packId':pack_id,'packRef':{k:descriptor[k] for k in ('packId','packVersion','packSha256')},
                         'title':pack['title'],'unitIds':list(dict.fromkeys(f['unitId'] for f in families)),
                         'requiredObjectives':len(target_ids),'completedObjectives':0,
                         'objectiveFamilies':families,'availableLessons':len(lessons),'lessons':lessons,
@@ -141,6 +160,7 @@ def coursepack_for_edition(store,principal,edition_id):
                 'activities': deepcopy(pack['activities']), 'exercises': [], 'transferTests': [],
                 'lessons': [learner_lesson(l) for l in pack['lessons']],
                 'assessmentItems':learner_assessment_items(pack),
+                'diagnosticItems':learner_diagnostic_items(pack),
                 'formulaSheet':deepcopy(pack.get('formulaSheet',[])),
                 'projectionScope':'PRIVATE_SYNTHETIC_ACCEPTANCE', 'bankIncluded':False,
                 'packRef':{k:binding[k] for k in ('packId','packVersion','packSha256')}}
