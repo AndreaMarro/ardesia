@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   describeError,
   studyRequest,
@@ -20,7 +20,10 @@ type Rules = {
   maxScore: number;
 };
 
+type ExactReference = { id: string; version: number; sha256: string };
+
 type DraftReference = {
+  simulationRef?: ExactReference;
   simulationId?: string;
   editorialStatus?: "DRAFT" | "PUBLISHED";
   humanApproval?: boolean;
@@ -49,7 +52,7 @@ type ExamPack = DraftReference & {
 
 type SolutionStep = { title: string; explanation: string };
 
-type ExamQuestion =
+type ExamQuestion = { questionRef?: ExactReference } & (
   | {
       id: string;
       topic: string;
@@ -64,7 +67,7 @@ type ExamQuestion =
       type: "completion";
       prompt: string;
       format: string;
-    };
+    });
 
 type ResultQuestion = {
   questionId: string;
@@ -156,6 +159,18 @@ function sameAnswers(a: AnswerMap, b: AnswerMap) {
   return true;
 }
 
+// A conflict read may refresh revision/status, never the frozen examination.
+function sameAttempt(a: ExamAttempt, b: ExamAttempt) {
+  const ref = (value?: ExactReference) => value ? [value.id, value.version, value.sha256] : null;
+  const identity = (value: ExamAttempt) => [value.id, value.editionId, value.packId, value.packVersion,
+    value.simulationId, ref(value.simulationRef), value.startedAt, value.deadlineAt, value.durationSeconds,
+    [value.rules.totalQuestions, value.rules.mcq, value.rules.completion, value.rules.correctTenths,
+      value.rules.wrongTenths, value.rules.omittedTenths, value.rules.maxTenths, value.rules.maxScore, value.rules.scoring],
+    value.questions.map(q => [q.id, q.type, q.topic, q.prompt, ref(q.questionRef),
+      q.type === "mcq" ? [q.options, q.answerType] : q.format])];
+  return JSON.stringify(identity(a)) === JSON.stringify(identity(b));
+}
+
 function clock(seconds: number) {
   const safe = Math.max(0, Math.floor(seconds));
   return `${String(Math.floor(safe / 60)).padStart(2, "0")}:${String(safe % 60).padStart(2, "0")}`;
@@ -225,6 +240,12 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
   const examRef = useRef<ExamAttempt | null>(null);
   const flushRef = useRef<() => void>(() => undefined);
   const routeEpoch = useRef(0);
+  // undefined: no conflict; null: blocked until a trustworthy read succeeds.
+  const conflictRef = useRef<ExamAttempt | null | undefined>(undefined);
+  const [conflict, setConflict] = useState<ExamAttempt | null | undefined>(undefined);
+  const [conflictChoice, setConflictChoice] = useState<"server" | "local" | null>(null);
+  const [resolvingConflict, setResolvingConflict] = useState(false);
+  const [checkingConflict, setCheckingConflict] = useState(false);
 
   const refresh = useCallback(async (active = true) => {
     const value = await studyRequest<ExamList>(
@@ -245,6 +266,9 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
     dirty.current = false;
     pendingRef.current = false;
     examRef.current = null;
+    conflictRef.current = undefined;
+    setConflict(undefined);
+    setConflictChoice(null);
     void refresh(false)
       .then(async (value) => {
         if (!active) return;
@@ -289,6 +313,9 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
       setRequestedSimulation(next.simulationId);
     }
     exitDraft.confirm(exitDraft.checkpoint());
+    conflictRef.current = undefined;
+    setConflict(undefined);
+    setConflictChoice(null);
     examRef.current = next;
     answersRef.current = next.answers ?? {};
     dirty.current = false;
@@ -339,6 +366,7 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
   }
 
   function answer(questionId: string, value: number | string) {
+    setConflictChoice(null);
     exitDraft.changed();
     dirty.current = true;
     setSaved("idle");
@@ -346,34 +374,47 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
   }
 
   const reloadAfterConflict = useCallback(async (attemptId: string) => {
-    const generation = exitDraft.checkpoint();
-    const fresh = await studyRequest<ExamAttempt>(`/exams/${attemptId}`);
-    examRef.current = fresh;
-    revisionRef.current = fresh.answerRevision ?? 0;
-    answersRef.current = fresh.answers ?? {};
-    setExam(fresh);
-    setAnswers(fresh.answers ?? {});
-    setSaved("error");
-    exitDraft.confirm(generation);
-    dirty.current = false;
+    const epoch = routeEpoch.current;
+    conflictRef.current = null;
+    setCheckingConflict(true);
+    setConflict(null);
+    setConflictChoice(null);
+    setConfirming(false);
+    dirty.current = true;
     pendingRef.current = false;
-    setError(
-      "Le risposte sono state salvate in un’altra scheda. Ho ricaricato l’ultima versione: controlla e riprova.",
-    );
+    exitDraft.changed();
+    setSaved("error");
+    setError("");
+    try {
+      const fresh = await studyRequest<ExamAttempt>(`/exams/${attemptId}`);
+      if (epoch !== routeEpoch.current || examRef.current?.id !== attemptId) return;
+      if (!sameAttempt(examRef.current, fresh)) throw new Error("exam_selection_mismatch");
+      conflictRef.current = fresh;
+      setConflict(fresh);
+      if (fresh.status !== "in_progress") setRemaining(0);
+    } catch (failure) {
+      if (epoch === routeEpoch.current) setError(failure instanceof Error && failure.message === "exam_selection_mismatch"
+        ? examError(failure) : "Non riesco a verificare la versione sul servizio. Le scelte locali restano protette: riprova la verifica.");
+    } finally {
+      if (epoch === routeEpoch.current) setCheckingConflict(false);
+    }
   }, [exitDraft]);
 
-  const flush = useCallback(async () => {
+  const flush = useCallback(async (replacement?: ExamAttempt) => {
     const currentExam = examRef.current;
     if (!currentExam || currentExam.status !== "in_progress") return;
+    if (conflictRef.current !== undefined && (!replacement || conflictRef.current !== replacement || replacement.status !== "in_progress")) return;
     if (savingRef.current) {
       pendingRef.current = true;
       return;
     }
+    const epoch = routeEpoch.current;
     const snapshot = answersRef.current;
-    const baseRevision = revisionRef.current;
+    const baseRevision = replacement?.answerRevision ?? revisionRef.current;
     const generation = exitDraft.checkpoint();
     savingRef.current = true;
     pendingRef.current = false;
+    setConflictChoice(null);
     setSaved("saving");
     try {
       const value = await studyRequest<ExamAttempt>(
@@ -381,6 +422,23 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
         { answers: snapshot, expectedRevision: baseRevision },
         { method: "PUT" },
       );
+      if (epoch !== routeEpoch.current || examRef.current?.id !== currentExam.id) return;
+      if (!sameAttempt(currentExam, value)) throw new Error("exam_selection_mismatch");
+      if (value.status !== "in_progress") {
+        // Expiry can close the server attempt while a local save is in flight.
+        // Keep the local draft until the reader explicitly opens that result.
+        conflictRef.current = value;
+        setConflict(value);
+        setRemaining(0);
+        dirty.current = true;
+        pendingRef.current = false;
+        exitDraft.changed();
+        setSaved("error");
+        return;
+      }
+      conflictRef.current = undefined;
+      setConflict(undefined);
+      setError("");
       revisionRef.current = value.answerRevision ?? baseRevision + 1;
       const changedDuringSave = !sameAnswers(answersRef.current, snapshot);
       dirty.current = changedDuringSave;
@@ -388,35 +446,52 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
       setSaved(changedDuringSave ? "saving" : "saved");
       if (!changedDuringSave) exitDraft.confirm(generation);
     } catch (failure) {
-      if (
-        failure instanceof StudyApiError &&
-        failure.status === 409 &&
-        failure.message === "exam_revision_conflict"
-      ) {
-        await reloadAfterConflict(currentExam.id).catch(() =>
-          setSaved("error"),
-        );
+      if (epoch !== routeEpoch.current) return;
+      if (failure instanceof StudyApiError && failure.status === 409 && failure.message === "exam_revision_conflict") {
+        await reloadAfterConflict(currentExam.id);
         return;
       }
       setSaved("error");
       dirty.current = true;
-      if (!(failure instanceof StudyApiError && failure.status === 409))
-        setError(describeError(failure));
+      if (!(failure instanceof StudyApiError && failure.status === 409)) setError(examError(failure));
     } finally {
       savingRef.current = false;
-      if (pendingRef.current && dirty.current && examRef.current) {
+      if (epoch === routeEpoch.current && conflictRef.current === undefined && pendingRef.current && dirty.current && examRef.current) {
         pendingRef.current = false;
         window.setTimeout(() => flushRef.current(), 0);
       }
     }
   }, [reloadAfterConflict, exitDraft]);
 
+  async function discardLocalAfterConfirmation() {
+    if (!examRef.current || resolvingConflict || savingRef.current) return;
+    const epoch = routeEpoch.current, currentExam = examRef.current, generation = exitDraft.checkpoint();
+    setResolvingConflict(true);
+    try {
+      const fresh = await studyRequest<ExamAttempt>(`/exams/${currentExam.id}`);
+      if (epoch !== routeEpoch.current || examRef.current?.id !== currentExam.id) return;
+      if (!sameAttempt(currentExam, fresh)) throw new Error("exam_selection_mismatch");
+      if (generation !== exitDraft.checkpoint()) {
+        conflictRef.current = fresh;
+        setConflict(fresh);
+        setConflictChoice(null);
+        setError("Le scelte locali sono cambiate durante la verifica. Controllale e conferma di nuovo prima di scartarle.");
+        return;
+      }
+      open(fresh, currentExam.simulationId);
+    } catch (failure) {
+      if (epoch === routeEpoch.current) setError(examError(failure));
+    } finally {
+      if (epoch === routeEpoch.current) setResolvingConflict(false);
+    }
+  }
+
   useEffect(() => {
     flushRef.current = () => void flush();
   }, [flush]);
 
   useEffect(() => {
-    if (!exam || exam.status !== "in_progress" || !dirty.current) return;
+    if (!exam || exam.status !== "in_progress" || !dirty.current || conflictRef.current !== undefined) return;
     const id = window.setTimeout(() => void flush(), 700);
     return () => window.clearTimeout(id);
   }, [answers, exam, flush]);
@@ -432,7 +507,7 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
 
   const submit = useCallback(
     async (force = false) => {
-      if (!exam || exam.status !== "in_progress" || submittingRef.current)
+      if (!exam || exam.status !== "in_progress" || submittingRef.current || conflictRef.current !== undefined)
         return;
       if (savingRef.current) {
         setError("Attendi la fine del salvataggio e consegna di nuovo.");
@@ -486,6 +561,27 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
   if (loading && !exam && !listing)
     return <Loading>Sto preparando la prova…</Loading>;
 
+  const hasConflict = conflict !== undefined;
+  const conflictNotice = hasConflict && <section aria-label="Scelte dopo il conflitto" role="alert">
+    <h2>Le risposte locali sono ancora qui.</h2>
+    <p>Il servizio conserva una versione diversa. Il salvataggio automatico e la consegna sono sospesi finché scegli come continuare. Il tempo della prova continua a scorrere.</p>
+    {conflict === null ? <><p>{checkingConflict ? "Verifico la versione sul servizio…" : "La versione del servizio non è verificata. Le risposte locali sono conservate."}</p><button disabled={checkingConflict || resolvingConflict || saved === "saving"} onClick={() => examRef.current && void reloadAfterConflict(examRef.current.id)}>Riprova la verifica del servizio</button></> : <>
+      {conflict.status !== "in_progress" && <p>La prova sul servizio è già chiusa. Le modifiche locali non possono più essere salvate: puoi leggerle e copiarle prima di aprire il risultato del servizio.</p>}
+      {conflictChoice === "server" ? <>
+        <p>Ricaricando dal servizio perderai le modifiche locali non salvate. Vuoi scartarle e aprire la versione del servizio?</p>
+        <button disabled={resolvingConflict} onClick={() => void discardLocalAfterConfirmation()}>Conferma scarto e ricarica</button>
+        <button disabled={resolvingConflict} onClick={() => setConflictChoice(null)}>Torna alle scelte</button>
+      </> : conflictChoice === "local" ? <>
+        <p>Le scelte di questa scheda sostituiranno quelle salvate sul servizio, comprese le modifiche dell’altra scheda. Confermi questa sostituzione?</p>
+        <button disabled={saved === "saving"} onClick={() => conflictRef.current && void flush(conflictRef.current)}>Conferma sostituzione sul servizio</button>
+        <button disabled={saved === "saving"} onClick={() => setConflictChoice(null)}>Torna alle scelte</button>
+      </> : <>
+        <button disabled={saved === "saving" || resolvingConflict} onClick={() => setConflictChoice("server")}>Ricarica le risposte del servizio</button>
+        {conflict.status === "in_progress" && <button disabled={saved === "saving" || resolvingConflict} onClick={() => setConflictChoice("local")}>Salva le scelte di questa scheda</button>}
+      </>}
+    </>}
+  </section>;
+
   if (exam) {
     if (exam.status === "in_progress")
       return (
@@ -498,6 +594,8 @@ export function Exam({ data, simulationId }: { data: Workspace; simulationId?: s
           submitting={submitting}
           confirming={confirming}
           error={error}
+          conflictNotice={conflictNotice}
+          blocked={hasConflict}
           onAnswer={answer}
           onCurrent={setCurrent}
           onConfirm={() => setConfirming(true)}
@@ -667,6 +765,8 @@ function ExamRunner({
   submitting,
   confirming,
   error,
+  conflictNotice,
+  blocked,
   onAnswer,
   onCurrent,
   onConfirm,
@@ -681,6 +781,8 @@ function ExamRunner({
   submitting: boolean;
   confirming: boolean;
   error: string;
+  conflictNotice: ReactNode;
+  blocked: boolean;
   onAnswer: (id: string, value: number | string) => void;
   onCurrent: (value: number) => void;
   onConfirm: () => void;
@@ -715,7 +817,9 @@ function ExamRunner({
         </span>
         <span>{answeredCount} risposte date</span>
         <span aria-live="polite">
-          {saved === "saving"
+          {blocked
+            ? "Salvataggio automatico sospeso"
+            : saved === "saving"
             ? "Salvataggio…"
             : saved === "saved"
               ? "Risposte salvate"
@@ -725,6 +829,7 @@ function ExamRunner({
         </span>
       </div>
       {error && <ErrorNotice message={error} />}
+      {conflictNotice}
       <div className="exam-layout">
         <nav className="exam-palette" aria-label="Vai a una domanda">
           {exam.questions.map((item, index) => (
@@ -809,7 +914,7 @@ function ExamRunner({
                 Successiva
               </button>
             ) : (
-              <button className="button-primary" onClick={onConfirm}>
+              <button className="button-primary" disabled={blocked} onClick={onConfirm}>
                 Consegna
               </button>
             )}
@@ -836,14 +941,14 @@ function ExamRunner({
               <button
                 className="button-primary"
                 onClick={onSubmit}
-                disabled={submitting}
+                disabled={submitting || blocked}
               >
                 {submitting ? "Consegna…" : "Consegna definitivamente"}
               </button>
             </div>
           </div>
         ) : (
-          <button className="button-quiet" onClick={onConfirm}>
+          <button className="button-quiet" disabled={blocked} onClick={onConfirm}>
             Consegna la prova
           </button>
         )}
