@@ -880,10 +880,14 @@ export default function Room({
     const inserted=buildSimulationInsert(current,"io.ardesia.fluid-thermo")
     if(!inserted){setStorageError("Laboratorio non disponibile.");return}
     const embed=createFluidThermoEmbed(inserted.embedId,{schemaVersion:1,modelId:scienceModel,modelVersion:1,parameters:defaultParameters(scienceModel)})
-    const elements=convertToExcalidrawElements([embed as any])
-    api.updateScene({elements:[...current,...elements],appState:{selectedElementIds:{[inserted.embedId]:true}}})
+    // The SDK assigns a fresh ID. Bind only this new embed's tool link and
+    // evidence to that identity; never reuse an old, incorrectly recorded ID.
+    const elements=normalizeDuplicatedToolEmbeds(convertToExcalidrawElements([embed as any])).elements
+    const elementId=elements[0]?.id
+    if(!elementId){setStorageError("Laboratorio non disponibile.");return}
+    api.updateScene({elements:[...current,...elements],appState:{selectedElementIds:{[elementId]:true}}})
     const item=buildDefaultPluginWindowCatalog().find(p=>p.pluginId==="io.ardesia.fluid-thermo")
-    if(item){const event=pluginMountedEventFromInsertRequest(createPluginWindowInsertRequest(item),{instanceId:inserted.embedId,elementId:inserted.embedId,room,t:Date.now()});void lessonOsRef.current?.store?.append(event).catch(()=>setStorageError("Laboratorio inserito; registrazione evento non confermata."))}
+    if(item){const event=pluginMountedEventFromInsertRequest(createPluginWindowInsertRequest(item),{instanceId:elementId,elementId,room,t:Date.now()});void lessonOsRef.current?.store?.append(event).catch(()=>setStorageError("Laboratorio inserito; registrazione evento non confermata."))}
     setScienceOpen(false);setMenuOpen(false);fitBoardContent()
   }
 
