@@ -28,6 +28,11 @@ class SelectionOraclesTest(unittest.TestCase):
         self.assertTrue(self.module.check_question(bad,model))
         bad=deepcopy(q);bad['prompt']=bad['prompt'].replace('F = 12 N','F = 24 N')
         self.assertTrue(self.module.check_question(bad,model))
+        q,model=self.module.load_case('u3-identical-branches-01')
+        bad=deepcopy(q)
+        count=q['verification']['automaticChecks'][0]['values']['x']
+        bad['prompt']=bad['prompt'].replace('N = '+count,'N = '+count+'0')
+        self.assertTrue(self.module.check_question(bad,model))
         q,model=self.module.load_case('u3-pressure-area-09')
         self.assertFalse(self.module.check_question(q,model))
         bad=deepcopy(q)

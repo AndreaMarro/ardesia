@@ -205,7 +205,7 @@ def check_question(q,model):
             shown=check['values'][symbol_key].replace('**','^').replace('*','·').replace('pi','π').replace('log(','ln(')
             suffix='' if variable['unit'] in ('1','','adimensionale') else ' '+variable['unit']
             expected_label=variable['symbol']+' = '+shown+suffix
-            if expected_label not in statement:
+            if re.search(re.escape(expected_label)+r'(?![\w/^·]|[.,]\d)',statement) is None:
                 errors.append('displayed input differs from independent oracle input')
         expected=physics(x,z)
         if not math.isclose(value(answer['exact']),expected,rel_tol=1e-10,abs_tol=1e-10):errors.append('physical direct oracle mismatch')
