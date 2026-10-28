@@ -14,7 +14,7 @@ export type Catalog = {schemaVersion:1;capabilities:Capability[];
   courses:{id:string;title:string;capabilityIds:string[]}[];referenceScope:string};
 export type Snapshot = {schemaVersion:1;capabilityId:string;capabilityVersion:number;
   implementationSha256:string;parameters:Parameters;note:string;prediction:string;supportUsed?:('explanation'|'domain'|'model'|'hint')[];labSnapshot?:LabSnapshot;courseLesson?:CourseLessonContext};
-export type SavedScience = {resource:StudyResource;snapshot:Snapshot;supported:boolean;updatedAt?:string};
+export type SavedScience = {resource:StudyResource;snapshot:Snapshot;supported:boolean;updatedAt?:string|number};
 export type ResourceRef = {resourceId:string;revisionId:string};
 export type Plot = {id:string;label:string;unit:string;xUnit?:string;x?:number[];categories?:string[];
   series:{label:string;values:number[]}[]};

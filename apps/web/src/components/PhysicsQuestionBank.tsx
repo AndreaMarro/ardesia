@@ -4,7 +4,7 @@ import { ErrorNotice, Loading } from "./Feedback";
 import "./physics-question-bank.css";
 
 type Level = "base" | "facile" | "medio" | "difficile";
-type Question = {
+export type Question = {
   id: string;
   prompt: string;
   format: "multiple_choice" | "completion";
@@ -71,7 +71,7 @@ export function QuestionSolution({ text }: { text: string }) {
   })}</div>;
 }
 
-function QuestionCard({ question, base, bankSha256, index }: {
+export function QuestionCard({ question, base, bankSha256, index }: {
   question: Question; base: string; bankSha256: string; index: number;
 }) {
   const [response, setResponse] = useState("");

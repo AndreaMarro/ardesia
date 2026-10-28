@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react';
-import type {StudyMe} from '../../api';
+import type {StudyMe,Submission} from '../../api';
 import type {CourseLessonContext,PostitReference} from '../../../../studio/src/study/contracts';
 import type {CourseLesson} from '../../courseLearning';
 import type {ActivityCommit} from '../../course';
@@ -13,7 +13,7 @@ const models:Record<string,string[]>={
  'ds-2026-u5-02':['calorimetry','phase-change'],'ds-2026-u5-03':['heat-transfer'],
  'ds-2026-u5-04':['process'],'ds-2026-u5-05':['carnot','entropy']};
 export const lessonSupportsLab=(lessonId:string,activityId:string)=>Boolean(models[lessonId]?.some(id=>activityId===id+'-lab-v1'));
-export type CourseLabHost={me:StudyMe;editionId:string;saved:SavedScience[];onSaved:(ref:PostitReference)=>void;onInvalidated:()=>void};
+export type CourseLabHost={me:StudyMe;editionId:string;saved:SavedScience[];onSaved:(ref:PostitReference)=>void;onInvalidated:()=>void;resume?:CourseLessonContext;resumeActivityId?:string;lastAttempt?:Submission};
 export function CourseLaboratories({host,lesson,phase,stepId,initialActivityId,onCommit}:{host:CourseLabHost;lesson:CourseLesson;phase:CourseLessonContext['phase'];stepId?:string;initialActivityId?:string;onCommit?:(v:ActivityCommit|null)=>void}){
  const [capabilities,setCapabilities]=useState<Capability[]>([]),[error,setError]=useState(''),[retry,setRetry]=useState(0),[loading,setLoading]=useState(true);
  const matches=host.saved.filter(s=>s.snapshot.courseLesson?.lessonRef.sha256===lesson.lessonRef.sha256&&s.snapshot.courseLesson.phase===phase&&s.snapshot.labSnapshot);

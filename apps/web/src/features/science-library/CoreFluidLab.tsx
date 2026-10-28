@@ -3,6 +3,7 @@ import {describeError,requestKey,type StudyMe} from '../../api';
 import type {PostitReference,CourseLessonContext} from '../../../../studio/src/study/contracts';
 import type {ActivityCommit} from '../../course';
 import {FluidThermoActivity,newLabSnapshot,type LabSnapshot} from './FluidThermoActivity';
+import {scienceTimestamp} from './scienceTimestamp';
 import {scienceApi} from './scienceApi';
 import {scienceResourceHref} from './resourceNavigation';
 import type {Capability,ResourceRef,SavedScience,ScienceApi,Snapshot} from './types';
@@ -40,7 +41,7 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
    if(!alive.current||controller.signal.aborted)throw Error('Operazione interrotta.');
    if(answer.resource.ownerId!==me.id||answer.resource.editionId!==editionId||answer.resource.kind!=='science-resource'||canonical(answer.snapshot)!==canonical(frozen.snapshot))throw Error('Risposta di salvataggio incompatibile.');
    const next={resourceId:answer.resource.id,revisionId:answer.resource.revisionId};setRef(next);pending.current=null;
-   if(edits.current===frozen.edit){setNotice('Configurazione e ragionamento salvati.'+(answer.updatedAt?' '+new Date(answer.updatedAt).toLocaleString('it-IT')+'.':''));onSaved?.({...next,contextId:answer.resource.contextId});}
+   if(edits.current===frozen.edit){setNotice('Configurazione e ragionamento salvati.'+(answer.updatedAt?' '+new Date(scienceTimestamp(answer.updatedAt)).toLocaleString('it-IT')+'.':''));onSaved?.({...next,contextId:answer.resource.contextId});}
    else {setNotice('Salvata la versione in attesa. Le modifiche aperte restano da salvare.');throw Error('Le modifiche aperte sono ancora da salvare.');}
   }catch(error){
    if(alive.current&&!controller.signal.aborted){const code=error instanceof Error?error.message:'';

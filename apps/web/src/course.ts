@@ -38,11 +38,11 @@ export type ActivityCommit = {
   courseLesson?: CourseLessonContext;
 };
 export function courseLessonFromContext(context?: SubmissionCourseContext): CourseLessonContext | undefined {
-  return context?.lessonRef && context.phase ? {lessonRef: context.lessonRef, phase: context.phase, ...(context.stepId ? {stepId: context.stepId} : {})} : undefined;
+  return context?.lessonRef && context.phase ? {lessonRef: context.lessonRef, phase: context.phase, ...(context.stepId ? {stepId: context.stepId} : {}), ...(context.assessmentRef ? {assessmentRef:context.assessmentRef} : {})} : undefined;
 }
 export function sameCourseLesson(left?: CourseLessonContext, right?: CourseLessonContext): boolean {
   if (!left || !right) return left === right;
-  return left.phase === right.phase && left.stepId === right.stepId && left.lessonRef.id === right.lessonRef.id
+  return JSON.stringify(left.assessmentRef)===JSON.stringify(right.assessmentRef) && left.phase === right.phase && left.stepId === right.stepId && left.lessonRef.id === right.lessonRef.id
     && left.lessonRef.version === right.lessonRef.version && left.lessonRef.sha256 === right.lessonRef.sha256;
 }
 export const isDateConfirmed = (edition: Edition) =>
