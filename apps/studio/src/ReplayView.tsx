@@ -76,7 +76,7 @@ function labelReplaySdkControls(canvas: HTMLElement): () => void {
     for (const zoom of canvas.querySelectorAll<HTMLButtonElement>(".excalidraw button.reset-zoom-button")) {
       const percentage = zoom.textContent?.trim()
       if (!percentage || !/^\d+(?:[.,]\d+)?\s?%$/.test(percentage)) continue
-      const label = `Ripristina ingrandimento (${percentage})`
+      const label = `${percentage} · Ripristina ingrandimento`
       if (zoom.getAttribute("aria-label") !== label) zoom.setAttribute("aria-label", label)
     }
   }

@@ -385,14 +385,14 @@ it('names only the Replay SDK controls, tracks percentage/replacements, and disc
   const view = render(<ReplayView store={store} room={room} />)
   try {
     const menu = await screen.findByRole('button', { name: 'Menu della lavagna' })
-    await screen.findByRole('button', { name: 'Ripristina ingrandimento (100%)' })
+    await screen.findByRole('button', { name: '100% · Ripristina ingrandimento' })
     expect(outside.querySelector('.main-menu-trigger')?.hasAttribute('aria-label')).toBe(false)
     expect(outside.querySelector('.reset-zoom-button')?.getAttribute('aria-label')).toBe('Outside zoom')
     act(() => canvasState.setZoom!(125))
-    await screen.findByRole('button', { name: 'Ripristina ingrandimento (125%)' })
+    await screen.findByRole('button', { name: '125% · Ripristina ingrandimento' })
     act(() => canvasState.replaceControls!())
     await waitFor(() => expect(screen.getByRole('button', { name: 'Menu della lavagna' })).not.toBe(menu))
-    const zoom = await screen.findByRole('button', { name: 'Ripristina ingrandimento (125%)' })
+    const zoom = await screen.findByRole('button', { name: '125% · Ripristina ingrandimento' })
     const labelled = document.createElement('button')
     labelled.className = 'dropdown-menu-button main-menu-trigger'; labelled.setAttribute('aria-label', 'Menu già nominato')
     screen.getByTestId('replay-canvas').append(labelled)
@@ -403,6 +403,6 @@ it('names only the Replay SDK controls, tracks percentage/replacements, and disc
     expect(disconnected).toHaveBeenCalled()
     zoom.textContent = '200%'
     await act(async () => { await Promise.resolve() })
-    expect(zoom.getAttribute('aria-label')).toBe('Ripristina ingrandimento (125%)')
+    expect(zoom.getAttribute('aria-label')).toBe('125% · Ripristina ingrandimento')
   } finally { view.unmount(); outside.remove() }
 })
