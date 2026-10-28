@@ -116,7 +116,10 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             effective_refs.insert(0,{'resourceId':resource_id,'revisionId':revision_id,'contextId':context_id})
         c.execute('INSERT INTO study_submissions(id,edition_id,student_id,activity_id,revision,parent_id,text,asset_refs,source_refs,receipt_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (submission_id,edition_id,principal.id,activity_id,revision,parent_id,text,canonical(asset_refs),canonical(effective_refs),receipt_id,store.clock()))
         body={'receiptId':receipt_id,'submissionId':submission_id,'studentId':principal.id,'activityId':activity_id,'revision':revision,'parentId':parent_id,'receivedAt':store.clock(),'state':'received','courseContext':course_context}
-        if manual:body['review']={'state':'MANUAL_REVIEW_REQUIRED','originalText':text}
+        if manual:
+            body['review']={'state':'MANUAL_REVIEW_REQUIRED','originalText':text}
+            if 'assessmentRef' in course_context:
+                body['review']['prompt']=course_context['assessmentPrompt']
         if activity_context is not None:body['activityContext']=activity_context
         if evidence is not None:body['activityEvidence']=evidence
         return body

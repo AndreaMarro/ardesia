@@ -23,6 +23,15 @@ def lesson_reference(lesson):
     return {'id': lesson['id'], 'version': 1, 'sha256': digest(canonical(lesson))}
 
 
+def learner_assessment_items(pack):
+    """Original atomic prompts only; assessment keys and rubrics stay private."""
+    return [{'id':item['id'], 'objectiveId':item['objectiveId'], 'prompt':item['prompt'],
+             'transfer':{'prompt':item['transfer']['prompt']},
+             'assessmentRef':{'id':item['id'], 'version':1, 'sha256':digest(canonical(item))}}
+            for item in pack.get('atomicFinalAssessment', [])
+            if isinstance(item.get('transfer'), dict) and isinstance(item['transfer'].get('prompt'), str)]
+
+
 def synthetic_learner(store, principal):
     """Server-owned policy. Request payloads and role names cannot enable it."""
     return principal.role == 'student' and getattr(store, 'synthetic_acceptance', False) is True
@@ -83,7 +92,7 @@ def course_projection(*,review=False,synthetic=False):
             if synthetic and not review:lesson=learner_lesson(item)
             elif 'activityId' not in lesson:lesson['activityId']='course-reasoning-v1'
             lessons.append(lesson)
-        courses.append({**(supplementary_materials(pack,review=review) if review or synthetic else {}),'pathId':path,'packId':pack_id,'packRef':{k:descriptor[k] for k in ('packId','packVersion','packSha256')},
+        courses.append({**({'assessmentItems':learner_assessment_items(pack)} if synthetic and not review else {}),**(supplementary_materials(pack,review=review) if review or synthetic else {}),'pathId':path,'packId':pack_id,'packRef':{k:descriptor[k] for k in ('packId','packVersion','packSha256')},
                         'title':pack['title'],'unitIds':list(dict.fromkeys(f['unitId'] for f in families)),
                         'requiredObjectives':len(target_ids),'completedObjectives':0,
                         'objectiveFamilies':families,'availableLessons':len(lessons),'lessons':lessons,
@@ -131,6 +140,7 @@ def coursepack_for_edition(store,principal,edition_id):
         return {**supplementary_materials(pack), **{k:deepcopy(pack[k]) for k in ('id','version','title','status','reviewer','scope','rights')},
                 'activities': deepcopy(pack['activities']), 'exercises': [], 'transferTests': [],
                 'lessons': [learner_lesson(l) for l in pack['lessons']],
+                'assessmentItems':learner_assessment_items(pack),
                 'formulaSheet':deepcopy(pack.get('formulaSheet',[])),
                 'projectionScope':'PRIVATE_SYNTHETIC_ACCEPTANCE', 'bankIncluded':False,
                 'packRef':{k:binding[k] for k in ('packId','packVersion','packSha256')}}
