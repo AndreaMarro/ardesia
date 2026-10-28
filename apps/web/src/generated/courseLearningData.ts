@@ -7180,7 +7180,7 @@ export const courseLearningData = {
       "packRef": {
         "packId": "sf-fluidi-termodinamica-v1",
         "packVersion": 1,
-        "packSha256": "50b708fea1d7ae6b7805fc0d883168ea048aff63ec2c7529617450b6ab6dcb51"
+        "packSha256": "bcd40499ae681e5cbe48f6edfd131bd6735b988e8f282b110f703715dac593b4"
       },
       "title": "Fluidi e termodinamica",
       "unitIds": [
@@ -7637,7 +7637,7 @@ export const courseLearningData = {
             "steps": [
               "Isola il volume: V=nRT/p.",
               "Il numeratore vale 1·8,31446261815324·300=2494,2 J.",
-              "V=2494,2/100000=0,02494338785446 m³, cioè 24,942 L."
+              "V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L."
             ],
             "answerDisplay": "V=0,02494338785446 m³."
           },
@@ -7748,7 +7748,7 @@ export const courseLearningData = {
           "recap": [
             "pV=nRT richiede unità coerenti e temperatura assoluta."
           ],
-          "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,2 J. V=2494,2/100000=0,02494338785446 m³, cioè 24,942 L. Risultato: V=0,02494338785446 m³.",
+          "transcript": "Un sistema è la porzione che analizziamo; l’ambiente è ciò con cui scambia energia o materia. Lo stato di un gas in equilibrio è descritto da pressione, volume, temperatura e quantità di sostanza. Pressione e temperatura sono intensive; volume e numero di moli sono estensivi. Una funzione di stato dipende dagli estremi, non dal percorso. La temperatura termodinamica si misura in kelvin: T(K)=t(°C)+273,15; gli intervalli hanno la stessa ampiezza ma gli zeri differiscono. Nel modello di gas ideale pV=nRT, con p assoluta in Pa, V in m³, n in mol e T in K. La pressione manometrica non può essere inserita senza aggiungere quella ambiente. A n e T costanti raddoppiare p dimezza V. Il modello non descrive condensazione o interazioni fra molecole di gas reali e richiede uno stato uniforme di equilibrio. Esempio: Un campione ideale di 1 mol è a 300 K e pressione assoluta 100000 Pa. Usa R=8,31446261815324 J/(mol K) e trova V. Isola il volume: V=nRT/p. Il numeratore vale 1·8,31446261815324·300=2494,2 J. V=2494,2/100000=0,02494338785446 m³, cioè 24,943388 L. Risultato: V=0,02494338785446 m³.",
           "scientificEvidence": [
             "pV=nRT richiede unità coerenti e temperatura assoluta.",
             "J/Pa=m³; a 300 K il campione indicato occupa circa 25 L.",
@@ -7760,7 +7760,7 @@ export const courseLearningData = {
           "coverageWarning": "Demo covers selected operations only; objectiveIds identify associated family and MUST NOT mean all subtargets certified.",
           "releaseScope": "PUBLIC_DEMONSTRATION",
           "activityId": "ideal-gas-v1",
-          "authorCorrection": "A25October2026: use SI R=NA*kB and recompute oracles; old handoff assumed roundedR8.314. Not a human approval.",
+          "authorCorrection": "2026-10-28 CHAT1B: corrected display 0,02494338785446 m³ = 24,943388 L; no human approval.",
           "provenanceRef": {
             "authorRole": "DeepSeek content session",
             "handoffSha256": "882e515fc4a64377e6d56ec2f504d11068c601faf825260ac18e305d8deee590",
@@ -7772,7 +7772,7 @@ export const courseLearningData = {
           "lessonRef": {
             "id": "original-demo-u5-01",
             "version": 1,
-            "sha256": "87824d665f6d09293258e518ebd9bec5356560517745e2faa07cac8c6e09287f"
+            "sha256": "747f0a01e1aa7675546ffe9ed63119c7454dd7dc8d79898c1895fffca8d90382"
           },
           "modelCases": [
             {
@@ -8572,12 +8572,12 @@ export const courseLearningData = {
       "editorialStatus": "DRAFT",
       "humanApproval": false,
       "requirements": {
-        "diagnostic": "DRAFT_PRESENT; independent of final problems",
-        "finalAssessment": "DRAFT_PRESENT; human review/calibration pending",
-        "recap": "DRAFT_PRESENT",
+        "diagnostic": "ORIGINAL_ENTRY_AND_CANONICAL_REFS_PRESENT",
+        "finalAssessment": "57_OBJECTIVE_RUBRICS_AND_TRANSFERS_PRESENT; HUMAN_REVIEW_PENDING",
+        "recap": "PRESENT_PER_FAMILY",
         "remoteTeacherStudent": "NOT_CERTIFIED",
         "humanApproval": false,
-        "transcripts": "DRAFT_PRESENT",
+        "transcripts": "PRESENT_PER_FAMILY",
         "audio": "ABSENT_TRANSCRIPTS_AVAILABLE"
       },
       "draftAssessmentCount": 57,
