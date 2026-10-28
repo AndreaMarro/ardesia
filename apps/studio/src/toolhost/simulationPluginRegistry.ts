@@ -40,6 +40,8 @@ export interface SimulationToolEntry {
   embedId: string;
   /** Render del tool dentro l'embed Excalidraw. */
   render(element: ToolEmbedLike, toolLink: ToolLinkRef, host?: SimulationToolHost): ReactElement | null;
+  /** Historical projection only: no persistence or lesson-event host is supplied. */
+  renderReadOnly?(element: ToolEmbedLike, toolLink: ToolLinkRef): ReactElement | null;
   /**
    * Crea l'elemento embeddable Excalidraw completo del tool. embedId opzionale
    * per le istanze successive alla prima (P0-C multi-istanza): id e link

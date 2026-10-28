@@ -19,6 +19,14 @@ function stored(element:ToolEmbedLike):unknown{
 export function registerFluidThermoTool(){
   registerSimulationTool(PLUGIN_ID,{embedId:'fluid-thermo-lab',createEmbed:createFluidThermoEmbed,
     validate(value){try{validateSnapshot(value);return {ok:true,errors:[]};}catch(error){return {ok:false,errors:[error instanceof Error?error.message:'Snapshot non valido.']};}},
+    renderReadOnly(element,link){
+      try{
+        const marker=element.customData?.[EMBED_DATA_KEY];
+        if(link.toolId!==PLUGIN_ID||!element.id||element.id!==link.embedId)throw Error('Identità del laboratorio non valida.');
+        if(!marker||typeof marker!=='object'||Array.isArray(marker)||!('owner' in marker)||marker.owner!==PLUGIN_ID||!('state' in marker))throw Error('Snapshot del laboratorio mancante o proprietario non valido.');
+        return <div style={{width:'100%',height:'100%',overflow:'auto'}}><FluidThermoLab readOnly initialSnapshot={validateSnapshot(marker.state)}/></div>;
+      }catch(error){return <section className="fluid-thermo" aria-label="Laboratorio conservato"><h3>Configurazione non disponibile</h3><p role="alert">Laboratorio registrato non disponibile. {error instanceof Error?error.message:'Snapshot non valido.'}</p></section>;}
+    },
     render(element,link,host){
       return <FluidThermoLab authoringTools allowModelSelection initialSnapshot={stored(element)??newLabSnapshot()} onSnapshotChange={snapshot=>host?.persistEmbedState?.(link.embedId,snapshot,PLUGIN_ID)}/>;
     }});

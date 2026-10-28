@@ -2,6 +2,7 @@
 import type { ReactElement } from "react";
 import { getSimulationTool, type ToolEmbedLike as EmbedLike, type ToolLinkRef as ToolLink, type SimulationToolHost } from "./simulationPluginRegistry";
 import { renderPluginPostitBoardEmbeddable } from "./pluginPostitBoardRender";
+import { isRetiredPlugin } from "./retiredPlugins";
 export const TOOL_EMBED_SCHEME = "maestro-tool://";
 export const REFERENCE_SIM_TOOL_ID = "io.ardesia.simulation";
 export function parseToolLink(link: string | null | undefined): ToolLink | null {
@@ -59,7 +60,19 @@ export function buildSimulationInsert(currentElements: readonly { id?: string }[
 export function renderToolCanvasEmbeddable(
   element: EmbedLike,
   host?: SimulationToolHost,
+  options?: { readOnly?: boolean },
 ): ReactElement | null {
+  // Replay must never reach the interactive generic post-it or draft renderer.
+  // Historical identities are validated, never normalized or reassigned here.
+  if (options?.readOnly) {
+    const link = parseToolLink(element.link);
+    const unavailable = <div role="alert" data-tool-unavailable={link?.toolId ?? "unknown"}>Laboratorio registrato non disponibile.</div>;
+    if (!link || !element.id || element.id !== link.embedId || isRetiredPlugin(link.toolId)) return unavailable;
+    const entry = getSimulationTool(link.toolId);
+    if (!entry?.renderReadOnly) return unavailable;
+    try { return entry.renderReadOnly(element, link) ?? unavailable; }
+    catch { return unavailable; }
+  }
   const pluginPostitBoard = renderPluginPostitBoardEmbeddable(element);
   if (pluginPostitBoard !== null) return pluginPostitBoard;
 

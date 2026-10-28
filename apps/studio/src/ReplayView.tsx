@@ -17,6 +17,7 @@ import { ReplayCaptions } from "./lesson-media/ReplayCaptions"
 import { recordingSession } from "./store/audioRecording"
 import { emptyEditorial, parseEditorial, resolveMoment, type Editorial, type LessonMoment } from "./features/living-lesson/model"
 import type { ReplayCursor } from "./features/living-lesson/replayCursor"
+import { renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
 
 // Waveform dependencies are loaded only when replaying a canonical v2 take.
 // The canonical audio controls stay unavailable until its consent guard mounts.
@@ -372,6 +373,8 @@ export default function ReplayView({ store, room, renderExtension, replayFiles, 
               theme={EXCALIDRAW_CONFIG.theme}
               aiEnabled={EXCALIDRAW_CONFIG.aiEnabled}
               viewModeEnabled
+              validateEmbeddable={/^maestro-tool:\/\//}
+              renderEmbeddable={(element) => renderToolCanvasEmbeddable(element, undefined, { readOnly: true })}
               onChange={(_elements, appState) => {
                 const next = { scrollX: appState.scrollX, scrollY: appState.scrollY, zoom: appState.zoom.value }
                 setViewport((previous) => previous.scrollX === next.scrollX && previous.scrollY === next.scrollY && previous.zoom === next.zoom ? previous : next)

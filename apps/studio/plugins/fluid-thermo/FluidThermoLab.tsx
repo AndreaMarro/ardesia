@@ -17,14 +17,17 @@ class SceneBoundary extends Component<{children:ReactNode;onUnavailable:()=>void
 }
 export type FluidThermoLabProps={configuration?:LabConfiguration;initialSnapshot?:unknown;
   onSnapshotChange?:(snapshot:LabSnapshot)=>void;onInteraction?:(event:LabInteraction)=>void;
-  onSave?:(snapshot:LabSnapshot)=>Promise<void>;allowModelSelection?:boolean;authoringTools?:boolean;instanceKey?:string};
+  onSave?:(snapshot:LabSnapshot)=>Promise<void>;allowModelSelection?:boolean;authoringTools?:boolean;instanceKey?:string;readOnly?:boolean};
 
 /** Host owns persistence and evidence. This component owns only the open draft. */
 export function FluidThermoLab(props:FluidThermoLabProps){
   const initial=useMemo(()=>{
-    try{return {snapshot:props.initialSnapshot===undefined?newLabSnapshot(props.configuration?.modelId,props.configuration):validateSnapshot(props.initialSnapshot)};}
+    try{
+      if(props.readOnly&&props.initialSnapshot===undefined)throw Error('Snapshot registrato non disponibile.');
+      return {snapshot:props.initialSnapshot===undefined?newLabSnapshot(props.configuration?.modelId,props.configuration):validateSnapshot(props.initialSnapshot)};
+    }
     catch(error){return {error:error instanceof Error?error.message:'Configurazione non disponibile.'};}
-  },[props.initialSnapshot,props.configuration]);
+  },[props.initialSnapshot,props.configuration,props.readOnly]);
   const emitted=useRef<string|null>(null),seen=useRef({fingerprint:'',revision:0});
   const fingerprint=initial.snapshot?JSON.stringify(initial.snapshot):'';
   if(seen.current.fingerprint!==fingerprint){
@@ -32,10 +35,40 @@ export function FluidThermoLab(props:FluidThermoLabProps){
     seen.current.fingerprint=fingerprint;
   }
   if(!initial.snapshot)return <section className="fluid-thermo" aria-label="Laboratorio conservato"><h3>Configurazione non disponibile</h3><p role="alert">{initial.error}</p><p>Riapri la versione compatibile del plugin per riprendere questo scenario.</p></section>;
+  // A seek replaces the exact recorded state and resets only local camera/view.
+  // No authoring callback or mutable workspace crosses this boundary.
+  if(props.readOnly)return <LabReadonlyView key={fingerprint} snapshot={initial.snapshot}/>;
   // Host echoes of our own snapshot must not remount controls or steal focus.
   // Set instanceKey to resourceId:revisionId when opening another Core revision.
   const identity=props.instanceKey??JSON.stringify([initial.snapshot.configuration.modelId,initial.snapshot.configuration.lessonRef,initial.snapshot.configuration.exerciseRef]);
   return <LabWorkspace key={identity+'#'+seen.current.revision} {...props} initial={initial.snapshot} onSnapshotChange={next=>{emitted.current=JSON.stringify(next);props.onSnapshotChange?.(next);}}/>;
+}
+function LabReadonlyView({snapshot}:{snapshot:LabSnapshot}){
+  const [view,setView]=useState(snapshot.view);
+  const definition=getLab(snapshot.configuration.modelId),parameters=snapshot.configuration.parameters;
+  const result=useMemo(()=>evaluateLab(definition.id,parameters),[definition.id,parameters]);
+  return <section className="fluid-thermo" aria-label="Laboratorio registrato · sola lettura" data-lab-id={definition.id}>
+    <header className="ft-heading"><p className="ft-eyebrow">Laboratorio registrato · sola lettura</p><h3>{definition.title}</h3><p>{definition.objective}</p></header>
+    <div className="ft-layout"><div className="ft-visual">
+      <div className="ft-view-controls" role="group" aria-label="Rappresentazione del fenomeno">
+        <button type="button" aria-pressed={view==='2d'} onClick={()=>setView('2d')}>Sezione e diagramma 2D</button>
+        {definition.threeD&&<button type="button" aria-pressed={view==='3d'} onClick={()=>setView('3d')}>Esplora la geometria 3D</button>}
+      </div>
+      {view==='3d'?<SceneBoundary onUnavailable={()=>setView('2d')}><Suspense fallback={<p role="status">Preparo la scena. La sezione 2D resta disponibile.</p>}><Scene definition={definition} parameters={parameters} result={result} onUnavailable={()=>setView('2d')}/></Suspense></SceneBoundary>:<LabDiagram definition={definition} parameters={parameters} result={result} revealed/>}
+      <div className="ft-observation"><span>Risultati ricalcolati dai parametri registrati</span><strong>{fmt(result.primary.value)} <small>{result.primary.unit}</small></strong><p>{result.primary.label}</p><p>Il confronto originale non è conservato nello snapshot. Questi risultati non attestano un confronto o una valutazione svolti durante la lezione.</p></div>
+      {result.warnings.map(w=><p className="ft-warning" key={w}>{w}</p>)}
+    </div><div className="ft-controls"><h4>Dati registrati del sistema</h4>
+      <dl>{definition.parameters.map(field=><div className="ft-parameter" key={field.key}><dt>{field.label} [{field.unit}]</dt><dd aria-label={`${field.label} [${field.unit}]`}>{choices[field.key]?.[parameters[field.key]]??String(parameters[field.key])}</dd></div>)}</dl>
+      <h4>Previsione registrata</h4><p style={{whiteSpace:'pre-wrap'}}>{snapshot.prediction||'Nessuna previsione registrata.'}</p>
+      <h4>Osservazioni registrate</h4><p style={{whiteSpace:'pre-wrap'}}>{snapshot.note||'Nessuna osservazione registrata.'}</p>
+      <p>Aiuti indicati nello snapshot: {snapshot.supportUsed.length?snapshot.supportUsed.map(kind=>kind==='model'?'modello':'suggerimento').join(', '):'nessuno indicato'}. Questo dato non attesta autonomia.</p>
+    </div></div>
+    <div className="ft-bottom"><details><summary>Modello, formula e intervalli di validità</summary><p className="ft-formula">{definition.formula}</p><ul>{definition.assumptions.map(a=><li key={a}>{a}</li>)}</ul><p>Modello analitico ideale. La geometria illustra lo stato; non calcola un campo CFD o una dinamica molecolare.</p></details>
+      <details open className="ft-measurements"><summary>Misure ricalcolate</summary><table aria-label="Misure ricalcolate"><thead><tr><th>Grandezza</th><th>Valore</th><th>Unità</th></tr></thead><tbody>{result.measurements.map(m=><tr key={m.key}><th>{m.label}</th><td>{fmt(m.value)}</td><td>{m.unit}</td></tr>)}</tbody></table>
+        {result.series.map((series,i)=><details key={i}><summary>{series.label}</summary><table><thead><tr><th>x [{series.xUnit}]</th><th>{series.label} [{series.unit}]</th></tr></thead><tbody>{series.points.map(([x,y],j)=><tr key={j}><td>{fmt(x)}</td><td>{fmt(y)}</td></tr>)}</tbody></table></details>)}
+      </details>
+    </div>
+  </section>;
 }
 function LabWorkspace({initial,onSnapshotChange,onInteraction,onSave,allowModelSelection=false,authoringTools=false}:FluidThermoLabProps&{initial:LabSnapshot}){
   const [snapshot,setSnapshot]=useState(initial),[values,setValues]=useState<Record<string,string>>(()=>Object.fromEntries(Object.entries(initial.configuration.parameters).map(([k,v])=>[k,String(v)])));
