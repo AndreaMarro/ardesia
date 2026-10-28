@@ -88,7 +88,7 @@ test("blocked storage leaves a useful experiment and an explicit unsaved status"
   spring();
   fireEvent.change(screen.getByLabelText("Allungamento previsto in m"), {target: {value: "0,2"}});
   fireEvent.click(screen.getByRole("button", {name: "Salva una bozza in questo browser"}));
-  expect(screen.getByRole("status").textContent).toContain("Il browser non consente il salvataggio");
+  expect(screen.getByText(/Il browser non consente il salvataggio/).getAttribute("role")).toBe("status");
   fireEvent.click(screen.getByRole("button", {name: "Confronta l’allungamento"}));
   expect(screen.getByTestId("spring-result").textContent).toBe("0,2 m");
 });
@@ -97,17 +97,17 @@ test("a direct spring link and model switch select the related course when no or
   history.replaceState(null, "", "/esperienza/?modello=molla");
   render(<PublicExperience />);
   expect(screen.getByRole("button", {name: "Molla e forza"}).getAttribute("aria-pressed")).toBe("true");
-  expect(screen.getByRole("link", {name: "Chiedi disponibilità"}).getAttribute("href")).toBe("/?percorso=strumenti-meccanica#contatto");
+  expect(screen.getByRole("link", {name: "Apri il microcorso"}).getAttribute("href")).toBe("/corsi/strumenti-meccanica/");
   fireEvent.click(screen.getByRole("button", {name: "Pressione e profondità"}));
-  expect(screen.getByRole("link", {name: "Chiedi disponibilità"}).getAttribute("href")).toBe("/?percorso=fluidi-termodinamica#contatto");
+  expect(screen.getByRole("link", {name: "Apri il microcorso"}).getAttribute("href")).toBe("/corsi/fluidi-termodinamica/");
 });
 
 test("an explicitly selected course remains the origin even when the experiment changes", () => {
   history.replaceState(null, "", "/esperienza/?percorso=elettricita-magnetismo&modello=molla");
   render(<PublicExperience />);
-  expect(screen.getByRole("link", {name: "Chiedi disponibilità"}).getAttribute("href")).toBe("/?percorso=elettricita-magnetismo#contatto");
+  expect(screen.getByRole("link", {name: "Apri il microcorso"}).getAttribute("href")).toBe("/corsi/elettricita-magnetismo/");
   fireEvent.click(screen.getByRole("button", {name: "Flusso e raggio"}));
-  expect(screen.getByRole("link", {name: "Chiedi disponibilità"}).getAttribute("href")).toBe("/?percorso=elettricita-magnetismo#contatto");
+  expect(screen.getByRole("link", {name: "Apri il microcorso"}).getAttribute("href")).toBe("/corsi/elettricita-magnetismo/");
 });
 
 test("choosing a different model updates the URL and reopens that model and its local prediction without a second switch", () => {
