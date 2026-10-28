@@ -140,3 +140,35 @@ CDN-served `public/`, so those checks remain in force. HTML navigation to deep
 extensionless SPA paths falls back to the reviewed index; missing assets and
 JSON navigation remain404. Every unknown `/study/*` path remains JSON404 even
 with an HTML Accept header. Existing API routes run before the static mount.
+
+### Optional existing Studio at `/studio/`
+
+Set `ARDESIA_BUILD_STUDIO=1` alongside the existing Web flag to build the current
+Studio through its own committed lock: `npm --prefix apps/studio ci`, then
+`npm --prefix apps/studio run build -- --base=/studio/`. The build also sets
+`ARDESIA_STUDIO_BASE=/studio/` and the existing Studio provenance input
+`ARDESIA_GIT_SHA` to the full `ARDESIA_RELEASE_SHA`. Existing Studio provenance
+checks still reject disagreement with other populated Git providers/the checkout.
+A missing/invalid release SHA fails before npm runs.
+
+The reviewed `apps/studio/dist` tree is copied byte-for-byte into ignored
+`_studio/`, with `/studio/acceptance-release.json` recording source/index identity.
+The remote entry detects that fixed directory and passes it to the existing
+`create_app(studio_frontend=...)` mount, which runs before the Web root mount.
+Missing Studio index fails startup; missing assets remain404. The Python bundle
+explicitly includes `_studio/**`. No Studio server, new registry, persistence,
+Room implementation or LessonOS source is added. No Data API or protection setting
+changes. `cdn=false` retains the same HTTPS/Host/Origin ASGI boundary.
+
+At the end of packaging, ignored `_bundle-size.json` reports Core/Web/Studio/code
+bytes plus any available service `.venv` Python dependency estimate. The build
+fails if those accounted bytes exceed the conservative250,000,000-byte acceptance
+budget. It does not discard assets to meet that budget. Absence of a dependency
+estimate and absence of hosted function-size verification are explicit fields;
+the final platform receipt must still verify the actual uncompressed function.
+If the actual combined function exceeds the budget, coordinate separately reviewed
+same-origin static asset routing rather than pruning fonts, notices, mathematics
+or other runtime inputs without proof. No asset exclusions are introduced here.
+Without the Studio flag, any cached `_studio` tree is removed and Web/API behavior
+stays as before. The actual Studio build and protected teacher-browser reachability
+must be checked on the exact combined source/deployment before declaring G2 passed.

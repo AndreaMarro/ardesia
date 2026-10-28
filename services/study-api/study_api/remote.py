@@ -160,5 +160,9 @@ def app_from_env():
     frontend = Path(__file__).resolve().parents[1] / '_frontend'
     if frontend.exists() and not (frontend / 'index.html').is_file():
         raise ValueError('remote_frontend_index_required')
+    studio = Path(__file__).resolve().parents[1] / '_studio'
+    if studio.exists() and not (studio / 'index.html').is_file():
+        raise ValueError('remote_studio_index_required')
     return create_remote_app(configuration, data_directory,
-                             frontend=frontend if frontend.exists() else None)
+                             frontend=frontend if frontend.exists() else None,
+                             studio_frontend=studio if studio.exists() else None)
