@@ -21,6 +21,6 @@ describe('scientific tool in the existing Studio host',()=>{
   expect(write).toHaveBeenCalledWith(first.embedId,expect.objectContaining({note:'Cambio una grandezza alla volta.'}),id);
   expect((second.embed.customData as any)[EMBED_DATA_KEY].state.note).toBe('');
   const event=pluginMountedEventFromInsertRequest(createPluginWindowInsertRequest(item),{instanceId:first.embedId,elementId:first.embedId,t:10});
-  expect(event.kind).toBe('plugin.mounted');expect(event.pluginId).toBe(id);expect(getSimulationTool(id)?.solve).toBeUndefined();
+  expect(event.kind).toBe('plugin.mounted');if(event.kind!=='plugin.mounted')throw Error('unexpected event');expect(event.pluginId).toBe(id);expect(getSimulationTool(id)?.solve).toBeUndefined();
  });
 });
