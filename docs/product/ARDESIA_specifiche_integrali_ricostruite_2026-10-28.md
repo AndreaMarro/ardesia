@@ -1,7 +1,7 @@
 # ARDESIA — Specifica integrale ricostruita, visione completa e stato verificabile
-**Data della ricostruzione:** 28 ottobre 2026 (Europe/Rome)  
-**Repository canonico:** [AndreaMarro/ardesia](https://github.com/AndreaMarro/ardesia)  
-**Ultimo `main` verificato durante la ricognizione:** `e857954847c56cd425753632f84cfaedde54239e` (merge #332, 28 ottobre).  
+**Data della ricostruzione:** 28 ottobre 2026 (Europe/Rome)
+**Repository canonico:** [AndreaMarro/ardesia](https://github.com/AndreaMarro/ardesia)
+**Ultimo `main` verificato durante la ricognizione:** `e857954847c56cd425753632f84cfaedde54239e` (merge #332, 28 ottobre).
 **Tipo:** ricostruzione documentale, non dichiarazione di completezza né autorizzazione al rilascio.
 
 ## 0. Regole di lettura, fonti e affidabilità
