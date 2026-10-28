@@ -1,3 +1,5 @@
+import { newElementWith } from "@excalidraw/excalidraw"
+import type { ExcalidrawElement } from "@excalidraw/excalidraw/element/types"
 import { persistEmbedStateThroughToolHost, type BoardApiLike, type BoardElementLike } from "./caps/board"
 import type { AuditStore } from "./audit"
 
@@ -21,14 +23,22 @@ export async function persistRoomEmbedStateThroughToolHost(
       getAppState: () => api.getAppState(),
       updateScene: (scene) => {
         const active = api.getAppState().activeEmbeddable
-        const updated = scene.elements.find((element) => element.id === embedId)
+        const previous = api.getSceneElements().find((element) => element.id === embedId)
+        const candidate = scene.elements.find((element) => element.id === embedId)
+        // Room's journal observes Excalidraw element versions. Use its mutation
+        // API so snapshot edits receive the same version/nonce/time metadata as
+        // ordinary board edits and can be reconstructed by the existing replay.
+        const updated = previous && candidate
+          ? newElementWith(previous as ExcalidrawElement, { customData: candidate.customData })
+          : candidate
+        const elements = scene.elements.map((element) => element.id === embedId && updated ? updated : element)
         // Excalidraw compares the active element by reference. Write-back replaces
         // that element, so carry its already active state into the same update.
         // Never activate an inactive, locked/deleted or different embed.
         const keepActive = active?.state === "active" && active.element.id === embedId
           && updated && !updated.locked && !updated.isDeleted
         api.updateScene({
-          ...scene,
+          elements,
           ...(keepActive ? { appState: { activeEmbeddable: { ...active, element: updated } } } : {}),
         })
       },
