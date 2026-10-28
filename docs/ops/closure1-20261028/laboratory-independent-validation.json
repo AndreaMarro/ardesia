@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "owner": "CHAT 1B",
-  "implementationHead": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
+  "implementationHead": "35226870448ffb1a6b9bb53d7bc1205cef84fc4d",
   "scope": "Independent numerical and domain checks of exact Python model blobs; TypeScript source inspection separately. Browser NOT_RUN by 1B. StudyError was stubbed for module isolation; no numerical code was changed.",
   "sourceBlobShas": {
-    "packages/engine/lessonos/study/science_library/fluid_catalog.json": "e023d921478b7967bddfa7314eafae39e7abb801",
+    "packages/engine/lessonos/study/science_library/fluid_catalog.json": "a2942ff6d00ca107861695b0ddef805bc88adecd",
     "packages/engine/lessonos/study/science_library/fluid_catalog.py": "07094e46e1991acf984500ea23d8995701f3f8b0",
     "packages/engine/lessonos/study/science_library/fluid_models.py": "92b71e6f0873b3698e287d4efcdbf1aa3db93d57",
-    "apps/studio/plugins/fluid-thermo/definitions.ts": "efe663cebaf3ef6c002bd80103c5837156f8668b",
+    "apps/studio/plugins/fluid-thermo/definitions.ts": "eaf25c23a32bd4a66b7ccdf3747813ede7f97d3b",
     "apps/studio/plugins/fluid-thermo/models.ts": "11f3bd6dd3a88a573032c013f18e152b75e49bf2"
   },
   "sourceSha256": {
-    "packages/engine/lessonos/study/science_library/fluid_catalog.json": "1f764c6f72093e3d45b237c62b588bf80dd7958c537bfbf3cf42e5a7b862abb1",
+    "packages/engine/lessonos/study/science_library/fluid_catalog.json": "8b3e94dc5ca5bcec65e0aacbf738790eb76077c53427700b6dc8655d674837a4",
     "packages/engine/lessonos/study/science_library/fluid_catalog.py": "412248c5c3ba5f6b6627a8ecbf480439009c2d3c678e53371fe6742fd08cdb8e",
     "packages/engine/lessonos/study/science_library/fluid_models.py": "8bb99922cdb09d9d2be1e1f91e81a48bdf4536afef0e5aa24d002a7c3a3cbed5",
-    "apps/studio/plugins/fluid-thermo/definitions.ts": "a12b96183d20fdb37230d3be859b88bae618c6f93bdda9a56a9dab09a88f60f4",
+    "apps/studio/plugins/fluid-thermo/definitions.ts": "47fb4294f6edaf64384c7f90a930bd50c515958f9b9a744e6aa665e1d600144e",
     "apps/studio/plugins/fluid-thermo/models.ts": "275bca485757282f832015c282efb3a65112135b2101135dd5014b8ef3d9aca0"
   },
   "result": "PASS",
@@ -388,14 +388,5 @@
     }
   ],
   "humanReview": "NOT_RUN",
-  "acceptedObjectives": 0,
-  "reproduce": "python bin/content/physics_bank/audit_fluid_labs.py 55123ab3755e2a2268a98cbae54c67ca15fb1891",
-  "sourceInspection": {
-    "typescriptResult": "PASS",
-    "scope": "Compared3ba428ce to55123ab: formulas unchanged, only the isochoric warning wording changes in TS/Python. In LabDiagram.tsx quantitative charts, computed labels and Poiseuille profile wait for comparison; FluidThermoLab forwards revealed and clears it when prediction/parameters change. Free expansion accessible description states two equilibrium endpoints and no intermediate path or work area. Source inspection, not browser certification by1B.",
-    "uiBlobShas": {
-      "LabDiagram.tsx": "28a8326adc8d3c16571738608661db4fa3771853",
-      "FluidThermoLab.tsx": "9c58d0ab749b2b3cb63c848c270b3204cf828dd0"
-    }
-  }
+  "acceptedObjectives": 0
 }
