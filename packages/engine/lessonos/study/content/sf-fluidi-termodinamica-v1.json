@@ -7177,8 +7177,8 @@
     },
     {
       "name": "Calore",
-      "expression": "Q=mcΔT; Qtransizione=mL",
-      "domain": "condizioni e fase dichiarate; gasCp eCv distinti"
+      "expression": "Q=mcΔT; |Q_trans|=m_trans L",
+      "domain": "Senza transizione nel primo caso; nella transizione dichiarare massa trasformata e verso (Q>0 assorbito). Per gas distinguere C_P e C_V e il vincolo."
     },
     {
       "name": "Bilancio",
@@ -7187,8 +7187,8 @@
     },
     {
       "name": "Carnot ed entropia",
-      "expression": "ηC=1−Tf/Tc; ΔS=∫δQrev/T",
-      "domain": "temperatureK;Carnot limite reversibile;ΔStot≥0 per universo isolato"
+      "expression": "η_C=1−T_c/T_h; ΔS=∫δQ_rev/T",
+      "domain": "T_h>T_c>0 in K; Carnot è il limite reversibile; ΔS_tot≥0 per sistema+ambiente isolati. Q_rev si riferisce al percorso reversibile di riferimento."
     }
   ],
   "recoveryTargets": [
