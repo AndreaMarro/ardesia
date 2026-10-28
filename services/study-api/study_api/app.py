@@ -34,7 +34,7 @@ class ResourceBody(BaseModel):
 
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studio_frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
                request_store_limit=16, request_store_wait=.5, calendar_provider=None,
-               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None):
+               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None, frontend_spa=False):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
@@ -598,5 +598,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')
     if frontend:
         from fastapi.staticfiles import StaticFiles
-        app.mount('/', StaticFiles(directory=frontend,html=True),name='studio')
+        if frontend_spa:
+            from .frontend import StudySPAStaticFiles
+            files = StudySPAStaticFiles(directory=frontend, html=True)
+        else:
+            files = StaticFiles(directory=frontend, html=True)
+        app.mount('/', files, name='studio')
     return app

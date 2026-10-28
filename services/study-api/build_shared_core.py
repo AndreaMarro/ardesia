@@ -4,7 +4,12 @@ This generated build artifact preserves package-relative content paths without
 relying on outside-root ZIP entries or editable checkout .pth files at runtime.
 """
 from pathlib import Path
+import hashlib
+import json
+import os
+import re
 import shutil
+import subprocess
 
 SERVICE_ROOT = Path(__file__).resolve().parent
 REPOSITORY_ROOT = SERVICE_ROOT.parents[1]
@@ -28,6 +33,38 @@ def stage_shared_core(repository_root, destination):
                         ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
 
 
+def stage_frontend(source, destination, release_sha):
+    source, destination = Path(source), Path(destination)
+    if not re.fullmatch('[0-9a-f]{40}', release_sha or ''):
+        raise ValueError('frontend_release_sha_required')
+    if not (source / 'index.html').is_file():
+        raise ValueError('frontend_build_missing')
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(source, destination)
+    metadata = {'sourceSha': release_sha, 'syntheticOnly': True,
+                'mode': 'SYNTHETIC_ACCEPTANCE',
+                'indexSha256': hashlib.sha256((source / 'index.html').read_bytes()).hexdigest()}
+    (destination / 'acceptance-release.json').write_text(json.dumps(metadata, sort_keys=True) + '\n')
+
+
+def build_web(repository_root, destination, release_sha, *, run=subprocess.run):
+    # Root's sole npm workspace is apps/web. Studio sources imported by Web
+    # remain ordinary source inputs; no Studio frontend/build is installed.
+    repository_root = Path(repository_root)
+    if not re.fullmatch('[0-9a-f]{40}', release_sha or ''):
+        raise ValueError('frontend_release_sha_required')
+    run(['npm', 'ci'], cwd=repository_root, check=True)
+    run(['npm', 'run', 'build:web'], cwd=repository_root, check=True)
+    stage_frontend(repository_root / 'apps/web/dist', destination, release_sha)
+
+
 if __name__ == '__main__':
     stage_shared_core(REPOSITORY_ROOT, SERVICE_ROOT / '_core')
     print('Canonical Core packages staged for the acceptance function')
+
+    if os.environ.get('ARDESIA_BUILD_WEB') == '1':
+        build_web(REPOSITORY_ROOT, SERVICE_ROOT / '_frontend', os.environ.get('ARDESIA_RELEASE_SHA'))
+        print('Web bundle staged for the same-origin acceptance function')
+    elif (SERVICE_ROOT / '_frontend').exists():
+        shutil.rmtree(SERVICE_ROOT / '_frontend')

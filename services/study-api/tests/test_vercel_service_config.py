@@ -25,7 +25,7 @@ def test_service_config_selects_python_commands_and_canonical_bundle_without_stu
     assert config['buildCommand'] == 'python3 build_shared_core.py'
     assert config['outputDirectory'] is None
     assert config['git']['deploymentEnabled'] is False
-    assert config['functions']['app.py']['includeFiles'] == '_core/**'
+    assert config['functions']['app.py']['includeFiles'] == '{_core/**,_frontend/**}'
     assert 'tests/**' in config['functions']['app.py']['excludeFiles']
     assert 'nodeVersion' not in config and 'builds' not in config and 'env' not in config
     assert not any(value in json.dumps(config) for value in ('npm', 'studio', 'build_vercel_integrated', '.vercel/output'))
@@ -59,6 +59,8 @@ def test_staged_entry_runs_without_outside_root_canonical_checkout(tmp_path):
     shutil.copytree(SERVICE / 'study_api', isolated / 'study_api',
                     ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
     build.stage_shared_core(SERVICE.parents[1], isolated / '_core')
+    (isolated / '_frontend').mkdir()
+    (isolated / '_frontend/index.html').write_text('<main>same-origin fixture</main>')
     # There is no packages/engine or plugins checkout in the isolated bundle.
     result = subprocess.run([sys.executable, '-I', '-c', '''
 import runpy, sys
@@ -74,6 +76,9 @@ with TestClient(namespace['app'], base_url='https://core.example.test') as clien
     response = client.get('/study/health')
     assert response.status_code == 200
     assert response.json()['mode'] == 'SYNTHETIC_ACCEPTANCE'
+    frontend = client.get('/courses/fluidi', headers={'Accept': 'text/html'})
+    assert frontend.status_code == 200 and 'same-origin fixture' in frontend.text
+    assert client.get('/study/typo', headers={'Accept': 'text/html'}).status_code == 404
 print('staged_canonical_core_ok')
 ''', str(isolated / 'app.py')], cwd=tmp_path, env=entry_environment(tmp_path),
         capture_output=True, text=True, timeout=45)

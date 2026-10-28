@@ -115,3 +115,28 @@ describes bundle inclusion/exclusion. The
 [official Python builder](https://github.com/vercel/vercel/blob/main/packages/python/src/index.ts)
 consumes `includeFiles` as globs relative to the service root; explicit staging
 keeps every function ZIP path inside that root.
+
+### Same-origin reviewed Web preview
+
+Set the build environment `ARDESIA_BUILD_WEB=1` to include the reviewed Web at the
+same origin as the Core. The existing build command then runs `npm ci` at the
+monorepo root (whose only npm workspace is `apps/web`) and `npm run build:web`.
+It stages that checkout's `apps/web/dist` byte-for-byte into ignored service
+`_frontend/`; it does not build or install the Studio frontend. Root and Web
+source files, including the small shared Studio modules imported by Web, must be
+available during the build. No compiled files are committed.
+
+`ARDESIA_RELEASE_SHA` is required at build time as well as runtime. Generated
+`/acceptance-release.json` records that source SHA, synthetic mode, and the exact
+index SHA256; its source identity is supplied by the release process. Both
+`_core/**` and `_frontend/**` are explicitly included in the Python function.
+Without the build flag, packaging removes any cached frontend artifact and the
+service remains API-only.
+
+The remote factory mounts the staged bundle through the existing application.
+`[tool.vercel.fastapi.static] cdn=false` keeps it in the function behind the same
+HTTPS/Host/Origin middleware. We deliberately use `_frontend/`, not Vercel's
+CDN-served `public/`, so those checks remain in force. HTML navigation to deep
+extensionless SPA paths falls back to the reviewed index; missing assets and
+JSON navigation remain404. Every unknown `/study/*` path remains JSON404 even
+with an HTML Accept header. Existing API routes run before the static mount.
