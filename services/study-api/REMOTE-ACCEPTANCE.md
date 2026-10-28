@@ -64,3 +64,29 @@ isolation/revocation and restore evidence are release/operator responsibilities.
 Supabase's current [session documentation](https://supabase.com/docs/guides/auth/sessions)
 connects JWT `session_id` with `auth.sessions`; its [connection documentation](https://supabase.com/docs/guides/database/connecting-to-postgres)
 distinguishes direct/session pooling from transaction pooling.
+
+## Vercel preview entry
+
+The repository-level service file `services/study-api/app.py` exports
+`app = app_from_env()` for Vercel's FastAPI framework detection. It derives the
+monorepo engine and service import paths from `__file__`, independently of the
+process working directory. Keep project root `services/study-api` and
+`sourceFilesOutsideRootDirectory=true` so both `packages/engine` and
+`plugins/s19-circuit-lab` remain available. The existing `pyproject.toml` and
+`uv.lock` already declare and lock the local S19 dependency at
+`../../plugins/s19-circuit-lab`; use that uv configuration without a second
+requirements/lock file.
+
+For this acceptance preview, use
+`ARDESIA_DATA_DIR=/tmp/ardesia-acceptance`. This directory is ephemeral working
+space; the existing PostgreSQL store and Supabase Storage remain authoritative.
+The intended stable preview alias is
+`https://ardesia-closure1-acceptance-preview.vercel.app`; configure that exact
+origin in `ARDESIA_APP_ORIGINS`. Configure release SHA and credentials through
+private environment configuration. Creating this entry does not promote a
+preview to production.
+
+The trusted TLS/proxy requirement above still applies to Vercel: hosted proof
+must confirm ASGI receives HTTPS, the canonical alias Host, and the actual
+browser Origin. Do not make arbitrary forwarded client headers authoritative to
+work around a failed boundary. No platform-specific trust bypass is added.
