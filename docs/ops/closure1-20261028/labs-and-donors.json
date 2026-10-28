@@ -1,15 +1,16 @@
 {
   "schema": "ardesia.closure1c.labs-and-donors/1",
-  "observedAt": "2026-10-28T11:08:57+00:00",
+  "observedAt": "2026-10-28T11:53:59+00:00",
   "owner": "CHAT 1C",
   "status": "NON_DONE",
   "scope": "Registro di provenienza e accettazione di un solo plugin first-party; non autorità di pubblicazione o valutazione.",
   "repository": {
-    "baseHead": "97ad038332e012a97ce7b26a79a273dd38307825",
+    "baseHead": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
     "branch": "codex/closure1c-labs-20261028",
-    "state": "WORKING_TREE_SNAPSHOT_WITH_CONCURRENT_ROOT_IMPLEMENTATION",
+    "state": "CODE_HEAD_VERIFIED_LOCAL_CI_RUNNING_REPORTED_BY_ROOT",
     "referenceMainAtStart": "85963b1d",
-    "note": "I digest descrivono i byte letti, inclusi cambiamenti non committati; i verdi storici non sono trasferiti automaticamente a questi byte."
+    "note": "HEAD codice 55123ab3 verificata in sola lettura. Root riferisce CI attiva su questa SHA; Web ancora IN_PROGRESS alla fotografia. Browser resta riferito a 3ba428ce, review 1B ora riferita esattamente a 55123ab3.",
+    "previousRecordedHead": "97ad038332e012a97ce7b26a79a273dd38307825"
   },
   "counts": {
     "models": 16,
@@ -99,14 +100,14 @@
   "definitionsCatalogConsistency": "MATCH_READ_ONLY_ID_AND_ATOMIC_ID_CHECK",
   "testAndAcceptanceLedger": {
     "localNumericalSnapshotGeometry": {
-      "status": "HISTORICAL_PASS_NOT_CURRENT_TREE_CERTIFICATION",
+      "status": "HISTORICAL_PASS_SUPERSEDED_BY_LATEST_ROOT_REPORTED_RUN",
       "passed": 29,
       "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/vitest-models.log",
       "runStartLocal": "11:32:15",
       "durationMs": 716
     },
     "combinedUi": {
-      "status": "HISTORICAL_FAIL_REPAIR_PENDING_ROOT_RERUN",
+      "status": "HISTORICAL_FAILURE_SUPERSEDED_BY_LATEST_ROOT_REPORTED_69_PASS",
       "passed": 49,
       "failed": 1,
       "failure": "lazy 3D import fallback test",
@@ -114,31 +115,268 @@
       "runStartLocal": "11:41:40"
     },
     "ci": {
-      "head": "97ad038332e012a97ce7b26a79a273dd38307825",
-      "status": "FAILURE",
-      "web": "SUCCESS",
+      "head": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+      "status": "FAILURE_WEB_PUBLIC_PROJECTION_STALE",
+      "engine": "SUCCESS",
+      "studyApi": "SUCCESS",
       "studio": "SUCCESS",
-      "engine": {
-        "status": "FAILURE",
-        "failed": 5,
-        "passed": 2996,
-        "skipped": 29,
-        "diagnosis": "Cinque aspettative di hash runtime da aggiornare, secondo log e diagnosi root; fix ancora da verificare."
-      },
-      "studyApi": {
-        "status": "FAILURE",
-        "failed": 6,
-        "passed": 1340,
-        "skipped": 18,
-        "diagnosis": "Cinque aspettative di hash e una cardinalità storica 4 contro 20; fix ancora da verificare."
-      },
-      "workflowUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40671195573",
-      "proof": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-initial.json"
+      "e2eAdvisory": "SUCCESS",
+      "web": "FAILURE",
+      "failureReason": "Proiezione pubblica publicPreviewData.ts STALE; nessun fallimento del modello scientifico attestato da questa diagnosi.",
+      "proof": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-3ba.json",
+      "proofSha256": "65d9f3ba6e5435dbf2b77d4adf2e623d66097945898ed6f948f8414f78cff14c",
+      "checks": [
+        {
+          "link": "https://coderabbit.ai?utm_source=cr_app&utm_medium=github",
+          "name": "CodeRabbit",
+          "state": "SKIPPED"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970151/job/122784484086",
+          "name": "s19",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970072/job/122784483769",
+          "name": "marketing",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970231/job/122784484535",
+          "name": "PR contract (owner + acceptance + evidence)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485265",
+          "name": "study-api (HTTP + shared Core)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485307",
+          "name": "study-mcp (official SDK stdio + HTTP)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485117",
+          "name": "studio (typecheck + test + build)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784484758",
+          "name": "engine (pytest)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485239",
+          "name": "hygiene (NUL + secrets + boundary + whitespace)",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485187",
+          "name": "web (typecheck + test + build)",
+          "state": "FAILURE"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970222/job/122784484584",
+          "name": "no-deploy-check",
+          "state": "SUCCESS"
+        },
+        {
+          "link": "https://github.com/AndreaMarro/ardesia/actions/runs/40678970305/job/122784485329",
+          "name": "e2e golden path (advisory)",
+          "state": "SUCCESS"
+        }
+      ],
+      "correctionInHead55123ab3": "Proiezione pubblica e courseLearningData rigenerati secondo il root, senza cambiare i generatori.",
+      "integratedRegenerationRequired": "1A deve rigenerare le proiezioni dopo tutti i merge; la rigenerazione locale non trasferisce un verde CI alla HEAD nuova."
     },
     "browserArdesia": {
-      "status": "NOT_PASS",
-      "latestRootReport": "Problemi di stato e contesto WebGL in StrictMode rilevati; correzioni in corso, qualità GPU da falsificare. Nessuna scena o dispositivo certificato qui.",
-      "initialAttempts": [
+      "status": "SOFTWARE_COMPONENT_FUNCTIONAL_PASS_AT_3BA_CONSUMER_PENDING",
+      "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+      "report": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/laboratori-20261028/report.json",
+      "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+      "scope": "PRIVATE_COMPONENT_HARNESS_NOT_PUBLISHED_LESSON_OR_CORE_PERSISTENCE",
+      "modelCount": 16,
+      "manipulatedTwoDCount": 16,
+      "webgl2SceneCount": 8,
+      "environment": {
+        "desktopViewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "tabletViewport": {
+          "width": 820,
+          "height": 1180
+        },
+        "mobileViewport": {
+          "width": 390,
+          "height": 844
+        },
+        "physicalTablet": false,
+        "renderer": "Chromium headless shell with SwiftShader software rendering; not a physical GPU/device benchmark",
+        "browser": "148.0.7778.96",
+        "clock": {
+          "frames": 2,
+          "visibility": "visible"
+        }
+      },
+      "checks": {
+        "contextLossPreservesDraft": true,
+        "reducedMotionAndResponsive": true,
+        "keyboardPrediction": true,
+        "noWebGLPreservesDraft": true
+      },
+      "cameraAndViewports": "Rotazione camera e viewport desktop/tablet/mobile verificati nel percorso browser dal root; le viewport non sono dispositivi fisici.",
+      "errors": [],
+      "sourceManifest": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "sha256": "fea35a687ea78871ac04d5830c0f5acc497d90ca1d09c914f97abecb72782ae0"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+          "sha256": "ada5fa37d4517826d1bb366031245831acf729984cf2040a54f25faed11c7b00"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+          "sha256": "a23369a4471356e952ee95edce7b39abd0ac9573975e101b0d384cf507309fe6"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.ts",
+          "sha256": "0d26cfd8656e99c68010654495ed1bf2a5739bc3181e36710824507f13207a40"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.ts",
+          "sha256": "a9c6a70fc079417efcd61643491383ee5ada09b18463823f9204c23fb372295b"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/definitions.ts",
+          "sha256": "a12b96183d20fdb37230d3be859b88bae618c6f93bdda9a56a9dab09a88f60f4"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+          "sha256": "49f5fa27ec7d8080e167638b04415a45870bb50f990aee057eef3e633e01c7df"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/fluid-thermo.css",
+          "sha256": "c6caa582ca1a0961edc2f1ddffaa9750cd6d2440b4b2c93c666420d1e5150c74"
+        }
+      ],
+      "modelResults": [
+        {
+          "id": "manometer",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "1962 Pa"
+        },
+        {
+          "id": "hydrostatic",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "120945 Pa"
+        },
+        {
+          "id": "pascal",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "500 N"
+        },
+        {
+          "id": "buoyancy",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "5,886 N"
+        },
+        {
+          "id": "continuity",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "1 m/s"
+        },
+        {
+          "id": "venturi",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "148500 Pa"
+        },
+        {
+          "id": "poiseuille",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "0,0000000785398 m³/s"
+        },
+        {
+          "id": "hydraulic-network",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "0,0000333333 m³/s"
+        },
+        {
+          "id": "capillary",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "0,0254246 m"
+        },
+        {
+          "id": "ideal-gas",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "99773,6 Pa"
+        },
+        {
+          "id": "calorimetry",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "323,15 K"
+        },
+        {
+          "id": "phase-change",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "0 °C"
+        },
+        {
+          "id": "heat-transfer",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "480 W"
+        },
+        {
+          "id": "process",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": true,
+          "primary": "172,894 J"
+        },
+        {
+          "id": "carnot",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "0,5 1"
+        },
+        {
+          "id": "entropy",
+          "twoD": true,
+          "manipulated": true,
+          "threeD": false,
+          "primary": "65,9226 J/K"
+        }
+      ],
+      "initialAttemptsHistorical": [
         {
           "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs.log",
           "modelsBeforeFailure": 0,
@@ -151,6 +389,11 @@
           "threeDBeforeFailure": 0,
           "failure": "Pulsante Ruota a destra non raggiunto entro timeout."
         }
+      ],
+      "limits": [
+        "No physical tablet, Safari or remote Core persistence acceptance.",
+        "No general FPS or full-product p95 claim.",
+        "Browser del componente su 3ba428ce, precedente al fix anti-leak 55123ab3. Non certifica la nuova HEAD, Safari, GPU fisica, consumer pubblicato o persistenza Core."
       ]
     },
     "consumerAcceptance": {
@@ -187,6 +430,170 @@
       {
         "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs-2.log",
         "sha256": "bdf1b04ee411882253d3c2f11008e1c28b54aaf937cd9d784d254671d6c25a8f"
+      },
+      {
+        "evidenceName": "component-browser-final",
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/laboratori-20261028/report.json",
+        "sha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "Metadati dell’evidenza soltanto; nessun raw screenshot/source donor copiato."
+      },
+      {
+        "evidenceName": "component-feedback-diagnostic",
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/feedback-measurement.json",
+        "sha256": "222634a12d81b924e5cb63cee3b6bec7d9b6d2061b0306319414d1e7b2c59f12",
+        "scope": "Metadati dell’evidenza soltanto; nessun raw screenshot/source donor copiato."
+      },
+      {
+        "evidenceName": "ci-3ba",
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-3ba.json",
+        "sha256": "65d9f3ba6e5435dbf2b77d4adf2e623d66097945898ed6f948f8414f78cff14c",
+        "scope": "Metadati dell’evidenza soltanto; nessun raw screenshot/source donor copiato."
+      },
+      {
+        "evidenceName": "validation-final-head-transcription",
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/validation-55123ab3.json",
+        "sha256": "6bcb279e6b46a52af5d2e624bcfefab1253b28593d1bbe510ce4e00f5a77edba",
+        "recordType": "Transcription of completed execution tool results; original results remain in chat history"
+      }
+    ],
+    "ciHistory": [
+      {
+        "head": "97ad038332e012a97ce7b26a79a273dd38307825",
+        "status": "FAILURE",
+        "web": "SUCCESS",
+        "studio": "SUCCESS",
+        "engine": {
+          "status": "FAILURE",
+          "failed": 5,
+          "passed": 2996,
+          "skipped": 29,
+          "diagnosis": "Cinque aspettative di hash runtime da aggiornare, secondo log e diagnosi root; fix ancora da verificare."
+        },
+        "studyApi": {
+          "status": "FAILURE",
+          "failed": 6,
+          "passed": 1340,
+          "skipped": 18,
+          "diagnosis": "Cinque aspettative di hash e una cardinalità storica 4 contro 20; fix ancora da verificare."
+        },
+        "workflowUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40671195573",
+        "proof": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-initial.json"
+      }
+    ],
+    "ciCurrentHead": {
+      "head": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
+      "status": "IN_PROGRESS_WEB_PENDING",
+      "observedAt": "2026-10-28T11:53:59+00:00",
+      "source": "Aggiornamento di coordinamento root: stato CI551 verificato dal root; nessun verde Web anticipato.",
+      "engine": "SUCCESS",
+      "studyApi": "SUCCESS",
+      "studio": "SUCCESS",
+      "studyMcp": "SUCCESS",
+      "hygiene": "SUCCESS",
+      "e2eAdvisory": "SUCCESS",
+      "web": "IN_PROGRESS",
+      "noInference": "La pipeline non è complessivamente verde finché Web non ha concluso; i verdi non attestano preview o Core."
+    },
+    "latestLocalVerification": {
+      "head": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
+      "source": "Trascrizione verificata dei risultati tool completati dal root, letta da questo worker. Non è un raw log e non è una nuova esecuzione.",
+      "webModelAndUi": {
+        "status": "PASS",
+        "passed": 69,
+        "scope": "Regressioni modello/UI, inclusi anti-leak prima/dopo previsione e confronto su 16 modelli e profilo Poiseuille.",
+        "durationSeconds": 4.04,
+        "toolSessionId": 17515,
+        "exitCode": 0
+      },
+      "pythonFluidAndRuntimeIdentity": {
+        "status": "PASS",
+        "passed": 47,
+        "durationSeconds": 8.69,
+        "toolSessionId": 82716,
+        "exitCode": 0
+      },
+      "webTypecheck": "PASS",
+      "targetedTechnicalReview": {
+        "status": "NO_ADDITIONAL_P1_P2_REPORTED",
+        "humanApproval": false
+      },
+      "rawLogAccess": "Originali dei risultati tool nella history del root; recordType transcription esplicito. Vecchi log iCloud dataless non idratati.",
+      "record": {
+        "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/validation-55123ab3.json",
+        "sha256": "6bcb279e6b46a52af5d2e624bcfefab1253b28593d1bbe510ce4e00f5a77edba",
+        "recordType": "Transcription of completed execution tool results; original results remain in chat history",
+        "scope": "Local component and scientific model verification; no published lesson, Core roundtrip, physical device or performance acceptance implied",
+        "checks": [
+          {
+            "command": "node ../../node_modules/vitest/vitest.mjs run src/features/science-library/__tests__/fluid-thermo-ui.test.tsx src/features/science-library/__tests__/fluid-thermo-models.test.ts --pool=threads --maxWorkers=1 --no-file-parallelism --testTimeout=30000 --hookTimeout=30000 --teardownTimeout=30000",
+            "cwd": "apps/web",
+            "node": "24.19.0",
+            "toolSessionId": 17515,
+            "exitCode": 0,
+            "result": "Test Files 2 passed (2); Tests 69 passed (69); Duration 4.04s",
+            "coverage": "16 manipulable labs; 16 before/after comparison disclosure regressions; parameter reset; Poiseuille graph/vector disclosure; free expansion without interpolated path or work area; lifecycle, invalid import, renderer load failure and stale save; model/snapshot/geometry checks"
+          },
+          {
+            "command": "/opt/homebrew/bin/pytest tests/study/test_fluid_thermo_models.py tests/study/test_science_library_runtime_identity.py -q",
+            "cwd": "packages/engine",
+            "toolSessionId": 82716,
+            "exitCode": 0,
+            "result": "47 passed in 8.69s"
+          },
+          {
+            "command": "node ../../node_modules/typescript/bin/tsc --noEmit -p tsconfig.json",
+            "cwd": "apps/web",
+            "toolSessionId": 46934,
+            "exitCode": 0
+          },
+          {
+            "command": "python3 bin/web/export_course_learning.py --check",
+            "cwd": ".",
+            "exitCode": 0,
+            "result": "CoursePack projection checked",
+            "integrationRequirement": "Regenerate canonical projections after combining 1A and 1B content heads"
+          }
+        ]
+      },
+      "webTypecheckEvidence": {
+        "toolSessionId": 46934,
+        "exitCode": 0
+      },
+      "courseLearningProjectionCheck": {
+        "status": "PASS_AT_HEAD_55123ab3",
+        "command": "python3 bin/web/export_course_learning.py --check",
+        "integrationRequirement": "Rigenerare le proiezioni canoniche dopo tutti i merge 1A/1B."
+      }
+    },
+    "independent1B": {
+      "head": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
+      "status": "PASS_54_AT_EXACT_55123AB3",
+      "passed": 54,
+      "source": "Messaggio diretto 1B ricevuto e riferito dal coordinatore root: rerun 54/54 in copia minimale non cloud. Nessun raw log attribuito a questo record.",
+      "scope": "Review scientifica e regressioni indipendenti; diff anti-leak/Poiseuille/libera espansione affrontato e formule confermate.",
+      "browser": false,
+      "humanApproval": false
+    },
+    "antiLeak": {
+      "head": "55123ab3755e2a2268a98cbae54c67ca15fb1891",
+      "status": "SOURCE_FIX_AND_ROOT_REPORTED_TESTS_PASS",
+      "models": 16,
+      "behavior": "Misure, etichette risolte e grafici quantitativi 2D sono rivelati dopo previsione e confronto esplicito; modifica di previsione o parametri azzera il confronto. Incluso il profilo di velocità Poiseuille.",
+      "paths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/web/src/features/science-library/__tests__/fluid-thermo-ui.test.tsx"
+      ],
+      "browserAtCurrentHead": "PENDING",
+      "review": "Nessun ulteriore P1/P2 dalla review mirata comunicata dal root; nessuna approvazione umana asserita."
+    },
+    "independent1BHistory": [
+      {
+        "head": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "status": "PASS_54_AT_EXACT_3BA",
+        "passed": 54,
+        "rerunAtHead55123ab3": "PENDING",
+        "source": "Esito indipendente comunicato dal root; non riattribuito alla HEAD successiva."
       }
     ]
   },
@@ -269,7 +676,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: la sezione 2D rende leggibile la misura.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -370,7 +786,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: curva p(h) e sezione del recipiente.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -466,8 +891,17 @@
         "twoD": "Due pistoni con aree, forze e rapporto di corsa.",
         "threeDDeclared": true,
         "threeDIntent": "Confronto delle aree circolari e dei vettori forza; nessuna dinamica.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -570,8 +1004,17 @@
         "twoD": "Volume immerso imposto e confronto separato di spinta e peso.",
         "threeDDeclared": true,
         "threeDIntent": "Sezione spaziale del volume immerso, vettori relativi; recipiente S16 normalizzato.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -669,8 +1112,17 @@
         "twoD": "Sezioni circolari schematiche, portata comune e velocità medie.",
         "threeDDeclared": true,
         "threeDIntent": "Raggi e sezioni sullo stesso condotto; frecce di velocità media, non particelle.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -780,8 +1232,17 @@
         "twoD": "Sezioni, velocità, pressioni assolute e dislivello nel bilancio.",
         "threeDDeclared": true,
         "threeDIntent": "Condotto raddrizzato per leggere le sezioni; quota solo nel bilancio 2D.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -890,8 +1351,17 @@
         "twoD": "Profilo locale u(s), no slip, u_max=2u_media, Re e vincolo Δp/Q.",
         "threeDDeclared": true,
         "threeDIntent": "Superficie di velocità ottenuta per rivoluzione del profilo analitico; non superficie materiale.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -992,7 +1462,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: topologia e bilanci risultano sufficienti in 2D.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1098,8 +1577,17 @@
         "twoD": "Menisco con segno della risalita oppure sezione goccia/bolla.",
         "threeDDeclared": true,
         "threeDIntent": "Curvatura, angolo e numero di interfacce; separazione delle due superfici illustrativa.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1199,8 +1687,17 @@
         "twoD": "Pistone, volume e isoterma p(V); temperature in kelvin.",
         "threeDDeclared": true,
         "threeDIntent": "Altezza del gas lineare con V; pistone S16 quando entro la sua corsa, geometria originale altrimenti.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1307,7 +1804,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: diagramma e valori equivalenti accessibili.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1407,7 +1913,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: la curva energetica rende esplicito il cambio di fase.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1516,7 +2031,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: confronto quantitativo delle tre dipendenze.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1632,8 +2156,17 @@
         "twoD": "Cammini reversibili p(V); libera espansione con soli due punti non connessi.",
         "threeDDeclared": true,
         "threeDIntent": "Geometria del volume finale; non inventa stati intermedi per la libera espansione.",
-        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "threeDRuntimeStatus": "WEBGL2_SWIFTSHADER_COMPONENT_OBSERVED_AT_3BA_CONSUMER_PENDING",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": true,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1758,7 +2291,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: orientamento e bilancio di ciclo in 2D.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1865,7 +2407,16 @@
         "threeDDeclared": false,
         "threeDIntent": "Non prevista: bilancio analitico, senza simulazione molecolare.",
         "threeDRuntimeStatus": "NOT_APPLICABLE",
-        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza.",
+        "twoDRuntimeStatus": "MANIPULATED_IN_SOFTWARE_COMPONENT_AT_3BA",
+        "runtimeEvidence": {
+          "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+          "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+          "twoDManipulated": true,
+          "webgl2Observed": false,
+          "limits": "Componente locale e renderer software; nessuna prova hardware, Safari o persistenza Core. Il fix anti-leak 55123ab3 è successivo."
+        },
+        "revealPolicy": "Il diagramma quantitativo 2D e le misure sono accessibili dopo previsione e confronto; il reset e le modifiche azzerano il confronto."
       },
       "paths": {
         "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
@@ -1944,7 +2495,12 @@
           "case": "test_pressure_goldens_and_pascal_work_conservation"
         }
       ],
-      "limit": "Nessun trascinamento canvas del donor dichiarato adottato."
+      "limit": "Nessun trascinamento canvas del donor dichiarato adottato.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A02",
@@ -1980,7 +2536,12 @@
           "case": "test_pressure_goldens_and_pascal_work_conservation"
         }
       ],
-      "limit": "La convenzione di segno è quella dichiarata dal modello Ardesia."
+      "limit": "La convenzione di segno è quella dichiarata dal modello Ardesia.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A03",
@@ -2017,7 +2578,12 @@
           "case": "test_archimedes_and_continuity_not_free_energy"
         }
       ],
-      "limit": "Equilibrio libero separato da immersione imposta; nessuna dinamica del donor copiata."
+      "limit": "Equilibrio libero separato da immersione imposta; nessuna dinamica del donor copiata.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A04",
@@ -2054,7 +2620,12 @@
           "case": "test_archimedes_and_continuity_not_free_energy"
         }
       ],
-      "limit": "Le frecce non sono un profilo locale o una simulazione di particelle."
+      "limit": "Le frecce non sono un profilo locale o una simulazione di particelle.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A05",
@@ -2091,7 +2662,12 @@
           "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
         }
       ],
-      "limit": "La 3D raddrizza il condotto; nessuna adozione di un toggle attrito senza equazione."
+      "limit": "La 3D raddrizza il condotto; nessuna adozione di un toggle attrito senza equazione.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A06",
@@ -2128,7 +2704,12 @@
           "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
         }
       ],
-      "limit": "I piezometri e il toggle di attrito donor non sono stati assimilati come implementazioni separate."
+      "limit": "I piezometri e il toggle di attrito donor non sono stati assimilati come implementazioni separate.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A07",
@@ -2165,7 +2746,12 @@
           "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
         }
       ],
-      "limit": "Sono rifiutati parametri fuori dominio; nessuna correzione silenziosa come nel donor."
+      "limit": "Sono rifiutati parametri fuori dominio; nessuna correzione silenziosa come nel donor.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A08",
@@ -2201,7 +2787,12 @@
           "case": "test_hydraulic_network_topology_and_laplace_interfacial_count"
         }
       ],
-      "limit": "Il donor usa Bernoulli ideale: il solver viscoso Ardesia è originale e non è certificato dal donor."
+      "limit": "Il donor usa Bernoulli ideale: il solver viscoso Ardesia è originale e non è certificato dal donor.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A09",
@@ -2238,7 +2829,12 @@
           "case": "test_gas_calorimetry_and_latent_heat_goldens"
         }
       ],
-      "limit": "L’equazione di stato non determina Q, W o una dinamica."
+      "limit": "L’equazione di stato non determina Q, W o una dinamica.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A10",
@@ -2274,7 +2870,12 @@
           "case": "test_gas_calorimetry_and_latent_heat_goldens"
         }
       ],
-      "limit": "REA ha provato workflow/reset, non equilibrio quantitativo del donor; il golden Ardesia è indipendente."
+      "limit": "REA ha provato workflow/reset, non equilibrio quantitativo del donor; il golden Ardesia è indipendente.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A11",
@@ -2310,7 +2911,12 @@
           "case": "test_gas_calorimetry_and_latent_heat_goldens"
         }
       ],
-      "limit": "L’asse Ardesia è Q, non tempo; non si copia la cinetica donor."
+      "limit": "L’asse Ardesia è Q, non tempo; non si copia la cinetica donor.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A12",
@@ -2346,7 +2952,12 @@
           "case": "test_transfer_direction_and_first_law_for_four_reversible_paths"
         }
       ],
-      "limit": "REA donor copre sola conduzione; convezione e irraggiamento richiedono i test originali."
+      "limit": "REA donor copre sola conduzione; convezione e irraggiamento richiedono i test originali.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A13",
@@ -2382,7 +2993,12 @@
           "case": "test_carnot_and_finite_body_entropy_balances"
         }
       ],
-      "limit": "Esclusi il COP etichettato male e l’asse S errato del donor; vista T–S non dichiarata implementata."
+      "limit": "Esclusi il COP etichettato male e l’asse S errato del donor; vista T–S non dichiarata implementata.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     },
     {
       "id": "A14",
@@ -2418,7 +3034,12 @@
           "case": "test_carnot_and_finite_body_entropy_balances"
         }
       ],
-      "limit": "Il donor tratta miscelazione di gas; Ardesia tratta corpi finiti: solo struttura della lettura, non modello o cinetica."
+      "limit": "Il donor tratta miscelazione di gas; Ardesia tratta corpi finiti: solo struttura della lettura, non modello o cinetica.",
+      "componentEvidence": {
+        "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+        "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+        "scope": "COMPONENT_ONLY_NO_CORE_ACCEPTANCE"
+      }
     }
   ],
   "consumerMap1B": {
@@ -3821,7 +4442,7 @@
     "note": "La mappa di 139 target ed evidence ID storici non prova 139 indagini funzionali né recupero dei raw iCloud."
   },
   "geometry": {
-    "status": "SOURCE_REUSE_PRESENT_RUNTIME_ACCEPTANCE_PENDING",
+    "status": "SOURCE_REUSE_AND_SOFTWARE_COMPONENT_OBSERVED_CONSUMER_PENDING",
     "manifest": "assets/scientific3d/manifest.json",
     "rights": "assets/scientific3d/RIGHTS.md",
     "manifestHistoricalStatus": "PENDING_S13_CONSUMER",
@@ -3953,7 +4574,7 @@
       "rule": "height=1.2*V/V_reference; base=-0.8; assetScale=25; traslazione coerente col fondo originale a 0.003 m. S16 usato solo con translation.y in [0.012,0.082]; altrimenti pistone parametrico originale.",
       "test": "apps/studio/plugins/fluid-thermo/sceneGeometry.test.ts"
     },
-    "qualityLimit": "Non è CFD, dinamica molecolare o animazione fisica. Almeno cinque scene utili e relativi fallback rimangono da accettare nel browser; eight flags threeD non sono otto PASS.",
+    "qualityLimit": "Otto scene hanno creato WebGL2 effettivo tramite SwiftShader nel componente locale su 3ba428ce, con camera/fallback/context loss verificati. Non è validazione di GPU fisica, Safari o consumer Core; non è CFD, dinamica molecolare o animazione fisica. Fix anti-leak 55123ab3 successivo alla prova browser.",
     "externalRights": "LicenseRef-Ardesia-Original documenta provenienza; eventuale distribuzione esterna richiede decisione del proprietario."
   },
   "legalAndPrimarySources": [
@@ -4005,21 +4626,147 @@
     "failedC4FirstAttemptCliWallSeconds": 36.552,
     "meaning": "Durate REA/CLI misurate, comprendono navigazione e artefatti: non tempi di interazione Ardesia. La somma parziale CLI non è costo totale della ricerca.",
     "ardesiaP95InteractionMs": null,
-    "ardesiaP95Status": "NOT_RUN",
+    "ardesiaP95Status": "FULL_PRODUCT_NOT_ATTESTED_COMPONENT_VISUAL_TARGET_NOT_REACHED",
     "desktopFps": null,
     "tabletFps": null,
     "hardwareValidation": "NOT_RUN",
     "totalResearchWallSeconds": null,
     "totalEngineeringCost": "UNKNOWN",
     "counterfactualCost": "UNKNOWN",
-    "learningEffect": "NOT_MEASURED"
+    "learningEffect": "NOT_MEASURED",
+    "safariValidation": "NOT_RUN",
+    "componentInputToFrameFirst": {
+      "sourceCommit": "3ba428ce265640db9eb5ff6c3eba40da1a7a670b",
+      "p95ms": 270.4,
+      "samples": 20,
+      "report": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/laboratori-20261028/report.json",
+      "reportSha256": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+      "measurement": "Synthetic input dispatch to next requestAnimationFrame in Chromium; not a whole-product/device benchmark"
+    },
+    "componentFeedbackDiagnostic": {
+      "scope": "Component-only diagnostic; no device/performance acceptance",
+      "sourceCommit": "NOT_PINNED_IN_DIAGNOSTIC_JSON",
+      "report": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/feedback-measurement.json",
+      "reportSha256": "222634a12d81b924e5cb63cee3b6bec7d9b6d2061b0306319414d1e7b2c59f12",
+      "modelCpuP95ms": 0.2,
+      "modelSamples": 100,
+      "inputDomCommitP95ms": 17.8,
+      "inputDomCommitSamples": 20,
+      "inputNextFrameP95ms": 280.1,
+      "inputNextFrameSamples": 20,
+      "host": {
+        "loadAverage": [
+          74.94140625,
+          59.060546875,
+          60.49169921875
+        ],
+        "totalMemoryBytes": 8589934592,
+        "cpuCount": 8
+      },
+      "visualTargetMs": 100,
+      "visualTargetReachedInMeasurement": false,
+      "visualTargetAcceptedOnHardware": false,
+      "interpretation": "Il target input→frame 100 ms non è raggiunto nelle misure software (270.4/280.1 ms p95) e non è attestato su hardware. Modello 0.2 ms e commit DOM 17.8 ms non sostituiscono il tempo al frame. Il carico elevato è contesto della misura, non una deroga al target."
+    }
   },
   "remainingAcceptance": [
-    "Completare e verificare le correzioni UI/lazy import e StrictMode, poi prove sul working tree e sulla nuova SHA.",
-    "Eseguire prova funzionale delle scene utili e fallback 2D sul consumer reale; hardware/tablet e p95 ancora NOT_RUN.",
-    "1A deve fornire percorsi esatti delle lezioni Core e prove save/reopen/isolamento; nessun link pubblicato inventato.",
-    "Accettare almeno otto corrispondenze comportamento→consumer con prova visibile: tutte le 14 righe candidate restano pendenti.",
-    "Riconciliare CI sulla SHA successiva e merge tree; non usare i verdi 97ad0383 per byte modificati."
+    "1A deve fornire preview integrata e percorsi esatti delle lezioni/Core, con prova di save/reopen della revisione e isolamento.",
+    "Rieseguire la prova browser pertinente sulla HEAD 55123ab3 e sull’integrazione, senza trasferire la prova componente 3ba428ce al fix anti-leak successivo.",
+    "Il target visivo p95 100 ms non è raggiunto/attestato; richiede misura proporzionata su runtime integrato e hardware. Tablet fisico, GPU e Safari restano NOT_RUN.",
+    "Mantenere le 14 assimilazioni PENDING_CONSUMER_ACCEPTANCE finché almeno otto siano provate sul consumer reale; nessuna accettazione per sole dipendenze o wrapper.",
+    "Attendere esito Web CI della HEAD 55123ab3 e verificare il merge tree; Engine/API/Studio/MCP/hygiene/e2e sono SUCCESS secondo il root. 1A deve rigenerare publicPreviewData e courseLearningData dopo tutti i merge."
   ],
-  "artifactPolicy": "Solo metadati, Evidence ID, digest, azioni dichiarate e parafrasi. Raw DOM, screenshot, source donor e log estesi restano nel work privato; non copiati nel repository."
+  "artifactPolicy": "Solo metadati, Evidence ID, digest, azioni dichiarate e parafrasi. Raw DOM, screenshot, source donor e log estesi restano nel work privato; non copiati nel repository.",
+  "sourceFilesHistoricalSnapshot": {
+    "observedAt": "2026-10-28T11:08:57+00:00",
+    "baseHead": "97ad038332e012a97ce7b26a79a273dd38307825",
+    "note": "Digest storici dei byte letti durante la prima ricognizione; non descrivono tutti la HEAD 55123ab3."
+  },
+  "currentHeadSourceFiles": [
+    {
+      "path": "apps/studio/plugins/fluid-thermo/definitions.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "a12b96183d20fdb37230d3be859b88bae618c6f93bdda9a56a9dab09a88f60f4"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/models.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "275bca485757282f832015c282efb3a65112135b2101135dd5014b8ef3d9aca0"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "0d26cfd8656e99c68010654495ed1bf2a5739bc3181e36710824507f13207a40"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "5a8bea9ee02e042fee9483f9e0140c0a200bd4e22f3d4cb98111dddbaa5f1ba5"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "a23369a4471356e952ee95edce7b39abd0ac9573975e101b0d384cf507309fe6"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "49f5fa27ec7d8080e167638b04415a45870bb50f990aee057eef3e633e01c7df"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/register.tsx",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "14487fbf2fd6658c5cb2c3afd8c2d84101019801fb2c658ddc4238d004bc4f6e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "1f764c6f72093e3d45b237c62b588bf80dd7958c537bfbf3cf42e5a7b862abb1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_catalog.py",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "412248c5c3ba5f6b6627a8ecbf480439009c2d3c678e53371fe6742fd08cdb8e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_models.py",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "8bb99922cdb09d9d2be1e1f91e81a48bdf4536afef0e5aa24d002a7c3a3cbed5"
+    },
+    {
+      "path": "packages/engine/lessonos/study/activities.py",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "eff472dbc567ba258499452283eeeef2154213f92a76027d55dfd2421a82639c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/models.py",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "f0f22fd0dfd79529ff61a8024eb9593127d9d8d7d1e3d7914f2086804921bc15"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "6c63b8170c0305076a2b5ee18f3ba9932159c29286ae550c6e6f03d60685cd11"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "f62bf62a5af0f380668616b9ef22a40bb0ca02ec1137a3ca3c2ae00f6ca945ed"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.test.ts",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "a0496c3a94d8375d073e6ebd3bb33e90e3382f6bae26a90dc0bd6cfdefeed104"
+    },
+    {
+      "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "7ecc42f2256f4c5520c81b2d150627a0126328e8423c74532998eda7674f7645"
+    },
+    {
+      "path": "apps/web/src/features/science-library/__tests__/fluid-thermo-ui.test.tsx",
+      "status": "READ_AT_CURRENT_HEAD",
+      "sha256": "1e1f927e7e486099f817b038b8197f06332690037a2c49da7997452f7d23af92"
+    }
+  ]
 }

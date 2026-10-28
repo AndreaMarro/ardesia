@@ -123,7 +123,7 @@ describe('reusable lab state and fallback',()=>{
     fireEvent.click(screen.getByRole('button',{name:'Salva la configurazione nel corso'}));
     fireEvent.change(screen.getByLabelText('Osservazioni'),{target:{value:'Nuova osservazione'}});
     await act(async()=>resolve?.());
-    expect(screen.queryByText('Salvataggio confermato dall’host.')).toBe(null);
+    expect(screen.queryByText('Configurazione salvata.')).toBe(null);
     expect(screen.getByRole('alert').textContent).toContain('Le modifiche aperte restano da salvare');
   });
 });
