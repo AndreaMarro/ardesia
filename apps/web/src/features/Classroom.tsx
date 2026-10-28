@@ -113,7 +113,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace me={me} resources={data.resources} onSaved={ref=>{setSource(ref);setSelectionMessage('Configurazione collegata alla prossima consegna.');}} onInvalidated={()=>setSource(null)} editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}

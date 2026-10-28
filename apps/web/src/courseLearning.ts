@@ -1,7 +1,7 @@
 import {courseLearningData} from './generated/courseLearningData';
 export type ModelResult={activityId:string;version:number;value:number;unit:string;domain:string;[key:string]:unknown};
 export type ModelCase={parameters:Record<string,number|string>;result:ModelResult};
-export type CourseLesson={id:string;title:string;objectiveIds:string[];activityId?:string;explanation:string[];
+export type CourseLesson={observableObjective?:string;prerequisiteRecovery?:{prerequisites:string[];miniReview:string};learningSequence?:{id:string;kind:string;title:string;prompt:string;labSpecId?:string}[];objectiveSections?:Record<string,number>;assessmentRefs?:{id:string;objectiveId:string;collection:string}[];id:string;title:string;objectiveIds:string[];activityId?:string;explanation:string[];
  workedExample:{prompt:string;steps:string[];answerDisplay:string};
  practice:{prompt:string;answer:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback:string[]};
  transfer:{prompt:string;answer:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback:string[]};

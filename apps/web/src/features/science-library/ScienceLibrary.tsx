@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {describeError,requestKey,type StudyMe} from '../../api';
+import {CoreFluidLab} from './CoreFluidLab';
 import {scienceApi} from './scienceApi';
 import {ScientificPlot} from './ScientificPlot';
 import {checkResult} from './validateResult';
@@ -37,6 +38,7 @@ export function ScienceLibrary(props:ScienceLibraryProps){
 }
 
 function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSaved,context='course'}:ScienceLibraryProps){
+  const [savedLab,setSavedLab]=useState<SavedScience|undefined>();
   const [catalog,setCatalog]=useState<Catalog|null>(null),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState('');
   const [reload,setReload]=useState(0),[course,setCourse]=useState(''),[selected,setSelected]=useState('');
   const [drafts,setDrafts]=useState<Record<string,Draft>>({}),[result,setResult]=useState<ScienceResult|null>(null);
@@ -68,9 +70,9 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
       if(saved&&(saved.resource.editionId!==editionId||saved.resource.kind!=='science-resource'))throw new Error('invalid_science_context');
       const capability=saved?data?.capabilities.find(c=>c.id===saved.snapshot.capabilityId):data?.capabilities[0];
       const id=saved?.snapshot.capabilityId||capability?.id||'';
-      setCatalog(data);setSelected(id);setCourse(data?.courses.find(c=>c.capabilityIds.includes(id))?.id||'');
+      setSavedLab(saved?.snapshot.labSnapshot?saved:undefined);setCatalog(data);setSelected(id);setCourse(data?.courses.find(c=>c.capabilityIds.includes(id))?.id||'');
       setDrafts(saved?{[id]:{values:valuesOf(saved.snapshot.parameters),note:saved.snapshot.note,prediction:saved.snapshot.prediction,
-        supportUsed:saved.snapshot.supportUsed,ref:refOf(saved),readonly:saved.resource.ownerId!==me.id,
+        supportUsed:saved.snapshot.supportUsed?.filter((v):v is 'explanation'|'domain'=>v==='explanation'||v==='domain'),ref:refOf(saved),readonly:saved.resource.ownerId!==me.id,
         unsupported:!saved.supported||!capability||capability.version!==saved.snapshot.capabilityVersion||capability.implementationSha256!==saved.snapshot.implementationSha256}}
         :capability?{[id]:initialDraft(capability)}:{});
       setResult(null);setOpened([]);setPlotId('');setLoading(false);
@@ -145,7 +147,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
     <div className="science-selection"><label>Percorso di studio<select value={course} onChange={e=>{setCourse(e.target.value);const ids=catalog?.courses.find(c=>c.id===e.target.value)?.capabilityIds||[];choose(ids.includes(selected)?selected:ids[0]);}}>
       {catalog?.courses.map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label>
       <label>Oggetto scientifico<select value={selected} onChange={e=>choose(e.target.value)}>{catalog?.capabilities.filter(c=>available.includes(c.id)).map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label></div>
-    <article className="science-object"><div className="science-object-title"><p className="science-eyebrow">Esperimento ideale · DRAFT</p><h3>{capability.title}</h3><p>Prevedi: {capability.primaryOutput.label.toLocaleLowerCase('it')}, in {capability.primaryOutput.unit}. Usa i dati attualmente selezionati.</p></div>
+    {capability.fluidLab?<CoreFluidLab key={selected} me={me} editionId={editionId} capability={capability} saved={savedLab?.snapshot.capabilityId===selected?savedLab:undefined} api={api} onSaved={ref=>onResourceSaved?.(ref)}/>:<article className="science-object"><div className="science-object-title"><p className="science-eyebrow">Esperimento ideale · DRAFT</p><h3>{capability.title}</h3><p>Prevedi: {capability.primaryOutput.label.toLocaleLowerCase('it')}, in {capability.primaryOutput.unit}. Usa i dati attualmente selezionati.</p></div>
       <div className="science-workspace"><div ref={controls} className="science-controls"><h4>Dati del sistema</h4><div className="science-parameters">{capability.parameters.map(field=><label key={field.key}>{field.label} [{field.unit}]<input type="number" step="any" min={field.minimum} max={field.maximum} value={draft.values[field.key]??''} onChange={e=>change({values:{...draft.values,[field.key]:e.target.value},prediction:''})}/></label>)}</div>
         {!valid&&<p className="science-input-note">Completa i valori negli intervalli indicati.</p>}
         <form onSubmit={e=>{e.preventDefault();void compare();}}><label>La tua previsione<input ref={predictionInput} inputMode="decimal" maxLength={200} value={draft.prediction} onChange={e=>change({prediction:e.target.value})}/></label><p>Unità: {capability.primaryOutput.unit}</p>
@@ -169,6 +171,6 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
         <button type="button" disabled={saving||(!pending.current&&!valid)} onClick={()=>void save()}>{saving?'Salvataggio in corso…':pending.current?'Riprova il salvataggio in attesa':'Salva nel quaderno'}</button>
         {notice&&<p role="status">{notice}</p>}{draft.ref&&<a href={exactLink(draft.ref)}>Collegamento alla revisione esatta</a>}</section>
       <details className="science-provenance"><summary>Versione e origine</summary><p>Definizione {capability.id}, versione {capability.version}. Modello originale Ardesia; grafico JSXGraph 1.14.0, licenza MIT. Questo oggetto non è ancora un plugin installabile.</p><p>Le viste di percorso riusano la definizione; permessi e revisioni delle risorse restano legati alla loro edizione.</p></details>
-    </article>
+    </article>}
   </section>;
 }
