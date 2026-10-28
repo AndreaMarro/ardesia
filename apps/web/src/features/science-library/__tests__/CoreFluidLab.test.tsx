@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import {afterEach,describe,it,expect,vi} from 'vitest';
-import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
+import {act,cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {CoreFluidLab} from '../CoreFluidLab';
 import {getLab,newLabSnapshot} from '../FluidThermoActivity';
 import type {Capability,SavedScience,ScienceApi,Snapshot} from '../types';
@@ -49,4 +49,16 @@ describe('Core laboratory evidence boundary',()=>{
   await screen.findByText(/Un’altra scheda ha aggiornato/);expect(save.mock.calls[0][3]).toEqual({resourceId:'res-1',revisionId:'rev-1'});
   expect((screen.getByLabelText('Osservazioni') as HTMLTextAreaElement).value).toBe('Modifica in questa scheda');
  });
+ it('invalid raw edits clear ready evidence and cannot acknowledge an earlier pending save',async()=>{
+  let resolveSave!:(value:SavedScience)=>void;let frozen!:Snapshot;
+  const save=vi.fn<ScienceApi['save']>().mockImplementation(async(_id,snapshot)=>{frozen=snapshot;return new Promise(resolve=>{resolveSave=resolve;});});
+  const linked=vi.fn(),commit=vi.fn(),invalidated=vi.fn();
+  render(<CoreFluidLab me={{id:'learner',role:'student',synthetic:true}} editionId="edition" capability={capability} courseLesson={lesson} api={apiWith(save)} onSaved={linked} onCommit={commit} onInvalidated={invalidated}/>);
+  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'La pressione aumenta'}});fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+  fireEvent.click(screen.getByRole('button',{name:'Salva la configurazione nel corso'}));await waitFor(()=>expect(resolveSave).toBeTypeOf('function'));
+  commit.mockClear();invalidated.mockClear();fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:''}});
+  expect(commit).toHaveBeenLastCalledWith(null);expect(invalidated).toHaveBeenCalled();expect(screen.getByLabelText('Profondità [m]')).toHaveProperty('value','');
+  await act(async()=>resolveSave(answer(frozen)));expect(linked).not.toHaveBeenCalled();expect(screen.queryByText('Salvataggio confermato dall’host.')).toBeNull();
+ });
+
 });

@@ -22,6 +22,11 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
  const [notice,setNotice]=useState(''),[failure,setFailure]=useState(''),[blocked,setBlocked]=useState(false);
  const pending=useRef<{snapshot:Snapshot;ref:ResourceRef|null;key:string;edit:number}|null>(null),edits=useRef(0),alive=useRef(true);
  const request=useRef<AbortController|null>(null);
+ const contextIdentity=JSON.stringify(courseLesson||null),activeContext=useRef(contextIdentity);
+ // A reader step can change while the same laboratory keeps its open draft.
+ // Advance synchronously so an old response cannot attach after that render.
+ if(activeContext.current!==contextIdentity){activeContext.current=contextIdentity;edits.current++;}
+ function invalidate(){edits.current++;setNotice('');onCommit?.(null);onInvalidated?.();}
  useEffect(()=>{alive.current=true;return()=>{alive.current=false;request.current?.abort();};},[]);
  const readonly=saved&&(saved.resource.ownerId!==me.id||!saved.supported||saved.snapshot.implementationSha256!==capability.implementationSha256||saved.snapshot.capabilityVersion!==capability.version);
  async function save(snapshot:LabSnapshot){
@@ -45,9 +50,9 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
   }
  }
  if(readonly)return <section><h3>Revisione conservata</h3><p>Configurazione in sola lettura. Il modello non viene eseguito.</p><p>Previsione: {saved.snapshot.prediction}</p><p>{saved.snapshot.note}</p><details><summary>Dati conservati</summary><pre>{JSON.stringify(saved.snapshot.labSnapshot||saved.snapshot.parameters,null,2)}</pre></details></section>;
- return <><FluidThermoActivity initialSnapshot={initial} onSnapshotChange={()=>{edits.current++;setNotice('');onInvalidated?.();}}
+ return <><div onChangeCapture={invalidate}><FluidThermoActivity initialSnapshot={initial} onSnapshotChange={invalidate}
   onInteraction={event=>{if(event.type==='compare')onCommit?.({activityId:capability.id,parameters:event.parameters,prediction:event.prediction,courseLesson});else onCommit?.(null);}}
-  onSave={save}/>
+  onSave={save}/></div>
   {notice&&<p role="status">{notice}</p>}{failure&&<p role="alert">{failure}</p>}
   {ref&&<a href={scienceResourceHref(editionId,ref)}>Riapri questa revisione salvata</a>}
  </>;

@@ -3,8 +3,8 @@ export type ModelResult={activityId:string;version:number;value:number;unit:stri
 export type ModelCase={parameters:Record<string,number|string>;result:ModelResult};
 export type CourseLesson={observableObjective?:string;prerequisiteRecovery?:{prerequisites:string[];miniReview:string};learningSequence?:{id:string;kind:string;title:string;prompt:string;labSpecId?:string}[];objectiveSections?:Record<string,number>;assessmentRefs?:{id:string;objectiveId:string;collection:string}[];id:string;title:string;objectiveIds:string[];activityId?:string;explanation:string[];
  workedExample:{prompt:string;steps:string[];answerDisplay:string};
- practice:{prompt:string;answer:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback:string[]};
- transfer:{prompt:string;answer:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback:string[]};
+ practice:{prompt:string;answer?:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback?:string[]};
+ transfer:{prompt:string;answer?:{value:number|string;unit:string};parameters?:Record<string,number|string>;result?:ModelResult;feedback?:string[]};
  recap:string[];transcript:string;editorialStatus:string;humanApproval:boolean;releaseScope:string;
  lessonRef:{id:string;version:number;sha256:string};modelCases?:ModelCase[];controls?:Record<string,(number|string)[]>;
  audioPath?:string;audioTranscript?:string;coverageWarning:string};
