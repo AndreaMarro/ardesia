@@ -3,6 +3,15 @@ import {labDefinitions} from './definitions';
 import {exportLabSnapshot,importLabSnapshot,newLabSnapshot,validateConfiguration,validateSnapshot} from './snapshot';
 
 describe('versioned lab scenarios',()=>{
+  it('links Pascal to pressure while reopening the unchanged v1 input contract',()=>{
+    const definition=labDefinitions.find(item=>item.id==='pascal')!;
+    expect(definition.objectiveIds).toEqual(['U3-02.02','U3-01.02']);
+    const historical={schema:'ardesia.fluid-thermo.snapshot/1',pluginId:'io.ardesia.fluid-thermo',pluginVersion:'1.0.0',
+      configuration:{schemaVersion:1,modelId:'pascal',modelVersion:1,parameters:{inputForce:100,inputArea:.01,outputArea:.05}},
+      prediction:'Confronto forza e area',note:'Configurazione v1 conservata',supportUsed:[],view:'2d'};
+    expect(validateSnapshot(historical)).toEqual(historical);
+    expect(newLabSnapshot('pascal').configuration).toEqual(historical.configuration);
+  });
   it('round trips every model with exact lesson, exercise and source references',()=>{
     for(const d of labDefinitions){
       const state=newLabSnapshot(d.id);state.prediction='La pressione aumenta';state.note='Confronto a volume costante';

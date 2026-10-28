@@ -40,3 +40,18 @@ def test_catalog_mutation_cannot_change_core_defaults():
     a['capabilities'][0]['parameters'][0]['default'] = -999
     b = catalog()
     assert b['capabilities'][0]['parameters'][0]['default'] > 0
+
+
+def test_pascal_pressure_target_keeps_the_existing_capability_and_input_contract():
+    from lessonos.study.science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
+    definition = FLUID_LAB_DEFINITIONS['pascal-lab-v1']
+    assert definition['objectiveIds'] == ['U3-02.02', 'U3-01.02']
+    item = next(c for c in catalog()['capabilities'] if c['id'] == 'pascal-lab-v1')
+    assert item['version'] == 1
+    assert item['fluidLab'] == {'modelId': 'pascal', 'pluginId': 'io.ardesia.fluid-thermo',
+                               'pluginVersion': '1.0.0', 'modelVersion': 1}
+    assert {p['key']: p['default'] for p in item['parameters']} == {
+        'inputForce': 100, 'inputArea': .01, 'outputArea': .05}
+    # The lesson reads the existing pressure observable in Pa; F2 remains the
+    # primary force output in N, without changing a saved resource's contract.
+    assert item['primaryOutput']['unit'] == 'N'

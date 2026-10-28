@@ -24,7 +24,7 @@ export const labDefinitions:LabDefinition[]=[
   'p(h) = p₀ + ρ g h',
   ['Fluido in quiete, incomprimibile, densità uniforme e g costante.','Profondità misurata verso il basso dalla superficie; p₀ è pressione assoluta sulla superficie.'],
   [density,gravity,p('depth','Profondità','m',2,0,20,.1),p('surfacePressure','Pressione alla superficie','Pa',101325,0,500000,100)],{depth:4}),
- lab('pascal','Pascal e pressa idraulica',['U3-02.02'],
+ lab('pascal','Pascal e pressa idraulica',['U3-02.02','U3-01.02'],
   'Collegare rapporto di aree, amplificazione della forza e lavoro conservato.',
   'La forza può aumentare senza che cambi lo spostamento dei pistoni?',
   'Δp = F₁/A₁ = F₂/A₂; A₁ Δx₁ = A₂ Δx₂',
