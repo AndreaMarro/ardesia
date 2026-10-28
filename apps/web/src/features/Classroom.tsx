@@ -94,7 +94,7 @@ function ClassroomScope({
   });
   return (
     <>
-      <header className="page-heading">
+      {!data.edition.packId?.startsWith('sf-')&&<header className="page-heading">
         <p className="breadcrumb">
           {courseSubject(data.edition)} / {courseTitle(data.edition)}
         </p>
@@ -104,7 +104,7 @@ function ClassroomScope({
             ? "Prevedi prima di muovere il modello. Spiega dopo. Il tuo ragionamento conta."
             : "Organizza le fonti, conserva i passaggi e prepara le domande per il tutor."}
         </p>
-      </header>
+      </header>}
       {activityId === "poiseuille-v1" && data.enrolled && <div className="episode-entry">
         <div><h2>Una lezione, tre previsioni.</h2><p>Raggio doppio, cambio di vincolo e una nuova prova. Ritrova il passaggio del tutor e conserva il tuo ragionamento.</p></div>
         <button className="button-primary" aria-expanded={guidedEpisode} onClick={() => {setGuidedEpisode(value => !value); setPressureEpisode(false);}}>

@@ -35,7 +35,7 @@ test("an unconfigured Core exposes only local destinations and retries the real 
   let finish!: (response: Response) => void;
   const fetch = service(() => restored ? new Promise(resolve => { finish = resolve; }) : unavailable());
   render(<App />);
-  await screen.findByRole("heading", { name: "Il Core non è configurato" });
+  await screen.findByRole("heading", { name: "Il servizio del corso non è configurato" });
   expect(screen.getByRole("link", { name: "Apri Studio" }).getAttribute("href")).toBe("/studio/");
   expect(screen.getByRole("link", { name: "Stato del rilascio" }).getAttribute("href")).toBe("/ops/release/");
   expect(screen.queryByRole("button", { name: "Accedi al tuo spazio" })).toBeNull();
@@ -51,7 +51,7 @@ test("an unconfigured Core exposes only local destinations and retries the real 
   await act(async () => finish(json(me)));
   await screen.findByRole("button", { name: /Esci dall’account/ });
   await screen.findByRole("heading", { name: "Il tuo spazio è pronto." });
-  expect(screen.queryByRole("heading", { name: /Il Core/ })).toBeNull();
+  expect(screen.queryByRole("heading", { name: /Il servizio del corso/ })).toBeNull();
   expect(fetch.mock.calls.some(([path]) => path.startsWith("/study/editions?"))).toBe(true);
   expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(false);
 });
@@ -61,12 +61,12 @@ test.each(["initial", "after retry"])("an anonymous 401 %s preserves the public 
   const fetch = service(() => ready ? anonymous() : unavailable());
   render(<App />);
   if (!ready) {
-    await screen.findByRole("heading", { name: "Il Core non è configurato" });
+    await screen.findByRole("heading", { name: "Il servizio del corso non è configurato" });
     ready = true;
     fireEvent.click(screen.getByRole("button", { name: "Riprova la connessione" }));
   }
   const login = await screen.findByRole("button", { name: "Accedi al tuo spazio" });
-  expect(screen.queryByRole("heading", { name: /Il Core/ })).toBeNull();
+  expect(screen.queryByRole("heading", { name: /Il servizio del corso/ })).toBeNull();
   expect(screen.queryByRole("dialog")).toBeNull();
   await waitFor(() => expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(true));
   expect(fetch.mock.calls.some(([path]) => path.startsWith("/study/editions?"))).toBe(false);
@@ -81,7 +81,7 @@ test.each(["network", "server"])("a %s failure does not pretend that the visitor
     return json({ error: "temporarily_unavailable" }, 503);
   });
   render(<App />);
-  await screen.findByRole("heading", { name: "Il Core non è disponibile" });
+  await screen.findByRole("heading", { name: "Il servizio del corso non è disponibile" });
   expect(fetch.mock.calls.map(([path]) => path)).toEqual(["/study/me"]);
   expect(screen.queryByRole("button", { name: "Accedi al tuo spazio" })).toBeNull();
 });
@@ -91,7 +91,7 @@ test("unmount aborts a pending retry and its late success cannot activate a sess
   let finish!: (response: Response) => void;
   const fetch = service(() => pending ? new Promise(resolve => { finish = resolve; }) : unavailable());
   const app = render(<App />);
-  await screen.findByRole("heading", { name: "Il Core non è configurato" });
+  await screen.findByRole("heading", { name: "Il servizio del corso non è configurato" });
   pending = true;
   fireEvent.click(screen.getByRole("button", { name: "Riprova la connessione" }));
   await waitFor(() => expect(finish).toBeTypeOf("function"));
@@ -103,4 +103,16 @@ test("unmount aborts a pending retry and its late success cannot activate a sess
   await act(async () => finish(json(me)));
   expect(studySessionEpoch()).toBe(epoch);
   expect(fetch.mock.calls.map(([path]) => path)).toEqual(["/study/me", "/study/me"]);
+});
+
+
+test("a private course deep link opens login without requesting a public offering", async () => {
+  history.replaceState(null, "", "/?view=classroom&edition=private-fluidi");
+  const fetch = service(anonymous);
+  render(<App />);
+  await screen.findByRole("heading", { name: "Ritrova il tuo corso." });
+  expect(fetch.mock.calls.some(([path]) => path === "/study/course")).toBe(false);
+  fireEvent.click(screen.getByRole("button", { name: "Accedi al tuo spazio" }));
+  await screen.findByRole("dialog", { name: "Ritrova il tuo spazio." });
+  expect(location.search).toContain("edition=private-fluidi");
 });
