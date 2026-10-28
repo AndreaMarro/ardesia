@@ -2,6 +2,7 @@ import {useEffect,useRef,useState} from 'react';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import type {LabDefinition,LabResult,Parameters} from './types';
+import {pistonGeometry,PIPE_ROTATION_Z} from './sceneGeometry';
 
 const vesselUrl=new URL('../../../../assets/scientific3d/calibrated-vessel.glb',import.meta.url).href;
 const pistonUrl=new URL('../../../../assets/scientific3d/piston-cylinder.glb',import.meta.url).href;
@@ -18,9 +19,10 @@ function cylinder(group:T.Group,radius:number,height:number,x:number,y:number,co
 function build(d:LabDefinition,p:Parameters,r:LabResult):T.Group{
   const g=new T.Group();
   if(d.id==='buoyancy'){
-    const fraction=p.submergedFraction,body=mesh(new T.BoxGeometry(1,1,1),colors.accent,.8);body.position.y=.5;g.add(body);
-    const water=mesh(new T.CylinderGeometry(1.18,1.18,Math.max(.005,fraction+.4),40),colors.water,.2);water.position.y=(fraction-.4)/2;g.add(water);
-    const displaced=mesh(new T.BoxGeometry(1,Math.max(.002,fraction),1),colors.water,.65);displaced.position.y=fraction/2;g.add(displaced);
+    const side=Math.cbrt(p.volume/.001),fraction=p.submergedFraction,body=mesh(new T.BoxGeometry(side,side,side),colors.accent,.8);body.position.y=side/2;g.add(body);
+    const radius=.04*Math.max(28,side*25);
+    const water=mesh(new T.CylinderGeometry(radius,radius,Math.max(.005,side*fraction+.4),40),colors.water,.2);water.position.y=(side*fraction-.4)/2;g.add(water);
+    if(fraction>0){const displaced=mesh(new T.BoxGeometry(side,side*fraction,side),colors.water,.65);displaced.position.y=side*fraction/2;g.add(displaced);}
     const maximum=Math.max(measure(r,'buoyancy'),measure(r,'weight'),1e-10);
     arrow(g,new T.Vector3(.8,.5,0),new T.Vector3(0,1,0),1.2*measure(r,'buoyancy')/maximum,colors.water);
     arrow(g,new T.Vector3(-.8,.5,0),new T.Vector3(0,-1,0),1.2*measure(r,'weight')/maximum,colors.accent);
@@ -37,9 +39,9 @@ function build(d:LabDefinition,p:Parameters,r:LabResult):T.Group{
     points.filter((_,i)=>i%3===0).forEach(([radial,velocity])=>arrow(g,new T.Vector3(-1.5,radial/radius,0),new T.Vector3(1,0,0),2.5*velocity/maximum,colors.accent));
   }else if(d.id==='venturi'||d.id==='continuity'){
     const radius1=Math.sqrt(p.area1),radius2=Math.sqrt(p.area2),scale=Math.max(radius1,radius2),a=radius1/scale,b=radius2/scale;
-    const tube=mesh(new T.LatheGeometry([new T.Vector2(a,-2),new T.Vector2(a,-1),new T.Vector2(b,-.35),new T.Vector2(b,1),new T.Vector2(a,2)],48),colors.water,.27);tube.rotation.z=Math.PI/2;g.add(tube);
+    const tube=mesh(new T.LatheGeometry([new T.Vector2(a,-2),new T.Vector2(a,-1),new T.Vector2(b,-.35),new T.Vector2(b,1),new T.Vector2(a,2)],48),colors.water,.27);tube.rotation.z=PIPE_ROTATION_Z;g.add(tube);
     [-1.5,.4].forEach((x,i)=>{const radius=i?b:a;const ring=mesh(new T.TorusGeometry(radius,.018,8,48),colors.ink);ring.rotation.y=Math.PI/2;ring.position.x=x;g.add(ring);});
-    const v1=d.id==='venturi'?p.speed1:measure(r,'speed1'),v2=measure(r,'speed2'),max=Math.max(v1,v2);
+    const v1=d.id==='venturi'?p.speed1:measure(r,'speed1'),v2=measure(r,'speed2'),max=Math.max(v1,v2,1e-12);
     arrow(g,new T.Vector3(-1.7,0,0),new T.Vector3(1,0,0),1.4*v1/max,colors.accent);
     arrow(g,new T.Vector3(.2,0,0),new T.Vector3(1,0,0),1.4*v2/max,colors.accent);
     // Height remains in the quantitative 2D energy diagram. The section view
@@ -57,20 +59,18 @@ function build(d:LabDefinition,p:Parameters,r:LabResult):T.Group{
       const rim=mesh(new T.TorusGeometry(1,.016,8,48),colors.accent);rim.rotation.x=Math.PI/2;rim.position.y=.35;g.add(rim);
     }
   }else if(d.id==='pascal'){
-    const ratio=Math.sqrt(p.outputArea/p.inputArea),large=Math.min(1.15,.55*ratio);
-    cylinder(g,.55,1.5,-1.1,0,colors.water,.25);cylinder(g,large,1.5,1.1,0,colors.water,.25);
-    cylinder(g,.55,.1,-1.1,.6,colors.ink);cylinder(g,large,.1,1.1,.6,colors.ink);
+    const normal=Math.sqrt(Math.max(p.inputArea,p.outputArea)),small=.8*Math.sqrt(p.inputArea)/normal,large=.8*Math.sqrt(p.outputArea)/normal;
+    cylinder(g,small,1.5,-1.1,0,colors.water,.25);cylinder(g,large,1.5,1.1,0,colors.water,.25);
+    cylinder(g,small,.1,-1.1,.6,colors.ink);cylinder(g,large,.1,1.1,.6,colors.ink);
     const pipe=mesh(new T.CylinderGeometry(.13,.13,2.2,20),colors.water);pipe.rotation.z=Math.PI/2;pipe.position.y=-.6;g.add(pipe);
     const maximum=Math.max(p.inputForce,measure(r,'outputForce'),1e-10);
     arrow(g,new T.Vector3(-1.1,1.7,0),new T.Vector3(0,-1,0),p.inputForce/maximum,colors.accent);
     arrow(g,new T.Vector3(1.1,.7,0),new T.Vector3(0,1,0),measure(r,'outputForce')/maximum,colors.water);
   }else{
-    const isProcess=d.id==='process',volume=isProcess?measure(r,'finalVolume'):p.volume;
-    const reference=isProcess?p.volume1:.025,height=Math.min(2.1,Math.max(.25,1.1*volume/reference));
-    const gas=cylinder(g,.65,height,0,height/2-.8,colors.water,.3);gas.name='gas-volume';
-    const piston=cylinder(g,.65,.1,0,height-.75,colors.ink);piston.name='analytical-piston';
-    const shell=mesh(new T.CylinderGeometry(.7,.7,2.4,40,1,true,Math.PI/4,1.5*Math.PI),colors.ink,.18);shell.position.y=.35;g.add(shell);
-    arrow(g,new T.Vector3(0,height-.65,0),new T.Vector3(0,1,0),.6,colors.accent);
+    const shape=pistonGeometry(d,p,r),height=shape.height;
+    const gas=cylinder(g,.625,height,0,height/2+shape.floorY,colors.water,.3);gas.name='gas-volume';
+    const piston=cylinder(g,.625,.1,0,shape.pistonY,colors.ink);piston.name='analytical-piston';
+    const shellHeight=Math.max(2.4,height+.35),shell=mesh(new T.CylinderGeometry(.7,.7,shellHeight,40,1,true,Math.PI/4,1.5*Math.PI),colors.ink,.18);shell.position.y=shape.floorY+shellHeight/2;g.add(shell);
   }
   return g;
 }
@@ -80,9 +80,10 @@ function createEngine(canvas:HTMLCanvasElement,onLost:()=>void,onAsset:(text:str
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio||1,1.5));renderer.setClearColor(colors.soft);renderer.outputColorSpace=T.SRGBColorSpace;
   const scene=new T.Scene(),camera=new T.PerspectiveCamera(36,1,.02,100);scene.add(new T.HemisphereLight(0xffffff,0x707977,2.2));
   const light=new T.DirectionalLight(0xfff6e7,2.6);light.position.set(3,5,4);scene.add(light);
-  let group=new T.Group(),asset:T.Group|null=null,yaw=.65,disposed=false,frame=0,generation=0;
+  let group=new T.Group(),asset:T.Group|null=null,yaw=.65,distance=6,disposed=false,frame=0,generation=0;
   scene.add(group);const target=new T.Vector3(0,.15,0);
-  function draw(){if(disposed)return;camera.position.set(6*Math.sin(yaw),3.4,6*Math.cos(yaw));camera.lookAt(target);renderer.render(scene,camera);}
+  function fit(){const bounds=new T.Box3().setFromObject(group);if(asset)bounds.expandByObject(asset);bounds.getCenter(target);distance=Math.max(6,bounds.getSize(new T.Vector3()).length()*1.2);camera.far=Math.max(100,distance*10);camera.updateProjectionMatrix();}
+  function draw(){if(disposed)return;camera.position.set(target.x+distance*Math.sin(yaw),target.y+.55*distance,target.z+distance*Math.cos(yaw));camera.lookAt(target);renderer.render(scene,camera);}
   function requestDraw(){if(!frame&&!disposed)frame=requestAnimationFrame(()=>{frame=0;draw();});}
   function resize(){const rect=canvas.getBoundingClientRect();renderer.setSize(Math.max(1,rect.width),Math.max(1,rect.height),false);camera.aspect=Math.max(1,rect.width)/Math.max(1,rect.height);camera.updateProjectionMatrix();requestDraw();}
   const observer=new ResizeObserver(resize);observer.observe(canvas);resize();
@@ -94,21 +95,26 @@ function createEngine(canvas:HTMLCanvasElement,onLost:()=>void,onAsset:(text:str
   return {rotate(angle){yaw+=angle;requestDraw();},reset(){yaw=.65;requestDraw();},set(d,p,r){
     generation++;const current=generation;scene.remove(group);release(group);group=build(d,p,r);scene.add(group);
     if(asset){scene.remove(asset);release(asset);asset=null;}
-    if(d.id==='buoyancy'||d.id==='ideal-gas'||d.id==='process'){
+    fit();
+    const pistonShape=d.id==='ideal-gas'||d.id==='process'?pistonGeometry(d,p,r):null;
+    if(d.id==='buoyancy'||pistonShape?.useS16){
       const url=d.id==='buoyancy'?vesselUrl:pistonUrl;
       void new GLTFLoader().loadAsync(url).then(gltf=>{
         if(disposed||current!==generation){release(gltf.scene);return;}
         asset=gltf.scene;
         // Reuse S16 geometry as a normalized cutaway. Tick marks carry no
         // metrological values after this illustration transform.
-        if(d.id==='buoyancy'){asset.scale.setScalar(28);asset.position.y=-.4;}
-        else{asset.scale.setScalar(25);asset.position.y=-.8;const piston=asset.getObjectByName('piston-moving');if(piston)piston.position.y=Math.min(.082,Math.max(.012,(measure(r,'finalVolume')||p.volume||p.volume2)/(.025)*.04));}
+        if(d.id==='buoyancy'){asset.scale.setScalar(Math.max(28,Math.cbrt(p.volume/.001)*25));asset.position.y=-.4;}
+        else if(pistonShape){asset.scale.setScalar(pistonShape.assetScale);asset.position.y=pistonShape.assetOffsetY;const piston=asset.getObjectByName('piston-moving');if(piston){piston.position.y=pistonShape.assetTranslation;const fallback=group.getObjectByName('analytical-piston');if(fallback)fallback.visible=false;}}
         asset.traverse(o=>{if(o instanceof T.Mesh){const old=Array.isArray(o.material)?o.material:[o.material];old.forEach(m=>m.dispose());o.material=new T.MeshStandardMaterial({color:colors.ink,roughness:.8,transparent:true,opacity:.22,side:T.DoubleSide,depthWrite:false});}});
-        scene.add(asset);onAsset('Sezione originale S16 caricata.');requestDraw();
-      }).catch(()=>{if(!disposed&&current===generation)onAsset('Asset non disponibile: resta la geometria analitica equivalente.');});
-    }else onAsset('Geometria parametrica originale Ardesia.');
+        scene.add(asset);fit();onAsset(d.id==='buoyancy'?'Recipiente in sezione.':'Cilindro e pistone in sezione.');requestDraw();
+      }).catch(()=>{if(!disposed&&current===generation)onAsset('Vista semplificata del modello.');});
+    }else onAsset('Geometria del modello analitico.');
     requestDraw();
-  },dispose(){disposed=true;generation++;if(frame)cancelAnimationFrame(frame);observer.disconnect();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerup',up);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('pointerleave',up);release(group);if(asset)release(asset);renderer.dispose();renderer.forceContextLoss();}};
+  },dispose(){disposed=true;generation++;if(frame)cancelAnimationFrame(frame);observer.disconnect();canvas.removeEventListener('webglcontextlost',contextLost);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerup',up);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('pointerleave',up);release(group);if(asset)release(asset);renderer.dispose();
+    // StrictMode probes cleanup while retaining the canvas. A forced loss here
+    // would poison the renderer created by the second effect setup.
+    if(!canvas.isConnected)renderer.forceContextLoss();}};
 }
 
 export function LabScene3D({definition,parameters,result,onUnavailable}:{definition:LabDefinition;parameters:Parameters;result:LabResult;onUnavailable:()=>void}){
@@ -124,6 +130,6 @@ export function LabScene3D({definition,parameters,result,onUnavailable}:{definit
   return <figure className="ft-scene"><canvas ref={canvas} aria-label={definition.title+' · geometria 3D ruotabile con i pulsanti'}/>
     {error?<div role="alert"><p>{error}</p><button type="button" onClick={onUnavailable}>Riprendi in 2D</button></div>:<div className="ft-camera" role="group" aria-label="Camera 3D"><button type="button" onClick={()=>engine.current?.rotate(-.22)}>Ruota a sinistra</button><button type="button" onClick={()=>engine.current?.rotate(.22)}>Ruota a destra</button><button type="button" onClick={()=>engine.current?.reset()}>Ripristina camera</button></div>}
     <figcaption className="ft-scene-caption">{asset} Geometria normalizzata: graduazioni illustrative e vettori con scala relativa. Nessuna animazione del moto.
-      {definition.id==='poiseuille'?' La superficie rappresenta la velocità locale lungo la sezione circolare: non è una superficie materiale.':definition.id==='venturi'?' Condotto raddrizzato per leggere le sezioni; il dislivello è nel bilancio quantitativo 2D.':definition.id==='capillary'?' La doppia superficie della bolla è separata per renderla leggibile; lo spessore non è in scala.':''}</figcaption>
+      {definition.id==='poiseuille'?' Profilo normalizzato r/R e v/v_max: la superficie rappresenta la velocità nella sezione circolare, non una superficie materiale. Le misure assolute sono nella tabella.':definition.id==='venturi'?' Condotto raddrizzato per leggere le sezioni; il dislivello è nel bilancio quantitativo 2D.':definition.id==='capillary'?' La doppia superficie della bolla è separata per renderla leggibile; lo spessore non è in scala.':''}</figcaption>
   </figure>;
 }

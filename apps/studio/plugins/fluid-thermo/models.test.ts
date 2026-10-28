@@ -14,6 +14,9 @@ describe('Sixteen bounded, distinct analytical labs',()=>{
   expect(labDefinitions).toHaveLength(16);
   expect(new Set(labDefinitions.map(d=>d.id)).size).toBe(16);
   for(const d of labDefinitions){
+   expect(d.objectiveIds.length).toBeGreaterThan(0);
+   expect(d.objectiveIds.every(id=>/^U[35]-\d{2}\.\d{2}$/.test(id))).toBe(true);
+   expect(new Set(d.objectiveIds).size).toBe(d.objectiveIds.length);
    expect(d.presets.length).toBeGreaterThanOrEqual(2);
    expect(d.presets[0].parameters).not.toEqual(d.presets[1].parameters);
    for(const preset of d.presets){
@@ -71,6 +74,7 @@ describe('Hydrostatics and hydraulic geometry',()=>{
   expect(value(r,'displacementRatio')).toBeCloseTo(.2,12);
   expect(r.primary.value*value(r,'displacementRatio')).toBeCloseTo(100,12);
   expect(run('pascal',{inputForce:0}).primary.value).toBe(0);
+  expect(run('pascal',{outputArea:1}).series[0].points.every(([area])=>area>=.001&&area<=1)).toBe(true);
  });
  it('Archimedes balances only at the appropriate immersed fraction',()=>{
   const equilibrium=run('buoyancy',{fluidDensity:1000,bodyDensity:600,volume:.001,submergedFraction:.6,gravity:10});
@@ -112,6 +116,7 @@ describe('Viscosity, networks and surfaces',()=>{
   expect(r.series[0].points[0][1]).toBeCloseTo(0,14);
   expect(r.series[0].points.at(-1)![1]).toBeCloseTo(0,14);
   expect(value(r,'maxSpeed')).toBe(2*value(r,'meanSpeed'));
+  expect(r.series[0].points.every(([position,speed])=>Math.abs(position)<=radius*(1+1e-12)&&speed>=-1e-12&&speed<=value(r,'maxSpeed')*(1+1e-12))).toBe(true);
   // Disk-area average of the parabola is half its axis value.
   expect(.5*value(r,'maxSpeed')*Math.PI*radius**2).toBeCloseTo(value(r,'flowRate'),17);
   expect(()=>run('poiseuille',{radius:.005,pressureDifference:1000,viscosity:.0005})).toThrow(/Re supera 2300/);
@@ -141,6 +146,11 @@ describe('Viscosity, networks and surfaces',()=>{
   expect(run('capillary',{surfaceMode:1,radius:.001,surfaceTension:.072,contactAngleDeg:120}).primary.value).toBe(drop.primary.value);
   expect(()=>run('capillary',{surfaceMode:.5})).toThrow(RangeError);
  });
+ it('keeps every capillary curve sample inside its declared small-Bond domain',()=>{
+  const r=run('capillary',{density:1000,gravity:10,surfaceTension:.072,radius:.001});
+  expect(r.series[0].points.every(([radius])=>radius>=.00005&&radius<=.002&&1000*10*radius**2/.072<=.25+1e-12)).toBe(true);
+  expect(r.series[0].points.at(-1)![0]).toBeLessThan(.002);
+ });
 });
 
 describe('Thermodynamics and irreversibility',()=>{
@@ -150,6 +160,14 @@ describe('Thermodynamics and irreversibility',()=>{
   expect(value(a,'pv')).toBeCloseTo(GAS_CONSTANT*300,10);
   expect(run('ideal-gas',{moles:1,temperatureK:600,volume:.01}).primary.value).toBeCloseTo(2*a.primary.value,7);
   expect(run('ideal-gas',{moles:1,temperatureK:300,volume:.005}).primary.value).toBeCloseTo(2*a.primary.value,7);
+ });
+ it('keeps the entire ideal-gas isotherm within the declared pressure and volume domains',()=>{
+  const r=run('ideal-gas',{moles:1,temperatureK:1500,volume:.000125});
+  for(const [volume,pressure] of r.series[0].points){
+   expect(volume).toBeGreaterThanOrEqual(.00001);expect(volume).toBeLessThanOrEqual(.01);
+   expect(pressure).toBeLessThanOrEqual(1e8);
+   expect(()=>run('ideal-gas',{moles:1,temperatureK:1500,volume})).not.toThrow();
+  }
  });
  it('calorimetry weights heat capacities and conserves exchanged energy',()=>{
   const equal=run('calorimetry',{temperature1K:350,temperature2K:290});
@@ -165,6 +183,8 @@ describe('Thermodynamics and irreversibility',()=>{
   expect(run('phase-change',{mass:1,initialTemperatureC:-20,heat:0}).primary.value).toBe(-20);
   expect(run('phase-change',{mass:1,initialTemperatureC:-20,heat:417860}).primary.value).toBeCloseTo(10,12);
   expect(()=>run('phase-change',{mass:.1,initialTemperatureC:0,heat:1000000})).toThrow(/vaporizzazione/);
+  const large=run('phase-change',{mass:5,initialTemperatureC:-50,heat:0});
+  expect(large.series[0].points.every(([heat,temperature])=>heat<=3e6&&temperature<=100)).toBe(true);
  });
  it('heat transfer has zero net exchange at equal temperatures and reverses direction',()=>{
   const zero=run('heat-transfer',{hotTemperatureK:300,coldTemperatureK:300});
@@ -179,15 +199,48 @@ describe('Thermodynamics and irreversibility',()=>{
  });
  it('all four paths satisfy Q=ΔU+W and each named constraint',()=>{
   for(const path of [0,1,2,3]){
-   const r=run('process',{path});
+   const r=run('process',{path,volume2:path===2?.001:.002});
    expect(value(r,'heat')-value(r,'work')).toBeCloseTo(value(r,'internalEnergyChange'),10);
+   expect(value(r,'totalEntropyChange')).toBe(0);
+   const pressures=r.series.flatMap(curve=>curve.points.map(point=>point[1]));
+   expect(pressures.every(pressure=>pressure>0&&pressure<=1e8)).toBe(true);
+   expect(r.series.every(curve=>curve.points.every(([volume])=>volume>=.00001&&volume<=.1))).toBe(true);
   }
   const iso=run('process',{path:0});expect(value(iso,'internalEnergyChange')).toBe(0);
   expect(iso.primary.value).toBeCloseTo(.1*GAS_CONSTANT*300*Math.log(2),10);
   const isobar=run('process',{path:1});expect(value(isobar,'finalTemperature')).toBe(600);
-  const isochor=run('process',{path:2});expect(isochor.primary.value).toBe(0);expect(value(isochor,'finalVolume')).toBe(.001);
+  const isochor=run('process',{path:2,volume2:.001});expect(isochor.primary.value).toBe(0);expect(value(isochor,'finalVolume')).toBe(.001);
+  expect(()=>run('process',{path:2,volume2:.002})).toThrow(/isocora richiede/);
   const adiabatic=run('process',{path:3});expect(value(adiabatic,'heat')).toBe(0);expect(value(adiabatic,'entropyChange')).toBeCloseTo(0,12);
   expect(value(adiabatic,'finalTemperature')).toBeLessThan(300);
+ });
+ it('isolated free expansion has zero work and heat but positive total entropy, with only two unconnected equilibrium points',()=>{
+  const free=run('process',{path:4,moles:.1,temperatureK:300,volume1:.001,volume2:.002});
+  expect(free.primary.value).toBe(0);
+  expect(value(free,'heat')).toBe(0);expect(value(free,'internalEnergyChange')).toBe(0);
+  expect(value(free,'finalTemperature')).toBe(300);
+  expect(value(free,'finalPressure')).toBeCloseTo(124716.9392722986,7);
+  expect(value(free,'entropyChange')).toBeCloseTo(.576314632164398,12);
+  expect(value(free,'totalEntropyChange')).toBe(value(free,'entropyChange'));
+  expect(free.series).toHaveLength(2);
+  expect(free.series.every(curve=>curve.points.length===1)).toBe(true);
+  expect(free.series[0].points[0][0]).toBe(.001);expect(free.series[1].points[0][0]).toBe(.002);
+  expect(free.warnings.join(' ')).toContain('non vanno collegati');
+  const reversible=run('process',{path:0,moles:.1,temperatureK:300,volume1:.001,volume2:.002});
+  expect(reversible.primary.value).toBeGreaterThan(0);
+  expect(value(reversible,'finalTemperature')).toBe(value(free,'finalTemperature'));
+  expect(value(reversible,'finalPressure')).toBe(value(free,'finalPressure'));
+  expect(value(reversible,'totalEntropyChange')).toBe(0);
+  expect(()=>run('process',{path:4,volume2:.001})).toThrow(/maggiore/);
+  expect(()=>run('process',{path:4,volume2:.0005})).toThrow(/maggiore/);
+  // Independent 1B golden: one mole, 300 K, final volume twice the initial volume.
+  const oneMole=run('process',{path:4,moles:1,temperatureK:300,volume1:.001,volume2:.002});
+  expect(value(oneMole,'finalPressure')).toBeCloseTo(oneMole.series[0].points[0][1]/2,7);
+  expect(value(oneMole,'finalTemperature')).toBe(300);
+  expect(value(oneMole,'heat')).toBe(0);expect(value(oneMole,'work')).toBe(0);expect(value(oneMole,'internalEnergyChange')).toBe(0);
+  expect(value(oneMole,'entropyChange')).toBeCloseTo(5.763146321644,12);
+  expect(value(oneMole,'totalEntropyChange')).toBe(value(oneMole,'entropyChange'));
+  expect(oneMole.series).toHaveLength(2);expect(oneMole.series.every(curve=>curve.points.length===1)).toBe(true);
  });
  it('isothermal compression has negative work; singular/unphysical final states are excluded',()=>{
   expect(run('process',{path:0,volume2:.0005}).primary.value).toBeLessThan(0);

@@ -1,0 +1,4025 @@
+{
+  "schema": "ardesia.closure1c.labs-and-donors/1",
+  "observedAt": "2026-10-28T11:08:57+00:00",
+  "owner": "CHAT 1C",
+  "status": "NON_DONE",
+  "scope": "Registro di provenienza e accettazione di un solo plugin first-party; non autorità di pubblicazione o valutazione.",
+  "repository": {
+    "baseHead": "97ad038332e012a97ce7b26a79a273dd38307825",
+    "branch": "codex/closure1c-labs-20261028",
+    "state": "WORKING_TREE_SNAPSHOT_WITH_CONCURRENT_ROOT_IMPLEMENTATION",
+    "referenceMainAtStart": "85963b1d",
+    "note": "I digest descrivono i byte letti, inclusi cambiamenti non committati; i verdi storici non sono trasferiti automaticamente a questi byte."
+  },
+  "counts": {
+    "models": 16,
+    "presets": 32,
+    "objectiveLinks": 48,
+    "distinctAtomicObjectives": 45,
+    "threeDDefinitions": 8,
+    "reaEntries": 12,
+    "functionalReaScopes": 12,
+    "reaActions": 65,
+    "reaStepsIncludingInitialStates": 77,
+    "artifactIntegrityChecks": 155,
+    "acceptedProductAssimilations": 0,
+    "acceptedObjectivesByThisLedger": 0,
+    "assimilationCandidateRows": 14
+  },
+  "sourceFiles": [
+    {
+      "path": "apps/studio/plugins/fluid-thermo/definitions.ts",
+      "sha256": "a12b96183d20fdb37230d3be859b88bae618c6f93bdda9a56a9dab09a88f60f4"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/models.ts",
+      "sha256": "a9c6a70fc079417efcd61643491383ee5ada09b18463823f9204c23fb372295b"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.ts",
+      "sha256": "0d26cfd8656e99c68010654495ed1bf2a5739bc3181e36710824507f13207a40"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+      "sha256": "ada5fa37d4517826d1bb366031245831acf729984cf2040a54f25faed11c7b00"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+      "sha256": "868acf8e0b208a93b3c908e52d1c8e31cc5b26f678c72273742c2b85165f0012"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+      "sha256": "49f5fa27ec7d8080e167638b04415a45870bb50f990aee057eef3e633e01c7df"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/register.tsx",
+      "sha256": "14487fbf2fd6658c5cb2c3afd8c2d84101019801fb2c658ddc4238d004bc4f6e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "sha256": "1f764c6f72093e3d45b237c62b588bf80dd7958c537bfbf3cf42e5a7b862abb1"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_catalog.py",
+      "sha256": "412248c5c3ba5f6b6627a8ecbf480439009c2d3c678e53371fe6742fd08cdb8e"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/fluid_models.py",
+      "sha256": "b1bf9e01f1eae2ebaaac711a35783c23e1abb0e668a311b74e74f4da4cebb804"
+    },
+    {
+      "path": "packages/engine/lessonos/study/activities.py",
+      "sha256": "eff472dbc567ba258499452283eeeef2154213f92a76027d55dfd2421a82639c"
+    },
+    {
+      "path": "packages/engine/lessonos/study/science_library/models.py",
+      "sha256": "f0f22fd0dfd79529ff61a8024eb9593127d9d8d7d1e3d7914f2086804921bc15"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+      "sha256": "6c63b8170c0305076a2b5ee18f3ba9932159c29286ae550c6e6f03d60685cd11"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+      "sha256": "f62bf62a5af0f380668616b9ef22a40bb0ca02ec1137a3ca3c2ae00f6ca945ed"
+    },
+    {
+      "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.test.ts",
+      "sha256": "a0496c3a94d8375d073e6ebd3bb33e90e3382f6bae26a90dc0bd6cfdefeed104"
+    },
+    {
+      "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+      "sha256": "7ecc42f2256f4c5520c81b2d150627a0126328e8423c74532998eda7674f7645"
+    },
+    {
+      "path": "apps/web/src/features/science-library/__tests__/fluid-thermo-ui.test.tsx",
+      "sha256": "ffc4c780df0e0ba0b7646721263e1b568e3d5f19f62d1be5a52587a61cab7d66"
+    }
+  ],
+  "definitionsCatalogConsistency": "MATCH_READ_ONLY_ID_AND_ATOMIC_ID_CHECK",
+  "testAndAcceptanceLedger": {
+    "localNumericalSnapshotGeometry": {
+      "status": "HISTORICAL_PASS_NOT_CURRENT_TREE_CERTIFICATION",
+      "passed": 29,
+      "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/vitest-models.log",
+      "runStartLocal": "11:32:15",
+      "durationMs": 716
+    },
+    "combinedUi": {
+      "status": "HISTORICAL_FAIL_REPAIR_PENDING_ROOT_RERUN",
+      "passed": 49,
+      "failed": 1,
+      "failure": "lazy 3D import fallback test",
+      "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/vitest-labs-canonical.log",
+      "runStartLocal": "11:41:40"
+    },
+    "ci": {
+      "head": "97ad038332e012a97ce7b26a79a273dd38307825",
+      "status": "FAILURE",
+      "web": "SUCCESS",
+      "studio": "SUCCESS",
+      "engine": {
+        "status": "FAILURE",
+        "failed": 5,
+        "passed": 2996,
+        "skipped": 29,
+        "diagnosis": "Cinque aspettative di hash runtime da aggiornare, secondo log e diagnosi root; fix ancora da verificare."
+      },
+      "studyApi": {
+        "status": "FAILURE",
+        "failed": 6,
+        "passed": 1340,
+        "skipped": 18,
+        "diagnosis": "Cinque aspettative di hash e una cardinalità storica 4 contro 20; fix ancora da verificare."
+      },
+      "workflowUrl": "https://github.com/AndreaMarro/ardesia/actions/runs/40671195573",
+      "proof": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-initial.json"
+    },
+    "browserArdesia": {
+      "status": "NOT_PASS",
+      "latestRootReport": "Problemi di stato e contesto WebGL in StrictMode rilevati; correzioni in corso, qualità GPU da falsificare. Nessuna scena o dispositivo certificato qui.",
+      "initialAttempts": [
+        {
+          "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs.log",
+          "modelsBeforeFailure": 0,
+          "threeDBeforeFailure": 0,
+          "failure": "Selettore Esperienza non raggiunto entro timeout."
+        },
+        {
+          "log": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs-2.log",
+          "modelsBeforeFailure": 2,
+          "threeDBeforeFailure": 0,
+          "failure": "Pulsante Ruota a destra non raggiunto entro timeout."
+        }
+      ]
+    },
+    "consumerAcceptance": {
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "acceptedAssimilations": 0,
+      "publishedLessonLinks": "PENDING_1A",
+      "reason": "Sono necessari percorso Core reale, save/reopen della revisione, isolamento, supporti e prova browser sul consumer previsto."
+    },
+    "privateLogs": [
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/vitest-models.log",
+        "sha256": "0a61866de9af1654ff9a73138f547b55d7a1f7db75ed2e540a91c39b8b93b094"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/vitest-labs-canonical.log",
+        "sha256": "d1c312711be9d46225a79a71527fc8670fde9bf86a2243eb436c18ed41c65a8f"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci-engine-fail.log",
+        "sha256": "8236abccf27dca69aaff3efb1eac7a81bc04f08bfcbb3b004c76446400b6d2c2"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci-api-fail.log",
+        "sha256": "e131290982afd95880eec7b14dcdccfa575a494a8ece89b1c036d97934b607c5"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/ci331-initial.json",
+        "sha256": "7ecd4e892aaf219f1415ca1bdf438d2ff500cd03b2520912929faa0994e4aec6"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs.log",
+        "sha256": "a28f3fecd6c5ea8def574520d959d31e7317d879fe19a3860a86b0ba531a6a64"
+      },
+      {
+        "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/browser-labs-2.log",
+        "sha256": "bdf1b04ee411882253d3c2f11008e1c28b54aaf937cd9d784d254671d6c25a8f"
+      }
+    ]
+  },
+  "pluginContract": {
+    "pluginId": "io.ardesia.fluid-thermo",
+    "pluginVersion": "1.0.0",
+    "configurationSchemaVersion": 1,
+    "modelVersion": 1,
+    "snapshotSchema": "ardesia.fluid-thermo.snapshot/1",
+    "defaultAuthoringTools": false,
+    "studioAuthoringTools": true,
+    "paths": {
+      "definitions": "apps/studio/plugins/fluid-thermo/definitions.ts",
+      "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+      "studioRegistration": "apps/studio/plugins/fluid-thermo/register.tsx",
+      "webBoundary": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+      "coreDispatch": "packages/engine/lessonos/study/activities.py",
+      "coreScientificDispatch": "packages/engine/lessonos/study/science_library/models.py",
+      "coreMetadata": "packages/engine/lessonos/study/science_library/fluid_catalog.py",
+      "pythonEvaluator": "packages/engine/lessonos/study/science_library/fluid_models.py"
+    },
+    "coreAuthority": "Il server calcola il risultato da activityId e parametri; non accetta valori numerici del renderer. Persistenza e accesso appartengono al Core canonico; il plugin possiede soltanto la bozza aperta.",
+    "registrationStatus": "SOURCE_BOUNDARY_PRESENT_HOST_BOOTSTRAP_ACCEPTANCE_PENDING",
+    "notAnAssimilation": "Installazione di dipendenze, wrapper e re-export non contano come comportamento scientifico assimilato."
+  },
+  "models": [
+    {
+      "modelId": "manometer",
+      "title": "Pressione, densità e manometri",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "manometer-lab-v1",
+      "capabilityId": "manometer-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-02.06"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "heightDifference": 0.2
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "heightDifference": -0.2
+          }
+        }
+      ],
+      "formula": "p₁ − p₂ = ρ g Δh",
+      "assumptions": [
+        "Liquido manometrico incomprimibile in quiete e densità uniforme.",
+        "Δh è quota del livello sul ramo 2 meno quota sul ramo 1; p₁−p₂ ha lo stesso segno.",
+        "Il modello non descrive capillarità, gas compressi o oscillazioni della colonna."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_08c7e466841acda60006d1a75beb006c21a5159279235f3a01d431da6a23726f"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Colonna a U, differenza di quota e segno di Δp.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: la sezione 2D rende leggibile la misura.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "preserves manometer sign, zero and density scaling"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_pressure_goldens_and_pascal_work_conservation"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "laboratorySpecId": "lab-spec-u3-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Segno e dislivello; barometro di Torricelli non implementato.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "hydrostatic",
+      "title": "Stevino e distribuzione della pressione",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "hydrostatic-lab-v1",
+      "capabilityId": "hydrostatic-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-02.01",
+        "U3-01.02"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "depth": 2,
+            "surfacePressure": 101325
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "depth": 4,
+            "surfacePressure": 101325
+          }
+        }
+      ],
+      "formula": "p(h) = p₀ + ρ g h",
+      "assumptions": [
+        "Fluido in quiete, incomprimibile, densità uniforme e g costante.",
+        "Profondità misurata verso il basso dalla superficie; p₀ è pressione assoluta sulla superficie."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_08c7e466841acda60006d1a75beb006c21a5159279235f3a01d431da6a23726f"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Profondità, p assoluta e sovrapressione sul medesimo stato.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: curva p(h) e sezione del recipiente.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "returns surface pressure at zero depth and distinguishes absolute/gauge scaling"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_pressure_goldens_and_pascal_work_conservation"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "laboratorySpecId": "lab-spec-u3-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Profondità e pressione; forma del recipiente non è un parametro.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "pascal",
+      "title": "Pascal e pressa idraulica",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "pascal-lab-v1",
+      "capabilityId": "pascal-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-02.02"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "inputForce": 100,
+            "inputArea": 0.01,
+            "outputArea": 0.05
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "inputForce": 100,
+            "inputArea": 0.01,
+            "outputArea": 0.1
+          }
+        }
+      ],
+      "formula": "Δp = F₁/A₁ = F₂/A₂; A₁ Δx₁ = A₂ Δx₂",
+      "assumptions": [
+        "Liquido ideale incomprimibile, pistoni alla stessa quota, assenza di attrito.",
+        "Forze considerate sono le forze aggiuntive rispetto al carico di riferimento.",
+        "Il rapporto di spostamenti è inverso a quello delle forze; nessuna energia viene creata."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Due pistoni con aree, forze e rapporto di corsa.",
+        "threeDDeclared": true,
+        "threeDIntent": "Confronto delle aree circolari e dei vettori forza; nessuna dinamica.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Pascal trades displacement for force without multiplying work"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_pressure_goldens_and_pascal_work_conservation"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "laboratorySpecId": "lab-spec-u3-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Forza e corsa relative; nessun lavoro creato.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "buoyancy",
+      "title": "Archimede e volume immerso",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "buoyancy-lab-v1",
+      "capabilityId": "buoyancy-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-02.03",
+        "U3-02.04"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "fluidDensity": 1000,
+            "bodyDensity": 600,
+            "volume": 0.001,
+            "submergedFraction": 0.6,
+            "gravity": 9.81
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "fluidDensity": 1000,
+            "bodyDensity": 600,
+            "volume": 0.001,
+            "submergedFraction": 1,
+            "gravity": 9.81
+          }
+        }
+      ],
+      "formula": "F_A = ρ_f g V f; P = ρ_c g V",
+      "assumptions": [
+        "Corpo omogeneo rigido e fluido incomprimibile. f è la frazione di volume immersa imposta, da 0 a 1.",
+        "La differenza F_A−P è la risultante delle sole due forze: un vincolo può essere necessario per mantenere la posizione.",
+        "La frazione di equilibrio ρ_c/ρ_f è raggiungibile solo se non supera 1. Moto, viscosità e onde sono esclusi."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_dc248b5d72760f6548e123738b191b13950cff885e34d10e8a5673b8b05066ad"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Volume immerso imposto e confronto separato di spinta e peso.",
+        "threeDDeclared": true,
+        "threeDIntent": "Sezione spaziale del volume immerso, vettori relativi; recipiente S16 normalizzato.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Archimedes balances only at the appropriate immersed fraction"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_archimedes_and_continuity_not_free_energy"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "laboratorySpecId": "lab-spec-u3-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Immersione imposta separata da equilibrio libero.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "continuity",
+      "title": "Continuità e sezioni del condotto",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "continuity-lab-v1",
+      "capabilityId": "continuity-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-03.01",
+        "U3-03.04"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "flowRate": 0.001,
+            "area1": 0.002,
+            "area2": 0.001
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "flowRate": 0.001,
+            "area1": 0.002,
+            "area2": 0.0005
+          }
+        }
+      ],
+      "formula": "Q = A₁ v₁ = A₂ v₂",
+      "assumptions": [
+        "Fluido incomprimibile, regime stazionario, tubo senza perdite laterali.",
+        "Le frecce rappresentano velocità medie; non un profilo locale o una simulazione CFD."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_f74d8217c672a58e62b19397868386f89e32070b329b41c728207a0111a366b1"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Sezioni circolari schematiche, portata comune e velocità medie.",
+        "threeDDeclared": true,
+        "threeDIntent": "Raggi e sezioni sullo stesso condotto; frecce di velocità media, non particelle.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "continuity preserves Q and quadruples speed when circular radius halves"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_archimedes_and_continuity_not_free_energy"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-03"
+        ],
+        "laboratorySpecId": "lab-spec-u3-03",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Velocità medie, portata fissata; non profilo locale.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "venturi",
+      "title": "Bernoulli e Venturi",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "venturi-lab-v1",
+      "capabilityId": "venturi-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-03.04",
+        "U3-03.05"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "area1": 0.002,
+            "area2": 0.001,
+            "speed1": 1,
+            "pressure1": 150000,
+            "height1": 0,
+            "height2": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "area1": 0.002,
+            "area2": 0.001,
+            "speed1": 1,
+            "pressure1": 150000,
+            "height1": 0,
+            "height2": 2
+          }
+        }
+      ],
+      "formula": "p₁ + ½ρv₁² + ρgh₁ = p₂ + ½ρv₂² + ρgh₂; A₁v₁ = A₂v₂",
+      "assumptions": [
+        "Fluido ideale incomprimibile; moto stazionario lungo la stessa linea di corrente.",
+        "Nessuna pompa, turbina, perdita viscosa o profilo locale: velocità medie nell’approssimazione uniforme.",
+        "Pressione assoluta positiva; il modello non verifica la tensione di vapore e non esclude cavitazione."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_f74d8217c672a58e62b19397868386f89e32070b329b41c728207a0111a366b1",
+        "ev_cf25a448c569c91597edb51ef8d4f8d06a5c0f8c326d5ad660b783de24bfd610"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Sezioni, velocità, pressioni assolute e dislivello nel bilancio.",
+        "threeDDeclared": true,
+        "threeDIntent": "Condotto raddrizzato per leggere le sezioni; quota solo nel bilancio 2D.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Venturi conserves mechanical energy including height and rejects impossible pressure"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-03"
+        ],
+        "laboratorySpecId": "lab-spec-u3-03",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Ideale con quota; applicazione biologica discussa nella lezione.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "poiseuille",
+      "title": "Poiseuille e profilo di velocità",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "poiseuille-lab-v1",
+      "capabilityId": "poiseuille-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "radius": 0.001,
+            "length": 0.5,
+            "viscosity": 0.001,
+            "pressureDifference": 100,
+            "density": 1000,
+            "boundary": 0,
+            "flowRate": 1e-07
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "radius": 0.002,
+            "length": 0.5,
+            "viscosity": 0.001,
+            "pressureDifference": 100,
+            "density": 1000,
+            "boundary": 1,
+            "flowRate": 1e-07
+          }
+        }
+      ],
+      "formula": "Q = πr⁴Δp/(8ηL); u(s) = Δp(r²−s²)/(4ηL)",
+      "assumptions": [
+        "Tubo cilindrico rigido; fluido newtoniano incomprimibile; moto stazionario laminare sviluppato e non slittamento alla parete.",
+        "boundary=0 mantiene Δp, boundary=1 mantiene Q: il parametro non imposto viene ricalcolato.",
+        "Il modello rifiuta Re>2300; il numero di Reynolds è un criterio didattico, non una garanzia di moto sviluppato."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_3a34cee2ce42a7a6c2f465eb0a490d4d6e78e86eeed84aa0c5d55d7d1258f4a4"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Profilo locale u(s), no slip, u_max=2u_media, Re e vincolo Δp/Q.",
+        "threeDDeclared": true,
+        "threeDIntent": "Superficie di velocità ottenuta per rivoluzione del profilo analitico; non superficie materiale.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Poiseuille matches a golden and r⁴ at fixed Δp versus reciprocal r⁴ at fixed Q"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-04"
+        ],
+        "laboratorySpecId": "lab-spec-u3-04",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Vincoli Δp o Q, gradiente da interpretare nel profilo.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "hydraulic-network",
+      "title": "Resistenze idrauliche in serie e parallelo",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "hydraulic-network-lab-v1",
+      "capabilityId": "hydraulic-network-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-04.05"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "resistance1": 10000000,
+            "resistance2": 20000000,
+            "pressureDifference": 1000,
+            "topology": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "resistance1": 10000000,
+            "resistance2": 20000000,
+            "pressureDifference": 1000,
+            "topology": 1
+          }
+        }
+      ],
+      "formula": "Δp = RQ; R_s = R₁+R₂; 1/R_p = 1/R₁+1/R₂",
+      "assumptions": [
+        "Due resistenze lineari positive e raccordi ideali; regime stazionario incomprimibile.",
+        "Resistenze già note; nessuna inerzia, accumulo, pompa distribuita o turbolenza.",
+        "topology=0: serie; topology=1: parallelo."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_f3c7aa637276b83670e28fa0ef6a4bb5520126b91a30270e8eb5df5cecb59684"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Topologia serie/parallelo con portate e cadute per ramo.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: topologia e bilanci risultano sufficienti in 2D.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "series adds pressure drops; parallel adds branch flows and lowers resistance"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_hydraulic_network_topology_and_laplace_interfacial_count"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-04"
+        ],
+        "laboratorySpecId": "lab-spec-u3-04",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Due resistenze lineari; chiusura ramo e pompa Q non ancora dichiarate.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "capillary",
+      "title": "Capillarità, menisco e Laplace",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "capillary-lab-v1",
+      "capabilityId": "capillary-lab-v1",
+      "atomicObjectiveIds": [
+        "U3-05.01",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "surfaceMode": 0,
+            "surfaceTension": 0.072,
+            "contactAngleDeg": 30,
+            "radius": 0.0005,
+            "density": 1000,
+            "gravity": 9.81
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "surfaceMode": 0,
+            "surfaceTension": 0.072,
+            "contactAngleDeg": 120,
+            "radius": 0.0005,
+            "density": 1000,
+            "gravity": 9.81
+          }
+        }
+      ],
+      "formula": "Capillare: h = 2γ cosθ/(ρgr); goccia: Δp = 2γ/r; bolla saponosa: Δp = 4γ/r",
+      "assumptions": [
+        "surfaceMode=0: capillare sottile con menisco sferico approssimato; angolo di contatto misurato nel liquido.",
+        "La formula di risalita trascura il volume del menisco e le correzioni gravitazionali di forma; il dominio didattico capillare richiede numero di Bond ρgr²/γ≤0,25.",
+        "surfaceMode=1: goccia sferica con una interfaccia; surfaceMode=2: bolla saponosa a film sottile con due interfacce e raggi praticamente uguali. In questi due modi Δp=p_interno−p_esterno, senza angolo di contatto né risalita.",
+        "Nel capillare la curvatura firmata è cosθ/r; θ=90° dà menisco piano. Nessuna dinamica di bagnamento."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Menisco con segno della risalita oppure sezione goccia/bolla.",
+        "threeDDeclared": true,
+        "threeDIntent": "Curvatura, angolo e numero di interfacce; separazione delle due superfici illustrativa.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "capillary rise reverses at 90°, scales with inverse radius, and satisfies Laplace/Stevino"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_hydraulic_network_topology_and_laplace_interfacial_count"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-05"
+        ],
+        "laboratorySpecId": "lab-spec-u3-05",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Quantitativo con legge fornita; gamma dipende dal modello. Grafico da limitare al dominio Bond.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "ideal-gas",
+      "title": "Gas ideale e pistone",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "ideal-gas-lab-v1",
+      "capabilityId": "ideal-gas-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-01.02",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "moles": 0.01,
+            "temperatureK": 300,
+            "volume": 0.00025
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "moles": 0.01,
+            "temperatureK": 300,
+            "volume": 0.000125
+          }
+        }
+      ],
+      "formula": "pV = nRT",
+      "assumptions": [
+        "Gas ideale in equilibrio, pressione assoluta e temperatura in kelvin.",
+        "Il pistone mostra soltanto il volume scelto; l’equazione di stato non determina da sola calore, lavoro o traiettoria temporale.",
+        "Gas reale, urti molecolari, transizioni di fase e attrito sono esclusi."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_dc26fd99f0d070d53b90c30dd0c020fe0e41943f25d9fd212a6890e0ba2e5788"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Pistone, volume e isoterma p(V); temperature in kelvin.",
+        "threeDDeclared": true,
+        "threeDIntent": "Altezza del gas lineare con V; pistone S16 quando entro la sua corsa, geometria originale altrimenti.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "uses kelvin, preserves pV=nRT, and responds to volume and temperature ratios"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-01"
+        ],
+        "laboratorySpecId": "lab-spec-u5-01",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Equazione di stato; nessuna storia di Q o W dedotta dal punto finale.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "calorimetry",
+      "title": "Calorimetria e miscelazione",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "calorimetry-lab-v1",
+      "capabilityId": "calorimetry-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.07"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass1": 0.2,
+            "mass2": 0.2,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 353.15,
+            "temperature2K": 293.15
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass1": 0.2,
+            "mass2": 0.4,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 353.15,
+            "temperature2K": 293.15
+          }
+        }
+      ],
+      "formula": "T_f = (m₁c₁T₁ + m₂c₂T₂)/(m₁c₁+m₂c₂); Q₁+Q₂ = 0",
+      "assumptions": [
+        "Due corpi in un sistema isolato; capacità termiche costanti e positive.",
+        "Nessuna transizione di fase, evaporazione, lavoro o capacità termica del recipiente. Le temperature sono in kelvin."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_1582ee3fe5698dca4f99b31e355303579989072d166dd8c5277183acbb6d664b"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Due corpi, temperatura finale e bilancio Q1+Q2.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: diagramma e valori equivalenti accessibili.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "calorimetry weights heat capacities and conserves exchanged energy"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-02"
+        ],
+        "laboratorySpecId": "lab-spec-u5-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Due corpi senza fase né recipiente; estensione recipiente svolta nella lezione.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "phase-change",
+      "title": "Calore latente e cambiamenti di stato",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "phase-change-lab-v1",
+      "capabilityId": "phase-change-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-02.05",
+        "U5-02.06"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass": 1,
+            "initialTemperatureC": -20,
+            "heat": 200000
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass": 1,
+            "initialTemperatureC": -20,
+            "heat": 450000
+          }
+        }
+      ],
+      "formula": "Q = mc_ghiaccioΔT; Q_f = mL_f; Q = mc_acquaΔT",
+      "assumptions": [
+        "Acqua pura alla pressione atmosferica: fusione a 0°C; L_f=334000 J/kg, c_ghiaccio=2100 J/(kg·K), c_acqua=4186 J/(kg·K).",
+        "Si parte da ghiaccio fra −50 e 0°C; si aggiunge calore senza perdite. Il modello termina a 100°C, prima della vaporizzazione.",
+        "Il grafico è temperatura contro calore fornito, non contro tempo."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_ce8ab55c5ef86182cb5dd08d7acff0b31e00448fab984b4074995c3c3f290d59"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Temperatura contro Q, plateau e frazione fusa; asse non temporale.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: la curva energetica rende esplicito il cambio di fase.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "phase change holds at 0°C through latent heat and rejects vaporization"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-02"
+        ],
+        "laboratorySpecId": "lab-spec-u5-02",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Ghiaccio, fusione e acqua fino a100°C; condensazione ed evaporazione discusse nei testi, non simulate.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "heat-transfer",
+      "title": "Conduzione, convezione e irraggiamento",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "heat-transfer-lab-v1",
+      "capabilityId": "heat-transfer-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "conductivity": 0.8,
+            "area": 1,
+            "thickness": 0.1,
+            "hotTemperatureK": 350,
+            "coldTemperatureK": 290,
+            "convectionCoefficient": 10,
+            "emissivity": 0.8
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "conductivity": 0.8,
+            "area": 1,
+            "thickness": 0.2,
+            "hotTemperatureK": 350,
+            "coldTemperatureK": 290,
+            "convectionCoefficient": 10,
+            "emissivity": 0.8
+          }
+        }
+      ],
+      "formula": "P_cond = kAΔT/L; P_conv = hAΔT; P_rad = εσA(T_h⁴−T_c⁴)",
+      "assumptions": [
+        "Tre configurazioni distinte con le stesse temperature e area: i risultati sono confrontati, non sommati come un unico circuito termico.",
+        "Conduzione piana stazionaria; convezione con coefficiente h imposto; irraggiamento verso un grande ambiente nero con fattore di vista unitario.",
+        "Nessuna evoluzione temporale o accoppiamento tra meccanismi. Temperature assolute; σ=5,670374419·10⁻⁸ W/(m²·K⁴)."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_6374840ea85ee26afb21826e617768f27a05ee0fa78d0c3f60bda5f94f894b1c"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Tre configurazioni distinte; conduzione, convezione e irraggiamento non sommati.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: confronto quantitativo delle tre dipendenze.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "heat transfer has zero net exchange at equal temperatures and reverses direction"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_transfer_direction_and_first_law_for_four_reversible_paths"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-03"
+        ],
+        "laboratorySpecId": "lab-spec-u5-03",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Tre configurazioni distinte, non sommare automaticamente le tre potenze.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "process",
+      "title": "Trasformazioni e primo principio",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "process-lab-v1",
+      "capabilityId": "process-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-02.04",
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08",
+        "U5-05.02",
+        "U5-05.06"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "moles": 0.1,
+            "temperatureK": 300,
+            "volume1": 0.001,
+            "volume2": 0.002,
+            "temperature2K": 450,
+            "path": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "moles": 0.1,
+            "temperatureK": 300,
+            "volume1": 0.001,
+            "volume2": 0.002,
+            "temperature2K": 450,
+            "path": 3
+          }
+        }
+      ],
+      "formula": "ΔU = nC_VΔT = Q − W; W = ∫p_ext dV; libera espansione isolata ideale: Q=W=ΔU=0",
+      "assumptions": [
+        "Gas ideale monoatomico: C_V=3R/2 e γ=5/3. I cammini 0–3 sono reversibili quasi statici con pressione esterna p_ext≈p del gas; W=∫p_ext dV è positivo se compiuto dal gas e Q positivo se ricevuto.",
+        "path=0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico reversibile, 4 libera espansione isolata nel vuoto. Per l’isocora è richiesto volume2=volume1 e la temperatura finale è temperature2K; negli altri cammini temperature2K non è imposto.",
+        "La libera espansione richiede volume2>volume1: p_ext=0, Q=W=ΔU=0 e T_f=T_i per il gas ideale isolato. Si mostrano soltanto gli stati di equilibrio iniziale e finale, senza curva intermedia o area di lavoro inventata.",
+        "ΔS del gas è distinta da ΔS totale: nei cammini reversibili ΔS totale=0; nella libera espansione isolata ΔS totale=ΔS_gas=nR ln(V₂/V₁)>0.",
+        "L’asse del grafico è volume, non tempo. Temperature finali fuori 50–2000K o pressioni oltre 10⁸Pa sono escluse."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_dc26fd99f0d070d53b90c30dd0c020fe0e41943f25d9fd212a6890e0ba2e5788"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Cammini reversibili p(V); libera espansione con soli due punti non connessi.",
+        "threeDDeclared": true,
+        "threeDIntent": "Geometria del volume finale; non inventa stati intermedi per la libera espansione.",
+        "threeDRuntimeStatus": "PENDING_ROOT_BROWSER_ACCEPTANCE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": "apps/studio/plugins/fluid-thermo/LabScene3D.tsx",
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "isolated free expansion has zero work and heat but positive total entropy, with only two unconnected equilibrium points"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_isolated_free_expansion_has_no_equilibrium_path_or_work_area"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-04"
+        ],
+        "laboratorySpecId": "lab-spec-u5-04",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Quattro trasformazioni reversibili; libera espansione e altri irreversibili esclusi.",
+        "source1BAtomicDifference": {
+          "source1B": [
+            "U5-02.04",
+            "U5-04.01",
+            "U5-04.02",
+            "U5-04.03",
+            "U5-04.05",
+            "U5-04.06",
+            "U5-04.07",
+            "U5-04.08"
+          ],
+          "currentDefinitions": [
+            "U5-02.04",
+            "U5-04.01",
+            "U5-04.02",
+            "U5-04.03",
+            "U5-04.04",
+            "U5-04.05",
+            "U5-04.06",
+            "U5-04.07",
+            "U5-04.08",
+            "U5-05.02",
+            "U5-05.06"
+          ]
+        },
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "carnot",
+      "title": "Macchina di Carnot e rendimento",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "carnot-lab-v1",
+      "capabilityId": "carnot-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "hotTemperatureK": 600,
+            "coldTemperatureK": 300,
+            "heatInput": 1000
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "hotTemperatureK": 900,
+            "coldTemperatureK": 300,
+            "heatInput": 1000
+          }
+        }
+      ],
+      "formula": "η_C = 1−T_c/T_h; W = Q_h−Q_c; Q_c/Q_h = T_c/T_h",
+      "assumptions": [
+        "Motore reversibile ideale fra due serbatoi a temperature costanti T_h>T_c>0.",
+        "È un limite superiore teorico: le macchine reali operano sotto questo rendimento.",
+        "Il bilancio descrive un ciclo, senza una durata né una potenza implicita."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_d33700d3a6847094463b5a7cab9d9f0790497341d4fec390edc48f3453f3b809"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Ciclo p–V reversibile, flussi per ciclo, rendimento e COP distinti se esposti.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: orientamento e bilancio di ciclo in 2D.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Carnot conserves cycle energy and reservoir entropy and closes its p–V cycle"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_carnot_and_finite_body_entropy_balances"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-05"
+        ],
+        "laboratorySpecId": "lab-spec-u5-05",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Ciclo reversibile costruito; confronto con macchina irreversibile nei problemi.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    },
+    {
+      "modelId": "entropy",
+      "title": "Entropia e irreversibilità",
+      "status": "NON_DONE",
+      "pluginId": "io.ardesia.fluid-thermo",
+      "pluginVersion": "1.0.0",
+      "modelVersion": 1,
+      "activityId": "entropy-lab-v1",
+      "capabilityId": "entropy-lab-v1",
+      "atomicObjectiveIds": [
+        "U5-05.02",
+        "U5-05.06",
+        "U5-05.08"
+      ],
+      "atomicIdsSource": "apps/studio/plugins/fluid-thermo/definitions.ts → packages/engine/lessonos/study/science_library/fluid_catalog.json",
+      "definitionCatalogMatch": true,
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass1": 1,
+            "mass2": 1,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 360,
+            "temperature2K": 280
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass1": 1,
+            "mass2": 1,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 320,
+            "temperature2K": 320
+          }
+        }
+      ],
+      "formula": "T_f = (C₁T₁+C₂T₂)/(C₁+C₂); ΔS = C₁ln(T_f/T₁)+C₂ln(T_f/T₂)",
+      "assumptions": [
+        "Due corpi finiti, isolati dall’esterno, capacità termiche costanti C_i=m_ic_i e nessuna fase o lavoro.",
+        "Il contatto con differenza finita di temperatura è irreversibile. Il calcolo di ΔS usa cammini reversibili equivalenti, non afferma che il contatto sia reversibile.",
+        "L’ascissa dei grafici è frazione dello scambio fino all’equilibrio, non tempo; nessuna legge cinetica è simulata."
+      ],
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "runtimeBehaviorEvidence": [
+        "ev_cf40255c100bf38e7cac373adc127df723aa32f5f198b7124e37fb4db3c0ff53"
+      ],
+      "provenanceLimit": "Modelli e codice originali. Le evidenze donor riguardano soltanto i comportamenti descritti; nessuna equivalenza globale dei modelli è asserita.",
+      "representations": {
+        "twoD": "Contributi dei corpi finiti e totale contro frazione dello scambio, non tempo.",
+        "threeDDeclared": false,
+        "threeDIntent": "Non prevista: bilancio analitico, senza simulazione molecolare.",
+        "threeDRuntimeStatus": "NOT_APPLICABLE",
+        "equivalentData": "Stesso risultato analitico, formule, tabella di misure e serie; fallback 2D conserva la bozza."
+      },
+      "paths": {
+        "definition": "apps/studio/plugins/fluid-thermo/definitions.ts",
+        "catalog": "packages/engine/lessonos/study/science_library/fluid_catalog.json",
+        "typescriptModel": "apps/studio/plugins/fluid-thermo/models.ts",
+        "pythonModel": "packages/engine/lessonos/study/science_library/fluid_models.py",
+        "twoD": "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "threeD": null,
+        "snapshot": "apps/studio/plugins/fluid-thermo/snapshot.ts",
+        "sharedConsumer": [
+          "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+          "apps/web/src/features/science-library/FluidThermoActivity.tsx"
+        ]
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "finite bodies produce nonnegative entropy with energy conserved and zero at equal temperatures"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_carnot_and_finite_body_entropy_balances"
+        },
+        {
+          "path": "apps/studio/plugins/fluid-thermo/snapshot.test.ts",
+          "case": "round trips every model with exact lesson, exercise and source references"
+        }
+      ],
+      "consumer": {
+        "status": "PENDING_CONSUMER_ACCEPTANCE",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-05"
+        ],
+        "laboratorySpecId": "lab-spec-u5-05",
+        "publishedLessonUrl": null,
+        "exactRouteStatus": "PENDING_1A",
+        "sourceReviewStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING",
+        "source1BLimitationHistorical": "Due corpi finiti; statistica dei microstati discussa nel testo, non simulata.",
+        "source1BAtomicDifference": null,
+        "note": "Gli ID di lezione nella mappa 1B sono una destinazione proposta, non un link pubblicato o una prova di montaggio Core."
+      }
+    }
+  ],
+  "assimilationCandidates": [
+    {
+      "id": "A01",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C1",
+      "evidenceId": "ev_08c7e466841acda60006d1a75beb006c21a5159279235f3a01d431da6a23726f",
+      "evidenceSha256": "d9d7650464719f3622d8e64fccd6492f53872d9f36ddd2803cc1a9d5858ba855",
+      "modelId": "hydrostatic",
+      "behavior": "Profondità e densità aggiornano insieme pressione e misura leggibile.",
+      "visibleImplementation": "Sezione del recipiente, profondità, pressione assoluta e gauge sullo stesso risultato.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "returns surface pressure at zero depth and distinguishes absolute/gauge scaling"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_pressure_goldens_and_pascal_work_conservation"
+        }
+      ],
+      "limit": "Nessun trascinamento canvas del donor dichiarato adottato."
+    },
+    {
+      "id": "A02",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C1",
+      "evidenceId": "ev_08c7e466841acda60006d1a75beb006c21a5159279235f3a01d431da6a23726f",
+      "evidenceSha256": "d9d7650464719f3622d8e64fccd6492f53872d9f36ddd2803cc1a9d5858ba855",
+      "modelId": "manometer",
+      "behavior": "Differenza di livello e segno della lettura manometrica.",
+      "visibleImplementation": "Rami a U, Δh firmato e p1−p2; controlli numerici originali.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "preserves manometer sign, zero and density scaling"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_pressure_goldens_and_pascal_work_conservation"
+        }
+      ],
+      "limit": "La convenzione di segno è quella dichiarata dal modello Ardesia."
+    },
+    {
+      "id": "A03",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C3",
+      "evidenceId": "ev_dc248b5d72760f6548e123738b191b13950cff885e34d10e8a5673b8b05066ad",
+      "evidenceSha256": "9aca28a57d4aab2e6eb00a63a64c0d5ae77e3d7f9f106a84c0ca13584ddc92b4",
+      "modelId": "buoyancy",
+      "behavior": "Volume spostato, spinta e peso visibili insieme.",
+      "visibleImplementation": "Diagramma e scena mostrano f imposta, V spostato e due forze distinte.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-02"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Archimedes balances only at the appropriate immersed fraction"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_archimedes_and_continuity_not_free_energy"
+        }
+      ],
+      "limit": "Equilibrio libero separato da immersione imposta; nessuna dinamica del donor copiata."
+    },
+    {
+      "id": "A04",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C4",
+      "evidenceId": "ev_f74d8217c672a58e62b19397868386f89e32070b329b41c728207a0111a366b1",
+      "evidenceSha256": "b198b31856ee551eadb3f6e83e64157758c152132f40d6c331abef8f469f2a28",
+      "modelId": "continuity",
+      "behavior": "La variazione della sezione aggiorna la velocità a portata comune.",
+      "visibleImplementation": "Sezioni e frecce medie condividono Q, A1, A2, v1, v2.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-03"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "continuity preserves Q and quadruples speed when circular radius halves"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_archimedes_and_continuity_not_free_energy"
+        }
+      ],
+      "limit": "Le frecce non sono un profilo locale o una simulazione di particelle."
+    },
+    {
+      "id": "A05",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C4",
+      "evidenceId": "ev_f74d8217c672a58e62b19397868386f89e32070b329b41c728207a0111a366b1",
+      "evidenceSha256": "b198b31856ee551eadb3f6e83e64157758c152132f40d6c331abef8f469f2a28",
+      "modelId": "venturi",
+      "behavior": "Pressione, quota e termine cinetico appartengono allo stesso bilancio.",
+      "visibleImplementation": "p1, p2, velocità e altezza nel diagramma 2D e nelle misure.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-03"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Venturi conserves mechanical energy including height and rejects impossible pressure"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
+        }
+      ],
+      "limit": "La 3D raddrizza il condotto; nessuna adozione di un toggle attrito senza equazione."
+    },
+    {
+      "id": "A06",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C5",
+      "evidenceId": "ev_cf25a448c569c91597edb51ef8d4f8d06a5c0f8c326d5ad660b783de24bfd610",
+      "evidenceSha256": "3fe76ae7298a2f375b5795bd9c3a6f5238ca9f58f58b6030e027ed1956845699",
+      "modelId": "venturi",
+      "behavior": "La strozzatura collega sezione e pressione nella stessa esperienza.",
+      "visibleImplementation": "Controlli A1/A2 e speed1, pressioni assolute e confronto sul risultato ideale.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-03"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Venturi conserves mechanical energy including height and rejects impossible pressure"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
+        }
+      ],
+      "limit": "I piezometri e il toggle di attrito donor non sono stati assimilati come implementazioni separate."
+    },
+    {
+      "id": "A07",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C6",
+      "evidenceId": "ev_3a34cee2ce42a7a6c2f465eb0a490d4d6e78e86eeed84aa0c5d55d7d1258f4a4",
+      "evidenceSha256": "cce53d96c70e9a877d2f396abe00616d06c45932f0c28c1c4dd5ab888deb1b93",
+      "modelId": "poiseuille",
+      "behavior": "Profilo locale con massimo sull’asse, no slip e dominio laminare.",
+      "visibleImplementation": "Curva e frecce u(s), u_max, u_media, Re; selezione del vincolo Δp o Q.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-04"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Poiseuille matches a golden and r⁴ at fixed Δp versus reciprocal r⁴ at fixed Q"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_bernoulli_height_and_poiseuille_boundary_modes"
+        }
+      ],
+      "limit": "Sono rifiutati parametri fuori dominio; nessuna correzione silenziosa come nel donor."
+    },
+    {
+      "id": "A08",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C7",
+      "evidenceId": "ev_f3c7aa637276b83670e28fa0ef6a4bb5520126b91a30270e8eb5df5cecb59684",
+      "evidenceSha256": "6916ca406f6fe26b6e14f6bf20ea9e4dd5f3a0cda3cc599ee0c829804ac9c38e",
+      "modelId": "hydraulic-network",
+      "behavior": "Topologia, portate per ramo e conservazione leggibili insieme.",
+      "visibleImplementation": "Rete serie/parallelo con R note, cadute e portate dei due rami.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u3-04"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "series adds pressure drops; parallel adds branch flows and lowers resistance"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_hydraulic_network_topology_and_laplace_interfacial_count"
+        }
+      ],
+      "limit": "Il donor usa Bernoulli ideale: il solver viscoso Ardesia è originale e non è certificato dal donor."
+    },
+    {
+      "id": "A09",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C9",
+      "evidenceId": "ev_dc26fd99f0d070d53b90c30dd0c020fe0e41943f25d9fd212a6890e0ba2e5788",
+      "evidenceSha256": "8ea314b20e455ef82b3e584c92b4e9520ed4887976abee24b4fa6e3d1b4c3329",
+      "modelId": "ideal-gas",
+      "behavior": "Pistone e quantità PVT rispondono allo stesso vincolo.",
+      "visibleImplementation": "Volume e altezza lineari, pV=nRT e isoterma con kelvin e pressione assoluta.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts",
+        "apps/studio/plugins/fluid-thermo/LabScene3D.tsx"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-01"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "uses kelvin, preserves pV=nRT, and responds to volume and temperature ratios"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        }
+      ],
+      "limit": "L’equazione di stato non determina Q, W o una dinamica."
+    },
+    {
+      "id": "A10",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C10",
+      "evidenceId": "ev_1582ee3fe5698dca4f99b31e355303579989072d166dd8c5277183acbb6d664b",
+      "evidenceSha256": "bae713fde5a1440c5b1dea7ec0fa5adbb7152a0894fa60c92142651ea48a2595",
+      "modelId": "calorimetry",
+      "behavior": "Condizioni iniziali riconoscibili e reset riproducibile.",
+      "visibleImplementation": "Parametri dei due corpi, previsione, equilibrio e bilancio; reset alla baseline della configurazione.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-02"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "calorimetry weights heat capacities and conserves exchanged energy"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        }
+      ],
+      "limit": "REA ha provato workflow/reset, non equilibrio quantitativo del donor; il golden Ardesia è indipendente."
+    },
+    {
+      "id": "A11",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C11",
+      "evidenceId": "ev_ce8ab55c5ef86182cb5dd08d7acff0b31e00448fab984b4074995c3c3f290d59",
+      "evidenceSha256": "7fb5198b8e3fbbe2da354e3ce2689ff3c4fc760f18d010cf892317ce3c21f2d8",
+      "modelId": "phase-change",
+      "behavior": "Plateau e quantità di fase sono collegati alla rappresentazione energetica.",
+      "visibleImplementation": "Temperatura contro Q e frazione fusa condividono lo stesso stato.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-02"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "phase change holds at 0°C through latent heat and rejects vaporization"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_gas_calorimetry_and_latent_heat_goldens"
+        }
+      ],
+      "limit": "L’asse Ardesia è Q, non tempo; non si copia la cinetica donor."
+    },
+    {
+      "id": "A12",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C12",
+      "evidenceId": "ev_6374840ea85ee26afb21826e617768f27a05ee0fa78d0c3f60bda5f94f894b1c",
+      "evidenceSha256": "a20c2cb9b686d29ed19eaeced8b666ae384645da9ca1debb02808ed9f829f890",
+      "modelId": "heat-transfer",
+      "behavior": "Materiale/spessore modificano il trasferimento nella stessa rappresentazione.",
+      "visibleImplementation": "Conduzione kAΔT/L nel confronto con due configurazioni separate di convezione e irraggiamento.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-03"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "heat transfer has zero net exchange at equal temperatures and reverses direction"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_transfer_direction_and_first_law_for_four_reversible_paths"
+        }
+      ],
+      "limit": "REA donor copre sola conduzione; convezione e irraggiamento richiedono i test originali."
+    },
+    {
+      "id": "A13",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C15",
+      "evidenceId": "ev_d33700d3a6847094463b5a7cab9d9f0790497341d4fec390edc48f3453f3b809",
+      "evidenceSha256": "67957e48abb9bbab042d9f047ecc4517c41669db089404662290de768a8fee6f",
+      "modelId": "carnot",
+      "behavior": "Ciclo orientato e flussi collegati ai serbatoi.",
+      "visibleImplementation": "Ciclo p–V costruito e bilanci per ciclo, rendimento in temperature assolute.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-05"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "Carnot conserves cycle energy and reservoir entropy and closes its p–V cycle"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_carnot_and_finite_body_entropy_balances"
+        }
+      ],
+      "limit": "Esclusi il COP etichettato male e l’asse S errato del donor; vista T–S non dichiarata implementata."
+    },
+    {
+      "id": "A14",
+      "status": "PENDING_CONSUMER_ACCEPTANCE",
+      "countedAsAccepted": false,
+      "investigationId": "C16",
+      "evidenceId": "ev_cf40255c100bf38e7cac373adc127df723aa32f5f198b7124e37fb4db3c0ff53",
+      "evidenceSha256": "fe25c3252ca9e737bc604c13b9c96c713c4671b14b30b947be36436e8768cecd",
+      "modelId": "entropy",
+      "behavior": "Contributi separati e totale con processo e condizioni iniziali dichiarati.",
+      "visibleImplementation": "ΔS dei due corpi finiti, somma e bilancio energetico contro frazione dello scambio.",
+      "implementationPaths": [
+        "apps/studio/plugins/fluid-thermo/FluidThermoLab.tsx",
+        "apps/studio/plugins/fluid-thermo/LabDiagram.tsx",
+        "apps/studio/plugins/fluid-thermo/models.ts"
+      ],
+      "consumer": {
+        "web": "apps/web/src/features/science-library/FluidThermoActivity.tsx",
+        "studio": "apps/studio/plugins/fluid-thermo/register.tsx",
+        "lessonIdsFrom1B": [
+          "ds-2026-u5-05"
+        ],
+        "lessonRouteStatus": "PENDING_1A",
+        "acceptanceStatus": "PENDING_CONSUMER_ACCEPTANCE"
+      },
+      "tests": [
+        {
+          "path": "apps/studio/plugins/fluid-thermo/models.test.ts",
+          "case": "finite bodies produce nonnegative entropy with energy conserved and zero at equal temperatures"
+        },
+        {
+          "path": "packages/engine/tests/study/test_fluid_thermo_models.py",
+          "case": "test_carnot_and_finite_body_entropy_balances"
+        }
+      ],
+      "limit": "Il donor tratta miscelazione di gas; Ardesia tratta corpi finiti: solo struttura della lettura, non modello o cinetica."
+    }
+  ],
+  "consumerMap1B": {
+    "status": "READABLE_SOURCE_REVIEW_NOT_ACCEPTANCE",
+    "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-2/work/ardesia-science/docs/ops/closure1-20261028/laboratory-consumer-map.json",
+    "sha256": "eb1fdaa112ab52d3f4fcfe29e71bae05097b1e0de0f53a547e2361fb5ec673b7",
+    "reviewedImplementation": {
+      "pullRequest": 331,
+      "scope": "Source inspection of the exact file blobs listed; browser NOT_RUN by 1B",
+      "branch": "codex/closure1c-labs-20261028",
+      "sourceBlobShas": {
+        "definitions.ts": "48f82be327541ab99bb587b4aabbf9acf6c6793f",
+        "models.ts": "610647974a5307fb1d43c0b23af54565031bf282",
+        "fluid_models.py": "5f1821cc51a848bcfe76794ddede2264fdc47a89"
+      }
+    },
+    "warning": "Mappa 1B storica rispetto ai digest correnti: gli atomici definitivi provengono da definitions/catalog. Nessun obiettivo ACCEPTED per sola presenza degli ID.",
+    "currentAtomicDifferenceModels": [
+      "process"
+    ]
+  },
+  "rea": {
+    "tool": {
+      "name": "rea-agents",
+      "version": "6.7.0",
+      "mode": "CLI capture-browser-scenario",
+      "node": "24.19.0",
+      "mcp": "ABSENT_ACTIVE_SESSION_REGISTRATION_ALIGNED_NO_CONFIG_CHANGE"
+    },
+    "doctor": {
+      "privatePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-doctor-supported.json",
+      "sha256": "0545dc28d2f1948c52648d6daf4c59fab9526c9dffbabe3bc5e728fed673f5ec",
+      "scopeRegistrationCodex": "ALIGNED",
+      "scopeHealthy": true,
+      "environmentHealthy": false,
+      "activeMcp": "ABSENT",
+      "changes": "Nessuna reinstallazione o riparazione di config; usata CLI esistente. Doctor riporta Node 26.5.1 nel suo check; le catture hanno usato esplicitamente Node 24.19.0. I due fatti non sono fusi."
+    },
+    "status": "TWELVE_BOUNDED_INVESTIGATIONS_COMPLETE_NOT_TWELVE_ASSIMILATIONS",
+    "entryCount": 12,
+    "functionalScopeCount": 12,
+    "actionCount": 65,
+    "stepsIncludingInitialState": 77,
+    "artifactIntegrityChecks": 155,
+    "integrityPassed": true,
+    "concurrency": "ONE_BROWSER_AT_A_TIME",
+    "privateReport": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/REPORT.json",
+    "privateReportSha256": "73c5d49fd5055d6ce930830887e80fc10e8e5d4f114e3f623b171998c42dd73b",
+    "sourceReference": {
+      "repository": "LearnChemE/LearnChemE.github.io",
+      "commit": "f0fd5c6ac6a6bf0529cefc7911151a5c903e6f3d",
+      "tree": "31ce42e0e900115676e230a14eeec3bb0297efbe",
+      "manifest": "sources/learncheme-source-manifest.json",
+      "additionalManifest": "sources/learncheme-additional-sources.json",
+      "runtimeBundleIdentity": "UNKNOWN_SOURCE_AND_DISTRIBUTED_RUNTIME_NOT_HASH_RECONCILED"
+    },
+    "entries": [
+      {
+        "id": "C1",
+        "title": "Pressione e manometro",
+        "hypothesis": "Variare profondità e densità rende coerenti misura e colonna.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_08c7e466841acda60006d1a75beb006c21a5159279235f3a01d431da6a23726f",
+        "evidenceFile": "C1-pressure.evidence.json",
+        "evidenceSha256": "d9d7650464719f3622d8e64fccd6492f53872d9f36ddd2803cc1a9d5858ba855",
+        "requestFile": "C1-pressure.request.json",
+        "requestSha256": "4475e1911f732c5a752a583538914ecd6e654cbdfaffc2af6700fdbe04c17a1f",
+        "url": "https://www.walter-fendt.de/html5/phen/hydrostaticpressure_en.htm",
+        "actionCount": 8,
+        "stepsCompleted": 9,
+        "allStepsCompleted": true,
+        "reaDurationMs": 47793,
+        "cliWallSeconds": null,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 19,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "h=2 cm in acqua: 2.0 hPa; h=4 cm: 3.9 hPa; densità raddoppiata: 7.8 hPa.",
+          "Il testo digitato cambia prima del risultato; Enter conferma il calcolo e aggiorna il manometro."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Sonda, lettura di pressione, unità e diagramma collegati allo stesso stato; separazione bozza/conferma se presente.",
+        "unknownsAndRejectedAspects": [
+          "Solo pressione idrostatica relativa; il donor dichiara stesso liquido nel manometro e nel recipiente.",
+          "Nessuna prova tastiera del trascinamento canvas."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C1-pressure.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C1-pressure.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "water-density",
+            "action": "fill",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip1b"
+            },
+            "value": {
+              "source": "literal",
+              "value": "1"
+            },
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "commit-density",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip1b"
+            },
+            "key": "Enter",
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "two-cm-depth",
+            "action": "fill",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip2b"
+            },
+            "value": {
+              "source": "literal",
+              "value": "2"
+            },
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "commit-two-cm",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip2b"
+            },
+            "key": "Enter",
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "four-cm-depth",
+            "action": "fill",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip2b"
+            },
+            "value": {
+              "source": "literal",
+              "value": "4"
+            },
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "commit-four-cm",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip2b"
+            },
+            "key": "Enter",
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "double-density",
+            "action": "fill",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip1b"
+            },
+            "value": {
+              "source": "literal",
+              "value": "2"
+            },
+            "timeout_ms": 10000
+          },
+          {
+            "step_id": "commit-double-density",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#ip1b"
+            },
+            "key": "Enter",
+            "timeout_ms": 10000
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "title": "Galleggiamento e volume spostato",
+        "hypothesis": "Materiale e densità del fluido controllano immersione e bilancio delle forze.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_dc248b5d72760f6548e123738b191b13950cff885e34d10e8a5673b8b05066ad",
+        "evidenceFile": "C3-buoyancy-alternative.evidence.json",
+        "evidenceSha256": "9aca28a57d4aab2e6eb00a63a64c0d5ae77e3d7f9f106a84c0ca13584ddc92b4",
+        "requestFile": "C3-buoyancy-alternative.request.json",
+        "requestSha256": "74829cb67f3ed4ee92ff11438e81d66fb5473b0a84918e8bda73bfccc936423e",
+        "url": "https://learncheme.github.io/demos/Buoyancy/dist/index.html",
+        "actionCount": 5,
+        "stepsCompleted": 6,
+        "allStepsCompleted": true,
+        "reaDurationMs": 14143,
+        "cliWallSeconds": 18.088,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 12,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "PVC con densità relativa1.33 in acqua: Vimmerso1.00m³, peso13.05kN, spinta9.81kN; il corpo affonda.",
+          "Il parametro densità minima fa galleggiare il corpo; selezione legno e benzina cambia volume spostato e quota."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Mostrare volume immerso, peso e spinta insieme, distinguendo capacità di spinta da equilibrio libero.",
+        "unknownsAndRejectedAspects": [
+          "Le misure fisiche sono testo nel canvas, non disponibili nel PDOM.",
+          "Il primo candidato PhET è una discovery parziale con cleanup incompleto, conservata separatamente e non contata come indagine riuscita."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C3-buoyancy-alternative.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C3-buoyancy-alternative.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "canvas-ready",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#p5-container canvas"
+            },
+            "timeout_ms": 12000,
+            "state": "visible"
+          },
+          {
+            "step_id": "dense-block",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#object-composition"
+            },
+            "timeout_ms": 12000,
+            "value": {
+              "source": "literal",
+              "value": "pvc"
+            }
+          },
+          {
+            "step_id": "light-block",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#object-specific-gravity"
+            },
+            "timeout_ms": 12000,
+            "key": "Home"
+          },
+          {
+            "step_id": "wood-in-gasoline",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#object-composition"
+            },
+            "timeout_ms": 12000,
+            "value": {
+              "source": "literal",
+              "value": "aspen"
+            }
+          },
+          {
+            "step_id": "change-liquid",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#liquid-composition"
+            },
+            "timeout_ms": 12000,
+            "value": {
+              "source": "literal",
+              "value": "gasoline"
+            }
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "title": "Continuità e ripartizione di Bernoulli",
+        "hypothesis": "Cambiare sezione modifica velocità e pressione mentre il bilancio energetico resta coerente.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_f74d8217c672a58e62b19397868386f89e32070b329b41c728207a0111a366b1",
+        "evidenceFile": "C4-energy-recovery.evidence.json",
+        "evidenceSha256": "b198b31856ee551eadb3f6e83e64157758c152132f40d6c331abef8f469f2a28",
+        "requestFile": "C4-energy-recovery.request.json",
+        "requestSha256": "17bb0d821a011ab96a031f5a6b367d349239d26d824944c1fa6eeac14276ce63",
+        "url": "https://learncheme.github.io/demos/Bernoulli/dist/index.html",
+        "actionCount": 4,
+        "stepsCompleted": 5,
+        "allStepsCompleted": true,
+        "reaDurationMs": 56779,
+        "cliWallSeconds": 62.023,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 10,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Diametro uscita2.5→12.5cm aggiorna geometria e velocità; ingresso5.0cm e1.0m/s, uscita larga mostra0.2m/s arrotondato.",
+          "Vista energia a quota2.7m mostra ingresso100.0+0.5+0 e uscita74.0+0.0+26.5kJ/m³."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Viste geometrica e dei contributi energetici sul medesimo snapshot; formule e unità di energia per volume.",
+        "unknownsAndRejectedAspects": [
+          "Il primo tentativo del toggle fallì per selettore inesistente; recupero con label:has(#option2), errore preservato.",
+          "I numeri visibili sono arrotondati; non costituiscono oracle ad alta precisione."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C4-energy-recovery.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C4-energy-recovery.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#application canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "narrow-outlet",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#outletDiameterSlider"
+            },
+            "key": "Home",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "wide-outlet",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#outletDiameterSlider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "energy-view",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "label:has(#option2)"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "title": "Venturi e prese piezometriche",
+        "hypothesis": "Variare portata e dissipazione distingue scambio cinetico/pressione da perdita irreversibile.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_cf25a448c569c91597edb51ef8d4f8d06a5c0f8c326d5ad660b783de24bfd610",
+        "evidenceFile": "C5-venturi.evidence.json",
+        "evidenceSha256": "3fe76ae7298a2f375b5795bd9c3a6f5238ca9f58f58b6030e027ed1956845699",
+        "requestFile": "C5-venturi.request.json",
+        "requestSha256": "86f466cbf830b855ebc7b284ced06bed28b4c1d75ae060d8e525a91547bbcedf",
+        "url": "https://learncheme.github.io/demos/VenturiMeter/dist/index.html",
+        "actionCount": 5,
+        "stepsCompleted": 6,
+        "allStepsCompleted": true,
+        "reaDurationMs": 11767,
+        "cliWallSeconds": 16.119,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 12,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Valvola0→100%; portata visualizzata50mL/s.",
+          "Senza attrito: piezometri138/89/138mm, tubo20mm e strozzatura8mm."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Sezioni e piezometri leggibili; distinguere modello ideale da eventuale termine di perdita dichiarato.",
+        "unknownsAndRejectedAspects": [
+          "Le altezze sono letture del canvas; nessuna misura sperimentale.",
+          "Il modello Ardesia può adottare il caso ideale senza introdurre un toggle di attrito privo di equazione."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C5-venturi.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C5-venturi.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#p5-container canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "stop-flow",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#v-slider"
+            },
+            "key": "Home",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "maximum-flow",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#v-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "show-flow-rate",
+            "action": "check",
+            "locator": {
+              "kind": "css",
+              "selector": "#show-flow-rate"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "remove-friction",
+            "action": "uncheck",
+            "locator": {
+              "kind": "css",
+              "selector": "#include-friction"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C6",
+        "title": "Poiseuille e profilo locale",
+        "hypothesis": "Raggio e viscosità cambiano portata e velocità, con dominio laminare esplicito.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_3a34cee2ce42a7a6c2f465eb0a490d4d6e78e86eeed84aa0c5d55d7d1258f4a4",
+        "evidenceFile": "C6-poiseuille.evidence.json",
+        "evidenceSha256": "cce53d96c70e9a877d2f396abe00616d06c45932f0c28c1c4dd5ab888deb1b93",
+        "requestFile": "C6-poiseuille.request.json",
+        "requestSha256": "fdeada93e378019fa437580d30545c633038beb861ca8f35d14542adc1ef1ae5",
+        "url": "https://learncheme.github.io/demos/LaminarPipeFlow/html/index.html",
+        "actionCount": 5,
+        "stepsCompleted": 6,
+        "allStepsCompleted": true,
+        "reaDurationMs": 11564,
+        "cliWallSeconds": 14.534,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 12,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Raggio0.5→2.5cm: Q0.142→88.6cm³/s; vmax≈2vmedia.",
+          "Viscosità1Pa·s: Q0.100cm³/s, vmedia0.0051cm/s, vmax0.010cm/s, Re0.0025.",
+          "Il donor modifica i limiti del gradiente per mantenere Re<2100 e il range di velocità."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Profilo, portata, velocità media/massima e avviso di validità; evitare correzioni silenziose dei parametri.",
+        "unknownsAndRejectedAspects": [
+          "Il primo display89/2024 differisce lievemente dai valori dopo manipolazione88.6/2006; non usarlo come oracle esatto.",
+          "Home su un range con limiti dinamici porta a gradiente128Pa/m, non al minimo iniziale; l’etichetta dell’azione non descrive una grandezza garantita."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C6-poiseuille.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C6-poiseuille.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#p5-container canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "small-radius",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#radius-slider"
+            },
+            "key": "Home",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "large-radius",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#radius-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "high-viscosity",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#viscosity-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "low-gradient",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#dpdz-slider"
+            },
+            "key": "Home",
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C7",
+        "title": "Ripartizione nei rami di una rete",
+        "hypothesis": "Raggi dei rami e pressione devono essere leggibili insieme alle portate della stessa rete.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_f3c7aa637276b83670e28fa0ef6a4bb5520126b91a30270e8eb5df5cecb59684",
+        "evidenceFile": "C7-network.evidence.json",
+        "evidenceSha256": "6916ca406f6fe26b6e14f6bf20ea9e4dd5f3a0cda3cc599ee0c829804ac9c38e",
+        "requestFile": "C7-network.request.json",
+        "requestSha256": "762414bc2026288688f3eda12f736f886796a4c5531683fe148e4b8f35c33310",
+        "url": "https://learncheme.github.io/demos/BernoulliNetworkOfPipes/dist/index.html",
+        "actionCount": 4,
+        "stepsCompleted": 5,
+        "allStepsCompleted": true,
+        "reaDurationMs": 8706,
+        "cliWallSeconds": 11.034,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 10,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Pressione10kPa e raggi0.6/0.2m modificano SVG, diametri1.20/0.40m, velocità dei rami4.9m/s e ingresso2.0m/s arrotondati.",
+          "Il source calcola Qinizio=Qsinistra+Qdestra con Bernoulli ideale e uguale velocità alle due uscite."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Diagramma topologico con parametri per ramo e conservazione esplicita; il solver viscoso Ardesia rimane originale.",
+        "unknownsAndRejectedAspects": [
+          "Non è un donor di resistenze Poiseuille serie/parallelo: è una rete ideale.",
+          "Il donor mescola la label ingresso10kPa relativa e aria101kPa assoluta senza etichetta chiara: non assimilare questa ambiguità."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C7-network.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C7-network.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "ready",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#pressureSlider"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "maximum-pressure",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#pressureSlider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "wide-left-branch",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#leftRadiusSlider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "narrow-right-branch",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#rightRadiusSlider"
+            },
+            "key": "Home",
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C9",
+        "title": "Gas ideale e vincoli PVT",
+        "hypothesis": "La scelta della variabile fissata cambia il significato del controllo e della risposta del pistone.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_dc26fd99f0d070d53b90c30dd0c020fe0e41943f25d9fd212a6890e0ba2e5788",
+        "evidenceFile": "C9-ideal-gas.evidence.json",
+        "evidenceSha256": "8ea314b20e455ef82b3e584c92b4e9520ed4887976abee24b4fa6e3d1b4c3329",
+        "requestFile": "C9-ideal-gas.request.json",
+        "requestSha256": "b8f43ed3b7296dbd2a3b060d8c4aae4f48372c78890028a14a93074d84a0970e",
+        "url": "https://learncheme.github.io/demos/IdealGasLaw/dist/index.html",
+        "actionCount": 7,
+        "stepsCompleted": 8,
+        "allStepsCompleted": true,
+        "reaDurationMs": 12278,
+        "cliWallSeconds": 15.914,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 16,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Selezionate modalità volume costante, pressione costante e temperatura costante; controlli di calore/pressione manipolati.",
+          "A T273K, P4.00atm: n2.29mol,V12.8L,Qtotale−7.20kJ nella vista isoterma."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Pistone, quantità PVT e barre relative collegati, con condizione al contorno visibile.",
+        "unknownsAndRejectedAspects": [
+          "Vista illustrativa2D, non vero3D.",
+          "Nessuna validazione di dinamica molecolare o relazione temporale derivata dalla sola animazione."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C9-ideal-gas.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C9-ideal-gas.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#p5-container canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "constant-volume",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#select-mode"
+            },
+            "value": {
+              "source": "literal",
+              "value": "constant-v"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "heat-at-fixed-volume",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#q-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "constant-pressure",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#select-mode"
+            },
+            "value": {
+              "source": "literal",
+              "value": "constant-p"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "heat-at-fixed-pressure",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#q-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "isothermal",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#select-mode"
+            },
+            "value": {
+              "source": "literal",
+              "value": "constant-t"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "increase-isothermal-pressure",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#p-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C10",
+        "title": "Calorimetria, avvio e reset",
+        "hypothesis": "Le condizioni iniziali devono restare riconoscibili durante uno scambio e dopo il reset.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_1582ee3fe5698dca4f99b31e355303579989072d166dd8c5277183acbb6d664b",
+        "evidenceFile": "C10-calorimetry.evidence.json",
+        "evidenceSha256": "bae713fde5a1440c5b1dea7ec0fa5adbb7152a0894fa60c92142651ea48a2595",
+        "requestFile": "C10-calorimetry.request.json",
+        "requestSha256": "8b7e59bd22b45fae67e4c9e5bd4f3e95f3af6fb59310dcae6260695c9054d2c6",
+        "url": "https://learncheme.github.io/demos/Calorimeter/dist/index.html",
+        "actionCount": 6,
+        "stepsCompleted": 7,
+        "allStepsCompleted": true,
+        "reaDurationMs": 33042,
+        "cliWallSeconds": 36.339,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 14,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Impostati blocco60°C e500g; drop metal disabilita i controlli iniziali.",
+          "Reset restituisce blocco30°C,400g e acqua4°C; il workflow è stato esercitato."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Condizioni iniziali, scambio visibile e reset riproducibile; aggiungere in Ardesia temperatura di equilibrio numerica e bilancio energetico.",
+        "unknownsAndRejectedAspects": [
+          "Il donor mostra un termometro grafico senza risultato numerico finale accessibile.",
+          "Non si certifica equilibrio termico o conservazione energetica quantitativa con questa osservazione di3.5s."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C10-calorimetry.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C10-calorimetry.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "canvas-ready",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "canvas"
+            },
+            "timeout_ms": 12000,
+            "state": "visible"
+          },
+          {
+            "step_id": "hot-block",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "input[id=\"temp-range\"][max=\"60\"]"
+            },
+            "timeout_ms": 12000,
+            "key": "End"
+          },
+          {
+            "step_id": "heavy-block",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#mass-range"
+            },
+            "timeout_ms": 12000,
+            "key": "End"
+          },
+          {
+            "step_id": "drop-metal",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#drop-btn"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "observe-equilibration",
+            "action": "wait_for_timeout",
+            "duration_ms": 3500
+          },
+          {
+            "step_id": "reset-experiment",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#reset-btn"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C11",
+        "title": "Fusione e rappresentazioni collegate",
+        "hypothesis": "L’acqua resta al punto di fusione mentre cambia la massa di ghiaccio e i blocchi si raffreddano.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_ce8ab55c5ef86182cb5dd08d7acff0b31e00448fab984b4074995c3c3f290d59",
+        "evidenceFile": "C11-melting.evidence.json",
+        "evidenceSha256": "7fb5198b8e3fbbe2da354e3ce2689ff3c4fc760f18d010cf892317ce3c21f2d8",
+        "requestFile": "C11-melting.request.json",
+        "requestSha256": "0829a965768073d054bc5683aa0827fe96cb00b6ad78ec91be4e910730bc3c54",
+        "url": "https://learncheme.github.io/demos/MeltingIce/MIindex.html",
+        "actionCount": 6,
+        "stepsCompleted": 7,
+        "allStepsCompleted": true,
+        "reaDurationMs": 21158,
+        "cliWallSeconds": 26.525,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 14,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Avvio, osservazione, scelta grafico temperatura, scelta entrambi i grafici e reset eseguiti.",
+          "Acqua0.0°C, blocchi inizialmente30/80°C poi circa20/38°C mentre massa fusa cresce."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Plateau e frazione fusa collegati a energia, due rappresentazioni e pausa/reset; parametri iniziali congelati durante la prova.",
+        "unknownsAndRejectedAspects": [
+          "AX e screenshot sono catture seriali della scena in evoluzione, quindi mostrano istanti leggermente diversi.",
+          "Non è dimostrata accuratezza integrale del modello transiente o fusione completa."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C11-melting.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C11-melting.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "start-ready",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#startButton"
+            },
+            "timeout_ms": 12000,
+            "state": "visible"
+          },
+          {
+            "step_id": "start-melting",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#startButton"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "observe-melting",
+            "action": "wait_for_timeout",
+            "duration_ms": 3500
+          },
+          {
+            "step_id": "temperature-view",
+            "action": "check",
+            "locator": {
+              "kind": "css",
+              "selector": "#which2"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "both-linked-views",
+            "action": "check",
+            "locator": {
+              "kind": "css",
+              "selector": "#which3"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "reset-ice",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#resetButton"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C12",
+        "title": "Conduzione attraverso strati",
+        "hypothesis": "Il cambio di materiale e spessore deve cambiare flusso e pendenza del profilo coerentemente.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_6374840ea85ee26afb21826e617768f27a05ee0fa78d0c3f60bda5f94f894b1c",
+        "evidenceFile": "C12-conduction.evidence.json",
+        "evidenceSha256": "a20c2cb9b686d29ed19eaeced8b666ae384645da9ca1debb02808ed9f829f890",
+        "requestFile": "C12-conduction.request.json",
+        "requestSha256": "f5110d0988fa6536089d6e354eea449f777a121c006281c220d14b6f1ab6eee3",
+        "url": "https://learncheme.github.io/demos/ConductionThroughACompositeWall/index.html",
+        "actionCount": 4,
+        "stepsCompleted": 5,
+        "allStepsCompleted": true,
+        "reaDurationMs": 25117,
+        "cliWallSeconds": 29.436,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 10,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Temperatura sinistra100°C, lato destro fisso45°C, materiale destro piombo, vetro2.5cm.",
+          "Vista finale: flusso1555W/m² e profilo continuo a pendenze diverse nei quattro strati."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Profilo termico e flusso comune; resistenze termiche e unità dichiarate.",
+        "unknownsAndRejectedAspects": [
+          "Questo donor verifica solo conduzione stazionaria; convezione e irraggiamento non sono stati esercitati qui.",
+          "Non è stata verificata una mesh3D o accuratezza su un dispositivo fisico."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C12-conduction.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C12-conduction.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#graphics-wrapper canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "max-hot-temperature",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#temperature-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "lead-layer",
+            "action": "select_option",
+            "locator": {
+              "kind": "css",
+              "selector": "#select-right-wall"
+            },
+            "value": {
+              "source": "literal",
+              "value": "lead"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "thick-glass",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#glass-thickness-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C15",
+        "title": "Ciclo termico e viste PV/TS",
+        "hypothesis": "Le stesse condizioni dei serbatoi devono conservare significato passando fra rappresentazioni e uso della macchina.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_d33700d3a6847094463b5a7cab9d9f0790497341d4fec390edc48f3453f3b809",
+        "evidenceFile": "C15-carnot.evidence.json",
+        "evidenceSha256": "67957e48abb9bbab042d9f047ecc4517c41669db089404662290de768a8fee6f",
+        "requestFile": "C15-carnot.request.json",
+        "requestSha256": "ab877f62e2ec7eeb043ae38b3007dc33baea50a1e5d3178c8806e6a5bbce7b75",
+        "url": "https://learncheme.github.io/demos/CarnotCycleIdealGas/index.html",
+        "actionCount": 5,
+        "stepsCompleted": 6,
+        "allStepsCompleted": true,
+        "reaDurationMs": 13462,
+        "cliWallSeconds": 16.48,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 12,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "Modificati TH650K,TC350K; scelti diagrammaTS e modalità heat pump.",
+          "Flussi visibili: QH−5.94,Qc3.2,W2.74kJ/mol; il donor mostraCOP1.17 comeQc/|W|."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Diagrammi PV/TS, ciclo orientato e flussi di energia collegati; correggere unità e distinguere COP frigorifero/pompa di calore.",
+        "unknownsAndRejectedAspects": [
+          "Problema donor: sotto titolo heat pump si usaCOPraffreddamento1.17, mentre COP riscaldamento=TH/(TH−TC)=2.17.",
+          "Problema donor: asseS dicekJ/molK con valori generati nella scalaJ/molK; non copiare questa etichetta."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C15-carnot.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C15-carnot.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "loaded-canvas",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#graphics-wrapper canvas"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "maximum-hot-temperature",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#hot-temp-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "maximum-cold-temperature",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#cold-temp-slider"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "entropy-temperature-view",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "label[for=\"T-S\"]"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "heat-pump-view",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "label[for=\"heat-pump\"]"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      },
+      {
+        "id": "C16",
+        "title": "Entropia di miscelazione",
+        "hypothesis": "L’entropia totale e i contributi dei due sistemi devono essere visibili con processo e condizioni iniziali espliciti.",
+        "status": "RUNTIME_BEHAVIOR_OBSERVED",
+        "evidenceId": "ev_cf40255c100bf38e7cac373adc127df723aa32f5f198b7124e37fb4db3c0ff53",
+        "evidenceFile": "C16-entropy.evidence.json",
+        "evidenceSha256": "fe25c3252ca9e737bc604c13b9c96c713c4671b14b30b947be36436e8768cecd",
+        "requestFile": "C16-entropy.request.json",
+        "requestSha256": "0d02ec5147149bd26641fe3b244219291b36de94ff13d6c0fed0c99ac9ff3757",
+        "url": "https://learncheme.github.io/demos/EntropyChangesInMixingIdealGases/index.html",
+        "actionCount": 6,
+        "stepsCompleted": 7,
+        "allStepsCompleted": true,
+        "reaDurationMs": 14252,
+        "cliWallSeconds": 16.508,
+        "browser": {
+          "mode": "launch",
+          "process_ownership": "provider-owned",
+          "cleanup": "terminated-owned-process",
+          "product": "Chromium",
+          "version": "148.0.7778.96"
+        },
+        "artifactIntegrityChecks": 14,
+        "artifactIntegrityPassed": true,
+        "observations": [
+          "PressioneA1.00bar,B0.50bar,rapporto volumi2; rimossa la barriera e osservata la miscelazione.",
+          "Durante evoluzione il display mostra contributi positivi e somma crescente (screenshot257J/K,AX272J/K a istante successivo).",
+          "Reset ripristina pressioni0.5/0.5bar e rapporto1.0."
+        ],
+        "inferences": [
+          "Il comportamento indicato è un candidato a una ricostruzione originale nel runtime esistente; non si inferisce adozione o beneficio misurato."
+        ],
+        "assimilableBehavior": "Bilanci separati e totale, vincolo del processo e stato finale deterministico; distinguere animazione e risultato analitico.",
+        "unknownsAndRejectedAspects": [
+          "Le catture seriali non sono uno snapshot atomico della dinamica; non confrontare257e272come errore numerico.",
+          "Nessuna pretesa di simulazione molecolare o validazione statistica dall’animazione."
+        ],
+        "decision": "ORIGINAL_BEHAVIOR_REIMPLEMENTATION_NO_DONOR_CODE_OR_ASSET_COPY",
+        "implementedByThisInvestigation": false,
+        "productConsumerVerifiedByThisInvestigation": false,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C16-entropy.evidence.json",
+        "privateRequestPath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C16-entropy.request.json",
+        "rightsDecision": "Solo osservazione e ricostruzione funzionale originale; nessun codice, asset o iframe donor adottato.",
+        "declaredActions": [
+          {
+            "step_id": "ready",
+            "action": "wait_for",
+            "locator": {
+              "kind": "css",
+              "selector": "#mixBtn"
+            },
+            "state": "visible",
+            "timeout_ms": 20000
+          },
+          {
+            "step_id": "unequal-pressure-A",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#sliderPA"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "unequal-volume",
+            "action": "press",
+            "locator": {
+              "kind": "css",
+              "selector": "#sliderRatio"
+            },
+            "key": "End",
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "mix-gases",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#mixBtn"
+            },
+            "timeout_ms": 12000
+          },
+          {
+            "step_id": "observe-mixing",
+            "action": "wait_for_timeout",
+            "duration_ms": 2500
+          },
+          {
+            "step_id": "reset-mixture",
+            "action": "click",
+            "locator": {
+              "kind": "css",
+              "selector": "#resetBtn"
+            },
+            "timeout_ms": 12000
+          }
+        ]
+      }
+    ],
+    "extraCapturesExcludedFromCount": [
+      {
+        "file": "C3-buoyancy-discovery.evidence.json",
+        "status": "PARTIAL_CLEANUP_INCOMPLETE_NO_MANIPULATION_NOT_COUNTED",
+        "reaDurationMs": 532848,
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C3-buoyancy-discovery.evidence.json",
+        "sha256": "2691debc96cde4c675f00096b37f013e5c22e90383056d03f17f0477b80e562a"
+      },
+      {
+        "file": "C4-continuity-bernoulli.evidence.json",
+        "status": "PARTIAL_LAST_LOCATOR_FAILED_SUPERSEDED_BY_C4_ENERGY_RECOVERY_NOT_EXTRA_INVESTIGATION",
+        "privateEvidencePath": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/work/rea-investigations/C4-continuity-bernoulli.evidence.json",
+        "sha256": "6e3c27f70c7f41945141b6f518be856661efdf58bf97775b3ecebcf847d61b06",
+        "evidenceId": "ev_f4f863013b3b46b42c2dc39b04366389ce9719f035fa814f464f67b22c779c23",
+        "cliWallSeconds": 36.552
+      }
+    ],
+    "limits": [
+      "Le 12 indagini sono 12 domande di comportamento, non 12 screenshot o 12 assimilazioni già accettate.",
+      "Canvas letto visualmente non equivale a dato disponibile nel PDOM.",
+      "AX e screenshot animati sono seriali, non snapshot atomici.",
+      "C10 dimostra workflow/reset; non equilibrio quantitativo del donor.",
+      "C7 usa un donor di rete ideale, non una rete di resistenze viscose.",
+      "C16 osserva miscelazione di gas: il modello Ardesia dei corpi finiti rimane indipendente."
+    ],
+    "donorErrors": [
+      {
+        "investigation": "C15",
+        "evidenceId": "ev_d33700d3a6847094463b5a7cab9d9f0790497341d4fec390edc48f3453f3b809",
+        "problem": "Modalità heat pump mostra Qc/|W|=1.17 (COP frigorifero) con TH=650 K e TC=350 K. Il COP riscaldamento corretto è 2.17.",
+        "decision": "Non copiare la formula o la label errata."
+      },
+      {
+        "investigation": "C15",
+        "evidenceId": "ev_d33700d3a6847094463b5a7cab9d9f0790497341d4fec390edc48f3453f3b809",
+        "problem": "Asse S etichettato kJ/(mol K), valori generati nella scala J/(mol K).",
+        "decision": "Non copiare questa unità. La vista T–S donor non è dichiarata implementata in Ardesia."
+      }
+    ],
+    "rights": {
+      "fendt": "Source header limits use to noncommercial purposes; observed page footer CC-BY-NC-SA-4.0. No code/assets copied into product.",
+      "phet": "Observed Buoyancy1.2.13 header CC-BY-NC-4.0 and commercial license required; current public repos state migration to private monorepo. Discovery only, no code/assets/embed adopted.",
+      "learncheme": "Public complete source inspected first. Individual package metadata includes ISC for Bernoulli/IdealGas/Venturi/Manometers; no blanket root/asset/transitive grant asserted. Original functional reconstruction only.",
+      "rawHandling": "Raw donor DOM/source/screenshots retained only in private work; report does not license redistribution."
+    },
+    "stop": "STOP_AFTER_12_NO_NEW_DONORS",
+    "actionCountMeaning": "65 azioni dichiarate dal protocollo REA, inclusi wait espliciti per caricamento/osservazione; non sono 65 manipolazioni di parametri."
+  },
+  "historicalRecovery": {
+    "registry": {
+      "path": "registry/TARGETS.json",
+      "schema": "ardesia.research-targets/3",
+      "countRead": 139,
+      "historicalRuntimeStatus": "NOT_RUN",
+      "depthMap": "docs/ops/ARDESIA-REA-DEPTH-139.json",
+      "entryOnlyCountInHistoricalDepthMap": 111,
+      "noSourceGraphTraceCountInHistoricalDepthMap": 120,
+      "assimilationNotAssertedCountInHistoricalDepthMap": 120
+    },
+    "raw139": {
+      "directory": "/Users/andreamarro/Documents/Codex/2026-10-20/goal-esegui-ardesia-v4-diario-rea/work/rea-research/catalog-visits",
+      "status": "LOCATED_METADATA_ICLOUD_DATALESS",
+      "bytesRecoveredAndHashesVerified": false,
+      "warning": "Directory entries are not proof that raw bytes are available. Selected stat showed compressed,dataless. Full read/hash did not complete."
+    },
+    "missionsS12S16": [
+      {
+        "id": "S12",
+        "status": "NOT_LOCATED_IN_EXAMINED_HANDOFF_PATHS",
+        "mentions": "handoffs/swarm-v2/S00/REA-REUSE.md"
+      },
+      {
+        "id": "S13",
+        "status": "CONSUMER_NOT_OBSERVED_IN_EXAMINED_PATHS",
+        "mentions": "handoffs/swarm-v2/S16/README.md"
+      },
+      {
+        "id": "S14",
+        "status": "HISTORICAL_IMPLEMENTED_CONSUMER_PATCH_PENDING_AT_CAPTURE",
+        "path": "handoffs/swarm-v2/S14/provenance.json",
+        "donor": "@excalidraw/excalidraw@0.18.1",
+        "license": "MIT",
+        "staticEvidence": "ev_141adffef099f600f7c8790f9e10df626514bc6d924b61e21ae1d5e9641bebe7",
+        "scenarioEvidence": "ev_050c9816d98e4d70a206473b8b9198d90c8ec793fe46e24da5ebe24e4df66ebe"
+      },
+      {
+        "id": "S15",
+        "status": "SOURCE_AUDIT_AND_OWNER_FOLLOWUP",
+        "path": "handoffs/swarm-v2/S15/README.md",
+        "relevanceToLabs": "INDIRECT_NOT_COUNTABLE_AS_LAB_ASSIMILATION"
+      },
+      {
+        "id": "S16",
+        "status": "ORIGINAL_GEOMETRY_PENDING_CONSUMER",
+        "path": "assets/scientific3d/manifest.json",
+        "rights": "LicenseRef-Ardesia-Original",
+        "redistributionLicenseDecision": "OWNER_REQUIRED"
+      }
+    ],
+    "atlasAnd36Png": {
+      "status": "NOT_LOCATED_IN_BOUNDED_SEARCH",
+      "inspectedOriginalImages": 0,
+      "searchBoundary": "MAIN/docs and MAIN/handoffs filename/content queries; no Documents/Codex/2026-10-27 directory"
+    },
+    "historicalEngines": [
+      {
+        "name": "JSXGraph",
+        "version": "1.14.0",
+        "state": "WEB_DEPENDENCY_AND_SCIENTIFICPLOT_CONSUMER_OBSERVED",
+        "license": "MIT_OR_LGPL_DUAL_NOTICE_PRESENT"
+      },
+      {
+        "name": "Excalidraw",
+        "version": "0.18.1",
+        "state": "STUDIO_DEPENDENCY_AND_LIBRARY_HELPER_OBSERVED",
+        "license": "MIT_CODE_ASSETS_SEPARATE"
+      },
+      {
+        "name": "Three.js",
+        "state": "NOT_OBSERVED_IN_READ_WEB_STUDIO_MANIFESTS"
+      },
+      {
+        "name": "React Flow",
+        "state": "REGISTRY_CANDIDATE_NOT_OBSERVED_IN_READ_WEB_STUDIO_MANIFESTS"
+      }
+    ],
+    "currentEngines": {
+      "Three.js": "0.186.1 dichiarato nei manifest Web/Studio; MIT",
+      "JSXGraph": "1.14.0 già presente Web; nessun nuovo consumer JSXGraph dichiarato per questo plugin",
+      "Excalidraw": "^0.18.1 già presente Studio; host esistente",
+      "ReactFlow": "Nessun nuovo consumer dichiarato"
+    },
+    "note": "La mappa di 139 target ed evidence ID storici non prova 139 indagini funzionali né recupero dei raw iCloud."
+  },
+  "geometry": {
+    "status": "SOURCE_REUSE_PRESENT_RUNTIME_ACCEPTANCE_PENDING",
+    "manifest": "assets/scientific3d/manifest.json",
+    "rights": "assets/scientific3d/RIGHTS.md",
+    "manifestHistoricalStatus": "PENDING_S13_CONSUMER",
+    "manifestHistoricalConsumerVerified": false,
+    "reused": [
+      {
+        "id": "calibrated-vessel",
+        "title": "Recipiente cilindrico graduato — sezione aperta",
+        "parameters": {
+          "innerRadiusM": 0.04,
+          "outerRadiusM": 0.043,
+          "baseThicknessM": 0.004,
+          "cavityHeightM": 0.12,
+          "cutawayDegrees": 90
+        },
+        "anchors": {
+          "floor": [
+            0,
+            0.004,
+            0
+          ],
+          "rim": [
+            0,
+            0.124,
+            0
+          ]
+        },
+        "calibration": [
+          {
+            "node": "graduation-100ml",
+            "volumeMl": 100,
+            "heightAboveFloorM": 0.01989436788648691,
+            "localY": 0.02389436788648691
+          },
+          {
+            "node": "graduation-200ml",
+            "volumeMl": 200,
+            "heightAboveFloorM": 0.039788735772973816,
+            "localY": 0.04378873577297382
+          },
+          {
+            "node": "graduation-300ml",
+            "volumeMl": 300,
+            "heightAboveFloorM": 0.05968310365946074,
+            "localY": 0.06368310365946074
+          },
+          {
+            "node": "graduation-400ml",
+            "volumeMl": 400,
+            "heightAboveFloorM": 0.07957747154594765,
+            "localY": 0.08357747154594765
+          },
+          {
+            "node": "graduation-500ml",
+            "volumeMl": 500,
+            "heightAboveFloorM": 0.09947183943243458,
+            "localY": 0.10347183943243458
+          }
+        ],
+        "scienceLimit": "Graduazioni per il cilindro ideale completo; la parete ha una sezione visiva aperta di 90°. Non è una misura sperimentale o una simulazione di fluido.",
+        "path": "calibrated-vessel.glb",
+        "mediaType": "model/gltf-binary",
+        "sha256": "d3d268ab0c054350217c17a5452618fbb0ce47202cba81975e3be3b8bcab3b55",
+        "bytes": 29116,
+        "triangles": 704,
+        "vertices": 782,
+        "primitives": 7,
+        "provenance": {
+          "kind": "ORIGINAL_PARAMETRIC",
+          "generator": "../../handoffs/swarm-v2/S16/build-assets.mjs",
+          "thirdPartyGeometry": [],
+          "rights": "RIGHTS.md"
+        }
+      },
+      {
+        "id": "piston-cylinder",
+        "title": "Cilindro e pistone — sezione aperta",
+        "parameters": {
+          "boreRadiusM": 0.025,
+          "outerRadiusM": 0.028,
+          "barrelFloorM": 0.003,
+          "barrelRimM": 0.103,
+          "pistonRadiusM": 0.0245,
+          "pistonThicknessM": 0.006,
+          "rodRadiusM": 0.004
+        },
+        "anchors": {
+          "floor": [
+            0,
+            0.003,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            0
+          ]
+        },
+        "controls": [
+          {
+            "node": "piston-moving",
+            "property": "translation.y",
+            "units": "m",
+            "initial": 0.055,
+            "min": 0.012,
+            "max": 0.082,
+            "authority": "S13 integration proposal; not an installed control"
+          }
+        ],
+        "scienceLimit": "Gioco radiale e limiti di corsa geometrici soltanto. Nessuna legge dei gas, tenuta, attrito, pressione o forza è calcolata dal GLB.",
+        "path": "piston-cylinder.glb",
+        "mediaType": "model/gltf-binary",
+        "sha256": "bf88e33fc2f8f30f57d83793cd92e693f8e43e33df79902c7e86654a0b8239cb",
+        "bytes": 39240,
+        "triangles": 1156,
+        "vertices": 1186,
+        "primitives": 4,
+        "provenance": {
+          "kind": "ORIGINAL_PARAMETRIC",
+          "generator": "../../handoffs/swarm-v2/S16/build-assets.mjs",
+          "thirdPartyGeometry": [],
+          "rights": "RIGHTS.md"
+        }
+      }
+    ],
+    "normalization": "La geometria S16 è trasformata in unità di scena normalizzate: graduazioni illustrative e vettori relativi; le etichette in ml della calibrazione originale non sono misure del renderer trasformato.",
+    "pistonMapping": {
+      "path": "apps/studio/plugins/fluid-thermo/sceneGeometry.ts",
+      "rule": "height=1.2*V/V_reference; base=-0.8; assetScale=25; traslazione coerente col fondo originale a 0.003 m. S16 usato solo con translation.y in [0.012,0.082]; altrimenti pistone parametrico originale.",
+      "test": "apps/studio/plugins/fluid-thermo/sceneGeometry.test.ts"
+    },
+    "qualityLimit": "Non è CFD, dinamica molecolare o animazione fisica. Almeno cinque scene utili e relativi fallback rimangono da accettare nel browser; eight flags threeD non sono otto PASS.",
+    "externalRights": "LicenseRef-Ardesia-Original documenta provenienza; eventuale distribuzione esterna richiede decisione del proprietario."
+  },
+  "legalAndPrimarySources": [
+    {
+      "id": "FENDT",
+      "url": "https://www.walter-fendt.de/html5/phen/hydrostaticpressure_en.htm",
+      "statement": "Footer osservato CC BY-NC-SA 4.0; source con uso non commerciale. Nessun riuso di codice o asset."
+    },
+    {
+      "id": "PHET_LICENSE",
+      "url": "https://phet.colorado.edu/en/licensing",
+      "statement": "La build Buoyancy osservata dichiara CC BY-NC 4.0 e licenza commerciale necessaria. Discovery parziale esclusa dai 12 scope."
+    },
+    {
+      "id": "PHET_SOURCE",
+      "url": "https://github.com/phetsims/buoyancy",
+      "statement": "Il repository corrente rinvia a monorepo privato; source attuale completo non disponibile al pubblico in questa ricognizione."
+    },
+    {
+      "id": "LEARNCHEME_SOURCE",
+      "url": "https://github.com/LearnChemE/LearnChemE.github.io/tree/f0fd5c6ac6a6bf0529cefc7911151a5c903e6f3d",
+      "statement": "Source pubblico esaminato prima del runtime; pin f0fd5c6a. Bundle distribuito non riconciliato per hash con quel commit. Alcuni package dichiarano ISC, nessun grant globale per asset o dipendenze asserito."
+    },
+    {
+      "id": "VENTURI_PRIMARY",
+      "url": "https://learncheme.com/simulations/fluid-mechanics/venturi-meter/",
+      "statement": "Pagina ufficiale della simulazione; osservazione di comportamento e ricostruzione originale."
+    },
+    {
+      "id": "THREE",
+      "url": "https://github.com/mrdoob/three.js/blob/r186/LICENSE",
+      "statement": "Three.js 0.186.1 dichiarato nei manifest Web/Studio; MIT, motore di rendering. Dipendenza non conteggiata come assimilazione scientifica."
+    },
+    {
+      "id": "GLTF",
+      "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html",
+      "statement": "Specifica glTF 2.0; GLB originali Ardesia, senza texture o risorse esterne."
+    }
+  ],
+  "costsAndPerformance": {
+    "reaAcceptedCaptureDurationMs": 270061,
+    "reaAcceptedCaptureDurationSeconds": 270.061,
+    "reaMeasuredCliWallSecondsSubset": 263.0,
+    "reaCliWallSampleCount": 11,
+    "reaCliWallMissingScope": [
+      "C1"
+    ],
+    "failedPhetDiscoveryDurationMs": 532848,
+    "failedC4FirstAttemptCliWallSeconds": 36.552,
+    "meaning": "Durate REA/CLI misurate, comprendono navigazione e artefatti: non tempi di interazione Ardesia. La somma parziale CLI non è costo totale della ricerca.",
+    "ardesiaP95InteractionMs": null,
+    "ardesiaP95Status": "NOT_RUN",
+    "desktopFps": null,
+    "tabletFps": null,
+    "hardwareValidation": "NOT_RUN",
+    "totalResearchWallSeconds": null,
+    "totalEngineeringCost": "UNKNOWN",
+    "counterfactualCost": "UNKNOWN",
+    "learningEffect": "NOT_MEASURED"
+  },
+  "remainingAcceptance": [
+    "Completare e verificare le correzioni UI/lazy import e StrictMode, poi prove sul working tree e sulla nuova SHA.",
+    "Eseguire prova funzionale delle scene utili e fallback 2D sul consumer reale; hardware/tablet e p95 ancora NOT_RUN.",
+    "1A deve fornire percorsi esatti delle lezioni Core e prove save/reopen/isolamento; nessun link pubblicato inventato.",
+    "Accettare almeno otto corrispondenze comportamento→consumer con prova visibile: tutte le 14 righe candidate restano pendenti.",
+    "Riconciliare CI sulla SHA successiva e merge tree; non usare i verdi 97ad0383 per byte modificati."
+  ],
+  "artifactPolicy": "Solo metadati, Evidence ID, digest, azioni dichiarate e parafrasi. Raw DOM, screenshot, source donor e log estesi restano nel work privato; non copiati nel repository."
+}

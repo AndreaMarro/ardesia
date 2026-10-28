@@ -62,7 +62,7 @@ export function evaluateLab(id:LabId,parameters:Parameters):LabResult{
    const pressure=p.inputForce/p.inputArea,force=pressure*p.outputArea;
    const output=m('outputForce','Forza sul secondo pistone','N',force);
    return result(output,[output,m('pressure','Incremento di pressione','Pa',pressure),m('forceRatio','Rapporto delle forze F₂/F₁ (rapporto delle aree)','1',p.outputArea/p.inputArea),m('displacementRatio','Rapporto spostamenti Δx₂/Δx₁','1',p.inputArea/p.outputArea)],
-    [series('Forza di uscita a forza di ingresso fissata','N','m²',sample(area=>pressure*area,.001,Math.max(.01,p.outputArea*1.5)))]);
+    [series('Forza di uscita a forza di ingresso fissata','N','m²',sample(area=>pressure*area,.001,Math.min(1,Math.max(.01,p.outputArea*1.5))))]);
   }
   case 'buoyancy':{
    const displaced=p.volume*p.submergedFraction,buoyancy=p.fluidDensity*p.gravity*displaced,weight=p.bodyDensity*p.gravity*p.volume;
@@ -124,17 +124,20 @@ export function evaluateLab(id:LabId,parameters:Parameters):LabResult{
    // The exact right-angle case is geometrically planar, not a floating-point residual.
    const cosine=p.contactAngleDeg===90?0:Math.cos(p.contactAngleDeg*Math.PI/180);
    const curvature=cosine/p.radius,pressure=2*p.surfaceTension*curvature,rise=pressure/(p.density*p.gravity);
+   const maximumRadius=Math.min(.002,Math.sqrt(.25*p.surfaceTension/(p.density*p.gravity)));
    const output=m('rise','Risalita capillare firmata','m',rise);
    return result(output,[output,m('pressureDifference','p_gas−p_liquido alla superficie','Pa',pressure),m('curvature','Curvatura sferica firmata 1/R','1/m',curvature),m('contactAngleDeg','Angolo di contatto nel liquido','°',p.contactAngleDeg),m('bondNumber','Numero di Bond','1',bond)],
-    [series('Risalita al variare del raggio','m','m',sample(r=>2*p.surfaceTension*cosine/(p.density*p.gravity*r),.00005,.002))],
+    [series('Risalita al variare del raggio','m','m',sample(r=>2*p.surfaceTension*cosine/(p.density*p.gravity*r),.00005,maximumRadius))],
     ['Menisco sferico approssimato. La forma vicino al raccordo con il serbatoio e la dinamica non sono calcolate.']);
   }
   case 'ideal-gas':{
    const pressure=p.moles*GAS_CONSTANT*p.temperatureK/p.volume;
    if(pressure>1e8)throw new RangeError('Pressione oltre 10⁸ Pa: configurazione esclusa dal modello di gas ideale.');
+   // Keep every isotherm sample inside the same pressure limit as the selected state.
+   const minimumVolume=Math.max(.00001,p.volume/3,p.moles*GAS_CONSTANT*p.temperatureK/1e8*(1+4*Number.EPSILON));
    const output=m('pressure','Pressione assoluta','Pa',pressure);
    return result(output,[output,m('volume','Volume del gas','m³',p.volume),m('temperatureK','Temperatura assoluta','K',p.temperatureK),m('pv','Prodotto pV','J',pressure*p.volume),m('nrt','Prodotto nRT','J',p.moles*GAS_CONSTANT*p.temperatureK)],
-    [series('Isoterma a n e T fissati','Pa','m³',sample(v=>p.moles*GAS_CONSTANT*p.temperatureK/v,Math.max(.00001,p.volume/3),Math.min(.01,p.volume*3)))]);
+    [series('Isoterma a n e T fissati','Pa','m³',sample(v=>p.moles*GAS_CONSTANT*p.temperatureK/v,minimumVolume,Math.min(.01,p.volume*3)))]);
   }
   case 'calorimetry':{
    const e=thermalEquilibrium(p),output=m('equilibriumTemperature','Temperatura di equilibrio','K',e.final);
@@ -147,9 +150,13 @@ export function evaluateLab(id:LabId,parameters:Parameters):LabResult{
    if(p.heat>end)throw new RangeError('Il calore supera l’inizio della vaporizzazione: questa esperienza termina a 100°C.');
    const temperature=(q:number)=>q<sensibleIce?p.initialTemperatureC+q/(p.mass*2100):q<=sensibleIce+fusion?0:(q-sensibleIce-fusion)/(p.mass*4186);
    const fraction=Math.max(0,Math.min(1,(p.heat-sensibleIce)/fusion));
+   const maximumHeat=Math.min(end,3e6);
+   const curve:[number,number][]=[[0,p.initialTemperatureC],[sensibleIce,0],[sensibleIce+fusion,0],[end,100]];
+   const points=curve.filter(([q])=>q<=maximumHeat);
+   if(points.at(-1)![0]<maximumHeat)points.push([maximumHeat,temperature(maximumHeat)]);
    const output=m('temperatureC','Temperatura del sistema','°C',temperature(p.heat));
    return result(output,[output,m('meltFraction','Frazione di massa fusa','1',fraction),m('heatToMeltStart','Calore per raggiungere 0°C','J',sensibleIce),m('fusionHeat','Calore per fondere tutta la massa','J',fusion),m('heatToMeltEnd','Calore totale per terminare la fusione','J',sensibleIce+fusion)],
-    [series('Curva di riscaldamento','°C','J',[[0,p.initialTemperatureC],[sensibleIce,0],[sensibleIce+fusion,0],[end,100]])]);
+    [series('Curva di riscaldamento','°C','J',points)]);
   }
   case 'heat-transfer':{
    const delta=p.hotTemperatureK-p.coldTemperatureK;
@@ -163,21 +170,29 @@ export function evaluateLab(id:LabId,parameters:Parameters):LabResult{
     [delta<0?'Il flusso netto è negativo nella convenzione superficie→ambiente: le temperature scelte invertono il verso del trasferimento.':'I tre valori si riferiscono a configurazioni diverse: non sono tre contributi da sommare senza un modello di accoppiamento.']);
   }
   case 'process':{
+   const freeExpansion=p.path===4;
+   if(p.path===2&&Math.abs(p.volume2-p.volume1)>1e-12*Math.max(p.volume1,p.volume2))
+    throw new RangeError('La trasformazione isocora richiede volume finale uguale al volume iniziale.');
+   if(freeExpansion&&p.volume2<=p.volume1)
+    throw new RangeError('La libera espansione nel vuoto richiede volume finale maggiore del volume iniziale.');
    const startPressure=p.moles*GAS_CONSTANT*p.temperatureK/p.volume1;
    const finalVolume=p.path===2?p.volume1:p.volume2;
-   const finalTemperature=p.path===0?p.temperatureK:p.path===1?p.temperatureK*finalVolume/p.volume1:p.path===2?p.temperature2K:p.temperatureK*(p.volume1/finalVolume)**(GAMMA-1);
+   const finalTemperature=p.path===0||freeExpansion?p.temperatureK:p.path===1?p.temperatureK*finalVolume/p.volume1:p.path===2?p.temperature2K:p.temperatureK*(p.volume1/finalVolume)**(GAMMA-1);
    const finalPressure=p.moles*GAS_CONSTANT*finalTemperature/finalVolume;
    if(finalTemperature<50||finalTemperature>2000||Math.max(startPressure,finalPressure)>1e8)
     throw new RangeError('Lo stato finale esce dal dominio: 50–2000 K e pressione assoluta non oltre 10⁸ Pa.');
    const internal=p.moles*CV*(finalTemperature-p.temperatureK);
-   const work=p.path===0?p.moles*GAS_CONSTANT*p.temperatureK*Math.log(finalVolume/p.volume1):p.path===1?startPressure*(finalVolume-p.volume1):p.path===2?0:-internal;
-   const heat=p.path===3?0:internal+work;
-   const entropy=p.moles*CV*Math.log(finalTemperature/p.temperatureK)+p.moles*GAS_CONSTANT*Math.log(finalVolume/p.volume1);
+   const work=p.path===0?p.moles*GAS_CONSTANT*p.temperatureK*Math.log(finalVolume/p.volume1):p.path===1?startPressure*(finalVolume-p.volume1):p.path===2||freeExpansion?0:-internal;
+   const heat=p.path===3||freeExpansion?0:internal+work;
+   const entropy=p.path===3?0:p.moles*CV*Math.log(finalTemperature/p.temperatureK)+p.moles*GAS_CONSTANT*Math.log(finalVolume/p.volume1);
    const pressureAt=(volume:number)=>p.path===0?p.moles*GAS_CONSTANT*p.temperatureK/volume:p.path===1?startPressure:startPressure*(p.volume1/volume)**GAMMA;
-   const points:[number,number][]=p.path===2?[[p.volume1,startPressure],[p.volume1,finalPressure]]:sample(pressureAt,p.volume1,finalVolume,61);
+   const curves=freeExpansion?
+    [series('Solo stato iniziale di equilibrio','Pa','m³',[[p.volume1,startPressure]]),series('Solo stato finale di equilibrio','Pa','m³',[[finalVolume,finalPressure]])]:
+    [series('Cammino p–V','Pa','m³',p.path===2?[[p.volume1,startPressure],[p.volume1,finalPressure]]:sample(pressureAt,p.volume1,finalVolume,61))];
    const output=m('work','Lavoro compiuto dal gas','J',work);
-   return result(output,[output,m('heat','Calore ricevuto dal gas','J',heat),m('internalEnergyChange','Variazione di energia interna','J',internal),m('finalTemperature','Temperatura finale','K',finalTemperature),m('finalPressure','Pressione finale','Pa',finalPressure),m('finalVolume','Volume finale effettivo','m³',finalVolume),m('entropyChange','Variazione di entropia del gas','J/K',Math.abs(entropy)<1e-12?0:entropy)],
-    [series('Cammino p–V','Pa','m³',points)],p.path===2?['Nel cammino isocoro volume2 non è imposto: il volume finale resta volume1. La temperatura finale è temperature2K.']:['La temperatura finale è determinata dal cammino; il parametro temperature2K è usato solo nell’isocora.']);
+   return result(output,[output,m('heat','Calore ricevuto dal gas','J',heat),m('internalEnergyChange','Variazione di energia interna','J',internal),m('finalTemperature','Temperatura finale','K',finalTemperature),m('finalPressure','Pressione finale','Pa',finalPressure),m('finalVolume','Volume finale effettivo','m³',finalVolume),m('entropyChange','Variazione di entropia del gas','J/K',entropy),m('totalEntropyChange','Variazione di entropia totale','J/K',freeExpansion?entropy:0)],
+    curves,freeExpansion?['Libera espansione isolata nel vuoto: nessun cammino di equilibrio intermedio è definito. I due punti non vanno collegati; nessuna area del grafico rappresenta il lavoro, che è zero. ΔS_gas=ΔS_totale>0.']:
+     p.path===2?['Cammino isocoro: volume finale uguale al volume iniziale; la temperatura finale è temperature2K.']:['La temperatura finale è determinata dal cammino; il parametro temperature2K è usato solo nell’isocora.']);
   }
   case 'carnot':{
    if(p.hotTemperatureK<=p.coldTemperatureK)throw new RangeError('Un motore di Carnot richiede T_h>T_c>0 in kelvin.');

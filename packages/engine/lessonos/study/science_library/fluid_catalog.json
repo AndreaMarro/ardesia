@@ -8,7 +8,7 @@
       "capabilityId": "manometer-lab-v1",
       "title": "Pressione, densità e manometri",
       "objectiveIds": [
-        "U3-01"
+        "U3-02.06"
       ],
       "objective": "Leggere una differenza di livello come differenza di pressione e conservarne il segno.",
       "prediction": "Se inverti la differenza di livello, che cosa succede al segno di Δp?",
@@ -81,7 +81,8 @@
       "capabilityId": "hydrostatic-lab-v1",
       "title": "Stevino e distribuzione della pressione",
       "objectiveIds": [
-        "U3-02"
+        "U3-02.01",
+        "U3-01.02"
       ],
       "objective": "Distinguere pressione assoluta e sovrapressione e riconoscere la dipendenza lineare dalla profondità.",
       "prediction": "Raddoppiando la profondità raddoppia anche la pressione assoluta?",
@@ -164,7 +165,7 @@
       "capabilityId": "pascal-lab-v1",
       "title": "Pascal e pressa idraulica",
       "objectiveIds": [
-        "U3-02"
+        "U3-02.02"
       ],
       "objective": "Collegare rapporto di aree, amplificazione della forza e lavoro conservato.",
       "prediction": "La forza può aumentare senza che cambi lo spostamento dei pistoni?",
@@ -237,7 +238,8 @@
       "capabilityId": "buoyancy-lab-v1",
       "title": "Archimede e volume immerso",
       "objectiveIds": [
-        "U3-02"
+        "U3-02.03",
+        "U3-02.04"
       ],
       "objective": "Distinguere spinta, peso, immersione imposta ed equilibrio di galleggiamento.",
       "prediction": "Un corpo completamente immerso riceve una spinta maggiore se scende ancora?",
@@ -332,7 +334,8 @@
       "capabilityId": "continuity-lab-v1",
       "title": "Continuità e sezioni del condotto",
       "objectiveIds": [
-        "U3-03"
+        "U3-03.01",
+        "U3-03.04"
       ],
       "objective": "Ricavare le velocità dalla stessa portata e distinguere area e raggio.",
       "prediction": "Dimezzando il raggio, di quanto cambia la velocità a portata fissata?",
@@ -404,7 +407,8 @@
       "capabilityId": "venturi-lab-v1",
       "title": "Bernoulli e Venturi",
       "objectiveIds": [
-        "U3-03"
+        "U3-03.04",
+        "U3-03.05"
       ],
       "objective": "Confrontare pressione, velocità e quota lungo una stessa linea di corrente ideale.",
       "prediction": "Una strozzatura alza sempre la pressione? Che cosa cambia se il tubo sale?",
@@ -532,7 +536,10 @@
       "capabilityId": "poiseuille-lab-v1",
       "title": "Poiseuille e profilo di velocità",
       "objectiveIds": [
-        "U3-04"
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04"
       ],
       "objective": "Confrontare Δp fissata e Q fissata, dipendenza da r⁴ e profilo parabolico.",
       "prediction": "Se la pompa mantiene Q, un raggio maggiore aumenta ancora la portata?",
@@ -649,7 +656,7 @@
       "capabilityId": "hydraulic-network-lab-v1",
       "title": "Resistenze idrauliche in serie e parallelo",
       "objectiveIds": [
-        "U3-04"
+        "U3-04.05"
       ],
       "objective": "Distinguere somma delle cadute in serie e somma delle portate in parallelo.",
       "prediction": "Raddoppiare i rami uguali in parallelo fa aumentare o diminuire la resistenza equivalente?",
@@ -733,7 +740,10 @@
       "capabilityId": "capillary-lab-v1",
       "title": "Capillarità, menisco e Laplace",
       "objectiveIds": [
-        "U3-05"
+        "U3-05.01",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
       ],
       "objective": "Leggere il segno della risalita dal contatto e confrontare raggio e curvatura.",
       "prediction": "Che cosa accade alla risalita se l’angolo di contatto supera 90°?",
@@ -840,7 +850,9 @@
       "capabilityId": "ideal-gas-lab-v1",
       "title": "Gas ideale e pistone",
       "objectiveIds": [
-        "U5-01"
+        "U5-01.02",
+        "U5-01.04",
+        "U5-01.05"
       ],
       "objective": "Collegare pressione assoluta, volume e temperatura kelvin a quantità di sostanza costante.",
       "prediction": "Raddoppiare la temperatura Celsius raddoppia la pressione?",
@@ -913,7 +925,10 @@
       "capabilityId": "calorimetry-lab-v1",
       "title": "Calorimetria e miscelazione",
       "objectiveIds": [
-        "U5-02"
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.07"
       ],
       "objective": "Prevedere l’equilibrio con capacità termiche diverse e verificare il bilancio energetico.",
       "prediction": "La temperatura finale è sempre la media delle due temperature iniziali?",
@@ -1018,7 +1033,8 @@
       "capabilityId": "phase-change-lab-v1",
       "title": "Calore latente e cambiamenti di stato",
       "objectiveIds": [
-        "U5-02"
+        "U5-02.05",
+        "U5-02.06"
       ],
       "objective": "Distinguere aumento di temperatura e fusione a temperatura costante.",
       "prediction": "Dopo aver raggiunto 0°C, il calore aggiunto fa subito salire la temperatura?",
@@ -1091,7 +1107,9 @@
       "capabilityId": "heat-transfer-lab-v1",
       "title": "Conduzione, convezione e irraggiamento",
       "objectiveIds": [
-        "U5-03"
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
       ],
       "objective": "Confrontare i tre meccanismi e le loro dipendenze dai parametri.",
       "prediction": "Raddoppiare la differenza di temperatura raddoppia ogni potenza trasferita?",
@@ -1208,15 +1226,26 @@
       "capabilityId": "process-lab-v1",
       "title": "Trasformazioni e primo principio",
       "objectiveIds": [
-        "U5-04"
+        "U5-02.04",
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08",
+        "U5-05.02",
+        "U5-05.06"
       ],
       "objective": "Distinguere funzione di stato e cammino, lavoro del gas e calore ricevuto.",
       "prediction": "Due trasformazioni con la stessa variazione di energia interna scambiano sempre lo stesso calore?",
-      "formula": "ΔU = nC_VΔT; ΔU = Q − W; W = ∫p dV",
+      "formula": "ΔU = nC_VΔT = Q − W; W = ∫p_ext dV; libera espansione isolata ideale: Q=W=ΔU=0",
       "assumptions": [
-        "Gas ideale monoatomico: C_V=3R/2 e γ=5/3; trasformazioni reversibili quasi statiche con pressione esterna p_ext≈p del gas. W=∫p_ext dV è positivo se compiuto dal gas; Q positivo se ricevuto.",
-        "path=0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico. Per l’isocora il volume finale coincide con volume1 e conta temperature2K; negli altri cammini temperature2K non è imposto.",
-        "Libera espansione e trasformazioni irreversibili fuori equilibrio non sono rappresentate da una curva p–V fittizia. ΔS riportata è quella del gas; per i cammini reversibili quella dell’universo è zero.",
+        "Gas ideale monoatomico: C_V=3R/2 e γ=5/3. I cammini 0–3 sono reversibili quasi statici con pressione esterna p_ext≈p del gas; W=∫p_ext dV è positivo se compiuto dal gas e Q positivo se ricevuto.",
+        "path=0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico reversibile, 4 libera espansione isolata nel vuoto. Per l’isocora è richiesto volume2=volume1 e la temperatura finale è temperature2K; negli altri cammini temperature2K non è imposto.",
+        "La libera espansione richiede volume2>volume1: p_ext=0, Q=W=ΔU=0 e T_f=T_i per il gas ideale isolato. Si mostrano soltanto gli stati di equilibrio iniziale e finale, senza curva intermedia o area di lavoro inventata.",
+        "ΔS del gas è distinta da ΔS totale: nei cammini reversibili ΔS totale=0; nella libera espansione isolata ΔS totale=ΔS_gas=nR ln(V₂/V₁)>0.",
         "L’asse del grafico è volume, non tempo. Temperature finali fuori 50–2000K o pressioni oltre 10⁸Pa sono escluse."
       ],
       "parameters": [
@@ -1249,7 +1278,7 @@
         },
         {
           "key": "volume2",
-          "label": "Volume finale (eccetto isocora)",
+          "label": "Volume finale (uguale all’iniziale in isocora)",
           "unit": "m³",
           "default": 0.002,
           "min": 0.00001,
@@ -1267,11 +1296,11 @@
         },
         {
           "key": "path",
-          "label": "Cammino: 0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico",
+          "label": "Cammino: 0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico, 4 libera espansione",
           "unit": "1",
           "default": 0,
           "min": 0,
-          "max": 3,
+          "max": 4,
           "step": 1
         }
       ],
@@ -1315,7 +1344,9 @@
       "capabilityId": "carnot-lab-v1",
       "title": "Macchina di Carnot e rendimento",
       "objectiveIds": [
-        "U5-05"
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05"
       ],
       "objective": "Collegare temperature assolute, rendimento massimo e bilancio energetico di un ciclo.",
       "prediction": "È possibile convertire tutto il calore assorbito in lavoro mantenendo T_c>0?",
@@ -1388,7 +1419,9 @@
       "capabilityId": "entropy-lab-v1",
       "title": "Entropia e irreversibilità",
       "objectiveIds": [
-        "U5-05"
+        "U5-05.02",
+        "U5-05.06",
+        "U5-05.08"
       ],
       "objective": "Verificare l’aumento di entropia totale mentre l’energia di due corpi isolati si conserva.",
       "prediction": "Il corpo caldo perde entropia: l’entropia totale può comunque aumentare?",
