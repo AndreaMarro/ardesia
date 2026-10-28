@@ -49,14 +49,22 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
     if course_lesson is not None:payload['courseLesson']=course_lesson
     def apply(c):
         manual = activity_id == 'course-reasoning-v1'
+        from .science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
+        lab = activity_id in FLUID_LAB_DEFINITIONS
+        if lab and course_lesson is None:
+            raise StudyError('invalid_course_lesson')
         if manual and (course_lesson is None or activity_parameters not in (None, {})):
             raise StudyError('invalid_course_lesson')
-        activity_context=None if manual else _assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
+        activity_context=None if manual or lab else _assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
         from .catalog import submission_course_context
         course_context=submission_course_context(store,edition_id,activity_id,{} if manual else activity_parameters,activity_context)
         from .course_lesson_context import freeze_course_lesson, require_same_parent_lesson
         lesson_context=freeze_course_lesson(store,principal,edition_id,activity_id,course_lesson,course_context['parameters'])
         if lesson_context is not None:course_context.update(lesson_context)
+        if lab:
+            from .science_library.models import evaluate
+            result=evaluate(activity_id,activity_parameters)
+            course_context.update({'modelId':activity_id,'modelVersion':1,'parameters':result['parameters']})
         if manual:course_context.update({'modelId':None,'modelVersion':None,'reviewMode':'MANUAL_REVIEW_REQUIRED'})
         evidence=None
         if activity_evidence is not None:
@@ -71,7 +79,7 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
         for ref in source_refs:
             resource=store.get_resource(principal,ref['resourceId'])
             if resource['editionId']!=edition_id or resource['revisionId']!=ref['revisionId']:raise StudyError('stale_source',409)
-            if manual and resource['kind']=='science-resource':
+            if (manual or lab) and resource['kind']=='science-resource':
                 from .science_library.resources import read as read_science
                 saved=read_science(store,principal,ref['resourceId'],ref['revisionId'])['snapshot']
                 saved_lesson=saved.get('courseLesson')

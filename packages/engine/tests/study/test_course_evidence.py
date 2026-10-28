@@ -22,12 +22,12 @@ def fixture(tmp_path):
     return store, teacher, student, peer, other
 
 
-def lesson_context(lesson_id='ds-2026-u3-01', phase='practice', **extra):
+def lesson_context(lesson_id='ds-2026-u3-02', phase='practice', **extra):
     lesson = next(l for l in load_pack('sf-fluidi-termodinamica-v1')['lessons'] if l['id'] == lesson_id)
     return {'lessonRef':lesson_reference(lesson), 'phase':phase, **extra}
 
 
-def lab_state(capability='manometer-lab-v1', *, context=None):
+def lab_state(capability='hydrostatic-lab-v1', *, context=None):
     params = default_fluid_parameters(capability)
     definition = FLUID_LAB_DEFINITIONS[capability]
     snapshot = resources.new_snapshot(capability, params, note='Prima previsione, poi osservazione.', prediction='Il segno si inverte')
@@ -172,7 +172,7 @@ def test_every_plugin_lab_round_trips_exact_canonical_bytes_without_evaluation_o
     lambda s:s['labSnapshot']['configuration'].update(result={'value':999}),
     lambda s:s['labSnapshot'].update(view='4d'),
     lambda s:s['labSnapshot']['configuration'].update(modelVersion=True),
-    lambda s:s['labSnapshot']['configuration'].update(lessonRef=lesson_context('ds-2026-u3-02')['lessonRef']),
+    lambda s:s['labSnapshot']['configuration'].update(lessonRef=lesson_context('ds-2026-u3-03')['lessonRef']),
 ])
 def test_plugin_inner_outer_mismatch_and_untrusted_results_are_rejected(tmp_path, mutate):
     store, _, student, *_ = fixture(tmp_path)
@@ -314,4 +314,64 @@ def test_current_lab_parameters_are_checked_by_independent_core_solver(tmp_path)
     with pytest.raises(StudyError, match='invalid_physical_domain'):
         resources.save(store, student, 'course', snapshot, 'outside-domain')
     assert store.connection.execute("SELECT COUNT(*) FROM study_resources WHERE kind='science-resource'").fetchone()[0] == 0
+    store.close()
+
+
+def test_submission_pins_optional_canonical_reader_step_without_unknown_fallback(tmp_path):
+    store, _, student, *_ = fixture(tmp_path)
+    store.synthetic_acceptance = True
+    receipt = reasoning(store, student, context=lesson_context(stepId='independent'))
+    assert receipt['courseContext']['stepId'] == 'independent'
+    assert reasoning(store, student, context=lesson_context(stepId='independent')) == receipt
+    for index, step in enumerate(('unknown', '', 'x'*129, True, {})):
+        with pytest.raises(StudyError, match='invalid_course_lesson'):
+            reasoning(store, student, 'invalid-step-'+str(index), context=lesson_context(stepId=step))
+    # A correction can be saved at another valid reader checkpoint while its
+    # attempt parent continues to bind the same canonical lesson and phase.
+    child = reasoning(store, student, 'child-step', context=lesson_context(stepId='feedback'), parent_id=receipt['submissionId'])
+    assert child['courseContext']['stepId'] == 'feedback'
+    store.close()
+
+
+
+@pytest.mark.parametrize('capability', sorted(FLUID_LAB_DEFINITIONS))
+def test_current_lab_submission_pins_canonical_family_step_parameters_and_existing_receipt(tmp_path, capability):
+    store, _, student, *_ = fixture(tmp_path)
+    store.synthetic_acceptance = True
+    definition = FLUID_LAB_DEFINITIONS[capability]
+    family = definition['objectiveIds'][0].split('.')[0].lower()
+    context = lesson_context('ds-2026-'+family, stepId='compare')
+    params = default_fluid_parameters(capability)
+    receipt = submit(store, student, 'course', capability, [], 'Confronto la previsione con il modello.', 'lab',
+                     course_lesson=context, activity_parameters=params)
+    assert receipt['courseContext']['lessonRef'] == context['lessonRef']
+    assert receipt['courseContext']['stepId'] == 'compare'
+    assert receipt['courseContext']['modelId'] == capability and receipt['courseContext']['modelVersion'] == 1
+    assert receipt['courseContext']['parameters'] == params
+    assert receipt['state'] == 'received' and 'review' not in receipt
+    assert submit(store, student, 'course', capability, [], 'Confronto la previsione con il modello.', 'lab',
+                  course_lesson=context, activity_parameters=params) == receipt
+    store.close()
+
+
+def test_lab_submission_requires_canonical_family_membership_step_and_same_activity_parent(tmp_path):
+    store, _, student, peer, _ = fixture(tmp_path)
+    store.synthetic_acceptance = True
+    params = default_fluid_parameters('hydrostatic-lab-v1')
+    context = lesson_context(stepId='compare')
+    receipt = submit(store, student, 'course', 'hydrostatic-lab-v1', [], 'Prima osservazione', 'lab',
+                     course_lesson=context, activity_parameters=params)
+    for wrong_context in (None, lesson_context('ds-2026-u5-01'), lesson_context(stepId='invented')):
+        with pytest.raises(StudyError):
+            submit(store, student, 'course', 'hydrostatic-lab-v1', [], 'Tentativo errato', 'wrong',
+                   course_lesson=wrong_context, activity_parameters=params)
+    with pytest.raises(StudyError, match='forbidden'):
+        reasoning(store, student, 'different-activity', parent_id=receipt['submissionId'])
+    with pytest.raises(StudyError, match='forbidden'):
+        submit(store, peer, 'course', 'hydrostatic-lab-v1', [], 'Altro studente', 'peer',
+               parent_id=receipt['submissionId'], course_lesson=context, activity_parameters=params)
+    invalid = dict(params); invalid['density'] = -1000
+    with pytest.raises(StudyError, match='invalid_physical_domain'):
+        submit(store, student, 'course', 'hydrostatic-lab-v1', [], 'Fuori dominio', 'bad-parameters',
+               course_lesson=context, activity_parameters=invalid)
     store.close()

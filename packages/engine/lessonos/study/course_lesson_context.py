@@ -1,5 +1,6 @@
 """Validate editorial provenance without creating another attempt authority."""
-from typing import Literal, TypedDict
+import re
+from typing import Literal, NotRequired, TypedDict
 
 from .models import StudyError
 
@@ -13,13 +14,18 @@ class LessonReference(TypedDict):
 class CourseLessonContext(TypedDict):
     lessonRef: LessonReference
     phase: Literal['practice', 'transfer']
+    stepId: NotRequired[str]
 
 
 def freeze_course_lesson(store, principal, edition_id, activity_id, value, parameters) -> CourseLessonContext | None:
     if value is None:
         return None  # Existing commands/receipts keep their original meaning.
-    if (not isinstance(value, dict) or set(value) != {'lessonRef', 'phase'}
+    if (not isinstance(value, dict) or not {'lessonRef', 'phase'} <= set(value)
+            or set(value) - {'lessonRef', 'phase', 'stepId'}
             or value['phase'] not in ('practice', 'transfer')):
+        raise StudyError('invalid_course_lesson')
+    if 'stepId' in value and (not isinstance(value['stepId'], str)
+                              or not re.fullmatch(r'[a-zA-Z0-9_-]{1,128}', value['stepId'])):
         raise StudyError('invalid_course_lesson')
     ref = value['lessonRef']
     if (not isinstance(ref, dict) or set(ref) != {'id', 'version', 'sha256'}
@@ -36,19 +42,29 @@ def freeze_course_lesson(store, principal, edition_id, activity_id, value, param
     if lesson is None:
         raise StudyError('course_lesson_unavailable', 409)
     expected = lesson.get('lessonRef') or lesson_reference(lesson)
+    if 'stepId' in value and value['stepId'] not in {step['id'] for step in lesson.get('learningSequence', [])}:
+        raise StudyError('invalid_course_lesson')
     if ref != expected:
         raise StudyError('stale_course_lesson', 409)
+    from .science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
+    lab = FLUID_LAB_DEFINITIONS.get(activity_id)
+    if lab is not None and not any(
+            objective == family or objective.startswith(family+'.')
+            for objective in lesson['objectiveIds'] for family in lab['objectiveIds']):
+        raise StudyError('course_lab_mismatch', 409)
     if (activity_id == 'course-reasoning-v1' and not lesson.get('activityId')):
         lesson = {**lesson, 'activityId': activity_id}
-    if lesson.get('activityId') != activity_id or value['phase'] not in lesson:
+    if (lab is None and lesson.get('activityId') != activity_id) or value['phase'] not in lesson:
         raise StudyError('course_lesson_activity_mismatch', 409)
-    # Changing model controls is practice. A transfer label identifies the
-    # lesson's declared new situation, never arbitrary practice parameters.
+    # Legacy typed transfers retain their declared parameters. Plugin evidence
+    # validates controls independently in the Core solver; its canonical lesson
+    # and phase identify the context without grading it.
     if activity_id == 'course-reasoning-v1' and parameters != {}:
         raise StudyError('course_lesson_parameters_mismatch', 409)
-    if activity_id != 'course-reasoning-v1' and value['phase'] == 'transfer' and parameters != lesson['transfer'].get('parameters'):
+    if lab is None and activity_id != 'course-reasoning-v1' and value['phase'] == 'transfer' and parameters != lesson['transfer'].get('parameters'):
         raise StudyError('course_lesson_parameters_mismatch', 409)
-    return {'lessonRef': expected, 'phase': value['phase']}
+    return {'lessonRef': expected, 'phase': value['phase'],
+            **({'stepId':value['stepId']} if 'stepId' in value else {})}
 
 
 def require_same_parent_lesson(parent_context, current_context):
