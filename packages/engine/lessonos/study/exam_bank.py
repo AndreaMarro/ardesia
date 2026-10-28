@@ -1,6 +1,7 @@
-"""Bank-backed exam packs: approved questions only, frozen at attempt start.
+"""Bank-backed exam packs: published or protected synthetic, frozen at start.
 
-A bound question bank is authoritative from the first request. The legacy pack
+Published bank composition and canonical private synthetic simulations use
+the same persisted exam authority. A bound bank is authoritative from the first request. The legacy pack
 is available only to editions whose CoursePack binds no bank at all, so a
 student can never reach unapproved legacy content through a pending review.
 """
@@ -77,7 +78,7 @@ def _numeric(answer):
     return {'value': float(number), 'exact': exact, 'unit': unit, 'tolerance': 0, 'units': [unit]}
 
 
-def _question(full, approval):
+def _question(full, approval=None, *, reference=None):
     if full.get('version') != 1:
         raise StudyError('exam_question_version_unsupported', 409)
     if full['format'] == 'multiple_choice':
@@ -108,8 +109,8 @@ def _question(full, approval):
         'explanation': full['solution'],
         'solutionSteps': deepcopy(full['solutionSteps']),
         'taxonomy': dict(full['taxonomy']),
-        'approvalId': approval['approvalId'],
-        'contentSha256': approval['contentSha256'],
+        **({'approvalId':approval['approvalId']} if approval is not None else {'questionRef':dict(reference), 'sourceRecord':deepcopy(full)}),
+        'contentSha256': approval['contentSha256'] if approval is not None else reference['sha256'],
     }
 
 
@@ -217,10 +218,17 @@ def pack_summary(store, edition, edition_id):
     }
 
 
-def result_validity(store, edition_id, pack):
+def result_validity(store, edition_id, pack, principal=None):
     """Recheck the approvals frozen in a snapshot without trusting a client."""
     if exam_engine._pack_schema(pack) != exam_engine.PACK_SCHEMA_BANK:
         return None
+    from .curated_bank import GATE, metadata
+    if pack.get('bank', {}).get('gate') == GATE:
+        if principal is None:
+            raise StudyError('exam_simulation_unavailable', 409)
+        authorize_simulation_snapshot(store, principal, edition_id, pack)
+        return {**metadata(), 'valid':True, 'checkedAt':store.clock(), 'invalidQuestionIds':[],
+                'gate':GATE, 'meaning':'CANONICAL_DRAFT_REFERENCE_NOT_HUMAN_APPROVAL'}
     try:
         bank = load_bank(pack['bank']['id'])
         gate = ApprovalGate(store, bank, edition_id)
@@ -252,3 +260,48 @@ def result_validity(store, edition_id, pack):
 
 def snapshot_fingerprint(pack):
     return canonical(pack)
+
+
+def build_simulation_pack(store, principal, edition_id, simulation_id):
+    from .curated_bank import access, simulations, simulation_ref, metadata, GATE
+    context = access(store, principal, edition_id)
+    if context is None:
+        raise StudyError('exam_simulation_unavailable', 409)
+    item = next((item for item in simulations(context) if item['id'] == simulation_id), None)
+    if item is None:
+        raise StudyError('exam_simulation_not_found', 404)
+    bank = context['bank']
+    profile = _exam_profile(bank, item['profileId'])
+    questions = [_question(bank.review_record(ref['id']), reference={key:ref[key] for key in ('id','version','sha256')})
+                 for ref in item['questionRefs']]
+    return {**metadata(), 'schemaVersion':exam_engine.PACK_SCHEMA_BANK, 'id':item['id'], 'version':1,
+            'simulationId':item['id'], 'simulationRef':simulation_ref(item),
+            'coursePackRef':{key:context['binding'][key] for key in ('packId','packVersion','packSha256')},
+            'title':item['title'], 'subtitle':'Simulazione tematica DRAFT · 21 scelte + 10 completamenti',
+            'durationSeconds':item['durationSeconds'], 'rules':_rules(profile),
+            'scope':item['scope'], 'scopeWarning':item['scopeWarning'],
+            'provenance':'Quesiti originali congelati dalla selezione canonica; riscontro di riferimento DRAFT, revisione umana non eseguita.',
+            'bank':{'id':bank.manifest['id'], 'sha256':bank.sha256, 'profileId':item['profileId'], 'gate':GATE},
+            'questions':questions}
+
+
+def simulation_summaries(store, principal, edition_id):
+    from .curated_bank import access, simulations, metadata, simulation_ref
+    context = access(store, principal, edition_id)
+    if context is None:
+        return []
+    bank = context['bank']
+    return [{**metadata(), 'id':item['id'], 'simulationId':item['id'], 'simulationRef':simulation_ref(item),
+             'title':item['title'], 'ready':True, 'durationSeconds':item['durationSeconds'],
+             'questionCount':31, 'scope':item['scope'], 'scopeWarning':item['scopeWarning'],
+             'rules':_rules(_exam_profile(bank, item['profileId']))}
+            for item in simulations(context)]
+
+
+def authorize_simulation_snapshot(store, principal, edition_id, pack):
+    from .curated_bank import GATE
+    if pack.get('bank', {}).get('gate') != GATE:
+        return
+    expected = build_simulation_pack(store, principal, edition_id, pack.get('simulationId'))
+    if canonical(expected) != canonical(pack):
+        raise StudyError('exam_simulation_snapshot_changed', 409)

@@ -126,7 +126,15 @@ def validate_exam_pack(pack):
         else:
             _fail('exam_question_type_invalid', 409)
         if schema == PACK_SCHEMA_BANK:
-            if (not isinstance(question.get('approvalId'), str)
+            from .curated_bank import GATE
+            synthetic = pack['bank'].get('gate') == GATE
+            if synthetic:
+                ref = question.get('questionRef')
+                if (not isinstance(ref, dict) or set(ref) != {'id','version','sha256'}
+                        or ref['id'] != question['id'] or ref['version'] != question.get('questionVersion')
+                        or ref['sha256'] != question.get('contentSha256') or 'approvalId' in question):
+                    _fail('exam_question_identity_invalid', 409)
+            if ((not synthetic and not isinstance(question.get('approvalId'), str))
                     or not isinstance(question.get('contentSha256'), str)
                     or question.get('questionVersion') != 1):
                 _fail('exam_question_identity_invalid', 409)
@@ -162,6 +170,7 @@ def public_pack(pack):
         'questionCount': len(pack['questions']),
         'questions': [public_question(question) for question in pack['questions']],
     }
+    result.update(_reference_metadata(pack))
     if 'bank' in pack:
         result['bank'] = {'id': pack['bank']['id'], 'profileId': pack['bank']['profileId']}
     return result
@@ -176,10 +185,12 @@ def public_question(question):
     }
     if question['type'] == 'mcq':
         result['options'] = list(question['options'])
-        if 'approvalId' in question:
+        if 'approvalId' in question or 'questionRef' in question:
             result['answerType'] = 'option_id'
     else:
         result['format'] = 'Testo o numero'
+    if 'questionRef' in question:
+        result['questionRef'] = dict(question['questionRef'])
     return result
 
 
@@ -330,13 +341,20 @@ def grade_answers(pack, answers):
         'questions': details,
     }
 
-def _pack_for_row(row):
+def _pack_for_row(row, store=None):
     try:
         pack = validate_exam_pack(json.loads(row['pack_snapshot']))
     except (TypeError, ValueError, StudyError):
         raise StudyError('exam_pack_corrupt', 409) from None
     if pack_fingerprint(pack) != row['pack_sha256'] or pack['id'] != row['pack_id'] or pack['version'] != row['pack_version']:
         raise StudyError('exam_pack_corrupt', 409)
+    from .curated_bank import GATE
+    if pack.get('bank', {}).get('gate') == GATE:
+        if store is None:
+            raise StudyError('exam_simulation_unavailable', 409)
+        from .models import Principal
+        from .exam_bank import authorize_simulation_snapshot
+        authorize_simulation_snapshot(store, Principal(row['student_id'],'student'), row['edition_id'], pack)
     return pack
 
 
@@ -355,12 +373,22 @@ def _owned(store, principal, attempt_id):
     return row
 
 
+def _attempt_principal(row):
+    from .models import Principal
+    return Principal(row['student_id'], 'student')
+
+
+def _reference_metadata(pack):
+    return {key:pack[key] for key in ('simulationId','simulationRef','editorialStatus','scientificApproval',
+            'humanApproval','releaseScope','feedbackAuthority','scope','scopeWarning') if key in pack}
+
+
 def _view(store, row, pack, now):
     by_id = {question['id']: question for question in pack['questions']}
     questions = [public_question(by_id[question_id]) for question_id in json.loads(row['question_order'])]
     if row['status'] == 'in_progress':
         return {
-            'id': row['id'],
+            **_reference_metadata(pack), 'id': row['id'],
             'editionId': row['edition_id'],
             'packId': row['pack_id'],
             'packVersion': row['pack_version'],
@@ -380,11 +408,11 @@ def _view(store, row, pack, now):
         }
     result = json.loads(row['result'])
     from .exam_bank import result_validity
-    validity = result_validity(store, row['edition_id'], pack)
+    validity = result_validity(store, row['edition_id'], pack, _attempt_principal(row))
     if validity is not None:
         result['validity'] = validity
     return {
-        'id': row['id'],
+        **_reference_metadata(pack), 'id': row['id'],
         'editionId': row['edition_id'],
         'packId': row['pack_id'],
         'packVersion': row['pack_version'],
@@ -405,11 +433,12 @@ def _view(store, row, pack, now):
 
 
 def _finalize(store, c, principal, row, answers, *, expired):
-    pack = _pack_for_row(row)
+    pack = _pack_for_row(row, store)
     now = store.clock()
     result = grade_answers(pack, answers)
+    result.update(_reference_metadata(pack))
     from .exam_bank import result_validity
-    validity = result_validity(store, row['edition_id'], pack)
+    validity = result_validity(store, row['edition_id'], pack, _attempt_principal(row))
     if validity is not None:
         result['validity'] = validity
     status = 'expired' if expired else 'submitted'
@@ -443,19 +472,34 @@ def _pack_for_edition(store, principal, edition, edition_id, seed):
     return pack
 
 
-def start_attempt(store, principal, edition_id, *, order=None):
+def start_attempt(store, principal, edition_id, *, order=None, simulation_id=None):
     edition_id = _edition_id(edition_id)
     edition = store._edition_access(principal, edition_id)
     if principal.role != 'student':
         raise StudyError('forbidden', 403)
+    if simulation_id is not None and (not isinstance(simulation_id, str) or not re.fullmatch(r'[a-z0-9-]{1,128}', simulation_id)):
+        raise StudyError('invalid_exam_simulation')
+    from .curated_bank import access
+    controlled = access(store, principal, edition_id)
+    if controlled is not None and simulation_id is None:
+        raise StudyError('exam_simulation_required', 409)
+    selected = None
+    if simulation_id is not None:
+        from .exam_bank import build_simulation_pack
+        selected = build_simulation_pack(store, principal, edition_id, simulation_id)
     with store.transaction() as c:
+        store.lock_command(c, principal.id, 'exam.start', edition_id)
         active = c.execute("SELECT * FROM study_exam_attempts WHERE student_id=? AND edition_id=? AND status='in_progress'",
                            (principal.id, edition_id)).fetchone()
         if active is not None:
+            current_pack = _pack_for_row(active, store)
+            if current_pack.get('simulationId') != simulation_id:
+                raise StudyError('exam_active_simulation_conflict', 409)
             row = active
         else:
             attempt_id = identifier()
-            pack = _pack_for_edition(store, principal, edition, edition_id, attempt_id)
+            pack = selected if selected is not None else _pack_for_edition(store, principal, edition, edition_id, attempt_id)
+            validate_exam_pack(pack)
             question_ids = [question['id'] for question in pack['questions']]
             if order is not None:
                 if not isinstance(order, list) or sorted(order) != sorted(question_ids) or len(set(order)) != len(order):
@@ -474,7 +518,7 @@ def start_attempt(store, principal, edition_id, *, order=None):
                 'packSchemaVersion': _pack_schema(pack),
             })
             row = _row(store, attempt_id)
-    return _view(store, row, _pack_for_row(row), store.clock())
+    return _view(store, row, _pack_for_row(row, store), store.clock())
 
 def _revision(value, required=False):
     if value is None:
@@ -501,7 +545,7 @@ def save_answers(store, principal, attempt_id, answers, *, expected_revision=Non
     row = _owned(store, principal, attempt_id)
     if row['status'] != 'in_progress':
         raise StudyError('exam_closed', 409)
-    pack = _pack_for_row(row)
+    pack = _pack_for_row(row, store)
     expected = _require_cas(pack, expected_revision)
     answers = _validate_answers(pack, answers)
     now = store.clock()
@@ -512,7 +556,7 @@ def save_answers(store, principal, attempt_id, answers, *, expected_revision=Non
             if current['status'] == 'in_progress':
                 current = _finalize(store, c, principal, current, json.loads(current['answers']), expired=True)
             row = current
-        return _view(store, row, _pack_for_row(row), now)
+        return _view(store, row, _pack_for_row(row, store), now)
     with store.transaction() as c:
         store.lock_command(c, principal.id, 'exam.save', attempt_id)
         current = _row(store, attempt_id)
@@ -527,8 +571,8 @@ def save_answers(store, principal, attempt_id, answers, *, expected_revision=Non
 def submit_attempt(store, principal, attempt_id, answers=None, *, expected_revision=None):
     row = _owned(store, principal, attempt_id)
     if row['status'] != 'in_progress':
-        return _view(store, row, _pack_for_row(row), store.clock())
-    pack = _pack_for_row(row)
+        return _view(store, row, _pack_for_row(row, store), store.clock())
+    pack = _pack_for_row(row, store)
     expected = _require_cas(pack, expected_revision)
     provided = _validate_answers(pack, answers) if answers is not None else None
     now = store.clock()
@@ -557,13 +601,14 @@ def get_attempt(store, principal, attempt_id):
             if current['status'] == 'in_progress':
                 current = _finalize(store, c, principal, current, json.loads(current['answers']), expired=True)
             row = current
-    return _view(store, row, _pack_for_row(row), now)
+    return _view(store, row, _pack_for_row(row, store), now)
 
 
-def _summary(row):
+def _summary(row, store):
     result = json.loads(row['result']) if row['result'] else None
+    pack = _pack_for_row(row, store) if 'simulationId' in json.loads(row['pack_snapshot']) else {}
     return {
-        'id': row['id'],
+        **_reference_metadata(pack), 'id': row['id'],
         'editionId': row['edition_id'],
         'status': row['status'],
         'startedAt': row['started_at'],
@@ -596,8 +641,10 @@ def list_attempts(store, principal, edition_id):
                                     (principal.id, edition_id)).fetchall()
     active = next((row for row in rows if row['status'] == 'in_progress'), None)
     if active is not None:
-        pack = public_pack(_pack_for_row(active))
+        pack = public_pack(_pack_for_row(active, store))
     else:
         from .exam_bank import pack_summary
         pack = pack_summary(store, edition, edition_id)
-    return {'attempts': [_summary(row) for row in rows], 'pack': pack}
+    from .exam_bank import simulation_summaries
+    return {'attempts': [_summary(row, store) for row in rows], 'pack': pack,
+            'simulations':simulation_summaries(store, principal, edition_id)}

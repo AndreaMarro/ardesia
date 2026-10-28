@@ -1,7 +1,8 @@
 """Authenticated practice and a default-deny scientific/editorial review gate.
 
-Students see only questions with a persisted approval that still matches the
-exact revision and content digest. The owning teacher of the edition gets a
+Normal students see only questions with a persisted approval matching the
+exact revision and digest. A trusted synthetic runtime additionally serves only
+the canonical curated references with explicit DRAFT/reference metadata. The owning teacher of the edition gets a
 private preview with the full authored record and an append-only audit trail.
 No endpoint here publishes an approval for the bundled 4.000 records by itself.
 """
@@ -78,7 +79,15 @@ def install_question_bank_routes(app, store_dependency, authenticate):
 
     def gated(store, principal, edition_id, bank_id):
         _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
-        return bank, ApprovalGate(store, bank, edition_id)
+        from lessonos.study.curated_bank import access
+        controlled = access(store, principal, edition_id, bank_id)
+        return bank, (None if controlled else ApprovalGate(store, bank, edition_id)), controlled
+
+    def projection(payload, controlled):
+        if controlled is not None:
+            from lessonos.study.curated_bank import project
+            return project(payload)
+        return _published(payload)
 
     @app.get(prefix)
     def catalog(edition_id: str, request: Request, store=Depends(store_dependency)):
@@ -88,6 +97,10 @@ def install_question_bank_routes(app, store_dependency, authenticate):
     def bank_detail(edition_id: str, bank_id: str, request: Request, store=Depends(store_dependency)):
         principal = authenticate(request, store)
         _, bank = bank_access_for_edition(store, principal, edition_id, bank_id)
+        from lessonos.study.curated_bank import access, project
+        controlled = access(store, principal, edition_id, bank_id)
+        if controlled is not None:
+            return project(bank.catalog(published_ids=controlled['ids']))
         if principal.role == 'teacher':
             return bank.catalog()
         return bank.catalog(published_ids=ApprovalGate(store, bank, edition_id).servable_ids())
@@ -104,41 +117,45 @@ def install_question_bank_routes(app, store_dependency, authenticate):
                   bankSha256: str | None = Query(None, pattern=r'^[0-9a-f]{64}$'),
                   store=Depends(store_dependency)):
         principal = authenticate(request, store)
-        bank, gate = gated(store, principal, edition_id, bank_id)
-        return _published(bank.questions(
+        bank, gate, controlled = gated(store, principal, edition_id, bank_id)
+        allowed = controlled['ids'] if controlled is not None else gate.servable_ids()
+        return projection(bank.questions(
             unit_id=unitId, difficulty=difficulty, format=format, query=q,
             mini_course_id=miniCourseId, limit=limit, after=after,
-            expected_sha256=bankSha256, published_ids=gate.servable_ids()))
+            expected_sha256=bankSha256, published_ids=allowed), controlled)
 
     @app.get(prefix + '/{bank_id}/questions/{question_id}')
     def question(edition_id: str, bank_id: str, question_id: str, request: Request,
                  store=Depends(store_dependency)):
         principal = authenticate(request, store)
-        bank, gate = gated(store, principal, edition_id, bank_id)
-        if question_id not in gate.servable_ids():
+        bank, gate, controlled = gated(store, principal, edition_id, bank_id)
+        allowed = controlled['ids'] if controlled is not None else gate.servable_ids()
+        if question_id not in allowed:
             # Uniform 404: an unpublished id is indistinguishable from a missing one.
             raise StudyError('question_not_found', 404)
-        return _published({'bankSha256': bank.sha256, 'question': bank.question(question_id)})
+        return projection({'bankSha256': bank.sha256, 'question': bank.question(question_id)}, controlled)
 
     @app.post(prefix + '/{bank_id}/exams')
     def exam(edition_id: str, bank_id: str, body: ExamBody, request: Request,
              store=Depends(store_dependency)):
         principal = authenticate(request, store)
-        bank, gate = gated(store, principal, edition_id, bank_id)
-        return _published(bank.exam(
+        bank, gate, controlled = gated(store, principal, edition_id, bank_id)
+        allowed = controlled['ids'] if controlled is not None else gate.servable_ids()
+        return projection(bank.exam(
             body.seed, profile_id=body.profileId, difficulty=body.difficulty,
-            expected_sha256=body.bankSha256, published_ids=gate.servable_ids()))
+            expected_sha256=body.bankSha256, published_ids=allowed), controlled)
 
     @app.post(prefix + '/{bank_id}/attempts')
     def attempt(edition_id: str, bank_id: str, body: AttemptBody, request: Request,
                 store=Depends(store_dependency)):
         principal = authenticate(request, store)
-        bank, gate = gated(store, principal, edition_id, bank_id)
-        if body.questionId not in gate.servable_ids():
+        bank, gate, controlled = gated(store, principal, edition_id, bank_id)
+        allowed = controlled['ids'] if controlled is not None else gate.servable_ids()
+        if body.questionId not in allowed:
             raise StudyError('question_not_found', 404)
-        return _published(bank.attempt(
+        return projection(bank.attempt(
             body.questionId, body.response, profile_id=body.profileId,
-            expected_sha256=body.bankSha256))
+            expected_sha256=body.bankSha256), controlled)
 
     @app.get(prefix + '/{bank_id}/review/questions')
     def review_questions(edition_id: str, bank_id: str, request: Request,

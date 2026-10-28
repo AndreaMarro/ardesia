@@ -400,7 +400,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.post('/study/exams')
     def start_exam(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.exam import start_attempt
-        return start_attempt(store,authenticate(request,store),body.get('editionId'))
+        return start_attempt(store,authenticate(request,store),body.get('editionId'),simulation_id=body.get('simulationId'))
 
     @app.get('/study/exams/{attempt_id}')
     def exam(attempt_id: str, request: Request, store=Depends(store_dependency)):

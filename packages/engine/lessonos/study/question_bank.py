@@ -613,6 +613,10 @@ def bank_access_for_edition(store, principal, edition_id, bank_id=BANK_ID):
     """Return the authorized edition and bank; never trust a client bank id."""
     edition = store._edition_access(principal, edition_id)
     if bank_id not in edition.get('questionBankIds', []):
+        from .curated_bank import access
+        controlled = access(store, principal, edition_id, bank_id)
+        if controlled is not None:
+            return edition, controlled['bank']
         raise StudyError('question_bank_not_available_for_edition', 404)
     return edition, load_bank(bank_id)
 
@@ -621,7 +625,13 @@ def bank_catalog_for_edition(store, principal, edition_id):
     edition = store._edition_access(principal, edition_id)
     from .question_bank_approvals import ApprovalGate
     items = []
+    from .curated_bank import access, project
+    controlled = access(store, principal, edition_id)
+    if controlled is not None:
+        items.append(project(controlled['bank'].catalog(published_ids=controlled['ids'])))
     for bank_id in edition.get('questionBankIds', []):
+        if controlled is not None and bank_id == controlled['bank'].manifest['id']:
+            continue
         bank = load_bank(bank_id)
         gate = ApprovalGate(store, bank, edition_id)
         published = None if principal.role == 'teacher' else gate.servable_ids()
