@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import {afterEach, expect, test, vi} from "vitest";
-import {cleanup, fireEvent, render, screen} from "@testing-library/react";
+import {cleanup, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {ScalarExperienceEpisode} from "../components/ScalarExperienceEpisode";
 import {PredictionEvidence} from "../components/PredictionEvidence";
 import type {ActivityEvidenceV2, ComposableExperience} from "../components/experienceTypes";
@@ -90,6 +90,7 @@ test("the last scalar hint retains keyboard focus and cannot reveal further hint
   vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({experiences: [experience]}))));
   render(<ScalarExperienceEpisode me={me} data={data} onUpdate={async () => {}} />);
   const trigger = await screen.findByRole("button", {name: "Un indizio sul riferimento"});
+  await waitFor(() => expect(document.activeElement).toBe(screen.getByRole("heading", {name: "Pressione dovuta alla profondità"})));
   trigger.focus(); fireEvent.click(trigger); fireEvent.click(trigger);
   expect((trigger as HTMLButtonElement).disabled).toBe(false);
   expect(trigger.getAttribute("aria-disabled")).toBe("true");
