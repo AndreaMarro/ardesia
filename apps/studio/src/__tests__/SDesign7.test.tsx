@@ -163,16 +163,14 @@ describe("S-DESIGN-7 — responsive <=768px", () => {
     root.unmount()
   })
 
-  it("espone soltanto la capability Founder Beta builtin-reviewed", async () => {
+  it("non espone il plugin simulatore rimosso", async () => {
     const root = await renderRoom()
     await vi.waitFor(() => {
       expect(document.querySelector(".st-actions")).toBeTruthy()
     }, { timeout: 1000, interval: 10 })
     const actions = document.querySelector(".st-actions")!
     const founderPlugins = actions.querySelectorAll("[data-founder-plugin-id]")
-    expect(founderPlugins).toHaveLength(1)
-    expect(founderPlugins[0].getAttribute("data-founder-plugin-id")).toBe("io.ardesia.simulation")
-    expect(founderPlugins[0].getAttribute("data-plugin-trust-tier")).toBe("builtin-reviewed")
+    expect(founderPlugins).toHaveLength(0)
 
     const controls = Array.from(actions.querySelectorAll("button, a, [role='button']"))
     const text = controls.map((control) => [

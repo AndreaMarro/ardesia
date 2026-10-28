@@ -10,26 +10,18 @@ Usage: npm run <script>
 Root scripts:
   status             Print repository/workspace readiness.
   bootstrap          Install core workspace dependencies.
-  bootstrap:all      Install core plus ELAB plugin dependencies.
+  bootstrap:all      Install core and operations dependencies.
   dev:studio         Start ARDESIA Studio dev server.
-  dev:elab           Start ELABTutor plugin dev server.
   test               Run core tests.
-  test:elab          Run ELABTutor plugin tests.
   typecheck          Run core TypeScript checks.
   build              Build core workspaces.
-  build:elab         Build ELABTutor plugin.
   preview:studio:check
                      Run the no-deploy Studio preview readiness gate.
   preview:studio:preflight
                      Check Vercel readiness plus the no-deploy Studio gate.
   smoke:studio:production
                      Run browser smoke against ARDESIA Studio production URL.
-  smoke:studio:production:scenario
-                     Run golden-path browser scenario against production URL.
-  smoke:studio:production:p30-audit
-                     Run P30 ToolHost audit e2e against production URL.
   verify             Run core tests plus builds.
-  verify:elab        Run ELABTutor tests plus build.
   factory:readonly   Print remote factory health without mutation.
 EOF
 }
@@ -71,7 +63,6 @@ status() {
   echo "== workspaces =="
   print_workspace "engine" "packages/engine" "pyproject.toml"
   print_workspace "studio" "apps/studio" "package.json"
-  print_workspace "elab tutor" "plugins/elab-tutor" "package.json"
   print_workspace "ops tools" "ops/tools" "package.json"
 
   echo
@@ -101,7 +92,6 @@ bootstrap_core() {
 bootstrap_all() {
   cd "$ROOT"
   bootstrap_core
-  npm --prefix plugins/elab-tutor ci
   if [[ -f ops/tools/package-lock.json ]]; then
     npm --prefix ops/tools ci
   fi
@@ -113,10 +103,6 @@ test_core() {
   npm --prefix apps/studio test -- --run
 }
 
-test_elab() {
-  cd "$ROOT"
-  npm --prefix plugins/elab-tutor test -- --run
-}
 
 typecheck_core() {
   cd "$ROOT"
@@ -128,10 +114,6 @@ build_core() {
   npm --prefix apps/studio run build
 }
 
-build_elab() {
-  cd "$ROOT"
-  npm --prefix plugins/elab-tutor --ignore-scripts run build
-}
 
 require_studio_deps() {
   if [[ ! -x "$ROOT/apps/studio/node_modules/.bin/tsc" || ! -x "$ROOT/apps/studio/node_modules/.bin/vite" || ! -x "$ROOT/apps/studio/node_modules/.bin/vitest" ]]; then
@@ -153,10 +135,6 @@ verify_core() {
   build_core
 }
 
-verify_elab() {
-  test_elab
-  build_elab
-}
 
 preview_studio_check() {
   cd "$ROOT"
@@ -266,26 +244,7 @@ smoke_studio_production() {
     node apps/studio/scripts/productionSmoke.mjs
 }
 
-smoke_studio_production_scenario() {
-  cd "$ROOT"
 
-  echo "== studio production scenario smoke =="
-  require_file "apps/studio/package.json"
-  require_studio_playwright
-
-  node apps/studio/scripts/productionScenarioSmoke.mjs
-}
-
-smoke_studio_production_p30_audit() {
-  cd "$ROOT"
-
-  echo "== studio production P30 audit smoke =="
-  require_file "apps/studio/package.json"
-  require_studio_playwright
-
-  ARDESIA_STUDIO_E2E_BASE_URL="${ARDESIA_STUDIO_SMOKE_URL:-https://ardesia-lavagna.vercel.app}" \
-    npm --prefix apps/studio run e2e -- e2e/p30-free-manipulation.spec.ts --workers=1 --reporter=line
-}
 
 # STOP-safe: probe di stato process-only. Non esegue MAI script del repo
 # lessonos (niente eval/gate.sh, niente pytest): solo curl di health endpoint
@@ -337,17 +296,12 @@ main() {
     bootstrap-core) bootstrap_core ;;
     bootstrap-all) bootstrap_all ;;
     test-core) test_core ;;
-    test-elab) test_elab ;;
     typecheck-core) typecheck_core ;;
     build-core) build_core ;;
-    build-elab) build_elab ;;
     preview-studio-check) preview_studio_check ;;
     preview-studio-preflight) preview_studio_preflight ;;
     smoke-studio-production) smoke_studio_production ;;
-    smoke-studio-production-scenario) smoke_studio_production_scenario ;;
-    smoke-studio-production-p30-audit) smoke_studio_production_p30_audit ;;
     verify-core) verify_core ;;
-    verify-elab) verify_elab ;;
     factory-readonly) factory_readonly ;;
     "" | -h | --help | help) usage ;;
     *)

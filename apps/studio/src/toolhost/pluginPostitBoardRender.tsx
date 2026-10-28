@@ -1,12 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
+import { isRetiredPlugin } from "./retiredPlugins"
 import type { CSSProperties, ReactElement } from "react"
 
 import {
-  isElabTutorPostitState,
-  isSimulationPostitState,
-  type ElabTutorPostitState,
   type MultiPostitObject,
-  type SimulationPostitState,
 } from "../design/multiPostitWorkbenchModel"
 import {
   PLUGIN_POSTIT_BOARD_STATE_SCHEMA,
@@ -31,8 +28,6 @@ type PluginPostitBoardEmbedLike = {
   [key: string]: unknown
 }
 
-const simulationFunctionLabels = ["Circuito", "Provider", "Diagnostica", "Montaggio"]
-const elabTutorFunctionLabels = ["Manuale", "Simulatore", "Passi", "Errori comuni"]
 const genericPluginFunctionLabels = ["Apri", "Configura"]
 
 export function renderPluginPostitBoardEmbeddable(
@@ -53,6 +48,7 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
     restorePluginPostitObject(marker.state) as MultiPostitObject,
     readBoardBounds(element),
   )
+  if (isRetiredPlugin(postit.pluginId)) return null
   const expectedOwner = instanceOwner(postit.pluginId, postit.instanceId)
   if (marker.owner !== expectedOwner) {
     throw new Error(`plugin post-it owner mismatch for ${postit.instanceId}`)
@@ -61,9 +57,6 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
   if (element.id !== expectedElementId) {
     throw new Error(`plugin post-it board id mismatch for ${postit.instanceId}`)
   }
-  const simulationState = isSimulationPostitState(postit.pluginState) ? postit.pluginState : null
-  const elabTutorState = isElabTutorPostitState(postit.pluginState) ? postit.pluginState : null
-
   return {
     elementId: expectedElementId,
     link: typeof element.link === "string" ? element.link : "",
@@ -77,27 +70,13 @@ function createRenderModelFromElement(element: PluginPostitBoardEmbedLike): Plug
     proximity: postit.proximity,
     functionSurfaceMode: deriveFunctionSurfaceMode(postit),
     controlIds: pluginPostitControlIds(postit),
-    providerStatus: simulationState?.providerStatus,
-    runtimeState: simulationState?.runtimeState,
-    providerOutput: simulationState?.providerOutput,
-    elabTutorRuntime: elabTutorRuntime(elabTutorState),
-  }
-}
 
-function elabTutorRuntime(
-  state: ElabTutorPostitState | null,
-): Pick<ElabTutorPostitState, "runtimeApi" | "simulationInstanceId"> | undefined {
-  return state === null
-    ? undefined
-    : {
-        runtimeApi: state.runtimeApi,
-        simulationInstanceId: state.simulationInstanceId,
-      }
+  }
 }
 
 function readPluginPostitBoardMarker(
   element: PluginPostitBoardEmbedLike,
-): { owner: string; state: PluginPostitObject<SimulationPostitState | ElabTutorPostitState> } | null {
+): { owner: string; state: PluginPostitObject<MultiPostitObject["pluginState"]> } | null {
   const marker = element.customData?.[EMBED_DATA_KEY]
   if (!isRecord(marker)) return null
   if (marker.schema !== PLUGIN_POSTIT_BOARD_STATE_SCHEMA) return null
@@ -106,7 +85,7 @@ function readPluginPostitBoardMarker(
   }
   return {
     owner: marker.owner,
-    state: marker.state as PluginPostitObject<SimulationPostitState | ElabTutorPostitState>,
+    state: marker.state as PluginPostitObject<MultiPostitObject["pluginState"]>,
   }
 }
 
@@ -142,21 +121,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function PluginPostitBoardCard({ model }: { model: PluginPostitBoardRenderModel }) {
-  const pluginLabel =
-    model.pluginId === "io.ardesia.simulation"
-      ? "Simulation"
-      : model.pluginId === "io.elab.tutor"
-        ? "ELABTutor"
-        : model.pluginId
-  const functionLabels =
-    model.pluginId === "io.ardesia.simulation"
-      ? simulationFunctionLabels
-      : model.pluginId === "io.elab.tutor"
-        ? elabTutorFunctionLabels
-        : genericPluginFunctionLabels
+  const pluginLabel = model.pluginId
+  const functionLabels = genericPluginFunctionLabels
   const visibleFunctions =
     model.functionSurfaceMode === "compact" ? functionLabels.slice(0, 2) : functionLabels
-  const ledCurrent = model.providerOutput?.solverOutput.currents.led ?? 0
 
   return (
     <article
@@ -204,33 +172,6 @@ function PluginPostitBoardCard({ model }: { model: PluginPostitBoardRenderModel 
           </span>
         ))}
       </div>
-      {model.providerOutput !== undefined && (
-        <>
-          <div
-            id={model.controlIds.providerDiagnosticsId}
-            data-provider-output-instance={model.instanceId}
-            style={dataRowStyle}
-          >
-            {model.providerOutput.providerId}: {model.providerOutput.diagnostics.join(", ")}
-          </div>
-          <div
-            id={model.controlIds.solverOutputId}
-            data-solver-output-instance={model.instanceId}
-            style={dataRowStyle}
-          >
-            led current {ledCurrent}
-          </div>
-        </>
-      )}
-      {model.elabTutorRuntime !== undefined && (
-        <div
-          data-elabtutor-runtime-api={model.elabTutorRuntime.runtimeApi}
-          data-elabtutor-simulation-instance={model.elabTutorRuntime.simulationInstanceId}
-          style={dataRowStyle}
-        >
-          consumer of {model.elabTutorRuntime.simulationInstanceId}
-        </div>
-      )}
     </article>
   )
 }
@@ -298,14 +239,4 @@ const functionPillStyle: CSSProperties = {
   color: "#20323a",
   fontSize: 12,
   lineHeight: 1.1,
-}
-
-const dataRowStyle: CSSProperties = {
-  color: "#243640",
-  background: "#f3f6f0",
-  borderRadius: 6,
-  padding: "5px 7px",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
 }

@@ -468,10 +468,9 @@ def collect_required_checks(root: Path) -> dict:
 
 
 def collect_certification(root: Path) -> dict:
-    p = root / CATALOG_PATH
-    if not p.exists():
-        return {"status": "UNAVAILABLE", "reason": f"{CATALOG_PATH} assente"}
-    return parse_catalog(p.read_text(encoding="utf-8"))
+    # The old extraction catalog was removed with its implementation.
+    # Do not invent certification counts from historical parser fixtures.
+    return {"status": "RETIRED", "reason": "Dedicated simulator and experiment pack removed; no active certification catalog"}
 
 
 #: Un'INVOCAZIONE di Playwright, non la parola. `playwright test`, `npm run e2e`,

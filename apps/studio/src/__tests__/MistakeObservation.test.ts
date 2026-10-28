@@ -6,8 +6,6 @@
 // modulo non inventa mai il mapping errore→concetto.
 
 import { describe, expect, it } from "vitest"
-import * as fs from "node:fs"
-import * as path from "node:path"
 import {
   listLessonConcepts,
   listMistakeObservations,
@@ -15,13 +13,17 @@ import {
   slugifyConceptId,
 } from "../lessonos/mistakeObservation"
 
-const repoRoot = path.resolve(import.meta.dirname, "../../../..")
-const lessonPath = JSON.parse(
-  fs.readFileSync(
-    path.join(repoRoot, "packs/elab-tutor/data/lesson-paths/v1-cap6-esp1.json"),
-    "utf-8",
-  ),
-)
+const lessonPath = {
+  experiment_id: "v1-cap6-esp1",
+  phases: [
+    { name: "CHIEDI", common_mistakes: [
+      { mistake: "LED inserito al contrario" },
+      { mistake: "Circuito aperto" },
+      { mistake: "Resistenza assente" },
+    ] },
+    { name: "CONCLUDI", concepts_learned: ["circuito chiuso", "polarità LED (anodo/catodo)"] },
+  ],
+}
 
 describe("slugifyConceptId", () => {
   it("produce id neutri deterministici (accenti e punteggiatura normalizzati)", () => {
@@ -74,7 +76,7 @@ describe("listLessonConcepts (concepts_learned)", () => {
 describe("mistakeObservedBusEvent", () => {
   const observation = listMistakeObservations(lessonPath)[0]
   const concept = listLessonConcepts(lessonPath)[1]
-  const base = { experimentId: "v1-cap6-esp1", observation, concept, t: 1720300000000 }
+  const base = { evidence: ["lesson:synthetic-circuit"], experimentId: "v1-cap6-esp1", observation, concept, t: 1720300000000 }
 
   it("costruisce il payload error.observed col concetto SCELTO dal docente", () => {
     expect(mistakeObservedBusEvent(base)).toEqual({
@@ -82,7 +84,7 @@ describe("mistakeObservedBusEvent", () => {
       conceptId: "polarita-led-anodo-catodo",
       labels: { it: "LED inserito al contrario" },
       t: 1720300000000,
-      evidence: ["pack:io.elab.tutor:v1-cap6-esp1"],
+      evidence: ["lesson:synthetic-circuit"],
     })
   })
 

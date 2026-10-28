@@ -1,12 +1,8 @@
 import {
-  isElabTutorPostitState,
-  isSimulationPostitState,
   restoreMultiPostitWorkbench,
   serializeMultiPostitWorkbench,
-  type ElabTutorPostitState,
   type MultiPostitObject,
   type MultiPostitWorkbenchSnapshot,
-  type SimulationPostitState,
 } from "./multiPostitWorkbenchModel"
 import { EMBED_DATA_KEY, instanceOwner } from "../toolhost/caps/board"
 import {
@@ -85,10 +81,7 @@ export type PluginPostitBoardRenderModel = {
   proximity: PostitProximity
   functionSurfaceMode: FunctionSurfaceMode
   controlIds: PluginPostitControlIds
-  providerStatus?: SimulationPostitState["providerStatus"]
-  runtimeState?: SimulationPostitState["runtimeState"]
-  providerOutput?: SimulationPostitState["providerOutput"]
-  elabTutorRuntime?: Pick<ElabTutorPostitState, "runtimeApi" | "simulationInstanceId">
+
 }
 
 export type PluginPostitBoardHydration = {
@@ -210,8 +203,6 @@ function createPluginPostitBoardElement(
 }
 
 function createPluginPostitBoardRenderModel(postit: MultiPostitObject): PluginPostitBoardRenderModel {
-  const simulationState = isSimulationPostitState(postit.pluginState) ? postit.pluginState : null
-  const elabTutorState = isElabTutorPostitState(postit.pluginState) ? postit.pluginState : null
   const elementId = pluginPostitBoardElementId(postit.instanceId)
 
   return {
@@ -227,16 +218,7 @@ function createPluginPostitBoardRenderModel(postit: MultiPostitObject): PluginPo
     proximity: postit.proximity,
     functionSurfaceMode: deriveFunctionSurfaceMode(postit),
     controlIds: pluginPostitControlIds(postit),
-    providerStatus: simulationState?.providerStatus,
-    runtimeState: simulationState?.runtimeState,
-    providerOutput: simulationState?.providerOutput,
-    elabTutorRuntime:
-      elabTutorState === null
-        ? undefined
-        : {
-            runtimeApi: elabTutorState.runtimeApi,
-            simulationInstanceId: elabTutorState.simulationInstanceId,
-          },
+
   }
 }
 

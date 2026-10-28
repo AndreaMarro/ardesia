@@ -7,7 +7,7 @@
 // cablaggio.
 //
 // La nav sta in OGNI ramo, compresi quelli di errore. Misurato il 2026-07-30:
-// questa era l'unica superficie della shell senza `ViewNav` — Room, ElabLab,
+// questa era l'unica superficie della shell senza `ViewNav` — Room, vista legacy,
 // SavedLessonsView, TeacherDashboardView e SimulationPluginWorkbench lo
 // rendono tutte. Il GOAL chiede che il docente ritrovi la lezione in
 // Continuita' e la esporti in Materiali: senza nav quel passo non esiste, e i

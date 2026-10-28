@@ -154,6 +154,7 @@ run_check "nul_scan"            "$ROOT" python3 bin/ci/nul_scan.py
 run_check "secret_scan"         "$ROOT" python3 bin/ci/secret_scan.py
 run_check "secret_scan_tests"   "$ROOT" python3 bin/ci/test_secret_scan.py
 run_check "elab_boundary"       "$ROOT" python3 bin/ci/elab_boundary_gate.py
+run_check "removed_boundary_tests" "$ROOT" python3 bin/ci/test_elab_boundary_gate.py
 run_check "workflow_trigger"    "$ROOT" python3 bin/ci/workflow_trigger_gate.py
 run_check "workflow_trigger_st" "$ROOT" python3 bin/ci/workflow_trigger_gate.py --self-test
 run_check "doc_claims"          "$ROOT" python3 bin/ci/doc_claims_gate.py

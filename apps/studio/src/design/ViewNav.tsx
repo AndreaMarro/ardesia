@@ -12,7 +12,6 @@ export type FounderSurfaceId =
 export type ArdesiaViewId = FounderSurfaceId
   | "lavagna"
   | "simulatore"
-  | "elab-lab"
   | "cruscotto"
   | "lezioni-salvate"
 
@@ -30,8 +29,7 @@ function founderSurfaceFor(id: ArdesiaViewId): FounderSurfaceId | null {
   if (
     id === "lezione" ||
     id === "lavagna" ||
-    id === "simulatore" ||
-    id === "elab-lab"
+    id === "simulatore"
   ) return "lezione"
   if (id === "continuita" || id === "cruscotto") return "continuita"
   if (id === "materiali" || id === "lezioni-salvate") return "materiali"

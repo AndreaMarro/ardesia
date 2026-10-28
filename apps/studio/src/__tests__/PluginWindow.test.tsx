@@ -68,8 +68,6 @@ describe("PluginWindow catalog", () => {
 
     expect(kinds).toEqual(
       new Set([
-        "simulation",
-        "elab-tutor",
         "essential",
         "function",
         "drawing-hd",
@@ -78,8 +76,8 @@ describe("PluginWindow catalog", () => {
         "user-created",
       ]),
     )
-    expect(catalog.map((item) => item.pluginId)).toContain("io.ardesia.simulation")
-    expect(catalog.map((item) => item.pluginId)).toContain("io.elab.tutor")
+    expect(catalog.map((item) => item.pluginId)).not.toContain("io.ardesia.simulation")
+    expect(catalog.map((item) => item.pluginId)).not.toContain("io.elab.tutor")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.manual-evidence")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.drawing-hd")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.web-view")
@@ -97,7 +95,7 @@ describe("PluginWindow catalog", () => {
   })
 
   it("turns any insert into a LessonOS-ready event payload", () => {
-    const item = buildDefaultPluginWindowCatalog().find((entry) => entry.pluginId === "io.ardesia.simulation")
+    const item = buildDefaultPluginWindowCatalog().find((entry) => entry.pluginId === "com.ardesia.plugin-functions")
     expect(item).toBeDefined()
     if (item === undefined) return
 
@@ -106,10 +104,10 @@ describe("PluginWindow catalog", () => {
     expect(request.item).toBe(item)
     expect(request.lessonOsEvent).toEqual({
       type: "plugin.insert.requested",
-      pluginId: "io.ardesia.simulation",
-      pluginKind: "simulation",
-      evidenceRefs: ["plugin:io.ardesia.simulation@0.1.0"],
-      label: "Simulatore",
+      pluginId: "com.ardesia.plugin-functions",
+      pluginKind: "function",
+      evidenceRefs: ["plugin:com.ardesia.plugin-functions@0.1.0"],
+      label: "Funzioni",
     })
     expect(
       pluginMountedEventFromInsertRequest(request, {
@@ -120,12 +118,12 @@ describe("PluginWindow catalog", () => {
       }),
     ).toEqual({
       kind: "plugin.mounted",
-      pluginId: "io.ardesia.simulation",
-      pluginKind: "simulation",
+      pluginId: "com.ardesia.plugin-functions",
+      pluginKind: "function",
       instanceId: "sim-a",
       room: "lezione-led",
-      labels: { it: "Simulatore" },
-      evidence: ["plugin:io.ardesia.simulation@0.1.0", "board:plugin-postit-sim-a-board"],
+      labels: { it: "Funzioni" },
+      evidence: ["plugin:com.ardesia.plugin-functions@0.1.0", "board:plugin-postit-sim-a-board"],
       t: 1718000000000,
     })
   })
@@ -146,8 +144,6 @@ describe("PluginWindow catalog", () => {
       ["com.ardesia.plugin-functions", "function", "tool", "plugin:com.ardesia.plugin-functions@0.1.0"],
       ["com.ardesia.web-view", "web", "tool", "plugin:com.ardesia.web-view@0.1.0"],
       ["com.teacher.oscilloscope", "marketplace", "tool", "plugin:com.teacher.oscilloscope@1.0.0"],
-      ["io.ardesia.simulation", "simulation", "tool", "plugin:io.ardesia.simulation@0.1.0"],
-      ["io.elab.tutor", "elab-tutor", "pack", "plugin:io.elab.tutor@0.1.0"],
       ["user.plugin.local-graph", "user-created", "tool", "plugin:user.plugin.local-graph@0.1.0"],
     ])
   })
@@ -168,11 +164,6 @@ describe("PluginWindow catalog", () => {
     })
 
     expect(projection.unavailable.map((entry) => entry.zone)).not.toContain("Z6")
-    expect(projection.plugins.find((plugin) => plugin.id === "io.elab.tutor")).toMatchObject({
-      kind: "pack",
-      readiness: "ready",
-      lastUsedAt: null,
-    })
     expect(projection.plugins.find((plugin) => plugin.id === "com.ardesia.web-view")).toMatchObject({
       kind: "tool",
       readiness: "preview",
@@ -192,25 +183,25 @@ describe("PluginWindow component", () => {
     const { container } = render(<PluginWindow items={catalog} onInsert={onInsert} />)
 
     expect(screen.getByRole("dialog", { name: "Finestra plugin" })).toBeTruthy()
-    expect(screen.getByRole("button", { name: "Simulatore" }).getAttribute("aria-pressed")).toBe(
+    expect(screen.getByRole("button", { name: "Tutti" }).getAttribute("aria-pressed")).toBe(
       "true",
     )
-    expect(screen.getByRole("button", { name: "ELABTutor" })).toBeTruthy()
+    expect(screen.queryByRole("button", { name: "ELABTutor" })).toBeNull()
     expect(screen.getByRole("button", { name: "Disegno HD" })).toBeTruthy()
     expect(screen.getByRole("button", { name: "Web" })).toBeTruthy()
     expect(screen.getByRole("button", { name: "Creati da noi" })).toBeTruthy()
 
-    const simulationRow = container.querySelector('[data-plugin-window-item="io.ardesia.simulation"]')
+    const simulationRow = container.querySelector('[data-plugin-window-item="com.ardesia.plugin-functions"]')
     expect(simulationRow).not.toBeNull()
     expect(simulationRow?.getAttribute("data-lessonos-event")).toBe("plugin.insert.requested")
 
-    fireEvent.click(within(simulationRow as HTMLElement).getByRole("button", { name: "Inserisci Simulatore" }))
+    fireEvent.click(within(simulationRow as HTMLElement).getByRole("button", { name: "Inserisci Funzioni" }))
 
     expect(onInsert).toHaveBeenCalledTimes(1)
     expect(onInsert.mock.calls[0][0].lessonOsEvent).toMatchObject({
       type: "plugin.insert.requested",
-      pluginId: "io.ardesia.simulation",
-      evidenceRefs: ["plugin:io.ardesia.simulation@0.1.0"],
+      pluginId: "com.ardesia.plugin-functions",
+      evidenceRefs: ["plugin:com.ardesia.plugin-functions@0.1.0"],
     })
   })
 
@@ -225,7 +216,7 @@ describe("PluginWindow component", () => {
     fireEvent.change(screen.getByLabelText("Cerca plugin"), { target: { value: "web" } })
 
     expect(container.querySelector('[data-plugin-window-item="com.ardesia.web-view"]')).not.toBeNull()
-    expect(container.querySelector('[data-plugin-window-item="io.ardesia.simulation"]')).toBeNull()
+    expect(container.querySelector('[data-plugin-window-item="com.ardesia.plugin-functions"]')).toBeNull()
 
     const webRow = container.querySelector('[data-plugin-window-item="com.ardesia.web-view"]')
     fireEvent.click(within(webRow as HTMLElement).getByRole("button", { name: "Inserisci Web" }))

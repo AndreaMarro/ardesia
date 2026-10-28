@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 //
-// SERVICE BROKER `service.simulation` — un Pack/plugin disciplinare (ELABTutor)
+// SERVICE BROKER `service.simulation` — un Pack/plugin disciplinare (consumer)
 // deve poter USARE il Simulation Plugin senza importarne il codice: la sola via
 // legittima è una chiamata host-mediated sul wire ToolHost, capability-gated.
 //
@@ -27,55 +27,31 @@ import type { AuditStore } from "../toolhost/audit.ts"
 import type { BoardApiLike, BoardElementLike } from "../toolhost/caps/board.ts"
 import type { StorageDriverLike, StorageEntryLike } from "../toolhost/caps/storage.ts"
 import type { SimulationRuntimeApiLike } from "../toolhost/caps/simulation.ts"
-import {
-  SIMULATION_RUNTIME_API_VERSION,
-  SIMULATION_RUNTIME_PLUGIN_ID,
-  SIMULATION_RUNTIME_STATE_SCHEMA,
-  describeSimulationRuntimeApi,
-  loadSimulationRuntimeScene,
-  readSimulationRuntimeDiagnostics,
-  serializeSimulationRuntimeState,
-  solveSimulationRuntimeProvider,
-} from "../../sim/core/simulationRuntime.ts"
-import type {
-  SimulationRuntimeProviderRequest,
-  SimulationRuntimeState,
-} from "../../sim/core/simulationRuntime.ts"
+import type { SimulationScene } from "../toolhost-protocol/index.ts"
 import { simulationSceneDigest } from "../../sim/core/simulationSceneDigest.ts"
 
-/**
- * Digest della topologia CONTENUTA in uno stato del runtime. Vive qui, nel
- * composition root, perché è il SERVIZIO a sapere com'è fatto il proprio stato:
- * per l'host lo stato resta opaco.
- */
-function runtimeStateSceneDigest(state: unknown): string {
-  const scene = (state as SimulationRuntimeState).scene
-  return simulationSceneDigest({
-    components: scene.components ?? [],
-    connections: scene.connections ?? [],
-    ...(scene.pinAssignments === undefined ? {} : { pinAssignments: scene.pinAssignments }),
-  })
-}
+const SIMULATION_RUNTIME_API_VERSION = "simulation-runtime/1" as const
+const SIMULATION_RUNTIME_PLUGIN_ID = "io.ardesia.simulation" as const
+const SIMULATION_RUNTIME_STATE_SCHEMA = "synthetic-broker-service/1" as const
 
-/**
- * Composition root del test: lega il servizio REALE `simulation-runtime/1`.
- * Nessun mock del soggetto sotto prova — se il broker funziona qui, funziona
- * contro il motore vero. È anche la prova che l'host NON importa `sim/`: senza
- * questa iniezione esplicita nessun metodo esiste.
- */
-const realSimulationService: SimulationRuntimeApiLike = {
-  describe: () => describeSimulationRuntimeApi(),
-  sceneDigest: (scene) => simulationSceneDigest(scene),
-  stateSceneDigest: (state) => runtimeStateSceneDigest(state),
-  loadScene: (input) => loadSimulationRuntimeScene(input),
-  solve: (state, request) => {
-    const solved = solveSimulationRuntimeProvider(
-      state as SimulationRuntimeState,
-      request as SimulationRuntimeProviderRequest,
-    )
-    return { state: solved.state, result: solved.result }
-  },
-  readDiagnostics: (state) => readSimulationRuntimeDiagnostics(state as SimulationRuntimeState),
+type SimulationRuntimeState = { schema: string; instanceId: string; scene: SimulationScene; diagnostics: string[] }
+type SimulationRuntimeProviderRequest = { provider: string; mode: string }
+function loadSimulationRuntimeScene(input: { instanceId: string; scene: SimulationScene; diagnostics?: string[] }): SimulationRuntimeState {
+  return { schema: SIMULATION_RUNTIME_STATE_SCHEMA, instanceId: input.instanceId, scene: structuredClone(input.scene), diagnostics: [...input.diagnostics ?? []] }
+}
+function serializeSimulationRuntimeState(state: SimulationRuntimeState): SimulationRuntimeState { return structuredClone(state) }
+function solveSimulationRuntimeProvider(state: SimulationRuntimeState, request: SimulationRuntimeProviderRequest) {
+  return { state: structuredClone(state), result: { fixture: true, provider: request.provider, mode: request.mode } }
+}
+function runtimeStateSceneDigest(state: unknown): string { return simulationSceneDigest((state as SimulationRuntimeState).scene) }
+/** Synthetic injected service: the production broker remains the subject under test. */
+const fixtureSimulationService: SimulationRuntimeApiLike = {
+  describe: () => ({ pluginId: SIMULATION_RUNTIME_PLUGIN_ID, apiVersion: SIMULATION_RUNTIME_API_VERSION, stateSchema: SIMULATION_RUNTIME_STATE_SCHEMA }),
+  sceneDigest: simulationSceneDigest,
+  stateSceneDigest: runtimeStateSceneDigest,
+  loadScene: loadSimulationRuntimeScene,
+  solve: (state, request) => solveSimulationRuntimeProvider(state as SimulationRuntimeState, request),
+  readDiagnostics: (state) => ({ instanceId: (state as SimulationRuntimeState).instanceId, fixture: true }),
   serializeState: (state) => serializeSimulationRuntimeState(state as SimulationRuntimeState),
 }
 
@@ -127,7 +103,7 @@ function elabTutorManifest(capabilities: Record<string, unknown>): ToolManifest 
   return ToolManifestSchema.parse({
     manifestVersion: 1,
     id: "io.elab.tutor",
-    name: "ELABTutor",
+    name: "consumer",
     version: "0.1.0",
     protocol: ">=1.0 <2.0",
     entry: "dist/index.html",
@@ -203,7 +179,7 @@ function hostWithSimulation(instanceId: string, grant: Capabilities = SERVICE_CA
     store: new MemoryWorkspace(),
     board,
     instanceId,
-    simulation: realSimulationService,
+    simulation: fixtureSimulationService,
   })
 }
 
@@ -228,7 +204,7 @@ describe("service.simulation — discovery", () => {
 // ---------------------------------------------------------------------------
 // RED-2 — LA prova della slice: composizione senza import diretto
 // ---------------------------------------------------------------------------
-describe("service.simulation — composizione ELABTutor→Simulation host-mediated", () => {
+describe("service.simulation — composizione consumer→servizio host-mediated", () => {
   it("RED-2: load → solve → read → serialize, con receipt che lega istanza e digest scena", async () => {
     const { call } = await mountReady(hostWithSimulation("elab-1"))
 
@@ -323,7 +299,7 @@ describe("service.simulation — gating fail-closed", () => {
       store: new MemoryWorkspace(),
       board,
       instanceId: "elab-a",
-      simulation: realSimulationService,
+      simulation: fixtureSimulationService,
     })
     const { call } = await mountReady(host)
 
@@ -346,7 +322,7 @@ describe("service.simulation — gating fail-closed", () => {
           store: new MemoryWorkspace(),
           board,
           instanceId: "elab-a",
-          simulation: realSimulationService,
+          simulation: fixtureSimulationService,
         }),
     ).toThrow()
   })
@@ -378,7 +354,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
     }
     let chiamate = 0
     const digestRottoAllaSeconda: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       sceneDigest: (scene) => {
         chiamate += 1
         if (chiamate === 2) throw new Error("digest non calcolabile")
@@ -409,7 +385,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
 
   it("RED-12: un servizio che non restituisce uno stato non deve produrre una ricevuta di successo", async () => {
     const servizioSenzaStato: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       loadScene: () => undefined,
     }
     const host = new ToolHost(elabTutorManifest(SERVICE_CAP), SERVICE_CAP as Capabilities, {
@@ -429,7 +405,7 @@ describe("service.simulation — la ricevuta non può mentire", () => {
 
   it("RED-11: un servizio che dichiara un apiVersion fuori contratto è respinto, non trascritto nel receipt", async () => {
     const servizioFuoriContratto: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       describe: () => ({
         pluginId: "io.ardesia.simulation",
         apiVersion: "simulation-runtime/99",
@@ -481,7 +457,7 @@ describe("service.simulation — il digest deve descrivere lo stato davvero cari
     // Soddisfa describe() alla lettera — stesso pluginId, stesso apiVersion,
     // stesso stateSchema — e mente su UNA cosa sola: cosa ha caricato.
     const caricaAltraScena: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       loadScene: (input) => loadSimulationRuntimeScene({ ...input, scene: SCENA_B }),
     }
     const { call } = await mountReady(hostConServizio(caricaAltraScena))
@@ -505,7 +481,7 @@ describe("service.simulation — il digest deve descrivere lo stato davvero cari
     // solve committa `solved.state` e riusa `_requireDigest()`: stessa forma del
     // difetto, un passo più in là nel ciclo.
     const solveCambiaScena: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       solve: (state, request) => {
         const solved = solveSimulationRuntimeProvider(
           state as SimulationRuntimeState,
@@ -538,7 +514,7 @@ describe("service.simulation — il digest deve descrivere lo stato davvero cari
     // hash(A) mentre `persistedSceneIds` valeva ["b"]. Con load e solve corretti lo
     // stato TENUTO è giusto, ma i byte CONSEGNATI passano ancora dal servizio.
     const serializzaAltraScena: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       serializeState: (state) => ({
         ...serializeSimulationRuntimeState(state as SimulationRuntimeState),
         scene: SCENA_B,
@@ -559,7 +535,7 @@ describe("service.simulation — il digest deve descrivere lo stato davvero cari
     // Il valore arriva da un servizio iniettato e finisce DENTRO la ricevuta:
     // accettarlo com'è produrrebbe un receipt fuori da SimulationReceiptSchema.
     const digestNonStringa: SimulationRuntimeApiLike = {
-      ...realSimulationService,
+      ...fixtureSimulationService,
       stateSceneDigest: () => undefined as unknown as string,
     }
     const { call } = await mountReady(hostConServizio(digestNonStringa))
