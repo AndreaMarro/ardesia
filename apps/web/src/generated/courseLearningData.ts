@@ -23030,8 +23030,8 @@ export const courseLearningData = {
   "bankIncluded": false,
   "coreSourcesSha256": {
     "activities.py": "eff472dbc567ba258499452283eeeef2154213f92a76027d55dfd2421a82639c",
-    "catalog.py": "a690c9a85b486a9d6be72b19cdb754aaaa8ad08c9933c1ab77881df7fd9a17d0",
-    "four_courses.py": "8dccc5f7b32970fe02d4fb2affe9352a06fa5d21b6272136565778871bbb85a1",
+    "catalog.py": "27e1e112055dd99795c7670c6025e7702ab677a327cf5a1d1976fc458b4aba69",
+    "four_courses.py": "4c3638adfb6a4ce749f867e88257eb3e3a9b2dc7d2853eb09b623c1421e1b300",
     "course_models.py": "4a93deaca52bb36f7d6eb08a1f1360e4f860580ebaf121f6340b638fa92988fe",
     "electrical.py": "cc58921c38effb073d2e21159d9a9084149b330ef05f2c732fd6021ff6f85819",
     "waves.py": "bdc7af2e860dd1b48519294eaef2a6536f87c2e1064dfc0259b05f2228e50add",

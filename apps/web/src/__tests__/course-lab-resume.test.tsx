@@ -62,7 +62,7 @@ test('step navigation invalidates evidence and cannot attach a late save for the
  fireEvent.click(screen.getByRole('button',{name:'Salva la configurazione nel corso'}));await waitFor(()=>expect(resolveSave).toBeTypeOf('function'));
  onCommit.mockClear();labHost.onInvalidated.mockClear();fireEvent.click(screen.getByRole('button',{name:'2. Confronta'}));
  expect(onCommit).toHaveBeenLastCalledWith(null);expect(labHost.onInvalidated).toHaveBeenCalled();
- await act(async()=>resolveSave(response(frozen)));expect(labHost.onSaved).not.toHaveBeenCalled();expect(screen.queryByText('Salvataggio confermato dall’host.')).toBeNull();
+ await act(async()=>resolveSave(response(frozen)));expect(labHost.onSaved).not.toHaveBeenCalled();expect(screen.queryByText(/^Configurazione e ragionamento salvati\./)).toBeNull();expect(screen.getByText('Salvata la versione in attesa. Le modifiche aperte restano da salvare.')).toBeTruthy();
  expect(screen.getByLabelText('La tua previsione')).toHaveProperty('value','La pressione aumenta');
  fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));expect(onCommit).toHaveBeenLastCalledWith(expect.objectContaining({courseLesson:expect.objectContaining({stepId:'comparison'})}));
 });

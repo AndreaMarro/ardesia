@@ -158,7 +158,7 @@ export default function App() {
         <p className="wordmark">ardesia.</p>
         <header className="page-heading">
           <h1 id="core-unavailable-title">
-            {coreUnavailable === "not-configured" ? "Il Core non è configurato" : "Il Core non è disponibile"}
+            {coreUnavailable === "not-configured" ? "Il servizio del corso non è configurato" : "Il servizio del corso non è disponibile"}
           </h1>
           <p role="status">
             Il servizio che gestisce accesso, corsi e condivisione non è disponibile.
