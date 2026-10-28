@@ -48,12 +48,27 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
     if activity_evidence is not None:payload['activityEvidence']=activity_evidence
     if course_lesson is not None:payload['courseLesson']=course_lesson
     def apply(c):
-        activity_context=_assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
+        manual = activity_id == 'course-reasoning-v1'
+        from .science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
+        lab = activity_id in FLUID_LAB_DEFINITIONS
+        if lab and course_lesson is None:
+            raise StudyError('invalid_course_lesson')
+        if manual and (course_lesson is None or activity_parameters not in (None, {})):
+            raise StudyError('invalid_course_lesson')
+        activity_context=None if manual or lab else _assigned_activity(store,principal,edition_id,activity_id,diary_thread_id,activity_parameters)
         from .catalog import submission_course_context
-        course_context=submission_course_context(store,edition_id,activity_id,activity_parameters,activity_context)
+        course_context=submission_course_context(store,edition_id,activity_id,{} if manual else activity_parameters,activity_context)
         from .course_lesson_context import freeze_course_lesson, require_same_parent_lesson
         lesson_context=freeze_course_lesson(store,principal,edition_id,activity_id,course_lesson,course_context['parameters'])
         if lesson_context is not None:course_context.update(lesson_context)
+        if lab:
+            from .science_library.models import evaluate
+            result=evaluate(activity_id,activity_parameters)
+            course_context.update({'modelId':activity_id,'modelVersion':1,'parameters':result['parameters']})
+        if manual:course_context.update({'modelId':None,'modelVersion':None,'reviewMode':'MANUAL_REVIEW_REQUIRED'})
+        if manual and 'assessmentRef' in course_context:
+            from .assessment_support import freeze_assistance
+            course_context['assistance']=freeze_assistance(store,c,principal,edition_id,course_context)
         evidence=None
         if activity_evidence is not None:
             from .learning_experiences import freeze_activity_evidence
@@ -67,6 +82,15 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
         for ref in source_refs:
             resource=store.get_resource(principal,ref['resourceId'])
             if resource['editionId']!=edition_id or resource['revisionId']!=ref['revisionId']:raise StudyError('stale_source',409)
+            if (manual or lab) and resource['kind']=='science-resource':
+                from .science_library.resources import read as read_science
+                saved=read_science(store,principal,ref['resourceId'],ref['revisionId'])['snapshot']
+                saved_lesson=saved.get('courseLesson')
+                if saved_lesson is not None and any(saved_lesson[k] != course_context[k] for k in ('lessonRef','phase')):
+                    raise StudyError('source_course_lesson_mismatch',409)
+                lab_lesson=saved.get('labSnapshot',{}).get('configuration',{}).get('lessonRef')
+                if lab_lesson is not None and lab_lesson != course_context['lessonRef']:
+                    raise StudyError('source_course_lesson_mismatch',409)
             if resource['kind']=='scientific-notebook':
                 if resource['notebook']['source']['assetId'] not in asset_refs:
                     raise StudyError('notebook_original_required')
@@ -95,22 +119,26 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
             effective_refs.insert(0,{'resourceId':resource_id,'revisionId':revision_id,'contextId':context_id})
         c.execute('INSERT INTO study_submissions(id,edition_id,student_id,activity_id,revision,parent_id,text,asset_refs,source_refs,receipt_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (submission_id,edition_id,principal.id,activity_id,revision,parent_id,text,canonical(asset_refs),canonical(effective_refs),receipt_id,store.clock()))
         body={'receiptId':receipt_id,'submissionId':submission_id,'studentId':principal.id,'activityId':activity_id,'revision':revision,'parentId':parent_id,'receivedAt':store.clock(),'state':'received','courseContext':course_context}
+        if manual:
+            body['review']={'state':'MANUAL_REVIEW_REQUIRED','originalText':text}
+            if 'assessmentRef' in course_context:
+                body['review']['prompt']=course_context['assessmentPrompt']
         if activity_context is not None:body['activityContext']=activity_context
         if evidence is not None:body['activityEvidence']=evidence
         return body
     return transact(store,principal,'submission.received',key,payload,apply)
 
 
-def get_receipt(store,principal,receipt_id):
+def get_receipt(store,principal,receipt_id,*,allow_unavailable=False):
     row=store.connection.execute("SELECT * FROM study_submissions WHERE receipt_id=?",(receipt_id,)).fetchone()
     if row is None:raise StudyError('not_found',404)
-    edition=store._edition_access(principal,row['edition_id'])
+    edition=store._edition_access(principal,row['edition_id'],allow_unavailable=allow_unavailable)
     if row['student_id']!=principal.id and edition['teacherId']!=principal.id:raise StudyError('forbidden',403)
     return json.loads(store.connection.execute('SELECT body FROM study_receipts WHERE id=?',(receipt_id,)).fetchone()[0])
 
 
-def list_submissions(store,principal,edition_id):
-    edition=store._edition_access(principal,edition_id)
+def list_submissions(store,principal,edition_id,*,allow_unavailable=False):
+    edition=store._edition_access(principal,edition_id,allow_unavailable=allow_unavailable)
     query='SELECT s.*,r.body AS receipt_body FROM study_submissions s LEFT JOIN study_receipts r ON r.id=s.receipt_id WHERE s.edition_id=?'
     parameters=[edition_id]
     if edition['teacherId']!=principal.id:query+=' AND s.student_id=?';parameters.append(principal.id)

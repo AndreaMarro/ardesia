@@ -18,6 +18,7 @@ export function Login({
     mounted.current = true;
     return () => { mounted.current = false; pending.current?.abort(); };
   }, []);
+  const [email,setEmail]=useState(""),[password,setPassword]=useState(""),[passwordLogin,setPasswordLogin]=useState(false);
   const [token, setToken] = useState(""),
     [invitation, setInvitation] = useState(false),
     [invitationMode, setInvitationMode] = useState<
@@ -27,18 +28,18 @@ export function Login({
     [error, setError] = useState("");
   useEffect(() => {
     let active = true;
-    void studyRequest<{ capabilities?: { invitationCodes?: boolean } }>(
+    void studyRequest<{ capabilities?: { invitationCodes?: boolean;passwordLogin?:boolean } }>(
       "/health",
     )
       .then((health) => {
-        if (active)
+        if (active) {setPasswordLogin(health.capabilities?.passwordLogin===true);
           setInvitationMode(
             health.capabilities?.invitationCodes === true
               ? "available"
               : health.capabilities?.invitationCodes === false
                 ? "unavailable"
                 : "unknown",
-          );
+          );}
       })
       .catch(() => {
         if (active) setInvitationMode("unknown");
@@ -57,16 +58,16 @@ export function Login({
     pending.current = controller;
     try {
       const value = await studyRequest<StudyMe>(
-          invitation && invitationMode === "available"
+          passwordLogin ? "/session/login" : invitation && invitationMode === "available"
             ? "/invitations/accept"
             : "/session",
-          { token },
+          passwordLogin ? {email,password} : { token },
           { signal: controller.signal },
         );
       if (mounted.current && isStudySessionEpoch(epoch)) onSuccess(value);
     } catch {
       if (mounted.current && isStudySessionEpoch(epoch)) setError(
-        "Il codice non è valido, è scaduto o è già stato usato. Controllalo e riprova.",
+        passwordLogin ? "Accesso non riuscito. Controlla email e password e riprova." : "Il codice non è valido, è scaduto o è già stato usato. Controllalo e riprova.",
       );
     } finally {
       if (mounted.current) setBusy(false);
@@ -96,11 +97,10 @@ export function Login({
             <h2>Ritrova il tuo spazio.</h2>
           </Dialog.Title>
           <Dialog.Description>
-            Accedi con il codice personale del tuo account di prova. Sono
-            disponibili soltanto account sintetici.
+            {passwordLogin?"Accedi con email e password del tuo account di prova.":"Accedi con il codice personale del tuo account di prova."} Sono disponibili soltanto account sintetici.
           </Dialog.Description>
           <form onSubmit={(e) => void submit(e)}>
-            <label>
+            {passwordLogin?<><label>Email<input autoFocus type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)}/></label></>:<label>
               {invitation ? "Invito monouso" : "Codice di accesso sintetico"}
               <input
                 autoFocus
@@ -110,8 +110,8 @@ export function Login({
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
               />
-            </label>
-            {invitationMode === "available" && (
+            </label>}
+            {!passwordLogin&&invitationMode === "available" && (
               <label className="checkbox-label">
                 <input
                   type="checkbox"
@@ -121,18 +121,18 @@ export function Login({
                 Sto usando un invito monouso
               </label>
             )}
-            {invitationMode === "checking" && (
+            {!passwordLogin&&invitationMode === "checking" && (
               <p className="fine-print" role="status">
                 Verifica delle modalità di accesso…
               </p>
             )}
-            {invitationMode === "unavailable" && (
+            {!passwordLogin&&invitationMode === "unavailable" && (
               <p className="fine-print">
                 Gli inviti monouso non sono attivi in questo ambiente. Usa il
                 codice del tuo account di prova.
               </p>
             )}
-            {invitationMode === "unknown" && (
+            {!passwordLogin&&invitationMode === "unknown" && (
               <p className="fine-print">
                 Le modalità di invito non sono verificate. Puoi usare il codice
                 del tuo account di prova.

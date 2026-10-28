@@ -14,8 +14,11 @@ export function PublicLessonDemo({onShowFormula,lesson}: {onShowFormula: () => v
     if (!audio || loading) return;
     if (!audio.paused) {audio.pause(); return;}
     setLoading(true); setError("");
-    try {await audio.play();}
-    catch {setError("L’audio locale non è disponibile. Puoi leggere lo stesso passaggio nella trascrizione.");}
+    try {
+      if (audio.error || audio.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) audio.load();
+      await audio.play();
+    }
+    catch {setError("L’audio non è disponibile al momento. Puoi riprovare. Puoi leggere lo stesso passaggio nella trascrizione.");}
     finally {setLoading(false);}
   }
   return <div className="lesson-demo" data-testid="lesson-demo">

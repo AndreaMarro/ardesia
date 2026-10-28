@@ -970,7 +970,7 @@
         {
           "invalid": {
             "process": "isochoric",
-            "volumeRatio": 1.2
+            "effectiveVolumeRatio": 1.2
           },
           "expectedError": "constraint_mismatch"
         },
@@ -1012,7 +1012,7 @@
       "conditionalConstraints": [
         {
           "when": "process=isochoric",
-          "requires": "volumeRatio=1; temperatureRatio is the independent thermal control; calculate pressureRatio=temperatureRatio."
+          "requires": "Effective volumeRatio=1; volume control inactive in isochoric mode. An unused nominal volume input may be retained without changing the physical volume. temperatureRatio is the independent thermal control; pressureRatio=temperatureRatio."
         },
         {
           "when": "process=free-expansion",

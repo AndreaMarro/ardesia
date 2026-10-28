@@ -2521,6 +2521,14 @@ describe("S-DESIGN-9a: chip stanza in vista studente (nome lezione, fallback id)
 })
 
 describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
+  function surfaceControl(surface: string): HTMLElement {
+    const control = surface === "replay"
+      ? Array.from(document.querySelectorAll<HTMLButtonElement>(".st-actions button")).find(button => button.textContent?.trim() === "Rivedi la lezione")
+      : document.querySelector<HTMLElement>(`[data-view-nav-item="${surface}"]`)
+    expect(control).toBeTruthy()
+    return control!
+  }
+
   beforeEach(async () => {
     // Resetta isStudentView a false (S-DESIGN-5 beforeEach lo imposta a true)
     delete (window as any).__MAESTRO_TEST__
@@ -2624,7 +2632,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     }
   })
 
-  it("il cambio superficie attende il journal e conserva l'ultimo evento prima della route", async () => {
+  it.each(["continuita", "replay", "materiali"])("il cambio superficie %s attende il journal e conserva l'ultimo evento prima della route", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()
@@ -2651,9 +2659,8 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       await originalWrite(path, data)
     })
 
-    const link = document.querySelector<HTMLAnchorElement>(
-      '[data-view-nav-item="continuita"]',
-    )!
+    const link = surfaceControl(surface)
+    expect(document.querySelectorAll('[data-view-nav-item]')).toHaveLength(3)
     link.dispatchEvent(new MouseEvent("click", {
       bubbles: true,
       cancelable: true,
@@ -2668,7 +2675,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       allowWrite.resolve()
       await vi.waitFor(() => {
         expect(navigate).toHaveBeenCalledWith(
-          "/?vista=continuita#test-room-1",
+          `/?vista=${surface === "materiali" ? "lezioni-salvate" : surface}#test-room-1`,
         )
       })
       const journal = await store.read(roomPaths("test-room-1").journal)
@@ -2679,7 +2686,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     }
   })
 
-  it("un errore journal annulla il cambio superficie e resta visibile", async () => {
+  it.each(["materiali", "replay"])("un errore journal annulla il cambio superficie %s e resta visibile", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()
@@ -2695,9 +2702,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     harness.recorder.recordMathInsert("fb6c-journal-error")
     vi.spyOn(store, "write").mockRejectedValue(new Error("journal offline"))
 
-    document.querySelector<HTMLAnchorElement>(
-      '[data-view-nav-item="materiali"]',
-    )!.click()
+    surfaceControl(surface).click()
 
     await vi.waitFor(() => {
       expect(document.querySelector(".st-err")?.textContent).toContain(
@@ -2708,7 +2713,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 
-  it("un errore scena annulla il cambio superficie invece di navigare con dati persi", async () => {
+  it.each(["continuita", "replay", "materiali"])("un errore scena annulla il cambio superficie %s invece di navigare con dati persi", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     vi.spyOn(store, "saveScene").mockRejectedValue(new Error("scene offline"))
@@ -2726,9 +2731,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     expect(onChange).toBeDefined()
     onChange!([{ id: "fb6c-element", version: 1 }] as any, {} as any, {})
 
-    document.querySelector<HTMLAnchorElement>(
-      '[data-view-nav-item="continuita"]',
-    )!.click()
+    surfaceControl(surface).click()
 
     await vi.waitFor(() => {
       expect(document.querySelector(".st-err")?.textContent).toContain(
@@ -2739,7 +2742,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
     root.unmount()
   })
 
-  it("un flush sospeso scade senza cambiare route e libera il cambio superficie", async () => {
+  it.each(["continuita", "replay", "materiali"])("un flush sospeso scade senza cambiare route e libera il cambio superficie %s", async (surface) => {
     const { store } = await createMockStore()
     vi.spyOn(store, "loadScene").mockResolvedValue(null)
     const navigate = vi.fn()
@@ -2761,9 +2764,7 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
 
     vi.useFakeTimers()
     try {
-      document.querySelector<HTMLAnchorElement>(
-        '[data-view-nav-item="continuita"]',
-      )!.click()
+      surfaceControl(surface).click()
       await writeStarted.promise
       await act(async () => {
         await vi.advanceTimersByTimeAsync(10_000)
@@ -2778,6 +2779,18 @@ describe("S-DESIGN-3b: flush-persist ordering + drawer error handling", () => {
       vi.useRealTimers()
       root.unmount()
     }
+  })
+
+  it("non offre Rivedi la lezione nella vista studente", async () => {
+    await selectRoomView("student")
+    const { store } = await createMockStore()
+    const root = createRoot(document.getElementById("root")!)
+    try {
+      const RoomModule = await import("../Room")
+      root.render(<RoomModule.default store={store} />)
+      await vi.waitFor(() => expect((window as any).__MAESTRO_TEST__?.ready).toBe(true))
+      expect(document.body.textContent).not.toContain("Rivedi la lezione")
+    } finally { root.unmount(); await selectRoomView("teacher") }
   })
 
   it("toggleDrawer mostra errore quando listRooms fallisce", async () => {

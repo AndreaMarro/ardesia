@@ -1,4 +1,4 @@
-// Adapter di consegna email per i token di accesso ELAB.
+// Adapter di consegna email per i token di accesso Ardesia.
 //
 // Il provider email REALE è gate-Andrea (nessuna email vera senza decisione
 // esplicita e isolamento). Il core consegna il token SOLO attraverso questa

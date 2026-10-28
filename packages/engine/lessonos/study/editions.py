@@ -264,7 +264,7 @@ def preview_offer(store,principal,edition_id,key,*,revision,ttl=300):
         {'editionId':edition_id,'expectedRevision':revision,'ttl':ttl},apply)
 
 
-def public_edition(store,edition_id,principal=None):
+def public_edition(store,edition_id,principal=None,*,allow_unavailable=False):
     """Draft metadata is read only by its owner or an existing member."""
     teacher_id=student_id=None
     if principal is not None:
@@ -275,7 +275,7 @@ def public_edition(store,edition_id,principal=None):
         "SELECT e.id FROM study_editions e WHERE e.id=? AND (e.state!='draft' OR e.teacher_id=? OR EXISTS (SELECT 1 FROM study_members m WHERE m.edition_id=e.id AND m.student_id=?))",
         (edition_id,teacher_id,student_id)).fetchone()
     if not row:raise StudyError('not_found',404)
-    return store.get_edition(edition_id)
+    return store.get_edition(edition_id,allow_unavailable=allow_unavailable)
 
 
 def local_starts(edition):

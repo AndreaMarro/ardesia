@@ -1,0 +1,3725 @@
+{
+  "schemaVersion": 3,
+  "artifact": "acceptance-matrix-current",
+  "generatedAt": "2026-10-28T19:57:10.109556+00:00",
+  "sourceSha256": "64cac698ffad811966c61d39afab5250626b1aa9888e106eb8df3a024d36693c",
+  "sourceName": "Ardesia_documento_decisionale_2026-10-28.md",
+  "scopeOverride": "Full fluids and thermodynamics course mandated 2026-10-28",
+  "candidateSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+  "requirementCount": 68,
+  "statusCounts": {
+    "PASS_TECHNICAL": 42,
+    "HUMAN_PENDING": 4,
+    "NOT_RUN": 4,
+    "PARTIAL": 18
+  },
+  "done": false,
+  "acceptedObjectives": 0,
+  "humanScientificEditorialReview": "NOT_RUN",
+  "pilotWithRepresentativeStudents": "NOT_RUN",
+  "statusSemantics": {
+    "PASS_TECHNICAL": "La prova tecnica registrata soddisfa il criterio nel perimetro e sullo SHA dichiarati; non è approvazione umana, produzione o accettazione globale della HEAD corrente.",
+    "PARTIAL": "Esistono implementazione/prove rilevanti ma manca una parte del criterio o la conferma finale.",
+    "HUMAN_PENDING": "Prerequisiti/materiali tecnici presenti, ma il criterio richiede giudizio/approvazione umana non attestata.",
+    "NOT_RUN": "L’attività di accettazione richiesta non risulta eseguita; un piano non conta come esecuzione.",
+    "FAIL": "Una prova o un risultato concreto registrato non soddisfa il criterio; il residuo chiarisce esattamente quale."
+  },
+  "auditBoundaries": {
+    "newRemoteCalls": false,
+    "newBrowserRuns": false,
+    "newTests": false,
+    "newBuilds": false,
+    "codeOrMainDocsChanges": false,
+    "reportOnly": true,
+    "writesLimitedTo": [
+      "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/acceptance-matrix-current.json",
+      "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/acceptance-matrix-current.md"
+    ],
+    "note": "Overlay documentale di artefatti già prodotti. La HEAD è letta da git locale; nessuna nuova verifica hosted, CI o hardware. La matrice 669 e la baseline restano immutate.",
+    "separatelyAuthorizedEvidenceRuns": {
+      "requirements": [
+        "D14",
+        "D24"
+      ],
+      "sourceId": "U13",
+      "note": "Prova browser successiva autorizzata dal coordinatore, separata dalla generazione documentale; tre run preservati, due casi PASS in run distinti."
+    }
+  },
+  "evidenceSnapshots": {
+    "previousDraft": {
+      "candidateSha": "a73904821adff5e0ad2f15c496c5bda773eae950",
+      "preserved": true,
+      "statusCounts": {
+        "PASS_TECHNICAL": 17,
+        "PARTIAL": 40,
+        "HUMAN_PENDING": 4,
+        "NOT_RUN": 5,
+        "FAIL": 2
+      }
+    },
+    "browser669": {
+      "status": "PASS",
+      "uniqueModels": 16,
+      "authoritativeSaveAcknowledgments": 17,
+      "cameraPixelChecks": 8,
+      "cssViewports": [
+        360,
+        390,
+        820,
+        1440
+      ],
+      "sourceId": "N01"
+    },
+    "guard669": {
+      "status": "PASS",
+      "checks": 17,
+      "sourceId": "N02"
+    },
+    "source669": {
+      "status": "PASS",
+      "checks": 9,
+      "sourceId": "N03"
+    },
+    "studio669": {
+      "status": "PASS_ASSIGNED_CASES_WITH_LIMITS",
+      "sourceId": "N05",
+      "continuity": "DEGRADED_UNDER_EXISTING_CONTRACT_NOT_FULL_READY"
+    },
+    "coreReadback669": {
+      "status": "PASS",
+      "readbackPassed": true,
+      "cases": 17,
+      "mode": "HTTP_READ_ONLY_DISTINCT_FROM_BROWSER_AND_PHYSICAL_DEVICE",
+      "sourceId": "N06"
+    },
+    "audioAndExams669": {
+      "status": "PASS_SCOPED_REPAIRS_AFTER_DRIVER_CORRECTION",
+      "allCasesSingleRunGreen": false,
+      "audioPassCases": 2,
+      "repeatExamAndHistoryPassCases": 3,
+      "sourceId": "N04"
+    },
+    "poiseuilleRatios669": {
+      "status": "PASS",
+      "cases": 3,
+      "canonicalEvaluations": 6,
+      "ratioAssertions": 6,
+      "sourceId": "N07"
+    },
+    "release": {
+      "candidateChecks": "SUCCESS_REPORTED_BY_COORDINATOR",
+      "finalMerge": "NOT_RUN",
+      "finalPostMergeCi": "NOT_RUN",
+      "rollback": "NOT_RUN",
+      "sourceId": "C669",
+      "snapshotScope": "HISTORICAL_669_ONLY"
+    },
+    "buffering669": {
+      "status": "PASS_SCOPED_REAL_BUFFERING",
+      "waitingObserved": true,
+      "stalledObserved": false,
+      "heldSeconds": 2.5895,
+      "sourceId": "N14",
+      "earlierReadinessAttempt": "BUFFERING_NOT_PROVEN_PARTIAL_PRESERVED"
+    },
+    "performance669": {
+      "status": "PASS_IN_DECLARED_SOFTWARE_ENVIRONMENT_ONLY",
+      "samples": 100,
+      "nextFrameP95ms": 17.400000005960464,
+      "domCommitP95ms": 2.300000011920929,
+      "thresholdP95ms": 100,
+      "environmentValid": true,
+      "renderer": "SwiftShader",
+      "deviceNetworkAgreedAcceptance": "NOT_RUN",
+      "sourceId": "N15"
+    },
+    "browserCompatibility669": {
+      "overallFirefoxWebKit": "FAIL_EXECUTION_OR_CLEANUP_RETAINED",
+      "firefoxVerified": [
+        "login",
+        "2D",
+        "3D_camera_reset"
+      ],
+      "firefoxReturnRefresh": "NOT_RUN_DRIVER_ID_INSTABILITY",
+      "webkitVerified": [
+        "login",
+        "2D"
+      ],
+      "webkit3D": "NOT_CONCLUDED",
+      "nativeSafari": "PASS_REPRESENTATIVE_ARCHIMEDE_PATH",
+      "physicalTabletPen": "NOT_RUN",
+      "sourceIds": [
+        "N16",
+        "N17"
+      ]
+    },
+    "replayView669": {
+      "status": "FAIL_KNOWN_P2_HISTORICAL_PLUGIN_NOT_RENDERED",
+      "owner": "review_remote",
+      "fixAcceptance": "PENDING",
+      "sourceId": "C_REPLAY"
+    },
+    "g3_669Historical": {
+      "status": "COMPLETED_WITH_VIOLATIONS",
+      "scans": 20,
+      "violationRuleOccurrences": 26,
+      "seriousRules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ],
+      "incompleteColorOccurrences": 20,
+      "sourceId": "N15",
+      "fixCommit": "d57b7c45",
+      "fixLocalValidation": "19_TESTS_TSC_REVIEW_PASS_REPORTED",
+      "hostedFixRetest": "COMPLETED_ON_D57_SEPARATE_SOURCE_U01"
+    },
+    "g3D57": {
+      "status": "COMPLETED_REQUIRES_MANUAL_REVIEW",
+      "sourceId": "U01",
+      "candidateSha": "d57b7c45f8cb55ad473572589b2bf5c06f17d10d",
+      "scans": 20,
+      "violations": 0,
+      "incompleteColorOccurrences": 20,
+      "performance": "NOT_RUN",
+      "wcagCertification": false
+    },
+    "browserCompatibilityD57": {
+      "status": "COMPLETED_REPRESENTATIVE_SMOKE",
+      "sourceId": "U02",
+      "engines": [
+        "Firefox 150.0.2",
+        "WebKit 26.4"
+      ],
+      "secondPhysicalDevice": "NOT_RUN",
+      "physicalTabletPen": "NOT_RUN"
+    },
+    "browser392": {
+      "status": "PASS",
+      "sourceId": "U03",
+      "candidateSha": "392fff40e1d213a4154102f7aaa93b1934081a9e",
+      "uniqueModels": 16,
+      "authoritativeSaveAcknowledgments": 17,
+      "cameraPixelChecks": 8,
+      "cssViewports": [
+        360,
+        390,
+        820,
+        1440
+      ]
+    },
+    "poiseuille392": {
+      "status": "PASS_REPRESENTATIVE_POISEUILLE_FLOW",
+      "sourceId": "U04",
+      "clipboard": "NOT_RUN",
+      "learningWrites": 0,
+      "decimalCommaSupport": false
+    },
+    "replay392": {
+      "status": "RED_PRESERVED_ACTIVATION_AND_SDK_NAMES",
+      "sourceId": "U05",
+      "dataAndReadonlyChecks": "PASS_SCOPED",
+      "integratedFixBrowserRetest": "PENDING"
+    },
+    "currentIntegratedSource": {
+      "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "sourceIds": [
+        "U06",
+        "U07",
+        "U08"
+      ],
+      "writerReportedLocalTests": {
+        "studioReplay": 74,
+        "webAppShell": 12,
+        "webLabAck": 13,
+        "totalUniqueFinalGroups": 99,
+        "completeStudioTypecheck": "PASS",
+        "completeWebTypecheck": "PASS"
+      },
+      "status": "SOURCE_AND_LOCAL_REGRESSIONS_ONLY",
+      "hostedStudioAcceptance": "PENDING"
+    },
+    "g3B807": {
+      "sourceId": "U11",
+      "status": "COMPLETED_REQUIRES_MANUAL_REVIEW",
+      "scans": 20,
+      "violations": 0,
+      "incompleteColorOccurrences": 20,
+      "performance": "NOT_RUN"
+    },
+    "contextLossB807": {
+      "sourceId": "U12",
+      "status": "VERIFIED_REAL_PROVIDER_RECOVERY",
+      "isTrusted": true,
+      "measurementsPreserved": true,
+      "configurationOrReceiptSaved": false
+    },
+    "cssStressB807": {
+      "sourceId": "U12",
+      "status": "CLIPPING_OBSERVED_REPORTED_BY_COORDINATOR",
+      "nativeZoom": false,
+      "fixAndRetest": "PENDING"
+    },
+    "numericAndPauseB807": {
+      "sourceId": "U13",
+      "status": "PASS_SCOPED_ACROSS_DISTINCT_RUNS",
+      "allCasesSingleRunGreen": false,
+      "persistedBankAttempts": false
+    },
+    "core2bef": {
+      "sourceId": "U14",
+      "candidateSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+      "status": "COMPLETED_REQUIRES_MANUAL_REVIEW",
+      "scans": 20,
+      "violations": 0,
+      "incompleteColorOccurrences": 20,
+      "hostedCss200Reflow": "PASS_SCOPED",
+      "nativeZoom": false,
+      "performance": "NOT_RUN",
+      "studio": "NOT_RUN_IN_THIS_CORE_REPORT"
+    },
+    "studio2bef": {
+      "sourceId": "U15",
+      "candidateSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+      "status": "PASS_DECLARED_SCOPE",
+      "ordinaryEntry": true,
+      "seekSequence": [
+        2,
+        5,
+        3.25,
+        4.25,
+        5,
+        2
+      ],
+      "dynamicZoom": "PASS",
+      "axeViewports": [
+        1440,
+        360
+      ],
+      "axeViolationCount": 0,
+      "incomplete": "DEFINITION_LABELS_AND_CONTRAST_REVIEW_PENDING",
+      "persistedUnchanged": true,
+      "observedWrites": 0,
+      "mutatingRequests": 0,
+      "ownLogoutHttp": 200,
+      "oldCookieHttp": 401,
+      "allOwnedBrowsersClosed": "REPORTED_BY_EXECUTOR",
+      "historicalGradeClaim": false
+    }
+  },
+  "sources": {
+    "S01": {
+      "id": "S01",
+      "path": "/Users/andreamarro/Downloads/Ardesia_documento_decisionale_2026-10-28.md",
+      "detail": "Mandato decisionale originale; perimetro successivamente esteso dal proprietario al corso completo.",
+      "sha256AtRead": "64cac698ffad811966c61d39afab5250626b1aa9888e106eb8df3a024d36693c",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S02": {
+      "id": "S02",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/requirements-baseline.json",
+      "detail": "Baseline esatta D01–D68; testo requisito/acceptance/scope preservato.",
+      "sha256AtRead": "4447d30c760fa84afa1811042658e80ea2f0f86e9b4633db0620a13ed9d92786",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S03": {
+      "id": "S03",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/1b-lesson-validation.md",
+      "detail": "Dieci lezioni, 57 rubriche/transfer; review AI e DRAFT, nessuna approvazione umana.",
+      "sha256AtRead": "2431da5eb41c8ee3c4ea4427ffc245ade7bb17fd0b3314a6e20a7c965bcb4605",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S04": {
+      "id": "S04",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/1b-curation-validation.md",
+      "detail": "199 quesiti, 40 svolti, due simulazioni; oracoli indipendenti e limiti della curazione.",
+      "sha256AtRead": "125d8b03b9ecebf017bfdbaded25fbd86477fe2dd115ca78aea0f6f97ef53634",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S05": {
+      "id": "S05",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/coverage-matrix.json",
+      "detail": "57 obiettivi mappati, acceptedCount=0.",
+      "sha256AtRead": "e3c6f52e5ac7b18a84ff49e3e53a9048eeee0d5fa9457708754f34c7608e30e8",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S06": {
+      "id": "S06",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/laboratory-independent-validation.json",
+      "detail": "54/54 controprove numeriche/domain, implementationHead55123ab3; review umana NOT_RUN.",
+      "sha256AtRead": "b387eb9abd9ffcdef25f218710f1d96c9c012b956c365b576a9c08737fc8901f",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S07": {
+      "id": "S07",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/laboratory-consumer-map.json",
+      "detail": "16 modelli, 45 atomici distinti mappati, limiti espliciti; non certifica tutti i57.",
+      "sha256AtRead": "a157c9d4c42015924885037bf6a2fe7c4f8cf51983b74c6c76fef55236cee4c1",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S08": {
+      "id": "S08",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/validation-55123ab3.json",
+      "detail": "69 test Web,47 Python e typecheck; limiti del componente e del benchmark software.",
+      "sha256AtRead": "6bcb279e6b46a52af5d2e624bcfefab1253b28593d1bbe510ce4e00f5a77edba",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S09": {
+      "id": "S09",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/laboratori-20261028/report.json",
+      "detail": "Harness locale3ba428ce:16 laboratori2D/8 scene softwareWebGL, tastiera/fallback/viewport; non dispositivo fisico.",
+      "sha256AtRead": "dec1213d70974c268a1821837c3c7692676cfb95e2045b0dc7524a75d3c740e3",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S10": {
+      "id": "S10",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/remote-fluid-models.json",
+      "detail": "16 valutazioni API docente su8e442a2c; implementationSha256580835ca66e3198c0fd260a9a5f91b7c340f7268a2a4913a99b10de6eb2175aa.",
+      "sha256AtRead": "c6be9fe695fb58745ddb8856223f490d89285aad94083454e3d62733e64db20b",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S11": {
+      "id": "S11",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/core-course-evidence-report.md",
+      "detail": "Core76963ff4/70936182 e G2: risorse/versioni,62 nuovi test,114 ricevute practice/transfer per57 prove.",
+      "sha256AtRead": "bc3eaca1faf9aa94645bcf7efc9cdd51352907422018b7d6eee662e56392ad12",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S12": {
+      "id": "S12",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/core-course-evidence-review.md",
+      "detail": "Review tecnica AI indipendente: nessun P0/P1/P2, non accettazione umana.",
+      "sha256AtRead": "c00f1a718f9a97c739b1b89ed3e6be4db3b6e4007cfa338e594450507b004e65",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S13": {
+      "id": "S13",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-consumer-fix-report.md",
+      "detail": "Fix6b083fbd:22 test, riferimenti/step/input invalido e safe learner DTO.",
+      "sha256AtRead": "1be4d6f0d355a5a656785d3bd7858064bf241e7f7b5d6dc15e214469d9c6060c",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S14": {
+      "id": "S14",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-exit-guard-report.md",
+      "detail": "Guardf4ae11d2 + fix8593716c;93/93 e Webtsc, casi retry A/B e input vuoto.",
+      "sha256AtRead": "b5187498f7956a9b37c038c88fb6710869a69c8e5bd41dcadfb1900a7b0becae",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S15": {
+      "id": "S15",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-exit-hosted-plan.md",
+      "detail": "PREPARED_NOT_RUN: scenari browser D31/D46/concorrenza/revoca, non esecuzione.",
+      "sha256AtRead": "95c8e490b6fe7a15c637f8fef045fd5cbd84ea30ea2b0f98d7125fbb9d3e0f22",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S16": {
+      "id": "S16",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/remote-beta-report.md",
+      "detail": "Runtime remoto e prove successive; distinguere le sezioni cronologiche e le SHA.",
+      "sha256AtRead": "ff9943411b7f13b33c7d6a42b9d47c87e93e4b3f026fc3533c60b5dc0c5839b7",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S17": {
+      "id": "S17",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/remote-api-evidence.json",
+      "detail": "41 risposte reali verificate su0d66616b; Auth, risorsa privata, CAS, replay, feedback, nuova sessione HTTP.",
+      "sha256AtRead": "f26e7a6a91351c645fcc3453e95aaf209b80a7d127014e7a59ccc0cc9a57ae3f",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S18": {
+      "id": "S18",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/remote-revocation-evidence.json",
+      "detail": "Revoca reale: cookie401, due sessioni revoke-all, SQL actor NULL; SHA0d66616b.",
+      "sha256AtRead": "b6ec09d051d902192477bac20cd413e3e2bf8c9045ce3a0d38a46ac436fcbab3",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S19": {
+      "id": "S19",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/d52-restore-evidence.json",
+      "detail": "PG17.11:71 tabelle con digest uguali,3 Authusers/6 sessions,PNG2999byte e autorizzazioni; non full SupabaseDR.",
+      "sha256AtRead": "8198353882ecc79cdba77ef613bb6ef90c7bc3cbd8504257c63d2db2872e97b1",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S20": {
+      "id": "S20",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/edition-availability-report.md",
+      "detail": "2f2d9925: letture storiche fail-closed,153+38 test; pin e ricevute conservati.",
+      "sha256AtRead": "40892031a9d9de49d056f8a88e0ad1697608d805a3d5caf22af7309101ca508c",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S21": {
+      "id": "S21",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/media-recovery-report.md",
+      "detail": "717d3fa2: worker/ACL/lease/lock/recovery,20Python+5Deno+1PG; attivazione remota non conclusa dal report.",
+      "sha256AtRead": "280245964ee539bd5ebe813ca1ad054b53feda81713a11d29063586344104d9b",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S22": {
+      "id": "S22",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/media-recovery-remote-evidence.json",
+      "detail": "Prova provider parziale/BLOCKED: originali e denials, intento conservato; providerChain NOT_YET_VERIFIED.",
+      "sha256AtRead": "0a31c8a18b7df9c6320ffd8c0693d94bc6ce0410b467f539cbd6f9bd29252604",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S23": {
+      "id": "S23",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/full-bundle-check.json",
+      "detail": "ce130701: due npmci/build reali exit0,108959778byte applicativi; Python escluso, dimensione hosted non verificata.",
+      "sha256AtRead": "a145817d21b48096e989a86e9ed0e3324688cfe3787ed2b709b0bbc4b1576f02",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S24": {
+      "id": "S24",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-support-report.md",
+      "detail": "4865b7b3:3 diagnostiche sicure,57 hintCount,36+79 test; ricevute/aiuti nel ledger esistente.",
+      "sha256AtRead": "c556b04f4b84db0991fee4f188756244c9122235be480df07c94ce876d2f22fd",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S25": {
+      "id": "S25",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-support-ui-report.md",
+      "detail": "58e14729:36/36 finale; layoutbfe14e7b13 casi, due timeout invariati passano isolati; non un32/32 combinato.",
+      "sha256AtRead": "169fb9b1912a7825f0e2382e5fb0c331797ca1a4d59804bcab396a44d58491fe",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S26": {
+      "id": "S26",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/exam-ui-report.md",
+      "detail": "322deaa8: runner esistente, due mock31quesiti/50min,25 test; non E2E remoto.",
+      "sha256AtRead": "0a77e489dbb4d8947b134d23f08a22547035764457d2f6d309b784760a661bfa",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S27": {
+      "id": "S27",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/remove-elab-report.md",
+      "detail": "Rimozione6223percorsi; fix generic packs/SDK e suite esclusiva eLab; gate non indeboliti.",
+      "sha256AtRead": "1996a57fcd5c927d0e7a5152bee43dde10f8f6f745f2797551c5417cb25529c9",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S28": {
+      "id": "S28",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/course-browser-matrix-red1.json",
+      "detail": "Run8e442a2c FAILED:17 revisioni/16modelli/8scene3D uniche; contatore9vs8 e legacy/course404; zeroJS/static errors.",
+      "sha256AtRead": "a2408e36280bc92acc5413529d1575a4218140fd8b7ffb6c660136ec3fab1266",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S29": {
+      "id": "S29",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/course-browser-matrix.json",
+      "detail": "Snapshot storico a73914:14–14:15UTC interrotto dal selettore esatto Osservazioni; file mobile, non attribuire esiti successivi a questo digest.",
+      "sha256AtRead": "436ed3f98d4b35ab5795147648c6b50d4bd3a59e35340f41bd635d18261aeff0",
+      "snapshot": {
+        "sourceSha": "a73904821adff5e0ad2f15c496c5bda773eae950",
+        "startedAt": "2026-10-28T14:14:13.876Z",
+        "finishedAt": "2026-10-28T14:15:02.724Z",
+        "passed": false,
+        "reason": "locator.fill Osservazioni exact timed out; body retained expected scene and data"
+      },
+      "mutablePath": true,
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "S30": {
+      "id": "S30",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/lessonos/study/content/sf-fluidi-termodinamica-v1.json",
+      "detail": "Pack canonico raw e637a4…;10DS con transcript e senza audioPath/audioTranscript; undicesima demo gas con audio originale secondo coordinatore.",
+      "sha256AtRead": "e637a4f1406cd8b7d6a2dd301a74c28e1f299611a99965b6d918546f76a0df65",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "C01": {
+      "id": "C01",
+      "type": "coordinator_snapshot",
+      "detail": "Mandato audit: candidatoa7390482, CI tutti verdi salvo Web ancora in corso; nessun merge finale/main/rollback/browser finale attestato. D05/D65/D66 umani NOT_RUN; D02 approvazione docente assente.",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "C02": {
+      "id": "C02",
+      "type": "coordinator_update",
+      "detail": "Aggiornamento durante audit: ultimo runa739 ha16modelli,8camere con confronto pixel,17ACK autorevoli e4viewport PASS, ma run globale FAIL per2GET science salvate503 scartati silenziosamente. Fix boundedreads4+failclosed assegnato, non ancora provato. Non estendere questi successi locali al run completo.",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "C03": {
+      "id": "C03",
+      "type": "coordinator_update",
+      "detail": "D42 richiede audio contestuale quando utile, non narrazione di ogni DS. Lezione11 gas ideale del corso include audioPath/audioTranscript originali e file Web pubblico senza import.lesson; prova UI audio ancora mancante. D55 worker717 revisionato ma attivazione/provider in corso, fix HEAD400→GETmetadata non ancora redeployato.",
+      "provenance": "HISTORICAL_PREVIOUS_MATRIX_SNAPSHOT_NOT_REREAD_IN_FULL"
+    },
+    "N01": {
+      "id": "N01",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-browser-matrix-669b5d20.json",
+      "detail": "Matrice hosted 669 globale PASS:16 modelli, 17 ACK, 8 camere e 4 viewport; non hardware.",
+      "sha256AtRead": "ff12db619bbc87db9d76fb78adf080d379c7478039aade40adfdd595e2aa4d35",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N02": {
+      "id": "N02",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-exit-hosted-summary-669b5d20.json",
+      "detail": "B17:17/17 PASS, refresh/nuovo contesto, ACK indice, conflitto con bozza conservata, revoca individuale/recupero e focus.",
+      "sha256AtRead": "64acdac31b7c06513c25ad732cfec6bbda9602c3549f7fb7647d123436ff736c",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N03": {
+      "id": "N03",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-sources-hosted-669b5d20.json",
+      "detail": "D28:9 casi PASS di fonte/PDF originale, selezione, Undo/Cancel, revisione storica e owner/teacher/peer.",
+      "sha256AtRead": "b458f39be1aa1dfd3a35a0fbec9564380fe4048f12058de80fd7a020f16a9cb0",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N04": {
+      "id": "N04",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-audio-exams-669b5d20-report.json",
+      "detail": "Audio 2 casi PASS nel primo run; secondo run exam/history 3 PASS dopo sola correzione selettore driver. Primo errore conservato, nessun singolo fullrun tuttoverde inventato.",
+      "sha256AtRead": "3a9874b3c86d3c1dc2822259128ccc8129fbc02d19aead3b652c31858fa266b4",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N05": {
+      "id": "N05",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/studio-acceptance-669b5d20/report.json",
+      "detail": "Studio 669 assigned cases PASS:interazioni consecutive, preset, identità convertita, journal/replay dati, importfreshcontext e bootstrap; Continuitydegraded e limiti espliciti.",
+      "sha256AtRead": "76560687f217406c98f4a2f90cd338f3c1879965d470da80ec07bd1e75639d49",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N06": {
+      "id": "N06",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/core-readback-669b5d20.json",
+      "detail": "17/17 revisioni browser rilette via HTTP reale, hash/snapshot/contesti esatti; sola sessione propria e nessuna scrittura didattica. Distinto da browser 17 ACK/B17.",
+      "sha256AtRead": "ae8ed1db44eb016217c07e67de877165ef384d6eec03b81060a2f91e6834a942",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N07": {
+      "id": "N07",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/laboratory-independent-validation.json",
+      "detail": "54 casi storici conservati; acceptanceRatioFollowup 669:3 casi/6 esecuzioni/6 rapporti PASS, fonti canoniche immodificate.",
+      "sha256AtRead": "f416b80d71c1ad3cb718e350198ec4cf961bce10916953b926c11554eac234c8",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N08": {
+      "id": "N08",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-2/outputs/readonly-smoke-api-669b5d20.json",
+      "detail": "Rilettura 669 di 3 consegne reali create in UI352:diagnostica/pratica conhint/transfer, originali/receipt/feedback e peerdenial; non nuove scritture 669.",
+      "sha256AtRead": "db3a6adcabc9351f26b0123b81e15ac7db6fffe49ca466e1e23e31074c400d03",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N09": {
+      "id": "N09",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-2/outputs/readonly-smoke-ui-669b5d20.json",
+      "detail": "Smoke UI readonly 669 PASS riapre 3 receipt/originali/feedback/fase; 0 nuoveconsegne/0 nuoviaiuti.",
+      "sha256AtRead": "0fdb7c92abf09c869fb3247139385bd04524486276d3b6be109d1d9490ca0750",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N10": {
+      "id": "N10",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-3/outputs/science-equivalence-669b5d20.json",
+      "detail": "13 file modello/metadata/snapshot/renderer byteidentici fra baseline scientifica/deployment 8 e 442/candidato 669; non sostituisce prove UI correnti.",
+      "sha256AtRead": "5d763f6a5b997c4cd3b8f108dabc4922d02c38d1bea2a805b63329d7dce3c60e",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N11": {
+      "id": "N11",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/media-recovery-remote-evidence.json",
+      "detail": "D55 provider PASS suapp 8 e 442+workerreviewedV2:orphan→cleanup→assenza→samekeyretry, metadatawins, leastprivilege, workerdisabilitato e capabilityrevocata; ambito storico esplicito.",
+      "sha256AtRead": "d0ec025401377d895bea7316891b380fe87cd60265973994ab4659f2c5c26fa1",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N12": {
+      "id": "N12",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/docs/ops/closure1-20261028/coverage-matrix.json",
+      "detail": "57 mappati, acceptedCount 0, humanReview=NOT_RUN; nessuna approvazione scientifica umana.",
+      "sha256AtRead": "e3c6f52e5ac7b18a84ff49e3e53a9048eeee0d5fa9457708754f34c7608e30e8",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N13": {
+      "id": "N13",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia-2/outputs/science-assessment-source-identity-669b5d20.json",
+      "detail": "Identità sorgenti scientifiche e consumerassessment fra d 827 e 669; corrobora readonlyreplay, non nuova esecuzione delle consegne.",
+      "sha256AtRead": "e19c03ba56f7d90f26accfa68135541cff7f13b41502dfc71069f45bf4bbf953",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "C669": {
+      "id": "C669",
+      "provenance": "COORDINATOR_UPDATE_CURRENT_TASK",
+      "detail": "Snapshot corrente669: candidate check eseguiti SUCCESS riportati; final merge/CIpostmerge/rollback NOT_RUN. G3 COMPLETED_WITH_VIOLATIONS; fix locale d57b7c45 con19 test+tsc+reviewPASS ma hosted retestPENDING. Compatibilità parziale con Safari nativo rappresentativoPASS. Tablet/penna e device/rete concordatiNOT_RUN. ReplayView storicoP2 assegnato a review_remote."
+    },
+    "C44": {
+      "id": "C44",
+      "provenance": "COORDINATOR_PREPARATION_REQUEST_NOT_EXECUTION",
+      "detail": "Preparare soltanto un caso buffering reale stessoWAV:contesto nuovo, login/assetsJS prima del throttlingCDP, eventiwaiting/stalled e stati nativi, ripristino rete/play/retry/rientro esatto; nessun route mock/URLrewrite/scrittura didattica; attendere slot."
+    },
+    "N14": {
+      "id": "N14",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-audio-buffering-669b5d20.json",
+      "sha256AtRead": "f7482b36b7dd710ef5b0e2b846f37f93ddd803be3fb422b31aefa290721de340",
+      "detail": "Buffering reale CDP: waiting nativo sotto rete lenta, errore nullo, recupero e rientro esatto. Primo warm-up networkidle non conclusivo preservato; nessun route mock o modifica prodotto.",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N15": {
+      "id": "N15",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/g3-a11y-2026-10-28T17-18-52-099Z/report.json",
+      "sha256AtRead": "32eb272c1901f787d716bc55016994f6e19a52ead95e0cae7f45cde389326240",
+      "detail": "G3 COMPLETED_WITH_VIOLATIONS:20 scans,26 occorrenze di2regole serious,20 incomplete colore;100 campioni p95nextFrame17.4ms valido solo nell’ambiente software dichiarato.",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N16": {
+      "id": "N16",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/d40-browser-compat-last.json",
+      "sha256AtRead": "69c680a347eda59cfcab708cafd153cadda79c0083b7565252a71fe0de1d0421",
+      "detail": "Smoke Firefox/WebKit complessivo FAIL_EXECUTION_OR_CLEANUP: verifiche locali login/2D; Firefox3Dcamera/reset verificati, ritorno non concluso per ID driver instabile; WebKit3D non concluso. Logout API403 per guard CSRF, browser chiusi; nessun PASS globale.",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "N17": {
+      "id": "N17",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/safari-669b5d20/report.json",
+      "sha256AtRead": "37997cd370f187c33a17b7b87c4db6d6013410c18846eaaf959af9ec5f2883ad",
+      "detail": "Safari nativo26.0.1 viaCUA PASS_REPRESENTATIVE_PATH:Archimede/Idrostatica,2D/3Dcamera/reset,cancel/conferma,refresh e logout; non tutti modelli otablet/penna.",
+      "provenance": "READ_ONLY_CURRENT_ARTIFACT"
+    },
+    "C_REPLAY": {
+      "id": "C_REPLAY",
+      "provenance": "COORDINATOR_CURRENT_FINDING_FROM_1C_TECHNICAL_REVIEW",
+      "detail": "Nuovo P2 su fonte669: ReplayView non renderizza il plugin storico. Dati replay/journal e snapshot attuale restano distinti. Fix assegnato a review_remote, non eseguito o accettato da questo audit."
+    },
+    "C_G3_FIX": {
+      "id": "C_G3_FIX",
+      "provenance": "COORDINATOR_CURRENT_FIX_NOT_HOSTED_ACCEPTANCE",
+      "detail": "Fix locale d57b7c45:due sfondi selezionati più scuri,aria-label ricerca euna asserzione.19 test+typecheck+review PASS riportati dal coordinatore; hosted retest PENDING. Non promuove source669 a PASS."
+    },
+    "U01": {
+      "id": "U01",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/g3-audit-d57b7c45.json",
+      "sha256AtRead": "3e0cbf7aaaf0a3a1f8a0294e7b32de259e1735f26f1e2fbf1fa216664aac9be1",
+      "detail": "G3 hosted: 20 scans, zero violazioni, 20 incomplete colore; focus e conformità complessiva richiedono review manuale. Nessuna nuova misura performance.",
+      "provenance": "READ_ONLY_EXISTING_ARTIFACT",
+      "testedSourceSha": "d57b7c45f8cb55ad473572589b2bf5c06f17d10d"
+    },
+    "U02": {
+      "id": "U02",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/browser-compat-d57b7c45.json",
+      "sha256AtRead": "33b10aae016fe872bcb7900547f653b295869a69137f9b3adf893b0117106c09",
+      "detail": "Firefox e WebKit: smoke rappresentativo 2D/3D, camera/reset e ritorno/refresh completati; nessuna prova tablet/penna o fallback da context loss.",
+      "provenance": "READ_ONLY_EXISTING_ARTIFACT",
+      "testedSourceSha": "d57b7c45f8cb55ad473572589b2bf5c06f17d10d"
+    },
+    "U03": {
+      "id": "U03",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/course-browser-matrix-392fff40.json",
+      "sha256AtRead": "46a84441470ce1c1b052af0ead2398a913a474064c81703db8208250a4cb4efb",
+      "detail": "Matrice hosted: 16 modelli, 17 ACK, 8 controlli camera, quattro viewport CSS; passed=true.",
+      "provenance": "READ_ONLY_EXISTING_ARTIFACT",
+      "testedSourceSha": "392fff40e1d213a4154102f7aaa93b1934081a9e"
+    },
+    "U04": {
+      "id": "U04",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-poiseuille-392fff40.json",
+      "sha256AtRead": "e5955697d76bda7b033acfda059edac5fc465856cdb42ffe21702c85ab6dd4fb",
+      "detail": "Poiseuille hosted it-IT: Δp/Q, variazione raggio, campo/slider, nota parametri inattivi, raw vuoto e recupero; punto valido, virgola respinta dal dominio dopo normalizzazione nativa; nessun paste o salvataggio.",
+      "provenance": "READ_ONLY_EXISTING_ARTIFACT",
+      "testedSourceSha": "392fff40e1d213a4154102f7aaa93b1934081a9e"
+    },
+    "U05": {
+      "id": "U05",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/studio-replay-red-392fff40.json",
+      "sha256AtRead": "7d272e0aa1f98ede679c088f9b48119b745d6e3f88c8080af75dddc794d41755",
+      "detail": "Replay reale: dati storici e readonly conservati; RED riprodotto di attivazione SDK dopo seek e due finding nomi accessibili. Report fallito preservato.",
+      "provenance": "READ_ONLY_EXISTING_ARTIFACT",
+      "testedSourceSha": "392fff40e1d213a4154102f7aaa93b1934081a9e"
+    },
+    "U06": {
+      "id": "U06",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/plans/studio-replay-activation-report.md",
+      "sha256AtRead": "10a2bc1ea94629051a90e32f08e94f852a4fe85f0b83369d65589353891e63af",
+      "detail": "Report writer: RED 10 regressioni, GREEN 72 test e typecheck Studio; fix attivazione integrato come 9007bdea. Collaudo browser ancora pendente.",
+      "provenance": "READ_ONLY_WRITER_TEST_REPORT_NOT_HOSTED_ACCEPTANCE"
+    },
+    "U07": {
+      "id": "U07",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/plans/studio-replay-ui-followups-report.md",
+      "sha256AtRead": "9e448869a30e77fa22d9d12269380aae53b75b70757877620c42f6ef5b8c1cca",
+      "detail": "Report writer: link docente guardato, istruzione punto decimale, nomi SDK Replay; 74+12+13 test finali e typecheck Studio/Web PASS. Prove locali, nessun collaudo hosted dei fix.",
+      "provenance": "READ_ONLY_WRITER_TEST_REPORT_NOT_HOSTED_ACCEPTANCE"
+    },
+    "U08": {
+      "id": "U08",
+      "provenance": "LOCAL_GIT_HEAD_AND_COORDINATOR_HANDOFF",
+      "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "HEAD letta nel repository locale. Integrazione dei quattro fix presente; nuova preview e collaudo Studio finale non verificati da questo audit.",
+      "integratedFixCommits": [
+        "9007bdeaa0c53fe7767ecfba2826eef28c1b13d3",
+        "e6ed8b9d0d6bc36d7be8e67a819e40e5445bbb0e",
+        "84d68a100102813616cc16b89b09fb503ac2ec38",
+        "b80758763de23a9bf7ffa5220ceada9b3025e523"
+      ]
+    },
+    "U09": {
+      "id": "U09",
+      "provenance": "LOCAL_SOURCE_AND_TEST_DEFINITIONS_INSPECTED_NOT_EXECUTED",
+      "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "Lettura di contratti, consumer e definizioni test canonici per distinguere D14/D24/D26/D37. Non è nuovo test PASS o prova hosted. Nessun testo libero è trasformato in grader automatico.",
+      "files": [
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/tests/study/test_question_bank.py",
+          "sha256AtRead": "e5f1fe06ef3a69510261b80adc706def8942a08d22afb523cb609917ac96af9d"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/lessonos/study/question_bank.py",
+          "sha256AtRead": "9611eb3c6b995f7c069b02cb074e7b862ade225dcd590ca5b865e5af4db9e88f"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/__tests__/physics-question-bank.test.tsx",
+          "sha256AtRead": "6cbd46242612352a8ca1ab3d18b0aa29a7e78de44cd3904e414d47d73ea66b4b"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/components/PhysicsQuestionBank.tsx",
+          "sha256AtRead": "9fbca8011816f34a5cdac9695754e37199e073df608646aa77c0f0034f73911d"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/features/science-library/__tests__/CoreFluidLab.test.tsx",
+          "sha256AtRead": "797ce909723f84bb3b3aa3b5183e0a9aca11ab0855a26b73b7fc6cef42335c7a"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/features/science-library/__tests__/fluid-thermo-ui.test.tsx",
+          "sha256AtRead": "b79144b5dfd435bd1424d2b4b37dc99ba505cfd8547e197ce2c98289c6b32e64"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/components/PoiseuilleVisual.tsx",
+          "sha256AtRead": "6b7e45bdf0fc0a2afffa7f1fb99d8cbcdb1dca0a65fe107c61206dedf48b2efd"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/apps/web/src/components/PhysicsLab.tsx",
+          "sha256AtRead": "ef5027f7ff6c97fdb50e30003f3b7d7fd38da5392f4036283665c22c699247fb"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/lessonos/study/content/sf-fluidi-termodinamica-v1.json",
+          "sha256AtRead": "e637a4f1406cd8b7d6a2dd301a74c28e1f299611a99965b6d918546f76a0df65"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/lessonos/study/four_courses.py",
+          "sha256AtRead": "4c3638adfb6a4ce749f867e88257eb3e3a9b2dc7d2853eb09b623c1421e1b300"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/lessonos/study/submissions.py",
+          "sha256AtRead": "644d08f0de50802ff2222a4eeeb0fdec8c1a6ea97a761dd418a619a4e2510b5a"
+        },
+        {
+          "path": "/private/tmp/ardesia-closure1-recovery/work/ardesia-integration/packages/engine/tests/study/test_course_assessments.py",
+          "sha256AtRead": "0de9d08e50ca7afac6ac00899d6316307584f4880404f004b1e9fac46eb05d47"
+        }
+      ]
+    },
+    "C_NAV_B807": {
+      "id": "C_NAV_B807",
+      "provenance": "COORDINATOR_EXECUTION_REPORT_PENDING_ARTIFACT_PATH",
+      "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "Coordinatore riferisce WebGL context-loss reale con extension/isTrusted=true, fallback 2D e tabella invariati, zero writes. Stress CSS 200% a 360 px rileva clipping formula/ipotesi: no document overflow non equivale a reflow PASS. Fix CSS assegnato e retest pendente."
+    },
+    "U10": {
+      "id": "U10",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/numeric-pause-b8075876-2026-10-28T19-23-23-213Z/report.json",
+      "sha256AtRead": "5f38ad00c75f781de3b23dc7ae4d46a8d4f3015ffe191d1c1247bf01c71a182d",
+      "testedSourceSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "D14 PASS reale canonico; D24 non raggiunto dal percorso autenticato: report misto preservato, non PASS totale.",
+      "provenance": "READ_ONLY_EXISTING_HOSTED_ARTIFACT"
+    },
+    "U11": {
+      "id": "U11",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/g3-a11y-2026-10-28T19-17-13-825Z/report.json",
+      "sha256AtRead": "6782345887f0912ff43d80adc0fadabd1d240e649ffd33756ed63e52c4629708",
+      "testedSourceSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "G3 b807: 20 scans, zero violazioni, 20 incomplete. Non copre tutto Studio e non certifica WCAG.",
+      "provenance": "READ_ONLY_EXISTING_HOSTED_ARTIFACT"
+    },
+    "U12": {
+      "id": "U12",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/g3-a11y-2026-10-28T19-21-13-166Z/report.json",
+      "sha256AtRead": "4bf464b7d58334b0d180126689d42e1ebd10a3a962cec1ff6e9d56b8a4ff8d20",
+      "testedSourceSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "Context loss nativo b807 con isTrusted=true e recupero 2D, parametri/previsione/note/tabella invariati, zero scritture. CSS root 200% è stress, non zoom browser; clipping riferito dal coordinatore, nessun reflow PASS dedotto dal no-overflow.",
+      "provenance": "READ_ONLY_EXISTING_HOSTED_ARTIFACT"
+    },
+    "U13": {
+      "id": "U13",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/course-numeric-pause-b8075876-report.json",
+      "sha256AtRead": "aed434fcff177f58120b0aea6b00c13ccaba5588dda3a550113fcf9b6a4ec54d",
+      "testedSourceSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "provenance": "ACTUAL_COORDINATED_BROWSER_EXECUTION_DISTINCT_RUNS",
+      "detail": "D14 e D24 PASS in run distinti; primi due D24 non conclusivi preservati, nessun singolo run globale verde. Own logout200/oldcookie401, ledger invariato, browser chiusi."
+    },
+    "C_STUDIO_B807": {
+      "id": "C_STUDIO_B807",
+      "provenance": "COORDINATOR_CURRENT_FINDINGS_AND_FIX_STATUS_PENDING_LINKED_REPORT",
+      "testedSourceSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "detail": "Coordinatore conferma SDK reset-zoom con percentuale tra parentesi ancora in violazione axe nel consumer Studio; la scansione Web non lo copre. OpenSavedLesson UX non conclusa: ripristinare file con diverso lesson id nel workspace nuovo è correttamente rifiutato; serve azione ordinaria distinta, senza allentare validazione. Fix zoom 7f8934ab con 53 test PASS riferiti, fix CSS e media in corso: non accettazione hosted b807 né nuova head."
+    },
+    "U14": {
+      "id": "U14",
+      "path": "/private/tmp/ardesia-closure1-recovery/work/evidence/g3-a11y-2026-10-28T19-37-57-319Z/report.json",
+      "sha256AtRead": "9fbe02cd064409789bdf4b1197b2e14a5a0284d7059f4b6a7586544cbd506b44",
+      "testedSourceSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+      "provenance": "READ_ONLY_EXISTING_HOSTED_ARTIFACT",
+      "detail": "Core 2bef: 20 scans axe, 0 violazioni, 20 incomplete; reflow CSS200 distribuito a360/1440 senza CSS correttivo iniettato, nessun overflow prosa/celle, parametri/misure invariati, errore visibile e recuperato. Guida decimale e note inattive collegate; link docente nativo44px osservato, non attivato. Zero scritture, ledger invariato. Non Studio, native zoom, hardware o performance."
+    },
+    "C_2BEF": {
+      "id": "C_2BEF",
+      "testedSourceSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+      "provenance": "COORDINATOR_PIN_AND_REVIEW_STATUS",
+      "deploymentId": "dpl_JMtiHRRfBe7Bs96bhRDKjPUCQXYZ",
+      "detail": "Preview protetta corrente 2bef; review 1C delle due patch e zoom CLEAN. Collaudo browser Studio ancora in attesa; nessuna nuova numerica necessaria perché sorgenti fisica/corso immutate secondo coordinatore. Non nuova esecuzione dei casi storici.",
+      "checkpointSupersededBy": "U15 completed hosted Studio proof; retain coordinator checkpoint as provenance"
+    },
+    "U15": {
+      "id": "U15",
+      "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/outputs/evidenze/studio-replay-2bef6629.json",
+      "sha256AtRead": "725628aaef0b9ca73ca0f31e3e777337e62c26f17f22cfef62e31a6cfe1a5d78",
+      "testedSourceSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+      "provenance": "READ_ONLY_COMPLETED_INDEPENDENT_HOSTED_STUDIO_PROOF",
+      "detail": "1C finale: docente Core→Studio→Materiali→OpenSaved→anteprima/cancel/conferma originale→Room→Replay, senza URL manuali. Stanza nuova conservata, journal esistente non unito con messaggio visibile. Seek2→5→3.25→4.25→5→2 e wheel460px, zoom110% dinamico PASS; axe1440/360 con cinque tag,zero violazioni,quattro dd e contrasto incomplete. Hashpersistenza invariati,zero observedWrites e richieste mutanti,logout proprio200/oldcookie401,tutti browser chiusi riferiti. Risultati storici ricalcolati distinti da confronto originale; Pascal/3D resta prova b807 separata. Pubblico prelogin /study/course404 conservato,fuori dal consumer privato provato."
+    }
+  },
+  "requirements": [
+    {
+      "id": "D01",
+      "requirement": "Una sola identità canonica della lezione nel corso Fluidi e termodinamica",
+      "acceptance": "Ingresso, pratica, fonte, feedback e ripresa riferiscono la stessa lezione/versione",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Ingresso, pratica/transfer, fonte, receipt e ripresa mantengono pack/lesson/versione/fase/step: matrice 669, readback 17 e 3 receipt storiche riaperte 669.",
+      "limitationAndResidual": "Nessun residuo tecnico accertato nei percorsi registrati; non trasforma 57 obiettivi in accettati.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D02",
+      "requirement": "Obiettivi circoscritti e prerequisiti espliciti",
+      "acceptance": "Il docente approva la mappa fra obiettivo, spiegazione e prova",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "HUMAN_PENDING",
+      "evidence": [
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Mappa 57, obiettivi/prerequisiti e riferimenti presenti; 0/57 accettati.",
+      "limitationAndResidual": "Approvazione docente nominativa della mappa richiesta, non attestata.",
+      "previousStatus": "HUMAN_PENDING",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "HUMAN_PENDING",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D03",
+      "requirement": "Spiegazione completa per il perimetro scelto",
+      "acceptance": "Nessun salto logico indispensabile, placeholder o rimando a materiale ancora assente",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "HUMAN_PENDING",
+      "evidence": [
+        {
+          "sourceId": "S03"
+        },
+        {
+          "sourceId": "S04"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Dieci DS e demo originale, spiegazioni/esempi/prove sono raggiungibili; smoke e review tecnica non sono sufficienza didattica umana.",
+      "limitationAndResidual": "Giudizio umano sui salti logici e sulla completezza del perimetro ancora necessario.",
+      "previousStatus": "HUMAN_PENDING",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "HUMAN_PENDING",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D04",
+      "requirement": "Diagnosi, pratica, recupero e transfer distinti",
+      "acceptance": "Almeno un problema cambia la struttura del ragionamento, non soltanto i numeri",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S24"
+        },
+        {
+          "sourceId": "S25"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "N13"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Tre diagnostiche e 57 prove/transfer sono distinti; tre consegne UI352 con diagnosi/pratica-aiuto/transfer strutturalmente diverso sono rilette e visibili 669; due mock reali eseguiti.",
+      "limitationAndResidual": "La qualità cognitiva/rubriche e gli esiti con studenti restano D05/D67; non si attribuiscono nuove consegne 669 allo smoke readonly.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D05",
+      "requirement": "Revisioni scientifica ed editoriale umane",
+      "acceptance": "Nome del revisore, versione, osservazioni risolte e data, senza approvazioni generiche al progetto",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "NOT_RUN",
+      "evidence": [
+        {
+          "sourceId": "N12"
+        },
+        {
+          "sourceId": "S03"
+        },
+        {
+          "sourceId": "S04"
+        }
+      ],
+      "basis": "Contenuti DRAFT, humanApproval=false, humanReview=NOT_RUN, 0/57 ACCEPTED.",
+      "limitationAndResidual": "Mancano revisori umani nominativi, versione, data e osservazioni risolte.",
+      "previousStatus": "NOT_RUN",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "NOT_RUN",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D06",
+      "requirement": "Completamento, esito e aiuti sono concetti distinti",
+      "acceptance": "Aprire la scena o ottenere un numero corretto non attribuisce automaticamente padronanza",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S11"
+        },
+        {
+          "sourceId": "S24"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "N12"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Receipt MANUAL_REVIEW_REQUIRED, aiuti separati e punteggi mock DRAFT non attribuiscono padronanza; 0/57.",
+      "limitationAndResidual": "Nessuna attestazione educativa o umana ricavata da salvataggi/score sintetici.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D07",
+      "requirement": "Prerequisiti minimi recuperabili",
+      "acceptance": "Poiseuille non viene presentato come primo argomento del syllabus se richiede concetti precedenti",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S03"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Sequenza da pressione/densità/idrostatica aPoiseuille, prerequisiti e recupero espliciti nelle lezioni.",
+      "limitationAndResidual": "Accettazione della sequenza con docente/studenti separata inD02/D66.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D08",
+      "requirement": "Testo italiano curato",
+      "acceptance": "Terminologia, unità, punteggiatura, simboli, errori, titoli e suggerimenti riletti nell'interfaccia",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S03"
+        },
+        {
+          "sourceId": "S04"
+        },
+        {
+          "sourceId": "N09"
+        }
+      ],
+      "basis": "Testi italiani/microtesti corretti e osservati in UI; smoke 669 non è rilettura editoriale umana integrale.",
+      "limitationAndResidual": "Rilettura umana completa di terminologia, simboli e suggerimenti nell’interfaccia resta da attestare.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D09",
+      "requirement": "Ipotesi e dominio dichiarati",
+      "acceptance": "Fluido newtoniano incomprimibile, regime laminare stazionario e sviluppato, tubo cilindrico rigido, condizioni alla parete coerenti",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S06"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "N06"
+        }
+      ],
+      "basis": "Ipotesi, domini e osservabili dei modelli canonici sono espliciti e rilette 669 conhashesatti.",
+      "limitationAndResidual": "Validità limitata ai modelli analitici dichiarati; revisione scientifica umana separata.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D10",
+      "requirement": "Raggio doppio, pressione differenziale fissata",
+      "acceptance": "Portata ×16; velocità media ×4; area ×4",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Followup 669 eseguito:Δpfissa, r×2→Q×16, v̄×4, A×4; oracoli indipendenti in forma diametro.",
+      "limitationAndResidual": "A è derivata numericamente dalla geometria del profilo restituito, non un nuovo osservabile prodotto; nessuna modifica runtime.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D11",
+      "requirement": "Raggio doppio, portata fissata",
+      "acceptance": "Pressione differenziale ÷16; velocità media ÷4",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Followup 669 eseguito:Qfissa, r×2→Δp×0.0625 e v̄×0.25; sorgenti canoniche identiche.",
+      "limitationAndResidual": "Nessuna prova UI o approvazione umana inventata dai sei calcoli numerici.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D12",
+      "requirement": "Viscosità e lunghezza raddoppiate, portata e raggio fissati",
+      "acceptance": "Pressione differenziale ×4",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Followup 669 eseguito:μ×2, L×2 conQ/rfissi→Δp×4.",
+      "limitationAndResidual": "Confronto entro dominio laminare registrato; 54 casi storici restano distinti dai 3 followup.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D13",
+      "requirement": "Scena, numeri, grafico e formula coerenti",
+      "acceptance": "Derivano dallo stesso stato fisico; controlli indipendenti sui casi analitici",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S06"
+        },
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Unico stato/modello genera numeri, formula, serie e geometria; controprove e 16 consumer/17 readback esatti.",
+      "limitationAndResidual": "Coerenza tecnica nel perimetro provato; non ogni valore continuo o accettazione percettiva umana.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D14",
+      "requirement": "Unità, arrotondamenti e tolleranze espliciti",
+      "acceptance": "Nessuna risposta corretta respinta per formattazione equivalente; nessuna incoerenza dimensionale accettata",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S04"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "U09"
+        },
+        {
+          "sourceId": "U10"
+        },
+        {
+          "sourceId": "U13"
+        }
+      ],
+      "basis": "Sul consumer reale b807, dal normale CuratedCoursePractice/QuestionCard, il quesito canonico u3-pressure-area-01 accetta 8/2, 4.0, 4,0 e 4 Pa; respinge 4 m. Cinque POST reali con manifest/versione esatti e DRAFT/reference/humanApproval=false. Prima di ciascun tentativo il quesito esatto riapre senza soluzione/feedback.",
+      "limitationAndResidual": "Pass rappresentativo di equivalenza razionale e unità attesa: non CAS generale o conversione arbitraria di unità. Tentativi dichiarati persisted=false, non receipt da riaprire. Ledger confermato invariato; nessun grader delle risposte libere o approvazione umana. Sessione propria200→vecchio cookie401.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U09"
+      ]
+    },
+    {
+      "id": "D15",
+      "requirement": "Input degeneri e limiti",
+      "acceptance": "Raggio/viscosità/lunghezza non positivi, campo vuoto e fuori intervallo gestiti prima del calcolo; niente NaN/Infinity visibili",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "S11"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Domini, nonfiniti/nonpositivi e rawvuoto sono validati; B17 prova campo vuoto/invalido senza perdita ocommit improprio.",
+      "limitationAndResidual": "Non generalizzare a ogni combinazione di input/dispositivo.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D16",
+      "requirement": "Animazione non ingannevole",
+      "acceptance": "Traccianti medi o locali dichiarati; eventuale profilo rispettato; densità grafica non confusa con portata",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S06"
+        },
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Profilo e geometrie coerenti con modelli; scene del corso sono illustrate e non una simulazione CFD.",
+      "limitationAndResidual": "Correttezza percettiva di traccianti/densità dove presenti richiede review visiva umanaD65; non aggiungere nuove animazioni.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D17",
+      "requirement": "Regime laminare trattato onestamente",
+      "acceptance": "Con soli rapporti è un'ipotesi, non un regime numericamente verificato; dati assoluti richiedono un riferimento fisico approvato",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S06"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Regime/ipotesi dichiarati e dominio quantitativo controllato; followupRe massimo 400, non verifica dai soli rapporti.",
+      "limitationAndResidual": "Nessuna approvazione scientifica umana o validità fuori dominio.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D18",
+      "requirement": "Limiti del modello",
+      "acceptance": "Nessuna promessa di descrivere turbolenza, stenosi, sangue reale o CFD generale",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S07"
+        },
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "N10"
+        }
+      ],
+      "basis": "Limiti analitici espliciti, nessuna promessa CFD/turbolenza/sangue reale.",
+      "limitationAndResidual": "Non espandere a scene o modelli estranei al mandato.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D19",
+      "requirement": "Ingresso leggibile",
+      "acceptance": "Lo studente riconosce obiettivo, stato e prima azione senza una spiegazione dell'operatore",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N09"
+        }
+      ],
+      "basis": "Ingresso reale 669, obiettivo/stato/azione e corso labfirst raggiungibili senza dashboard preliminare.",
+      "limitationAndResidual": "Riconoscimento autonomo senza suggerimenti richiede osservazione umanaD66, non un nuovo difetto tecnico.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D20",
+      "requirement": "Navigazione coerente",
+      "acceptance": "Avanti, indietro, ritorno al corso, refresh, URL diretto e cronologia browser preservano il contesto previsto",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "URL esatto, view/edition/lesson/model/Back, work→lezione dopo ACK, refresh e nuovi contesti preservano riferimenti nei casi registrati.",
+      "limitationAndResidual": "Nessun browser fresco è presentato come secondo dispositivo fisico.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D21",
+      "requirement": "Vincolo sempre identificabile",
+      "acceptance": "Cambio fra pressione e portata fissate aggiorna etichette, valori, scena e feedback; l'utente capisce che è un altro esperimento",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S06"
+        },
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "U04"
+        }
+      ],
+      "basis": "Su 392 il consumer Poiseuille passa da Δp fissa a Q fissa con previsioni e confronto, formule, etichette e tabella coerenti. Raggio raddoppiato: Q circa ×16; a Q fissa la pressione ricalcolata è 7.95775 Pa. Campo e slider restano allineati.",
+      "limitationAndResidual": "Pass rappresentativo Poiseuille, distinto dagli oracoli 669; non prova comprensione autonoma degli utenti. Il collaudo della nuova istruzione decimale b807 resta pendente in D22.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U04"
+      ]
+    },
+    {
+      "id": "D22",
+      "requirement": "Slider e campi concordi",
+      "acceptance": "Mouse, tastiera e touch portano allo stesso valore; min/max, passi, decimali con virgola e incolla hanno regole comprensibili",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "U04"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "U14"
+        }
+      ],
+      "basis": "Su 392 sono provati input e slider nativi, raw vuoto, cambio vincolo senza sovrascrittura dei parametri archiviati e recupero esplicito. In it-IT 0.0015 è valido; Chromium trasforma 0,0015 in 00015, fuori dominio con errore visibile. Il fix 84d68a10 aggiunge la guida al punto senza cambiare parser. Su 2bef U14 verifica in cinque casi la guida al punto e aria-describedby; per Poiseuille la nota del parametro inattivo rimane visibile e collegata a campo/slider insieme alla guida decimale.",
+      "limitationAndResidual": "Guida e descrizioni ora provate nel consumer 2bef. Nessun supporto alla virgola aggiunto: la normalizzazione nativa osservata 392 resta dichiarata. Paste reale NOT_RUN, nessuna clipboard OS; touch e hardware D40 NOT_RUN; non ogni min/max/passo è provato nel browser.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "PHYSICAL_DEVICE_NOT_RUN",
+        "PASTE_NOT_RUN",
+        "INPUT_COVERAGE_PARTIAL"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U04",
+        "U07",
+        "U08"
+      ]
+    },
+    {
+      "id": "D23",
+      "requirement": "Manipolazione 3D controllabile",
+      "acceptance": "Nessun trascinamento ambiguo fra raggio, camera e scroll; camera iniziale leggibile e ripristino prevedibile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Otto camere rispondono con cambiamento pixel; controllo esplicito camera separato dagli input, renderer uguale.",
+      "limitationAndResidual": "Valutazione camera/scroll/manipolazione su hardware previsto e giudizio di leggibilità restanoD40/D65, non nuove scene.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HARDWARE",
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D24",
+      "requirement": "Pausa e ripristino corretti",
+      "acceptance": "Pausa ferma l'animazione, non cambia la legge fisica; reset distingue stato del modello e lavoro già consegnato",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "S25"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "U09"
+        },
+        {
+          "sourceId": "U13"
+        }
+      ],
+      "basis": "Su b807 il PhysicsLab originale nel Public anonimo calcola via Core reale. Ferma/Anima il flusso cambia CSS animation-play-state e WAAPI: pausa mantiene transform/currentTime, ripresa avanza. Parametri, previsione, risultato, misure e geometria invariati; ledger confermato invariato. Reset camera e reset scenario/guard/receipt hanno evidenze distinte precedenti; le 16 DS sono statiche.",
+      "limitationAndResidual": "Pass condizionale dove l’animazione esiste, circoscritto ai traccianti del demo originale. Non pausa audio, nuova animazione DS o benchmark. Due tentativi driver non conclusivi preservati, caso riuscito isolato: nessun singolo run tutto verde. Nessun salvataggio/consegna o reset dell’autorità persistita in questo run.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U09"
+      ]
+    },
+    {
+      "id": "D25",
+      "requirement": "Previsione conservata",
+      "acceptance": "Confronto, nuova manipolazione e cambio passo non riscrivono il tentativo precedente",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S11"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N08"
+        }
+      ],
+      "basis": "Nuova modifica/manipolazione non riscrive revisioni e receipt precedenti; storici A rimangono dopoB e readback 17 conferma testi.",
+      "limitationAndResidual": "Bozza aperta e non ACK rimane volatile dichiarata; difetto di ripresa precedente superato.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D26",
+      "requirement": "Feedback specifico",
+      "acceptance": "Distingue vincolo errato, raggio/area, portata/velocità, esponente e unità; spiega il passo utile invece di un generico «sbagliato»",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S03"
+        },
+        {
+          "sourceId": "S04"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "U09"
+        }
+      ],
+      "basis": "Il pack canonico contiene errorFeedback distinti per vincolo, raggio/area, portata/velocità, esponente e unità, con recuperi e rubriche docente. La proiezione studente protegge errorFeedback/rubriche; course-reasoning-v1 produce MANUAL_REVIEW_REQUIRED e preserva prompt/testo. Feedback docente e receipt sono raggiungibili nel consumer già provato.",
+      "limitationAndResidual": "Non esiste né si richiede un classificatore automatico dei cinque errori nel testo libero. La lacuna principale è revisione umana della diagnosi e del passo utile nelle cinque categorie, non nuovo grading. Una dimostrazione docente→feedback nel consumer per tali categorie può documentare la reachability, ma non sostituisce il giudizio didattico; i report non attestano tutti e cinque gli esiti.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN_FEEDBACK_REVIEW_PENDING",
+        "FIVE_CATEGORY_CONSUMER_DEMONSTRATION_NOT_ATTESTED"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U09"
+      ]
+    },
+    {
+      "id": "D27",
+      "requirement": "Esplorazione rispettata",
+      "acceptance": "Vedere risultati e usare aiuti nell'esplorazione non viene trattato come una penalizzazione; l'assistenza è registrata quando rilevante alla prova",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S24"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Aiuto reale 352 level 1 è nella receipt riaperta 669; esplorazione nonpenalizzata, assenza aiuti non prova autonomia.",
+      "limitationAndResidual": "Nessuna padronanza/efficacia inferita dal ledger.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D28",
+      "requirement": "Fonte e annotazione",
+      "acceptance": "Apri, chiudi, seleziona, modifica, annulla e riapri funzionano sul riferimento esatto; nessun salto a una fonte sostitutiva silenziosa",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N03"
+        }
+      ],
+      "basis": "Nove casi 669:apri/chiudi, selezione reale PDF, modifica/Undo/Cancel, coldreopen exactA, nuovaB, teacher/peer e storicaA.",
+      "limitationAndResidual": "Solo fonte/annotazione originale sintetica; non si inventa un Cancel di testo semplice inesistente.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D29",
+      "requirement": "Dialoghi e focus",
+      "acceptance": "Apertura, Escape, conferma, annullamento e ritorno del focus funzionano; niente interazioni invisibili sotto un overlay",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S14"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "C_G3_FIX"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "B17/D28 provano annullamento e ritorno al focus nei casi assegnati. Il successivo G3 d57 conclude 20 scans senza violazioni; restano 20 incomplete colore e osservazioni di focus che non dimostrano da sole focus visibile/non occluso. Il report finale Studio2bef aggiunge anteprima/annullamento/conferma e percorso ordinario riusciti,senza risolvere automaticamente focus o incomplete.",
+      "limitationAndResidual": "Review manuale di focus, overlay e incomplete ancora necessaria. Nessuna certificazione integrale di tutti i dialoghi; link docente guardato del nuovo stack provato localmente, non ancora nel browser distribuito.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "MANUAL_ACCESSIBILITY_REVIEW_PENDING",
+        "CONSUMER_ACCEPTANCE_PENDING"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U07"
+      ]
+    },
+    {
+      "id": "D30",
+      "requirement": "Stati intermedi curati",
+      "acceptance": "Caricamento, vuoto, disabilitato, salvataggio, successo, errore ed esito incerto hanno messaggi e azioni coerenti",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Loading/invalidraw/ACK/error/retry/conflitti e isolamento con rete reale hanno azioni coerenti; vecchie 503 non ricompaiono nei percorsi 669.",
+      "limitationAndResidual": "Pass nei casi dichiarati, non affermazione universale su tutte le superfici del prodotto.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D31",
+      "requirement": "Uscita dal lavoro",
+      "acceptance": "Nessuna perdita silenziosa; conferma proporzionata alle modifiche effettivamente non salvate",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "B17/17 PASS e 409 exam preservano bozze, conferme proporzionate e nuova generazione; scarto/accettazione espliciti.",
+      "limitationAndResidual": "L’esame non attesta da solo tuttoD31; l’evidenza completa èB17 con scope dichiarato.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D32",
+      "requirement": "Microtesti orientati allo studente",
+      "acceptance": "«Salvato» o «Risposta consegnata» dove appropriato; niente Core, CAS, adapter o chiavi tecniche nel percorso ordinario",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S25"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Microtesti ordinari studentifriendly, CTAcommercialeprivataassente; nuove scelte exam non espongono CAS all’utente.",
+      "limitationAndResidual": "Rilettura visiva/editoriale completaD65 non attestata; nessuna nuova modifica tecnica prescritta dalla sola assenza di firma.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D33",
+      "requirement": "Una sola direzione visiva",
+      "acceptance": "Schermate approvate di ingresso, manipolazione, errore, aiuto e ripresa; stesso sistema di testo, spaziatura, colori e controlli",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "HUMAN_PENDING",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N05"
+        }
+      ],
+      "basis": "Direzione visiva e schermate reali disponibili; non sono approvazione diAndrea.",
+      "limitationAndResidual": "Manca approvazione umana dei cinque stati ininterazione.",
+      "previousStatus": "HUMAN_PENDING",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "HUMAN_PENDING",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D34",
+      "requirement": "Gerarchia del compito",
+      "acceptance": "Una scena/attività principale; pannelli secondari contestuali; niente dashboard obbligatoria prima di iniziare",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S25"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Lab principale prima del problema manuale opzionale; 57 prove distinte e tutti controlli conservati; gerarchia reale 669 raggiungibile.",
+      "limitationAndResidual": "Reviewvisiva umana separataD65, non una dashboard/attivitànuova da aggiungere.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D35",
+      "requirement": "Responsive intenzionale",
+      "acceptance": "Verifica a 360/390, 820 e 1440 px, portrait/landscape pertinenti; testo, formule e azioni non tagliati",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "360/390/820/1440 CSS px verificati su 669 senza overflow, contenuto reale e stati di lavoro.",
+      "limitationAndResidual": "Viewportsoftware distinti da hardware/orientamento del tabletD40.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D36",
+      "requirement": "Accesso senza mouse",
+      "acceptance": "Percorso completo via tastiera; nomi accessibili, ordine e focus visibile; nessun compito essenziale soltanto drag",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "C_G3_FIX"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U05"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "C_STUDIO_B807"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "C_2BEF"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "Su2bef il consumer Studio verifica menu/zoom reali: nome dinamico «110% · Ripristina ingrandimento» e due scans axe1440/360 con cinque tag senza violazioni. Percorso docente ordinario e seek/scroll funzionano senza Escape o force click. Le20 scans Core separate hanno anch’esse zero violazioni. I finding ricerca669 e SDKzoom b807 sono superati nei rispettivi casi riesaminati.",
+      "limitationAndResidual": "PARTIAL per il criterio completo via tastiera,ordine/focus visibile/non occluso e review manuale ancora non attestati integralmente. Quattro definizioni dd con aria-label e contrasti restano incomplete,non PASS né certificazione WCAG. Nessuna regressione SDK attuale lasciata fittiziamente aperta nel percorso provato.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "MANUAL_KEYBOARD_FOCUS_REVIEW_PENDING",
+        "MANUAL_ACCESSIBILITY_INCOMPLETE_REVIEW_PENDING"
+      ],
+      "snapshot669Status": "FAIL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U05",
+        "U07",
+        "U08"
+      ]
+    },
+    {
+      "id": "D37",
+      "requirement": "Alternative alla scena",
+      "acceptance": "Dati, formula e descrizione accessibili; fallback 2D completo quando WebGL manca o viene perso",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S09"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "N16"
+        },
+        {
+          "sourceId": "N17"
+        },
+        {
+          "sourceId": "U02"
+        },
+        {
+          "sourceId": "U09"
+        },
+        {
+          "sourceId": "C_NAV_B807"
+        },
+        {
+          "sourceId": "U12"
+        }
+      ],
+      "basis": "Alternative 2D e dati/formule sono disponibili. Firefox e WebKit su d57 completano il percorso rappresentativo 2D/3D, camera/reset e ritorno/refresh. Le prove storiche harness di no-WebGL/context loss restano distinte. Nel sorgente è presente anche un test consumer che simula il fallimento del chunk 3D, torna in 2D e conserva la previsione; è letto, non rieseguito in questo audit. Nuova esecuzione b807 riferita dal coordinatore: WebGL context loss tramite extension, evento isTrusted=true, fallback 2D e invarianti tabella, zero scritture.",
+      "limitationAndResidual": "Caso reale documentato U12: extension WebGL_lose_context, evento nativo, recupero 2D e invarianti preservati. Prova Chromium/SwiftShader, non hardware GPU o certificazione completa.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U02"
+      ]
+    },
+    {
+      "id": "D38",
+      "requirement": "Movimento e colore",
+      "acceptance": "Riduzione del movimento rispettata; significato non affidato soltanto al colore; contrasto verificato",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "C_G3_FIX"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "Le 26 occorrenze delle due regole serious osservate su 669 restano storiche. Il rescan reale d57 su cinque stati e quattro viewport registra zero violazioni e 20 incomplete colore; il contrasto selezionato 3.82:1 non si riproduce nei casi riesaminati. Un ulteriore audit b807 registra anch’esso 20 scans senza violazioni e 20 incomplete; non include l’intero percorso Studio. Il nuovo rescan Core 2bef conferma 20 scans, zero violazioni e 20 incomplete; nessuna certificazione totale.",
+      "limitationAndResidual": "Finding storici superati nei percorsi riesaminati. Restano20 incomplete Core e incomplete Studio:quattro definizioni dd per scan e contrasti su elementi occlusi/SVG. La review manuale è necessaria; zero violazioni axe non significa conformità WCAG totale.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "MANUAL_ACCESSIBILITY_REVIEW_PENDING",
+        "CONSUMER_ACCEPTANCE_PENDING"
+      ],
+      "snapshot669Status": "FAIL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U07",
+        "U08"
+      ]
+    },
+    {
+      "id": "D39",
+      "requirement": "Audio accessibile",
+      "acceptance": "Trascrizione completa e coerente; niente autoplay; azioni del player accessibili",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N14"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "U01"
+        }
+      ],
+      "basis": "L’unico audio originale ha trascrizione leggibile anche offline, nessun autoplay e controlli nativi reali; buffering, recupero e rientro sono provati su 669. Il G3 d57 supera i precedenti finding nei propri stati esaminati.",
+      "limitationAndResidual": "Coerenza e completezza editoriale della trascrizione richiedono revisione umana. G3 parziale non certifica tutto il player. Dieci lezioni DS restano testuali: nessun nuovo requisito di dieci audio.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN_REVIEW_PENDING",
+        "MANUAL_ACCESSIBILITY_REVIEW_PENDING"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01"
+      ]
+    },
+    {
+      "id": "D40",
+      "requirement": "Dispositivi reali della promessa",
+      "acceptance": "Chrome/Firefox desktop, Safari e tablet previsto verificati; la penna richiede una prova su dispositivo fisico prima di prometterne qualità",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N16"
+        },
+        {
+          "sourceId": "N17"
+        },
+        {
+          "sourceId": "U02"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Su d57 Firefox 150.0.2 e WebKit 26.4 completano lo smoke rappresentativo: login, 2D, 3D, camera/reset, ritorno e refresh. Safari nativo 26.0.1 passa il percorso Archimede su 669. Le prove Chromium 392 coprono 16 modelli e quattro viewport CSS.",
+      "limitationAndResidual": "Il primo compat 669 fallito resta conservato. Gli smoke successivi non sono tutti i modelli su tutti gli engine. WebKit Playwright non è Safari fisico. Tablet, touch, penna e hardware previsto NOT_RUN; revoca server delle sessioni compat d57 non confermata esplicitamente, browser chiusi.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "PHYSICAL_DEVICE_NOT_RUN",
+        "CROSS_BROWSER_COVERAGE_PARTIAL"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U02",
+        "U03",
+        "N17"
+      ]
+    },
+    {
+      "id": "D41",
+      "requirement": "Leggibilità sotto stress",
+      "acceptance": "Zoom del testo, formule lunghe, messaggi di errore e contenuto di esempio realistico non rompono il layout",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U03"
+        },
+        {
+          "sourceId": "C_NAV_B807"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "U12"
+        },
+        {
+          "sourceId": "U14"
+        }
+      ],
+      "basis": "Su 2bef U14 verifica il CSS distribuito al 200% della radice a360 e1440, senza CSS correttivo iniettato: prosa e celle contenute, formula e ipotesi dentro i rispettivi contenitori, parametri/misure invariati, errore visibile e recuperato. Il clipping b807 è superato in questi casi e rimane storico.",
+      "limitationAndResidual": "Pass tecnico rappresentativo dello stress CSS; non zoom nativo del browser, non ogni testo/formula o dispositivo fisico. Le venti incomplete axe e la review manuale accessibilità restano in D29/D38. Assenza di overflow documento, da sola, non sarebbe stata prova sufficiente.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U03"
+      ]
+    },
+    {
+      "id": "D42",
+      "requirement": "Audio remoto realmente disponibile",
+      "acceptance": "Nessun import `.lesson` nascosto richiesto allo studente per ascoltare il passaggio della lezione",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Su 669 la lezione original-demo-u5-01 riproduce il WAV originale via HTTP 206 senza import .lesson; 11 lezioni, dieci DS testuali esplicite.",
+      "limitationAndResidual": "Unaudio originale effettivo; non si aggiungono 10 narrazioni come criterio.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D43",
+      "requirement": "Versione e ancoraggio",
+      "acceptance": "Audio, trascrizione, fonte e timecode appartengono alla versione approvata",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Audio/transcript appartengono alla lezione/ref e al candidato pin 669; sorgenteaudio esatta nei nuovi contesti.",
+      "limitationAndResidual": "La versione non è approvata umanamente; ancoraggi editoriali approvati non attestati. Non inventare nuovi timecode oaudio perDS.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D44",
+      "requirement": "Player affidabile",
+      "acceptance": "Play/pausa, seek, fine, buffering, errore e retry provati; un rientro non riproduce un altro passaggio",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N14"
+        }
+      ],
+      "basis": "Su 669: play/pausa/seek/fine e offline→retry provati nei due run audio/esami; nuovo caso CDP osserva waiting reale con errore nullo, recupero dopo ripristino rete e rientro nello stesso lessonRef/src/transcript.",
+      "limitationAndResidual": "Pass tecnico nel perimetro registrato. Stalled non osservato; non viene inventato. Prova funzionale Chromium, non prestazioni o hardware; primo tentativo di readiness non conclusivo preservato.",
+      "previousStatus": "NOT_RUN",
+      "residualCategories": [],
+      "statusHistory": [
+        {
+          "status": "PARTIAL",
+          "basis": "Buffering PREPARED_NOT_RUN before coordinator slot; earlier offline evidence alone was insufficient."
+        },
+        {
+          "status": "PASS_TECHNICAL",
+          "sourceIds": [
+            "N04",
+            "N14"
+          ],
+          "basis": "Recorded real waiting under CDP, normal-network recovery and exact reentry; first readiness-only failure retained."
+        }
+      ],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D45",
+      "requirement": "Salvataggio confermato",
+      "acceptance": "«Salvato» compare solo dopo riscontro autorevole; stato locale temporaneo distinguibile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "17 ACK autoritativi e 17 readback distinti; indiceWork→Lessonprima refresh, late ACK nuova generationguard eautosaveexam confermati.",
+      "limitationAndResidual": "Nessun semplice link precedente spacciato per nuovo ACK.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D46",
+      "requirement": "Ripresa reale",
+      "acceptance": "Refresh, browser nuovo e secondo dispositivo autorizzato ritrovano passo, risposta, nota, aiuti e feedback confermati",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N06"
+        }
+      ],
+      "basis": "Vecchio FAIL prodotto 503/ripresa risolto:refresh, nuovo contesto browser, readback HTTP17, risposte/note/aiuti/feedback confermati sui riferimenti esatti.",
+      "limitationAndResidual": "Secondo dispositivo fisico autorizzato NOT_RUN. Browserfresh e API reali non sono hardware; nessun vecchio FAIL prodotto lasciato aperto. Il diverso difetto di rendering storico ReplayView è registrato inD50/D68,non riapre come503 il percorso corso già provato.",
+      "previousStatus": "FAIL",
+      "residualCategories": [
+        "HARDWARE"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D47",
+      "requirement": "Commit con risposta persa",
+      "acceptance": "Retry con la stessa identità di comando non duplica consegna o feedback",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S11"
+        },
+        {
+          "sourceId": "S14"
+        },
+        {
+          "sourceId": "S17"
+        },
+        {
+          "sourceId": "S24"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N13"
+        }
+      ],
+      "basis": "Replayidempotente comando/receipt e bodychanged 409 nelle prove registrate; consumer/codeidentity e 3 receipt conservate 669.",
+      "limitationAndResidual": "Storia API/contratti dichiarata, non nuova simulazione 669 di ogni risposta persa e nessuna nuova autorità.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D48",
+      "requirement": "Concorrenza e conflitti",
+      "acceptance": "Due tab o due modifiche non sovrascrivono silenziosamente; scelta di recupero comprensibile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        }
+      ],
+      "basis": "Due tabrealicon 409 mantengono bozzaperdente; exam due 409, retry CAS/scarto consapevoli, 0 autosaveextra nei log richieste.",
+      "limitationAndResidual": "Nooverwrite silenzioso nei casi provati; non un’attestazione umana diusabilità.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D49",
+      "requirement": "Sessione scaduta",
+      "acceptance": "Riautenticazione e recupero senza attribuire il lavoro all'account successivo",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N02"
+        }
+      ],
+      "basis": "Sessione propria revocata 401, relogin, cleanup privato senza prompt, altra sessioneB200, recupero solo confermato; niente public/course 404.",
+      "limitationAndResidual": "Nessungloballogout e nessuna attribuzione alpeer; ambito identità sintetiche realiAuth.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D50",
+      "requirement": "Revisione editoriale nuova",
+      "acceptance": "Vecchi tentativi restano legati alla fonte e al problema usati; migrazione esplicita e verificabile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S20"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "C_REPLAY"
+        },
+        {
+          "sourceId": "U05"
+        },
+        {
+          "sourceId": "U06"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "C_STUDIO_B807"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "C_2BEF"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "Fonti,problemi,revisioni e vecchie receipt restano legati ai riferimenti esatti nelle prove corso. Il consumer Studio2bef apre realmente la lezione salvata dal normale percorso docente,con anteprima/annullamento/conferma esplicita e link all’originale,senza URL manuali. Nuova stanza e journal nonempty sono preservati; seek avanti/indietro ricostruisce gli stati storici con hash persistiti invariati.",
+      "limitationAndResidual": "Pass tecnico nei casi registrati: risultato ricalcolato e assenza del confronto originale sono dichiarati,nessuna valutazione storica inventata. Ripristino di id estraneo resta rifiutato; memoria esistente non unita con avviso visibile. Nessuna migrazione implicita o accettazione umana ricavata dall’apertura del file.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U05",
+        "U06",
+        "U07",
+        "U08"
+      ]
+    },
+    {
+      "id": "D51",
+      "requirement": "Crash e lavoro locale",
+      "acceptance": "Autosalvataggi confermati sopravvivono; eventuale intervallo non ancora salvato dichiarato, recupero locale limitato e isolato se previsto",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S14"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N06"
+        }
+      ],
+      "basis": "Stati ACK sopravvivono aclose/newcontext/refresh e 17 letture indipendenti; intervallo non ACK resta bozza volatile protetta, senza nuovostore.",
+      "limitationAndResidual": "Non eseguito killfisico/processo: prova durata dei confermati e limiti della bozza, non recupero universale del non ACK.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D52",
+      "requirement": "Backup e ripristino",
+      "acceptance": "Prova concreta su dati sintetici del verticale, inclusi riferimenti media e autorizzazioni; non basta che il provider dichiari backup",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S19"
+        }
+      ],
+      "basis": "Restore concretoPG17.11/71 tabelle, digest, Authrecord, receipt/revisioni/media eACLprovati.",
+      "limitationAndResidual": "Ambito verticale sintetico dichiarato, non standaloneSupabaseDR/restorelive oautorizzazioneproduzione.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D53",
+      "requirement": "Identità reali e ruoli",
+      "acceptance": "Un docente e due studenti distinti; niente scorciatoie sintetiche nel runtime distribuito",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S16"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N08"
+        }
+      ],
+      "basis": "Docente+dueprincipali studenti reali SupabaseAuth/ruoli server-owned, ACL e sessioni distinte.",
+      "limitationAndResidual": "Runtime autorizzato resta SYNTHETIC_ACCEPTANCE, syntheticOnly eproductionReady=false; non è accettazione di utenti umani/produzione ordinaria.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "RELEASE_SCOPE",
+        "HUMAN"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D54",
+      "requirement": "Isolamento e revoca",
+      "acceptance": "Fonte privata, risposta, nota, URL copiato e sessione revocata provati contro accessi non autorizzati",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S18"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N11"
+        }
+      ],
+      "basis": "Fonte/nota/receipt/originali privati eURLcopiati negati apeer; revoca 401/teacherpin/propriocontesto reali.",
+      "limitationAndResidual": "Isolamento tecnico sintetico, non consenso/pubblicazioneproduzione.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D55",
+      "requirement": "Dati e media controllati",
+      "acceptance": "Validazione input, limiti upload dove presenti, sanificazione rendering, diritti degli asset, gestione di cancellazione e conservazione definita",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S21"
+        },
+        {
+          "sourceId": "N11"
+        }
+      ],
+      "basis": "Providerchain reale PASS dopoV2 reviewed:orphan→cleanup→assenza→samekeyretry 1 receipt; metadatawins/originale/ACLprotetti, workerdisabilitato/capabilityrevocata.",
+      "limitationAndResidual": "Prova storica circoscritta all’app 8e442 e al worker b505; retention operativa dichiarata con scadenza di review, non esecuzione permanente o scheduling in produzione.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D56",
+      "requirement": "Un'autorità dei dati",
+      "acceptance": "Niente secondo store di progresso, scoring, memoria o scheduler per aggirare un'integrazione",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S11"
+        },
+        {
+          "sourceId": "S24"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N08"
+        }
+      ],
+      "basis": "Core/risorse/receipt/aiuti/esami restano ledgeresistenti; guard UI effimera, nonsecondoprogressoscoringmemoria.",
+      "limitationAndResidual": "Cache/localStorage Studio esplicitamente nonautoritativi.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D57",
+      "requirement": "Manutenibilità",
+      "acceptance": "Separazione comprensibile fra modello scientifico, stato educativo, trasporto e renderer; dipendenze bloccate e documentazione minima utile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S08"
+        },
+        {
+          "sourceId": "S23"
+        },
+        {
+          "sourceId": "N10"
+        },
+        {
+          "sourceId": "N13"
+        },
+        {
+          "sourceId": "C669"
+        }
+      ],
+      "basis": "Modello/stato/trasporto/renderer separati, lock/build registrati e candidateCI669 SUCCESS riferita; niente duplicati autoritativi.",
+      "limitationAndResidual": "Gate finale/postmerge ancoraD61, non inferito dal buildstorico.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D58",
+      "requirement": "Test del rischio reale",
+      "acceptance": "Controprove scientifiche, contratti Core, isolamento, un percorso E2E completo e recuperi principali; niente quantità di test usata come surrogato di qualità",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S04"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N08"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "C_REPLAY"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U03"
+        },
+        {
+          "sourceId": "U05"
+        },
+        {
+          "sourceId": "U06"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "C_2BEF"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "Il rischio è coperto da controprove scientifiche indipendenti,contratti Core,ACL/peer denial,corso16modelli/17ACK,readback17,guard e risposte409,mediaoffline/buffering e due esami reali con ripresa,più il percorso docente completo Core→OpenSaved→Replay2bef. Le regressioni osservate di reflow,seek e nomi SDK hanno correzioni riesaminate nel consumer distribuito; RED originali conservati.",
+      "limitationAndResidual": "PASS tecnico attribuito alle fonti e ai loro SHA,non conteggio di test come surrogato di qualità né ripetizione totale su2bef. Restano aree manuali/hardware e D22paste esplicite nelle righe; actualmain/CIpostmerge/rollback sono gate separati D61/D63. Nessuna approvazione scientifica umana.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U03",
+        "U05",
+        "U06",
+        "U07",
+        "U08"
+      ]
+    },
+    {
+      "id": "D59",
+      "requirement": "Prestazioni misurate",
+      "acceptance": "Dispositivo e rete dichiarati, budget concordati, niente misure del solo computer dello sviluppatore",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "S09"
+        },
+        {
+          "sourceId": "N15"
+        }
+      ],
+      "basis": "G3 completato:100 campioni validi sulla pagina visibile/focalizzata, p95 DOMcommit2.3ms e next-rAF17.4ms, soglia100ms PASS solo per Chromium/SwiftShader dichiarato. Storico270.4/280.1ms fallito conservato.",
+      "limitationAndResidual": "Device/rete/budget concordati NOT_RUN; questa misura software non prova input hardware,paint,FPS o tutti i modelli. Non sostituisce il criterio del dispositivo concordato.",
+      "previousStatus": "FAIL",
+      "residualCategories": [
+        "HARDWARE"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D60",
+      "requirement": "Diagnostica operativa",
+      "acceptance": "Errori e versioni ricostruibili senza esporre token o risposte private nei log; procedura di ripristino conosciuta",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S19"
+        },
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N11"
+        }
+      ],
+      "basis": "Health/release/errorireali ehashricostruibili senza segreti; restore/runbook ecleanupoperativoeseguiti con limitiautorità.",
+      "limitationAndResidual": "Rollbackcandidato separatoD63; nessuna credenziale o risposta privata ripubblicata inquesta matrice.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D61",
+      "requirement": "Identità del rilascio",
+      "acceptance": "Commit, build, flag, contenuti e ambiente corrispondono alla versione accettata; CI richiesta verde",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "C669"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "C_2BEF"
+        }
+      ],
+      "basis": "Preview protetta 2bef con release/index esatti prima/dopo nella prova Core U14; HEAD locale letta corrispondente. Questa matrice non interroga CI né main finale.",
+      "limitationAndResidual": "In attesa di integrazione effettiva finale, actual main e CI post-merge, oltre al collaudo Studio corrente. Nessuna equivalenza fra preview e rilascio definitivamente accettato.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "FINAL_INTEGRATION_PENDING",
+        "FINAL_CI_NOT_ATTESTED",
+        "CONSUMER_ACCEPTANCE_PENDING"
+      ],
+      "snapshot669Status": "PARTIAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U08"
+      ]
+    },
+    {
+      "id": "D62",
+      "requirement": "Browser dopo pubblicazione",
+      "acceptance": "Percorso reale verificato sulla URL destinata agli utenti con servizi effettivi, non soltanto su localhost",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N09"
+        },
+        {
+          "sourceId": "U03"
+        }
+      ],
+      "basis": "Percorsi sullaURLprotettareale con servizieffettivi eSHA669, nonlocalhost; scenari indipendenti e limiti archiviati.",
+      "limitationAndResidual": "Ambito privatosintetico, nessuna dichiarazione di rilascio pubblico o hardware.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "additionalEvidence": "Matrice hosted 392: 16 modelli, 17 ACK, 8 camere e quattro viewport; nessuna attribuzione a esecuzioni b807."
+    },
+    {
+      "id": "D63",
+      "requirement": "Ritorno alla versione precedente",
+      "acceptance": "Rollback esercitato su candidato e compatibilità dei dati dichiarata",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "NOT_RUN",
+      "evidence": [
+        {
+          "sourceId": "C669"
+        }
+      ],
+      "basis": "Preparazione/versioniprecedenti e runbook presenti.",
+      "limitationAndResidual": "Rollback sul candidato ecompatibilitàdati finale non esercitati; SHAprecedente non equivale aprova.",
+      "previousStatus": "NOT_RUN",
+      "residualCategories": [
+        "RELEASE"
+      ],
+      "snapshot669Status": "NOT_RUN",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D64",
+      "requirement": "eLab eliminato dal prodotto",
+      "acceptance": "Nessun ingresso, plugin «Sim» rinominato, consumer o dipendenza runtime residua; storia conservabile come archivio",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PASS_TECHNICAL",
+      "evidence": [
+        {
+          "sourceId": "S27"
+        }
+      ],
+      "basis": "Rimozione 6223 percorsi/tombstone/boundarygate conSDK/Core generici conservati, nessunrenameSim runtime.",
+      "limitationAndResidual": "StoriaGit conservabile; prova sorgente/gate, nondistruzione archivio.",
+      "previousStatus": "PASS_TECHNICAL",
+      "residualCategories": [],
+      "snapshot669Status": "PASS_TECHNICAL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D65",
+      "requirement": "Revisione visiva nell'interazione",
+      "acceptance": "Andrea valuta i cinque stati principali in uso, non soltanto un mockup statico",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "NOT_RUN",
+      "evidence": [
+        {
+          "sourceId": "C669"
+        }
+      ],
+      "basis": "Schermate/interazioni disponibili per revisione; nessuna firma diAndrea inquesto audit.",
+      "limitationAndResidual": "Andrea deve valutare i cinque stati inuso; screenshotAI nonvalgonoaccettazione.",
+      "previousStatus": "NOT_RUN",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "NOT_RUN",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D66",
+      "requirement": "Osservazione di almeno cinque studenti rappresentativi",
+      "acceptance": "Almeno quattro su cinque completano i compiti UX principali senza suggerimenti dell'operatore; tutti i blocchi ricorrenti vengono risolti",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "NOT_RUN",
+      "evidence": [
+        {
+          "sourceId": "C669"
+        },
+        {
+          "sourceId": "N12"
+        }
+      ],
+      "basis": "Nessun pilot di 5 studenti rappresentativi attestato; accountAuthsintetici distinti non sono partecipanti.",
+      "limitationAndResidual": "Osservare 5 studenti con 4/5 compiti senza aiuto e risolvere blocchi; non inventare risultati.",
+      "previousStatus": "NOT_RUN",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "NOT_RUN",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D67",
+      "requirement": "Transfer separato dall'usabilità",
+      "acceptance": "Risposte e motivazioni confrontate con rubrica; un insuccesso concettuale non viene nascosto da una UI facile",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "HUMAN_PENDING",
+      "evidence": [
+        {
+          "sourceId": "N12"
+        },
+        {
+          "sourceId": "N08"
+        }
+      ],
+      "basis": "57 rubriche/transfer e 3 receipt tecnichereali presenti; nessuno score/clicksintetico prova comprensione.",
+      "limitationAndResidual": "Confronto umano risposte/motivazioni conrubriche e separazione dall’usabilità ancoraassenti.",
+      "previousStatus": "HUMAN_PENDING",
+      "residualCategories": [
+        "HUMAN"
+      ],
+      "snapshot669Status": "HUMAN_PENDING",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523."
+    },
+    {
+      "id": "D68",
+      "requirement": "Chiusura dei difetti del perimetro",
+      "acceptance": "Nessuna perdita dati, errore scientifico, accesso indebito, funzione promessa assente o blocco del percorso; le rifiniture approvate sono effettivamente presenti",
+      "scope": "all-fluidi-termodinamica-units",
+      "status": "PARTIAL",
+      "evidence": [
+        {
+          "sourceId": "N01"
+        },
+        {
+          "sourceId": "N02"
+        },
+        {
+          "sourceId": "N03"
+        },
+        {
+          "sourceId": "N04"
+        },
+        {
+          "sourceId": "N05"
+        },
+        {
+          "sourceId": "N06"
+        },
+        {
+          "sourceId": "N07"
+        },
+        {
+          "sourceId": "N11"
+        },
+        {
+          "sourceId": "N14"
+        },
+        {
+          "sourceId": "N15"
+        },
+        {
+          "sourceId": "C_G3_FIX"
+        },
+        {
+          "sourceId": "C_REPLAY"
+        },
+        {
+          "sourceId": "C669"
+        },
+        {
+          "sourceId": "U01"
+        },
+        {
+          "sourceId": "U03"
+        },
+        {
+          "sourceId": "U04"
+        },
+        {
+          "sourceId": "U05"
+        },
+        {
+          "sourceId": "U06"
+        },
+        {
+          "sourceId": "U07"
+        },
+        {
+          "sourceId": "U08"
+        },
+        {
+          "sourceId": "C_NAV_B807"
+        },
+        {
+          "sourceId": "U11"
+        },
+        {
+          "sourceId": "C_STUDIO_B807"
+        },
+        {
+          "sourceId": "U14"
+        },
+        {
+          "sourceId": "C_2BEF"
+        },
+        {
+          "sourceId": "U15"
+        }
+      ],
+      "basis": "Nello scope tecnico provato su2bef,Core e Studio superano i finding precedenti:reflow distribuito,apertura ordinaria della lezione salvata,interazione dopo seek e nomi SDK/zoom. Il report finale1C conferma hash persistiti invariati,zero richieste mutanti,logout proprio200 e vecchio cookie401. I tre FAIL b807 sono preservati come snapshot storico,non difetti correnti lasciati aperti.",
+      "limitationAndResidual": "PARTIAL globale per review manuali/incomplete,hardware e ambiente concordati,accettazioni umane e gate finali actualmain/CIpostmerge/rollback non attestati. Non è CHIUSURA1 o WCAG totale. Distinguere questi residui dalle regressioni tecniche chiuse nel perimetro testato:0/57 ACCEPTED,humanReview=false,humanApproval=false.",
+      "previousStatus": "PARTIAL",
+      "residualCategories": [
+        "FINAL_RELEASE_GATES_PENDING",
+        "PHYSICAL_DEVICE_NOT_RUN",
+        "HUMAN_REVIEW_PENDING",
+        "MANUAL_ACCESSIBILITY_REVIEW_PENDING"
+      ],
+      "snapshot669Status": "FAIL",
+      "evidenceScope": "Evidenza storica circoscritta agli SHA nelle fonti; non nuova esecuzione sulla HEAD b80758763de23a9bf7ffa5220ceada9b3025e523.",
+      "overlaySourceIds": [
+        "U01",
+        "U03",
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "U08"
+      ]
+    }
+  ],
+  "technicalEvidenceStillMissing": [
+    "D22",
+    "D29",
+    "D36",
+    "D38",
+    "D39",
+    "D40"
+  ],
+  "humanActionsPending": [
+    "D02",
+    "D03",
+    "D05",
+    "D08",
+    "D16",
+    "D19",
+    "D23",
+    "D26",
+    "D32",
+    "D33",
+    "D39",
+    "D43",
+    "D53",
+    "D65",
+    "D66",
+    "D67"
+  ],
+  "objectiveCount": 57,
+  "humanReview": false,
+  "humanApproval": false,
+  "previousMatrix": {
+    "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/acceptance-matrix-669b5d20.json",
+    "sha256AtRead": "5331257bf2f4686473403f4adf6936fd1645ee9ee61443aa136f9086ee2e31ad",
+    "candidateSha": "669b5d20d725332acf7beec89f1e57eae03477d2",
+    "preserved": true,
+    "statusCounts": {
+      "PASS_TECHNICAL": 35,
+      "HUMAN_PENDING": 4,
+      "NOT_RUN": 4,
+      "PARTIAL": 22,
+      "FAIL": 3
+    }
+  },
+  "baselineIdentity": {
+    "path": "/Users/andreamarro/Documents/Codex/2026-10-28/files-pasted-by-the-user-ardesia/work/plans/requirements-baseline.json",
+    "sha256AtRead": "4447d30c760fa84afa1811042658e80ea2f0f86e9b4633db0620a13ed9d92786",
+    "decisionDocumentSha256": "64cac698ffad811966c61d39afab5250626b1aa9888e106eb8df3a024d36693c",
+    "exactFieldsPreserved": [
+      "id",
+      "requirement",
+      "acceptance",
+      "scope"
+    ],
+    "validatedRows": 68
+  },
+  "hardwareEvidenceNotRun": {
+    "D40": "Tablet, touch e penna fisici non eseguiti; gli engine software e Safari desktop hanno scope separati.",
+    "D46": "Secondo dispositivo fisico autorizzato non eseguito; browser fresco e 17 letture HTTP sono prove distinte.",
+    "D59": "Device, rete e budget concordati non eseguiti; p95 17.4 ms appartiene soltanto al software 669.",
+    "related": [
+      "D22",
+      "D23"
+    ]
+  },
+  "releaseActivities": {
+    "candidateSha": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81",
+    "localHeadRead": "VERIFIED_2BEF",
+    "preview": "SOURCE_2BEF_CORE_AND_STUDIO_SCOPED_PASS",
+    "candidateCi": "NOT_NEWLY_QUERIED_FOR_2BEF",
+    "finalActualMain": "PENDING_NOT_ATTESTED",
+    "finalMerge": "NOT_ATTESTED",
+    "finalPostMergeCi": "NOT_ATTESTED",
+    "rollbackExercise": "NOT_RUN",
+    "matrixFinalization": "PENDING_ACTUAL_MAIN_POSTMERGE_CI_AND_ROLLBACK",
+    "studioConsumer": "PASS_SCOPE_U15"
+  },
+  "preparedCases": [
+    {
+      "requirementId": "D44",
+      "id": "audio-real-buffering-same-wav",
+      "status": "PASS_SCOPED_REAL_BUFFERING",
+      "browserOpened": true,
+      "plan": "Contesto nuovo; autenticazione/JS prima del throttlingCDP; stessoWAV eURLintatti; eventiwaiting/stalled,readyState/buffered/currentTime; ripristinorete;play/retry/rientro esatto. No route mock o scritture didattiche. Eseguire soltanto dopo nuovo slot del coordinatore.",
+      "sourceId": "N14",
+      "preparedStatus": "PREPARED_NOT_RUN",
+      "evidenceDirectory": "/private/tmp/ardesia-closure1-recovery/work/evidence/audio-buffering-669b5d20-2026-10-28T17-26-44-731Z"
+    }
+  ],
+  "historicalFailuresRetained": [
+    {
+      "requirementId": "D46",
+      "oldStatus": "FAIL",
+      "currentStatus": "PARTIAL",
+      "reason": "Difetto503/mount superato669; residua solo prova secondohardware."
+    },
+    {
+      "requirementId": "D59",
+      "oldStatus": "FAIL",
+      "currentStatus": "PARTIAL",
+      "reason": "Benchmarksoftwarestorico fallito conservato,non risultato dello slotG3 odeviceconcordati."
+    },
+    {
+      "scope": "audio/exams",
+      "sourceId": "N04",
+      "note": "RED352conservati; primo669con errore driverselezione restaFAIL; ripetizione corretta soloesamiPASS."
+    },
+    {
+      "requirementIds": [
+        "D36",
+        "D38"
+      ],
+      "sourceId": "N15",
+      "status": "FAIL_669_PRESERVED",
+      "supersedingEvidence": "U01",
+      "note": "Rescan d57 supera i finding nei casi riesaminati, con venti incomplete; non riscrive 669."
+    },
+    {
+      "requirementIds": [
+        "D50",
+        "D68"
+      ],
+      "sourceId": "U05",
+      "status": "RED_392_PRESERVED",
+      "note": "Fix integrati e test locali riportati; consumer corrente ancora da collaudare."
+    },
+    {
+      "requirementId": "D40",
+      "sourceId": "N16",
+      "status": "OLD_DRIVER_FAILURE_PRESERVED",
+      "supersedingEvidence": "U02",
+      "note": "Compatibilità successiva completata solo nel perimetro rappresentativo."
+    },
+    {
+      "requirementIds": [
+        "D14",
+        "D24"
+      ],
+      "sourceId": "U13",
+      "note": "D14 PASS primo run; D24 percorso errato e selettore driver non conclusivi preservati; D24 PASS terzo run isolato. Nessuna modifica prodotto o aspettative."
+    }
+  ],
+  "remainingTechnicalWork": [
+    {
+      "ids": [
+        "D22"
+      ],
+      "kind": "INPUT_COVERAGE_PARTIAL_NO_NEW_PRODUCT_DEFECT",
+      "detail": "Paste reale NOT_RUN,clipboard OS non letta/modificata;non ogni min/max/passo è stato provato nel browser. Punto supportato,virgola nel campo numerico non promessa."
+    },
+    {
+      "ids": [
+        "D29",
+        "D36",
+        "D38",
+        "D39"
+      ],
+      "kind": "MANUAL_REVIEW_AND_INCOMPLETE_ACCEPTANCE_PENDING",
+      "detail": "Percorso completo tastiera/focus/occlusione,20 incomplete Core e definizioni dd/contrasti Studio,coerenza trascrizione richiedono review manuale;non certificazione WCAG totale."
+    },
+    {
+      "ids": [
+        "D40",
+        "D46",
+        "D59"
+      ],
+      "kind": "PHYSICAL_AND_AGREED_ENVIRONMENT_NOT_RUN",
+      "detail": "Tablet/touch/penna,secondo dispositivo fisico,device/rete/budget concordati non eseguiti;browser/API/p95software sono prove distinte."
+    },
+    {
+      "ids": [
+        "D61",
+        "D63",
+        "D68"
+      ],
+      "kind": "FINAL_RELEASE_GATES_PENDING",
+      "detail": "Actualmain,integrazione/CIpostmerge finale e rollback con compatibilità dati non attestati in questo snapshot."
+    }
+  ],
+  "evidenceAttribution": {
+    "policy": "Ogni esecuzione vale per lo SHA e il perimetro registrati. La nuova prova Core 2bef non sostituisce il collaudo Studio o i casi storici. PASS_TECHNICAL non è approvazione umana o PASS globale. I FAIL b807 sono preservati nel relativo sourceSnapshots.",
+    "inheritedSources": "S01–S30 e N01–N17 conservano la provenienza e gli hash letti nello snapshot 669. Gli hash ereditati non attestano una nuova lettura degli eventuali file mutabili.",
+    "currentHeadHostedAcceptance": "CORE_AND_STUDIO_SCOPED_PASS_RELEASE_GATES_PENDING",
+    "wcagCertification": false,
+    "closure1Declared": false
+  },
+  "residualReviewRequestedByCoordinator": {
+    "D14": "Coperta dal nuovo caso canonico reale U13, con limiti del confronto razionale e persisted=false.",
+    "D24": "Pausa traccianti del demo originale verificata realmente U13; reset camera/scenario/receipt rimangono evidenze distinte. Nessuna pausa nuova alle DS statiche.",
+    "D26": "Review umana dei cinque feedback; non requisito di classificazione automatica del testo libero. Reachability docente già provata in parte, cinque categorie non tutte attestate.",
+    "D37": "Coperta dal context loss nativo reale U12; niente hardware GPU o conformità globale.",
+    "D41": "Zoom testo e stress formule/errori non equivalgono ai quattro viewport e restano non attestati.",
+    "D22": "Paste reale NOT_RUN; nessun accesso clipboard OS."
+  },
+  "coordinatedFollowup": {
+    "requirements": [
+      "D14",
+      "D24"
+    ],
+    "status": "PASS_SCOPED_ACROSS_DISTINCT_RUNS",
+    "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+    "sourceId": "U13",
+    "allCasesSingleRunGreen": false,
+    "browserClosed": true,
+    "ownLogoutHttp": 200,
+    "oldCookieHttp": 401,
+    "clipboard": "NOT_RUN",
+    "performance": "NOT_RUN"
+  },
+  "artifactLifecycle": "SOURCE_2BEF_SNAPSHOT_COMPLETE_RELEASE_GATES_PENDING",
+  "finalMatrix": false,
+  "sourceSnapshots": {
+    "b807": {
+      "candidateSha": "b80758763de23a9bf7ffa5220ceada9b3025e523",
+      "artifactLifecycle": "INTERIM_B807_BLOCKED_PENDING_NEW_HEAD_REGRESSIONS_AND_HOSTED_ACCEPTANCE",
+      "statusCounts": {
+        "PASS_TECHNICAL": 39,
+        "HUMAN_PENDING": 4,
+        "NOT_RUN": 4,
+        "PARTIAL": 18,
+        "FAIL": 3
+      },
+      "requirements": [
+        {
+          "id": "D01",
+          "status": "PASS_TECHNICAL",
+          "basis": "Ingresso, pratica/transfer, fonte, receipt e ripresa mantengono pack/lesson/versione/fase/step: matrice 669, readback 17 e 3 receipt storiche riaperte 669.",
+          "limitationAndResidual": "Nessun residuo tecnico accertato nei percorsi registrati; non trasforma 57 obiettivi in accettati."
+        },
+        {
+          "id": "D02",
+          "status": "HUMAN_PENDING",
+          "basis": "Mappa 57, obiettivi/prerequisiti e riferimenti presenti; 0/57 accettati.",
+          "limitationAndResidual": "Approvazione docente nominativa della mappa richiesta, non attestata."
+        },
+        {
+          "id": "D03",
+          "status": "HUMAN_PENDING",
+          "basis": "Dieci DS e demo originale, spiegazioni/esempi/prove sono raggiungibili; smoke e review tecnica non sono sufficienza didattica umana.",
+          "limitationAndResidual": "Giudizio umano sui salti logici e sulla completezza del perimetro ancora necessario."
+        },
+        {
+          "id": "D04",
+          "status": "PASS_TECHNICAL",
+          "basis": "Tre diagnostiche e 57 prove/transfer sono distinti; tre consegne UI352 con diagnosi/pratica-aiuto/transfer strutturalmente diverso sono rilette e visibili 669; due mock reali eseguiti.",
+          "limitationAndResidual": "La qualità cognitiva/rubriche e gli esiti con studenti restano D05/D67; non si attribuiscono nuove consegne 669 allo smoke readonly."
+        },
+        {
+          "id": "D05",
+          "status": "NOT_RUN",
+          "basis": "Contenuti DRAFT, humanApproval=false, humanReview=NOT_RUN, 0/57 ACCEPTED.",
+          "limitationAndResidual": "Mancano revisori umani nominativi, versione, data e osservazioni risolte."
+        },
+        {
+          "id": "D06",
+          "status": "PASS_TECHNICAL",
+          "basis": "Receipt MANUAL_REVIEW_REQUIRED, aiuti separati e punteggi mock DRAFT non attribuiscono padronanza; 0/57.",
+          "limitationAndResidual": "Nessuna attestazione educativa o umana ricavata da salvataggi/score sintetici."
+        },
+        {
+          "id": "D07",
+          "status": "PASS_TECHNICAL",
+          "basis": "Sequenza da pressione/densità/idrostatica aPoiseuille, prerequisiti e recupero espliciti nelle lezioni.",
+          "limitationAndResidual": "Accettazione della sequenza con docente/studenti separata inD02/D66."
+        },
+        {
+          "id": "D08",
+          "status": "PARTIAL",
+          "basis": "Testi italiani/microtesti corretti e osservati in UI; smoke 669 non è rilettura editoriale umana integrale.",
+          "limitationAndResidual": "Rilettura umana completa di terminologia, simboli e suggerimenti nell’interfaccia resta da attestare."
+        },
+        {
+          "id": "D09",
+          "status": "PASS_TECHNICAL",
+          "basis": "Ipotesi, domini e osservabili dei modelli canonici sono espliciti e rilette 669 conhashesatti.",
+          "limitationAndResidual": "Validità limitata ai modelli analitici dichiarati; revisione scientifica umana separata."
+        },
+        {
+          "id": "D10",
+          "status": "PASS_TECHNICAL",
+          "basis": "Followup 669 eseguito:Δpfissa, r×2→Q×16, v̄×4, A×4; oracoli indipendenti in forma diametro.",
+          "limitationAndResidual": "A è derivata numericamente dalla geometria del profilo restituito, non un nuovo osservabile prodotto; nessuna modifica runtime."
+        },
+        {
+          "id": "D11",
+          "status": "PASS_TECHNICAL",
+          "basis": "Followup 669 eseguito:Qfissa, r×2→Δp×0.0625 e v̄×0.25; sorgenti canoniche identiche.",
+          "limitationAndResidual": "Nessuna prova UI o approvazione umana inventata dai sei calcoli numerici."
+        },
+        {
+          "id": "D12",
+          "status": "PASS_TECHNICAL",
+          "basis": "Followup 669 eseguito:μ×2, L×2 conQ/rfissi→Δp×4.",
+          "limitationAndResidual": "Confronto entro dominio laminare registrato; 54 casi storici restano distinti dai 3 followup."
+        },
+        {
+          "id": "D13",
+          "status": "PASS_TECHNICAL",
+          "basis": "Unico stato/modello genera numeri, formula, serie e geometria; controprove e 16 consumer/17 readback esatti.",
+          "limitationAndResidual": "Coerenza tecnica nel perimetro provato; non ogni valore continuo o accettazione percettiva umana."
+        },
+        {
+          "id": "D14",
+          "status": "PASS_TECHNICAL",
+          "basis": "Sul consumer reale b807, dal normale CuratedCoursePractice/QuestionCard, il quesito canonico u3-pressure-area-01 accetta 8/2, 4.0, 4,0 e 4 Pa; respinge 4 m. Cinque POST reali con manifest/versione esatti e DRAFT/reference/humanApproval=false. Prima di ciascun tentativo il quesito esatto riapre senza soluzione/feedback.",
+          "limitationAndResidual": "Pass rappresentativo di equivalenza razionale e unità attesa: non CAS generale o conversione arbitraria di unità. Tentativi dichiarati persisted=false, non receipt da riaprire. Ledger confermato invariato; nessun grader delle risposte libere o approvazione umana. Sessione propria200→vecchio cookie401."
+        },
+        {
+          "id": "D15",
+          "status": "PASS_TECHNICAL",
+          "basis": "Domini, nonfiniti/nonpositivi e rawvuoto sono validati; B17 prova campo vuoto/invalido senza perdita ocommit improprio.",
+          "limitationAndResidual": "Non generalizzare a ogni combinazione di input/dispositivo."
+        },
+        {
+          "id": "D16",
+          "status": "PARTIAL",
+          "basis": "Profilo e geometrie coerenti con modelli; scene del corso sono illustrate e non una simulazione CFD.",
+          "limitationAndResidual": "Correttezza percettiva di traccianti/densità dove presenti richiede review visiva umanaD65; non aggiungere nuove animazioni."
+        },
+        {
+          "id": "D17",
+          "status": "PASS_TECHNICAL",
+          "basis": "Regime/ipotesi dichiarati e dominio quantitativo controllato; followupRe massimo 400, non verifica dai soli rapporti.",
+          "limitationAndResidual": "Nessuna approvazione scientifica umana o validità fuori dominio."
+        },
+        {
+          "id": "D18",
+          "status": "PASS_TECHNICAL",
+          "basis": "Limiti analitici espliciti, nessuna promessa CFD/turbolenza/sangue reale.",
+          "limitationAndResidual": "Non espandere a scene o modelli estranei al mandato."
+        },
+        {
+          "id": "D19",
+          "status": "PARTIAL",
+          "basis": "Ingresso reale 669, obiettivo/stato/azione e corso labfirst raggiungibili senza dashboard preliminare.",
+          "limitationAndResidual": "Riconoscimento autonomo senza suggerimenti richiede osservazione umanaD66, non un nuovo difetto tecnico."
+        },
+        {
+          "id": "D20",
+          "status": "PASS_TECHNICAL",
+          "basis": "URL esatto, view/edition/lesson/model/Back, work→lezione dopo ACK, refresh e nuovi contesti preservano riferimenti nei casi registrati.",
+          "limitationAndResidual": "Nessun browser fresco è presentato come secondo dispositivo fisico."
+        },
+        {
+          "id": "D21",
+          "status": "PASS_TECHNICAL",
+          "basis": "Su 392 il consumer Poiseuille passa da Δp fissa a Q fissa con previsioni e confronto, formule, etichette e tabella coerenti. Raggio raddoppiato: Q circa ×16; a Q fissa la pressione ricalcolata è 7.95775 Pa. Campo e slider restano allineati.",
+          "limitationAndResidual": "Pass rappresentativo Poiseuille, distinto dagli oracoli 669; non prova comprensione autonoma degli utenti. Il collaudo della nuova istruzione decimale b807 resta pendente in D22."
+        },
+        {
+          "id": "D22",
+          "status": "PARTIAL",
+          "basis": "Su 392 sono provati input e slider nativi, raw vuoto, cambio vincolo senza sovrascrittura dei parametri archiviati e recupero esplicito. In it-IT 0.0015 è valido; Chromium trasforma 0,0015 in 00015, fuori dominio con errore visibile. Il fix 84d68a10 aggiunge la guida al punto senza cambiare parser.",
+          "limitationAndResidual": "Non si dichiara supporto alla virgola. Nuova guida visibile e aria-describedby coperti da test locali, collaudo hosted pendente. Paste reale non eseguito, clipboard non letta/modificata; touch e hardware restano D40. Non ogni min/max/passo è provato nel browser."
+        },
+        {
+          "id": "D23",
+          "status": "PARTIAL",
+          "basis": "Otto camere rispondono con cambiamento pixel; controllo esplicito camera separato dagli input, renderer uguale.",
+          "limitationAndResidual": "Valutazione camera/scroll/manipolazione su hardware previsto e giudizio di leggibilità restanoD40/D65, non nuove scene."
+        },
+        {
+          "id": "D24",
+          "status": "PASS_TECHNICAL",
+          "basis": "Su b807 il PhysicsLab originale nel Public anonimo calcola via Core reale. Ferma/Anima il flusso cambia CSS animation-play-state e WAAPI: pausa mantiene transform/currentTime, ripresa avanza. Parametri, previsione, risultato, misure e geometria invariati; ledger confermato invariato. Reset camera e reset scenario/guard/receipt hanno evidenze distinte precedenti; le 16 DS sono statiche.",
+          "limitationAndResidual": "Pass condizionale dove l’animazione esiste, circoscritto ai traccianti del demo originale. Non pausa audio, nuova animazione DS o benchmark. Due tentativi driver non conclusivi preservati, caso riuscito isolato: nessun singolo run tutto verde. Nessun salvataggio/consegna o reset dell’autorità persistita in questo run."
+        },
+        {
+          "id": "D25",
+          "status": "PASS_TECHNICAL",
+          "basis": "Nuova modifica/manipolazione non riscrive revisioni e receipt precedenti; storici A rimangono dopoB e readback 17 conferma testi.",
+          "limitationAndResidual": "Bozza aperta e non ACK rimane volatile dichiarata; difetto di ripresa precedente superato."
+        },
+        {
+          "id": "D26",
+          "status": "PARTIAL",
+          "basis": "Il pack canonico contiene errorFeedback distinti per vincolo, raggio/area, portata/velocità, esponente e unità, con recuperi e rubriche docente. La proiezione studente protegge errorFeedback/rubriche; course-reasoning-v1 produce MANUAL_REVIEW_REQUIRED e preserva prompt/testo. Feedback docente e receipt sono raggiungibili nel consumer già provato.",
+          "limitationAndResidual": "Non esiste né si richiede un classificatore automatico dei cinque errori nel testo libero. La lacuna principale è revisione umana della diagnosi e del passo utile nelle cinque categorie, non nuovo grading. Una dimostrazione docente→feedback nel consumer per tali categorie può documentare la reachability, ma non sostituisce il giudizio didattico; i report non attestano tutti e cinque gli esiti."
+        },
+        {
+          "id": "D27",
+          "status": "PASS_TECHNICAL",
+          "basis": "Aiuto reale 352 level 1 è nella receipt riaperta 669; esplorazione nonpenalizzata, assenza aiuti non prova autonomia.",
+          "limitationAndResidual": "Nessuna padronanza/efficacia inferita dal ledger."
+        },
+        {
+          "id": "D28",
+          "status": "PASS_TECHNICAL",
+          "basis": "Nove casi 669:apri/chiudi, selezione reale PDF, modifica/Undo/Cancel, coldreopen exactA, nuovaB, teacher/peer e storicaA.",
+          "limitationAndResidual": "Solo fonte/annotazione originale sintetica; non si inventa un Cancel di testo semplice inesistente."
+        },
+        {
+          "id": "D29",
+          "status": "PARTIAL",
+          "basis": "B17/D28 provano annullamento e ritorno al focus nei casi assegnati. Il successivo G3 d57 conclude 20 scans senza violazioni; restano 20 incomplete colore e osservazioni di focus che non dimostrano da sole focus visibile/non occluso.",
+          "limitationAndResidual": "Review manuale di focus, overlay e incomplete ancora necessaria. Nessuna certificazione integrale di tutti i dialoghi; link docente guardato del nuovo stack provato localmente, non ancora nel browser distribuito."
+        },
+        {
+          "id": "D30",
+          "status": "PASS_TECHNICAL",
+          "basis": "Loading/invalidraw/ACK/error/retry/conflitti e isolamento con rete reale hanno azioni coerenti; vecchie 503 non ricompaiono nei percorsi 669.",
+          "limitationAndResidual": "Pass nei casi dichiarati, non affermazione universale su tutte le superfici del prodotto."
+        },
+        {
+          "id": "D31",
+          "status": "PASS_TECHNICAL",
+          "basis": "B17/17 PASS e 409 exam preservano bozze, conferme proporzionate e nuova generazione; scarto/accettazione espliciti.",
+          "limitationAndResidual": "L’esame non attesta da solo tuttoD31; l’evidenza completa èB17 con scope dichiarato."
+        },
+        {
+          "id": "D32",
+          "status": "PARTIAL",
+          "basis": "Microtesti ordinari studentifriendly, CTAcommercialeprivataassente; nuove scelte exam non espongono CAS all’utente.",
+          "limitationAndResidual": "Rilettura visiva/editoriale completaD65 non attestata; nessuna nuova modifica tecnica prescritta dalla sola assenza di firma."
+        },
+        {
+          "id": "D33",
+          "status": "HUMAN_PENDING",
+          "basis": "Direzione visiva e schermate reali disponibili; non sono approvazione diAndrea.",
+          "limitationAndResidual": "Manca approvazione umana dei cinque stati ininterazione."
+        },
+        {
+          "id": "D34",
+          "status": "PASS_TECHNICAL",
+          "basis": "Lab principale prima del problema manuale opzionale; 57 prove distinte e tutti controlli conservati; gerarchia reale 669 raggiungibile.",
+          "limitationAndResidual": "Reviewvisiva umana separataD65, non una dashboard/attivitànuova da aggiungere."
+        },
+        {
+          "id": "D35",
+          "status": "PASS_TECHNICAL",
+          "basis": "360/390/820/1440 CSS px verificati su 669 senza overflow, contenuto reale e stati di lavoro.",
+          "limitationAndResidual": "Viewportsoftware distinti da hardware/orientamento del tabletD40."
+        },
+        {
+          "id": "D36",
+          "status": "FAIL",
+          "basis": "Il finding ricerca del 669 è superato nelle scansioni Web successive. Sul consumer Studio b807 il coordinatore riferisce però una violazione axe attuale del reset zoom: percentuale del testo visibile nel nome tra parentesi. I 20 scans Web b807 senza violazioni non comprendono questa superficie.",
+          "limitationAndResidual": "Finding Studio corrente ancora aperto sullo snapshot b807. Fix zoom 7f8934ab con 53 test PASS riferiti; nuova build e collaudo consumer mancanti. Review manuale del percorso completo tastiera/focus resta distinta."
+        },
+        {
+          "id": "D37",
+          "status": "PASS_TECHNICAL",
+          "basis": "Alternative 2D e dati/formule sono disponibili. Firefox e WebKit su d57 completano il percorso rappresentativo 2D/3D, camera/reset e ritorno/refresh. Le prove storiche harness di no-WebGL/context loss restano distinte. Nel sorgente è presente anche un test consumer che simula il fallimento del chunk 3D, torna in 2D e conserva la previsione; è letto, non rieseguito in questo audit. Nuova esecuzione b807 riferita dal coordinatore: WebGL context loss tramite extension, evento isTrusted=true, fallback 2D e invarianti tabella, zero scritture.",
+          "limitationAndResidual": "Caso reale documentato U12: extension WebGL_lose_context, evento nativo, recupero 2D e invarianti preservati. Prova Chromium/SwiftShader, non hardware GPU o certificazione completa."
+        },
+        {
+          "id": "D38",
+          "status": "PARTIAL",
+          "basis": "Le 26 occorrenze delle due regole serious osservate su 669 restano storiche. Il rescan reale d57 su cinque stati e quattro viewport registra zero violazioni e 20 incomplete colore; il contrasto selezionato 3.82:1 non si riproduce nei casi riesaminati. Un ulteriore audit b807 registra anch’esso 20 scans senza violazioni e 20 incomplete; non include l’intero percorso Studio.",
+          "limitationAndResidual": "Finding 669 superato nel perimetro riesaminato, non FAIL corrente automatico. I 20 incomplete da occlusione richiedono classificazione manuale, come focus/leggibilità completa. Non è certificazione WCAG totale; il nuovo stack Studio attende collaudo."
+        },
+        {
+          "id": "D39",
+          "status": "PARTIAL",
+          "basis": "L’unico audio originale ha trascrizione leggibile anche offline, nessun autoplay e controlli nativi reali; buffering, recupero e rientro sono provati su 669. Il G3 d57 supera i precedenti finding nei propri stati esaminati.",
+          "limitationAndResidual": "Coerenza e completezza editoriale della trascrizione richiedono revisione umana. G3 parziale non certifica tutto il player. Dieci lezioni DS restano testuali: nessun nuovo requisito di dieci audio."
+        },
+        {
+          "id": "D40",
+          "status": "PARTIAL",
+          "basis": "Su d57 Firefox 150.0.2 e WebKit 26.4 completano lo smoke rappresentativo: login, 2D, 3D, camera/reset, ritorno e refresh. Safari nativo 26.0.1 passa il percorso Archimede su 669. Le prove Chromium 392 coprono 16 modelli e quattro viewport CSS.",
+          "limitationAndResidual": "Il primo compat 669 fallito resta conservato. Gli smoke successivi non sono tutti i modelli su tutti gli engine. WebKit Playwright non è Safari fisico. Tablet, touch, penna e hardware previsto NOT_RUN; revoca server delle sessioni compat d57 non confermata esplicitamente, browser chiusi."
+        },
+        {
+          "id": "D41",
+          "status": "FAIL",
+          "basis": "Il nuovo stress reale b807 con CSS al 200% a 360 px osserva clipping di formula e ipotesi. L’assenza di overflow del documento e i quattro viewport precedenti non soddisfano il reflow del contenuto.",
+          "limitationAndResidual": "Finding di clipping reale riferito dal coordinatore sullo stress archiviato U12; correzione CSS assegnata, retest pendente. Lo stress usa font-size radice 200%, non zoom nativo e non raddoppia necessariamente font fissati in pixel. Non si dichiara reflow conforme."
+        },
+        {
+          "id": "D42",
+          "status": "PASS_TECHNICAL",
+          "basis": "Su 669 la lezione original-demo-u5-01 riproduce il WAV originale via HTTP 206 senza import .lesson; 11 lezioni, dieci DS testuali esplicite.",
+          "limitationAndResidual": "Unaudio originale effettivo; non si aggiungono 10 narrazioni come criterio."
+        },
+        {
+          "id": "D43",
+          "status": "PARTIAL",
+          "basis": "Audio/transcript appartengono alla lezione/ref e al candidato pin 669; sorgenteaudio esatta nei nuovi contesti.",
+          "limitationAndResidual": "La versione non è approvata umanamente; ancoraggi editoriali approvati non attestati. Non inventare nuovi timecode oaudio perDS."
+        },
+        {
+          "id": "D44",
+          "status": "PASS_TECHNICAL",
+          "basis": "Su 669: play/pausa/seek/fine e offline→retry provati nei due run audio/esami; nuovo caso CDP osserva waiting reale con errore nullo, recupero dopo ripristino rete e rientro nello stesso lessonRef/src/transcript.",
+          "limitationAndResidual": "Pass tecnico nel perimetro registrato. Stalled non osservato; non viene inventato. Prova funzionale Chromium, non prestazioni o hardware; primo tentativo di readiness non conclusivo preservato."
+        },
+        {
+          "id": "D45",
+          "status": "PASS_TECHNICAL",
+          "basis": "17 ACK autoritativi e 17 readback distinti; indiceWork→Lessonprima refresh, late ACK nuova generationguard eautosaveexam confermati.",
+          "limitationAndResidual": "Nessun semplice link precedente spacciato per nuovo ACK."
+        },
+        {
+          "id": "D46",
+          "status": "PARTIAL",
+          "basis": "Vecchio FAIL prodotto 503/ripresa risolto:refresh, nuovo contesto browser, readback HTTP17, risposte/note/aiuti/feedback confermati sui riferimenti esatti.",
+          "limitationAndResidual": "Secondo dispositivo fisico autorizzato NOT_RUN. Browserfresh e API reali non sono hardware; nessun vecchio FAIL prodotto lasciato aperto. Il diverso difetto di rendering storico ReplayView è registrato inD50/D68,non riapre come503 il percorso corso già provato."
+        },
+        {
+          "id": "D47",
+          "status": "PASS_TECHNICAL",
+          "basis": "Replayidempotente comando/receipt e bodychanged 409 nelle prove registrate; consumer/codeidentity e 3 receipt conservate 669.",
+          "limitationAndResidual": "Storia API/contratti dichiarata, non nuova simulazione 669 di ogni risposta persa e nessuna nuova autorità."
+        },
+        {
+          "id": "D48",
+          "status": "PASS_TECHNICAL",
+          "basis": "Due tabrealicon 409 mantengono bozzaperdente; exam due 409, retry CAS/scarto consapevoli, 0 autosaveextra nei log richieste.",
+          "limitationAndResidual": "Nooverwrite silenzioso nei casi provati; non un’attestazione umana diusabilità."
+        },
+        {
+          "id": "D49",
+          "status": "PASS_TECHNICAL",
+          "basis": "Sessione propria revocata 401, relogin, cleanup privato senza prompt, altra sessioneB200, recupero solo confermato; niente public/course 404.",
+          "limitationAndResidual": "Nessungloballogout e nessuna attribuzione alpeer; ambito identità sintetiche realiAuth."
+        },
+        {
+          "id": "D50",
+          "status": "PARTIAL",
+          "basis": "Dati, versioni e receipt storici sono preservati. Il Replay reale 392 rende gli snapshot e la tabella storica esatti senza scritture: l’assenza di renderer osservata su 669 non descrive più l’intero stato. Rimaneva un RED di attivazione SDK dopo seek, corretto nel sorgente integrato 9007bdea con regressioni locali.",
+          "limitationAndResidual": "Collaudo del consumer distribuito b807 ancora pendente: seek avanti/indietro, interazione nell’embed e percorso ordinario docente. Il risultato storico è registrato, non ricalcolato né presentato come nuova valutazione; test locali non equivalgono a PASS browser. Inoltre il percorso ordinario OpenSavedLesson non è concluso: nuovo workspace e id .lesson diverso richiedono un’azione distinta; il rifiuto del Ripristina corrente è una validazione corretta, non va allentata. Nuovo consumer e comandi attendono regressioni e collaudo."
+        },
+        {
+          "id": "D51",
+          "status": "PASS_TECHNICAL",
+          "basis": "Stati ACK sopravvivono aclose/newcontext/refresh e 17 letture indipendenti; intervallo non ACK resta bozza volatile protetta, senza nuovostore.",
+          "limitationAndResidual": "Non eseguito killfisico/processo: prova durata dei confermati e limiti della bozza, non recupero universale del non ACK."
+        },
+        {
+          "id": "D52",
+          "status": "PASS_TECHNICAL",
+          "basis": "Restore concretoPG17.11/71 tabelle, digest, Authrecord, receipt/revisioni/media eACLprovati.",
+          "limitationAndResidual": "Ambito verticale sintetico dichiarato, non standaloneSupabaseDR/restorelive oautorizzazioneproduzione."
+        },
+        {
+          "id": "D53",
+          "status": "PARTIAL",
+          "basis": "Docente+dueprincipali studenti reali SupabaseAuth/ruoli server-owned, ACL e sessioni distinte.",
+          "limitationAndResidual": "Runtime autorizzato resta SYNTHETIC_ACCEPTANCE, syntheticOnly eproductionReady=false; non è accettazione di utenti umani/produzione ordinaria."
+        },
+        {
+          "id": "D54",
+          "status": "PASS_TECHNICAL",
+          "basis": "Fonte/nota/receipt/originali privati eURLcopiati negati apeer; revoca 401/teacherpin/propriocontesto reali.",
+          "limitationAndResidual": "Isolamento tecnico sintetico, non consenso/pubblicazioneproduzione."
+        },
+        {
+          "id": "D55",
+          "status": "PASS_TECHNICAL",
+          "basis": "Providerchain reale PASS dopoV2 reviewed:orphan→cleanup→assenza→samekeyretry 1 receipt; metadatawins/originale/ACLprotetti, workerdisabilitato/capabilityrevocata.",
+          "limitationAndResidual": "Prova storica circoscritta all’app 8e442 e al worker b505; retention operativa dichiarata con scadenza di review, non esecuzione permanente o scheduling in produzione."
+        },
+        {
+          "id": "D56",
+          "status": "PASS_TECHNICAL",
+          "basis": "Core/risorse/receipt/aiuti/esami restano ledgeresistenti; guard UI effimera, nonsecondoprogressoscoringmemoria.",
+          "limitationAndResidual": "Cache/localStorage Studio esplicitamente nonautoritativi."
+        },
+        {
+          "id": "D57",
+          "status": "PASS_TECHNICAL",
+          "basis": "Modello/stato/trasporto/renderer separati, lock/build registrati e candidateCI669 SUCCESS riferita; niente duplicati autoritativi.",
+          "limitationAndResidual": "Gate finale/postmerge ancoraD61, non inferito dal buildstorico."
+        },
+        {
+          "id": "D58",
+          "status": "PARTIAL",
+          "basis": "Matrice 392: 16 modelli, 17 ACK, 8 camere e quattro viewport PASS; audio/esami/guard/fonti e readback 669 restano prove separate. Rescan a11y d57 senza violazioni. Quattro fix Replay/accesso/guida/nomi sono integrati con regressioni locali e typecheck riportati.",
+          "limitationAndResidual": "Restano collaudo Studio del nuovo stack e review manuale accessibilità, oltre alle lacune specifiche delle righe. RED e correzioni dei driver sono conservati. Nessun risultato locale o storico è promosso a esecuzione globale b807."
+        },
+        {
+          "id": "D59",
+          "status": "PARTIAL",
+          "basis": "G3 completato:100 campioni validi sulla pagina visibile/focalizzata, p95 DOMcommit2.3ms e next-rAF17.4ms, soglia100ms PASS solo per Chromium/SwiftShader dichiarato. Storico270.4/280.1ms fallito conservato.",
+          "limitationAndResidual": "Device/rete/budget concordati NOT_RUN; questa misura software non prova input hardware,paint,FPS o tutti i modelli. Non sostituisce il criterio del dispositivo concordato."
+        },
+        {
+          "id": "D60",
+          "status": "PASS_TECHNICAL",
+          "basis": "Health/release/errorireali ehashricostruibili senza segreti; restore/runbook ecleanupoperativoeseguiti con limitiautorità.",
+          "limitationAndResidual": "Rollbackcandidato separatoD63; nessuna credenziale o risposta privata ripubblicata inquesta matrice."
+        },
+        {
+          "id": "D61",
+          "status": "PARTIAL",
+          "basis": "HEAD locale verificata b80758763de23a9bf7ffa5220ceada9b3025e523, con quattro fix integrati sopra 392. I PASS di CI delle preview precedenti restano attribuiti alle rispettive fonti; questo audit non interroga nuovo CI o deployment.",
+          "limitationAndResidual": "Nuova preview in attesa di collaudo Studio secondo coordinatore. Actual main finale, integrazione e CI post-merge finali non attestati: una HEAD locale o preview non equivale alla versione definitivamente accettata."
+        },
+        {
+          "id": "D62",
+          "status": "PASS_TECHNICAL",
+          "basis": "Percorsi sullaURLprotettareale con servizieffettivi eSHA669, nonlocalhost; scenari indipendenti e limiti archiviati.",
+          "limitationAndResidual": "Ambito privatosintetico, nessuna dichiarazione di rilascio pubblico o hardware."
+        },
+        {
+          "id": "D63",
+          "status": "NOT_RUN",
+          "basis": "Preparazione/versioniprecedenti e runbook presenti.",
+          "limitationAndResidual": "Rollback sul candidato ecompatibilitàdati finale non esercitati; SHAprecedente non equivale aprova."
+        },
+        {
+          "id": "D64",
+          "status": "PASS_TECHNICAL",
+          "basis": "Rimozione 6223 percorsi/tombstone/boundarygate conSDK/Core generici conservati, nessunrenameSim runtime.",
+          "limitationAndResidual": "StoriaGit conservabile; prova sorgente/gate, nondistruzione archivio."
+        },
+        {
+          "id": "D65",
+          "status": "NOT_RUN",
+          "basis": "Schermate/interazioni disponibili per revisione; nessuna firma diAndrea inquesto audit.",
+          "limitationAndResidual": "Andrea deve valutare i cinque stati inuso; screenshotAI nonvalgonoaccettazione."
+        },
+        {
+          "id": "D66",
+          "status": "NOT_RUN",
+          "basis": "Nessun pilot di 5 studenti rappresentativi attestato; accountAuthsintetici distinti non sono partecipanti.",
+          "limitationAndResidual": "Osservare 5 studenti con 4/5 compiti senza aiuto e risolvere blocchi; non inventare risultati."
+        },
+        {
+          "id": "D67",
+          "status": "HUMAN_PENDING",
+          "basis": "57 rubriche/transfer e 3 receipt tecnichereali presenti; nessuno score/clicksintetico prova comprensione.",
+          "limitationAndResidual": "Confronto umano risposte/motivazioni conrubriche e separazione dall’usabilità ancoraassenti."
+        },
+        {
+          "id": "D68",
+          "status": "FAIL",
+          "basis": "Lo snapshot b807 ha PASS tecnici circoscritti (inclusi nuovi D14, D24 e context loss), ma resta un aggregato con finding aperti: clipping formula/ipotesi nello stress CSS200 a360 e violazione axe attuale del nome SDK reset zoom nel consumer Studio. OpenSavedLesson ordinario non è ancora concluso. I PASS Web axe non annullano questi finding Studio.",
+          "limitationAndResidual": "FAIL aggregato dello snapshot b807 fino a correzioni integrate, regressioni e collaudo della nuova preview. Fix locali o test riferiti non sono PASS hosted. Anche dopo il superamento tecnico restano human, hardware, review manuali e gate finali: 0/57 ACCEPTED, humanReview=false, humanApproval=false, nessuna CHIUSURA1."
+        }
+      ],
+      "preserved": true
+    }
+  },
+  "sourceSnapshotComplete": true,
+  "observedProductDefectsStillOpenInTested2befScope": [],
+  "closedTechnicalRegressions": [
+    {
+      "scope": "reflow CSS200",
+      "sourceId": "U14",
+      "oldFailureSource": "b807",
+      "currentSource": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81"
+    },
+    {
+      "scope": "Replay active embed after seek and ordinary OpenSavedLesson flow",
+      "sourceId": "U15",
+      "oldFailureSources": [
+        "669",
+        "392",
+        "b807"
+      ],
+      "currentSource": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81"
+    },
+    {
+      "scope": "SDK menu and dynamic zoom accessible name",
+      "sourceId": "U15",
+      "oldFailureSource": "b807",
+      "currentSource": "2bef6629b41fab4bb0c6e75ec6c269f6dec4ae81"
+    }
+  ]
+}

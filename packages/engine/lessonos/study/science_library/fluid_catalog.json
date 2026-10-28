@@ -1,0 +1,1527 @@
+{
+  "schema": "ardesia.fluid-thermo.catalog/1",
+  "pluginId": "io.ardesia.fluid-thermo",
+  "pluginVersion": "1.0.0",
+  "definitions": [
+    {
+      "id": "manometer",
+      "capabilityId": "manometer-lab-v1",
+      "title": "Pressione, densità e manometri",
+      "objectiveIds": [
+        "U3-02.06"
+      ],
+      "objective": "Leggere una differenza di livello come differenza di pressione e conservarne il segno.",
+      "prediction": "Se inverti la differenza di livello, che cosa succede al segno di Δp?",
+      "formula": "p₁ − p₂ = ρ g Δh",
+      "assumptions": [
+        "Liquido manometrico incomprimibile in quiete e densità uniforme.",
+        "Δh è quota del livello sul ramo 2 meno quota sul ramo 1; p₁−p₂ ha lo stesso segno.",
+        "Il modello non descrive capillarità, gas compressi o oscillazioni della colonna."
+      ],
+      "parameters": [
+        {
+          "key": "density",
+          "label": "Densità",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "gravity",
+          "label": "Accelerazione di gravità",
+          "unit": "m/s²",
+          "default": 9.81,
+          "min": 0.1,
+          "max": 25,
+          "step": 0.01
+        },
+        {
+          "key": "heightDifference",
+          "label": "Differenza di livello Δh",
+          "unit": "m",
+          "default": 0.2,
+          "min": -1,
+          "max": 1,
+          "step": 0.01
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "heightDifference": 0.2
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "heightDifference": -0.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "hydrostatic",
+      "capabilityId": "hydrostatic-lab-v1",
+      "title": "Stevino e distribuzione della pressione",
+      "objectiveIds": [
+        "U3-02.01",
+        "U3-01.02"
+      ],
+      "objective": "Distinguere pressione assoluta e sovrapressione e riconoscere la dipendenza lineare dalla profondità.",
+      "prediction": "Raddoppiando la profondità raddoppia anche la pressione assoluta?",
+      "formula": "p(h) = p₀ + ρ g h",
+      "assumptions": [
+        "Fluido in quiete, incomprimibile, densità uniforme e g costante.",
+        "Profondità misurata verso il basso dalla superficie; p₀ è pressione assoluta sulla superficie."
+      ],
+      "parameters": [
+        {
+          "key": "density",
+          "label": "Densità",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "gravity",
+          "label": "Accelerazione di gravità",
+          "unit": "m/s²",
+          "default": 9.81,
+          "min": 0.1,
+          "max": 25,
+          "step": 0.01
+        },
+        {
+          "key": "depth",
+          "label": "Profondità",
+          "unit": "m",
+          "default": 2,
+          "min": 0,
+          "max": 20,
+          "step": 0.1
+        },
+        {
+          "key": "surfacePressure",
+          "label": "Pressione alla superficie",
+          "unit": "Pa",
+          "default": 101325,
+          "min": 0,
+          "max": 500000,
+          "step": 100
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "depth": 2,
+            "surfacePressure": 101325
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "depth": 4,
+            "surfacePressure": 101325
+          }
+        }
+      ]
+    },
+    {
+      "id": "pascal",
+      "capabilityId": "pascal-lab-v1",
+      "title": "Pascal e pressa idraulica",
+      "objectiveIds": [
+        "U3-02.02",
+        "U3-01.02"
+      ],
+      "objective": "Collegare rapporto di aree, amplificazione della forza e lavoro conservato.",
+      "prediction": "La forza può aumentare senza che cambi lo spostamento dei pistoni?",
+      "formula": "Δp = F₁/A₁ = F₂/A₂; A₁ Δx₁ = A₂ Δx₂",
+      "assumptions": [
+        "Liquido ideale incomprimibile, pistoni alla stessa quota, assenza di attrito.",
+        "Forze considerate sono le forze aggiuntive rispetto al carico di riferimento.",
+        "Il rapporto di spostamenti è inverso a quello delle forze; nessuna energia viene creata."
+      ],
+      "parameters": [
+        {
+          "key": "inputForce",
+          "label": "Forza sul primo pistone",
+          "unit": "N",
+          "default": 100,
+          "min": 0,
+          "max": 10000,
+          "step": 10
+        },
+        {
+          "key": "inputArea",
+          "label": "Area primo pistone",
+          "unit": "m²",
+          "default": 0.01,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.001
+        },
+        {
+          "key": "outputArea",
+          "label": "Area secondo pistone",
+          "unit": "m²",
+          "default": 0.05,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.001
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "inputForce": 100,
+            "inputArea": 0.01,
+            "outputArea": 0.05
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "inputForce": 100,
+            "inputArea": 0.01,
+            "outputArea": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "buoyancy",
+      "capabilityId": "buoyancy-lab-v1",
+      "title": "Archimede e volume immerso",
+      "objectiveIds": [
+        "U3-02.03",
+        "U3-02.04"
+      ],
+      "objective": "Distinguere spinta, peso, immersione imposta ed equilibrio di galleggiamento.",
+      "prediction": "Un corpo completamente immerso riceve una spinta maggiore se scende ancora?",
+      "formula": "F_A = ρ_f g V f; P = ρ_c g V",
+      "assumptions": [
+        "Corpo omogeneo rigido e fluido incomprimibile. f è la frazione di volume immersa imposta, da 0 a 1.",
+        "La differenza F_A−P è la risultante delle sole due forze: un vincolo può essere necessario per mantenere la posizione.",
+        "La frazione di equilibrio ρ_c/ρ_f è raggiungibile solo se non supera 1. Moto, viscosità e onde sono esclusi."
+      ],
+      "parameters": [
+        {
+          "key": "fluidDensity",
+          "label": "Densità del liquido",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "bodyDensity",
+          "label": "Densità del corpo",
+          "unit": "kg/m³",
+          "default": 600,
+          "min": 10,
+          "max": 20000,
+          "step": 10
+        },
+        {
+          "key": "volume",
+          "label": "Volume del corpo",
+          "unit": "m³",
+          "default": 0.001,
+          "min": 0.00001,
+          "max": 0.01,
+          "step": 0.00001
+        },
+        {
+          "key": "submergedFraction",
+          "label": "Frazione di volume immersa",
+          "unit": "1",
+          "default": 0.6,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "key": "gravity",
+          "label": "Accelerazione di gravità",
+          "unit": "m/s²",
+          "default": 9.81,
+          "min": 0.1,
+          "max": 25,
+          "step": 0.01
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "fluidDensity": 1000,
+            "bodyDensity": 600,
+            "volume": 0.001,
+            "submergedFraction": 0.6,
+            "gravity": 9.81
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "fluidDensity": 1000,
+            "bodyDensity": 600,
+            "volume": 0.001,
+            "submergedFraction": 1,
+            "gravity": 9.81
+          }
+        }
+      ]
+    },
+    {
+      "id": "continuity",
+      "capabilityId": "continuity-lab-v1",
+      "title": "Continuità e sezioni del condotto",
+      "objectiveIds": [
+        "U3-03.01",
+        "U3-03.04"
+      ],
+      "objective": "Ricavare le velocità dalla stessa portata e distinguere area e raggio.",
+      "prediction": "Dimezzando il raggio, di quanto cambia la velocità a portata fissata?",
+      "formula": "Q = A₁ v₁ = A₂ v₂",
+      "assumptions": [
+        "Fluido incomprimibile, regime stazionario, tubo senza perdite laterali.",
+        "Le frecce rappresentano velocità medie; non un profilo locale o una simulazione CFD."
+      ],
+      "parameters": [
+        {
+          "key": "flowRate",
+          "label": "Portata volumetrica",
+          "unit": "m³/s",
+          "default": 0.001,
+          "min": 0,
+          "max": 0.01,
+          "step": 0.0001
+        },
+        {
+          "key": "area1",
+          "label": "Prima sezione",
+          "unit": "m²",
+          "default": 0.002,
+          "min": 0.0001,
+          "max": 0.02,
+          "step": 0.0001
+        },
+        {
+          "key": "area2",
+          "label": "Seconda sezione",
+          "unit": "m²",
+          "default": 0.001,
+          "min": 0.0001,
+          "max": 0.02,
+          "step": 0.0001
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "flowRate": 0.001,
+            "area1": 0.002,
+            "area2": 0.001
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "flowRate": 0.001,
+            "area1": 0.002,
+            "area2": 0.0005
+          }
+        }
+      ]
+    },
+    {
+      "id": "venturi",
+      "capabilityId": "venturi-lab-v1",
+      "title": "Bernoulli e Venturi",
+      "objectiveIds": [
+        "U3-03.04",
+        "U3-03.05"
+      ],
+      "objective": "Confrontare pressione, velocità e quota lungo una stessa linea di corrente ideale.",
+      "prediction": "Una strozzatura alza sempre la pressione? Che cosa cambia se il tubo sale?",
+      "formula": "p₁ + ½ρv₁² + ρgh₁ = p₂ + ½ρv₂² + ρgh₂; A₁v₁ = A₂v₂",
+      "assumptions": [
+        "Fluido ideale incomprimibile; moto stazionario lungo la stessa linea di corrente.",
+        "Nessuna pompa, turbina, perdita viscosa o profilo locale: velocità medie nell’approssimazione uniforme.",
+        "Pressione assoluta positiva; il modello non verifica la tensione di vapore e non esclude cavitazione."
+      ],
+      "parameters": [
+        {
+          "key": "density",
+          "label": "Densità",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "gravity",
+          "label": "Accelerazione di gravità",
+          "unit": "m/s²",
+          "default": 9.81,
+          "min": 0.1,
+          "max": 25,
+          "step": 0.01
+        },
+        {
+          "key": "area1",
+          "label": "Area di ingresso",
+          "unit": "m²",
+          "default": 0.002,
+          "min": 0.0001,
+          "max": 0.02,
+          "step": 0.0001
+        },
+        {
+          "key": "area2",
+          "label": "Area della strozzatura",
+          "unit": "m²",
+          "default": 0.001,
+          "min": 0.0001,
+          "max": 0.02,
+          "step": 0.0001
+        },
+        {
+          "key": "speed1",
+          "label": "Velocità di ingresso",
+          "unit": "m/s",
+          "default": 1,
+          "min": 0,
+          "max": 10,
+          "step": 0.1
+        },
+        {
+          "key": "pressure1",
+          "label": "Pressione assoluta di ingresso",
+          "unit": "Pa",
+          "default": 150000,
+          "min": 1000,
+          "max": 1000000,
+          "step": 1000
+        },
+        {
+          "key": "height1",
+          "label": "Quota di ingresso",
+          "unit": "m",
+          "default": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "key": "height2",
+          "label": "Quota di uscita",
+          "unit": "m",
+          "default": 0,
+          "min": -5,
+          "max": 5,
+          "step": 0.1
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "area1": 0.002,
+            "area2": 0.001,
+            "speed1": 1,
+            "pressure1": 150000,
+            "height1": 0,
+            "height2": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "density": 1000,
+            "gravity": 9.81,
+            "area1": 0.002,
+            "area2": 0.001,
+            "speed1": 1,
+            "pressure1": 150000,
+            "height1": 0,
+            "height2": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "poiseuille",
+      "capabilityId": "poiseuille-lab-v1",
+      "title": "Poiseuille e profilo di velocità",
+      "objectiveIds": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04"
+      ],
+      "objective": "Confrontare Δp fissata e Q fissata, dipendenza da r⁴ e profilo parabolico.",
+      "prediction": "Se la pompa mantiene Q, un raggio maggiore aumenta ancora la portata?",
+      "formula": "Q = πr⁴Δp/(8ηL); u(s) = Δp(r²−s²)/(4ηL)",
+      "assumptions": [
+        "Tubo cilindrico rigido; fluido newtoniano incomprimibile; moto stazionario laminare sviluppato e non slittamento alla parete.",
+        "boundary=0 mantiene Δp, boundary=1 mantiene Q: il parametro non imposto viene ricalcolato.",
+        "Il modello rifiuta Re>2300; il numero di Reynolds è un criterio didattico, non una garanzia di moto sviluppato."
+      ],
+      "parameters": [
+        {
+          "key": "radius",
+          "label": "Raggio interno",
+          "unit": "m",
+          "default": 0.001,
+          "min": 0.0001,
+          "max": 0.005,
+          "step": 0.0001
+        },
+        {
+          "key": "length",
+          "label": "Lunghezza",
+          "unit": "m",
+          "default": 0.5,
+          "min": 0.05,
+          "max": 2,
+          "step": 0.05
+        },
+        {
+          "key": "viscosity",
+          "label": "Viscosità dinamica",
+          "unit": "Pa·s",
+          "default": 0.001,
+          "min": 0.0005,
+          "max": 0.1,
+          "step": 0.0005
+        },
+        {
+          "key": "pressureDifference",
+          "label": "Differenza di pressione imposta",
+          "unit": "Pa",
+          "default": 100,
+          "min": 0,
+          "max": 1000,
+          "step": 10
+        },
+        {
+          "key": "density",
+          "label": "Densità",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "boundary",
+          "label": "Vincolo: 0 Δp, 1 Q",
+          "unit": "1",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "step": 1
+        },
+        {
+          "key": "flowRate",
+          "label": "Portata imposta",
+          "unit": "m³/s",
+          "default": 1e-7,
+          "min": 0,
+          "max": 0.00001,
+          "step": 1e-8
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "radius": 0.001,
+            "length": 0.5,
+            "viscosity": 0.001,
+            "pressureDifference": 100,
+            "density": 1000,
+            "boundary": 0,
+            "flowRate": 1e-7
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "radius": 0.002,
+            "length": 0.5,
+            "viscosity": 0.001,
+            "pressureDifference": 100,
+            "density": 1000,
+            "boundary": 1,
+            "flowRate": 1e-7
+          }
+        }
+      ]
+    },
+    {
+      "id": "hydraulic-network",
+      "capabilityId": "hydraulic-network-lab-v1",
+      "title": "Resistenze idrauliche in serie e parallelo",
+      "objectiveIds": [
+        "U3-04.05"
+      ],
+      "objective": "Distinguere somma delle cadute in serie e somma delle portate in parallelo.",
+      "prediction": "Raddoppiare i rami uguali in parallelo fa aumentare o diminuire la resistenza equivalente?",
+      "formula": "Δp = RQ; R_s = R₁+R₂; 1/R_p = 1/R₁+1/R₂",
+      "assumptions": [
+        "Due resistenze lineari positive e raccordi ideali; regime stazionario incomprimibile.",
+        "Resistenze già note; nessuna inerzia, accumulo, pompa distribuita o turbolenza.",
+        "topology=0: serie; topology=1: parallelo."
+      ],
+      "parameters": [
+        {
+          "key": "resistance1",
+          "label": "Resistenza primo ramo",
+          "unit": "Pa·s/m³",
+          "default": 10000000,
+          "min": 100000,
+          "max": 1000000000,
+          "step": 100000
+        },
+        {
+          "key": "resistance2",
+          "label": "Resistenza secondo ramo",
+          "unit": "Pa·s/m³",
+          "default": 20000000,
+          "min": 100000,
+          "max": 1000000000,
+          "step": 100000
+        },
+        {
+          "key": "pressureDifference",
+          "label": "Differenza di pressione totale",
+          "unit": "Pa",
+          "default": 1000,
+          "min": 0,
+          "max": 10000,
+          "step": 100
+        },
+        {
+          "key": "topology",
+          "label": "Topologia: 0 serie, 1 parallelo",
+          "unit": "1",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "step": 1
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "resistance1": 10000000,
+            "resistance2": 20000000,
+            "pressureDifference": 1000,
+            "topology": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "resistance1": 10000000,
+            "resistance2": 20000000,
+            "pressureDifference": 1000,
+            "topology": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "capillary",
+      "capabilityId": "capillary-lab-v1",
+      "title": "Capillarità, menisco e Laplace",
+      "objectiveIds": [
+        "U3-05.01",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "objective": "Leggere il segno della risalita dal contatto e confrontare raggio e curvatura.",
+      "prediction": "Che cosa accade alla risalita se l’angolo di contatto supera 90°?",
+      "formula": "Capillare: h = 2γ cosθ/(ρgr); goccia: Δp = 2γ/r; bolla saponosa: Δp = 4γ/r",
+      "assumptions": [
+        "surfaceMode=0: capillare sottile con menisco sferico approssimato; angolo di contatto misurato nel liquido.",
+        "La formula di risalita trascura il volume del menisco e le correzioni gravitazionali di forma; il dominio didattico capillare richiede numero di Bond ρgr²/γ≤0,25.",
+        "surfaceMode=1: goccia sferica con una interfaccia; surfaceMode=2: bolla saponosa a film sottile con due interfacce e raggi praticamente uguali. In questi due modi Δp=p_interno−p_esterno, senza angolo di contatto né risalita.",
+        "Nel capillare la curvatura firmata è cosθ/r; θ=90° dà menisco piano. Nessuna dinamica di bagnamento."
+      ],
+      "parameters": [
+        {
+          "key": "surfaceMode",
+          "label": "Superficie: 0 capillare, 1 goccia, 2 bolla saponosa",
+          "unit": "1",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 1
+        },
+        {
+          "key": "surfaceTension",
+          "label": "Tensione superficiale",
+          "unit": "N/m",
+          "default": 0.072,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.001
+        },
+        {
+          "key": "contactAngleDeg",
+          "label": "Angolo di contatto nel solo capillare",
+          "unit": "°",
+          "default": 30,
+          "min": 0,
+          "max": 180,
+          "step": 1
+        },
+        {
+          "key": "radius",
+          "label": "Raggio del capillare o della sfera",
+          "unit": "m",
+          "default": 0.0005,
+          "min": 0.00005,
+          "max": 0.002,
+          "step": 0.00005
+        },
+        {
+          "key": "density",
+          "label": "Densità",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 100,
+          "max": 14000,
+          "step": 10
+        },
+        {
+          "key": "gravity",
+          "label": "Accelerazione di gravità",
+          "unit": "m/s²",
+          "default": 9.81,
+          "min": 0.1,
+          "max": 25,
+          "step": 0.01
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "surfaceMode": 0,
+            "surfaceTension": 0.072,
+            "contactAngleDeg": 30,
+            "radius": 0.0005,
+            "density": 1000,
+            "gravity": 9.81
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "surfaceMode": 0,
+            "surfaceTension": 0.072,
+            "contactAngleDeg": 120,
+            "radius": 0.0005,
+            "density": 1000,
+            "gravity": 9.81
+          }
+        }
+      ]
+    },
+    {
+      "id": "ideal-gas",
+      "capabilityId": "ideal-gas-lab-v1",
+      "title": "Gas ideale e pistone",
+      "objectiveIds": [
+        "U5-01.02",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "objective": "Collegare pressione assoluta, volume e temperatura kelvin a quantità di sostanza costante.",
+      "prediction": "Raddoppiare la temperatura Celsius raddoppia la pressione?",
+      "formula": "pV = nRT",
+      "assumptions": [
+        "Gas ideale in equilibrio, pressione assoluta e temperatura in kelvin.",
+        "Il pistone mostra soltanto il volume scelto; l’equazione di stato non determina da sola calore, lavoro o traiettoria temporale.",
+        "Gas reale, urti molecolari, transizioni di fase e attrito sono esclusi."
+      ],
+      "parameters": [
+        {
+          "key": "moles",
+          "label": "Quantità di sostanza",
+          "unit": "mol",
+          "default": 0.01,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.001
+        },
+        {
+          "key": "temperatureK",
+          "label": "Temperatura assoluta",
+          "unit": "K",
+          "default": 300,
+          "min": 50,
+          "max": 1500,
+          "step": 10
+        },
+        {
+          "key": "volume",
+          "label": "Volume",
+          "unit": "m³",
+          "default": 0.00025,
+          "min": 0.00001,
+          "max": 0.01,
+          "step": 0.00001
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "moles": 0.01,
+            "temperatureK": 300,
+            "volume": 0.00025
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "moles": 0.01,
+            "temperatureK": 300,
+            "volume": 0.000125
+          }
+        }
+      ]
+    },
+    {
+      "id": "calorimetry",
+      "capabilityId": "calorimetry-lab-v1",
+      "title": "Calorimetria e miscelazione",
+      "objectiveIds": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.07"
+      ],
+      "objective": "Prevedere l’equilibrio con capacità termiche diverse e verificare il bilancio energetico.",
+      "prediction": "La temperatura finale è sempre la media delle due temperature iniziali?",
+      "formula": "T_f = (m₁c₁T₁ + m₂c₂T₂)/(m₁c₁+m₂c₂); Q₁+Q₂ = 0",
+      "assumptions": [
+        "Due corpi in un sistema isolato; capacità termiche costanti e positive.",
+        "Nessuna transizione di fase, evaporazione, lavoro o capacità termica del recipiente. Le temperature sono in kelvin."
+      ],
+      "parameters": [
+        {
+          "key": "mass1",
+          "label": "Massa primo corpo",
+          "unit": "kg",
+          "default": 0.2,
+          "min": 0.01,
+          "max": 5,
+          "step": 0.01
+        },
+        {
+          "key": "mass2",
+          "label": "Massa secondo corpo",
+          "unit": "kg",
+          "default": 0.2,
+          "min": 0.01,
+          "max": 5,
+          "step": 0.01
+        },
+        {
+          "key": "specificHeat1",
+          "label": "Calore specifico primo corpo",
+          "unit": "J/(kg·K)",
+          "default": 4186,
+          "min": 100,
+          "max": 5000,
+          "step": 10
+        },
+        {
+          "key": "specificHeat2",
+          "label": "Calore specifico secondo corpo",
+          "unit": "J/(kg·K)",
+          "default": 4186,
+          "min": 100,
+          "max": 5000,
+          "step": 10
+        },
+        {
+          "key": "temperature1K",
+          "label": "Temperatura primo corpo",
+          "unit": "K",
+          "default": 353.15,
+          "min": 273.15,
+          "max": 373.15,
+          "step": 1
+        },
+        {
+          "key": "temperature2K",
+          "label": "Temperatura secondo corpo",
+          "unit": "K",
+          "default": 293.15,
+          "min": 273.15,
+          "max": 373.15,
+          "step": 1
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass1": 0.2,
+            "mass2": 0.2,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 353.15,
+            "temperature2K": 293.15
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass1": 0.2,
+            "mass2": 0.4,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 353.15,
+            "temperature2K": 293.15
+          }
+        }
+      ]
+    },
+    {
+      "id": "phase-change",
+      "capabilityId": "phase-change-lab-v1",
+      "title": "Calore latente e cambiamenti di stato",
+      "objectiveIds": [
+        "U5-02.05",
+        "U5-02.06"
+      ],
+      "objective": "Distinguere aumento di temperatura e fusione a temperatura costante.",
+      "prediction": "Dopo aver raggiunto 0°C, il calore aggiunto fa subito salire la temperatura?",
+      "formula": "Q = mc_ghiaccioΔT; Q_f = mL_f; Q = mc_acquaΔT",
+      "assumptions": [
+        "Acqua pura alla pressione atmosferica: fusione a 0°C; L_f=334000 J/kg, c_ghiaccio=2100 J/(kg·K), c_acqua=4186 J/(kg·K).",
+        "Si parte da ghiaccio fra −50 e 0°C; si aggiunge calore senza perdite. Il modello termina a 100°C, prima della vaporizzazione.",
+        "Il grafico è temperatura contro calore fornito, non contro tempo."
+      ],
+      "parameters": [
+        {
+          "key": "mass",
+          "label": "Massa totale",
+          "unit": "kg",
+          "default": 1,
+          "min": 0.1,
+          "max": 5,
+          "step": 0.1
+        },
+        {
+          "key": "initialTemperatureC",
+          "label": "Temperatura iniziale del ghiaccio",
+          "unit": "°C",
+          "default": -20,
+          "min": -50,
+          "max": 0,
+          "step": 1
+        },
+        {
+          "key": "heat",
+          "label": "Calore fornito",
+          "unit": "J",
+          "default": 200000,
+          "min": 0,
+          "max": 3000000,
+          "step": 10000
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass": 1,
+            "initialTemperatureC": -20,
+            "heat": 200000
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass": 1,
+            "initialTemperatureC": -20,
+            "heat": 450000
+          }
+        }
+      ]
+    },
+    {
+      "id": "heat-transfer",
+      "capabilityId": "heat-transfer-lab-v1",
+      "title": "Conduzione, convezione e irraggiamento",
+      "objectiveIds": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "objective": "Confrontare i tre meccanismi e le loro dipendenze dai parametri.",
+      "prediction": "Raddoppiare la differenza di temperatura raddoppia ogni potenza trasferita?",
+      "formula": "P_cond = kAΔT/L; P_conv = hAΔT; P_rad = εσA(T_h⁴−T_c⁴)",
+      "assumptions": [
+        "Tre configurazioni distinte con le stesse temperature e area: i risultati sono confrontati, non sommati come un unico circuito termico.",
+        "Conduzione piana stazionaria; convezione con coefficiente h imposto; irraggiamento verso un grande ambiente nero con fattore di vista unitario.",
+        "Nessuna evoluzione temporale o accoppiamento tra meccanismi. Temperature assolute; σ=5,670374419·10⁻⁸ W/(m²·K⁴)."
+      ],
+      "parameters": [
+        {
+          "key": "conductivity",
+          "label": "Conducibilità",
+          "unit": "W/(m·K)",
+          "default": 0.8,
+          "min": 0.01,
+          "max": 400,
+          "step": 0.1
+        },
+        {
+          "key": "area",
+          "label": "Area",
+          "unit": "m²",
+          "default": 1,
+          "min": 0.01,
+          "max": 10,
+          "step": 0.01
+        },
+        {
+          "key": "thickness",
+          "label": "Spessore",
+          "unit": "m",
+          "default": 0.1,
+          "min": 0.001,
+          "max": 1,
+          "step": 0.001
+        },
+        {
+          "key": "hotTemperatureK",
+          "label": "Temperatura superficie calda",
+          "unit": "K",
+          "default": 350,
+          "min": 50,
+          "max": 1500,
+          "step": 10
+        },
+        {
+          "key": "coldTemperatureK",
+          "label": "Temperatura ambiente freddo",
+          "unit": "K",
+          "default": 290,
+          "min": 50,
+          "max": 1500,
+          "step": 10
+        },
+        {
+          "key": "convectionCoefficient",
+          "label": "Coefficiente di convezione",
+          "unit": "W/(m²·K)",
+          "default": 10,
+          "min": 0,
+          "max": 500,
+          "step": 1
+        },
+        {
+          "key": "emissivity",
+          "label": "Emissività",
+          "unit": "1",
+          "default": 0.8,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "conductivity": 0.8,
+            "area": 1,
+            "thickness": 0.1,
+            "hotTemperatureK": 350,
+            "coldTemperatureK": 290,
+            "convectionCoefficient": 10,
+            "emissivity": 0.8
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "conductivity": 0.8,
+            "area": 1,
+            "thickness": 0.2,
+            "hotTemperatureK": 350,
+            "coldTemperatureK": 290,
+            "convectionCoefficient": 10,
+            "emissivity": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "process",
+      "capabilityId": "process-lab-v1",
+      "title": "Trasformazioni e primo principio",
+      "objectiveIds": [
+        "U5-02.04",
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08",
+        "U5-05.02",
+        "U5-05.06"
+      ],
+      "objective": "Distinguere funzione di stato e cammino, lavoro del gas e calore ricevuto.",
+      "prediction": "Due trasformazioni con la stessa variazione di energia interna scambiano sempre lo stesso calore?",
+      "formula": "ΔU = nC_VΔT = Q − W; W = ∫p_ext dV; libera espansione isolata ideale: Q=W=ΔU=0",
+      "assumptions": [
+        "Gas ideale monoatomico: C_V=3R/2 e γ=5/3. I cammini 0–3 sono reversibili quasi statici con pressione esterna p_ext≈p del gas; W=∫p_ext dV è positivo se compiuto dal gas e Q positivo se ricevuto.",
+        "path=0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico reversibile, 4 libera espansione isolata nel vuoto. Per l’isocora è richiesto volume2=volume1 e la temperatura finale è temperature2K; negli altri cammini temperature2K non è imposto.",
+        "La libera espansione richiede volume2>volume1: p_ext=0, Q=W=ΔU=0 e T_f=T_i per il gas ideale isolato. Si mostrano soltanto gli stati di equilibrio iniziale e finale, senza curva intermedia o area di lavoro inventata.",
+        "ΔS del gas è distinta da ΔS totale: nei cammini reversibili ΔS totale=0; nella libera espansione isolata ΔS totale=ΔS_gas=nR ln(V₂/V₁)>0.",
+        "L’asse del grafico è volume, non tempo. Temperature finali fuori 50–2000K o pressioni oltre 10⁸Pa sono escluse."
+      ],
+      "parameters": [
+        {
+          "key": "moles",
+          "label": "Quantità di sostanza",
+          "unit": "mol",
+          "default": 0.1,
+          "min": 0.001,
+          "max": 2,
+          "step": 0.001
+        },
+        {
+          "key": "temperatureK",
+          "label": "Temperatura iniziale",
+          "unit": "K",
+          "default": 300,
+          "min": 50,
+          "max": 1500,
+          "step": 10
+        },
+        {
+          "key": "volume1",
+          "label": "Volume iniziale",
+          "unit": "m³",
+          "default": 0.001,
+          "min": 0.00001,
+          "max": 0.1,
+          "step": 0.00001
+        },
+        {
+          "key": "volume2",
+          "label": "Volume finale (uguale all’iniziale in isocora)",
+          "unit": "m³",
+          "default": 0.002,
+          "min": 0.00001,
+          "max": 0.1,
+          "step": 0.00001
+        },
+        {
+          "key": "temperature2K",
+          "label": "Temperatura finale della sola isocora",
+          "unit": "K",
+          "default": 450,
+          "min": 50,
+          "max": 2000,
+          "step": 10
+        },
+        {
+          "key": "path",
+          "label": "Cammino: 0 isotermo, 1 isobaro, 2 isocoro, 3 adiabatico, 4 libera espansione",
+          "unit": "1",
+          "default": 0,
+          "min": 0,
+          "max": 4,
+          "step": 1
+        }
+      ],
+      "threeD": true,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "moles": 0.1,
+            "temperatureK": 300,
+            "volume1": 0.001,
+            "volume2": 0.002,
+            "temperature2K": 450,
+            "path": 0
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "moles": 0.1,
+            "temperatureK": 300,
+            "volume1": 0.001,
+            "volume2": 0.002,
+            "temperature2K": 450,
+            "path": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "carnot",
+      "capabilityId": "carnot-lab-v1",
+      "title": "Macchina di Carnot e rendimento",
+      "objectiveIds": [
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05"
+      ],
+      "objective": "Collegare temperature assolute, rendimento massimo e bilancio energetico di un ciclo.",
+      "prediction": "È possibile convertire tutto il calore assorbito in lavoro mantenendo T_c>0?",
+      "formula": "η_C = 1−T_c/T_h; W = Q_h−Q_c; Q_c/Q_h = T_c/T_h",
+      "assumptions": [
+        "Motore reversibile ideale fra due serbatoi a temperature costanti T_h>T_c>0.",
+        "È un limite superiore teorico: le macchine reali operano sotto questo rendimento.",
+        "Il bilancio descrive un ciclo, senza una durata né una potenza implicita."
+      ],
+      "parameters": [
+        {
+          "key": "hotTemperatureK",
+          "label": "Temperatura sorgente calda",
+          "unit": "K",
+          "default": 600,
+          "min": 100,
+          "max": 2000,
+          "step": 10
+        },
+        {
+          "key": "coldTemperatureK",
+          "label": "Temperatura sorgente fredda",
+          "unit": "K",
+          "default": 300,
+          "min": 50,
+          "max": 1900,
+          "step": 10
+        },
+        {
+          "key": "heatInput",
+          "label": "Calore assorbito per ciclo",
+          "unit": "J",
+          "default": 1000,
+          "min": 1,
+          "max": 100000,
+          "step": 10
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "hotTemperatureK": 600,
+            "coldTemperatureK": 300,
+            "heatInput": 1000
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "hotTemperatureK": 900,
+            "coldTemperatureK": 300,
+            "heatInput": 1000
+          }
+        }
+      ]
+    },
+    {
+      "id": "entropy",
+      "capabilityId": "entropy-lab-v1",
+      "title": "Entropia e irreversibilità",
+      "objectiveIds": [
+        "U5-05.02",
+        "U5-05.06",
+        "U5-05.08"
+      ],
+      "objective": "Verificare l’aumento di entropia totale mentre l’energia di due corpi isolati si conserva.",
+      "prediction": "Il corpo caldo perde entropia: l’entropia totale può comunque aumentare?",
+      "formula": "T_f = (C₁T₁+C₂T₂)/(C₁+C₂); ΔS = C₁ln(T_f/T₁)+C₂ln(T_f/T₂)",
+      "assumptions": [
+        "Due corpi finiti, isolati dall’esterno, capacità termiche costanti C_i=m_ic_i e nessuna fase o lavoro.",
+        "Il contatto con differenza finita di temperatura è irreversibile. Il calcolo di ΔS usa cammini reversibili equivalenti, non afferma che il contatto sia reversibile.",
+        "L’ascissa dei grafici è frazione dello scambio fino all’equilibrio, non tempo; nessuna legge cinetica è simulata."
+      ],
+      "parameters": [
+        {
+          "key": "mass1",
+          "label": "Massa primo corpo",
+          "unit": "kg",
+          "default": 1,
+          "min": 0.01,
+          "max": 5,
+          "step": 0.01
+        },
+        {
+          "key": "mass2",
+          "label": "Massa secondo corpo",
+          "unit": "kg",
+          "default": 1,
+          "min": 0.01,
+          "max": 5,
+          "step": 0.01
+        },
+        {
+          "key": "specificHeat1",
+          "label": "Calore specifico primo corpo",
+          "unit": "J/(kg·K)",
+          "default": 4186,
+          "min": 100,
+          "max": 5000,
+          "step": 10
+        },
+        {
+          "key": "specificHeat2",
+          "label": "Calore specifico secondo corpo",
+          "unit": "J/(kg·K)",
+          "default": 4186,
+          "min": 100,
+          "max": 5000,
+          "step": 10
+        },
+        {
+          "key": "temperature1K",
+          "label": "Temperatura primo corpo",
+          "unit": "K",
+          "default": 360,
+          "min": 50,
+          "max": 1000,
+          "step": 10
+        },
+        {
+          "key": "temperature2K",
+          "label": "Temperatura secondo corpo",
+          "unit": "K",
+          "default": 280,
+          "min": 50,
+          "max": 1000,
+          "step": 10
+        }
+      ],
+      "threeD": false,
+      "provenance": [
+        {
+          "source": "Ardesia — modelli analitici originali, 2026-10-28",
+          "license": "LicenseRef-Ardesia-Original",
+          "kind": "ORIGINAL"
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "title": "Situazione di riferimento",
+          "parameters": {
+            "mass1": 1,
+            "mass2": 1,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 360,
+            "temperature2K": 280
+          }
+        },
+        {
+          "id": "comparison",
+          "title": "Una situazione diversa",
+          "parameters": {
+            "mass1": 1,
+            "mass2": 1,
+            "specificHeat1": 4186,
+            "specificHeat2": 4186,
+            "temperature1K": 320,
+            "temperature2K": 320
+          }
+        }
+      ]
+    }
+  ]
+}

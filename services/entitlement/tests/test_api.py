@@ -11,7 +11,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from entitlement_service.app import create_app
-from entitlement_service.core import TOKEN_TTL_MS, sha256_hex, subject_hash
+from entitlement_service.core import TOKEN_TTL_MS, sha256_hex, subject_hash, register_license_key
+from entitlement_service.store import FileStore, read_json
 from entitlement_service.settings import Settings
 
 from .conftest import TEST_API_KEY
@@ -87,7 +88,7 @@ def test_admin_endpoints_unavailable_without_configured_key(settings, clock) -> 
 
 def test_register_returns_key_and_persists_only_hash(client, settings, clock) -> None:
     key = register_license(client, clock)
-    assert re.fullmatch(r"ELAB(-[A-HJ-NP-Z2-9]{4}){4}", key)
+    assert re.fullmatch(r"ARDESIA(-[A-HJ-NP-Z2-9]{4}){4}", key)
     persisted = "\n".join(
         p.read_text(errors="replace") for p in settings.data_dir.rglob("*") if p.is_file()
     )
@@ -100,6 +101,19 @@ def test_license_redeem_returns_entitlement(client, clock) -> None:
     ent = redeem_license(client, key)
     assert ent["schoolId"] == SCOPE["schoolId"]
     assert ent["featureLookupKey"] == "tutor-monthly-15eur"
+
+
+def test_registered_legacy_distribution_key_cannot_create_entitlement(client, settings, clock) -> None:
+    key = "ELAB-AAAA-BBBB-CCCC-DDDD"
+    store = FileStore(settings.data_dir)
+    key_hash = register_license_key(store, key, dict(SCOPE), expires_at=clock.now_ms() + 60_000)
+    path = f"entitlements/licenses/{key_hash}.json"
+    before = read_json(store, path)
+    response = client.post("/license/redeem", json={"licenseKey": key})
+    assert response.status_code == 200
+    assert response.json() == INVALID_BODY
+    assert read_json(store, path) == before
+    assert not (settings.data_dir / "entitlements/records").exists()
 
 
 def test_license_redeem_failures_uniform(client, clock) -> None:

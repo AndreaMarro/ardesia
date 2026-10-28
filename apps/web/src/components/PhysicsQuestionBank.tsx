@@ -4,7 +4,7 @@ import { ErrorNotice, Loading } from "./Feedback";
 import "./physics-question-bank.css";
 
 type Level = "base" | "facile" | "medio" | "difficile";
-type Question = {
+export type Question = {
   id: string;
   prompt: string;
   format: "multiple_choice" | "completion";
@@ -12,7 +12,9 @@ type Question = {
   taxonomy: { unitId: string; macroarea: string; microarea: string; topic: string };
   difficulty: { level: Level; reason: string };
   familyId: string;
-  status: "PUBLISHED";
+  status: "PUBLISHED" | "DRAFT";
+  humanApproval?: boolean;
+  releaseScope?: string;
   descriptors?: { scope?: string };
 };
 type QuestionPage = { bankSha256: string; items: Question[]; total: number; nextCursor: string | null };
@@ -21,6 +23,9 @@ type BankCatalog = {
   questionCount: number;
   bankSha256: string;
   countsByDifficulty: Record<Level, number>;
+  editorialStatus?: "DRAFT" | "PUBLISHED";
+  humanApproval?: boolean;
+  releaseScope?: string;
 };
 type Feedback = {
   questionId: string;
@@ -29,7 +34,10 @@ type Feedback = {
   matchingPolicy: string;
   answer: { text: string; unit: string; correctOptionId?: string };
   solution: string;
-  scientificApproval: "APPROVED";
+  scientificApproval: "APPROVED" | "NOT_RUN";
+  humanApproval?: boolean;
+  releaseScope?: string;
+  feedbackAuthority?: string;
 };
 type Exam = {
   bankSha256: string;
@@ -71,7 +79,7 @@ export function QuestionSolution({ text }: { text: string }) {
   })}</div>;
 }
 
-function QuestionCard({ question, base, bankSha256, index }: {
+export function QuestionCard({ question, base, bankSha256, index }: {
   question: Question; base: string; bankSha256: string; index: number;
 }) {
   const [response, setResponse] = useState("");
@@ -104,6 +112,7 @@ function QuestionCard({ question, base, bankSha256, index }: {
       <span>{question.difficulty.level}</span>
       {question.descriptors?.scope === "provided_law_extension" && <span>Approfondimento · legge fornita</span>}
     </div>
+    {question.status === "DRAFT" && <p role="note">DRAFT · ambito privato sintetico. Riscontro di riferimento; approvazione umana non eseguita.</p>}
     <h3>{index + 1}. {question.taxonomy.topic}</h3>
     <p className="physics-bank-prompt">{question.prompt}</p>
     <form onSubmit={event => { event.preventDefault(); void check(response); }}>
@@ -126,10 +135,11 @@ function QuestionCard({ question, base, bankSha256, index }: {
     </form>
     {error && <ErrorNotice message={error} />}
     {feedback && <section className="physics-bank-feedback" aria-label="Risposta e svolgimento">
-      <p role="status"><strong>{feedback.outcome === "correct" ? "Risposta corretta" : feedback.outcome === "incorrect" ? "Da rivedere" : "Risposta omessa"}</strong>
+      {(feedback.humanApproval === false || feedback.scientificApproval === "NOT_RUN") && <p>DRAFT · confronto con il riferimento, senza approvazione umana.</p>}
+      <p role="status"><strong>{feedback.outcome === "correct" ? (feedback.scientificApproval === "NOT_RUN" ? "Coerente con il riferimento" : "Risposta corretta") : feedback.outcome === "incorrect" ? "Da rivedere" : "Risposta omessa"}</strong>
         {" · "}{feedback.score > 0 ? "+" : ""}{feedback.score.toLocaleString("it-IT")} punti</p>
       <p><strong>Risultato:</strong> {feedback.answer.correctOptionId ? `${feedback.answer.correctOptionId}. ` : ""}{feedback.answer.text}</p>
-      {feedback.matchingPolicy === "approved_aliases_only" && feedback.outcome === "incorrect" &&
+      {["approved_aliases_only", "reference_aliases_only"].includes(feedback.matchingPolicy) && feedback.outcome === "incorrect" &&
         <p>Il confronto riconosce le forme di risposta previste. Controlla lo svolgimento anche se hai scritto una forma simbolica equivalente.</p>}
       <QuestionSolution text={feedback.solution} />
     </section>}
@@ -209,12 +219,12 @@ function BankReader({ editionId, bankId }: { editionId: string; bankId: string }
     <header>
       <h2>Fisica, un quesito alla volta.</h2>
       <p>{catalog ? `${catalog.questionCount.toLocaleString("it-IT")} quesiti` : "Banca dei quesiti"} · quattro livelli · senza calcolatrice.</p>
-      <p className="physics-bank-review">Sono disponibili solo i quesiti pubblicati per questa edizione. Gli svolgimenti sono disponibili dopo la risposta.</p>
+      <p className="physics-bank-review">{catalog?.humanApproval === false ? "DRAFT · ambito privato sintetico. Quesiti di riferimento senza approvazione umana; svolgimenti dopo la risposta." : "Sono disponibili solo i quesiti pubblicati per questa edizione. Gli svolgimenti sono disponibili dopo la risposta."}</p>
       <p className="physics-bank-session-note">Allenamento personale: le risposte di questa sezione non vengono salvate nel diario del corso.</p>
     </header>
     <div className="physics-bank-actions">
       <button type="button" disabled={examBusy} onClick={() => void makeExam()}>
-        {examBusy ? "Preparo i quesiti…" : "Genera una prova 2026 · 31 quesiti"}
+        {examBusy ? "Preparo i quesiti…" : catalog?.humanApproval === false ? "Genera un allenamento · 31 quesiti" : "Genera una prova 2026 · 31 quesiti"}
       </button>
       {exam && <button type="button" onClick={() => { setExam(null); setCursors([null]); }}>Torna alla ricerca</button>}
     </div>

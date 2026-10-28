@@ -17,9 +17,11 @@ type Course = {
 export function Public({
   onLogin,
   publicPreview = false,
+  privateEntry = false,
 }: {
   onLogin?: () => void;
   publicPreview?: boolean;
+  privateEntry?: boolean;
 }) {
   const [course, setCourse] = useState<Course | null>(publicPreview ? publicCourse : null),
     [loadError, setLoadError] = useState(""),
@@ -33,6 +35,10 @@ export function Public({
   useEffect(() => {
     let active = true;
     setLoadError("");
+    if (privateEntry) {
+      setCourse(null);
+      return;
+    }
     if (publicPreview) {
       setCourse(publicCourse);
       return;
@@ -48,7 +54,7 @@ export function Public({
     return () => {
       active = false;
     };
-  }, [retry, publicPreview]);
+  }, [retry, publicPreview, privateEntry]);
   async function interest(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -83,6 +89,7 @@ export function Public({
       setBusy(false);
     }
   }
+  if (privateEntry) return <div className="public-page"><header className="public-nav"><a className="wordmark" href="/">ardesia.</a></header><main id="public-content" tabIndex={-1}><section className="public-hero"><div className="hero-copy"><h1>Ritrova il tuo corso.</h1><p>Accedi per aprire la lezione richiesta e riprendere il tuo lavoro.</p>{onLogin&&<button className="button-primary" onClick={onLogin}>Accedi al tuo spazio<Arrow/></button>}</div></section></main></div>;
   return (
     <div className="public-page">
       <a className="skip-link" href="#public-content">

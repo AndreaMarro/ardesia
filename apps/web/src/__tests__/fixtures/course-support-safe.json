@@ -1,0 +1,1717 @@
+{
+  "diagnosticItems": [
+    {
+      "id": "diag-fluidi-termodinamica-density",
+      "objectiveId": "U3-01.03",
+      "prompt": "Un liquido omogeneo ha massa 1,08 kg e volume 0,0009 m³. Determina la densità in unità SI.",
+      "recoveryTarget": {
+        "objectiveId": "U3-01.03",
+        "lessonId": "ds-2026-u3-01"
+      },
+      "assessmentRef": {
+        "id": "diag-fluidi-termodinamica-density",
+        "version": 1,
+        "sha256": "7922e44bbb6ac3f0d6ac48cf30c5e597c2e0df6578551de3de700e64eba47362"
+      },
+      "lessonRef": {
+        "id": "ds-2026-u3-01",
+        "version": 1,
+        "sha256": "4da43865633287612c9243f3854812cbb2be6f83a708c2ae32730aad96dbe239"
+      }
+    },
+    {
+      "id": "diag-fluidi-termodinamica-hydrostatic",
+      "objectiveId": "U3-02.01",
+      "prompt": "In un fluido fermo di densità 850 kg/m³ si scende di 0,4 m. Con g=10 m/s², quanto aumenta la pressione rispetto al punto di partenza?",
+      "recoveryTarget": {
+        "objectiveId": "U3-02.01",
+        "lessonId": "ds-2026-u3-02"
+      },
+      "assessmentRef": {
+        "id": "diag-fluidi-termodinamica-hydrostatic",
+        "version": 1,
+        "sha256": "854091471e243820318af284f31cc0f7da096879f9f4ad6f2c1687e51ad510a4"
+      },
+      "lessonRef": {
+        "id": "ds-2026-u3-02",
+        "version": 1,
+        "sha256": "d6b9b53ee420ec8064eb72aa3315542fabeadc211e31e98f672db11322bd389b"
+      }
+    },
+    {
+      "id": "diag-fluidi-termodinamica-gas-state",
+      "objectiveId": "U5-01.05",
+      "prompt": "Un gas ideale ha n=0,25 mol, T=350 K e pressione assoluta 80000 Pa. Con R=8,31446261815324J/(mol K),trova il volume in m³.",
+      "recoveryTarget": {
+        "objectiveId": "U5-01.05",
+        "lessonId": "ds-2026-u5-01"
+      },
+      "assessmentRef": {
+        "id": "diag-fluidi-termodinamica-gas-state",
+        "version": 1,
+        "sha256": "6d73f0a68f3b4bac0e421a5d0766b599f18f10c785e1243fa4147d50f55deff7"
+      },
+      "lessonRef": {
+        "id": "ds-2026-u5-01",
+        "version": 1,
+        "sha256": "523bb270cbfbbfd8b07620dfe6cd499e561e45a18cb108dc066e8a4fe6a06e23"
+      }
+    }
+  ],
+  "assessmentItems": [
+    {
+      "id": "final-U3-01.01",
+      "objectiveId": "U3-01.01",
+      "prompt": "Quale differenza c’è fra la risposta statica di un fluido e quella di un solido a uno sforzo tangenziale?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Spiega perché un liquido si ridistribuisce in un contenitore inclinato mentre un blocco solido può conservare la forma.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-01.01",
+        "version": 1,
+        "sha256": "ad4e69587a55982578b6b9c212828b4912ceb19176ff445380536174df792d37"
+      }
+    },
+    {
+      "id": "final-U3-01.02",
+      "objectiveId": "U3-01.02",
+      "prompt": "Una forza normale di 16 N è distribuita uniformemente su 0,004 m². Qual è la pressione media?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due pistoni esercitano forze 10 N e 30 N su aree 2 cm² e 6 cm². Confronta le pressioni relative senza confonderle con le forze.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-01.02",
+        "version": 1,
+        "sha256": "4762d3b82eed456cba383d3034b00613930ea3e7ceed72b522e867bd1d49ad43"
+      }
+    },
+    {
+      "id": "final-U3-01.03",
+      "objectiveId": "U3-01.03",
+      "prompt": "Un campione omogeneo ha massa 1,5 kg e volume 0,002 m³. Qual è la densità?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una bottiglia contiene 0,8 L di liquido con massa 1,0 kg. Ne versi metà in un bicchiere. Quali sono massa, volume e densità nel bicchiere?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-01.03",
+        "version": 1,
+        "sha256": "445c20ac41c8f53836b936c4d63bb5b2a3b8ac0265c4993179e06503c6bbacfc"
+      }
+    },
+    {
+      "id": "final-U3-01.04",
+      "objectiveId": "U3-01.04",
+      "prompt": "La relazione p=p₀+ρgh descrive automaticamente la pressione in un tubo con flusso veloce e dissipativo? Motiva.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un tubo orizzontale ha la stessa quota in ingresso e uscita ma mantiene un flusso viscoso. Spiega perché pressioni uguali non seguono dalla sola quota.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-01.04",
+        "version": 1,
+        "sha256": "c1df74dbd2e68e5a72dac96530e3fdee8f19d9416a3352ce2e1c88ac7f47005d"
+      }
+    },
+    {
+      "id": "final-U3-02.01",
+      "objectiveId": "U3-02.01",
+      "prompt": "Olio in quiete: ρ=800 kg/m³, g=10 m/s², profondità 0,5 m. Qual è l’incremento di pressione rispetto alla superficie?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Confronta la pressione a 20 cm sotto la superficie in due recipienti con forme diverse, stesso olio e stessa pressione sulla superficie.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.01",
+        "version": 1,
+        "sha256": "0f874b213ebb4cb30621251d8b0b96bd9acdf7c3fa302600ec77ad4df1a74976"
+      }
+    },
+    {
+      "id": "final-U3-02.02",
+      "objectiveId": "U3-02.02",
+      "prompt": "Un incremento di pressione di 2000 Pa raggiunge un pistone di area 0,01 m². Qual è l’aumento ideale di forza?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una pressa ideale aumenta dieci volte la forza. Spiega quale rapporto di spostamenti impedisce la creazione di energia.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.02",
+        "version": 1,
+        "sha256": "ffd96f437373d2fbfec711fdb3a6c6fe13310034f581902d9a728512e033946e"
+      }
+    },
+    {
+      "id": "final-U3-02.03",
+      "objectiveId": "U3-02.03",
+      "prompt": "Un corpo sposta un volume di liquido di 0,002 m³. La densità del liquido è 900 kg/m³ e g=10 m/s². Trova modulo e verso della spinta.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due corpi con uguale volume sono completamente immersi nello stesso fluido e trattenuti da fili. Se le masse differiscono, confronta spinta e tensione.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.03",
+        "version": 1,
+        "sha256": "538813e05f5a15cb9d38ee9a4def531d0c508a022af193b79d64dbe0d83e5ffc"
+      }
+    },
+    {
+      "id": "final-U3-02.04",
+      "objectiveId": "U3-02.04",
+      "prompt": "Un corpo omogeneo di densità 750 kg/m³ galleggia liberamente in un liquido di densità 1000 kg/m³. Quale frazione del volume è immersa?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una zattera galleggia e viene caricata lentamente. Descrivi come cambiano volume immerso, spinta e margine di carico prima della sommersione completa.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.04",
+        "version": 1,
+        "sha256": "e7d47aa74cfdacfc92a332e77b9093b02978d164495da52487d93de3939cd50e"
+      }
+    },
+    {
+      "id": "final-U3-02.05",
+      "objectiveId": "U3-02.05",
+      "prompt": "Perché un barometro ideale può misurare la pressione atmosferica mediante l’altezza di una colonna di liquido?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un barometro viene inclinato mantenendo le estremità e l’equilibrio della colonna. Quale grandezza geometrica rappresenta la pressione atmosferica?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.05",
+        "version": 1,
+        "sha256": "f7cf2556f0212e0463b9008239aab340aa71cda32a3ea5bd9b2f9b427ab5d3ef"
+      }
+    },
+    {
+      "id": "final-U3-02.06",
+      "objectiveId": "U3-02.06",
+      "prompt": "Un manometro contiene liquido di densità 1000 kg/m³. Il dislivello verticale fra i menischi è 0,03 m; le densità dei gas sono trascurabili e g=10 m/s². Qual è il modulo della differenza di pressione?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "In un manometro a U con gas leggeri il liquido è più basso a sinistra. Individua il lato a pressione maggiore e giustifica percorrendo una colonna.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-02.06",
+        "version": 1,
+        "sha256": "cbc36ee251bad829e1818995f78701b8e88839db9f1cb451f6bf5bb08e3fb9bb"
+      }
+    },
+    {
+      "id": "final-U3-03.01",
+      "objectiveId": "U3-03.01",
+      "prompt": "In 2 s attraversano una sezione del tubo 6 L di liquido. Qual è la portata volumetrica media?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un sistema eroga 240 mL in 20 s attraverso area 3 mm². Trova portata e velocità media e spiega perché non sono lo stesso dato.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.01",
+        "version": 1,
+        "sha256": "e592703c582786eaadbae04d400163be3cf95ba858555c98aa219fe54b197b78"
+      }
+    },
+    {
+      "id": "final-U3-03.02",
+      "objectiveId": "U3-03.02",
+      "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee? Distingui le due descrizioni.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un sensore in un tubo turbolento registra una media stabile con fluttuazioni rapide. Quale stazionarietà può essere descritta e quale no?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.02",
+        "version": 1,
+        "sha256": "dbe192dfe8e9b6a4f3311a7e2d34549e0dc5598239e417e6b765bfc648e4f88c"
+      }
+    },
+    {
+      "id": "final-U3-03.03",
+      "objectiveId": "U3-03.03",
+      "prompt": "Quale organizzazione del moto caratterizza un flusso laminare? Può presentare velocità diverse fra parete e asse?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un liquido laminare ha velocità nulla alla parete e maggiore sull’asse. Questo contraddice il moto laminare?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.03",
+        "version": 1,
+        "sha256": "44fbb034649be2e1451ed082297f3397a198fd323f0cb2f5728b98b044fe2359"
+      }
+    },
+    {
+      "id": "final-U3-03.04",
+      "objectiveId": "U3-03.04",
+      "prompt": "Un fluido incomprimibile scorre senza accumulo né diramazioni: A₁=6 cm², v₁=2 m/s, A₂=3 cm². Trova v₂.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "A portata incomprimibile fissata un raggio si riduce a un terzo. Quale rapporto delle velocità serve e quale conservazione lo impone?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.04",
+        "version": 1,
+        "sha256": "da9fb3752cfeabc0e89f2573e3a3821ff8377cce1bc1dcb95e8f48f4dd556c95"
+      }
+    },
+    {
+      "id": "final-U3-03.05",
+      "objectiveId": "U3-03.05",
+      "prompt": "Lungo la stessa linea di corrente di un flusso ideale stazionario orizzontale, ρ=1000 kg/m³ e la velocità passa da 2 a 3 m/s. Trova p₂−p₁.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un flusso ideale sale di quota e contemporaneamente rallenta. Puoi stabilire il segno della variazione di pressione dalla sola diminuzione della velocità?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.05",
+        "version": 1,
+        "sha256": "b15af7bf0308d5b675a79c91f53034a29ef950f80dfdd5b1e36f93e2a42a6b1c"
+      }
+    },
+    {
+      "id": "final-U3-03.06",
+      "objectiveId": "U3-03.06",
+      "prompt": "Confronta restringimento e dilatazione di un vaso ideale alla stessa quota e portata. Come cambiano velocità e pressione statica? Dichiara un limite dell’applicazione al sangue reale.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "In un modello di vaso una dilatazione rallenta il fluido, ma una misura a valle mostra perdita di pressione totale. Spiega perché non è una contraddizione di conservazione energetica.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-03.06",
+        "version": 1,
+        "sha256": "7ce625b6a1b1d9f0a129ef78b21142176ad405d34d068ba76530c51652592378"
+      }
+    },
+    {
+      "id": "final-U3-04.01",
+      "objectiveId": "U3-04.01",
+      "prompt": "Perché un fluido reale può richiedere una differenza di pressione per mantenere una portata costante in un tubo orizzontale?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "La pompa di un tubo orizzontale viscoso viene spenta. Spiega quale fonte energetica manteneva il flusso e perché la portata non può restare costante nel modello resistivo.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-04.01",
+        "version": 1,
+        "sha256": "ad2aec0c982cdf1adefc923a28afe940a5f3324b05d69cddd1670ed452cad57a"
+      }
+    },
+    {
+      "id": "final-U3-04.02",
+      "objectiveId": "U3-04.02",
+      "prompt": "Nel profilo parabolico laminare sviluppato di un tubo circolare, con aderenza alla parete, qual è il rapporto fra velocità massima e media?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Nel profilo u(s)=u_max[1−(s/r)²], trova u a metà raggio e confrontala con velocità media e massima.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-04.02",
+        "version": 1,
+        "sha256": "6d0610bf60d05d5ce31a569ee853a6a029aa0e9fedc31908e15d9b5919f15fa1"
+      }
+    },
+    {
+      "id": "final-U3-04.03",
+      "objectiveId": "U3-04.03",
+      "prompt": "Che cosa misura il gradiente di velocità fra strati vicini e come si collega alla viscosità newtoniana?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Confronta gradiente di velocità sull’asse e vicino alla parete nel profilo parabolico sviluppato. Spiega la differenza fra valore e pendenza.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-04.03",
+        "version": 1,
+        "sha256": "bbc26e61f3f694a1d269636e2da014565e54ed79d977bfa1154ff9e0fa28e239"
+      }
+    },
+    {
+      "id": "final-U3-04.04",
+      "objectiveId": "U3-04.04",
+      "prompt": "Nel modello di Poiseuille, Δp, L e η sono fissati e il raggio aumenta di un fattore 3. Qual è Q₂/Q₁?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due tubi hanno lunghezze uguali, ma il secondo ha raggio metà. Se vuoi la stessa portata con stesso fluido, che rapporto di differenze di pressione occorre?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-04.04",
+        "version": 1,
+        "sha256": "102bcbc2d094173a241c18349add6be7eead08b0dc21ce6b418e837e3a1c7066"
+      }
+    },
+    {
+      "id": "final-U3-04.05",
+      "objectiveId": "U3-04.05",
+      "prompt": "Due resistenze idrauliche lineari valgono R e 3R. Trova la resistenza equivalente prima in serie e poi in parallelo.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Confronta la chiusura di uno di due rami identici prima con Δp imposta, poi con Q_tot imposta.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-04.05",
+        "version": 1,
+        "sha256": "4aa672e59c9768b6078b1a244dc26b6b3d043ddae84a4f96787b9bb09ef407dd"
+      }
+    },
+    {
+      "id": "final-U3-05.01",
+      "objectiveId": "U3-05.01",
+      "prompt": "Quali sono due unità equivalenti della tensione superficiale? Collega ciascuna al suo significato fisico.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una pellicola saponosa ha due facce e un bordo mobile di lunghezza l. Se l raddoppia a γ costante, come cambia la forza?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-05.01",
+        "version": 1,
+        "sha256": "8d8cabb4cb5bdb17e3e028e13f200e69ffff552095765b94ecd78efe7953befb"
+      }
+    },
+    {
+      "id": "final-U3-05.02",
+      "objectiveId": "U3-05.02",
+      "prompt": "A tensione superficiale costante, perché gli effetti superficiali sono più importanti rispetto al peso per gocce geometricamente simili più piccole?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Spiega perché la superficie è più importante rispetto al peso per gocce geometricamente simili più piccole, anche a γ invariata.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-05.02",
+        "version": 1,
+        "sha256": "6ea7d7a4b40b68e04e4eaf4b0cd5fdf13f7f9b7230235c8de784b881795a7a70"
+      }
+    },
+    {
+      "id": "final-U3-05.03",
+      "objectiveId": "U3-05.03",
+      "prompt": "Un liquido sale in ogni capillare indipendentemente dalla parete? Spiega il ruolo della bagnabilità.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due capillari uguali hanno angoli di contatto 60° e120° per lo stesso liquido. Con la legge fornita h∝cosθ, confronta verso e modulo dei dislivelli.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-05.03",
+        "version": 1,
+        "sha256": "741bdae3ed0b7e88d2f60b8f741b6a30f6389fcb7830b1c8d25ccc300e92d2a7"
+      }
+    },
+    {
+      "id": "final-U3-05.04",
+      "objectiveId": "U3-05.04",
+      "prompt": "Un’interfaccia piana in equilibrio semplice presenta un salto di pressione dovuto alla sola curvatura? Distingui salto e pressione assoluta.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Confronta un’interfaccia piana e una goccia curva in equilibrio semplice conγ>0: dove occorre un salto di pressione?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-05.04",
+        "version": 1,
+        "sha256": "254c4d8da5461636d158008283586cfb4ae56d951ddf453efb30b7db22b26909"
+      }
+    },
+    {
+      "id": "final-U3-05.05",
+      "objectiveId": "U3-05.05",
+      "prompt": "Due gocce sferiche dello stesso liquido, alla stessa tensione superficiale, hanno raggi 3 mm e 6 mm. Quale presenta maggiore sovrapressione interna? Motiva qualitativamente.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una goccia e una bolla saponosa hanno uguale raggio e tensione di ciascuna interfaccia. Spiega il rapporto delle sovrapressioni senza usare il nome della legge come sola motivazione.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U3-05.05",
+        "version": 1,
+        "sha256": "98acd1c5f442c089496d209febf36caeb4e0a4f9106a4bd23f19d6d0671094e1"
+      }
+    },
+    {
+      "id": "final-U5-01.01",
+      "objectiveId": "U5-01.01",
+      "prompt": "Scegli come oggetto di analisi il gas dentro un cilindro. Definisci sistema, ambiente e confine, distinguendo chiuso e isolato.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Una bombola sigillata e rigida è immersa in acqua calda. Classifica gli scambi possibili scegliendo come sistema soltanto il gas.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-01.01",
+        "version": 1,
+        "sha256": "fe3fff07b10e3c41c8573f694de646658832fded8379f4d5db36a23ebdfe2e72"
+      }
+    },
+    {
+      "id": "final-U5-01.02",
+      "objectiveId": "U5-01.02",
+      "prompt": "Quali variabili p, V e T descrivono un gas uniforme in equilibrio e quali sono le loro unità SI? Quale ulteriore quantità occorre nell’equazione di stato?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due campioni ideali uguali a stessa p,T si uniscono in un volume complessivo doppio senza altri cambiamenti. Classifica le grandezze che raddoppiano.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-01.02",
+        "version": 1,
+        "sha256": "7fbaf0d5ca9c82af2336e3790743290d5868db71bb9c068e1d6d83fe41beb0fa"
+      }
+    },
+    {
+      "id": "final-U5-01.03",
+      "objectiveId": "U5-01.03",
+      "prompt": "Il calore scambiato è una funzione di stato come l’energia interna? Spiega la distinzione.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas torna allo stato iniziale dopo un ciclo che produce lavoro. Quali variazioni devono essere nulle e quale scambio può essere non nullo?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-01.03",
+        "version": 1,
+        "sha256": "247b5954168fe71ed9be2799422faf9359e271e6c379d83556394fd42ce686e1"
+      }
+    },
+    {
+      "id": "final-U5-01.04",
+      "objectiveId": "U5-01.04",
+      "prompt": "Converti −20 °C in kelvin e spiega se una differenza di 20 °C equivale a una differenza di 20 K.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "In un recipiente rigido chiuso confronta la pressione del gas ideale a20 °C e40 °C. Mostra il rapporto corretto senza approssimare i kelvin a gradi Celsius.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-01.04",
+        "version": 1,
+        "sha256": "d95e5b7a20ebee7472129805d6be2f7948c381d22a40881889244dd1647b5ff0"
+      }
+    },
+    {
+      "id": "final-U5-01.05",
+      "objectiveId": "U5-01.05",
+      "prompt": "Gas ideale in equilibrio: n=2 mol, T=250 K, p assoluta=100000 Pa. Con R=8,31446261815324 J/(mol K), trova V in m³.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un manometro legge100 kPa relativi con atmosfera100 kPa. Trova il volume di1mol ideale a300K conR=8,31446261815324 J/(mol K).",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-01.05",
+        "version": 1,
+        "sha256": "c842bc4142ffb352dfbc212759a2293df04aa415351e587ee2924c28a8138380"
+      }
+    },
+    {
+      "id": "final-U5-02.01",
+      "objectiveId": "U5-02.01",
+      "prompt": "È corretto chiamare l’energia interna di un corpo «calore contenuto»? Definisci il calore come trasferimento.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un corpo torna alla temperatura iniziale dopo aver ricevuto lavoro e ceduto energia all’ambiente. Spiega perché il calore totale non è una proprietà dello stato finale.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.01",
+        "version": 1,
+        "sha256": "788d7720b87e783d7e1072177f54d0861a186c9659642f2fc5fba211d488208b"
+      }
+    },
+    {
+      "id": "final-U5-02.02",
+      "objectiveId": "U5-02.02",
+      "prompt": "Un corpo di capacità termica costante 40 J/K assorbe 120 J, senza transizioni e nelle condizioni a cui si riferisce la capacità. Quanto aumenta T?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due porzioni della stessa sostanza hanno masse m e2m e sono scaldate dello stesso ΔT senza transizione. Confronta capacità ed energie necessarie.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.02",
+        "version": 1,
+        "sha256": "9c304a6a49b3cea574897ad2d630b2054a39ab84db7bb73e89a7274577d03ae7"
+      }
+    },
+    {
+      "id": "final-U5-02.03",
+      "objectiveId": "U5-02.03",
+      "prompt": "Un campione ha massa 0,5 kg e calore specifico 800 J/(kg K). Qual è la sua capacità termica totale?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Perché per scaldare acqua liquida di5K usi mcΔT, mentre per fondere ghiaccio a0°C usi mL?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.03",
+        "version": 1,
+        "sha256": "16812f0ae9d7ff96271211f978769b1209f0bc26d18df1ed0c59f14458dc29d8"
+      }
+    },
+    {
+      "id": "final-U5-02.04",
+      "objectiveId": "U5-02.04",
+      "prompt": "Per un gas ideale, quanto vale C_P,m−C_V,m fra capacità molari? Perché quella a pressione costante è maggiore?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Scalda lo stesso gas ideale dello stesso ΔT prima in recipiente rigido, poi a pressione costante con pistone. Confronta Q e ΔU.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.04",
+        "version": 1,
+        "sha256": "37306a9b56d2ffe77f0c4425ea2eb25df6393e3f1450ff52b28578df82bff3ac"
+      }
+    },
+    {
+      "id": "final-U5-02.05",
+      "objectiveId": "U5-02.05",
+      "prompt": "Durante la fusione di una sostanza pura a pressione fissata, con due fasi in equilibrio, aggiungere calore fa necessariamente aumentare T?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un panno bagnato si asciuga a25 °C. Questo è compatibile con un plateau di ebollizione a temperatura maggiore? Spiega la distinzione.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.05",
+        "version": 1,
+        "sha256": "27563cb113d9cd02fade11efea4c355197b83d1ae59fa9f863d8b0511946422c"
+      }
+    },
+    {
+      "id": "final-U5-02.06",
+      "objectiveId": "U5-02.06",
+      "prompt": "Un processo assorbe calore latente specifico L=2·10⁵ J/kg. Quanta energia richiede la trasformazione di 0,03 kg già alla temperatura di transizione?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Metà dell’energia necessaria alla fusione completa viene data a ghiaccio inizialmente alla temperatura di fusione. Quali grandezze cambiano?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.06",
+        "version": 1,
+        "sha256": "bf1fc535099079fb8852bac3a33bea89e32aba67f3c96945a635a988aba766f6"
+      }
+    },
+    {
+      "id": "final-U5-02.07",
+      "objectiveId": "U5-02.07",
+      "prompt": "Due corpi isolati dall’esterno scambiano soltanto calore. Il primo riceve Q₁=+70 J. Quanto vale Q₂ se il recipiente ha capacità trascurabile?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Mescola due corpi a60 °C e20 °C con capacità C e3C in calorimetro isolato trascurabile. Calcola T_f e controlla il bilancio.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-02.07",
+        "version": 1,
+        "sha256": "95e97b8e4b4048f8f2b26a17d38a018b98262fd31eb08d61ad8cdb6a613efc5a"
+      }
+    },
+    {
+      "id": "final-U5-03.01",
+      "objectiveId": "U5-03.01",
+      "prompt": "Una sbarra metallica ferma trasferisce energia dal capo caldo al freddo, senza moto macroscopico di materiale. Quale meccanismo è coinvolto?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due pareti identiche in serie separano serbatoi a temperatura fissata. Confronta la potenza con quella di una sola parete e identifica la temperatura dell’interfaccia.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-03.01",
+        "version": 1,
+        "sha256": "e3815d241ca2fbcf62b82a4ed2464428ca6991c80255881c3052735d3e52559a"
+      }
+    },
+    {
+      "id": "final-U5-03.02",
+      "objectiveId": "U5-03.02",
+      "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità in un campo gravitazionale. Quale meccanismo di trasporto è coinvolto?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un ventilatore aumenta lo scambio di energia fra pelle e aria senza cambiare la conducibilità del tessuto. Quale meccanismo viene modificato e quale parametro del modello fornito può cambiare?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-03.02",
+        "version": 1,
+        "sha256": "b1baecbe1bf12e521af3abfe86f084eaa99a0c34a0d238cefe93a4bbae61b14c"
+      }
+    },
+    {
+      "id": "final-U5-03.03",
+      "objectiveId": "U5-03.03",
+      "prompt": "Un corpo e il grande ambiente che lo circonda sono alla stessa temperatura assoluta positiva, in equilibrio radiativo. Il corpo emette? Qual è lo scambio netto?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un oggetto nel vuoto ha stessa temperatura del grande involucro che lo circonda. Spiega emissione, assorbimento e scambio netto.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-03.03",
+        "version": 1,
+        "sha256": "e882dbe6aff593cd44a45f1c673552b9a0b766a7691b07db2da810eeda53d85e"
+      }
+    },
+    {
+      "id": "final-U5-04.01",
+      "objectiveId": "U5-04.01",
+      "prompt": "Il gas percorre un ciclo termodinamico. Quanto vale ΔU sul ciclo e quale proprietà giustifica la risposta?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due processi portano lo stesso gas ideale agli stessi stati estremi ma con lavori diversi. Confronta ΔU e deduci la differenza fra i calori.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.01",
+        "version": 1,
+        "sha256": "aea4cf4dc7c1fa5a31e6bba0af798ccb6a1dd2b3593505bdbab025eb3e377332"
+      }
+    },
+    {
+      "id": "final-U5-04.02",
+      "objectiveId": "U5-04.02",
+      "prompt": "Un gas riceve Q=+90 J e compie W=+40 J sull’ambiente. Dichiara la convenzione e calcola ΔU, trascurando variazioni energetiche macroscopiche.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas si espande contro pressione esterna costante mentre la pressione interna non è uniforme. Quale pressione entra nel calcolo del lavoro verso l’ambiente?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.02",
+        "version": 1,
+        "sha256": "d00b7fb42efaf6204f983f034f598accb9a2dc3828fa4ca63cc50dd17a4b4728"
+      }
+    },
+    {
+      "id": "final-U5-04.03",
+      "objectiveId": "U5-04.03",
+      "prompt": "La relazione ΔU=Q−W ammette scomparsa di energia? Spiega quali contributi vengono bilanciati attraverso il confine del sistema.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un sistema cede50J di calore mentre l’ambiente compie120J sul sistema. TrovaΔU dichiarandoQ,W nella convenzione del corso.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.03",
+        "version": 1,
+        "sha256": "4436ca7e6c3de715dadcd4d9f26d445308f024e8fef2b1ca3dfdda8de3305edd"
+      }
+    },
+    {
+      "id": "final-U5-04.04",
+      "objectiveId": "U5-04.04",
+      "prompt": "Un processo con attrito può essere invertito ripristinando esattamente sistema e ambiente, senza altri effetti? Motiva.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un pistone si muove molto lentamente con attrito radente. È sufficiente invertirne il moto per ripristinare sistema e ambiente senza tracce?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.04",
+        "version": 1,
+        "sha256": "d75b8d10d64bfe57dccee728263ac7383a9934b93aca2c8ec0027aee754bafae"
+      }
+    },
+    {
+      "id": "final-U5-04.05",
+      "objectiveId": "U5-04.05",
+      "prompt": "Per un gas ideale in una trasformazione isoterma, ΔU=0 impone Q=0? Collega calore e lavoro nella convenzione del corso.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas ideale si espande reversibilmente aT costante. Spiega la fonte del lavoro e confrontalo con libera espansione isolata agli stessi estremi.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.05",
+        "version": 1,
+        "sha256": "2a24f69f9f75e3a2ea60c09536e8b1bae4b89fc5037e73a517c406c195755085"
+      }
+    },
+    {
+      "id": "final-U5-04.06",
+      "objectiveId": "U5-04.06",
+      "prompt": "In una trasformazione isocora, quale valore ha il lavoro di espansione p,V? Quale vincolo lo determina?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas in recipiente rigido viene scaldato attraverso la parete senza altri lavori. Quali fraQ,W_pV,ΔU sono nulli?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.06",
+        "version": 1,
+        "sha256": "7fcd6af3d11550e7d4edfca0026fdffce745cf9c543e3ee761676d025d9936d3"
+      }
+    },
+    {
+      "id": "final-U5-04.07",
+      "objectiveId": "U5-04.07",
+      "prompt": "Un gas si espande quasistaticamente contro pressione costante 2·10⁵ Pa, aumentando il volume di 0,001 m³. Qual è il lavoro fatto dal gas?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas ideale viene compresso quasistaticamente a pressione costante conn fisso. Indica i segni diΔV,ΔT,W,ΔU,Q per capacità positive.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.07",
+        "version": 1,
+        "sha256": "46825392d85eeb4cfd94f95dfdb3f13da8b393487d40b7c86e76cd8c3bcbf4c4"
+      }
+    },
+    {
+      "id": "final-U5-04.08",
+      "objectiveId": "U5-04.08",
+      "prompt": "Un gas viene compresso adiabaticamente: l’ambiente compie 60 J sul gas. Trova Q, W fatto dal gas e ΔU.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas ideale compie lavoro positivo in un’espansione adiabatica. ConfrontaT finale con iniziale e spiega quale ipotesi ulteriore servirebbe per usare pV^γ costante.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-04.08",
+        "version": 1,
+        "sha256": "a5b5c69dd539640d85c6c912cdf58be12ef38a20f3ac6b13808b00ab07b5066c"
+      }
+    },
+    {
+      "id": "final-U5-05.01",
+      "objectiveId": "U5-05.01",
+      "prompt": "Un motore ciclico preleva calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale enunciato lo esclude?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un frigorifero trasferisce energia dall’interno freddo alla stanza calda consumando lavoro. Quale parte evita la violazione dell’enunciato di Clausius?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.01",
+        "version": 1,
+        "sha256": "f48c2bd6250935a72fbc65d07ca2d734aef8567ef7da08d72ae50350e8ead586"
+      }
+    },
+    {
+      "id": "final-U5-05.02",
+      "objectiveId": "U5-05.02",
+      "prompt": "Un processo può conservare energia ed essere comunque irreversibile? Spiega quale controllo ulteriore manca al solo bilancio energetico.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un gas ideale in recipiente isolato si espande liberamente. L’energia interna è invariata: perché il processo resta irreversibile?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.02",
+        "version": 1,
+        "sha256": "bb7bfb8538a63bc38b64c6568480889c7f1d0f804c13a1fe84d6ebffce4d5f09"
+      }
+    },
+    {
+      "id": "final-U5-05.03",
+      "objectiveId": "U5-05.03",
+      "prompt": "Che cosa definisce un ciclo termodinamico e quanto varia una funzione di stato al suo termine?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un ciclo produce300J di lavoro netto. Quanto vale il calore netto assorbito e quantoΔU? Spiega quali quantità sono di stato.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.03",
+        "version": 1,
+        "sha256": "60243b02b44a0e71c82da29cdc8f8faf297207f0b9553b39837e159a7c02ab44"
+      }
+    },
+    {
+      "id": "final-U5-05.04",
+      "objectiveId": "U5-05.04",
+      "prompt": "Una macchina ciclica riceve 1000 J e cede 700 J. Calcola lavoro netto e rendimento.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un motore riceve1200J e cede900J. Calcola lavoro e rendimento scegliendo il denominatore fisico corretto.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.04",
+        "version": 1,
+        "sha256": "5cc13faa05ebb6a4ff9340e22e82059eefadf25ca6af6e1e834bd7484c855d19"
+      }
+    },
+    {
+      "id": "final-U5-05.05",
+      "objectiveId": "U5-05.05",
+      "prompt": "Qual è il rendimento massimo di un motore che opera fra serbatoi a 500 K e 400 K? Dichiara quando il limite può essere uguagliato.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un motore fra500K e300K dichiara rendimento60%. È compatibile con il limite ideale? Quale rendimento massimo è ammesso?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.05",
+        "version": 1,
+        "sha256": "24cbab47319bb1056c337d830fc35b19e3018610b6f9c17e667127d09f30c8a2"
+      }
+    },
+    {
+      "id": "final-U5-05.06",
+      "objectiveId": "U5-05.06",
+      "prompt": "L’entropia di un sottosistema diminuisce mentre cede energia all’ambiente. Questo viola necessariamente il secondo principio? Quale complesso occorre esaminare?",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Nella libera espansione isolata di gas ideale il volume raddoppia. Come calcoliΔS pur avendoQ_reale=0?",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.06",
+        "version": 1,
+        "sha256": "79a0c6cff4dc746c7c7571dedbac0e93ce2a1ed7b55792c86d42d9223704f653"
+      }
+    },
+    {
+      "id": "final-U5-05.07",
+      "objectiveId": "U5-05.07",
+      "prompt": "Nell’interpretazione statistica con microstati equiprobabili, come cambia S aumentando la molteplicità Ω compatibile con il macrostato? Spiega il ruolo del logaritmo.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Due sistemi indipendenti hanno rispettivamenteΩ1 eΩ2 microstati equiprobabili. Spiega perché S_tot è la somma delle entropie nel modello statistico.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.07",
+        "version": 1,
+        "sha256": "1c4ea98faa480a8e68709b8a3d801854cc8b3c1d822661e4426f97c897d5d7ea"
+      }
+    },
+    {
+      "id": "final-U5-05.08",
+      "objectiveId": "U5-05.08",
+      "prompt": "Si trasferiscono spontaneamente 100 J da un termostato a 500 K a uno a 250 K. Trova le due variazioni di entropia e la loro somma.",
+      "hintCount": 3,
+      "transfer": {
+        "prompt": "Un serbatoio ideale mantenuto a 600 K cede 600 J a un serbatoio ideale mantenuto a 300 K. Confronta le due variazioni e la somma, poi indica il verso spontaneo.",
+        "hintCount": 2
+      },
+      "assessmentRef": {
+        "id": "final-U5-05.08",
+        "version": 1,
+        "sha256": "21900c1ec803d411f526e24b9c1893baed3d0b5592c876e1264030a125a2cc33"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "ds-2026-u3-01",
+      "title": "Pressione e densità",
+      "objectiveIds": [
+        "U3-01.01",
+        "U3-01.02",
+        "U3-01.03",
+        "U3-01.04"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u3-01",
+        "version": 1,
+        "sha256": "4da43865633287612c9243f3854812cbb2be6f83a708c2ae32730aad96dbe239"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "La forza normale resta 24 N e l’area viene dimezzata: prevedi che cosa cambia fra pressione, forza e densità del liquido e giustifica prima di muovere il controllo."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u3-01"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Una siringa ideale ha pistone di area 3 cm² e forza normale 24 N. Un campione contiene 180 g in 150 cm³. Trova pressione relativa prodotta e densità."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Una forza normale di 18 N è distribuita su 6 cm². Trova la pressione relativa in Pa."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Due pistoni hanno aree A e 3A e devono produrre la stessa pressione relativa. Quale rapporto F_grande/F_piccolo occorre? Spiega che cosa è fissato."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Pressione è forza normale per area; densità è massa per volume. Converti le aree e i volumi elevando anche il fattore di conversione. La prossima unità ricava come il peso del liquido distribuisce la pressione."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u3-02",
+      "title": "Idrostatica",
+      "objectiveIds": [
+        "U3-02.01",
+        "U3-02.02",
+        "U3-02.03",
+        "U3-02.04",
+        "U3-02.05",
+        "U3-02.06"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u3-02",
+        "version": 1,
+        "sha256": "d6b9b53ee420ec8064eb72aa3315542fabeadc211e31e98f672db11322bd389b"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "In recipienti di forma diversa con lo stesso liquido e livello, prevedi la pressione alla stessa profondità. Poi aggiungi la stessa variazione di pressione alla superficie e indica quali differenze restano uguali."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u3-02"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Un blocco omogeneo di volume 2,0 L e densità 750 kg/m³ galleggia in acqua di densità 1000 kg/m³. Usa g=10 m/s². Quale volume emerge e quale carico massimo può aggiungersi prima dell’immersione completa?"
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "In olio di densità 800 kg/m³ due punti sono separati verticalmente di 0,30 m. Con g=10 m/s², di quanto è maggiore la pressione nel punto inferiore?"
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Un manometro contiene liquido di densità 1200 kg/m³. Il dislivello verticale è 5 cm e le densità dei gas sovrastanti sono trascurabili. Con g=10 m/s², trova il modulo della differenza di pressione e indica come riconoscerne il segno."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Stevino deriva dall’equilibrio del peso, Pascal descrive incrementi di pressione. Archimede usa volume immerso; il galleggiamento aggiunge il bilancio delle forze. Per il moto servirà un bilancio di massa e di energia."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u3-03",
+      "title": "Continuità e Bernoulli",
+      "objectiveIds": [
+        "U3-03.01",
+        "U3-03.02",
+        "U3-03.03",
+        "U3-03.04",
+        "U3-03.05",
+        "U3-03.06"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u3-03",
+        "version": 1,
+        "sha256": "7bf8cdc9ac7b1882567e3a94b74ab124703203f0417ef00d27c94cabedfce350"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "A Q fissata riduci il raggio della seconda sezione al 70%: prevedi il verso della variazione di v e p. Poi passa al vincolo Δp fissata e indica perché la previsione su Q richiede un altro modello."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u3-03"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Acqua ideale (ρ=1000 kg/m³) scorre in un condotto orizzontale. A_1=4 cm², A_2=2 cm², v_1=0,50 m/s. Trova Q, v_2 e p_2−p_1."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Una portata incomprimibile costante di 12 mL/s entra in una biforcazione; un ramo porta 5 mL/s. Qual è la portata dell’altro ramo, senza accumulo?"
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "In un condotto ideale la velocità è uguale in due sezioni, ma la seconda è 0,40 m più alta. Con ρ=1000 kg/m³ e g=10 m/s², trova p_2−p_1."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Conservazione della massa prima, bilancio energetico dopo. Raggio, area e velocità hanno dipendenze diverse. Le perdite richiedono un modello di viscosità, oggetto della prossima unità."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u3-04",
+      "title": "Viscosità e Poiseuille",
+      "objectiveIds": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04",
+        "U3-04.05"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u3-04",
+        "version": 1,
+        "sha256": "51cc002ad717778dda807f75da3c8da805977818aaa7f27e5930b90c54c3def5"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Prima scegli Δp costante e dimezza r; registra il fattore atteso di Q. Poi scegli Q costante e ripeti: che cosa deve cambiare nella pompa? Confronta senza sovrapporre i due vincoli."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u3-04"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Due tratti in serie hanno R_1=2 e R_2=4 kPa s/L. La pompa mantiene Δp_tot=12 kPa. Trova Q, le due cadute di pressione e la potenza."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Un tubo segue Poiseuille a pressione imposta. Il raggio aumenta del 20% mentre L e η restano costanti. Calcola Q_nuova/Q_iniziale."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Due rami identici, ciascuno con R=6 kPa s/L, sono in parallelo con Δp=12 kPa imposta. Un ramo viene chiuso. Qual è la portata totale finale? Spiega anche la variazione rispetto all’inizio."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Viscosità lega trazione e gradiente, non densità e velocità assoluta. La quarta potenza richiede vincoli e dominio di Poiseuille. Le interfacce introducono altri salti di pressione, anche con fluido fermo."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u3-05",
+      "title": "Superfici e capillarità",
+      "objectiveIds": [
+        "U3-05.01",
+        "U3-05.02",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u3-05",
+        "version": 1,
+        "sha256": "78a7eb12461b24a9f0331fe438b77ea006678622269994e792042fd30b75c684"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Confronta due gocce di raggio r e 2r a γ fissata. Poi dimezza γ soltanto nella più piccola e prevedi di nuovo il rapporto delle sovrapressioni."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u3-05"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Una goccia sferica ha r=2,0 mm e γ=0,040 N/m. Usa la legge fornita Δp=2γ/r. Confronta la sovrapressione con una bolla saponosa di stesso raggio e stessa tensione per ciascuna delle due superfici."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Due gocce sferiche della stessa tensione superficiale hanno raggi 1 mm e 3 mm. Usando Laplace come legge fornita, calcola Δp_piccola/Δp_grande."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Due cavità con una interfaccia hanno r_2=2r_1. Per ottenere la stessa sovrapressione, quale rapporto γ_2/γ_1 occorre? Motiva perché un confronto biologico richiede altre informazioni."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Tensione superficiale è forza per lunghezza o energia per area. Curvatura, numero di interfacce e bagnabilità sono dati fisici. Il bilancio energetico porta dalla creazione di superficie ai processi termici."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u5-01",
+      "title": "Stato e gas ideale",
+      "objectiveIds": [
+        "U5-01.01",
+        "U5-01.02",
+        "U5-01.03",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u5-01",
+        "version": 1,
+        "sha256": "523bb270cbfbbfd8b07620dfe6cd499e561e45a18cb108dc066e8a4fe6a06e23"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "In una bottiglia rigida chiusa la temperatura passa da 20 a 40 °C: prevedi il fattore di aumento della pressione e spiega perché il rapporto 40/20 non è utilizzabile."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u5-01"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Un gas ideale in equilibrio contiene 0,50 mol a 300 K e 100000 Pa assoluti. Trova il volume e prevedi la nuova pressione se viene riscaldato a 330 K in un recipiente rigido chiuso."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Un recipiente rigido chiuso contiene gas ideale a 300 K e 120 kPa assoluti. Viene portato a 350 K. Trova la pressione finale in kPa."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Un recipiente di volume V contiene gas a p,T. Se il numero di moli raddoppia mentre p e T restano uguali grazie a una parete mobile, quale rapporto V_finale/V_iniziale occorre? Spiega che cosa accadrebbe in un recipiente rigido."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Definisci il confine del sistema e i vincoli prima della proporzione. Stato non significa storia degli scambi; p e T nei gas sono assoluti. La prossima unità costruisce i bilanci del calore."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u5-02",
+      "title": "Calore e calorimetria",
+      "objectiveIds": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.04",
+        "U5-02.05",
+        "U5-02.06",
+        "U5-02.07"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u5-02",
+        "version": 1,
+        "sha256": "a6bc281be94769f967a4a476d170baaa41bfe25c8daff780517c878854128d87"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Prima del calcolo, prevedi se 100 g d’acqua a 20 °C possono fondere completamente 50 g di ghiaccio a 0 °C. Usa c_acqua=4200 J/(kg K), L_f=334000 J/kg e confronta energie, non temperature."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u5-02"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Si mescolano in un recipiente isolato di capacità trascurabile 0,20 kg d’acqua a 30 °C e 0,050 kg di ghiaccio a 0 °C. Usa c=4200 J/(kg K), L_f=334000 J/kg. Determina fase e temperatura finali."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Due corpi isolati, senza cambi di fase, hanno C_1=200 J/K a 60 °C e C_2=400 J/K a 20 °C. Trova T_f."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Una sorgente fornisce 16700 J a 0,10 kg di ghiaccio inizialmente a 0 °C, in equilibrio alla pressione ordinaria. Con L_f=334000 J/kg, quanta massa fonde e quale temperatura ha la miscela?"
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Capacità e calore specifico descrivono una fase e un vincolo. Decidi prima la fase finale, poi calcola la temperatura. Lo scambio energetico può avvenire con meccanismi diversi: li separiamo nella prossima unità."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u5-03",
+      "title": "Trasmissione calore",
+      "objectiveIds": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u5-03",
+        "version": 1,
+        "sha256": "022705c322e9d1fed7a28905c070f8870380bae432a0358f376835d3ac76b1ef"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Una parete ha le temperature delle facce mantenute costanti. Se raddoppi lo spessore, prevedi la potenza trasmessa. Poi togli i termostati: quale parte di quella previsione richiede ora un bilancio transitorio?"
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u5-03"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Una parete piana stazionaria ha k=0,50 W/(m K), A=0,20 m², L=0,010 m e differenza di temperatura 20 K. Calcola potenza ed energia trasferita in 30 s se le temperature restano fissate."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "La legge fornita per convezione è P=hA(T_s−T_f). Con h=10 W/(m² K), A=0,5 m², T_s=35 °C e T_f=25 °C, trova la potenza ceduta."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Un corpo e il grande ambiente hanno entrambi 300 K. Nel modello radiativo grigio qual è la potenza netta ceduta dal corpo? Spiega se emissione e assorbimento sono nulli."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Conduzione, convezione e radiazione descrivono meccanismi diversi. Potenza netta nulla non implica assenza di scambi microscopici. Il primo principio organizza qualunque trasferimento di energia, incluso il lavoro."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u5-04",
+      "title": "Primo principio e trasformazioni",
+      "objectiveIds": [
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u5-04",
+        "version": 1,
+        "sha256": "4b2a07dd015929374f639177aa861b163ca6007c49ba0f3cb469007adf0d0e42"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Confronta un’espansione isoterma reversibile e una libera espansione isolata dello stesso gas ideale fra gli stessi stati iniziale e finale. Prevedi separatamente ΔU,Q,W e quale esperimento produce entropia."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u5-04"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Un gas ideale monoatomico di 1 mol viene riscaldato da 300 K a 320 K a pressione costante. Usa R=8,31446261815324 J/(mol K). Calcola W, ΔU e Q."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Un sistema chiuso assorbe 500 J e compie 200 J di lavoro. Trascurando variazioni macroscopiche, calcola ΔU con Q entrante e W fatto dal sistema positivi."
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Un gas in un contenitore adiabatico viene compresso: l’ambiente compie 120 J sul gas. Qual è ΔU? Dichiara il segno di W nella convenzione del corso."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Stato e percorso distinguono ΔU da Q,W. Isoterma: ΔU=0 per ideale; isocora: W_pV=0; adiabatica: Q=0. La reversibilità serve per usare certe curve e prepara il secondo principio."
+        }
+      ]
+    },
+    {
+      "id": "ds-2026-u5-05",
+      "title": "Secondo principio ed entropia",
+      "objectiveIds": [
+        "U5-05.01",
+        "U5-05.02",
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05",
+        "U5-05.06",
+        "U5-05.07",
+        "U5-05.08"
+      ],
+      "lessonRef": {
+        "id": "ds-2026-u5-05",
+        "version": 1,
+        "sha256": "424ddfbb0efce154eb6bc4961df00598d16dde855769510a803fdbec8bbc768f"
+      },
+      "learningSequence": [
+        {
+          "id": "predict",
+          "kind": "prediction",
+          "title": "Prevedi prima di sperimentare",
+          "prompt": "Una macchina riceve 1000 J da 600 K e cede 300 J a 300 K. Prevedi se conservare energia basta a renderla possibile, poi confronta rendimento e limite di Carnot."
+        },
+        {
+          "id": "vary",
+          "kind": "manipulation",
+          "title": "Varia un parametro e il vincolo",
+          "prompt": "Usa i controlli del laboratorio dopo avere registrato previsione e grandezza mantenuta costante.",
+          "labSpecId": "lab-spec-u5-05"
+        },
+        {
+          "id": "compare",
+          "kind": "comparison",
+          "title": "Confronta due stati",
+          "prompt": "Conserva stato iniziale e finale; confronta valori, unità e rapporto. Indica se hai cambiato un parametro o anche il vincolo."
+        },
+        {
+          "id": "explain",
+          "kind": "explanation",
+          "title": "Spiega il risultato",
+          "prompt": "Collega il cambiamento al bilancio della lezione. Distingui risultato del modello e fenomeno reale."
+        },
+        {
+          "id": "annotate",
+          "kind": "annotation",
+          "title": "Annota una correzione",
+          "prompt": "Scrivi che cosa nella tua previsione era corretto e quale ipotesi o passaggio hai corretto. Conserva la previsione originale."
+        },
+        {
+          "id": "guided",
+          "kind": "guided",
+          "title": "Segui il problema svolto",
+          "prompt": "Una macchina fra serbatoi a 600 K e 300 K riceve 1000 J e cede 600 J per ciclo. Trova lavoro, rendimento e variazione totale di entropia."
+        },
+        {
+          "id": "independent",
+          "kind": "independent",
+          "title": "Risolvi senza aiuti iniziali",
+          "prompt": "Una macchina reversibile lavora fra 500 K e 300 K. Qual è il rendimento massimo, espresso come rapporto adimensionale?"
+        },
+        {
+          "id": "transfer",
+          "kind": "transfer",
+          "title": "Affronta un contesto diverso",
+          "prompt": "Si trasferiscono spontaneamente 600 J da un serbatoio a 600 K a uno a 300 K. Qual è ΔS_tot? Indica quale parte ha variazione negativa."
+        },
+        {
+          "id": "feedback",
+          "kind": "feedback",
+          "title": "Interpreta l’errore e riprova",
+          "prompt": "Apri un aiuto per volta. Nomina l’errore specifico, riprendi la spiegazione collegata e rispondi al transfer dell’obiettivo. Una risposta libera richiede confronto con la rubrica e può essere rivista dal docente."
+        },
+        {
+          "id": "recap",
+          "kind": "recap",
+          "title": "Collega le idee",
+          "prompt": "Un ciclo può scambiare calore e lavoro pur avendo ΔU=ΔS_fluido=0. Rendimento e bilancio entropico controllano la possibilità oltre alla conservazione. Per trasferire il metodo a un problema nuovo scegli sistema, vincolo, bilanci e controllo fisico."
+        }
+      ]
+    }
+  ]
+}

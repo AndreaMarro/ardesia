@@ -43,7 +43,7 @@ export function ProductShell({ me, view, onView, onLogout, children, editions = 
       <div className="sidebar-bottom"><p>Un’idea prende forma.<br />Un filo rimane.</p><button className="profile-control" onClick={onLogout}><span className="profile-monogram">{tutor ? "T" : "S"}</span><span>{tutor ? "Spazio tutor" : "Spazio studente"}<small>Esci dall’account</small></span></button></div>
     </aside>
     <div className="app-main">
-      <header className="topbar"><div className="ps-context"><span>{edition?.title ?? (tutor ? "Il tuo studio" : "Il tuo percorso")}</span><strong>{current?.label ?? "Il tuo spazio"}</strong></div><CommandSearch items={items} editions={editions} onView={onView} onEdition={onEdition} loading={editionPagination?.loading} /></header>
+      <header className="topbar"><div className="ps-context"><span>{edition?.title ?? (tutor ? "Il tuo studio" : "Il tuo percorso")}</span><strong>{current?.label ?? "Il tuo spazio"}</strong></div>{tutor && <a className="text-link" style={{minHeight:44,boxSizing:"border-box"}} href="/studio/">Apri la lavagna</a>}<CommandSearch items={items} editions={editions} onView={onView} onEdition={onEdition} loading={editionPagination?.loading} /></header>
       <div className="ps-environment"><span className="ps-status-dot" aria-hidden="true" />{me.synthetic ? "Ambiente di prova · dati sintetici" : "Spazio riservato"}</div>
       {offline && <p className="ps-offline" role="status">Il dispositivo segnala assenza di rete. I salvataggi sul server non sono confermati; verifica l’esito quando torna la connessione.</p>}
       <main id="content" className="page-content" tabIndex={-1}>{children}</main>

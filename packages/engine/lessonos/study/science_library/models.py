@@ -180,6 +180,13 @@ def _thin_lens(p):
 _HANDLERS = {'collision-1d-v1': _collision, 'bernoulli-v1': _bernoulli,
              'point-charge-v1': _point_charge, 'thin-lens-v1': _thin_lens}
 
+# One existing dispatch: these are analytical capabilities of a bundled plugin,
+# not a new activity authority, persistence service or progress ledger.
+from .fluid_catalog import FLUID_LAB_DEFINITIONS
+from .fluid_models import evaluate_fluid_lab
+for _fluid_id in FLUID_LAB_DEFINITIONS:
+    _HANDLERS[_fluid_id] = lambda parameters, identity=_fluid_id: evaluate_fluid_lab(identity, parameters)
+
 
 def evaluate(capability_id, parameters):
     if not isinstance(capability_id, str) or capability_id not in _HANDLERS:

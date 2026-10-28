@@ -268,11 +268,14 @@ class StudyStore:
             return self._insert_edition(c,principal,edition_id,capacity,price_minor,
                 course_id=course_id,pack_id=pack_id,pack_version=pack_version)
 
-    def get_edition(self, edition_id):
+    def get_edition(self, edition_id, *, allow_unavailable=False):
         row = self.connection.execute('SELECT * FROM study_editions WHERE id=?', (edition_id,)).fetchone()
         if row is None:
             raise StudyError('not_found', 404)
-        from .catalog import edition_pack
+        from .catalog import edition_pack, readable_descriptor
+        if allow_unavailable:
+            pin = self.connection.execute('SELECT * FROM study_edition_packs WHERE edition_id=?', (edition_id,)).fetchone()
+            return _edition_view(row, readable_descriptor(pin))
         return _edition_view(row, edition_pack(self, edition_id))
 
     def list_editions(self, principal, *, limit=50, after=None, edition_id=None):
@@ -307,14 +310,14 @@ class StudyStore:
         cursor = page[-1]['id'] if edition_id is None and len(rows) > limit else None
         if cursor is not None and len(cursor) > MAX_EDITION_CURSOR_LENGTH:
             raise StudyError('legacy_edition_identifier_requires_migration', 409)
-        from .catalog import bound_descriptor
+        from .catalog import readable_descriptor
         descriptors = {}
-        return {'items': [_edition_view(row, bound_descriptor(row, descriptors=descriptors)) for row in page],
+        return {'items': [_edition_view(row, readable_descriptor(row, descriptors=descriptors)) for row in page],
                 'nextCursor': cursor}
 
-    def _edition_access(self, principal, edition_id, teacher_only=False):
+    def _edition_access(self, principal, edition_id, teacher_only=False, *, allow_unavailable=False):
         self._principal(principal)
-        edition = self.get_edition(edition_id)
+        edition = self.get_edition(edition_id, allow_unavailable=allow_unavailable)
         if principal.role == 'teacher' and edition['teacherId'] == principal.id:
             return edition
         if not teacher_only and principal.role == 'student' and self.connection.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?', (edition_id, principal.id)).fetchone():
@@ -358,11 +361,11 @@ class StudyStore:
             self._event(c,principal,'resource.created',resource_id,{'revisionId':revision_id})
             return resource
 
-    def get_resource(self, principal, resource_id):
+    def get_resource(self, principal, resource_id, *, allow_unavailable=False):
         row = self.connection.execute('SELECT current_revision FROM study_resources WHERE id=? AND deleted=0', (resource_id,)).fetchone()
         if row is None:
             raise StudyError('not_found', 404)
-        return self.get_resource_revision(principal, resource_id, row['current_revision'])
+        return self.get_resource_revision(principal, resource_id, row['current_revision'], allow_unavailable=allow_unavailable)
 
     def _submitted_reference(self, edition_id, owner_id, reference_id, revision_id=None):
         """A committed submission grants only its explicit immutable references.
@@ -384,12 +387,12 @@ class StudyStore:
                 return True
         return False
 
-    def get_resource_revision(self, principal, resource_id, revision_id):
+    def get_resource_revision(self, principal, resource_id, revision_id, *, allow_unavailable=False):
         self._principal(principal)
         row = self.connection.execute('SELECT r.*,v.id AS revision_id,v.text,v.sha256 FROM study_resources r JOIN study_revisions v ON v.resource_id=r.id WHERE r.id=? AND v.id=? AND r.deleted=0', (resource_id, revision_id)).fetchone()
         if row is None:
             raise StudyError('not_found', 404)
-        edition = self._edition_access(principal, row['edition_id'])
+        edition = self._edition_access(principal, row['edition_id'], allow_unavailable=allow_unavailable)
         owner = row['owner_id'] == principal.id
         published = row['visibility'] == 'group'
         submitted = edition['teacherId'] == principal.id and self._submitted_reference(row['edition_id'], row['owner_id'], resource_id, revision_id)

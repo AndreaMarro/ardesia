@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "fastapi",
+  "installCommand": "uv sync --frozen --no-dev",
+  "buildCommand": "python3 build_shared_core.py",
+  "outputDirectory": null,
+  "functions": {
+    "app.py": {
+      "includeFiles": "{_core/**,_frontend/**,_studio/**}",
+      "excludeFiles": "{tests/**,**/__pycache__/**,**/*.pyc}"
+    }
+  },
+  "git": {
+    "deploymentEnabled": false
+  }
+}

@@ -33,7 +33,7 @@ export function CommandSearch({ items, editions, onView, onEdition, loading = fa
   const courses = onEdition ? editions.filter(edition => matches(query, `${edition.title ?? "Edizione"} ${edition.id}`)) : [];
   function go(action: () => void) { navigated.current = true; setOpen(false); action(); }
   return <Dialog.Root open={open} onOpenChange={changeOpen}>
-    <Dialog.Trigger asChild><button ref={trigger} className="ps-search-trigger" aria-label="Cerca nello spazio · Ctrl o ⌘ K">
+    <Dialog.Trigger asChild><button ref={trigger} className="ps-search-trigger" aria-label="Cerca nello spazio ⌘ / Ctrl K">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
       <span>Cerca nello spazio</span><kbd aria-hidden="true">⌘ / Ctrl K</kbd>
     </button></Dialog.Trigger>

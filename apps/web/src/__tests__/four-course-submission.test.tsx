@@ -1,11 +1,13 @@
 // @vitest-environment jsdom
-import {afterEach,beforeEach,expect,test,vi} from 'vitest';
+import {afterEach,beforeAll,beforeEach,expect,test,vi} from 'vitest';
 import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {Classroom} from '../features/Classroom';
 import {learningCourses} from '../courseLearning';
 import {installPublicBrowserStorage} from './public-storage-fixture';
 import type {Workspace} from '../api';
 vi.mock('../integrations/notebook/ScientificNotebooks',()=>({ScientificNotebooks:()=>null}));
+// This contract tests correction routing; load the real lazy consumer before the test clock.
+beforeAll(async()=>{await import('../components/CourseLearningWorkspace');});
 beforeEach(installPublicBrowserStorage);
 afterEach(()=>{cleanup();vi.unstubAllGlobals();});
 test('retry selects the original model and changing lessons cannot carry its parent into another model',async()=>{

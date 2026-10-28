@@ -4,7 +4,7 @@
 // rete. Modello (External Research Ledger NOTTE-11: Stripe Entitlements +
 // OWASP Session/Forgot-Password + classroom codes):
 //
-//   license key (distribuzione, ELAB-XXXX-XXXX-XXXX-XXXX)
+//   license key (distribuzione, ARDESIA-XXXX-XXXX-XXXX-XXXX)
 //     → redeem → EntitlementRecord(schoolId/classId, featureLookupKey, expiry)
 //     → issueAccessToken (128-bit CSPRNG, consegna SOLO via EmailAdapter,
 //        store = hash+expiry+used, TTL 15 min, one-time)
@@ -72,13 +72,14 @@ async function redeemedEntitlement(store: ReturnType<typeof memoryStore>) {
 }
 
 describe("license key — formato e hash-only (E1)", () => {
-  it("generateLicenseKey: formato ELAB-XXXX-XXXX-XXXX-XXXX, alfabeto senza ambigui, mai ripetuta", () => {
+  it("generateLicenseKey: formato ARDESIA-XXXX-XXXX-XXXX-XXXX, alfabeto senza ambigui, mai ripetuta", () => {
     const seen = new Set<string>()
     for (let i = 0; i < 50; i += 1) {
       const key = generateLicenseKey()
+      expect(key).toMatch(/^ARDESIA(-[A-HJ-NP-Z2-9]{4}){4}$/)
       expect(key).toMatch(LICENSE_KEY_PATTERN)
-      // Solo la parte random: il prefisso fisso "ELAB" contiene la L.
-      expect(key.slice("ELAB-".length)).not.toMatch(/[01OIL]/)
+      // Il prefisso fisso non fa parte dell'alfabeto casuale.
+      expect(key.slice("ARDESIA-".length)).not.toMatch(/[01OIL]/)
       seen.add(key)
     }
     expect(seen.size).toBe(50)
@@ -105,7 +106,7 @@ describe("redeem license key (E4)", () => {
     const store = memoryStore()
     const { rawKey } = await redeemedEntitlement(store)
 
-    const unknown = await redeemLicenseKey(store, "ELAB-AAAA-BBBB-CCCC-DDDD", T0)
+    const unknown = await redeemLicenseKey(store, "ARDESIA-AAAA-BBBB-CCCC-DDDD", T0)
     const replay = await redeemLicenseKey(store, rawKey, T0)
 
     const expiredKey = generateLicenseKey()
@@ -192,5 +193,54 @@ describe("accesso e revoca (E5)", () => {
       ok: false,
       reason: "invalid",
     })
+  })
+})
+
+
+describe("canonical distribution keys preserve existing access records", () => {
+  it.each(["ELAB-AAAA-BBBB-CCCC-DDDD", "ARDESIA-AAAA-BBBB-CCCC-DDDD\n"])("rejects a registered noncanonical key without changing storage: %s", async (rawKey) => {
+    const store = memoryStore()
+    await registerLicenseKey(store, rawKey, { ...CLASS_SCOPE, expiresAt: T0 + 1000 })
+    const before = await store.dump()
+    expect(await redeemLicenseKey(store, rawKey, T0)).toEqual({ ok: false, reason: "invalid" })
+    expect(await redeemLicenseKey(store, rawKey.replace(/^ELAB-/, "ARDESIA-"), T0)).toEqual({ ok: false, reason: "invalid" })
+    expect(await store.dump()).toBe(before)
+    expect(await checkAccess(store, CLASS_SCOPE, T0)).toBe(false)
+  })
+
+  it("accepts only the canonical prefix in the published pattern", () => {
+    expect(LICENSE_KEY_PATTERN.test("ARDESIA-AAAA-BBBB-CCCC-DDDD")).toBe(true)
+    expect(LICENSE_KEY_PATTERN.test("ELAB-AAAA-BBBB-CCCC-DDDD")).toBe(false)
+  })
+
+  it("keeps an already redeemed grant and its outstanding token valid without rebind", async () => {
+    const store = memoryStore()
+    const legacyKey = "ELAB-AAAA-BBBB-CCCC-DDDD"
+    const rawToken = "0123456789abcdef".repeat(2)
+    const hash = async (raw: string) => Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw))), (b) => b.toString(16).padStart(2, "0")).join("")
+    const keyHash = await hash(legacyKey)
+    const tokenHash = await hash(rawToken)
+    const entitlement = { id: "existing-grant", ...CLASS_SCOPE, redeemedAt: T0 - 1000, expiresAt: T0 + 60_000, revokedAt: null }
+    const recordPath = "entitlements/records/existing-grant.json"
+    const licensePath = `entitlements/licenses/${keyHash}.json`
+    const scopePath = `entitlements/by-scope/${CLASS_SCOPE.schoolId}/${CLASS_SCOPE.classId}/${CLASS_SCOPE.featureLookupKey}/latest.json`
+    const seed = async (path: string, value: unknown) => store.write(path, new Blob([JSON.stringify(value)]))
+    await seed(licensePath, { v: 1, keyHash, ...CLASS_SCOPE, expiresAt: entitlement.expiresAt, redeemed: true })
+    await seed(recordPath, entitlement)
+    await seed(scopePath, { id: entitlement.id })
+    await seed(`entitlements/tokens/${tokenHash}.json`, { v: 1, tokenHash, entitlementId: entitlement.id, issuedAt: T0 - 1000, expiresAt: T0 + 60_000, used: false })
+    const recordBefore = await (await store.read(recordPath))!.text()
+    const licenseBefore = await (await store.read(licensePath))!.text()
+    const scopeBefore = await (await store.read(scopePath))!.text()
+    expect(await redeemLicenseKey(store, legacyKey, T0)).toEqual({ ok: false, reason: "invalid" })
+    expect(await checkAccess(store, CLASS_SCOPE, T0)).toBe(true)
+    const result = await redeemAccessToken(store, rawToken, T0)
+    expect(result.ok).toBe(true)
+    if (!result.ok) throw new Error("existing access token rejected")
+    expect(result.session.entitlementId).toBe(entitlement.id)
+    expect(await (await store.read(recordPath))!.text()).toBe(recordBefore)
+    expect(await (await store.read(licensePath))!.text()).toBe(licenseBefore)
+    expect(await (await store.read(scopePath))!.text()).toBe(scopeBefore)
+    expect(await redeemAccessToken(store, rawToken, T0 + 1)).toEqual({ ok: false, reason: "invalid" })
   })
 })

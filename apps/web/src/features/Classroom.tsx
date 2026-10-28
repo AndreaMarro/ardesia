@@ -16,6 +16,7 @@ import { useResourceComposer } from "../components/useResourceComposer";
 import { ErrorNotice, Loading } from "../components/Feedback";
 import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
+import type {ResourceRef,SavedScience} from './science-library/types';
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
 import { QuestionBankReview } from "../components/QuestionBankReview";
@@ -29,6 +30,7 @@ type Props = {
   me: StudyMe;
   data: Workspace;
   onUpdate: () => Promise<void>;
+  onScienceAcknowledged?: (value:SavedScience,previous:ResourceRef|null)=>boolean|void;
   parentId?: string | null;
 };
 
@@ -58,6 +60,7 @@ function ClassroomScope({
   me,
   data,
   onUpdate,
+  onScienceAcknowledged,
   parentId = null,
 }: Props) {
   const [commit, setCommit] = useState<ActivityCommit | null>(null);
@@ -94,7 +97,7 @@ function ClassroomScope({
   });
   return (
     <>
-      <header className="page-heading">
+      {!data.edition.packId?.startsWith('sf-')&&<header className="page-heading">
         <p className="breadcrumb">
           {courseSubject(data.edition)} / {courseTitle(data.edition)}
         </p>
@@ -104,7 +107,7 @@ function ClassroomScope({
             ? "Prevedi prima di muovere il modello. Spiega dopo. Il tuo ragionamento conta."
             : "Organizza le fonti, conserva i passaggi e prepara le domande per il tutor."}
         </p>
-      </header>
+      </header>}
       {activityId === "poiseuille-v1" && data.enrolled && <div className="episode-entry">
         <div><h2>Una lezione, tre previsioni.</h2><p>Raggio doppio, cambio di vincolo e una nuova prova. Ritrova il passaggio del tutor e conserva il tuo ragionamento.</p></div>
         <button className="button-primary" aria-expanded={guidedEpisode} onClick={() => {setGuidedEpisode(value => !value); setPressureEpisode(false);}}>
@@ -113,7 +116,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace me={me} resources={data.resources} submissions={data.submissions} onAcknowledged={onScienceAcknowledged} onSaved={ref=>{setSource(ref);setSelectionMessage('Configurazione collegata alla prossima consegna.');}} onInvalidated={()=>setSource(null)} editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}
@@ -216,6 +219,7 @@ function ClassroomScope({
                 source={source}
                 parentId={retryParentId}
                 onUpdate={onUpdate}
+                onConfirmed={commit?.confirmDraft}
               />
             </section>
           )}

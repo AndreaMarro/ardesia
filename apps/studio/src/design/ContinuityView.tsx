@@ -107,8 +107,15 @@ export default function ContinuityView(props: { deps?: ContinuityViewDeps } = {}
           { lessonId, roomId: lessonId, sessionId },
           {
             createEventReader: (scope) => openIndexedDbContinuityEventReader({}, scope),
-            createWorkspaceReader: async () =>
-              createWorkspaceStoreContinuityWorkspaceReader(workspaceStore),
+            createWorkspaceReader: async () => {
+              // A full navigation does not mount Room's workspace bootstrap.
+              // The loader validates the exact scope before invoking this factory.
+              // init is silent, preserves an attached FSA driver and writes no data.
+              if (cancelled) throw new Error("Continuity view disposed")
+              await workspaceStore.init()
+              if (cancelled) throw new Error("Continuity view disposed")
+              return createWorkspaceStoreContinuityWorkspaceReader(workspaceStore)
+            },
             buildCommitSha: typeof __ARDESIA_GIT_SHA__ === "string" ? __ARDESIA_GIT_SHA__ : null,
           },
         )

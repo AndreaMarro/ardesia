@@ -70,16 +70,17 @@ class _BodyBudget:
 
 
 class BodyAdmissionMiddleware:
-    def __init__(self, app, *, budget, wait, busy_response):
+    def __init__(self, app, *, budget, wait, busy_response, boundary=boundary_error):
         validate_body_admission(budget, wait)
         self.app = app
         self.budget = _BodyBudget(budget, wait)
         self.wait = wait
         self.busy_response = busy_response
+        self.boundary = boundary
 
     async def __call__(self, scope, receive, send):
         if (scope['type'] != 'http' or scope['method'] in SAFE_METHODS
-                or boundary_error(scope) is not None):
+                or self.boundary(scope) is not None):
             # Existing inner host/origin middleware owns the denial response.
             await self.app(scope, receive, send)
             return
@@ -106,11 +107,11 @@ class BodyBudgetFastAPI(FastAPI):
     middleware. Calling super preserves exception handlers, routes and cleanup;
     the budget must surround its result to cover a blocked/failing500 send.
     """
-    def __init__(self, *, body_budget, body_wait, busy_response, **kwargs):
+    def __init__(self, *, body_budget, body_wait, busy_response, boundary=boundary_error, **kwargs):
         validate_body_admission(body_budget, body_wait)
         super().__init__(**kwargs)
         self._body_admission_options = {
-            'budget': body_budget, 'wait': body_wait, 'busy_response': busy_response}
+            'budget': body_budget, 'wait': body_wait, 'busy_response': busy_response, 'boundary': boundary}
 
     def build_middleware_stack(self):
         return BodyAdmissionMiddleware(

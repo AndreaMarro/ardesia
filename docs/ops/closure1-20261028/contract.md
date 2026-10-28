@@ -1,6 +1,10 @@
 # CHIUSURA 1 — Contratto di integrazione
 Data: 2026-10-28. Owner integrazione: CHAT 1A. Stato: contratto operativo iniziale, da verificare con i consumer; non attesta il rilascio.
 
+## Lettura dello snapshot finale
+
+Le sezioni baseline e piano conservano la situazione iniziale. Lo snapshot aggiornato delle prove e dei limiti è in [acceptance-matrix.md](acceptance-matrix.md) e [integration-evidence.json](integration-evidence.json). Per main effettiva, CI post-merge, deployment, rollback e disposition delle PR leggere il record terminale della [PR336](https://github.com/AndreaMarro/ardesia/pull/336). Una previsione in un documento precedente al merge non sostituisce quell'esito. Le approvazioni umane restano distinte dalle prove tecniche e tutte le57 accettazioni scientifiche sono ancora false.
+
 ## Baseline verificata
 - Repository: AndreaMarro/ardesia; main: 85963b1d7e8a8ec14ee3f7353f9c681b3ff208f7. Nessun commit successivo al momento della verifica.
 - PR #328: aperta, head fed51cf31d391d2ee0b2f8d7513b14d8c9c075c9; check Web fallito, quindi non integrabile ancora.

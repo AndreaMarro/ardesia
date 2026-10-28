@@ -13,8 +13,8 @@ INSTANCE = re.compile(r'[a-z0-9][a-z0-9-]{0,63}')
 VERSION = re.compile(r'[a-f0-9]{64}')
 
 
-def load_layout(store, principal, edition_id):
-    store._edition_access(principal, edition_id)
+def load_layout(store, principal, edition_id, *, allow_unavailable=False):
+    store._edition_access(principal, edition_id, allow_unavailable=allow_unavailable)
     row = store.connection.execute('SELECT data FROM study_layouts WHERE actor_id=? AND edition_id=?', (principal.id, edition_id)).fetchone()
     views = json.loads(row['data']) if row else []
     return {'layouts': views, 'layoutSaved': row is not None, 'layoutVersion': digest(canonical(views))}

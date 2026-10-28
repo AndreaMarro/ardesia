@@ -132,3 +132,47 @@ def test_completed_upload_retry_returns_same_original_and_rejects_changed_bytes(
     with pytest.raises(StudyError, match='idempotency_conflict'):
         upload_asset(store, student, 'fluidi', different.getvalue(), 'image/png', tmp_path / 'blobs', key='same-upload')
     assert len(blobs.objects) == 1
+
+
+def test_independent_operator_cleans_failed_key_then_exact_retry_preserves_committed_original(tmp_path):
+    from lessonos.study.models import StudyError
+    from lessonos.study.uploads import recover_uploads, _clean
+    store,tutor,student,*_=setup_store(tmp_path)
+    store.clock=lambda:100.0
+    blobs=BlobFaults(store)
+    store.blobs=blobs
+    committed=upload_asset(store,student,'fluidi',png(),'image/png',tmp_path/'blobs',key='committed-key')
+    committed_bytes=blobs.objects[committed['id']]
+    old_token=store.issue_session(student)
+    blobs.fail_remove=True
+    original_transaction=reject_metadata(store)
+    with pytest.raises(RuntimeError,match='synthetic metadata failure'):
+        upload_asset(store,student,'fluidi',png(),'image/png',tmp_path/'blobs',key='failed-key')
+    store.transaction=original_transaction
+    orphan=store.connection.execute("SELECT id FROM study_upload_intents WHERE state='cleanup_required'").fetchone()[0]
+    assert orphan in blobs.objects
+    with pytest.raises(StudyError,match='upload_cleanup_pending'):
+        upload_asset(store,student,'fluidi',png(),'image/png',tmp_path/'blobs',key='failed-key')
+    store.revoke_session(old_token)
+    assert store.principal_for_session(old_token) is None
+    store._administrative=False
+    with pytest.raises(StudyError,match='forbidden'):recover_uploads(store,blobs)
+    # Independent operator connection, no browser session or actor claims.
+    admin=StudyStore(store.path,clock=lambda:701.0)
+    class Operator:
+        _administrative=True
+        def upload_recovery_candidates(self,limit):
+            return admin.connection.execute("SELECT id FROM study_upload_intents WHERE state IN ('pending','cleanup_required') AND expires_at<=? ORDER BY id LIMIT ?",(admin.clock(),limit)).fetchall()
+        def recover_upload_intent(self,asset_id):return _clean(admin,blobs,asset_id)
+    operator=Operator();blobs.fail_remove=False
+    assert recover_uploads(operator,operator)=={'cleaned':1,'failed':0,'skipped':0}
+    assert orphan not in blobs.objects
+    assert admin.connection.execute("SELECT COUNT(*) FROM study_upload_requests WHERE request_key='failed-key'").fetchone()[0]==0
+    new_token=store.issue_session(student)
+    actor=store.principal_for_session(new_token)
+    retried=upload_asset(store,actor,'fluidi',png(),'image/png',tmp_path/'blobs',key='failed-key')
+    assert retried['id']!=orphan and retried['sha256']==committed['sha256']
+    assert upload_asset(store,actor,'fluidi',png(),'image/png',tmp_path/'blobs',key='failed-key')==retried
+    assert blobs.objects[committed['id']]==committed_bytes
+    assert len(blobs.objects)==2
+    admin.close();store.close()

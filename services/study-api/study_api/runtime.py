@@ -43,7 +43,7 @@ class SupabaseRuntime:
             headers['Content-Type'] = mime or 'application/octet-stream'
         request = urllib.request.Request(self.api_url + path, data=data, headers=headers, method=method)
         try:
-            with urllib.request.urlopen(request, timeout=15) as response:
+            with self._urlopen(request, timeout=15) as response:
                 return response.read()
         except urllib.error.HTTPError as error:
             if path.startswith('/auth/') and error.code in (400, 401, 403, 404):
@@ -52,18 +52,22 @@ class SupabaseRuntime:
         except (OSError, ValueError):
             raise StudyError('provider_unavailable', 503) from None
 
+    def _urlopen(self, request, *, timeout):
+        return urllib.request.urlopen(request, timeout=timeout)
+
     def verified_claims(self, token):
         if not isinstance(token, str) or not 1 <= len(token) <= 8192:
             raise StudyError('unauthenticated', 401)
-        user = json.loads(self.request('GET', '/auth/v1/user', token=token))
+        raw_user = self.request('GET', '/auth/v1/user', token=token)
         try:
+            user = json.loads(raw_user)
             claims = json.loads(base64.urlsafe_b64decode(token.split('.')[1] + '=='))
             if str(uuid.UUID(claims['sub'])) != user['id']:
                 raise ValueError()
             uuid.UUID(claims['session_id'])
             if claims.get('role') != 'authenticated':
                 raise ValueError()
-        except (ValueError, KeyError, TypeError, IndexError):
+        except (ValueError, KeyError, TypeError, IndexError, UnicodeError):
             raise StudyError('unauthenticated', 401) from None
         return claims
 

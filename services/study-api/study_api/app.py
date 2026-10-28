@@ -1,4 +1,4 @@
-"""Loopback-only synthetic M1 adapter. No production authentication claims."""
+"""Shared synthetic Core adapter; loopback default, explicit remote acceptance."""
 import json,sqlite3,os
 from contextlib import asynccontextmanager
 import math
@@ -8,7 +8,9 @@ from pathlib import Path
 from fastapi import Request, Response, Depends, Query
 from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
+from fastapi.exceptions import RequestValidationError
+from fastapi.exception_handlers import request_validation_exception_handler
 from lessonos.study.models import StudyError
 from lessonos.study.store import StudyStore, MAX_EDITION_CURSOR_LENGTH
 from lessonos.study import portable as notebook_portable
@@ -16,6 +18,11 @@ from lessonos.study import portable as notebook_portable
 
 class SessionBody(BaseModel):
     token: str = Field(min_length=1, max_length=8192)
+
+
+class PasswordBody(BaseModel):
+    email: str = Field(min_length=3, max_length=320)
+    password: SecretStr = Field(min_length=1, max_length=1024)
 
 
 class ResourceBody(BaseModel):
@@ -27,7 +34,7 @@ class ResourceBody(BaseModel):
 
 def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studio_frontend: Path | None = None, secure_cookies=False, auth_limit=30, runtime=None,
                request_store_limit=16, request_store_wait=.5, calendar_provider=None,
-               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None):
+               request_body_budget=128*1024*1024, request_body_wait=.5, learning_insights_notice=None, frontend_spa=False):
     if not demo:
         raise ValueError('synthetic_only: production authentication and consent require M2')
     if type(request_store_limit) is not int or not 1 <= request_store_limit <= 1024:
@@ -36,6 +43,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         raise ValueError('invalid_store_admission')
     from .body_admission import BodyBudgetFastAPI, body_limit, boundary_error, validate_body_admission
     validate_body_admission(request_body_budget, request_body_wait)
+    controlled_remote = bool(getattr(runtime, 'controlled_remote', False))
+    if controlled_remote and not secure_cookies:
+        raise ValueError('remote_secure_cookies_required')
+    request_boundary = runtime.boundary_error if controlled_remote else boundary_error
     from lessonos.study.operations import resume_erasures
     startup_error=None
     if runtime is None:
@@ -66,7 +77,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     app = BodyBudgetFastAPI(title='Ardesia Study — synthetic M1', version='0.1.0',
                             body_budget=request_body_budget, body_wait=request_body_wait,
-                            busy_response=busy_response)
+                            busy_response=busy_response, boundary=request_boundary)
+
+    if controlled_remote:
+        @app.exception_handler(RequestValidationError)
+        async def safe_credential_validation(request, exc):
+            if request.url.path == '/study/session/login':
+                return JSONResponse({'error':'invalid_credentials'}, status_code=422)
+            return await request_validation_exception_handler(request, exc)
 
     @app.exception_handler(StudyError)
     async def domain_error(request, exc):
@@ -93,7 +111,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
             return JSONResponse({'error':'storage_unavailable'},status_code=503)
 
     @asynccontextmanager
-    async def admitted_store(token=''):
+    async def admitted_store(token='', *, token_provider=None):
         # Admission precedes remote Auth, DB opening and worker dispatch. This
         # is a per-app scope bound, independent of the ordinary worker budget.
         try:
@@ -103,6 +121,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
             raise StudyError('server_busy',503) from None
         try:
             def open_store():
+                nonlocal token
+                if token_provider is not None:token = token_provider()
                 if startup_error is not None:raise StudyError(*startup_error)
                 return runtime.open(token) if runtime else StudyStore(db_path,check_same_thread=False,initialize=False)
             # Shields surround ownership transfer and disposal separately;
@@ -140,7 +160,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.middleware('http')
     async def local_boundary(request: Request, call_next):
-        denied = boundary_error(request.scope)
+        denied = request_boundary(request.scope)
         if denied:
             return JSONResponse({'error':denied}, status_code=403)
         if request.method not in ('GET','HEAD','OPTIONS'):
@@ -153,7 +173,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
                 data.extend(chunk)
                 if len(data)>limit:return JSONResponse({'error':'notebook_budget_exceeded' if notebook_inspect else 'payload_too_large'},status_code=413)
             request._body=bytes(data)
-            if request.url.path in ('/study/session','/study/invitations/accept','/study/interests'):
+            if (request.url.path in ('/study/session','/study/invitations/accept','/study/interests')
+                    or controlled_remote and request.url.path == '/study/session/login'):
                 try:allowed,retry=await allow_attempt(request)
                 except StudyError as error:
                     logout_intent=request.method=='DELETE' and request.url.path=='/study/session'
@@ -206,9 +227,14 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.get('/study/health')
     async def health():
-        return {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16],
+        result = {'ok':True, 'synthetic':True, 'provider':'deterministic_fake', 'apiSpendUsd':0,'processId':os.getpid(),'dataId':digest(str(Path(db_path).resolve()))[:16],
             'persistence':'postgres' if runtime else 'sqlite','authentication':'supabase' if runtime else 'synthetic_session',
             'capabilities':{'invitationCodes':runtime is None}}
+        if controlled_remote:
+            result['capabilities']['passwordLogin'] = True
+            result.update(mode=runtime.mode, syntheticOnly=True, releaseSha=runtime.release_sha,
+                          productionReady=False)
+        return result
 
     @app.get('/study/ops/health')
     def readiness(request: Request, store=Depends(store_dependency)):
@@ -232,6 +258,21 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         token = store.issue_session(principal)
         response.set_cookie('study_session', token, max_age=3600, **cookie_options)
         return {'id':principal.id,'role':principal.role,'synthetic':True}
+
+    if controlled_remote:
+        @app.post('/study/session/login')
+        async def password_session(body: PasswordBody, response: Response):
+            token = ''
+            def password_token():
+                nonlocal token
+                token = runtime.password_token(body.email, body.password.get_secret_value())
+                return token
+            # Capacity is reserved before password Auth, GET user and DB open.
+            # An old rejected cookie cannot replace this explicit credential.
+            async with admitted_store(token_provider=password_token) as store:
+                principal = await run_in_threadpool(runtime.principal, store)
+            response.set_cookie('study_session', token, max_age=3600, **cookie_options)
+            return {'id':principal.id,'role':principal.role,'synthetic':True,'authentication':'supabase'}
 
     @app.post('/study/invitations/accept')
     def accept_invitation(body: SessionBody, response: Response, store=Depends(store_dependency)):
@@ -301,11 +342,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.get('/study/resources/{resource_id}')
     def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
-        return store.get_resource(authenticate(request,store),resource_id)
+        return store.get_resource(authenticate(request,store),resource_id,allow_unavailable=True)
 
     @app.get('/study/resources/{resource_id}/revisions/{revision_id}')
     def resource_revision(resource_id: str, revision_id: str, request: Request, store=Depends(store_dependency)):
-        return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
+        return store.get_resource_revision(authenticate(request,store),resource_id,revision_id,allow_unavailable=True)
 
     @app.get('/study/course')
     def course(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
@@ -359,7 +400,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.post('/study/exams')
     def start_exam(body: dict, request: Request, store=Depends(store_dependency)):
         from lessonos.study.exam import start_attempt
-        return start_attempt(store,authenticate(request,store),body.get('editionId'))
+        return start_attempt(store,authenticate(request,store),body.get('editionId'),simulation_id=body.get('simulationId'))
 
     @app.get('/study/exams/{attempt_id}')
     def exam(attempt_id: str, request: Request, store=Depends(store_dependency)):
@@ -392,19 +433,19 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         from lessonos.study.feedback import list_feedback
         principal=authenticate(request,store)
         from lessonos.study.editions import public_edition
-        edition=public_edition(store,editionId,principal)
+        edition=public_edition(store,editionId,principal,allow_unavailable=True)
         member=bool(store.connection.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(editionId,principal.id)).fetchone())
         if principal.role=='teacher' and principal.id!=edition['teacherId']:raise StudyError('forbidden',403)
         if not member and principal.role!='teacher':return {'enrolled':False,'edition':edition,'resources':[],'submissions':[],'layouts':[]}
         rows=store.connection.execute('SELECT id FROM study_resources WHERE edition_id=? AND deleted=0',(editionId,)).fetchall()
         resources=[]
         for row in rows:
-            try:resources.append(store.get_resource(principal,row['id']))
+            try:resources.append(store.get_resource(principal,row['id'],allow_unavailable=True))
             except StudyError:pass
-        submissions=list_submissions(store,principal,editionId)
-        for item in submissions:item['feedback']=list_feedback(store,principal,item['id'])
+        submissions=list_submissions(store,principal,editionId,allow_unavailable=True)
+        for item in submissions:item['feedback']=list_feedback(store,principal,item['id'],allow_unavailable=True)
         from lessonos.study.view_layout import load_layout
-        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId)}
+        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId,allow_unavailable=True)}
 
     @app.post('/study/editions/{edition_id}/holds')
     def hold(edition_id: str, request: Request, store=Depends(store_dependency)):
@@ -464,7 +505,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.get('/study/assets/{asset_id}')
     def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.assets import read_original_asset
-        data,descriptor=read_original_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs')
+        data,descriptor=read_original_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs',allow_unavailable=True)
         return Response(data,media_type=descriptor['mime'],headers={
             'Content-Disposition':f'attachment; filename="original-{asset_id}"',
             'Cache-Control':'no-store',
@@ -479,7 +520,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.get('/study/receipts/{receipt_id}')
     def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import get_receipt
-        return get_receipt(store,authenticate(request,store),receipt_id)
+        return get_receipt(store,authenticate(request,store),receipt_id,allow_unavailable=True)
 
     @app.post('/study/feedback/drafts')
     def candidate(body: dict, request: Request, store=Depends(store_dependency)):
@@ -535,6 +576,8 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     install_diary_routes(app, store_dependency, authenticate)
     from .learning_memory_routes import install_learning_memory_routes
     install_learning_memory_routes(app, store_dependency, authenticate)
+    from .assessment_support_routes import install_assessment_support_routes
+    install_assessment_support_routes(app,store_dependency,authenticate)
     from .question_bank_routes import install_question_bank_routes
     install_question_bank_routes(app, store_dependency, authenticate)
     from lessonos.study.assessment_quality.routes import install_assessment_quality_routes
@@ -557,5 +600,10 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         app.mount('/studio', StaticFiles(directory=studio_frontend, html=True), name='teaching-workspace')
     if frontend:
         from fastapi.staticfiles import StaticFiles
-        app.mount('/', StaticFiles(directory=frontend,html=True),name='studio')
+        if frontend_spa:
+            from .frontend import StudySPAStaticFiles
+            files = StudySPAStaticFiles(directory=frontend, html=True)
+        else:
+            files = StaticFiles(directory=frontend, html=True)
+        app.mount('/', files, name='studio')
     return app

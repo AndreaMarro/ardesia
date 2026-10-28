@@ -23,6 +23,10 @@ def evaluate_activity(activity_id, parameters, attempt=None):
                 'ideal-gas-v1': evaluate_ideal_gas, 'kinematics-v1': evaluate_kinematics}
     if isinstance(activity_id, str) and activity_id in handlers:
         return handlers[activity_id](parameters)
+    # Same Core dispatch: never trust a browser-supplied numerical result.
+    from .science_library.models import _HANDLERS as scientific_handlers
+    if isinstance(activity_id, str) and activity_id in scientific_handlers:
+        return scientific_handlers[activity_id](parameters)
     return _evaluate_physics(activity_id, parameters)
 
 

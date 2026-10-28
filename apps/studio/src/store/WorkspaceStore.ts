@@ -747,6 +747,10 @@ export class WorkspaceStore {
     return result
   }
 
+  async previewLessonBlob(blob: Blob): Promise<LessonImportPreview> {
+    return buildLessonPreview(this, blob)
+  }
+
   async previewLessonBlobForRoom(
     blob: Blob,
     room: string,

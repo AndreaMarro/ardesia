@@ -46,7 +46,7 @@ function reviewError(error: unknown) {
   return describeError(error, "Non riesco a completare l’operazione. Puoi riprovare.");
 }
 
-function ReviewEditor({ base, questionId, onChange, onBusy }: {
+export function ReviewEditor({ base, questionId, onChange, onBusy }: {
   base: string; questionId: string; onChange: () => void; onBusy: (busy: boolean) => void;
 }) {
   const [detail, setDetail] = useState<Detail | null>(null);

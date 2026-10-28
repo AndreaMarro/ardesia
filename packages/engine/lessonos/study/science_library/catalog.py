@@ -4,6 +4,7 @@ This does not make a Core resource global or grant cross-edition access.
 """
 from .models import evaluate, _PARAMETER_SPECS
 from .resources import implementation_sha256
+from .fluid_catalog import get_fluid_catalog, FLUID_LAB_DEFINITIONS
 
 _PARAMETERS = {
     'mass1': ('Massa del corpo1', 'kg'), 'mass2': ('Massa del corpo2', 'kg'),
@@ -88,7 +89,10 @@ def get_catalog():
                  'default': bounds[0], 'minimum': bounds[1], 'maximum': bounds[2]}
                 for key, bounds in specification.items()],
         })
+    capabilities.extend(get_fluid_catalog(implementation_sha256()))
     return {'schemaVersion': 1,
             'referenceScope': 'capability-definition; Core resource access remains edition-scoped',
             'capabilities': capabilities,
-            'courses': [{'id': key, 'title': title, 'capabilityIds': list(ids)} for key, title, ids in _COURSES]}
+            'courses': [{'id': key, 'title': title, 'capabilityIds': list(ids) +
+                         (list(FLUID_LAB_DEFINITIONS) if key == 'fluidi-termodinamica' else [])}
+                        for key, title, ids in _COURSES]}

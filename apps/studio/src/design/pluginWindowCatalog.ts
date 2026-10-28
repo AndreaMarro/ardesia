@@ -67,6 +67,7 @@ export type PluginWindowRegistryEntry = PluginRegistryEntry & {
 }
 
 const BUILTIN_PLUGIN_ITEMS: readonly PluginWindowCatalogItem[] = [
+  catalogItem({pluginId:"io.ardesia.fluid-thermo",title:"Fluidi e termodinamica",description:"Sedici laboratori configurabili con dati, preset e viste 2D/3D.",kind:"simulation",readiness:"preview",version:"1.0.0"}),
   catalogItem({
     pluginId: "com.ardesia.plugin-functions",
     title: "Funzioni",

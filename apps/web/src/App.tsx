@@ -5,6 +5,7 @@ import {
   studyRequest,
   type StudyMe,
 } from "./api";
+import {acceptCoursePop,confirmCourseExit,initializeCourseHistory,pushCourseHistory,replaceCourseHistory} from "./courseExitGuard";
 import { useCourseWorkspace } from "./useCourseWorkspace";
 import { clearResourceDrafts } from "./components/sessionDraftCache";
 import { clearActorOffline } from "./features/independent-study/storage";
@@ -80,12 +81,14 @@ export default function App() {
       const url = new URL(location.href);
       url.searchParams.delete("edition");
       url.searchParams.set("view", "today");
-      history.replaceState(null, "", url);
+      replaceCourseHistory(url);
       setView("today");
     });
   }, [me?.id]);
   useEffect(() => {
-    const pop = () => {
+    initializeCourseHistory();
+    const pop = (event:PopStateEvent) => {
+      if(!acceptCoursePop(event))return;
       setView(initialView()); setParentId(null);
       const requested = new URLSearchParams(location.search).get("edition");
       if (requested && requested !== course.editionId) course.reloadEditions(requested);
@@ -128,14 +131,17 @@ export default function App() {
     setSessionCheckAttempt((attempt) => attempt + 1);
   }
   function navigate(next: View) {
+    if(next!==view&&!confirmCourseExit())return;
     setView(next);
     const url = new URL(location.href);
     url.searchParams.set("view", next);
-    if (next === view) history.replaceState({}, "", url);
-    else history.pushState({}, "", url);
+    if (next === view) replaceCourseHistory(url);
+    else pushCourseHistory(url);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
+  function selectEdition(id:string){if(id===course.editionId||confirmCourseExit())course.selectEdition(id);}
   async function logout() {
+    if(!confirmCourseExit())return;
     const outcome = await signOutStudySession();
     if (outcome === "UNCONFIRMED") setError("Sei uscito da questo spazio. La revoca della sessione sul server non è confermata.");
   }
@@ -152,7 +158,7 @@ export default function App() {
         <p className="wordmark">ardesia.</p>
         <header className="page-heading">
           <h1 id="core-unavailable-title">
-            {coreUnavailable === "not-configured" ? "Il Core non è configurato" : "Il Core non è disponibile"}
+            {coreUnavailable === "not-configured" ? "Il servizio del corso non è configurato" : "Il servizio del corso non è disponibile"}
           </h1>
           <p role="status">
             Il servizio che gestisce accesso, corsi e condivisione non è disponibile.
@@ -181,7 +187,7 @@ export default function App() {
           onLogout={() => void logout()}
           editions={course.editions}
           editionId={course.editionId}
-          onEdition={course.selectEdition}
+          onEdition={selectEdition}
           editionPagination={course.pagination}
         >
           {(error || course.error) && (
@@ -265,7 +271,7 @@ export default function App() {
                   me={me}
                   data={data}
                   editions={course.editions}
-                  onEdition={course.selectEdition}
+                  onEdition={selectEdition}
                   onManaged={course.reloadEditions}
                   onUpdate={refresh}
                   onClassroom={() => navigate("classroom")}
@@ -276,6 +282,7 @@ export default function App() {
                 <Classroom
                   me={me}
                   data={data}
+                  onScienceAcknowledged={course.acknowledgeScienceResource}
                   parentId={parentId}
                   onUpdate={async () => {
                     await refresh();
@@ -316,6 +323,7 @@ export default function App() {
       ) : (
         <>
           <Public
+            privateEntry={new URLSearchParams(location.search).has('edition')||new URLSearchParams(location.search).has('view')}
             onLogin={() => {
               setLoginTrigger(document.activeElement as HTMLElement);
               setLoginOpen(true);
@@ -338,7 +346,7 @@ export default function App() {
               setMe(value);
               setLoginOpen(false);
               setError("");
-              navigate("today");
+              navigate(initialView());
             }}
           />
         </Suspense>

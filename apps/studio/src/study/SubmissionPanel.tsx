@@ -29,6 +29,7 @@ type Props = {
   source: PostitReference | null;
   parentId: string | null;
   onUpdate: () => Promise<void>;
+  onConfirmed?: () => void;
   editionId?: string;
   activityId?: string;
   activityParameters?: Record<string, unknown>;
@@ -43,6 +44,7 @@ export function SubmissionPanel({
   source,
   parentId,
   onUpdate,
+  onConfirmed,
   editionId = "fluidi",
   activityId = "poiseuille-v1",
   activityParameters,
@@ -96,6 +98,9 @@ export function SubmissionPanel({
     uploading = useRef(false),
     mounted = useRef(true),
     current = useRef(draft);
+  // The observer belongs to the first immutable request, just like its payload.
+  // A pending request restored from cache has no live observer to adopt.
+  const pendingConfirmation = useRef<{ key: string; notify?: () => void } | null>(null);
   current.current = draft;
   useEffect(() => {
     mounted.current = true;
@@ -222,6 +227,7 @@ export function SubmissionPanel({
         parentId: draft.parentId,
         sourceRefs: source ? [source] : [],
       };
+      if (!draft.pending) pendingConfirmation.current = { key: sentKey, notify: onConfirmed };
       update((value) => ({ ...value, pending: payload }));
       const received = await studyRequest<Receipt>("/submissions", payload, {
         headers: { "Idempotency-Key": sentKey },
@@ -237,6 +243,11 @@ export function SubmissionPanel({
         `Consegnato · ricevuta ${received.receiptId} · tentativo ${received.revision}`,
       );
       if (current.current.key === sentKey) {
+        // A local exit-checkpoint observer cannot downgrade a real receipt.
+        try {
+          if (pendingConfirmation.current?.key === sentKey) pendingConfirmation.current.notify?.();
+        } catch { /* The authoritative receipt remains confirmed. */ }
+        pendingConfirmation.current = null;
         const next = blank();
         next.parentId = null;
         current.current = next;
