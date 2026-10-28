@@ -10,8 +10,10 @@ def catalog():
 def test_catalog_supplies_units_and_bounds_without_answers_or_results():
     result = catalog()
     assert result['schemaVersion'] == 1
-    assert len(result['capabilities']) == 4
-    assert len({r['id'] for r in result['capabilities']}) == 4
+    from lessonos.study.science_library.fluid_catalog import FLUID_LAB_DEFINITIONS
+    expected_ids = {'collision-1d-v1', 'bernoulli-v1', 'point-charge-v1', 'thin-lens-v1'} | set(FLUID_LAB_DEFINITIONS)
+    assert len(result['capabilities']) == 20
+    assert {r['id'] for r in result['capabilities']} == expected_ids
     for item in result['capabilities']:
         assert item['version'] == 1 and item['editorialStatus'] == 'DRAFT'
         assert item['distribution'] == 'BUNDLED_FIRST_PARTY'
