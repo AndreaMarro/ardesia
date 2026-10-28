@@ -46,6 +46,31 @@ describe('reusable lab state and fallback',()=>{
     expect(view.container.querySelector('svg')?.textContent).not.toContain('Δp =');
     expect(view.container.querySelector('.ft-observation strong')).toBe(null);
   });
+  it.each([
+    ['buoyancy',{bodyDensity:1500,fluidDensity:1000},/questo corpo non può galleggiare/],
+    ['process',{path:4},/nessuna area del grafico rappresenta il lavoro, che è zero/],
+  ] as const)('reveals %s computed conclusions only during the comparison',(id,parameters,conclusion)=>{
+    const initial=newLabSnapshot(id);Object.assign(initial.configuration.parameters,parameters);
+    const view=render(<FluidThermoActivity initialSnapshot={initial}/>);
+    expect(screen.queryByText(conclusion)).toBe(null);
+    expect(screen.getByText('Modello, formula e intervalli di validità')).toBeTruthy();
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Prevedo il comportamento a partire dai dati'}});
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(screen.getByText(conclusion)).toBeTruthy();
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Rivedo il ragionamento'}});
+    expect(screen.queryByText(conclusion)).toBe(null);
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(screen.getByText(conclusion)).toBeTruthy();
+    const input=view.container.querySelector('.ft-parameter input[type=number]') as HTMLInputElement;
+    fireEvent.change(input,{target:{value:String(Number(input.value)*1.1)}});
+    expect(screen.queryByText(conclusion)).toBe(null);
+  });
+  it('keeps domain errors available before a prediction or comparison',()=>{
+    render(<FluidThermoActivity initialSnapshot={newLabSnapshot('hydrostatic')}/>);
+    fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:'-1'}});
+    expect(screen.getByRole('alert').textContent).toContain('Profondità');
+    expect((screen.getByRole('button',{name:'Confronta con il modello'}) as HTMLButtonElement).disabled).toBe(true);
+  });
   it('conceals the Poiseuille velocity graph and vectors until comparison',()=>{
     const view=render(<FluidThermoActivity initialSnapshot={newLabSnapshot('poiseuille')}/>);
     const graph=()=>view.container.querySelector('svg.lab-diagram')!;
