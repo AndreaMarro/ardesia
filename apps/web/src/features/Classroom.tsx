@@ -216,6 +216,7 @@ function ClassroomScope({
                 source={source}
                 parentId={retryParentId}
                 onUpdate={onUpdate}
+                onConfirmed={commit?.confirmDraft}
               />
             </section>
           )}

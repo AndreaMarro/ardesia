@@ -62,3 +62,13 @@ describe('Core laboratory evidence boundary',()=>{
  });
 
 });
+
+ it('guards raw text before a scenario reset and retains unsaved notes after a receipt',()=>{
+  const confirm=vi.spyOn(window,'confirm').mockReturnValue(false),commit=vi.fn();
+  render(<CoreFluidLab me={{id:'learner',role:'student',synthetic:true}} editionId="edition" capability={capability} courseLesson={lesson} onCommit={commit}/>);
+  fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Cresce'}});fireEvent.change(screen.getByLabelText('Osservazioni'),{target:{value:'Osservazione da conservare'}});
+  fireEvent.click(screen.getByRole('button',{name:'Ripristina lo scenario'}));expect(confirm).toHaveBeenCalled();expect(screen.getByLabelText('Osservazioni')).toHaveProperty('value','Osservazione da conservare');
+  fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));commit.mock.calls.at(-1)![0].confirmDraft();
+  const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);expect(event.defaultPrevented).toBe(true);
+  confirm.mockReturnValue(true);fireEvent.click(screen.getByRole('button',{name:'Ripristina lo scenario'}));expect(screen.getByLabelText('Osservazioni')).toHaveProperty('value','');confirm.mockRestore();
+ });

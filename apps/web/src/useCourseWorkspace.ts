@@ -1,3 +1,4 @@
+import {pushCourseHistory,replaceCourseHistory} from "./courseExitGuard";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   describeError,
@@ -59,7 +60,7 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
     discoveryFailed.current = false;
     const url = new URL(location.href);
     url.searchParams.delete("edition");
-    history.replaceState(null, "", url);
+    replaceCourseHistory(url);
   }, [actor]);
   useEffect(() => {
     const controller = new AbortController();
@@ -147,7 +148,7 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
       const url = new URL(location.href);
       if (selected) url.searchParams.set("edition", selected.id);
       else url.searchParams.delete("edition");
-      history.replaceState(null, "", url);
+      replaceCourseHistory(url);
     })()
       .catch((failure) => {
         if (
@@ -210,7 +211,7 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
       const url = new URL(location.href);
       if (url.searchParams.get("edition") === editionId) {
         url.searchParams.delete("edition");
-        history.replaceState(null, "", url);
+        replaceCourseHistory(url);
       }
     }
     try {
@@ -282,8 +283,8 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
     url.searchParams.set("edition", id);
     // Explicit course navigation must retain the previous exact lesson/catalog
     // location. Discovery and popstate reconciliation still replace their entry.
-    if (id === editionId) history.replaceState(null, "", url);
-    else history.pushState(null, "", url);
+    if (id === editionId) replaceCourseHistory(url);
+    else pushCourseHistory(url);
     setEditionId(id);
   }
   function reloadEditions(id: string) {

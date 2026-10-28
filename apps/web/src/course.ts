@@ -36,13 +36,15 @@ export type ActivityCommit = {
   parameters: Record<string, number | string>;
   prediction: string;
   courseLesson?: CourseLessonContext;
+  /** UI checkpoint only; the submission transport serializes explicit fields. */
+  confirmDraft?: () => void;
 };
 export function courseLessonFromContext(context?: SubmissionCourseContext): CourseLessonContext | undefined {
   return context?.lessonRef && context.phase ? {lessonRef: context.lessonRef, phase: context.phase, ...(context.stepId ? {stepId: context.stepId} : {}), ...(context.assessmentRef ? {assessmentRef:context.assessmentRef} : {})} : undefined;
 }
 export function sameCourseLesson(left?: CourseLessonContext, right?: CourseLessonContext): boolean {
   if (!left || !right) return left === right;
-  return JSON.stringify(left.assessmentRef)===JSON.stringify(right.assessmentRef) && left.phase === right.phase && left.stepId === right.stepId && left.lessonRef.id === right.lessonRef.id
+  return (left.assessmentRef===undefined||right.assessmentRef===undefined?left.assessmentRef===right.assessmentRef:left.assessmentRef.id===right.assessmentRef.id&&left.assessmentRef.version===right.assessmentRef.version&&left.assessmentRef.sha256===right.assessmentRef.sha256) && left.phase === right.phase && left.stepId === right.stepId && left.lessonRef.id === right.lessonRef.id
     && left.lessonRef.version === right.lessonRef.version && left.lessonRef.sha256 === right.lessonRef.sha256;
 }
 export const isDateConfirmed = (edition: Edition) =>

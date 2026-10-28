@@ -29,6 +29,7 @@ type Props = {
   source: PostitReference | null;
   parentId: string | null;
   onUpdate: () => Promise<void>;
+  onConfirmed?: () => void;
   editionId?: string;
   activityId?: string;
   activityParameters?: Record<string, unknown>;
@@ -43,6 +44,7 @@ export function SubmissionPanel({
   source,
   parentId,
   onUpdate,
+  onConfirmed,
   editionId = "fluidi",
   activityId = "poiseuille-v1",
   activityParameters,
@@ -237,6 +239,8 @@ export function SubmissionPanel({
         `Consegnato · ricevuta ${received.receiptId} · tentativo ${received.revision}`,
       );
       if (current.current.key === sentKey) {
+        // A local exit-checkpoint observer cannot downgrade a real receipt.
+        try { onConfirmed?.(); } catch { /* The authoritative receipt remains confirmed. */ }
         const next = blank();
         next.parentId = null;
         current.current = next;

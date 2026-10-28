@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {describeError,requestKey,type StudyMe} from '../../api';
+import {CourseDraftBoundary,createCourseDraftScope,confirmCourseExit,useCourseDraftScope} from '../../courseExitGuard';
 import {CoreFluidLab} from './CoreFluidLab';
 import {scienceApi} from './scienceApi';
 import {ScientificPlot} from './ScientificPlot';
@@ -34,10 +35,12 @@ function message(error:unknown){
 }
 export function ScienceLibrary(props:ScienceLibraryProps){
   const key=JSON.stringify([props.me.id,props.me.role,props.editionId,props.resourceRef?.resourceId,props.resourceRef?.revisionId]);
-  return <ScienceWorkspace key={key} {...props}/>;
+  const scope=useRef(createCourseDraftScope()).current;
+  return <CourseDraftBoundary scope={scope}><ScienceWorkspace key={key} {...props}/></CourseDraftBoundary>;
 }
 
 function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSaved,context='course'}:ScienceLibraryProps){
+  const exitScope=useCourseDraftScope();
   const [savedLab,setSavedLab]=useState<SavedScience|undefined>();
   const [catalog,setCatalog]=useState<Catalog|null>(null),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState('');
   const [reload,setReload]=useState(0),[course,setCourse]=useState(''),[selected,setSelected]=useState('');
@@ -87,9 +90,10 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
     setDrafts(old=>({...old,[selected]:{...old[selected],...values}}));
   }
   function choose(id:string){
-    const c=catalog?.capabilities.find(c=>c.id===id);if(!c)return;
+    const c=catalog?.capabilities.find(c=>c.id===id);if(!c)return false;
+    if(id!==selected&&!confirmCourseExit(exitScope,['laboratory']))return false;
     invalidate();edit.current++;setSelected(id);setOpened([]);setPlotId('');
-    setDrafts(old=>old[id]?old:{...old,[id]:initialDraft(c)});
+    setDrafts(old=>old[id]?old:{...old,[id]:initialDraft(c)});return true;
   }
   function parameters():Parameters|null{
     if(!draft||!capability)return null;
@@ -144,7 +148,7 @@ function ScienceWorkspace({me,editionId,api=scienceApi,resourceRef,onResourceSav
   return <section className="science-library" aria-label="Libreria scientifica">
     <header className="science-heading"><p className="science-eyebrow">{context==='notebook'?'Nel quaderno':'Nel percorso'} · strumenti in verifica privata</p><h2>Libreria scientifica</h2>
       <p>Prevedi, cambia una grandezza e confronta. Le configurazioni salvate restano nel tuo quaderno; il confronto non assegna un voto.</p></header>
-    <div className="science-selection"><label>Percorso di studio<select value={course} onChange={e=>{setCourse(e.target.value);const ids=catalog?.courses.find(c=>c.id===e.target.value)?.capabilityIds||[];choose(ids.includes(selected)?selected:ids[0]);}}>
+    <div className="science-selection"><label>Percorso di studio<select value={course} onChange={e=>{const next=e.target.value,ids=catalog?.courses.find(c=>c.id===next)?.capabilityIds||[];if(choose(ids.includes(selected)?selected:ids[0]))setCourse(next);}}>
       {catalog?.courses.map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label>
       <label>Oggetto scientifico<select value={selected} onChange={e=>choose(e.target.value)}>{catalog?.capabilities.filter(c=>available.includes(c.id)).map(c=><option key={c.id} value={c.id}>{c.title}</option>)}</select></label></div>
     {capability.fluidLab?<CoreFluidLab key={selected} me={me} editionId={editionId} capability={capability} saved={savedLab?.snapshot.capabilityId===selected?savedLab:undefined} api={api} onSaved={ref=>onResourceSaved?.(ref)}/>:<article className="science-object"><div className="science-object-title"><p className="science-eyebrow">Esperimento ideale · DRAFT</p><h3>{capability.title}</h3><p>Prevedi: {capability.primaryOutput.label.toLocaleLowerCase('it')}, in {capability.primaryOutput.unit}. Usa i dati attualmente selezionati.</p></div>
