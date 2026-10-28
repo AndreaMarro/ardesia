@@ -25,6 +25,14 @@ PACK_STANDALONE_RULES = (
     re.compile(r"dashboard", re.IGNORECASE),
 )
 EXECUTABLE_SUFFIXES = {'.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json', '.html', '.css', '.sh', '.yml', '.yaml'}
+# QA may mention retired IDs in negative assertions, but it must not read or
+# import deleted source/data/assets (including path.join + dynamic import).
+FORBIDDEN_DEPENDENCY = re.compile(
+    r'@elab(?:-tutor-plugin|-pack)(?:/|[\"\'])|'
+    r'(?:plugins|packs)/elab-tutor(?:/|[\"\'])|'
+    r'(?:sim/|\.\./)(?:elab/|solver/elabSolver)|'
+    r'public/elab/'
+)
 FORBIDDEN_REFERENCE = re.compile(
     r'@elab(?:-tutor-plugin|-pack)(?:/|[\"\'])|'
     r'(?:plugins|packs)/elab-tutor(?:/|[\"\'])|'
@@ -43,7 +51,7 @@ def violations(root: Path = ROOT) -> list[str]:
             relative = path.relative_to(root).as_posix()
             if path.is_file() and any(rule.search(relative) for rule in PACK_STANDALONE_RULES):
                 found.append(f'{relative}: standalone/auth/dashboard/cloud functions forbidden in data/method packs')
-    for directory in ('apps/studio/src', 'apps/studio/build', 'apps/studio/plugins', 'apps/studio/sim', 'apps/web/src'):
+    for directory in ('apps/studio/src', 'apps/studio/build', 'apps/studio/plugins', 'apps/studio/sim', 'apps/web/src', 'apps/studio/scripts', 'apps/studio/e2e'):
         base = root / directory
         if not base.exists():
             continue
@@ -52,12 +60,12 @@ def violations(root: Path = ROOT) -> list[str]:
                 continue
             if path.relative_to(root).as_posix() == 'apps/studio/src/toolhost/retiredPlugins.ts':
                 continue
-            if '__tests__' in path.parts or path.name.endswith(('.test.ts', '.test.tsx')):
-                continue
+            qa_source = '__tests__' in path.parts or path.name.endswith(('.test.ts', '.test.tsx')) or directory in ('apps/studio/scripts', 'apps/studio/e2e')
+            forbidden = FORBIDDEN_DEPENDENCY if qa_source else FORBIDDEN_REFERENCE
             for number, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
                 if line.lstrip().startswith(('//', '*', '/*')):
                     continue
-                if FORBIDDEN_REFERENCE.search(line):
+                if forbidden.search(line):
                     found.append(f'{path.relative_to(root)}:{number}: forbidden removed-product reference')
     for rel in ('package.json', 'apps/studio/vite.config.ts', 'apps/studio/vitest.config.ts', 'bin/monorepo.sh'):
         path = root / rel

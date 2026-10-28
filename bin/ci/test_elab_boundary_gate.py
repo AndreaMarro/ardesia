@@ -58,6 +58,20 @@ class RemovedProductBoundaryTests(unittest.TestCase):
         self.assertEqual(self.check_source('packs/physics/data/lesson-path.json', '{"v":1}'), [])
         self.assertEqual(self.check_source('packs/physics/method/steps.ts', 'export const steps = []'), [])
 
+    def test_removed_dependency_paths_in_tests_and_qa_scripts_fail(self):
+        fixtures = (
+            ('apps/studio/src/__tests__/ArduinoSupportMatrix.test.ts', 'const pluginSrc = path.join(repoRoot, "plugins/elab-tutor/src")'),
+            ('apps/studio/src/__tests__/VolumeFixtures.test.ts', 'const data = readFileSync("packs/elab-tutor/data/volume.json")'),
+            ('apps/studio/scripts/compile-audit.mjs', 'const source = pathToFileURL(path.join(root, "plugins/elab-tutor/src/services/arduinoBoards.js"))'),
+            ('apps/studio/e2e/old-plugin.spec.ts', 'import OldCanvas from "@elab-tutor-plugin/Canvas"'),
+        )
+        for relative, source in fixtures:
+            with self.subTest(relative=relative):
+                self.assertTrue(self.check_source(relative, source))
+
+    def test_negative_plugin_identity_and_route_assertions_are_not_source_dependencies(self):
+        self.assertEqual(self.check_source('apps/studio/src/__tests__/RetiredPlugin.test.tsx', 'const retiredId = "io.elab.tutor"; const route = "?vista=elab-lab"'), [])
+
     def test_sdk_and_independent_science_imports_pass(self):
         self.assertEqual(self.check_source('apps/studio/src/Science.ts', 'import { ToolHost } from "./toolhost/host"'), [])
 
