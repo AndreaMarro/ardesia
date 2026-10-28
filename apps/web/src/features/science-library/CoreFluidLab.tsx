@@ -22,6 +22,7 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
   ...(courseLesson?{lessonRef:courseLesson.lessonRef}:{})}));
  const work=useCourseDraft('laboratory');
  const acknowledged=useRef(initial),latestSnapshot=useRef(initial);
+ const controls=useRef<HTMLDivElement>(null);
  const confirmed=useRef(canonical({snapshot:initial,courseLesson:saved?saved.snapshot.courseLesson||null:courseLesson||null}));
  const [ref,setRef]=useState<ResourceRef|null>(saved?{resourceId:saved.resource.id,revisionId:saved.resource.revisionId}:null);
  const [notice,setNotice]=useState(''),[failure,setFailure]=useState(''),[blocked,setBlocked]=useState(false);
@@ -32,6 +33,15 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
  // Advance synchronously so an old response cannot attach after that render.
  if(activeContext.current!==contextIdentity){activeContext.current=contextIdentity;edits.current++;}
  function invalidate(){work.changed();edits.current++;setNotice('');onCommit?.(null);onInvalidated?.();}
+ // The plugin retains its last valid snapshot while raw parameter text can differ.
+ // An unrelated view event must not acknowledge text absent from that snapshot.
+ function rawParametersMatch(snapshot:LabSnapshot){
+  return !!controls.current&&Array.from(controls.current.querySelectorAll<HTMLInputElement|HTMLSelectElement>('input[type="number"],select[id]')).every(input=>
+   input.value.trim()!==''&&input.validity.valid&&Object.entries(snapshot.configuration.parameters).some(([key,value])=>input.id.endsWith('-'+key)&&Number(input.value)===value));
+ }
+ function confirmUnchanged(snapshot:LabSnapshot){if(rawParametersMatch(snapshot)&&canonical({snapshot,courseLesson:courseLesson||null})===confirmed.current)work.confirm(work.checkpoint());}
+ // A confirmed reset updates controlled inputs in the same render batch.
+ useLayoutEffect(()=>{if(work.dirty)confirmUnchanged(latestSnapshot.current);});
  useEffect(()=>{alive.current=true;return()=>{alive.current=false;request.current?.abort();};},[]);
  useLayoutEffect(()=>{if(canonical({snapshot:initial,courseLesson:courseLesson||null})!==confirmed.current)work.changed();},[contextIdentity]);
  const readonly=saved&&(saved.resource.ownerId!==me.id||!saved.supported||saved.snapshot.implementationSha256!==capability.implementationSha256||saved.snapshot.capabilityVersion!==capability.version);
@@ -56,7 +66,7 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
   }
  }
  if(readonly)return <section><h3>Revisione conservata</h3><p>Configurazione in sola lettura. Il modello non viene eseguito.</p><p>Previsione: {saved.snapshot.prediction}</p><p>{saved.snapshot.note}</p><details><summary>Dati conservati</summary><pre>{JSON.stringify(saved.snapshot.labSnapshot||saved.snapshot.parameters,null,2)}</pre></details></section>;
- return <><div onClickCapture={event=>{const button=event.target instanceof Element?event.target.closest('button'):null;if(button?.textContent==='Ripristina lo scenario'&&!work.allowDiscard()){event.preventDefault();event.stopPropagation();}}} onChangeCapture={event=>{const target=event.target;if(target instanceof HTMLSelectElement&&target.closest('label')?.textContent?.startsWith('Scenario riproducibile')&&!work.allowDiscard()){event.preventDefault();event.stopPropagation();target.value='';return;}invalidate();}}><FluidThermoActivity initialSnapshot={initial} onSnapshotChange={snapshot=>{latestSnapshot.current=snapshot;invalidate();if(canonical({snapshot,courseLesson:courseLesson||null})===confirmed.current)work.confirm(work.checkpoint());}}
+ return <><div ref={controls} onClickCapture={event=>{const button=event.target instanceof Element?event.target.closest('button'):null;if(button?.textContent==='Ripristina lo scenario'&&!work.allowDiscard()){event.preventDefault();event.stopPropagation();}}} onChangeCapture={event=>{const target=event.target;if(target instanceof HTMLSelectElement&&target.closest('label')?.textContent?.startsWith('Scenario riproducibile')&&!work.allowDiscard()){event.preventDefault();event.stopPropagation();target.value='';return;}invalidate();}}><FluidThermoActivity initialSnapshot={initial} onSnapshotChange={snapshot=>{latestSnapshot.current=snapshot;invalidate();confirmUnchanged(snapshot);}}
   onInteraction={event=>{if(event.type==='compare'){const checkpoint=work.checkpoint(),compared=structuredClone(latestSnapshot.current);onCommit?.({activityId:capability.id,parameters:event.parameters,prediction:event.prediction,courseLesson,confirmDraft:()=>{const covered=(s:LabSnapshot)=>canonical({note:s.note,view:s.view,supportUsed:s.supportUsed});if(covered(compared)===covered(acknowledged.current)){acknowledged.current=compared;confirmed.current=canonical({snapshot:compared,courseLesson:courseLesson||null});work.confirm(checkpoint);}}});}else onCommit?.(null);}}
   onSave={save}/></div>
   {work.dirty&&<p role="status">Le modifiche del laboratorio non sono ancora tutte salvate. Salva la configurazione prima di uscire per ritrovare anche osservazioni e aiuti.</p>}

@@ -60,6 +60,20 @@ describe('Core laboratory evidence boundary',()=>{
   expect(commit).toHaveBeenLastCalledWith(null);expect(invalidated).toHaveBeenCalled();expect(screen.getByLabelText('Profondità [m]')).toHaveProperty('value','');
   await act(async()=>resolveSave(answer(frozen)));expect(linked).not.toHaveBeenCalled();expect(screen.queryByText('Salvataggio confermato dall’host.')).toBeNull();
  });
+ it('keeps an empty parameter guarded when the already selected 2D view emits an unchanged snapshot',()=>{
+  const confirm=vi.spyOn(window,'confirm').mockReturnValue(false);
+  render(<CoreFluidLab me={{id:'learner',role:'student',synthetic:true}} editionId="edition" capability={capability} courseLesson={lesson}/>);
+  fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:''}});
+  fireEvent.click(screen.getByRole('button',{name:'Sezione e diagramma 2D'}));
+  expect(screen.getByLabelText('Profondità [m]')).toHaveProperty('value','');
+  const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);expect(event.defaultPrevented).toBe(true);
+  fireEvent.click(screen.getByRole('button',{name:'Ripristina lo scenario'}));expect(confirm).toHaveBeenCalled();expect(screen.getByLabelText('Profondità [m]')).toHaveProperty('value','');
+  fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:String(definition.parameters.find(p=>p.key==='depth')!.default)}});
+  const corrected=new Event('beforeunload',{cancelable:true});window.dispatchEvent(corrected);expect(corrected.defaultPrevented).toBe(false);
+  fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:''}});confirm.mockReturnValue(true);fireEvent.click(screen.getByRole('button',{name:'Ripristina lo scenario'}));
+  const discarded=new Event('beforeunload',{cancelable:true});window.dispatchEvent(discarded);expect(discarded.defaultPrevented).toBe(false);expect(screen.getByLabelText('Profondità [m]')).toHaveProperty('value',String(definition.parameters.find(p=>p.key==='depth')!.default));
+  confirm.mockRestore();
+ });
 
 });
 

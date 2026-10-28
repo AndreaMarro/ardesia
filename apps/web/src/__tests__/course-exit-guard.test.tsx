@@ -51,6 +51,43 @@ it('the submission callback runs after the authoritative receipt, never before i
  await act(async()=>resolve(new Response(JSON.stringify({receiptId:'receipt-guard',revision:1}),{status:200})));expect(confirmed).toHaveBeenCalledTimes(1);
 });
 
+it('retrying pending A keeps its original confirmation observer after preparing B',async()=>{
+ const sent:string[]=[],acknowledged:string[]=[];
+ vi.stubGlobal('fetch',vi.fn(async(_path:string,options:RequestInit)=>{
+  sent.push(JSON.parse(options.body as string).text);
+  if(sent.length===1)throw Error('ambiguous response');
+  return new Response(JSON.stringify({receiptId:'receipt-retry-a',revision:1}),{status:200});
+ }));
+ const props={me:{id:'retry-learner',role:'student' as const,synthetic:true as const},source:null,parentId:null,onUpdate:async()=>{}};
+ let checkpoint!:()=>void;
+ const editor=<Editor name="assessment" onSave={ack=>checkpoint=ack}/>;
+ const panel=render(<>{editor}<SubmissionPanel {...props} prediction="A" onConfirmed={()=>{acknowledged.push('A');confirmA();}}/></>);
+ fireEvent.change(screen.getByLabelText('assessment'),{target:{value:'A'}});fireEvent.click(screen.getByText('Save assessment'));const confirmA=checkpoint;
+ fireEvent.change(screen.getByLabelText('La tua spiegazione'),{target:{value:'Procedimento originale'}});fireEvent.click(screen.getByRole('button',{name:'Consegna'}));
+ await screen.findByText(/Invio non ancora confermato/);
+ fireEvent.change(screen.getByLabelText('assessment'),{target:{value:'B'}});fireEvent.click(screen.getByText('Save assessment'));const confirmB=checkpoint;
+ panel.rerender(<>{editor}<SubmissionPanel {...props} prediction="B" onConfirmed={()=>{acknowledged.push('B');confirmB();}}/></>);
+ fireEvent.click(screen.getByRole('button',{name:'Consegna'}));await screen.findByText(/Consegnato · ricevuta receipt-retry-a/);
+ expect(sent).toEqual(['Previsione: A\n\nProcedimento: Procedimento originale','Previsione: A\n\nProcedimento: Procedimento originale']);
+ expect(acknowledged).toEqual(['A']);expect(screen.getByLabelText('assessment')).toHaveProperty('value','B');expect(unload()).toBe(true);
+});
+
+it('a remounted pending A cannot adopt the confirmation observer of B',async()=>{
+ const acknowledged=vi.fn(),sent:string[]=[];
+ vi.stubGlobal('fetch',vi.fn(async(_path:string,options:RequestInit)=>{
+  sent.push(JSON.parse(options.body as string).text);
+  if(sent.length===1)throw Error('ambiguous response');
+  return new Response(JSON.stringify({receiptId:'receipt-remounted-a',revision:1}),{status:200});
+ }));
+ const props={me:{id:'remounted-learner',role:'student' as const,synthetic:true as const},source:null,parentId:null,onUpdate:async()=>{}};
+ const panel=render(<SubmissionPanel {...props} prediction="A" onConfirmed={()=>{}}/>);
+ fireEvent.change(screen.getByLabelText('La tua spiegazione'),{target:{value:'Procedimento originale'}});fireEvent.click(screen.getByRole('button',{name:'Consegna'}));
+ await screen.findByText(/Invio non ancora confermato/);panel.unmount();
+ render(<SubmissionPanel {...props} prediction="B" onConfirmed={acknowledged}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Consegna'}));await screen.findByText(/Consegnato · ricevuta receipt-remounted-a/);
+ expect(sent[1]).toBe(sent[0]);expect(acknowledged).not.toHaveBeenCalled();
+});
+
 it('a failed local confirmation observer cannot downgrade an authoritative receipt',async()=>{
  vi.stubGlobal('fetch',vi.fn(async()=>new Response(JSON.stringify({receiptId:'receipt-observer',revision:1}),{status:200})));
  render(<SubmissionPanel me={{id:'observer-learner',role:'student',synthetic:true}} source={null} parentId={null} onUpdate={async()=>{}} onConfirmed={()=>{throw Error('local observer failed');}}/>);

@@ -344,7 +344,7 @@ export default function App() {
               setMe(value);
               setLoginOpen(false);
               setError("");
-              navigate("today");
+              navigate(initialView());
             }}
           />
         </Suspense>

@@ -28,3 +28,16 @@ it('forced session rejection clears the surface without offering to retain acces
  act(()=>{endStudySession('rejected',studySessionEpoch());});await waitFor(()=>expect(screen.queryByLabelText('Guarded response')).toBeNull());expect(window.confirm).not.toHaveBeenCalled();
  const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);expect(event.defaultPrevented).toBe(false);
 });
+
+it('a fresh login preserves an explicitly requested classroom view',async()=>{
+ const authenticatedFetch=vi.mocked(fetch).getMockImplementation()!;
+ vi.mocked(fetch).mockImplementation(async(path,options)=>String(path)==='/study/me'
+  ?new Response(JSON.stringify({error:'unauthenticated'}),{status:401})
+  :String(path)==='/study/session'
+   ?new Response(JSON.stringify(me),{status:200})
+   :authenticatedFetch(path,options));
+ render(<App/>);fireEvent.click(await screen.findByRole('button',{name:'Accedi al tuo spazio'}));
+ fireEvent.change(await screen.findByLabelText('Codice di accesso sintetico'),{target:{value:'synthetic-access-code'}});
+ fireEvent.click(screen.getByRole('button',{name:'Accedi'}));
+ await screen.findByLabelText('Guarded response');expect(location.search).toContain('view=classroom');expect(location.search).toContain('edition=first');
+});
