@@ -271,8 +271,7 @@
       "capabilityId": "process-lab-v1",
       "laboratorySpecId": "lab-spec-u5-04",
       "lessonIds": [
-        "ds-2026-u5-04",
-        "ds-2026-u5-05"
+        "ds-2026-u5-04"
       ],
       "objectiveIds": [
         "U5-02.04",
@@ -288,7 +287,12 @@
         "U5-05.06"
       ],
       "limitation": "Quattro cammini reversibili e libera espansione isolata ideale. Il caso irreversibile mostra solo gli stati iniziale e finale di equilibrio separati; nessun cammino p–V intermedio né area di lavoro inventata. Isocora vincola V₂=V₁.",
-      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; ROOT_REPORTED_BROWSER_PASS_35226870"
+      "implementationStatus": "NUMERICALLY_VALIDATED_AND_SOURCE_INSPECTED; ROOT_REPORTED_BROWSER_PASS_35226870",
+      "conceptualLessonIds": [
+        "ds-2026-u5-04",
+        "ds-2026-u5-05"
+      ],
+      "consumerReachabilityNote": "Disponibile nel consumer da ds-2026-u5-04 (lezione9). Gli obiettivi U5-05 restano associazioni concettuali: il modello non compare come ulteriore scelta in ds-2026-u5-05 (lezione10)."
     },
     {
       "labId": "carnot",
@@ -329,5 +333,6 @@
   "acceptance": "No objective ACCEPTED by this mapping; IDs do not certify all subtargets of a family.",
   "mappedAtomicObjectiveCount": 45,
   "objectiveLinkCount": 49,
-  "implementedModelCount": 16
+  "implementedModelCount": 16,
+  "lessonIdsSemantics": "lessonIds lists the actual CourseLaboratories consumer entries. conceptualLessonIds, when present, records pedagogical associations, not additional UI availability. objectiveIds are scientific concept links, not separate browser visits."
 }
