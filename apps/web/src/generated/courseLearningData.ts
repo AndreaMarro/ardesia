@@ -7180,7 +7180,7 @@ export const courseLearningData = {
       "packRef": {
         "packId": "sf-fluidi-termodinamica-v1",
         "packVersion": 1,
-        "packSha256": "bcd40499ae681e5cbe48f6edfd131bd6735b988e8f282b110f703715dac593b4"
+        "packSha256": "22b8c73df53cabfc59163c02cc58104c7ab16c16471bcc3cc9766e662b0de5f6"
       },
       "title": "Fluidi e termodinamica",
       "unitIds": [
