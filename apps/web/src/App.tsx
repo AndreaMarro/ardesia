@@ -282,6 +282,7 @@ export default function App() {
                 <Classroom
                   me={me}
                   data={data}
+                  onScienceAcknowledged={course.acknowledgeScienceResource}
                   parentId={parentId}
                   onUpdate={async () => {
                     await refresh();

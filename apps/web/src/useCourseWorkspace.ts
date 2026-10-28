@@ -1,5 +1,7 @@
 import {pushCourseHistory,replaceCourseHistory} from "./courseExitGuard";
 import { useCallback, useEffect, useRef, useState } from "react";
+import {isStudySessionEpoch,studySessionEpoch} from '../../studio/src/study/sessionBoundary';
+import type {ResourceRef,SavedScience} from './features/science-library/types';
 import {
   describeError,
   StudyApiError,
@@ -17,6 +19,7 @@ type Paging = {
 /** Discovery is SQL-authorized and bounded: one page plus at most one exact lookup. */
 export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
   const actor = me ? `${me.id}:${me.role}:${sessionVersion}` : "";
+  const acknowledgementEpoch=studySessionEpoch();
   const [listingVersion, setListingVersion] = useState(0);
   const [paging, setPaging] = useState<Paging>({
     actor: "",
@@ -267,6 +270,31 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
       request.current.controller?.abort();
     };
   }, [refresh, editionId]);
+  const acknowledgeScienceResource = useCallback((saved: SavedScience, previous: ResourceRef | null) => {
+    const resource = saved.resource;
+    if (!me || !editionId || current.current.actor !== actor ||
+      current.current.editionId !== editionId || owner.current !== actor ||
+      selectionOwner.current !== actor || expiredActor.current === actor ||
+      !isStudySessionEpoch(acknowledgementEpoch) || resource.ownerId !== me.id ||
+      resource.editionId !== editionId || resource.kind !== 'science-resource' ||
+      resource.visibility !== 'private' || !resource.id?.trim() ||
+      !resource.revisionId?.trim() || !resource.contextId?.trim() ||
+      (previous && previous.resourceId !== resource.id)) return false;
+    const workspace = cache.current.get(editionId);
+    if (!workspace?.enrolled) return false;
+    const existing = workspace.resources.find(value => value.id === resource.id);
+    if (existing && (existing.ownerId !== me.id || existing.editionId !== editionId ||
+      existing.kind !== 'science-resource' || (existing.revisionId !== resource.revisionId &&
+      existing.revisionId !== previous?.revisionId))) return false;
+    const next = {...workspace, resources: [resource, ...workspace.resources.filter(value => value.id !== resource.id)]};
+    // A workspace GET started before this confirmed write must not replace it.
+    request.current.sequence++;
+    request.current.controller?.abort();
+    cache.current.set(editionId, next);
+    setData(next);
+    setLoading(false);
+    return true;
+  }, [actor, editionId, acknowledgementEpoch]);
   function selectEdition(id: string) {
     if (
       listing ||
@@ -356,6 +384,7 @@ export function useCourseWorkspace(me: StudyMe | null, sessionVersion = 0) {
     sessionExpired,
     error: sameActor ? error : "",
     refresh,
+    acknowledgeScienceResource,
     retry,
     selectEdition,
     reloadEditions,

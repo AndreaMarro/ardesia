@@ -16,6 +16,7 @@ import { useResourceComposer } from "../components/useResourceComposer";
 import { ErrorNotice, Loading } from "../components/Feedback";
 import type { PostitReference } from "../../../studio/src/study/contracts";
 import { type StudyMe, type Workspace } from "../api";
+import type {ResourceRef,SavedScience} from './science-library/types';
 import { ScientificNotebooks } from "../integrations/notebook/ScientificNotebooks";
 import { PhysicsQuestionBank } from "../components/PhysicsQuestionBank";
 import { QuestionBankReview } from "../components/QuestionBankReview";
@@ -29,6 +30,7 @@ type Props = {
   me: StudyMe;
   data: Workspace;
   onUpdate: () => Promise<void>;
+  onScienceAcknowledged?: (value:SavedScience,previous:ResourceRef|null)=>boolean|void;
   parentId?: string | null;
 };
 
@@ -58,6 +60,7 @@ function ClassroomScope({
   me,
   data,
   onUpdate,
+  onScienceAcknowledged,
   parentId = null,
 }: Props) {
   const [commit, setCommit] = useState<ActivityCommit | null>(null);
@@ -113,7 +116,7 @@ function ClassroomScope({
         <button aria-expanded={pressureEpisode} onClick={() => {setPressureEpisode(value => !value); setGuidedEpisode(false);}}>Pressione e profondità · percorso guidato</button>
       </div>}
       <section className="lab-surface">
-        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace me={me} resources={data.resources} submissions={data.submissions} onSaved={ref=>{setSource(ref);setSelectionMessage('Configurazione collegata alla prossima consegna.');}} onInvalidated={()=>setSource(null)} editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
+        {data.edition.packId?.startsWith("sf-") ? (<Suspense fallback={<Loading>Apro le lezioni del corso…</Loading>}><CourseLearningWorkspace me={me} resources={data.resources} submissions={data.submissions} onAcknowledged={onScienceAcknowledged} onSaved={ref=>{setSource(ref);setSelectionMessage('Configurazione collegata alla prossima consegna.');}} onInvalidated={()=>setSource(null)} editionId={data.edition.id} onCommit={setCommit} initialActivityId={retrySubmission?.activity_id} initialCourseLesson={courseLessonFromContext(retrySubmission?.courseContext)}/></Suspense>) : activityId === "taylor-exp-v1" ? (
           <TaylorLab
             onCommit={setCommit}
             draftKey={JSON.stringify([draftScope, "taylor-lab"])}

@@ -4,6 +4,7 @@ import type {PostitReference,CourseLessonContext} from '../../../../studio/src/s
 import type {ActivityCommit} from '../../course';
 import {FluidThermoActivity,newLabSnapshot,type LabSnapshot} from './FluidThermoActivity';
 import {useCourseDraft} from '../../courseExitGuard';
+import {isStudySessionEpoch,studySessionEpoch} from '../../../../studio/src/study/sessionBoundary';
 import {scienceTimestamp} from './scienceTimestamp';
 import {scienceApi} from './scienceApi';
 import {scienceResourceHref} from './resourceNavigation';
@@ -13,9 +14,9 @@ const canonical=(v:unknown):string=>JSON.stringify(v&&typeof v==='object'?Array.
 
 type Props={me:StudyMe;editionId:string;capability:Capability;saved?:SavedScience;
  courseLesson?:CourseLessonContext;api?:ScienceApi;onCommit?:(v:ActivityCommit|null)=>void;
- onSaved?:(ref:PostitReference)=>void;onInvalidated?:()=>void};
+ onSaved?:(ref:PostitReference)=>void;onAcknowledged?:(value:SavedScience,previous:ResourceRef|null)=>boolean|void;onInvalidated?:()=>void};
 /** The only persistence boundary is the existing versioned Core science resource. */
-export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=scienceApi,onCommit,onSaved,onInvalidated}:Props){
+export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=scienceApi,onCommit,onSaved,onAcknowledged,onInvalidated}:Props){
  const [initial]=useState(()=>saved?.snapshot.labSnapshot||newLabSnapshot(capability.fluidLab!.modelId,{
   schemaVersion:1,modelId:capability.fluidLab!.modelId,modelVersion:1,
   parameters:Object.fromEntries(capability.parameters.map(p=>[p.key,p.default])),
@@ -26,7 +27,8 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
  const confirmed=useRef(canonical({snapshot:initial,courseLesson:saved?saved.snapshot.courseLesson||null:courseLesson||null}));
  const [ref,setRef]=useState<ResourceRef|null>(saved?{resourceId:saved.resource.id,revisionId:saved.resource.revisionId}:null);
  const [notice,setNotice]=useState(''),[failure,setFailure]=useState(''),[blocked,setBlocked]=useState(false);
- const pending=useRef<{snapshot:Snapshot;ref:ResourceRef|null;key:string;edit:number;checkpoint:number}|null>(null),edits=useRef(0),alive=useRef(true);
+ const pending=useRef<{snapshot:Snapshot;ref:ResourceRef|null;key:string;edit:number;checkpoint:number;identity:string;epoch:number}|null>(null),edits=useRef(0),alive=useRef(true);
+ const identity=JSON.stringify([me.id,me.role,editionId]),activeIdentity=useRef(identity);activeIdentity.current=identity;
  const request=useRef<AbortController|null>(null);
  const contextIdentity=JSON.stringify(courseLesson||null),activeContext=useRef(contextIdentity);
  // A reader step can change while the same laboratory keeps its open draft.
@@ -49,12 +51,16 @@ export function CoreFluidLab({me,editionId,capability,saved,courseLesson,api=sci
   if(blocked)throw Error('Riapri la revisione corrente prima di salvare.');
   if(!pending.current)pending.current={snapshot:{schemaVersion:1,capabilityId:capability.id,capabilityVersion:capability.version,
    implementationSha256:capability.implementationSha256,parameters:{...snapshot.configuration.parameters},prediction:snapshot.prediction,
-   note:snapshot.note,supportUsed:[...snapshot.supportUsed],labSnapshot:structuredClone(snapshot),...(courseLesson?{courseLesson}:{})},ref,key:requestKey(),edit:edits.current,checkpoint:work.checkpoint()};
+   note:snapshot.note,supportUsed:[...snapshot.supportUsed],labSnapshot:structuredClone(snapshot),...(courseLesson?{courseLesson}:{})},ref,key:requestKey(),edit:edits.current,checkpoint:work.checkpoint(),identity,epoch:studySessionEpoch()};
   const frozen=pending.current,controller=new AbortController();request.current=controller;setFailure('');setNotice('');
   try{
+   if(frozen.identity!==activeIdentity.current||!isStudySessionEpoch(frozen.epoch))throw Error('Operazione interrotta.');
    const answer=await api.save(editionId,frozen.snapshot,frozen.key,frozen.ref,controller.signal);
-   if(!alive.current||controller.signal.aborted)throw Error('Operazione interrotta.');
-   if(answer.resource.ownerId!==me.id||answer.resource.editionId!==editionId||answer.resource.kind!=='science-resource'||canonical(answer.snapshot)!==canonical(frozen.snapshot))throw Error('Risposta di salvataggio incompatibile.');
+   if(!alive.current||controller.signal.aborted||frozen.identity!==activeIdentity.current||!isStudySessionEpoch(frozen.epoch))throw Error('Operazione interrotta.');
+   if(answer.resource.ownerId!==me.id||answer.resource.editionId!==editionId||answer.resource.kind!=='science-resource'||answer.resource.visibility!=='private'||!answer.resource.id?.trim()||!answer.resource.revisionId?.trim()||!answer.resource.contextId?.trim()||(frozen.ref&&answer.resource.id!==frozen.ref.resourceId)||canonical(answer.snapshot)!==canonical(frozen.snapshot)||canonical(JSON.parse(answer.resource.text))!==canonical(answer.snapshot))throw Error('Risposta di salvataggio incompatibile.');
+   // Publish the confirmed resource even when newer edits stay dirty. Attaching
+   // it as a submission source below still requires the matching edit generation.
+   if(onAcknowledged?.(answer,frozen.ref)===false)throw Error('stale_revision');
    const next={resourceId:answer.resource.id,revisionId:answer.resource.revisionId};setRef(next);pending.current=null;
    if(edits.current===frozen.edit){acknowledged.current=frozen.snapshot.labSnapshot!;confirmed.current=canonical({snapshot:frozen.snapshot.labSnapshot,courseLesson:frozen.snapshot.courseLesson||null});work.confirm(frozen.checkpoint);setNotice('Configurazione e ragionamento salvati.'+(answer.updatedAt?' '+new Date(scienceTimestamp(answer.updatedAt)).toLocaleString('it-IT')+'.':''));onSaved?.({...next,contextId:answer.resource.contextId});}
    else {setNotice('Salvata la versione in attesa. Le modifiche aperte restano da salvare.');throw Error('Le modifiche aperte sono ancora da salvare.');}

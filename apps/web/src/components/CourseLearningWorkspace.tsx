@@ -31,8 +31,9 @@ async function readScienceRevisions(refs:ResourceRef[],signal:AbortSignal):Promi
 }
 
 type LoadedCourse={scope:string;course:CourseRecord;saved:SavedScience[]};
-export function CourseLearningWorkspace({editionId,onCommit,initialActivityId,initialCourseLesson,me,resources=[],submissions=[],onSaved,onInvalidated}:{editionId:string;me?:StudyMe;resources?:StudyResource[];submissions?:Submission[];onSaved?:(ref:PostitReference)=>void;onInvalidated?:()=>void;onCommit:(value:ActivityCommit|null)=>void;initialActivityId?:string;initialCourseLesson?:CourseLessonContext}){
+export function CourseLearningWorkspace({editionId,onCommit,initialActivityId,initialCourseLesson,me,resources=[],submissions=[],onSaved,onAcknowledged,onInvalidated}:{editionId:string;me?:StudyMe;resources?:StudyResource[];submissions?:Submission[];onSaved?:(ref:PostitReference)=>void;onAcknowledged?:(value:SavedScience,previous:ResourceRef|null)=>boolean|void;onInvalidated?:()=>void;onCommit:(value:ActivityCommit|null)=>void;initialActivityId?:string;initialCourseLesson?:CourseLessonContext}){
  const scope=JSON.stringify([editionId,me?.id,me?.role]);
+ const activeScope=useRef(scope);activeScope.current=scope;
  const [loaded,setLoaded]=useState<LoadedCourse|null>(null);
  const [error,setError]=useState<{scope:string;message:string}|null>(null),[retry,setRetry]=useState(0);
  // Acknowledging a correction clears its submission parent, not the reader's
@@ -72,5 +73,17 @@ export function CourseLearningWorkspace({editionId,onCommit,initialActivityId,in
  const currentError=error?.scope===scope?error.message:'';
  const lastAttempt=submissions.filter(s=>s.student_id===me?.id&&s.courseContext?.lessonRef).sort((a,b)=>(b.created_at||0)-(a.created_at||0))[0];
  const resumeAttempt=lastAttempt&&((lastAttempt.created_at||0)*1000>scienceTimestamp(saved[0]?.updatedAt)||!saved.length)?lastAttempt:undefined;
- return currentError?<ErrorNotice message={currentError} onRetry={()=>setRetry(value=>value+1)}/>:course?<CourseScope key={JSON.stringify([scope,course.pathId,entry.current.initialActivityId,entry.current.initialCourseLesson])} course={course} allowLocalDrafts={false} onCommit={onCommit} initialActivityId={entry.current.initialActivityId} initialCourseLesson={entry.current.initialCourseLesson} labHost={me?{me,editionId,saved,resume:courseLessonFromContext(resumeAttempt?.courseContext),resumeActivityId:resumeAttempt?.activity_id,lastAttempt,onSaved:onSaved||(()=>{}),onInvalidated:onInvalidated||(()=>{})}:undefined}/>:<p role="status">Apro la revisione del corso…</p>;
+ function acknowledge(value:SavedScience,previous:ResourceRef|null){
+  if(activeScope.current!==scope||value.resource.ownerId!==me?.id||value.resource.editionId!==editionId)return false;
+  if(onAcknowledged?.(value,previous)===false)return false;
+  // Update the already loaded revisions without remounting the open editor.
+  setLoaded(current=>{
+   if(current?.scope!==scope)return current;
+   const existing=current.saved.find(saved=>saved.resource.id===value.resource.id);
+   if(existing&&existing.resource.revisionId!==value.resource.revisionId&&existing.resource.revisionId!==previous?.revisionId)return current;
+   return {...current,saved:[value,...current.saved.filter(saved=>saved.resource.id!==value.resource.id)]};
+  });
+  return true;
+ }
+ return currentError?<ErrorNotice message={currentError} onRetry={()=>setRetry(value=>value+1)}/>:course?<CourseScope key={JSON.stringify([scope,course.pathId,entry.current.initialActivityId,entry.current.initialCourseLesson])} course={course} allowLocalDrafts={false} onCommit={onCommit} initialActivityId={entry.current.initialActivityId} initialCourseLesson={entry.current.initialCourseLesson} labHost={me?{me,editionId,saved,resume:courseLessonFromContext(resumeAttempt?.courseContext),resumeActivityId:resumeAttempt?.activity_id,lastAttempt,onSaved:onSaved||(()=>{}),onAcknowledged:acknowledge,onInvalidated:onInvalidated||(()=>{})}:undefined}/>:<p role="status">Apro la revisione del corso…</p>;
 }

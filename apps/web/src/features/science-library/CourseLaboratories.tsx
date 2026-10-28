@@ -6,7 +6,7 @@ import type {ActivityCommit} from '../../course';
 import {confirmCourseExit,useCourseDraftScope} from '../../courseExitGuard';
 import {CoreFluidLab} from './CoreFluidLab';
 import {scienceApi} from './scienceApi';
-import type {Capability,SavedScience} from './types';
+import type {Capability,ResourceRef,SavedScience} from './types';
 const models:Record<string,string[]>={
  'ds-2026-u3-01':['pascal'],
  'ds-2026-u3-02':['manometer','hydrostatic','pascal','buoyancy'],
@@ -15,7 +15,7 @@ const models:Record<string,string[]>={
  'ds-2026-u5-02':['calorimetry','phase-change'],'ds-2026-u5-03':['heat-transfer'],
  'ds-2026-u5-04':['process'],'ds-2026-u5-05':['carnot','entropy']};
 export const lessonSupportsLab=(lessonId:string,activityId:string)=>Boolean(models[lessonId]?.some(id=>activityId===id+'-lab-v1'));
-export type CourseLabHost={me:StudyMe;editionId:string;saved:SavedScience[];onSaved:(ref:PostitReference)=>void;onInvalidated:()=>void;resume?:CourseLessonContext;resumeActivityId?:string;lastAttempt?:Submission};
+export type CourseLabHost={me:StudyMe;editionId:string;saved:SavedScience[];onSaved:(ref:PostitReference)=>void;onAcknowledged?:(value:SavedScience,previous:ResourceRef|null)=>boolean|void;onInvalidated:()=>void;resume?:CourseLessonContext;resumeActivityId?:string;lastAttempt?:Submission};
 export function CourseLaboratories({host,lesson,phase,stepId,initialActivityId,onCommit}:{host:CourseLabHost;lesson:CourseLesson;phase:CourseLessonContext['phase'];stepId?:string;initialActivityId?:string;onCommit?:(v:ActivityCommit|null)=>void}){
  const exitScope=useCourseDraftScope();
  const [capabilities,setCapabilities]=useState<Capability[]>([]),[error,setError]=useState(''),[retry,setRetry]=useState(0),[loading,setLoading]=useState(true);
@@ -31,7 +31,7 @@ export function CourseLaboratories({host,lesson,phase,stepId,initialActivityId,o
    {available.length>1&&<label>Fenomeno da esplorare<select value={selected} onChange={e=>{if(e.target.value!==selected&&!confirmCourseExit(exitScope,['laboratory']))return;setSelected(e.target.value as typeof selected);onCommit?.(null);host.onInvalidated();}}>{available.map(c=><option key={c.id} value={c.fluidLab!.modelId}>{c.title}</option>)}</select></label>}
    {lesson.id==='ds-2026-u3-01'&&<p>In questo passaggio mantieni fissa la forza di ingresso e varia l’area di ingresso. Confronta la tua previsione con l’incremento di pressione F₁/A₁ nella tabella delle misure, in pascal. La forza di uscita F₂, mostrata dal torchio in newton, è una grandezza diversa.</p>}
    {/* Background ACKs preserve the open draft. Explicit revision navigation remounts its consumer. */}
-   <CoreFluidLab key={JSON.stringify([host.me.id,host.me.role,host.editionId,lesson.lessonRef,phase,cap.id])} me={host.me} editionId={host.editionId} capability={cap} saved={saved} courseLesson={{lessonRef:lesson.lessonRef,phase,...(stepId?{stepId}:{})}} onCommit={onCommit} onSaved={host.onSaved} onInvalidated={host.onInvalidated}/>
+   <CoreFluidLab key={JSON.stringify([host.me.id,host.me.role,host.editionId,lesson.lessonRef,phase,cap.id])} me={host.me} editionId={host.editionId} capability={cap} saved={saved} courseLesson={{lessonRef:lesson.lessonRef,phase,...(stepId?{stepId}:{})}} onCommit={onCommit} onSaved={host.onSaved} onAcknowledged={host.onAcknowledged} onInvalidated={host.onInvalidated}/>
   </>}
  </section>;
 }
