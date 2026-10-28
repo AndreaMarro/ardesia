@@ -13,6 +13,64 @@ describe('reusable lab state and fallback',()=>{
       expect(screen.getByRole('img',{name:new RegExp(definition.title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'))})).toBeTruthy();
       expect(screen.getAllByRole('slider').length).toBeGreaterThan(0);view.unmount();
   });
+  it.each([
+    ['manometer',/p₁ − p₂ =/],['hydrostatic',/Δp =/],['pascal',/F₂ =/],
+    ['buoyancy',/F_A =/],['continuity',/v₂ =/],['venturi',/p₂ =/],
+    ['poiseuille',/u parete =/],['hydraulic-network',/R equivalente =/],
+    ['capillary',/p_gas − p_liquido =/],['ideal-gas',/Stato selezionato/],
+    ['calorimetry',/Equilibrio comune:/],['phase-change',/frazione fusa =/],
+    ['heat-transfer',/[\d,]+ W/],['process',/W =/],
+    ['carnot',/Isoterma calda/],['entropy',/ΔS₁ =/],
+  ] as const)('reveals %s solved diagram data only after prediction and comparison',(id,solved)=>{
+    const view=render(<FluidThermoActivity initialSnapshot={newLabSnapshot(id)}/>);
+    const diagram=()=>view.container.querySelector('svg.lab-diagram')!;
+    expect(diagram().textContent).not.toMatch(solved);
+    expect(view.container.querySelector('.ft-observation strong')).toBe(null);
+    expect(screen.queryByText('Misure e dati equivalenti')).toBe(null);
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Prevedo un cambiamento e ne controllo il segno'}});
+    expect(diagram().textContent).not.toMatch(solved);
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(diagram().textContent).toMatch(solved);
+    expect(view.container.querySelector('.ft-observation strong')).toBeTruthy();
+    expect(screen.getByText('Misure e dati equivalenti')).toBeTruthy();
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Rivedo la previsione'}});
+    expect(diagram().textContent).not.toMatch(solved);
+    expect(screen.queryByText('Misure e dati equivalenti')).toBe(null);
+  });
+  it('conceals the previous solved values when the parameters change',()=>{
+    const view=render(<FluidThermoActivity initialSnapshot={newLabSnapshot('hydrostatic')}/>);
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'La pressione aumenta'}});
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(view.container.querySelector('svg')?.textContent).toContain('Δp =');
+    fireEvent.change(screen.getByLabelText('Profondità [m]'),{target:{value:'4'}});
+    expect(view.container.querySelector('svg')?.textContent).not.toContain('Δp =');
+    expect(view.container.querySelector('.ft-observation strong')).toBe(null);
+  });
+  it('conceals the Poiseuille velocity graph and vectors until comparison',()=>{
+    const view=render(<FluidThermoActivity initialSnapshot={newLabSnapshot('poiseuille')}/>);
+    const graph=()=>view.container.querySelector('svg.lab-diagram')!;
+    expect(graph().querySelector('polyline')).toBe(null);
+    expect(graph().querySelector('[marker-end]')).toBe(null);
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Confronto velocità al centro e alla parete'}});
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(graph().querySelector('polyline')).toBeTruthy();
+    expect(graph().querySelector('[marker-end]')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button',{name:'Ripristina lo scenario'}));
+    expect(graph().querySelector('polyline')).toBe(null);
+    expect(graph().querySelector('[marker-end]')).toBe(null);
+  });
+  it('describes free expansion as two equilibrium states without a work area',()=>{
+    const initial=newLabSnapshot('process');initial.configuration.parameters.path=4;
+    const view=render(<FluidThermoActivity initialSnapshot={initial}/>);
+    fireEvent.change(screen.getByLabelText('La tua previsione'),{target:{value:'Il gas si espande nel vuoto'}});
+    fireEvent.click(screen.getByRole('button',{name:'Confronta con il modello'}));
+    expect(view.container.querySelector('svg desc')?.textContent).toContain('solo due stati di equilibrio');
+    expect(view.container.querySelector('svg desc')?.textContent).toContain('Nessun cammino intermedio');
+    expect(view.container.querySelector('svg polygon')).toBe(null);
+    const paths=[...view.container.querySelectorAll('svg polyline')];
+    expect(paths).toHaveLength(2);
+    expect(paths.every(path=>path.getAttribute('points')?.trim().split(/\s+/).length===1)).toBe(true);
+  });
   it('keeps controls mounted for an own echo, resets to baseline, and accepts an external restore',()=>{
     const original=newLabSnapshot('hydrostatic');let emitted:LabSnapshot|undefined;
     const change=(value:LabSnapshot)=>{emitted=value;};

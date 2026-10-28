@@ -192,7 +192,7 @@ export function evaluateLab(id:LabId,parameters:Parameters):LabResult{
    const output=m('work','Lavoro compiuto dal gas','J',work);
    return result(output,[output,m('heat','Calore ricevuto dal gas','J',heat),m('internalEnergyChange','Variazione di energia interna','J',internal),m('finalTemperature','Temperatura finale','K',finalTemperature),m('finalPressure','Pressione finale','Pa',finalPressure),m('finalVolume','Volume finale effettivo','m³',finalVolume),m('entropyChange','Variazione di entropia del gas','J/K',entropy),m('totalEntropyChange','Variazione di entropia totale','J/K',freeExpansion?entropy:0)],
     curves,freeExpansion?['Libera espansione isolata nel vuoto: nessun cammino di equilibrio intermedio è definito. I due punti non vanno collegati; nessuna area del grafico rappresenta il lavoro, che è zero. ΔS_gas=ΔS_totale>0.']:
-     p.path===2?['Cammino isocoro: volume finale uguale al volume iniziale; la temperatura finale è temperature2K.']:['La temperatura finale è determinata dal cammino; il parametro temperature2K è usato solo nell’isocora.']);
+     p.path===2?['Cammino isocoro: il volume resta costante e la temperatura finale è quella impostata nei dati.']:['La temperatura finale è determinata dal cammino. Il controllo della temperatura finale si usa solo nell’isocora.']);
   }
   case 'carnot':{
    if(p.hotTemperatureK<=p.coldTemperatureK)throw new RangeError('Un motore di Carnot richiede T_h>T_c>0 in kelvin.');

@@ -41,7 +41,7 @@ export const publicPreviewData = {
     "derivation": "Mean speed ratio = Core flow ratio / radius ratio squared; Q = v_mean A."
   },
   "sources": {
-    "packages/engine/lessonos/study/activities.py": "cc6bd930284544bcd8cb43328b14769f1c6e642efa7eef1e55bfc111e7a375bb",
+    "packages/engine/lessonos/study/activities.py": "eff472dbc567ba258499452283eeeef2154213f92a76027d55dfd2421a82639c",
     "packages/engine/lessonos/study/spring.py": "9b4838c4474de7189077630d86195504b8951a584340e571e1bdd566162f54a7",
     "packages/engine/lessonos/study/public_preview.py": "d9840365acb0ecdd1612dc3259b5a825bf1a346e279ed785240336380ff783f1",
     "bin/web/poiseuille-demo.json": "3fa466d4e394549e0e9dd8dd1e11bdf18105429f0a50710907429dce8c82f3b4",
