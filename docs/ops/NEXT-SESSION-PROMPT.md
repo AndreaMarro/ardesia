@@ -1,5 +1,16 @@
 # Prossimo incarico: completare i quattro microcorsi di Fisica
 
+## Addendum documentale, 28 ottobre 2026 — PR #338 — sintesi visiva e requisito W0
+
+Questo aggiornamento **non è un nuovo task di implementazione** e non sostituisce i gate e le priorità operative già aperte. [PR #338](https://github.com/AndreaMarro/ardesia/pull/338) raccoglie la [specifica integrale datata](../product/ARDESIA_specifiche_integrali_ricostruite_2026-10-28.md), l'[atlante HTML dei 36 mockup](../design/visual-reference-library/ARDESIA_atlante_visivo_36_modelli_2026-10-28.html) e l'[indice visuale/accettazione W0](../design/visual-reference-library/README.md). Tutti i file sono riferimenti progettuali: **non** un nuovo canon, un attestato di implementazione o un motivo per pubblicare la banca DRAFT.
+
+**Come riprendere correttamente:** generare lo stato con `bin/state/project_state.py` nel checkout reale; verificare `main`, PR/CI/Vercel correnti; leggere `AGENTS.md`, [CANON-INDEX](../CANON-INDEX.md), le ultime voci del [RUNLOG](ARDESIA-RUNLOG.md), contratti CoursePack/Core e i gate della chiusura attiva. `RUNLOG` è indicato come lettura per gli agenti, ma la lettura automatica da ogni host non è attestata. `CURRENT.md` non si aggiorna a mano e AgentMemory non è una seconda fonte autorevole.
+
+**Per la prossima chiusura visuale:** usare B03/B04/G01/B01 del 27 ottobre come criterio W0: foglio didattico, penna, fonte e revisione esatta, laboratorio indipendente manipolabile, salvataggio e cold reopen; la stessa risorsa nel Taccuino e nella Lavagna, senza nuovo DB, plugin registry o authoring. **Non ripristinare eLab** e non realizzare un clone integrale dei mockup. Le verifiche UX, sicurezza, prestazioni e collaborazione restano da eseguire su un candidato preciso.
+
+**Quattro prossime azioni subordinate ai gate correnti:** (1) chiudere PR #338 con check e stato GitHub effettivo; (2) mappare B03/B04/G01 ai componenti reali senza implementare più di una lezione W0; (3) verificare permessi, revoca, nuovo dispositivo e ripresa nella prova sintetica remota già in sviluppo; (4) fare review grafico-pedagogica su browser e hardware disponibile, registrando RED/GREEN e `not_checked`. Non sostituire con questi suggerimenti i mandati operativi delle PR #331–#337.
+
+
 ## Addendum operativo corrente — S00, 26 ottobre 2026
 
 Il proprietario ha adottato esplicitamente «Esegui S00 in questa A». La306 è
