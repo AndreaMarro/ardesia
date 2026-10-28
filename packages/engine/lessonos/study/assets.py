@@ -92,7 +92,7 @@ def read_asset(store,principal,asset_id,blob_dir:Path):
     return data, descriptor['mime']
 
 
-def read_original_asset(store, principal, asset_id, blob_dir: Path):
+def read_original_asset(store, principal, asset_id, blob_dir: Path, *, allow_unavailable=False):
     """Return canonical metadata only with authorized, integrity-checked bytes.
 
     An upload is immutable; its identity is independent of any extracted-text
@@ -100,7 +100,7 @@ def read_original_asset(store, principal, asset_id, blob_dir: Path):
     """
     row=store.connection.execute('SELECT * FROM study_assets WHERE id=? AND deleted=0',(asset_id,)).fetchone()
     if row is None:raise StudyError('not_found',404)
-    edition=store._edition_access(principal,row['edition_id'])
+    edition=store._edition_access(principal,row['edition_id'],allow_unavailable=allow_unavailable)
     owner=row['owner_id']==principal.id
     submitted=edition['teacherId']==principal.id and store._submitted_reference(row['edition_id'],row['owner_id'],asset_id)
     if not (owner or submitted):raise StudyError('forbidden',403)

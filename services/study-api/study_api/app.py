@@ -342,11 +342,11 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
 
     @app.get('/study/resources/{resource_id}')
     def resource(resource_id: str, request: Request, store=Depends(store_dependency)):
-        return store.get_resource(authenticate(request,store),resource_id)
+        return store.get_resource(authenticate(request,store),resource_id,allow_unavailable=True)
 
     @app.get('/study/resources/{resource_id}/revisions/{revision_id}')
     def resource_revision(resource_id: str, revision_id: str, request: Request, store=Depends(store_dependency)):
-        return store.get_resource_revision(authenticate(request,store),resource_id,revision_id)
+        return store.get_resource_revision(authenticate(request,store),resource_id,revision_id,allow_unavailable=True)
 
     @app.get('/study/course')
     def course(request: Request, editionId: str='fluidi', store=Depends(store_dependency)):
@@ -433,19 +433,19 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
         from lessonos.study.feedback import list_feedback
         principal=authenticate(request,store)
         from lessonos.study.editions import public_edition
-        edition=public_edition(store,editionId,principal)
+        edition=public_edition(store,editionId,principal,allow_unavailable=True)
         member=bool(store.connection.execute('SELECT 1 FROM study_members WHERE edition_id=? AND student_id=?',(editionId,principal.id)).fetchone())
         if principal.role=='teacher' and principal.id!=edition['teacherId']:raise StudyError('forbidden',403)
         if not member and principal.role!='teacher':return {'enrolled':False,'edition':edition,'resources':[],'submissions':[],'layouts':[]}
         rows=store.connection.execute('SELECT id FROM study_resources WHERE edition_id=? AND deleted=0',(editionId,)).fetchall()
         resources=[]
         for row in rows:
-            try:resources.append(store.get_resource(principal,row['id']))
+            try:resources.append(store.get_resource(principal,row['id'],allow_unavailable=True))
             except StudyError:pass
-        submissions=list_submissions(store,principal,editionId)
-        for item in submissions:item['feedback']=list_feedback(store,principal,item['id'])
+        submissions=list_submissions(store,principal,editionId,allow_unavailable=True)
+        for item in submissions:item['feedback']=list_feedback(store,principal,item['id'],allow_unavailable=True)
         from lessonos.study.view_layout import load_layout
-        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId)}
+        return {'enrolled':True,'edition':edition,'resources':resources,'submissions':submissions,**load_layout(store,principal,editionId,allow_unavailable=True)}
 
     @app.post('/study/editions/{edition_id}/holds')
     def hold(edition_id: str, request: Request, store=Depends(store_dependency)):
@@ -505,7 +505,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.get('/study/assets/{asset_id}')
     def asset(asset_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.assets import read_original_asset
-        data,descriptor=read_original_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs')
+        data,descriptor=read_original_asset(store,authenticate(request,store),asset_id,Path(db_path).parent/'blobs',allow_unavailable=True)
         return Response(data,media_type=descriptor['mime'],headers={
             'Content-Disposition':f'attachment; filename="original-{asset_id}"',
             'Cache-Control':'no-store',
@@ -520,7 +520,7 @@ def create_app(db_path: Path, *, demo=False, frontend: Path | None = None, studi
     @app.get('/study/receipts/{receipt_id}')
     def receipt(receipt_id: str, request: Request, store=Depends(store_dependency)):
         from lessonos.study.submissions import get_receipt
-        return get_receipt(store,authenticate(request,store),receipt_id)
+        return get_receipt(store,authenticate(request,store),receipt_id,allow_unavailable=True)
 
     @app.post('/study/feedback/drafts')
     def candidate(body: dict, request: Request, store=Depends(store_dependency)):

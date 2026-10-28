@@ -218,8 +218,21 @@ def test_every_in_scope_binding_is_validated_even_after_same_pack_was_resolved(c
             column,value={'hash':('pack_sha256','0'*64),'course':('course_id','analisi-1'),
                           'pack':('pack_id','missing'),'version':('pack_version',2)}[damage]
             c.execute('UPDATE study_edition_packs SET '+column+"=? WHERE edition_id='z-last'",(value,))
+    actor=teacher if role=='teacher' else student
+    if damage=='missing':
+        with pytest.raises(StudyError,match='coursepack_unavailable') as error:
+            store.list_editions(actor,limit=100)
+        assert error.value.status==409
+    else:
+        page=store.list_editions(actor,limit=100)
+        historical=next(item for item in page['items'] if item['id']=='z-last')
+        pin=store.connection.execute("SELECT * FROM study_edition_packs WHERE edition_id='z-last'").fetchone()
+        assert historical['readOnly'] is True and historical['entryActivityId'] is None
+        assert historical['packId']==pin['pack_id'] and historical['packVersion']==pin['pack_version']
+        assert historical['packSha256']==pin['pack_sha256'] and historical['courseId']==pin['course_id']
+        assert next(item for item in page['items'] if item['id']=='a-physics')==store.get_edition('a-physics')
     with pytest.raises(StudyError,match='coursepack_unavailable') as error:
-        store.list_editions(teacher if role=='teacher' else student,limit=100)
+        store.get_edition('z-last')
     assert error.value.status==409
 
 
@@ -252,8 +265,11 @@ def test_pack_file_is_rechecked_on_each_page_without_global_cache_or_canonical_m
         pack=json.loads(path.read_text());pack['scope']='A changed private fixture';path.write_text(json.dumps(pack))
     elif damage=='invalid_json':path.write_text('{broken')
     else:path.unlink()
+    later=store.list_editions(teacher,limit=1)['items'][0]
+    assert later['availability']=='UNAVAILABLE' and later['readOnly'] is True
+    assert later['packSha256']==first['items'][0]['packSha256']
     with pytest.raises(StudyError,match='coursepack_unavailable') as error:
-        store.list_editions(teacher,limit=1)
+        store.get_edition('a-physics')
     assert error.value.status==409
     assert [tuple(row) for row in store.connection.execute('SELECT * FROM study_edition_packs ORDER BY edition_id')]==before
     assert ids(first)==['a-physics']

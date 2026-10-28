@@ -1,6 +1,7 @@
 """Closed bundled pack registry and immutable edition bindings, in the same DB."""
 import hashlib
 import json
+import re
 from pathlib import Path
 from .models import StudyError
 
@@ -38,6 +39,33 @@ def load_pack(pack_id=DEFAULT_PACK, version=1):
     return json.loads((Path(__file__).parent / 'content' / filename).read_text())
 
 
+def _curated_bank_ids(pack):
+    """Resolve only an authored, exact manifest reference in the closed registry.
+
+    This descriptor grants no publication approval or question-selection bypass.
+    The authored pack and its canonical hash remain unchanged.
+    """
+    if 'curatedPractice' not in pack:
+        return ()
+    from .question_bank import BANK_PATHS, _BANK_SUBJECTS
+    reference = pack['curatedPractice']
+    try:
+        bank_id, version, expected = (reference[key] for key in ('bankId', 'bankVersion', 'manifestSha256'))
+        if (not isinstance(bank_id, str) or bank_id not in BANK_PATHS
+                or type(version) is not int or (bank_id, version) not in _BANK_SUBJECTS
+                or not isinstance(expected, str) or not re.fullmatch(r'[a-f0-9]{64}', expected)):
+            raise ValueError('invalid curated bank binding')
+        raw = (BANK_PATHS[bank_id] / 'manifest.json').read_bytes()
+        manifest = json.loads(raw)
+        if (hashlib.sha256(raw).hexdigest() != expected
+                or manifest['id'] != bank_id or type(manifest['version']) is not int
+                or manifest['version'] != version):
+            raise ValueError('unavailable curated bank revision')
+    except (OSError, ValueError, KeyError, TypeError):
+        raise StudyError('coursepack_unavailable', 409) from None
+    return (bank_id,)
+
+
 def describe_pack(pack_id=DEFAULT_PACK, version=1):
     _, course_id, title, subject, duration, *capabilities = _entry(pack_id, version)
     # Metadata alone grants no laboratory or bank. Bindings belong to the exact
@@ -59,6 +87,8 @@ def describe_pack(pack_id=DEFAULT_PACK, version=1):
                 or sum(isinstance(item, dict) and item.get('id') == entry_activity_id
                        for item in activities) != 1):
             raise StudyError('coursepack_unavailable', 409)
+    if not bank_ids:
+        bank_ids = _curated_bank_ids(pack)
     canonical = json.dumps(pack, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
     return {'courseId': course_id, 'packId': pack_id, 'packVersion': version,
             'packSha256': hashlib.sha256(canonical.encode()).hexdigest(), 'title': title, 'subject': subject, 'duration': duration,
@@ -97,6 +127,34 @@ def bound_descriptor(row, *, descriptors=None):
     except (StudyError, OSError, ValueError, KeyError, TypeError):
         raise StudyError('coursepack_unavailable', 409) from None
     return descriptor
+
+
+def readable_descriptor(row, *, descriptors=None):
+    """Describe a stored revision for discovery/history, without executing it.
+
+    Only a complete persisted pin can be retained as unavailable. Missing or
+    malformed bindings still fail closed. Exact runtime resolution is separate.
+    """
+    try:
+        return bound_descriptor(row, descriptors=descriptors)
+    except StudyError as error:
+        if error.code != 'coursepack_unavailable':
+            raise
+    if row is None:
+        raise StudyError('coursepack_unavailable', 409)
+    try:
+        course_id, pack_id, version, sha = (row[key] for key in ('course_id', 'pack_id', 'pack_version', 'pack_sha256'))
+        if (not isinstance(course_id, str) or not course_id
+                or not isinstance(pack_id, str) or not pack_id
+                or type(version) is not int or version < 1
+                or not isinstance(sha, str) or not re.fullmatch(r'[a-f0-9]{64}', sha)):
+            raise ValueError('incomplete historical binding')
+    except (KeyError, TypeError, ValueError):
+        raise StudyError('coursepack_unavailable', 409) from None
+    return {'courseId': course_id, 'packId': pack_id, 'packVersion': version,
+            'packSha256': sha, 'title': 'Edizione storica · revisione non disponibile',
+            'subject': '', 'duration': '', 'questionBankIds': [], 'entryActivityId': None,
+            'availability': 'UNAVAILABLE', 'historical': True, 'readOnly': True}
 
 
 def edition_pack(store, edition_id):

@@ -125,3 +125,39 @@ def test_descriptors_are_detached_and_unknown_pack_versions_fail_closed():
     for pack_id, version in [('unknown', 1), (catalog.DEFAULT_PACK, 2), (catalog.DEFAULT_PACK, True)]:
         with pytest.raises(StudyError, match='invalid_coursepack'):
             catalog.describe_pack(pack_id, version)
+
+
+@pytest.mark.parametrize('damage', ['unknown_bank','wrong_version','bool_version','malformed_sha','different_sha','missing_field','not_object'])
+def test_explicit_curated_bank_reference_fails_closed_without_exact_registered_manifest(monkeypatch, damage):
+    pack=register_fixture(monkeypatch)
+    pack['curatedPractice'] = dict(catalog.load_pack('sf-fluidi-termodinamica-v1')['curatedPractice'])
+    reference=pack['curatedPractice']
+    if damage=='unknown_bank':reference['bankId']='unregistered'
+    elif damage=='wrong_version':reference['bankVersion']=2
+    elif damage=='bool_version':reference['bankVersion']=True
+    elif damage=='malformed_sha':reference['manifestSha256']='../manifest.json'
+    elif damage=='different_sha':reference['manifestSha256']='0'*64
+    elif damage=='missing_field':del reference['manifestSha256']
+    else:pack['curatedPractice']=[]
+    with pytest.raises(StudyError,match='coursepack_unavailable') as error:
+        catalog.describe_pack(pack['id'])
+    assert error.value.status==409
+
+
+def test_explicit_registry_bank_capabilities_keep_precedence_over_curated_metadata(monkeypatch):
+    pack=register_fixture(monkeypatch, bindings=(None, ('physics-semestre-2026',)))
+    pack['curatedPractice']={'bankId':'unregistered'}
+    assert catalog.describe_pack(pack['id'])['questionBankIds']==['physics-semestre-2026']
+
+
+@pytest.mark.parametrize('damage', ['missing','missing_course','empty_pack','bool_version','negative_version','malformed_sha'])
+def test_readable_descriptor_retains_no_capability_for_missing_or_malformed_pin(damage):
+    row={'course_id':'historical-course','pack_id':'unavailable-pack','pack_version':1,'pack_sha256':'0'*64}
+    if damage=='missing':row=None
+    elif damage=='missing_course':row['course_id']=None
+    elif damage=='empty_pack':row['pack_id']=''
+    elif damage=='bool_version':row['pack_version']=True
+    elif damage=='negative_version':row['pack_version']=-1
+    else:row['pack_sha256']='untrusted'
+    with pytest.raises(StudyError,match='coursepack_unavailable'):
+        catalog.readable_descriptor(row)

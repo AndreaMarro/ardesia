@@ -4,10 +4,10 @@ from .store import identifier,canonical
 from .transactions import transact
 
 
-def submission_for_actor(store,principal,submission_id,teacher_only=False):
+def submission_for_actor(store,principal,submission_id,teacher_only=False,*,allow_unavailable=False):
     row=store.connection.execute('SELECT * FROM study_submissions WHERE id=?',(submission_id,)).fetchone()
     if not row:raise StudyError('not_found',404)
-    edition=store._edition_access(principal,row['edition_id'],teacher_only=teacher_only)
+    edition=store._edition_access(principal,row['edition_id'],teacher_only=teacher_only,allow_unavailable=allow_unavailable)
     if not teacher_only and principal.id not in (row['student_id'],edition['teacherId']):raise StudyError('forbidden',403)
     return row
 
@@ -59,9 +59,9 @@ def review_feedback(store,principal,candidate_id,expected_revision,edits,key,dec
     return transact(store,principal,'feedback.reviewed',key,{'candidateId':candidate_id,'revision':expected_revision,'text':edits,'decision':decision},apply)
 
 
-def list_feedback(store,principal,submission_id):
-    submission=submission_for_actor(store,principal,submission_id)
-    tutor=store.get_edition(submission['edition_id'])['teacherId']==principal.id
+def list_feedback(store,principal,submission_id,*,allow_unavailable=False):
+    submission=submission_for_actor(store,principal,submission_id,allow_unavailable=allow_unavailable)
+    tutor=store.get_edition(submission['edition_id'],allow_unavailable=allow_unavailable)['teacherId']==principal.id
     result=[]
     for candidate in store.connection.execute('SELECT * FROM study_feedback WHERE submission_id=?',(submission_id,)):
         review=store.connection.execute('SELECT * FROM study_reviews WHERE candidate_id=?',(candidate['id'],)).fetchone()

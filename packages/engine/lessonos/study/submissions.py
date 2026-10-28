@@ -126,16 +126,16 @@ def submit(store,principal,edition_id,activity_id,asset_refs,text,key,parent_id=
     return transact(store,principal,'submission.received',key,payload,apply)
 
 
-def get_receipt(store,principal,receipt_id):
+def get_receipt(store,principal,receipt_id,*,allow_unavailable=False):
     row=store.connection.execute("SELECT * FROM study_submissions WHERE receipt_id=?",(receipt_id,)).fetchone()
     if row is None:raise StudyError('not_found',404)
-    edition=store._edition_access(principal,row['edition_id'])
+    edition=store._edition_access(principal,row['edition_id'],allow_unavailable=allow_unavailable)
     if row['student_id']!=principal.id and edition['teacherId']!=principal.id:raise StudyError('forbidden',403)
     return json.loads(store.connection.execute('SELECT body FROM study_receipts WHERE id=?',(receipt_id,)).fetchone()[0])
 
 
-def list_submissions(store,principal,edition_id):
-    edition=store._edition_access(principal,edition_id)
+def list_submissions(store,principal,edition_id,*,allow_unavailable=False):
+    edition=store._edition_access(principal,edition_id,allow_unavailable=allow_unavailable)
     query='SELECT s.*,r.body AS receipt_body FROM study_submissions s LEFT JOIN study_receipts r ON r.id=s.receipt_id WHERE s.edition_id=?'
     parameters=[edition_id]
     if edition['teacherId']!=principal.id:query+=' AND s.student_id=?';parameters.append(principal.id)
