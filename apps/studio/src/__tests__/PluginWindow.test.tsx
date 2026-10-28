@@ -70,6 +70,7 @@ describe("PluginWindow catalog", () => {
       new Set([
         "essential",
         "function",
+        "simulation",
         "drawing-hd",
         "web",
         "marketplace",
@@ -78,6 +79,7 @@ describe("PluginWindow catalog", () => {
     )
     expect(catalog.map((item) => item.pluginId)).not.toContain("io.ardesia.simulation")
     expect(catalog.map((item) => item.pluginId)).not.toContain("io.elab.tutor")
+    expect(catalog.map((item) => item.pluginId)).toContain("io.ardesia.fluid-thermo")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.manual-evidence")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.drawing-hd")
     expect(catalog.map((item) => item.pluginId)).toContain("com.ardesia.web-view")
@@ -144,6 +146,7 @@ describe("PluginWindow catalog", () => {
       ["com.ardesia.plugin-functions", "function", "tool", "plugin:com.ardesia.plugin-functions@0.1.0"],
       ["com.ardesia.web-view", "web", "tool", "plugin:com.ardesia.web-view@0.1.0"],
       ["com.teacher.oscilloscope", "marketplace", "tool", "plugin:com.teacher.oscilloscope@1.0.0"],
+      ["io.ardesia.fluid-thermo", "simulation", "tool", "plugin:io.ardesia.fluid-thermo@1.0.0"],
       ["user.plugin.local-graph", "user-created", "tool", "plugin:user.plugin.local-graph@0.1.0"],
     ])
   })
