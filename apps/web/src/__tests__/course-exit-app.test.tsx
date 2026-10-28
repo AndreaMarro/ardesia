@@ -42,3 +42,30 @@ it('a fresh login preserves an explicitly requested classroom view',async()=>{
  fireEvent.click(screen.getByRole('button',{name:'Accedi'}));
  await screen.findByLabelText('Guarded response');expect(location.search).toContain('view=classroom');expect(location.search).toContain('edition=first');
 });
+
+it('the ordinary teacher shell links to the same-origin board through the existing draft and unload guards', async () => {
+ const originalFetch=vi.mocked(fetch).getMockImplementation()!;
+ vi.mocked(fetch).mockImplementation(async(path,options)=>String(path)==='/study/me'
+  ?new Response(JSON.stringify({...me,role:'teacher'}),{status:200}):originalFetch(path,options));
+ render(<App/>);await screen.findByLabelText('Guarded response');
+ const link=screen.getByRole('link',{name:'Apri la lavagna'}) as HTMLAnchorElement;
+ expect(link.getAttribute('href')).toBe('/studio/');expect(new URL(link.href).origin).toBe(location.origin);
+ expect(link.target).toBe('');expect(link.hasAttribute('download')).toBe(false);
+ fireEvent.change(screen.getByLabelText('Guarded response'),{target:{value:'Da conservare prima della lavagna'}});
+ const unload=new Event('beforeunload',{cancelable:true});window.dispatchEvent(unload);expect(unload.defaultPrevented).toBe(true);
+ const cancelled=new MouseEvent('click',{bubbles:true,cancelable:true,button:0});
+ act(()=>{link.dispatchEvent(cancelled);});
+ expect(cancelled.defaultPrevented).toBe(true);expect(window.confirm).toHaveBeenCalledTimes(1);
+ expect(screen.getByLabelText('Guarded response')).toHaveProperty('value','Da conservare prima della lavagna');
+ expect(location.search).toContain('view=classroom');
+ vi.mocked(window.confirm).mockReturnValue(true);
+ const accepted=new MouseEvent('click',{bubbles:true,cancelable:true,button:0});
+ act(()=>{link.dispatchEvent(accepted);});
+ expect(accepted.defaultPrevented).toBe(false);expect(window.confirm).toHaveBeenCalledTimes(2);
+ const after=new Event('beforeunload',{cancelable:true});window.dispatchEvent(after);expect(after.defaultPrevented).toBe(false);
+});
+
+it('the ordinary student shell does not expose the teacher board action', async () => {
+ render(<App/>);await screen.findByLabelText('Guarded response');
+ expect(screen.queryByRole('link',{name:'Apri la lavagna'})).toBeNull();
+});
