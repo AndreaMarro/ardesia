@@ -30,12 +30,12 @@ export function PublicExperience() {
   return <div className="public-experience">
     <a className="skip-link" href="#esperimento">Vai all’esperimento</a>
     <header className="experience-header"><a className="wordmark" href="/">ardesia.</a><a href="/corsi/">Quattro microcorsi</a></header>
-    <main id="esperimento" tabIndex={-1}>
+    <main>
       <div className="experience-heading"><p>Una lezione da provare</p><h1>{experiments.find(entry => entry.id === model)?.title}</h1><p>Prima un’idea, poi un esperimento. Tre piccoli modelli di Fisica per mettere alla prova il ragionamento: flusso, pressione e forze.</p></div>
       <Suspense fallback={<div role="status" className="public-courses-loading">Apro i quattro microcorsi…</div>}>
         <PublicCourseTeasers />
       </Suspense>
-      <div className="experience-models" role="group" aria-label="Scegli un esperimento di Fisica">
+      <div id="esperimento" tabIndex={-1} className="experience-models" role="group" aria-label="Scegli un esperimento di Fisica">
         {experiments.map(entry => <button key={entry.id} aria-pressed={model === entry.id} onClick={() => chooseExperiment(entry)}>{entry.label}</button>)}
       </div>
       {model === "poiseuille" ? <PhysicsLab publicPreview numericPrediction publicPersistence /> : model === "hydrostatic" ? <PublicHydrostaticLab /> : <PublicSpringLab />}
