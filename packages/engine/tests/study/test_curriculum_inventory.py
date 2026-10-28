@@ -25,7 +25,12 @@ def inventory_bank(tmp_path, monkeypatch):
         q['descriptors']['miniCourseIds'] = ['fixture-' + q['taxonomy']['unitId'], 'fixture-all', 'fixture-all']
         q['descriptors']['prerequisites'] = ['fractions', 'Fractions']
     rewrite_bank(path, questions, manifest)
-    monkeypatch.setitem(question_bank.BANK_PATHS, question_bank.BANK_ID, path)
+    # Inventory uses real synthetic records without replacing the canonical
+    # manifest registry to which authored CoursePacks are immutably bound.
+    original_load = question_bank.load_bank
+    def load_inventory_bank(bank_id=question_bank.BANK_ID):
+        return QuestionBank(path) if bank_id == question_bank.BANK_ID else original_load(bank_id)
+    monkeypatch.setattr(question_bank, 'load_bank', load_inventory_bank)
     question_bank.clear_bank_cache()
     yield path, questions, manifest, units
     question_bank.clear_bank_cache()
