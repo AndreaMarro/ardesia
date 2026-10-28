@@ -17,7 +17,8 @@ import { ReplayCaptions } from "./lesson-media/ReplayCaptions"
 import { recordingSession } from "./store/audioRecording"
 import { emptyEditorial, parseEditorial, resolveMoment, type Editorial, type LessonMoment } from "./features/living-lesson/model"
 import type { ReplayCursor } from "./features/living-lesson/replayCursor"
-import { renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { parseToolLink, renderToolCanvasEmbeddable } from "./toolhost/ToolCanvasEmbeddable"
+import { EMBED_DATA_KEY } from "./toolhost/caps/board"
 
 // Waveform dependencies are loaded only when replaying a canonical v2 take.
 // The canonical audio controls stay unavailable until its consent guard mounts.
@@ -48,6 +49,15 @@ function formatClock(ms: number): string {
   const minutes = Math.floor(totalSeconds / 60)
   const seconds = totalSeconds % 60
   return `${minutes}:${String(seconds).padStart(2, "0")}`
+}
+
+function replayToolIdentity(element: Record<string, unknown> | undefined): string | null {
+  if (!element || element.type !== "embeddable" || typeof element.id !== "string" || element.locked || element.isDeleted) return null
+  const link = parseToolLink(typeof element.link === "string" ? element.link : null)
+  const data = element.customData
+  const marker = data && typeof data === "object" ? (data as Record<string, unknown>)[EMBED_DATA_KEY] : null
+  return link && link.embedId === element.id && marker && typeof marker === "object" && "owner" in marker && marker.owner === link.toolId
+    ? link.toolId : null
 }
 
 export default function ReplayView({ store, room, renderExtension, replayFiles, selectedRecordingId, range }: ReplayViewProps) {
@@ -141,7 +151,15 @@ export default function ReplayView({ store, room, renderExtension, replayFiles, 
   /** Proietta la scena su Excalidraw a ogni cambio di t (vista read-only) */
   useEffect(() => {
     if (!apiReady) return
-    apiRef.current?.updateScene({ elements: scene as any })
+    const api = apiRef.current
+    if (!api) return
+    const active = api.getAppState?.().activeEmbeddable
+    const element = active?.state === "active" ? scene.find(candidate => candidate.id === active.element?.id) : undefined
+    const identity = replayToolIdentity(element)
+    // Excalidraw tests activation by reference. Rebase only an already active
+    // instance in the same projection; never mutate recorded elements/versions.
+    const keepActive = identity !== null && identity === replayToolIdentity(active?.element)
+    api.updateScene({ elements: scene as any, appState: { activeEmbeddable: keepActive ? { ...active, element } : null } })
   }, [scene, apiReady])
 
   function fitScene() {
