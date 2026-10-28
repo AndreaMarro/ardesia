@@ -51,13 +51,13 @@ Deno.test('storage outage and unverifiable absence retain durable intent',async(
 
 Deno.test('provider is pinned to exact project/bucket/ID and confirms absence without bytes',async()=>{
   const calls:{url:string;options:RequestInit}[]=[];
-  const fetcher=(async(input:RequestInfo|URL,options:RequestInit)=>{calls.push({url:String(input),options});return new Response(null,{status:options.method==='HEAD'?404:200});}) as typeof fetch;
+  const fetcher=(async(input:RequestInfo|URL,options:RequestInit)=>{calls.push({url:String(input),options});return new Response(null,{status:options.method==='GET'?404:200});}) as typeof fetch;
   const storage=new ProviderStorage('internal-test-only-key',fetcher);
   await storage.removeAndVerifyAbsent(ID);
   assert.equal(calls[0].url,API+'/storage/v1/object/'+BUCKET);
   assert.deepEqual(JSON.parse(String(calls[0].options.body)),{prefixes:[ID]});
   assert.equal(calls[1].url,API+'/storage/v1/object/info/authenticated/'+BUCKET+'/'+ID);
-  assert.equal(calls[1].options.method,'HEAD');
+  assert.equal(calls[1].options.method,'GET');
   assert(calls.every(call=>call.options.redirect==='error'));
   await assert.rejects(()=>storage.removeAndVerifyAbsent('../other-bucket/id'));
   assert.equal(calls.length,2);
@@ -90,4 +90,39 @@ Deno.test('operator capability is header-only, expiring and rejects browser/extr
   assert.deepEqual(await (await handler(request({action:'candidates',limit:1}))).json(),{ids:[ID]});
   assert.deepEqual(await (await handler(request({action:'recover',id:ID}))).json(),{outcome:'cleaned'});
   assert.equal(data.intent,undefined);
+});
+
+Deno.test('observed legacy object-info HTTP400 structured404 proves absence',async()=>{
+  const observed={statusCode:'404',error:'not_found',message:'Object not found',code:'NoSuchKey'};
+  const calls:string[]=[];
+  const storage=new ProviderStorage('internal-test-only-key',(async(_input:RequestInfo|URL,options:RequestInit)=>{
+    calls.push(String(options.method));
+    return options.method==='DELETE'?new Response(null,{status:200}):Response.json(observed,{status:400});
+  }) as typeof fetch);
+  await storage.removeAndVerifyAbsent(ID);
+  assert.deepEqual(calls,['DELETE','GET']);
+});
+
+Deno.test('metadata verification rejects existing objects, authorization failures and inexact legacy errors',async()=>{
+  const observed={statusCode:'404',error:'not_found',message:'Object not found',code:'NoSuchKey'};
+  const failures=[
+    {status:200,body:observed},{status:401,body:observed},{status:403,body:observed},{status:500,body:observed},
+    {status:400,body:{message:'Object not found'}},{status:400,body:{...observed,code:'OtherFailure'}},
+    {status:400,body:{...observed,error:'unauthorized'}},{status:400,body:{...observed,statusCode:404}},
+  ];
+  for (const failure of failures) {
+    const storage=new ProviderStorage('internal-test-only-key',(async(_input:RequestInfo|URL,options:RequestInit)=>
+      options.method==='DELETE'?new Response(null,{status:200}):Response.json(failure.body,{status:failure.status})) as typeof fetch);
+    await assert.rejects(()=>storage.removeAndVerifyAbsent(ID),/cleanup_not_verified/);
+  }
+});
+
+Deno.test('legacy metadata error JSON is bounded to4096bytes',async()=>{
+  const observed=JSON.stringify({statusCode:'404',error:'not_found',code:'NoSuchKey'});
+  for (const [size,accepted] of [[4096,true],[4097,false]] as const) {
+    const storage=new ProviderStorage('internal-test-only-key',(async(_input:RequestInfo|URL,options:RequestInit)=>
+      options.method==='DELETE'?new Response(null,{status:200}):new Response(observed+' '.repeat(size-observed.length),{status:400})) as typeof fetch);
+    if (accepted) await storage.removeAndVerifyAbsent(ID);
+    else await assert.rejects(()=>storage.removeAndVerifyAbsent(ID),/cleanup_not_verified/);
+  }
 });

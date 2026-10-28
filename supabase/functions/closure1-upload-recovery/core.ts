@@ -59,10 +59,29 @@ export class ProviderStorage implements CleanupStorage {
     await response.body?.cancel();
     if (!response.ok && response.status!==404) throw new Error('cleanup_unavailable');
     const absent = await this.fetcher(`${API}/storage/v1/object/info/authenticated/${BUCKET}/${id}`, {
-      method:'HEAD',headers,redirect:'error',signal:AbortSignal.timeout(5000),
+      method:'GET',headers,redirect:'error',signal:AbortSignal.timeout(5000),
     });
-    await absent.body?.cancel();
-    if (absent.status !== 404) throw new Error('cleanup_not_verified');
+    if (absent.status===404) { await absent.body?.cancel(); return; }
+    if (absent.status!==400 || !absent.body) {
+      await absent.body?.cancel(); throw new Error('cleanup_not_verified');
+    }
+    // This provider returns HTTP400 for a missing object's metadata, with the
+    // actual404 in its JSON. HEAD omits that body and cannot prove absence.
+    const reader=absent.body.getReader();const chunks:Uint8Array[]=[];let total=0;
+    while (true) {
+      const {value,done}=await reader.read();
+      if (done) break;
+      total+=value.length;
+      if (total>4096) { await reader.cancel(); throw new Error('cleanup_not_verified'); }
+      chunks.push(value);
+    }
+    const bytes=new Uint8Array(total);let offset=0;
+    for (const chunk of chunks) { bytes.set(chunk,offset);offset+=chunk.length; }
+    let metadata;
+    try { metadata=JSON.parse(new TextDecoder().decode(bytes)); } catch { throw new Error('cleanup_not_verified'); }
+    if (!metadata || metadata.statusCode!=='404' || metadata.error!=='not_found' || metadata.code!=='NoSuchKey') {
+      throw new Error('cleanup_not_verified');
+    }
   }
 }
 
