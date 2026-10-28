@@ -3,6 +3,7 @@
 
 Historical prose and journal evidence are intentionally not rewritten. This
 checks physical absence plus executable references, without a shrinking baseline.
+The independent packs-wide data/method boundary remains zero tolerance.
 """
 from __future__ import annotations
 
@@ -14,6 +15,14 @@ ROOT = Path(__file__).resolve().parents[2]
 REMOVED_ROOTS = (
     'plugins/elab-tutor', 'packs/elab-tutor', 'apps/studio/public/elab',
     'apps/studio/sim/elab', 'apps/studio/sim/solver',
+)
+# Retain the original generic protection for every pack, regardless of product.
+PACK_STANDALONE_RULES = (
+    re.compile(r"(^|/)App\.jsx$"),
+    re.compile(r"(^|/)main\.jsx$"),
+    re.compile(r"/supabase/functions/"),
+    re.compile(r"auth", re.IGNORECASE),
+    re.compile(r"dashboard", re.IGNORECASE),
 )
 EXECUTABLE_SUFFIXES = {'.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json', '.html', '.css', '.sh', '.yml', '.yaml'}
 FORBIDDEN_REFERENCE = re.compile(
@@ -28,6 +37,12 @@ FORBIDDEN_REFERENCE = re.compile(
 
 def violations(root: Path = ROOT) -> list[str]:
     found = [f'removed source or assets exist: {path}' for path in REMOVED_ROOTS if (root / path).exists()]
+    packs = root / 'packs'
+    if packs.exists():
+        for path in sorted(packs.rglob('*')):
+            relative = path.relative_to(root).as_posix()
+            if path.is_file() and any(rule.search(relative) for rule in PACK_STANDALONE_RULES):
+                found.append(f'{relative}: standalone/auth/dashboard/cloud functions forbidden in data/method packs')
     for directory in ('apps/studio/src', 'apps/studio/build', 'apps/studio/plugins', 'apps/studio/sim', 'apps/web/src'):
         base = root / directory
         if not base.exists():

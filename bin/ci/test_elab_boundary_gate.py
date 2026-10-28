@@ -43,6 +43,21 @@ class RemovedProductBoundaryTests(unittest.TestCase):
         for relative in ('apps/studio/vite.config.ts', 'package.json', 'bin/monorepo.sh'):
             self.assertTrue(self.check_source(relative, '"plugins/elab-tutor/package.json"'))
 
+    def test_generic_packs_cannot_contain_standalone_auth_dashboard_or_cloud_functions(self):
+        for relative in (
+            'packs/physics/auth.ts',
+            'packs/new/App.jsx',
+            'packs/new/main.jsx',
+            'packs/chemistry/teacherDashboard.tsx',
+            'packs/biology/supabase/functions/index.ts',
+        ):
+            with self.subTest(relative=relative):
+                self.assertTrue(self.check_source(relative, 'export const fixture = true'))
+
+    def test_generic_pack_data_and_method_files_remain_allowed(self):
+        self.assertEqual(self.check_source('packs/physics/data/lesson-path.json', '{"v":1}'), [])
+        self.assertEqual(self.check_source('packs/physics/method/steps.ts', 'export const steps = []'), [])
+
     def test_sdk_and_independent_science_imports_pass(self):
         self.assertEqual(self.check_source('apps/studio/src/Science.ts', 'import { ToolHost } from "./toolhost/host"'), [])
 
