@@ -5,6 +5,7 @@ import {act,cleanup,fireEvent,render,screen,waitFor} from '@testing-library/reac
 import App from '../App';
 import {useCourseDraft} from '../courseExitGuard';
 import {endStudySession,studySessionEpoch} from '../../../studio/src/study/sessionBoundary';
+import {installPublicBrowserStorage} from './public-storage-fixture';
 vi.mock('../features/Classroom',()=>({Classroom:()=>{
  const draft=useCourseDraft('lesson'),[text,setText]=useState('');
  return <label>Guarded response<input value={text} onChange={e=>{setText(e.target.value);draft.changed();}}/></label>;
@@ -13,7 +14,7 @@ vi.mock('../features/Work',()=>({Work:()=> <h1>Work destination</h1>}));
 const me={id:'exit-learner',role:'student',synthetic:true};
 const editions=['first','second'].map(id=>({id,title:'Course '+id,teacherId:'teacher',courseId:'fluidi-termodinamica',packId:'sf-fluidi-termodinamica-v1',packVersion:1,packSha256:'a'.repeat(64),state:'running',sessions:[],timezone:'Europe/Rome'}));
 beforeEach(()=>{
- history.replaceState(null,'','/?view=classroom&edition=first');localStorage.clear();vi.spyOn(window,'confirm').mockReturnValue(false);vi.stubGlobal('scrollTo',vi.fn());
+ history.replaceState(null,'','/?view=classroom&edition=first');installPublicBrowserStorage();vi.spyOn(window,'confirm').mockReturnValue(false);vi.stubGlobal('scrollTo',vi.fn());
  vi.stubGlobal('fetch',vi.fn(async(path:string)=>new Response(JSON.stringify(path==='/study/me'?me:path==='/study/course'?{...editions[0],capacity:10,priceMinor:3900,scope:'DRAFT'}:path.startsWith('/study/editions?')?{items:editions,nextCursor:null}:path.startsWith('/study/workspace?')?{edition:editions.find(e=>path.includes(e.id))||editions[0],enrolled:true,resources:[],submissions:[],layouts:[],layoutSaved:false,layoutVersion:'layout'}:{}))));
 });
 afterEach(()=>{cleanup();vi.restoreAllMocks();vi.unstubAllGlobals();});

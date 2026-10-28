@@ -7,13 +7,14 @@ import {CourseAssessment} from '../components/CourseAssessment';
 import {learningCourses} from '../courseLearning';
 import {SubmissionPanel} from '../../../studio/src/study/SubmissionPanel';
 import type {ActivityCommit} from '../course';
+import {installPublicBrowserStorage} from './public-storage-fixture';
 const scope=createCourseDraftScope();
 function Editor({name,onSave}:{name:'lesson'|'laboratory'|'assessment';onSave?:(confirm:()=>void)=>void}){
  const work=useCourseDraft(name),[text,setText]=useState('');
  return <div><label>{name}<input value={text} onChange={e=>{setText(e.target.value);work.changed();}}/></label><button onClick={()=>{const c=work.checkpoint();onSave?.(()=>work.confirm(c));}}>Save {name}</button><button onClick={()=>{if(work.allowDiscard())setText('');}}>Reset {name}</button></div>;
 }
 const unload=()=>{const e=new Event('beforeunload',{cancelable:true});window.dispatchEvent(e);return e.defaultPrevented;};
-beforeEach(()=>{vi.spyOn(window,'confirm').mockReturnValue(false);localStorage.clear();});
+beforeEach(()=>{vi.spyOn(window,'confirm').mockReturnValue(false);installPublicBrowserStorage();});
 afterEach(()=>{cleanup();vi.restoreAllMocks();vi.unstubAllGlobals();});
 it('cancel preserves text, accept discards, and cleanup removes the unload guard',()=>{
  const view=render(<Editor name="laboratory"/>);fireEvent.change(screen.getByLabelText('laboratory'),{target:{value:'Un testo ancora aperto'}});
