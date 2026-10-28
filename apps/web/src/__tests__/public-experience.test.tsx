@@ -49,7 +49,7 @@ test("the authored audio requires a manual gesture and its failure leaves the fu
   fireEvent.click(screen.getByRole("button", {name: "Riprendi il vincolo"}));
   expect(play).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button", {name: "Ascolta il passaggio"}));
-  expect((await screen.findByRole("alert")).textContent).toContain("L’audio locale non è disponibile");
+  expect((await screen.findByRole("alert")).textContent).toContain("L’audio non è disponibile al momento. Puoi riprovare.");
   expect(screen.getByTestId("lesson-demo").textContent).toContain("Ora mantieni la portata e il raggio, ma raddoppia viscosità e lunghezza.");
   expect(play).toHaveBeenCalledTimes(1);
 });
