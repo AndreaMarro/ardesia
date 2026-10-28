@@ -1,0 +1,3734 @@
+{
+  "schemaVersion": 1,
+  "owner": "CHAT 1B",
+  "coursePackId": "sf-fluidi-termodinamica-v1",
+  "baselineSha256": "4dfdbd4b0358d6270521208f5af66e6fc69ff6c3a1c0cb1c64861734a0b7ab7f",
+  "targetCount": 57,
+  "acceptedCount": 0,
+  "rows": [
+    {
+      "objectiveId": "U3-01.01",
+      "objective": "fluido e solido",
+      "familyId": "U3-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "rapporti e proporzioni",
+        "conversione cm²→m² e cm³→m³",
+        "forza normale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-01",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u3-01",
+      "exercise": {
+        "itemId": "final-U3-01.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Quale differenza c’è fra la risposta statica di un fluido e quella di un solido a uno sforzo tangenziale?",
+        "correction": "Il fluido non sostiene uno sforzo di taglio statico senza deformazione continua, il solido può sostenerlo.",
+        "misconception": "Un fluido in quiete mantiene qualunque sforzo tangenziale senza deformarsi.",
+        "errorCode": "misconception:U3-01.01",
+        "recovery": {
+          "lessonId": "ds-2026-u3-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-01",
+        "itemId": "final-U3-01.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Che cosa distingue la risposta statica di un fluido da quella di un solido a uno sforzo tangenziale?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-01.02",
+      "objective": "pressione",
+      "familyId": "U3-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "rapporti e proporzioni",
+        "conversione cm²→m² e cm³→m³",
+        "forza normale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-01",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u3-01",
+      "exercise": {
+        "itemId": "final-U3-01.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Una forza normale di 16 N è distribuita uniformemente su 0,004 m². Qual è la pressione media?",
+        "correction": "4000 Pa.",
+        "misconception": "Forza doppia implica pressione doppia anche se raddoppia l’area.",
+        "errorCode": "misconception:U3-01.02",
+        "recovery": {
+          "lessonId": "ds-2026-u3-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-01",
+        "itemId": "final-U3-01.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una forza normale16N agisce su0,004m². Trova la pressione.",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-01.03",
+      "objective": "densità",
+      "familyId": "U3-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "rapporti e proporzioni",
+        "conversione cm²→m² e cm³→m³",
+        "forza normale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-01",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u3-01",
+      "exercise": {
+        "itemId": "final-U3-01.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un campione omogeneo ha massa 1,5 kg e volume 0,002 m³. Qual è la densità?",
+        "correction": "750 kg/m³.",
+        "misconception": "Aggiungere massa dello stesso liquido alla stessa temperatura aumenta la sua densità.",
+        "errorCode": "misconception:U3-01.03",
+        "recovery": {
+          "lessonId": "ds-2026-u3-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-01",
+        "itemId": "final-U3-01.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Massa1,5kg in volume0,002m³: quale densità?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-01.04",
+      "objective": "statica e dinamica",
+      "familyId": "U3-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "rapporti e proporzioni",
+        "conversione cm²→m² e cm³→m³",
+        "forza normale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-01",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u3-01",
+      "exercise": {
+        "itemId": "final-U3-01.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "La relazione p=p₀+ρgh descrive automaticamente la pressione in un tubo con flusso veloce e dissipativo? Motiva.",
+        "correction": "No: è una relazione idrostatica; il moto richiede considerare energia e perdite appropriate.",
+        "misconception": "Stevino descrive qualunque pressione in un condotto in moto.",
+        "errorCode": "misconception:U3-01.04",
+        "recovery": {
+          "lessonId": "ds-2026-u3-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-01",
+        "itemId": "final-U3-01.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "La legge p=p0+ρgh vale automaticamente in un tubo con veloce flusso dissipativo?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.01",
+      "objective": "Stevino",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Olio in quiete: ρ=800 kg/m³, g=10 m/s², profondità 0,5 m. Qual è l’incremento di pressione rispetto alla superficie?",
+        "correction": "4000 Pa, da aggiungere alla pressione sulla superficie.",
+        "misconception": "Il recipiente più largo produce pressione maggiore alla stessa profondità.",
+        "errorCode": "misconception:U3-02.01",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Olioρ=800kg/m³,g=10m/s²,profondità0,5m. Qual è l’incremento di pressione?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.02",
+      "objective": "Pascal",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un incremento di pressione di 2000 Pa raggiunge un pistone di area 0,01 m². Qual è l’aumento ideale di forza?",
+        "correction": "20 N, per Pascal eF=ΔpA.",
+        "misconception": "Pascal rende uguali le pressioni a qualunque quota e amplifica energia.",
+        "errorCode": "misconception:U3-02.02",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un aumento di pressione di2000Pa raggiunge un pistone di0,01m². Quale aumento di forza ideale?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.03",
+      "objective": "Archimede",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un corpo sposta un volume di liquido di 0,002 m³. La densità del liquido è 900 kg/m³ e g=10 m/s². Trova modulo e verso della spinta.",
+        "correction": "18 N verso l’alto.",
+        "misconception": "La spinta è sempre uguale al peso del corpo anche quando è trattenuto immerso.",
+        "errorCode": "misconception:U3-02.03",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un volume immerso0,002m³ sposta fluidoρ=900kg/m³,g=10. Qual è la spinta?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.04",
+      "objective": "galleggiamento",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un corpo omogeneo di densità 750 kg/m³ galleggia liberamente in un liquido di densità 1000 kg/m³. Quale frazione del volume è immersa?",
+        "correction": "0,75=75%.",
+        "misconception": "Il corpo più pesante affonda indipendentemente da volume e densità.",
+        "errorCode": "misconception:U3-02.04",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un corpo omogeneoρ=750 galleggia in fluidoρ=1000kg/m³. Quale frazione immersa?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.05",
+      "objective": "Torricelli",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Perché un barometro ideale può misurare la pressione atmosferica mediante l’altezza di una colonna di liquido?",
+        "correction": "La differenza di pressione fra atmosfera e spazio superiore quasi vuoto equilibraρgh.",
+        "misconception": "Il vuoto tira la colonna nel barometro; conta la lunghezza inclinata del tubo.",
+        "errorCode": "misconception:U3-02.05",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Perché in un barometro ideale una colonna di liquido può misurare la pressione atmosferica?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-02.06",
+      "objective": "manometro",
+      "familyId": "U3-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "U3-01.03",
+        "equilibrio delle forze",
+        "quota verticale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-02",
+        "pointer": "/explanation/6"
+      },
+      "laboratorySpecId": "lab-spec-u3-02",
+      "exercise": {
+        "itemId": "final-U3-02.06",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un manometro contiene liquido di densità 1000 kg/m³. Il dislivello verticale fra i menischi è 0,03 m; le densità dei gas sono trascurabili e g=10 m/s². Qual è il modulo della differenza di pressione?",
+        "correction": "300 Pa; conta il dislivello verticale.",
+        "misconception": "Il ramo con livello più alto contiene sempre il gas a pressione maggiore.",
+        "errorCode": "misconception:U3-02.06",
+        "recovery": {
+          "lessonId": "ds-2026-u3-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-02",
+        "itemId": "final-U3-02.06",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un manometro conρ=1000kg/m³,g=10,dislivello0,03m misura quale differenza di pressione?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.01",
+      "objective": "flusso e portata",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "In 2 s attraversano una sezione del tubo 6 L di liquido. Qual è la portata volumetrica media?",
+        "correction": "3 L/s=0,003 m³/s.",
+        "misconception": "Portata e velocità hanno la stessa unità.",
+        "errorCode": "misconception:U3-03.01",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "In2s attraversano un tubo6L. Qual è la portata volumetrica?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.02",
+      "objective": "stazionario e turbolento",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee? Distingui le due descrizioni.",
+        "correction": "No: possono essere stazionarie le medie mentre i valori istantanei fluttuano; un campo istantaneo rigorosamente stazionario invece non cambia nel tempo.",
+        "misconception": "Stazionario significa stessa velocità in ogni punto; turbolento significa medie necessariamente variabili.",
+        "errorCode": "misconception:U3-03.02",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un flusso statisticamente stazionario è necessariamente privo di fluttuazioni turbolente istantanee?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.03",
+      "objective": "laminare",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Quale organizzazione del moto caratterizza un flusso laminare? Può presentare velocità diverse fra parete e asse?",
+        "correction": "Strati ordinati senza rimescolamento turbolento; possono avere velocità diverse fra parete e asse.",
+        "misconception": "Laminare implica velocità uniforme e viscosità nulla.",
+        "errorCode": "misconception:U3-03.03",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Quale struttura del moto caratterizza il flusso laminare ideale in un tubo?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.04",
+      "objective": "conservazione massa",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un fluido incomprimibile scorre senza accumulo né diramazioni: A₁=6 cm², v₁=2 m/s, A₂=3 cm². Trova v₂.",
+        "correction": "4m/s; portata conservata.",
+        "misconception": "Dimezzare il raggio dimezza l’area e raddoppia soltanto la velocità.",
+        "errorCode": "misconception:U3-03.04",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Fluido incomprimibile:A1=6cm²,v1=2m/s,A2=3cm². Qual èv2?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.05",
+      "objective": "Bernoulli",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Lungo la stessa linea di corrente di un flusso ideale stazionario orizzontale, ρ=1000 kg/m³ e la velocità passa da 2 a 3 m/s. Trova p₂−p₁.",
+        "correction": "−2500 Pa da Bernoulli.",
+        "misconception": "In un tubo orizzontale la pressione statica resta uguale anche se cambia velocità.",
+        "errorCode": "misconception:U3-03.05",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "In flusso ideale orizzontaleρ=1000,la velocità passa da2a3m/s. Qual èp2−p1?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-03.06",
+      "objective": "stenosi e aneurisma",
+      "familyId": "U3-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.03",
+        "conservazione della massa",
+        "energia cinetica e potenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-03",
+        "pointer": "/explanation/6"
+      },
+      "laboratorySpecId": "lab-spec-u3-03",
+      "exercise": {
+        "itemId": "final-U3-03.06",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Confronta restringimento e dilatazione di un vaso ideale alla stessa quota e portata. Come cambiano velocità e pressione statica? Dichiara un limite dell’applicazione al sangue reale.",
+        "correction": "Nel restringimento velocità maggiore e pressione minore; nella dilatazione l’opposto, senza estendere questo a una diagnosi reale.",
+        "misconception": "Bernoulli ideale permette una diagnosi completa di stenosi o aneurisma.",
+        "errorCode": "misconception:U3-03.06",
+        "recovery": {
+          "lessonId": "ds-2026-u3-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-03",
+        "itemId": "final-U3-03.06",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "In un restringimento e una dilatazione ideali allo stesso flusso e quota,come si confrontano velocità e pressione statica?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-04.01",
+      "objective": "fluidi reali",
+      "familyId": "U3-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-03.01",
+        "U3-03.04",
+        "rapporti e potenze",
+        "forza tangenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-04",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u3-04",
+      "exercise": {
+        "itemId": "final-U3-04.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Perché un fluido reale può richiedere una differenza di pressione per mantenere una portata costante in un tubo orizzontale?",
+        "correction": "La viscosità dissipa energia meccanica; non bastaBernoulli senza perdite.",
+        "misconception": "Un flusso laminare non dissipa energia.",
+        "errorCode": "misconception:U3-04.01",
+        "recovery": {
+          "lessonId": "ds-2026-u3-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-04",
+        "itemId": "final-U3-04.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Perché un fluido reale può richiedere differenza di pressione per mantenere portata in tubo orizzontale?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-04.02",
+      "objective": "profilo parabolico",
+      "familyId": "U3-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-03.01",
+        "U3-03.04",
+        "rapporti e potenze",
+        "forza tangenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-04",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u3-04",
+      "exercise": {
+        "itemId": "final-U3-04.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Nel profilo parabolico laminare sviluppato di un tubo circolare, con aderenza alla parete, qual è il rapporto fra velocità massima e media?",
+        "correction": "2, con aderenza alla parete e ipotesi di Poiseuille.",
+        "misconception": "La parabola del profilo è la traiettoria curva seguita dalle particelle.",
+        "errorCode": "misconception:U3-04.02",
+        "recovery": {
+          "lessonId": "ds-2026-u3-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-04",
+        "itemId": "final-U3-04.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Nel profilo parabolico laminare in tubo qual è il rapporto velocità massima/media?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-04.03",
+      "objective": "gradiente velocità",
+      "familyId": "U3-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-03.01",
+        "U3-03.04",
+        "rapporti e potenze",
+        "forza tangenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-04",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u3-04",
+      "exercise": {
+        "itemId": "final-U3-04.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Che cosa misura il gradiente di velocità fra strati vicini e come si collega alla viscosità newtoniana?",
+        "correction": "La variazione della velocità per distanza trasversale; nel fluido newtoniano collega sforzo tangenziale e viscosità.",
+        "misconception": "Il gradiente è massimo sull’asse perché lì è massima la velocità.",
+        "errorCode": "misconception:U3-04.03",
+        "recovery": {
+          "lessonId": "ds-2026-u3-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-04",
+        "itemId": "final-U3-04.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Che cosa misura il gradiente di velocità fra due strati vicini?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-04.04",
+      "objective": "Poiseuille",
+      "familyId": "U3-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-03.01",
+        "U3-03.04",
+        "rapporti e potenze",
+        "forza tangenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-04",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u3-04",
+      "exercise": {
+        "itemId": "final-U3-04.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Nel modello di Poiseuille, Δp, L e η sono fissati e il raggio aumenta di un fattore 3. Qual è Q₂/Q₁?",
+        "correction": "81, poiché Q∝r^4.",
+        "misconception": "Il fattore r⁴ vale senza dichiarare se è fissata pressione o portata.",
+        "errorCode": "misconception:U3-04.04",
+        "recovery": {
+          "lessonId": "ds-2026-u3-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-04",
+        "itemId": "final-U3-04.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "AΔp,L eη fissati,il raggio aumenta del fattore3. Quale rapporto di portata ideale?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-04.05",
+      "objective": "resistenze idrauliche serie e parallelo",
+      "familyId": "U3-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-03.01",
+        "U3-03.04",
+        "rapporti e potenze",
+        "forza tangenziale"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-04",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u3-04",
+      "exercise": {
+        "itemId": "final-U3-04.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Due resistenze idrauliche lineari valgono R e 3R. Trova la resistenza equivalente prima in serie e poi in parallelo.",
+        "correction": "4R in serie; 3R/4 in parallelo, nel modello lineare.",
+        "misconception": "Chiudere un ramo dimezza la portata di ogni ramo rimasto a pressione fissata.",
+        "errorCode": "misconception:U3-04.05",
+        "recovery": {
+          "lessonId": "ds-2026-u3-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-04",
+        "itemId": "final-U3-04.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Due resistenze idraulicheR e3R in serie e parallelo: quali equivalenti?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-05.01",
+      "objective": "tensione superficiale",
+      "familyId": "U3-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "equilibrio delle forze",
+        "area e curvatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-05",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u3-05",
+      "exercise": {
+        "itemId": "final-U3-05.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Quali sono due unità equivalenti della tensione superficiale? Collega ciascuna al suo significato fisico.",
+        "correction": "N/m come forza per lunghezza e J/m² come lavoro reversibile per area creata, nelle condizioni dichiarate.",
+        "misconception": "Tensione superficiale è una forza in newton indipendente dalla lunghezza del bordo.",
+        "errorCode": "misconception:U3-05.01",
+        "recovery": {
+          "lessonId": "ds-2026-u3-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-05",
+        "itemId": "final-U3-05.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Quali unità equivalenti ha la tensione superficiale?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-05.02",
+      "objective": "piccole gocce",
+      "familyId": "U3-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "equilibrio delle forze",
+        "area e curvatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-05",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u3-05",
+      "exercise": {
+        "itemId": "final-U3-05.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "A tensione superficiale costante, perché gli effetti superficiali sono più importanti rispetto al peso per gocce geometricamente simili più piccole?",
+        "correction": "Il rapporto superficie/volume cresce riducendo la dimensione; il peso scala col volume.",
+        "misconception": "La tensione γ aumenta necessariamente quando una goccia diventa più piccola.",
+        "errorCode": "misconception:U3-05.02",
+        "recovery": {
+          "lessonId": "ds-2026-u3-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-05",
+        "itemId": "final-U3-05.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "A parità di tensione superficiale,perché una goccia piccola può mostrare effetti di superficie più importanti rispetto al peso?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-05.03",
+      "objective": "capillarità",
+      "familyId": "U3-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "equilibrio delle forze",
+        "area e curvatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-05",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u3-05",
+      "exercise": {
+        "itemId": "final-U3-05.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un liquido sale in ogni capillare indipendentemente dalla parete? Spiega il ruolo della bagnabilità.",
+        "correction": "No: dipende anche dalla bagnabilità; un menisco non bagnante può produrre depressione.",
+        "misconception": "In ogni capillare il liquido sale e la bagnabilità è irrilevante.",
+        "errorCode": "misconception:U3-05.03",
+        "recovery": {
+          "lessonId": "ds-2026-u3-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-05",
+        "itemId": "final-U3-05.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "La risalita capillare avviene per ogni coppia liquido-parete?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-05.04",
+      "objective": "interfacce piane e curve",
+      "familyId": "U3-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "equilibrio delle forze",
+        "area e curvatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-05",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u3-05",
+      "exercise": {
+        "itemId": "final-U3-05.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un’interfaccia piana in equilibrio semplice presenta un salto di pressione dovuto alla sola curvatura? Distingui salto e pressione assoluta.",
+        "correction": "No: la curvatura è nulla; non ne segue che la pressione assoluta siazero.",
+        "misconception": "La pressione è sempre continua attraverso qualunque interfaccia statica.",
+        "errorCode": "misconception:U3-05.04",
+        "recovery": {
+          "lessonId": "ds-2026-u3-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-05",
+        "itemId": "final-U3-05.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una superficie piana ideale possiede salto di pressione dovuto alla sola curvatura?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U3-05.05",
+      "objective": "Laplace qualitativa",
+      "familyId": "U3-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          3
+        ]
+      },
+      "prerequisites": [
+        "U3-01.02",
+        "equilibrio delle forze",
+        "area e curvatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u3-05",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u3-05",
+      "exercise": {
+        "itemId": "final-U3-05.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Due gocce sferiche dello stesso liquido, alla stessa tensione superficiale, hanno raggi 3 mm e 6 mm. Quale presenta maggiore sovrapressione interna? Motiva qualitativamente.",
+        "correction": "Quella da3mm, con curvatura maggiore.",
+        "misconception": "Goccia liquida e bolla saponosa hanno sempre lo stesso fattore di Laplace.",
+        "errorCode": "misconception:U3-05.05",
+        "recovery": {
+          "lessonId": "ds-2026-u3-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u3-05",
+        "itemId": "final-U3-05.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Fra due gocce dello stesso liquido con raggi3mm e6mm,quale ha maggior salto di pressione qualitativo perLaplace?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-01.01",
+      "objective": "sistema e ambiente",
+      "familyId": "U5-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "unità SI",
+        "proporzioni",
+        "quantità di sostanza"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-01",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u5-01",
+      "exercise": {
+        "itemId": "final-U5-01.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Scegli come oggetto di analisi il gas dentro un cilindro. Definisci sistema, ambiente e confine, distinguendo chiuso e isolato.",
+        "correction": "Il gas è il sistema; il resto è ambiente e il confine lo separa. Chiuso: niente scambio di materia; isolato: niente scambio di materia né energia.",
+        "misconception": "Chiuso significa isolato e rigido significa adiabatico.",
+        "errorCode": "misconception:U5-01.01",
+        "recovery": {
+          "lessonId": "ds-2026-u5-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-01",
+        "itemId": "final-U5-01.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Analizzi un gas dentro un cilindro:come chiami il gas e il resto con cui può scambiare energia?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-01.02",
+      "objective": "pressione volume temperatura",
+      "familyId": "U5-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "unità SI",
+        "proporzioni",
+        "quantità di sostanza"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-01",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u5-01",
+      "exercise": {
+        "itemId": "final-U5-01.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Quali variabili p, V e T descrivono un gas uniforme in equilibrio e quali sono le loro unità SI? Quale ulteriore quantità occorre nell’equazione di stato?",
+        "correction": "p in Pa, V in m³, T in K, insieme alla quantità di sostanza.",
+        "misconception": "Pressione e temperatura raddoppiano unendo due campioni identici all’equilibrio.",
+        "errorCode": "misconception:U5-01.02",
+        "recovery": {
+          "lessonId": "ds-2026-u5-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-01",
+        "itemId": "final-U5-01.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Per un gas in equilibrio quali variabili descrivono pressione,volume e temperatura e con quali unitàSI?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-01.03",
+      "objective": "stato e funzioni stato",
+      "familyId": "U5-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "unità SI",
+        "proporzioni",
+        "quantità di sostanza"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-01",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u5-01",
+      "exercise": {
+        "itemId": "final-U5-01.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Il calore scambiato è una funzione di stato come l’energia interna? Spiega la distinzione.",
+        "correction": "No: Q dipende dal percorso; U è funzione di stato.",
+        "misconception": "Lo stato finale determina il calore scambiato qualunque sia il percorso.",
+        "errorCode": "misconception:U5-01.03",
+        "recovery": {
+          "lessonId": "ds-2026-u5-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-01",
+        "itemId": "final-U5-01.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Il calore scambiato è una funzione di stato come l’energia interna?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-01.04",
+      "objective": "scale termometriche",
+      "familyId": "U5-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "unità SI",
+        "proporzioni",
+        "quantità di sostanza"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-01",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u5-01",
+      "exercise": {
+        "itemId": "final-U5-01.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Converti −20 °C in kelvin e spiega se una differenza di 20 °C equivale a una differenza di 20 K.",
+        "correction": "253,15 K. Gli intervalli di 20 °C e 20 K hanno uguale ampiezza; gli zeri delle scale sono diversi.",
+        "misconception": "40 °C è il doppio della temperatura termodinamica di20 °C.",
+        "errorCode": "misconception:U5-01.04",
+        "recovery": {
+          "lessonId": "ds-2026-u5-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-01",
+        "itemId": "final-U5-01.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Converti−20°C in kelvin.",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-01.05",
+      "objective": "gas ideale",
+      "familyId": "U5-01",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "unità SI",
+        "proporzioni",
+        "quantità di sostanza"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-01",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u5-01",
+      "exercise": {
+        "itemId": "final-U5-01.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Gas ideale in equilibrio: n=2 mol, T=250 K, p assoluta=100000 Pa. Con R=8,31446261815324 J/(mol K), trova V in m³.",
+        "correction": "0,0415723130907662 m³; usa pressione assoluta e kelvin.",
+        "misconception": "La pressione manometrica può sostituire quella assoluta in pV=nRT.",
+        "errorCode": "misconception:U5-01.05",
+        "recovery": {
+          "lessonId": "ds-2026-u5-01",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-01",
+        "itemId": "final-U5-01.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Gas ideale:n=2mol,T=250K,p=100000Pa,R=8,31446261815324J/(mol K). QualeV?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.01",
+      "objective": "calore come trasferimento",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "È corretto chiamare l’energia interna di un corpo «calore contenuto»? Definisci il calore come trasferimento.",
+        "correction": "No: calore è energia trasferita per differenza di temperatura.",
+        "misconception": "Il corpo contiene calore come una sostanza.",
+        "errorCode": "misconception:U5-02.01",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un corpo ha energia interna:è corretto chiamarla calore contenuto?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.02",
+      "objective": "capacità termica",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un corpo di capacità termica costante 40 J/K assorbe 120 J, senza transizioni e nelle condizioni a cui si riferisce la capacità. Quanto aumenta T?",
+        "correction": "3 K.",
+        "misconception": "La capacità termica resta uguale dividendo a metà un corpo omogeneo.",
+        "errorCode": "misconception:U5-02.02",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una capacità termica40J/K riceve120J senza transizioni. Quanto cresceT?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.03",
+      "objective": "calore specifico",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un campione ha massa 0,5 kg e calore specifico 800 J/(kg K). Qual è la sua capacità termica totale?",
+        "correction": "400 J/K.",
+        "misconception": "Calore specifico c e calore latente L hanno le stesse unità e lo stesso uso.",
+        "errorCode": "misconception:U5-02.03",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Massa0,5kg,c=800J/(kg K). Quale capacità termica?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.04",
+      "objective": "gas ideali",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Per un gas ideale, quanto vale C_P,m−C_V,m fra capacità molari? Perché quella a pressione costante è maggiore?",
+        "correction": "C_P, m−C_V, m=R; a pressione costante parte del calore alimenta il lavoro di espansione.",
+        "misconception": "Lo stesso ΔT richiede lo stesso Q a p costante e a V costante per un gas.",
+        "errorCode": "misconception:U5-02.04",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Per una mole di gas ideale quanto valeCp−Cv e perchéCp è maggiore?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.05",
+      "objective": "fusione evaporazione condensazione",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Durante la fusione di una sostanza pura a pressione fissata, con due fasi in equilibrio, aggiungere calore fa necessariamente aumentare T?",
+        "correction": "No: può cambiare la frazione di fase a temperatura costante.",
+        "misconception": "Evaporazione avviene soltanto quando tutta l’acqua raggiunge100 °C.",
+        "errorCode": "misconception:U5-02.05",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Durante fusione ideale a pressione fissata,con due fasi in equilibrio,aggiungere calore cambia necessariamenteT?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.06",
+      "objective": "calore latente",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/6"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.06",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un processo assorbe calore latente specifico L=2·10⁵ J/kg. Quanta energia richiede la trasformazione di 0,03 kg già alla temperatura di transizione?",
+        "correction": "6000 J; la legge e il segno del processo vanno dichiarati.",
+        "misconception": "Ogni energia assorbita durante fusione aumenta la temperatura.",
+        "errorCode": "misconception:U5-02.06",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.06",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "ConL=2·10^5J/kg,quale calore assorbito per trasformare0,03kg nella fase che richiede quelL?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-02.07",
+      "objective": "calorimetria",
+      "familyId": "U5-02",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.04",
+        "bilancio di energia",
+        "media pesata"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-02",
+        "pointer": "/explanation/7"
+      },
+      "laboratorySpecId": "lab-spec-u5-02",
+      "exercise": {
+        "itemId": "final-U5-02.07",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Due corpi isolati dall’esterno scambiano soltanto calore. Il primo riceve Q₁=+70 J. Quanto vale Q₂ se il recipiente ha capacità trascurabile?",
+        "correction": "−70 J; somma dei calori uguale zero.",
+        "misconception": "La temperatura finale è sempre la media aritmetica delle temperature iniziali.",
+        "errorCode": "misconception:U5-02.07",
+        "recovery": {
+          "lessonId": "ds-2026-u5-02",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-02",
+        "itemId": "final-U5-02.07",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Due corpi isolati dal resto scambiano caloreQ1=+70J. Quanto valeQ2 se il recipiente è trascurabile e non ci sono altri scambi?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-03.01",
+      "objective": "conduzione",
+      "familyId": "U5-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-02.01",
+        "potenza energia/tempo",
+        "differenze di temperatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-03",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u5-03",
+      "exercise": {
+        "itemId": "final-U5-03.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Una sbarra metallica ferma trasferisce energia dal capo caldo al freddo, senza moto macroscopico di materiale. Quale meccanismo è coinvolto?",
+        "correction": "Conduzione.",
+        "misconception": "Raddoppiare lo spessore aumenta la potenza condotta a temperature fissate.",
+        "errorCode": "misconception:U5-03.01",
+        "recovery": {
+          "lessonId": "ds-2026-u5-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-03",
+        "itemId": "final-U5-03.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una sbarra metallica trasferisce energia dal capo caldo al freddo senza moto macroscopico del materiale. Quale meccanismo?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-03.02",
+      "objective": "convezione",
+      "familyId": "U5-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-02.01",
+        "potenza energia/tempo",
+        "differenze di temperatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-03",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u5-03",
+      "exercise": {
+        "itemId": "final-U5-03.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità in un campo gravitazionale. Quale meccanismo di trasporto è coinvolto?",
+        "correction": "Convezione naturale.",
+        "misconception": "Convezione è sinonimo di conduzione e non comporta moto di materia.",
+        "errorCode": "misconception:U5-03.02",
+        "recovery": {
+          "lessonId": "ds-2026-u5-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-03",
+        "itemId": "final-U5-03.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un liquido riscaldato si mette in circolazione per differenze di densità. Quale meccanismo di trasporto?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-03.03",
+      "objective": "irraggiamento",
+      "familyId": "U5-03",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-02.01",
+        "potenza energia/tempo",
+        "differenze di temperatura"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-03",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u5-03",
+      "exercise": {
+        "itemId": "final-U5-03.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un corpo e il grande ambiente che lo circonda sono alla stessa temperatura assoluta positiva, in equilibrio radiativo. Il corpo emette? Qual è lo scambio netto?",
+        "correction": "Sì, emettono entrambe; lo scambio netto è zero.",
+        "misconception": "In equilibrio termico un corpo non emette radiazione.",
+        "errorCode": "misconception:U5-03.03",
+        "recovery": {
+          "lessonId": "ds-2026-u5-03",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-03",
+        "itemId": "final-U5-03.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Due superfici alla stessa temperatura emettono radiazione? Com’è lo scambio netto nel modello di equilibrio?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.01",
+      "objective": "energia interna",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Il gas percorre un ciclo termodinamico. Quanto vale ΔU sul ciclo e quale proprietà giustifica la risposta?",
+        "correction": "0, perché l’energia interna è funzione di stato.",
+        "misconception": "Per ogni sostanza U=3nRT/2 indipendentemente da fase e struttura.",
+        "errorCode": "misconception:U5-04.01",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una funzioneU torna allo stesso valore dopo un ciclo termodinamico. Quanto valeΔUciclo?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.02",
+      "objective": "calore e lavoro",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un gas riceve Q=+90 J e compie W=+40 J sull’ambiente. Dichiara la convenzione e calcola ΔU, trascurando variazioni energetiche macroscopiche.",
+        "correction": "Q entrante, W fatto dal gas: ΔU=Q−W=+50 J.",
+        "misconception": "Il lavoro di espansione è sempre p_gasΔV anche in un processo rapido.",
+        "errorCode": "misconception:U5-04.02",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un gas riceveQ=+90J e compieW=+40J sull’ambiente. Dichiara i segni e trovaΔU.",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.03",
+      "objective": "primo principio",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "La relazione ΔU=Q−W ammette scomparsa di energia? Spiega quali contributi vengono bilanciati attraverso il confine del sistema.",
+        "correction": "No: esprime il bilancio fra energia interna e trasferimenti attraverso il confine.",
+        "misconception": "In compressione il lavoro fatto dal gas è positivo.",
+        "errorCode": "misconception:U5-04.03",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "La leggeΔU=Q−W permette a energia di scomparire?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.04",
+      "objective": "reversibilità",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un processo con attrito può essere invertito ripristinando esattamente sistema e ambiente, senza altri effetti? Motiva.",
+        "correction": "No: è irreversibile; invertire solo il moto non annulla la produzione di entropia.",
+        "misconception": "Ogni processo lento è reversibile anche con attrito.",
+        "errorCode": "misconception:U5-04.04",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un processo con attrito può essere invertito lasciando sistema e ambiente esattamente come prima senza altri effetti?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.05",
+      "objective": "isoterma",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Per un gas ideale in una trasformazione isoterma, ΔU=0 impone Q=0? Collega calore e lavoro nella convenzione del corso.",
+        "correction": "No: Q=W; calore e lavoro possono essere entrambi non nulli.",
+        "misconception": "Isoterma significa nessun trasferimento di calore.",
+        "errorCode": "misconception:U5-04.05",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Per un gas ideale in isoterma,ΔU=0 implicaQ=0?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.06",
+      "objective": "isocora",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/6"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.06",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "In una trasformazione isocora, quale valore ha il lavoro di espansione p,V? Quale vincolo lo determina?",
+        "correction": "0 J perchéΔV=0.",
+        "misconception": "Un recipiente rigido imponeQ=0.",
+        "errorCode": "misconception:U5-04.06",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.06",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "In una trasformazione isocora quasi statica quale lavoro di espansione?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.07",
+      "objective": "isobara",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/7"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.07",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un gas si espande quasistaticamente contro pressione costante 2·10⁵ Pa, aumentando il volume di 0,001 m³. Qual è il lavoro fatto dal gas?",
+        "correction": "+200 J.",
+        "misconception": "In isobara il calore è interamente aumento di energia interna.",
+        "errorCode": "misconception:U5-04.07",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.07",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un gas si espande quasi staticamente a2·10^5Pa di0,001m³. Quale lavoro fatto dal gas?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-04.08",
+      "objective": "adiabatica",
+      "familyId": "U5-04",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-01.05",
+        "U5-02.04",
+        "lavoro e area di un grafico"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-04",
+        "pointer": "/explanation/8"
+      },
+      "laboratorySpecId": "lab-spec-u5-04",
+      "exercise": {
+        "itemId": "final-U5-04.08",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un gas viene compresso adiabaticamente: l’ambiente compie 60 J sul gas. Trova Q, W fatto dal gas e ΔU.",
+        "correction": "Q=0; W fatto dal gas=−60 J; ΔU=+60 J.",
+        "misconception": "Adiabatica e isoterma sono equivalenti; pV^γ vale anche per libera espansione.",
+        "errorCode": "misconception:U5-04.08",
+        "recovery": {
+          "lessonId": "ds-2026-u5-04",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-04",
+        "itemId": "final-U5-04.08",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Una compressione adiabatica ideale con60J di lavoro fatto sul gas ha qualeQ eΔU?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.01",
+      "objective": "Kelvin-Planck e Clausius",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/1"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.01",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un motore ciclico preleva calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale enunciato lo esclude?",
+        "correction": "Secondo principio, enunciato di Kelvin-Planck; Clausius esclude trasferimento spontaneo freddo→caldo senza altri effetti.",
+        "misconception": "Il secondo principio vieta qualunque trasferimento da freddo a caldo.",
+        "errorCode": "misconception:U5-05.01",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.01",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un motore ciclico assorbe calore da un solo termostato e lo converte tutto in lavoro senza altri effetti. Quale principio lo esclude?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.02",
+      "objective": "irreversibilità",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/2"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.02",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Un processo può conservare energia ed essere comunque irreversibile? Spiega quale controllo ulteriore manca al solo bilancio energetico.",
+        "correction": "Sì: conservazione energetica non impone reversibilità né entropia totale costante.",
+        "misconception": "Se l’energia è conservata il processo è reversibile.",
+        "errorCode": "misconception:U5-05.02",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.02",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un processo spontaneo può conservare energia ed essere comunque irreversibile?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.03",
+      "objective": "ciclo",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/3"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.03",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Che cosa definisce un ciclo termodinamico e quanto varia una funzione di stato al suo termine?",
+        "correction": "Ritorno allo stato iniziale; variazione netta della funzione di stato zero.",
+        "misconception": "In un ciclo il lavoro totale deve essere zero perché lo stato finale è uguale all’iniziale.",
+        "errorCode": "misconception:U5-05.03",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.03",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Che cosa definisce un ciclo e quanto cambia una funzione di stato al termine?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.04",
+      "objective": "macchina termica e rendimento",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/4"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.04",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Una macchina ciclica riceve 1000 J e cede 700 J. Calcola lavoro netto e rendimento.",
+        "correction": "0,3=30%; W=300 J.",
+        "misconception": "Il rendimento si calcola W/Q_net e vale sempre100%.",
+        "errorCode": "misconception:U5-05.04",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.04",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Macchina assorbe1000J e cede700J in un ciclo. Quale rendimento?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.05",
+      "objective": "Carnot",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/5"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.05",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Qual è il rendimento massimo di un motore che opera fra serbatoi a 500 K e 400 K? Dichiara quando il limite può essere uguagliato.",
+        "correction": "η_C=1−400/500=0,20=20%; uguaglianza soltanto nel limite reversibile fra gli stessi serbatoi.",
+        "misconception": "La formula di Carnot accetta temperature Celsius.",
+        "errorCode": "misconception:U5-05.05",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.05",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Fra termostati500K e400K,quale limite diCarnot?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.06",
+      "objective": "entropia funzione stato",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/6"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.06",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "L’entropia di un sottosistema diminuisce mentre cede energia all’ambiente. Questo viola necessariamente il secondo principio? Quale complesso occorre esaminare?",
+        "correction": "No: si deve valutareΔStotale di sistema e ambiente; deve essere non negativa per l’universo isolato.",
+        "misconception": "In un processo adiabatico irreversibileQ=0 implicaΔS=0.",
+        "errorCode": "misconception:U5-05.06",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.06",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un sottosistema cede entropia all’ambiente e diminuisceS. Questo viola sempre il secondo principio?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.07",
+      "objective": "interpretazione statistica",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/7"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.07",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Nell’interpretazione statistica con microstati equiprobabili, come cambia S aumentando la molteplicità Ω compatibile con il macrostato? Spiega il ruolo del logaritmo.",
+        "correction": "S aumenta con lnΩ; S=k_B lnΩ nel modello equiprobabile. Il logaritmo rende additive le entropie quando le molteplicità di sistemi indipendenti si moltiplicano.",
+        "misconception": "Entropia misura direttamente quanto una fotografia appare disordinata.",
+        "errorCode": "misconception:U5-05.07",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.07",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Nell’interpretazione statistica,più configurazioni microscopiche compatibili con un macro-stato tendono a quale entropia?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    },
+    {
+      "objectiveId": "U5-05.08",
+      "objective": "direzione processi",
+      "familyId": "U5-05",
+      "source": {
+        "id": "MUR-FISICA-2026-OFFICIAL",
+        "pages": [
+          4
+        ]
+      },
+      "prerequisites": [
+        "U5-04.03",
+        "U5-04.04",
+        "rapporti adimensionali",
+        "logaritmo come confronto di molteplicità"
+      ],
+      "explanation": {
+        "lessonId": "ds-2026-u5-05",
+        "pointer": "/explanation/8"
+      },
+      "laboratorySpecId": "lab-spec-u5-05",
+      "exercise": {
+        "itemId": "final-U5-05.08",
+        "collection": "atomicFinalAssessment"
+      },
+      "typicalError": {
+        "prompt": "Si trasferiscono spontaneamente 100 J da un termostato a 500 K a uno a 250 K. Trova le due variazioni di entropia e la loro somma.",
+        "correction": "Serbatoio caldo: −100/500=−0,2 J/K; freddo: +100/250=+0,4 J/K; somma: +0,2 J/K.",
+        "misconception": "L’entropia di ogni singolo corpo può solo aumentare.",
+        "errorCode": "misconception:U5-05.08",
+        "recovery": {
+          "lessonId": "ds-2026-u5-05",
+          "action": "Rileggi la spiegazione collegata, esplicita il vincolo e ripeti la previsione prima del problema diverso."
+        }
+      },
+      "transfer": {
+        "lessonId": "ds-2026-u5-05",
+        "itemId": "final-U5-05.08",
+        "collection": "atomicFinalAssessment",
+        "pointer": "/transfer",
+        "status": "OBJECTIVE_SPECIFIC_PRESENT"
+      },
+      "acceptance": {
+        "prompt": "Un flusso spontaneo di100J da500K a250K aumenta o diminuisce l’entropia totale dei due termostati? Quanto?",
+        "criteria": [
+          "Risponde alla grandezza o al criterio richiesto, non solo al nome della legge.",
+          "Esplicita le ipotesi necessarie e un passaggio che giustifica la risposta.",
+          "Conserva unità, segni e vincoli; per risposta libera richiede rubrica e intervento docente."
+        ],
+        "requiredEvidence": [
+          "explanation_review",
+          "worked_example_check",
+          "objective_specific_assessment",
+          "feedback_check",
+          "pertinent_interaction",
+          "recovery",
+          "exact_revision_review"
+        ],
+        "scientificReview": "AI_REVIEWED_TECHNICALLY",
+        "interactionTest": "NOT_RUN",
+        "humanReview": "NOT_RUN"
+      },
+      "status": "VALIDATED_TECHNICALLY",
+      "consumerStatus": "PRIVATE_EDITORIAL_REVIEW",
+      "assessmentCoverage": "OBJECTIVE_SPECIFIC_FREE_RESPONSE; BANK_REFS_ADDITIONAL"
+    }
+  ]
+}

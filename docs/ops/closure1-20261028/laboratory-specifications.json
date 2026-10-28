@@ -1,0 +1,1142 @@
+{
+  "schemaVersion": 1,
+  "owner": "CHAT 1B",
+  "date": "2026-10-28",
+  "status": "DRAFT",
+  "labs": [
+    {
+      "id": "lab-spec-u3-01",
+      "familyId": "U3-01",
+      "title": "Densità e pressione: distinguere materia e forza",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U3-01.01",
+        "U3-01.02",
+        "U3-01.03",
+        "U3-01.04"
+      ],
+      "misconception": "Stessa massa significa stessa densità; stessa forza significa stessa pressione.",
+      "variables": [
+        {
+          "name": "massKg",
+          "unit": "kg",
+          "min": 0.1,
+          "max": 10
+        },
+        {
+          "name": "volumeM3",
+          "unit": "m³",
+          "min": 0.0001,
+          "max": 0.01
+        },
+        {
+          "name": "normalForceN",
+          "unit": "N",
+          "min": 1,
+          "max": 100
+        },
+        {
+          "name": "areaM2",
+          "unit": "m²",
+          "min": 0.001,
+          "max": 0.1
+        }
+      ],
+      "prediction": "Se dimezzi l’area mantenendo la forza, cambia anche la densità del liquido?",
+      "expectedBehavior": "ρ=m/V e p=F_n/A sono rapporti di grandezze diverse. Bloccare m/V conserva ρ; bloccare F conserva la forza totale.",
+      "representations": [
+        "Due pannelli 2D separati per m–V e F–A; unità visibili.",
+        "Grafico p(A) a F fissata e tabella F,p,A; linee di pari densità nel piano m,V."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Massa e volume omogenei; pressione media uniforme sul pistone.",
+        "Non rappresentare un fluido fermo che sostiene uno sforzo di taglio statico."
+      ],
+      "followup": "Confrontare due siringhe di area diversa che esercitano la stessa pressione e trovare il rapporto delle forze.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "massKg": 1.2,
+            "volumeM3": 0.001
+          },
+          "expected": {
+            "densityKgM3": 1200
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "normalForceN": 20,
+            "areaM2": 0.004
+          },
+          "expected": {
+            "pressurePa": 5000
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "invalid": {
+            "areaM2": 0
+          },
+          "expectedError": "domain"
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u3-02",
+      "familyId": "U3-02",
+      "title": "Idrostatica, galleggiamento e strumenti",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U3-02.01",
+        "U3-02.02",
+        "U3-02.03",
+        "U3-02.04",
+        "U3-02.05",
+        "U3-02.06"
+      ],
+      "misconception": "La pressione dipende dalla forma del recipiente; spinta e peso coincidono sempre.",
+      "variables": [
+        {
+          "name": "densityKgM3",
+          "unit": "kg/m³",
+          "min": 500,
+          "max": 14000
+        },
+        {
+          "name": "depthM",
+          "unit": "m",
+          "min": 0,
+          "max": 2
+        },
+        {
+          "name": "surfacePressurePa",
+          "unit": "Pa",
+          "min": 1000,
+          "max": 200000
+        },
+        {
+          "name": "objectDensityKgM3",
+          "unit": "kg/m³",
+          "min": 100,
+          "max": 20000
+        }
+      ],
+      "prediction": "Due recipienti di forma diversa hanno stesso liquido e stessa profondità: quale pressione prevedi al fondo?",
+      "expectedBehavior": "p=p0+ρgh, con g=9,81 m/s². La stessa variazione imposta p0 si somma ovunque. F_A=ρgV_imm; il volume immerso aumenta fino all’equilibrio oppure il corpo affonda. Manometro e barometro usano dislivelli verticali.",
+      "representations": [
+        "Sezioni 2D di recipienti con punti alla stessa quota.",
+        "p(z) con z verso l’alto; diagramma forze separato per il corpo.",
+        "Pannelli manometro/barometro e tabella pressioni assolute/relative."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Liquidi fermi, incomprimibili, densità costante per strato.",
+        "Nel galleggiamento libero trascurare tensione superficiale e contatto col fondo.",
+        "Nel barometro dichiarare pressione del vapore trascurata."
+      ],
+      "followup": "Trovare il carico aggiungibile a un galleggiante senza sommergerlo, motivando quale volume entra nella spinta.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "densityKgM3": 1000,
+            "depthM": 0.5,
+            "surfacePressurePa": 100000
+          },
+          "expected": {
+            "pressurePa": 104905
+          },
+          "absTolerance": 1e-06
+        },
+        {
+          "input": {
+            "objectDensityKgM3": 750,
+            "densityKgM3": 1000
+          },
+          "expected": {
+            "immersedFraction": 0.75
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "deltaPressurePa": 10000,
+            "smallAreaM2": 0.001,
+            "largeAreaM2": 0.01
+          },
+          "expected": {
+            "smallForceN": 10,
+            "largeForceN": 100
+          },
+          "absTolerance": 1e-09
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u3-03",
+      "familyId": "U3-03",
+      "title": "Continuità e bilancio di Bernoulli",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U3-03.01",
+        "U3-03.02",
+        "U3-03.03",
+        "U3-03.04",
+        "U3-03.05",
+        "U3-03.06"
+      ],
+      "misconception": "Un restringimento fa diminuire sempre la portata; la pressione è uguale in un tubo orizzontale.",
+      "variables": [
+        {
+          "name": "inletAreaM2",
+          "unit": "m²",
+          "min": 0.0001,
+          "max": 0.01
+        },
+        {
+          "name": "outletAreaM2",
+          "unit": "m²",
+          "min": 0.0001,
+          "max": 0.01
+        },
+        {
+          "name": "flowM3S",
+          "unit": "m³/s",
+          "min": 1e-05,
+          "max": 0.001
+        },
+        {
+          "name": "heightDifferenceM",
+          "unit": "m",
+          "min": -1,
+          "max": 1
+        }
+      ],
+      "prediction": "A portata imposta, dimezzare il raggio dimezza o quadruplica la velocità? Che cosa ti consente di dire sulla pressione?",
+      "expectedBehavior": "v=Q/A; p2=p1+ρ(v1²−v2²)/2+ρg(z1−z2). Distinguere il vincolo Q imposta dal vincolo Δp imposta. Stazionario descrive dipendenza temporale, laminare organizzazione spaziale.",
+      "representations": [
+        "Sezione del condotto e bilancio impilato p,ρv²/2,ρgz in Pa.",
+        "Grafici v(A), p(A) e tabella di due sezioni.",
+        "Diramazione con conservazione delle portate."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Fluido ideale incomprimibile, stessa linea di corrente, moto stazionario, nessuna pompa né perdita.",
+        "Stenosi e aneurisma sono analogie locali: niente inferenze diagnostiche o pressione a valle ignorando dissipazione."
+      ],
+      "followup": "Confrontare una dilatazione in salita con un restringimento orizzontale e distinguere contributi cinetici e gravitazionali.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "flowM3S": 0.0002,
+            "inletAreaM2": 0.0002,
+            "outletAreaM2": 0.0001,
+            "densityKgM3": 1000,
+            "heightDifferenceM": 0
+          },
+          "expected": {
+            "inletSpeedMS": 1,
+            "outletSpeedMS": 2,
+            "pressure2Minus1Pa": -1500
+          },
+          "absTolerance": 1e-08
+        },
+        {
+          "input": {
+            "flowInM3S": 0.0003,
+            "branch1M3S": 0.0001
+          },
+          "expected": {
+            "branch2M3S": 0.0002
+          },
+          "absTolerance": 1e-12
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u3-04",
+      "familyId": "U3-04",
+      "title": "Viscosità, profilo e reti idrauliche",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04",
+        "U3-04.05"
+      ],
+      "misconception": "Raddoppiare raddoppia la portata; aumentare la velocità media equivale ad aumentare il gradiente ovunque.",
+      "variables": [
+        {
+          "name": "radiusM",
+          "unit": "m",
+          "min": 0.0005,
+          "max": 0.003
+        },
+        {
+          "name": "lengthM",
+          "unit": "m",
+          "min": 0.1,
+          "max": 2
+        },
+        {
+          "name": "viscosityPaS",
+          "unit": "Pa s",
+          "min": 0.001,
+          "max": 0.1
+        },
+        {
+          "name": "pressureDropPa",
+          "unit": "Pa",
+          "min": 1,
+          "max": 1000
+        },
+        {
+          "name": "constraint",
+          "choices": [
+            "fixed-pressure",
+            "fixed-flow"
+          ]
+        }
+      ],
+      "prediction": "Se il raggio si dimezza, prevedi l’effetto prima a Δp costante e poi a Q costante.",
+      "expectedBehavior": "Q=πr⁴Δp/(8ηL); R=8ηL/(πr⁴). u(s)=Δp(r²−s²)/(4ηL), media=u_max/2. R_serie somma; inversi delle resistenze si sommano in parallelo.",
+      "representations": [
+        "Profilo 2D u(s) con asse e parete identificati, gradiente nullo sull’asse.",
+        "Grafico Q(r) e confronto scala lineare/logaritmica facoltativo.",
+        "Schema di rete, pressioni ai nodi e tabella delle portate di ramo."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Newtoniano, laminare completamente sviluppato, tubo lungo rigido circolare, aderenza alla parete.",
+        "Evitare animazione che implica turbolenza nel modello di Poiseuille.",
+        "Modello ematico limitato: pareti elastiche, pulsazione e non newtonianità non modellate."
+      ],
+      "followup": "Chiudere un ramo mantenendo Δp: distinguere portata del ramo superstite e portata totale. Ripetere con pompa a Q imposta.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "radiusRatio": 0.5,
+            "constraint": "fixed-pressure"
+          },
+          "expected": {
+            "flowRatio": 0.0625
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "radiusRatio": 0.5,
+            "constraint": "fixed-flow"
+          },
+          "expected": {
+            "pressureRatio": 16
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "resistance1": 2,
+            "resistance2": 4
+          },
+          "expected": {
+            "series": 6,
+            "parallel": 1.3333333333333333
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "radialFraction": 0.5
+          },
+          "expected": {
+            "speedOverMax": 0.75
+          },
+          "absTolerance": 1e-12
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u3-05",
+      "familyId": "U3-05",
+      "title": "Superfici, curvatura e capillarità",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U3-05.01",
+        "U3-05.02",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "misconception": "Una bolla piccola ha sempre minore sovrapressione; una pellicola ha una sola interfaccia.",
+      "variables": [
+        {
+          "name": "surfaceTensionNM",
+          "unit": "N/m",
+          "min": 0.01,
+          "max": 0.08
+        },
+        {
+          "name": "radiusM",
+          "unit": "m",
+          "min": 0.0001,
+          "max": 0.01
+        },
+        {
+          "name": "interfaceCount",
+          "choices": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "contactAngleDeg",
+          "unit": "°",
+          "min": 0,
+          "max": 140
+        }
+      ],
+      "prediction": "A tensione uguale, quale delle due gocce sferiche richiede sovrapressione maggiore? E se cambia anche γ?",
+      "expectedBehavior": "Per sfera con una interfaccia Δp=2γ/r, pellicola saponosa con due superfici Δp=4γ/r. Forma piana ha curvatura nulla. Risalita qualitativa: dipende da bagnabilità e raggio; con legge fornita h=2γ cosθ/(ρgr).",
+      "representations": [
+        "Sezione 2D con superfici enumerate; forze sul bordo e salto di pressione.",
+        "Grafico Δp(1/r) a γ fissa; menisco con angolo di contatto.",
+        "3D solo opzionale per distinguere le due curvature principali della superficie."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "γ costante nel confronto controllato; equilibrio statico.",
+        "Formule quantitative di Laplace/Jurin sono approfondimento con legge fornita; il target ufficiale Laplace è qualitativo.",
+        "Alveoli non sono bolle saponose isolate; surfattante e tessuto cambiano il modello."
+      ],
+      "followup": "Scegliere γ2 perché due cavità di raggio diverso abbiano la stessa pressione, poi spiegare il limite biologico.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "surfaceTensionNM": 0.04,
+            "radiusM": 0.002,
+            "interfaceCount": 1
+          },
+          "expected": {
+            "pressureJumpPa": 40
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "surfaceTensionNM": 0.04,
+            "radiusM": 0.002,
+            "interfaceCount": 2
+          },
+          "expected": {
+            "pressureJumpPa": 80
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "contactAngleDeg": 90
+          },
+          "expected": {
+            "capillaryRiseM": 0
+          },
+          "absTolerance": 1e-12
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u5-01",
+      "familyId": "U5-01",
+      "title": "Stato, temperatura e gas ideale",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U5-01.01",
+        "U5-01.02",
+        "U5-01.03",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "misconception": "Raddoppiare i gradi Celsius raddoppia p; un punto p,V permette di conoscere Q.",
+      "variables": [
+        {
+          "name": "moles",
+          "unit": "mol",
+          "min": 0.1,
+          "max": 2
+        },
+        {
+          "name": "temperatureK",
+          "unit": "K",
+          "min": 250,
+          "max": 600
+        },
+        {
+          "name": "pressurePa",
+          "unit": "Pa",
+          "min": 50000,
+          "max": 300000
+        },
+        {
+          "name": "constraint",
+          "choices": [
+            "fixed-volume",
+            "fixed-pressure",
+            "fixed-temperature"
+          ]
+        }
+      ],
+      "prediction": "Passando da 20 °C a 40 °C in un recipiente rigido chiuso, la pressione raddoppia?",
+      "expectedBehavior": "pV=nRT, R=8,31446261815324 J/(mol K), p assoluta. Il sistema selezionato determina cosa è trasferimento e cosa è interno. Raddoppiare la quantità a stesso p,T raddoppia V, ma non T.",
+      "representations": [
+        "Grafico p,V con isoterme e marker di stato; tre controlli indipendenti al massimo, quarto calcolato.",
+        "Doppia scala Celsius/kelvin e tabella p,V,T,n."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Gas ideale uniforme all’equilibrio, T>0 e p>0.",
+        "Lo stato non conserva la cronologia di Q,W; chiusura e isolamento vanno dichiarati."
+      ],
+      "followup": "Confrontare campioni con numero di moli diverso a stessa p,T e identificare intensive/estensive.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "moles": 1,
+            "temperatureK": 300,
+            "pressurePa": 100000
+          },
+          "expected": {
+            "volumeM3": 0.02494338785445972
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "temperature1C": 20,
+            "temperature2C": 40,
+            "constraint": "fixed-volume"
+          },
+          "expected": {
+            "pressureRatio": 1.068224458468361
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "invalid": {
+            "temperatureK": 0
+          },
+          "expectedError": "domain"
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u5-02",
+      "familyId": "U5-02",
+      "title": "Calorimetria e cambi di fase",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.04",
+        "U5-02.05",
+        "U5-02.06",
+        "U5-02.07"
+      ],
+      "misconception": "La temperatura finale è sempre media aritmetica; durante la fusione il calore fa aumentare T.",
+      "variables": [
+        {
+          "name": "mass1Kg",
+          "unit": "kg",
+          "min": 0.05,
+          "max": 1
+        },
+        {
+          "name": "mass2Kg",
+          "unit": "kg",
+          "min": 0.05,
+          "max": 1
+        },
+        {
+          "name": "temperature1C",
+          "unit": "°C",
+          "min": 0,
+          "max": 80
+        },
+        {
+          "name": "temperature2C",
+          "unit": "°C",
+          "min": 0,
+          "max": 80
+        },
+        {
+          "name": "calorimeterCapacityJK",
+          "unit": "J/K",
+          "min": 0,
+          "max": 200
+        }
+      ],
+      "prediction": "Aggiungendo ghiaccio a 0 °C, basta sapere che l’acqua è calda per concludere che il ghiaccio fonderà tutto?",
+      "expectedBehavior": "Somma delle energie scambiate nulla in sistema isolato. Prima confrontare energia disponibile e mL; solo dopo scegliere la fase finale. Per corpi senza transizione Q=mcΔT. Per gas usare capacità coerente con vincolo.",
+      "representations": [
+        "Grafico energia cumulata–temperatura con tratti e plateau dichiarati a pressione fissata.",
+        "Barre di energia dei corpi e recipiente; frazione di fase separata dalla temperatura."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Calori specifici e latenti costanti forniti, perdite trascurate o quantificate.",
+        "Non estrapolare mcΔT oltre una transizione.",
+        "Evaporazione anche sotto ebollizione: modello evaporazione non identico al plateau di ebollizione."
+      ],
+      "followup": "Includere il recipiente nel bilancio e decidere se resta ghiaccio; non permettere temperature negative della miscela liquido+ghiaccio all’equilibrio ordinario.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "capacity1JK": 200,
+            "temperature1C": 60,
+            "capacity2JK": 400,
+            "temperature2C": 20
+          },
+          "expected": {
+            "finalTemperatureC": 33.333333333333336
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "iceMassKg": 0.1,
+            "latentHeatJKg": 334000,
+            "availableHeatJ": 16700
+          },
+          "expected": {
+            "meltedMassKg": 0.05,
+            "remainingIceKg": 0.05,
+            "finalTemperatureC": 0
+          },
+          "absTolerance": 1e-09
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u5-03",
+      "familyId": "U5-03",
+      "title": "Trasmissione del calore e potenza",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "misconception": "Il corpo contiene calore; materiale metallico implica temperatura più bassa; radiazione richiede aria.",
+      "variables": [
+        {
+          "name": "deltaTemperatureK",
+          "unit": "K",
+          "min": 0,
+          "max": 80
+        },
+        {
+          "name": "conductivityWMK",
+          "unit": "W/(m K)",
+          "min": 0.05,
+          "max": 200
+        },
+        {
+          "name": "areaM2",
+          "unit": "m²",
+          "min": 0.01,
+          "max": 1
+        },
+        {
+          "name": "thicknessM",
+          "unit": "m",
+          "min": 0.005,
+          "max": 0.1
+        },
+        {
+          "name": "mode",
+          "choices": [
+            "conduction",
+            "convection",
+            "radiation"
+          ]
+        }
+      ],
+      "prediction": "Raddoppiando lo spessore a temperature delle facce fissate cambia l’energia trasferita ogni secondo o la differenza di temperatura?",
+      "expectedBehavior": "Conduzione stazionaria P=kAΔT/L; convezione trasferisce energia anche per moto macroscopico; irraggiamento avviene nel vuoto. Mostrare potenza netta nulla a temperature uguali, con emissione non nulla.",
+      "representations": [
+        "Profilo di T(x) e pendenza in pareti in serie; nodi di interfaccia.",
+        "Tabella energie in J e potenze in W distinte.",
+        "Per radiazione, curve di emissione e assorbimento separate, senza obbligo della legge di Wien."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Parete piana stazionaria con k costante; resistenze di contatto trascurate.",
+        "Legge di Newton e Stefan-Boltzmann eventualmente fornite come modelli, non dedotte dai soli nomi dei meccanismi."
+      ],
+      "followup": "Confrontare isolamento, ventilazione e ambiente radiativo in un unico bilancio di potenze dichiarando i parametri mantenuti fissi.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "conductivityWMK": 0.5,
+            "areaM2": 0.2,
+            "deltaTemperatureK": 20,
+            "thicknessM": 0.01
+          },
+          "expected": {
+            "powerW": 200
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "temperatureObjectK": 300,
+            "temperatureEnvironmentK": 300
+          },
+          "expected": {
+            "netRadiativePowerW": 0
+          },
+          "absTolerance": 1e-09
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    },
+    {
+      "id": "lab-spec-u5-04",
+      "familyId": "U5-04",
+      "title": "Primo principio e trasformazioni",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.04",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08"
+      ],
+      "misconception": "Isoterma significa Q=0; adiabatica significa T costante; W=pΔV in qualunque trasformazione.",
+      "variables": [
+        {
+          "name": "process",
+          "choices": [
+            "isothermal",
+            "isochoric",
+            "isobaric",
+            "adiabatic",
+            "free-expansion"
+          ]
+        },
+        {
+          "name": "initialTemperatureK",
+          "unit": "K",
+          "min": 250,
+          "max": 600
+        },
+        {
+          "name": "volumeRatio",
+          "unit": "1",
+          "min": 0.5,
+          "max": 3
+        },
+        {
+          "name": "moles",
+          "unit": "mol",
+          "min": 0.1,
+          "max": 2
+        },
+        {
+          "name": "temperatureRatio",
+          "unit": "1",
+          "min": 0.5,
+          "max": 2,
+          "enabledWhen": "process=isochoric"
+        }
+      ],
+      "prediction": "Un gas ideale si espande allo stesso volume finale in modo isotermo reversibile o libero isolato: stessi ΔU, Q, W?",
+      "expectedBehavior": "Convenzione Q entrante,W fatto dal gas: ΔU=Q−W. W=∫p_ext dV, p_gas soltanto per equilibrio meccanico quasistatico. ΔU=nCvΔT. Isoterma ideale reversibile Q=W; isocora W=0; adiabatica Q=0. Espansione libera ideale isolata Q=W=ΔU=0.",
+      "representations": [
+        "p,V con area del lavoro quando definita e frecce del verso.",
+        "Bilancio Q,W,ΔU con segni e tabella di stati estremi.",
+        "Nel processo libero non inventare curva di stati intermedi di equilibrio."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Sistema chiuso; ΔK,ΔE_p macroscopiche trascurate.",
+        "Cv=3R/2 soltanto se monoatomico classico dichiarato.",
+        "pV^γ costante solo adiabatica reversibile con capacità costanti, formula di approfondimento fornita."
+      ],
+      "followup": "Dati Q e W di compressione ricavare ΔU con segno; confrontare due percorsi fra gli stessi stati.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "heatInJ": 500,
+            "workByGasJ": 200
+          },
+          "expected": {
+            "internalEnergyChangeJ": 300
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "process": "free-expansion",
+            "idealGas": true,
+            "isolated": true
+          },
+          "expected": {
+            "heatInJ": 0,
+            "workByGasJ": 0,
+            "internalEnergyChangeJ": 0
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "input": {
+            "process": "isobaric",
+            "pressurePa": 100000,
+            "volumeChangeM3": -0.002
+          },
+          "expected": {
+            "workByGasJ": -200
+          },
+          "absTolerance": 1e-09
+        },
+        {
+          "invalid": {
+            "process": "isochoric",
+            "effectiveVolumeRatio": 1.2
+          },
+          "expectedError": "constraint_mismatch"
+        },
+        {
+          "invalid": {
+            "process": "free-expansion",
+            "volumeRatio": 0.5
+          },
+          "expectedError": "constraint_mismatch"
+        },
+        {
+          "input": {
+            "process": "isochoric",
+            "volumeRatio": 1,
+            "temperatureRatio": 1.2
+          },
+          "expected": {
+            "workByGasJ": 0,
+            "pressureRatio": 1.2
+          },
+          "absTolerance": 1e-12
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN",
+      "conditionalConstraints": [
+        {
+          "when": "process=isochoric",
+          "requires": "Effective volumeRatio=1; volume control inactive in isochoric mode. An unused nominal volume input may be retained without changing the physical volume. temperatureRatio is the independent thermal control; pressureRatio=temperatureRatio."
+        },
+        {
+          "when": "process=free-expansion",
+          "requires": "volumeRatio>1; isolated ideal gas, no external work; temperatureRatio=1; no intermediate equilibrium path."
+        },
+        {
+          "when": "process=isothermal",
+          "requires": "temperatureRatio=1; positive volumeRatio; declare reversible path before logarithmic work."
+        },
+        {
+          "when": "process=adiabatic",
+          "requires": "Q=0; declare reversible path and constant capacities before pV^gamma relation."
+        }
+      ]
+    },
+    {
+      "id": "lab-spec-u5-05",
+      "familyId": "U5-05",
+      "title": "Cicli, rendimento e direzione dei processi",
+      "status": "DRAFT",
+      "implementationStatus": "NOT_VERIFIED",
+      "objectives": [
+        "U5-05.01",
+        "U5-05.02",
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05",
+        "U5-05.06",
+        "U5-05.07",
+        "U5-05.08"
+      ],
+      "misconception": "L’entropia del sistema non può diminuire; ΔS=Q_reale/T vale sempre; un ciclo annulla ogni scambio.",
+      "variables": [
+        {
+          "name": "hotTemperatureK",
+          "unit": "K",
+          "min": 350,
+          "max": 800
+        },
+        {
+          "name": "coldTemperatureK",
+          "unit": "K",
+          "min": 250,
+          "max": 349
+        },
+        {
+          "name": "heatFromHotJ",
+          "unit": "J",
+          "min": 100,
+          "max": 2000
+        },
+        {
+          "name": "mode",
+          "choices": [
+            "engine",
+            "heat-transfer",
+            "microstates"
+          ]
+        }
+      ],
+      "prediction": "Un corpo freddo riceve energia da uno caldo: la somma delle variazioni di entropia può essere zero?",
+      "expectedBehavior": "Ciclo ΔU=ΔS_sistema=0, W_net=Q_net. η=W/Q_h=1−Q_c/Q_h≤1−T_c/T_h. Per trasferimento Q da serbatoio caldo a freddo ΔS_tot=Q(1/T_c−1/T_h)>0. La variazione di S usa un cammino reversibile di riferimento. S=k_B lnΩ a livello interpretativo.",
+      "representations": [
+        "Ciclo p,V orientato con area netta e schema di flussi energetici.",
+        "Grafico rendimento vs rapporto T_c/T_h e confronto con limite di Carnot.",
+        "Bilancio ΔS_sistema,ΔS_ambiente,ΔS_tot; microstati di un piccolo modello discreto con conteggio esplicito."
+      ],
+      "interaction": [
+        "Registrare la previsione e il vincolo prima di abilitare i controlli.",
+        "Cambiare una sola variabile, poi il vincolo, e confrontare due stati conservati.",
+        "Annotare il motivo dello scarto e affrontare il problema successivo; il solo clic non prova apprendimento."
+      ],
+      "modelLimits": [
+        "Due serbatoi ideali a temperatura costante e T_h>T_c>0.",
+        "Modello di molteplicità con equiprobabilità dichiarata; non identificare entropia con disordine visivo.",
+        "Nessun rendimento oltre Carnot; dati incompatibili producono errore leggibile, non clipping."
+      ],
+      "followup": "Dato un motore candidato decidere separatamente se soddisfa conservazione dell’energia e secondo principio; poi proporre una correzione.",
+      "independentScientificTests": [
+        {
+          "input": {
+            "hotTemperatureK": 600,
+            "coldTemperatureK": 300
+          },
+          "expected": {
+            "carnotEfficiency": 0.5
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "input": {
+            "heatTransferredJ": 600,
+            "hotTemperatureK": 600,
+            "coldTemperatureK": 300
+          },
+          "expected": {
+            "totalEntropyChangeJK": 1
+          },
+          "absTolerance": 1e-12
+        },
+        {
+          "invalid": {
+            "hotTemperatureK": 300,
+            "coldTemperatureK": 300,
+            "mode": "engine"
+          },
+          "expectedError": "domain"
+        }
+      ],
+      "accessibility": [
+        "Controlli etichettati e tastiera; nessuna interazione obbligatoria mediante trascinamento.",
+        "Tabella con unità e descrizione testuale dei grafici; colore mai unico segnale.",
+        "Nessun moto necessario alla lettura; rispettare riduzione movimento."
+      ],
+      "evidence": [
+        "lessonRef e packRef esatti",
+        "objectiveIds",
+        "previsione testuale originale",
+        "parametri SI e vincolo",
+        "confronto degli stati e snapshot versionato",
+        "tentativi, aiuti e motivazione",
+        "exerciseRef e risultato ricalcolato da Core"
+      ],
+      "humanReview": "NOT_RUN"
+    }
+  ]
+}

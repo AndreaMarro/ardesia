@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "owner": "CHAT 1B",
+  "reviewedImplementation": {
+    "pullRequest": 331,
+    "scope": "Source inspection of the exact file blobs listed; browser NOT_RUN by 1B",
+    "branch": "codex/closure1c-labs-20261028",
+    "sourceBlobShas": {
+      "definitions.ts": "48f82be327541ab99bb587b4aabbf9acf6c6793f",
+      "models.ts": "610647974a5307fb1d43c0b23af54565031bf282",
+      "fluid_models.py": "5f1821cc51a848bcfe76794ddede2264fdc47a89"
+    }
+  },
+  "mappings": [
+    {
+      "labId": "manometer",
+      "capabilityId": "manometer-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-02",
+      "lessonIds": [
+        "ds-2026-u3-02"
+      ],
+      "objectiveIds": [
+        "U3-02.06"
+      ],
+      "limitation": "Segno e dislivello; barometro di Torricelli non implementato.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "hydrostatic",
+      "capabilityId": "hydrostatic-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-02",
+      "lessonIds": [
+        "ds-2026-u3-02"
+      ],
+      "objectiveIds": [
+        "U3-02.01",
+        "U3-01.02"
+      ],
+      "limitation": "Profondità e pressione; forma del recipiente non è un parametro.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "pascal",
+      "capabilityId": "pascal-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-02",
+      "lessonIds": [
+        "ds-2026-u3-02"
+      ],
+      "objectiveIds": [
+        "U3-02.02"
+      ],
+      "limitation": "Forza e corsa relative; nessun lavoro creato.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "buoyancy",
+      "capabilityId": "buoyancy-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-02",
+      "lessonIds": [
+        "ds-2026-u3-02"
+      ],
+      "objectiveIds": [
+        "U3-02.03",
+        "U3-02.04"
+      ],
+      "limitation": "Immersione imposta separata da equilibrio libero.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "continuity",
+      "capabilityId": "continuity-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-03",
+      "lessonIds": [
+        "ds-2026-u3-03"
+      ],
+      "objectiveIds": [
+        "U3-03.01",
+        "U3-03.04"
+      ],
+      "limitation": "Velocità medie, portata fissata; non profilo locale.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "venturi",
+      "capabilityId": "venturi-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-03",
+      "lessonIds": [
+        "ds-2026-u3-03"
+      ],
+      "objectiveIds": [
+        "U3-03.04",
+        "U3-03.05"
+      ],
+      "limitation": "Ideale con quota; applicazione biologica discussa nella lezione.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "poiseuille",
+      "capabilityId": "poiseuille-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-04",
+      "lessonIds": [
+        "ds-2026-u3-04"
+      ],
+      "objectiveIds": [
+        "U3-04.01",
+        "U3-04.02",
+        "U3-04.03",
+        "U3-04.04"
+      ],
+      "limitation": "Vincoli Δp o Q, gradiente da interpretare nel profilo.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "hydraulic-network",
+      "capabilityId": "hydraulic-network-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-04",
+      "lessonIds": [
+        "ds-2026-u3-04"
+      ],
+      "objectiveIds": [
+        "U3-04.05"
+      ],
+      "limitation": "Due resistenze lineari; chiusura ramo e pompa Q non ancora dichiarate.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "capillary",
+      "capabilityId": "capillary-lab-v1",
+      "laboratorySpecId": "lab-spec-u3-05",
+      "lessonIds": [
+        "ds-2026-u3-05"
+      ],
+      "objectiveIds": [
+        "U3-05.01",
+        "U3-05.03",
+        "U3-05.04",
+        "U3-05.05"
+      ],
+      "limitation": "Quantitativo con legge fornita; gamma dipende dal modello. Grafico da limitare al dominio Bond.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "ideal-gas",
+      "capabilityId": "ideal-gas-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-01",
+      "lessonIds": [
+        "ds-2026-u5-01"
+      ],
+      "objectiveIds": [
+        "U5-01.02",
+        "U5-01.04",
+        "U5-01.05"
+      ],
+      "limitation": "Equazione di stato; nessuna storia di Q o W dedotta dal punto finale.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "calorimetry",
+      "capabilityId": "calorimetry-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-02",
+      "lessonIds": [
+        "ds-2026-u5-02"
+      ],
+      "objectiveIds": [
+        "U5-02.01",
+        "U5-02.02",
+        "U5-02.03",
+        "U5-02.07"
+      ],
+      "limitation": "Due corpi senza fase né recipiente; estensione recipiente svolta nella lezione.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "phase-change",
+      "capabilityId": "phase-change-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-02",
+      "lessonIds": [
+        "ds-2026-u5-02"
+      ],
+      "objectiveIds": [
+        "U5-02.05",
+        "U5-02.06"
+      ],
+      "limitation": "Ghiaccio, fusione e acqua fino a100°C; condensazione ed evaporazione discusse nei testi, non simulate.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "heat-transfer",
+      "capabilityId": "heat-transfer-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-03",
+      "lessonIds": [
+        "ds-2026-u5-03"
+      ],
+      "objectiveIds": [
+        "U5-03.01",
+        "U5-03.02",
+        "U5-03.03"
+      ],
+      "limitation": "Tre configurazioni distinte, non sommare automaticamente le tre potenze.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "process",
+      "capabilityId": "process-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-04",
+      "lessonIds": [
+        "ds-2026-u5-04"
+      ],
+      "objectiveIds": [
+        "U5-02.04",
+        "U5-04.01",
+        "U5-04.02",
+        "U5-04.03",
+        "U5-04.05",
+        "U5-04.06",
+        "U5-04.07",
+        "U5-04.08"
+      ],
+      "limitation": "Quattro trasformazioni reversibili; libera espansione e altri irreversibili esclusi.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "carnot",
+      "capabilityId": "carnot-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-05",
+      "lessonIds": [
+        "ds-2026-u5-05"
+      ],
+      "objectiveIds": [
+        "U5-05.03",
+        "U5-05.04",
+        "U5-05.05"
+      ],
+      "limitation": "Ciclo reversibile costruito; confronto con macchina irreversibile nei problemi.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    },
+    {
+      "labId": "entropy",
+      "capabilityId": "entropy-lab-v1",
+      "laboratorySpecId": "lab-spec-u5-05",
+      "lessonIds": [
+        "ds-2026-u5-05"
+      ],
+      "objectiveIds": [
+        "U5-05.02",
+        "U5-05.06",
+        "U5-05.08"
+      ],
+      "limitation": "Due corpi finiti; statistica dei microstati discussa nel testo, non simulata.",
+      "implementationStatus": "SOURCE_INSPECTED; OWNER_TESTS_AND_CONSUMER_PENDING"
+    }
+  ],
+  "unimplementedSpecifications": [
+    "Direct density/force-area laboratory in lab-spec-u3-01",
+    "Barometer-specific interaction",
+    "Free expansion path comparison without fictitious intermediate states",
+    "Explicit microstate counting model"
+  ],
+  "acceptance": "No objective ACCEPTED by this mapping; IDs do not certify all subtargets of a family."
+}
