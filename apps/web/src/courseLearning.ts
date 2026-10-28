@@ -8,7 +8,10 @@ export type CourseLesson={observableObjective?:string;prerequisiteRecovery?:{pre
  recap:string[];transcript:string;editorialStatus:string;humanApproval:boolean;releaseScope:string;
  lessonRef:{id:string;version:number;sha256:string};modelCases?:ModelCase[];controls?:Record<string,(number|string)[]>;
  audioPath?:string;audioTranscript?:string;coverageWarning:string};
-export type CourseRecord={pathId:string;packId:string;packRef:{packId:string;packVersion:number;packSha256:string};title:string;
+export type CourseExactRef={id:string;version:number;sha256:string};
+export type CourseAssessmentItem={id:string;objectiveId:string;prompt:string;hintCount?:number;transfer:{prompt:string;hintCount?:number};assessmentRef:CourseExactRef};
+export type CourseDiagnosticItem={id:string;objectiveId:string;prompt:string;recoveryTarget:{objectiveId:string;lessonId:string};assessmentRef:CourseExactRef;lessonRef:CourseExactRef};
+export type CourseRecord={assessmentItems?:CourseAssessmentItem[];diagnosticItems?:CourseDiagnosticItem[];pathId:string;packId:string;packRef:{packId:string;packVersion:number;packSha256:string};title:string;
  unitIds:string[];requiredObjectives:number;completedObjectives:number;availableLessons:number;lessons:CourseLesson[];status:string;
  editorialStatus:string;humanApproval:boolean;requirements:Record<string,string|boolean>;gaps:string[];
  editorialMaterials?:Record<string,unknown[]>|null;

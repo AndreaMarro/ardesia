@@ -2,7 +2,7 @@ import {useEffect,useState} from 'react';
 import {studyRequest,describeError,type StudyMe} from '../api';
 import {QuestionCard,type Question} from './PhysicsQuestionBank';
 import {ReviewEditor} from './QuestionBankReview';
-export type CuratedRef={id:string;version:number;sha256:string;lessonId:string;difficulty?:string;role?:string};
+export type CuratedRef={id:string;version:number;sha256:string;lessonId:string;difficulty?:string;role?:string;scope?:string};
 export type CuratedMaterials={curatedPractice?:{bankId:string;bankVersion:number;manifestSha256:string;questionRefs:CuratedRef[]};workedProblemRefs?:CuratedRef[];examSimulations?:{id:string;title:string;scopeWarning:string;durationSeconds:number;questionRefs:CuratedRef[]}[]};
 /** Reuses the existing bank transport; timed simulations use the existing exam runner. */
 export function CuratedCoursePractice({materials,editionId,me,lessonId}:{materials:CuratedMaterials;editionId:string;me:StudyMe;lessonId:string}){
@@ -36,7 +36,7 @@ function CuratedReader({materials,editionId,me,lessonId}:{materials:CuratedMater
   <label>Attività<select disabled={busy} value={groupId} onChange={e=>{setGroupId(e.target.value);setIndex(0);}}>{groups.map(g=><option key={g.id} value={g.id}>{g.title}</option>)}</select></label>
   {'warning' in group&&<p>{group.warning} Consultazione docente dei quesiti originali; la prova temporizzata usa il percorso studente.</p>}
   {me.role==='student'&&Boolean(materials.examSimulations?.length)&&<section aria-label="Simulazioni temporizzate"><h3>Due simulazioni tematiche</h3><p>DRAFT · ambito privato sintetico · approvazione umana non eseguita. Le correzioni compaiono dopo la consegna o la scadenza.</p><ul>{materials.examSimulations!.map(item=><li key={item.id}><a href={'/?'+new URLSearchParams({view:'exam',edition:editionId,simulation:item.id})}>{item.title}</a><p>{item.questionRefs.length} quesiti · {item.durationSeconds/60} minuti. {item.scopeWarning}</p></li>)}</ul></section>}
-  {ref?<><p>Problema {index+1} di {group.refs.length}{ref.difficulty?' · '+ref.difficulty:''}</p>
+  {ref?<>{ref.scope==='PROVIDED_LAW_EXTENSION'&&<p>Approfondimento: la legge necessaria è fornita; non è un requisito aggiuntivo del syllabus.</p>}<p>Problema {index+1} di {group.refs.length}{ref.difficulty?' · '+ref.difficulty:''}</p>
    <nav aria-label="Problemi dell’attività"><button disabled={busy||index===0} onClick={()=>setIndex(n=>n-1)}>Problema precedente</button><button disabled={busy||index===group.refs.length-1} onClick={()=>setIndex(n=>n+1)}>Problema successivo</button></nav>
    {error?<><p role="status">{error}</p><button onClick={()=>setReload(n=>n+1)}>Riprova il caricamento</button></>:!verified?<p role="status">Apro la versione del problema…</p>:me.role==='teacher'?<ReviewEditor key={ref.id} base={base} questionId={ref.id} onChange={()=>{}} onBusy={setBusy}/>:question&&<QuestionCard key={ref.id} question={question} base={base} bankSha256={practice.manifestSha256} index={index}/>}
   </>:<p>Nessun problema selezionato per questa lezione.</p>}
