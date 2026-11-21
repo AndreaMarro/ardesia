@@ -22,3 +22,7 @@ Il bundle è stato clonato in una directory vuota con `git clone`. La copia ha a
 [Script riproducibile](../tests/installazione_mac.py) · [Verbale scientifico e funzionale](../docs/collaudo.md) · [Riscontri sulla stampa](../docs/verifica-pdf.md) · [Impronte dei file](SHA256SUMS)
 
 Le licenze SIL di Baskervville e Work Sans corrispondono byte per byte ai file distribuiti da Google Fonts. Entrambi gli originali hanno uno spazio a fine riga nella riga 21. Il controllo degli spazi ha verificato separatamente i file prodotti per l’Officina e l’identità binaria di questi due avvisi. [Baskervville](https://raw.githubusercontent.com/google/fonts/main/ofl/baskervville/OFL.txt) · [Work Sans](https://raw.githubusercontent.com/google/fonts/main/ofl/worksans/OFL.txt)
+
+## Verifica su GitHub
+
+Il workflow del branch usa un runner Linux, una copia pulita e Chrome. Verifica le impronte dei pacchetti, le soluzioni scientifiche, i flussi studente e autore e l’impaginazione dei documenti. Il primo collaudo remoto ha superato tutte le prove. Le azioni ufficiali di checkout e configurazione di Node sono poi state aggiornate alle versioni che dichiarano il runtime Node 24 del runner. Per il collaudo della versione distribuita, confronta la SHA del tag con quella mostrata nella scheda di GitHub Actions. [Primo collaudo](https://github.com/AndreaMarro/ardesia/actions/runs/44907665583) · [Esecuzioni associate ai commit di questo branch](https://github.com/AndreaMarro/ardesia/actions?query=branch%3Aofficina-di-fisica)
