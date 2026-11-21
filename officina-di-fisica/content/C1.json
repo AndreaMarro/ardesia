@@ -1557,15 +1557,71 @@
     "prerequisites": [
       "C1-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\Delta x=v_1t_1+v_2t_2=3\\cdot4+(-2)\\cdot5=12-10=2\\,\\mathrm m"
+        "type": "text",
+        "text": "Immagina di camminare su una linea. Scegli come verso positivo quello in cui parti. Il sensore registra la velocità: il segno indica da che parte ti muovi. Cerchiamo lo spostamento, cioè la posizione finale rispetto a quella iniziale."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-aree.svg",
+        "text": "Per i primi 4 s la velocità è +3 m/s. Dal quarto al nono secondo è −2 m/s."
       },
       {
         "type": "text",
-        "text": "Il punto torna indietro di 10 m, terminando 2 m oltre la posizione di partenza."
+        "text": "Leggi gli assi. In orizzontale scorre il tempo in secondi; in verticale leggi quanti metri percorri in un secondo e in quale verso. Per ogni tratto a velocità costante moltiplica la durata (base) per la velocità (altezza con segno). Ottieni metri: i secondi si semplificano."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=v\\,\\Delta t,\\qquad \\frac{\\mathrm{m}}{\\mathrm{s}}\\cdot\\mathrm{s}=\\mathrm{m}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q027-andata.svg",
+        "text": "Da 0 a 4 s il rettangolo è sopra lo zero. Le quattro colonne rappresentano quattro secondi di andata."
+      },
+      {
+        "type": "text",
+        "text": "Ogni secondo aggiungi 3 m alla tua posizione. La base vale 4 − 0 = 4 s. Conta le colonne: 3 + 3 + 3 + 3 = 12. Dopo il primo tratto sei 12 m oltre la partenza."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x_1=(+3\\,\\mathrm{m/s})\\cdot4\\,\\mathrm{s}=+12\\,\\mathrm{m}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q027-ritorno.svg",
+        "text": "Da 4 a 9 s il rettangolo è sotto lo zero. Le cinque colonne rappresentano cinque secondi di ritorno."
+      },
+      {
+        "type": "text",
+        "text": "A 4 s inverti il verso. La durata del ritorno è 9 − 4 = 5 s. In ogni secondo arretri di 2 m. Cinque volte 2 fa 10: sono 10 m percorsi nel verso negativo, perciò il contributo allo spostamento è −10 m."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x_2=(-2\\,\\mathrm{m/s})\\cdot5\\,\\mathrm{s}=-10\\,\\mathrm{m}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q027-somma.svg",
+        "text": "Sulla linea delle posizioni vai da 0 a +12 m e torni fino a +2 m. La freccia del ritorno è più corta."
+      },
+      {
+        "type": "text",
+        "text": "Somma i due contributi conservando i segni. Dei 12 metri guadagnati all’andata ne perdi 10 al ritorno."
+      },
+      {
+        "type": "formula",
+        "text": "\\begin{aligned}\\Delta x &= \\Delta x_1+\\Delta x_2\\\\ &= (+12\\,\\mathrm{m})+(-10\\,\\mathrm{m})\\\\ &= +2\\,\\mathrm{m}\\end{aligned}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo: per tornare esattamente alla partenza a 2 m/s servirebbero 12 ÷ 2 = 6 s. Torni per soli 5 s: manca un secondo, cioè 2 m. Il segno positivo è coerente."
+      },
+      {
+        "type": "text",
+        "text": "Errore tipico: 12 + 10 = 22 m è la distanza totale camminata. Trucco: prima di fare i conti scrivi un «+» nelle zone sopra l’asse del tempo e un «−» in quelle sotto. Solo dopo somma i rettangoli."
       }
     ],
     "difficulty": 2,

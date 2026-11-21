@@ -65,8 +65,8 @@ function home() {
       <h1 id="cover-title"><span>La fisica,</span> <em>in pratica.</em></h1>
       <p>Sei percorsi per Medicina: studia un argomento con calma oppure preparati all’esame attraverso esercizi, grafici e formule inverse.</p>
       <div class="hero-actions">
-        <a class="button solid" href="#percorsi">Esplora i percorsi <span class="arrow" aria-hidden="true">→</span></a>
-         <a class="button" href="#sprint">Preparazione rapida</a>
+        <a class="button solid" href="#percorsi">Studio completo <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#sprint">Preparazione rapida all’esame</a>
         <button type="button" class="textbtn" data-prova-portata>Prova un esperimento</button>
       </div>
     </div>
@@ -134,6 +134,30 @@ function courseContents(items, group, course) {
   }
   return volumes;
 }
+function c1Start() {
+  return `<section class="c1-paths" aria-label="Scegli il tuo percorso">
+    <article><h2>Studio completo</h2>
+      <p>Segui le lezioni, leggi gli esempi svolti e prova gli esercizi. Poi passa al laboratorio e alle verifiche.</p>
+      ${link('Inizia dalle lezioni', courseUrl('C1', 'lezioni'), true)}</article>
+    <article><h2>Preparazione rapida all’esame</h2>
+      <p>Parti dai quesiti prioritari, recupera gli errori e misura i progressi con diagnosi e simulazioni.</p>
+      ${link('Vai agli esercizi prioritari', courseUrl('C1', 'esercizi'), true)}</article>
+    </section>`;
+}
+
+function c1Exam(items) {
+  const priorities = ['C1-Q027', 'C1-Q022', 'C1-Q037']
+    .map(id => items.find(item => item.id === id))
+    .filter(Boolean)
+    .map(item => listLine(item.title, 'materiale/' + item.id + '/C1'))
+    .join('');
+  return `<section class="big-list"><h2>Esercizi prioritari</h2>
+    <p>Comincia dai grafici del moto. Dopo ogni risposta, confronta i tuoi passaggi con la soluzione.</p>
+    ${priorities}
+    <div class="actions">${link('Recupera gli errori', courseUrl('C1', 'recupero'))}
+    ${link('Diagnosi e simulazioni · C6', 'allenamento/C6')}</div></section>`;
+}
+
 async function coursePage(id, tab = 'parti') {
   const data = await api('/course/' + id),
     c = data.course;
@@ -147,17 +171,20 @@ async function coursePage(id, tab = 'parti') {
     ['attivita', 'Verifiche e laboratori'],
     ['pdf', 'Fascicoli PDF'],
   ];
-  const top =
+  const title =
     crumb([['Percorsi', 'percorsi'], [c.title]]) +
     '<div class="course-title">' +
     head(
       c.title,
       c.summary,
       c.id + ' / ' + (c.includes?.length ? 'Percorso integrale' : 'Microcorso di Fisica'),
-    ) + subjectDrawing(c.includes?.length ? 'C6' : c.id) + '</div>' +
+    ) + subjectDrawing(c.includes?.length ? 'C6' : c.id) + '</div>';
+  const utilities =
     `<div class="actions">${!data.owned ? link(state.mode === 'verifica' ? 'Accesso e ordine di verifica' : 'Acquista il percorso', 'acquisto/' + id, true) : link('Allenati', 'allenamento/' + id, true)}${!data.owned && data.preview.length ? link('Leggi un’anteprima', 'materiale/' + data.preview[0] + '/' + id) : ''}${c.id === 'C6' ? link('Diagnosi e simulazioni', 'allenamento/C6') : ''}</div><nav class="tabs" aria-label="Materiali del percorso">${tabs.map(([t, l]) => `<a class="${t === tab ? 'active' : ''}" ${t === tab ? 'aria-current="page"' : ''} href="#${courseUrl(id, t)}">${l}</a>`).join('')}</nav>`;
   let body = '';
-  if (tab === 'parti') {
+  if (id === 'C1' && tab === 'parti') {
+    body = c1Start();
+  } else if (tab === 'parti') {
     body = '<section class="method-intro"><h2>Da dove vuoi cominciare?</h2><p>Non devi aprire tutto insieme. Puoi seguire il microcorso con ordine oppure partire dai problemi da esame e recuperare soltanto ciò che non padroneggi.</p><div class="method-cards">' +
       '<article class="method-card"><div class="meta">Studio completo</div><h3>Capire e imparare</h3><p>Lezioni ed esempi guidati, con formule, figure, laboratori e controlli dei passaggi.</p>' + link('Apri le lezioni', courseUrl(id, 'lezioni'), true) + '</article>' +
       '<article class="method-card"><div class="meta">Abilità trasversali</div><h3>Formule inverse e grafici</h3><p>Ricava ogni grandezza, interpreta gli assi e controlla i risultati senza calcolatrice, un passo alla volta.</p>' + link('Apri il metodo', courseUrl(id, 'metodo'), true) + '</article>' +
@@ -179,7 +206,19 @@ async function coursePage(id, tab = 'parti') {
     const group = data.items.filter((r) => r.kind === k);
     body = `<div class="big-list">${id === 'C6' && tab === 'lezioni' ? `<div class="callout"><h3>Il filo del percorso</h3><p>Inizia con la diagnosi. Studia misure e meccanica prima di fluidi e gas, poi passa a campi, onde e radiazioni. Usa i raccordi C6 per richiamare due modelli nello stesso problema.</p></div>` : ''}${tab === 'esercizi' ? `<div class="actions">${link('Allenamento senza titoli', 'allenamento/' + id, true)}</div>` : ''}${courseContents(data.items, group, c) || '<p>Questa sezione è vuota.</p>'}</div>`;
   }
-  main.innerHTML = top + body;
+  if (id === 'C1') {
+    const method = tab === 'metodo' ? '' : listLine('Formule inverse e interpretazione dei grafici', courseUrl(id, 'metodo'));
+    if (tab === 'esercizi') {
+      body = c1Exam(data.items) + '<details class="c1-index"><summary>Tutti gli esercizi C1</summary>' + body + '</details>';
+    }
+    const next = { lezioni: ['Segui un esempio svolto', 'esempi'], esempi: ['Prova gli esercizi', 'esercizi'],
+      esercizi: ['Passa al laboratorio e alle verifiche', 'attivita'], recupero: ['Riprendi gli esercizi', 'esercizi'], metodo: ['Applica il metodo a un esercizio', 'esercizi'] }[tab];
+    const index = '<details class="c1-index"><summary>Indice del microcorso e accesso</summary>' + utilities + '</details>';
+    main.innerHTML = tab === 'parti' ? title + body + method + index :
+      title + index + method + body + (next ? listLine(next[0], courseUrl(id, next[1])) : '');
+  } else {
+    main.innerHTML = title + utilities + body;
+  }
   if (tab === 'recupero' && data.owned) recoveryCollection($('#raccolta-errori'), data.items, id);
   demo('corso/' + id);
 }

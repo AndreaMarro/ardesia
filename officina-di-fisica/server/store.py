@@ -95,6 +95,21 @@ def catalog_seed():
         yield from json.loads(path.read_text())
 
 
+def update_signed_areas(db, rec):
+    # Only advance the untouched first edition. Earlier attempts retain their version.
+    old = db.execute(
+        "SELECT payload FROM heads JOIN versions USING(id) WHERE id=? AND live=v "
+        "AND live=1 AND draft IS NULL AND NOT EXISTS "
+        "(SELECT 1 FROM versions WHERE id=? AND v>1)", (rec["id"], rec["id"])
+    ).fetchone()
+    if not old or digest(old["payload"]) != "8e360aead59a8880a29d6a00a5d6630901c865dbb3753282c8192e0d91c31494":
+        return
+    edition = dict(rec, review="edizione Astra · controlli automatici")
+    db.execute("INSERT INTO versions VALUES(?,?,?,?,?)",
+               (rec["id"], rec["version"], encode(edition), "edizione locale", NOW()))
+    db.execute("UPDATE heads SET live=? WHERE id=?", (rec["version"], rec["id"]))
+
+
 def initialize():
     DATA.mkdir(parents=True, exist_ok=True, mode=0o700)
     for name in ("uploads", "pdf"):
@@ -104,13 +119,15 @@ def initialize():
         db.executescript(SCHEMA)
         db.execute("BEGIN IMMEDIATE")
         for rec in catalog_seed():
+            if rec["id"] == "C1-Q027" and rec["version"] == 2:
+                update_signed_areas(db, rec)
             if db.execute("SELECT 1 FROM heads WHERE id=?", (rec["id"],)).fetchone():
                 continue
             rec.setdefault("review", "edizione Astra · controlli automatici")
-            db.execute("INSERT INTO heads VALUES(?,1,NULL)", (rec["id"],))
+            db.execute("INSERT INTO heads VALUES(?,?,NULL)", (rec["id"], rec["version"]))
             db.execute(
-                "INSERT INTO versions VALUES(?,1,?,?,?)",
-                (rec["id"], encode(rec), "edizione locale", NOW()),
+                "INSERT INTO versions VALUES(?,?,?,?,?)",
+                (rec["id"], rec["version"], encode(rec), "edizione locale", NOW()),
             )
         db.execute("INSERT OR IGNORE INTO settings VALUES('commerce','{}')")
         db.execute(

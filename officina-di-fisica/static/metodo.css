@@ -71,3 +71,16 @@
 @media (prefers-reduced-motion: reduce) {
   .method-step, .method-figure { scroll-behavior: auto; }
 }
+
+.c1-paths { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap: 1rem; margin-bottom: 1.3rem; }
+.c1-paths article { padding: clamp(1rem,2.4vw,2rem); background: white; border: 1.5px solid var(--ink); border-top: 5px solid var(--violet); display: flex; flex-direction: column; align-items: flex-start; }
+.c1-paths article + article { border-top-color: var(--lime); }
+.c1-paths h2 { font-size: clamp(1.5rem,3vw,2.5rem); }
+.c1-paths p { max-width: 46ch; margin: .65rem 0 1rem; }
+.c1-paths .button { margin-top: auto; }
+.c1-index { margin: 1rem 0; }
+.c1-index summary { padding: .8rem 0; font-weight: 700; }
+@media (max-width:650px) {
+  .hero-actions { display: flex; flex-wrap: wrap; }
+  .c1-paths { gap: .65rem; }
+}

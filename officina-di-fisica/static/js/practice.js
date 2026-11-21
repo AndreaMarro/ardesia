@@ -7,6 +7,7 @@ import {
   go,
   esc,
   link,
+  listLine,
   head,
   crumb,
   titleOf,
@@ -161,13 +162,13 @@ export async function runPage(id, initial) {
       crumb([['Il mio studio', 'studio'], [modeNames[run.mode]]]) +
       `<article class="question-shell"><div class="kickerline"><h2>${esc(modeNames[run.mode])}</h2>${exam && !run.finished ? '<b id="clock" aria-label="Tempo rimanente"></b>' : ''}</div>${result}<nav class="pager" aria-label="Quesiti">${run.items.map((k, i) => `<button aria-label="Quesito ${i + 1}${k.sent ? ', registrato' : ''}" aria-current="${idx === i ? 'step' : 'false'}" class="${idx === i ? 'chosen ' : ''}${k.sent ? 'done' : ''}" data-jump="${i}">${i + 1}</button>`).join('')}</nav><div class="meta">Quesito ${idx + 1} / ${run.items.length}</div><h1 class="exercise-prompt">${esc(q.prompt)}</h1>${blocks(q.figures)}<form id="response"><fieldset ${noEdit ? 'disabled' : ''} style="border:0;padding:0;margin:0">${inputFor(q, q.answer)}<div class="actions">${!noEdit ? `<button class="solid">${q.sent && run.sealed ? 'Salva correzione' : run.sealed ? 'Registra risposta' : 'Verifica risposta'}</button>` : ''}${!noEdit && exam ? button('Ometti definitivamente', 'blank') : ''}</div></fieldset><p id="action-status" role="status"></p></form>${q.sent && !feedback ? `<p class="notice good">${q.blank ? 'Omissione definitiva registrata.' : 'Risposta registrata.'} ${exam && !q.blank ? (q.changes === 1 ? 'È disponibile una correzione.' : 'Correzione utilizzata.') : ''}</p>` : ''}
  ${!run.sealed && !q.sent && !run.finished ? `<div class="actions">${q.hasHint ? button('Leggi un suggerimento', 'hint') : ''}${button('Leggi lo svolgimento', 'reveal')}</div>${(q.hintTexts || []).map((s) => '<p class="notice">' + esc(s) + '</p>').join('')}` : ''}
- ${feedback ? `<section class="feedback"><h3>${q.correct === true ? 'Risposta corretta' : q.correct === false ? 'Rivediamo il ragionamento' : q.aided ? 'Svolgimento consultato' : 'Quesito omesso'}</h3>${q.aided ? '<p class="small">Questa attività è registrata come assistita.</p>' : ''}${blocks(q.solution)}<p class="notice good"><b>Risposta</b> · ${esc(answerText(q, q.key))}</p>${diagnosis}</section>` : ''}
+ ${feedback ? `<section class="feedback"><h3>${q.correct === true ? 'Risposta corretta' : q.correct === false ? 'Rivediamo il ragionamento' : q.aided ? 'Svolgimento consultato' : 'Quesito omesso'}</h3>${q.aided ? '<p class="small">Questa attività è registrata come assistita.</p>' : ''}${blocks(q.solution)}<p class="notice good"><b>Risposta</b> · ${esc(answerText(q, q.key))}</p>${diagnosis}${run.course === 'C1' && run.items.length === 1 && run.mode === 'practice' ? listLine('Continua con gli esercizi prioritari', 'corso/C1/esercizi') : ''}</section>` : ''}
  <div class="actions">${idx > 0 ? button('← Precedente', 'prev') : ''}${idx < run.items.length - 1 ? button('Successivo →', 'next', true) : ''}${!run.finished ? button('Consegna l’attività', 'finish') : link('Il mio studio', 'studio')}</div></article>`;
     typeset();
     if (feedback && Array.isArray(q.solution)) {
       installaPassaggi(main.querySelector('.feedback'), { kind: 'worked', blocks: q.solution });
     }
-    $('[data-jump]').forEach((el) => (el.onclick = () => jump(Number(el.dataset.jump))));
+    $$('[data-jump]').forEach((el) => (el.onclick = () => jump(Number(el.dataset.jump))));
     on('#response', 'submit', async (e, f) => {
       const value = new FormData(f).get('value');
       if (value === null || String(value).trim() === '') throw Error('Scegli o inserisci una risposta.');
