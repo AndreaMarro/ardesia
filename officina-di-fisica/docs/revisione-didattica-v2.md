@@ -16,6 +16,7 @@
 - Indice C6 dei percorsi trasversali, senza ricopiare le lezioni.
 - CSS separato e responsive, mantenendo tipografia, colori e identità della versione precedente.
 - Test strutturali dedicati e script di audit dell'intera banca.
+- Sei soluzioni già revisionate come campione concreto: C1-Q022 (velocità media), C1-Q037 (corretta una formula dell'accelerazione centripeta), C2-Q007 (pressione e superficie), C3-Q051 (primo principio), C4-Q055 (parallelo) e C5-Q045 (eco); sei tavole SVG originali. Gli altri record rimangono nell'edizione da esaminare.
 
 **Limite:** i nuovi moduli di metodo non significano che ogni singola soluzione preesistente sia già stata riscritta o verificata, né che i PDF siano stati rigenerati.
 
@@ -24,6 +25,8 @@
 Il syllabus ufficiale comprende 7 unità. C1 riunisce UD1 e UD2; C2 tratta UD3; C3 tratta UD5; C4 tratta UD6; C5 riunisce UD4 e UD7. C6 collega tutte le unità.
 
 La matrice già esistente dei contenuti scompone i 38 punti del syllabus in 105 obiettivi osservabili. Tutti i 105 obiettivi presentano almeno un collegamento editoriale a una lezione, a un esempio e a un quesito. **Non è prova di completezza scientifica.** Va ancora esaminato se ciascun obiettivo sia davvero spiegato da zero, con passaggi sufficienti e un numero adeguato di esercizi.
+
+La matrice segnala inoltre 10 obiettivi non campionati direttamente dalle tre simulazioni C6: non sono necessariamente assenti dall'insegnamento, ma vanno considerati quando si costruiranno nuove prove originali. Non esiste una frequenza ministeriale garantita per i singoli obiettivi.
 
 Il MUR chiede esplicitamente di interpretare grafici e formule e di comunicare chiaramente il procedimento di soluzione: questo giustifica l'aggiunta trasversale, in tutti i microcorsi, di un laboratorio di formula inversa e di interpretazione di grafici.
 
@@ -72,7 +75,7 @@ I cinque laboratori attuali calcolano fenomeni specifici, ma non forniscono un l
 5. Aggiornare laboratori, recupero dagli errori, mappe, tavole, quiz e fascicoli.
 6. Rigenerare PDF e inventario di copertura, ripetere test browser e scientifici, provare l'app su dispositivi reali con studenti.
 
-Per produrre un inventario della revisione e le priorità per ID: eseguire dalla cartella dell'app il comando python3 tools/audit_didattico.py --json.
+Per produrre un inventario della revisione e le priorità per ID: eseguire dalla cartella dell'app il comando python3 tools/audit_didattico.py --json. Per le prove strutturali dei nuovi materiali: node --test tests/metodo.test.js tests/lettura.test.js tests/revisione-contenuti.test.js. L'esistenza dei test non prova il loro superamento: serve eseguirli nell'ambiente di sviluppo.
 
 ## Persistenza: non sovrascrivere gli studenti
 
