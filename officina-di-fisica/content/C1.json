@@ -1298,16 +1298,69 @@
     "version": 1,
     "blocks": [
       {
-        "type": "formula",
-        "text": "t_1=12/2=6\\,\\mathrm s,\\quad t_2=12/3=4\\,\\mathrm s"
+        "type": "text",
+        "text": "Il problema chiede la velocità media sull'intero tragitto, non la media aritmetica delle due velocità. Siccome entrambi i tratti sono percorsi nello stesso verso, lo spostamento totale coincide con la distanza totale. Per trovare la velocità media dobbiamo conoscere lo spostamento totale e il tempo totale."
       },
       {
-        "type": "formula",
-        "text": "\\bar v=(12+12)/(6+4)=2{,}4\\,\\mathrm{m/s}"
+        "type": "figure",
+        "src": "/figures/C1-Q022-sequenza.svg",
+        "text": "Il primo tratto è lungo 12 m ed è percorso a 2 m/s; il secondo è lungo 12 m ed è percorso a 3 m/s. I due tratti hanno lunghezze uguali, ma durate differenti."
       },
       {
         "type": "text",
-        "text": "Il tratto lento pesa di più sulla media perché occupa più tempo."
+        "text": "Trascrivo i dati senza perdere le unità: s₁ = 12 m, v₁ = 2 m/s, s₂ = 12 m, v₂ = 3 m/s. Cerco v̄. Non conosco direttamente la durata di ciascun tratto: la ricavo dalla relazione fra spazio, velocità e tempo."
+      },
+      {
+        "type": "formula",
+        "text": "s=vt"
+      },
+      {
+        "type": "text",
+        "text": "Per isolare t, divido entrambi i membri per v. Il fattore v a destra si semplifica e resta t = s/v. Questa operazione è lecita perché le velocità indicate sono diverse da zero."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{s}{v}=\\frac{vt}{v}\\quad\\Rightarrow\\quad t=\\frac{s}{v}"
+      },
+      {
+        "type": "text",
+        "text": "Applico la formula inversa al primo tratto. Dodici diviso due fa sei. Le unità di lunghezza si semplificano e rimangono i secondi."
+      },
+      {
+        "type": "formula",
+        "text": "t_1=\\frac{12\\,\\mathrm m}{2\\,\\mathrm{m/s}}=6\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Nel secondo tratto la velocità è maggiore: percorrere gli stessi 12 m richiede meno tempo. Dodici diviso tre fa quattro secondi."
+      },
+      {
+        "type": "formula",
+        "text": "t_2=\\frac{12\\,\\mathrm m}{3\\,\\mathrm{m/s}}=4\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Sommo le distanze perché i tratti sono consecutivi e nello stesso verso; sommo i tempi perché entrambi contribuiscono alla durata totale."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=12+12=24\\,\\mathrm m,\\qquad \\Delta t=6+4=10\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "La velocità media è spostamento totale diviso tempo totale. Divido 24 per 10, operazione immediata senza calcolatrice. Il segno è positivo se scelgo positivo il verso di percorrenza."
+      },
+      {
+        "type": "formula",
+        "text": "\\bar v=\\frac{\\Delta x}{\\Delta t}=\\frac{24\\,\\mathrm m}{10\\,\\mathrm s}=2{,}4\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo: in dieci secondi, viaggiando sempre a 2,4 m/s, percorrerei 24 m, cioè l'intero tragitto. Il valore è compreso fra 2 e 3 m/s, come deve essere."
+      },
+      {
+        "type": "text",
+        "text": "Errore tipico e trucco: (2 + 3)/2 = 2,5 m/s sarebbe la media aritmetica delle velocità, ma qui i due tratti durano 6 s e 4 s, non lo stesso tempo. Memorizza: velocità media = spostamento totale / tempo totale. Per tratti in versi opposti usa gli spostamenti con segno, non le distanze."
       }
     ],
     "difficulty": 2,
