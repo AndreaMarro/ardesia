@@ -1,0 +1,41 @@
+name: Officina V2 - Controlli didattici
+
+on:
+  pull_request:
+    branches: [officina-di-fisica]
+    paths:
+      - "officina-di-fisica/content/**"
+      - "officina-di-fisica/static/**"
+      - "officina-di-fisica/tests/**"
+      - "officina-di-fisica/tools/audit_didattico.py"
+      - ".github/workflows/officina-v2-pr.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: officina-v2-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  audit-e-test:
+    name: Struttura del metodo e integrità dei contenuti
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: officina-di-fisica
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: officina-di-fisica
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Struttura di cinque moduli e risoluzioni progressive
+        run: node --test tests/metodo.test.js tests/lettura.test.js tests/revisione-contenuti.test.js
+      - name: Integrità banca e audit editoriale MUR
+        run: |
+          python3 tools/validate_bank.py
+          python3 tools/audit_didattico.py
