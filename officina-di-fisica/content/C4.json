@@ -3622,12 +3622,57 @@
     "version": 1,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\frac1{R_x}=\\frac14-\\frac1{12}=\\frac{3-1}{12}=\\frac16\\ \\Omega^{-1}\\quad\\Longrightarrow\\quad R_x=6\\ \\Omega"
+        "type": "text",
+        "text": "Il problema chiede il valore di un resistore sconosciuto collegato in parallelo a un resistore da 12 Ω. L'equivalente di due resistori è 4 Ω. In parallelo le correnti si sommano e i due rami hanno la stessa differenza di potenziale."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-Q055-parallelo.svg",
+        "text": "I due resistori sono collegati agli stessi nodi A e B. La resistenza equivalente 4 Ω sostituisce entrambi i rami vista dall'esterno."
       },
       {
         "type": "text",
-        "text": "Il controllo 12 × 6/(12 + 6) restituisce 4 Ω."
+        "text": "Indico R₁ = 12 Ω, R₂ = Rₓ incognita e R_eq = 4 Ω. Non posso fare 12 − 4: la somma diretta delle resistenze vale per collegamenti in serie, non in parallelo."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{1}{R_{eq}}=\\frac{1}{R_1}+\\frac{1}{R_x}"
+      },
+      {
+        "type": "text",
+        "text": "Voglio isolare Rₓ. Per prima cosa sottraggo 1/R₁ a entrambi i membri, così il termine 1/Rₓ rimane da solo a destra."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1{R_{eq}}-\\frac1{R_1}=\\frac1{R_x}"
+      },
+      {
+        "type": "text",
+        "text": "Sostituisco i valori e porto le frazioni allo stesso denominatore 12: un quarto è uguale a tre dodicesimi. Tre dodicesimi meno un dodicesimo sono due dodicesimi, cioè un sesto."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1{R_x}=\\frac14-\\frac1{12}=\\frac3{12}-\\frac1{12}=\\frac2{12}=\\frac16\\,\\Omega^{-1}"
+      },
+      {
+        "type": "text",
+        "text": "Attenzione: ora conosco 1/Rₓ, non Rₓ. Inverto entrambi i membri, ottenendo Rₓ = 6 Ω. Invertire una frazione significa scambiare numeratore e denominatore, a condizione che la quantità sia diversa da zero."
+      },
+      {
+        "type": "formula",
+        "text": "R_x=6\\,\\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Controllo con la formula equivalente per due resistori in parallelo: prodotto diviso somma. Dodici per sei fa settantadue; dodici più sei fa diciotto; settantadue diviso diciotto fa quattro, proprio il dato iniziale."
+      },
+      {
+        "type": "formula",
+        "text": "R_{eq}=\\frac{12\\cdot6}{12+6}=\\frac{72}{18}=4\\,\\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Trucco: la resistenza equivalente di due resistori positivi in parallelo deve sempre essere minore di ciascuno dei due. Quattro è minore di sei e di dodici: questo controllo elimina subito molti errori di algebra."
       }
     ],
     "prompt": "Un resistore da 12 Ω è in parallelo a un resistore incognito. L’equivalente misurata è 4 Ω. Calcola la resistenza incognita in Ω.",
