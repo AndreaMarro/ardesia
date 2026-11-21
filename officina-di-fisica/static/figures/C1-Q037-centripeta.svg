@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="title desc">
+<title id="title">Moto circolare: velocità tangente e accelerazione verso il centro</title>
+<desc id="desc">Un punto percorre un cerchio di raggio due metri. Al punto più alto, la velocità di tre metri al secondo è tangente verso destra e l'accelerazione centripeta di quattro virgola cinque metri al secondo quadrato è diretta verso il centro.</desc>
+<defs><marker id="vel" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#5936ae"/></marker><marker id="acc" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#95354b"/></marker></defs>
+<rect width="720" height="340" fill="#f8f5ea"/>
+<g font-family="Arial,sans-serif" fill="#221c30">
+<text x="30" y="35" font-size="22" font-weight="700">La velocità cambia direzione anche se il modulo è costante</text>
+<circle cx="220" cy="181" r="112" fill="none" stroke="#221c30" stroke-width="4"/>
+<circle cx="220" cy="181" r="5" fill="#221c30"/>
+<circle cx="220" cy="69" r="9" fill="#5936ae"/>
+<path d="M220 69V180" stroke="#95354b" stroke-dasharray="7 6" stroke-width="3"/>
+<path d="M220 69H396" stroke="#5936ae" stroke-width="5" marker-end="url(#vel)"/>
+<path d="M220 69V149" stroke="#95354b" stroke-width="5" marker-end="url(#acc)"/>
+<text x="400" y="81" font-size="21" fill="#5936ae">v = 3 m/s (tangente)</text>
+<text x="244" y="145" font-size="19" fill="#95354b">aₙ = 4,5 m/s² (centro)</text>
+<text x="230" y="200" font-size="20">r = ?</text>
+<text x="35" y="318" font-size="20" font-weight="700">r = v²/aₙ = 3²/4,5 = 2 m</text>
+</g></svg>
