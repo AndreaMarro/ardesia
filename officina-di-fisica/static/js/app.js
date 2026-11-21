@@ -206,6 +206,7 @@ async function material(id, course) {
       $('#preview-result').innerHTML =
         `<h3>${result.correct ? 'Risposta corretta' : 'Rivedi il passaggio'}</h3>${blocks(result.solution)}<p>Risposta · ${esc(answerText(r, result.key))}</p>`;
       typeset();
+      installaPassaggi($('#preview-result'), { kind: 'worked', blocks: result.solution });
       el.hidden = true;
     });
     return;
