@@ -26,6 +26,7 @@ import {
 } from './ui.js';
 
 import { vignetta } from './anteprima.js';
+import { installaPassaggi } from './lettura.js';
 
 export function recoveryCollection(node, items, course) {
   const questions = items.filter((item) => item.kind === 'question');
@@ -67,9 +68,10 @@ export function recoveryCollection(node, items, course) {
       sheet.innerHTML = `<article class="reader sheetpanel"><div class="meta">${esc(errorNames[result.error.category] || result.error.category)}</div><h3>${esc(q.title)}</h3><p>${esc(result.prompt)}</p>
       ${blocks(result.figures)}${result.options.length ? `<ol type="A">${result.options.map((v) => `<li>${esc(v)}</li>`).join('')}</ol>` : ''}
       <div class="callout">${vignetta('riprendi')}<h3>Il passaggio da controllare</h3><p>${esc(result.error.message)}</p></div>
-      <details><summary>Segui lo svolgimento</summary>${blocks(result.solution)}</details>
+      <details><summary>Segui lo svolgimento</summary><div class="lettura-contenuto">${blocks(result.solution)}</div></details>
       <div class="actions">${target ? link(target.kind === 'lab' ? 'Osserva il laboratorio' : 'Riprendi la spiegazione', (target.kind === 'lab' ? 'lab/' : 'materiale/') + target.id + '/' + course) : ''}${result.canRetest ? button('Prova un caso diverso', 'recovery-retest', true) : ''}</div></article>`;
       typeset(sheet);
+      installaPassaggi(sheet.querySelector('.lettura-contenuto'), { kind: 'worked', blocks: result.solution });
       on(
         '#recovery-retest',
         'click',
@@ -162,7 +164,10 @@ export async function runPage(id, initial) {
  ${feedback ? `<section class="feedback"><h3>${q.correct === true ? 'Risposta corretta' : q.correct === false ? 'Rivediamo il ragionamento' : q.aided ? 'Svolgimento consultato' : 'Quesito omesso'}</h3>${q.aided ? '<p class="small">Questa attività è registrata come assistita.</p>' : ''}${blocks(q.solution)}<p class="notice good"><b>Risposta</b> · ${esc(answerText(q, q.key))}</p>${diagnosis}</section>` : ''}
  <div class="actions">${idx > 0 ? button('← Precedente', 'prev') : ''}${idx < run.items.length - 1 ? button('Successivo →', 'next', true) : ''}${!run.finished ? button('Consegna l’attività', 'finish') : link('Il mio studio', 'studio')}</div></article>`;
     typeset();
-    $$('[data-jump]').forEach((el) => (el.onclick = () => jump(Number(el.dataset.jump))));
+    if (feedback && Array.isArray(q.solution)) {
+      installaPassaggi(main.querySelector('.feedback'), { kind: 'worked', blocks: q.solution });
+    }
+    $('[data-jump]').forEach((el) => (el.onclick = () => jump(Number(el.dataset.jump))));
     on('#response', 'submit', async (e, f) => {
       const value = new FormData(f).get('value');
       if (value === null || String(value).trim() === '') throw Error('Scegli o inserisci una risposta.');
