@@ -2125,12 +2125,57 @@
     "version": 1,
     "blocks": [
       {
-        "type": "formula",
-        "text": "a_cr=v^2\\quad\\Rightarrow\\quad r=v^2/a_c=9/4{,}5=2{,}0\\,\\mathrm m"
+        "type": "text",
+        "text": "Il punto percorre una circonferenza con velocità di modulo 3,0 m/s. Anche se il numero che indica la velocità resta costante, il vettore velocità cambia continuamente direzione. Serve dunque un'accelerazione rivolta verso il centro della traiettoria: l'accelerazione centripeta."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q037-centripeta.svg",
+        "text": "Nel punto più alto della traiettoria la velocità è tangente alla circonferenza, mentre l'accelerazione centripeta punta verso il centro: le due frecce sono perpendicolari."
       },
       {
         "type": "text",
-        "text": "Il rapporto fra m²/s² e m/s² ha dimensione di lunghezza."
+        "text": "Scrivo i dati con le unità: modulo della velocità v = 3,0 m/s; accelerazione centripeta a_c = 4,5 m/s²; raggio r = ?. Il problema chiede una lunghezza, quindi il risultato dovrà essere espresso in metri."
+      },
+      {
+        "type": "text",
+        "text": "Nel moto circolare di raggio r, l'accelerazione centripeta dipende dal quadrato del modulo della velocità e inversamente dal raggio. La formula corretta contiene r al denominatore."
+      },
+      {
+        "type": "formula",
+        "text": "a_c=\\frac{v^2}{r}"
+      },
+      {
+        "type": "text",
+        "text": "Ora isolo r senza imparare a memoria una formula inversa. Moltiplico entrambi i membri per r, così il raggio a destra si semplifica. Ottengo a_c r = v²."
+      },
+      {
+        "type": "formula",
+        "text": "a_c\\,r=\\frac{v^2}{r}\\,r=v^2"
+      },
+      {
+        "type": "text",
+        "text": "Per lasciare r da solo divido entrambi i membri per a_c, che è diversa da zero in questo problema."
+      },
+      {
+        "type": "formula",
+        "text": "r=\\frac{v^2}{a_c}"
+      },
+      {
+        "type": "text",
+        "text": "Sostituisco prima le unità. Il quadrato della velocità è 9 m²/s². Dividendo per un'accelerazione in m/s² si semplifica un fattore m e il tempo s², perciò resta un metro, come richiesto."
+      },
+      {
+        "type": "formula",
+        "text": "r=\\frac{(3{,}0\\,\\mathrm{m/s})^2}{4{,}5\\,\\mathrm{m/s^2}}=\\frac{9}{4{,}5}\\,\\mathrm m=2{,}0\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Controllo sostituendo il risultato nella formula iniziale: 3² / 2 = 4,5 m/s². Riottengo esattamente l'accelerazione data."
+      },
+      {
+        "type": "text",
+        "text": "Trucco utile senza calcolatrice: 4,5 è la metà di 9; quindi 9 diviso 4,5 vale 2. Se a parità di velocità il raggio fosse più grande, la curvatura sarebbe minore e l'accelerazione centripeta diminuirebbe. Non confondere questa accelerazione con una variazione del modulo della velocità."
       }
     ],
     "difficulty": 2,
