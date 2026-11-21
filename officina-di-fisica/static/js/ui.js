@@ -16,6 +16,7 @@ export const num = (v, d = 3) =>
 export const kinds = {
   course: 'Corso',
   section: 'Sezione',
+  method: 'Attività di metodo',
   lesson: 'Lezione',
   example: 'Esempio svolto',
   question: 'Quesito',

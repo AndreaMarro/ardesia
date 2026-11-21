@@ -344,6 +344,7 @@ class Handler(BaseHTTPRequestHandler):
                     previews.append(r["id"])
             return {
                 "course": short(c),
+                "activities": [r for r in group if r["kind"] == "method" and r["course"] == c["id"]],
                 "owned": visible,
                 "items": [short(r) for r in group if not r.get("exam")],
                 "preview": previews,

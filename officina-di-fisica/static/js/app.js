@@ -33,6 +33,7 @@ import { recoveryCollection, runPage, trainPage } from './practice.js';
 import { labPage } from './labs.js';
 import { previewOfficina } from './anteprima.js';
 import { installaPassaggi } from './lettura.js';
+import { installActivities } from './attivita-metodo.js';
 import { metodoContent, sprintContent } from './metodo.js';
 const authorPage = async (parts) => (await import('./editor.js')).authorPage(parts);
 let ready = false,
@@ -190,7 +191,7 @@ async function coursePage(id, tab = 'parti') {
       '<article class="method-card"><div class="meta">Abilità trasversali</div><h3>Formule inverse e grafici</h3><p>Ricava ogni grandezza, interpreta gli assi e controlla i risultati senza calcolatrice, un passo alla volta.</p>' + link('Apri il metodo', courseUrl(id, 'metodo'), true) + '</article>' +
       '<article class="method-card"><div class="meta">Allenamento rapido</div><h3>Esercizi e recupero</h3><p>Inizia dai quesiti, poi riprendi la spiegazione associata agli errori.</p>' + link('Allenati', 'allenamento/' + id, true) + '</article></div></section>';
   } else if (tab === 'metodo') {
-    body = metodoContent(id);
+    body = metodoContent(id, data.activities);
   } else if (tab === 'pdf') {
     const courses = [...(c.includes || []), id];
     body = `<div class="big-list"><h2>Fascicoli per lo studio</h2>${!data.owned ? gate(id) : ''}${courses.map((cid) => `<div class="order"><h3>${esc(titleOf(cid))}</h3><div class="actions">${(cid === 'C6' ? ['dispensa', 'esercizi', 'simulazioni'] : ['dispensa', 'esercizi']).map((b) => (data.owned ? `<a class="button" href="/download/${esc(cid)}/${b}" download>↓ ${{ dispensa: 'Dispensa', esercizi: 'Esercizi con soluzioni', simulazioni: 'Simulazioni' }[b]}</a>` : `<span class="small">${{ dispensa: 'Dispensa', esercizi: 'Eserciziario', simulazioni: 'Simulazioni' }[b]}</span>`)).join('')}</div></div>`).join('')}</div>`;
@@ -219,6 +220,7 @@ async function coursePage(id, tab = 'parti') {
   } else {
     main.innerHTML = title + utilities + body;
   }
+  if (tab === 'metodo') installActivities(main, data.activities);
   if (tab === 'recupero' && data.owned) recoveryCollection($('#raccolta-errori'), data.items, id);
   demo('corso/' + id);
 }
@@ -263,7 +265,7 @@ async function material(id, course) {
     .join('');
   const lab = data.items.find((l) => l.kind === 'lab' && l.course === r.course);
   main.innerHTML =
-    crumb([['Percorsi', 'percorsi'], [titleOf(course), courseUrl(course)], [kinds[r.kind] || 'Materiale']]) +
+    crumb([['Percorsi', 'percorsi'], [titleOf(course), courseUrl(course, course === 'C6' && r.kind === 'lesson' ? 'lezioni' : 'parti')], [kinds[r.kind] || 'Materiale']]) +
     `<div class="layout"><aside class="index"><details ${matchMedia('(min-width:641px)').matches ? 'open' : ''}><summary>Indice del modulo</summary><h3>${esc(titleOf(r.course))}</h3>${indexLinks}</details></aside><article class="reader"><div class="meta">${esc(kinds[r.kind])} · ${esc(r.id)}</div><h1>${esc(r.title)}</h1>${r.prompt ? `<p class="exercise-prompt">${esc(r.prompt)}</p>${blocks(r.promptBlocks)}` : ''}<div class="lettura-contenuto">${blocks(r.blocks)}</div><div class="actions">${state.user ? button(r.readVersion === r.version ? 'Lettura registrata' : r.readVersion ? 'Segna la nuova versione come letta' : 'Segna come letta', 'read') : ''}${r.kind === 'lesson' && examples.length ? link('Segui un esempio', 'materiale/' + examples[0].id + '/' + course, true) : ''}${data.owned && q ? button('Prova un problema', 'exercise', true) : ''}</div>${r.kind === 'lesson' && examples.length ? '<h3>Esempi svolti</h3>' + examples.map((e) => listLine(e.title, 'materiale/' + e.id + '/' + course)).join('') : ''}${lab ? listLine(lab.title, 'lab/' + lab.id + '/' + course, 'Laboratorio') : ''}${lessons[idx + 1] ? listLine('Lezione successiva', 'materiale/' + lessons[idx + 1].id + '/' + course, lessons[idx + 1].title) : ''}</article></div>`;
   installaPassaggi(main.querySelector('.lettura-contenuto'), r);
   on('#read', 'click', async () => {

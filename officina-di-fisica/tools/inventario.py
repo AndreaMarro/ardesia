@@ -144,6 +144,7 @@ KIND = {
     "question": "quesito",
     "lab": "laboratorio",
     "section": "sezione",
+    "method": "attività di metodo",
 }
 ANSWER = {"numeric": "numerica", "choice": "scelta multipla", "text": "completamento"}
 
@@ -447,19 +448,19 @@ def main():
     inventory = [
         "# Inventario editoriale e copertura MUR",
         "",
-        f"Questa fotografia riguarda il {source}. I {len(rows)} record hanno identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.",
+        f"Questa fotografia riguarda il {source}. Comprende {len(rows)} record con identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.",
         "",
         "Fonti ministeriali consultate il 21 novembre 2026 per l’anno accademico 2026/27. I collegamenti ai documenti archiviati sono sotto la matrice.",
         "",
         "## Banca pubblicata",
         "",
-        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori |",
-        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|",
+        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori | Attività di metodo |",
+        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|",
     ]
     for c in courses:
         s = stats[c]
         inventory.append(
-            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} |"
+            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} | {s['method']} |"
         )
     inventory += [
         "",

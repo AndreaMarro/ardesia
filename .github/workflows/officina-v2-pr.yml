@@ -6,6 +6,7 @@ on:
     paths:
       - "officina-di-fisica/content/**"
       - "officina-di-fisica/static/**"
+      - "officina-di-fisica/server/**"
       - "officina-di-fisica/tests/**"
       - "officina-di-fisica/tools/audit_didattico.py"
       - ".github/workflows/officina-v2-pr.yml"
@@ -34,7 +35,9 @@ jobs:
         with:
           node-version: '22'
       - name: Struttura di cinque moduli e risoluzioni progressive
-        run: node --test tests/metodo.test.js tests/lettura.test.js tests/revisione-contenuti.test.js
+        run: node --test tests/*.test.js
+      - name: Aggiornamenti delle soluzioni e validazione delle attività
+        run: python3 -m unittest discover -s tests -p 'test_method_editions.py'
       - name: Integrità banca e audit editoriale MUR
         run: |
           python3 tools/validate_bank.py

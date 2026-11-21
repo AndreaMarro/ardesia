@@ -22,7 +22,9 @@ from .store import (
     safe_key,
 )
 
-KINDS = {"course", "section", "lesson", "example", "question", "lab"}
+from .method import validate_method
+
+KINDS = {"course", "section", "lesson", "example", "question", "lab", "method"}
 TYPES = {"text", "formula", "figure", "attachment", "example", "question", "lab"}
 LAB_SPEC = json.loads((ROOT / "static" / "lab-models.json").read_text())
 CATEGORIES = {"concetto", "calcolo", "algebra", "unità", "testo", "modello"}
@@ -135,6 +137,8 @@ def validate(db, r, objects, extra=()):
             "Servono consegna, famiglia, competenza e svolgimento.",
         )
         require(r.get("difficulty") in (1, 2, 3), "Difficoltà da 1 a 3.")
+    if kind == "method":
+        validate_method(r)
     if kind == "lab":
         model = r.get("model")
         require(model in LAB_SPEC["parameters"], "Modello di laboratorio sconosciuto.")

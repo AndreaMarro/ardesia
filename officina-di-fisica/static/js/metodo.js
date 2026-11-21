@@ -1,3 +1,5 @@
+import { plot } from "./grafico-metodo.js";
+import { activityPanel } from "./attivita-metodo.js";
 /* Percorsi metodologici originali: leggibili anche in una installazione già avviata.
  * I grafici SVG sono costruiti localmente, senza chiamate esterne.
  */
@@ -143,54 +145,9 @@ const methods = {
 
 const names = { C1:"Strumenti e meccanica", C2:"Fluidi", C3:"Termodinamica", C4:"Elettricità e magnetismo", C5:"Onde, ottica e radiazioni" };
 const order = ["C1", "C2", "C3", "C4", "C5"];
-const fmt = (n) => String(Math.round(n*100)/100).replace(".", ",");
 const ktex = (tex) => '<div class="math" data-tex="' + esc(tex) + '">' + esc(tex) + '</div>';
 
-function plot(g, stage) {
-  const left=61, right=390, top=20, bottom=221;
-  const sx=(n)=>left+((n)/(g.xmax))*(right-left);
-  const sy=(n)=>bottom-((n-g.ymin)/(g.ymax-g.ymin))*(bottom-top);
-  const n=(v)=>String(Math.round(v*10)/10);
-  const p=(x,y)=>n(sx(x))+","+n(sy(y));
-  const lines=[];
-  for(let i=0;i<=4;i++){
-    const x=sx(g.xmax*i/4), y=sy(g.ymin+(g.ymax-g.ymin)*i/4);
-    lines.push('<line class="method-grid" x1="'+n(x)+'" y1="'+top+'" x2="'+n(x)+'" y2="'+bottom+'"/>');
-    lines.push('<line class="method-grid" x1="'+left+'" y1="'+n(y)+'" x2="'+right+'" y2="'+n(y)+'"/>');
-    lines.push('<text class="method-tick" x="'+n(x)+'" y="'+(bottom+16)+'" text-anchor="middle">'+esc(fmt(g.xmax*i/4))+'</text>');
-    lines.push('<text class="method-tick" x="'+(left-10)+'" y="'+n(y+3)+'" text-anchor="end">'+esc(fmt(g.ymin+(g.ymax-g.ymin)*i/4))+'</text>');
-  }
-  const coords = g.type==="fourth"
-    ? Array.from({length:81},(_,i)=>[2*i/80,Math.pow(2*i/80,4)])
-    : g.type==="wave"
-      ? Array.from({length:161},(_,i)=>[8*i/160,Math.sin(Math.PI*(8*i/160)/2)])
-      : g.samples;
-  const highlights = g.samples.filter((a)=>a[0]!==0 || a[1]!==0);
-  let svg = '<svg class="method-plot" viewBox="0 0 420 270" role="img" aria-label="'+esc('Grafico: '+g.y+' in funzione di '+g.x)+ '">';
-  svg += '<rect x="0" y="0" width="420" height="270" fill="transparent"/>'+lines.join("");
-  svg += '<line class="method-axis" x1="'+left+'" y1="'+bottom+'" x2="'+right+'" y2="'+bottom+'"/>';
-  svg += '<line class="method-axis" x1="'+left+'" y1="'+top+'" x2="'+left+'" y2="'+bottom+'"/>';
-  svg += '<text class="method-axis-label" x="390" y="259" text-anchor="end">'+esc(g.x)+'</text>';
-  svg += '<text class="method-axis-label" x="65" y="12" text-anchor="start">'+esc(g.y)+'</text>';
-  if(stage>=2){
-    for(const a of highlights){
-      svg += '<line class="method-guide" x1="'+n(sx(a[0]))+'" y1="'+n(sy(a[1]))+'" x2="'+n(sx(a[0]))+'" y2="'+bottom+'"/>';
-      svg += '<line class="method-guide" x1="'+left+'" y1="'+n(sy(a[1]))+'" x2="'+n(sx(a[0]))+'" y2="'+n(sy(a[1]))+'"/>';
-      svg += '<circle class="method-dot" cx="'+n(sx(a[0]))+'" cy="'+n(sy(a[1]))+'" r="4.5"/>';
-    }
-  }
-  if(stage>=3){
-    if(g.shade){
-      const s=g.shade, x=sx(s[0]), width=sx(s[1])-x, y=sy(s[2]);
-      svg += '<rect class="method-area" x="'+n(x)+'" y="'+n(y)+'" width="'+n(width)+'" height="'+n(bottom-y)+'"/>';
-    }
-    svg += '<polyline class="method-curve" points="'+coords.map((a)=>p(a[0],a[1])).join(" ")+'"/>';
-    for(const a of highlights) svg += '<circle class="method-dot" cx="'+n(sx(a[0]))+'" cy="'+n(sy(a[1]))+'" r="4.5"/>';
-  }
-  return svg+'</svg>';
-}
-
-export function metodoContent(id){
+export function metodoContent(id, activities = []){
   if(id==="C6"){
     return '<section class="method-intro"><h2>Strumenti comuni a tutte le unità</h2><p>Ogni argomento ha una formula da ricavare, un grafico da interpretare e un esercizio con controllo finale. Non imparare soltanto la risposta: ricostruisci il motivo di ogni operazione.</p><div class="method-cards">'+order.map((c)=>'<article class="method-card"><span class="meta">'+c+'</span><h3>'+esc(names[c])+'</h3><p>'+esc(methods[c].topic)+'</p>'+link('Apri formule, grafici e passaggi','corso/'+c+'/metodo',true)+'</article>').join("")+'</div></section>';
   }
@@ -200,6 +157,7 @@ export function metodoContent(id){
   const graphs=m.graph.captions.map((description,i)=>'<figure class="method-figure"><div class="method-stage"><span>Disegno '+(i+1)+' di 3</span><strong>'+esc(["Leggo gli assi","Individuo i dati","Interpreto il fenomeno"][i])+'</strong></div>'+plot(m.graph,i+1)+'<figcaption>'+esc(description)+'</figcaption></figure>').join("");
   const solved=m.check.steps.map((s,i)=>'<li>'+esc(s)+'</li>').join("");
   return '<section class="method-intro"><div class="meta">Metodo di studio · '+id+'</div><h2>Formule inverse e lettura dei grafici</h2><p>'+esc(m.opening)+'</p><p class="method-rule">Regola comune: dati e unità → scelta della legge → isolamento dell’incognita → calcolo semplice → controllo fisico.</p></section>'+
+   activityPanel(activities)+
    '<section class="method-part"><h2>1. Ricavare una formula senza indovinare</h2><p class="deck">'+esc(m.topic)+'. Apri un passaggio alla volta e prova a rifarlo su carta prima di guardare il successivo.</p><div class="method-steps">'+formula+'</div></section>'+
    '<section class="method-part"><h2>2. Capire davvero un grafico</h2><p class="deck">Tre disegni progressivi: prima gli assi, poi i punti importanti, infine la relazione fisica.</p><div class="method-graphs">'+graphs+'</div><aside class="method-tip"><h3>Trucco che evita errori</h3><p>'+esc(m.graph.trick)+'</p></aside></section>'+
    '<section class="method-part"><h2>3. Prova senza calcolatrice</h2><div class="method-card"><p class="exercise-prompt">'+esc(m.check.prompt)+'</p><details class="method-answer"><summary>Mostra la soluzione commentata, un passaggio alla volta</summary><ol>'+solved+'</ol></details></div></section>'+

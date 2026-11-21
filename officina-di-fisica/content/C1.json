@@ -440,15 +440,37 @@
     "prerequisites": [
       "C1-L001"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "k=x/t^2\\quad\\Rightarrow\\quad [k]=L/T^2"
+        "type": "figure",
+        "src": "/figures/C1-Q008-1.svg",
+        "text": "Nel prodotto k · t · t ci sono due fattori di tempo. Il risultato x è una lunghezza."
       },
       {
         "type": "text",
-        "text": "Inserendo metri e secondi, k si misura in m/s². Il controllo dimensionale è indipendente dal valore di k."
+        "text": "Conosciamo la relazione x = kt². Anche senza misurare x o t possiamo trovare quale unità deve avere k. Prendi un istante t diverso da zero e dividi entrambi i membri per t². A destra i due fattori di tempo si cancellano."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{x}{t^2}=\\frac{k t^2}{t^2}=k"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q008-2.svg",
+        "text": "Rimetti le unità nella relazione di partenza. I secondi al quadrato al denominatore cancellano quelli al numeratore."
+      },
+      {
+        "type": "text",
+        "text": "Al posto di x scrivi metri, al posto di t secondi. Se t = 2 s, t² vale 4 s²: il quadrato riguarda anche l’unità. Per ottenere metri, k deve avere unità m/s²."
+      },
+      {
+        "type": "text",
+        "text": "Con m/s rimarrebbe un secondo in più. Quando compare una potenza, scrivila come prodotto prima di cancellare le unità."
+      },
+      {
+        "type": "formula",
+        "text": "[k]=\\frac{\\mathrm m}{\\mathrm s\\cdot\\mathrm s}=\\mathrm{m/s^2}"
       }
     ],
     "difficulty": 2,
@@ -784,19 +806,37 @@
     "prerequisites": [
       "C1-L002"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "B_x-A_x=5-2=3\\,\\mathrm m,\\quad B_y-A_y=1-(-3)=4\\,\\mathrm m"
-      },
-      {
-        "type": "formula",
-        "text": "|\\vec B-\\vec A|=\\sqrt{3^2+4^2}\\,\\mathrm m=5\\,\\mathrm m"
+        "type": "figure",
+        "src": "/figures/C1-Q013-1.svg",
+        "text": "Con le code dei due vettori nella stessa origine, la differenza B − A va dalla punta A alla punta B."
       },
       {
         "type": "text",
-        "text": "La doppia negazione nella componente verticale spiega perché entrambe le componenti risultano positive."
+        "text": "Cerchiamo la lunghezza della freccia, conoscendo le coordinate degli estremi. Per andare da A a B, x passa da 2 a 5 m e y da −3 a +1 m. Sottrai sempre la coordinata di partenza da quella di arrivo."
+      },
+      {
+        "type": "formula",
+        "text": "\\begin{aligned}\\Delta x&=5-2=3\\,\\mathrm m\\\\\\Delta y&=1-(-3)=4\\,\\mathrm m\\end{aligned}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q013-2.svg",
+        "text": "Le proiezioni formano un angolo retto. La freccia obliqua è l’ipotenusa."
+      },
+      {
+        "type": "text",
+        "text": "Con Pitagora somma i quadrati dei cateti: 9 + 16 = 25. Il quadrato del modulo si misura in m². La radice positiva restituisce una lunghezza di 5 m."
+      },
+      {
+        "type": "text",
+        "text": "È più lunga del cateto maggiore (4 m) e più corta del cammino a gomito (3 + 4 = 7 m). Sommare direttamente le componenti darebbe proprio quel cammino."
+      },
+      {
+        "type": "formula",
+        "text": "|\\vec B-\\vec A|=\\sqrt{9+16}\\,\\mathrm m=5\\,\\mathrm m"
       }
     ],
     "difficulty": 2,
@@ -1392,11 +1432,33 @@
     "prerequisites": [
       "C1-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "figure",
+        "src": "/figures/C1-vneg.svg",
+        "text": "Nel grafico velocità-tempo entrambi i valori segnati, −6 e −2 m/s, sono sotto la linea v = 0."
+      },
+      {
         "type": "text",
-        "text": "La velocità è negativa e il suo modulo diminuisce. L’accelerazione è positiva perché v aumenta verso zero; l’oggetto sta rallentando mentre procede nel verso negativo."
+        "text": "Il tempo scorre verso destra. La quota della curva si legge in m/s: finché la velocità è negativa, la posizione diminuisce. La pendenza verso l’alto indica che v aumenta al passare del tempo."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q023-2.svg",
+        "text": "Le frecce puntano ancora a sinistra. La seconda è più corta: in un secondo si coprono meno metri."
+      },
+      {
+        "type": "text",
+        "text": "Per capire se il punto rallenta guarda la rapidità, cioè la distanza della curva dallo zero. Passa da 6 a 2 m/s. La risposta è quindi «Procede verso x minori e rallenta»."
+      },
+      {
+        "type": "text",
+        "text": "Una curva crescente può descrivere un rallentamento. Leggi prima il segno della quota per il verso, poi guarda se la curva si avvicina o si allontana dallo zero per la rapidità."
+      },
+      {
+        "type": "formula",
+        "text": "|-6|=6,\\qquad |-2|=2"
       }
     ],
     "difficulty": 2,
@@ -2054,19 +2116,37 @@
     "prerequisites": [
       "C1-L004"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "s(2)=\\tfrac12(10)(2)^2=20\\,\\mathrm m,\\qquad s(1)=5\\,\\mathrm m"
-      },
-      {
-        "type": "formula",
-        "text": "s(2)-s(1)=15\\,\\mathrm m"
+        "type": "figure",
+        "src": "/figures/C1-Q034-1.svg",
+        "text": "Le posizioni sono misurate verso il basso a partire dal punto di rilascio."
       },
       {
         "type": "text",
-        "text": "Nel secondo intervallo di un secondo il corpo è già in moto e percorre più spazio che nel primo."
+        "text": "Il corpo parte da fermo. La gravità gli fa guadagnare 10 m/s ogni secondo. Per contare i metri tra due istanti troviamo prima le distanze dalla partenza ai due istanti. Con accelerazione costante e velocità iniziale nulla vale s = gt²/2."
+      },
+      {
+        "type": "formula",
+        "text": "\\begin{aligned}s(1)&=(10/2)\\cdot1^2=5\\,\\mathrm m\\\\s(2)&=(10/2)\\cdot2^2=20\\,\\mathrm m\\end{aligned}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q034-2.svg",
+        "text": "Il tratto verde comincia dove è terminato il primo secondo."
+      },
+      {
+        "type": "text",
+        "text": "Nel totale di 20 m sono compresi i primi 5 m. Sottrai la posizione a 1 s dalla posizione a 2 s."
+      },
+      {
+        "type": "text",
+        "text": "Controllo indipendente: nel secondo intervallo la velocità cresce da 10 a 20 m/s. La media è 15 m/s e dura 1 s. Usare t = 1 nella legge della caduta da fermo darebbe solo il primo tratto."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta s=20\\,\\mathrm m-5\\,\\mathrm m=15\\,\\mathrm m"
       }
     ],
     "difficulty": 3,
@@ -2637,15 +2717,37 @@
     "prerequisites": [
       "C1-L005"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "N+T_y-mg=0\\quad\\Rightarrow\\quad N=mg-T_y=50-12=38\\,\\mathrm N"
+        "type": "figure",
+        "src": "/figures/C1-Q044-1.svg",
+        "text": "Isola il blocco. Peso verso il basso, normale e componente verticale del tiro verso l’alto."
       },
       {
         "type": "text",
-        "text": "Il valore positivo è compatibile con il contatto. La componente orizzontale della fune non entra in questa equazione."
+        "text": "La massa è 5 kg. Il blocco resta sul piano: la sua accelerazione verticale è zero. Il peso vale massa per g, ossia 5 × 10 = 50 N. La spinta del piano è l’incognita. Con l’alto positivo, la somma delle forze verticali deve essere nulla."
+      },
+      {
+        "type": "formula",
+        "text": "N+T_y-P=0"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q044-2.svg",
+        "text": "Il tiro sostiene già una parte dei 50 N. Il piano fornisce la parte restante."
+      },
+      {
+        "type": "text",
+        "text": "Aggiungi P a entrambi i membri: N + Tᵧ = P. Sottrai Tᵧ dai due membri. A mente: togli 10 e poi altri 2 a 50."
+      },
+      {
+        "type": "text",
+        "text": "Verifica: 38 + 12 = 50 N. Imporre N = mg conterebbe due volte il sostegno della fune. Proietta le forze perpendicolarmente al piano prima di calcolare la reazione."
+      },
+      {
+        "type": "formula",
+        "text": "N=P-T_y=(50-12)\\,\\mathrm N=38\\,\\mathrm N"
       }
     ],
     "difficulty": 2,
@@ -3253,19 +3355,37 @@
     "prerequisites": [
       "C1-L006"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "x=F/k=6/200=0{,}030\\,\\mathrm m=3{,}0\\,\\mathrm{cm}"
-      },
-      {
-        "type": "formula",
-        "text": "\\ell_0=\\ell-x=14-3=11\\,\\mathrm{cm}"
+        "type": "figure",
+        "src": "/figures/C1-Q056-1.svg",
+        "text": "La lunghezza tirata comprende la lunghezza a riposo più il solo allungamento x."
       },
       {
         "type": "text",
-        "text": "Senza trazione la molla accorcia dei 3 cm guadagnati."
+        "text": "A equilibrio la forza elastica bilancia i 6 N applicati. Per i moduli la legge della molla ideale è F = kx. La costante 200 N/m dice quanta forza occorre per ogni metro di allungamento. Dividi entrambi i membri per k."
+      },
+      {
+        "type": "formula",
+        "text": "x=\\frac Fk=\\frac{6}{200}\\,\\mathrm m=0{,}03\\,\\mathrm m"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q056-2.svg",
+        "text": "Tolti i 3 cm guadagnati sotto trazione, il tratto viola è la molla scarica."
+      },
+      {
+        "type": "text",
+        "text": "6/200 è 3/100. Un metro contiene 100 cm, dunque l’allungamento è 3 cm. Da ℓ = ℓ₀ + x sottrai x a entrambi i membri."
+      },
+      {
+        "type": "text",
+        "text": "Controllo: 11 cm + 3 cm = 14 cm. Usare i 14 cm in F = kx confonderebbe la lunghezza totale con la deformazione."
+      },
+      {
+        "type": "formula",
+        "text": "\\ell_0=\\ell-x=(14-3)\\,\\mathrm{cm}=11\\,\\mathrm{cm}"
       }
     ],
     "difficulty": 2,
@@ -3716,15 +3836,33 @@
     "prerequisites": [
       "C1-L007"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "F_{\\rm media}=(2+10)/2=6\\,\\mathrm N,\\qquad L=F_{\\rm media}\\Delta x=6\\cdot0{,}40=2{,}4\\,\\mathrm J"
+        "type": "figure",
+        "src": "/figures/C1-trapezio.svg",
+        "text": "La forza cresce da 2 a 10 N mentre il punto avanza da 0 a 0,40 m."
       },
       {
         "type": "text",
-        "text": "La media dei valori estremi è lecita qui perché la forza cresce linearmente con la posizione."
+        "text": "Forza e spostamento hanno lo stesso verso. Su un piccolo tratto di strada, il lavoro è forza per lunghezza. Sommando i tratti si ottiene l’area sotto il grafico F–x. La forza cambia, quindi non basta moltiplicare l’ultima altezza per tutta la base."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q064-2.svg",
+        "text": "La fascia verde ha altezza 2 N. Il triangolo sopra di essa aggiunge solo l’aumento di 8 N."
+      },
+      {
+        "type": "text",
+        "text": "La base comune è 0,40 m. Il rettangolo vale 2 × 0,40 = 0,8 J. Per il triangolo l’altezza è 10 − 2 = 8 N: dimezzala e moltiplica 4 × 0,40 = 1,6 J. Somma le due aree."
+      },
+      {
+        "type": "text",
+        "text": "Una forza media di (2 + 10)/2 = 6 N dà lo stesso lavoro: 6 × 4 decimi = 24 decimi di joule. La media degli estremi funziona qui perché la crescita è lineare."
+      },
+      {
+        "type": "formula",
+        "text": "L=(0{,}8+1{,}6)\\,\\mathrm{N\\,m}=2{,}4\\,\\mathrm J"
       }
     ],
     "difficulty": 2,
@@ -4387,19 +4525,37 @@
     "prerequisites": [
       "C1-L008"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\tfrac12mv_f^2=\\tfrac12mv_i^2-mg\\Delta z\\quad\\Rightarrow\\quad v_f^2=25-2\\cdot10\\cdot0{,}8=9"
-      },
-      {
-        "type": "formula",
-        "text": "v_f=3\\,\\mathrm{m/s}"
+        "type": "figure",
+        "src": "/figures/C1-Q077-1.svg",
+        "text": "La seconda posizione si trova 0,8 m sopra la prima. La gravità trasforma energia cinetica in potenziale."
       },
       {
         "type": "text",
-        "text": "Il valore è minore della velocità iniziale e positivo: la quota è raggiungibile."
+        "text": "Trascuriamo l’aria. Con lo zero dell’energia potenziale alla partenza, l’energia cinetica iniziale paga sia la salita sia l’energia cinetica rimasta. La massa compare in ciascun termine: dividiamo entrambi i membri per m, poi moltiplichiamo per 2."
+      },
+      {
+        "type": "formula",
+        "text": "\\begin{aligned}\\tfrac12 m v_i^2&=\\tfrac12 m v_f^2+mg\\Delta z\\\\v_i^2&=v_f^2+2g\\Delta z\\end{aligned}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q077-2.svg",
+        "text": "Ogni kg guadagna 8 J di energia potenziale. Gli restano 4,5 J di energia cinetica."
+      },
+      {
+        "type": "text",
+        "text": "Sottrai 2gΔz dai due membri. Il quadrato della rapidità vale 25 − 2 × 10 × 0,8 = 25 − 16 = 9 m²/s². Prendi la radice positiva perché si chiede la rapidità."
+      },
+      {
+        "type": "text",
+        "text": "Controllo: metà di 3² è 4,5 J/kg e 4,5 + 8 = 12,5. Fermarsi al numero 9 darebbe un quadrato, con unità sbagliate."
+      },
+      {
+        "type": "formula",
+        "text": "v_f=\\sqrt{9\\,\\mathrm{m^2/s^2}}=3\\,\\mathrm{m/s}"
       }
     ],
     "difficulty": 2,
@@ -4769,15 +4925,37 @@
     "prerequisites": [
       "C1-L009"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "0=4\\cdot3+6v_2\\quad\\Rightarrow\\quad 6v_2=-12\\quad\\Rightarrow\\quad v_2=-2\\,\\mathrm{m/s}"
+        "type": "figure",
+        "src": "/figures/C1-Q083-1.svg",
+        "text": "Scegli come sistema entrambi i pattini e la molla. La spinta della molla è interna."
       },
       {
         "type": "text",
-        "text": "I due contributi finali hanno moduli uguali e versi opposti."
+        "text": "La guida è liscia. Durante il distacco l’impulso esterno orizzontale è nullo: la quantità di moto totale rimane quella iniziale, zero. Prendi come positivo il verso del pattino di 4 kg. Dopo la spinta il suo contributo è 4 × 3 = +12 kg·m/s."
+      },
+      {
+        "type": "formula",
+        "text": "0=m_1v_1+m_2v_2"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q083-2.svg",
+        "text": "Le frecce sono uguali in lunghezza perché rappresentano quantità di moto, pur appartenendo a masse diverse."
+      },
+      {
+        "type": "text",
+        "text": "Per annullare +12 serve −12 kg·m/s. Sottrai 12 dai due membri del bilancio, poi dividi per i 6 kg del secondo pattino."
+      },
+      {
+        "type": "text",
+        "text": "Verifica: 4 × 3 + 6 × (−2) = 0. Il pattino più pesante è più lento. Assegnargli −3 m/s confonderebbe velocità opposte con quantità di moto opposte."
+      },
+      {
+        "type": "formula",
+        "text": "v_2=\\frac{-12\\,\\mathrm{kg\\,m/s}}{6\\,\\mathrm{kg}}=-2\\,\\mathrm{m/s}"
       }
     ],
     "difficulty": 2,
@@ -5412,15 +5590,33 @@
     "prerequisites": [
       "C1-L010"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "R_D(2{,}0)-30(0{,}50)=0\\quad\\Rightarrow\\quad R_D=15/2{,}0=7{,}5\\,\\mathrm N"
+        "type": "figure",
+        "src": "/figures/C1-Q095-1.svg",
+        "text": "Il peso è vicino a S. Entrambi gli appoggi spingono verso l’alto; il peso della trave leggera è trascurato."
       },
       {
         "type": "text",
-        "text": "L’appoggio sinistro sostiene i restanti 22,5 N perché il peso è più vicino a sinistra."
+        "text": "La trave è ferma: non trasla e non ruota. Cerchiamo la reazione destra. Calcola i momenti rispetto a S: la reazione sinistra passa per S e ha braccio zero. Il peso tende a far ruotare in senso orario, la reazione destra in senso antiorario."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q095-2.svg",
+        "text": "Misura entrambi i bracci dallo stesso perno S fino alla retta verticale di ciascuna forza."
+      },
+      {
+        "type": "text",
+        "text": "Il momento del peso vale 30 × 0,50 = 15 N·m. Per annullarlo il momento positivo della reazione deve valere 15 N·m. Dividi per il braccio destro di 2 m."
+      },
+      {
+        "type": "text",
+        "text": "Controllo: a sinistra restano 30 − 7,5 = 22,5 N. L’appoggio più vicino sostiene di più. Dimezzare il peso avrebbe senso solo con il carico a metà trave."
+      },
+      {
+        "type": "formula",
+        "text": "\\begin{aligned}R_D\\cdot2\\,\\mathrm m&=15\\,\\mathrm{N\\,m}\\\\R_D&=15/2\\,\\mathrm N=7{,}5\\,\\mathrm N\\end{aligned}"
       }
     ],
     "difficulty": 2,

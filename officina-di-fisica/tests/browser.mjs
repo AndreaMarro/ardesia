@@ -1,5 +1,6 @@
 // Reproducible browser acceptance test. It only writes into a new temporary database.
 import { chromium } from 'playwright';
+import { revisedLearning } from './browser-metodo.mjs';
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, rm } from 'node:fs/promises';
@@ -264,6 +265,8 @@ async function runAcceptance() {
     console.log('PASS · Entrambi i percorsi C1, metodo condiviso, risposta +2 m e quattro figure su desktop (1440×960) e mobile (390×844).');
     return;
   }
+  await revisedLearning(page, 'desktop', visit, noOverflow, shots);
+  await revisedLearning(p, 'mobile', visit, noOverflow, shots);
   await visit(p, 'materiale/C1-L005/C1', '.reader');
   await noOverflow(p);
   await guidedReading(p, 'C1-E018', 'C1', [[0, 1, 2], [3, 4], [5, 6]]);
@@ -291,7 +294,9 @@ async function runAcceptance() {
   assert.equal(originExample, sharedExample);
   await guidedReading(tablet, 'C5-L10', 'C5', [[0, 1, 2, 3], [4, 5]]);
   assert.deepEqual(await studyEvidence(), priorEvidence);
-  await visit(tablet, 'corso/C6', '.course-volume');
+  await visit(tablet, 'corso/C6', '.method-intro');
+  await advance(tablet, tablet.getByRole('link', { name: 'Apri le lezioni' }), '.course-volume');
+  assert.ok(tablet.url().endsWith('#corso/C6/lezioni'));
   const volumes = tablet.locator('.course-volume');
   assert.equal(await volumes.count(), 6);
   const thermo = volumes.filter({ has: tablet.locator('.volume-code', { hasText: /^C3$/ }) });
@@ -302,7 +307,8 @@ async function runAcceptance() {
   assert.equal(await thermo.getByText(lessonName, { exact: true }).count(), 1);
   await advance(tablet, firstLesson, '.reader');
   assert.equal(await tablet.locator('.reader h1').innerText(), lessonName);
-  assert.equal(await tablet.locator('.crumb a[href="#corso/C6/lezioni"]').count(), 1);
+  await advance(tablet, tablet.locator('.crumb a[href="#corso/C6/lezioni"]'), '.course-volume');
+  assert.equal(await volumes.count(), 6);
   await visit(tablet, 'corso/C2', '.tabs');
   await advance(tablet, tablet.getByRole('link', { name: 'Errori e recupero' }), '#choose-recovery');
   await tablet.getByLabel('Competenza', { exact: true }).selectOption('C2-L007');

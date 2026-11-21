@@ -95,14 +95,29 @@ def catalog_seed():
         yield from json.loads(path.read_text())
 
 
-def update_signed_areas(db, rec):
+BUNDLED_V1_HASHES = {
+    "C1-Q008": "bb71982f9b39eb35450278335b1b5c37a5ebb5de0af790a8a8a68ba07be04d13",
+    "C1-Q013": "2475c1f983643a4a88e86e5cbd7a1dce8f5fd62f16688972df1622340092425a",
+    "C1-Q023": "641478daeabe3662eac458c584f5bc5139fefe232b4e21da3883531cc854e292",
+    "C1-Q027": "8e360aead59a8880a29d6a00a5d6630901c865dbb3753282c8192e0d91c31494",
+    "C1-Q034": "d59ffa192959eb4be7af5e2f9b601a78440c319fca35d1d97ee0f1c8b6ff394a",
+    "C1-Q044": "918e4df325782611a3ab7de2054f021c7678d4d884b78299a6761d1c40255ff1",
+    "C1-Q056": "c58e476ef34b132acaae995d9c4bffb008e77633b1c5ad3a0f8ee5dc3858d0ff",
+    "C1-Q064": "f69a7a2844eae7093c2ee20761209ab0eaaabdcac8832cb82d1415d1fd86dd23",
+    "C1-Q077": "087bce0f056063798782fc532d17f0ad2f55571dcf4f3c1050cf5e9172328525",
+    "C1-Q083": "17e1d6b3ace928d5ad819c82842535cdb725c78976c0c5734e4883058c0546b4",
+    "C1-Q095": "afd1deb385084c817a1b5daf5632fb509625ffe8780613d0099ab83af2cbacbb"
+}
+
+
+def update_bundled_solution(db, rec):
     # Only advance the untouched first edition. Earlier attempts retain their version.
     old = db.execute(
         "SELECT payload FROM heads JOIN versions USING(id) WHERE id=? AND live=v "
         "AND live=1 AND draft IS NULL AND NOT EXISTS "
         "(SELECT 1 FROM versions WHERE id=? AND v>1)", (rec["id"], rec["id"])
     ).fetchone()
-    if not old or digest(old["payload"]) != "8e360aead59a8880a29d6a00a5d6630901c865dbb3753282c8192e0d91c31494":
+    if not old or digest(old["payload"]) != BUNDLED_V1_HASHES[rec["id"]]:
         return
     edition = dict(rec, review="edizione Astra · controlli automatici")
     db.execute("INSERT INTO versions VALUES(?,?,?,?,?)",
@@ -119,8 +134,8 @@ def initialize():
         db.executescript(SCHEMA)
         db.execute("BEGIN IMMEDIATE")
         for rec in catalog_seed():
-            if rec["id"] == "C1-Q027" and rec["version"] == 2:
-                update_signed_areas(db, rec)
+            if rec["id"] in BUNDLED_V1_HASHES and rec["version"] == 2:
+                update_bundled_solution(db, rec)
             if db.execute("SELECT 1 FROM heads WHERE id=?", (rec["id"],)).fetchone():
                 continue
             rec.setdefault("review", "edizione Astra · controlli automatici")

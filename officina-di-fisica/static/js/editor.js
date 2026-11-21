@@ -1,3 +1,5 @@
+import { activityPanel, installActivities } from './attivita-metodo.js';
+import { equivalent } from './espressioni.js';
 import {
   errorNames,
   api,
@@ -22,7 +24,7 @@ import { diagram } from './labs.js';
 import { installaPassaggi } from './lettura.js';
 
 const typeNames = { ...kinds, text: 'Testo', formula: 'Formula', figure: 'Figura', attachment: 'Allegato' };
-const kindOrder = ['course', 'section', 'lesson', 'example', 'question', 'lab'];
+const kindOrder = ['course', 'section', 'lesson', 'example', 'question', 'lab', 'method'];
 const blockTypes = ['text', 'formula', 'figure', 'example', 'question', 'lab', 'attachment'];
 const answerTypes = { choice: 'Scelta multipla', text: 'Completamento', numeric: 'Risposta numerica' };
 const route = (k) => 'autore/modifica/' + encodeURIComponent(k);
@@ -403,7 +405,7 @@ function blank(kind, rows) {
   const id =
     (kind === 'course'
       ? 'C'
-      : course + '-' + { section: 'S', lesson: 'L', example: 'E', question: 'Q', lab: 'LAB' }[kind]) +
+      : course + '-' + { section: 'S', lesson: 'L', example: 'E', question: 'Q', lab: 'LAB', method: 'M' }[kind]) +
     '-' +
     suffix;
   const siblings = rows.filter((r) => r.kind === kind && (kind === 'course' || r.course === course));
@@ -599,7 +601,36 @@ function labWarnings(r) {
     warnings.push('Seleziona una configurazione prevista per il modello.');
   return warnings;
 }
+function methodEditor(r) {
+  const numeric = (label, key, value) => simple(label, key, value, 'number', 'step="any" data-format="number"');
+  function chartFields(d, path) {
+    return simple('Asse orizzontale', path+'.x', d.x) + simple('Asse verticale', path+'.y', d.y) +
+      ['xmax','ymin','ymax', ...(d.wave ? ['wave'] : [])].map(k=>numeric(
+        {xmax:'Massimo orizzontale',ymin:'Minimo verticale',ymax:'Massimo verticale',wave:'Periodo della curva'}[k],
+        path+'.'+k, d[k] ?? 0)).join('') +
+      d.points.map((pt,i)=>pt.map((v,j)=>numeric('Punto '+(i+1)+' · '+(j ? 'ordinata' : 'ascissa'),
+        path+'.points.'+i+'.'+j,v)).join('')).join('');
+  }
+  const setup = r.format === 'formula' ?
+    area('Consegna','prompt',r.prompt) + simple('Relazione iniziale','relation',r.relation) +
+    simple('Incognita','target',r.target) + area('Simboli ammessi, uno per riga','symbols',r.symbols,3,'lines') :
+    chartFields(r.diagram,'diagram') + (r.diagram.comparison ? chartFields(r.diagram.comparison,'diagram.comparison') : '') +
+    r.diagram.captions.map((c,i)=>area('Didascalia '+(i+1),'diagram.captions.'+i,c,2)).join('');
+  const steps = r.steps.map((s,i)=>{
+    const path='steps.'+i+'.';
+    return '<details><summary>Passaggio '+(i+1)+' · '+esc(s.prompt)+'</summary>'+
+      area('Domanda',path+'prompt',s.prompt,2)+
+      (s.kind==='choice' ? area('Alternative, una per riga',path+'options',s.options,3,'lines') : '')+
+      (s.kind==='number' ? numeric('Valore corretto',path+'answer',s.answer) : simple('Risposta corretta',path+'answer',s.answer))+
+      area('Indizio dopo un errore',path+'hint',s.hint,2)+area('Spiegazione della risposta',path+'why',s.why,2)+'</details>';
+  }).join('');
+  return '<section class="sheetpanel"><h3>Attività di metodo</h3>'+setup+steps+'</section>';
+}
 function validatePreview(r) {
+  if (r.kind === 'method' && r.format === 'formula') {
+    for (const step of r.steps.filter(s => s.kind === 'expression'))
+      if (!equivalent(step.answer, step.answer, r.symbols, r.target)) throw Error('La chiave algebrica richiede simboli e operazioni supportati.');
+  }
   const equations = [...(r.promptBlocks || []), ...(r.blocks || [])].filter((b) => b.type === 'formula');
   for (const [i, b] of equations.entries()) {
     const msg = checking(b.text);
@@ -611,6 +642,7 @@ function validatePreview(r) {
 function preview(r, rows) {
   const who = [r.course, ...(r.reuse || [])].filter(Boolean).join(', ');
   let html = `<div class="meta">${esc(kinds[r.kind])} · ${esc(who)}</div><h2>${esc(r.title || 'Senza titolo')}</h2>`;
+  if (r.kind === 'method') return html + activityPanel([r]);
   if (r.kind === 'course')
     html +=
       `<p>${esc(r.summary || '')}</p>` +
@@ -698,9 +730,10 @@ try {
 } catch {
   tabId = Math.random().toString(36).slice(2);
 }
-async function editPage(info, rows, newKind) {
+async function editPage(info, rows, newKind, template) {
   let base = info?.base || 0,
     rec = info ? clone(info.record) : blank(newKind, rows);
+  if (template) rec = { ...clone(template), id: rec.id, order: rec.order, version: 1, title: template.title + ' · copia' };
   const original = clone(rec),
     roleId = state.user?.id,
     slot = info ? rec.id : 'new-' + newKind;
@@ -735,6 +768,7 @@ async function editPage(info, rows, newKind) {
         '<div class="kickerline"><h3>Anteprima dello studente</h3><button type="button" data-close-preview>Chiudi</button></div>' +
         preview(rec, rows);
       installaPassaggi(p.querySelector('.lettura-contenuto'), rec);
+      if (rec.kind === 'method') installActivities(p, [rec]);
       typeset(p);
     }
   }
@@ -816,7 +850,7 @@ async function editPage(info, rows, newKind) {
             : ''
         }
         ${k === 'course' ? area('Descrizione per il catalogo', 'summary', rec.summary) : ''}${advanced}</section>`;
-    const groups =
+    const groups = k === 'method' ? methodEditor(rec) :
       (isProblem
         ? `<section class="sheetpanel"><h3>Consegna allo studente</h3>${area('Testo del problema', 'prompt', rec.prompt, 4)}</section>
         <details data-fold="consegna" ${detailsOpen.has('consegna') || rec.promptBlocks?.length ? 'open' : ''}><summary>Figure e formule prima della risposta</summary>${groupEditor('promptBlocks', rec, 'Blocchi della consegna', 'Questi elementi sono visibili prima di rispondere.')}</details>`
@@ -842,7 +876,7 @@ async function editPage(info, rows, newKind) {
       `<div id="author-edit"><div class="actions">${button('Salva bozza', 'save-draft', true)}${button('Anteprima', 'show-preview')}${info?.head.draft ? button('Rivedi e pubblica', 'review-publish') : ''}
             ${info?.head.live ? button('Ritira dal catalogo', 'review-withdraw') : ''}${link('Torna ai materiali', 'autore')}</div>
             <p id="local-status" class="helper" role="status">${dirty ? 'Modifiche presenti nella copia locale.' : info ? 'Versione corrente sul server.' : 'Le modifiche sono recuperabili in questo browser.'}</p><div id="edit-action"></div><section id="edit-preview" class="sheetpanel" hidden></section>
-            <form id="record-form" novalidate>${meta}${groups}<div class="actions"><button type="submit" class="solid">Salva bozza</button>
+            <form id="record-form" novalidate>${meta}${groups}${k === 'method' && info ? link('Crea da questa attività', 'autore/nuovo/method/'+encodeURIComponent(rec.id)) : ''}<div class="actions"><button type="submit" class="solid">Salva bozza</button>
             ${button('Leggi anteprima', 'bottom-preview')}${undo ? button('Annulla ultima rimozione', 'undo-block') : ''}</div></form>${history}
             <p id="action-status" role="alert"></p></div>${dataLists(rows)}`;
     if (dirty && select('#review-publish')) select('#review-publish').disabled = true;
@@ -1248,6 +1282,13 @@ export async function authorPage(parts = []) {
   const rows = (await api('/author/list')).sort(titleOrder);
   if (page === 'nuovo' && !id) {
     newPage();
+    return;
+  }
+  if (page === 'nuovo' && id === 'method') {
+    const source = rows.find(r => r.kind === 'method' && r.id === parts[2]);
+    if (!source) throw Error('Apri una scheda di metodo esistente e scegli «Crea da questa attività».');
+    const template = (await api('/author/item/' + encodeURIComponent(source.id))).record;
+    await editPage(null, rows, id, template);
     return;
   }
   if (page === 'nuovo' && kindOrder.includes(id)) {
