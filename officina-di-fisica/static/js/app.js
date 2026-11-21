@@ -244,7 +244,7 @@ async function router() {
   const here = location.hash.slice(1);
   main.setAttribute('aria-busy', 'true');
   const section = {
-    corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi', sprint: 'percorsi',
+    corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi',
     prova: 'studio', lab: 'laboratori', accedi: 'studio',
   }[page] || page;
   for (const a of document.querySelectorAll('.mast nav a')) {
