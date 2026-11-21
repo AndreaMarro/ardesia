@@ -1,0 +1,64 @@
+name: Officina di Fisica
+
+on:
+  push:
+    branches: [officina-di-fisica]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: officina-di-fisica-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  collaudo:
+    if: github.ref == 'refs/heads/officina-di-fisica'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: officina-di-fisica
+    env:
+      ASTRA_CHROME: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+          sparse-checkout: officina-di-fisica
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Strumenti del collaudo
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends poppler-utils
+          google-chrome --version
+          npm ci --no-audit --no-fund
+      - name: Integrità dell'edizione e del pacchetto
+        run: |
+          (cd distribuzione && sha256sum -c SHA256SUMS)
+          git bundle list-heads distribuzione/Officina-di-Fisica-1.0.0.bundle
+          unzip -tq distribuzione/Officina-di-Fisica-1.0.0.zip
+          python3 tools/validate_bank.py
+          node tools/check-formulas.cjs
+          python3 tools/inventario.py
+          python3 tools/componi_identita.py
+          git diff --exit-code -- docs/ static/identita/
+      - name: Soluzioni, modelli e varietà delle prove
+        run: |
+          python3 tools/c12_audit.py
+          python3 tools/c34_audit.py
+          python3 tools/c56_audit.py
+          python3 tools/c56_varieta.py
+          python3 tools/audit_integrazioni.py
+          node --test tests/models.test.js tests/lettura.test.js
+      - name: Studio, ordini, pubblicazione e lotti
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 tools/dimostra_lotto.py
+          node tests/browser.mjs
+          node tests/editor.mjs
+      - name: Fascicoli e indici
+        run: python3 tools/verifica_pdf.py

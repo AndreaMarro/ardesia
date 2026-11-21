@@ -1,0 +1,134 @@
+{
+  "parameters": {
+    "C1": [
+      [
+        "m",
+        "Massa",
+        "kg",
+        0.5,
+        5,
+        0.1,
+        2
+      ],
+      [
+        "F",
+        "Trazione",
+        "N",
+        0,
+        30,
+        0.1,
+        4
+      ],
+      [
+        "mu",
+        "Attrito statico",
+        "",
+        0,
+        0.8,
+        0.01,
+        0.4
+      ]
+    ],
+    "C2": [
+      [
+        "r",
+        "Raggio",
+        "mm",
+        0.5,
+        2,
+        0.05,
+        1
+      ],
+      [
+        "dp",
+        "Differenza di pressione",
+        "Pa",
+        0,
+        500,
+        5,
+        200
+      ],
+      [
+        "eta",
+        "Viscosità",
+        "mPa·s",
+        3,
+        8,
+        0.1,
+        4
+      ]
+    ],
+    "C3": [
+      [
+        "ratio",
+        "Rapporto finale / iniziale",
+        "",
+        0.5,
+        2,
+        0.05,
+        1.5
+      ]
+    ],
+    "C4": [
+      [
+        "U",
+        "Generatore",
+        "V",
+        0,
+        12,
+        0.1,
+        6
+      ],
+      [
+        "R1",
+        "Resistenza R₁",
+        "Ω",
+        10,
+        500,
+        5,
+        100
+      ],
+      [
+        "R2",
+        "Resistenza R₂",
+        "Ω",
+        10,
+        500,
+        5,
+        200
+      ]
+    ],
+    "C5": [
+      [
+        "f",
+        "Distanza focale",
+        "cm",
+        5,
+        15,
+        0.5,
+        10
+      ],
+      [
+        "p",
+        "Distanza oggetto",
+        "cm",
+        3,
+        45,
+        0.5,
+        20
+      ]
+    ]
+  },
+  "modes": {
+    "C3": [
+      "Isoterma",
+      "Isobara",
+      "Isocora",
+      "Adiabatica"
+    ],
+    "C4": [
+      "Serie",
+      "Parallelo"
+    ]
+  }
+}

@@ -1,5 +1,9 @@
 # ARDESIA — Monorepo
 
+## Officina di Fisica · sei corsi per Medicina
+
+In questo branch trovi il prodotto autonomo di Andrea Marro, con il banco studente, gli strumenti dell’autore e l’edizione stampabile 2026/27. Per avviarlo, scarica il pacchetto della sola Officina. [Cartella del progetto](officina-di-fisica/) · [Pacchetto e verifica di integrità](officina-di-fisica/distribuzione/) · [Manuale di Andrea](officina-di-fisica/docs/guida-autore.md)
+
 ## Consegna REA · 20 ottobre 2026
 
 [**Apri l'indice della consegna**](docs/deliveries/2026-10-20-rea/README.md):

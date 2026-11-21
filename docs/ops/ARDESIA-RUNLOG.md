@@ -1117,3 +1117,15 @@ Prossimi task prioritizzati (leggere prima il record terminale per evitare di ri
 3. Verificare hardware e prestazioni: concordare device/rete/budget, poi tablet/penna/secondo dispositivo. Dipendenza: dispositivi e operatore. Accettazione: rapporti ripetibili su hardware reale; viewport e SwiftShader non equivalgono alla prova.
 4. Osservare cinque studenti rappresentativi con compiti UX senza suggerimenti e transfer separato. Dipendenze: materiali/versioni approvati, consenso e contesto controllato. Accettazione: almeno4/5 compiti UX e blocchi ricorrenti risolti; account e punteggi sintetici non sostituiscono partecipanti.
 5. Decidere profilo ordinario e conservazione dopo i gate umani: privacy/consensi, account e costi del rilascio distinto. Worker spento; recupero intent entro24 ore e revisione della conservazione degli originali sintetici entro2026-10-30T23:59Z secondo runbook. Nessuna eliminazione di contenuti confermati o pubblicazione produzione implicita.
+
+## 21 novembre 2026 · Officina di Fisica, ramo autonomo
+
+Andrea ha richiesto la distribuzione dei sei corsi di Fisica per Medicina in un ramo dedicato di questo repository. Il prodotto si trova interamente sotto `officina-di-fisica/`. Il README di questo branch punta al pacchetto e alla guida d’avvio. L’Officina usa il proprio server locale e il proprio archivio privato SQLite. Lanciatori, contenuti, PDF, motore di esercitazione, modello di bonifico e guida autore appartengono a questa edizione.
+
+L’inventario mappa 38 voci MUR a 105 obiettivi e censisce 117 esempi, 606 quesiti e cinque laboratori. Le prove hanno corretto precisione numerica sulle grandezze piccole, accesso agli svolgimenti, navigazione da tastiera e allineamento delle firme PDF. Le due pose della chiave inglese Cric e il suo pittogramma sono sorgenti SVG modificabili. Il flusso GitHub Actions dedicato esegue controlli sul ramo. I risultati di ciascuna esecuzione sono associati al relativo commit. [Verbale locale](../../officina-di-fisica/docs/collaudo.md) · [Esecuzioni CI del branch](https://github.com/AndreaMarro/ardesia/actions?query=branch%3Aofficina-di-fisica)
+
+Per una ripresa operativa:
+
+1. **Manutenzione.** Partire dalla cartella e dal tag del prodotto, creare una bozza in una copia di prova, pubblicarla e verificare i fascicoli interessati. Il collaudo di accettazione legge la nuova versione e conserva il tentativo anteriore. [Guida](../../officina-di-fisica/docs/guida-autore.md)
+2. **Revisione con il docente.** Se Andrea prepara un’edizione per la vendita, aprire la matrice e annotare la revisione umana sulle versioni effettivamente esaminate. Prova attesa per questa fase: record e revisore identificati. [Matrice](../../officina-di-fisica/docs/inventario-copertura.csv)
+3. **Servizio condiviso.** Alla scelta di un host e delle condizioni reali, configurare HTTPS, volume dati, prezzi, intestatario e IBAN attraverso i canali privati. L’accettazione richiede riaccesso dal servizio condiviso e conferma di un accredito reale verificato dal titolare. La distribuzione qui parte in modalità verifica. [Manuale](../../officina-di-fisica/README.md)

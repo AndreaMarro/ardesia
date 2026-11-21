@@ -1,0 +1,5598 @@
+[
+  {
+    "id": "C3-L01",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 1,
+    "title": "Il confine del sistema e il termometro",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "coverage": [
+      "5.1 Sistema e ambiente",
+      "5.1 Stato termodinamico e variabili p, V, T",
+      "5.1 Funzioni di stato",
+      "5.1 Temperatura e scale"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Immagina di segnare con una matita il contorno del gas in una siringa chiusa. Le molecole dentro il contorno sono il sistema. Il pistone, l’aria esterna e la mano costituiscono l’ambiente. Il confine può muoversi con il pistone. Sceglierlo per primo permette di contare correttamente materia ed energia che lo attraversano."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-confine.svg",
+        "text": "Il contorno tratteggiato racchiude il gas. La parete laterale lascia passare calore, il pistone permette lo scambio di lavoro."
+      },
+      {
+        "type": "text",
+        "text": "Un sistema chiuso conserva la materia e può scambiare energia. Un sistema aperto può scambiare anche materia. Un sistema isolato conserva sia materia sia energia. Tappare un recipiente blocca lo scambio di materia attraverso il tappo. Per decidere se l’energia attraversa il confine occorre conoscere anche le proprietà delle pareti."
+      },
+      {
+        "type": "text",
+        "text": "All’equilibrio, pressione p, volume V e temperatura T descrivono lo stato macroscopico di un gas semplice di composizione fissata. La pressione si misura in pascal, il volume in metri cubi. Una funzione di stato ha lo stesso valore ogni volta che si ritorna nelle stesse condizioni. Per l’energia interna U basta conoscere gli stati iniziale e finale per calcolarne la variazione."
+      },
+      {
+        "type": "text",
+        "text": "Due corpi in contatto termico raggiungono l’equilibrio quando cessa il trasferimento netto di energia dovuto alla differenza di temperatura. Il termometro si basa su questo confronto. Sulla scala Kelvin lo zero è assoluto. Celsius e kelvin hanno intervalli della stessa ampiezza."
+      },
+      {
+        "type": "formula",
+        "text": "T[\\mathrm K]=t[{}^\\circ\\mathrm C]+273{,}15,\\qquad \\Delta T[\\mathrm K]=\\Delta t[{}^\\circ\\mathrm C]"
+      },
+      {
+        "type": "text",
+        "text": "Prima di fare un rapporto tra temperature converti entrambi i valori in kelvin. Prima di fare una differenza scrivi invece il valore finale meno l’iniziale. Il valore 273,15 si cancella nella sottrazione."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E001",
+    "kind": "example",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 1,
+    "title": "Due letture dello stesso bagno",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il termometro indica una temperatura finale e due letture utili a costruire una differenza. Le due domande riguardano quantità diverse."
+      },
+      {
+        "type": "formula",
+        "text": "T_f=(26{,}0+273{,}15)\\,\\mathrm K=299{,}15\\,\\mathrm K\\simeq299{,}2\\,\\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Per la variazione si sottrae il valore iniziale. Ogni grado Celsius di aumento vale un kelvin."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta T=(26{,}0-18{,}0)\\,\\mathrm K=+8{,}0\\,\\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Il segno positivo corrisponde al riscaldamento osservato. La precisione di un decimo resta quella delle letture."
+      }
+    ],
+    "prompt": "Un bagno passa da 18,0 °C a 26,0 °C. Trova la temperatura finale in kelvin e la variazione di temperatura.",
+    "difficulty": 1,
+    "family": "due-letture-dello-stesso-bagno",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E002",
+    "kind": "example",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 2,
+    "title": "Scegliere il confine in un contenitore",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-rigido.svg",
+        "text": "Il recipiente sigillato è immerso nel bagno. Le pareti bloccate conservano il volume del gas."
+      },
+      {
+        "type": "text",
+        "text": "Il tappo trattiene il gas e il recipiente rigido conserva il volume. Nessuna materia attraversa il confine e manca lo spostamento necessario a compiere lavoro di espansione."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta V=0\\quad\\Longrightarrow\\quad W_{pV}=0"
+      },
+      {
+        "type": "text",
+        "text": "Se il riscaldamento è dovuto al contatto con il bagno e mancano altre forme di lavoro, il gas ha ricevuto energia come calore. Il sistema scelto è chiuso. Se includessimo anche il bagno, lo scambio tra bagno e gas diventerebbe interno al nuovo sistema."
+      }
+    ],
+    "prompt": "Un contenitore rigido e chiuso è immerso in un bagno caldo. Dopo qualche minuto il gas si è riscaldato. Quali scambi sono compatibili con il racconto?",
+    "difficulty": 2,
+    "family": "scegliere-il-confine-in-un-contenitore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L02",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 2,
+    "title": "Contare le moli con il gas perfetto",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.1 Gas perfetti",
+      "5.1 Equazione di stato e variabili assolute"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una siringa tappata oppone resistenza alla compressione. Le molecole urtano le pareti e trasferiscono quantità di moto. Se la temperatura resta costante, dimezzare il volume della stessa quantità di gas raddoppia la pressione. Se si scalda il gas a volume bloccato, gli urti diventano mediamente più energici."
+      },
+      {
+        "type": "formula",
+        "text": "pV=nRT,\\qquad R=8{,}314\\ \\mathrm{J\\,mol^{-1}K^{-1}}"
+      },
+      {
+        "type": "text",
+        "text": "p è la pressione assoluta, V il volume occupato, n il numero di moli e T la temperatura assoluta. Una mole raccoglie lo stesso numero di particelle per ogni specie. Con questa costante si usano pascal, metri cubi e kelvin. Il prodotto Pa·m³ equivale a un joule."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-isoterma.svg",
+        "text": "Sul medesimo ramo isotermo di un gas perfetto chiuso, l’area del rettangolo di lati p e V rimane costante."
+      },
+      {
+        "type": "text",
+        "text": "Per la stessa quantità di gas possiamo dividere l’equazione dei due stati. Il rapporto elimina nR e aiuta a isolare l’incognita. Se il gas esce da una valvola occorre tenere conto della variazione di n."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{p_iV_i}{T_i}=nR=\\frac{p_fV_f}{T_f}"
+      },
+      {
+        "type": "text",
+        "text": "Il modello trascura il volume proprio delle molecole e le loro interazioni al di fuori degli urti. Funziona meglio per gas diluiti, lontani dalla condensazione. Controlla sempre se la pressione letta da un manometro è relativa all’atmosfera."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E003",
+    "kind": "example",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 3,
+    "title": "Volume di un campione gassoso",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Usiamo il gas perfetto per il campione diluito. Con R in unità SI convertiamo 100 kPa in 100 000 Pa."
+      },
+      {
+        "type": "formula",
+        "text": "pV=nRT\\quad\\Longrightarrow\\quad V=\\frac{nRT}{p}"
+      },
+      {
+        "type": "formula",
+        "text": "V=\\frac{0{,}0200\\cdot 8{,}314\\cdot300}{100\\,000}\\,\\mathrm{m^3}=4{,}99\\cdot10^{-4}\\,\\mathrm{m^3}"
+      },
+      {
+        "type": "text",
+        "text": "Un metro cubo contiene mille litri. Il volume è quindi 0,499 L, vicino a mezzo litro. Alla stessa temperatura una mole occuperebbe circa cinquanta volte questo volume."
+      }
+    ],
+    "prompt": "Un campione di 0,0200 mol a 300 K ha pressione assoluta 100 kPa. Calcola il volume in litri.",
+    "difficulty": 1,
+    "family": "volume-di-un-campione-gassoso",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E004",
+    "kind": "example",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 4,
+    "title": "Il manometro prima e dopo",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In un rapporto tra stati usiamo pressioni assolute. La pressione iniziale assoluta è la somma della lettura e della pressione esterna."
+      },
+      {
+        "type": "formula",
+        "text": "p_i=40+100=140\\ \\mathrm{kPa},\\qquad \\frac{p_f}{p_i}=\\frac{T_f}{T_i}"
+      },
+      {
+        "type": "formula",
+        "text": "p_f=140\\frac{330}{300}=154\\ \\mathrm{kPa},\\qquad p_{f,\\mathrm{rel}}=154-100=54\\ \\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "La temperatura assoluta cresce del 10% e così pure la pressione assoluta. La scala dello strumento parte dalla pressione atmosferica, perciò la sua lettura aumenta di 14 kPa."
+      }
+    ],
+    "prompt": "Un serbatoio rigido chiuso contiene gas a 300 K. Il manometro segna 40 kPa sopra la pressione atmosferica di 100 kPa. Quanto indica a 330 K?",
+    "difficulty": 2,
+    "family": "il-manometro-prima-e-dopo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L03",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 3,
+    "title": "Pesare il riscaldamento",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.2 Calore e scambio di energia",
+      "5.2 Capacità termica e calore specifico",
+      "5.2 Capacità termiche dei gas ideali",
+      "5.2 Calorimetria"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un blocchetto e una vasca alla stessa temperatura possono cedere quantità di energia molto diverse. Il calore Q misura un trasferimento causato da una differenza di temperatura. La temperatura descrive lo stato. Per sapere quanta energia occorre a cambiarla bisogna conoscere il materiale, la quantità presente e le condizioni del percorso."
+      },
+      {
+        "type": "formula",
+        "text": "Q=C\\Delta T=mc\\Delta T,\\qquad c=\\frac{C}{m}"
+      },
+      {
+        "type": "text",
+        "text": "C è la capacità termica in J/K del campione. Il calore specifico c, espresso in J/(kg·K), è la capacità per unità di massa. La formula usa un valore circa costante nell’intervallo termico e presuppone l’assenza di transizioni di fase. Con la convenzione del calore entrante positivo, un corpo che si raffredda ha Q negativo."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-scambi.svg",
+        "text": "Due oggetti scambiano energia dentro un involucro isolante. Le frecce intermedie attraversano soltanto il confine fra gli oggetti."
+      },
+      {
+        "type": "text",
+        "text": "Nel calorimetro ideale isolato, trascurando il lavoro e la capacità termica del contenitore, la somma dei calori dei corpi è zero. Se il recipiente assorbe energia va incluso come terzo corpo. La temperatura comune finale deve trovarsi fra quelle iniziali quando agisce solo il contatto termico."
+      },
+      {
+        "type": "formula",
+        "text": "\\sum_i C_i(T_f-T_i)=0"
+      },
+      {
+        "type": "text",
+        "text": "Un gas si può scaldare a volume fisso oppure a pressione fissa, lasciandolo espandere. Nel secondo caso parte del calore diventa lavoro. Per una mole di gas perfetto, con capacità molari Cₚ e Cᵥ espresse in J/(mol·K), la differenza è R."
+      },
+      {
+        "type": "formula",
+        "text": "Q_V=nC_V\\Delta T,\\quad Q_p=nC_p\\Delta T,\\quad C_p-C_V=R"
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E005",
+    "kind": "example",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 5,
+    "title": "Unire due masse d’acqua",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-scambi.svg",
+        "text": "L’acqua calda cede energia all’acqua fredda. Includendo entrambe nel sistema, lo scambio netto con l’esterno è nullo."
+      },
+      {
+        "type": "text",
+        "text": "La stessa acqua ha il medesimo calore specifico. Conserviamo i grammi nel rapporto tra le masse, perché l’unità si semplifica."
+      },
+      {
+        "type": "formula",
+        "text": "100c(T_f-60)+300c(T_f-20)=0"
+      },
+      {
+        "type": "formula",
+        "text": "400T_f=100\\cdot60+300\\cdot20=12\\,000\\quad\\Longrightarrow\\quad T_f=30\\,{}^\\circ\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è più vicino a 20 °C perché l’acqua fredda ha capacità termica tripla. La sua salita di 10 K compensa la discesa di 30 K dell’altra massa."
+      }
+    ],
+    "prompt": "Mescoliamo 100 g d’acqua a 60 °C con 300 g a 20 °C, in un recipiente isolato con capacità trascurabile. Trova la temperatura comune.",
+    "difficulty": 2,
+    "family": "unire-due-masse-dacqua",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E006",
+    "kind": "example",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 6,
+    "title": "Calibrare un calorimetro",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Campione e contenitore raggiungono la stessa temperatura e si scaldano insieme. Le loro capacità si sommano."
+      },
+      {
+        "type": "formula",
+        "text": "Q=(C_{\\rm camp}+C_{\\rm cont})\\Delta T"
+      },
+      {
+        "type": "formula",
+        "text": "C_{\\rm cont}=\\frac{Q}{\\Delta T}-C_{\\rm camp}=\\frac{960}{4{,}0}-180=60\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "Per ogni kelvin il recipiente assorbe 60 J. In questa prova riceve 240 J, lasciandone 720 al campione. La somma restituisce 960 J."
+      }
+    ],
+    "prompt": "Un riscaldatore fornisce 960 J al calorimetro con il suo campione. La temperatura cresce di 4,0 K. Il campione ha capacità 180 J/K. Stima la capacità del contenitore, trascurando le perdite.",
+    "difficulty": 2,
+    "family": "calibrare-un-calorimetro",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L04",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 4,
+    "title": "Quando la temperatura si ferma",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.2 Fusione",
+      "5.2 Evaporazione e condensazione",
+      "5.2 Calore latente e bilanci a tratti"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Scalda lentamente del ghiaccio puro alla sua temperatura di fusione e a pressione atmosferica. Finché coesistono ghiaccio e acqua in equilibrio, il termometro rimane vicino a 0 °C mentre la frazione liquida cresce. L’energia modifica l’organizzazione della materia."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-fasi.svg",
+        "text": "Nel tratto orizzontale di fusione il calore fornito modifica la frazione liquida. La pendenza ricompare dopo la fusione completa."
+      },
+      {
+        "type": "formula",
+        "text": "|Q_{\\rm fase}|=m_{\\rm trasformata}L"
+      },
+      {
+        "type": "text",
+        "text": "L è il calore latente specifico in J/kg. Il modulo lascia esplicito il verso dello scambio. Per fondere o vaporizzare occorre fornire energia, mentre solidificazione e condensazione la restituiscono all’ambiente. Si deve usare la massa che cambia effettivamente fase."
+      },
+      {
+        "type": "text",
+        "text": "Per attraversare più tratti, suddividi il cammino in riscaldamento del solido, fusione e riscaldamento del liquido. Ogni tratto ha la sua relazione energetica. Con potenza costante, il calore fornito è proporzionale al tempo. Durante l’evaporazione in superficie, possibile anche sotto il punto di ebollizione, la perdita delle molecole più energetiche può raffreddare il liquido residuo."
+      },
+      {
+        "type": "formula",
+        "text": "Q_{\\rm totale}=mc_{\\rm s}(T_{\\rm fus}-T_i)+mL_f+mc_{\\rm l}(T_f-T_{\\rm fus})"
+      },
+      {
+        "type": "text",
+        "text": "Prima di calcolare una temperatura finale verifica se l’energia disponibile basta a esaurire l’intera massa della fase iniziale. Se ne resta una parte, la coesistenza di fasi determina la temperatura finale."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E007",
+    "kind": "example",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 7,
+    "title": "Dal ghiaccio all’acqua tiepida",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-fasi.svg",
+        "text": "Il percorso comincia sul tratto di fusione e continua sul ramo dell’acqua liquida."
+      },
+      {
+        "type": "text",
+        "text": "La massa è 0,050 kg. Il primo trasferimento fonde il ghiaccio, il secondo aumenta la temperatura dell’acqua."
+      },
+      {
+        "type": "formula",
+        "text": "Q_f=0{,}050\\cdot334=16{,}7\\ \\mathrm{kJ},\\qquad Q_T=0{,}050\\cdot4{,}18\\cdot10=2{,}09\\ \\mathrm{kJ}"
+      },
+      {
+        "type": "formula",
+        "text": "Q=Q_f+Q_T=18{,}79\\ \\mathrm{kJ}\\simeq18{,}8\\ \\mathrm{kJ}"
+      },
+      {
+        "type": "text",
+        "text": "La maggior parte dell’energia serve alla fusione. Inserire solo la variazione di temperatura farebbe perdere il termine più grande."
+      }
+    ],
+    "prompt": "Quanta energia serve per portare 50 g di ghiaccio a 0 °C ad acqua a 10 °C? Usa Lf = 334 kJ/kg e c = 4,18 kJ/(kg·K).",
+    "difficulty": 2,
+    "family": "dal-ghiaccio-allacqua-tiepida",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E008",
+    "kind": "example",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 8,
+    "title": "Resta ancora del ghiaccio?",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il massimo calore assorbibile durante la fusione completa è il prodotto della massa iniziale per il calore latente."
+      },
+      {
+        "type": "formula",
+        "text": "Q_{\\rm completo}=0{,}080\\cdot334=26{,}72\\ \\mathrm{kJ}>10{,}02\\ \\mathrm{kJ}"
+      },
+      {
+        "type": "formula",
+        "text": "m_{\\rm fusa}=Q/L_f=10{,}02/334=0{,}0300\\ \\mathrm{kg}=30{,}0\\ \\mathrm g"
+      },
+      {
+        "type": "text",
+        "text": "Restano 80 − 30 = 50 g di ghiaccio insieme a 30 g di acqua. Nell’ipotesi di equilibrio la miscela si trova ancora a 0 °C."
+      }
+    ],
+    "prompt": "Un campione di 80 g di ghiaccio a 0 °C assorbe 10,02 kJ a pressione atmosferica. Assumi Lf = 334 kJ/kg. Determina stato e masse finali.",
+    "difficulty": 2,
+    "family": "resta-ancora-del-ghiaccio",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L05",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 5,
+    "title": "Tre vie per trasferire energia",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.3 Conduzione",
+      "5.3 Convezione",
+      "5.3 Irraggiamento"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un cucchiaio immerso in acqua calda si riscalda lungo il manico. Le regioni vicine si scambiano energia attraverso il materiale fermo. Questa è la conduzione. Per una lastra omogenea in regime stazionario, con due facce piane a temperatura fissata e perdite laterali trascurabili, la potenza termica condotta cresce con area e differenza di temperatura."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-parete.svg",
+        "text": "Flusso unidimensionale attraverso una parete. Lo spessore s è misurato nel verso di propagazione dell’energia."
+      },
+      {
+        "type": "formula",
+        "text": "P=\\frac{|Q|}{\\Delta t}=\\lambda A\\frac{T_{\\rm calda}-T_{\\rm fredda}}{s}"
+      },
+      {
+        "type": "text",
+        "text": "La conducibilità λ si misura in W/(m·K), A in m² e s in metri. A parità di differenza termica, uno spessore maggiore riduce il gradiente di temperatura e il flusso. La temperatura può essere stazionaria anche mentre passa potenza."
+      },
+      {
+        "type": "text",
+        "text": "Se una corrente di fluido trasporta con sé energia, si parla di convezione. Una pompa produce convezione forzata. In convezione naturale le differenze di densità in presenza della gravità possono muovere il fluido. Il percorso dal centro dell’acqua alla parete può combinare trasporto con il fluido e conduzione vicina alla superficie."
+      },
+      {
+        "type": "text",
+        "text": "L’irraggiamento avviene mediante onde elettromagnetiche e attraversa anche il vuoto. Un corpo emette e assorbe contemporaneamente. Per una superficie grigia di emissività ε dentro una grande cavità isoterma, la potenza netta uscente dipende dalle temperature assolute."
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm netta}=\\varepsilon\\sigma A(T_{\\rm corpo}^4-T_{\\rm amb}^4)"
+      },
+      {
+        "type": "text",
+        "text": "Un termine di quarta potenza in Celsius darebbe un risultato dipendente dall’origine arbitraria della scala. Quando corpo e ambiente hanno la stessa temperatura, emissione e assorbimento si compensano."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E009",
+    "kind": "example",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 9,
+    "title": "Un diaframma conduttore",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-parete.svg",
+        "text": "L’energia attraversa la superficie di area A dal lato caldo al lato freddo."
+      },
+      {
+        "type": "text",
+        "text": "Per calcolare la potenza convertiamo 5,0 mm in 0,0050 m e ricaviamo la differenza termica di 10 K."
+      },
+      {
+        "type": "formula",
+        "text": "P=\\frac{\\lambda A\\Delta T}{s}=\\frac{0{,}20\\cdot0{,}020\\cdot10}{0{,}0050}=8{,}0\\ \\mathrm W"
+      },
+      {
+        "type": "formula",
+        "text": "|Q|=P\\Delta t=8{,}0\\cdot(2\\cdot60)=960\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è un’energia, mentre la potenza indica quanti joule attraversano la parete in ciascun secondo."
+      }
+    ],
+    "prompt": "Una lastra piana di area 0,020 m², spessore 5,0 mm e conducibilità 0,20 W/(m·K) separa due facce a 32 e 22 °C. Quanta energia passa in 2 min in regime stazionario?",
+    "difficulty": 2,
+    "family": "un-diaframma-conduttore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E010",
+    "kind": "example",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 10,
+    "title": "Approfondimento · Due strati in successione",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La stessa potenza attraversa entrambi gli strati. Una resistenza termica è il rapporto tra caduta di temperatura e potenza."
+      },
+      {
+        "type": "formula",
+        "text": "P=\\frac{40-20}{1+3}=5\\ \\mathrm W,\\qquad \\Delta T_1=PR_1=5\\cdot1=5\\ \\mathrm K"
+      },
+      {
+        "type": "formula",
+        "text": "T_{\\rm interfaccia}=40-5=35\\,{}^\\circ\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Il secondo strato presenta la caduta maggiore, 5 × 3 = 15 K. I valori di partenza e di arrivo sono quindi coerenti."
+      }
+    ],
+    "prompt": "Due strati piani hanno resistenze termiche 1 K/W e 3 K/W, nell’ordine dalla faccia a 40 °C a quella a 20 °C. Qual è la temperatura all’interfaccia in regime stazionario?",
+    "difficulty": 3,
+    "family": "approfondimento-due-strati-in-successione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L06",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 6,
+    "title": "Fare i conti con il primo principio",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.4 Primo principio",
+      "5.4 Energia interna",
+      "5.4 Calore e lavoro",
+      "5.4 Interpretazione del lavoro su un diagramma p–V"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un gas può scaldarsi perché riceve calore oppure perché viene compresso. Per distinguere questi modi di trasferire energia scegliamo il gas come sistema. U è la sua energia interna, somma dei contributi microscopici. U non comprende l’energia cinetica associata al moto del recipiente come un tutto."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-bilancio.svg",
+        "text": "Q è positivo quando entra nel sistema. W è positivo quando il sistema compie lavoro sull’ambiente. I segni seguono queste due frecce di riferimento."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=U_f-U_i=Q-W"
+      },
+      {
+        "type": "text",
+        "text": "Il calore Q entrante aumenta U. Il lavoro W che il sistema compie all’esterno riduce l’energia che gli rimane. Per un pistone senza attrito sottoposto all’esterno a pressione costante, il lavoro si ricava dalla forza esterna moltiplicata per lo spostamento. Il prodotto di area e spostamento è la variazione di volume."
+      },
+      {
+        "type": "formula",
+        "text": "W=p_{\\rm est}(V_f-V_i),\\qquad 1\\ \\mathrm{kPa}\\cdot1\\ \\mathrm L=1\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "In espansione ΔV è positivo, in compressione è negativo. In una trasformazione quasi statica meccanicamente equilibrata p interna ed esterna coincidono al limite. L’area sotto il cammino p–V misura il lavoro con un segno legato al verso di percorrenza. In una trasformazione rapida fuori equilibrio può mancare una singola pressione interna uniforme."
+      },
+      {
+        "type": "text",
+        "text": "Per un gas perfetto di quantità e composizione fisse, l’energia interna dipende solo dalla temperatura. Un termometro che torna alla lettura iniziale implica ΔU = 0 per quel modello, anche se lungo il percorso si sono scambiati calore e lavoro."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E011",
+    "kind": "example",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 11,
+    "title": "Compressione con raffreddamento",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-compressione.svg",
+        "text": "Le frecce mostrano gli scambi reali. Il calore è uscente e il lavoro è entrante. Entrambi hanno segno negativo con le convenzioni Q entrante e W uscente."
+      },
+      {
+        "type": "formula",
+        "text": "W=80\\,(2{,}0-4{,}0)\\ \\mathrm{kPa\\,L}=-160\\ \\mathrm J,\\qquad Q=-50\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=Q-W=-50-(-160)=+110\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas riceve meccanicamente 160 J e ne restituisce 50 all’esterno come calore. Restano 110 J di energia interna in più."
+      }
+    ],
+    "prompt": "Un pistone comprime un gas da 4,0 a 2,0 L contro una pressione esterna costante di 80 kPa. Intanto il gas cede 50 J di calore. Calcola la variazione di energia interna.",
+    "difficulty": 2,
+    "family": "compressione-con-raffreddamento",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E012",
+    "kind": "example",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 12,
+    "title": "Due cammini fra gli stessi stati",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La differenza di energia interna è determinata dai due stati. Ricaviamola dal percorso che conosciamo."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=240-160=80\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "Q_2=\\Delta U+W_2=80+90=170\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il primo cammino richiede 70 J in più di calore e produce 70 J in più di lavoro. Il saldo accumulato nel gas è identico."
+      }
+    ],
+    "prompt": "Da A a B il gas riceve 240 J e compie 160 J di lavoro. Lungo un altro cammino fra A e B compie 90 J. Quanto calore riceve lungo il secondo cammino?",
+    "difficulty": 2,
+    "family": "due-cammini-fra-gli-stessi-stati",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L07",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 7,
+    "title": "Riconoscere il percorso nel piano p–V",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.4 Trasformazioni reversibili e irreversibili",
+      "5.4 Isoterma",
+      "5.4 Isocora",
+      "5.4 Isobara",
+      "5.4 Adiabatica e confronto qualitativo"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Blocca un pistone, mantienilo a carico costante oppure accostalo a un bagno termico. Ogni vincolo seleziona un diverso percorso. Un grafico p–V mette in ascissa il volume e in ordinata la pressione. Ogni punto di un cammino quasi statico rappresenta uno stato di equilibrio del gas."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-percorsi.svg",
+        "text": "Dal medesimo stato A partono un’isobara, un’isocora e due espansioni curve. Per il gas perfetto l’adiabatica reversibile scende più rapidamente dell’isoterma."
+      },
+      {
+        "type": "text",
+        "text": "In una trasformazione isocora il volume resta fisso, il cammino è verticale e il lavoro di espansione è zero. In una isobara la pressione resta fissa, il cammino è orizzontale e il lavoro è l’area del rettangolo pΔV. Il gas perfetto chiuso si scalda espandendosi a pressione costante."
+      },
+      {
+        "type": "formula",
+        "text": "V=\\mathrm{cost.}:\\ W=0;\\qquad p=\\mathrm{cost.}:\\ W=p\\Delta V"
+      },
+      {
+        "type": "text",
+        "text": "In una isoterma del gas perfetto chiuso il prodotto pV resta fisso. Durante un’espansione reversibile serve calore per compensare il lavoro uscente. In una adiabatica la parete impedisce lo scambio di calore. Se il gas compie lavoro, la sua energia interna diminuisce e il gas perfetto si raffredda."
+      },
+      {
+        "type": "formula",
+        "text": "T=\\mathrm{cost.}:\\ \\Delta U=0,\\ Q=W;\\qquad Q=0:\\ \\Delta U=-W"
+      },
+      {
+        "type": "text",
+        "text": "La reversibilità richiede che sistema e ambiente possano ripercorrere il processo a ritroso senza lasciare modifiche complessive. Trasformazioni molto lente possono ancora dissipare energia per attrito. Per un gas perfetto con capacità molari costanti, lungo una adiabatica reversibile vale pV elevato a γ costante, con γ = Cₚ/Cᵥ maggiore di uno."
+      },
+      {
+        "type": "formula",
+        "text": "pV^\\gamma=\\mathrm{costante}\\quad(\\text{adiabatica reversibile})"
+      },
+      {
+        "type": "text",
+        "text": "Per confrontare i modelli nel laboratorio scegli uno stato iniziale e prevedi cosa accadrà alla pressione se il volume cresce. Specifica quale vincolo mantiene il dispositivo: l’esperimento ha senso solo dopo questa scelta."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E013",
+    "kind": "example",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 13,
+    "title": "Confrontare due espansioni",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-percorsi.svg",
+        "text": "Alla stessa ascissa finale il ramo adiabatico si trova sotto quello isotermo. Il confronto richiede il medesimo punto iniziale."
+      },
+      {
+        "type": "formula",
+        "text": "p_{f,T}=p_i\\frac{V_i}{V_f}=200\\cdot\\frac12=100\\ \\mathrm{kPa}"
+      },
+      {
+        "type": "formula",
+        "text": "p_{f,S}=p_i\\left(\\frac{V_i}{V_f}\\right)^{1{,}4}=200\\cdot(1/2)^{1{,}4}\\simeq75{,}8\\ \\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "L’adiabatica termina a pressione inferiore. Il gas ha impiegato energia propria per compiere lavoro. La quantità di sostanza resta fissa e si semplifica nei rapporti."
+      }
+    ],
+    "prompt": "Un campione di gas perfetto parte da 200 kPa e 2,0 L. Il volume raddoppia. Calcola la pressione finale per un’isoterma e per un’adiabatica reversibile con γ = 1,4.",
+    "difficulty": 2,
+    "family": "confrontare-due-espansioni",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E014",
+    "kind": "example",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 14,
+    "title": "Lasciare un gas espandersi nel vuoto",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-espansione-libera.svg",
+        "text": "Dopo la rimozione della parete interna, la stessa quantità di gas occupa un volume maggiore."
+      },
+      {
+        "type": "text",
+        "text": "Il gas occupa il compartimento vuoto senza spingere contro una pressione resistente. Le pareti esterne impediscono lo scambio di calore. Supponiamo che all’inizio e alla fine il gas sia all’equilibrio."
+      },
+      {
+        "type": "formula",
+        "text": "W=0,\\qquad Q=0,\\qquad \\Delta U=Q-W=0"
+      },
+      {
+        "type": "text",
+        "text": "Per il gas perfetto di composizione fissata U dipende solo da T, quindi la temperatura finale è uguale all’iniziale. Il processo è adiabatico e irreversibile. Applicare la relazione pVᵞ costante a questa espansione darebbe un raffreddamento inesistente nel modello."
+      }
+    ],
+    "prompt": "Si rimuove un separatore in un contenitore rigido isolato. Da un lato era presente un gas perfetto, dall’altro il vuoto. Determina lavoro, calore e temperatura finale rispetto all’iniziale.",
+    "difficulty": 2,
+    "family": "lasciare-un-gas-espandersi-nel-vuoto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L08",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 8,
+    "title": "Leggere il lavoro di un ciclo",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.5 Ciclo termodinamico",
+      "5.5 Bilancio energetico di un ciclo",
+      "5.5 Funzionamento ciclico"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un apparato torna periodicamente allo stesso stato per ripetere un’operazione. Nel piano p–V il cammino di un ciclo quasi statico è chiuso. Poiché il fluido torna allo stato iniziale, energia interna ed entropia del fluido tornano ai valori di partenza. Il fluido può comunque avere compiuto lavoro e scambiato calore."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-ciclo.svg",
+        "text": "A → B è l’espansione a pressione alta. C → D è la compressione a pressione bassa. I segmenti verticali cambiano pressione a volume fisso."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U_{\\rm ciclo}=0,\\qquad Q_{\\rm netto}=W_{\\rm netto}"
+      },
+      {
+        "type": "text",
+        "text": "Per un rettangolo, il lavoro sull’espansione è p alta per l’aumento di volume. Il lavoro di compressione ha segno opposto e modulo minore. La differenza è l’area interna. Percorrendo il ciclo in senso orario si ottiene lavoro positivo. In senso antiorario il sistema assorbe lavoro netto."
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm orario}=(p_{\\rm alta}-p_{\\rm bassa})(V_{\\rm grande}-V_{\\rm piccolo})"
+      },
+      {
+        "type": "text",
+        "text": "Il lavoro è legato alla forma del percorso. Riportare solo le coordinate dello stato iniziale e finale, coincidenti, fa perdere l’informazione necessaria. Controlla le scale degli assi prima di misurare l’area."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E015",
+    "kind": "example",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 15,
+    "title": "Il rettangolo nel piano p–V",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-ciclo.svg",
+        "text": "Il bordo superiore va verso volume crescente. Le frecce orientano il bilancio del lavoro."
+      },
+      {
+        "type": "formula",
+        "text": "W_{AB}=200(3-1)=400\\ \\mathrm J,\\qquad W_{CD}=100(1-3)=-200\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Nei due tratti verticali il volume è fisso e il lavoro di espansione è nullo."
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm netto}=400-200=200\\ \\mathrm J,\\qquad Q_{\\rm netto}=\\Delta U_{\\rm ciclo}+W_{\\rm netto}=200\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il bilancio riguarda il calore netto. Il calore assorbito in una parte del ciclo può superare 200 J."
+      }
+    ],
+    "prompt": "Un gas percorre in senso orario un rettangolo fra 100 e 200 kPa e fra 1 e 3 L. Trova il lavoro netto e il calore netto di un ciclo.",
+    "difficulty": 2,
+    "family": "il-rettangolo-nel-piano-pv",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E016",
+    "kind": "example",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 16,
+    "title": "Chiudere un bilancio incompleto",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le variazioni di una funzione di stato si sommano fino a zero su un giro completo."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U_3=-(130-90)=-40\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "Q_3=\\Delta U_3+W_3=-40+15=-25\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas cede 25 J di calore e compie 15 J di lavoro. L’energia interna scende quindi di 40 J in quel tratto."
+      }
+    ],
+    "prompt": "Tre tratti chiudono un ciclo. Le variazioni di energia interna dei primi due sono +130 J e −90 J. Nel terzo il gas compie lavoro di 15 J. Trova il calore del terzo tratto.",
+    "difficulty": 2,
+    "family": "chiudere-un-bilancio-incompleto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L09",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 9,
+    "title": "Dal calore al lavoro utile",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.5 Secondo principio, enunciati di Kelvin–Planck e Clausius",
+      "5.5 Macchine termiche",
+      "5.5 Rendimento",
+      "5.5 Ciclo di Carnot"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un motore ciclico riceve energia da una sorgente calda, ne scarica una parte a una sorgente fredda e fornisce lavoro. Indichiamo con Qh e Qc i moduli positivi del calore assorbito ed espulso. Per il fluido, il secondo contributo al bilancio ha segno negativo."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-macchina.svg",
+        "text": "Le frecce indicano le direzioni effettive dei trasferimenti durante un ciclo motore. Qh e Qc sono moduli."
+      },
+      {
+        "type": "formula",
+        "text": "W=Q_h-Q_c,\\qquad \\eta=\\frac{W}{Q_h}=1-\\frac{Q_c}{Q_h}"
+      },
+      {
+        "type": "text",
+        "text": "L’enunciato di Kelvin–Planck impedisce a una macchina ciclica di convertire integralmente il calore prelevato da una sola sorgente in lavoro come unico effetto. L’enunciato di Clausius impedisce il trasferimento ciclico netto dal freddo al caldo come unico effetto. Un frigorifero riceve lavoro dall’esterno e rispetta questo vincolo."
+      },
+      {
+        "type": "text",
+        "text": "Il ciclo di Carnot collega due isoterme reversibili alle temperature delle sorgenti mediante due adiabatiche reversibili. Il fluido prende calore durante l’isoterma calda e lo cede durante quella fredda. Nessuna macchina che operi fra le stesse due temperature può avere rendimento superiore."
+      },
+      {
+        "type": "formula",
+        "text": "\\eta_{\\rm Carnot}=1-\\frac{T_c}{T_h},\\qquad 0\\leq\\eta\\leq\\eta_{\\rm Carnot}"
+      },
+      {
+        "type": "text",
+        "text": "Tc e Th sono temperature assolute. Inserire temperature Celsius nel rapporto altera il limite. Ridurre le dissipazioni può avvicinare al limite, mentre temperatura fredda e temperatura calda uguali annullano il lavoro ottenibile da quel dislivello."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E017",
+    "kind": "example",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 17,
+    "title": "Esaminare una proposta di motore",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-macchina.svg",
+        "text": "Identifica separatamente il bilancio energetico e il vincolo posto dalle temperature delle sorgenti."
+      },
+      {
+        "type": "formula",
+        "text": "Q_h-Q_c=800-560=240\\ \\mathrm J,\\qquad \\eta=240/800=0{,}30"
+      },
+      {
+        "type": "formula",
+        "text": "\\eta_{\\rm max}=1-300/400=0{,}25"
+      },
+      {
+        "type": "text",
+        "text": "Il conto dell’energia si chiude. La promessa supera tuttavia il rendimento reversibile fra le due sorgenti, quindi la macchina descritta è impossibile nelle condizioni dichiarate."
+      }
+    ],
+    "prompt": "Una macchina ciclica assorbe 800 J da una sorgente a 400 K, scarica 560 J a 300 K e promette 240 J di lavoro. Verifica i due principi.",
+    "difficulty": 3,
+    "family": "esaminare-una-proposta-di-motore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E018",
+    "kind": "example",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 18,
+    "title": "Approfondimento · Consumo minimo di un frigorifero ideale",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Rovesciando un ciclo reversibile, i moduli dei calori restano proporzionali alle temperature assolute. L’energia scaricata al caldo include anche il lavoro in ingresso."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{Q_h}{T_h}=\\frac{Q_c}{T_c}\\quad\\Longrightarrow\\quad Q_h=270\\frac{300}{270}=300\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm in}=Q_h-Q_c=300-270=30\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Un dispositivo reale fra queste due sorgenti richiede almeno questo lavoro per la stessa energia prelevata al freddo. Il quoziente Qc/W è un coefficiente di prestazione."
+      }
+    ],
+    "prompt": "Un frigorifero reversibile trasferisce 270 J da una sorgente a 270 K verso una a 300 K per ciclo. Quanto lavoro assorbe?",
+    "difficulty": 3,
+    "family": "approfondimento-consumo-minimo-di-un-frigorifero-ideale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-L10",
+    "kind": "lesson",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 10,
+    "title": "Seguire il verso dei processi",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "coverage": [
+      "5.5 Entropia funzione di stato",
+      "5.5 Implicazioni macroscopiche",
+      "5.5 Interpretazione statistica",
+      "5.5 Direzione naturale dei processi"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un cubetto caldo e uno freddo in contatto tendono a una temperatura comune. Anche il processo immaginario inverso conserverebbe energia. Il secondo principio seleziona il verso spontaneo tramite l’entropia S. Per sistema e ambiente considerati insieme, in condizioni complessivamente isolate, la variazione di entropia è positiva nei processi irreversibili e nulla nel limite reversibile."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-entropia.svg",
+        "text": "Un’energia Q trasferita dal caldo al freddo sottrae Q/Th al serbatoio caldo e aggiunge Q/Tc a quello freddo. I serbatoi conservano le loro temperature."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S_{\\rm totale}=\\Delta S_{\\rm sistema}+\\Delta S_{\\rm ambiente}\\geq0"
+      },
+      {
+        "type": "text",
+        "text": "Una singola parte può perdere entropia. Per determinarne la variazione fra due stati si può immaginare un cammino reversibile che li colleghi, anche quando il cammino reale è irreversibile. In uno scambio reversibile isotermo la variazione vale Qrev/T, in J/K. Per un serbatoio a temperatura fissa vale la stessa relazione con il calore che esso riceve."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S=\\int_i^f\\frac{\\delta Q_{\\rm rev}}{T},\\qquad \\Delta S_{\\rm isot,rev}=\\frac{Q_{\\rm rev}}{T}"
+      },
+      {
+        "type": "text",
+        "text": "Per un trasferimento fra due serbatoi la formula si applica a ciascuno usando la propria temperatura. Se una temperatura cambia sensibilmente durante lo scambio, un solo valore arbitrario di T al denominatore non basta."
+      },
+      {
+        "type": "text",
+        "text": "Dal punto di vista statistico un macrostato può corrispondere a molte configurazioni microscopiche compatibili. Se tali configurazioni sono equiprobabili, S = kB ln Ω. Un gas libero di occupare due compartimenti dispone di più configurazioni accessibili. La distribuzione spontanea su tutto il volume diventa estremamente probabile con molte particelle."
+      },
+      {
+        "type": "formula",
+        "text": "S=k_{\\rm B}\\ln\\Omega,\\qquad \\Delta S=k_{\\rm B}\\ln(\\Omega_f/\\Omega_i)"
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E019",
+    "kind": "example",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 19,
+    "title": "Entropia di due serbatoi",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-entropia.svg",
+        "text": "Ogni serbatoio ha una temperatura distinta e costante. Il calore esce da quello caldo ed entra in quello freddo."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S_h=-120/400=-0{,}300\\ \\mathrm{J/K},\\qquad \\Delta S_c=+120/300=+0{,}400\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S_{\\rm totale}=-0{,}300+0{,}400=+0{,}100\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "Dividere per una temperatura più bassa dà una variazione di modulo maggiore. L’aumento complessivo è compatibile con il trasferimento spontaneo."
+      }
+    ],
+    "prompt": "Due serbatoi a 400 K e 300 K scambiano 120 J dal caldo al freddo. Determina le tre variazioni di entropia.",
+    "difficulty": 2,
+    "family": "entropia-di-due-serbatoi",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-E020",
+    "kind": "example",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 20,
+    "title": "Espandere un gas e contare le possibilità",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La variazione cercata dipende solo dagli stati. Scegliamo un’isoterma reversibile fra gli stessi due volumi. In tale percorso Qrev = Wrev e p = nRT/V."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S=\\frac{1}{T}\\int_V^{2V}\\frac{nRT}{V^{\\prime}}\\,dV^{\\prime}=nR\\ln(2V/V)"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S=1\\cdot8{,}314\\cdot\\ln 2=5{,}76\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "Il volume maggiore offre più configurazioni microscopiche. Nell’espansione libera reale il calore può essere nullo mentre l’entropia cresce. Il calore nella formula di calcolo appartiene al percorso reversibile scelto."
+      }
+    ],
+    "prompt": "Una mole di gas perfetto passa isotermicamente da V a 2V. Calcola la variazione di entropia anche se il gas si è espanso liberamente nel vuoto. Usa R = 8,314 J/(mol·K).",
+    "difficulty": 3,
+    "family": "espandere-un-gas-e-contare-le-possibilita",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C3-Q001",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 1,
+    "title": "Il confine della pentola",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il vapore abbandona la porzione che abbiamo chiamato sistema. Attraversa il confine sia materia sia energia. Un sistema che scambia materia con l’esterno è aperto."
+      }
+    ],
+    "prompt": "Una pentola scoperta bolle e perde vapore. Scegli come sistema l’acqua liquida rimasta. Come si classifica durante l’ebollizione?",
+    "difficulty": 1,
+    "family": "il-confine-della-pentola",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Aperto",
+      "options": [
+        "Chiuso",
+        "Aperto",
+        "Isolato",
+        "A energia interna costante per definizione"
+      ]
+    },
+    "hints": [
+      "Segui una molecola che attraversa la superficie."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Durante l’evaporazione la massa liquida nel sistema diminuisce.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q002",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 2,
+    "title": "Cronologia di un raffreddamento",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "T_f=20{,}0+273{,}15=293{,}15\\ \\mathrm K"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta T=T_f-T_i=293{,}15-311=-17{,}85\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Il termometro è sceso di circa 18 K. Una variazione negativa è compatibile con il raffreddamento."
+      }
+    ],
+    "prompt": "Un sensore passa da 311 K a 20,0 °C. Calcola la variazione finale meno iniziale in kelvin.",
+    "difficulty": 2,
+    "family": "cronologia-di-un-raffreddamento",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -17.85,
+      "unit": "K",
+      "tolerance": 0.15
+    },
+    "hints": [
+      "Porta le due letture sulla stessa scala prima di sottrarle."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il valore finale è 293,15 K. Una diminuzione ha segno negativo.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q003",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 3,
+    "title": "Lettura senza memoria",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Temperatura, volume ed energia interna possono essere associati a uno stato. Dopo un giro completo ritrovano il valore iniziale. Il lavoro si ricava invece seguendo il cammino."
+      }
+    ],
+    "prompt": "La temperatura torna al valore iniziale indipendentemente dal cammino che ha riportato il sistema nello stesso stato. Completa l’espressione «funzione di …».",
+    "difficulty": 1,
+    "family": "lettura-senza-memoria",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "stato",
+      "aliases": []
+    },
+    "hints": [
+      "Pensa ai dati necessari per descrivere un punto del diagramma."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una funzione di stato dipende dalle condizioni attuali del sistema.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q004",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 4,
+    "title": "Due termometri e zero scambio netto",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il flusso netto spontaneo richiede una differenza di temperatura. All’equilibrio gli scambi microscopici possono continuare in entrambi i versi. Masse e capacità termiche possono essere diverse."
+      }
+    ],
+    "prompt": "Due blocchi alla stessa temperatura vengono messi in contatto, isolati da tutto il resto. Quale affermazione è giustificata?",
+    "difficulty": 1,
+    "family": "due-termometri-e-zero-scambio-netto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Non si ha trasferimento netto di calore tra i blocchi",
+      "options": [
+        "Devono avere la stessa massa",
+        "Contengono necessariamente la stessa energia interna",
+        "Non si ha trasferimento netto di calore tra i blocchi",
+        "Tutte le molecole sono ferme"
+      ]
+    },
+    "hints": [
+      "Distingui lettura del termometro e quantità di materia."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’equilibrio termico elimina il flusso netto dovuto alla differenza di temperatura.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q005",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 5,
+    "title": "Raddoppiare la temperatura assoluta",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "T_i=26{,}85+273{,}15=300{,}00\\ \\mathrm K,\\quad T_f=600{,}00\\ \\mathrm K"
+      },
+      {
+        "type": "formula",
+        "text": "t_f=600{,}00-273{,}15=326{,}85\\,{}^\\circ\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "La conversione inversa riporta il valore sulla scala richiesta."
+      }
+    ],
+    "prompt": "Un campione parte da 26,85 °C. A quanti °C corrisponde il doppio della sua temperatura assoluta?",
+    "difficulty": 2,
+    "family": "raddoppiare-la-temperatura-assoluta",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 326.85,
+      "unit": "°C",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Moltiplica sulla scala che comincia dallo zero assoluto."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Raddoppiare la lettura Celsius non raddoppia la temperatura assoluta.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q006",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 6,
+    "title": "Dal micro al macro",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "p=F_\\perp/A"
+      },
+      {
+        "type": "text",
+        "text": "La pressione è una proprietà macroscopica. A parità di p una parete con area doppia subisce forza doppia."
+      }
+    ],
+    "prompt": "Quale variabile in pascal esprime la forza normale media per unità di area esercitata dal gas sulle pareti?",
+    "difficulty": 1,
+    "family": "dal-micro-al-macro",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "pressione",
+      "aliases": [
+        "pressione del gas"
+      ]
+    },
+    "hints": [
+      "Cerca la grandezza che compare sull’asse verticale del piano p–V."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "L’area divide la forza per ottenere una variabile intensiva.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q007",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 7,
+    "title": "Separare due campioni uguali",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Ogni metà contiene circa metà delle molecole e conserva la stessa energia media per molecola. Ciascuna ha metà dell’energia interna totale. Pressione, temperatura e densità restano quelle del gas uniforme."
+      }
+    ],
+    "prompt": "Dividi idealmente un gas uniforme in due metà di uguale volume nello stesso stato intensivo. Quale proprietà di ciascuna metà si dimezza?",
+    "difficulty": 2,
+    "family": "separare-due-campioni-uguali",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Energia interna",
+      "options": [
+        "Temperatura",
+        "Pressione",
+        "Densità",
+        "Energia interna"
+      ]
+    },
+    "hints": [
+      "Conta che cosa si somma ricomponendo le due metà."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’energia interna è additiva per sottosistemi macroscopici con interazioni di bordo trascurabili.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q008",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 8,
+    "title": "Caduta cumulativa in due soste",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta T=(-4-6)\\ \\mathrm K=-10\\ \\mathrm K"
+      },
+      {
+        "type": "formula",
+        "text": "t_f=35-10=25\\,{}^\\circ\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Una differenza di 10 K sposta la lettura di 10 °C anche se lo zero delle due scale è diverso."
+      }
+    ],
+    "prompt": "Un bagno a 35 °C si raffredda prima di 4 K e poi di altri 6 K. Qual è la temperatura finale in °C?",
+    "difficulty": 1,
+    "family": "caduta-cumulativa-in-due-soste",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 25,
+      "unit": "°C",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "I cambiamenti in kelvin e in gradi Celsius hanno la stessa ampiezza."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Entrambi i tratti sono raffreddamenti e si sottraggono.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q009",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 9,
+    "title": "Stato del gas dopo lo scossone",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Durante il transitorio la pressione può dipendere dalla posizione. A pistone fermo, dopo il rilassamento e in assenza di gradienti apprezzabili, una pressione uniforme descrive lo stato del gas."
+      }
+    ],
+    "prompt": "Un pistone viene spinto bruscamente e nel gas si propagano onde di pressione. Quale operazione consente di attribuire un unico p di equilibrio al campione?",
+    "difficulty": 2,
+    "family": "stato-del-gas-dopo-lo-scossone",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Attendere che le differenze interne si siano smorzate",
+      "options": [
+        "Leggere subito il massimo locale",
+        "Attendere che le differenze interne si siano smorzate",
+        "Sommare le letture di tutti i sensori",
+        "Usare la pressione atmosferica in ogni caso"
+      ]
+    },
+    "hints": [
+      "Considera se due sensori distanti possono leggere valori diversi."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un singolo punto del piano p–V descrive un gas in equilibrio interno.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q010",
+    "kind": "question",
+    "course": "C3",
+    "section": "Il confine del sistema e il termometro",
+    "order": 10,
+    "title": "Parete che isola dal calore",
+    "skill": "C3-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una parete adiabatica impedisce il passaggio di calore. Se è mobile e subisce una forza, attraverso il confine può comunque passare energia sotto forma di lavoro."
+      }
+    ],
+    "prompt": "Un manuale descrive una parete che impedisce scambi di calore pur potendo muoversi. Quale aggettivo termodinamico qualifica questa parete?",
+    "difficulty": 1,
+    "family": "parete-che-isola-dal-calore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "adiabatica",
+      "aliases": [
+        "adiabatico"
+      ]
+    },
+    "hints": [
+      "Lo stesso termine denomina un percorso con Q nullo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il movimento della parete può ancora permettere lavoro.",
+      "target": "C3-L01"
+    }
+  },
+  {
+    "id": "C3-Q011",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 11,
+    "title": "Quante molecole sono rimaste?",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{n_f}{n_i}=\\frac{p_f}{p_i}=\\frac{120}{160}=0{,}75"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{n_i-n_f}{n_i}=1-0{,}75=0{,}25=25\\%"
+      },
+      {
+        "type": "text",
+        "text": "Il 75% resta nel recipiente. La richiesta riguardava la parte perduta."
+      }
+    ],
+    "prompt": "Un recipiente rigido resta a temperatura costante. La pressione assoluta scende da 160 a 120 kPa per una perdita. Quale percentuale delle moli iniziali è uscita?",
+    "difficulty": 2,
+    "family": "quante-molecole-sono-rimaste",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 25,
+      "unit": "%",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "A volume e temperatura fissi p è proporzionale a n."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Dalla frazione rimasta devi ricavare la frazione uscita.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q012",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 12,
+    "title": "Due gas nello stesso stato macroscopico",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "n=pV/(RT)"
+      },
+      {
+        "type": "text",
+        "text": "Il membro destro è identico nei due recipienti. Le moli, e dunque i numeri di particelle, coincidono. Gas diversi possono avere differenti masse molari."
+      }
+    ],
+    "prompt": "Due recipienti contengono gas perfetti diversi con gli stessi p, V e T. Che cosa deve essere uguale?",
+    "difficulty": 1,
+    "family": "due-gas-nello-stesso-stato-macroscopico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Numero di moli",
+      "options": [
+        "Massa totale",
+        "Massa di ogni molecola",
+        "Numero di moli",
+        "Velocità di ogni molecola"
+      ]
+    },
+    "hints": [
+      "Isola la quantità di sostanza nell’equazione di stato."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La massa si ottiene moltiplicando n per la massa molare della sostanza.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q013",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 13,
+    "title": "Un pistone sotto carico costante",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{V_f}{T_f}=\\frac{V_i}{T_i}\\quad\\Longrightarrow\\quad V_f=V_i\\frac{T_f}{T_i}"
+      },
+      {
+        "type": "formula",
+        "text": "V_f=1{,}80\\cdot315/270=2{,}10\\ \\mathrm L"
+      },
+      {
+        "type": "text",
+        "text": "La temperatura assoluta sale di circa un sesto. Anche il volume deve aumentare di circa un sesto."
+      }
+    ],
+    "prompt": "Un palloncino ideale chiuso occupa 1,80 L a 270 K. Alla stessa pressione raggiunge 315 K. Trova il nuovo volume in litri.",
+    "difficulty": 1,
+    "family": "un-pistone-sotto-carico-costante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 2.1,
+      "unit": "L",
+      "tolerance": 0.015
+    },
+    "hints": [
+      "Nella legge dei gas cancella i fattori che non variano."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "A pressione e numero di moli costanti V aumenta con T.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q014",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 14,
+    "title": "Quale pressione va in pV?",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il manometro azzerato nell’aria fornisce la pressione relativa. Sommando la pressione atmosferica si ottiene la pressione assoluta, uguale a zero nel vuoto ideale."
+      }
+    ],
+    "prompt": "Un sensore è azzerato nell’aria. Prima di usare la sua lettura nell’equazione di stato sommi la pressione atmosferica. Come si chiama la pressione ottenuta?",
+    "difficulty": 1,
+    "family": "quale-pressione-va-in-pv",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "assoluta",
+      "aliases": [
+        "pressione assoluta"
+      ]
+    },
+    "hints": [
+      "Chiediti quale pressione risulterebbe in un recipiente completamente vuoto."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La scala del gas perfetto ha zero nel vuoto.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q015",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 15,
+    "title": "Risalire alla temperatura",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "T=\\frac{pV}{nR}=\\frac{100\\cdot 6{,}20}{0{,}250\\cdot8{,}314}\\ \\mathrm K\\simeq298{,}3\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è vicino alla temperatura ambiente. Sostituire il volume in litri insieme alla pressione in pascal senza conversione darebbe un fattore mille spurio."
+      }
+    ],
+    "prompt": "Un gas perfetto di 0,250 mol occupa 6,20 L a 100 kPa assoluti. Usa R = 8,314 J/(mol·K). Trova T in kelvin.",
+    "difficulty": 2,
+    "family": "risalire-alla-temperatura",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 298.3,
+      "unit": "K",
+      "tolerance": 0.6
+    },
+    "hints": [
+      "Usa l’equivalenza 1 kPa·L = 1 J."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La conversione delle due unità nel prodotto si compensa.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q016",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 16,
+    "title": "Quando abbandonare il gas perfetto",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il modello ideale trascura volume molecolare e attrazioni a distanza. Quando il vapore è denso e prossimo al passaggio di fase queste approssimazioni possono introdurre scarti importanti."
+      }
+    ],
+    "prompt": "Quale situazione richiede più cautela nell’usare pV = nRT?",
+    "difficulty": 2,
+    "family": "quando-abbandonare-il-gas-perfetto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Un vapore denso vicino alla condensazione",
+      "options": [
+        "Un gas molto diluito lontano dalla liquefazione",
+        "Un gas a bassa densità in equilibrio",
+        "Un vapore denso vicino alla condensazione",
+        "Una piccola quantità di gas ideale a temperatura uniforme"
+      ]
+    },
+    "hints": [
+      "Individua le condizioni in cui le interazioni intermolecolari contano."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Vicino alla condensazione molecole diverse interagiscono sensibilmente.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q017",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 17,
+    "title": "Volume e temperatura cambiano insieme",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{p_iV_i}{T_i}=\\frac{p_fV_f}{T_f}\\quad\\Longrightarrow\\quad p_f=p_i\\frac{V_i}{V_f}\\frac{T_f}{T_i}"
+      },
+      {
+        "type": "formula",
+        "text": "p_f=90\\frac23\\frac{360}{270}=80\\ \\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "La dilatazione prevale sul riscaldamento. La pressione scende di circa l’11%."
+      }
+    ],
+    "prompt": "Un gas perfetto chiuso parte da 90 kPa assoluti. Il volume passa da 2 a 3 L e T da 270 a 360 K. Calcola la pressione finale in kPa.",
+    "difficulty": 2,
+    "family": "volume-e-temperatura-cambiano-insieme",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 80,
+      "unit": "kPa",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Combina i rapporti di volume e temperatura con n fisso."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’espansione riduce p, il riscaldamento la aumenta.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q018",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 18,
+    "title": "Individuare la costante del campione",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "pV=nRT\\quad\\Longrightarrow\\quad pV/T=nR"
+      },
+      {
+        "type": "text",
+        "text": "La quantità n identifica il campione. R è la stessa per tutti i gas perfetti."
+      }
+    ],
+    "prompt": "Per un gas perfetto chiuso, il rapporto pV/T vale n moltiplicato per quale costante, indicata con una lettera?",
+    "difficulty": 1,
+    "family": "individuare-la-costante-del-campione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "R",
+      "aliases": [
+        "costante universale dei gas",
+        "costante dei gas"
+      ]
+    },
+    "hints": [
+      "Raccogli i termini dell’equazione di stato."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La costante molare vale circa 8,314 J/(mol·K).",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q019",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 19,
+    "title": "Pendenze del grafico p contro T",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "p=\\left(\\frac{nR}{V}\\right)T"
+      },
+      {
+        "type": "text",
+        "text": "Raddoppiando il volume il coefficiente nR/V si dimezza. Per giungere alla stessa pressione nel recipiente più grande serve una temperatura assoluta doppia."
+      }
+    ],
+    "prompt": "Nel piano con T in kelvin in ascissa e p assoluta in ordinata si tracciano due rette per le stesse moli a volumi fissi V e 2V. Quale ha pendenza maggiore?",
+    "difficulty": 2,
+    "family": "pendenze-del-grafico-p-contro-t",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Quella del volume V",
+      "options": [
+        "Quella del volume 2V",
+        "Le pendenze sono uguali",
+        "Entrambe sono orizzontali",
+        "Quella del volume V"
+      ]
+    },
+    "hints": [
+      "Scrivi p come coefficiente per T."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il coefficiente angolare è inversamente proporzionale al volume.",
+      "target": "C3-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-pT.svg",
+        "text": "Due pendenze nello stesso sistema di assi. I volumi delle due prove sono da associare."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q020",
+    "kind": "question",
+    "course": "C3",
+    "section": "Contare le moli con il gas perfetto",
+    "order": 20,
+    "title": "Una densità a partire dalla massa molare",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "pV=\\frac{m}{M}RT\\quad\\Longrightarrow\\quad\\rho=\\frac{m}{V}=\\frac{pM}{RT}"
+      },
+      {
+        "type": "formula",
+        "text": "\\rho=\\frac{100\\,000\\cdot0{,}0280}{8{,}314\\cdot300}\\simeq1{,}12\\ \\mathrm{kg/m^3}"
+      },
+      {
+        "type": "text",
+        "text": "Un metro cubo di questo gas ha una massa dell’ordine di un chilogrammo nelle condizioni indicate."
+      }
+    ],
+    "prompt": "Un gas perfetto a 300 K e 100 kPa ha massa molare 0,0280 kg/mol. Calcola la densità in kg/m³ con R = 8,314 J/(mol·K).",
+    "difficulty": 3,
+    "family": "una-densita-a-partire-dalla-massa-molare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 1.123,
+      "unit": "kg/m³",
+      "tolerance": 0.008
+    },
+    "hints": [
+      "Sostituisci n = m/M e raccogli m/V."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La massa molare deve avere la massa espressa in kg per ottenere kg/m³.",
+      "target": "C3-L02"
+    }
+  },
+  {
+    "id": "C3-Q021",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 21,
+    "title": "Estrarre il calore specifico",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "c=\\frac{Q}{m\\Delta T}=\\frac{540}{0{,}200\\cdot6{,}0}=450\\ \\mathrm{J/(kg\\,K)}"
+      },
+      {
+        "type": "text",
+        "text": "Un chilogrammo del materiale richiede circa 450 J per scaldarsi di un kelvin nell’intervallo considerato."
+      }
+    ],
+    "prompt": "Un blocchetto di 200 g assorbe 540 J e aumenta la temperatura di 6,0 K senza cambiare fase. Calcola il calore specifico in J/(kg·K).",
+    "difficulty": 1,
+    "family": "estrarre-il-calore-specifico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 450,
+      "unit": "J/(kg·K)",
+      "tolerance": 1
+    },
+    "hints": [
+      "Isola c nella relazione Q = mcΔT."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Nel sistema di unità richiesto 200 g diventano 0,200 kg.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q022",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 22,
+    "title": "Confrontare pendenze di riscaldamento",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta T}{\\Delta t}=\\frac{P}{C}"
+      },
+      {
+        "type": "text",
+        "text": "Poiché P coincide, una pendenza più grande implica C più piccola. La massa da sola non basta se i materiali differiscono."
+      }
+    ],
+    "prompt": "Due campioni ricevono la stessa potenza costante, senza perdite e senza cambiare fase. Nel grafico T contro t, la retta di A sale più rapidamente. Quale proprietà è minore in A?",
+    "difficulty": 2,
+    "family": "confrontare-pendenze-di-riscaldamento",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Capacità termica",
+      "options": [
+        "Capacità termica",
+        "Potenza assorbita",
+        "Variazione termica nello stesso intervallo",
+        "Flusso di energia fornito"
+      ]
+    },
+    "hints": [
+      "Ricava la pendenza sostituendo Q = PΔt."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Una piccola capacità termica permette un maggiore aumento di T a parità di energia.",
+      "target": "C3-L03"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-rette.svg",
+        "text": "Le due rette riportano i dati dei campioni A e B a uguale potenza fornita."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q023",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 23,
+    "title": "Come si chiama C diviso m?",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "c=C/m"
+      },
+      {
+        "type": "text",
+        "text": "Il quoziente descrive l’energia da fornire a un chilogrammo perché la sua temperatura aumenti di un kelvin nelle condizioni indicate."
+      }
+    ],
+    "prompt": "La capacità termica di un campione in J/K viene divisa per la massa in kg. Quale proprietà del materiale si ottiene?",
+    "difficulty": 1,
+    "family": "come-si-chiama-c-diviso-m",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "calore specifico",
+      "aliases": [
+        "capacità termica specifica"
+      ]
+    },
+    "hints": [
+      "L’unità risultante contiene un chilogrammo al denominatore."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La capacità termica specifica è riferita a una massa unitaria.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q024",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 24,
+    "title": "Energia ceduta da una massa calda",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta T=32-48=-16\\ \\mathrm K,\\qquad Q=C\\Delta T=75(-16)=-1200\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il metallo cede 1200 J. Il valore assoluto risponde a una domanda diversa, ossia quanta energia riceve l’ambiente."
+      }
+    ],
+    "prompt": "Un pezzo di metallo con C = 75 J/K si raffredda da 48 a 32 °C. Esprimi in joule Q del metallo, positivo se entra.",
+    "difficulty": 1,
+    "family": "energia-ceduta-da-una-massa-calda",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -1200,
+      "unit": "J",
+      "tolerance": 2
+    },
+    "hints": [
+      "Scrivi la temperatura finale prima di sottrarre quella iniziale."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Il metallo perde energia per calore e Q è negativo.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q025",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 25,
+    "title": "Una capacità ignota dal mescolamento",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "C_x(70-30)=300(30-20)"
+      },
+      {
+        "type": "formula",
+        "text": "C_x=\\frac{300\\cdot10}{40}=75\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "La capacità del campione è un quarto di quella dell’acqua, in accordo con la sua variazione termica quadrupla."
+      }
+    ],
+    "prompt": "Un campione a 70 °C viene immerso in acqua con capacità termica 300 J/K a 20 °C. Si raggiungono 30 °C in isolamento. Trova la capacità del campione in J/K.",
+    "difficulty": 2,
+    "family": "una-capacita-ignota-dal-mescolamento",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 75,
+      "unit": "J/K",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Uguaglia il modulo del calore perso dal campione a quello guadagnato dall’acqua."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La caduta termica del campione è 40 K e la salita dell’acqua è 10 K.",
+      "target": "C3-L03"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-scambi.svg",
+        "text": "Il campione e l’acqua sono inclusi nel sistema isolato."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q026",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 26,
+    "title": "Deviazione causata dal recipiente",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia ceduta dall’acqua calda alimenta ora sia l’acqua fredda sia il recipiente. Il sistema raggiunge l’equilibrio a una temperatura più vicina alla temperatura iniziale del lato freddo."
+      }
+    ],
+    "prompt": "Nel calcolo di un miscuglio acqua calda/acqua fredda si trascura un recipiente inizialmente alla temperatura dell’acqua fredda. In isolamento, come cambia la temperatura finale reale?",
+    "difficulty": 2,
+    "family": "deviazione-causata-dal-recipiente",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "È più bassa di quella calcolata trascurando il recipiente",
+      "options": [
+        "È più bassa di quella calcolata trascurando il recipiente",
+        "È sempre più alta",
+        "È identica per conservazione dell’energia",
+        "Può superare la temperatura iniziale dell’acqua calda"
+      ]
+    },
+    "hints": [
+      "Anche il recipiente freddo ha bisogno di energia per scaldarsi."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il recipiente aumenta la capacità termica del lato inizialmente freddo.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q027",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 27,
+    "title": "Quanto conta il vincolo del pistone?",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_p-Q_V=n(C_p-C_V)\\Delta T=nR\\Delta T"
+      },
+      {
+        "type": "formula",
+        "text": "Q_p-Q_V=1\\cdot8{,}314\\cdot15\\simeq125\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’energia in più permette l’espansione a pressione costante. La variazione di energia interna è la stessa per i due percorsi."
+      }
+    ],
+    "prompt": "Una mole di gas perfetto viene scaldata di 15 K. Di quanti joule supera il calore isobaro quello isocoro? Usa R = 8,314 J/(mol·K).",
+    "difficulty": 2,
+    "family": "quanto-conta-il-vincolo-del-pistone",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 124.71,
+      "unit": "J",
+      "tolerance": 0.8
+    },
+    "hints": [
+      "Sottrai le due espressioni molari del calore."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per un gas perfetto Cp − Cv = R; occorre poi moltiplicare per n e per ΔT.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q028",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 28,
+    "title": "Vincolo per misurare Cv",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con il volume bloccato il lavoro pΔV è nullo. In assenza di altre forme di lavoro il calore scambiato coincide con la variazione di energia interna."
+      }
+    ],
+    "prompt": "Quale grandezza va tenuta costante per associare il calore fornito a un gas perfetto a nCvΔT?",
+    "difficulty": 1,
+    "family": "vincolo-per-misurare-cv",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "volume",
+      "aliases": [
+        "il volume",
+        "V"
+      ]
+    },
+    "hints": [
+      "Il pedice identifica il vincolo meccanico."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Se il pistone si muove, occorre anche considerare il lavoro di espansione.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q029",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 29,
+    "title": "Una temperatura finale impossibile",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per raggiungere 51 °C entrambi i corpi avrebbero guadagnato energia. Il sistema isolato non dispone di una sorgente esterna. Una somma di calori entrambi positivi segnala un errore di segno o di impostazione."
+      }
+    ],
+    "prompt": "Due corpi a 15 °C e 45 °C sono isolati insieme e scambiano solo calore, senza transizioni di fase. Un calcolo dà 51 °C. Qual è la verifica più immediata?",
+    "difficulty": 1,
+    "family": "una-temperatura-finale-impossibile",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Controllare i segni dei calori nel bilancio",
+      "options": [
+        "Sostituire entrambe le temperature con il modulo",
+        "Controllare i segni dei calori nel bilancio",
+        "Supporre che il recipiente fornisca lavoro",
+        "Accettare il valore perché le capacità possono essere diverse"
+      ]
+    },
+    "hints": [
+      "Immagina il verso del flusso quando entrambi fossero a 51 °C."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "La temperatura comune deve stare tra le due iniziali se le capacità sono positive.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q030",
+    "kind": "question",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 30,
+    "title": "Energia dispersa durante la misura",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm camp}=C\\Delta T=80\\cdot5=400\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "Q_{\\rm uscita}=500-400=100\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il bilancio si chiude attribuendo all’esterno un quinto dell’energia erogata."
+      }
+    ],
+    "prompt": "Una resistenza eroga 500 J a un campione con C = 80 J/K. Si misura un aumento di 5 K. Quanta energia è andata all’esterno, come modulo in joule?",
+    "difficulty": 2,
+    "family": "energia-dispersa-durante-la-misura",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 100,
+      "unit": "J",
+      "tolerance": 1
+    },
+    "hints": [
+      "Confronta l’energia fornita con quella accumulata nel campione."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il riscaldatore e il campione possono scambiare energia anche con l’ambiente.",
+      "target": "C3-L03"
+    }
+  },
+  {
+    "id": "C3-Q031",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 31,
+    "title": "Massa evaporata dal bilancio energetico",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "m=Q/L=45{,}2/2260=0{,}0200\\ \\mathrm{kg}=20{,}0\\ \\mathrm g"
+      },
+      {
+        "type": "text",
+        "text": "L’energia confluisce nella vaporizzazione mentre liquido e vapore coesistono alla pressione fissata."
+      }
+    ],
+    "prompt": "Un liquido già alla temperatura di ebollizione assorbe 45,2 kJ. Il suo calore latente è 2,26 MJ/kg. Quanti grammi evaporano?",
+    "difficulty": 1,
+    "family": "massa-evaporata-dal-bilancio-energetico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 20,
+      "unit": "g",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Converti il calore latente in kJ/kg."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il risultato del rapporto con kJ/kg è una massa in kg.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q032",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 32,
+    "title": "La struttura del plateau",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-fasi.svg",
+        "text": "Il tratto orizzontale ammette diverse proporzioni di solido e liquido."
+      },
+      {
+        "type": "text",
+        "text": "La massa totale resta la stessa, ma sempre più materiale diventa liquido. La misura di T da sola non consente di stabilire la frazione già fusa."
+      }
+    ],
+    "prompt": "A pressione costante un campione puro assorbe energia mentre la temperatura resta al valore di fusione. Che cosa aumenta nel campione?",
+    "difficulty": 1,
+    "family": "la-struttura-del-plateau",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "La frazione liquida",
+      "options": [
+        "La temperatura assoluta",
+        "La massa totale",
+        "La frazione liquida",
+        "Il calore specifico deve crescere linearmente"
+      ]
+    },
+    "hints": [
+      "Osserva quale proprietà distingue due punti del tratto orizzontale."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una temperatura costante può accompagnarsi a una variazione di fase e di energia interna.",
+      "target": "C3-L04"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-fusione.svg",
+        "text": "Il tratto a temperatura costante è compreso fra due tratti inclinati."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q033",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 33,
+    "title": "Gocce sul vetro freddo",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le molecole passano dalla fase gassosa a quella liquida. La condensazione cede energia, che il vetro può assorbire e trasmettere all’ambiente."
+      }
+    ],
+    "prompt": "Il vapore d’acqua forma goccioline su un vetro. Come si chiama il passaggio dal vapore al liquido?",
+    "difficulty": 1,
+    "family": "gocce-sul-vetro-freddo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "condensazione",
+      "aliases": [
+        "liquefazione"
+      ]
+    },
+    "hints": [
+      "Segui la fase iniziale e quella finale delle molecole."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il processo inverso della vaporizzazione libera calore.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q034",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 34,
+    "title": "Cronometrare una fusione",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q=mL_f=0{,}040\\cdot334\\,000=13\\,360\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "t=Q/P=13\\,360/80=167\\ \\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Il tempo è inferiore a tre minuti. La stima si riferisce alla potenza effettivamente ricevuta dal ghiaccio."
+      }
+    ],
+    "prompt": "Un riscaldatore trasmette al ghiaccio 80 W effettivi. Quanti secondi servono a fondere 40 g di ghiaccio a 0 °C se Lf = 334 kJ/kg?",
+    "difficulty": 2,
+    "family": "cronometrare-una-fusione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 167,
+      "unit": "s",
+      "tolerance": 1
+    },
+    "hints": [
+      "Trova prima l’energia per fondere l’intera massa."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Una potenza in watt si esprime in joule al secondo.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q035",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 35,
+    "title": "Evaporare lontano dall’ebollizione",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una parte delle molecole superficiali ha energia sufficiente per passare nella fase gassosa. Se questo flusso supera il ritorno dal vapore, la goccia perde massa."
+      }
+    ],
+    "prompt": "Una goccia d’acqua diminuisce di volume su una piastra a 22 °C. Quale meccanismo è compatibile con questa osservazione?",
+    "difficulty": 1,
+    "family": "evaporare-lontano-dallebollizione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Evaporazione dalla superficie",
+      "options": [
+        "Ebollizione obbligatoria in tutto il liquido",
+        "Fusione del liquido",
+        "Aumento della massa d’acqua",
+        "Evaporazione dalla superficie"
+      ]
+    },
+    "hints": [
+      "Considera dove una molecola può lasciare la fase liquida."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’evaporazione dalla superficie si verifica anche sotto la temperatura di ebollizione.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q036",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 36,
+    "title": "Ricavare L dalla durata del plateau",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "L=\\frac{Pt}{m}=\\frac{60\\cdot150}{0{,}030}=300\\,000\\ \\mathrm{J/kg}=300\\ \\mathrm{kJ/kg}"
+      },
+      {
+        "type": "text",
+        "text": "Il valore è riferito all’unità di massa. Se al campione arrivasse meno potenza del previsto, il valore dedotto sovrastimerebbe L."
+      }
+    ],
+    "prompt": "Su un grafico temperatura-tempo la fusione di 30 g dura 150 s sotto una potenza netta di 60 W. Stima il calore latente in kJ/kg.",
+    "difficulty": 2,
+    "family": "ricavare-l-dalla-durata-del-plateau",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 300,
+      "unit": "kJ/kg",
+      "tolerance": 1
+    },
+    "hints": [
+      "Il prodotto di potenza e durata del plateau è tutto disponibile per la fusione."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Dividi per la massa in kg e converti da J/kg a kJ/kg.",
+      "target": "C3-L04"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-plateau.svg",
+        "text": "Il grafico riporta l’intervallo temporale della fusione."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q037",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 37,
+    "title": "Dal liquido al solido",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Durante la solidificazione si libera il calore latente di fusione. Per il materiale che perde energia il contributo Q ha segno negativo."
+      }
+    ],
+    "prompt": "Un materiale si raffredda a pressione fissa e cede calore latente pur rimanendo alla stessa temperatura, passando da liquido a solido. Dai il nome del fenomeno.",
+    "difficulty": 1,
+    "family": "dal-liquido-al-solido",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "solidificazione",
+      "aliases": [
+        "congelamento"
+      ]
+    },
+    "hints": [
+      "Riconosci il verso opposto alla fusione."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La fase finale contiene materiale solido.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q038",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 38,
+    "title": "Frazione fusa dal residuo",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "m_{\\rm fusa}=120-45=75\\ \\mathrm g,\\qquad f=100\\cdot75/120=62{,}5\\%"
+      },
+      {
+        "type": "text",
+        "text": "La frazione fusa è poco più della metà e la temperatura può ancora essere quella di fusione, poiché resta solido."
+      }
+    ],
+    "prompt": "Un campione contiene inizialmente 120 g di solido al punto di fusione. Si fornisce energia fino a lasciare 45 g di solido. Quale percentuale della massa iniziale è passata allo stato liquido?",
+    "difficulty": 1,
+    "family": "frazione-fusa-dal-residuo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 62.5,
+      "unit": "%",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Calcola per differenza la massa trasformata."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il residuo solido è il complemento della massa fusa.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q039",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 39,
+    "title": "Perché il vapore cede più energia?",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Entrambe le masse liquide cedono energia scendendo da 100 a 40 °C. Il campione inizialmente gassoso deve prima condensare e cede anche il termine mLv. La medesima temperatura iniziale non fissa da sola l’energia trasferita."
+      }
+    ],
+    "prompt": "Confronta masse uguali di vapore saturo a 100 °C e acqua liquida a 100 °C che terminano entrambe come acqua a 40 °C, alla pressione atmosferica. Quale contributo aggiuntivo compare per il vapore?",
+    "difficulty": 2,
+    "family": "perche-il-vapore-cede-piu-energia",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Calore latente ceduto nella condensazione",
+      "options": [
+        "Un salto termico di 273,15 K",
+        "Lavoro nullo perché il volume resta identico",
+        "Una temperatura iniziale maggiore",
+        "Calore latente ceduto nella condensazione"
+      ]
+    },
+    "hints": [
+      "Ricostruisci il percorso di fase prima del raffreddamento del liquido."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il primo tratto trasforma vapore in liquido alla temperatura di saturazione.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q040",
+    "kind": "question",
+    "course": "C3",
+    "section": "Quando la temperatura si ferma",
+    "order": 40,
+    "title": "Bilancio di una miscela con ghiaccio",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm disponibile}=100\\cdot4{,}18\\cdot20=8360\\ \\mathrm J>10\\cdot334=3340\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "110\\cdot4{,}18\\cdot T_f=8360-3340\\quad\\Longrightarrow\\quad T_f=10{,}9\\,{}^\\circ\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è sopra 0 °C e sotto 20 °C, coerente con la scomparsa di tutto il ghiaccio."
+      }
+    ],
+    "prompt": "Si aggiungono 10 g di ghiaccio a 0 °C a 100 g d’acqua a 20 °C in isolamento. Usa Lf = 334 J/g e c = 4,18 J/(g·K). Trova la temperatura finale in °C.",
+    "difficulty": 3,
+    "family": "bilancio-di-una-miscela-con-ghiaccio",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 10.92,
+      "unit": "°C",
+      "tolerance": 0.12
+    },
+    "hints": [
+      "Verifica se il calore cedibile fino a 0 °C può fondere il ghiaccio."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Dopo la fusione si scalda anche l’acqua proveniente dal ghiaccio.",
+      "target": "C3-L04"
+    }
+  },
+  {
+    "id": "C3-Q041",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 41,
+    "title": "Vento sulla superficie",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il movimento imposto dalla ventola allontana aria che ha ricevuto calore e la sostituisce con aria più fredda. Questo modifica il trasporto convettivo alla superficie."
+      }
+    ],
+    "prompt": "Un ventilatore accelera il raffreddamento di una piastra più calda dell’aria. Quale meccanismo viene potenziato direttamente?",
+    "difficulty": 1,
+    "family": "vento-sulla-superficie",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Convezione forzata",
+      "options": [
+        "Fusione",
+        "Convezione forzata",
+        "Irraggiamento nel vuoto",
+        "Conduzione interna del metallo a parità di gradiente"
+      ]
+    },
+    "hints": [
+      "Segui il trasporto di aria in movimento."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La ventola rinnova il fluido a contatto con la superficie.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q042",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 42,
+    "title": "Spessore di progetto",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "s=\\frac{\\lambda A\\Delta T}{P}=\\frac{0{,}040\\cdot0{,}75\\cdot20}{12}=0{,}050\\ \\mathrm m=5{,}0\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Qualsiasi spessore maggiore ridurrebbe ulteriormente P nelle medesime condizioni."
+      }
+    ],
+    "prompt": "Una lastra con conducibilità 0,040 W/(m·K) e area 0,75 m² separa facce con differenza 20 K. Quale spessore in cm limita a 12 W la potenza condotta?",
+    "difficulty": 2,
+    "family": "spessore-di-progetto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5,
+      "unit": "cm",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Ricava lo spessore dalla formula della potenza stazionaria."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Lo spessore compare al denominatore della potenza.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q043",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 43,
+    "title": "Trasmissione nel vuoto",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La radiazione emessa dalla prima superficie può raggiungere e riscaldare la seconda attraversando il vuoto. La direzione del trasferimento netto dipende dalle temperature e dagli scambi nelle due direzioni."
+      }
+    ],
+    "prompt": "Due superfici separate da vuoto scambiano energia termica. Indica il meccanismo che può attraversare lo spazio vuoto.",
+    "difficulty": 1,
+    "family": "trasmissione-nel-vuoto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "irraggiamento",
+      "aliases": [
+        "radiazione",
+        "radiazione termica"
+      ]
+    },
+    "hints": [
+      "Cerca un meccanismo che utilizzi onde elettromagnetiche."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Convezione e conduzione materiale richiedono materia nel tratto attraversato.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q044",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 44,
+    "title": "Doppia area e doppio spessore",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_f/P_i=(A_f/A_i)(s_i/s_f)=2\\cdot(1/2)=1"
+      },
+      {
+        "type": "text",
+        "text": "Il raddoppio dell’area offre un doppio canale di trasporto e il raddoppio dello spessore dimezza il gradiente. La potenza resta 9 W."
+      }
+    ],
+    "prompt": "Per una lastra la potenza condotta è 9 W. A parità di materiale e differenza termica si raddoppiano sia area sia spessore. Qual è la nuova potenza in W?",
+    "difficulty": 1,
+    "family": "doppia-area-e-doppio-spessore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 9,
+      "unit": "W",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Scrivi il rapporto fra le potenze per cancellare i dati invariati."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’area moltiplica la potenza mentre lo spessore la divide.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q045",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 45,
+    "title": "Manico di metallo e manico di legno",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P=\\lambda A\\Delta T/s"
+      },
+      {
+        "type": "text",
+        "text": "Con A, ΔT e s uguali rimane soltanto λ a distinguere i due flussi. La maggiore conducibilità favorisce il trasporto."
+      }
+    ],
+    "prompt": "Due manici dello stesso spessore e forma sono sottoposti alla stessa differenza di temperatura. Il metallo ha conducibilità maggiore. In regime stazionario quale porta più potenza?",
+    "difficulty": 1,
+    "family": "manico-di-metallo-e-manico-di-legno",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Il manico metallico",
+      "options": [
+        "Il manico di legno",
+        "Il manico metallico",
+        "Entrambi portano sempre la stessa potenza",
+        "Quello con temperatura assoluta minore a prescindere dal gradiente"
+      ]
+    },
+    "hints": [
+      "Fissa le grandezze geometriche e confronta λ."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "A parità di geometria il gradiente e la conducibilità determinano il flusso.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q046",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 46,
+    "title": "Quanto cambia la potenza emessa?",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_f/P_i=(450/300)^4=1{,}5^4=5{,}0625"
+      },
+      {
+        "type": "text",
+        "text": "La potenza emessa cresce di poco più di cinque volte. Per la potenza netta servirebbe anche conoscere l’irraggiamento assorbito."
+      }
+    ],
+    "prompt": "Una superficie passa da 300 K a 450 K mantenendo area ed emissività costanti. Calcola il rapporto fra potenza emessa finale e iniziale, trascurando qui l’assorbimento.",
+    "difficulty": 2,
+    "family": "quanto-cambia-la-potenza-emessa",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5.0625,
+      "unit": "1",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Qui si chiede l’emissione propria, proporzionale a T⁴."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Eleva alla quarta l’intero rapporto fra temperature assolute.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q047",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 47,
+    "title": "Regime senza accumulo",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In regime stazionario il profilo di temperatura in ogni punto resta invariato. L’energia che entra ogni secondo esce dall’altro lato, così la parete non ne accumula."
+      }
+    ],
+    "prompt": "Una parete trasmette la stessa potenza nel tempo e mantiene invariato il profilo di temperatura. Come si definisce il regime?",
+    "difficulty": 1,
+    "family": "regime-senza-accumulo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "stazionario",
+      "aliases": [
+        "regime stazionario",
+        "stazionaria"
+      ]
+    },
+    "hints": [
+      "Chiediti quale proprietà del sistema resta invariata al passare del tempo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una temperatura costante nel tempo permette un flusso continuo se esiste un gradiente spaziale.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q048",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 48,
+    "title": "Il fluido caldo sale sempre?",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una porzione meno densa riceve dal fluido circostante una spinta verso l’alto che può superare il suo peso. Si mette così in moto un trasporto di materia ed energia, tipico della convezione naturale quando le condizioni consentono l’instabilità."
+      }
+    ],
+    "prompt": "Un liquido il cui volume cresce scaldandosi viene riscaldato dal basso in gravità. Quale fenomeno può innescare la circolazione?",
+    "difficulty": 2,
+    "family": "il-fluido-caldo-sale-sempre",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Spinta di galleggiamento sul liquido caldo meno denso",
+      "options": [
+        "Moto delle cariche elettriche nel vuoto",
+        "Aumento della densità del liquido scaldato",
+        "Spinta di galleggiamento sul liquido caldo meno denso",
+        "Annullamento della pressione idrostatica"
+      ]
+    },
+    "hints": [
+      "Confronta la densità a parità di massa."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’espansione a massa fissa riduce la densità.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q049",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 49,
+    "title": "Calibrare la conducibilità",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac{Ps}{A\\Delta T}=\\frac{18\\cdot0{,}020}{0{,}40\\cdot15}=0{,}060\\ \\mathrm{W/(m\\,K)}"
+      },
+      {
+        "type": "text",
+        "text": "La scala delle unità è quella di un materiale poco conduttore. La stima presuppone che la potenza misurata attraversi proprio il pannello."
+      }
+    ],
+    "prompt": "Attraverso un pannello di 0,40 m² e spessore 0,020 m passano 18 W fra facce a 30 e 15 °C. Calcola λ in W/(m·K).",
+    "difficulty": 2,
+    "family": "calibrare-la-conducibilita",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.06,
+      "unit": "W/(m·K)",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Usa la differenza fra le temperature delle facce."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Isolando λ lo spessore passa al numeratore.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q050",
+    "kind": "question",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 50,
+    "title": "Emissione e bilancio radiativo",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_{\\rm netta}=\\varepsilon\\sigma A(T^4-T_{\\rm amb}^4)=0"
+      },
+      {
+        "type": "text",
+        "text": "L’uguaglianza delle temperature annulla la differenza. Sopra lo zero assoluto la superficie continua a emettere secondo le sue proprietà."
+      }
+    ],
+    "prompt": "Una piccola superficie è in equilibrio radiativo in una grande cavità isoterma alla sua stessa temperatura. Quale descrizione distingue emissione e bilancio?",
+    "difficulty": 2,
+    "family": "emissione-e-bilancio-radiativo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Emette e assorbe potenze uguali",
+      "options": [
+        "Emette e assorbe potenze uguali",
+        "Ha smesso di emettere",
+        "Emette solo se è visibile a occhio",
+        "Assorbe senza emettere"
+      ]
+    },
+    "hints": [
+      "Distingui ciascuno dei due flussi dalla loro differenza."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il saldo nullo può nascere da due contributi non nulli.",
+      "target": "C3-L05"
+    }
+  },
+  {
+    "id": "C3-Q051",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 51,
+    "title": "Espansione con apporto limitato",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=120(2{,}0-1{,}5)=60\\ \\mathrm J,\\qquad\\Delta U=35-60=-25\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il lavoro ceduto supera il calore ricevuto. La differenza proviene dall’energia interna."
+      }
+    ],
+    "prompt": "Un gas si espande contro 120 kPa costanti da 1,5 a 2,0 L e assorbe 35 J. Calcola ΔU in joule.",
+    "difficulty": 2,
+    "family": "espansione-con-apporto-limitato",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -25,
+      "unit": "J",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Valuta prima il lavoro uscente in kPa·L."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Lavoro compiuto dal gas e calore ricevuto entrano nel saldo con segni opposti.",
+      "target": "lab:C3"
+    }
+  },
+  {
+    "id": "C3-Q052",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 52,
+    "title": "Scambiare energia con un agitatore",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Se il moto macroscopico viene dissipato nel liquido, il lavoro ricevuto aumenta l’energia interna. Con lavoro uscente positivo, W è negativo e ΔU = −W è positivo."
+      }
+    ],
+    "prompt": "Un agitatore fa lavoro su un liquido in un contenitore isolato termicamente e rigido. Come può cambiare l’energia interna del liquido?",
+    "difficulty": 2,
+    "family": "scambiare-energia-con-un-agitatore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Può aumentare per il lavoro dell’agitatore",
+      "options": [
+        "È obbligatoriamente costante perché Q = 0",
+        "Diminuisce perché non cambia il volume",
+        "Può aumentare per il lavoro dell’agitatore",
+        "Diventa uguale alla temperatura"
+      ]
+    },
+    "hints": [
+      "La rigidità elimina il lavoro di espansione, ma esistono altri lavori."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un albero rotante trasferisce energia meccanica anche attraverso un confine a volume fisso.",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q053",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 53,
+    "title": "Convenzione per una compressione",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=p_{\\rm est}(V_f-V_i)<0"
+      },
+      {
+        "type": "text",
+        "text": "Sotto la spinta dell’ambiente è il gas a ricevere energia meccanica. Con la convenzione assegnata questo lavoro ha segno negativo."
+      }
+    ],
+    "prompt": "Adottiamo W positivo se compiuto dal gas. Una pressione esterna positiva riduce il volume del gas. Quale segno ha W? Scrivi positivo, negativo o nullo.",
+    "difficulty": 1,
+    "family": "convenzione-per-una-compressione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "negativo",
+      "aliases": [
+        "meno"
+      ]
+    },
+    "hints": [
+      "Guarda il segno di Vf − Vi."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "In compressione il prodotto della pressione esterna positiva per ΔV è negativo.",
+      "target": "lab:C3"
+    }
+  },
+  {
+    "id": "C3-Q054",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 54,
+    "title": "Recuperare il calore da due misure",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q=\\Delta U+W=-75+120=45\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas riceve 45 J per calore ma ne spende 120 come lavoro. La sua energia interna diminuisce di 75 J."
+      }
+    ],
+    "prompt": "Un sensore energetico stima ΔU = −75 J mentre il gas compie 120 J di lavoro. Ricava il calore entrante con segno in J.",
+    "difficulty": 1,
+    "family": "recuperare-il-calore-da-due-misure",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 45,
+      "unit": "J",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Sposta W dall’altro lato in ΔU = Q − W."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per isolare Q devi sommare il lavoro a ΔU.",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q055",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 55,
+    "title": "Area di un percorso inclinato",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=\\tfrac12(p_i+p_f)(V_f-V_i)=\\tfrac12(200+100)(4-1)=450\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "È un’espansione e il segno è positivo. Il risultato è compreso tra i rettangoli limite di 300 e 600 J."
+      }
+    ],
+    "prompt": "In un’espansione quasi statica il volume cresce da 1 a 4 L e la pressione cala linearmente da 200 a 100 kPa. Trova il lavoro in joule.",
+    "difficulty": 2,
+    "family": "area-di-un-percorso-inclinato",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 450,
+      "unit": "J",
+      "tolerance": 1
+    },
+    "hints": [
+      "L’area sotto un segmento inclinato è un trapezio."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per un tratto lineare puoi usare la media aritmetica delle pressioni estreme.",
+      "target": "lab:C3"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-trapezio.svg",
+        "text": "I due stati sono uniti dal segmento rettilineo registrato durante l’espansione."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q056",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 56,
+    "title": "Stessa pressione, lavoro diverso",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La pressione agli estremi non determina la funzione p(V). Due cammini che raggiungono gli stessi stati possono racchiudere aree diverse sotto le curve e comportare lavori diversi."
+      }
+    ],
+    "prompt": "Due trasformazioni quasi statiche di un gas hanno la stessa pressione iniziale e finale. È sufficiente per concludere che i lavori sono uguali?",
+    "difficulty": 2,
+    "family": "stessa-pressione-lavoro-diverso",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Occorre conoscere anche il cammino p–V",
+      "options": [
+        "Sì, il lavoro è una funzione di stato",
+        "Sì, perché la pressione media coincide sempre",
+        "Occorre conoscere anche il cammino p–V",
+        "Sì, purché il gas sia perfetto"
+      ]
+    },
+    "hints": [
+      "Pensa all’area sotto due curve con gli stessi estremi."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un’area dipende dall’intero profilo e dall’intervallo in volume.",
+      "target": "C3-L06"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-cammini.svg",
+        "text": "Gli estremi coincidono e i due percorsi passano per stati intermedi diversi."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q057",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 57,
+    "title": "Il nome del contenuto energetico microscopico",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia interna include contributi cinetici e potenziali microscopici. Il primo principio ne collega la variazione ai trasferimenti di energia attraverso il confine scelto."
+      }
+    ],
+    "prompt": "Come si chiama la funzione di stato U che include le energie microscopiche del sistema nel primo principio?",
+    "difficulty": 1,
+    "family": "il-nome-del-contenuto-energetico-microscopico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "energia interna",
+      "aliases": [
+        "interna"
+      ]
+    },
+    "hints": [
+      "Il nome distingue questa energia dal moto macroscopico dell’intero corpo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Q e W sono trasferimenti lungo un percorso.",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q058",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 58,
+    "title": "Dal pistone al lavoro",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta V=(25\\cdot10^{-4})(4\\cdot10^{-2})=10^{-4}\\ \\mathrm{m^3}"
+      },
+      {
+        "type": "formula",
+        "text": "W=10^5\\cdot10^{-4}=10\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il valore coincide con forza esterna 250 N per spostamento 0,04 m."
+      }
+    ],
+    "prompt": "Un pistone d’area 25 cm² avanza verso l’esterno di 4 cm contro una pressione costante di 100 kPa. Calcola il lavoro del gas in joule.",
+    "difficulty": 2,
+    "family": "dal-pistone-al-lavoro",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 10,
+      "unit": "J",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "La variazione di volume è area per spostamento."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un centimetro quadrato vale 10⁻⁴ m².",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q059",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 59,
+    "title": "Energia interna e traslazione",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il valore di ½Mv² dipende dal riferimento. Le velocità molecolari rispetto al centro di massa e lo stato termico del recipiente restano gli stessi: è questa parte microscopica che entra in U."
+      }
+    ],
+    "prompt": "Un recipiente termicamente isolato viene trasportato a velocità costante rispetto a un osservatore. Il solo cambio di riferimento che cosa modifica?",
+    "difficulty": 2,
+    "family": "energia-interna-e-traslazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "L’energia cinetica macroscopica attribuita al recipiente",
+      "options": [
+        "La temperatura del gas al suo interno",
+        "L’energia interna soltanto perché l’osservatore si muove",
+        "Il numero di moli",
+        "L’energia cinetica macroscopica attribuita al recipiente"
+      ]
+    },
+    "hints": [
+      "Separa il moto del centro di massa dall’agitazione relativa al centro di massa."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel regime classico U è definita indipendentemente dalla traslazione rigida del sistema.",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q060",
+    "kind": "question",
+    "course": "C3",
+    "section": "Fare i conti con il primo principio",
+    "order": 60,
+    "title": "Lavoro ricevuto in una trasformazione adiabatica",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02",
+      "C3-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta U=-W\\quad\\Longrightarrow\\quad W=-\\Delta U=-180\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’ambiente trasferisce meccanicamente 180 J al gas. Il segno distingue il verso scelto dal valore assoluto dell’energia."
+      }
+    ],
+    "prompt": "Per aumentare di 180 J l’energia interna di un gas senza scambiare calore, quale deve essere W, con lavoro uscente positivo, in joule?",
+    "difficulty": 1,
+    "family": "lavoro-ricevuto-in-una-trasformazione-adiabatica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -180,
+      "unit": "J",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Poni Q = 0 prima di risolvere il bilancio."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Eseguire lavoro sul sistema significa W uscente negativo.",
+      "target": "C3-L06"
+    }
+  },
+  {
+    "id": "C3-Q061",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 61,
+    "title": "Tratto verticale nel piano p–V",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-percorsi.svg",
+        "text": "Sul segmento verticale l’area di base ΔV è nulla."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta V=0\\Rightarrow W=0,\\qquad T=pV/(nR)"
+      },
+      {
+        "type": "text",
+        "text": "A volume e moli fissi l’aumento di p richiede un aumento di T."
+      }
+    ],
+    "prompt": "Una curva procede verso l’alto a volume fisso per un gas perfetto chiuso. Quale coppia di variazioni è corretta?",
+    "difficulty": 1,
+    "family": "tratto-verticale-nel-piano-pv",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Temperatura crescente e lavoro di espansione nullo",
+      "options": [
+        "Temperatura costante e lavoro positivo",
+        "Temperatura crescente e lavoro di espansione nullo",
+        "Temperatura decrescente e calore nullo",
+        "Volume crescente e lavoro nullo"
+      ]
+    },
+    "hints": [
+      "Leggi prima l’ascissa di due punti del tratto."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il volume rimane invariato e p cresce insieme alla temperatura assoluta.",
+      "target": "lab:C3"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-verticale.svg",
+        "text": "Segui la freccia dello stato nel piano p–V."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q062",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 62,
+    "title": "Quantificare il raffreddamento adiabatico",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q=0,\\quad\\Delta U=-W=-200\\ \\mathrm J,\\quad \\Delta T=\\Delta U/C_V=-200/25=-8\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "La temperatura cala perché il gas impiega energia interna per compiere lavoro."
+      }
+    ],
+    "prompt": "In un’espansione adiabatica un gas perfetto compie 200 J. La sua capacità totale a volume costante è 25 J/K, costante. Trova ΔT in K.",
+    "difficulty": 2,
+    "family": "quantificare-il-raffreddamento-adiabatico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -8,
+      "unit": "K",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Collega il primo principio alla dipendenza U(T) del gas perfetto."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La capacità a volume costante descrive ΔU anche lungo un percorso adiabatico.",
+      "target": "lab:C3"
+    }
+  },
+  {
+    "id": "C3-Q063",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 63,
+    "title": "Nominare un vincolo da una misura",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In una isobara del gas perfetto chiuso il volume segue la temperatura assoluta. Il lavoro di espansione si calcola moltiplicando p costante per ΔV."
+      }
+    ],
+    "prompt": "Durante una trasformazione lenta si misura la stessa pressione in tutti gli stati, mentre cambia il volume. Come si chiama la trasformazione?",
+    "difficulty": 1,
+    "family": "nominare-un-vincolo-da-una-misura",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "isobara",
+      "aliases": [
+        "isobarica"
+      ]
+    },
+    "hints": [
+      "Il suffisso richiama la pressione."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La pressione costante produce una linea orizzontale nel piano p–V.",
+      "target": "lab:C3"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-orizzontale.svg",
+        "text": "Segui la sequenza di punti sul diagramma."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q064",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 64,
+    "title": "Quasi statico con attrito",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La lentezza può mantenere il gas vicino all’equilibrio interno. L’attrito produce entropia e lascia un effetto nell’ambiente anche facendo tornare il pistone alla posizione iniziale."
+      }
+    ],
+    "prompt": "Un pistone procede lentissimo, ma lo scorrimento dissipa energia per attrito. Qual è la classificazione corretta?",
+    "difficulty": 2,
+    "family": "quasi-statico-con-attrito",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Può essere quasi statico e irreversibile",
+      "options": [
+        "È reversibile per la sola lentezza",
+        "Deve essere isotermo",
+        "Può essere quasi statico e irreversibile",
+        "È sicuramente un ciclo"
+      ]
+    },
+    "hints": [
+      "Chiediti se invertire il moto cancella il calore prodotto dall’attrito."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La reversibilità richiede anche assenza di effetti dissipativi.",
+      "target": "C3-L07"
+    }
+  },
+  {
+    "id": "C3-Q065",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 65,
+    "title": "Guadagno di energia lungo una isocora",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta U=Q=72\\ \\mathrm J,\\qquad\\Delta T=Q/C_V=72/12=6\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "La misura di ΔT permette in questo caso di risalire direttamente all’energia assorbita."
+      }
+    ],
+    "prompt": "Si forniscono 72 J a un gas in un’ampolla rigida. La sua capacità termica a volume costante è 12 J/K. Calcola l’aumento di temperatura in K.",
+    "difficulty": 1,
+    "family": "guadagno-di-energia-lungo-una-isocora",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "K",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Il lavoro di espansione in un’ampolla rigida vale zero."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il calore aumenta interamente U se non vi sono altre forme di lavoro.",
+      "target": "C3-L07"
+    }
+  },
+  {
+    "id": "C3-Q066",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 66,
+    "title": "Energia interna in una isoterma ideale",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta T=0\\quad\\Longrightarrow\\quad\\Delta U=0"
+      },
+      {
+        "type": "text",
+        "text": "Il calore che il gas riceve durante l’espansione isoterma compensa il lavoro svolto."
+      }
+    ],
+    "prompt": "Un gas perfetto chiuso percorre un’isoterma. Come descrivi la sua variazione di energia interna con una parola?",
+    "difficulty": 1,
+    "family": "energia-interna-in-una-isoterma-ideale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "nulla",
+      "aliases": [
+        "zero",
+        "0",
+        "nullo"
+      ]
+    },
+    "hints": [
+      "Per il gas perfetto a composizione fissata U dipende solo da T."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un processo con temperatura costante può scambiare calore pur avendo ΔU uguale a zero.",
+      "target": "lab:C3"
+    }
+  },
+  {
+    "id": "C3-Q067",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 67,
+    "title": "Un tratto isobaro di un gas perfetto",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=p(V_f-V_i)=nR(T_f-T_i)=0{,}50\\cdot8{,}314\\cdot20=83{,}14\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas si espande scaldandosi e il lavoro è positivo."
+      }
+    ],
+    "prompt": "Un gas perfetto di 0,50 mol si scalda di 20 K a pressione costante. Quanto lavoro di espansione compie in J? Usa R = 8,314 J/(mol·K).",
+    "difficulty": 2,
+    "family": "un-tratto-isobaro-di-un-gas-perfetto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 83.14,
+      "unit": "J",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "Sottrai pVi = nRTi da pVf = nRTf con p costante."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il prodotto pΔV in questo caso è nRΔT.",
+      "target": "C3-L07"
+    }
+  },
+  {
+    "id": "C3-Q068",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 68,
+    "title": "Confronto fra due curve",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-percorsi.svg",
+        "text": "Il confronto delle ordinate a volumi uguali determina anche l’ordine delle aree."
+      },
+      {
+        "type": "text",
+        "text": "L’espansione adiabatica raffredda il gas. L’isoterma mantiene pressioni maggiori lungo il percorso e ha area sottesa maggiore."
+      }
+    ],
+    "prompt": "Dallo stesso stato un gas perfetto si espande reversibilmente allo stesso volume finale lungo un’isoterma oppure un’adiabatica. Quale percorso dà il lavoro maggiore?",
+    "difficulty": 2,
+    "family": "confronto-fra-due-curve",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "L’isoterma",
+      "options": [
+        "L’adiabatica",
+        "I lavori sono uguali per gli stessi volumi",
+        "L’isoterma",
+        "In entrambe il lavoro è nullo"
+      ]
+    },
+    "hints": [
+      "Confronta le aree sotto le curve dopo il punto iniziale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Alla stessa ascissa in espansione la pressione adiabatica è inferiore a quella isoterma.",
+      "target": "lab:C3"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-percorsi.svg",
+        "text": "I due percorsi curvi partono da A. Confrontali fino allo stesso volume di arrivo."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q069",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 69,
+    "title": "Ricostruire un rapporto adiabatico",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "p_iV_i^\\gamma=p_fV_f^\\gamma\\quad\\Longrightarrow\\quad p_i/p_f=(V_f/V_i)^\\gamma=4^{1{,}5}=8"
+      },
+      {
+        "type": "text",
+        "text": "La pressione finale è un ottavo di quella iniziale. Una isoterma avrebbe dato una riduzione solo di quattro volte."
+      }
+    ],
+    "prompt": "Per un gas perfetto con γ costante pari a 1,50 in espansione adiabatica reversibile il volume quadruplica. Di quale fattore si riduce la pressione? Inserisci pi/pf.",
+    "difficulty": 3,
+    "family": "ricostruire-un-rapporto-adiabatico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 8,
+      "unit": "1",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Usa la relazione pVᵞ costante e rispetta l’ordine del rapporto richiesto."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Si chiede pi/pf, che è maggiore di uno.",
+      "target": "lab:C3"
+    }
+  },
+  {
+    "id": "C3-Q070",
+    "kind": "question",
+    "course": "C3",
+    "section": "Riconoscere il percorso nel piano p–V",
+    "order": 70,
+    "title": "Il bagno e la parete isolante",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L02",
+      "C3-L06"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il lavoro uscente va rimpiazzato dal calore entrante perché l’energia interna resti costante. Un contatto termico efficace rende possibile questa compensazione durante un’espansione abbastanza lenta."
+      }
+    ],
+    "prompt": "Un dispositivo mantiene il gas a temperatura costante durante una lenta espansione con lavoro positivo. Quale proprietà deve avere il contatto con il bagno?",
+    "difficulty": 2,
+    "family": "il-bagno-e-la-parete-isolante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Deve permettere al gas di ricevere energia come calore",
+      "options": [
+        "Deve permettere al gas di ricevere energia come calore",
+        "Deve essere perfettamente adiabatico",
+        "Deve impedire il moto del pistone",
+        "Deve sottrarre una quantità di calore uguale al lavoro"
+      ]
+    },
+    "hints": [
+      "Nel gas perfetto la temperatura fissa impone ΔU = 0."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Per una espansione isoterma di gas perfetto vale Q = W > 0.",
+      "target": "C3-L07"
+    }
+  },
+  {
+    "id": "C3-Q071",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 71,
+    "title": "Ciclo triangolare",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=+\\tfrac12\\Delta V\\Delta p=\\tfrac12\\cdot4\\cdot60=120\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il fattore un mezzo tiene conto del lato obliquo. Il risultato è un’energia perché 1 kPa·L vale 1 J."
+      }
+    ],
+    "prompt": "Un ciclo quasi statico orario forma un triangolo nel piano p–V con base 4 L e altezza 60 kPa. Qual è il lavoro netto in J?",
+    "difficulty": 1,
+    "family": "ciclo-triangolare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 120,
+      "unit": "J",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "Per un triangolo usa metà del rettangolo di base e altezza uguali."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Il senso orario assegna segno positivo al lavoro del gas.",
+      "target": "C3-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-triangolo.svg",
+        "text": "Il grafico indica le coordinate degli stati e l’ordine dei passaggi."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q072",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 72,
+    "title": "Invertire il verso del ciclo",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=\\oint p\\,dV"
+      },
+      {
+        "type": "text",
+        "text": "Invertendo il percorso, le espansioni diventano compressioni e viceversa. Ogni contributo si inverte e così anche il lavoro totale."
+      }
+    ],
+    "prompt": "Si ripercorre lo stesso ciclo quasi statico in verso opposto. Come cambia il lavoro netto?",
+    "difficulty": 1,
+    "family": "invertire-il-verso-del-ciclo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Stesso modulo, segno opposto",
+      "options": [
+        "Stesso modulo e stesso segno",
+        "Diventa sempre nullo",
+        "Stesso modulo, segno opposto",
+        "Raddoppia in modulo"
+      ]
+    },
+    "hints": [
+      "In ogni tratto il differenziale di volume cambia segno."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’area geometrica resta la stessa, il verso di percorrenza cambia.",
+      "target": "C3-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-ciclo.svg",
+        "text": "Le frecce mostrano il verso di percorrenza del ciclo. Le grandezze sono riportate nel testo."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q073",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 73,
+    "title": "Chiusura del cammino",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una sequenza che riporta il fluido nello stato iniziale costituisce un ciclo. Un solo valore di volume uguale a quello iniziale non garantisce che il ciclo sia chiuso."
+      }
+    ],
+    "prompt": "Un fluido ritorna periodicamente allo stato di partenza dopo una sequenza di trasformazioni. Come si chiama una sequenza completa?",
+    "difficulty": 1,
+    "family": "chiusura-del-cammino",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "ciclo",
+      "aliases": [
+        "ciclo termodinamico"
+      ]
+    },
+    "hints": [
+      "Il punto finale del tracciato coincide con quello iniziale."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La coincidenza deve riguardare l’intero stato del fluido.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q074",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 74,
+    "title": "Potenza da cicli al minuto",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "f=150/60=2{,}5\\ \\mathrm{s^{-1}},\\qquad P=W_{\\rm ciclo}f=24\\cdot2{,}5=60\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Ogni secondo vengono ripetuti due cicli e mezzo in media."
+      }
+    ],
+    "prompt": "Una macchina compie un lavoro netto di 24 J per ciclo e realizza 150 cicli al minuto. Qual è la potenza media in W?",
+    "difficulty": 2,
+    "family": "potenza-da-cicli-al-minuto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 60,
+      "unit": "W",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Converti i cicli al minuto in cicli al secondo."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Moltiplica l’energia per la frequenza espressa in s⁻¹.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q075",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 75,
+    "title": "Calore assorbito e calore netto",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm netto}=+400-300=+100\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Dopo un ciclo l’energia interna è tornata al valore iniziale. I 100 J netti coincidono con il lavoro uscente."
+      }
+    ],
+    "prompt": "Un gas, in un ciclo, riceve 400 J dalla sorgente calda e cede 300 J alla fredda. Quale valore rappresenta il calore netto del gas?",
+    "difficulty": 1,
+    "family": "calore-assorbito-e-calore-netto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "+100 J",
+      "options": [
+        "+400 J",
+        "+700 J",
+        "−300 J",
+        "+100 J"
+      ]
+    },
+    "hints": [
+      "Assegna il segno a ciascuno scambio riferendoti al gas."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il calore netto somma algebricamente ingresso e uscita.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q076",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 76,
+    "title": "Scarico termico richiesto",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W_{1}=1{,}8/3=0{,}6\\ \\mathrm{kJ},\\qquad Q_c=Q_h-W_{1}=2{,}0-0{,}6=1{,}4\\ \\mathrm{kJ}"
+      },
+      {
+        "type": "text",
+        "text": "Su tre cicli l’ingresso totale è 6 kJ; 4,2 kJ vengono scaricati e 1,8 kJ escono come lavoro."
+      }
+    ],
+    "prompt": "Un motore consegna 1,8 kJ di lavoro in tre cicli identici. Per ciascun ciclo assorbe 2,0 kJ di calore. Trova i kJ ceduti per ciclo, come modulo.",
+    "difficulty": 2,
+    "family": "scarico-termico-richiesto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 1.4,
+      "unit": "kJ",
+      "tolerance": 0.015
+    },
+    "hints": [
+      "Riporta prima tutti gli scambi alla stessa base di un ciclo."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il lavoro indicato è quello di tre cicli.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q077",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 77,
+    "title": "Orientamento motore",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-ciclo.svg",
+        "text": "Si percorre il lato superiore da sinistra a destra e si torna sul lato inferiore."
+      },
+      {
+        "type": "text",
+        "text": "Il lavoro positivo di espansione supera il modulo del lavoro negativo di compressione. La curva ha senso orario."
+      }
+    ],
+    "prompt": "In un diagramma p–V con volume verso destra e pressione verso l’alto, quale senso di percorrenza di una curva semplice chiusa fornisce lavoro netto positivo?",
+    "difficulty": 1,
+    "family": "orientamento-motore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "orario",
+      "aliases": [
+        "senso orario"
+      ]
+    },
+    "hints": [
+      "Osserva se l’espansione avviene a pressione maggiore della compressione."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un’area chiusa semplice è positiva per il lavoro del gas quando il bordo alto procede a destra.",
+      "target": "C3-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-ciclo.svg",
+        "text": "Le frecce mostrano il verso di percorrenza del ciclo. Le grandezze sono riportate nel testo."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q078",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 78,
+    "title": "Superficie mancante",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W=\\Delta p\\Delta V\\quad\\Longrightarrow\\quad \\Delta V=150/50=3\\ \\mathrm L"
+      },
+      {
+        "type": "text",
+        "text": "Interessa l’intervallo fra i volumi massimo e minimo, non il volume assoluto dello stato iniziale."
+      }
+    ],
+    "prompt": "Un ciclo rettangolare orario dà 150 J con due isobare distanti 50 kPa. Trova l’intervallo di volumi in litri.",
+    "difficulty": 1,
+    "family": "superficie-mancante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 3,
+      "unit": "L",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Isola la base dalla relazione area = altezza × base."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Con joule e kPa il volume ricavato è espresso in litri.",
+      "target": "C3-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-prova-ciclo.svg",
+        "text": "Le frecce mostrano il verso di percorrenza del ciclo. Le grandezze sono riportate nel testo."
+      }
+    ]
+  },
+  {
+    "id": "C3-Q079",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 79,
+    "title": "Il gas al termine di un ciclo",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "U e S sono determinate dallo stato del fluido. Le loro variazioni sull’intero giro sono nulle. L’ambiente può aver guadagnato entropia e il lavoro netto può essere diverso da zero."
+      }
+    ],
+    "prompt": "Il fluido di lavoro torna al suo stato iniziale. Quale coppia di variazioni del fluido è necessariamente nulla?",
+    "difficulty": 2,
+    "family": "il-gas-al-termine-di-un-ciclo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "ΔU e ΔS",
+      "options": [
+        "Calore netto e lavoro netto",
+        "Calore ricevuto e calore ceduto",
+        "Lavoro in ogni tratto e potenza media",
+        "ΔU e ΔS"
+      ]
+    },
+    "hints": [
+      "Identifica le funzioni di stato."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un ciclo chiuso annulla le variazioni di funzione di stato, anche con scambi non nulli.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q080",
+    "kind": "question",
+    "course": "C3",
+    "section": "Leggere il lavoro di un ciclo",
+    "order": 80,
+    "title": "Un ciclo in due letture di calore",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "W_{\\rm netto}=Q_{\\rm netto}=80+50-170=-40\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il ciclo assorbe 40 J netti di lavoro dall’ambiente per poter cedere più calore di quanto ne assorba."
+      }
+    ],
+    "prompt": "Un ciclo assorbe 80 J in un tratto e 50 J in un secondo, quindi cede 170 J in un terzo. Calcola il lavoro netto del gas in J.",
+    "difficulty": 2,
+    "family": "un-ciclo-in-due-letture-di-calore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -40,
+      "unit": "J",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Per un ciclo il primo principio collega direttamente i saldi."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Lo scambio in uscita entra con segno negativo.",
+      "target": "C3-L08"
+    }
+  },
+  {
+    "id": "C3-Q081",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 81,
+    "title": "Un limite fra due sorgenti",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "T_h=450{,}15\\ \\mathrm K,\\quad T_c=300{,}15\\ \\mathrm K,\\quad \\eta_{\\rm max}=100(1-300{,}15/450{,}15)\\%=33{,}32\\%"
+      },
+      {
+        "type": "text",
+        "text": "Il limite riguarda qualsiasi motore ciclico che scambi calore soltanto con queste sorgenti."
+      }
+    ],
+    "prompt": "Una macchina opera fra 177 °C e 27 °C. Calcola in percentuale il massimo rendimento teorico.",
+    "difficulty": 2,
+    "family": "un-limite-fra-due-sorgenti",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 33.32,
+      "unit": "%",
+      "tolerance": 0.12
+    },
+    "hints": [
+      "Usa temperature assolute nel rendimento reversibile."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Converti entrambe le temperature aggiungendo 273,15.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q082",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 82,
+    "title": "Un solo serbatoio termico",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una simile macchina farebbe tornare il fluido allo stato iniziale e trasformerebbe integralmente il calore della sorgente in lavoro. Il secondo principio esclude questo risultato come unico effetto."
+      }
+    ],
+    "prompt": "Quale proposta contrasta con l’enunciato di Kelvin–Planck?",
+    "difficulty": 1,
+    "family": "un-solo-serbatoio-termico",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Convertire ciclicamente in lavoro tutto il calore sottratto a una sola sorgente, come unico effetto",
+      "options": [
+        "Convertire ciclicamente in lavoro tutto il calore sottratto a una sola sorgente, come unico effetto",
+        "Trasformare lavoro in calore per attrito",
+        "Trasferire calore spontaneamente dal caldo al freddo",
+        "Usare lavoro per estrarre calore da un oggetto freddo"
+      ]
+    },
+    "hints": [
+      "Fai attenzione a «ciclicamente» e «unico effetto»."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il vincolo si applica a un motore ciclico in contatto con una sola sorgente.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q083",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 83,
+    "title": "Ricostruire la temperatura calda",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "1-\\eta=T_c/T_h\\quad\\Longrightarrow\\quad T_h=T_c/(1-\\eta)=300/0{,}60=500\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "La temperatura ottenuta è maggiore di quella della sorgente fredda, come richiede un motore."
+      }
+    ],
+    "prompt": "Un motore reversibile tra due sorgenti ha rendimento 0,40 quando la sorgente fredda è a 300 K. Calcola la temperatura calda in K.",
+    "difficulty": 2,
+    "family": "ricostruire-la-temperatura-calda",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 500,
+      "unit": "K",
+      "tolerance": 0.3
+    },
+    "hints": [
+      "Ricava prima il rapporto Tc/Th."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il complemento del rendimento è Tc/Th.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q084",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 84,
+    "title": "Percorsi di raccordo nel ciclo ideale",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le due adiabatiche reversibili raccordano le temperature delle sorgenti. Nell’espansione adiabatica il fluido si raffredda e nella compressione adiabatica si scalda."
+      }
+    ],
+    "prompt": "Nel ciclo di Carnot, quali trasformazioni reversibili con Q = 0 raccordano le due isoterme? Usa il plurale.",
+    "difficulty": 1,
+    "family": "percorsi-di-raccordo-nel-ciclo-ideale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "adiabatiche",
+      "aliases": [
+        "adiabatiche reversibili",
+        "trasformazioni adiabatiche"
+      ]
+    },
+    "hints": [
+      "Questi tratti permettono alla temperatura del fluido di cambiare senza scambio di calore."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Lo scambio reversibile con i serbatoi avviene sugli altri due tratti.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q085",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 85,
+    "title": "Frigorifero e legge di Clausius",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il passaggio netto dal freddo al caldo non è l’unico effetto: viene consumato lavoro. Il calore immesso nella stanza è la somma di quello estratto e del lavoro fornito al ciclo."
+      }
+    ],
+    "prompt": "Un frigorifero trasferisce energia dal vano freddo alla stanza più calda. Perché è compatibile con il secondo principio?",
+    "difficulty": 1,
+    "family": "frigorifero-e-legge-di-clausius",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Assorbe lavoro e scarica alla stanza anche questa energia",
+      "options": [
+        "Il calore passa spontaneamente dal freddo al caldo in ogni situazione",
+        "Assorbe lavoro e scarica alla stanza anche questa energia",
+        "Il vano freddo deve essere a 0 K",
+        "Il compressore sostituisce la sorgente calda"
+      ]
+    },
+    "hints": [
+      "Verifica se il trasferimento termico è davvero l’unico effetto."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il funzionamento del compressore richiede energia dall’esterno.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q086",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 86,
+    "title": "Lavoro utile da un flusso di calore",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_{\\rm utile}=\\eta\\dot Q_h=0{,}22\\cdot1500=330\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "La restante potenza, 1170 W, viene scaricata se il dispositivo funziona ciclicamente e non ha altri scambi."
+      }
+    ],
+    "prompt": "Un motore con rendimento effettivo 0,22 riceve dal serbatoio caldo 1,50 kW termici. Quanti watt restituisce come potenza meccanica media?",
+    "difficulty": 1,
+    "family": "lavoro-utile-da-un-flusso-di-calore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 330,
+      "unit": "W",
+      "tolerance": 1
+    },
+    "hints": [
+      "La relazione di rendimento vale anche fra potenze medie riferite allo stesso tempo."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "1,50 kW corrispondono a 1500 W.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q087",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 87,
+    "title": "Macchine reali e sorgenti uguali",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con le stesse due sorgenti A raggiunge il limite di Carnot. Gli attriti in B degradano l’energia disponibile per il lavoro ed esigono più calore scaricato per la stessa energia assorbita."
+      }
+    ],
+    "prompt": "A e B sono cicliche e operano fra le stesse due temperature. A è reversibile, B ha attriti interni. Quale confronto è compatibile con il secondo principio?",
+    "difficulty": 2,
+    "family": "macchine-reali-e-sorgenti-uguali",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Il rendimento di B è inferiore a quello di A",
+      "options": [
+        "B è più efficiente perché l’attrito scalda il gas",
+        "Tutte le macchine hanno necessariamente lo stesso rendimento",
+        "Il rendimento di A dipende solo dalle dimensioni del pistone",
+        "Il rendimento di B è inferiore a quello di A"
+      ]
+    },
+    "hints": [
+      "La produzione di entropia riduce il lavoro ottenibile per il medesimo apporto di calore."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il massimo fra due sorgenti è raggiunto dal ciclo reversibile.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q088",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 88,
+    "title": "Limite inferiore al calore scaricato",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{c,\\min}=Q_h\\frac{T_c}{T_h}=900\\frac{300}{600}=450\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Scaricare meno calore significherebbe fornire più di 450 J di lavoro, superando il limite di Carnot."
+      }
+    ],
+    "prompt": "Una macchina fra 600 K e 300 K riceve 900 J. Quale minimo calore deve scaricare alla sorgente fredda, come modulo in J?",
+    "difficulty": 2,
+    "family": "limite-inferiore-al-calore-scaricato",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 450,
+      "unit": "J",
+      "tolerance": 1
+    },
+    "hints": [
+      "Il calore di scarto minimo corrisponde alla macchina reversibile."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Usa Qc/Qh = Tc/Th per il limite reversibile.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q089",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 89,
+    "title": "Grandezza utile al numeratore",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\eta=W_{\\rm netto}/Q_h"
+      },
+      {
+        "type": "text",
+        "text": "Il rapporto indica quale frazione dell’energia termica ricevuta diventa lavoro utile. Il primo principio collega il resto al calore ceduto."
+      }
+    ],
+    "prompt": "Completa la definizione del rendimento di un motore termico: rapporto fra il … netto fornito per ciclo e il calore assorbito dalla sorgente calda.",
+    "difficulty": 1,
+    "family": "grandezza-utile-al-numeratore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "lavoro",
+      "aliases": [
+        "lavoro meccanico"
+      ]
+    },
+    "hints": [
+      "Entrambi i termini del rapporto hanno dimensione di energia."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Al denominatore compare il calore assorbito, non il calore netto.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q090",
+    "kind": "question",
+    "course": "C3",
+    "section": "Dal calore al lavoro utile",
+    "order": 90,
+    "title": "Approfondimento · Prestazione di una macchina frigorifera",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L07",
+      "C3-L08"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_c=Q_h-W_{\\rm in}=200-50=150\\ \\mathrm J,\\qquad Q_c/W_{\\rm in}=150/50=3"
+      },
+      {
+        "type": "text",
+        "text": "Un coefficiente superiore a uno indica che si sposta più energia di quanta se ne consumi come lavoro. Il bilancio energetico resta chiuso."
+      }
+    ],
+    "prompt": "In ogni ciclo un frigorifero assorbe 50 J di lavoro e cede 200 J alla stanza. Qual è il coefficiente di prestazione frigorifero Qc/Win?",
+    "difficulty": 2,
+    "family": "approfondimento-prestazione-di-una-macchina-frigorifera",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 3,
+      "unit": "1",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Ricostruisci prima il calore prelevato dal vano freddo."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "I 200 J sono il calore ceduto al lato caldo.",
+      "target": "C3-L09"
+    }
+  },
+  {
+    "id": "C3-Q091",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 91,
+    "title": "Entropia persa da un serbatoio",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta S=Q/T=(-640)/320=-2{,}00\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "La sola parte calda può perdere entropia. Per giudicare la spontaneità occorre includere il resto del sistema."
+      }
+    ],
+    "prompt": "Un serbatoio a 320 K cede 640 J. Trova la sua variazione di entropia in J/K.",
+    "difficulty": 1,
+    "family": "entropia-persa-da-un-serbatoio",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -2,
+      "unit": "J/K",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Usa il calore che entra nel serbatoio con il suo segno."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il serbatoio perde energia a temperatura fissa.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q092",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 92,
+    "title": "Entropia del fluido e dell’ambiente",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’entropia del fluido ritorna al valore iniziale. L’ambiente considerato insieme al fluido registra la produzione di entropia associata alle irreversibilità."
+      }
+    ],
+    "prompt": "In un ciclo reale irreversibile il fluido torna allo stato iniziale. Quale descrizione delle variazioni di entropia è compatibile con il secondo principio?",
+    "difficulty": 2,
+    "family": "entropia-del-fluido-e-dellambiente",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Quella del fluido è zero; quella complessiva è positiva",
+      "options": [
+        "Entrambe sono negative",
+        "Quella del fluido deve essere positiva al termine del ciclo",
+        "Quella del fluido è zero; quella complessiva è positiva",
+        "Quella complessiva deve essere zero per ogni ciclo"
+      ]
+    },
+    "hints": [
+      "Separa la funzione di stato del fluido dalla produzione totale."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La coincidenza degli stati iniziale e finale riguarda solo il fluido ciclico.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q093",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 93,
+    "title": "Unità SI dell’entropia",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "[\\Delta S]=[Q]/[T]=\\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "Questa unità differisce dal joule dell’energia e dal watt della potenza. La stessa dimensione di una capacità termica non rende uguali i due concetti."
+      }
+    ],
+    "prompt": "Scrivi l’unità SI dell’entropia usando i simboli del joule e del kelvin.",
+    "difficulty": 1,
+    "family": "unita-si-dellentropia",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "J/K",
+      "aliases": [
+        "J K^-1",
+        "J K⁻¹",
+        "J·K⁻¹"
+      ]
+    },
+    "hints": [
+      "L’entropia isotermica reversibile è il rapporto fra calore e temperatura assoluta."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il kelvin è al denominatore.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q094",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 94,
+    "title": "Un passaggio di fase reversibile",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm rev}=mL_f=0{,}010\\cdot100\\,000=1000\\ \\mathrm J,\\quad\\Delta S=1000/250=4\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "L’entropia del materiale aumenta mentre assorbe calore latente. In condizioni reversibili l’ambiente perde la stessa entropia."
+      }
+    ],
+    "prompt": "Dieci grammi di materiale fondono reversibilmente a 250 K. Usa Lf = 100 kJ/kg. Calcola la variazione di entropia del materiale in J/K.",
+    "difficulty": 2,
+    "family": "un-passaggio-di-fase-reversibile",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 4,
+      "unit": "J/K",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "La temperatura resta costante durante la fusione all’equilibrio."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Converti grammi in kg e kJ in J.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q095",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 95,
+    "title": "Quanto conta il cammino reale?",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il percorso reversibile di riferimento può differire fisicamente da quello reale, ma ha gli stessi stati iniziale e finale. Il rapporto δQrev/T integrato su quel percorso fornisce quindi ΔS."
+      }
+    ],
+    "prompt": "Due stati di equilibrio sono collegati da un processo rapido irreversibile. Per ricavare ΔS del sistema quale strategia è sempre lecita, se si conoscono i modelli necessari?",
+    "difficulty": 2,
+    "family": "quanto-conta-il-cammino-reale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Calcolare l’integrale del calore reversibile su un percorso immaginato fra gli stessi stati",
+      "options": [
+        "Porre sempre ΔS = Qreale/Tfinale",
+        "Porre ΔS = 0 se il processo è breve",
+        "Usare solo il calore ceduto all’ambiente senza temperatura",
+        "Calcolare l’integrale del calore reversibile su un percorso immaginato fra gli stessi stati"
+      ]
+    },
+    "hints": [
+      "L’entropia è una funzione di stato."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il calore di un percorso reversibile serve a calcolare la variazione fra gli estremi.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q096",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 96,
+    "title": "Dal numero di microstati al rapporto di entropia",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta S}{k_B}=\\ln48-\\ln12=\\ln(48/12)=\\ln4\\simeq1{,}386"
+      },
+      {
+        "type": "text",
+        "text": "La molteplicità aumenta e il risultato è positivo. La grandezza richiesta è priva di unità."
+      }
+    ],
+    "prompt": "Le configurazioni microscopiche equiprobabili accessibili passano da 12 a 48. Calcola ΔS/kB usando il logaritmo naturale.",
+    "difficulty": 2,
+    "family": "dal-numero-di-microstati-al-rapporto-di-entropia",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 1.3863,
+      "unit": "1",
+      "tolerance": 0.008
+    },
+    "hints": [
+      "Usa il rapporto delle molteplicità e non la loro differenza."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La differenza di due logaritmi è il logaritmo del rapporto.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q097",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 97,
+    "title": "Configurazione microscopica individuale",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un microstato specifica informazioni microscopiche che il solo macrostato lascia aperte. L’entropia statistica collega il numero di microstati compatibili alle condizioni osservabili."
+      }
+    ],
+    "prompt": "In meccanica statistica come si chiama una singola configurazione microscopica compatibile con un dato macrostato?",
+    "difficulty": 1,
+    "family": "configurazione-microscopica-individuale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "microstato",
+      "aliases": [
+        "uno stato microscopico",
+        "stato microscopico"
+      ]
+    },
+    "hints": [
+      "Il prefisso indica la scala alla quale si specifica la configurazione."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il numero Ω conta le configurazioni compatibili con i vincoli macroscopici.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q098",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 98,
+    "title": "Firma del verso spontaneo",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta S_{\\rm tot}=-90/360+90/300=-0{,}25+0{,}30=0{,}05\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "Il segno positivo indica produzione di entropia nello scambio attraverso una differenza finita di temperatura."
+      }
+    ],
+    "prompt": "Un’energia di 90 J passa spontaneamente da 360 K a 300 K tra due serbatoi. Qual è la produzione totale di entropia in J/K?",
+    "difficulty": 2,
+    "family": "firma-del-verso-spontaneo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.05,
+      "unit": "J/K",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Somma prima i contributi con i loro segni."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Entrambi i serbatoi vanno inclusi, ognuno con la propria temperatura.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q099",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 99,
+    "title": "Un candidato processo isolato",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per un sistema macroscopico isolato ΔS è non negativa. Un valore negativo richiede di rivedere modello e confini oppure di riconoscere che quel verso del processo non è spontaneo."
+      }
+    ],
+    "prompt": "Per un intero sistema isolato un modello prevede una diminuzione macroscopica spontanea di entropia di 4 J/K. Come si giudica il risultato termodinamico?",
+    "difficulty": 1,
+    "family": "un-candidato-processo-isolato",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "È incompatibile con il secondo principio nelle condizioni dichiarate",
+      "options": [
+        "È sempre ammesso se U è costante",
+        "È richiesto per ogni raffreddamento",
+        "Dimostra che il sistema compie esattamente 4 J di lavoro",
+        "È incompatibile con il secondo principio nelle condizioni dichiarate"
+      ]
+    },
+    "hints": [
+      "Applica il criterio all’intero sistema isolato."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La conservazione di U da sola non stabilisce il verso del processo.",
+      "target": "C3-L10"
+    }
+  },
+  {
+    "id": "C3-Q100",
+    "kind": "question",
+    "course": "C3",
+    "section": "Seguire il verso dei processi",
+    "order": 100,
+    "title": "Approfondimento · Riscaldamento a temperatura variabile",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L06",
+      "C3-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta S=\\int_{250}^{300}\\frac{C\\,dT}{T}=C\\ln\\!\\frac{300}{250}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta S=30\\ln(1{,}2)=5{,}47\\ \\mathrm{J/K}"
+      },
+      {
+        "type": "text",
+        "text": "La variazione è positiva. Il valore si trova tra Q/300 e Q/250, i due limiti ottenuti usando le temperature estreme."
+      }
+    ],
+    "prompt": "Un corpo con capacità termica costante di 30 J/K è portato reversibilmente da 250 a 300 K senza cambiamenti di fase, con solo riscaldamento a volume fissato. Calcola ΔS in J/K.",
+    "difficulty": 3,
+    "family": "approfondimento-riscaldamento-a-temperatura-variabile",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5.4696,
+      "unit": "J/K",
+      "tolerance": 0.025
+    },
+    "hints": [
+      "Somma piccoli contributi C dT/T, perché la temperatura cambia."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Quando T varia, dividere il calore totale per la sola temperatura finale introduce errore.",
+      "target": "C3-L10"
+    }
+  }
+]

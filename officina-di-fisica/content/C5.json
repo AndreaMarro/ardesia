@@ -1,0 +1,5319 @@
+[
+  {
+    "id": "C5-L01",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 1,
+    "title": "Contare i ritorni all’equilibrio",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "coverage": [
+      "UD4 · oscillatore armonico come sorgente",
+      "UD4 · ampiezza, periodo, frequenza e pulsazione"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una punta oscillante tocca un foglio che scorre regolarmente sotto di essa. La traccia sale e scende. Per misurare un periodo occorre ritrovare la punta alla stessa altezza e nello stesso verso di moto. Fra due passaggi consecutivi per il centro la punta ha percorso soltanto mezza oscillazione."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-orologio.svg",
+        "text": "Si parte da un massimo e ci si ferma al massimo successivo. L’asse orizzontale è il tempo registrato dal sensore."
+      },
+      {
+        "type": "text",
+        "text": "L’ampiezza A è la distanza massima dall’equilibrio. Il periodo T si misura in secondi. La frequenza f conta le oscillazioni complete in un secondo e ha unità hertz. Se N cicli durano un intervallo Δt, ogni ciclo occupa lo stesso tempo."
+      },
+      {
+        "type": "formula",
+        "text": "T=\\frac{\\Delta t}{N},\\qquad f=\\frac{N}{\\Delta t}=\\frac{1}{T},\\qquad \\omega=2\\pi f"
+      },
+      {
+        "type": "text",
+        "text": "La pulsazione ω indica quanti radianti di fase si accumulano al secondo. La coordinata x di un oscillatore armonico si descrive con una sinusoide. La fase iniziale φ permette di scegliere la posizione e il verso di moto all’istante zero."
+      },
+      {
+        "type": "formula",
+        "text": "x(t)=A\\cos(\\omega t+\\varphi),\\qquad a(t)=-\\omega^2x(t)"
+      },
+      {
+        "type": "text",
+        "text": "L’accelerazione punta verso l’equilibrio e cresce in modulo con lo spostamento. All’estremo la velocità è momentaneamente nulla, proprio mentre il richiamo è massimo. Al centro la velocità ha modulo massimo. Per una molla ideale orizzontale questa descrizione vale finché la forza è proporzionale allo spostamento e gli attriti sono trascurabili."
+      },
+      {
+        "type": "text",
+        "text": "Se leggi 4 cm fra due estremi, traccia la linea mediana e misura fino a una sola cresta. L’ampiezza è 2 cm. Per verificare il periodo fai scorrere mentalmente tutto il profilo di T e controlla che anche il verso della pendenza coincida."
+      }
+    ]
+  },
+  {
+    "id": "C5-L02",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 2,
+    "title": "Una fotografia e un cronometro raccontano due cose diverse",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD4 · perturbazione, energia e mezzo materiale",
+      "UD4 · velocità, frequenza e lunghezza d’onda",
+      "UD4 · equazione armonica di propagazione",
+      "UD4 · onde trasversali su corda e longitudinali nei fluidi"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un nastro legato a una corda sale e poi scende quando passa un impulso. L’impulso può raggiungere l’altra estremità mentre il nastro continua a oscillare vicino al segno iniziale. La propagazione trasferisce una perturbazione e può trasferire energia. La posizione di equilibrio delle singole porzioni di corda resta sostanzialmente fissa."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-istantanea.svg",
+        "text": "Misura lungo la corda fra due creste consecutive per ottenere λ. La distanza verticale dall’equilibrio dà invece l’ampiezza."
+      },
+      {
+        "type": "text",
+        "text": "Una fotografia a un istante fissato permette di misurare la lunghezza d’onda λ in metri. Un sensore fermo che osserva passare le creste misura il periodo T in secondi. Durante un periodo la forma d’onda progressiva avanza di una lunghezza d’onda."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{\\lambda}{T}=\\lambda f,\\qquad k=\\frac{2\\pi}{\\lambda}"
+      },
+      {
+        "type": "text",
+        "text": "Per una sinusoide che avanza verso x crescente senza deformarsi, la fase può essere scritta come kx − ωt + φ. k misura radianti per metro. Il segno meno indica il verso di propagazione. Quando t cresce, una cresta conserva la sua fase soltanto se cresce anche x."
+      },
+      {
+        "type": "formula",
+        "text": "y(x,t)=A\\cos(kx-\\omega t+\\varphi),\\qquad v=\\frac{\\omega}{k}"
+      },
+      {
+        "type": "text",
+        "text": "Sulla corda y è perpendicolare al cammino della perturbazione. In una colonna d’aria le particelle oscillano avanti e indietro parallelamente al cammino del suono."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-suono.svg",
+        "text": "Fra due compressioni successive passa una lunghezza d’onda. Le righe rappresentano strati di fluido e si addensano dove aumenta la pressione."
+      },
+      {
+        "type": "text",
+        "text": "Se un grafico sembra suggerire che il suono salga e scenda, leggi il nome dell’ordinata. Una pressione che varia sinusoidalmente indica quanto l’aria è compressa e non disegna la traiettoria delle molecole."
+      }
+    ]
+  },
+  {
+    "id": "C5-L03",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 3,
+    "title": "Sommare gli spostamenti nel punto di incontro",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD4 · principio di sovrapposizione",
+      "UD4 · interferenza costruttiva e distruttiva"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Due impulsi raggiungono lo stesso tratto di corda. In regime lineare e per piccoli spostamenti, ogni impulso produce la propria deviazione dall’equilibrio. Per sapere dove si trova la corda si sommano con il segno gli spostamenti nello stesso punto e nello stesso istante. Dopo l’incontro i due impulsi possono proseguire separatamente."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-somma.svg",
+        "text": "Le tre linee orizzontali sono tre zeri distinti. Il profilo inferiore si ottiene sommando ordinata per ordinata i due superiori."
+      },
+      {
+        "type": "formula",
+        "text": "y_{\\mathrm{tot}}(x,t)=y_1(x,t)+y_2(x,t)"
+      },
+      {
+        "type": "text",
+        "text": "Per due sinusoidi della stessa frequenza la differenza di fase indica quanto una è in anticipo sull’altra. Quando due creste coincidono, le ampiezze si sommano. Con ampiezze uguali e opposizione di fase la cresta di una coincide con il ventre negativo dell’altra e in quel punto si ha cancellazione. Con ampiezze diverse rimane uno spostamento."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta\\varphi=\\frac{2\\pi\\,\\Delta s}{\\lambda}\\quad\\text{(sorgenti in fase, stesso mezzo)}"
+      },
+      {
+        "type": "text",
+        "text": "Una differenza di cammino Δs di una lunghezza d’onda introduce un giro completo di fase. Mezza lunghezza d’onda introduce mezzo giro. Se le sorgenti partono con fasi diverse bisogna includere anche quello sfasamento. La stabilità nel tempo di massimi e minimi richiede una differenza di fase stabile."
+      },
+      {
+        "type": "text",
+        "text": "Se due contributi suonano ugualmente forti, questo da solo non dimostra che si annullino. Prima identifica la grandezza da sommare e la fase al ricevitore. L’energia dell’intero campo segue la distribuzione di massimi e minimi nello spazio."
+      }
+    ]
+  },
+  {
+    "id": "C5-L04",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 4,
+    "title": "Dalla potenza della sorgente all’energia raccolta",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD4 · energia e potenza di un’onda meccanica in un mezzo elastico",
+      "UD4 · intensità come energia per area e tempo",
+      "UD4 · legge dell’inverso del quadrato della distanza"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una sorgente può erogare sempre la stessa energia al secondo mentre un piccolo sensore, allontanandosi, ne raccoglie sempre meno. La potenza P misura il trasferimento totale di energia E nell’intervallo Δt. L’intensità media I misura invece la potenza che attraversa una superficie perpendicolare alla propagazione, divisa per l’area illuminata."
+      },
+      {
+        "type": "formula",
+        "text": "P=\\frac{\\Delta E}{\\Delta t},\\qquad I=\\frac{P_{\\perp}}{S},\\qquad [I]=\\mathrm{W\\,m^{-2}}"
+      },
+      {
+        "type": "text",
+        "text": "Per una sorgente puntiforme isotropa in un mezzo omogeneo privo di assorbimento, la potenza si ripartisce su sfere concentriche. L’area cresce più rapidamente del raggio."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-sfere.svg",
+        "text": "Una sezione mostra le due sfere come cerchi. Nel denominatore va l’area della superficie sferica, che è 4πr²."
+      },
+      {
+        "type": "formula",
+        "text": "I(r)=\\frac{P}{4\\pi r^2},\\qquad \\frac{I_2}{I_1}=\\left(\\frac{r_1}{r_2}\\right)^2"
+      },
+      {
+        "type": "text",
+        "text": "Nell’onda armonica su una corda ideale le piccole porzioni di corda acquistano energia cinetica ed elastica. A parità di corda, velocità di propagazione e frequenza, la potenza media cresce con il quadrato dell’ampiezza A. Nell’approssimazione di piccole pendenze, con densità lineare μ in kg/m, si può esprimerla così."
+      },
+      {
+        "type": "formula",
+        "text": "\\overline P=\\tfrac12\\mu v\\omega^2A^2"
+      },
+      {
+        "type": "text",
+        "text": "Una sonda di area piccola e perpendicolare al fronte raccoglie, in un campo uniforme sulla sonda, Pᵣ = I S. Per ritrovare l’energia raccolta moltiplica ancora per la durata dell’esposizione. La legge sferica perde validità per fasci collimati, riflessioni importanti o assorbimento significativo."
+      }
+    ]
+  },
+  {
+    "id": "C5-L05",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 5,
+    "title": "Ascoltare il mezzo, la sorgente e il ricevitore",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD4 · velocità del suono nei mezzi",
+      "UD4 · intensità, percezione e livello sonoro in decibel",
+      "UD4 · effetto Doppler qualitativo"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un breve segnale sonoro accompagna una compressione che si propaga attraverso il mezzo. La velocità dipende dall’elasticità e dall’inerzia del materiale e può cambiare con la temperatura. Per i calcoli usa il valore dichiarato nel problema. Un’onda che attraversa un’interfaccia fissa conserva la frequenza imposta dalla sorgente. La diversa velocità cambia la lunghezza d’onda."
+      },
+      {
+        "type": "text",
+        "text": "Un’eco percorre il tratto fra sorgente e riflettore due volte se sorgente e ricevitore coincidono. Il tempo osservato è il tempo dell’andata più quello del ritorno."
+      },
+      {
+        "type": "formula",
+        "text": "d=\\frac{v\\,\\Delta t_{\\rm eco}}{2}"
+      },
+      {
+        "type": "text",
+        "text": "Il livello di intensità sonora L confronta l’intensità I con un riferimento I₀. Per il livello di intensità in aria si adotta convenzionalmente I₀ = 10⁻¹² W/m². Il logaritmo decimale richiede un rapporto tra grandezze con la stessa unità."
+      },
+      {
+        "type": "formula",
+        "text": "L=10\\log_{10}\\!\\left(\\frac{I}{I_0}\\right)\\ \\mathrm{dB},\\qquad L_2-L_1=10\\log_{10}\\!\\left(\\frac{I_2}{I_1}\\right)\\ \\mathrm{dB}"
+      },
+      {
+        "type": "text",
+        "text": "Aumentare di 10 dB significa moltiplicare l’intensità per dieci. La sensazione di intensità dipende anche dalla frequenza e dalla sensibilità dell’ascoltatore. Il decibel misura qui un rapporto fisico."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-doppler.svg",
+        "text": "Nel tempo che separa due emissioni la sorgente avanza. Davanti alla sorgente la distanza fra due fronti è minore rispetto al caso di sorgente ferma."
+      },
+      {
+        "type": "text",
+        "text": "Un ricevitore fermo investito da fronti più ravvicinati li conta a frequenza maggiore. Se la sorgente si allontana, i fronti raggiungono il ricevitore meno spesso. Descrivi il movimento lungo la direzione che unisce sorgente e ricevitore. Il moto laterale lontano da tale direzione richiede di considerare la sola componente radiale nell’approssimazione usuale."
+      }
+    ]
+  },
+  {
+    "id": "C5-L06",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 6,
+    "title": "Un’onda di campi attraverso lo spazio",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD7 · onde elettromagnetiche e campi ortogonali",
+      "UD7 · velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+      "UD7 · spettro: radio, microonde, infrarosso, visibile, UV, X e gamma"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La luce di una stella attraversa spazio quasi vuoto. Una perturbazione elettromagnetica può propagarsi senza materia lungo il cammino. Per un’onda piana nel vuoto il campo elettrico E e il campo magnetico B oscillano in fase, lungo direzioni fra loro perpendicolari ed entrambe perpendicolari alla propagazione."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-campi.svg",
+        "text": "Nel punto segnato E è verso l’alto e B verso chi guarda. La regola della mano destra assegna all’energia il verso orizzontale indicato."
+      },
+      {
+        "type": "formula",
+        "text": "c=\\lambda_0 f,\\qquad E_0=c B_0,\\qquad c\\simeq 3{,}00\\times10^8\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "L’ampiezza E₀ misura il massimo modulo del campo elettrico in V/m. A parità di condizioni, l’intensità media dell’onda nel vuoto è proporzionale a E₀². La frequenza determina il ritmo delle oscillazioni e permette di ordinare le radiazioni per banda."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-spettro.svg",
+        "text": "Leggi da sinistra a destra per passare a frequenze maggiori. L’asse ordina le regioni senza rappresentarne l’estensione in scala."
+      },
+      {
+        "type": "text",
+        "text": "La luce visibile occupa una stretta regione fra infrarosso e ultravioletto. Microonde e onde radio sono regioni convenzionali, con le microonde spesso classificate entro le radiofrequenze. Per raggi X e gamma anche il meccanismo di produzione conta e le bande possono sovrapporsi."
+      },
+      {
+        "type": "text",
+        "text": "All’interfaccia stazionaria con un mezzo trasparente la frequenza resta quella della sorgente. Se la velocità di fase è v = c/n, la nuova lunghezza d’onda è quella nel vuoto divisa per l’indice di rifrazione n. Prima di usare c nel calcolo controlla in quale mezzo è stata misurata la lunghezza d’onda."
+      }
+    ]
+  },
+  {
+    "id": "C5-L07",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 7,
+    "title": "Quanti di energia e frazione trasmessa",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD7 · quantizzazione dell’energia e relazione di Planck",
+      "UD7 · assorbimento e legge di Lambert–Beer",
+      "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La potenza luminosa dipende dall’energia portata da ciascun fotone e dal numero di fotoni che arrivano ogni secondo. Un fotone di frequenza f ha energia hf, con la costante di Planck h pari a circa 6,626 × 10⁻³⁴ J·s. Per luce monocromatica, dividere l’energia totale per hf dà il numero di fotoni."
+      },
+      {
+        "type": "formula",
+        "text": "E_{\\gamma}=hf=\\frac{hc}{\\lambda_0},\\qquad P=\\dot N E_{\\gamma}"
+      },
+      {
+        "type": "text",
+        "text": "Un singolo fotone può ionizzare un atomo se l’energia disponibile raggiunge una soglia caratteristica del materiale e del processo. Una radioonda intensa può trasportare grande energia totale pur avendo fotoni a bassa energia. Raggi X e gamma comprendono fotoni ionizzanti. Radioonde, microonde e infrarosso hanno energia del singolo fotone molto minore delle comuni energie di ionizzazione. Per l’ultravioletto occorre confrontare energia e soglia."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-attenuazione.svg",
+        "text": "Ogni strato di spessore d trasmette metà di ciò che lo raggiunge. Le diminuzioni assolute diventano più piccole man mano che il fascio si indebolisce."
+      },
+      {
+        "type": "text",
+        "text": "Nel modello di Lambert–Beer un fascio monocromatico attraversa uno strato omogeneo. Ciascuno spessore uguale rimuove la stessa frazione dell’intensità ancora presente. Se il rivelatore seleziona il fascio diretto e μ è costante, l’intensità in uscita decresce esponenzialmente. In un mezzo soltanto assorbente il coefficiente è di assorbimento. Eventuale diffusione fuori dal fascio può contribuire all’attenuazione misurata."
+      },
+      {
+        "type": "formula",
+        "text": "I(x)=I(0)\\,e^{-\\mu x},\\qquad x_{1/2}=\\frac{\\ln 2}{\\mu}"
+      },
+      {
+        "type": "text",
+        "text": "μ si esprime nell’inverso dell’unità usata per x. Se misuri μ in cm⁻¹ mantieni x in cm. Il quoziente I(x)/I(0) esprime la frazione trasmessa. Un valore di 0,25 significa che esce il 25% e, in assenza di altre perdite, il 75% viene assorbito."
+      }
+    ]
+  },
+  {
+    "id": "C5-L08",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 8,
+    "title": "Una popolazione di nuclei che cambia nel tempo",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "coverage": [
+      "UD7 · nucleo instabile, nuclidi e isotopi radioattivi",
+      "UD7 · attività, legge di decadimento e tempo di dimezzamento",
+      "UD7 · decadimenti α, β e transizioni γ"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Due atomi dello stesso elemento hanno lo stesso numero di protoni Z. Se cambia il numero di neutroni, cambia il numero di massa A e si parla di isotopi. Alcuni nuclei sono instabili. Per un singolo nucleo l’istante del decadimento è imprevedibile, ma per una grande popolazione di nuclei identici la frazione che rimane si descrive statisticamente."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-emivita.svg",
+        "text": "I punti rappresentano quantità attese. Dopo ogni intervallo T½ rimane metà della popolazione presente all’inizio di quell’intervallo."
+      },
+      {
+        "type": "formula",
+        "text": "N(t)=N_0 e^{-\\lambda_d t}=N_0\\,2^{-t/T_{1/2}},\\qquad T_{1/2}=\\frac{\\ln 2}{\\lambda_d}"
+      },
+      {
+        "type": "text",
+        "text": "La costante λd è una probabilità per unità di tempo, diversa dalla lunghezza d’onda. L’attività 𝒜 è il numero medio di decadimenti al secondo, misurato in becquerel. Se λd è in s⁻¹ e N è un numero di nuclei, il prodotto ha la giusta unità. Per una sola specie isolata senza nuova produzione anche l’attività si dimezza ogni T½."
+      },
+      {
+        "type": "formula",
+        "text": "\\mathcal{A}(t)=-\\frac{dN}{dt}=\\lambda_d N(t),\\qquad 1\\ \\mathrm{Bq}=1\\ \\mathrm{s}^{-1}"
+      },
+      {
+        "type": "text",
+        "text": "Nel decadimento α viene emesso un nucleo di elio con due protoni e due neutroni. A diminuisce di quattro e Z di due. Nel β⁻ un neutrone si trasforma in protone, con emissione di elettrone e antineutrino. Z aumenta di uno, A resta costante. Nel β⁺ un protone si trasforma in neutrone, con emissione di positrone e neutrino. Z diminuisce di uno. Nel passaggio γ il nucleo perde energia di eccitazione emettendo un fotone senza cambiare A e Z."
+      },
+      {
+        "type": "text",
+        "text": "Una misura può contare soltanto una parte delle emissioni e includere un fondo. Prima di identificare conteggi al secondo e attività, leggi l’efficienza del rivelatore e le condizioni dichiarate."
+      }
+    ]
+  },
+  {
+    "id": "C5-L09",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 9,
+    "title": "Seguire la luce quando cambia il mezzo",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD7 · legge della riflessione",
+      "UD7 · indice di rifrazione e legge di Snell"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una matita immersa sembra piegarsi alla superficie dell’acqua. Per descrivere il cambiamento di direzione della luce, indica innanzitutto la superficie di separazione e traccia la normale, cioè la perpendicolare nel punto d’incidenza. Tutti gli angoli della legge ottica sono misurati rispetto a questa retta."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-rifrazione.svg",
+        "text": "Il raggio incidente arriva dall’alto a sinistra. Quello riflesso rimane in aria. Il raggio trasmesso nel vetro si avvicina alla normale."
+      },
+      {
+        "type": "text",
+        "text": "L’angolo di riflessione uguaglia l’angolo d’incidenza. Per la porzione di luce trasmessa, la continuità della fase lungo un’interfaccia piana e ferma collega le direzioni nei due mezzi. Gli indici di rifrazione n₁ e n₂ sono rapporti adimensionali."
+      },
+      {
+        "type": "formula",
+        "text": "n=\\frac{c}{v},\\qquad \\theta_{\\rm riflesso}=\\theta_1,\\qquad n_1\\sin\\theta_1=n_2\\sin\\theta_2"
+      },
+      {
+        "type": "text",
+        "text": "Se n₂ è maggiore di n₁, a incidenza obliqua il seno e l’angolo di rifrazione diminuiscono. A incidenza normale entrambi gli angoli sono zero anche se nel secondo mezzo cambiano la velocità e la lunghezza d’onda."
+      },
+      {
+        "type": "text",
+        "text": "Da un mezzo di indice maggiore verso uno di indice minore può non esistere un angolo rifratto reale. Il valore limite si ottiene imponendo θ₂ = 90°. Oltre il limite si ha riflessione totale interna nell’ottica geometrica di due mezzi trasparenti ideali."
+      },
+      {
+        "type": "formula",
+        "text": "\\sin\\theta_c=\\frac{n_2}{n_1}\\quad(n_1>n_2)"
+      },
+      {
+        "type": "text",
+        "text": "Se l’angolo nel testo è misurato dalla superficie, sottrailo da 90° prima di applicare la legge di Snell. Un seno calcolato maggiore di uno richiede di verificare il verso del passaggio e la possibilità di riflessione totale."
+      }
+    ]
+  },
+  {
+    "id": "C5-L10",
+    "kind": "lesson",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 10,
+    "title": "Costruire l’immagine di una lente sottile",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "coverage": [
+      "UD7 · lenti sottili convergenti",
+      "UD7 · legge dei punti coniugati e formazione di immagini"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una lente convergente sottile porta raggi paralleli all’asse vicino al fuoco posto dall’altro lato. Nel modello parassiale i raggi sono vicini all’asse e formano piccoli angoli con esso. Assumiamo lo stesso mezzo sui due lati. Poniamo positive la focale f e la distanza p di un oggetto reale davanti alla lente. La distanza q è positiva sul lato d’uscita quando i raggi si incontrano davvero."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-reale.svg",
+        "text": "Dal vertice dell’oggetto il raggio verde parte parallelo all’asse e passa per F′. Il raggio rosso attraversa il centro senza cambiare direzione. La loro intersezione determina il vertice dell’immagine."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{1}{f}=\\frac{1}{p}+\\frac{1}{q},\\qquad q=\\frac{fp}{p-f},\\qquad m=\\frac{h'}{h}=-\\frac{q}{p}"
+      },
+      {
+        "type": "text",
+        "text": "Tutte le distanze devono avere la stessa unità. Il rapporto m è adimensionale. Con p = 3f si ottengono q = 1,5f e m = −0,5. L’immagine si trova fra F′ e 2F′, capovolta e alta metà dell’oggetto. Uno schermo messo nel piano dell’immagine intercetta raggi convergenti."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-virtuale.svg",
+        "text": "Avvicinando l’oggetto a p = f/2 i raggi emergenti divergono. I tratti tratteggiati li prolungano all’indietro e localizzano l’immagine sul lato dell’oggetto."
+      },
+      {
+        "type": "text",
+        "text": "Se p è minore di f il denominatore p − f diventa negativo. Ne segue q < 0 e perciò m > 0. Si forma un’immagine virtuale, diritta e ingrandita. A p = f i raggi emergenti sono paralleli e il modello colloca l’immagine all’infinito. Nel laboratorio modifica p, prevedi il segno di q e controlla la previsione tramite i raggi. Per ogni configurazione indica anche dove potresti porre uno schermo."
+      }
+    ]
+  },
+  {
+    "id": "C5-E001",
+    "kind": "example",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 1,
+    "title": "Due massimi successivi sul tracciato",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Nel tracciato qui sotto il sensore misura lo spostamento dalla posizione di equilibrio. Determina ampiezza, periodo, frequenza e pulsazione.",
+    "family": "due-massimi-successivi-sul-tracciato",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-orologio.svg",
+        "text": "L’ordinata della cresta è +2 cm. Due massimi sono separati da 0,50 s. Non serve conoscere la fase dell’oscillazione all’avvio."
+      },
+      {
+        "type": "text",
+        "text": "Il sensore osserva un unico oscillatore sinusoidale. L’ampiezza si misura dal livello di equilibrio fino alla cresta e vale A = 2 cm. I due massimi delimitano un ciclo intero, perciò T = 0,50 s."
+      },
+      {
+        "type": "formula",
+        "text": "f=\\frac1T=\\frac1{0{,}50\\ \\mathrm s}=2{,}0\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "Per passare dai cicli ai radianti moltiplichiamo per 2π, l’angolo percorso dalla fase in un ciclo."
+      },
+      {
+        "type": "formula",
+        "text": "\\omega=2\\pi f=2\\pi(2{,}0\\ \\mathrm{s^{-1}})=4\\pi\\ \\mathrm{rad/s}\\simeq12{,}6\\ \\mathrm{rad/s}"
+      },
+      {
+        "type": "text",
+        "text": "In un secondo ci sono due massimi dello stesso tipo a distanza di mezzo secondo. La frequenza è coerente con questa osservazione."
+      }
+    ]
+  },
+  {
+    "id": "C5-E002",
+    "kind": "example",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 2,
+    "title": "La direzione del richiamo",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un oscillatore armonico ha pulsazione 5,0 rad/s. Quando è 12 mm a destra dell’equilibrio passa verso destra. Con asse positivo a destra, determina l’accelerazione e spiega se sta rallentando.",
+    "family": "la-direzione-del-richiamo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La posizione e la velocità sono entrambe positive in questo istante. Annotiamo x = +12 mm = +0,012 m. Il richiamo elastico dell’oscillatore è rivolto verso il centro, quindi l’accelerazione deve risultare negativa."
+      },
+      {
+        "type": "formula",
+        "text": "a=-\\omega^2x=-(5{,}0\\ \\mathrm{s^{-1}})^2(0{,}012\\ \\mathrm m)=-0{,}30\\ \\mathrm{m/s^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il quadrato della pulsazione ha unità s⁻² e il radiante è adimensionale. In questo tratto la velocità è verso destra e l’accelerazione verso sinistra, quindi il modulo della velocità diminuisce. Dopo l’inversione, sullo stesso lato, il richiamo avrà ancora lo stesso verso ma farà aumentare il modulo della velocità."
+      }
+    ]
+  },
+  {
+    "id": "C5-E003",
+    "kind": "example",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 3,
+    "title": "Unire profilo spaziale e segnale temporale",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Sulla corda della figura un punto fissato passa per quattro cicli completi in 0,40 s. Quanto avanza un massimo in 0,25 s?",
+    "family": "unire-profilo-spaziale-e-segnale-temporale",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-istantanea.svg",
+        "text": "Due massimi consecutivi distano 0,80 m. Questa lettura fornisce λ. I quattro cicli del sensore forniscono invece f."
+      },
+      {
+        "type": "text",
+        "text": "Supponiamo che il profilo avanzi senza deformarsi. La frequenza conta i cicli al secondo."
+      },
+      {
+        "type": "formula",
+        "text": "f=\\frac{4}{0{,}40\\ \\mathrm s}=10\\ \\mathrm{Hz},\\qquad v=\\lambda f=(0{,}80\\ \\mathrm m)(10\\ \\mathrm{s^{-1}})=8{,}0\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La cresta si propaga a velocità costante. Moltiplichiamo per l’intervallo richiesto."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=v\\,\\Delta t=(8{,}0\\ \\mathrm{m/s})(0{,}25\\ \\mathrm s)=2{,}0\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "In un quarto di secondo passano 2,5 periodi. La cresta deve quindi avanzare di 2,5 lunghezze d’onda, ossia 2,0 m. È la cresta a compiere questo viaggio, mentre i punti materiali oscillano trasversalmente."
+      }
+    ]
+  },
+  {
+    "id": "C5-E004",
+    "kind": "example",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 4,
+    "title": "Leggere la velocità dal segno della fase",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Un’onda sulla corda è descritta da y = 0,003 cos(4πx + 20πt), con x, y in metri e t in secondi. Determina lunghezza d’onda, frequenza, velocità e verso.",
+    "family": "leggere-la-velocita-dal-segno-della-fase",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Confrontiamo i coefficienti con k = 2π/λ e ω = 2πf. Un giro spaziale corrisponde a 2π radianti così come un’oscillazione completa nel tempo."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac{2\\pi}{4\\pi\\ \\mathrm{rad/m}}=0{,}50\\ \\mathrm m,\\qquad f=\\frac{20\\pi\\ \\mathrm{rad/s}}{2\\pi}=10\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "Seguiamo una cresta, dunque manteniamo costante la sua fase. Fra due istanti la variazione di fase sulla stessa cresta deve essere zero."
+      },
+      {
+        "type": "formula",
+        "text": "4\\pi\\,\\Delta x+20\\pi\\,\\Delta t=0,\\qquad \\frac{\\Delta x}{\\Delta t}=-\\frac{20\\pi}{4\\pi}=-5{,}0\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Il segno individua il verso delle x decrescenti. Il modulo coincide con λf = 0,50 × 10 = 5,0 m/s. Il coefficiente 0,003 m descrive soltanto l’ampiezza trasversale."
+      }
+    ]
+  },
+  {
+    "id": "C5-E005",
+    "kind": "example",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 5,
+    "title": "Un impulso positivo incontra una depressione",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due impulsi triangolari occupano per un istante gli stessi punti della corda. Il primo raggiunge +2 cm al centro, il secondo −1 cm. Ricostruisci il centro e il punto a metà del lato ascendente, dove entrambe le ordinate sono dimezzate.",
+    "family": "un-impulso-positivo-incontra-una-depressione",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-somma.svg",
+        "text": "Leggi le due righe superiori usando lo zero di ciascuna. Entrambi gli impulsi sono raffigurati nel medesimo istante e sulla stessa scala verticale."
+      },
+      {
+        "type": "text",
+        "text": "La piccola ampiezza permette di assumere una risposta lineare. Al centro sommiamo con il segno gli spostamenti dallo stesso livello di equilibrio."
+      },
+      {
+        "type": "formula",
+        "text": "y_{\\rm centro}=(+2\\ \\mathrm{cm})+(-1\\ \\mathrm{cm})=+1\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Sul fianco comune i due contributi sono +1 cm e −0,5 cm."
+      },
+      {
+        "type": "formula",
+        "text": "y_{\\rm fianco}=(+1\\ \\mathrm{cm})+(-0{,}5\\ \\mathrm{cm})=+0{,}5\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Il triangolo risultante ha lo stesso orientamento del più alto e un’altezza minore. Dopo la sovrapposizione i due impulsi ideali si separano e continuano a propagarsi."
+      }
+    ]
+  },
+  {
+    "id": "C5-E006",
+    "kind": "example",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 6,
+    "title": "Due cammini per lo stesso segnale",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due sorgenti coerenti e in fase producono un segnale con λ = 0,40 m. Dal punto P distano 2,10 m e 2,70 m. Le onde arrivano con la stessa ampiezza. Mostra quale interferenza si osserva in P.",
+    "family": "due-cammini-per-lo-stesso-segnale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per confrontare due segnali uguali all’origine serve sapere quanta strada in più ha percorso uno di essi. I cammini si sottraggono."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta s=2{,}70-2{,}10=0{,}60\\ \\mathrm m,\\qquad \\frac{\\Delta s}{\\lambda}=\\frac{0{,}60}{0{,}40}=1{,}5"
+      },
+      {
+        "type": "text",
+        "text": "Un giro intero riporta la fase allo stesso punto. Resta mezzo giro. Possiamo controllare lo sfasamento in radianti."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta\\varphi=2\\pi(1{,}5)=3\\pi\\equiv\\pi\\pmod{2\\pi}"
+      },
+      {
+        "type": "text",
+        "text": "Quando la prima onda si trova al massimo positivo, la seconda è al massimo negativo. L’uguaglianza delle ampiezze e la risposta lineare danno cancellazione completa in P. Una piccola differenza di ampiezza lascerebbe un’oscillazione residua."
+      }
+    ]
+  },
+  {
+    "id": "C5-E007",
+    "kind": "example",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 7,
+    "title": "Una piccola superficie sulla sfera",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente isotropa emette 0,40 W in un mezzo ideale. A 2,0 m di distanza un sensore piano di area 3,0 cm² è perpendicolare al raggio. Quanta energia intercetta in 5,0 s?",
+    "family": "una-piccola-superficie-sulla-sfera",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-sfere.svg",
+        "text": "Il segnale disponibile si distribuisce su tutta la superficie sferica. Il sensore ne occupa una piccola porzione."
+      },
+      {
+        "type": "text",
+        "text": "A = 3,0 cm² = 3,0 × 10⁻⁴ m², perché il fattore 10⁻² si applica a entrambe le dimensioni. Calcoliamo l’intensità sulla sfera di raggio 2 m."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{0{,}40}{4\\pi(2{,}0)^2}\\ \\mathrm{W/m^2}=7{,}96\\times10^{-3}\\ \\mathrm{W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il sensore è piccolo e orientato perpendicolarmente, così possiamo assumere I uniforme su A. L’energia è la potenza raccolta moltiplicata per la durata."
+      },
+      {
+        "type": "formula",
+        "text": "E=I A\\,\\Delta t=(7{,}96\\times10^{-3})(3{,}0\\times10^{-4})(5{,}0)\\ \\mathrm J=1{,}2\\times10^{-5}\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’intera sorgente emette 2 J in cinque secondi. Una piccola superficie a due metri intercetta soltanto una frazione di quei joule."
+      }
+    ]
+  },
+  {
+    "id": "C5-E008",
+    "kind": "example",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 8,
+    "title": "Un trasduttore cambia ampiezza e frequenza",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "La stessa corda tesa trasporta un’onda armonica. L’ampiezza passa da 2 a 3 mm e la frequenza da 80 a 40 Hz. Qual è il rapporto tra potenza media finale e iniziale?",
+    "family": "un-trasduttore-cambia-ampiezza-e-frequenza",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La corda e la tensione restano uguali, dunque μ e la velocità di propagazione v hanno lo stesso valore nei due esperimenti. Per piccole pendenze la potenza media è proporzionale ad A²ω². Dividendo le due potenze i fattori comuni si cancellano."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{P_2}{P_1}=\\left(\\frac{A_2}{A_1}\\right)^2\\left(\\frac{\\omega_2}{\\omega_1}\\right)^2=\\left(\\frac{A_2}{A_1}\\right)^2\\left(\\frac{f_2}{f_1}\\right)^2"
+      },
+      {
+        "type": "text",
+        "text": "I rapporti sono adimensionali, quindi possiamo usare millimetri al numeratore e al denominatore per l’ampiezza."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{P_2}{P_1}=\\left(\\frac32\\right)^2\\left(\\frac{40}{80}\\right)^2=\\frac94\\frac14=\\frac9{16}=0{,}5625"
+      },
+      {
+        "type": "text",
+        "text": "La corda trasporta circa il 56% della potenza iniziale. L’aumento d’ampiezza compensa in parte la diminuzione di frequenza."
+      }
+    ]
+  },
+  {
+    "id": "C5-E009",
+    "kind": "example",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 9,
+    "title": "Due cammini sonori misurati da una sonda",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "In un blocco omogeneo la velocità del suono è 1500 m/s. Lo stesso trasduttore emette un impulso e riceve echi a 40 µs e a 68 µs da due superfici perpendicolari. Qual è la loro distanza reciproca lungo il fascio?",
+    "family": "due-cammini-sonori-misurati-da-una-sonda",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Annotiamo tempi di andata e ritorno dallo stesso punto di partenza. Per la distanza fra le superfici possiamo sottrarre i tempi di eco prima della conversione."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta t=(68-40)\\ \\mathrm{\\mu s}=28\\times10^{-6}\\ \\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Il tratto aggiuntivo viene percorso sia all’andata sia al ritorno. Se d è la distanza fra le superfici, la lunghezza aggiuntiva è 2d."
+      },
+      {
+        "type": "formula",
+        "text": "2d=v\\,\\Delta t,\\qquad d=\\frac{1500\\cdot28\\times10^{-6}}{2}\\ \\mathrm m=0{,}021\\ \\mathrm m=2{,}1\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Le profondità separate sarebbero 3,0 cm e 5,1 cm. La loro differenza conferma 2,1 cm. Si assume che entrambi gli echi provengano dal percorso diretto descritto."
+      }
+    ]
+  },
+  {
+    "id": "C5-E010",
+    "kind": "example",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 10,
+    "title": "Sommare due contributi acustici indipendenti",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Al microfono due sorgenti sonore indipendenti danno, accese separatamente, 60 dB e 70 dB. Quanto misura il livello di intensità quando sono accese insieme? Usa I₀ = 10⁻¹² W/m².",
+    "family": "sommare-due-contributi-acustici-indipendenti",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per sorgenti incoerenti e dopo media temporale si sommano le intensità. Occorre prima invertire il logaritmo per passare dai decibel a watt per metro quadrato."
+      },
+      {
+        "type": "formula",
+        "text": "I_1=I_0\\,10^{60/10}=10^{-6}\\ \\mathrm{W/m^2},\\qquad I_2=I_0\\,10^{70/10}=10^{-5}\\ \\mathrm{W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il totale è I = 1,1 × 10⁻⁵ W/m². Confrontiamolo con il riferimento per tornare alla scala in decibel."
+      },
+      {
+        "type": "formula",
+        "text": "L=10\\log_{10}\\!\\left(\\frac{1{,}1\\times10^{-5}}{10^{-12}}\\right)\\ \\mathrm{dB}=10(7+\\log_{10}1{,}1)\\ \\mathrm{dB}\\simeq70{,}4\\ \\mathrm{dB}"
+      },
+      {
+        "type": "text",
+        "text": "Il contributo più debole aggiunge un decimo all’intensità della sorgente più forte. Questo spiega l’aumento di soli 0,4 dB."
+      }
+    ]
+  },
+  {
+    "id": "C5-E011",
+    "kind": "example",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 11,
+    "title": "Luce che entra in un vetro",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Luce monocromatica ha λ₀ = 600 nm nel vuoto. Attraversa una lastra con n = 1,50. Trova frequenza, velocità e lunghezza d’onda nel vetro.",
+    "family": "luce-che-entra-in-un-vetro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La frequenza è fissata dalla sorgente e si conserva passando attraverso la superficie ferma. Moltiplicando 600 nm per 10⁻⁹ m/nm si ottiene 6,00 × 10⁻⁷ m."
+      },
+      {
+        "type": "formula",
+        "text": "f=\\frac{c}{\\lambda_0}=\\frac{3{,}00\\times10^8}{6{,}00\\times10^{-7}}\\ \\mathrm{Hz}=5{,}00\\times10^{14}\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "L’indice rallenta la velocità di fase secondo v = c/n. Calcoliamo poi quanto spazio percorre un massimo del campo durante un periodo."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{3{,}00\\times10^8}{1{,}50}=2{,}00\\times10^8\\ \\mathrm{m/s},\\qquad \\lambda=\\frac{v}{f}=4{,}00\\times10^{-7}\\ \\mathrm m=400\\ \\mathrm{nm}"
+      },
+      {
+        "type": "text",
+        "text": "Il rapporto 600/400 coincide con l’indice 1,50. La sorgente continua a imporre la stessa oscillazione temporale anche se i fronti nel materiale sono più vicini."
+      }
+    ]
+  },
+  {
+    "id": "C5-E012",
+    "kind": "example",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 12,
+    "title": "Ricostruire il campo compagno",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "In un’onda piana nel vuoto l’ampiezza del campo elettrico è 30 V/m. In un certo istante E punta in alto sul foglio e l’energia si propaga verso destra. Trova il modulo massimo e il verso corrispondente del campo magnetico.",
+    "family": "ricostruire-il-campo-compagno",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-campi.svg",
+        "text": "Il punto nel cerchio rappresenta la punta di una freccia che esce dal piano della pagina."
+      },
+      {
+        "type": "text",
+        "text": "Nel vuoto le ampiezze soddisfano E₀ = c B₀. Isoliamo B₀ dividendo entrambi i membri per c."
+      },
+      {
+        "type": "formula",
+        "text": "B_0=\\frac{E_0}{c}=\\frac{30\\ \\mathrm{V/m}}{3{,}00\\times 10^8\\ \\mathrm{m/s}}=1{,}0\\times10^{-7}\\ \\mathrm T"
+      },
+      {
+        "type": "text",
+        "text": "Il verso richiesto si ricava dal prodotto vettoriale E × B. Con la mano destra, l’indice verso l’alto e il medio verso chi guarda danno il pollice a destra. Mezzo periodo dopo entrambi i campi si invertono e la propagazione conserva il proprio verso."
+      }
+    ]
+  },
+  {
+    "id": "C5-E013",
+    "kind": "example",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 13,
+    "title": "Dal colore al numero di fotoni",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente monocromatica emette 2,0 mW alla frequenza di 5,0 × 10¹⁴ Hz. Stima il numero di fotoni emessi in 3,0 ms. Usa h = 6,63 × 10⁻³⁴ J·s.",
+    "family": "dal-colore-al-numero-di-fotoni",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il fascio è caratterizzato da tre grandezze distinte. La frequenza determina l’energia del singolo fotone, la potenza conta l’energia al secondo e la durata fissa l’energia totale. Convertiamo 2,0 mW = 2,0 × 10⁻³ W e 3,0 ms = 3,0 × 10⁻³ s."
+      },
+      {
+        "type": "formula",
+        "text": "E_\\gamma=hf=(6{,}63\\times10^{-34})(5{,}0\\times10^{14})\\ \\mathrm J=3{,}315\\times10^{-19}\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Moltiplichiamo potenza per tempo e dividiamo per il contenuto energetico di un fotone."
+      },
+      {
+        "type": "formula",
+        "text": "N=\\frac{P\\Delta t}{E_\\gamma}=\\frac{(2{,}0\\times10^{-3})(3{,}0\\times10^{-3})}{3{,}315\\times10^{-19}}\\simeq1{,}8\\times10^{13}"
+      },
+      {
+        "type": "text",
+        "text": "L’unità finale è J/J, quindi otteniamo un conteggio. Un’energia totale di pochi microjoule può corrispondere a un gran numero di fotoni visibili."
+      }
+    ]
+  },
+  {
+    "id": "C5-E014",
+    "kind": "example",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 14,
+    "title": "Misurare il coefficiente da due intensità",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un foglio omogeneo spesso 3,0 cm trasmette il 25% di un fascio monocromatico diretto. Trova μ e lo spessore che dimezza il fascio.",
+    "family": "misurare-il-coefficiente-da-due-intensita",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-attenuazione.svg",
+        "text": "Il punto a quota 1/4 è al secondo spessore emivalente. Possiamo prevedere che ciascuno spessore di dimezzamento misuri 1,5 cm."
+      },
+      {
+        "type": "text",
+        "text": "Scriviamo la legge esponenziale sul rapporto trasmesso. Per estrarre μ portiamo il rapporto al logaritmo naturale e poi dividiamo per lo spessore."
+      },
+      {
+        "type": "formula",
+        "text": "\\ln(0{,}25)=-\\mu(3{,}0\\ \\mathrm{cm}),\\qquad \\mu=\\frac{\\ln 4}{3{,}0\\ \\mathrm{cm}}\\simeq0{,}462\\ \\mathrm{cm}^{-1}"
+      },
+      {
+        "type": "text",
+        "text": "Per il dimezzamento poniamo T = 1/2 e usiamo lo stesso coefficiente."
+      },
+      {
+        "type": "formula",
+        "text": "x_{1/2}=\\frac{\\ln2}{\\mu}=\\frac{0{,}693}{0{,}462\\ \\mathrm{cm^{-1}}}=1{,}50\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "La composizione di due strati identici dà 0,50 × 0,50 = 0,25. Questa verifica usa il fattore di trasmissione e non richiede logaritmi."
+      }
+    ]
+  },
+  {
+    "id": "C5-E015",
+    "kind": "example",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 15,
+    "title": "Correggere per il fondo prima di riconoscere le emivite",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un rivelatore misura 820 conteggi/min all’inizio e 120 conteggi/min dopo 9,0 h. Il fondo costante è 20 conteggi/min. Supponendo invariate geometria ed efficienza, ricava l’emivita di una sola specie.",
+    "family": "correggere-per-il-fondo-prima-di-riconoscere-le-emivite",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rivelatore vede contributi del campione e dell’ambiente. Togliendo il fondo da entrambe le letture si ottengono due valori proporzionali alle attività."
+      },
+      {
+        "type": "formula",
+        "text": "R_0=820-20=800\\ \\mathrm{min^{-1}},\\quad R=120-20=100\\ \\mathrm{min^{-1}},\\quad \\frac{R}{R_0}=\\frac18"
+      },
+      {
+        "type": "text",
+        "text": "Ogni emivita moltiplica la quantità residua per 1/2. Riconosciamo 1/8 = (1/2)³, dunque sono passati tre intervalli uguali."
+      },
+      {
+        "type": "formula",
+        "text": "3T_{1/2}=9{,}0\\ \\mathrm h,\\qquad T_{1/2}=3{,}0\\ \\mathrm h"
+      },
+      {
+        "type": "text",
+        "text": "Ricostruendo i conteggi netti otteniamo 800, 400, 200, 100. Aggiungendo il fondo si torna a 120. I tassi di conteggio sono assunti sufficientemente precisi per questa stima."
+      }
+    ]
+  },
+  {
+    "id": "C5-E016",
+    "kind": "example",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 16,
+    "title": "Seguire una transizione beta e una gamma",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un nucleo con A = 24 e Z = 11 subisce un decadimento β⁻ e rimane eccitato. Poi emette un fotone γ. Ricostruisci composizione e numeri del nucleo finale.",
+    "family": "seguire-una-transizione-beta-e-una-gamma",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "All’inizio ci sono 11 protoni e A − Z = 13 neutroni. Nel β⁻ uno dei neutroni si trasforma in un protone, un elettrone e un antineutrino. I nucleoni restano 24, mentre la carica del nucleo aumenta di una unità elementare."
+      },
+      {
+        "type": "formula",
+        "text": "A_1=24,\\qquad Z_1=11+1=12,\\qquad N_{\\rm neutroni,1}=24-12=12"
+      },
+      {
+        "type": "text",
+        "text": "La transizione γ porta via energia di eccitazione. Il fotone non trasporta carica elettrica né numero di massa."
+      },
+      {
+        "type": "formula",
+        "text": "A_f=24,\\qquad Z_f=12,\\qquad N_{\\rm neutroni,f}=12"
+      },
+      {
+        "type": "text",
+        "text": "Nel primo passaggio la carica totale si conserva perché l’elettrone emesso ha carica −e. Nel secondo il nucleo conserva la stessa identità isotopica e scende a uno stato energetico inferiore."
+      }
+    ]
+  },
+  {
+    "id": "C5-E017",
+    "kind": "example",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 17,
+    "title": "Dall’angolo col vetro all’angolo rifratto",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio in aria incontra un vetro di indice 1,50 formando 45° con la superficie. Calcola gli angoli riflesso e rifratto rispetto alla normale.",
+    "family": "dallangolo-col-vetro-allangolo-rifratto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-rifrazione.svg",
+        "text": "La linea tratteggiata è la normale. I due raggi sopra la superficie sono simmetrici rispetto a essa. Il raggio sotto la superficie si piega verso la normale."
+      },
+      {
+        "type": "text",
+        "text": "L’incidenza è 90° − 45° = 45°. Per riflessione speculare l’angolo riflesso vale quindi 45°. Per la parte trasmessa prendiamo n₁ = 1,00."
+      },
+      {
+        "type": "formula",
+        "text": "\\sin\\theta_2=\\frac{n_1}{n_2}\\sin\\theta_1=\\frac{1{,}00}{1{,}50}\\sin45^\\circ \\simeq0{,}471"
+      },
+      {
+        "type": "text",
+        "text": "Ricaviamo l’angolo con l’inverso della funzione seno e leggiamo il risultato in gradi."
+      },
+      {
+        "type": "formula",
+        "text": "\\theta_2=\\arcsin(0{,}471)\\simeq28{,}1^\\circ"
+      },
+      {
+        "type": "text",
+        "text": "Poiché l’indice aumenta, il raggio entra con un angolo minore. Questo controllo di verso evita di scambiare i due indici nella frazione."
+      }
+    ]
+  },
+  {
+    "id": "C5-E018",
+    "kind": "example",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 18,
+    "title": "Quando il raggio trasmesso raggiunge il limite",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio passa da acqua (n = 1,33) ad aria (n = 1,00). Confronta i casi di incidenza 40° e 55° rispetto alla normale.",
+    "family": "quando-il-raggio-trasmesso-raggiunge-il-limite",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel verso acqua–aria il raggio tende ad allontanarsi dalla normale. Il raggio trasmesso limite è radente alla superficie e ha seno dell’angolo di rifrazione pari a uno."
+      },
+      {
+        "type": "formula",
+        "text": "\\theta_c=\\arcsin\\!\\left(\\frac{1{,}00}{1{,}33}\\right)\\simeq48{,}8^\\circ"
+      },
+      {
+        "type": "text",
+        "text": "A 40° siamo sotto tale limite. La legge di Snell dà un valore ammesso per il seno."
+      },
+      {
+        "type": "formula",
+        "text": "\\sin\\theta_2=1{,}33\\sin40^\\circ\\simeq0{,}855,\\qquad \\theta_2\\simeq58{,}8^\\circ"
+      },
+      {
+        "type": "text",
+        "text": "A 55° il prodotto 1,33 sin 55° è circa 1,09. Nell’ottica geometrica non c’è una direzione trasmessa propagante nell’aria e il raggio subisce riflessione totale. Il confronto con l’angolo critico anticipa lo stesso esito."
+      }
+    ]
+  },
+  {
+    "id": "C5-E019",
+    "kind": "example",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 19,
+    "title": "Posizionare lo schermo e misurare l’immagine",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Un oggetto alto 3,0 cm è a 30 cm da una lente sottile convergente di focale 10 cm. Trova dove porre lo schermo e quale altezza, con segno, ha l’immagine.",
+    "family": "posizionare-lo-schermo-e-misurare-limmagine",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-reale.svg",
+        "text": "L’oggetto è a tre focali. I raggi si incrociano sul lato opposto e sotto l’asse."
+      },
+      {
+        "type": "text",
+        "text": "Usiamo la convenzione p e f positivi. Isoliamo prima il reciproco di q e riduciamo le frazioni allo stesso denominatore, mantenendo i centimetri."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1q=\\frac1f-\\frac1p=\\frac{1}{10}-\\frac{1}{30}=\\frac{3-1}{30}=\\frac1{15}\\quad(\\mathrm{cm}^{-1})"
+      },
+      {
+        "type": "text",
+        "text": "Invertendo il reciproco si ottiene q = +15 cm. Lo schermo si pone a questa distanza sul lato d’uscita. La similitudine dei triangoli definiti dal raggio centrale dà l’ingrandimento trasversale."
+      },
+      {
+        "type": "formula",
+        "text": "m=-\\frac{15}{30}=-0{,}50,\\qquad h'=m h=(-0{,}50)(3{,}0\\ \\mathrm{cm})=-1{,}5\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Il segno meno indica l’orientamento capovolto. La posizione tra una e due focali e il dimezzamento dell’altezza concordano con la costruzione geometrica."
+      }
+    ]
+  },
+  {
+    "id": "C5-E020",
+    "kind": "example",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 20,
+    "title": "La lente diventa una lente d’ingrandimento",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "La distanza oggetto–lente è 6,0 cm e la focale positiva è 12 cm. Trova posizione e ingrandimento dell’immagine e spiega come si può vederla.",
+    "family": "la-lente-diventa-una-lente-dingrandimento",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-virtuale.svg",
+        "text": "L’oggetto è fra lente e fuoco. Segui prima i due raggi continui verso destra e poi i loro prolungamenti verso sinistra."
+      },
+      {
+        "type": "text",
+        "text": "Con lenti sottili e piccoli angoli possiamo applicare la legge dei punti coniugati. Usiamo centimetri per tutte le distanze."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1q=\\frac1{12}-\\frac16=\\frac{1-2}{12}=-\\frac1{12}\\quad(\\mathrm{cm}^{-1}),\\qquad q=-12\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "L’immagine si localizza sul lato dell’oggetto, a 12 cm dalla lente. Il segno entra nel rapporto delle altezze."
+      },
+      {
+        "type": "formula",
+        "text": "m=-\\frac q p=-\\frac{-12}{6}=+2"
+      },
+      {
+        "type": "text",
+        "text": "I raggi che raggiungono l’occhio sul lato d’uscita sembrano provenire dai prolungamenti che si incontrano dietro l’oggetto. L’immagine appare diritta e grande il doppio. Uno schermo sul lato d’uscita riceve raggi divergenti senza formare quell’immagine nitida."
+      }
+    ]
+  },
+  {
+    "id": "C5-Q001",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 1,
+    "title": "Fra due estremi",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Sul display l’oscillatore arriva a +7 mm e a −7 mm rispetto allo zero di equilibrio. Inserisci l’ampiezza in mm.",
+    "family": "fra-due-estremi",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dall’equilibrio alla punta superiore ci sono 7 mm. Lo stesso vale verso la punta inferiore."
+      },
+      {
+        "type": "formula",
+        "text": "A=\\frac{x_{\\max}-x_{\\min}}{2}=\\frac{7-(-7)}{2}\\ \\mathrm{mm}=7\\ \\mathrm{mm}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 7.0,
+      "unit": "mm",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Misura la distanza fra la linea di equilibrio e un estremo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La distanza fra le due punte è due volte l’ampiezza.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q002",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 2,
+    "title": "Il ciclo mancante",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un sensore segna il primo massimo a 0,10 s e il sesto massimo a 0,85 s. Qual è il periodo in secondi?",
+    "family": "il-ciclo-mancante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il primo massimo segna l’inizio della misura. I massimi successivi chiudono cinque intervalli identici."
+      },
+      {
+        "type": "formula",
+        "text": "T=\\frac{0{,}85-0{,}10}{6-1}\\ \\mathrm s=\\frac{0{,}75}{5}\\ \\mathrm s=0{,}15\\ \\mathrm s"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.15,
+      "unit": "s",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Conta gli intervalli che separano sei tacche."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Dal primo al sesto massimo passano cinque cicli.",
+      "target": "C5-L01"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-sei-massimi.svg",
+        "text": "Massimi misurati da un sensore fisso. I tempi riportati sono in secondi."
+      }
+    ]
+  },
+  {
+    "id": "C5-Q003",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 3,
+    "title": "Uno zero attraversato due volte",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Due passaggi consecutivi per l’equilibrio di un oscillatore armonico, in versi opposti, distano 18 ms. Determina la frequenza in Hz.",
+    "family": "uno-zero-attraversato-due-volte",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dal centro all’estremo e ritorno trascorre mezzo periodo. Il ciclo completo dura 36 ms, ossia 0,036 s."
+      },
+      {
+        "type": "formula",
+        "text": "f=1/T=1/(0{,}036\\ \\mathrm s)=27{,}8\\ \\mathrm{Hz}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 27.7778,
+      "unit": "Hz",
+      "tolerance": 0.15
+    },
+    "hints": [
+      "Segui il percorso dal centro all’estremo e di nuovo al centro."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con velocità opposte l’oscillatore ripete la posizione dopo mezzo periodo.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q004",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 4,
+    "title": "Quale coppia basta",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Quale coppia di osservazioni identifica la stessa fase di due istanti in un oscillatore armonico ideale ad ampiezza costante, lontano dagli estremi?",
+    "family": "quale-coppia-basta",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "All’interno della corsa una posizione viene attraversata durante l’andata e durante il ritorno. Il verso fissa quale dei due attraversamenti si sta osservando. L’energia totale rimane invece la stessa lungo tutto il ciclo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Stessa posizione e stesso verso di moto",
+      "options": [
+        "Stesso modulo della velocità",
+        "Stessa posizione e accelerazioni opposte",
+        "Stessa posizione e stesso verso di moto",
+        "Uguale energia totale"
+      ]
+    },
+    "hints": [
+      "Confronta i passaggi per lo zero."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una posizione interna viene attraversata due volte per ciclo.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q005",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 5,
+    "title": "Istante iniziale di un coseno",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "In x(t) = A cos(ωt), con A positivo e fase iniziale nulla, quale situazione si osserva all’istante zero?",
+    "family": "istante-iniziale-di-un-coseno",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il coseno vale uno a fase zero, quindi x = A. La tangente orizzontale nel massimo indica che l’oscillatore inverte il moto e per un istante la sua velocità è nulla."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Estremo positivo, velocità nulla",
+      "options": [
+        "Equilibrio, velocità nulla",
+        "Equilibrio, velocità positiva",
+        "Estremo negativo, accelerazione nulla",
+        "Estremo positivo, velocità nulla"
+      ]
+    },
+    "hints": [
+      "Valuta cos(0) e pensa alla pendenza della curva al massimo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il valore iniziale e la velocità si determinano dalla coordinata e dalla pendenza.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q006",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 6,
+    "title": "Metà percorso in fase",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un oscillatore accumula una variazione di fase di 3π radianti. Quanti periodi sono trascorsi?",
+    "family": "meta-percorso-in-fase",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rapporto fra variazione di fase e 2π dà il numero di oscillazioni, che può non essere intero."
+      },
+      {
+        "type": "formula",
+        "text": "N=\\frac{3\\pi}{2\\pi}=1{,}5"
+      },
+      {
+        "type": "text",
+        "text": "Dopo un ciclo completo l’oscillatore compie ancora mezzo ciclo."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.5,
+      "unit": "periodi",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Un ciclo misura 2π radianti."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per contare i cicli dividi la fase totale per la fase di un ciclo.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q007",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 7,
+    "title": "Il termine del richiamo",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "In a = −ω²x il segno meno indica che l’accelerazione è rivolta verso la posizione di ____. Completa con una parola.",
+    "family": "il-termine-del-richiamo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per x positiva il richiamo è negativo, per x negativa è positivo. In entrambi i casi punta verso l’origine scelta nella posizione di equilibrio."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "equilibrio",
+      "aliases": []
+    },
+    "hints": [
+      "Immagina x positiva e verifica il segno di a."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il richiamo cambia verso quando si oltrepassa il centro.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q008",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 8,
+    "title": "Verso della velocità al centro",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un oscillatore ideale attraversa l’equilibrio. Quale quantità raggiunge in quel momento il suo massimo modulo?",
+    "family": "verso-della-velocita-al-centro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia potenziale elastica è minima all’equilibrio. In assenza di dissipazione l’energia restante è cinetica, quindi la velocità ha il massimo modulo. Forza e accelerazione sono nulle in quell’istante."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Velocità",
+      "options": [
+        "Accelerazione",
+        "Forza elastica",
+        "Spostamento dall’equilibrio",
+        "Velocità"
+      ]
+    },
+    "hints": [
+      "Segui la conversione di energia elastica in energia cinetica."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "All’equilibrio il richiamo si annulla ma l’oscillatore, se in moto, prosegue.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q009",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 9,
+    "title": "Una molla meno rigida",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Lo stesso corpo è applicato a una molla ideale con costante elastica quattro volte più piccola. Per piccole oscillazioni, come cambia T se ω² = k/m?",
+    "family": "una-molla-meno-rigida",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con m costante, k₂/k₁ = 1/4 implica ω₂/ω₁ = 1/2."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{T_2}{T_1}=\\frac{2\\pi/\\omega_2}{2\\pi/\\omega_1}=\\frac{\\omega_1}{\\omega_2}=2"
+      },
+      {
+        "type": "text",
+        "text": "Il richiamo più debole allunga il tempo necessario a tornare alla stessa fase."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Raddoppia",
+      "options": [
+        "Resta uguale",
+        "Raddoppia",
+        "Si dimezza",
+        "Quadruplica"
+      ]
+    },
+    "hints": [
+      "Prima trova il rapporto delle pulsazioni, poi inverti."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La pulsazione dipende dalla radice quadrata di k, mentre il periodo è inverso alla pulsazione.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q010",
+    "kind": "question",
+    "course": "C5",
+    "section": "Il tempo di un’oscillazione",
+    "order": 10,
+    "title": "Traccia con escursione calante",
+    "skill": "C5-L01",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Massimi successivi valgono 8, 6 e 4,5 mm ma sono quasi equidistanti nel tempo. Quale conclusione è compatibile con la traccia?",
+    "family": "traccia-con-escursione-calante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La distanza temporale dei picchi stima il periodo. La loro altezza misura l’ampiezza, che qui diminuisce. Un oscillatore con dissipazione è compatibile con i dati, mentre l’ampiezza costante del modello ideale non li riproduce."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "L’ampiezza decade, il periodo osservato resta quasi costante",
+      "options": [
+        "L’oscillazione è armonica ideale a energia costante",
+        "La frequenza cala nello stesso rapporto dei massimi",
+        "Il periodo è la differenza fra due altezze",
+        "L’ampiezza decade, il periodo osservato resta quasi costante"
+      ]
+    },
+    "hints": [
+      "Distingui la scala verticale da quella orizzontale."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "I millimetri misurano uno spostamento. Il periodo è un intervallo temporale.",
+      "target": "C5-L01"
+    }
+  },
+  {
+    "id": "C5-Q011",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 11,
+    "title": "Cresta e valle adiacente",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Una fotografia della corda mostra 18 cm fra il centro di una cresta e il centro della valle subito successiva. Quanto vale λ in cm?",
+    "family": "cresta-e-valle-adiacente",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le due posizioni hanno fasi che differiscono di π. Per ritrovare un massimo serve un altro tratto identico."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda/2=18\\ \\mathrm{cm},\\qquad \\lambda=36\\ \\mathrm{cm}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 36.0,
+      "unit": "cm",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Una valle è sfasata di mezzo giro rispetto alla cresta."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Fra una cresta e la valle vicina si misura mezza lunghezza d’onda.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q012",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 12,
+    "title": "Etichetta del sensore",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Il grafico ha in ascissa t in ms e in ordinata la pressione in Pa, in un punto fisso. La distanza orizzontale fra due massimi consecutivi misura il ____.",
+    "family": "etichetta-del-sensore",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il punto di misura resta fisso e il sensore vede passare fronti successivi. L’ascissa esprime un tempo, quindi la separazione dei picchi è il periodo della variazione di pressione."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "periodo",
+      "aliases": []
+    },
+    "hints": [
+      "Controlla l’unità dell’ascissa."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Una distanza sul foglio può rappresentare tempo oppure spazio: lo decide l’asse.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q013",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 13,
+    "title": "L’onda trasporta il segno?",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Dopo il passaggio di un singolo impulso ideale lungo una corda, che cosa succede a una macchia d’inchiostro fissata sulla corda?",
+    "family": "londa-trasporta-il-segno",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La macchia identifica una porzione della corda. Al passaggio dell’impulso quel tratto si sposta trasversalmente e torna all’equilibrio. È la forma dell’impulso a propagarsi fino all’estremità."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Torna vicino alla posizione di equilibrio iniziale",
+      "options": [
+        "Viaggia fino all’estremità con l’impulso",
+        "Torna vicino alla posizione di equilibrio iniziale",
+        "Rimane al massimo spostamento",
+        "Si divide nei due sensi di propagazione"
+      ]
+    },
+    "hints": [
+      "Segui un pezzetto di materiale e poi segui la forma."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il moto locale della corda e il trasporto della perturbazione descrivono due cose diverse.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q014",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 14,
+    "title": "Sfasamento fra sensori",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Due punti distano 0,12 m lungo una corda con λ = 0,48 m. Quanto vale in radianti il modulo della differenza di fase nello stesso istante?",
+    "family": "sfasamento-fra-sensori",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La separazione vale 0,12/0,48 = 1/4 di ciclo."
+      },
+      {
+        "type": "formula",
+        "text": "\\lvert\\Delta\\varphi\\rvert=2\\pi\\,\\frac{0{,}12}{0{,}48}=\\frac{\\pi}{2}\\ \\mathrm{rad}\\simeq1{,}57\\ \\mathrm{rad}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.5708,
+      "unit": "rad",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Calcola quale frazione di una lunghezza d’onda separa i punti."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per trasformare la frazione spaziale in fase moltiplica per 2π.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q015",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 15,
+    "title": "Ritardo di arrivo",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Il massimo di un impulso passa per x = 0,40 m a 0,16 s e per x = 1,60 m a 0,24 s. Qual è la velocità media del massimo in m/s?",
+    "family": "ritardo-di-arrivo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La cresta si sposta verso x crescente. Il suo spostamento è 1,60 − 0,40 = 1,20 m. Impiega 0,24 − 0,16 = 0,08 s."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{1{,}20}{0{,}08}\\ \\mathrm{m/s}=15\\ \\mathrm{m/s}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 15.0,
+      "unit": "m/s",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Confronta spostamento e tempo del medesimo massimo."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Occorre sottrarre entrambe le coppie di coordinate prima di dividere.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q016",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 16,
+    "title": "Frequenza imposta",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Sulla medesima corda con velocità costante la sorgente triplica la frequenza. Che cosa succede alla distanza tra massimi adiacenti?",
+    "family": "frequenza-imposta",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Poiché λ = v/f, la nuova lunghezza d’onda è v/(3f) = λ/3. Le creste passano tre volte più spesso e una stessa lunghezza di corda contiene tre volte più cicli spaziali."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Diventa un terzo",
+      "options": [
+        "Diventa un nono",
+        "Rimane uguale",
+        "Triplica",
+        "Diventa un terzo"
+      ]
+    },
+    "hints": [
+      "Durante un periodo la cresta avanza di λ."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "A velocità costante frequenza e lunghezza d’onda sono inversamente proporzionali.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q017",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 17,
+    "title": "Ricostruire il numero d’onda",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Nell’equazione y = A cos(kx − ωt) la lunghezza d’onda è 2,5 m. Inserisci k in rad/m.",
+    "family": "ricostruire-il-numero-donda",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un periodo spaziale equivale a un giro di fase. Dividendo il giro per la distanza che occupa ricaviamo il coefficiente di x."
+      },
+      {
+        "type": "formula",
+        "text": "k=\\frac{2\\pi}{2{,}5\\ \\mathrm m}\\simeq2{,}51\\ \\mathrm{rad/m}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 2.51327,
+      "unit": "rad/m",
+      "tolerance": 0.015
+    },
+    "hints": [
+      "La fase deve crescere di 2π quando x cresce di λ."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il numero d’onda in radianti al metro è 2π/λ.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q018",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 18,
+    "title": "Strati d’aria nel condotto",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "In un’onda sonora piana in aria la particella oscilla parallelamente alla propagazione. Il tipo di onda si chiama ____.",
+    "family": "strati-daria-nel-condotto",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Gli strati si avvicinano e si allontanano lungo l’asse di propagazione formando compressioni e rarefazioni. Per questa geometria l’onda è longitudinale."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-suono.svg",
+        "text": "L’addensamento delle linee visualizza una compressione dell’aria."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "longitudinale",
+      "aliases": []
+    },
+    "hints": [
+      "Confronta la direzione di oscillazione con quella di avanzamento dei fronti."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La direzione del moto del mezzo determina la distinzione fra longitudinale e trasversale.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q019",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 19,
+    "title": "Fase seguita a tempo crescente",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Per una cresta dell’onda cos(6x − 12t), con unità SI, quale spostamento in metri si osserva in 0,30 s?",
+    "family": "fase-seguita-a-tempo-crescente",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Seguendo la cresta, 6Δx − 12Δt = 0. Il segno meno nella fase implica verso positivo di propagazione."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=\\frac{12}{6}\\Delta t=(2\\ \\mathrm{m/s})(0{,}30\\ \\mathrm s)=0{,}60\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.6,
+      "unit": "m",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Sulla stessa cresta la variazione di fase è zero."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’incognita è lo spostamento di una cresta, non l’oscillazione del mezzo.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q020",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lo spazio di un’onda",
+    "order": 20,
+    "title": "Fotografia senza cronometro",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "Da una sola istantanea di una sinusoide sulla corda, senza alcun altro dato, quale grandezza puoi misurare direttamente?",
+    "family": "fotografia-senza-cronometro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La distanza fra due creste adiacenti fornisce λ. Onde con uguale λ possono avere velocità e frequenze diverse, perciò dal solo profilo non si ricavano i tempi o la velocità."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La lunghezza d’onda",
+      "options": [
+        "La frequenza della sorgente",
+        "La lunghezza d’onda",
+        "La velocità di fase",
+        "Il periodo"
+      ]
+    },
+    "hints": [
+      "Nell’istantanea è rappresentata una successione di posizioni allo stesso tempo."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Per misurare un intervallo temporale serve un’informazione temporale indipendente.",
+      "target": "C5-L02"
+    }
+  },
+  {
+    "id": "C5-Q021",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 21,
+    "title": "Due impulsi concordi",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Nello stesso punto e istante due piccoli impulsi producono spostamenti +1,2 mm e +0,8 mm. Quanto misura l’ordinata risultante in mm?",
+    "family": "due-impulsi-concordi",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Entrambi i contributi si trovano sul lato positivo dello zero. Per sovrapposizione lineare il risultato è la loro somma."
+      },
+      {
+        "type": "formula",
+        "text": "y=1{,}2\\ \\mathrm{mm}+0{,}8\\ \\mathrm{mm}=+2{,}0\\ \\mathrm{mm}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 2.0,
+      "unit": "mm",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Usa una sola origine e conserva il segno di entrambi i contributi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel regime lineare si sommano spostamenti istantanei.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q022",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 22,
+    "title": "Dopo la cancellazione",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due impulsi identici di segno opposto si sovrappongono completamente su una corda ideale lineare. Dopo l’incrocio che cosa si osserva?",
+    "family": "dopo-la-cancellazione",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La forma totale è una somma che cambia nel tempo. Quando i due profili si allontanano, ciascun impulso torna distinguibile. Nel momento di cancellazione l’energia del sistema può essere cinetica."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "I due impulsi si separano e proseguono",
+      "options": [
+        "I due impulsi si separano e proseguono",
+        "La corda resta immobile per sempre",
+        "Rimane un unico impulso fermo",
+        "L’energia si annulla per sempre"
+      ]
+    },
+    "hints": [
+      "Distingui l’istante di sovrapposizione dagli istanti successivi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La cancellazione dello spostamento in un istante non elimina le singole soluzioni d’onda.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q023",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 23,
+    "title": "Un residuo in opposizione",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "In P arrivano due sinusoidi con ampiezze 5 mm e 3 mm sempre in opposizione di fase. Qual è l’ampiezza risultante in mm?",
+    "family": "un-residuo-in-opposizione",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Al massimo della prima onda la seconda vale −3 mm. Le oscillazioni restano opposte per tutto il ciclo, quindi l’ampiezza del risultato è la differenza dei moduli."
+      },
+      {
+        "type": "formula",
+        "text": "A_{\\rm tot}=\\lvert5-3\\rvert\\ \\mathrm{mm}=2\\ \\mathrm{mm}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 2.0,
+      "unit": "mm",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Quando la prima raggiunge +5 mm, quanto vale la seconda?"
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "L’opposizione completa di fase cancella solo il contributo comune alle due ampiezze.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q024",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 24,
+    "title": "Sorgenti fuori fase all’origine",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due sorgenti coerenti di uguale ampiezza partono in opposizione di fase. Il punto P è equidistante. In P l’interferenza è ____.",
+    "family": "sorgenti-fuori-fase-allorigine",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "I cammini uguali aggiungono lo stesso ritardo a entrambe le onde. Rimane la differenza iniziale di π. A uguale ampiezza i contributi si cancellano."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "distruttiva",
+      "aliases": [
+        "distruttiva completa"
+      ]
+    },
+    "hints": [
+      "I due ritardi di propagazione sono uguali."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Alla fase dovuta al cammino occorre aggiungere la fase di emissione.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q025",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 25,
+    "title": "Da minimo a massimo",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due sorgenti in fase hanno in P una differenza di cammino di 5λ/2. Di quale minima distanza positiva, espressa in unità di λ, deve aumentare uno dei due cammini per ottenere un massimo?",
+    "family": "da-minimo-a-massimo",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La differenza iniziale vale 2,5 lunghezze d’onda. Aumentando il cammino già più lungo si arriva a 3. Aumentando quello più corto si scende a 2. In entrambi i casi lo spostamento di cammino minimo è 0,5 λ."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.5,
+      "unit": "λ",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "I massimi corrispondono a differenze di cammino intere in unità di λ."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Da un semi-intero all’intero più vicino la distanza è mezzo ciclo.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q026",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 26,
+    "title": "Un nodo della figura stabile",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Una zona sempre quieta si forma nell’incontro di due suoni coerenti. Una sonda poco più in là registra un segnale. Che cosa spiega il contrasto?",
+    "family": "un-nodo-della-figura-stabile",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Muovendo la sonda cambiano i due cammini e può cambiare la loro differenza. In un punto le pressioni possono cancellarsi, in un altro sommarsi. La presenza di un minimo locale è quindi compatibile con due sorgenti attive."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La differenza di fase dipende dal punto di misura",
+      "options": [
+        "La velocità del mezzo è nulla al nodo",
+        "Una sorgente si è spenta",
+        "Ogni onda ha frequenza nulla nella zona quieta",
+        "La differenza di fase dipende dal punto di misura"
+      ]
+    },
+    "hints": [
+      "Confronta le distanze di ciascun punto dalle sorgenti."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La cancellazione avviene dove i due contributi arrivano con fase e ampiezza adatte.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q027",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 27,
+    "title": "Massimo doppio e intensità",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due onde armoniche coerenti identiche arrivano in fase in un punto. L’intensità locale è proporzionale al quadrato dell’ampiezza risultante. Quanto vale I rispetto a quella di una sola onda?",
+    "family": "massimo-doppio-e-intensita",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In fase le ampiezze si sommano dando 2A."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I}{I_1}=\\frac{(2A)^2}{A^2}=4"
+      },
+      {
+        "type": "text",
+        "text": "Il massimo locale è accompagnato da altre regioni con intensità minore."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Quattro volte",
+      "options": [
+        "Lo stesso valore",
+        "Due volte",
+        "Quattro volte",
+        "La metà"
+      ]
+    },
+    "hints": [
+      "Somma prima le ampiezze, poi applica il quadrato."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per onde coerenti la fase influenza l’intensità locale.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q028",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 28,
+    "title": "Sorgenti dal ritmo instabile",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Perché due sorgenti con differenza di fase che varia casualmente non producono una figura stabile di minimi e massimi sulla lunga media?",
+    "family": "sorgenti-dal-ritmo-instabile",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il termine d’interferenza dipende dalla differenza di fase. Se questa varia continuamente, un punto passa dal rinforzo alla cancellazione. La media temporale non conserva la stessa figura di frange."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La condizione di rinforzo in un punto cambia nel tempo",
+      "options": [
+        "La velocità di ogni onda diventa nulla",
+        "L’ampiezza di ciascuna sorgente deve essere zero",
+        "Le singole onde smettono di propagarsi",
+        "La condizione di rinforzo in un punto cambia nel tempo"
+      ]
+    },
+    "hints": [
+      "Pensa al punto che oggi riceve due creste insieme."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un massimo stabile richiede che la relazione di fase rimanga stabile.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q029",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 29,
+    "title": "Ritardo dalla differenza di cammino",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Un’onda percorre 1,02 m più dell’altra. La velocità è 340 m/s. Di quanti ms ritarda, a parità di istante di emissione?",
+    "family": "ritardo-dalla-differenza-di-cammino",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con la stessa velocità la differenza di tempo è il cammino extra diviso per v."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta t=\\frac{1{,}02\\ \\mathrm m}{340\\ \\mathrm{m/s}}=0{,}0030\\ \\mathrm s=3{,}0\\ \\mathrm{ms}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 3.0,
+      "unit": "ms",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Prima calcola il tempo in secondi."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Per convertire secondi in millisecondi moltiplica per mille.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q030",
+    "kind": "question",
+    "course": "C5",
+    "section": "Sovrapposizione e interferenza",
+    "order": 30,
+    "title": "Somma punto per punto",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due impulsi hanno i loro picchi di +4 mm in posizioni diverse. Si può affermare che l’ordinata massima della somma è necessariamente 8 mm in quell’istante?",
+    "family": "somma-punto-per-punto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il principio impone y₁(x,t) + y₂(x,t). Due massimi separati non producono necessariamente un punto con entrambi i contributi massimi. La forma dei profili serve a stabilire il massimo della somma."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "No, occorrono le ordinate nello stesso punto",
+      "options": [
+        "No, occorrono le ordinate nello stesso punto",
+        "No, l’ordinata è sempre zero",
+        "Sì, le ampiezze si sommano sempre",
+        "Sì, se hanno uguale unità"
+      ]
+    },
+    "hints": [
+      "Sovrapponi le ascisse prima delle ordinate."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Sommare valori letti in posizioni diverse non applica il principio di sovrapposizione.",
+      "target": "C5-L03"
+    }
+  },
+  {
+    "id": "C5-Q031",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 31,
+    "title": "Bilancio sul sensore",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Un sensore riceve 12 mJ in 3,0 s su un’area di 2,0 cm² perpendicolare al fascio. Calcola I in W/m².",
+    "family": "bilancio-sul-sensore",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La potenza raccolta è 0,012 J / 3,0 s = 0,0040 W. Distribuiamola sull’area di 2,0 × 10⁻⁴ m²."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{0{,}0040}{2{,}0\\times10^{-4}}\\ \\mathrm{W/m^2}=20\\ \\mathrm{W/m^2}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 20.0,
+      "unit": "W/m²",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Ricava la potenza e converti i centimetri quadrati in metri quadrati."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un centimetro quadrato equivale a 10⁻⁴ metri quadrati.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q032",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 32,
+    "title": "La sorgente emette il doppio",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "La potenza isotropa raddoppia e il ricevitore si allontana da r a 2r. Qual è il rapporto tra intensità finale e iniziale?",
+    "family": "la-sorgente-emette-il-doppio",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La nuova potenza cresce di un fattore due, la superficie sferica di un fattore quattro."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I_2}{I_1}=\\frac{P_2}{P_1}\\frac{r_1^2}{r_2^2}=2\\left(\\frac12\\right)^2=\\frac12"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.5,
+      "unit": "rapporto",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Scrivi il rapporto delle potenze e quello inverso delle aree."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La superficie è quattro volte maggiore quando la distanza raddoppia.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q033",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 33,
+    "title": "Distanza sconosciuta",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "In campo sferico ideale, a 0,80 m dalla sorgente l’intensità è nove volte quella misurata nel punto B. A quanti metri si trova B dalla sorgente?",
+    "family": "distanza-sconosciuta",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A potenza costante I₁/I₂ = (r₂/r₁)². Poiché B riceve meno, scegliamo il rapporto dei raggi maggiore di uno."
+      },
+      {
+        "type": "formula",
+        "text": "r_2=r_1\\sqrt{I_1/I_2}=0{,}80\\sqrt9\\ \\mathrm m=2{,}4\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 2.4,
+      "unit": "m",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Estrai la radice del rapporto fra le intensità."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La distanza aumenta come la radice dell’inverso dell’intensità.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q034",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 34,
+    "title": "Stessa sfera, sonda più larga",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Nella stessa posizione in un campo uniforme raddoppia l’area di una sonda perpendicolare. Come cambiano I locale e potenza raccolta?",
+    "family": "stessa-sfera-sonda-piu-larga",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’intensità è una proprietà locale del campo. Ogni unità di area riceve lo stesso numero di watt di prima, così P = IA cresce nella proporzione dell’area."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "I resta uguale e la potenza raccolta raddoppia",
+      "options": [
+        "I raddoppia e la potenza resta uguale",
+        "Entrambe raddoppiano",
+        "Entrambe si dimezzano",
+        "I resta uguale e la potenza raccolta raddoppia"
+      ]
+    },
+    "hints": [
+      "Pensa a due sonde uguali affiancate."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’area della sonda decide quanta potenza intercetta da un campo dato.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q035",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 35,
+    "title": "Leggere l’unità composta",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "L’unità W/m² misura l’energia per unità di area e di ____. Completa.",
+    "family": "leggere-lunita-composta",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un watt equivale a un joule al secondo. Perciò W/m² significa joule per secondo e per metro quadrato, ossia energia che attraversa l’area per unità di tempo."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "tempo",
+      "aliases": [
+        "durata"
+      ]
+    },
+    "hints": [
+      "Ricorda che 1 W vale 1 J/s."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "I watt descrivono energia già divisa per un tempo.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q036",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 36,
+    "title": "Fascio cilindrico ideale",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Un fascio ideale collimato conserva potenza e sezione, senza perdite. Allontanandosi lungo il fascio che cosa prevede il modello per l’intensità media sulla sezione?",
+    "family": "fascio-cilindrico-ideale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In questo modello la stessa potenza attraversa ogni sezione di uguale area. Il rapporto P/S resta quindi costante. La geometria di espansione determina la dipendenza dalla distanza."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Rimane costante",
+      "options": [
+        "Si dimezza ogni metro",
+        "Diminuisce sempre come 1/r²",
+        "Cresce come r",
+        "Rimane costante"
+      ]
+    },
+    "hints": [
+      "Individua la superficie reale su cui passa la potenza."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La legge sferica assume area crescente come r².",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q037",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 37,
+    "title": "Impulsi e media nel tempo",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Una sonda emette 4,0 W durante ciascun impulso di 2,0 ms, con un impulso ogni 10 ms e potenza nulla nel resto del ciclo. Calcola la potenza media in W.",
+    "family": "impulsi-e-media-nel-tempo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In ogni periodo si emettono 4,0 W × 0,0020 s = 0,0080 J."
+      },
+      {
+        "type": "formula",
+        "text": "\\overline P=\\frac{0{,}0080\\ \\mathrm J}{0{,}010\\ \\mathrm s}=0{,}80\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "La media è minore del picco perché l’emissione dura soltanto un quinto del tempo."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.8,
+      "unit": "W",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Calcola l’energia di un impulso e dividila per il periodo intero."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il denominatore per la media comprende anche l’intervallo silenzioso.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q038",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 38,
+    "title": "Potenza della corda e massa lineare",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Due corde, alle rispettive tensioni, hanno la stessa velocità delle onde. Con uguali A e f, la corda B ha densità lineare tripla. Quale rapporto di potenze medie Pᴮ/Pᴬ prevede il modello armonico?",
+    "family": "potenza-della-corda-e-massa-lineare",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A parità degli altri fattori il trasferimento di energia al secondo è proporzionale alla massa di corda per metro."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\overline P_B}{\\overline P_A}=\\frac{\\mu_B}{\\mu_A}=3"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 3.0,
+      "unit": "rapporto",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Usa P media = μvω²A²/2 e cancella i fattori comuni."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La densità lineare μ entra alla prima potenza.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q039",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 39,
+    "title": "Energia catturata inclinando il sensore",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Un’area di 4,0 m² ha la normale inclinata di 60° verso un’onda piana uniforme di intensità 5,0 W/m². Quale potenza in W attraversa la superficie?",
+    "family": "energia-catturata-inclinando-il-sensore",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il fascio attraversa l’area proiettata S cos 60° = 4,0 × 0,5 = 2,0 m²."
+      },
+      {
+        "type": "formula",
+        "text": "P=I S\\cos\\theta=(5{,}0)(2{,}0)\\ \\mathrm W=10\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Nell’orientamento perpendicolare passerebbero 20 W."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 10.0,
+      "unit": "W",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "La proiezione perpendicolare al fascio ha area S cos θ."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’angolo da usare è quello fra normale e propagazione.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q040",
+    "kind": "question",
+    "course": "C5",
+    "section": "Energia, potenza e intensità",
+    "order": 40,
+    "title": "Superficie chiusa e conservazione",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente al centro di due sfere ideali perde energia solo per emissione. Confronta la potenza totale che attraversa le due sfere in regime stazionario senza assorbimento.",
+    "family": "superficie-chiusa-e-conservazione",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia emessa al secondo deve attraversare entrambe le superfici. La diminuzione di I viene compensata esattamente dalla crescita di 4πr²."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-sfere.svg",
+        "text": "La sezione evidenzia aree sferiche che crescono pur intercettando la medesima potenza totale."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "È la stessa",
+      "options": [
+        "È maggiore sulla sfera piccola",
+        "È maggiore sulla sfera grande",
+        "È la stessa",
+        "È zero su entrambe perché sono chiuse"
+      ]
+    },
+    "hints": [
+      "Moltiplica l’intensità per l’intera superficie di ciascuna sfera."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una minore intensità può essere compensata da un’area maggiore.",
+      "target": "C5-L04"
+    }
+  },
+  {
+    "id": "C5-Q041",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 41,
+    "title": "Intensità dal livello sonoro",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Usa I₀ = 10⁻¹² W/m². Un livello di 50 dB corrisponde a quale intensità, espressa in µW/m²?",
+    "family": "intensita-dal-livello-sonoro",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rapporto di intensità vale 10⁵."
+      },
+      {
+        "type": "formula",
+        "text": "I=10^{-12}10^5=10^{-7}\\ \\mathrm{W/m^2}=0{,}10\\ \\mathrm{\\mu W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è ancora inferiore a un microwatt per metro quadrato."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.1,
+      "unit": "µW/m²",
+      "tolerance": 0.001
+    },
+    "hints": [
+      "Isola prima il rapporto I/I₀ elevando dieci alla potenza L/10."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un microwatt equivale a 10⁻⁶ watt.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q042",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 42,
+    "title": "Il significato di zero decibel",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Al livello di intensità di 0 dB, quale intensità fisica è presente?",
+    "family": "il-significato-di-zero-decibel",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Quando I = I₀ si ha log₁₀(I/I₀) = log₁₀1 = 0. L’intensità di riferimento è positiva. Un’intensità più bassa può corrispondere a un livello negativo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "L’intensità di riferimento I₀",
+      "options": [
+        "Intensità rigorosamente nulla",
+        "L’intensità di riferimento I₀",
+        "Un’intensità negativa",
+        "La massima intensità udibile"
+      ]
+    },
+    "hints": [
+      "Quanto vale il logaritmo di uno?"
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Lo zero della scala logaritmica corrisponde a un rapporto unitario.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q043",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 43,
+    "title": "Decibel dopo attenuazione",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un filtro acustico trasmette un centesimo dell’intensità incidente. Di quanti dB varia il livello, con il segno finale meno iniziale?",
+    "family": "decibel-dopo-attenuazione",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rapporto finale/iniziale è 0,01."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta L=10\\log_{10}(10^{-2})\\ \\mathrm{dB}=-20\\ \\mathrm{dB}"
+      },
+      {
+        "type": "text",
+        "text": "Una perdita d’intensità produce una variazione negativa."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": -20.0,
+      "unit": "dB",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Usa 10 log₁₀(I₂/I₁) sul rapporto dato."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Il logaritmo decimale di 10⁻² è −2.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q044",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 44,
+    "title": "Due suoni alla stessa intensità",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Due toni hanno identica intensità fisica al ricevitore ma frequenze diverse. Si può dedurre che siano percepiti ugualmente forti?",
+    "family": "due-suoni-alla-stessa-intensita",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La stessa intensità dà lo stesso livello riferito allo stesso I₀. La risposta dell’orecchio cambia con frequenza e individuo, quindi da quel solo dato non si conclude uguale sensazione."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "No, la sensibilità dell’udito dipende anche dalla frequenza",
+      "options": [
+        "Sì, se I è in watt al metro quadrato",
+        "Sì, sempre",
+        "No, perché la frequenza maggiore implica sempre intensità maggiore",
+        "No, la sensibilità dell’udito dipende anche dalla frequenza"
+      ]
+    },
+    "hints": [
+      "Distingui la misura del microfono dalla risposta dell’ascoltatore."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il livello di intensità non esaurisce la descrizione percettiva.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q045",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 45,
+    "title": "Velocità del suono da un’eco",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un muro a 51 m restituisce un’eco dopo 0,30 s a un microfono accanto alla sorgente. Calcola la velocità del suono in m/s.",
+    "family": "velocita-del-suono-da-uneco",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il tempo indicato misura l’intero percorso fra emissione e ricezione."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{2d}{\\Delta t}=\\frac{2(51\\ \\mathrm m)}{0{,}30\\ \\mathrm s}=340\\ \\mathrm{m/s}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 340.0,
+      "unit": "m/s",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "La lunghezza del cammino comprende andata e ritorno."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il muro è distante 51 m ma l’impulso viaggia per 102 m.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q046",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 46,
+    "title": "Sorgente che supera l’osservatore",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente sonora mantiene la frequenza di emissione e passa da avvicinamento ad allontanamento rispetto a un ricevitore fermo. Come cambia la frequenza ricevuta nei due tratti radiali?",
+    "family": "sorgente-che-supera-losservatore",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Davanti alla sorgente in avvicinamento i fronti sono ravvicinati e passano più spesso. In allontanamento arrivano più distanziati e il tono si abbassa."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-doppler.svg",
+        "text": "La figura mostra la configurazione di avvicinamento."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Da superiore a inferiore rispetto a quella emessa",
+      "options": [
+        "Da inferiore a superiore",
+        "Cambia soltanto in un mezzo privo di particelle",
+        "Da superiore a inferiore rispetto a quella emessa",
+        "Resta sempre pari alla frequenza emessa"
+      ]
+    },
+    "hints": [
+      "Conta i fronti che arrivano durante un secondo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il moto relativo altera la frequenza d’arrivo dei fronti.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q047",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 47,
+    "title": "Ricevitore in moto",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un ascoltatore si dirige verso una sorgente ferma in aria immobile. Che cosa cambia al suo orecchio?",
+    "family": "ricevitore-in-moto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le distanze fra fronti nell’aria sono fissate dalla sorgente ferma e dalla velocità del suono nel mezzo. Avvicinandosi, il ricevitore li incontra più frequentemente."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Incontra più fronti nell’unità di tempo",
+      "options": [
+        "La distanza fra fronti nell’aria raddoppia",
+        "Incontra più fronti nell’unità di tempo",
+        "La frequenza ricevuta si annulla",
+        "La sorgente emette più cicli al secondo"
+      ]
+    },
+    "hints": [
+      "Pensa a un ascoltatore che procede incontro alle creste."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il ricevitore può modificare il ritmo degli incontri senza cambiare l’emissione.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q048",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 48,
+    "title": "Frequenza oltre un’interfaccia",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un suono di 1,00 kHz entra normalmente dall’aria nell’acqua attraverso un’interfaccia fissa. Nell’acqua v = 1480 m/s. Calcola λ nell’acqua in m.",
+    "family": "frequenza-oltre-uninterfaccia",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel passaggio si conserva f = 1000 Hz. La distanza percorsa da un fronte in un periodo è λ."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac{v}{f}=\\frac{1480\\ \\mathrm{m/s}}{1000\\ \\mathrm{s^{-1}}}=1{,}48\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.48,
+      "unit": "m",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "L’interfaccia segue il ritmo temporale dell’onda incidente."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un kilohertz equivale a 1000 oscillazioni al secondo.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q049",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 49,
+    "title": "Soglia convenzionale",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Il livello di intensità sonora è espresso normalmente in ____. Completa con il nome dell’unità.",
+    "family": "soglia-convenzionale",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il livello confronta un’intensità con quella di riferimento mediante dieci volte il logaritmo decimale del rapporto. Il nome dell’unità di livello è decibel."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "decibel",
+      "aliases": [
+        "decibels"
+      ]
+    },
+    "hints": [
+      "Il simbolo è dB."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "L’intensità si misura in W/m² e il suo livello logaritmico si esprime in dB.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q050",
+    "kind": "question",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 50,
+    "title": "Tre sorgenti incoerenti",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Tre sorgenti indipendenti danno ciascuna la stessa intensità I al microfono. Di quanti dB aumenta il livello rispetto a una sola sorgente? Fornisci il valore positivo.",
+    "family": "tre-sorgenti-incoerenti",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rapporto delle intensità è (I + I + I)/I = 3."
+      },
+      {
+        "type": "formula",
+        "text": "L_{\\rm tre}-L_{\\rm una}=10\\log_{10}3\\ \\mathrm{dB}\\simeq4{,}77\\ \\mathrm{dB}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 4.7712,
+      "unit": "dB",
+      "tolerance": 0.08
+    },
+    "hints": [
+      "Le intensità medie incoerenti si sommano prima di prendere il logaritmo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Tre sorgenti d’identica intensità danno il rapporto 3, non una triplicazione dei dB.",
+      "target": "C5-L05"
+    }
+  },
+  {
+    "id": "C5-Q051",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 51,
+    "title": "Il mezzo mancante",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Quale fenomeno può propagarsi attraverso lo spazio vuoto fra due camere senza una connessione materiale?",
+    "family": "il-mezzo-mancante",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un impulso elettromagnetico consiste in campi variabili che si propagano anche nel vuoto. Gli altri esempi richiedono invece materia che si deformi o si sposti localmente."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Un impulso luminoso",
+      "options": [
+        "Un’onda di superficie dell’acqua",
+        "Un impulso luminoso",
+        "Una compressione sonora",
+        "Un impulso trasversale su una fune assente"
+      ]
+    },
+    "hints": [
+      "Chiediti quale grandezza oscilla nella regione vuota."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Le onde meccaniche richiedono un mezzo elastico che supporti la perturbazione.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q052",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 52,
+    "title": "Da MHz a metri",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una radioonda nel vuoto ha frequenza 150 MHz. Usa c = 3,0 × 10⁸ m/s. Trova λ in metri.",
+    "family": "da-mhz-a-metri",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per un’onda nel vuoto la velocità è c."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac cf=\\frac{3{,}0\\times10^8}{1{,}50\\times10^8}\\ \\mathrm m=2{,}0\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 2.0,
+      "unit": "m",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Converti il prefisso mega prima di dividere."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "150 MHz corrispondono a 1,50 × 10⁸ Hz.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q053",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 53,
+    "title": "Un campo ruota di segno",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "In un’onda piana nel vuoto il campo elettrico cambia verso dopo mezzo periodo. Nello stesso punto cosa accade al campo magnetico?",
+    "family": "un-campo-ruota-di-segno",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Mezzo periodo cambia il segno di entrambi i campi. Il verso di E × B rimane perciò invariato e l’energia continua a propagarsi nello stesso senso."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Cambia verso nello stesso istante",
+      "options": [
+        "Scompare per il resto del treno d’onde",
+        "Rimane fermo",
+        "Ruota fino a divenire parallelo a E",
+        "Cambia verso nello stesso istante"
+      ]
+    },
+    "hints": [
+      "E e B oscillano in fase."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "In un’onda piana progressiva nel vuoto i due campi hanno fase concorde.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q054",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 54,
+    "title": "Banda contigua al rosso",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Come si chiama la regione immediatamente oltre il rosso visibile verso lunghezze d’onda maggiori?",
+    "family": "banda-contigua-al-rosso",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Aumentando λ nel vuoto diminuisce f. Subito dopo il rosso si incontra l’infrarosso."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-spettro.svg",
+        "text": "Le bande sono ordinate per frequenza crescente verso destra."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "infrarosso",
+      "aliases": [
+        "IR"
+      ]
+    },
+    "hints": [
+      "Segui lo spettro dal visibile verso frequenze più basse."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’ultravioletto è vicino al violetto, dalla parte delle frequenze maggiori.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q055",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 55,
+    "title": "Classificare tre segnali",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Quale terna è ordinata da frequenza minore a maggiore?",
+    "family": "classificare-tre-segnali",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le microonde hanno lunghezza d’onda molto maggiore della luce visibile. I raggi X molto minore. Poiché f = c/λ, l’ordine delle frequenze si inverte rispetto alle lunghezze."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Microonde, visibile, raggi X",
+      "options": [
+        "Raggi X, visibile, microonde",
+        "Microonde, raggi X, visibile",
+        "Visibile, microonde, raggi X",
+        "Microonde, visibile, raggi X"
+      ]
+    },
+    "hints": [
+      "Segui le bande in direzione di lunghezza d’onda decrescente."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel vuoto frequenze alte corrispondono a lunghezze d’onda corte.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q056",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 56,
+    "title": "L’intensità del campo triplicato",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Nel vuoto l’ampiezza del campo E di un’onda piana aumenta di tre volte. Qual è il rapporto fra intensità media finale e iniziale?",
+    "family": "lintensita-del-campo-triplicato",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Usando la stessa costante di proporzionalità per il vuoto, il rapporto delle intensità è il quadrato del rapporto delle ampiezze."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I_2}{I_1}=\\frac{(3E_0)^2}{E_0^2}=9"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 9.0,
+      "unit": "rapporto",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "L’intensità è proporzionale al quadrato dell’ampiezza."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Quadrando il triplo si ottiene nove volte il valore iniziale.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q057",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 57,
+    "title": "La luce misura una distanza",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un impulso luminoso torna allo stesso rivelatore dopo 12 ns per riflessione su uno specchio nel vuoto. Usa c = 3,00 × 10⁸ m/s. Calcola la distanza dello specchio in m.",
+    "family": "la-luce-misura-una-distanza",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Convertiamo 12 ns in 12 × 10⁻⁹ s. Il cammino totale è cΔt e coincide con 2d."
+      },
+      {
+        "type": "formula",
+        "text": "d=\\frac{(3{,}00\\times10^8)(12\\times10^{-9})}{2}\\ \\mathrm m=1{,}8\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.8,
+      "unit": "m",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Il tempo misurato comprende due tratti uguali."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La luce percorre il doppio della distanza cercata.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q058",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 58,
+    "title": "Campi ortogonali",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Il campo elettrico e il campo magnetico di un’onda piana nel vuoto sono tra loro ____. Completa con un aggettivo plurale.",
+    "family": "campi-ortogonali",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "E e B sono perpendicolari fra loro. Anche la direzione di propagazione è perpendicolare a entrambi."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-campi.svg",
+        "text": "Una freccia sul foglio e il simbolo uscente dal foglio mostrano i due campi."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "perpendicolari",
+      "aliases": [
+        "ortogonali"
+      ]
+    },
+    "hints": [
+      "Confronta le due direzioni di oscillazione."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La geometria dell’onda elettromagnetica coinvolge tre direzioni a due a due ortogonali.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q059",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 59,
+    "title": "Indice dal cambio di passo",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una stessa luce monocromatica ha λ₀ = 660 nm nel vuoto e λ = 440 nm in un materiale trasparente. Determina n.",
+    "family": "indice-dal-cambio-di-passo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A frequenza fissa il rapporto fra le lunghezze d’onda coincide con quello fra le velocità di propagazione."
+      },
+      {
+        "type": "formula",
+        "text": "n=\\frac{c}{v}=\\frac{\\lambda_0 f}{\\lambda f}=\\frac{660}{440}=1{,}50"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.5,
+      "unit": "adimensionale",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "La frequenza resta costante e v = c/n."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il rapporto di lunghezze va preso come valore nel vuoto diviso per valore nel mezzo.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q060",
+    "kind": "question",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 60,
+    "title": "Più fotoni o nuova banda?",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente monocromatica conserva la frequenza mentre aumenta l’intensità. Quale grandezza resta sicuramente invariata nel vuoto?",
+    "family": "piu-fotoni-o-nuova-banda",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel vuoto λ = c/f. A frequenza invariata resta uguale anche λ e il segnale occupa la stessa banda. Aumenta l’energia che attraversa l’unità di area in un secondo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La lunghezza d’onda",
+      "options": [
+        "La lunghezza d’onda",
+        "La potenza su un sensore fisso",
+        "Il modulo massimo del campo elettrico",
+        "Il numero di fotoni al secondo per unità di area"
+      ]
+    },
+    "hints": [
+      "La banda si identifica con la frequenza o con λ nel vuoto."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Per cambiare banda occorre cambiare l’intervallo di frequenze.",
+      "target": "C5-L06"
+    }
+  },
+  {
+    "id": "C5-Q061",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 61,
+    "title": "Stessa potenza, fotoni diversi",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Due sorgenti monocromatiche emettono la stessa potenza. La seconda ha frequenza doppia. Come cambia il numero di fotoni emessi al secondo?",
+    "family": "stessa-potenza-fotoni-diversi",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia di un singolo fotone è hf e raddoppia con la frequenza."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\dot N_2}{\\dot N_1}=\\frac{P/(2hf_1)}{P/(hf_1)}=\\frac12"
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Si dimezza",
+      "options": [
+        "Raddoppia",
+        "Si dimezza",
+        "Si quadruplica",
+        "Rimane uguale"
+      ]
+    },
+    "hints": [
+      "Scrivi la potenza come numero di fotoni al secondo per energia di un fotone."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "A potenza fissata, maggiore energia per fotone implica meno fotoni al secondo.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q062",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 62,
+    "title": "Una soglia in elettronvolt",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un modello assegna a un atomo isolato una soglia di ionizzazione di 8,0 eV. Quale fra queste radiazioni può superarla con un singolo fotone? Usa E in eV = 1240/λ in nm.",
+    "family": "una-soglia-in-elettronvolt",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Ponendo 1240/λ ≥ 8 si ottiene λ ≤ 155 nm. Il fotone da 130 nm ha circa 9,54 eV ed è l’unico fra le scelte a superare la soglia. La condizione è energetica. L’effettiva probabilità di interazione dipende anche dal sistema."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "λ = 130 nm",
+      "options": [
+        "λ = 500 nm",
+        "λ = 1000 nm",
+        "λ = 130 nm",
+        "λ = 200 nm"
+      ]
+    },
+    "hints": [
+      "Determina la massima lunghezza d’onda compatibile con la soglia."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per l’effetto a singolo fotone il confronto riguarda l’energia del fotone.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q063",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 63,
+    "title": "La costante fra energia e frequenza",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "La costante h che lega l’energia di un fotone alla frequenza porta il cognome di ____.",
+    "family": "la-costante-fra-energia-e-frequenza",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La relazione di Planck assegna al quanto di frequenza f l’energia hf. Il prodotto di joule-secondo per secondo inverso dà joule."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Planck",
+      "aliases": []
+    },
+    "hints": [
+      "Si cerca il nome associato alla relazione E = hf."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nella legge dei fotoni h è la costante di Planck.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q064",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 64,
+    "title": "Due filtri diversi",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un fascio incide su due filtri successivi con trasmissioni 80% e 25%. Trascura riflessioni e ritorni. Qual è la trasmissione complessiva in percento?",
+    "family": "due-filtri-diversi",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Se si parte da 100 unità, dopo il primo filtro ne restano 80. Il secondo ne lascia un quarto."
+      },
+      {
+        "type": "formula",
+        "text": "T_{\\rm tot}=0{,}80\\cdot0{,}25=0{,}20=20\\%"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 20.0,
+      "unit": "%",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Per il secondo filtro l’intensità in ingresso è l’uscita del primo."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Le frazioni trasmesse successive si moltiplicano.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q065",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 65,
+    "title": "Dalla pendenza semilogaritmica",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Nel grafico di ln(I/I₀) contro x leggi il valore a 0 cm e quello a 3 cm. Ricava μ in cm⁻¹.",
+    "family": "dalla-pendenza-semilogaritmica",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Fra 0 e 3 cm l’ordinata passa da 0 a −2,1. La pendenza è (−2,1 − 0)/(3 − 0) = −0,70 cm⁻¹."
+      },
+      {
+        "type": "text",
+        "text": "Da I/I₀ = exp(−μx) si ottiene ln(I/I₀) = −μx. Il coefficiente fisico positivo vale dunque 0,70 cm⁻¹. Il segno negativo della retta esprime la diminuzione."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.7,
+      "unit": "cm⁻¹",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Prendi il logaritmo della legge esponenziale."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La pendenza è l’opposto di μ per un fascio che si attenua.",
+      "target": "C5-L07"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-semilog.svg",
+        "text": "Le ordinate rappresentano il logaritmo naturale di una frazione. Leggi sull’asse orizzontale lo spessore del mezzo."
+      }
+    ]
+  },
+  {
+    "id": "C5-Q066",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 66,
+    "title": "Assorbimento o trasmissione?",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "In un materiale puramente assorbente il 35% dell’intensità esce dal campione. Quanto viene assorbito, in percento dell’intensità incidente?",
+    "family": "assorbimento-o-trasmissione",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Se si trasmettono 35 unità su 100 e non esistono altri canali, le altre 65 vengono assorbite."
+      },
+      {
+        "type": "formula",
+        "text": "100\\%-35\\%=65\\%"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 65.0,
+      "unit": "%",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Ripartisci il 100% tra le due sole destinazioni date."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il 35% indica la quota trasmessa, non tutta quella persa.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q067",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 67,
+    "title": "Unità dello spessore",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un mezzo ha μ = 2,0 cm⁻¹. Quale numero adimensionale vale μx per x = 3,0 mm?",
+    "family": "unita-dello-spessore",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Lo spessore di 3,0 mm equivale a 0,30 cm."
+      },
+      {
+        "type": "formula",
+        "text": "\\mu x=(2{,}0\\ \\mathrm{cm^{-1}})(0{,}30\\ \\mathrm{cm})=0{,}60"
+      },
+      {
+        "type": "text",
+        "text": "Questo numero è l’opposto dell’esponente nella legge di trasmissione."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.6,
+      "unit": "adimensionale",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Converti i millimetri in centimetri prima del prodotto."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il prodotto nell’esponente deve avere unità cancellate.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q068",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 68,
+    "title": "Confrontare lampade con fotoni uguali",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente fornisce 3,0 × 10¹⁵ fotoni/s, ciascuno con energia 4,0 × 10⁻¹⁹ J. Qual è la potenza in mW?",
+    "family": "confrontare-lampade-con-fotoni-uguali",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il flusso di fotoni moltiplicato per l’energia di ciascuno dà l’energia totale al secondo."
+      },
+      {
+        "type": "formula",
+        "text": "P=(3{,}0\\times10^{15})(4{,}0\\times10^{-19})\\ \\mathrm W=1{,}2\\times10^{-3}\\ \\mathrm W=1{,}2\\ \\mathrm{mW}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.2,
+      "unit": "mW",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Moltiplica l’energia unitaria per il numero di arrivi al secondo."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La potenza inizialmente calcolata è in joule al secondo, cioè watt.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q069",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 69,
+    "title": "Fascio non monocromatico",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un fascio contiene due colori con coefficienti di assorbimento diversi. Perché una sola μ costante può descrivere male l’intera curva trasmessa?",
+    "family": "fascio-non-monocromatico",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La componente con μ maggiore diminuisce più rapidamente, così la composizione del fascio cambia. L’intensità totale è una somma pesata di esponenziali che in generale non ha un’unica pendenza semilogaritmica costante."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Le due componenti si attenuano in proporzioni diverse",
+      "options": [
+        "L’intensità iniziale deve essere negativa",
+        "Il logaritmo è definito solo a x = 0",
+        "Le due componenti si attenuano in proporzioni diverse",
+        "La luce perde sempre frequenza per ogni centimetro"
+      ]
+    },
+    "hints": [
+      "Somma due esponenziali con coefficienti differenti."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La semplice esponenziale assume un coefficiente costante per il fascio considerato.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q070",
+    "kind": "question",
+    "course": "C5",
+    "section": "Fotoni e attenuazione",
+    "order": 70,
+    "title": "Energia prima della soglia",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Fra intensità del fascio, energia di un fotone, area del rivelatore e durata dell’esposizione, quale grandezza confronti direttamente con l’energia di ionizzazione per un processo a singolo fotone?",
+    "family": "energia-prima-della-soglia",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’evento ipotizzato trasferisce l’energia hf di un singolo fotone. Area, durata e intensità modificano quanta energia può arrivare in totale e quanti eventi sono possibili, ma non cambiano hf a frequenza fissata."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Energia di un fotone",
+      "options": [
+        "Energia di un fotone",
+        "Durata dell’esposizione",
+        "Intensità del fascio",
+        "Area del rivelatore"
+      ]
+    },
+    "hints": [
+      "Confronta quantità con la stessa unità e relative al medesimo evento."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’energia totale del fascio comprende un numero potenzialmente grande di fotoni.",
+      "target": "C5-L07"
+    }
+  },
+  {
+    "id": "C5-Q071",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 71,
+    "title": "Identificare due isotopi",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Quale coppia descrive due isotopi diversi dello stesso elemento?",
+    "family": "identificare-due-isotopi",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A parità di Z il nucleo appartiene allo stesso elemento. Aggiungendo o togliendo neutroni cambia A = Z + N e si distinguono isotopi differenti."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Uguale Z e diverso numero di neutroni",
+      "options": [
+        "Uguali Z e A",
+        "Diverso Z e diverso numero di elettroni",
+        "Uguale Z e diverso numero di neutroni",
+        "Diverso Z e uguale A"
+      ]
+    },
+    "hints": [
+      "Il numero di protoni identifica l’elemento."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Cambiare Z cambia l’elemento chimico.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q072",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 72,
+    "title": "Trasformazione alfa",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un nucleo con A = 210, Z = 84 emette una particella α. Inserisci il numero di neutroni del nucleo figlio.",
+    "family": "trasformazione-alfa",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il figlio ha A = 210 − 4 = 206 e Z = 84 − 2 = 82."
+      },
+      {
+        "type": "formula",
+        "text": "N_{\\rm n}=A-Z=206-82=124"
+      },
+      {
+        "type": "text",
+        "text": "Il genitore aveva 126 neutroni, due dei quali sono partiti con la particella α."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 124.0,
+      "unit": "neutroni",
+      "tolerance": 0.0
+    },
+    "hints": [
+      "Togli due protoni e due neutroni, poi calcola A − Z."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Nella transizione alfa cambiano sia il numero di massa sia quello atomico.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q073",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 73,
+    "title": "Carica nel beta positivo",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un nucleo con 7 protoni e 6 neutroni decade tramite β⁺. Quanti protoni contiene il nucleo figlio?",
+    "family": "carica-nel-beta-positivo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il numero totale dei nucleoni resta 13. Uno dei sette protoni si converte in neutrone, quindi rimangono 6 protoni e si raggiungono 7 neutroni."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 6.0,
+      "unit": "protoni",
+      "tolerance": 0.0
+    },
+    "hints": [
+      "Nel β⁺ un protone diventa un neutrone."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il positrone porta fuori una carica positiva. Il nucleo perde un’unità di Z.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q074",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 74,
+    "title": "Un fotone dal nucleo",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Un nucleo eccitato cambia energia emettendo un fotone senza modificare A e Z. Indica la transizione con il nome della lettera greca.",
+    "family": "un-fotone-dal-nucleo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una transizione gamma riduce l’energia interna del nucleo. Restano invariati il numero dei protoni e il numero totale dei nucleoni."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "gamma",
+      "aliases": [
+        "γ"
+      ]
+    },
+    "hints": [
+      "Quale emissione lascia invariata la composizione del nucleo?"
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un fotone non contiene protoni o neutroni e non porta carica elettrica.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q075",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 75,
+    "title": "Dalla costante all’emivita",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "La costante di decadimento di una specie è 0,231 h⁻¹. Con ln 2 = 0,693 calcola T½ in ore.",
+    "family": "dalla-costante-allemivita",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Da exp(−λT½) = 1/2 otteniamo λT½ = ln 2."
+      },
+      {
+        "type": "formula",
+        "text": "T_{1/2}=\\frac{0{,}693}{0{,}231\\ \\mathrm{h^{-1}}}=3{,}00\\ \\mathrm h"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 3.0,
+      "unit": "h",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Imponi N/N₀ = 1/2 nella legge esponenziale."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "λ ha dimensione di inverso del tempo e deve andare al denominatore.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q076",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 76,
+    "title": "Dal numero di nuclei all’attività",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "In un istante ci sono 5,0 × 10⁷ nuclei instabili con λ = 2,0 × 10⁻⁵ s⁻¹. Qual è l’attività in kBq?",
+    "family": "dal-numero-di-nuclei-allattivita",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Moltiplichiamo la probabilità per unità di tempo per il numero di nuclei disponibili."
+      },
+      {
+        "type": "formula",
+        "text": "\\mathcal A=(2{,}0\\times10^{-5})(5{,}0\\times10^7)\\ \\mathrm{Bq}=1000\\ \\mathrm{Bq}=1{,}0\\ \\mathrm{kBq}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.0,
+      "unit": "kBq",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Calcola λN in s⁻¹ e poi converti in kilobecquerel."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il prodotto λN conta decadimenti medi ogni secondo.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q077",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 77,
+    "title": "Frazione già decaduta",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Dopo quattro emivite, quale percentuale della popolazione iniziale è già decaduta?",
+    "family": "frazione-gia-decaduta",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dopo quattro dimezzamenti resta (1/2)⁴ = 1/16."
+      },
+      {
+        "type": "formula",
+        "text": "f_{\\rm decaduta}=1-\\frac1{16}=\\frac{15}{16}=0{,}9375=93{,}75\\%"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 93.75,
+      "unit": "%",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Trova prima la frazione residua e sottraila dall’unità."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il complemento della frazione rimasta dà la frazione decaduta.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q078",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 78,
+    "title": "Individuale e collettivo",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Dopo un’emivita un singolo nucleo inizialmente instabile è ancora presente. Quale interpretazione è corretta?",
+    "family": "individuale-e-collettivo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per un nucleo della specie la probabilità di essere ancora presente a T½ è metà. Il conteggio residuo di un insieme numeroso si concentra intorno a metà dell’iniziale, con fluttuazioni."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "È compatibile con una probabilità di sopravvivenza pari a 1/2",
+      "options": [
+        "Il nucleo è diventato stabile per definizione",
+        "L’emivita del nucleo deve essere raddoppiata",
+        "La legge esponenziale è violata",
+        "È compatibile con una probabilità di sopravvivenza pari a 1/2"
+      ]
+    },
+    "hints": [
+      "La relazione descrive probabilità e grandi popolazioni."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’emivita non impone la data di decadimento del singolo nucleo.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q079",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 79,
+    "title": "Efficienza di conteggio",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Per ogni decadimento si emette un segnale e un rivelatore ne conta in media il 25%. Il tasso netto è 180 s⁻¹. Calcola l’attività in Bq.",
+    "family": "efficienza-di-conteggio",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel modello il tasso di conteggio è R = ε𝒜 con ε = 0,25."
+      },
+      {
+        "type": "formula",
+        "text": "\\mathcal A=\\frac{R}{\\epsilon}=\\frac{180}{0{,}25}\\ \\mathrm{Bq}=720\\ \\mathrm{Bq}"
+      },
+      {
+        "type": "text",
+        "text": "Il totale degli eventi deve essere superiore a quello osservato."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 720.0,
+      "unit": "Bq",
+      "tolerance": 1.0
+    },
+    "hints": [
+      "La lettura è una frazione dell’attività."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per ricostruire il totale da una frazione osservata si divide per l’efficienza.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q080",
+    "kind": "question",
+    "course": "C5",
+    "section": "Decadimenti e attività",
+    "order": 80,
+    "title": "Due popolazioni con uguale attività",
+    "skill": "C5-L08",
+    "prerequisites": [],
+    "version": 1,
+    "prompt": "Due campioni hanno oggi la stessa attività. Il primo ha costante di decadimento doppia del secondo. Come devono confrontarsi i numeri di nuclei instabili?",
+    "family": "due-popolazioni-con-uguale-attivita",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Poniamo 2λ₂N₁ = λ₂N₂. Dividendo per λ₂ otteniamo 2N₁ = N₂. Un numero minore di nuclei a decadimento più rapido può dare la stessa attività."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Il primo contiene la metà dei nuclei del secondo",
+      "options": [
+        "I numeri sono identici",
+        "Il primo ne contiene il quadruplo",
+        "Il primo ne contiene il doppio",
+        "Il primo contiene la metà dei nuclei del secondo"
+      ]
+    },
+    "hints": [
+      "Confronta i prodotti λ₁N₁ e λ₂N₂."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "A parità di attività il numero di nuclei è inversamente proporzionale a λ.",
+      "target": "C5-L08"
+    }
+  },
+  {
+    "id": "C5-Q081",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 81,
+    "title": "Normale da una superficie inclinata",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio forma 25° con la superficie di uno specchio piano. Quanto misura l’angolo di riflessione rispetto alla normale, in gradi?",
+    "family": "normale-da-una-superficie-inclinata",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’angolo d’incidenza vale 90° − 25° = 65°. Per riflessione speculare l’angolo riflesso è uguale all’incidente, dunque misura 65° rispetto alla normale."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 65.0,
+      "unit": "°",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "La normale è perpendicolare alla superficie."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La legge di riflessione usa angoli misurati dalla normale.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q082",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 82,
+    "title": "Il riferimento angolare",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "La retta perpendicolare all’interfaccia nel punto di incidenza si chiama ____.",
+    "family": "il-riferimento-angolare",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il nome è normale. Anche su una superficie curva si usa la normale al piano tangente nel punto d’incidenza."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "normale",
+      "aliases": []
+    },
+    "hints": [
+      "È la retta tratteggiata nella figura di rifrazione."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Gli angoli di Snell si misurano rispetto alla perpendicolare locale.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q083",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 83,
+    "title": "Moto all’ingresso normale",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio entra perpendicolarmente dall’aria in vetro trasparente di n = 1,50. Quale coppia di cambiamenti è corretta?",
+    "family": "moto-allingresso-normale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per Snell, sin θ₂ = (n₁/n₂) sin 0 = 0. La propagazione resta normale all’interfaccia. La relazione v = c/n dà una velocità inferiore nel vetro."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Direzione invariata e velocità di fase minore",
+      "options": [
+        "Frequenza minore e velocità invariata",
+        "Direzione invertita e frequenza doppia",
+        "Direzione più vicina alla superficie e velocità maggiore",
+        "Direzione invariata e velocità di fase minore"
+      ]
+    },
+    "hints": [
+      "Applica Snell con angolo iniziale nullo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un cambio di indice modifica la velocità anche quando non devia il raggio trasmesso.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q084",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 84,
+    "title": "Indice incognito da due angoli",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Dall’aria, n = 1,00, un raggio incide a 45° e si rifrange a 30°, rispetto alla normale. Trova n del secondo mezzo.",
+    "family": "indice-incognito-da-due-angoli",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Da n₁ sin θ₁ = n₂ sin θ₂ otteniamo n₂ = n₁ sin θ₁ / sin θ₂."
+      },
+      {
+        "type": "formula",
+        "text": "n_2=\\frac{0{,}7071}{0{,}5000}=1{,}414"
+      },
+      {
+        "type": "text",
+        "text": "Il valore maggiore di uno è coerente con il raggio più vicino alla normale."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.4142,
+      "unit": "adimensionale",
+      "tolerance": 0.012
+    },
+    "hints": [
+      "Isola il secondo indice nella legge di Snell."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il seno dell’angolo incidente resta al numeratore.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q085",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 85,
+    "title": "Luce più lenta in un materiale",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un fascio si propaga nel materiale a 1,875 × 10⁸ m/s. Con c = 3,00 × 10⁸ m/s, determina l’indice n.",
+    "family": "luce-piu-lenta-in-un-materiale",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dividiamo due velocità espresse nella medesima unità."
+      },
+      {
+        "type": "formula",
+        "text": "n=\\frac{3{,}00\\times10^8}{1{,}875\\times10^8}=1{,}60"
+      },
+      {
+        "type": "text",
+        "text": "L’unità si cancella."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.6,
+      "unit": "adimensionale",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Confronta la velocità nel vuoto con la velocità nel materiale."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Nel modello n vale c/v.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q086",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 86,
+    "title": "Piastra a facce parallele",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio attraversa obliquamente una lastra trasparente a facce parallele, da aria ad aria. Considera il raggio direttamente trasmesso. Come emerge?",
+    "family": "piastra-a-facce-parallele",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "All’ingresso nₐ sin θᵢ = nᵥ sin θᵥ e all’uscita nᵥ sin θᵥ = nₐ sin θᵤ. Quindi θᵢ = θᵤ. Il tratto inclinato nel vetro porta in genere a uno spostamento laterale."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Parallelo al raggio incidente, in generale spostato di lato",
+      "options": [
+        "Sempre sulla stessa retta dell’incidente",
+        "Parallelo al raggio incidente, in generale spostato di lato",
+        "Perpendicolare alla faccia d’uscita",
+        "Con frequenza dimezzata"
+      ]
+    },
+    "hints": [
+      "Applica Snell due volte usando le normali parallele."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La lastra fa subire due rifrazioni con transizioni inverse.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q087",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 87,
+    "title": "Invertire il percorso",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un raggio passa dal mezzo A a B con angoli 50° in A e 32° in B. Invertendo esattamente il cammino in mezzi trasparenti reciproci, qual è l’angolo in A in gradi?",
+    "family": "invertire-il-percorso",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La condizione nᴬ sin 50° = nᴮ sin 32° resta valida quando il secondo lato diventa incidente. Il raggio riemerge in A con angolo di 50° rispetto alla normale."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 50.0,
+      "unit": "°",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Controlla che la stessa uguaglianza di Snell valga scambiando i lati."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il percorso nell’ottica geometrica dei mezzi reciproci è reversibile.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q088",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 88,
+    "title": "Scegliere l’interfaccia per l’angolo critico",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Per quale passaggio può avvenire riflessione totale interna a un angolo appropriato?",
+    "family": "scegliere-linterfaccia-per-langolo-critico",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per avere un angolo critico con seno n₂/n₁ minore di uno deve essere n₁ > n₂. La coppia vetro–acqua nel verso dato soddisfa questa condizione."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Dal vetro di n = 1,50 all’acqua di n = 1,33",
+      "options": [
+        "Fra mezzi dello stesso indice",
+        "Dal vetro di n = 1,50 all’acqua di n = 1,33",
+        "Dall’aria al vetro",
+        "Dall’acqua al vetro"
+      ]
+    },
+    "hints": [
+      "Il raggio rifratto deve potersi avvicinare a 90° aumentando l’incidenza."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La riflessione totale interna richiede incidenza dal lato a indice maggiore.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q089",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 89,
+    "title": "Angolo fra due bracci",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Un fascio incide sullo specchio a 30° dalla normale. Qual è l’angolo minore, in gradi, fra i due segmenti di raggio che dal punto di riflessione vanno alla sorgente e al ricevitore?",
+    "family": "angolo-fra-due-bracci",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "I segmenti verso sorgente e ricevitore sono speculari. Ognuno forma 30° con la normale dalla stessa parte dello specchio. La loro apertura è 30° + 30° = 60°."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 60.0,
+      "unit": "°",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "I due segmenti giacciono ai lati opposti della normale."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il testo considera i segmenti geometrici uscenti dal punto d’incidenza.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q090",
+    "kind": "question",
+    "course": "C5",
+    "section": "Riflessione e rifrazione",
+    "order": 90,
+    "title": "Riflessione da specchio ruotato",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Con raggio incidente fisso, uno specchio piano ruota di 4° nel piano di incidenza intorno al punto illuminato. Di quanti gradi ruota la direzione riflessa in modulo?",
+    "family": "riflessione-da-specchio-ruotato",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La normale è la bisettrice fra i segmenti verso sorgente e ricevitore. Con il primo fermo, la direzione del secondo deve ruotare il doppio perché la bisettrice ruoti di 4°. Il risultato è 8°."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 8.0,
+      "unit": "°",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "La normale ruota come lo specchio e biseca i due segmenti."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La rotazione dello specchio contribuisce due volte alla variazione del raggio riflesso.",
+      "target": "C5-L09"
+    }
+  },
+  {
+    "id": "C5-Q091",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 91,
+    "title": "Oggetto al doppio della focale",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Una lente convergente sottile ha f = 8 cm. Un oggetto reale è a 16 cm. Calcola la distanza dell’immagine sul lato d’uscita in cm.",
+    "family": "oggetto-al-doppio-della-focale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il reciproco della distanza immagine è 1/8 − 1/16 = 1/16 cm⁻¹. L’immagine si trova a q = +16 cm. La simmetria quando p = 2f fornisce lo stesso risultato."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 16.0,
+      "unit": "cm",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Confronta p con 2f, poi sottrai i reciproci."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’equazione contiene 1/p e 1/q, quindi occorre invertire alla fine.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q092",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 92,
+    "title": "Quando lo schermo rimane vuoto",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Una lente convergente riceve raggi provenienti da un oggetto posto esattamente nel suo piano focale anteriore. Nell’approssimazione sottile, come emergono i raggi provenienti da un singolo punto?",
+    "family": "quando-lo-schermo-rimane-vuoto",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dalla relazione 1/q = 1/f − 1/p si ottiene 1/q = 0. I raggi provenienti da un punto del piano focale emergono paralleli fra loro e non raggiungono un punto immagine a distanza finita."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Paralleli fra loro",
+      "options": [
+        "Sempre diretti al fuoco d’uscita",
+        "Tutti concentrati sulla lente",
+        "Tutti riflessi verso la sorgente",
+        "Paralleli fra loro"
+      ]
+    },
+    "hints": [
+      "Sostituisci p = f nell’equazione dei punti coniugati."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per p = f il reciproco di q è zero.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q093",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 93,
+    "title": "Segno di un’immagine virtuale",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Con oggetto reale e convenzione q positiva sul lato d’uscita, la distanza q di un’immagine formata dai prolungamenti all’indietro dei raggi è ____.",
+    "family": "segno-di-unimmagine-virtuale",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "I raggi emergenti divergono e i loro prolungamenti si incontrano sul lato dell’oggetto. La convenzione assegna q < 0 a quella posizione."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-virtuale.svg",
+        "text": "Il tratteggio mostra il prolungamento geometrico che localizza l’immagine."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "negativa",
+      "aliases": [
+        "negativo"
+      ]
+    },
+    "hints": [
+      "Identifica il lato sul quale i prolungamenti si incontrano."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il verso convenzionale è fissato dal lato d’uscita della lente.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q094",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 94,
+    "title": "Focale misurata sul banco",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Un oggetto a 24 cm dalla lente genera un’immagine nitida sullo schermo a 40 cm sul lato opposto. Quanto vale f in cm?",
+    "family": "focale-misurata-sul-banco",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le distanze sono positive perché oggetto e immagine sono reali."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1f=\\frac1{24}+\\frac1{40}=\\frac{5+3}{120}=\\frac1{15}\\quad(\\mathrm{cm}^{-1})"
+      },
+      {
+        "type": "text",
+        "text": "La focale vale +15 cm."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 15.0,
+      "unit": "cm",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Somma i reciproci e poi inverti."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La focale in questa configurazione deve essere minore di entrambe le distanze.",
+      "target": "C5-L10"
+    }
+  },
+  {
+    "id": "C5-Q095",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 95,
+    "title": "Ingrandimento dall’altezza",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "L’immagine di una freccia alta 12 mm è capovolta e alta 30 mm in modulo. Qual è l’ingrandimento con segno?",
+    "family": "ingrandimento-dallaltezza",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Scriviamo h = +12 mm e h′ = −30 mm con lo stesso riferimento verticale."
+      },
+      {
+        "type": "formula",
+        "text": "m=h'/h=-30/12=-2{,}5"
+      },
+      {
+        "type": "text",
+        "text": "Il modulo indica un ingrandimento di due volte e mezzo."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": -2.5,
+      "unit": "adimensionale",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Assegna prima il segno all’altezza immagine."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "L’altezza dell’immagine capovolta è negativa se quella dell’oggetto è positiva.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q096",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 96,
+    "title": "Raggio che incontra il centro",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Nel modello di lente sottile immersa nello stesso mezzo sui due lati, un raggio parassiale attraverso il centro ottico prosegue come?",
+    "family": "raggio-che-incontra-il-centro",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel modello sottile il raggio centrale mantiene la sua direzione. Il raggio parallelo all’asse, invece, emerge passando per il fuoco d’uscita. La loro intersezione localizza l’immagine."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "In linea retta",
+      "options": [
+        "In linea retta",
+        "Tornando alla sorgente",
+        "Sempre parallelo all’asse dopo la lente",
+        "Sempre per il fuoco anteriore"
+      ]
+    },
+    "hints": [
+      "Usalo come secondo raggio nella costruzione geometrica."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "I raggi principali hanno regole diverse a seconda di come arrivano sulla lente.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q097",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 97,
+    "title": "Metà lente coperta",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Si copre metà di una lente ideale che formava l’immagine di una freccia su uno schermo. In ottica geometrica, se ogni punto dell’oggetto illumina la parte libera, che cosa si vede?",
+    "family": "meta-lente-coperta",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "I raggi che attraversano la metà libera convergono ancora in ogni punto coniugato. Si raccoglie meno potenza da ciascun punto e l’immagine perde luminosità, pur conservando la sua estensione geometrica."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "L’intera freccia meno luminosa",
+      "options": [
+        "L’immagine si sposta al fuoco",
+        "Soltanto la metà inferiore",
+        "L’intera freccia meno luminosa",
+        "Soltanto la metà superiore"
+      ]
+    },
+    "hints": [
+      "Ogni punto oggetto contribuisce con molti raggi all’immagine."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Coprire parte dell’apertura riduce i raggi raccolti da ciascun punto.",
+      "target": "C5-L10"
+    }
+  },
+  {
+    "id": "C5-Q098",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 98,
+    "title": "Doppio ingrandimento reale",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Una lente convergente con f = 10 cm deve formare un’immagine reale con m = −2. A quale distanza p in cm va posto l’oggetto?",
+    "family": "doppio-ingrandimento-reale",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’ingrandimento richiesto impone q = 2p."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1f=\\frac1p+\\frac1{2p}=\\frac{3}{2p},\\qquad p=\\frac32 f=15\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "L’oggetto è fra f e 2f, come richiesto per un’immagine reale ingrandita."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 15.0,
+      "unit": "cm",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Da m = −q/p ottieni q in funzione di p."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Sostituisci q = 2p nell’equazione dei reciproci.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q099",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 99,
+    "title": "Schermo che si allontana",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Un oggetto reale si avvicina a f partendo dall’esterno con p sempre maggiore di f. Che cosa accade alla posizione dello schermo per conservare la messa a fuoco?",
+    "family": "schermo-che-si-allontana",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con p > f la distanza q resta positiva. Mentre p − f diminuisce verso zero, il rapporto fp/(p − f) cresce senza limite nel modello. I raggi emergenti convergono sempre più lontano."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Deve allontanarsi progressivamente dalla lente",
+      "options": [
+        "Resta sempre a 2f",
+        "Deve avvicinarsi fino a zero",
+        "Deve passare subito sul lato dell’oggetto",
+        "Deve allontanarsi progressivamente dalla lente"
+      ]
+    },
+    "hints": [
+      "Osserva il denominatore p − f nella forma q = fp/(p − f)."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Quando p tende a f dall’alto il denominatore positivo diventa molto piccolo.",
+      "target": "lab:C5"
+    }
+  },
+  {
+    "id": "C5-Q100",
+    "kind": "question",
+    "course": "C5",
+    "section": "Lenti e immagini",
+    "order": 100,
+    "title": "Identificare la lente dal disegno",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Nel disegno un raggio incidente parallelo all’asse emerge passando per il fuoco sul lato d’uscita. Per un oggetto reale e mezzo identico sui due lati la lente è ____.",
+    "family": "identificare-la-lente-dal-disegno",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il punto focale è raggiunto da un raggio emergente reale. Questo è il comportamento di una lente a potere positivo, detta convergente."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "convergente",
+      "aliases": []
+    },
+    "hints": [
+      "Segui il raggio dopo l’attraversamento."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Per una lente convergente il raggio parallelo passa realmente per il fuoco d’uscita.",
+      "target": "lab:C5"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-lente-reale.svg",
+        "text": "Osserva il raggio verde in arrivo parallelo all’asse e prosegui oltre la lente fino a F′."
+      }
+    ]
+  }
+]

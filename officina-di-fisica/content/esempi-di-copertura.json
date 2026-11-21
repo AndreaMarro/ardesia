@@ -1,0 +1,419 @@
+[
+  {
+    "id": "C1-E021",
+    "version": 1,
+    "kind": "example",
+    "course": "C1",
+    "section": "Misura e rappresentazione",
+    "order": 21,
+    "title": "Riunire due aliquote senza cambiare sostanza",
+    "skill": "C1-L001",
+    "prerequisites": [],
+    "family": "riunire-due-aliquote-senza-cambiare-sostanza",
+    "difficulty": 1,
+    "prompt": "Due bicchieri contengono 30 mL e 70 mL dello stesso liquido omogeneo, entrambi a 22 °C. La densità è 0,80 g/mL. Versiamo tutto nello stesso recipiente senza perdite né scambi di energia apprezzabili. Prevedi massa, volume, densità e temperatura finali.",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C1-porzioni.svg",
+        "text": "I due bicchieri contengono lo stesso liquido nelle stesse condizioni. Consideriamo additivi i due volumi."
+      },
+      {
+        "type": "text",
+        "text": "La massa si calcola moltiplicando la densità per il volume di ciascuna aliquota. I millilitri si semplificano e rimangono grammi."
+      },
+      {
+        "type": "formula",
+        "text": "m_A=0{,}80\\cdot30=24\\ \\mathrm g,\\qquad m_B=0{,}80\\cdot70=56\\ \\mathrm g"
+      },
+      {
+        "type": "formula",
+        "text": "m_f=24+56=80\\ \\mathrm g,\\quad V_f=30+70=100\\ \\mathrm{mL},\\quad\\rho_f=80/100=0{,}80\\ \\mathrm{g/mL}"
+      },
+      {
+        "type": "text",
+        "text": "Massa e volume crescono riunendo le aliquote: in queste condizioni sono grandezze estensive. La densità, rapporto fra due quantità che crescono insieme, resta 0,80 g/mL. Anche il termometro resta a 22 °C perché le aliquote erano già in equilibrio termico tra loro. Densità e temperatura sono intensive. Sommare le due letture del termometro darebbe una previsione incompatibile con l’assenza di riscaldamento."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C1-E022",
+    "version": 1,
+    "kind": "example",
+    "course": "C1",
+    "section": "Moto e forze",
+    "order": 22,
+    "title": "Forze equilibrate su un pattino già in moto",
+    "skill": "C1-L005",
+    "prerequisites": [
+      "C1-L002",
+      "C1-L004"
+    ],
+    "family": "forze-equilibrate-su-un-pattino-gia-in-moto",
+    "difficulty": 1,
+    "prompt": "Un pattino su una guida orizzontale ha velocità iniziale +0,80 m/s nel riferimento inerziale del laboratorio. Per 3,0 s due fili lo tirano in versi opposti lungo la guida con 4,0 N ciascuno. Trascuriamo l’attrito. Trova velocità finale e spostamento. Che cosa accadrebbe partendo da fermo?",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C1-pattino-inerziale.svg",
+        "text": "L’asse x cresce verso destra. Le due trazioni sono forze applicate allo stesso pattino. Peso e normale si equilibrano verticalmente."
+      },
+      {
+        "type": "text",
+        "text": "Scegliamo il pattino come sistema. Componiamo le forze con i segni lungo x. Una risultante nulla impone accelerazione nulla per una massa positiva."
+      },
+      {
+        "type": "formula",
+        "text": "\\sum F_x=+4{,}0-4{,}0=0\\ \\mathrm N,\\qquad a_x=\\frac{\\sum F_x}{m}=0"
+      },
+      {
+        "type": "formula",
+        "text": "v_f=v_i+a_xt=+0{,}80\\ \\mathrm{m/s},\\qquad\\Delta x=v_it=0{,}80\\cdot3{,}0=+2{,}4\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "La velocità si conserva e il pattino percorre 2,4 m nel verso positivo. Con la medesima risultante ma velocità iniziale zero rimarrebbe fermo. L’equilibrio delle forze stabilisce come varia la velocità; il moto effettivo dipende anche dalla condizione iniziale."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C1-E023",
+    "version": 1,
+    "kind": "example",
+    "course": "C1",
+    "section": "Moto e forze",
+    "order": 23,
+    "title": "A chi appartengono le due forze?",
+    "skill": "C1-L005",
+    "prerequisites": [
+      "C1-L002",
+      "C1-L004"
+    ],
+    "family": "a-chi-appartengono-le-due-forze",
+    "difficulty": 2,
+    "prompt": "Due pattinatori, A di 40 kg e B di 60 kg, sono inizialmente fermi su ghiaccio con attrito trascurabile. Si spingono per 0,20 s. La forza media di A su B vale 120 N verso destra. Identifica la reazione e determina entrambe le velocità subito dopo il contatto.",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C1-pattinatori.svg",
+        "text": "Per ogni freccia il primo nome indica chi esercita la forza, il secondo chi la riceve. Si considerano le componenti orizzontali."
+      },
+      {
+        "type": "text",
+        "text": "Il terzo principio determina la forza media di B su A. Le due forze appartengono a corpi distinti. Per ciascun corpo possiamo calcolare separatamente l’impulso esterno durante lo stesso intervallo."
+      },
+      {
+        "type": "formula",
+        "text": "F_{A\\to B}=+120\\ \\mathrm N,\\quad F_{B\\to A}=-120\\ \\mathrm N,\\quad |J|=120\\cdot0{,}20=24\\ \\mathrm{N\\,s}"
+      },
+      {
+        "type": "formula",
+        "text": "v_A=\\frac{-24}{40}=-0{,}60\\ \\mathrm{m/s},\\qquad v_B=\\frac{+24}{60}=+0{,}40\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Il pattinatore meno massiccio acquista la velocità di modulo maggiore. Se allarghiamo il sistema a entrambi, le due forze diventano interne. Le quantità di moto finali sono −24 e +24 kg·m/s e ricostruiscono lo zero iniziale."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C2-E021",
+    "version": 1,
+    "kind": "example",
+    "course": "C2",
+    "section": "Fluidi in movimento",
+    "order": 21,
+    "title": "Che cosa osservano il tracciante e la sonda",
+    "skill": "C2-L007",
+    "prerequisites": [
+      "C2-L005",
+      "C2-L006"
+    ],
+    "family": "che-cosa-osservano-il-tracciante-e-la-sonda",
+    "difficulty": 2,
+    "prompt": "Nel tubo A un filamento di colorante resta sottile e ordinato. Una sonda ferma al centro misura una velocità che varia lentamente da 0,18 a 0,30 m/s in 3,0 s durante l’avvio della pompa. Nel tubo B il colorante si disperde rapidamente in volute irregolari e la velocità locale fluttua; la sua media su intervalli lunghi resta 0,24 m/s. Come descriveresti i due moti?",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C2-traccianti.svg",
+        "text": "I disegni riassumono l’aspetto osservato del tracciante. La sonda, mantenuta nello stesso punto, aggiunge una misura temporale."
+      },
+      {
+        "type": "text",
+        "text": "Per valutare la stazionarietà osserviamo cosa accade nel tempo a posizione fissata. Per distinguere un moto laminare da uno turbolento consideriamo anche la regolarità degli strati, le fluttuazioni e il rimescolamento. Sono due domande sperimentali distinte."
+      },
+      {
+        "type": "formula",
+        "text": "\\left.\\frac{\\Delta v}{\\Delta t}\\right|_{A,\\,\\mathrm{sonda}}=\\frac{0{,}30-0{,}18}{3{,}0}=0{,}040\\ \\mathrm{m/s^2}"
+      },
+      {
+        "type": "text",
+        "text": "Nel tubo A la velocità locale cambia durante l’avvio: il moto è non stazionario. Il filamento ordinato è compatibile con moto laminare nel tratto osservato. Il rapporto calcolato descrive la variazione temporale locale media misurata dalla sonda."
+      },
+      {
+        "type": "text",
+        "text": "Nel tubo B le fluttuazioni irregolari e le volute indicano moto turbolento. Una media temporale stabile può rendere il moto statisticamente stazionario, pur con fluttuazioni istantanee. Leggere soltanto 0,24 m/s su uno strumento che media nel tempo farebbe perdere questa informazione."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C3-E021",
+    "version": 1,
+    "kind": "example",
+    "course": "C3",
+    "section": "Pesare il riscaldamento",
+    "order": 21,
+    "title": "Stessa energia, due termometri diversi",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ],
+    "family": "stessa-energia-due-termometri-diversi",
+    "difficulty": 2,
+    "prompt": "Due cilindri contengono ciascuno 0,20 mol dello stesso gas perfetto, inizialmente alla stessa temperatura. Ciascuno riceve 100 J. Nel primo il pistone è bloccato, nel secondo scorre a pressione costante. Usa capacità molari costanti Cᵥ = 12,5 e Cₚ = 20,8 J/(mol·K). Quale gas si scalda di più e dove va il lavoro nel secondo cilindro?",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-due-cilindri.svg",
+        "text": "In A il pistone è fermo. In B la linea tratteggiata indica la vecchia posizione del pistone che ora si è alzato. Le due frecce di calore hanno la stessa etichetta."
+      },
+      {
+        "type": "text",
+        "text": "Nel primo cilindro il calore aumenta solo l’energia interna. Nel secondo il gas spende parte dell’energia ricevuta per spostare il pistone. Per calcolare le due temperature scegliamo la capacità molare che corrisponde al vincolo del rispettivo cilindro."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta T_A=\\frac{Q}{nC_V}=\\frac{100}{0{,}20\\cdot12{,}5}=40\\ \\mathrm K,\\qquad\\Delta T_B=\\frac{100}{0{,}20\\cdot20{,}8}\\simeq24{,}0\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Per il gas perfetto ΔU dipende dalla variazione di temperatura e vale nCᵥΔT anche quando il pistone si muove. Conserviamo qualche cifra nel calcolo intermedio."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U_B=100\\frac{C_V}{C_p}=100\\frac{12{,}5}{20{,}8}\\simeq60{,}1\\ \\mathrm J,\\qquad W_B=100-60{,}1=39{,}9\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas nel cilindro bloccato si scalda di più. In B i circa 60 J accumulati e 40 J trasferiti al pistone ricostruiscono i 100 J entranti."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C3-E022",
+    "version": 1,
+    "kind": "example",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 22,
+    "title": "Perché parte una corrente nel bagno caldo",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "family": "perche-parte-una-corrente-nel-bagno-caldo",
+    "difficulty": 2,
+    "prompt": "In acqua sopra i 20 °C, una piccola porzione riscaldata dal basso ha volume 20 cm³ e densità 995 kg/m³. Il liquido circostante è inizialmente quasi fermo, con densità 998 kg/m³. Stima la risultante verticale iniziale della pressione e del peso su quella porzione con g = 9,81 m/s². Come cambierebbe l’origine del moto se intervenisse una pompa?",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-convezione.svg",
+        "text": "La spinta dipende dalla densità del liquido circostante. Il peso dipende dalla massa della porzione calda."
+      },
+      {
+        "type": "text",
+        "text": "Nel modello iniziale idrostatico il fluido circostante esercita una spinta uguale al peso del volume di liquido circostante spostato. Scegliamo l’alto positivo e convertiamo 20 cm³ in 20 × 10⁻⁶ m³."
+      },
+      {
+        "type": "formula",
+        "text": "F_y=\\rho_{\\rm circ}gV-\\rho_{\\rm calda}gV=(998-995)\\cdot9{,}81\\cdot20\\cdot10^{-6}\\ \\mathrm N"
+      },
+      {
+        "type": "formula",
+        "text": "F_y=+5{,}89\\cdot10^{-4}\\ \\mathrm N\\simeq+0{,}59\\ \\mathrm{mN}"
+      },
+      {
+        "type": "text",
+        "text": "La piccola risultante iniziale è diretta verso l’alto. Il moto del liquido trasporta energia con sé e può avviare una circolazione per convezione naturale; la velocità successiva dipenderà anche dalla viscosità e dal mescolamento. Se una pompa mette in movimento il liquido, si ha un contributo di convezione forzata anche senza differenza di densità."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C3-E023",
+    "version": 1,
+    "kind": "example",
+    "course": "C3",
+    "section": "Tre vie per trasferire energia",
+    "order": 23,
+    "title": "Emissione e assorbimento nella cavità",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "family": "emissione-e-assorbimento-nella-cavita",
+    "difficulty": 3,
+    "prompt": "Una faccia piana grigia di area 0,010 m² a 310 K è rivolta, attraverso il vuoto, a una grande cavità nera isoterma a 300 K. La faccia ha emissività e assorbività 0,80. Trascuriamo supporti e altri scambi. Calcola la potenza emessa, quella assorbita e la perdita netta della faccia. Usa σ = 5,67 × 10⁻⁸ W/(m²·K⁴).",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C3-scambio-radiante.svg",
+        "text": "La radiazione può attraversare il vuoto in entrambi i versi. La piastra emette alla sua temperatura e assorbe una parte della radiazione della cavità."
+      },
+      {
+        "type": "text",
+        "text": "Il meccanismo è l’irraggiamento. Per quantificarlo, applichiamo il modello di corpo grigio a una sola faccia completamente esposta alla cavità. La temperatura in ogni quarta potenza è una temperatura assoluta in kelvin."
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm em}=\\varepsilon\\sigma A T_{\\rm p}^4=0{,}80\\cdot5{,}67\\cdot10^{-8}\\cdot0{,}010\\cdot310^4\\simeq4{,}189\\ \\mathrm W"
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm ass}=\\varepsilon\\sigma A T_{\\rm cav}^4\\simeq3{,}674\\ \\mathrm W,\\qquad P_{\\rm usc,netta}=4{,}189-3{,}674\\simeq0{,}515\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "La piastra perde per irraggiamento circa mezzo joule ogni secondo in queste condizioni. Se scendesse anch’essa a 300 K, i due contributi avrebbero uguale valore e il saldo si annullerebbe. Entrambe le superfici continuerebbero a scambiare radiazione."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C4-E021",
+    "version": 1,
+    "kind": "example",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 21,
+    "title": "Come ruota l’ago di Oersted",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "family": "come-ruota-lago-di-oersted",
+    "difficulty": 2,
+    "prompt": "Una bussola orizzontale è posta a nord di un filo rettilineo verticale. A corrente nulla il campo orizzontale di fondo vale 20 μT verso nord. Una corrente diretta verso l’alto produce nel punto della bussola un contributo di 15 μT. Prevedi direzione e modulo del campo letto dall’ago e l’effetto dell’inversione della corrente.",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-bussola-nord.svg",
+        "text": "Da sopra, la corrente esce dal foglio. La bussola si trova in P, a nord del filo. Il diagramma a destra usa la stessa origine per i due contributi al campo."
+      },
+      {
+        "type": "text",
+        "text": "Metti il pollice destro nel verso della corrente, cioè verso chi guarda il foglio. Le dita seguono linee antiorarie. Nel punto a nord del filo la tangente alla circonferenza punta a ovest. Si devono sommare questo contributo orizzontale e il campo di fondo verso nord."
+      },
+      {
+        "type": "formula",
+        "text": "|\\vec B|=\\sqrt{(20\\ \\mu\\mathrm T)^2+(15\\ \\mu\\mathrm T)^2}=25\\ \\mu\\mathrm T"
+      },
+      {
+        "type": "formula",
+        "text": "\\tan\\alpha=15/20=0{,}75\\quad\\Longrightarrow\\quad\\alpha\\simeq36{,}9^\\circ"
+      },
+      {
+        "type": "text",
+        "text": "Il polo nord dell’ago si orienta di circa 37° a ovest del nord. Invertendo la corrente, il campo del filo punta a est: l’ago devia di circa 37° a est del nord, con lo stesso modulo risultante. Spegnendo il filo resta il campo di fondo. È il confronto fra queste letture a rivelare l’effetto magnetico della corrente."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C5-E021",
+    "version": 1,
+    "kind": "example",
+    "course": "C5",
+    "section": "Suono e movimento relativo",
+    "order": 21,
+    "title": "Due fronti successivi, prima e dopo il passaggio",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "family": "due-fronti-successivi-prima-e-dopo-il-passaggio",
+    "difficulty": 2,
+    "prompt": "Una sorgente si muove verso destra a 17 m/s in aria ferma e genera un impulso ogni 0,020 s. Il suono si propaga a 340 m/s. Due ricevitori fermi, uno davanti alla sorgente e uno dietro lungo la stessa retta, registrano gli impulsi. Quale li riceve più ravvicinati nel tempo? Verifica la previsione usando i primi due fronti.",
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-due-fronti.svg",
+        "text": "Il primo impulso si è propagato nelle due direzioni. Il secondo nasce nel punto rosso, a destra della posizione iniziale tratteggiata. Le distanze sul segmento sono in scala."
+      },
+      {
+        "type": "text",
+        "text": "Fra due emissioni il primo fronte viaggia di 340 × 0,020 = 6,80 m rispetto all’aria. Nello stesso tempo la sorgente avanza di 17 × 0,020 = 0,34 m. Il nuovo fronte nasce più vicino alla posizione raggiunta dal primo fronte sul lato anteriore."
+      },
+      {
+        "type": "formula",
+        "text": "d_{\\rm avanti}=6{,}80-0{,}34=6{,}46\\ \\mathrm m,\\qquad d_{\\rm dietro}=6{,}80+0{,}34=7{,}14\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Ai due ricevitori fermi i fronti arrivano con la stessa velocità di propagazione c. Il tempo fra arrivi successivi è distanza fra fronti divisa per c."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta t_{\\rm avanti}=6{,}46/340=0{,}0190\\ \\mathrm s,\\qquad \\Delta t_{\\rm dietro}=7{,}14/340=0{,}0210\\ \\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Davanti gli arrivi sono più ravvicinati, quindi la frequenza ricevuta è maggiore di quella emessa; dietro gli arrivi sono più distanziati e la frequenza ricevuta è minore. Il ragionamento qualitativo nasce dal moto relativo lungo la linea di vista. Ogni fronte continua a propagarsi a 340 m/s nell’aria ferma."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  },
+  {
+    "id": "C5-E022",
+    "version": 1,
+    "kind": "example",
+    "course": "C5",
+    "section": "Campi e spettro elettromagnetico",
+    "order": 22,
+    "title": "Riordinare sette segnali descritti in unità diverse",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ],
+    "family": "riordinare-sette-segnali-descritti-in-unita-diverse",
+    "difficulty": 2,
+    "prompt": "Un archivio mescola un’onda radio di 100 MHz, microonde a 2,4 GHz e cinque segnali descritti dalla lunghezza d’onda nel vuoto: 10 μm, 500 nm, 300 nm, 0,10 nm di origine elettronica, 1,0 pm da transizione nucleare. Mettili in ordine di frequenza crescente e assegna le regioni dello spettro.",
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Portiamo tutti i dati sulla stessa scala usando c = 3,00 × 10⁸ m/s nel vuoto. Un megahertz vale 10⁶ Hz, un gigahertz 10⁹ Hz. I primi due valori diventano 1,00 × 10⁸ Hz e 2,4 × 10⁹ Hz."
+      },
+      {
+        "type": "formula",
+        "text": "f=\\frac{c}{\\lambda},\\quad f_{10\\,\\mu\\mathrm m}=\\frac{3{,}00\\cdot10^8}{10\\cdot10^{-6}}=3{,}00\\cdot10^{13}\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "formula",
+        "text": "f_{500\\,\\mathrm{nm}}=6{,}00\\cdot10^{14}\\ \\mathrm{Hz},\\quad f_{300\\,\\mathrm{nm}}=1{,}00\\cdot10^{15}\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "formula",
+        "text": "f_{0{,}10\\,\\mathrm{nm}}=3{,}00\\cdot10^{18}\\ \\mathrm{Hz},\\quad f_{1{,}0\\,\\mathrm{pm}}=3{,}00\\cdot10^{20}\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-spettro.svg",
+        "text": "Si legge la tavola nel verso della frequenza crescente. La lunghezza d’onda nel vuoto diminuisce nello stesso verso."
+      },
+      {
+        "type": "text",
+        "text": "Nell’ordine si incontrano radio, microonde, infrarosso, visibile, ultravioletto, raggi X e raggi gamma. Le microonde appartengono in senso ampio alle radiofrequenze; il programma le distingue come banda. Alle energie elevate le bande X e gamma possono sovrapporsi: in questo esempio l’origine elettronica o nucleare dei fotoni rende esplicita la denominazione."
+      }
+    ],
+    "review": "revisione scientifica ed editoriale assistita, riscontro indipendente del lotto di copertura"
+  }
+]

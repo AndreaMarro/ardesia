@@ -1,0 +1,127 @@
+[
+  {
+    "id": "LAB-C1",
+    "kind": "lab",
+    "course": "C1",
+    "model": "C1",
+    "section": "Laboratorio",
+    "order": 1,
+    "title": "Il banco delle forze",
+    "skill": "C1-L005",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un blocco inizialmente fermo poggia su un piano orizzontale. Il dinamometro tira verso destra. Il piano esercita la reazione normale e una forza tangenziale che può cambiare intensità. Ogni configurazione riparte da fermo. Assumiamo g = 9,81 m/s², un contatto asciutto e una forza applicata orizzontale."
+      },
+      {
+        "type": "formula",
+        "text": "N=mg,\\quad f_{s,\\max}=\\mu_s N,\\quad f_k=0{,}75\\,\\mu_s N"
+      }
+    ],
+    "prediction": "Prima di toccare i controlli, prevedi cosa accadrà a un blocco di 2 kg con μs = 0,40 se la trazione sale da 4 a 10 N.",
+    "observation": "Aumenta lentamente la forza. Confronta la lunghezza della freccia dell’attrito prima e dopo il distacco. Poi raddoppia la massa a forza costante.",
+    "interpretation": "L’attrito statico equilibra la trazione fino alla soglia μsN. Superata la soglia entra nel calcolo il coefficiente dinamico scelto per questo banco. La risultante divisa per la massa dà l’accelerazione."
+  },
+  {
+    "id": "LAB-C2",
+    "kind": "lab",
+    "course": "C2",
+    "model": "C2",
+    "section": "Laboratorio",
+    "order": 2,
+    "title": "La quarta potenza",
+    "skill": "C2-L008",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un fluido newtoniano incomprimibile scorre in un tubo cilindrico rigido lungo 25 cm. Il moto è stazionario, laminare e pienamente sviluppato. La viscosità è uniforme; alla parete la velocità si annulla. Usiamo una densità di 1 000 kg/m³ per controllare il numero di Reynolds."
+      },
+      {
+        "type": "formula",
+        "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L},\\qquad v(s)=\\frac{\\Delta p}{4\\eta L}(r^2-s^2)"
+      }
+    ],
+    "prediction": "Se dimezzi il raggio lasciando invariati pressione, lunghezza e viscosità, quale frazione della portata iniziale uscirà dal tubo?",
+    "observation": "Parti dal raggio di 1 mm. Annota la portata, imposta 0,5 mm e dividi il secondo valore per il primo. Riporta il raggio a 1 mm e raddoppia la differenza di pressione.",
+    "interpretation": "Dimezzare il raggio moltiplica la portata per (1/2)⁴ = 1/16. La differenza di pressione entra invece alla prima potenza. Il disegno mostra la sezione longitudinale e il profilo di velocità normalizzato; la scala trasversale è ampliata."
+  },
+  {
+    "id": "LAB-C3",
+    "kind": "lab",
+    "course": "C3",
+    "model": "C3",
+    "section": "Laboratorio",
+    "order": 3,
+    "title": "Il pistone di vetro",
+    "skill": "C3-L07",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un gas perfetto monoatomico occupa inizialmente 1 L a 100 kPa e 300 K. Il pistone scorre senza attrito e ogni punto del cammino è uno stato di equilibrio. Il lavoro compiuto dal gas è positivo durante l’espansione. Per l’adiabatica reversibile usiamo γ = 5/3."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=Q-W,\\qquad W=\\int_{V_i}^{V_f}p\\,dV,\\qquad U=\\tfrac32pV"
+      }
+    ],
+    "prediction": "Portando il volume da 1 a 2 L, quale curva scende di più sul diagramma p–V: isoterma o adiabatica reversibile?",
+    "observation": "Confronta pressione finale, lavoro e temperatura per le due espansioni. Poi seleziona l’isocora e cambia la pressione a volume costante.",
+    "interpretation": "Nell’adiabatica il gas compie lavoro usando energia interna e si raffredda. Sull’isoterma il calore ricevuto compensa il lavoro. Nell’isocora la traccia è verticale e l’area di lavoro è nulla."
+  },
+  {
+    "id": "LAB-C4",
+    "kind": "lab",
+    "course": "C4",
+    "model": "C4",
+    "section": "Laboratorio",
+    "order": 4,
+    "title": "Due resistori al banco",
+    "skill": "C4-L06",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un generatore ideale in corrente continua alimenta due resistori ohmici positivi. I fili hanno resistenza trascurabile. Puoi seguire i due rami con il dito e confrontare le letture del voltmetro e dell’amperometro ideali."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{V}{R_{\\rm eq}},\\qquad P=VI"
+      }
+    ],
+    "prediction": "In serie con 6 V, 100 Ω e 200 Ω, quale resistore ha la caduta di tensione maggiore? Cosa cambierà in parallelo?",
+    "observation": "Scegli un collegamento, azzera e poi aumenta la tensione. Confronta le cadute sui due elementi e le correnti; cambia un solo resistore alla volta.",
+    "interpretation": "In serie una sola corrente attraversa i due elementi e le cadute si sommano. In parallelo i due resistori condividono entrambi i nodi; la tensione è uguale e al nodo si sommano le correnti."
+  },
+  {
+    "id": "LAB-C5",
+    "kind": "lab",
+    "course": "C5",
+    "model": "C5",
+    "section": "Laboratorio",
+    "order": 5,
+    "title": "Il banco ottico",
+    "skill": "C5-L10",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una lente sottile convergente è immersa in aria. L’oggetto è reale e posto a sinistra. Nel modello parassiale f e p sono positivi; q è positivo a destra della lente. Un raggio parallelo emerge passando per il fuoco immagine. Un secondo raggio attraversa il centro senza deviazione."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac1f=\\frac1p+\\frac1q,\\qquad m=-\\frac qp"
+      }
+    ],
+    "prediction": "Avvicinando l’oggetto da due distanze focali al fuoco, dove dovresti spostare lo schermo per ritrovare l’immagine?",
+    "observation": "Esamina p = 2f, poi p = f e infine p < f. Segui i raggi emergenti e i prolungamenti tratteggiati. Le distanze indicate sono misurate dalla lente.",
+    "interpretation": "Con p > f i raggi si incontrano sul lato dello schermo e l’immagine è reale e capovolta. Al fuoco emergono paralleli. Con p < f i loro prolungamenti si incontrano a sinistra, dando un’immagine virtuale e diritta."
+  }
+]

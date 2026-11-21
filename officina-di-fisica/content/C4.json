@@ -1,0 +1,5645 @@
+[
+  {
+    "id": "C4-L01",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 1,
+    "title": "Cariche che si attraggono e si respingono",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "coverage": [
+      "6.1 Carica elettrica, segno, unità e conservazione",
+      "6.1 Interazione fra cariche puntiformi e legge di Coulomb"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Strofina due materiali isolanti e separali. Il trasferimento di elettroni lascia un eccesso di carica negativa su uno e un difetto sull’altro. La carica q è una grandezza algebrica, misurata in coulomb (C). In un sistema isolato la somma algebrica delle cariche si conserva. In un normale processo di elettrizzazione non cambiano i nuclei degli atomi."
+      },
+      {
+        "type": "text",
+        "text": "Le cariche dello stesso segno si respingono e quelle opposte si attraggono. Per due oggetti piccoli rispetto alla loro distanza, assimilabili a cariche puntiformi ferme nel vuoto, la forza agisce lungo la congiungente. Ciascuna carica esercita sull’altra una forza di uguale modulo e verso opposto."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-coulomb.svg",
+        "text": "Le frecce sono applicate a due corpi distinti. La distanza r collega le posizioni delle cariche puntiformi."
+      },
+      {
+        "type": "formula",
+        "text": "F=k\\frac{|q_1q_2|}{r^2},\\qquad k\\simeq8{,}99\\cdot10^9\\ \\mathrm{N\\,m^2/C^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il modulo F è in newton usando coulomb e metri. Il segno del prodotto determina attrazione o repulsione, mentre il modulo stabilisce la grandezza delle frecce. Dimezzare la distanza a cariche costanti moltiplica F per quattro."
+      },
+      {
+        "type": "text",
+        "text": "Le cariche ordinarie sono multipli della carica elementare e ≈ 1,602 × 10⁻¹⁹ C. Se occorre contare elettroni trasferiti, dividi il modulo della carica per e. Il segno dice se c’è un eccesso o un difetto di elettroni. Per più interazioni costruisci una freccia per ogni forza e somma le frecce applicate allo stesso corpo."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E001",
+    "kind": "example",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 1,
+    "title": "Una coppia di cariche di segno opposto",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-coulomb.svg",
+        "text": "Ogni freccia punta verso la carica di segno opposto. Nessuna delle due sfere è il punto di applicazione di entrambe le forze."
+      },
+      {
+        "type": "formula",
+        "text": "r=0{,}030\\ \\mathrm m,\\qquad |q_1q_2|=(2\\cdot10^{-9})(3\\cdot10^{-9})=6\\cdot10^{-18}\\ \\mathrm{C^2}"
+      },
+      {
+        "type": "formula",
+        "text": "F=9{,}0\\cdot10^9\\frac{6\\cdot10^{-18}}{(0{,}030)^2}=6{,}0\\cdot10^{-5}\\ \\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "La forza è attrattiva. Le due forze hanno uguale modulo anche se i moduli delle cariche sono diversi."
+      }
+    ],
+    "prompt": "Due piccole sfere nel vuoto portano +2,0 nC e −3,0 nC a distanza di 3,0 cm fra i centri. Calcola il modulo e indica il verso della forza su ciascuna. Usa k = 9,0 × 10⁹ N·m²/C².",
+    "difficulty": 2,
+    "family": "una-coppia-di-cariche-di-segno-opposto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E002",
+    "kind": "example",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 2,
+    "title": "Trasferimento fra due conduttori identici",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il filo consente il movimento degli elettroni. Il sistema delle due sfere è elettricamente isolato e la carica totale iniziale è la somma algebrica."
+      },
+      {
+        "type": "formula",
+        "text": "Q_{\\rm tot}=+8+(-2)=+6\\ \\mathrm{nC}"
+      },
+      {
+        "type": "text",
+        "text": "Per simmetria, a equilibrio le sfere identiche portano la stessa carica: due volte tale valore deve restituire il totale."
+      },
+      {
+        "type": "formula",
+        "text": "2q_f=+6\\ \\mathrm{nC}\\quad\\Longrightarrow\\quad q_f=+3\\ \\mathrm{nC}"
+      },
+      {
+        "type": "text",
+        "text": "La prima sfera è diventata meno positiva, quindi ha ricevuto elettroni. La seconda è diventata più positiva e ne ha ceduti."
+      }
+    ],
+    "prompt": "Due sfere conduttrici identiche, inizialmente con +8 nC e −2 nC, vengono collegate da un filo e poi separate. Trascuriamo il filo e altri conduttori; la disposizione è simmetrica. Trova le cariche finali.",
+    "difficulty": 2,
+    "family": "trasferimento-fra-due-conduttori-identici",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L02",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 2,
+    "title": "Guardare il campo prima della forza",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.1 Campo elettrico e linee di forza",
+      "6.1 Campo di una o più cariche puntiformi",
+      "6.1 Moto in un campo elettrico uniforme"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Metti in un punto una piccola carica di prova positiva che perturbi in modo trascurabile le sorgenti. Il rapporto fra la forza misurata e la carica definisce il campo E in quel punto. Il campo appartiene alla distribuzione sorgente. Quando vi si introduce una carica q, la forza elettrica su quella carica è qE."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec E=\\frac{\\vec F_{\\rm prova}}{q_{\\rm prova}},\\qquad\\vec F=q\\vec E,\\qquad [E]=\\mathrm{N/C}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-campo.svg",
+        "text": "Fra due grandi piastre cariche, lontano dai bordi, le linee quasi parallele vanno dalla piastra positiva alla negativa. La forza su una carica negativa va in verso opposto al campo."
+      },
+      {
+        "type": "text",
+        "text": "La tangente a una linea di campo dà la direzione del campo locale. La freccia segue la forza su una prova positiva. Le linee escono dalle cariche positive ed entrano nelle negative. Dove il campo è diverso da zero due linee non si incrociano: altrimenti darebbero due direzioni nello stesso punto."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec E_i=k\\frac{q_i}{r_i^2}\\hat r_i,\\qquad \\vec E_{\\rm tot}=\\sum_i\\vec E_i"
+      },
+      {
+        "type": "text",
+        "text": "Il versore radiale punta dalla sorgente al punto di osservazione. Una sorgente negativa inverte il verso. Con più sorgenti si sommano vettori: puoi sommare algebricamente le componenti lungo assi scelti. Aggiungere sempre i moduli ignora possibili cancellazioni."
+      },
+      {
+        "type": "text",
+        "text": "Se il campo è uniforme e le altre forze sono trascurabili, una particella di massa m ha accelerazione costante qE/m. Lungo una direzione perpendicolare al campo conserva la componente iniziale di velocità. Con velocità iniziale trasversale la combinazione dà una parabola nel regime non relativistico."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec a=\\frac{q}{m}\\vec E,\\quad x=x_0+v_{0x}t+\\tfrac12a_xt^2"
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E003",
+    "kind": "example",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 3,
+    "title": "Il punto medio di un dipolo",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-dipolo.svg",
+        "text": "Nel punto P il campo generato dalla carica positiva si allontana da essa. Il campo generato dalla negativa si dirige verso di essa."
+      },
+      {
+        "type": "formula",
+        "text": "r=0{,}10\\ \\mathrm m,\\qquad E_1=E_2=9{,}0\\cdot10^9\\frac{10^{-9}}{(0{,}10)^2}=900\\ \\mathrm{N/C}"
+      },
+      {
+        "type": "text",
+        "text": "Entrambe le frecce in P puntano verso destra. Definendo quel verso come positivo, entrambe le componenti hanno il segno più."
+      },
+      {
+        "type": "formula",
+        "text": "E_x=900+900=1800\\ \\mathrm{N/C}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato ha verso dalla carica positiva alla negativa. Il fatto che la somma delle cariche sia zero non annulla il campo in questo punto."
+      }
+    ],
+    "prompt": "Due sorgenti +1,0 nC a sinistra e −1,0 nC a destra distano 20 cm. Calcola il campo nel punto medio nel vuoto con k = 9,0 × 10⁹ N·m²/C².",
+    "difficulty": 2,
+    "family": "il-punto-medio-di-un-dipolo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E004",
+    "kind": "example",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 4,
+    "title": "Deviazione di una particella",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Scegliamo l’alto come verso y positivo. La carica è positiva e subisce forza verso l’alto. La componente iniziale vy è zero."
+      },
+      {
+        "type": "formula",
+        "text": "a_y=qE/m=\\frac{4{,}0\\cdot10^{-8}\\cdot500}{2{,}0\\cdot10^{-6}}=10\\ \\mathrm{m/s^2}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta y=\\tfrac12 a_y t^2=\\tfrac12\\cdot10\\cdot(0{,}20)^2=0{,}20\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Intanto lo spostamento orizzontale è 3,0 × 0,20 = 0,60 m. Il moto è curvo benché il campo abbia direzione costante."
+      }
+    ],
+    "prompt": "Una particella di massa 2,0 × 10⁻⁶ kg e carica +4,0 × 10⁻⁸ C entra orizzontalmente a 3,0 m/s in una regione con campo uniforme 500 N/C diretto in alto. Trascurando altre forze, trova lo spostamento verticale dopo 0,20 s.",
+    "difficulty": 2,
+    "family": "deviazione-di-una-particella",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L03",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 3,
+    "title": "Dal potenziale all’energia",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.2 Energia potenziale di una distribuzione di cariche",
+      "6.2 Potenziale e differenza di potenziale",
+      "6.2 Conservazione dell’energia in un campo elettrico"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un campo elettrostatico può accelerare una particella. Descrivendo due punti con i potenziali VA e VB, la loro differenza ΔV = VB − VA rende immediato il cambiamento di energia potenziale di una carica q. Il potenziale si riferisce alla configurazione sorgente. L’energia della carica di prova dipende anche da q."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=q\\Delta V,\\qquad W_{\\rm campo}=-\\Delta U,\\qquad 1\\ \\mathrm V=1\\ \\mathrm{J/C}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-potenziale.svg",
+        "text": "Lungo un campo uniforme il potenziale scende. Le linee tratteggiate collegano punti equipotenziali. Attraversarle o seguirle produce differenze di potenziale diverse."
+      },
+      {
+        "type": "text",
+        "text": "È lecito scegliere un riferimento per lo zero del potenziale. Cambiare questa scelta sposta entrambi i valori della stessa costante e lascia invariata la differenza. Per una carica puntiforme nel vuoto poniamo spesso V = 0 all’infinito. Sommando più sorgenti si conservano i segni delle cariche, poiché V è scalare."
+      },
+      {
+        "type": "formula",
+        "text": "V(P)=\\sum_i k\\frac{q_i}{r_i},\\qquad U_{\\rm coppia}=k\\frac{q_1q_2}{r_{12}}"
+      },
+      {
+        "type": "text",
+        "text": "Per assemblare più cariche, si aggiunge l’energia di ciascuna coppia una sola volta. Se agisce solo la forza elettrica, la diminuzione di U uguaglia l’aumento di energia cinetica. Per una carica negativa il segno di ΔU si inverte rispetto a ΔV."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta K=-q\\Delta V,\\qquad \\Delta V=-\\vec E\\cdot\\Delta\\vec r\\quad(\\vec E\\ \\text{uniforme})"
+      },
+      {
+        "type": "text",
+        "text": "Usa il campo e la seconda legge quando il quesito riguarda tempi, forze o accelerazioni. Un bilancio con ΔV è particolarmente diretto quando si chiedono velocità fra punti e non serve ricostruire il percorso."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E005",
+    "kind": "example",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 5,
+    "title": "Una carica negativa sale di potenziale",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta V=40-10=+30\\ \\mathrm V,\\qquad q=-2{,}0\\cdot10^{-6}\\ \\mathrm C"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=q\\Delta V=(-2{,}0\\cdot10^{-6})(30)=-60\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm campo}=-\\Delta U=+60\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Pur raggiungendo un potenziale più alto, la carica negativa perde energia potenziale. Se agisce solo il campo il guadagno cinetico è 60 μJ."
+      }
+    ],
+    "prompt": "Una particella con carica −2,0 μC passa da 10 a 40 V. Calcola ΔU e il lavoro del campo, supponendo forze elettrostatiche.",
+    "difficulty": 2,
+    "family": "una-carica-negativa-sale-di-potenziale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E006",
+    "kind": "example",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 6,
+    "title": "Tre cariche ai vertici",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Elenca le coppie di vertici AB, BC e CA. Ciascuna coppia è distinta e ha lo stesso contributo. L’energia è positiva perché occorre lavoro esterno per avvicinare cariche che si respingono."
+      },
+      {
+        "type": "formula",
+        "text": "U_{AB}=kq^2/r=9{,}0\\cdot10^9(10^{-9})^2/0{,}10=9{,}0\\cdot10^{-8}\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "U=U_{AB}+U_{BC}+U_{CA}=2{,}7\\cdot10^{-7}\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Contare anche BA, CB e AC conterebbe ogni coppia due volte. Il riferimento scelto assegna energia zero alle cariche infinitamente distanti."
+      }
+    ],
+    "prompt": "Tre cariche uguali +1,0 nC stanno ai vertici di un triangolo equilatero di lato 0,10 m. Quale energia potenziale ha la configurazione rispetto alle cariche lontane? Usa k = 9,0 × 10⁹ N·m²/C².",
+    "difficulty": 3,
+    "family": "tre-cariche-ai-vertici",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L04",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 4,
+    "title": "Cariche mobili e cariche legate",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.3 Conduttori e induzione elettrostatica",
+      "6.3 Dielettrici e polarizzazione"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Avvicina una bacchetta positiva a un conduttore neutro isolato. Nel metallo gli elettroni mobili si accumulano sul lato vicino. Sul lato lontano rimane un difetto di elettroni. Il riassetto genera un campo che, all’equilibrio elettrostatico, cancella il campo all’interno del materiale conduttore."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-materiali.svg",
+        "text": "A sinistra gli elettroni mobili del conduttore hanno lasciato cariche superficiali separate. A destra le cariche restano legate in dipoli localmente polarizzati. I due campioni sono complessivamente neutri."
+      },
+      {
+        "type": "text",
+        "text": "La ridistribuzione dovuta a un oggetto vicino è induzione elettrostatica. Un conduttore isolato conserva la carica totale. Collegarlo temporaneamente a terra può invece consentire ingresso o uscita di elettroni. Staccare la terra mentre la bacchetta è ancora vicina permette di isolare la carica acquisita."
+      },
+      {
+        "type": "text",
+        "text": "In un isolante le cariche possono spostarsi di poco in un atomo o in una molecola, oppure dipoli permanenti possono orientarsi parzialmente. Il materiale si polarizza pur rimanendo globalmente neutro. Per un dielettrico lineare la risposta viene descritta dalla permittività ε = εr ε0. Nei modelli usuali con εr > 1 un dielettrico riduce il campo tra piastre a carica libera fissata."
+      },
+      {
+        "type": "text",
+        "text": "In equilibrio elettrostatico, lungo il materiale di un conduttore collegato il potenziale è uniforme. Il campo immediatamente fuori dalla superficie è normale ad essa: una componente tangenziale farebbe continuare il moto delle cariche libere. Queste affermazioni esigono la condizione di equilibrio elettrostatico; un filo resistivo attraversato da corrente continua può avere una caduta di potenziale."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E007",
+    "kind": "example",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 7,
+    "title": "Elettrizzare senza toccare",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-materiali.svg",
+        "text": "Sulla sfera isolata il primo effetto è la separazione delle cariche. Il contatto con terra modifica poi il bilancio delle cariche mobili."
+      },
+      {
+        "type": "text",
+        "text": "La bacchetta positiva attira elettroni verso di sé. Quando la terra viene collegata, essa può fornire ulteriori elettroni alla sfera. Interrompendo il collegamento si impedisce loro di tornare a terra."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-induzione-terra.svg",
+        "text": "Prima la terra può fornire elettroni. Il suo collegamento viene rimosso mentre la bacchetta è ancora vicina. La figura finale mostra la sfera dopo l’allontanamento della bacchetta."
+      },
+      {
+        "type": "text",
+        "text": "Rimossa la bacchetta, gli elettroni in eccesso si ridistribuiscono sulla superficie. La sfera resta negativa. Il procedimento dipende dall’ordine delle due ultime operazioni."
+      }
+    ],
+    "prompt": "Una sfera metallica neutra isolata viene avvicinata a una bacchetta positiva. Si collega la sfera a terra, si interrompe la terra e infine si allontana la bacchetta. Quale segno rimane?",
+    "difficulty": 2,
+    "family": "elettrizzare-senza-toccare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E008",
+    "kind": "example",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 8,
+    "title": "Una goccia neutra attratta",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-dipolo-indotto.svg",
+        "text": "La figura considera una bacchetta positiva. I contributi opposti alla forza hanno moduli diversi."
+      },
+      {
+        "type": "text",
+        "text": "Il campo polarizza il corpo. Le cariche legate di segno opposto a quello della bacchetta sono mediamente più vicine, quelle dello stesso segno più lontane."
+      },
+      {
+        "type": "text",
+        "text": "Le due regioni subiscono forze con versi opposti. Nel campo più intenso vicino alla bacchetta il contributo attrattivo è maggiore. La risultante può quindi orientarsi verso la regione di campo più intenso, pur restando nulla la somma delle cariche."
+      },
+      {
+        "type": "text",
+        "text": "In un campo esattamente uniforme le forze opposte su un dipolo ideale di carica totale nulla si compensano nella traslazione. Può rimanere un momento che tende a orientare il dipolo."
+      }
+    ],
+    "prompt": "Una bacchetta carica attira un piccolo corpo dielettrico neutro in un campo non uniforme. Come può esserci una forza senza carica netta?",
+    "difficulty": 2,
+    "family": "una-goccia-neutra-attratta",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L05",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 5,
+    "title": "Quanto vale una corrente",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.4 Corrente continua e intensità",
+      "6.4 Generatore ideale",
+      "6.4 Conduzione ohmica",
+      "6.4 Prima e seconda legge di Ohm",
+      "6.4 Resistività"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Immagina una sezione trasversale di un filo. La corrente media I conta la carica netta che attraversa la sezione nell’unità di tempo nel verso di riferimento. Per una corrente costante, detto Δq il transito algebrico, I = Δq/Δt. L’ampere vale un coulomb al secondo."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{\\Delta q}{\\Delta t},\\qquad 1\\ \\mathrm A=1\\ \\mathrm{C/s}"
+      },
+      {
+        "type": "text",
+        "text": "Il verso convenzionale è quello del moto di cariche positive. In un metallo gli elettroni di conduzione derivano in senso opposto. Un generatore ideale di tensione mantiene la differenza di potenziale ai suoi morsetti. Collegando un carico diverso, cambia la corrente necessaria a mantenere tale tensione."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-ohm.svg",
+        "text": "Nel grafico V in ordinata e I in ascissa, per un conduttore ohmico a temperatura fissata la pendenza V/I misura la resistenza."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta V=RI,\\qquad 1\\ \\Omega=1\\ \\mathrm{V/A},\\qquad R=\\rho\\frac{\\ell}{A}"
+      },
+      {
+        "type": "text",
+        "text": "Per un resistore ohmico R resta costante al variare di I nelle condizioni considerate. Con la convenzione passiva ΔV in questa legge è la caduta di tensione dal morsetto in cui entra la corrente a quello da cui esce. Un filo omogeneo e uniforme di lunghezza ℓ e area trasversale A ha resistenza proporzionale alla lunghezza e inversamente proporzionale all’area. La resistività ρ, in Ω·m, è una proprietà del materiale alla temperatura specificata."
+      },
+      {
+        "type": "text",
+        "text": "Una retta V(I) passante per l’origine indica comportamento ohmico nella misura considerata. Se si scambiano gli assi la pendenza diventa la conduttanza 1/R. Se il filo si scalda abbastanza da modificare la resistività, il rapporto V/I può cambiare durante la misura."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E009",
+    "kind": "example",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 9,
+    "title": "La pendenza del resistore",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-ohm.svg",
+        "text": "Per determinare la pendenza si divide l’altezza espressa in volt per la base espressa in ampere. Il disegno indica la costruzione, senza fissare una scala numerica."
+      },
+      {
+        "type": "formula",
+        "text": "I=0{,}020\\ \\mathrm A,\\qquad R=4{,}0/0{,}020=200\\ \\Omega"
+      },
+      {
+        "type": "formula",
+        "text": "I_{6\\mathrm V}=6{,}0/200=0{,}030\\ \\mathrm A=30\\ \\mathrm{mA}"
+      },
+      {
+        "type": "text",
+        "text": "Il rapporto fra le correnti è 30/20 = 1,5, come quello fra le tensioni. La previsione vale se il resistore resta nel medesimo regime ohmico."
+      }
+    ],
+    "prompt": "In un grafico V in ordinata e I in ascissa, una retta passante per l’origine attraversa il punto 20 mA, 4,0 V. Ricava R e prevedi la corrente a 6,0 V.",
+    "difficulty": 2,
+    "family": "la-pendenza-del-resistore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E010",
+    "kind": "example",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 10,
+    "title": "Scegliere una sezione di filo",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La grandezza ricercata è la sezione perpendicolare alla corrente. Partiamo dalla resistenza di un conduttore uniforme."
+      },
+      {
+        "type": "formula",
+        "text": "R=\\rho\\ell/A\\quad\\Longrightarrow\\quad A=\\rho\\ell/R"
+      },
+      {
+        "type": "formula",
+        "text": "A=\\frac{1{,}7\\cdot10^{-8}\\cdot2{,}0}{0{,}068}=5{,}0\\cdot10^{-7}\\ \\mathrm{m^2}=0{,}50\\ \\mathrm{mm^2}"
+      },
+      {
+        "type": "text",
+        "text": "Un millimetro quadrato vale un milionesimo di metro quadrato. Sostituendo la sezione nell’espressione iniziale si recupera 0,068 Ω."
+      }
+    ],
+    "prompt": "Un filo uniforme lungo 2,0 m di resistività 1,7 × 10⁻⁸ Ω·m deve avere resistenza 0,068 Ω alla temperatura indicata. Qual è l’area in mm²?",
+    "difficulty": 2,
+    "family": "scegliere-una-sezione-di-filo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L06",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 6,
+    "title": "Seguire i nodi di un circuito",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.4 Resistenze in serie e in parallelo",
+      "6.4 Potenza elettrica ed effetto Joule"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Segui i fili di un circuito prima di sommare resistenze. Due resistori sono in serie se il nodo che li unisce non offre altre diramazioni: la stessa corrente attraversa entrambi. Sono in parallelo se i loro due estremi sono collegati alla stessa coppia di nodi: la differenza di potenziale è identica."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti.svg",
+        "text": "Nel ramo in serie I è comune ai due resistori. A destra i due resistori condividono i nodi A e B, e ciascun ramo riceve l’intera tensione fra A e B."
+      },
+      {
+        "type": "formula",
+        "text": "R_{\\rm serie}=R_1+R_2,\\qquad\\frac1{R_{\\rm par}}=\\frac1{R_1}+\\frac1{R_2}"
+      },
+      {
+        "type": "text",
+        "text": "In serie le cadute si sommano: ΔV = I R1 + I R2. In parallelo le correnti si sommano: I = ΔV/R1 + ΔV/R2. La resistenza equivalente in parallelo è minore del più piccolo dei resistori positivi, perché offrire un ulteriore percorso aumenta la corrente totale a tensione fissata."
+      },
+      {
+        "type": "text",
+        "text": "Per una differenza di potenziale V e una corrente I che entra nel morsetto a potenziale maggiore, la potenza assorbita vale VI. Nel resistore l’energia elettrica diventa energia interna per effetto Joule. Le forme I²R e V²/R si ottengono dalla legge di Ohm."
+      },
+      {
+        "type": "formula",
+        "text": "P=VI=I^2R=\\frac{V^2}{R},\\qquad E=P\\Delta t\\quad(P\\ \\text{costante})"
+      },
+      {
+        "type": "text",
+        "text": "Prima di decidere se un resistore maggiore dissipa di più, individua la grandezza mantenuta costante. In serie la corrente è comune e conviene usare I²R. In parallelo è comune la tensione e conviene usare V²/R. Nel laboratorio modifica una resistenza e confronta le cadute con la somma imposta dal generatore."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E011",
+    "kind": "example",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 11,
+    "title": "Due resistori si dividono la tensione",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti.svg",
+        "text": "Segui il percorso in serie a sinistra. Ogni carica che attraversa R₁ attraversa anche R₂."
+      },
+      {
+        "type": "formula",
+        "text": "R_{\\rm eq}=100+200=300\\ \\Omega,\\qquad I=9{,}0/300=0{,}030\\ \\mathrm A"
+      },
+      {
+        "type": "formula",
+        "text": "V_1=0{,}030\\cdot100=3{,}0\\ \\mathrm V,\\qquad V_2=0{,}030\\cdot200=6{,}0\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm tot}=9{,}0\\cdot0{,}030=0{,}270\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Le due cadute ricostruiscono 9 V. Le singole potenze, 0,090 e 0,180 W, si sommano a 0,270 W."
+      }
+    ],
+    "prompt": "Un generatore ideale da 9,0 V alimenta in serie 100 Ω e 200 Ω. Trova la corrente, le cadute sui resistori e la potenza totale.",
+    "difficulty": 2,
+    "family": "due-resistori-si-dividono-la-tensione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E012",
+    "kind": "example",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 12,
+    "title": "Due rami con correnti diverse",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti.svg",
+        "text": "A destra ciascun ramo ha un estremo al nodo A e l’altro al nodo B."
+      },
+      {
+        "type": "formula",
+        "text": "I_1=12/60=0{,}200\\ \\mathrm A,\\quad I_2=12/120=0{,}100\\ \\mathrm A"
+      },
+      {
+        "type": "formula",
+        "text": "I_{\\rm tot}=0{,}300\\ \\mathrm A,\\qquad R_{\\rm eq}=12/0{,}300=40\\ \\Omega"
+      },
+      {
+        "type": "text",
+        "text": "La resistenza equivalente è sotto 60 Ω. Il ramo con resistenza dimezzata porta corrente doppia alla stessa tensione."
+      }
+    ],
+    "prompt": "Fra gli stessi due nodi di un generatore ideale a 12 V si collegano un resistore da 60 Ω e uno da 120 Ω. Calcola corrente totale e resistenza equivalente.",
+    "difficulty": 2,
+    "family": "due-rami-con-correnti-diverse",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L07",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 7,
+    "title": "Immagazzinare carica ed energia",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.5 Capacità elettrica e condensatore piano",
+      "6.5 Effetto del dielettrico",
+      "6.5 Energia immagazzinata"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Due piastre conduttrici separate da un isolante conservano cariche +Q e −Q. La configurazione possiede un campo e una differenza di potenziale fra le piastre. La capacità C misura quanta carica, in modulo su una sola armatura, corrisponde a un volt di differenza fra le armature."
+      },
+      {
+        "type": "formula",
+        "text": "C=\\frac{Q}{|\\Delta V|},\\qquad 1\\ \\mathrm F=1\\ \\mathrm{C/V}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-condensatore.svg",
+        "text": "Le piastre di area affacciata A distano d. Nel disegno in sezione il campo fra le armature è diretto dalla positiva alla negativa."
+      },
+      {
+        "type": "text",
+        "text": "Per piastre parallele di area affacciata A, separate di distanza d piccola rispetto alle dimensioni laterali e riempite uniformemente di permittività ε, il campo si può approssimare uniforme lontano dai bordi. La capacità cresce con A e con ε, diminuisce all’aumentare della distanza."
+      },
+      {
+        "type": "formula",
+        "text": "C=\\varepsilon\\frac{A}{d},\\quad \\varepsilon=\\varepsilon_0\\varepsilon_r,\\quad \\varepsilon_0\\simeq8{,}85\\cdot10^{-12}\\ \\mathrm{F/m}"
+      },
+      {
+        "type": "text",
+        "text": "Caricare le piastre richiede lavoro per aggiungere ulteriore carica contro una tensione crescente. Sul grafico |ΔV| contro Q la tensione cresce linearmente da zero al valore finale e l’area sottesa è triangolare. Il lavoro immagazzinato nel campo del condensatore ideale è quindi metà di Q|ΔV|."
+      },
+      {
+        "type": "formula",
+        "text": "U=\\tfrac12Q|\\Delta V|=\\tfrac12 C(\\Delta V)^2=\\frac{Q^2}{2C}"
+      },
+      {
+        "type": "text",
+        "text": "Introducendo un dielettrico, determina prima se il generatore rimane collegato. In isolamento Q resta costante e la tensione scende se C cresce. Con generatore ideale collegato V resta costante e cambia la carica sulle piastre. Il bilancio energetico completo include il generatore e l’eventuale lavoro meccanico sul dielettrico."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E013",
+    "kind": "example",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 13,
+    "title": "Energia di un piccolo condensatore",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-condensatore.svg",
+        "text": "Le cariche sulle piastre sono uguali in modulo e opposte. Q si riferisce al modulo su una piastra."
+      },
+      {
+        "type": "formula",
+        "text": "Q=C|\\Delta V|=4{,}0\\cdot10^{-6}\\cdot5{,}0=20\\ \\mu\\mathrm C"
+      },
+      {
+        "type": "formula",
+        "text": "U=\\tfrac12 C(\\Delta V)^2=\\tfrac12\\cdot4{,}0\\cdot10^{-6}\\cdot25=50\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "La carica totale delle due armature ideali è zero, ma la separazione delle cariche conserva energia nel campo."
+      }
+    ],
+    "prompt": "Un condensatore da 4,0 μF è caricato a 5,0 V. Calcola il modulo della carica su ciascuna piastra e l’energia del campo.",
+    "difficulty": 1,
+    "family": "energia-di-un-piccolo-condensatore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E014",
+    "kind": "example",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 14,
+    "title": "Il dielettrico dopo il distacco",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le piastre isolate conservano Q. Il dielettrico aumenta C senza che elettroni possano passare attraverso un circuito esterno."
+      },
+      {
+        "type": "formula",
+        "text": "Q_i=2\\cdot12=24\\ \\mu\\mathrm C,\\quad C_f=6\\ \\mu\\mathrm F,\\quad V_f=Q_i/C_f=4\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "U_f=\\tfrac12 C_f V_f^2=\\tfrac12\\cdot6\\cdot16=48\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’energia iniziale era 144 μJ. A Q fisso l’aumento triplo di capacità riduce a un terzo l’energia immagazzinata. La differenza può essere scambiata meccanicamente durante l’inserimento."
+      }
+    ],
+    "prompt": "Un condensatore da 2 μF caricato a 12 V viene scollegato da entrambi i morsetti. Un dielettrico che riempie lo spazio triplica la capacità. Trova tensione ed energia finali.",
+    "difficulty": 2,
+    "family": "il-dielettrico-dopo-il-distacco",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L08",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 8,
+    "title": "Mettere insieme i condensatori",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.5 Condensatori in serie e in parallelo",
+      "6.5 Conservazione di carica nei collegamenti"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Più condensatori consentono di controllare la capacità totale. Disegna i nodi. In parallelo ogni condensatore vede la medesima differenza di potenziale, mentre il generatore separa la somma delle cariche sulle piastre collegate allo stesso morsetto."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti-c.svg",
+        "text": "In parallelo le armature corrispondenti appartengono agli stessi due nodi. Nella serie il nodo intermedio, inizialmente neutro e isolato, conserva carica totale zero."
+      },
+      {
+        "type": "formula",
+        "text": "C_{\\rm par}=C_1+C_2,\\qquad Q_{\\rm tot}=(C_1+C_2)V"
+      },
+      {
+        "type": "text",
+        "text": "In serie, se il nodo intermedio isolato è inizialmente neutro, le due piastre che vi appartengono mantengono cariche opposte uguali in modulo. Le cadute di potenziale sono Q/C1 e Q/C2 e devono sommarsi alla tensione applicata. Il condensatore più piccolo porta la tensione maggiore."
+      },
+      {
+        "type": "formula",
+        "text": "V=\\frac{Q}{C_1}+\\frac{Q}{C_2}=\\frac{Q}{C_{\\rm serie}},\\qquad \\frac1{C_{\\rm serie}}=\\frac1{C_1}+\\frac1{C_2}"
+      },
+      {
+        "type": "text",
+        "text": "Quando si collegano fra loro due condensatori già carichi e separati dalla sorgente, identifica i nuovi gruppi di piastre. La carica algebrica di ciascun gruppo isolato si conserva. Dopo il transitorio, i condensatori in parallelo assumono la stessa tensione. Una parte dell’energia iniziale può dissiparsi durante il transitorio reale."
+      },
+      {
+        "type": "text",
+        "text": "Confronta le condizioni al contorno prima di scegliere una formula. Per le resistenze si sommano direttamente i valori in serie; per le capacità, l’addizione diretta nasce dalla tensione comune in parallelo."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E015",
+    "kind": "example",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 15,
+    "title": "Due condensatori in serie",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti-c.svg",
+        "text": "Segui lo schema in serie. La stessa carica in modulo determina due cadute diverse."
+      },
+      {
+        "type": "formula",
+        "text": "C_{\\rm eq}=\\frac{3\\cdot6}{3+6}=2\\ \\mu\\mathrm F,\\quad Q=C_{\\rm eq}V=24\\ \\mu\\mathrm C"
+      },
+      {
+        "type": "formula",
+        "text": "V_1=Q/C_1=24/3=8\\ \\mathrm V,\\qquad V_2=24/6=4\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "La somma delle cadute è 12 V e la capacità equivalente è minore della più piccola delle due."
+      }
+    ],
+    "prompt": "Si collegano in serie 3 μF e 6 μF a 12 V, con nodo interno inizialmente neutro. Determina capacità equivalente, carica e tensioni.",
+    "difficulty": 2,
+    "family": "due-condensatori-in-serie",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E016",
+    "kind": "example",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 16,
+    "title": "Approfondimento · Ridividere una carica",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La carica totale del nodo delle armature positive è inizialmente 2 × 9 = 18 μC. Non esiste un collegamento alla sorgente. A equilibrio le armature collegate hanno il medesimo potenziale."
+      },
+      {
+        "type": "formula",
+        "text": "V_f=\\frac{Q_{\\rm nodo}}{C_1+C_2}=\\frac{18}{2+4}=3\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "U_i=\\tfrac12\\cdot2\\cdot9^2=81\\ \\mu\\mathrm J,\\qquad U_f=\\tfrac12\\cdot6\\cdot3^2=27\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "La carica del nodo resta 18 μC. In un circuito reale la differenza di 54 μJ lascia il campo dei condensatori durante la ridistribuzione, per esempio come calore nei collegamenti."
+      }
+    ],
+    "prompt": "Un condensatore da 2 μF è caricato a 9 V e scollegato. Viene connesso, armatura positiva con armatura corrispondente, a uno scarico da 4 μF. Calcola la tensione comune e confronta le energie.",
+    "difficulty": 3,
+    "family": "approfondimento-ridividere-una-carica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L09",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 9,
+    "title": "Correnti, bussole e traiettorie curve",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+      "6.6 Forza di Lorentz su una carica in moto e su un filo",
+      "6.6 Moto circolare in campo magnetico uniforme"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una bussola vicino a un filo rettilineo si orienta diversamente quando passa corrente. Invertendo il verso della corrente si inverte il contributo magnetico del filo. L’esperimento di Oersted lega la corrente al campo magnetico B, misurato in tesla (T). Intorno a un filo rettilineo lungo le linee del campo sono circonferenze centrate sull’asse del filo. Il pollice della mano destra segue la corrente convenzionale, le dita seguono B."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-filo-b.svg",
+        "text": "Un punto nel filo rappresenta corrente uscente dal foglio. La linea del campo la circonda in senso antiorario. La freccia tangente indica B nel punto P."
+      },
+      {
+        "type": "text",
+        "text": "Una particella carica in moto in un campo B subisce una forza perpendicolare sia alla velocità sia a B. Per q positiva la mano destra dà il verso del prodotto vettoriale v × B; una q negativa inverte la freccia. Quando v è parallela a B, la forza magnetica è nulla."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec F_B=q\\vec v\\times\\vec B,\\qquad F_B=|q|vB\\sin\\theta"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-orbita.svg",
+        "text": "Le croci rappresentano B entrante nel foglio. Per q positiva con v iniziale verso destra la forza è verso l’alto e curva la traiettoria."
+      },
+      {
+        "type": "text",
+        "text": "La forza magnetica è perpendicolare alla velocità istante per istante. Il suo lavoro sulla carica puntiforme è nullo. Con velocità iniziale perpendicolare a un campo uniforme e senza altre forze, il modulo della velocità resta costante e l’accelerazione è centripeta. Un’estensione del modello riguarda una velocità iniziale inclinata: con una componente parallela si sovrappongono rotazione e avanzamento lungo il campo."
+      },
+      {
+        "type": "formula",
+        "text": "|q|vB=\\frac{mv^2}{r}\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}\\quad(\\vec v\\perp\\vec B)"
+      },
+      {
+        "type": "text",
+        "text": "Un segmento rettilineo di filo immerso in un campo uniforme subisce la forza magnetica sulle cariche che lo attraversano. Il vettore lunghezza ℓ segue la corrente convenzionale. Il modulo della forza è massimo con filo perpendicolare al campo."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec F=I\\vec\\ell\\times\\vec B,\\qquad F=I\\ell B\\sin\\theta"
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E017",
+    "kind": "example",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 17,
+    "title": "Raggio della traiettoria",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-orbita.svg",
+        "text": "La forza si dirige verso il centro; la velocità è tangente. Il disegno fissa l’orientamento di una possibile entrata."
+      },
+      {
+        "type": "formula",
+        "text": "|q|vB=mv^2/r\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}"
+      },
+      {
+        "type": "formula",
+        "text": "r=\\frac{1{,}67\\cdot10^{-27}\\cdot2{,}0\\cdot10^5}{1{,}60\\cdot10^{-19}\\cdot0{,}10}=2{,}09\\cdot10^{-2}\\ \\mathrm m=2{,}09\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Una velocità maggiore a campo fissato allargherebbe l’orbita. Il segno della carica determina il verso di curvatura."
+      }
+    ],
+    "prompt": "Un protone con massa 1,67 × 10⁻²⁷ kg e carica 1,60 × 10⁻¹⁹ C entra a 2,0 × 10⁵ m/s perpendicolarmente a un campo uniforme di 0,10 T. Calcola il raggio in cm.",
+    "difficulty": 2,
+    "family": "raggio-della-traiettoria",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E018",
+    "kind": "example",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 18,
+    "title": "Forza su un segmento di filo",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La lunghezza immersa nel campo è 0,080 m. Il vettore lunghezza segue la corrente verso destra. Il campo è perpendicolare al filo e il seno dell’angolo è uno."
+      },
+      {
+        "type": "formula",
+        "text": "F=I\\ell B\\sin90^\\circ=2{,}0\\cdot0{,}080\\cdot0{,}25=0{,}040\\ \\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "Con asse x verso destra e y verso l’alto, x × y punta verso chi osserva. La forza è uscente dal foglio. Invertire solo la corrente ne invertirebbe il verso."
+      }
+    ],
+    "prompt": "Un segmento rettilineo di 8,0 cm è percorso da 2,0 A verso destra in un campo di 0,25 T diretto verso l’alto nel piano del foglio. Trova modulo e verso della forza.",
+    "difficulty": 2,
+    "family": "forza-su-un-segmento-di-filo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-L10",
+    "kind": "lesson",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 10,
+    "title": "Indurre una tensione cambiando il flusso",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "coverage": [
+      "6.7 Flusso magnetico",
+      "6.7 Forza elettromotrice indotta",
+      "6.7 Legge di Faraday–Neumann–Lenz",
+      "6.7 Correnti indotte e loro verso"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una spira ferma può essere attraversata da un campo senza sviluppare corrente. Per generare una forza elettromotrice indotta conta la variazione nel tempo del flusso concatenato. Per una spira piana in campo uniforme il flusso Φ dipende dall’area, dal modulo del campo e dall’angolo tra il campo e la normale scelta alla superficie."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-flusso.svg",
+        "text": "La normale n è perpendicolare al piano della spira. L’angolo θ si misura fra il campo e la normale. Quando B giace nel piano, la sua componente normale è nulla."
+      },
+      {
+        "type": "formula",
+        "text": "\\Phi_B=BA\\cos\\theta,\\qquad [\\Phi_B]=\\mathrm{T\\,m^2}=\\mathrm{Wb}"
+      },
+      {
+        "type": "text",
+        "text": "Cambiando l’intensità del campo, ruotando la spira o modificando l’area attraversata si può cambiare il flusso. Per N spire con lo stesso flusso per spira, la forza elettromotrice media è la variazione del flusso concatenato divisa per il tempo, con segno meno. Un weber al secondo equivale a un volt."
+      },
+      {
+        "type": "formula",
+        "text": "\\overline{\\mathcal E}=-N\\frac{\\Phi_f-\\Phi_i}{\\Delta t}"
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C4-lenz.svg",
+        "text": "Vista frontale della spira. Un campo esterno entrante che aumenta induce una corrente antioraria, il cui campo è uscente."
+      },
+      {
+        "type": "text",
+        "text": "Il verso positivo di percorrenza della spira si abbina alla normale con la regola della mano destra. La legge di Lenz dice che il campo della corrente indotta si oppone alla variazione del flusso esterno. Se un campo entrante diminuisce, l’induzione tende quindi a sostenerlo. Invertire sempre il verso del campo esterno darebbe una previsione errata quando il flusso si riduce."
+      },
+      {
+        "type": "text",
+        "text": "Una forza elettromotrice può esistere anche a circuito aperto. Una corrente persistente richiede un cammino chiuso e dipende dalle proprietà del circuito. In una spira resistiva con autoinduzione trascurabile, il suo modulo si ricava dalla legge di Ohm."
+      }
+    ],
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E019",
+    "kind": "example",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 19,
+    "title": "Quanto vale l’impulso induttivo?",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’area è 5,0 × 10⁻⁴ m² e il tempo 0,020 s. Il campo è parallelo alla normale delle spire. Ogni spira concatena la stessa variazione di flusso."
+      },
+      {
+        "type": "formula",
+        "text": "|\\Delta\\Phi|=A|\\Delta B|=(5{,}0\\cdot10^{-4})(0{,}20)=1{,}0\\cdot10^{-4}\\ \\mathrm{Wb}"
+      },
+      {
+        "type": "formula",
+        "text": "|\\overline{\\mathcal E}|=N|\\Delta\\Phi|/\\Delta t=40\\cdot10^{-4}/0{,}020=0{,}20\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Il numero di spire moltiplica la variazione per spira. Il risultato è una tensione, non una forza meccanica."
+      }
+    ],
+    "prompt": "Una bobina di 40 spire, area 5,0 cm² per spira, giace perpendicolare a un campo che cresce uniformemente da 0,10 a 0,30 T in 20 ms. Calcola il modulo della f.e.m. media.",
+    "difficulty": 2,
+    "family": "quanto-vale-limpulso-induttivo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-E020",
+    "kind": "example",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 20,
+    "title": "Decidere il verso durante una diminuzione",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-lenz-decrescente.svg",
+        "text": "Il campo esterno entra nel foglio e diminuisce. Osserva la croce rossa al centro della spira per il verso del campo indotto."
+      },
+      {
+        "type": "text",
+        "text": "Poiché diminuisce un flusso entrante, la corrente indotta deve creare un campo entrante che contrasti la diminuzione. Immagina il pollice destro diretto dentro il foglio."
+      },
+      {
+        "type": "text",
+        "text": "Le dita si chiudono in senso orario. Questa è la direzione della corrente convenzionale nella spira vista frontalmente. Se il campo smette di cambiare, la f.e.m. indotta da quella variazione si annulla."
+      }
+    ],
+    "prompt": "Una spira chiusa è vista frontalmente. Il campo esterno è entrante nel foglio e sta diminuendo in modulo. Qual è il verso della corrente indotta visto dall’osservatore?",
+    "difficulty": 2,
+    "family": "decidere-il-verso-durante-una-diminuzione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico"
+  },
+  {
+    "id": "C4-Q001",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 1,
+    "title": "Contare gli elettroni trasferiti",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "N=|q|/e=\\frac{4{,}80\\cdot10^{-15}}{1{,}60\\cdot10^{-19}}=3{,}00\\cdot10^4"
+      },
+      {
+        "type": "text",
+        "text": "Il segno meno indica un eccesso di elettroni, non un numero negativo di particelle."
+      }
+    ],
+    "prompt": "Una gocciolina acquisisce carica −4,80 fC. Quanti elettroni ha acquistato? Usa e = 1,60 × 10⁻¹⁹ C.",
+    "difficulty": 1,
+    "family": "contare-gli-elettroni-trasferiti",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 30000,
+      "unit": "elettroni",
+      "tolerance": 1
+    },
+    "hints": [
+      "Converti il femtocoulomb e usa il modulo della carica."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il prefisso femto vale 10⁻¹⁵, e il numero di particelle è positivo.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q002",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 2,
+    "title": "Forze fra cariche diverse",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le forze costituiscono una coppia di azione e reazione. Il loro modulo contiene il prodotto q·3q, uguale nelle due valutazioni. Le accelerazioni richiedono anche le rispettive masse."
+      }
+    ],
+    "prompt": "Due cariche isolate +q e +3q si respingono. Quale confronto fra le forze reciproche rispetta la dinamica?",
+    "difficulty": 1,
+    "family": "forze-fra-cariche-diverse",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Stesso modulo e versi opposti",
+      "options": [
+        "Stesso modulo e versi opposti",
+        "La carica maggiore esercita forza tripla",
+        "Stesso modulo e stesso verso",
+        "La carica minore non esercita forza"
+      ]
+    },
+    "hints": [
+      "Guarda la coppia di corpi su cui agiscono le due forze."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La legge di Coulomb è simmetrica nello scambio fra q₁ e q₂.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q003",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 3,
+    "title": "Prefisso sotto il microcoulomb",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "1\\ \\mathrm{nC}=10^{-9}\\ \\mathrm C=10^{-3}\\ \\mu\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Tenere separati prefisso e unità evita errori di molti ordini di grandezza nella forza."
+      }
+    ],
+    "prompt": "Quale prefisso SI, scritto in lettere, corrisponde a 10⁻⁹ e si usa spesso per le piccole cariche?",
+    "difficulty": 1,
+    "family": "prefisso-sotto-il-microcoulomb",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "nano",
+      "aliases": [
+        "nano-"
+      ]
+    },
+    "hints": [
+      "Fra un microcoulomb e un picocoulomb vi sono due salti di un fattore mille."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un nanocoulomb è un miliardesimo di coulomb.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q004",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 4,
+    "title": "La distanza necessaria a ridurre la forza",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{F_f}{F_i}=\\left(\\frac{r_i}{r_f}\\right)^2=\\frac19\\quad\\Longrightarrow\\quad r_f=3r_i=12\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è una distanza maggiore, coerente con una forza ridotta."
+      }
+    ],
+    "prompt": "Due cariche a distanza 4 cm si respingono con forza F. A quanti cm vanno portate per ridurre il modulo a F/9?",
+    "difficulty": 2,
+    "family": "la-distanza-necessaria-a-ridurre-la-forza",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 12,
+      "unit": "cm",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "La distanza compare al quadrato al denominatore."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per ridurre la forza nove volte basta aumentare la distanza di tre volte.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q005",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 5,
+    "title": "Carica mancante dopo la separazione",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "q_1+q_2=Q\\quad\\Longrightarrow\\quad q_2=Q-q_1=-2{,}5-1{,}2=-3{,}7\\ \\mathrm{nC}"
+      },
+      {
+        "type": "text",
+        "text": "Il controllo restituisce +1,2 − 3,7 = −2,5 nC."
+      }
+    ],
+    "prompt": "Un sistema isolato possiede in totale −2,5 nC. Dopo una separazione il primo oggetto ha +1,2 nC. Qual è la carica del secondo, in nC?",
+    "difficulty": 1,
+    "family": "carica-mancante-dopo-la-separazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -3.7,
+      "unit": "nC",
+      "tolerance": 0.015
+    },
+    "hints": [
+      "Somma algebricamente le due cariche finali."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Una parte positiva richiede una seconda parte più negativa del totale.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q006",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 6,
+    "title": "Quando approssimare una sfera con un punto",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il contributo dominante a grandi distanze è quello della carica netta trattata come puntiforme. Vicino a una distribuzione estesa l’effettiva geometria può contare fortemente."
+      }
+    ],
+    "prompt": "In quale condizione geometrica la dimensione di un corpo carico può essere usualmente trascurata in una stima del suo campo lontano, se ha carica netta diversa da zero?",
+    "difficulty": 2,
+    "family": "quando-approssimare-una-sfera-con-un-punto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "La distanza di osservazione è molto maggiore delle dimensioni del corpo",
+      "options": [
+        "La distanza di osservazione è molto maggiore delle dimensioni del corpo",
+        "Il corpo è necessariamente neutro",
+        "Il punto di osservazione è sulla superficie",
+        "La carica deve essere un elettrone"
+      ]
+    },
+    "hints": [
+      "Confronta la dimensione della sorgente con la distanza."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Da lontano le differenze relative di distanza dai diversi punti della sorgente sono piccole.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q007",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 7,
+    "title": "Segni opposti",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-coulomb.svg",
+        "text": "Ogni forza è diretta verso la posizione dell’altra carica."
+      },
+      {
+        "type": "text",
+        "text": "La forza accelera ciascuna carica verso l’altra se le particelle sono libere. Il modulo della forza rimane una grandezza positiva."
+      }
+    ],
+    "prompt": "Come si definisce, con un aggettivo, la forza fra due cariche puntiformi ferme di segno opposto?",
+    "difficulty": 1,
+    "family": "segni-opposti",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "attrattiva",
+      "aliases": [
+        "attraente"
+      ]
+    },
+    "hints": [
+      "Le frecce sulle due cariche puntano una verso l’altra o si allontanano?"
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il prodotto q₁q₂ negativo stabilisce il verso attrattivo dell’interazione.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q008",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 8,
+    "title": "Cambiare insieme cariche e distanza",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "F_f/F_i=(3q_1/q_1)(r_i/r_f)^2=3(1/2)^2=3/4"
+      },
+      {
+        "type": "text",
+        "text": "Nonostante la carica maggiore, la forza finale vale il 75% di quella iniziale."
+      }
+    ],
+    "prompt": "Una delle due cariche puntiformi è triplicata e la distanza è raddoppiata, mentre l’altra carica resta uguale. Trova il rapporto Ff/Fi dei moduli.",
+    "difficulty": 2,
+    "family": "cambiare-insieme-cariche-e-distanza",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.75,
+      "unit": "1",
+      "tolerance": 0.004
+    },
+    "hints": [
+      "Scrivi separatamente il fattore dovuto alla carica e quello dovuto alla distanza."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il raddoppio della distanza dà un fattore 1/4.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q009",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 9,
+    "title": "Uno sfregamento lascia il materiale positivo",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Perdere elettroni lascia un eccesso netto di carica positiva. Il sistema comprendente entrambi i materiali conserva la carica totale se elettricamente isolato."
+      }
+    ],
+    "prompt": "Un oggetto inizialmente neutro diventa positivo per elettrizzazione per strofinio. Quale cambiamento microscopico è coerente?",
+    "difficulty": 1,
+    "family": "uno-sfregamento-lascia-il-materiale-positivo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Ha perso elettroni",
+      "options": [
+        "Ha perso protoni per semplice contatto",
+        "Ha perso elettroni",
+        "Ha guadagnato elettroni",
+        "Ogni sua molecola ha perso il nucleo"
+      ]
+    },
+    "hints": [
+      "Confronta il numero di cariche negative con quelle positive fissate nei nuclei."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nella normale elettrizzazione si trasferiscono elettroni fra materiali.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q010",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche che si attraggono e si respingono",
+    "order": 10,
+    "title": "Scegliere il valore della seconda carica",
+    "skill": "C4-L01",
+    "prerequisites": [],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|q_2|=\\frac{Fr^2}{k|q_1|}=\\frac{9\\cdot10^{-6}\\cdot0{,}20^2}{9\\cdot10^9\\cdot2\\cdot10^{-9}}=2{,}0\\cdot10^{-8}\\ \\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Questo modulo equivale a 20 nC. Il segno necessario dà q₂ = −20 nC."
+      }
+    ],
+    "prompt": "Nel vuoto a distanza 0,20 m da +2,0 nC, una carica esercita una forza attrattiva di 9,0 μN. Trova la seconda carica con segno in nC. Usa k = 9,0 × 10⁹ N·m²/C².",
+    "difficulty": 3,
+    "family": "scegliere-il-valore-della-seconda-carica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": -20,
+      "unit": "nC",
+      "tolerance": 0.15
+    },
+    "hints": [
+      "Ricava il modulo e assegna il segno usando l’attrazione."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La forza con la sorgente positiva è attrattiva, quindi la seconda carica deve essere negativa.",
+      "target": "C4-L01"
+    }
+  },
+  {
+    "id": "C4-Q011",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 11,
+    "title": "La prova cambia segno",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-campo.svg",
+        "text": "Il verso di E è fissato dalle piastre anche quando sulla prova negativa la forza punta nel verso opposto."
+      },
+      {
+        "type": "formula",
+        "text": "\\vec F_{-q}=(-q)\\vec E=-\\vec F_{+q}"
+      }
+    ],
+    "prompt": "Sostituisci una piccola carica di prova +q con −q nello stesso punto, senza alterare le sorgenti. Quale cambiamento si osserva?",
+    "difficulty": 1,
+    "family": "la-prova-cambia-segno",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "La forza si inverte e il campo resta uguale",
+      "options": [
+        "Si invertono sia campo sia forza",
+        "Il campo si annulla",
+        "La forza resta uguale e cambia solo la massa",
+        "La forza si inverte e il campo resta uguale"
+      ]
+    },
+    "hints": [
+      "Distingui la sorgente dalla particella che sonda il campo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "E dipende dalla configurazione sorgente; F contiene il fattore q della prova.",
+      "target": "C4-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-campo.svg",
+        "text": "Lo schema fissa il verso del campo e mostra la carica di prova negativa."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q012",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 12,
+    "title": "Campo da una forza misurata",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "E=F/q=\\frac{1{,}2\\cdot10^{-6}}{4{,}0\\cdot10^{-9}}=300\\ \\mathrm{N/C}"
+      },
+      {
+        "type": "text",
+        "text": "Poiché la prova è positiva il campo è diretto verso est come la forza."
+      }
+    ],
+    "prompt": "Una prova di +4,0 nC subisce una forza di 1,2 μN verso est. Trova il modulo del campo in N/C.",
+    "difficulty": 1,
+    "family": "campo-da-una-forza-misurata",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 300,
+      "unit": "N/C",
+      "tolerance": 1
+    },
+    "hints": [
+      "Dividi la forza per la carica e converti i due prefissi separatamente."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Micro e nano differiscono di un fattore mille.",
+      "target": "C4-L02"
+    }
+  },
+  {
+    "id": "C4-Q013",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 13,
+    "title": "Verso locale di una linea",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La freccia della linea sceglie il verso lungo la tangente. La retta che congiunge due punti lontani della linea non descrive necessariamente il campo in ciascuno di essi."
+      }
+    ],
+    "prompt": "Completa la frase. La direzione del campo elettrico in un punto in cui E è diverso da zero è quella della … alla linea di campo.",
+    "difficulty": 1,
+    "family": "verso-locale-di-una-linea",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "tangente",
+      "aliases": [
+        "retta tangente"
+      ]
+    },
+    "hints": [
+      "Il campo è un vettore locale che segue la linea nel punto considerato."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La tangente è la retta che rappresenta l’orientamento locale della curva.",
+      "target": "C4-L02"
+    }
+  },
+  {
+    "id": "C4-Q014",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 14,
+    "title": "Annullare due contributi collineari",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{kq}{x^2}=\\frac{4kq}{(30-x)^2}\\quad\\Longrightarrow\\quad 30-x=2x"
+      },
+      {
+        "type": "formula",
+        "text": "x=10\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "A 10 cm dalla sorgente piccola e 20 cm dalla grande i due contributi hanno lo stesso modulo e verso opposto."
+      }
+    ],
+    "prompt": "Due sorgenti +q e +4q sono distanti 30 cm. Fra di esse, a quanti cm da +q è nullo il campo?",
+    "difficulty": 3,
+    "family": "annullare-due-contributi-collineari",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 10,
+      "unit": "cm",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Fra due sorgenti positive i campi si oppongono. Uguaglia i moduli."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La distanza dalla carica maggiore deve essere doppia di quella dalla più piccola.",
+      "target": "C4-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-campo-nullo.svg",
+        "text": "La posizione di P è incognita; il disegno è schematico."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q015",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 15,
+    "title": "Le linee possono attraversarsi?",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le diverse sorgenti possono generare vettori con direzioni diverse, ma il loro campo risultante è uno solo. Le linee del campo risultante devono seguire questo vettore."
+      }
+    ],
+    "prompt": "Un disegno mostra due linee di campo elettrico che si incrociano con tangenti differenti in un punto con E diverso da zero. Qual è il problema?",
+    "difficulty": 1,
+    "family": "le-linee-possono-attraversarsi",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Assegna due direzioni al campo nello stesso punto",
+      "options": [
+        "Le linee devono essere sempre parallele",
+        "Un campo non può variare nello spazio",
+        "Le cariche sorgenti devono sempre essere due",
+        "Assegna due direzioni al campo nello stesso punto"
+      ]
+    },
+    "hints": [
+      "Cerca una singola freccia locale E compatibile con entrambe le tangenti."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il campo elettrico risultante in un punto ha una sola direzione quando è non nullo.",
+      "target": "C4-L02"
+    }
+  },
+  {
+    "id": "C4-Q016",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 16,
+    "title": "Una traiettoria fra le armature",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "t=0{,}80/4=0{,}20\\ \\mathrm s,\\qquad y=\\tfrac12a_y t^2=3(0{,}20)^2=0{,}12\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "La conversione finale dà 12 cm. La traiettoria combina moto orizzontale uniforme e moto verticale accelerato."
+      }
+    ],
+    "prompt": "Una particella entra tra due piastre con vx = 4 m/s e vy = 0. Il campo produce ay = 6 m/s² e ax = 0. Dopo 0,80 m orizzontali, di quanti cm si è spostata verso y positivo?",
+    "difficulty": 2,
+    "family": "una-traiettoria-fra-le-armature",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 12,
+      "unit": "cm",
+      "tolerance": 0.08
+    },
+    "hints": [
+      "Usa il moto orizzontale per il tempo di permanenza."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’accelerazione è verticale, quindi il tempo si trova da x/vx.",
+      "target": "C4-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-proiettile.svg",
+        "text": "È illustrato il caso di una prova positiva nel campo diretto in alto. L’asse x cresce verso destra, y verso l’alto."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q017",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 17,
+    "title": "Linee rivolte verso il centro",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le linee di campo entrano in una sorgente negativa ed escono da una positiva. Il verso vale per una prova positiva per definizione del campo."
+      }
+    ],
+    "prompt": "Una distribuzione radiale di linee elettriche punta verso un’unica carica puntiforme al centro. Indica con un aggettivo il segno della sorgente.",
+    "difficulty": 1,
+    "family": "linee-rivolte-verso-il-centro",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "negativa",
+      "aliases": [
+        "negativo"
+      ]
+    },
+    "hints": [
+      "Guarda il verso della forza sulla prova positiva."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La prova positiva è attratta verso la sorgente.",
+      "target": "C4-L02"
+    }
+  },
+  {
+    "id": "C4-Q018",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 18,
+    "title": "Vettori ortogonali nel punto di misura",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "E=\\sqrt{E_x^2+E_y^2}=\\sqrt{300^2+400^2}=500\\ \\mathrm{N/C}"
+      },
+      {
+        "type": "text",
+        "text": "La risultante punta a nord-est ed è compresa tra il modulo maggiore, 400, e la somma dei moduli, 700 N/C."
+      }
+    ],
+    "prompt": "In un punto una sorgente dà 300 N/C verso est e un’altra 400 N/C verso nord. Calcola il modulo del campo risultante in N/C.",
+    "difficulty": 2,
+    "family": "vettori-ortogonali-nel-punto-di-misura",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 500,
+      "unit": "N/C",
+      "tolerance": 1
+    },
+    "hints": [
+      "Costruisci il triangolo con le componenti perpendicolari."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Sommare direttamente i due moduli varrebbe per vettori paralleli e concordi.",
+      "target": "C4-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-componenti.svg",
+        "text": "Le due frecce indicano i singoli contributi in P."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q019",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 19,
+    "title": "Una carica negativa inizialmente ferma",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\vec a=(q/m)\\vec E"
+      },
+      {
+        "type": "text",
+        "text": "Con q negativa il vettore accelerazione è opposto al campo. Partendo da ferma, anche la velocità subito successiva punta verso sinistra."
+      }
+    ],
+    "prompt": "Una particella negativa è libera in un campo uniforme verso destra, senza altre forze. Cosa succede appena viene lasciata da ferma?",
+    "difficulty": 1,
+    "family": "una-carica-negativa-inizialmente-ferma",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Accelera verso sinistra",
+      "options": [
+        "Resta ferma perché la velocità iniziale è nulla",
+        "Accelera verso destra",
+        "Si muove subito di moto circolare",
+        "Accelera verso sinistra"
+      ]
+    },
+    "hints": [
+      "La forza elettrica dipende dalla carica e dal campo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Una velocità iniziale nulla non annulla qE.",
+      "target": "C4-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-campo.svg",
+        "text": "Lo schema fissa il verso del campo e mostra la carica di prova negativa."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q020",
+    "kind": "question",
+    "course": "C4",
+    "section": "Guardare il campo prima della forza",
+    "order": 20,
+    "title": "Tempo per invertire il moto",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "v_x(t)=6-3t,\\qquad v_x=0\\Rightarrow t=6/3=2\\ \\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "All’istante trovato la velocità è nulla, ma resta l’accelerazione verso sinistra. La particella riparte in quel verso."
+      }
+    ],
+    "prompt": "Una carica parte verso destra a 6 m/s in un campo elettrico uniforme che le impartisce accelerazione di 3 m/s² verso sinistra. Dopo quanti secondi raggiunge l’istante di inversione?",
+    "difficulty": 2,
+    "family": "tempo-per-invertire-il-moto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 2,
+      "unit": "s",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Scegli destra positiva e imponi velocità nulla all’inversione."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’accelerazione ha segno opposto alla velocità iniziale.",
+      "target": "C4-L02"
+    }
+  },
+  {
+    "id": "C4-Q021",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 21,
+    "title": "Potenziale in un punto equidistante",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "V=\\frac{k}{r}(q_1+q_2)=\\frac{9\\cdot10^9}{0{,}10}(2-1)10^{-9}=90\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Basta conoscere le distanze e i segni. Per il campo servirebbero anche le direzioni."
+      }
+    ],
+    "prompt": "Due cariche +2,0 nC e −1,0 nC sono entrambe a 0,10 m da P. Con zero all’infinito e k = 9,0 × 10⁹ N·m²/C², calcola V(P) in volt.",
+    "difficulty": 2,
+    "family": "potenziale-in-un-punto-equidistante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 90,
+      "unit": "V",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "Somma gli scalari con i loro segni."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per il potenziale compare r e il contributo della sorgente negativa si sottrae.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q022",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 22,
+    "title": "Muoversi su una equipotenziale",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-potenziale.svg",
+        "text": "Lungo una stessa linea tratteggiata i due estremi hanno uguale potenziale."
+      },
+      {
+        "type": "formula",
+        "text": "W=-q(V_f-V_i)=0"
+      },
+      {
+        "type": "text",
+        "text": "La forza può essere non nulla e perpendicolare allo spostamento lungo la superficie."
+      }
+    ],
+    "prompt": "Sposti una carica positiva lungo una superficie con potenziale costante in un campo elettrostatico. Quanto lavoro compie il campo?",
+    "difficulty": 1,
+    "family": "muoversi-su-una-equipotenziale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Zero",
+      "options": [
+        "Zero",
+        "Positivo in ogni direzione",
+        "Negativo in ogni direzione",
+        "Dipende dal percorso anche con ΔV = 0"
+      ]
+    },
+    "hints": [
+      "Confronta i potenziali dei due estremi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il lavoro elettrostatico fra due punti vale −qΔV.",
+      "target": "C4-L03"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-potenziale.svg",
+        "text": "Puoi seguire una singola linea verticale equipotenziale."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q023",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 23,
+    "title": "Unità di potenziale",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "1\\ \\mathrm V=1\\ \\mathrm{J/C}"
+      },
+      {
+        "type": "text",
+        "text": "Una carica di un coulomb che attraversa una differenza di potenziale di un volt cambia energia potenziale di un joule in modulo."
+      }
+    ],
+    "prompt": "Un joule per coulomb corrisponde a quale unità SI? Scrivine il nome.",
+    "difficulty": 1,
+    "family": "unita-di-potenziale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "volt",
+      "aliases": [
+        "V"
+      ]
+    },
+    "hints": [
+      "La stessa unità compare sulla scala di un voltmetro."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il volt misura energia potenziale per carica.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q024",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 24,
+    "title": "Campo dalla spaziatura delle equipotenziali",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "E=|\\Delta V|/d=12/0{,}030=400\\ \\mathrm{V/m}"
+      },
+      {
+        "type": "text",
+        "text": "Il campo punta dal piano a potenziale più alto verso quello a potenziale più basso."
+      }
+    ],
+    "prompt": "In un campo uniforme due piani equipotenziali distano 3,0 cm lungo il campo e differiscono di 12 V. Trova il modulo E in V/m.",
+    "difficulty": 1,
+    "family": "campo-dalla-spaziatura-delle-equipotenziali",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 400,
+      "unit": "V/m",
+      "tolerance": 1
+    },
+    "hints": [
+      "Usa la distanza misurata nella direzione del campo."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La differenza di potenziale per unità di distanza deve usare metri.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q025",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 25,
+    "title": "Potenziale nullo senza campo nullo",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-dipolo.svg",
+        "text": "I contributi vettoriali verso destra si sommano nel punto medio."
+      },
+      {
+        "type": "formula",
+        "text": "V=kq/r+k(-q)/r=0"
+      },
+      {
+        "type": "text",
+        "text": "Per il campo, allontanarsi dalla positiva significa dirigersi verso la negativa. Le due frecce sono concordi."
+      }
+    ],
+    "prompt": "Nel punto medio tra +q e −q, ponendo V = 0 all’infinito, quale situazione si incontra?",
+    "difficulty": 2,
+    "family": "potenziale-nullo-senza-campo-nullo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "V = 0 e campo non nullo",
+      "options": [
+        "Campo e potenziale sempre entrambi nulli",
+        "V = 0 e campo non nullo",
+        "V diverso da zero e campo nullo",
+        "Non si può definire il potenziale fra cariche"
+      ]
+    },
+    "hints": [
+      "Confronta somma di scalari e somma di frecce."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "I potenziali opposti si cancellano ma i due campi puntano nello stesso verso al centro.",
+      "target": "C4-L03"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-dipolo.svg",
+        "text": "Le due distanze da P sono uguali."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q026",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 26,
+    "title": "Quanta energia cinetica in elettronvolt?",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta V=17-2=15\\ \\mathrm V,\\qquad \\Delta K=-q\\Delta V=e\\cdot15\\ \\mathrm V=15\\ \\mathrm{eV}"
+      },
+      {
+        "type": "text",
+        "text": "Un elettronvolt è un’unità di energia. Il guadagno sarebbe di segno opposto per una carica positiva con lo stesso spostamento."
+      }
+    ],
+    "prompt": "Un elettrone passa da un punto a 2 V a uno a 17 V per effetto del solo campo. Di quanti eV aumenta K?",
+    "difficulty": 2,
+    "family": "quanta-energia-cinetica-in-elettronvolt",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 15,
+      "unit": "eV",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Per una particella con carica unitaria in modulo, 1 V di differenza corrisponde a 1 eV di energia in modulo."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La carica negativa guadagna energia cinetica andando verso un potenziale più alto.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q027",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 27,
+    "title": "Scelta dello zero",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un riferimento permette di assegnare un numero a V in ogni punto. Se V′ = V + c, la differenza V′B − V′A è nuovamente VB − VA e le previsioni fisiche non cambiano."
+      }
+    ],
+    "prompt": "La scelta di V = 0 all’infinito per una carica puntiforme fissa un … per il potenziale. Completa con la parola che indica l’origine convenzionale della scala.",
+    "difficulty": 1,
+    "family": "scelta-dello-zero",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "riferimento",
+      "aliases": [
+        "livello di riferimento",
+        "potenziale di riferimento"
+      ]
+    },
+    "hints": [
+      "Aggiungere la stessa costante ai potenziali lascia invariata ogni differenza."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il valore assoluto dichiarato per il potenziale dipende dalla scelta dello zero.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q028",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 28,
+    "title": "Velocità guadagnata fra due punti",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\tfrac12 mv_f^2=-q\\Delta V=4{,}0\\cdot10^{-6}\\cdot9{,}0=36\\cdot10^{-6}\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "v_f=\\sqrt{2\\cdot36\\cdot10^{-6}/(2{,}0\\cdot10^{-6})}=6{,}0\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La perdita di potenziale accelera una carica positiva."
+      }
+    ],
+    "prompt": "Una particella da 2,0 mg con carica +4,0 μC parte da ferma e scende di 9,0 V di potenziale. Agisce solo il campo. Calcola la velocità finale in m/s.",
+    "difficulty": 2,
+    "family": "velocita-guadagnata-fra-due-punti",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "m/s",
+      "tolerance": 0.04
+    },
+    "hints": [
+      "Converti la massa in kg e uguaglia il guadagno cinetico alla perdita di energia potenziale."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un milligrammo vale 10⁻⁶ kg.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q029",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 29,
+    "title": "Campi e curve di livello",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "E_\\perp\\simeq |\\Delta V|/\\Delta s"
+      },
+      {
+        "type": "text",
+        "text": "Per la medesima caduta di potenziale una distanza minore richiede un campo medio maggiore lungo la normale."
+      }
+    ],
+    "prompt": "In due regioni segnate con lo stesso intervallo di potenziale fra linee adiacenti, dove è mediamente più intenso il campo?",
+    "difficulty": 2,
+    "family": "campi-e-curve-di-livello",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Dove le equipotenziali sono più ravvicinate nella direzione normale",
+      "options": [
+        "Dove sono più lontane",
+        "Dove le equipotenziali sono più ravvicinate nella direzione normale",
+        "Dove il valore assoluto del potenziale è sempre maggiore",
+        "Dove si cambia il riferimento dello zero"
+      ]
+    },
+    "hints": [
+      "Confronta la variazione di V per distanza percorsa normalmente."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "È il gradiente del potenziale a determinare il campo.",
+      "target": "C4-L03"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-equipot.svg",
+        "text": "Le due regioni hanno la stessa scala spaziale."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q030",
+    "kind": "question",
+    "course": "C4",
+    "section": "Dal potenziale all’energia",
+    "order": 30,
+    "title": "Numero di coppie in una configurazione",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La prima carica forma tre coppie, la seconda due nuove e la terza una nuova. La quarta è già apparsa con ciascuna delle altre."
+      },
+      {
+        "type": "formula",
+        "text": "N_{\\rm coppie}=3+2+1=6"
+      },
+      {
+        "type": "text",
+        "text": "Ogni termine kqiqj/rij va incluso una sola volta."
+      }
+    ],
+    "prompt": "Per calcolare l’energia di quattro cariche puntiformi distinte sommando i contributi a coppie, quanti termini distinti devi includere?",
+    "difficulty": 2,
+    "family": "numero-di-coppie-in-una-configurazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "coppie",
+      "tolerance": 0
+    },
+    "hints": [
+      "Collega ogni carica a quelle che la seguono nell’elenco."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Una coppia AB e la corrispondente BA descrivono la stessa interazione.",
+      "target": "C4-L03"
+    }
+  },
+  {
+    "id": "C4-Q031",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 31,
+    "title": "Bacchetta vicina e sfera isolata",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le cariche si separano per induzione. Il lato vicino diventa positivo e quello lontano negativo. La sfera isolata resta globalmente neutra."
+      }
+    ],
+    "prompt": "Una bacchetta negativa si avvicina a una sfera metallica inizialmente neutra, isolata e senza contatto. Come si presenta il lato della sfera più vicino alla bacchetta?",
+    "difficulty": 1,
+    "family": "bacchetta-vicina-e-sfera-isolata",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Con eccesso locale di carica positiva",
+      "options": [
+        "Con eccesso di elettroni",
+        "Senza alcuna ridistribuzione",
+        "Con carica totale negativa su tutta la sfera",
+        "Con eccesso locale di carica positiva"
+      ]
+    },
+    "hints": [
+      "Considera la repulsione sugli elettroni mobili."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Gli elettroni sono spinti verso il lato lontano. Sul lato vicino resta un difetto elettronico.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q032",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 32,
+    "title": "Risposta locale dell’isolante",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-materiali.svg",
+        "text": "Nel dielettrico i piccoli dipoli rispondono al campo pur mantenendo il materiale neutro."
+      },
+      {
+        "type": "text",
+        "text": "La polarizzazione genera un contributo al campo interno. Può derivare da deformazioni delle distribuzioni di carica o da orientamento parziale di dipoli già presenti."
+      }
+    ],
+    "prompt": "Quale termine indica la formazione o l’orientamento di dipoli elettrici in un dielettrico immerso in un campo?",
+    "difficulty": 1,
+    "family": "risposta-locale-dellisolante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "polarizzazione",
+      "aliases": [
+        "polarizzazione elettrica"
+      ]
+    },
+    "hints": [
+      "Le cariche possono spostarsi localmente, pur restando legate."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La risposta del dielettrico consiste in una separazione microscopica delle cariche.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q033",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 33,
+    "title": "Il bilancio di una sfera neutra",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm tot}=q_1+q_2=0\\quad\\Longrightarrow\\quad q_2=0-(-6{,}0)=+6{,}0\\ \\mathrm{nC}"
+      },
+      {
+        "type": "text",
+        "text": "La separazione superficiale produce un campo pur senza trasferire carica netta alla sfera."
+      }
+    ],
+    "prompt": "Su una parte della superficie di una sfera conduttrice neutra isolata si raccolgono −6,0 nC per induzione. Quanto vale in nC la carica sul resto della superficie, in assenza di cariche nella cavità o nel volume?",
+    "difficulty": 1,
+    "family": "il-bilancio-di-una-sfera-neutra",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "nC",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "La sfera non ha scambiato carica con l’esterno."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Le regioni superficiali devono ricostruire la carica totale iniziale.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q034",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 34,
+    "title": "Togliere prima la bacchetta",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con il collegamento ancora attivo, gli elettroni possono ridistribuirsi fra sfera e terra fino al nuovo equilibrio in assenza della bacchetta. Staccando solo alla fine si isola una sfera idealmente neutra."
+      }
+    ],
+    "prompt": "Una sfera metallica è collegata a terra vicino a una bacchetta positiva. Si allontana prima la bacchetta mentre il filo di terra è ancora collegato, poi si stacca il filo. In assenza di altre sorgenti che cosa si ottiene idealmente?",
+    "difficulty": 2,
+    "family": "togliere-prima-la-bacchetta",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Sfera finale neutra",
+      "options": [
+        "Sfera finale neutra",
+        "Sfera con eccesso negativo necessariamente intrappolato",
+        "Sfera con carica doppia della bacchetta",
+        "Terra isolante"
+      ]
+    },
+    "hints": [
+      "Individua il momento in cui si chiude lo scambio di elettroni con la terra."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La terra resta collegata mentre scompare il campo esterno della bacchetta.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q035",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 35,
+    "title": "Potenziale fra due punti del metallo",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "V_B=V_A=42\\ \\mathrm V,\\qquad V_B-V_A=0\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Uno zero del campo implica costanza spaziale del potenziale all’interno del conduttore."
+      }
+    ],
+    "prompt": "Due punti si trovano entrambi nello stesso conduttore collegato in equilibrio elettrostatico. Se uno è a +42 V rispetto alla terra, quale differenza VB − VA si misura fra loro in volt?",
+    "difficulty": 1,
+    "family": "potenziale-fra-due-punti-del-metallo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0,
+      "unit": "V",
+      "tolerance": 0
+    },
+    "hints": [
+      "Nel materiale conduttore all’equilibrio elettrostatico il campo interno è nullo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il valore di potenziale rispetto alla terra può essere non nullo anche se è uniforme nel conduttore.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q036",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 36,
+    "title": "Connettere un conduttore alla Terra",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una messa a terra permette alle cariche mobili di circolare finché il conduttore collegato raggiunge il potenziale della terra. Il collegamento cambia i vincoli rispetto a un oggetto isolato."
+      }
+    ],
+    "prompt": "Qual è il termine pratico per un collegamento conduttore a un grande serbatoio di carica che fissa il potenziale di riferimento? Completa «messa a …».",
+    "difficulty": 1,
+    "family": "connettere-un-conduttore-alla-terra",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "terra",
+      "aliases": []
+    },
+    "hints": [
+      "Il collegamento può fornire o assorbire elettroni."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La Terra funge da grande serbatoio a potenziale praticamente fissato nelle condizioni usuali.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q037",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 37,
+    "title": "Direzione del campo alla superficie",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una componente tangenziale produrrebbe forza tangenziale sulle cariche libere e continuerebbe la ridistribuzione. Un campo normale può invece esistere subito fuori dalla superficie."
+      }
+    ],
+    "prompt": "Sulla superficie di un conduttore in equilibrio elettrostatico, quale componente del campo appena esterno deve essere nulla?",
+    "difficulty": 2,
+    "family": "direzione-del-campo-alla-superficie",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Tangenziale",
+      "options": [
+        "Normale in ogni situazione",
+        "Tangenziale",
+        "Radiale per qualunque geometria e sorgente",
+        "Tutte le componenti anche fuori dalla superficie"
+      ]
+    },
+    "hints": [
+      "Una componente lungo la superficie sposterebbe le cariche mobili."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "In equilibrio il potenziale del materiale conduttore è uniforme.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q038",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 38,
+    "title": "Un filo con corrente stazionaria",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una corrente stazionaria è costante nel tempo ma comporta moto di carica e dissipazione nel filo resistivo. Il campo interno può guidare tale moto. L’ipotesi di equilibrio elettrostatico non vale per quel caso."
+      }
+    ],
+    "prompt": "Un filo resistivo porta corrente continua e si misura una caduta di tensione. Quale uso della regola «metallo equipotenziale» sarebbe errato?",
+    "difficulty": 2,
+    "family": "un-filo-con-corrente-stazionaria",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Applicarla al filo resistivo in conduzione come se fosse in equilibrio elettrostatico",
+      "options": [
+        "Applicarla al filo resistivo in conduzione come se fosse in equilibrio elettrostatico",
+        "Applicarla a un conduttore isolato in equilibrio elettrostatico",
+        "Usarla nei fili ideali di resistenza nulla del modello circuitale",
+        "Distinguere un resistore da un collegamento ideale"
+      ]
+    },
+    "hints": [
+      "Chiediti se le cariche mobili sono davvero in equilibrio elettrostatico."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un conduttore resistivo in conduzione può avere un campo elettrico interno.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q039",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 39,
+    "title": "Effetto di un mezzo sul campo a carica fissa",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "E_f=\\sigma_{\\rm libera}/(\\varepsilon_0\\varepsilon_r)=E_i/\\varepsilon_r=12/3=4\\ \\mathrm{kV/m}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato richiede piastre isolate. Con un generatore collegato che mantiene V costante il vincolo fisico cambia."
+      }
+    ],
+    "prompt": "Tra due piastre isolate cariche il campo iniziale è 12 kV/m. Un dielettrico lineare omogeneo riempie tutto lo spazio con εr = 3. Trascurando i bordi, quale campo si ottiene in kV/m?",
+    "difficulty": 2,
+    "family": "effetto-di-un-mezzo-sul-campo-a-carica-fissa",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 4,
+      "unit": "kV/m",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Le cariche libere restano fisse e il campo delle cariche legate riduce il campo totale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con carica libera fissata il campo nel mezzo si divide per εr.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q040",
+    "kind": "question",
+    "course": "C4",
+    "section": "Cariche mobili e cariche legate",
+    "order": 40,
+    "title": "Materiale con cariche prevalentemente legate",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un dielettrico contiene cariche legate che rispondono al campo. Questo modifica il campo e la capacità di una coppia di armature, nelle ipotesi del modello lineare."
+      }
+    ],
+    "prompt": "Come si chiama, nel linguaggio dei condensatori, un materiale isolante che risponde al campo principalmente per polarizzazione?",
+    "difficulty": 1,
+    "family": "materiale-con-cariche-prevalentemente-legate",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "dielettrico",
+      "aliases": [
+        "dielettrico isolante"
+      ]
+    },
+    "hints": [
+      "La sua proprietà elettrica si esprime spesso mediante εr."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il materiale può polarizzarsi senza offrire un percorso conduttivo ideale tra le piastre.",
+      "target": "C4-L04"
+    }
+  },
+  {
+    "id": "C4-Q041",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 41,
+    "title": "Carica dal tracciato di corrente",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta q=I_1t_1+I_2t_2=3\\cdot4+1\\cdot6=18\\ \\mathrm{mC}"
+      },
+      {
+        "type": "text",
+        "text": "Il prodotto mA·s è direttamente mC. I due contributi sono concordi e si sommano."
+      }
+    ],
+    "prompt": "Una corrente vale 3 mA per 4 s e poi 1 mA nello stesso verso per 6 s. Quanti mC attraversano la sezione complessivamente?",
+    "difficulty": 1,
+    "family": "carica-dal-tracciato-di-corrente",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 18,
+      "unit": "mC",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Somma le aree dei due rettangoli sotto la curva I(t)."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Ogni tratto deve essere moltiplicato per la propria durata.",
+      "target": "C4-L05"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-crono.svg",
+        "text": "Il tracciato riporta intensità e durata di ciascun intervallo."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q042",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 42,
+    "title": "Moto degli elettroni in un filo",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il contributo al trasporto di carica contiene il segno del portatore. La deriva elettronica è opposta alla corrente convenzionale anche se il moto termico individuale si svolge in numerose direzioni."
+      }
+    ],
+    "prompt": "La corrente convenzionale in un tratto metallico è diretta verso destra. Qual è il verso della deriva media degli elettroni?",
+    "difficulty": 1,
+    "family": "moto-degli-elettroni-in-un-filo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Verso sinistra",
+      "options": [
+        "Verso sinistra",
+        "Verso destra",
+        "Perpendicolare al filo",
+        "Nullo se la corrente è continua"
+      ]
+    },
+    "hints": [
+      "La corrente convenzionale adotta il verso di trasporto positivo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un portatore negativo in moto verso sinistra produce corrente convenzionale verso destra.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q043",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 43,
+    "title": "Energia per carica al generatore",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il generatore ideale impone la sua differenza di potenziale. Il circuito esterno, insieme a tale vincolo, determina la corrente nei morsetti."
+      }
+    ],
+    "prompt": "Quale grandezza viene mantenuta fissa da un generatore ideale di tensione ai suoi morsetti? Rispondi con il nome della differenza fra i due punti.",
+    "difficulty": 1,
+    "family": "energia-per-carica-al-generatore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "differenza di potenziale",
+      "aliases": [
+        "tensione",
+        "d.d.p.",
+        "ddp"
+      ]
+    },
+    "hints": [
+      "È la grandezza espressa in volt."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La corrente del generatore dipende dal carico esterno.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q044",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 44,
+    "title": "Durata di un trasferimento",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "t=\\frac{\\Delta q}{I}=\\frac{8{,}0\\cdot10^{-6}}{0{,}40\\cdot10^{-3}}=0{,}020\\ \\mathrm s=20\\ \\mathrm{ms}"
+      },
+      {
+        "type": "text",
+        "text": "Quaranta microcoulomb al decimo di secondo corrispondono allo stesso ordine di grandezza."
+      }
+    ],
+    "prompt": "Un segnale mantiene una corrente di 0,40 mA e trasferisce 8,0 μC in un verso. Per quanti millisecondi dura?",
+    "difficulty": 2,
+    "family": "durata-di-un-trasferimento",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 20,
+      "unit": "ms",
+      "tolerance": 0.06
+    },
+    "hints": [
+      "Trasforma μC in C e mA in A prima di dividere."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il rapporto fra coulomb e ampere fornisce secondi.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q045",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 45,
+    "title": "Confrontare due curve ohmiche",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "I=(1/R)V"
+      },
+      {
+        "type": "text",
+        "text": "Per ogni volt aggiunto, una pendenza minore significa un incremento minore di corrente. Occorre quindi una resistenza maggiore."
+      }
+    ],
+    "prompt": "In un grafico I in ordinata e V in ascissa, due resistori danno rette per l’origine. Quale ha resistenza più alta?",
+    "difficulty": 2,
+    "family": "confrontare-due-curve-ohmiche",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Quello con retta meno inclinata",
+      "options": [
+        "Quello con retta più inclinata",
+        "Quello con retta meno inclinata",
+        "Quello che passa per l’origine",
+        "Sono uguali perché il grafico è lineare"
+      ]
+    },
+    "hints": [
+      "Leggi le etichette degli assi prima di interpretare la pendenza."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Nei grafici I(V) la pendenza è 1/R.",
+      "target": "C4-L05"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-IV.svg",
+        "text": "La corrente è in ordinata e la tensione in ascissa."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q046",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 46,
+    "title": "Filo stirato a volume costante",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{A_f}{A_i}=\\frac{\\ell_i}{\\ell_f}=\\frac12,\\quad\\frac{R_f}{R_i}=\\frac{\\ell_f}{\\ell_i}\\frac{A_i}{A_f}=2\\cdot2=4"
+      },
+      {
+        "type": "text",
+        "text": "Il doppio cammino e la metà dell’area di sezione aumentano entrambi la resistenza."
+      }
+    ],
+    "prompt": "Un filo uniforme, con resistività invariata, viene stirato fino a lunghezza doppia conservando il volume. Quanto vale Rf/Ri?",
+    "difficulty": 2,
+    "family": "filo-stirato-a-volume-costante",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 4,
+      "unit": "1",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "L’allungamento modifica anche l’area trasversale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con Aℓ costante un filo lungo il doppio ha sezione dimezzata.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q047",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 47,
+    "title": "Resistenza di un dato materiale",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "R=\\rho\\ell/A\\quad\\Longrightarrow\\quad [\\rho]=\\Omega\\,\\mathrm{m}"
+      },
+      {
+        "type": "text",
+        "text": "La resistività può dipendere dalla temperatura. La resistenza di uno specifico filo dipende anche dalla lunghezza e dalla sezione."
+      }
+    ],
+    "prompt": "Quale grandezza indicata usualmente con ρ ha unità Ω·m nella relazione per un filo omogeneo?",
+    "difficulty": 1,
+    "family": "resistenza-di-un-dato-materiale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "resistività",
+      "aliases": [
+        "resistivita",
+        "resistività elettrica"
+      ]
+    },
+    "hints": [
+      "La geometria viene trattata separatamente tramite il rapporto ℓ/A."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La grandezza descrive il materiale alle condizioni considerate.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q048",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 48,
+    "title": "Lama metallica a sezione rettangolare",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "A=(2{,}0\\cdot10^{-3})(1{,}0\\cdot10^{-4})=2{,}0\\cdot10^{-7}\\ \\mathrm{m^2}"
+      },
+      {
+        "type": "formula",
+        "text": "R=\\frac{2{,}0\\cdot10^{-8}\\cdot0{,}20}{2{,}0\\cdot10^{-7}}=0{,}020\\ \\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Usare la superficie superiore della pista darebbe l’area sbagliata: il trasporto avviene lungo la sua lunghezza."
+      }
+    ],
+    "prompt": "Una pista lunga 0,20 m ha larghezza 2,0 mm e spessore 0,10 mm. Con ρ = 2,0 × 10⁻⁸ Ω·m trova R in Ω.",
+    "difficulty": 2,
+    "family": "lama-metallica-a-sezione-rettangolare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.02,
+      "unit": "Ω",
+      "tolerance": 0.0002
+    },
+    "hints": [
+      "La sezione che attraversa la corrente è larghezza per spessore."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Converti entrambe le dimensioni trasverse in metri.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q049",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 49,
+    "title": "Analizzare un componente non lineare",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "R_1=1/0{,}001=1000\\ \\Omega,\\qquad R_2=3/0{,}002=1500\\ \\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Una resistenza ohmica costante richiederebbe valori uguali. Dati ulteriori servirebbero a distinguere non linearità intrinseca e mutamento delle condizioni, come il riscaldamento."
+      }
+    ],
+    "prompt": "Per lo stesso componente si misurano 1 V con 1 mA e 3 V con 2 mA. Quale conclusione segue dai dati?",
+    "difficulty": 2,
+    "family": "analizzare-un-componente-non-lineare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Il rapporto V/I cambia fra le due misure",
+      "options": [
+        "Il componente ha una singola R ohmica di 1 kΩ in entrambe",
+        "Il rapporto V/I cambia fra le due misure",
+        "La corrente è zero alla seconda misura",
+        "I valori dimostrano che 1 V equivale a 1 A"
+      ]
+    },
+    "hints": [
+      "Confronta V/I utilizzando la stessa unità di corrente."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Le due resistenze di rapporto sono 1 kΩ e 1,5 kΩ.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q050",
+    "kind": "question",
+    "course": "C4",
+    "section": "Quanto vale una corrente",
+    "order": 50,
+    "title": "Corrente media con un’inversione",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta q_{\\rm netta}=12-2=10\\ \\mathrm C,\\quad I_{\\rm media}=10/5=+2\\ \\mathrm A"
+      },
+      {
+        "type": "text",
+        "text": "Il segno indica un trasporto netto convenzionale verso destra."
+      }
+    ],
+    "prompt": "In un intervallo di 5 s passano 12 C verso destra e 2 C verso sinistra. Calcola la corrente media in A assumendo destra positiva.",
+    "difficulty": 2,
+    "family": "corrente-media-con-uninversione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 2,
+      "unit": "A",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Valuta il trasporto netto algebrico prima di dividere per il tempo."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "I due contributi si riferiscono a versi opposti.",
+      "target": "C4-L05"
+    }
+  },
+  {
+    "id": "C4-Q051",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 51,
+    "title": "Un parallelo dentro una serie",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "R_p=\\frac{30\\cdot60}{30+60}=20\\ \\Omega,\\quad R_{\\rm eq}=10+20=30\\ \\Omega,\\quad I=9/30=0{,}30\\ \\mathrm A"
+      },
+      {
+        "type": "text",
+        "text": "Il parallelo ha valore inferiore a 30 Ω. L’aggiunta del tratto in serie aumenta la resistenza totale."
+      }
+    ],
+    "prompt": "Due resistori da 30 Ω e 60 Ω sono in parallelo. L’insieme è in serie con 10 Ω ai capi di 9 V. Trova la corrente totale in A.",
+    "difficulty": 2,
+    "family": "un-parallelo-dentro-una-serie",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.3,
+      "unit": "A",
+      "tolerance": 0.002
+    },
+    "hints": [
+      "Riduci per primo il sottogruppo che condivide entrambi i nodi."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "I 10 Ω si sommano al parallelo già ridotto.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Rmista.svg",
+        "text": "A e B sono i morsetti del generatore."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q052",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 52,
+    "title": "Più resistenza, più calore?",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_1/P_2=R_2/R_1"
+      },
+      {
+        "type": "text",
+        "text": "Il ramo meno resistivo porta più corrente alla stessa tensione, e riceve più energia ogni secondo."
+      }
+    ],
+    "prompt": "Due resistori positivi di valori diversi sono in parallelo su un generatore ideale. Quale dissipa maggiore potenza?",
+    "difficulty": 1,
+    "family": "piu-resistenza-piu-calore",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Il resistore di valore minore",
+      "options": [
+        "Il resistore di valore maggiore",
+        "Entrambi dissipano sempre la stessa potenza",
+        "Il resistore di valore minore",
+        "Quello con corrente minore"
+      ]
+    },
+    "hints": [
+      "Individua la grandezza uguale nei due rami."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "A tensione comune si usa P = V²/R.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Rpar.svg",
+        "text": "Segui i fili tra A e B prima di scegliere il modello."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q053",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 53,
+    "title": "Il punto in comune",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il nodo si identifica seguendo la continuità del filo. Due componenti sono in parallelo quando condividono entrambi i nodi di collegamento."
+      }
+    ],
+    "prompt": "Nel linguaggio dei circuiti ideali, come si chiama l’insieme di estremi collegati fra loro da filo ideale e aventi lo stesso potenziale? Usa il singolare.",
+    "difficulty": 1,
+    "family": "il-punto-in-comune",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "nodo",
+      "aliases": [
+        "nodo elettrico"
+      ]
+    },
+    "hints": [
+      "La posizione grafica sulla pagina non conta se si segue lo stesso filo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "I collegamenti ideali senza componenti interposti appartengono al medesimo nodo.",
+      "target": "lab:C4"
+    }
+  },
+  {
+    "id": "C4-Q054",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 54,
+    "title": "Energia di un resistore acceso",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P=I^2R=(0{,}020)^2\\cdot100=0{,}040\\ \\mathrm W,\\quad E=Pt=0{,}040\\cdot30=1{,}20\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’energia cresce con il tempo durante il quale il resistore dissipa la potenza."
+      }
+    ],
+    "prompt": "Un resistore da 100 Ω porta 20 mA costanti per 30 s. Calcola l’energia dissipata in J.",
+    "difficulty": 2,
+    "family": "energia-di-un-resistore-acceso",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 1.2,
+      "unit": "J",
+      "tolerance": 0.012
+    },
+    "hints": [
+      "Ottieni prima la potenza con I in ampere."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La corrente va elevata al quadrato prima di moltiplicare per R.",
+      "target": "C4-L06"
+    }
+  },
+  {
+    "id": "C4-Q055",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 55,
+    "title": "Ricavare il secondo ramo",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac1{R_x}=\\frac14-\\frac1{12}=\\frac{3-1}{12}=\\frac16\\ \\Omega^{-1}\\quad\\Longrightarrow\\quad R_x=6\\ \\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Il controllo 12 × 6/(12 + 6) restituisce 4 Ω."
+      }
+    ],
+    "prompt": "Un resistore da 12 Ω è in parallelo a un resistore incognito. L’equivalente misurata è 4 Ω. Calcola la resistenza incognita in Ω.",
+    "difficulty": 2,
+    "family": "ricavare-il-secondo-ramo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "Ω",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Isola il reciproco della resistenza mancante."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Sottrai le conduttanze, poi inverti il risultato.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Rpar.svg",
+        "text": "Segui i fili tra A e B prima di scegliere il modello."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q056",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 56,
+    "title": "Aprire un ramo su generatore ideale",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il resistore rimasto vede ancora V e la propria resistenza resta uguale. La sua corrente V/R si conserva, mentre la corrente totale diminuisce perché un ramo è stato rimosso."
+      }
+    ],
+    "prompt": "Due resistori sono in parallelo direttamente ai morsetti di una sorgente ideale di tensione. Si apre un ramo. Nel ramo che resta collegato cosa accade alla corrente?",
+    "difficulty": 2,
+    "family": "aprire-un-ramo-su-generatore-ideale",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Resta uguale",
+      "options": [
+        "Raddoppia necessariamente",
+        "Si annulla",
+        "Resta uguale",
+        "Diventa uguale alla vecchia corrente totale"
+      ]
+    },
+    "hints": [
+      "Verifica che la differenza di potenziale sul ramo superstite sia ancora la stessa."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il generatore ideale fissa la tensione indipendentemente dalla corrente totale.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-switch.svg",
+        "text": "L’interruttore è disegnato dopo l’apertura."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q057",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 57,
+    "title": "Nome della dissipazione resistiva",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per effetto Joule il campo trasferisce energia alle cariche e l’energia alimenta l’agitazione microscopica del materiale. In regime termico stazionario può poi fluire all’ambiente."
+      }
+    ],
+    "prompt": "Come si chiama l’effetto per cui un resistore trasforma l’energia elettrica ricevuta in energia interna? Completa «effetto …».",
+    "difficulty": 1,
+    "family": "nome-della-dissipazione-resistiva",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "Joule",
+      "aliases": [
+        "Joule termico"
+      ]
+    },
+    "hints": [
+      "La potenza vale I²R in un resistore ohmico."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Questo nome collega il passaggio di corrente alla dissipazione di energia.",
+      "target": "C4-L06"
+    }
+  },
+  {
+    "id": "C4-Q058",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 58,
+    "title": "Partitore con un vincolo",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "I=4/80=0{,}050\\ \\mathrm A,\\quad V_2=12-4=8\\ \\mathrm V,\\quad R_2=8/0{,}050=160\\ \\Omega"
+      },
+      {
+        "type": "text",
+        "text": "Il valore doppio della resistenza comporta caduta doppia alla stessa corrente."
+      }
+    ],
+    "prompt": "Un generatore ideale da 12 V alimenta due resistori in serie. Sul primo da 80 Ω si vogliono 4 V. Trova R₂ in Ω.",
+    "difficulty": 2,
+    "family": "partitore-con-un-vincolo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 160,
+      "unit": "Ω",
+      "tolerance": 1
+    },
+    "hints": [
+      "Dalla caduta su R₁ ricava la corrente condivisa."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La seconda caduta vale la tensione totale meno la prima.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-serie.svg",
+        "text": "Il punto M è il collegamento fra i due resistori."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q059",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 59,
+    "title": "Due resistenze disegnate una accanto all’altra",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti.svg",
+        "text": "Lo schema a destra può essere ridisegnato mantenendo entrambe le connessioni ai nodi A e B."
+      },
+      {
+        "type": "text",
+        "text": "Il parallelismo è una proprietà del collegamento elettrico. Lo stesso schema può essere disegnato con un componente anche molto distante dall’altro."
+      }
+    ],
+    "prompt": "Uno schema disegna due resistori vicini e alla stessa altezza. Quale informazione serve per stabilire con certezza se sono in parallelo?",
+    "difficulty": 1,
+    "family": "due-resistenze-disegnate-una-accanto-allaltra",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Se entrambe le coppie di estremi sono collegate agli stessi due nodi",
+      "options": [
+        "Se sono disegnati con rettangoli identici",
+        "Se hanno valori uguali",
+        "Se la pagina è orientata orizzontalmente",
+        "Se entrambe le coppie di estremi sono collegate agli stessi due nodi"
+      ]
+    },
+    "hints": [
+      "Segui i collegamenti prima di leggere i valori."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La topologia si ricava da fili e nodi.",
+      "target": "lab:C4"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Rpar.svg",
+        "text": "Segui i fili tra A e B prima di scegliere il modello."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q060",
+    "kind": "question",
+    "course": "C4",
+    "section": "Seguire i nodi di un circuito",
+    "order": 60,
+    "title": "Dimezzare la tensione a resistenza fissa",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P_f/P_i=(V_f/V_i)^2=(1/2)^2=1/4,\\quad P_f=8{,}0/4=2{,}0\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Scendono sia il valore della tensione sia quello della corrente. La potenza, loro prodotto, si riduce quattro volte."
+      }
+    ],
+    "prompt": "Un resistore ohmico dissipa 8,0 W. Il generatore riduce la tensione ai suoi capi alla metà, mantenendo R invariata. Trova la nuova potenza in W.",
+    "difficulty": 1,
+    "family": "dimezzare-la-tensione-a-resistenza-fissa",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 2,
+      "unit": "W",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "A resistenza fissa la potenza dipende dal quadrato della tensione."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il fattore di tensione 1/2 diventa 1/4 per la potenza.",
+      "target": "lab:C4"
+    }
+  },
+  {
+    "id": "C4-Q061",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 61,
+    "title": "Capacità da due letture",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "C=\\frac{\\Delta Q}{\\Delta V}=\\frac{18\\ \\mu\\mathrm C}{5-2\\ \\mathrm V}=6\\ \\mu\\mathrm F"
+      },
+      {
+        "type": "text",
+        "text": "Si può usare la pendenza della retta Q(V) senza conoscere la carica iniziale assoluta."
+      }
+    ],
+    "prompt": "Aumentando la tensione di un condensatore lineare da 2 a 5 V, il modulo della carica su un’armatura aumenta di 18 μC. Trova C in μF.",
+    "difficulty": 1,
+    "family": "capacita-da-due-letture",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "μF",
+      "tolerance": 0.025
+    },
+    "hints": [
+      "Per un condensatore lineare ΔQ = CΔV."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Al denominatore compare l’incremento di tensione.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q062",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 62,
+    "title": "Allontanare le piastre isolate",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "C=\\varepsilon A/d,\\qquad |V|=Qd/(\\varepsilon A)"
+      },
+      {
+        "type": "text",
+        "text": "Il campo ideale fra piastre a carica fissa conserva il modulo, ma ora viene attraversato per una distanza maggiore."
+      }
+    ],
+    "prompt": "Un condensatore piano scollegato dal generatore conserva la propria carica. Le armature vengono allontanate, senza cambiare area o dielettrico e trascurando i bordi. Che cosa succede alla tensione?",
+    "difficulty": 2,
+    "family": "allontanare-le-piastre-isolate",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Aumenta",
+      "options": [
+        "Aumenta",
+        "Diminuisce",
+        "Resta sempre uguale alla vecchia tensione del generatore",
+        "Si annulla perché manca il generatore"
+      ]
+    },
+    "hints": [
+      "Ricava prima l’effetto della distanza sulla capacità."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Aumentare d riduce C, e a Q fissata V = Q/C cresce.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q063",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 63,
+    "title": "Nome dell’unità di capacità",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "1\\ \\mathrm F=1\\ \\mathrm{C/V}"
+      },
+      {
+        "type": "text",
+        "text": "Una capacità di un farad richiede un coulomb su ciascuna armatura, in modulo, per ottenere una differenza di un volt."
+      }
+    ],
+    "prompt": "Come si chiama l’unità SI corrispondente a un coulomb per volt?",
+    "difficulty": 1,
+    "family": "nome-dellunita-di-capacita",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "farad",
+      "aliases": [
+        "F"
+      ]
+    },
+    "hints": [
+      "L’unità si legge nella formula C = Q/|ΔV|."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il farad è un’unità di capacità e il coulomb è un’unità di carica.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q064",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 64,
+    "title": "Dimensionare l’area delle piastre",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "A=Cd/\\varepsilon_0=(88{,}5\\cdot10^{-12})(10^{-3})/(8{,}85\\cdot10^{-12})=0{,}010\\ \\mathrm{m^2}"
+      },
+      {
+        "type": "text",
+        "text": "La conversione dà 100 cm². Piastre quadrate di lato 10 cm hanno dimensione laterale molto maggiore della distanza di 1 mm."
+      }
+    ],
+    "prompt": "Un condensatore piano nel vuoto ha distanza 1,0 mm e capacità 88,5 pF. Usa ε₀ = 8,85 × 10⁻¹² F/m e trascura i bordi. Trova l’area affacciata in cm².",
+    "difficulty": 2,
+    "family": "dimensionare-larea-delle-piastre",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 100,
+      "unit": "cm²",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "Isola A in C = ε₀A/d e converti i metri quadrati."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "1 m² corrisponde a 10 000 cm².",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q065",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 65,
+    "title": "Perché compare un mezzo?",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "U=\\int_0^Q V(q)\\,dq=\\int_0^Q q/C\\,dq=Q^2/(2C)"
+      },
+      {
+        "type": "text",
+        "text": "La tensione media durante questa sommatoria è metà di quella finale. Il fattore un mezzo esprime l’area triangolare."
+      }
+    ],
+    "prompt": "Quale grafico consente di ricavare l’energia del condensatore ideale inizialmente scarico come area di un triangolo?",
+    "difficulty": 2,
+    "family": "perche-compare-un-mezzo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Tensione ai capi in funzione della carica accumulata",
+      "options": [
+        "Temperatura in funzione del tempo",
+        "Tensione ai capi in funzione della carica accumulata",
+        "Resistenza in funzione della distanza fra piastre",
+        "Campo magnetico in funzione del tempo"
+      ]
+    },
+    "hints": [
+      "Il lavoro per aggiungere una piccola carica dq vale V dq."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La tensione durante il caricamento cresce da zero al valore finale.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q066",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 66,
+    "title": "Una variazione di energia per tensione",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta U=\\tfrac12C(V_f^2-V_i^2)=\\tfrac12\\cdot5(16-4)=30\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il valore finale è 40 μJ e quello iniziale 10 μJ. La sottrazione conferma l’aumento."
+      }
+    ],
+    "prompt": "Un condensatore da 5,0 μF passa da 2,0 a 4,0 V. Quanto aumenta l’energia in μJ?",
+    "difficulty": 2,
+    "family": "una-variazione-di-energia-per-tensione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 30,
+      "unit": "μJ",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Calcola la differenza tra i quadrati delle due tensioni."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La variazione di V² è Vf² − Vi² e non (Vf − Vi)².",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q067",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 67,
+    "title": "La grandezza fissa con batteria collegata",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La tensione resta quella imposta dal generatore. Se la capacità aumenta per il dielettrico, cresce anche la carica Q = CV. Il caso isolato avrebbe un vincolo diverso."
+      }
+    ],
+    "prompt": "Inseriamo un dielettrico tra le piastre di un condensatore mantenuto collegato a un generatore ideale. Quale grandezza elettrica resta fissata ai capi?",
+    "difficulty": 1,
+    "family": "la-grandezza-fissa-con-batteria-collegata",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "tensione",
+      "aliases": [
+        "differenza di potenziale",
+        "voltaggio"
+      ]
+    },
+    "hints": [
+      "Il generatore impone una condizione ai suoi morsetti."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il generatore può fornire carica mentre mantiene V costante.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q068",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 68,
+    "title": "Confrontare due mezzi a tensione mantenuta",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "U_f/U_i=(C_f/C_i)(V_f/V_i)^2=2\\cdot1=2"
+      },
+      {
+        "type": "formula",
+        "text": "U_f=2\\cdot16=32\\ \\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il generatore partecipa al bilancio fornendo carica. Conservare la carica delle piastre sarebbe incompatibile con questo collegamento."
+      }
+    ],
+    "prompt": "Un condensatore collegato a 8 V immagazzina 16 μJ. Un dielettrico che riempie tutto lo spazio raddoppia la capacità. Qual è l’energia finale in μJ?",
+    "difficulty": 2,
+    "family": "confrontare-due-mezzi-a-tensione-mantenuta",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 32,
+      "unit": "μJ",
+      "tolerance": 0.08
+    },
+    "hints": [
+      "Scegli la forma per U con V costante."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con il generatore collegato l’energia del campo cresce proporzionalmente a C.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q069",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 69,
+    "title": "Una piastra conta due volte?",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La carica totale delle due armature è zero e la somma dei moduli è 14 μC. La quantità separata dal circuito da una piastra all’altra vale 7 μC, ed è questa che entra nella capacità."
+      }
+    ],
+    "prompt": "Un condensatore porta +7 μC su una piastra e −7 μC sull’altra. Quale valore di Q usi per il modulo in C = Q/|ΔV|?",
+    "difficulty": 1,
+    "family": "una-piastra-conta-due-volte",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "7 μC",
+      "options": [
+        "14 μC",
+        "7 μC",
+        "0 μC",
+        "−14 μC"
+      ]
+    },
+    "hints": [
+      "Le due armature conservano cariche opposte."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La definizione utilizza il modulo della carica su una sola armatura.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q070",
+    "kind": "question",
+    "course": "C4",
+    "section": "Immagazzinare carica ed energia",
+    "order": 70,
+    "title": "Ricavare la tensione dalla riserva energetica",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L03",
+      "C4-L04"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "V^2=2U/C=2\\cdot100/8=25\\ \\mathrm{V^2},\\qquad |V|=5{,}0\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Microjoule e microfarad prestano lo stesso prefisso al rapporto e si semplificano."
+      }
+    ],
+    "prompt": "Un condensatore da 8,0 μF immagazzina 100 μJ. Trova il modulo della differenza di potenziale in V.",
+    "difficulty": 2,
+    "family": "ricavare-la-tensione-dalla-riserva-energetica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5,
+      "unit": "V",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Isola V² e poi prendi la radice positiva."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’energia riguarda il modulo della tensione e non determina la polarità delle armature.",
+      "target": "C4-L07"
+    }
+  },
+  {
+    "id": "C4-Q071",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 71,
+    "title": "Tre condensatori sullo stesso nodo",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm nodo}=(C_1+C_2+C_3)V=(2+3+5)\\cdot4=40\\ \\mu\\mathrm C"
+      },
+      {
+        "type": "text",
+        "text": "Le tre quote 8, 12 e 20 μC ricostruiscono il valore totale."
+      }
+    ],
+    "prompt": "Tre condensatori distinti da 2, 3 e 5 μF sono in parallelo su 4 V. Trova la carica totale fornita al nodo positivo in μC.",
+    "difficulty": 1,
+    "family": "tre-condensatori-sullo-stesso-nodo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 40,
+      "unit": "μC",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "In parallelo tutte le capacità vedono la stessa tensione."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Somma le cariche sulle armature appartenenti al medesimo nodo.",
+      "target": "C4-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Ctre.svg",
+        "text": "Sono disegnati i due nodi A e B dei tre condensatori."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q072",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 72,
+    "title": "Quale condensatore rischia la tensione più alta?",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|V_i|=Q/C_i"
+      },
+      {
+        "type": "text",
+        "text": "Lo stesso modulo di carica su una capacità più piccola produce una differenza di potenziale più grande."
+      }
+    ],
+    "prompt": "Due condensatori di diversa capacità sono in serie con nodo centrale isolato inizialmente neutro. Quale sostiene la maggiore tensione in modulo dopo la carica?",
+    "difficulty": 1,
+    "family": "quale-condensatore-rischia-la-tensione-piu-alta",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Quello di capacità minore",
+      "options": [
+        "Quello di capacità maggiore",
+        "Entrambi sempre la stessa",
+        "Quello di capacità minore",
+        "Quello collegato graficamente più in basso"
+      ]
+    },
+    "hints": [
+      "Le cariche hanno lo stesso modulo nella serie descritta."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "A uguale Q la tensione varia come 1/C.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q073",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 73,
+    "title": "Il vincolo fra le piastre interne",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La somma algebrica delle cariche sulle due piastre del nodo resta zero. Per questo le cariche sulle due facce interne risultano uguali e opposte e i moduli sulle capacità di serie coincidono."
+      }
+    ],
+    "prompt": "All’inizio il nodo isolato fra due condensatori in serie è neutro. Quale grandezza algebrica totale di quel nodo si conserva durante la carica del circuito? Rispondi con il nome.",
+    "difficulty": 1,
+    "family": "il-vincolo-fra-le-piastre-interne",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "carica",
+      "aliases": [
+        "carica elettrica",
+        "carica elettrica totale"
+      ]
+    },
+    "hints": [
+      "Le armature sono separate da isolanti."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nessuna carica libera entra nel nodo intermedio attraverso i dielettrici ideali.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q074",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 74,
+    "title": "Ricavare una capacità in serie",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "1/C_x=1/3-1/9=2/9\\ \\mu\\mathrm F^{-1}\\quad\\Longrightarrow\\quad C_x=9/2=4{,}5\\ \\mu\\mathrm F"
+      },
+      {
+        "type": "text",
+        "text": "Il valore equivalente 3 μF è inferiore sia a 9 sia a 4,5 μF."
+      }
+    ],
+    "prompt": "Un condensatore da 9 μF in serie con uno ignoto dà capacità equivalente 3 μF. Trova la capacità ignota in μF.",
+    "difficulty": 2,
+    "family": "ricavare-una-capacita-in-serie",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 4.5,
+      "unit": "μF",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Sottrai i reciproci prima di invertire."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per la serie di condensatori si sommano i reciproci.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q075",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 75,
+    "title": "Collegare armature di segno opposto",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La carica netta di ciascuno dei due nodi isolati è zero. In parallelo Ctot > 0 e la tensione finale deve quindi essere zero. L’energia iniziale dei campi viene ceduta nel transitorio reale."
+      }
+    ],
+    "prompt": "Due condensatori identici da C, inizialmente caricati entrambi a V, sono scollegati dalle sorgenti. Si connette la piastra positiva di ciascuno a quella negativa dell’altro. Dopo il transitorio reale qual è il modulo della tensione comune?",
+    "difficulty": 2,
+    "family": "collegare-armature-di-segno-opposto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Zero",
+      "options": [
+        "2V",
+        "V",
+        "V/2",
+        "Zero"
+      ]
+    },
+    "hints": [
+      "Somma algebricamente le cariche appartenenti a ogni nuovo nodo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "In ciascun nodo le cariche iniziali +CV e −CV si cancellano.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q076",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 76,
+    "title": "Ridurre una rete di capacità",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "C_p=3+6=9\\ \\mu\\mathrm F,\\quad C_{\\rm eq}=\\frac{9\\cdot9}{9+9}=4{,}5\\ \\mu\\mathrm F"
+      },
+      {
+        "type": "text",
+        "text": "La serie di due condensatori uguali ha metà della capacità di uno."
+      }
+    ],
+    "prompt": "Due condensatori da 3 μF e 6 μF sono in parallelo. Il loro insieme è in serie con 9 μF. Trova Ceq in μF.",
+    "difficulty": 2,
+    "family": "ridurre-una-rete-di-capacita",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 4.5,
+      "unit": "μF",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "Ricava l’equivalente del parallelo prima della serie."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il blocco parallelo da 9 μF forma una serie con un secondo blocco di uguale valore.",
+      "target": "C4-L08"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Cmista.svg",
+        "text": "Le etichette identificano i tre elementi del circuito."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q077",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 77,
+    "title": "Giunzioni a tensione comune",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-reti-c.svg",
+        "text": "Nel circuito di destra entrambe le capacità sono connesse fra i nodi A e B."
+      },
+      {
+        "type": "text",
+        "text": "Nel parallelo le differenze di potenziale coincidono. Le cariche si distribuiscono in proporzione alle capacità se la tensione è assegnata."
+      }
+    ],
+    "prompt": "Qual è il nome del collegamento in cui due condensatori hanno gli stessi due nodi e la medesima tensione?",
+    "difficulty": 1,
+    "family": "giunzioni-a-tensione-comune",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "parallelo",
+      "aliases": [
+        "in parallelo",
+        "collegamento in parallelo"
+      ]
+    },
+    "hints": [
+      "Controlla sia l’armatura di ingresso sia quella di ritorno."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Un singolo nodo comune non basta per la stessa differenza di potenziale.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q078",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 78,
+    "title": "Distribuzione iniziale asimmetrica",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q_{\\rm nodo}=2\\cdot8+6\\cdot4=40\\ \\mu\\mathrm C,\\qquad V_f=40/(2+6)=5\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "La media semplice sarebbe 6 V. La maggior capacità inizialmente a 4 V sposta il risultato verso 4 V."
+      }
+    ],
+    "prompt": "Un condensatore da 2 μF a 8 V e uno da 6 μF a 4 V sono scollegati dalle sorgenti e connessi in parallelo con le armature positive insieme. Trova la tensione finale in V.",
+    "difficulty": 2,
+    "family": "distribuzione-iniziale-asimmetrica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5,
+      "unit": "V",
+      "tolerance": 0.02
+    },
+    "hints": [
+      "La media dei potenziali va pesata con le capacità."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Somma prima le cariche iniziali del nodo positivo.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q079",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 79,
+    "title": "Energia dopo ridistribuzione",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\frac{U_f}{U_i}=\\frac{\\tfrac12(2C)(V/2)^2}{\\tfrac12 CV^2}=\\tfrac12"
+      },
+      {
+        "type": "text",
+        "text": "Una parte dell’energia iniziale viene trasferita fuori dal campo statico dei condensatori nel transitorio, per esempio ai collegamenti reali."
+      }
+    ],
+    "prompt": "Un condensatore carico viene collegato in parallelo a uno identico scarico, senza batterie. La tensione finale si dimezza. Come cambia l’energia totale immagazzinata rispetto a prima?",
+    "difficulty": 2,
+    "family": "energia-dopo-ridistribuzione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Si dimezza",
+      "options": [
+        "Resta uguale",
+        "Raddoppia",
+        "Si annulla sempre",
+        "Si dimezza"
+      ]
+    },
+    "hints": [
+      "La capacità equivalente finale è 2C e la tensione è V/2."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La conservazione della carica dei nodi non impone la conservazione dell’energia del solo campo.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q080",
+    "kind": "question",
+    "course": "C4",
+    "section": "Mettere insieme i condensatori",
+    "order": 80,
+    "title": "Confronto fra due riconfigurazioni",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "C_p=4+12=16\\ \\mu\\mathrm F,\\qquad C_s=4\\cdot12/(4+12)=3\\ \\mu\\mathrm F"
+      },
+      {
+        "type": "formula",
+        "text": "C_p/C_s=16/3\\simeq5{,}33"
+      },
+      {
+        "type": "text",
+        "text": "Il rapporto superiore a uno è coerente con il confronto qualitativo delle configurazioni."
+      }
+    ],
+    "prompt": "Due condensatori da 4 μF e 12 μF possono essere collegati tra gli stessi morsetti in parallelo o in serie. Calcola il rapporto Cp/Cs.",
+    "difficulty": 2,
+    "family": "confronto-fra-due-riconfigurazioni",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 5.33333,
+      "unit": "1",
+      "tolerance": 0.025
+    },
+    "hints": [
+      "Trova i due equivalenti evitando di scambiarli."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La capacità in parallelo deve superare ciascuna capacità, quella in serie deve essere minore.",
+      "target": "C4-L08"
+    }
+  },
+  {
+    "id": "C4-Q081",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 81,
+    "title": "La bussola al fianco del filo",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-filo-b.svg",
+        "text": "Con corrente uscente il campo è antiorario. Con corrente entrante si orienta in senso orario."
+      },
+      {
+        "type": "text",
+        "text": "Il campo misurato dalla bussola può includere anche il campo terrestre. L’inversione qui riguarda il contributo del filo."
+      }
+    ],
+    "prompt": "In prossimità di un lungo filo rettilineo la corrente viene invertita. Che cosa succede al contributo magnetico prodotto dal filo in un punto fisso?",
+    "difficulty": 1,
+    "family": "la-bussola-al-fianco-del-filo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Inverte il verso",
+      "options": [
+        "Resta nello stesso verso perché il filo non si muove",
+        "Inverte il verso",
+        "Si trasforma in campo elettrico radiale",
+        "Scompare per qualunque intensità"
+      ]
+    },
+    "hints": [
+      "Applica la regola della mano destra prima e dopo l’inversione."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una corrente con verso opposto dà linee circolari percorse nel verso opposto.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q082",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 82,
+    "title": "Carica misurata tramite deviazione",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|q|=F/(vB)=2{,}0\\cdot10^{-6}/(400\\cdot0{,}50)=1{,}0\\cdot10^{-8}\\ \\mathrm C=10\\ \\mathrm{nC}"
+      },
+      {
+        "type": "text",
+        "text": "La misura del modulo non distingue i due segni di carica. Per il segno serve la direzione della deviazione."
+      }
+    ],
+    "prompt": "Una particella passa perpendicolarmente a B = 0,50 T alla velocità 400 m/s e subisce forza magnetica di 2,0 μN. Trova il modulo della carica in nC.",
+    "difficulty": 2,
+    "family": "carica-misurata-tramite-deviazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 10,
+      "unit": "nC",
+      "tolerance": 0.05
+    },
+    "hints": [
+      "Con angolo retto il seno vale uno."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il rapporto F/(vB) fornisce coulomb e va convertito in nC.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q083",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 83,
+    "title": "Quale angolo annulla la forza?",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "F_B=|q|vB\\sin\\theta"
+      },
+      {
+        "type": "text",
+        "text": "Sia una velocità concorde sia una discorde con B hanno componente perpendicolare nulla. Il moto rettilineo lungo il campo può proseguire senza deviazione."
+      }
+    ],
+    "prompt": "Una particella carica con velocità non nulla attraversa un campo magnetico non nullo senza forza magnetica. Completa: la velocità è parallela o … al campo.",
+    "difficulty": 1,
+    "family": "quale-angolo-annulla-la-forza",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "antiparallela",
+      "aliases": [
+        "antiparallelo",
+        "opposta",
+        "antiparallela al campo"
+      ]
+    },
+    "hints": [
+      "Il seno dell’angolo deve essere zero."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Gli angoli 0° e 180° annullano v × B.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q084",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 84,
+    "title": "Filo obliquo fra i poli",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "F=I\\ell B\\sin30^\\circ=4{,}0\\cdot0{,}30\\cdot0{,}20\\cdot0{,}50=0{,}12\\ \\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "Il valore è metà di quello massimo ottenibile con lo stesso filo e lo stesso campo."
+      }
+    ],
+    "prompt": "Un tratto di filo lungo 0,30 m porta 4,0 A in B = 0,20 T. L’angolo fra filo e B è 30°. Calcola il modulo della forza in N.",
+    "difficulty": 2,
+    "family": "filo-obliquo-fra-i-poli",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.12,
+      "unit": "N",
+      "tolerance": 0.002
+    },
+    "hints": [
+      "Prendi la componente perpendicolare mediante il seno dell’angolo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Usare l’intera lunghezza senza seno darebbe la forza a 90°.",
+      "target": "C4-L09"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-obliquo.svg",
+        "text": "L’angolo è misurato fra la direzione di corrente e il campo."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q085",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 85,
+    "title": "Una particella negativa e le croci",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-orbita.svg",
+        "text": "Il disegno è per una prova positiva. Cambiare il segno della carica inverte la forza a parità di v e B."
+      },
+      {
+        "type": "text",
+        "text": "Il prodotto vettoriale punta in alto, ma è moltiplicato da q negativa. La freccia della forza risultante punta quindi verso il basso."
+      }
+    ],
+    "prompt": "Una particella negativa si muove verso destra in B entrante perpendicolare al foglio. In quale verso punta la forza magnetica?",
+    "difficulty": 2,
+    "family": "una-particella-negativa-e-le-croci",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Verso il basso nel foglio",
+      "options": [
+        "Verso l’alto nel foglio",
+        "Verso il basso nel foglio",
+        "Verso destra",
+        "Verso chi guarda"
+      ]
+    },
+    "hints": [
+      "Trova prima v × B per una carica positiva, poi applica il segno."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Destra per campo entrante dà verso l’alto per la carica positiva e si inverte per quella negativa.",
+      "target": "C4-L09"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-Bneg.svg",
+        "text": "Le croci indicano la direzione del campo; la freccia indica la velocità."
+      }
+    ]
+  },
+  {
+    "id": "C4-Q086",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 86,
+    "title": "Periodo di una traiettoria circolare",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "T=4\\cdot0{,}40=1{,}60\\ \\mathrm{ms}=1{,}60\\cdot10^{-3}\\ \\mathrm s,\\quad f=1/T=625\\ \\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "Per un moto uniforme il tempo di percorrenza è proporzionale alla frazione di giro."
+      }
+    ],
+    "prompt": "Una particella non relativistica impiega 0,40 ms per percorrere un quarto di circonferenza a velocità costante in B uniforme. Trova la frequenza di rotazione in Hz.",
+    "difficulty": 2,
+    "family": "periodo-di-una-traiettoria-circolare",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 625,
+      "unit": "Hz",
+      "tolerance": 1
+    },
+    "hints": [
+      "Ricava il tempo di un giro intero prima di fare il reciproco."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il periodo completo vale quattro volte 0,40 ms.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q087",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 87,
+    "title": "Forma del moto con due componenti",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La somma di una rotazione uniforme in un piano e di una traslazione uniforme perpendicolare al piano produce un’elica. Con componente parallela nulla il caso limite è una circonferenza."
+      }
+    ],
+    "prompt": "In B uniforme, senza altre forze, una particella carica ha velocità con componenti non nulle parallela e perpendicolare al campo. Qual è la forma della traiettoria?",
+    "difficulty": 2,
+    "family": "forma-del-moto-con-due-componenti",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "elica",
+      "aliases": [
+        "elicoidale",
+        "elica cilindrica"
+      ]
+    },
+    "hints": [
+      "Sovrapponi avanzamento assiale e moto circolare nel piano perpendicolare."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La componente parallela resta costante e la componente perpendicolare ruota.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q088",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 88,
+    "title": "Cosa fa il campo all’energia cinetica?",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P=\\vec F_B\\cdot\\vec v=0\\quad\\Longrightarrow\\quad\\Delta K=W_B=0\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Una variazione della direzione può avvenire senza cambiare il modulo della velocità."
+      }
+    ],
+    "prompt": "Una particella passa in un campo magnetico statico uniforme e il suo vettore velocità ruota di 90°. È soggetta solo alla forza magnetica. Calcola in J la variazione dell’energia cinetica.",
+    "difficulty": 1,
+    "family": "cosa-fa-il-campo-allenergia-cinetica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0,
+      "unit": "J",
+      "tolerance": 0
+    },
+    "hints": [
+      "Guarda l’angolo tra forza istantanea e velocità istantanea."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La forza magnetica è perpendicolare alla velocità in ciascun istante.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q089",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 89,
+    "title": "Confrontare raggi a stessa quantità di moto",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "r=p/(|q|B)"
+      },
+      {
+        "type": "text",
+        "text": "Raddoppiare il modulo della carica raddoppia la curvatura a quantità di moto assegnata. La seconda particella percorre un cerchio con raggio dimezzato."
+      }
+    ],
+    "prompt": "Due particelle entrano perpendicolarmente nello stesso B con la stessa quantità di moto in modulo. Una porta carica +e, l’altra +2e. Quale ha il raggio più piccolo?",
+    "difficulty": 2,
+    "family": "confrontare-raggi-a-stessa-quantita-di-moto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Quella con carica +2e",
+      "options": [
+        "Quella con carica +e",
+        "Quella con carica +2e",
+        "Hanno sempre lo stesso raggio",
+        "La domanda richiede la loro temperatura"
+      ]
+    },
+    "hints": [
+      "Scrivi il raggio usando p al posto di mv."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il raggio è inversamente proporzionale al modulo della carica a p e B fissati.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q090",
+    "kind": "question",
+    "course": "C4",
+    "section": "Correnti, bussole e traiettorie curve",
+    "order": 90,
+    "title": "Approfondimento · Bilanciare forza elettrica e magnetica",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L02",
+      "C4-L05"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "qE=qvB\\quad\\Longrightarrow\\quad v=E/B=1200/0{,}040=30\\,000\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Una velocità diversa cambierebbe solo il contributo magnetico per i campi assegnati, producendo una deviazione."
+      }
+    ],
+    "prompt": "Una particella positiva attraversa senza deviazione campi uniformi E e B perpendicolari fra loro e alla velocità. Le due forze hanno versi opposti. Se E = 1200 V/m e B = 0,040 T, qual è la velocità in m/s?",
+    "difficulty": 3,
+    "family": "approfondimento-bilanciare-forza-elettrica-e-magnetica",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 30000,
+      "unit": "m/s",
+      "tolerance": 10
+    },
+    "hints": [
+      "Scrivi l’uguaglianza dei moduli delle forze e cancella la carica."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La compensazione richiede qE = qvB con i versi già specificati.",
+      "target": "C4-L09"
+    }
+  },
+  {
+    "id": "C4-Q091",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 91,
+    "title": "Flusso attraverso una spira inclinata",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-flusso.svg",
+        "text": "Il piano e la normale sono perpendicolari. L’angolo indicato è quello della formula."
+      },
+      {
+        "type": "formula",
+        "text": "\\Phi=BA\\cos60^\\circ=0{,}30\\cdot0{,}020\\cdot0{,}5=0{,}0030\\ \\mathrm{Wb}=3{,}0\\ \\mathrm{mWb}"
+      }
+    ],
+    "prompt": "Una spira piana di area 0,020 m² è in B = 0,30 T. L’angolo fra B e la normale scelta è 60°. Calcola il flusso in mWb.",
+    "difficulty": 2,
+    "family": "flusso-attraverso-una-spira-inclinata",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 3,
+      "unit": "mWb",
+      "tolerance": 0.018
+    },
+    "hints": [
+      "Il coseno usa l’angolo rispetto alla normale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "A 60° la componente normale è metà del modulo del campo.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q092",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 92,
+    "title": "Un grande campo immutabile",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta\\Phi=0\\quad\\Longrightarrow\\quad\\overline{\\mathcal E}=0"
+      },
+      {
+        "type": "text",
+        "text": "Il campo attraversa la spira, ma la sua presenza costante non produce una f.e.m. di induzione."
+      }
+    ],
+    "prompt": "Una spira conduttrice chiusa resta ferma con area e orientamento fissi in un campo magnetico uniforme costante. Qual è la f.e.m. dovuta a quel campo?",
+    "difficulty": 1,
+    "family": "un-grande-campo-immutabile",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Nulla",
+      "options": [
+        "Maggiore se la resistenza è maggiore",
+        "Sempre pari a BA",
+        "Nulla",
+        "Sempre pari alla corrente"
+      ]
+    },
+    "hints": [
+      "La f.e.m. di Faraday dipende dal cambiamento del flusso."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Un flusso anche grande può restare costante nel tempo.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q093",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 93,
+    "title": "Segno meno nella legge di Faraday",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La legge di Lenz stabilisce il verso della risposta. Quando il flusso esterno diminuisce, il campo indotto tende a sostenerlo, mentre quando aumenta tende a limitarne l’aumento."
+      }
+    ],
+    "prompt": "Quale cognome identifica la regola secondo cui l’induzione contrasta la variazione di flusso che l’ha generata?",
+    "difficulty": 1,
+    "family": "segno-meno-nella-legge-di-faraday",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "Lenz",
+      "aliases": [
+        "legge di Lenz"
+      ]
+    },
+    "hints": [
+      "Il segno meno fissa un orientamento relativo fra variazione di flusso e f.e.m."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’induzione contrasta il cambiamento del flusso esterno.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q094",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 94,
+    "title": "Dalla tensione alla rapidità di variazione",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|\\Delta\\Phi|/\\Delta t=|\\overline{\\mathcal E}|/N=1{,}6/80=0{,}020\\ \\mathrm{Wb/s}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato per una sola spira è inferiore a quello concatenato di un fattore 80."
+      }
+    ],
+    "prompt": "Una bobina di 80 spire identiche presenta una f.e.m. media di modulo 1,6 V. Quanto vale il modulo della variazione di flusso per spira al secondo, in Wb/s?",
+    "difficulty": 1,
+    "family": "dalla-tensione-alla-rapidita-di-variazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.02,
+      "unit": "Wb/s",
+      "tolerance": 0.00015
+    },
+    "hints": [
+      "La tensione totale riguarda il flusso concatenato di tutte le spire."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Dividi per il numero di spire per ottenere il dato per spira.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q095",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 95,
+    "title": "Spira vista dal lato opposto",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il percorso fisico della carica è lo stesso. Invertire la normale rivolta all’osservatore scambia la descrizione oraria e antioraria. Per questo si specifica sempre da quale lato si osserva la spira."
+      }
+    ],
+    "prompt": "Un osservatore vede una corrente indotta antioraria in una spira. Un osservatore che la guarda dal lato opposto descrive la stessa corrente come …",
+    "difficulty": 1,
+    "family": "spira-vista-dal-lato-opposto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Oraria",
+      "options": [
+        "Ancora antioraria",
+        "Nulla",
+        "Alternata anche se è costante",
+        "Oraria"
+      ]
+    },
+    "hints": [
+      "Immagina di guardare le lancette attraverso il retro di un orologio trasparente."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il senso orario dipende dal lato di osservazione.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q096",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 96,
+    "title": "Una mezza rotazione",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Phi_i=+0{,}005\\ \\mathrm{Wb},\\quad \\Phi_f=-0{,}005\\ \\mathrm{Wb},\\quad |\\Delta\\Phi|=0{,}010\\ \\mathrm{Wb}"
+      },
+      {
+        "type": "formula",
+        "text": "|\\overline{\\mathcal E}|=0{,}010/0{,}10=0{,}10\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Usare soltanto BA trascurerebbe il cambiamento di segno del flusso."
+      }
+    ],
+    "prompt": "Una sola spira di area 0,010 m² ruota di mezzo giro in B uniforme di 0,50 T in 0,10 s. La normale scelta, inizialmente concorde con B, termina discorde. Trova il modulo della f.e.m. media in V.",
+    "difficulty": 2,
+    "family": "una-mezza-rotazione",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 0.1,
+      "unit": "V",
+      "tolerance": 0.0008
+    },
+    "hints": [
+      "Calcola i flussi iniziale e finale mantenendo la stessa orientazione materiale della spira."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il flusso passa da +BA a −BA e la variazione ha modulo 2BA.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q097",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 97,
+    "title": "Circuito interrotto",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una f.e.m. indotta può ancora produrre una differenza di potenziale ai capi dell’interruzione. Nel modello a circuito aperto ideale la corrente di conduzione lungo l’intero anello è nulla."
+      }
+    ],
+    "prompt": "Una spira presenta un’interruzione isolante e un flusso magnetico variabile. Quale grandezza, possibile in una spira chiusa resistiva, manca come circolazione continua di carica lungo tutta la spira aperta?",
+    "difficulty": 1,
+    "family": "circuito-interrotto",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "text",
+      "value": "corrente",
+      "aliases": [
+        "corrente elettrica",
+        "corrente indotta",
+        "corrente di conduzione"
+      ]
+    },
+    "hints": [
+      "Distingui la forza elettromotrice e la risposta conduttiva del percorso."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’interruzione impedisce il passaggio continuo di cariche lungo un percorso chiuso.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q098",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 98,
+    "title": "Approfondimento · Dalla variazione di flusso alla carica passata",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|\\Delta q|=\\left|\\int I\\,dt\\right|=\\frac1R\\left|\\int\\mathcal E\\,dt\\right|=|\\Delta\\Phi|/R"
+      },
+      {
+        "type": "formula",
+        "text": "|\\Delta q|=0{,}030/5{,}0=0{,}0060\\ \\mathrm C=6{,}0\\ \\mathrm{mC}"
+      },
+      {
+        "type": "text",
+        "text": "La rapidità del cambiamento influenza la corrente istantanea. A resistenza costante la carica algebrica complessiva dipende dagli estremi del flusso."
+      }
+    ],
+    "prompt": "Una spira singola di resistenza 5,0 Ω, con autoinduzione trascurabile, subisce una variazione monotona di flusso di modulo 0,030 Wb. Qual è il modulo della carica transitata in mC?",
+    "difficulty": 3,
+    "family": "approfondimento-dalla-variazione-di-flusso-alla-carica-passata",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 6,
+      "unit": "mC",
+      "tolerance": 0.03
+    },
+    "hints": [
+      "Integra nel tempo I = ℰ/R e applica Faraday."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con R costante il tempo scompare dal calcolo della carica complessiva.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q099",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 99,
+    "title": "Spira che entra in una regione di campo",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-lenz.svg",
+        "text": "La direzione della risposta è la stessa per un aumento dovuto all’area immersa o al modulo del campo."
+      },
+      {
+        "type": "text",
+        "text": "Con il pollice destro verso chi guarda, le dita si chiudono in senso antiorario. Dopo che tutta la spira è dentro, una traslazione rigida nel campo uniforme lascia costante il flusso."
+      }
+    ],
+    "prompt": "Una spira conduttrice viene spinta in una regione con B entrante uniforme, partendo completamente fuori. Durante l’ingresso l’area immersa cresce. Quale verso ha la corrente vista dal davanti?",
+    "difficulty": 2,
+    "family": "spira-che-entra-in-una-regione-di-campo",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "choice",
+      "value": "Antiorario",
+      "options": [
+        "Orario",
+        "Nullo perché B è uniforme nella regione",
+        "Dipende soltanto dal materiale del filo",
+        "Antiorario"
+      ]
+    },
+    "hints": [
+      "Considera il flusso che cresce perché muta l’area immersa."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’aumento del flusso entrante richiede un campo indotto uscente.",
+      "target": "C4-L10"
+    }
+  },
+  {
+    "id": "C4-Q100",
+    "kind": "question",
+    "course": "C4",
+    "section": "Indurre una tensione cambiando il flusso",
+    "order": 100,
+    "title": "Da un grafico con due pendenze",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L05",
+      "C4-L09"
+    ],
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "|\\overline{\\mathcal E}|=|\\Phi_f-\\Phi_i|/(8\\cdot10^{-3})=8\\cdot10^{-3}/(8\\cdot10^{-3})=1\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Nei primi 4 ms il modulo è 2 V e nei successivi 4 ms è zero. Le due durate uguali giustificano anche la media dei due valori."
+      }
+    ],
+    "prompt": "Una spira singola concatena un flusso che sale linearmente da 0 a 8 mWb nei primi 4 ms e resta poi costante per 4 ms. Calcola il modulo della f.e.m. media sull’intero intervallo di 8 ms in V.",
+    "difficulty": 2,
+    "family": "da-un-grafico-con-due-pendenze",
+    "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
+    "answer": {
+      "type": "numeric",
+      "value": 1,
+      "unit": "V",
+      "tolerance": 0.005
+    },
+    "hints": [
+      "Usa la variazione fra gli estremi e la durata totale richiesta."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "La f.e.m. è diversa nei due tratti, mentre il quesito chiede la media sull’intero intervallo.",
+      "target": "C4-L10"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C4-prova-flussot.svg",
+        "text": "Gli estremi dei due intervalli sono segnati sull’asse dei tempi."
+      }
+    ]
+  }
+]
