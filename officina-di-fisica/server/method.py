@@ -66,4 +66,3 @@ def validate_method(record):
     else:
         require({"choice", "expression", "number"} <= {s["kind"] for s in steps},
                 "Includi la scelta, la formula isolata e il calcolo.")
-

@@ -45,4 +45,3 @@ class MethodEditions(unittest.TestCase):
             validate_method(dict(chart, diagram=dict(chart["diagram"], xmax=0)))
         with self.assertRaises(store.Problem):
             validate_method(dict(chart, steps=list(reversed(chart["steps"]))))
-

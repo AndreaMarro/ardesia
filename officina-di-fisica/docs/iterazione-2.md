@@ -61,4 +61,3 @@ Dalla cartella dell’app eseguire `node --test tests/*.test.js`, `python3 -m un
 | [Corrente–tensione su desktop](verifiche/iterazione-2/grafico-desktop.webp) | [Profilo spaziale e temporale su smartphone](verifiche/iterazione-2/grafico-mobile.webp) |
 
 Il collaudo misura il comportamento dell’app in Chrome. L’efficacia didattica con studenti reali resta da valutare.
-
