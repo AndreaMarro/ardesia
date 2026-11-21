@@ -40,3 +40,25 @@ test('Un breve blocco indivisibile e i quesiti si leggono in forma integrale', (
   assert.deepEqual(passaggi('example', [{ type: 'figure' }, { type: 'text' }]), []);
   assert.deepEqual(passaggi('question', [{ type: 'text' }, { type: 'formula' }, { type: 'text' }]), []);
 });
+
+test('Lo svolgimento di un quesito espanso è navigabile un passaggio alla volta dopo la risposta', () => {
+  const blocks = [
+    { type: 'text', text: 'Dati e incognita' },
+    { type: 'figure', src: '/figures/esempio.svg', text: 'Disegno con etichette' },
+    { type: 'text', text: 'Perché questa formula' },
+    { type: 'formula', text: 'v=s/t' },
+    { type: 'text', text: 'Ora sostituisco e controllo' },
+    { type: 'formula', text: 'v=12/3=4' },
+    { type: 'text', text: 'Verifica inversa' },
+  ];
+  const stages = passaggi('worked', blocks);
+  assert.ok(stages.length >= 2, 'deve offrire almeno due passaggi');
+  let pos = 0;
+  for (const [from, to] of stages) {
+    assert.equal(from, pos, 'passaggi consecutivi senza sovrapposizioni');
+    assert.ok(to > from, 'nessun passaggio vuoto');
+    pos = to;
+  }
+  assert.equal(pos, blocks.length, 'tutti i blocchi vengono presentati');
+  assert.deepEqual(passaggi('question', blocks), [], 'la consegna del quesito non viene alterata');
+});
