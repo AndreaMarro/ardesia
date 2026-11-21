@@ -33,11 +33,12 @@ import { recoveryCollection, runPage, trainPage } from './practice.js';
 import { labPage } from './labs.js';
 import { previewOfficina } from './anteprima.js';
 import { installaPassaggi } from './lettura.js';
+import { metodoContent, sprintContent } from './metodo.js';
 const authorPage = async (parts) => (await import('./editor.js')).authorPage(parts);
 let ready = false,
   routing = false,
   pending = false;
-const courseUrl = (c, tab = 'lezioni') => 'corso/' + c + '/' + tab;
+const courseUrl = (c, tab = 'parti') => 'corso/' + c + '/' + tab;
 function subjectDrawing(id) {
   return /^C[1-6]$/.test(id)
     ? `<svg class="subject-drawing" viewBox="0 0 88 50" aria-hidden="true" focusable="false"><use href="/materie.svg#${id}"></use></svg>`
@@ -62,9 +63,10 @@ function home() {
   main.innerHTML = `<section class="hero" aria-labelledby="cover-title">
     <div class="hero-copy">
       <h1 id="cover-title"><span>La fisica,</span> <em>in pratica.</em></h1>
-      <p>Sei percorsi per Medicina. Parti da un fenomeno, disegnalo e segui i conti fino a saperli rifare.</p>
+      <p>Sei percorsi per Medicina: studia un argomento con calma oppure preparati all’esame attraverso esercizi, grafici e formule inverse.</p>
       <div class="hero-actions">
         <a class="button solid" href="#percorsi">Esplora i percorsi <span class="arrow" aria-hidden="true">→</span></a>
+         <a class="button" href="#sprint">Preparazione rapida</a>
         <button type="button" class="textbtn" data-prova-portata>Prova un esperimento</button>
       </div>
     </div>
@@ -132,10 +134,12 @@ function courseContents(items, group, course) {
   }
   return volumes;
 }
-async function coursePage(id, tab = 'lezioni') {
+async function coursePage(id, tab = 'parti') {
   const data = await api('/course/' + id),
     c = data.course;
   const tabs = [
+    ['parti', 'Inizia qui'],
+    ['metodo', 'Formule e grafici'],
     ['lezioni', 'Lezioni'],
     ['esempi', 'Esempi svolti'],
     ['esercizi', 'Esercizi'],
@@ -153,7 +157,14 @@ async function coursePage(id, tab = 'lezioni') {
     ) + subjectDrawing(c.includes?.length ? 'C6' : c.id) + '</div>' +
     `<div class="actions">${!data.owned ? link(state.mode === 'verifica' ? 'Accesso e ordine di verifica' : 'Acquista il percorso', 'acquisto/' + id, true) : link('Allenati', 'allenamento/' + id, true)}${!data.owned && data.preview.length ? link('Leggi un’anteprima', 'materiale/' + data.preview[0] + '/' + id) : ''}${c.id === 'C6' ? link('Diagnosi e simulazioni', 'allenamento/C6') : ''}</div><nav class="tabs" aria-label="Materiali del percorso">${tabs.map(([t, l]) => `<a class="${t === tab ? 'active' : ''}" ${t === tab ? 'aria-current="page"' : ''} href="#${courseUrl(id, t)}">${l}</a>`).join('')}</nav>`;
   let body = '';
-  if (tab === 'pdf') {
+  if (tab === 'parti') {
+    body = '<section class="method-intro"><h2>Da dove vuoi cominciare?</h2><p>Non devi aprire tutto insieme. Puoi seguire il microcorso con ordine oppure partire dai problemi da esame e recuperare soltanto ciò che non padroneggi.</p><div class="method-cards">' +
+      '<article class="method-card"><div class="meta">Studio completo</div><h3>Capire e imparare</h3><p>Lezioni ed esempi guidati, con formule, figure, laboratori e controlli dei passaggi.</p>' + link('Apri le lezioni', courseUrl(id, 'lezioni'), true) + '</article>' +
+      '<article class="method-card"><div class="meta">Abilità trasversali</div><h3>Formule inverse e grafici</h3><p>Ricava ogni grandezza, interpreta gli assi e controlla i risultati senza calcolatrice, un passo alla volta.</p>' + link('Apri il metodo', courseUrl(id, 'metodo'), true) + '</article>' +
+      '<article class="method-card"><div class="meta">Allenamento rapido</div><h3>Esercizi e recupero</h3><p>Inizia dai quesiti, poi riprendi la spiegazione associata agli errori.</p>' + link('Allenati', 'allenamento/' + id, true) + '</article></div></section>';
+  } else if (tab === 'metodo') {
+    body = metodoContent(id);
+  } else if (tab === 'pdf') {
     const courses = [...(c.includes || []), id];
     body = `<div class="big-list"><h2>Fascicoli per lo studio</h2>${!data.owned ? gate(id) : ''}${courses.map((cid) => `<div class="order"><h3>${esc(titleOf(cid))}</h3><div class="actions">${(cid === 'C6' ? ['dispensa', 'esercizi', 'simulazioni'] : ['dispensa', 'esercizi']).map((b) => (data.owned ? `<a class="button" href="/download/${esc(cid)}/${b}" download>↓ ${{ dispensa: 'Dispensa', esercizi: 'Esercizi con soluzioni', simulazioni: 'Simulazioni' }[b]}</a>` : `<span class="small">${{ dispensa: 'Dispensa', esercizi: 'Eserciziario', simulazioni: 'Simulazioni' }[b]}</span>`)).join('')}</div></div>`).join('')}</div>`;
   } else if (tab === 'recupero') {
@@ -233,7 +244,7 @@ async function router() {
   const here = location.hash.slice(1);
   main.setAttribute('aria-busy', 'true');
   const section = {
-    corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi',
+    corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi', sprint: 'percorsi',
     prova: 'studio', lab: 'laboratori', accedi: 'studio',
   }[page] || page;
   for (const a of document.querySelectorAll('.mast nav a')) {
@@ -249,7 +260,8 @@ async function router() {
         crumb([['Inizio', 'home'], ['Percorsi']]) +
         head('I percorsi', 'Scegli un tema da studiare o segui l’intero programma di Fisica per Medicina.') +
         catalog();
-    } else if (page === 'corso') await coursePage(...parts);
+    } else if (page === 'sprint') main.innerHTML = sprintContent();
+    else if (page === 'corso') await coursePage(...parts);
     else if (page === 'materiale') await material(...parts);
     else if (page === 'laboratori') labs();
     else if (page === 'lab') await labPage(...parts);
