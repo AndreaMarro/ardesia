@@ -1,5 +1,7 @@
 # Biblioteca dei laboratori 3D
 
+I cinque esperimenti animati di C1–C5 si aprono dal menu **Simulazioni 3D**, sotto la ricerca. La guida raccoglie collegamenti diretti, registrazioni, disegni progressivi e misure su desktop, tablet e smartphone. [Apri la guida ai cinque esperimenti](movimento/README.md)
+
 Le 56 lezioni offrono una simulazione 3D per ciascuna delle 181 voci di programma. Dal paragrafo puoi prevedere un risultato, variare una grandezza, misurarne un’altra e mettere alla prova il calcolo con due esercizi corretti. Il catalogo ospita anche dieci banchi di approfondimento con 20 problemi e i cinque laboratori guidati dell’Officina. [Apri il catalogo locale](http://127.0.0.1:8847/#laboratori) · [Mappa delle 181 voci](voci.md) · [Schermate e collaudo delle voci](esperienze.md)
 
 ![Le dieci scene riprese in WebGL durante il collaudo](prove/biblioteca.webp)
