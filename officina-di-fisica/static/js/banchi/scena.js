@@ -19,8 +19,8 @@ function instruments(root) {
         key,
         new T.MeshStandardMaterial({
           color,
-          roughness: 0.58,
-          metalness: 0.09,
+          roughness: color === metal || color === brass ? 0.32 : 0.68,
+          metalness: color === metal || color === brass ? 0.42 : 0.04,
           side: T.DoubleSide,
           transparent: opacity < 1,
           opacity,
@@ -81,7 +81,7 @@ function instruments(root) {
     ctx.font = '600 42px Arial';
     cn.width = Math.ceil(ctx.measureText(txt).width) + 32;
     cn.height = 68;
-    ctx.fillStyle = '#fffbee';
+    ctx.fillStyle = '#fffcef';
     ctx.fillRect(0, 0, cn.width, 68);
     ctx.fillStyle = '#' + new T.Color(color).getHexString();
     ctx.font = '600 42px Arial';
@@ -89,10 +89,11 @@ function instruments(root) {
     ctx.fillText(txt, 16, 35);
     const tex = new T.CanvasTexture(cn);
     tex.colorSpace = T.SRGBColorSpace;
+    tex.minFilter = T.LinearFilter;
     const sprite = new T.Sprite(new T.SpriteMaterial({ map: tex, depthTest: false, depthWrite: false }));
     sprite.renderOrder = 6;
     sprite.position.copy(v(p));
-    sprite.scale.set((0.3 * cn.width) / 68, 0.3, 1);
+    sprite.scale.set((0.33 * cn.width) / 68, 0.33, 1);
     group.add(sprite);
     return sprite;
   }
@@ -178,9 +179,9 @@ export function openScene(canvas, spec, onLoss, context) {
   controls.minZoom = 0.65;
   controls.maxZoom = 3;
   controls.maxPolarAngle = Math.PI * 0.93;
-  const hemi = new T.HemisphereLight(0xfffcf1, 0xaa99aa, 1.75);
+  const hemi = new T.HemisphereLight(0xfff8e7, 0x7b7294, 1.6);
   scene.add(hemi);
-  const key = new T.DirectionalLight(0xfff0d4, 1.95);
+  const key = new T.DirectionalLight(0xfff0d8, 2.25);
   key.position.set(...(spec.light || [-4, 8, 5]));
   scene.add(key);
   const rim = new T.DirectionalLight(0xc8d4ff, 1.15);
@@ -272,6 +273,10 @@ export function openScene(canvas, spec, onLoss, context) {
       if (value) render();
     },
     view: setView,
+    gestures(enabled) {
+      controls.enabled = enabled;
+      canvas.style.touchAction = enabled ? 'none' : 'pan-y';
+    },
     zoom,
     dispose() {
       if (closed) return;

@@ -141,6 +141,8 @@ async function snapshot(page, name) {
   });
 }
 async function pinch(page, canvas) {
+  const gestures = page.locator('[data-touch]');
+  if (await gestures.isVisible() && await gestures.getAttribute('aria-pressed') !== 'true') await gestures.click();
   const cdp = await page.context().newCDPSession(page);
   const rect = await canvas.boundingBox(),
     x = rect.x + rect.width / 2,

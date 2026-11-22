@@ -25,6 +25,9 @@ export const readings = (p, s, t) => [
   ['Tempo t', t, 's'],
   ['Quota y', sample(s, t).y, 'm'],
   ['Velocità verticale', sample(s, t).vy, 'm/s'],
+  ['x · z', n(s.vx * t) + ' · ' + n(s.vz * t), 'm'],
+  ['vₓ · v𝓏', n(s.vx) + ' · ' + n(s.vz), 'm/s'],
+  ['Accelerazione verticale', -g, 'm/s²'],
 ];
 export const steps = (p, s) => [
   [
@@ -77,3 +80,6 @@ export const graphs = (p, s, t, stage) => {
     ),
   ];
 };
+export const warning = (p, s) => s.duration === 0
+  ? 'Il lancio parte e termina alla quota del banco. Con elevazione 0° il tempo di volo in questo modello è zero.'
+  : '';

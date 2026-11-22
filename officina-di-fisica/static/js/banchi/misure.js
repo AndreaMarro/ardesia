@@ -1,7 +1,7 @@
 export const g = 9.81;
 export const rad = (degrees) => (degrees * Math.PI) / 180;
-export const n = (value) =>
-  Number.isFinite(value) ? value.toLocaleString('it-IT', { maximumSignificantDigits: 4 }) : '—';
+const numberFormat = new Intl.NumberFormat('it-IT', { maximumSignificantDigits: 4 });
+export const n = (value) => (Number.isFinite(value) ? numberFormat.format(value) : '—');
 export const param = (key, label, unit, min, max, step, value) => ({
   key,
   label,
@@ -32,3 +32,9 @@ export const norm = (v) => Math.hypot(...v);
 export const sum = (a, b) => a.map((x, i) => x + b[i]);
 export const sub = (a, b) => a.map((x, i) => x - b[i]);
 export const mul = (a, k) => a.map((x) => x * k);
+
+export function nextTime(t, elapsed, duration, rate, loop) {
+  if (!(duration > 0)) return 0;
+  const next = t + Math.max(0, elapsed) * rate;
+  return loop ? next % duration : Math.min(next, duration);
+}

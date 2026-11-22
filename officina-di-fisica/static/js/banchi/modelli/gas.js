@@ -3,16 +3,27 @@ export const R = 8.314462618;
 export const params = [
   param('T', 'Temperatura assoluta T', 'K', 200, 600, 5, 300),
   param('mol', 'Quantità di sostanza n', 'mol', 0.02, 0.2, 0.01, 0.1),
-  param('V', 'Volume V', 'L', 1, 6, 0.1, 3),
+  param('V', 'Volume iniziale Vᵢ', 'L', 1, 6, 0.1, 3),
+  param('end', 'Volume finale V𝒇', 'L', 1, 6, 0.1, 1.5),
 ];
 export function solve(p) {
-  return { pressure: (p.mol * R * p.T) / p.V, product: p.mol * R * p.T };
+  const product = p.mol * R * p.T;
+  return { pressure: product / p.V, product, start: p.V, end: p.end ?? p.V, duration: 6 };
 }
-export const readings = (p, s) => [
-  ['Pressione assoluta', s.pressure, 'kPa'],
-  ['Volume', p.V, 'L'],
-  ['Prodotto pV', s.product, 'J'],
-];
+export function sample(s, t = 0) {
+  const fraction = Math.max(0, Math.min(1, t / s.duration));
+  const V = s.start + (s.end - s.start) * fraction;
+  return { V, pressure: s.product / V, work: s.product * Math.log(V / s.start) };
+}
+export const readings = (p, s, t) => {
+  const a = sample(s, t);
+  return [
+    ['Pressione assoluta', a.pressure, 'kPa'],
+    ['Volume', a.V, 'L'],
+    ['Lavoro del gas', a.work, 'J'],
+    ['Prodotto pV', s.product, 'J'],
+  ];
+};
 export const steps = (p, s) => [
   [
     'Leggi il volume',
@@ -35,12 +46,16 @@ export const steps = (p, s) => [
     'T = pV/(nR) = ' + n((s.pressure * p.V) / (p.mol * R)) + ' K',
   ],
 ];
-export const graphs = (p, s) => [
-  chart(
-    'Stati alla stessa temperatura',
-    'V (L)',
-    'p (kPa)',
-    [curve('Isoterma', 1, 6, (V) => s.product / V)],
-    p.V,
-  ),
+export const graphs = (p, s, t = 0) => [
+  {
+    ...chart(
+      'Stati alla stessa temperatura',
+      'V (L)',
+      'p (kPa)',
+      [curve('Isoterma', 1, 6, (V) => s.product / V)],
+      sample(s, t).V,
+    ),
+    track: 'volume',
+    integralFrom: s.start,
+  },
 ];

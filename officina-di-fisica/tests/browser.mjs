@@ -272,6 +272,7 @@ async function runAcceptance() {
   await guidedReading(p, 'C1-E018', 'C1', [[0, 1, 2], [3, 4], [5, 6]]);
   await visit(p, 'lab/LAB-C1', '#meters');
   await noOverflow(p);
+  await p.locator('[data-phase="2"]').click();
   const phoneForce = p.locator('#val-F');
   await phoneForce.fill('20');
   await phoneForce.press('Tab');
@@ -327,6 +328,7 @@ async function runAcceptance() {
   assert.notEqual(await tablet.locator('.exercise-prompt').innerText(), scenarioText);
   for (const c of ['C1', 'C2', 'C3', 'C4', 'C5']) {
     await visit(tablet, 'lab/LAB-' + c, '#lab-view svg');
+    await tablet.locator('[data-phase="2"]').click();
     const before = await tablet.locator('#meters').innerText();
     const field = tablet.locator('.labfields input[type=number]').first();
     await field.fill({ C1: '0.5', C2: '0.5', C3: '2', C4: '12', C5: '5' }[c]);
@@ -335,7 +337,9 @@ async function runAcceptance() {
     await noOverflow(tablet);
     if (c === 'C2') {
       await screen(tablet, 'laboratorio-tablet');
+      await tablet.locator('[data-phase="0"]').click();
       await tablet.locator('#prediction').fill('Prevedo un sedicesimo della portata.');
+      await tablet.locator('[data-phase="4"]').click();
       await tablet.locator('#lab-note').fill('Il rapporto con raggio 1 mm vale 0,0625.');
       await tablet.locator('#save-observation').click();
       await tablet.getByText('Osservazione registrata nel tuo studio.').waitFor();
@@ -347,6 +351,7 @@ async function runAcceptance() {
       await tablet.locator('#val-p').press('Tab');
       assert.ok((await tablet.locator('#meters').innerText()).includes('∞'));
     }
+    await tablet.locator('[data-phase="2"]').click();
     await tablet.locator('#reset').click();
     assert.equal(await tablet.locator('#meters').innerText(), before);
   }

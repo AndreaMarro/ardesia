@@ -1,5 +1,6 @@
 import { esc, link, listLine, state } from '../ui.js';
 import { benchRoute } from './collegamenti.js';
+import { piloti } from './quaderno.js';
 
 const countLabel = (count) => count === 1 ? '1 simulazione' : count + ' simulazioni';
 const normalize = (text) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('it');
@@ -37,15 +38,23 @@ export function showSimulationIndex(node, lessons, course, lesson, collections) 
   const browse = () => course && !course.includes?.length
     ? '<div class="topic-shelf">' + lessons.map(lessonGroup).join('') + '</div>'
     : courseGroups(lessons, course?.id);
+  const featured = !course ? Object.keys(piloti).map((id) => {
+    const entry = entries.find(({e}) => e.id === id);
+    const item = entry?.e || state.benches.find((b) => b.id === id);
+    return item ? link((entry?.lesson.course || item.course) + ' · ' + item.title, benchRoute(id)) : '';
+  }).join('') : '';
   node.innerHTML = '<label class="sim-search" for="cerca-simulazione">Cerca un argomento' +
     '<input type="search" id="cerca-simulazione" placeholder="Es. lente, attrito, capillarità" autocomplete="off"></label>' +
+    (featured ? '<details class="sim-featured"><summary>I cinque esperimenti animati</summary><div>' + featured + '</div></details>' : '') +
     '<p class="sim-count" role="status"></p><div class="sim-results"></div>';
   const field = node.querySelector('input');
   const status = node.querySelector('[role=status]');
   const results = node.querySelector('.sim-results');
+  const shortcuts = node.querySelector('.sim-featured');
   function render() {
     const terms = words(field.value);
     if (collections) collections.hidden = terms.length > 0;
+    if (shortcuts) shortcuts.hidden = terms.length > 0;
     if (!terms.length) {
       status.textContent = countLabel(entries.length) + ' in ' + lessons.length + (lessons.length === 1 ? ' lezione' : ' lezioni');
       results.innerHTML = browse();

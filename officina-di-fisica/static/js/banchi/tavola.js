@@ -1,5 +1,7 @@
 import { esc } from '../ui.js';
 import { n } from './misure.js';
+import { coefficients, displacement } from './modelli/onde.js';
+import { tracerFraction } from './modelli/tubo.js';
 const purple = '#623eaa',
   green = '#157474',
   red = '#ae4745',
@@ -19,7 +21,7 @@ function arrow(x, y, X, Y, c = dark) {
     c,
   );
 }
-export function drawing(model, p, s, t, stage, title) {
+export function drawing(model, p, s, t, stage, title, projection = 'top') {
   let d = '';
   const reveal = stage >= 0;
   if (model === 'piano') {
@@ -57,6 +59,13 @@ export function drawing(model, p, s, t, stage, title) {
           ),
           purple,
         ) + dot(...pt(t), gold, 7);
+      const [x, y] = pt(t),
+        vh = Math.hypot(s.vx, s.vz),
+        vv = s.u - 9.81 * t,
+        gain = 35 / p.speed;
+      if (stage >= 1) d += arrow(x, y, x + vh * gain, y - vv * gain, green) + arrow(x, y, x, y + 24, red);
+      if (stage >= 2) d += path('M' + x + ' ' + y + ' h' + vh * gain + ' v' + -vv * gain, purple, true);
+      d += label(105, 24, 't = ' + n(t) + ' s');
     }
   } else if (model === 'stevino') {
     const y = 45 + (105 * p.h) / 2;
@@ -76,15 +85,40 @@ export function drawing(model, p, s, t, stage, title) {
         const v = 1 - (i / 4) ** 2;
         d += arrow(101, 96 + i * 10, 101 + 180 * v, 96 + i * 10, purple);
       }
+    if (reveal && s.laminar) {
+      for (const h of [0, 0.5, 0.8, 1]) {
+        for (const x0 of [0.05, 0.4, 0.75])
+          d += dot(39 + 359 * tracerFraction(s, h, t, x0), 96 - 43 * h, h === 0 ? gold : green, 4);
+      }
+    }
     d += label(44, 174, reveal && s.laminar ? 'v = 0 alla parete' : 'sezione longitudinale');
   } else if (model === 'gas') {
-    const y = 150 - 18 * p.V;
+    const volume = s.instant?.V ?? p.V;
+    const y = 150 - 18 * volume;
     d =
       path('M124 28 V156 H299 V28') +
       box(126, y, 171, 155 - y, '#ebcf99') +
       box(123, y - 6, 177, 7, '#897693') +
       path(`M211 ${y - 6} V20`);
-    if (reveal) d += label(158, 145, 'V = ' + n(p.V) + ' L');
+    if (reveal)
+      d +=
+        path('M102 ' + (150 - 18 * s.start) + ' H124', green) +
+        path('M299 ' + (150 - 18 * s.end) + ' H324', purple) +
+        label(158, 145, 'V = ' + n(volume) + ' L');
+  } else if (model === 'induzione') {
+    const q = s.instant,
+      gap = s.closed ? 0 : 13;
+    d =
+      path('M305 ' + (99 - gap) + ' A84 64 0 1 0 305 ' + (100 + gap), gold) +
+      label(18, 25, 'Vista dalla punta di +n');
+    if (reveal) {
+      const symbol = Math.abs(q.B) < 1e-9 ? '0' : q.B > 0 ? '⊙' : '⊗';
+      for (const x of [195, 225, 255]) for (const y of [84, 108, 132]) d += label(x, y, symbol);
+      d += label(15, 175, 'B = ' + n(q.B) + ' T') + label(288, 175, s.closed ? 'Chiuso · 5 Ω' : 'Aperto');
+      if (s.closed && s.current)
+        d += arrow(222 + Math.sign(s.current) * 15, 36, 222 - Math.sign(s.current) * 15, 36, red);
+      d += label(307, 59, 'ε = ' + n(q.emf) + ' V');
+    }
   } else if (model === 'calore') {
     const temp = (v) => 'hsl(' + Math.round(210 - 2.1 * v) + ' 45% 67%)';
     d =
@@ -148,6 +182,33 @@ export function drawing(model, p, s, t, stage, title) {
     }
     if (stage >= 2 && s.q < 0)
       d += path(`M${O} ${y - H} L${O + s.q * k} ${y - s.m * H} L${O} ${y}`, purple, true);
+  } else if (model === 'onde' && projection !== 'top') {
+    const baseline = 102;
+    d =
+      path('M30 40 V155 M30 102 H405') + label(8, 23, 'y (mm)') + label(4, 51, '+4') + label(6, 156, '−4');
+    if (projection === 'section') {
+      const poly = (fn, color) =>
+        path(
+          Array.from({ length: 91 }, (_, i) => {
+            const x = -1.2 + (i * 2.4) / 90;
+            return (i ? 'L' : 'M') + (30 + i * 4.1) + ' ' + (baseline - 13000 * fn(x));
+          }).join(' '),
+          color,
+        );
+      d += poly((x) => displacement(s, coefficients(s, x, p.z), t), green);
+      d +=
+        dot(30 + ((p.x + 1.2) * 369) / 2.4, baseline - 13000 * s.instant.y, red) +
+        label(254, 181, 'x (m) · z = ' + n(p.z) + ' m');
+    } else {
+      for (const [i, value] of [s.instant.first, s.instant.second, s.instant.y].entries()) {
+        const x = 100 + i * 100,
+          y = baseline - 13000 * value;
+        d +=
+          arrow(x, baseline, x, y, [gold, purple, green][i]) +
+          dot(x, y, [gold, purple, green][i], 4) +
+          label(x - 18, 180, ['S₁', 'S₂', 'Somma'][i]);
+      }
+    }
   } else {
     const k = 105,
       px = 212 + p.x * k,
@@ -155,14 +216,276 @@ export function drawing(model, p, s, t, stage, title) {
     for (const [i, x] of [212 - (p.d * k) / 2, 212 + (p.d * k) / 2].entries()) {
       d += dot(x, 97, i ? purple : gold) + label(x - 10, 81, 'S' + (i + 1));
       if (reveal) {
-        for (let j = 1; j <= 4; j++) {
-          const r = (j + ((((t * p.f - (i ? p.phase / 360 : 0)) % 1) + 1) % 1)) * s.lambda * k;
+        const phase = (((t * p.f - (i ? p.phase / 360 : 0)) % 1) + 1) % 1;
+        const corner = Math.hypot(Math.max(x, 430 - x), 101);
+        for (let j = 0; (j + phase) * s.lambda * k <= corner; j++) {
+          const r = (j + phase) * s.lambda * k;
           d += `<circle cx="${x}" cy="97" r="${r}" fill="none" stroke="${i ? purple : gold}" opacity=".48"/>`;
         }
         d += path(`M${x} 97 L${px} ${pz}`, green, true);
       }
     }
     d += dot(px, pz, green) + label(px + 7, pz - 4, 'P');
+    if (reveal) d += label(15, 185, 'Spostamento in P · ' + n(1000 * (s.instant?.y ?? 0)) + ' mm');
   }
-  return `<svg class="bench-diagram" viewBox="0 0 430 198" role="img" aria-label="${esc('Schema di ' + title)}"><g>${d}</g></svg>`;
+  return `<svg class="bench-diagram" viewBox="0 0 430 198" role="img" aria-label="${esc('Schema di ' + title)}">${d}</svg>`;
+}
+
+// Compact constructions beside the derivation. All distances and signed quantities follow the same sample as the main instrument.
+const circle = (x, y, r, color) =>
+  `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${color}" stroke-width="2"/>`;
+const trace = (X, Y, color) =>
+  path(
+    Array.from({ length: 61 }, (_, i) => (i ? 'L' : 'M') + X(i / 60) + ' ' + Y(i / 60)).join(' '),
+    color,
+  );
+
+function lancioDisegno(i, p, s, t, q) {
+  if (i === 0) {
+    const x = 48 + 25 * s.vx,
+      z = 73 - 11 * s.vz;
+    return (
+      path('M48 18 V100 M34 73 H212') +
+      label(195, 94, 'x') +
+      label(22, 22, 'z') +
+      path(`M${x} 73 V${z} H48`, gold, true) +
+      arrow(48, 73, x, z, green) +
+      label(225, 47, 'vₓ = ' + n(s.vx) + ' m/s') +
+      label(225, 78, 'v𝓏 = ' + n(s.vz) + ' m/s')
+    );
+  }
+  const f = s.duration ? t / s.duration : 0,
+    X = (u) => 45 + 235 * u;
+  if (i === 1 || i === 2) {
+    const Y = (u) => 59 - 38 * (s.u ? 1 - 2 * u : 0);
+    let area = '';
+    if (i === 2)
+      for (const [a, b, color] of [
+        [0, Math.min(0.5, f), '#a5cbbc'],
+        [0.5, f, '#e6bbb2'],
+      ]) {
+        if (b > a)
+          area += `<path d="M${X(a)} 59 L${X(a)} ${Y(a)} L${X(b)} ${Y(b)} L${X(b)} 59 Z" fill="${color}"/>`;
+      }
+    return (
+      area +
+      path('M45 12 V105 M45 59 H284') +
+      path(`M45 ${Y(0)} L280 ${Y(1)}`, purple) +
+      dot(X(f), Y(f), green) +
+      label(6, 14, 'vᵧ') +
+      label(205, 105, 't (s)') +
+      label(294, 45, i === 1 ? 'vᵧ (m/s)' : 'Area netta') +
+      label(294, 74, i === 1 ? n(q.vy) + ' m/s' : n(q.y) + ' m')
+    );
+  }
+  const Y = (u) => 90 - (s.peak ? 64 * 4 * u * (1 - u) : 0);
+  return (
+    path('M45 16 V90 H284') +
+    trace(X, Y, purple) +
+    dot(X(f), Y(f), green) +
+    dot(X(0.5), Y(0.5), gold, 4) +
+    label(5, 16, 'y (m)') +
+    label(40, 112, '0') +
+    label(134, 112, 'T/2') +
+    label(267, 112, 'T') +
+    label(298, 61, 'T = ' + n(s.duration) + ' s')
+  );
+}
+function flussoDisegno(i, p, s, t) {
+  if (!s.laminar) return label(22, 55, 'Re = ' + n(s.re)) + label(22, 82, 'Profilo laminare fuori dominio');
+  if (i === 0) {
+    const distance = (h) => 48 + 213 * tracerFraction(s, h, t);
+    return (
+      path('M48 24 H266 M48 101 H266') +
+      path('M48 63 H266', green, true) +
+      dot(distance(0), 63, green) +
+      dot(distance(p.probe), 63 - 39 * p.probe, red) +
+      label(277, 54, 'asse') +
+      label(277, 80, 'r/R = ' + n(p.probe))
+    );
+  }
+  if (i === 1) {
+    const X = (u) => 42 + 209 * u,
+      Y = (u) => 90 - 64 * (1 - u * u);
+    return (
+      path('M42 15 V90 H265') +
+      trace(X, Y, purple) +
+      dot(X(p.probe), Y(p.probe), red) +
+      label(4, 18, 'v') +
+      label(42, 113, '0') +
+      label(218, 113, 'r/R = 1') +
+      label(279, 50, 'v(r) (m/s)') +
+      label(279, 81, n(2 * s.mean * (1 - p.probe ** 2)))
+    );
+  }
+  if (i === 2)
+    return (
+      circle(85, 61, 44, dark) +
+      circle(85, 61, 27, purple) +
+      circle(85, 61, 32, purple) +
+      arrow(85, 61, 129, 61, gold) +
+      label(150, 53, 'Anello di area 2πr dr') +
+      label(150, 82, 'dQ = v(r) × 2πr dr')
+    );
+  return (
+    arrow(40, 66, 364, 66, green) +
+    label(34, 42, p.mode === 'pressure' ? 'Δp fissata' : 'Q fissata') +
+    label(183, 42, 'R varia') +
+    label(273, 98, p.mode === 'pressure' ? 'Q ∝ R⁴' : 'Δp ∝ 1/R⁴')
+  );
+}
+function pistoneDisegno(i, p, s, t, q) {
+  if (i === 0) {
+    const Y = (v) => 98 - 13 * v;
+    return (
+      path('M40 14 V98 H147 V14') +
+      box(41, Y(q.V), 104, 98 - Y(q.V), '#d8c697') +
+      path(`M36 ${Y(s.start)} H63`, green) +
+      path(`M131 ${Y(s.end)} H158`, purple) +
+      label(178, 47, 'Vᵢ = ' + n(s.start) + ' L') +
+      label(178, 74, 'V(t) = ' + n(q.V) + ' L') +
+      label(178, 101, 'Vf = ' + n(s.end) + ' L')
+    );
+  }
+  if (i === 1 || i === 2) {
+    const lo = Math.min(s.start, s.end) * 0.85,
+      hi = Math.max(s.start, s.end) * 1.12;
+    const X = (v) => 47 + (215 * (v - lo)) / (hi - lo),
+      Y = (v) => 95 - (78 * lo) / v;
+    const area = Array.from({ length: 41 }, (_, j) => {
+      const v = s.start + ((q.V - s.start) * j) / 40;
+      return `L${X(v)} ${Y(v)}`;
+    }).join(' ');
+    return (
+      (i === 2 ? `<path d="M${X(s.start)} 95 ${area} L${X(q.V)} 95 Z" fill="#dbcda1"/>` : '') +
+      path('M47 15 V95 H268') +
+      trace(
+        (u) => X(lo + (hi - lo) * u),
+        (u) => Y(lo + (hi - lo) * u),
+        purple,
+      ) +
+      dot(X(s.start), Y(s.start), green, 4) +
+      dot(X(q.V), Y(q.V), red) +
+      label(3, 18, 'p (kPa)') +
+      label(214, 114, 'V (L)') +
+      label(277, 49, i === 1 ? 'Pressione' : 'Lavoro del gas') +
+      label(277, 76, i === 1 ? n(q.pressure) + ' kPa' : n(q.work) + ' J')
+    );
+  }
+  const x = 165,
+    dx = 82 * Math.sign(q.work);
+  return (
+    box(130, 43, 70, 43, '#dbe8e1') +
+    label(148, 70, 'gas') +
+    arrow(x - 85 - dx / 2, 61, x - 85 + dx / 2, 61, gold) +
+    arrow(x + 85 - dx / 2, 61, x + 85 + dx / 2, 61, green) +
+    label(24, 29, 'Q = ' + n(q.work) + ' J') +
+    label(217, 29, 'W = ' + n(q.work) + ' J') +
+    label(143, 111, 'ΔU = 0 J')
+  );
+}
+function bobinaDisegno(i, p, s, t, q) {
+  if (i === 0 || i === 1) {
+    const count = i === 0 ? 1 : 10;
+    let coils = '';
+    for (let j = 0; j < count; j++)
+      coils += `<ellipse cx="91" cy="${72 - j * 3}" rx="53" ry="15" fill="none" stroke="${purple}" stroke-width="1.6"/>`;
+    const norm = Math.max(0.5, Math.abs(s.middle - s.x), Math.abs(s.middle + s.x));
+    return (
+      coils +
+      arrow(91, 61 + (34 * q.B) / norm, 91, 61 - (34 * q.B) / norm, green) +
+      label(163, 48, i === 0 ? 'Una spira · A = 0,05 m²' : 'Dieci spire con la stessa normale') +
+      label(163, 80, (i === 0 ? 'Φ = ' + n(q.flux / 10) : 'NΦ = ' + n(q.flux)) + ' Wb')
+    );
+  }
+  if (i === 2) {
+    const first = 0.5 * (s.middle - s.x),
+      end = 0.5 * (s.middle + s.x),
+      max = Math.max(0.25, Math.abs(first), Math.abs(end)),
+      Y = (v) => 61 - (41 * v) / max;
+    return (
+      path('M50 13 V106 M50 61 H256') +
+      path(`M50 ${Y(first)} L250 ${Y(end)}`, purple) +
+      path(`M50 ${Y(first)} H250 V${Y(end)}`, gold, true) +
+      dot(50 + 100 * t, Y(q.flux), green) +
+      label(2, 17, 'NΦ') +
+      label(47, 115, '0 s') +
+      label(226, 115, '2 s') +
+      label(268, 47, 'Δ(NΦ) / Δt') +
+      label(268, 77, n(0.5 * s.x) + ' Wb/s')
+    );
+  }
+  return (
+    path('M101 32 H40 V90 H204 V32 H162') +
+    circle(103, 32, 3, dark) +
+    circle(162, 32, 3, dark) +
+    path(s.closed ? 'M103 32 H162' : 'M103 32 L153 13', green) +
+    (s.closed
+      ? arrow(q.current > 0 ? 71 : 91, 90, q.current > 0 ? 91 : 71, 90, q.current ? red : 'transparent')
+      : '') +
+    label(224, 46, s.closed ? 'Chiuso · 5 Ω' : 'Aperto') +
+    label(224, 72, 'ε = ' + n(q.emf) + ' V') +
+    label(224, 98, 'I = ' + n(q.current) + ' A')
+  );
+}
+function ondeDisegno(i, p, s, t, q) {
+  if (i === 0) {
+    const k = s.k,
+      x = (u) => 43 + 225 * u,
+      y = (u) => 63 - 27 * Math.cos(k * u * 2 * s.lambda - s.omega * t);
+    return (
+      path('M43 63 H278') +
+      trace(x, y, purple) +
+      arrow(90, 22, 175, 22, green) +
+      label(281, 45, 'λ = ' + n(s.lambda) + ' m') +
+      label(281, 76, 'T = ' + n(1 / p.f) + ' s')
+    );
+  }
+  if (i === 1) {
+    const X = (x) => 142 + x * 75,
+      Y = (z) => 61 - z * 52;
+    return (
+      path(`M${X(-p.d / 2)} 61 L${X(p.x)} ${Y(p.z)}`, gold) +
+      path(`M${X(p.d / 2)} 61 L${X(p.x)} ${Y(p.z)}`, purple) +
+      dot(X(p.x), Y(p.z), green) +
+      label(X(p.x) + 7, Y(p.z), 'P') +
+      label(X(-p.d / 2) - 9, 88, 'S₁') +
+      label(X(p.d / 2) - 9, 88, 'S₂') +
+      label(261, 49, 'r₁ = ' + n(s.probe.r1) + ' m') +
+      label(261, 80, 'r₂ = ' + n(s.probe.r2) + ' m')
+    );
+  }
+  if (i === 2) {
+    let d = path('M36 62 H366');
+    for (const [j, v] of [q.first, q.second, q.y].entries()) {
+      const x = 85 + j * 108,
+        y = 62 - 9500 * v;
+      d +=
+        arrow(x, 62, x, y, [gold, purple, green][j]) +
+        dot(x, y, [gold, purple, green][j], 3) +
+        label(x - 13, 113, ['y₁', 'y₂', 'Σy'][j]);
+    }
+    return d + label(5, 18, 'y (mm)');
+  }
+  const X = (u) => 42 + 220 * u,
+    Y = (u) => 64 - 8500 * displacement(s, s.probe, u / p.f);
+  return (
+    path('M42 14 V104 M42 64 H266') +
+    trace(X, Y, green) +
+    dot(X((t * p.f) % 1), Y((t * p.f) % 1), purple) +
+    label(3, 17, 'y (mm)') +
+    label(194, 114, '1 periodo') +
+    label(280, 49, 'Ampiezza') +
+    label(280, 79, n(1000 * s.envelope) + ' mm')
+  );
+}
+const disegni = {
+  volo: lancioDisegno,
+  tubo: flussoDisegno,
+  gas: pistoneDisegno,
+  induzione: bobinaDisegno,
+  onde: ondeDisegno,
+};
+export function disegnoPasso(key, index, p, s, t, q, title) {
+  return `<svg viewBox="0 0 430 122" role="img" aria-label="${esc(title)}">${disegni[key](index, p, s, t, q)}</svg>`;
 }

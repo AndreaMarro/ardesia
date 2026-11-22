@@ -10,12 +10,16 @@ export const params = [
     'pressure',
   ),
   param('r', 'Raggio interno R', 'mm', 0.5, 4, 0.1, 1.5),
+  param('probe', 'Posizione della sonda r/R', '', 0, 1, 0.05, 0.5),
   param('mu', 'Viscosità μ', 'mPa·s', 1, 12, 0.5, 4),
   param('length', 'Lunghezza L', 'cm', 5, 50, 1, 20),
   { ...param('dp', 'Caduta di pressione Δp', 'Pa', 5, 500, 5, 80), when: ['mode', 'pressure'] },
   { ...param('flow', 'Portata imposta Q', 'mL/s', 0.1, 12, 0.1, 1), when: ['mode', 'flow'] },
 ];
 export const velocity = (s, ratio) => 2 * s.mean * (1 - ratio * ratio);
+export function tracerFraction(s, ratio, time, initial = 0) {
+  return (initial + (time * velocity(s, ratio)) / s.L) % 1;
+}
 export function solve(p) {
   const R = p.r / 1000,
     L = p.length / 100,
@@ -26,11 +30,23 @@ export function solve(p) {
     mean = Q / (Math.PI * R * R);
   const re = (1000 * mean * 2 * R) / mu,
     entry = 0.05 * re * 2 * R;
-  return { R, L, Q, dp, mean, re, entry, resistance, laminar: re < 2300, duration: re < 2300 ? L / mean : 0 };
+  return {
+    R,
+    L,
+    Q,
+    dp,
+    mean,
+    re,
+    entry,
+    resistance,
+    laminar: re < 2300,
+    duration: re < 2300 ? L / mean : 0,
+  };
 }
 export const readings = (p, s) => [
   ['Portata del modello', 1e6 * s.Q, 'mL/s'],
   ['Caduta Δp', s.dp, 'Pa'],
+  ['Velocità locale', s.laminar ? velocity(s, p.probe ?? 0.5) : '—', 'm/s'],
   ['Reynolds', s.re, ''],
 ];
 export const steps = (p, s) => [
@@ -57,10 +73,12 @@ export const steps = (p, s) => [
     'Re = ' +
       n(s.re) +
       ' · ' +
-      (s.laminar ? 'regime laminare compatibile' : 'transizione o turbolenza: stima laminare fuori dominio'),
+      (s.laminar
+        ? 'regime laminare compatibile'
+        : 'transizione o turbolenza: stima laminare fuori dominio'),
   ],
 ];
-export const graphs = (p, s) =>
+export const graphs = (p, s, t = 0) =>
   s.laminar
     ? [
         chart(
@@ -68,8 +86,21 @@ export const graphs = (p, s) =>
           'r (mm)',
           'v (m/s)',
           [curve('Velocità assiale', -p.r, p.r, (r) => velocity(s, r / p.r))],
-          0,
+          p.r * (p.probe ?? 0.5),
         ),
+        {
+          ...chart(
+            'Cammino dei traccianti',
+            't (s)',
+            'distanza (m)',
+            [
+              curve('Centro', 0, s.duration, (t) => t * velocity(s, 0)),
+              curve('Sonda', 0, s.duration, (t) => t * velocity(s, p.probe ?? 0.5)),
+            ],
+            t,
+          ),
+          track: 'time',
+        },
       ]
     : [];
 export const warning = (p, s) =>

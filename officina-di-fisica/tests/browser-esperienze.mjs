@@ -40,7 +40,9 @@ const representatives = new Set([
 ]);
 const only = process.env.ASTRA_CASE;
 const widths = { desktop: [1440, 960], tablet: [810, 1080], mobile: [390, 844], alternativa: [390, 844] };
-const available = records.filter((r) => !only || r.id === only);
+const courseFilter = process.env.ASTRA_COURSE;
+const available = records.filter((r) => (!only || r.id === only) && (!courseFilter || r.course === courseFilter));
+assert.ok(available.length, 'La selezione deve contenere almeno una simulazione');
 async function navigate(p, route, selector) {
   await p.evaluate((route) => {
     location.hash = route;
@@ -76,7 +78,12 @@ async function findLens(page, format) {
     assert.ok(fits, 'Navigazione leggibile anche a 320 px');
     await page.setViewportSize(normal);
   }
+  const featured = page.locator('.sim-featured');
+  await featured.locator('summary').click();
+  assert.deepEqual(await featured.locator('a').evaluateAll((links) => links.map((a) => a.hash.split('/')[1])),
+    ['LAB3D-02', 'LAB3D-04', 'LAB3D-05', 'SIM-C4-L10-02', 'LAB3D-10']);
   await search.fill('lente');
+  assert.equal(await featured.isVisible(), false);
   await subjectLink.waitFor();
   assert.equal(await page.locator('.sim-collections').isVisible(), false);
   await page.locator('a[href^="#banco/SIM-C5-L10-01/"]').waitFor();
@@ -110,17 +117,20 @@ async function findLens(page, format) {
 
   await navigate(page, 'lab/LAB-C5/C5', '#lab-view');
   await navigationShot(page, format, 'banco-ottico');
+  await page.locator('[data-phase="2"]').click();
   const distance = page.getByLabel('Valore numerico di Distanza oggetto cm');
   await distance.fill('8.5');
   await distance.press('Tab');
+  await page.locator('[data-phase="4"]').click();
   const note = page.getByLabel('Che cosa hai osservato?');
   await note.fill('Osservo un’immagine virtuale.');
   await subjectLink.click();
   await destination.waitFor();
   await back.click();
-  await distance.waitFor();
-  assert.equal(await distance.inputValue(), '8.5');
+  await note.waitFor();
   assert.equal(await note.inputValue(), 'Osservo un’immagine virtuale.');
+  await page.locator('[data-phase="2"]').click();
+  assert.equal(await distance.inputValue(), '8.5');
   await page.getByRole('navigation', { name: 'Navigazione principale' })
     .getByRole('link', {name: 'Simulazioni 3D'}).click();
   await search.waitFor();
@@ -289,7 +299,7 @@ try {
     await writeFile(
       path.join(
         readingsDir,
-        'risultati' + (process.env.ASTRA_VIEW ? '-' + process.env.ASTRA_VIEW : '') + '.json',
+        'risultati' + (process.env.ASTRA_VIEW ? '-' + process.env.ASTRA_VIEW : '') + (courseFilter ? '-' + courseFilter : '') + '.json',
       ),
       JSON.stringify(results) + '\n',
     );

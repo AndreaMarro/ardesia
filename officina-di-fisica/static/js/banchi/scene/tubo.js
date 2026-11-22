@@ -1,11 +1,11 @@
-import { velocity } from '../modelli/tubo.js';
+import { tracerFraction } from '../modelli/tubo.js';
 import { ink, metal, ivory, violet, brass, teal, red, glass } from '../scena.js';
 export const spec = { target: [0, 0.98, 0], width: 8.6, height: 4.5, eye: [3, 2.1, 6], bg: 0xe9f0e3 };
 export function build(b, p, s, stage) {
   b.base(6.8, 2.5);
   const y = 1.14,
-    R = 0.32 + p.r * 0.16,
-    len = 3.35 + p.length * 0.045,
+    R = p.r * 0.28,
+    len = 4.8,
     lo = -len / 2,
     hi = len / 2;
   b.rod([lo, y, 0], [hi, y, 0], R, glass, undefined, 0.19);
@@ -51,9 +51,21 @@ export function build(b, p, s, stage) {
     const h = [0, 0.35, 0.62, 0.82, 0.94][i % 5],
       a = i * 2.4;
     const bead = b.ball([lo, y + R * h * Math.cos(a), R * h * Math.sin(a)], 0.051, i % 3 ? teal : brass);
-    tracers.push({ bead, fraction: (i * 0.381966) % 1, speed: velocity(s, h) });
+    tracers.push({ bead, fraction: (i * 0.381966) % 1, h });
   }
+  const h = p.probe ?? 0.5;
+  const reading = b.ball([lo, y + R * h, 0], 0.09, red);
+  b.line(
+    [
+      [lo, y + R * h, 0],
+      [hi, y + R * h, 0],
+    ],
+    red,
+    undefined,
+    true,
+  );
   return (t) => {
-    for (const a of tracers) a.bead.position.x = lo + len * ((a.fraction + (t * a.speed) / s.L) % 1);
+    reading.position.x = lo + len * tracerFraction(s, h, t);
+    for (const a of tracers) a.bead.position.x = lo + len * tracerFraction(s, a.h, t, a.fraction);
   };
 }
