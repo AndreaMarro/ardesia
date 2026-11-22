@@ -68,6 +68,7 @@ def short(r):
             "reuse",
             "difficulty",
             "model",
+            "related",
             "plate",
             "labTitle",
             "exam",
@@ -316,11 +317,12 @@ class Handler(BaseHTTPRequestHandler):
                         owned=entitled(db, u, rows, c["id"]),
                         counts={
                             k: len(in_course(rows, c["id"], k))
-                            for k in ("lesson", "example", "question", "lab")
+                            for k in ("lesson", "example", "question", "lab", "bench")
                         },
                     )
                     for c in courses
                 ],
+                "benches": sorted((short(r) for r in rows if r["kind"] == "bench"), key=lambda r: r["order"]),
                 "labs": [short(r) for r in rows if r["kind"] == "lab"],
             }
         if not post and p[:2] == ["api", "course"] and len(p) == 3:
@@ -410,6 +412,13 @@ class Handler(BaseHTTPRequestHandler):
                     course=r["course"],
                 )
             require(not post, "Operazione non disponibile.", 405)
+            if r["kind"] == "lesson":
+                topics = [
+                    dict(t, bench=b["id"], index=i)
+                    for b in rows if b["kind"] == "bench"
+                    for i, t in enumerate(b.get("topics", [])) if t["lesson"] == r["id"]
+                ]
+                r = dict(r, benchTopics=topics)
             if u and r["kind"] in ("lesson", "example"):
                 last = db.execute(
                     "SELECT v FROM reads WHERE user=? AND id=?", (u["id"], r["id"])
@@ -435,7 +444,7 @@ class Handler(BaseHTTPRequestHandler):
             need_user(u)
             r = record(db, d["id"])
             require(
-                r["kind"] == "lab" and can_read(db, u, rows, r),
+                r["kind"] in ("bench", "lab") and can_read(db, u, rows, r),
                 "Laboratorio non disponibile.",
                 403,
             )

@@ -24,7 +24,7 @@ from .store import (
 
 from .method import validate_method
 
-KINDS = {"course", "section", "lesson", "example", "question", "lab", "method"}
+KINDS = {"course", "section", "lesson", "example", "question", "lab", "method", "bench"}
 TYPES = {"text", "formula", "figure", "attachment", "example", "question", "lab"}
 LAB_SPEC = json.loads((ROOT / "static" / "lab-models.json").read_text())
 CATEGORIES = {"concetto", "calcolo", "algebra", "unità", "testo", "modello"}
@@ -139,6 +139,37 @@ def validate(db, r, objects, extra=()):
         require(r.get("difficulty") in (1, 2, 3), "Difficoltà da 1 a 3.")
     if kind == "method":
         validate_method(r)
+    if kind == "bench":
+        require(r.get("model") in ("piano", "volo", "stevino", "tubo", "gas", "calore",
+                                   "campo", "circuito", "lente", "onde"), "Scena 3D sconosciuta.")
+        def text(value):
+            return isinstance(value, str) and bool(value.strip())
+
+        related = r.get("related")
+        require(text(r.get("summary")) and isinstance(related, list) and related,
+                "Completa obiettivo e collegamenti.")
+        for target in related:
+            ref(target, {"lesson", "example", "question"})
+        topics = r.get("topics")
+        require(isinstance(topics, list), "Voci di lezione mancanti.")
+        for topic in topics:
+            require(isinstance(topic, dict) and all(text(topic.get(k)) for k in
+                    ("lesson", "anchor", "topic", "question")), "Voce della lezione incompleta.")
+            ref(topic["lesson"], {"lesson"})
+            require(topic["lesson"] in related, "Collega anche la lezione della voce.")
+        prediction = r.get("prediction")
+        require(isinstance(prediction, dict), "Previsione del banco mancante.")
+        options = prediction.get("options")
+        require(text(prediction.get("question")) and text(prediction.get("why"))
+                and isinstance(options, list) and 2 <= len(options) <= 8
+                and all(text(o) for o in options) and len(set(options)) == len(options)
+                and type(prediction.get("correct")) is int and 0 <= prediction["correct"] < len(options),
+                "Completa la previsione del banco.")
+        checks = r.get("assessment")
+        require(isinstance(checks, list) and len(checks) == 2 and
+                all(isinstance(a, dict) and all(text(a.get(k)) for k in ("prompt", "unit", "worked"))
+                    and type(a.get("value")) in (float, int) and math.isfinite(a["value"]) for a in checks),
+                "Completa verifica e problema di trasferimento.")
     if kind == "lab":
         model = r.get("model")
         require(model in LAB_SPEC["parameters"], "Modello di laboratorio sconosciuto.")

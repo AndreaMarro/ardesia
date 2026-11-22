@@ -1,3 +1,4 @@
+import {benchLinks, lessonBenches} from './banchi/collegamenti.js';
 import {
   main,
   state,
@@ -88,6 +89,9 @@ function labs() {
       'I laboratori',
       'Prima fai una previsione. Poi modifica un parametro e confronta ciò che osservi con il modello.',
     ) +
+    '<h2 class="bench-collection">Banchi tridimensionali</h2><div class="rows">' +
+    state.benches.map(b => indexRow(b.course, b.title, b.summary, 'banco/' + b.id, subjectDrawing(b.course))).join('') +
+    '</div><h2 class="bench-collection">Laboratori guidati</h2>' +
     `<div class="rows">${state.labs
       .sort((a, b) => a.order - b.order)
       .map((l) => indexRow(l.course, l.title, titleOf(l.course), 'lab/' + l.id, subjectDrawing(l.course)))
@@ -198,7 +202,7 @@ async function coursePage(id, tab = 'parti') {
   } else if (tab === 'recupero') {
     body = data.owned ? '<section id="raccolta-errori" class="big-list"></section>' : gate(id);
   } else if (tab === 'attivita') {
-    body = `<div class="split"><div><h2>Verifica il tuo lavoro</h2><p class="deck">Allenamento con feedback, verifiche con correzione alla consegna.</p><div class="actions">${link('Apri le attività', 'allenamento/' + id, true)}</div></div><div><h3>Laboratori del percorso</h3>${data.items
+    body = `<div class="split"><div><h2>Verifica il tuo lavoro</h2><p class="deck">Allenamento con feedback, verifiche con correzione alla consegna.</p><div class="actions">${link('Apri le attività', 'allenamento/' + id, true)}</div></div><div><h3>Laboratori del percorso</h3>${data.items.filter(r=>r.kind==='bench').map(r=>listLine(r.title,'banco/'+r.id+'/'+encodeURIComponent(location.hash.slice(1)),r.summary)).join('')}${data.items
       .filter((r) => r.kind === 'lab')
       .map((r) => listLine(r.title, 'lab/' + r.id + '/' + id))
       .join('')}</div></div>`;
@@ -226,6 +230,7 @@ async function coursePage(id, tab = 'parti') {
 }
 async function material(id, course) {
   const r = await api('/item/' + id);
+  if (r.kind === 'bench') return go('banco/' + id);
   if (r.kind === 'lab') return labPage(id, course);
   course = course || r.course;
   if (r.kind === 'question') {
@@ -233,13 +238,13 @@ async function material(id, course) {
       main.innerHTML =
         crumb([[titleOf(course), courseUrl(course, 'esercizi')], ['Esercizio']]) +
         head('Prova a rispondere') +
-        button('Inizia il quesito', 'single', true);
+        button('Inizia il quesito', 'single', true) + benchLinks(id);
       on('#single', 'click', () => startRun({ course, item: id, mode: 'practice' }));
       return;
     }
     main.innerHTML =
       crumb([[titleOf(course), courseUrl(course, 'esercizi')], ['Anteprima']]) +
-      `<article class="question-shell"><div class="meta">Esercizio di anteprima</div><h1 class="exercise-prompt">${esc(r.prompt)}</h1>${blocks(r.figures)}<form id="q-preview">${inputFor(r)}<button class="solid" type="submit">Verifica risposta</button></form><div id="preview-result"></div></article>`;
+      `<article class="question-shell"><div class="meta">Esercizio di anteprima</div><h1 class="exercise-prompt">${esc(r.prompt)}</h1>${blocks(r.figures)}<form id="q-preview">${inputFor(r)}<button class="solid" type="submit">Verifica risposta</button></form><div id="preview-result"></div>${benchLinks(id)}</article>`;
     on('#q-preview', 'submit', async (e, el) => {
       const value = new FormData(el).get('value');
       if (!value) throw Error('Inserisci una risposta.');
@@ -267,7 +272,10 @@ async function material(id, course) {
   main.innerHTML =
     crumb([['Percorsi', 'percorsi'], [titleOf(course), courseUrl(course, course === 'C6' && r.kind === 'lesson' ? 'lezioni' : 'parti')], [kinds[r.kind] || 'Materiale']]) +
     `<div class="layout"><aside class="index"><details ${matchMedia('(min-width:641px)').matches ? 'open' : ''}><summary>Indice del modulo</summary><h3>${esc(titleOf(r.course))}</h3>${indexLinks}</details></aside><article class="reader"><div class="meta">${esc(kinds[r.kind])} · ${esc(r.id)}</div><h1>${esc(r.title)}</h1>${r.prompt ? `<p class="exercise-prompt">${esc(r.prompt)}</p>${blocks(r.promptBlocks)}` : ''}<div class="lettura-contenuto">${blocks(r.blocks)}</div><div class="actions">${state.user ? button(r.readVersion === r.version ? 'Lettura registrata' : r.readVersion ? 'Segna la nuova versione come letta' : 'Segna come letta', 'read') : ''}${r.kind === 'lesson' && examples.length ? link('Segui un esempio', 'materiale/' + examples[0].id + '/' + course, true) : ''}${data.owned && q ? button('Prova un problema', 'exercise', true) : ''}</div>${r.kind === 'lesson' && examples.length ? '<h3>Esempi svolti</h3>' + examples.map((e) => listLine(e.title, 'materiale/' + e.id + '/' + course)).join('') : ''}${lab ? listLine(lab.title, 'lab/' + lab.id + '/' + course, 'Laboratorio') : ''}${lessons[idx + 1] ? listLine('Lezione successiva', 'materiale/' + lessons[idx + 1].id + '/' + course, lessons[idx + 1].title) : ''}</article></div>`;
-  installaPassaggi(main.querySelector('.lettura-contenuto'), r);
+  const reading = main.querySelector('.lettura-contenuto');
+  if (r.kind === 'lesson') lessonBenches(reading, r);
+  installaPassaggi(reading, r);
+  if (r.kind === 'example') reading.insertAdjacentHTML('afterend', benchLinks(id));
   on('#read', 'click', async () => {
     await api('/read', { id });
     toast('Lettura salvata nel tuo quaderno.');
@@ -275,6 +283,7 @@ async function material(id, course) {
   });
   on('#exercise', 'click', () => startRun({ course, skill: r.skill, mode: 'practice' }));
 }
+let closeBench, returnPage, displayedRoute;
 async function router() {
   const [page = 'home', ...parts] = (location.hash.slice(1) || 'home').split('/').map(decodeURIComponent);
   if (page === 'main') {
@@ -284,10 +293,21 @@ async function router() {
   if (!ready) await refresh();
   ready = true;
   const here = location.hash.slice(1);
+  closeBench?.();
+  closeBench = undefined;
+  if (page === 'banco' && parts[1] && parts[1] === displayedRoute &&
+      /^(materiale|corso|prova)\//.test(displayedRoute)) {
+    const fragment = document.createDocumentFragment();
+    returnPage = {route: displayedRoute, fragment, scroll: window.scrollY, focus: document.activeElement, user: state.user?.id};
+    fragment.append(...main.childNodes);
+  }
+  const restore = returnPage && page !== 'banco' && here === returnPage.route && state.user?.id === returnPage.user;
+  if (!restore && page !== 'banco') returnPage = undefined;
+  displayedRoute = here;
   main.setAttribute('aria-busy', 'true');
   const section = {
     corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi',
-    prova: 'studio', lab: 'laboratori', accedi: 'studio',
+    prova: 'studio', lab: 'laboratori', banco: 'laboratori', accedi: 'studio',
   }[page] || page;
   for (const a of document.querySelectorAll('.mast nav a')) {
     const active = a.hash === '#' + section;
@@ -296,6 +316,16 @@ async function router() {
     else a.removeAttribute('aria-current');
   }
   try {
+    if (restore) {
+      const prior = returnPage;
+      returnPage = undefined;
+      main.replaceChildren(prior.fragment);
+      main.removeAttribute('aria-busy');
+      document.title = (main.querySelector('h1')?.textContent || 'Officina di Fisica') + ' · Andrea Marro';
+      if (prior.focus?.isConnected) prior.focus.focus({preventScroll: true});
+      window.scrollTo({top: prior.scroll, behavior: 'instant'});
+      return;
+    }
     if (page === 'home') home();
     else if (page === 'percorsi') {
       main.innerHTML =
@@ -306,6 +336,7 @@ async function router() {
     else if (page === 'corso') await coursePage(...parts);
     else if (page === 'materiale') await material(...parts);
     else if (page === 'laboratori') labs();
+    else if (page === 'banco') closeBench = await (await import('./banchi/banco.js')).benchPage(...parts);
     else if (page === 'lab') await labPage(...parts);
     else if (page === 'fonti') sources();
     else if (page === 'studio') await study();

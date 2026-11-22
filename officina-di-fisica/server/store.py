@@ -266,7 +266,7 @@ def can_read(db, user, rows, rec):
         first = min(group, key=lambda r: (r.get("order", 0), r["id"]), default=None)
         if first and first["id"] == rec["id"]:
             return True
-    if rec["kind"] == "lab" and rec["course"] == "C2":
+    if rec["kind"] in ("lab", "bench") and rec["course"] == "C2":
         return True
     return bool(grants(db, user, rows) & courses_for(rows, rec))
 

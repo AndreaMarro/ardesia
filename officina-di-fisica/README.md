@@ -42,6 +42,8 @@ L’indirizzo predefinito è [127.0.0.1:8843](http://127.0.0.1:8843/). Il server
 
 L’edizione comprende **56 lezioni, 117 esempi guidati e 606 quesiti con svolgimento**. In ogni esempio puoi leggere tutto lo svolgimento oppure scegliere **Un passaggio alla volta**, avanzare fra formule e figure e tornare al testo completo. I 13 fascicoli A4 raccolgono 411 pagine con indici cliccabili. C6 include le tre simulazioni da 31 quesiti.
 
+I dieci **banchi tridimensionali** collegano le singole voci di lezione a un esperimento con previsione, misure, verifica e trasferimento. Sono disponibili due banchi per microcorso, insieme ai cinque laboratori guidati. [Apri la guida con collegamenti e schermate](docs/laboratori-3d/README.md)
+
 | Percorso | Cosa aprire |
 |---|---|
 | C1 · Strumenti e Meccanica | [Dispensa](materials/C1-dispensa.pdf) · [Esercizi e soluzioni](materials/C1-esercizi.pdf) |
@@ -95,9 +97,10 @@ python3 tools/audit_integrazioni.py
 python3 tools/dimostra_lotto.py
 python3 -m unittest discover -s tests
 node tools/check-formulas.cjs
-node --test tests/models.test.js tests/lettura.test.js
+node --test tests/*.test.js
 npm ci
 npm run test:browser
+node tests/browser-banchi.mjs
 node tests/editor.mjs
 python3 tools/verifica_pdf.py
 ```

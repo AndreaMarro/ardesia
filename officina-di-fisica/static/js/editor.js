@@ -24,7 +24,7 @@ import { diagram } from './labs.js';
 import { installaPassaggi } from './lettura.js';
 
 const typeNames = { ...kinds, text: 'Testo', formula: 'Formula', figure: 'Figura', attachment: 'Allegato' };
-const kindOrder = ['course', 'section', 'lesson', 'example', 'question', 'lab', 'method'];
+const kindOrder = ['course', 'section', 'lesson', 'example', 'question', 'lab', 'bench', 'method'];
 const blockTypes = ['text', 'formula', 'figure', 'example', 'question', 'lab', 'attachment'];
 const answerTypes = { choice: 'Scelta multipla', text: 'Completamento', numeric: 'Risposta numerica' };
 const route = (k) => 'autore/modifica/' + encodeURIComponent(k);

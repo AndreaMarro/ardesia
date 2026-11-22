@@ -21,6 +21,7 @@ export const kinds = {
   example: 'Esempio svolto',
   question: 'Quesito',
   lab: 'Laboratorio',
+  bench: 'Laboratorio 3D',
 };
 export const errorNames = {
   concetto: 'Errore concettuale',

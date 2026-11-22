@@ -380,3 +380,9 @@ details > summary { min-height: 42px; padding: .45rem 0; }
   .lettura-contenuto > .copy > [hidden] { display: block !important; }
   .foot::after { content: 'Andrea Marro 3461653930 se serve chiedi!'; }
 }
+
+.bench-collection { margin: 1.35rem 0 .7rem; font-size: clamp(1.6rem, 2.8vw, 2.5rem); }
+.bench-topic { border-left: 3px solid var(--violet); padding: .35rem .8rem; background: #eee9f3; margin: .6rem 0 1rem; }
+.bench-topic summary { font: 650 .88rem/1.5 var(--sans); padding: .35rem 0; color: var(--violet-dark); }
+.bench-topic a { display: block; margin: .6rem 0; font: .91rem/1.4 var(--sans); text-decoration: none; }
+.bench-topic a span { display: block; text-decoration: underline; }

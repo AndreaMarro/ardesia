@@ -1,0 +1,431 @@
+.bench-room {
+  margin: 0 auto 2.5rem;
+}
+.bench-room [hidden] {
+  display: none !important;
+}
+.bench-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 1.3rem;
+}
+.bench-head h1 {
+  font-size: clamp(2.45rem, 4.6vw, 4.8rem);
+  line-height: 1.02;
+  margin: 0.25rem 0 0.4rem;
+}
+.bench-head p {
+  font: 1.17rem/1.4 var(--serif);
+  max-width: 75ch;
+}
+.bench-head img {
+  transform: rotate(-7deg);
+}
+.bench-work {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(270px, 1fr);
+  border: 1.5px solid var(--ink);
+}
+.bench-instrument,
+.bench-desk {
+  min-width: 0;
+}
+.bench-instrument {
+  border-right: 1.5px solid var(--ink);
+}
+.bench-strip,
+.bench-stepbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.bench-strip {
+  padding: 0.57rem 0.95rem;
+  border-bottom: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font: 0.83rem var(--mono);
+}
+.bench-strip strong {
+  font: 660 0.91rem var(--sans);
+}
+.bench-stage {
+  position: relative;
+  background: #eaece3;
+  height: clamp(290px, 29vw, 445px);
+  overflow: hidden;
+}
+.bench-stage canvas,
+.bench-stage [data-drawing] {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.bench-stage canvas {
+  touch-action: none;
+}
+.bench-stage canvas:focus-visible {
+  outline-offset: -4px;
+}
+.bench-diagram {
+  height: 100%;
+  width: 100%;
+  padding: 0.65rem;
+}
+.bench-diagram text,
+.bench-plot text {
+  font: 14px var(--sans);
+  fill: var(--ink);
+}
+.bench-key {
+  min-height: 2.15rem;
+  border-top: 1px solid var(--fine);
+  padding: 0.42rem 0.85rem;
+  color: #393544;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+.bench-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0.2rem 0.75rem;
+}
+.bench-views button {
+  min-height: 38px;
+  font-size: 0.83rem;
+  padding: 0.25rem 0.62rem;
+}
+.bench-views [aria-pressed='true'] {
+  background: var(--wash);
+  color: var(--violet-dark);
+  border-color: var(--violet-dark);
+}
+.bench-help {
+  margin: 0.25rem 0.85rem 0.75rem;
+  font-size: 0.77rem;
+  color: var(--muted);
+}
+.bench-time {
+  margin: 0.45rem 0.85rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.bench-time label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: min(100%, 30rem);
+  font: 0.8rem var(--mono);
+}
+.bench-time input {
+  grid-column: 1/-1;
+  width: 100%;
+}
+.bench-room input[type='range'] {
+  accent-color: var(--violet);
+  min-height: 25px;
+  padding: 0;
+}
+.bench-readings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: #f0ede2;
+}
+.bench-readings:empty {
+  display: none;
+}
+.bench-readings div {
+  padding: 0.7rem 0.85rem;
+  border-top: 1px solid var(--fine);
+}
+.bench-readings div + div {
+  border-left: 1px solid var(--fine);
+}
+.bench-readings span {
+  display: block;
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+.bench-readings strong {
+  display: block;
+  font: 650 clamp(1.1rem, 1.6vw, 1.6rem) / 1.4 var(--sans);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.bench-readings small {
+  font: 550 0.73em var(--sans);
+}
+.bench-desk {
+  padding: clamp(1rem, 2vw, 2.1rem);
+  background: #ede7f5;
+}
+.bench-desk h2 {
+  font-size: clamp(1.65rem, 2.35vw, 2.6rem);
+  margin: 0.6rem 0 0.95rem;
+}
+.bench-desk p {
+  line-height: 1.52;
+  margin: 0.75rem 0;
+}
+.bench-desk fieldset,
+.bench-desk legend {
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.7rem;
+}
+.bench-desk fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-top: 1px solid #a79daf;
+  min-height: 45px;
+  padding: 0.4rem 0.15rem;
+}
+.bench-desk input[type='radio'] {
+  accent-color: var(--violet);
+  width: 18px;
+  height: 18px;
+}
+.bench-room .bench-equation {
+  border-left: 3px solid var(--violet);
+  padding: 0.58rem 0.75rem;
+  background: var(--paper);
+  font: 600 0.97rem/1.55 var(--sans);
+}
+.bench-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.bench-desk details {
+  margin-top: 0.9rem;
+  font-size: 0.88rem;
+}
+.bench-stepbar > span:last-child {
+  color: var(--violet);
+}
+.bench-warning {
+  margin: 0.8rem 0;
+  border-left: 4px solid var(--red);
+  padding: 0.7rem 1rem;
+  background: #f4dfcd;
+}
+.bench-experiment,
+.bench-checks {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3.5vw, 4rem);
+  margin: 1.7rem 0;
+}
+.bench-room .rule-head {
+  padding: 0 0 0.7rem;
+  margin: 0;
+  align-items: center;
+}
+.bench-experiment h2,
+.bench-room [data-assess] > h2 {
+  font-size: clamp(1.7rem, 2.4vw, 2.55rem);
+}
+.bench-params {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.3rem;
+}
+.bench-param {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: start;
+  column-gap: 0.4rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--fine);
+}
+.bench-param span,
+.bench-param output {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.bench-param output {
+  color: var(--violet-dark);
+}
+.bench-param input,
+.bench-param select,
+.bench-param small {
+  width: 100%;
+  grid-column: 1/-1;
+}
+.bench-param small {
+  font: 0.72rem var(--mono);
+  color: var(--muted);
+}
+.bench-param select {
+  margin-top: 0.4rem;
+}
+.bench-plot {
+  border: 1px solid var(--fine);
+  background: #faf8f0;
+  padding: 0.75rem 0.9rem;
+  margin: 0 0 0.75rem;
+}
+.bench-plot figcaption {
+  font-weight: 650;
+  margin-bottom: 0.4rem;
+}
+.bench-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.bg-grid {
+  stroke: #c9c3bf;
+  stroke-width: 0.8;
+}
+.bench-cursor {
+  stroke: #393344;
+  stroke-dasharray: 4 3;
+}
+.curve-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.75rem;
+}
+.curve-key i {
+  display: inline-block;
+  width: 0.9rem;
+  height: 3px;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+.bench-room [data-assess] {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.1rem;
+}
+.bench-checks {
+  margin: 0.8rem 0;
+  gap: 1rem;
+}
+.bench-check,
+.bench-note {
+  border: 1px solid var(--fine);
+  padding: 1rem;
+  background: var(--panel);
+}
+.bench-check p {
+  margin: 0.65rem 0;
+}
+.bench-check input {
+  width: 7em;
+}
+.bench-check button {
+  margin: 0.4rem;
+}
+.bench-note {
+  max-width: 46rem;
+}
+.bench-note label,
+.bench-note textarea {
+  display: block;
+  width: 100%;
+}
+.bench-note button {
+  margin: 0.4rem 0;
+}
+.bench-room footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.3rem;
+  margin-top: 1rem;
+}
+@media (max-width: 850px) {
+  .bench-work {
+    grid-template-columns: minmax(0, 1.25fr) minmax(265px, 1fr);
+  }
+  .bench-readings div {
+    padding: 0.55rem;
+  }
+  .bench-experiment {
+    gap: 1rem;
+  }
+  .bench-params {
+    grid-template-columns: 1fr;
+  }
+  .bench-head img {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 650px) {
+  .bench-head {
+    align-items: flex-start;
+    margin: 0.5rem 0 0.8rem;
+  }
+  .bench-head img {
+    width: 32px;
+    height: 32px;
+  }
+  .bench-head p {
+    font-size: 1.04rem;
+  }
+  .bench-work,
+  .bench-experiment,
+  .bench-checks {
+    grid-template-columns: 1fr;
+  }
+  .bench-instrument {
+    border-right: 0;
+  }
+  .bench-desk {
+    border-top: 1.5px solid var(--ink);
+  }
+  .bench-stage {
+    height: clamp(235px, 62vw, 327px);
+  }
+  .bench-views button {
+    min-height: 44px;
+  }
+  .bench-head h1 {
+    font-size: clamp(2.1rem, 8.8vw, 2.8rem);
+  }
+  .bench-experiment {
+    margin: 1.1rem 0;
+  }
+  .bench-key {
+    min-height: 0;
+  }
+  .bench-strip {
+    font-size: 0.74rem;
+  }
+  .bench-readings strong {
+    font-size: 1.15rem;
+  }
+  .bench-readings small {
+    font-size: 0.63em;
+  }
+  .bench-params {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 0.8rem;
+  }
+  .bench-param {
+    grid-template-columns: 1fr;
+  }
+  .bench-param output {
+    text-align: left;
+  }
+  .bench-views {
+    padding: 0.2rem 0.44rem;
+  }
+  .bench-help {
+    margin: 0.15rem 0.55rem 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bench-room * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
