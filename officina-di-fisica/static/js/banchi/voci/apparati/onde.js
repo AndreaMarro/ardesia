@@ -144,11 +144,15 @@ export const ondulatoria = {
       const d = 3.95 * s.eco,
         left = -2.13,
         wall = left + d;
-      b.box([wall, 1, 0], [0.13, 1.65, 1.04], c.metallo);
+      b.box([wall + 0.065, 1, 0], [0.13, 1.65, 1.04], c.metallo, 0.43);
       b.ball([left, 0.82, 0], 0.15, c.ocra);
       b.arrow([left, 1.24, 0], [wall, 1.24, 0], c.verde);
       b.arrow([wall, 0.7, 0], [left, 0.7, 0], c.viola);
-      if (s.frazioneEco !== undefined) b.ball([left + d * s.frazioneEco, 1.01, 0.2], 0.105, c.viola);
+      if (s.frazioneEco !== undefined) {
+        const at = left + d * s.frazioneEco;
+        b.ball([at, 1.01, 0.34], 0.13, c.viola);
+        b.label([at, 1.43, 0.36], s.frazioneEco >= 1 - 1e-8 ? 'Riflessione' : 'Impulso', c.viola);
+      }
       b.label([left, 1.61, 0], 'Microfono');
       b.label([wall, 2.1, 0], 'Riflettore');
       return;

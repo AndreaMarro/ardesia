@@ -244,7 +244,11 @@ test('Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei cors
       .elements(10, 2, t)
       .filter((e) => e.kind === 'ball')
       .at(-1).p[0];
-  const wall = (t) => echo.elements(10, 2, t).find((e) => e.kind === 'box').p[0];
+  const wall = (t) => {
+    const slab = echo.elements(10, 2, t).find((e) => e.kind === 'box');
+    return slab.p[0] - slab.size[0]/2;
+  };
+  assert.ok(echo.elements(10, 2, 5).some(e => e.kind === 'label' && e.text === 'Riflessione'));
   close(wall(5), wall(0), 'parete ferma');
   close(pulse(5), wall(5), 'riflessione a metà ritardo');
   close(pulse(0), pulse(10), 'ritorno al microfono');
