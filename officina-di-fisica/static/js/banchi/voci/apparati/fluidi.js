@@ -196,6 +196,12 @@ export const fluidi = {
       b.ring([1.02, 1.05, 0], 0.089, 'yz', c.inchiostro);
       b.label([1.34, 2.99, 0], 'Presa frontale');
     }
+    if (s.avanzamento !== undefined) {
+      for (let i = 0; i < 6; i++) {
+        const fraction = (i / 6 + s.avanzamento) % 1;
+        b.ball([-l + 2 * l * fraction, 1.05, 0.07], 0.065, i ? c.verde : c.ocra);
+      }
+    }
     if (s.raccolta !== undefined)
       b.box([l, 0.15 + 0.18 * s.raccolta, 0], [0.56, 0.08 + 0.32 * s.raccolta, 0.66], c.acqua, 0.72);
     b.label([-l + 0.55, 1.68 + s.r1, 0], 'Entrata');
@@ -205,7 +211,7 @@ export const fluidi = {
     const y = 1.2,
       R = 0.82;
     tuboOrizz(b, -2.0, 2.0, R, R, y);
-    if ((s.regime ?? 0) > 2300) {
+    if ((s.regime ?? 0) >= 2300) {
       b.label([0, 2.4, 0], 'Profilo laminare fuori validità', c.rosso);
       return;
     }
@@ -222,11 +228,15 @@ export const fluidi = {
       c.verde,
     );
     if (s.sonda !== undefined) b.ball([-0.7, y + R * s.sonda, 0.08], 0.085, c.ocra);
-    if (s.traccia !== undefined)
+    if (s.tracciaCm !== undefined) {
+      // Twenty centimetres along the visible tube. Each tracer wraps at the outlet.
+      const at = (h, phase) => -2 + 4 * ((phase + (s.tracciaCm * (1 - h * h)) / 20) % 1);
       for (let j = 0; j < 12; j++) {
         const h = ((j % 5) - 2) / 2.7;
-        b.ball([-1.88 + ((j * 0.44 + 0.65 * (1 - h * h) * s.traccia) % 3.76), y + R * h, 0.2], 0.047, c.ocra);
+        b.ball([at(h, j / 12), y + R * h, 0.2], 0.047, c.ocra);
       }
+      b.ball([at(s.sonda, 0.16), y + R * s.sonda, 0.12], 0.078, c.rosso);
+    }
     b.label([0, 2.42, 0], 'Sezione di misura');
   },
   rete(b, s) {

@@ -1,5 +1,6 @@
 import { api, esc, crumb, main, state, link } from '../ui.js';
 import { defaults, inRange, n, nextTime } from './misure.js';
+import { confrontoMisure } from './voci/misure-affiancate.js';
 import { plot, moveCursor } from './grafici.js';
 import {
   barraTempo,
@@ -110,6 +111,7 @@ function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
       <details class="settings-drawer" data-controls><summary>Parametri del banco</summary><div class="bench-params">${controls(model.params, defaults(model.params))}</div><div class="setting-actions"><button data-reset>${activity ? 'Prima misura' : 'Valori iniziali'}</button>${activity ? '<button data-compare>Seconda misura</button>' : ''}</div></details>
       <details class="graph-drawer" data-plots><summary>Grafici e misure</summary><div data-graphs></div></details>
     </section></div></div>
+    ${activity ? '<section class="bench-comparison" data-comparison hidden></section>' : ''}
     <section data-assess hidden><h2>Metti alla prova la spiegazione</h2><div class="bench-checks">${exercises(r)}</div>${logged ? '<form class="bench-note"><label>Che cosa hai osservato?<textarea required name="note" rows="2"></textarea></label><button>Salva nel quaderno</button><p role="status"></p></form>' : ''}</section>
     <footer>${link(origin ? 'Torna all’attività' : 'Torna ai laboratori', back)} <a href="#materiale/${esc(r.skill)}/${esc(r.course)}">Lezione associata</a></footer></article>`
   );
@@ -144,6 +146,8 @@ export async function benchPage(id, origin, topicIndex) {
   const leaveFocus = concentrazione(get('.bench-instrument'));
   const settings = get('[data-controls]'),
     plots = get('[data-plots]');
+  const pairNode = get('[data-comparison]');
+  const pair = activity ? confrontoMisure(pairNode, activity, () => get('[data-compare]').click()) : null;
   let mathStep = 0,
     answered = false;
   let p = defaults(model.params),
@@ -156,6 +160,21 @@ export async function benchPage(id, origin, topicIndex) {
     raf = 0,
     last = 0,
     lastText = -1;
+  const clock = !pilot && activity?.clock;
+  const timeline = clock?.input;
+  const timeUnit = clock?.clockUnit || 's';
+  if (timeline) t = Number(p.x);
+  get('[data-clock-unit]').textContent = timeUnit;
+  if (clock && (timeUnit !== 's' || clock.pace !== 1)) {
+    const scale = get('.clock-scale');
+    scale.hidden = false;
+    scale.textContent =
+      'A velocità 1×, un secondo di riproduzione corrisponde a ' +
+      n(clock.pace) +
+      ' ' +
+      (timeUnit === 'T½' ? 'emivita' : timeUnit) +
+      ' del modello.';
+  }
   const initialRate = pilot === 'volo' ? 0.5 : 1;
   let rate = initialRate;
   const touch = matchMedia('(pointer:coarse)').matches;
@@ -171,12 +190,18 @@ export async function benchPage(id, origin, topicIndex) {
     graphBox = get('[data-graphs]'),
     diagram = get('[data-drawing]');
   const active = () => inViewport && !document.hidden && root.isConnected && !disposed;
-  const timeline =
-    activity &&
-    /^(Tempo|Istante)(?: |$)/.test(r.control.label) &&
-    r.control.unit === 's' &&
-    r.control.min === 0;
-  const duration = () => (timeline ? r.control.max : s.duration);
+  const duration = () => (clock ? clock.duration(s.x, s.y) : s.duration);
+  const clockInput = timeline && get('[name=x]');
+  if (clockInput) {
+    clockInput.step = 'any';
+    clockInput.onkeydown = (event) => {
+      const direction = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[event.key];
+      if (!direction) return;
+      event.preventDefault();
+      clockInput.value = Number(clockInput.value) + direction * r.control.step;
+      clockInput.dispatchEvent(new Event('input', { bubbles: true }));
+    };
+  }
   const isTimed = () => duration() > 0 && stage >= 0;
   const instant = () => (pilot && model.sample ? model.sample(s, t) : {});
   function reasoning() {
@@ -217,12 +242,22 @@ export async function benchPage(id, origin, topicIndex) {
     }
     if (isTimed()) {
       const time = timeline ? s.x : t;
-      get('[data-time]').textContent = n(time) + ' / ' + n(duration()) + ' s';
+      get('[data-time]').textContent = n(time) + ' / ' + n(duration()) + ' ' + timeUnit;
       get('[data-scrub]').value = time;
-      get('[data-scrub]').setAttribute('aria-valuetext', n(time) + ' secondi');
+      get('[data-scrub]').setAttribute('aria-valuetext', n(time) + ' ' + timeUnit);
       if (document.activeElement !== get('[data-instant]'))
         get('[data-instant]').value = Number(time.toFixed(5));
     }
+    if (timeline) {
+      const row = clockInput.closest('[data-row]');
+      clockInput.value = s.x;
+      clockInput.setAttribute('aria-valuetext', n(s.x) + ' ' + timeUnit);
+      row.querySelector('output').textContent = n(s.x) + ' ' + timeUnit;
+      moveCursor(graphBox, s.x, 'control', s.y);
+      moveCursor(graphBox, s.x, 'area-v');
+      get('[data-equation]').textContent = model.steps(p, s)[stage][2];
+      if (pair && !pairNode.hidden) pair.render(s.x);
+    } else if (clock?.signal) moveCursor(graphBox, t, 'time', clock.signal(s.x, t, s.y));
     if (['volo', 'onde'].includes(pilot)) moveCursor(graphBox, t);
     if (['tubo', 'induzione'].includes(pilot)) moveCursor(graphBox, t, 'time');
     if (pilot === 'gas') {
@@ -231,7 +266,8 @@ export async function benchPage(id, origin, topicIndex) {
     }
   }
   function advanceClock(now) {
-    if (last && playing) t = nextTime(t, (now - last) / 1000, duration(), rate, get('[data-loop]').checked);
+    if (last && playing)
+      t = nextTime(t, (now - last) / 1000, duration(), rate * (clock?.pace || 1), get('[data-loop]').checked);
     last = now;
   }
   function stop() {
@@ -245,14 +281,9 @@ export async function benchPage(id, origin, topicIndex) {
     if (wasPlaying && stage >= 0) syncTime();
   }
   function syncTime(fresh = true) {
-    if (timeline) {
-      const x = Math.min(duration(), Math.round(t / r.control.step) * r.control.step);
-      if (x !== p.x) {
-        p = { ...p, x };
-        s = model.solve(p);
-        draw();
-        return;
-      }
+    if (timeline && t !== s.x) {
+      p = { ...p, x: t };
+      s = model.solve(p);
     }
     frame(fresh);
   }
@@ -354,20 +385,25 @@ export async function benchPage(id, origin, topicIndex) {
     root.dataset.moment = momenti[stage + 1];
     segnaMomento(root, stage + 1, !answered);
     const caption = get('[data-caption]');
-    caption.hidden = stage < 0 || !pilot;
+    caption.hidden = stage < 0 || (!pilot && !activity);
+    if (pair) {
+      pairNode.hidden = stage !== 1 && stage !== 2;
+      if (!pairNode.hidden) pair.render(Number(p.x));
+    }
     if (!caption.hidden)
-      caption.textContent = {
-        volo: 'Pallina in volo · freccia verde per la velocità, rossa per la gravità.',
-        tubo:
-          p.mode === 'flow'
-            ? 'Portata imposta · la pompa adatta la pressione quando cambia il raggio.'
-            : 'Pressione imposta · la portata risponde alle variazioni del raggio.',
-        gas: 'La tacca verde indica il volume iniziale, la viola il volume finale.',
-        induzione: s.closed
-          ? 'Circuito chiuso · il segno di I indica il verso rispetto a +n.'
-          : 'Circuito aperto · leggi la tensione ai capi della bobina.',
-        onde: 'S₁ e S₂ sono le sorgenti. La sonda P misura la somma delle due onde.',
-      }[pilot];
+      caption.textContent =
+        {
+          volo: 'Pallina in volo · freccia verde per la velocità, rossa per la gravità.',
+          tubo:
+            p.mode === 'flow'
+              ? 'Portata imposta · la pompa adatta la pressione quando cambia il raggio.'
+              : 'Pressione imposta · la portata risponde alle variazioni del raggio.',
+          gas: 'La tacca verde indica il volume iniziale, la viola il volume finale.',
+          induzione: s.closed
+            ? 'Circuito chiuso · il segno di I indica il verso rispetto a +n.'
+            : 'Circuito aperto · leggi la tensione ai capi della bobina.',
+          onde: 'S₁ e S₂ sono le sorgenti. La sonda P misura la somma delle due onde.',
+        }[pilot] || [activity.observe, clock?.setup].filter(Boolean).join(' ');
     if (stage >= 0) {
       const explanation = reasoning();
       get('[data-reference]').hidden = !pilot || stage < 2;
@@ -414,7 +450,8 @@ export async function benchPage(id, origin, topicIndex) {
     if (next === 'diagram' && !drawing) {
       if (activity && !pilot) {
         const { disegna2D } = await import('./voci/tavola.js');
-        drawing = (_, p, s, t, step, title) => disegna2D(activity.elements(s.x, step), title);
+        drawing = (_, p, s, t, step, title) =>
+          disegna2D(activity.elements(s.x, step, step >= 0 ? t : undefined), title);
       } else drawing = (await import('./tavola.js')).drawing;
       if (disposed) return;
     }
@@ -528,7 +565,7 @@ export async function benchPage(id, origin, topicIndex) {
       r.prediction.why;
     goStep(0);
     get('.initial-choice').open = true;
-    if (pilot && !media.matches) start();
+    if ((pilot || clock) && !media.matches) start();
   };
   for (const btn of root.querySelectorAll('[data-phase]'))
     btn.onclick = () => goStep(Number(btn.dataset.phase) - 1);
@@ -556,7 +593,13 @@ export async function benchPage(id, origin, topicIndex) {
     const el = e.target,
       def = model.params.find((a) => a.key === el.name);
     if (!def) return;
-    const next = { ...p, [el.name]: def.options ? el.value : Number(el.value) };
+    let value = def.options ? el.value : Number(el.value);
+    if (el === clockInput)
+      value = Math.min(
+        def.max,
+        Math.max(def.min, def.min + Math.round((value - def.min) / def.step) * def.step),
+      );
+    const next = { ...p, [el.name]: value };
     if (!inRange(model.params, next)) return;
     stop();
     p = next;
@@ -565,7 +608,7 @@ export async function benchPage(id, origin, topicIndex) {
       if (el.name === 'mk') p.ms = p.mk;
       else p.mk = p.ms;
     }
-    t = 0;
+    t = timeline ? Number(p.x) : 0;
     s = model.solve(p);
     draw();
   };
@@ -577,8 +620,9 @@ export async function benchPage(id, origin, topicIndex) {
     };
   get('[data-reset]').onclick = () => {
     stop();
-    t = 0;
     p = defaults(model.params);
+    t = timeline ? Number(p.x) : 0;
+    pair?.reset();
     s = model.solve(p);
     rate = initialRate;
     get('[data-rate]').value = String(rate);

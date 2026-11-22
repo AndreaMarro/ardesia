@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { esperienza } from '../static/js/banchi/voci/esperimento.js';
+import { posizionaEtichetta } from '../static/js/banchi/etichette.js';
 const content = new URL('../content/', import.meta.url);
 const read = (file) => JSON.parse(readFileSync(new URL(file, content)));
 const records = [1, 2, 3, 4, 5, 6].flatMap((i) => read('esperienze-C' + i + '.json'));
@@ -32,6 +33,27 @@ for (const r of records)
       { model, record } = exp,
       a = r.control;
     if (a.unit === '1' && !a.choices) assert.equal(model.params[0].unit, '');
+    assert.ok(exp.observe.length >= 45);
+    for (const [x, expected] of r.references) {
+      const sample = exp.measurement(x);
+      close(sample.value, expected, r.id + ' · tavola');
+      assert.ok(sample.calculation.includes(sample.reading));
+      assert.ok(sample.input.length);
+    }
+    if (exp.clock) {
+      const [x, y] = r.references[1],
+        clock = exp.clock;
+      const duration = clock.duration(x, y);
+      let baseline;
+      for (const t of [0, 0.13 * duration, 0.62 * duration, duration]) {
+        const shape = exp.elements(x, 2, t).filter((e) => e.kind !== 'label');
+        finite(shape, r.id);
+        if (!baseline) baseline = shape;
+        if (t === 0.62 * duration)
+          assert.notDeepEqual(shape, baseline, r.id + ' · evoluzione della geometria');
+        if (clock.signal) finite(clock.signal(x, t, y), r.id);
+      }
+    }
     const solve = (x) => model.solve({ x }).y;
     for (const [x, result] of r.references) close(solve(x), result, r.id);
     const geometries = new Set();
@@ -121,5 +143,130 @@ test('Invarianti fra strumenti indipendenti e vincoli di validità', async () =>
         exponent = i % 2 ? 5 / 3 : 1;
       close(p * v ** exponent, p0 * v0 ** exponent, 'legge del tratto isoterma o adiabatica');
     }
+  }
+});
+
+test('Le indicazioni sperimentali sono specifiche per ciascuna delle 181 voci', async () => {
+  const labs = await Promise.all(records.map(esperienza));
+  assert.equal(new Set(labs.map((e) => e.observe)).size, records.length);
+});
+
+test('Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei corsi', async () => {
+  const labs = new Map(await Promise.all(records.map(async (r) => [r.id.slice(4), await esperienza(r)])));
+  const get = (id) => labs.get(id);
+  const { clock: orbit, elements: circle } = get('C1-L004-04');
+  const speed = 4,
+    quarter = Math.PI / 4;
+  const orb = circle(speed, 2, quarter);
+  const point = orb.find((e) => e.kind === 'ball').p;
+  const [velocity, inward] = orb.filter((e) => e.kind === 'arrow').map((e) => e.b.map((p, j) => p - e.a[j]));
+  close(point[0], 0, 'quarto di giro');
+  close(orbit.signal(speed, quarter), 0, 'quarto di giro sulla scala in metri');
+  close(point[0] * velocity[0] + point[2] * velocity[2], 0, 'velocità tangente');
+  assert.ok(point[0] * inward[0] + point[2] * inward[2] < 0, 'accelerazione verso il perno');
+
+  const crash = get('C1-L009-02');
+  for (const v of [-2, 3]) {
+    const cars = (t) =>
+      crash
+        .elements(v, 2, t)
+        .filter((e) => e.kind === 'box')
+        .map((e) => e.p[0]);
+    const [a, b] = cars(0.5),
+      [aa, bb] = cars(0.9);
+    close(Math.abs(a - b), 0.56, 'contatto fra le facce');
+    close(aa - a, bb - b, 'carrelli agganciati');
+    close((aa - a) / (0.8 * 0.4), v / 2, 'velocità comune con segno');
+  }
+
+  const pipe = get('C2-L007-05');
+  const probe = (r, t) =>
+    pipe
+      .elements(r, 2, t)
+      .filter((e) => e.kind === 'ball')
+      .at(-1).p[0];
+  close(probe(1, 1), probe(1, 0), 'aderenza alla parete');
+  close(((probe(0.5, 0.25) - probe(0.5, 0)) * 20) / 4, 9 * 0.25, 'tracciante a metà raggio');
+  close(pipe.clock.signal(0.5, 0.25), 9 * 0.25, 'cammino misurato in centimetri');
+
+  const circuit = get('C3-L05-02');
+  const tracers = (t) =>
+    circuit
+      .elements(2, 2, t)
+      .filter((e) => e.kind === 'ball')
+      .map((e) => e.p);
+  assert.equal(tracers(0).length, 10);
+  tracers(5).forEach((q, i) => q.forEach((v, j) => close(v, tracers(0)[i][j], 'giro dei dieci grammi')));
+  close(circuit.clock.signal(2, 5), 10, 'massa transitata');
+  const states = (t) =>
+    get('C3-L04-03')
+      .elements(54, 2, t)
+      .filter((e) => e.kind === 'label')
+      .map((e) => e.text);
+  assert.ok(!states(0).includes('Liquido') && states(0).includes('Solido'));
+  assert.ok(states(9.5).includes('Liquido') && states(9.5).includes('Solido'));
+  assert.ok(states(24).includes('Liquido') && !states(24).includes('Solido'));
+  const melt = get('C3-L04-03').clock;
+  close(melt.signal(54, 1), 0, 'fine del riscaldamento del ghiaccio');
+  close(melt.signal(54, 9.5), 50, 'metà del campione fuso');
+  close(melt.signal(54, 20), 100, 'massa fusa sul tratto liquido');
+  for (const t of [0, 8, 20, 40]) {
+    const ratio = 1 + (3 * t) / 40;
+    close(get('C3-L07-02').clock.signal(4, t) * ratio, 100, 'pV in isoterma');
+    close(get('C3-L07-05').clock.signal(4, t) * ratio ** 1.5, 100, 'pV^γ in adiabatica');
+    close(get('C3-L07-04').clock.signal(400, t) / (300 + (100 * t) / 40), 0.01, 'V/T in isobara');
+  }
+
+  const magnetic = get('C4-L09-03');
+  const radius = (field) => Math.abs(magnetic.elements(field, 2, 0).find((e) => e.kind === 'ball').p[0]);
+  close(radius(1), 2 * radius(2), 'raggio inversamente proporzionale al campo');
+  close(magnetic.clock.duration(1), 2 * magnetic.clock.duration(2), 'periodo ciclotronico');
+  const coil = get('C4-L10-03');
+  close(coil.clock.signal(4, 3) - coil.clock.signal(4, 2), -coil.model.solve({ x: 4 }).y, 'segno di Lenz');
+
+  const oscillator = get('C5-L01-02').clock;
+  for (const T of [0.5, 2, 4]) {
+    close(oscillator.signal(T, T / 4), 0, 'attraversa l’equilibrio');
+    close(oscillator.signal(T, T / 2), -3, 'ampiezza negativa in centimetri');
+    close(oscillator.signal(T, T), 3, 'ritorno dopo un periodo');
+  }
+  const sound = get('C5-L05-03').clock;
+  for (const u of [-30, 0, 30]) {
+    // A crest emitted at t=0 travels 3 m. Successive arrival times differ by (c-u)/(c·f).
+    const next = 10 + (1000 * (300 - u)) / (300 * 300);
+    close(sound.signal(u, 10), 1, 'arrivo della prima cresta');
+    close(sound.signal(u, next), 1, 'arrivo della cresta successiva');
+    close(sound.signal(u, (10 + next) / 2), -1, 'minimo a metà periodo');
+  }
+  const echo = get('C6-L01-01');
+  const pulse = (t) =>
+    echo
+      .elements(10, 2, t)
+      .filter((e) => e.kind === 'ball')
+      .at(-1).p[0];
+  const wall = (t) => echo.elements(10, 2, t).find((e) => e.kind === 'box').p[0];
+  close(wall(5), wall(0), 'parete ferma');
+  close(pulse(5), wall(5), 'riflessione a metà ritardo');
+  close(pulse(0), pulse(10), 'ritorno al microfono');
+  close(echo.clock.signal(10, 5), 1.7, 'parete a 1,7 m con eco dopo 10 ms');
+  close(echo.clock.signal(10, 9) - echo.clock.signal(10, 8), -0.34, 'avvicinamento a 340 m/s');
+});
+
+test('Inquadratura stretta con etichette vicine e confine della tavola', () => {
+  const boxes = [];
+  for (const [x, y, w] of [
+    [22, 9, 88],
+    [50, 10, 90],
+    [60, 20, 85],
+    [388, 208, 80],
+  ]) {
+    const box = posizionaEtichetta(x, y, w, 20, 390, 212, boxes);
+    assert.ok(box.x - box.w / 2 >= 0 && box.x + box.w / 2 <= 390);
+    assert.ok(box.y - box.h / 2 >= 0 && box.y + box.h / 2 <= 212);
+    for (const other of boxes.slice(0, -1))
+      assert.ok(
+        Math.abs(box.x - other.x) >= (box.w + other.w) / 2 ||
+          Math.abs(box.y - other.y) >= (box.h + other.h) / 2,
+      );
   }
 });

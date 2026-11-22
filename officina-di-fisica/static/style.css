@@ -402,3 +402,12 @@ details > summary { min-height: 42px; padding: .45rem 0; }
 .sim-related { max-width: 52rem; margin: 0 0 1.3rem; padding: .1rem 1rem; border-left: 3px solid var(--violet); background: #eee9f3; }
 .sim-related summary { cursor: pointer; padding: .7rem 0; font-weight: 650; }
 .sim-related .line-link:last-child { border-bottom: 0; }
+
+.chapter-with-labs { display: flex; align-items: center; gap: .65rem; border-top: 1px solid var(--fine); }
+.chapter-with-labs .topic-row { flex: 1; min-width: 0; border-top: 0; }
+.chapter-lab-link { flex: none; padding: .55rem .65rem; border: 1px solid var(--fine); border-radius: .45rem; color: var(--violet-dark); font: 620 .85rem/1.25 var(--sans); text-decoration: none; }
+.chapter-lab-link:hover, .chapter-lab-link:focus-visible { background: var(--wash); border-color: var(--violet); }
+@media (max-width: 580px) {
+  .chapter-with-labs { display: block; padding-bottom: .45rem; }
+  .chapter-lab-link { display: inline-flex; align-items: center; min-height: 44px; }
+}

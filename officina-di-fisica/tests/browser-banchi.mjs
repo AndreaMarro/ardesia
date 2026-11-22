@@ -438,6 +438,9 @@ try {
   const p = desktop.page;
   // The lesson goal survives the round trip with its exact open paragraph.
   const topic = p.locator('.bench-topic').first();
+  assert.ok(await topic.locator('a').first().isVisible(), 'Il laboratorio compare nel paragrafo senza aprire un menu');
+  await topic.locator('summary').click();
+  assert.equal(await topic.locator('a').first().isVisible(), false);
   await topic.locator('summary').click();
   const focus = topic.locator('a').first(),
     question = (await focus.locator('span').innerText()).replace(/ →$/, '');

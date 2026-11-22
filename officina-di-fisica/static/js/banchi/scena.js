@@ -1,4 +1,5 @@
 import * as T from '../../vendor/three-r180/three.module.min.js';
+import { posizionaEtichetta } from './etichette.js';
 import { OrbitControls } from '../../vendor/three-r180/OrbitControls.js';
 const v = (p) => new T.Vector3(...p);
 export const ink = 0x302a3e,
@@ -11,7 +12,8 @@ export const ink = 0x302a3e,
   lime = 0xbdcf55,
   glass = 0x87d8df;
 function instruments(root) {
-  const materials = new Map();
+  const materials = new Map(),
+    labels = [];
   function material(color, opacity = 1) {
     const key = color + '/' + opacity;
     if (!materials.has(key))
@@ -94,6 +96,8 @@ function instruments(root) {
     sprite.renderOrder = 6;
     sprite.position.copy(v(p));
     sprite.scale.set((0.33 * cn.width) / 68, 0.33, 1);
+    sprite.userData.textAspect = cn.width / cn.height;
+    labels.push(sprite);
     group.add(sprite);
     return sprite;
   }
@@ -147,11 +151,11 @@ function instruments(root) {
     }
     return obj;
   }
-  return { T, box, ball, rod, line, arrow, label, group, ring, base, surface };
+  return { T, box, ball, rod, line, arrow, label, group, ring, base, surface, material, materials, labels };
 }
-function release(group) {
+function release(group, palette) {
   const geometries = new Set(),
-    materials = new Set(),
+    materials = new Set(palette?.values()),
     textures = new Set();
   group.traverse((o) => {
     if (o.geometry) geometries.add(o.geometry);
@@ -189,18 +193,44 @@ export function openScene(canvas, spec, onLoss, context) {
   scene.add(rim);
   const root = new T.Group();
   scene.add(root);
-  let action,
+  let palette,
+    action,
     currentTime = 0,
     shown = false,
     closed = false,
     view = 'orbit';
+  let labels = [],
+    cssWidth = 0,
+    cssHeight = 0;
+  const projected = new T.Vector3();
   function render() {
-    if (shown && !closed && canvas.isConnected && !document.hidden) renderer.render(scene, camera);
+    if (!shown || closed || !canvas.isConnected || document.hidden || !cssHeight) return;
+    const pixels = (cssHeight * camera.zoom) / (camera.top - camera.bottom);
+    const occupied = [];
+    camera.updateMatrixWorld();
+    for (const tag of labels) {
+      if (!tag.visible || !tag.parent.visible) continue;
+      const aspect = tag.userData.textAspect,
+        h = Math.max(20, 0.33 * pixels),
+        w = h * aspect;
+      tag.scale.set(w / pixels, h / pixels, 1);
+      tag.getWorldPosition(projected).project(camera);
+      const x = ((1 + projected.x) * cssWidth) / 2,
+        y = ((1 - projected.y) * cssHeight) / 2;
+      tag.center.set(0.5, 0.5);
+      if (x < 0 || x > cssWidth || y < 0 || y > cssHeight) continue;
+      // Sprite centres shift the text on screen without moving the physical anchor.
+      const box = posizionaEtichetta(x, y, w, h, cssWidth, cssHeight, occupied);
+      tag.center.set(0.5 + (x - box.x) / w, 0.5 + (box.y - y) / h);
+    }
+    renderer.render(scene, camera);
   }
   function resize() {
     const width = canvas.clientWidth,
       height = canvas.clientHeight;
     if (!width || !height) return;
+    cssWidth = width;
+    cssHeight = height;
     renderer.setSize(width, height, false);
     const aspect = width / height,
       span = Math.max(spec.height, spec.width / aspect);
@@ -258,8 +288,11 @@ export function openScene(canvas, spec, onLoss, context) {
   resize();
   return {
     rebuild(build, p, s, stage) {
-      release(root);
-      action = build(instruments(root), p, s, stage, view);
+      release(root, palette);
+      const tools = instruments(root);
+      palette = tools.materials;
+      labels = tools.labels;
+      action = build(tools, p, s, stage, view);
       action?.(currentTime);
       render();
     },
@@ -286,7 +319,7 @@ export function openScene(canvas, spec, onLoss, context) {
       controls.dispose();
       canvas.removeEventListener('keydown', keydown);
       canvas.removeEventListener('webglcontextlost', loss);
-      release(root);
+      release(root, palette);
       renderer.dispose();
       renderer.forceContextLoss();
     },

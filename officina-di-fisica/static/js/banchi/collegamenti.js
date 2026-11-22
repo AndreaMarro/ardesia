@@ -18,7 +18,8 @@ export function lessonBenches(node, r) {
     if (!group) {
       group = document.createElement('details');
       group.className = 'bench-topic';
-      group.innerHTML = '<summary>Esplora questo passaggio in 3D</summary>';
+      group.open = true;
+      group.innerHTML = '<summary>Laboratori 3D di questo passaggio</summary>';
       if (dest === node) dest.append(group);
       else {
         const block = document.createElement('div');

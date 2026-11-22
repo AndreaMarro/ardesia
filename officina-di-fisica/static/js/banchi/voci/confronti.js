@@ -27,7 +27,7 @@ export const confronti = {
   'SIM-C2-L006-03': (x) => ['Pressione locale meno iniziale', 2 * (1 - 1 / x ** 2), 'kPa'],
   'SIM-C2-L007-01': (x) => [
     'Dominio',
-    1e4 * x > 2300 ? 'Profilo non previsto' : 'Compatibile con il laminare',
+    1e4 * x >= 2300 ? 'Profilo non previsto' : 'Compatibile con il laminare',
     '',
   ],
   'SIM-C2-L007-05': (x) => ['Velocità media di sezione', 6, 'cm/s'],

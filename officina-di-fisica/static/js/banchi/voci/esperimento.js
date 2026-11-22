@@ -1,7 +1,8 @@
 import { chart, curve, n, param, select } from '../misure.js';
 import { legende } from './legende.js';
 import { confronti } from './confronti.js';
-import { disegna3D, tavolo } from './geometria.js';
+import { orologioVoce } from './orologi.js';
+import { disegna3D, scenaMobile, tavolo } from './geometria.js';
 const famiglie = {
   meccanica:
     'calibro campione vettori binario volo caduta cerchio forze coppia piano molla gravita percorso urto leva',
@@ -56,9 +57,13 @@ export async function esperienza(record) {
       )
     : param('x', a.label, a.unit === '1' ? '' : a.unit, a.min, a.max, a.step, x0);
   const calc = (x) => stabile(law.measure(x));
-  function elements(x, stage) {
+  const clock = orologioVoce(record, law);
+  function elements(x, stage, time) {
+    if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
-    const state = law.apparatus(x, calc(x));
+    const y = calc(x);
+    const state = law.apparatus(x, y);
+    if (clock?.frame && time !== undefined) Object.assign(state, clock.frame(x, time, y));
     if (['SIM-C2-L009-01', 'SIM-C4-L06-01', 'SIM-C4-L08-01'].includes(record.id)) {
       for (const [side, series] of [
         [-1, true],
@@ -151,16 +156,18 @@ export async function esperienza(record) {
       const x = Number(p.x);
       return { x, y: calc(x) };
     },
-    readings(p, s) {
-      return [
+    readings(p, s, t = 0) {
+      const readings = [
         [a.label, choices ? fmt(s.x) : s.x, choices || a.unit === '1' ? '' : a.unit],
-        [m.label, s.y, m.unit === '1' ? '' : m.unit],
+        [clock?.finalReading ? m.label + ' (a fine prova)' : m.label, s.y, m.unit === '1' ? '' : m.unit],
         confronti[record.id]?.(s.x, s.y) ?? [
           'Variazione dal riferimento',
           stabile(s.y - y0),
           m.unit === '1' ? '' : m.unit,
         ],
       ];
+      if (clock?.signal) readings.push([clock.label, stabile(clock.signal(s.x, t, s.y)), clock.unit]);
+      return readings;
     },
     steps(p, { x, y }) {
       return [
@@ -202,6 +209,8 @@ export async function esperienza(record) {
           x,
         ),
       ];
+      charts[0].track = 'control';
+      charts[0].point = calc(x);
       if (record.id === 'SIM-C3-L09-04') {
         // V and p are normalized to the start of the hot isotherm. Gamma = 5/3.
         const k = (500 / x) ** 1.5,
@@ -239,12 +248,38 @@ export async function esperienza(record) {
             x,
           ),
         );
+      if (record.id === 'SIM-C6-L05-01') charts[0].track = 'area-v';
+      if (clock?.signal) {
+        const y = calc(x),
+          end = clock.duration(x, y);
+        if (end > 0) {
+          const signal = chart(
+            clock.label,
+            'Tempo (' + clock.clockUnit + ')',
+            clock.label + (clock.unit ? ' (' + clock.unit + ')' : ''),
+            [curve(clock.label, 0, end, (t) => clock.signal(x, t, y), 160)],
+            0,
+          );
+          signal.track = 'time';
+          signal.point = clock.signal(x, 0, y);
+          charts.push(signal);
+        }
+      }
       return charts;
     },
   };
-  const high = ['spira', 'piano', 'piastre', 'ciclo', 'ottica', 'volo', 'caduta', 'termometro'].includes(
-    record.apparatus,
-  );
+  const high = [
+    'spira',
+    'piano',
+    'piastre',
+    'ciclo',
+    'ottica',
+    'volo',
+    'caduta',
+    'termometro',
+    'molla',
+    'pistone',
+  ].includes(record.apparatus);
   const top = [
     'percorso',
     'urto',
@@ -266,8 +301,22 @@ export async function esperienza(record) {
   const scene = {
     spec,
     build(b, p, s, stage) {
+      if (clock && stage >= 0) return scenaMobile(b, (time) => elements(s.x, stage, time));
       disegna3D(b, elements(s.x, stage));
     },
   };
-  return { record: teaching, model, scene, elements, legend: () => legende[record.apparatus] };
+  function measurement(x) {
+    const value = calc(x);
+    return { x, value, input: fmt(x), reading: valore(value, m.unit), calculation: calculation(x, value) };
+  }
+  return {
+    record: teaching,
+    model,
+    scene,
+    elements,
+    measurement,
+    clock,
+    observe: law.observe,
+    legend: () => legende[record.apparatus],
+  };
 }

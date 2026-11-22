@@ -1,3 +1,4 @@
+import { posizionaEtichetta } from '../etichette.js';
 import { esc } from '../../ui.js';
 const css = (c) => '#' + c.toString(16).padStart(6, '0');
 // An oblique metric projection keeps depth visible without a WebGL context.
@@ -6,7 +7,44 @@ const pt = (p) =>
   proj(p)
     .map((v) => v.toFixed(2))
     .join(',');
-export function disegna2D(elementi, title) {
+function labelLayer(labels) {
+  const placed = [],
+    leaders = [],
+    texts = [];
+  for (const { x, y, name, color } of labels) {
+    const half = Math.min(221, 4 + 3.5 * [...name].length);
+    const pos = posizionaEtichetta(x, y - 4, half * 2, 13, 460, 215, placed);
+    const cx = pos.x,
+      cy = pos.y + 4;
+    if (Math.hypot(cx - x, cy - y) > 9)
+      leaders.push(
+        '<line x1="' +
+          x +
+          '" y1="' +
+          y +
+          '" x2="' +
+          cx +
+          '" y2="' +
+          (cy - 5) +
+          '" stroke="' +
+          color +
+          '" stroke-opacity=".55" stroke-width=".75"/>',
+      );
+    texts.push(
+      '<text x="' +
+        cx +
+        '" y="' +
+        cy +
+        '" text-anchor="middle" fill="' +
+        color +
+        '" style="paint-order:stroke;stroke:#fbf7e9;stroke-width:3px;font:600 12px sans-serif">' +
+        esc(name) +
+        '</text>',
+    );
+  }
+  return leaders.join('') + texts.join('');
+}
+export function disegna2D(elementi, title, className = 'bench-diagram') {
   const shapes = [],
     labels = [];
   const poly = (pts, c, opacity = 1) =>
@@ -21,17 +59,7 @@ export function disegna2D(elementi, title) {
     const c = css(e.c);
     if (e.kind === 'label') {
       const [x, y] = proj(e.p);
-      labels.push(
-        '<text x="' +
-          x +
-          '" y="' +
-          y +
-          '" text-anchor="middle" fill="' +
-          c +
-          '" style="paint-order:stroke;stroke:#fbf7e9;stroke-width:3px;font:600 12px sans-serif">' +
-          esc(e.text) +
-          '</text>',
-      );
+      labels.push({ x, y, name: e.text, color: c });
     } else if (e.kind === 'box') {
       const at = (x, y, z) => [x, y, z].map((u, j) => e.p[j] + (u * e.size[j]) / 2);
       for (const face of [
@@ -143,13 +171,15 @@ export function disegna2D(elementi, title) {
     }
   }
   return (
-    '<svg class="bench-diagram" viewBox="0 0 460 215" role="img" aria-label="' +
+    '<svg class="' +
+    esc(className) +
+    '" viewBox="0 0 460 215" role="img" aria-label="' +
     esc(title) +
     '"><title>' +
     esc(title) +
     '</title>' +
     shapes.join('') +
-    labels.join('') +
+    labelLayer(labels) +
     '</svg>'
   );
 }

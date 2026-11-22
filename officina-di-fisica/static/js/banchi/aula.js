@@ -41,7 +41,7 @@ export function barraTempo() {
   return (
     '<div class="bench-time" hidden><div class="time-line"><button type="button" data-play>Avvia</button>' +
     '<label class="time-slide">Tempo simulato <output data-time></output><input data-scrub type="range" aria-label="Scorri il tempo simulato" min="0" max="1" step="any" value="0"></label></div>' +
-    '<details class="time-options"><summary>Regola il tempo</summary><div><label>Istante (s)<input data-instant type="number" step="any" min="0" value="0"></label>' +
+    '<p class="clock-scale" hidden></p><details class="time-options"><summary>Regola il tempo</summary><div><label>Istante (<span data-clock-unit>s</span>)<input data-instant type="number" step="any" min="0" value="0"></label>' +
     '<label>Velocità<select data-rate><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>' +
     '<button type="button" data-nudge="-1" aria-label="Indietro di un centesimo del ciclo">−1%</button><button type="button" data-nudge="1" aria-label="Avanti di un centesimo del ciclo">+1%</button><button type="button" data-rewind>Da capo</button><label class="loop"><input type="checkbox" data-loop> Ripeti in ciclo</label></div></details></div>'
   );

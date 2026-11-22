@@ -41,7 +41,8 @@ export const ondulatoria = {
       );
     b.arrow([0, 1.47, 0], [x, 1.47, 0], c.verde);
     b.label([0, 0.58, 0.85], 'Equilibrio');
-    if (s.periodo !== undefined) b.label([0.1, 2.05, 0], 'Fotografia a 0,5 s');
+    if (s.periodo !== undefined)
+      b.label([0.1, 2.05, 0], s.istante === undefined ? 'Fotografia a 0,5 s' : 'Massa oscillante');
   },
   onda(b, s) {
     const phase = s.fase ?? Math.PI / 3,
@@ -140,28 +141,66 @@ export const ondulatoria = {
   },
   doppler(b, s) {
     if (s.eco !== undefined) {
-      const d = 0.08 + 3.95 * s.eco,
+      const d = 3.95 * s.eco,
         left = -2.13,
         wall = left + d;
       b.box([wall, 1, 0], [0.13, 1.65, 1.04], c.metallo);
       b.ball([left, 0.82, 0], 0.15, c.ocra);
       b.arrow([left, 1.24, 0], [wall, 1.24, 0], c.verde);
       b.arrow([wall, 0.7, 0], [left, 0.7, 0], c.viola);
-      b.label([left, 1.81, 0], 'Eco');
+      if (s.frazioneEco !== undefined) b.ball([left + d * s.frazioneEco, 1.01, 0.2], 0.105, c.viola);
+      b.label([left, 1.61, 0], 'Microfono');
       b.label([wall, 2.1, 0], 'Riflettore');
       return;
     }
-    const u = s.moto ?? 0,
-      source = -0.48,
+    if (s.moto !== undefined) {
+      // Longitudinal section near the axis. Each crest expands from the
+      // position where the source emitted it, including fronts already in flight.
+      const time = s.dopplerMs ?? 0,
+        period = 10 / 3;
+      const scale = 0.52,
+        speed = 0.3 * s.moto,
+        x0 = -0.72,
+        receiver = x0 + 3 * scale;
+      const sourceAt = (ms) => x0 + scale * speed * ms;
+      for (let n = Math.floor(time / period) - 12; n <= Math.floor(time / period); n++) {
+        const emission = n * period,
+          radius = (time - emission) * 0.3 * scale;
+        if (radius < 0.01) continue;
+        for (const side of [-1, 1]) {
+          const center = sourceAt(emission),
+            tip = center + side * radius;
+          if (Math.abs(tip) > 2.65) continue;
+          const half = Math.min(0.63, Math.asin(Math.min(0.82 / radius, 1)));
+          b.line(
+            punti(19, (i) => {
+              const angle = (i / 9 - 1) * half;
+              return [center + side * radius * Math.cos(angle), 0.78, radius * Math.sin(angle)];
+            }),
+            c.verde,
+          );
+        }
+      }
+      b.ball([sourceAt(time), 0.78, 0], 0.145, c.ocra);
+      b.arrow([sourceAt(time), 1.06, 0], [sourceAt(time) + 2.4 * s.moto, 1.06, 0], c.rosso);
+      b.rod([receiver, 0.1, 0], [receiver, 0.91, 0], 0.085, c.metallo);
+      b.ball([receiver, 0.78, 0], 0.11, c.viola);
+      if (s.pressioneRel !== undefined)
+        b.arrow([receiver, 1.18, 0], [receiver, 1.18 + 0.35 * s.pressioneRel, 0], c.viola);
+      b.label([sourceAt(time), 1.72, 0], 'Sorgente');
+      b.label([receiver, 1.99, 0], 'Ricevitore');
+      return;
+    }
+    const source = -0.48,
       receiver = 2.55;
     for (let j = 1; j <= 4; j++) {
       const r = (s.velocita === undefined ? 0.46 : 0.26 + 0.3 * s.velocita) * j;
-      const center = source - (s.moto === undefined ? 0 : u * 0.46 * j);
-      b.ring([center, 0.62, 0], r, 'xz', c.verde);
+      b.ring([source, 0.62, 0], r, 'xz', c.verde);
     }
+    if (s.frazioneViaggio !== undefined)
+      b.ball([source + (receiver - source) * s.frazioneViaggio, 0.85, 0.15], 0.105, c.viola);
     b.ball([source, 0.62, 0], 0.16, c.ocra);
     b.rod([receiver, 0.1, 0], [receiver, 1.26, 0], 0.08, c.metallo);
-    b.arrow([source, 1.06, 0], [source + u * 2.4, 1.06, 0], c.rosso);
     b.label([source, 1.53, 0], 'Sorgente');
     b.label([receiver, 1.6, 0], 'Ricevitore');
   },

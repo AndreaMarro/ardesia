@@ -70,6 +70,7 @@ function home() {
       <div class="hero-actions">
         <a class="button solid" href="#percorsi">Studio completo <span class="arrow" aria-hidden="true">→</span></a>
         <a class="button" href="#sprint">Preparazione rapida all’esame</a>
+        <a class="button" href="#laboratori">Laboratori 3D per capitolo</a>
         <button type="button" class="textbtn" data-prova-portata>Prova un esperimento</button>
       </div>
     </div>
@@ -121,8 +122,17 @@ function sectionList(items, active, course) {
     if (!groups.has(title)) groups.set(title, []);
     groups.get(title).push(r);
   }
-  const row = (r, section = '') =>
-    `<a class="topic-row" href="#materiale/${esc(r.id)}/${esc(course)}"><span><small>${esc(r.id)}</small> <strong>${esc(r.title)}</strong>${section ? '<span class="topic-context">' + esc(section) + '</span>' : ''}</span><span aria-hidden="true">→</span></a>`;
+  const counts = new Map();
+  for (const item of items) {
+    if (item.kind === 'experiment') counts.set(item.skill, (counts.get(item.skill) || 0) + 1);
+  }
+  const row = (r, section = '') => {
+    const entry = `<a class="topic-row" href="#materiale/${esc(r.id)}/${esc(course)}"><span><small>${esc(r.id)}</small> <strong>${esc(r.title)}</strong>${section ? '<span class="topic-context">' + esc(section) + '</span>' : ''}</span><span aria-hidden="true">→</span></a>`;
+    const count = r.kind === 'lesson' && counts.get(r.id);
+    if (!count) return entry;
+    const label = count === 1 ? '1 laboratorio 3D' : count + ' laboratori 3D';
+    return `<div class="chapter-with-labs">${entry}<a class="chapter-lab-link" href="#laboratori/${esc(course)}/${esc(r.id)}" aria-label="${esc(label + ' · ' + r.title)}">${label} ↗</a></div>`;
+  };
   return [...groups.entries()]
     .sort(([a], [b]) => (sectionOrder.get(a) ?? Infinity) - (sectionOrder.get(b) ?? Infinity))
     .map(([name, recs], i) => {

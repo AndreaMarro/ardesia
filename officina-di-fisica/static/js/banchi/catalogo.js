@@ -19,10 +19,14 @@ function courseGroups(lessons, currentCourse) {
     const count = group.reduce((n, l) => n + l.experiments.length, 0);
     const includes = Boolean(course.includes?.length);
     const title = includes ? 'Raccordi del percorso completo' : course.title;
+    const volumes = includes && course.id !== currentCourse
+      ? lessons.filter(l => l.course === course.id || course.includes.includes(l.course)) : [];
+    const full = volumes.length ? link('Apri ' + course.id + ' completo · ' +
+      countLabel(volumes.reduce((sum,l) => sum + l.experiments.length, 0)) + ' in ' +
+      volumes.length + ' capitoli', 'laboratori/' + course.id) : '';
     return '<details class="topic-shelf" data-course="' + esc(course.id) + '"><summary>' +
       esc(course.id + ' · ' + title) + ' <small>· ' + count + '</small></summary>' +
-      '<div class="topic-shelf-body">' + group.map(lessonGroup).join('') +
-      (includes && course.id !== currentCourse ? link('Tutte le simulazioni del percorso completo', 'laboratori/' + course.id) : '') +
+      '<div class="topic-shelf-body">' + full + group.map(lessonGroup).join('') +
       '</div></details>';
   }).join('');
 }
@@ -45,8 +49,8 @@ export function showSimulationIndex(node, lessons, course, lesson, collections) 
   }).join('') : '';
   node.innerHTML = '<label class="sim-search" for="cerca-simulazione">Cerca un argomento' +
     '<input type="search" id="cerca-simulazione" placeholder="Es. lente, attrito, capillarità" autocomplete="off"></label>' +
-    (featured ? '<details class="sim-featured"><summary>I cinque esperimenti animati</summary><div>' + featured + '</div></details>' : '') +
-    '<p class="sim-count" role="status"></p><div class="sim-results"></div>';
+    '<p class="sim-count" role="status"></p><div class="sim-results"></div>' +
+    (featured ? '<details class="sim-featured"><summary>Cinque banchi con disegni passo passo</summary><div>' + featured + '</div></details>' : '');
   const field = node.querySelector('input');
   const status = node.querySelector('[role=status]');
   const results = node.querySelector('.sim-results');

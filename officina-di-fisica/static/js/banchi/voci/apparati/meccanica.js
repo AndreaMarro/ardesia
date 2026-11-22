@@ -114,7 +114,7 @@ export const meccanica = {
     if (s.proietta) {
       b.line([A, [A[0], oy, 0]], c.ocra, true);
       b.line([A, [ox, oy, A[2]]], c.ocra, true);
-      b.arrow(O, [A[0], oy + 0.03, 0], c.viola);
+      b.arrow(O, s.verticale ? [ox, oy, A[2]] : [A[0], oy, 0], c.viola);
     }
     if (s.bx !== undefined) {
       const start = s.somma ? [...A] : O,
@@ -190,19 +190,24 @@ export const meccanica = {
       y = 0.32;
     b.ring([0, y, 0], r, 'xz', c.verde);
     b.rod([0, 0.07, 0], [0, y + 0.12, 0], 0.06, c.metallo);
+    const angle = s.angoloOrbita ?? 0;
+    const cos = Math.cos(angle),
+      sin = Math.sin(angle);
+    const x = r * cos,
+      z = -r * sin;
     b.line(
       [
         [0, y, 0],
-        [r, y, 0],
+        [x, y, z],
       ],
       c.metallo,
       true,
     );
-    b.ball([r, y, 0], 0.14, c.ocra);
-    b.arrow([r, y + 0.13, 0], [r, y + 0.13, -s.tangente], c.verde);
-    b.arrow([r, y + 0.12, 0], [r - s.radiale, y + 0.12, 0], c.viola);
+    b.ball([x, y, z], 0.14, c.ocra);
+    b.arrow([x, y + 0.13, z], [x - s.tangente * sin, y + 0.13, z - s.tangente * cos], c.verde);
+    b.arrow([x, y + 0.12, z], [x - s.radiale * cos, y + 0.12, z + s.radiale * sin], c.viola);
     b.label([0, 0.8, 0], 'Centro');
-    b.label([r, 0.78, -s.tangente], 'v', c.verde);
+    b.label([x - s.tangente * sin, 0.78, z - s.tangente * cos], 'v', c.verde);
   },
   forze(b, s) {
     b.box([0, 0.55, 0], [1.3, 0.9, 0.9], c.ocra);

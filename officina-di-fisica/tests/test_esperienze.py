@@ -32,6 +32,26 @@ class EsperienzeDiLezione(TestCase):
             with self.subTest(field=field), self.assertRaises(store.Problem):
                 editor.validate(None, dict(r, **{field: value}), self.records)
 
+    def test_oscillatore_aggiorna_solo_la_spiegazione_originale(self):
+        current = self.records["SIM-C5-L01-02"]
+        archived = dict(current, version=1, interpretation=(
+            "L’ampiezza resta 3 cm. La scena fotografa la sorgente mezzo secondo dopo il massimo. "
+            "Distingui l’ampiezza dall’escursione picco-picco, e la frequenza dalla pulsazione in rad/s."
+        ))
+        for changed in (False, True):
+            with self.subTest(personalizzata=changed), TemporaryDirectory() as tmp, patch.object(store, "DATA", Path(tmp)):
+                first = dict(archived, interpretation="Nota del docente") if changed else archived
+                with patch.object(store, "catalog_seed", return_value=[dict(first)]):
+                    store.initialize()
+                with patch.object(store, "catalog_seed", return_value=[dict(current)]):
+                    store.initialize()
+                    store.initialize()
+                with store.connect() as db:
+                    self.assertEqual(store.record(db, first["id"], 1)["interpretation"], first["interpretation"])
+                    live = store.record(db, first["id"])
+                    self.assertEqual(live["version"], 1 if changed else 2)
+                    self.assertEqual(live["interpretation"], first["interpretation"] if changed else current["interpretation"])
+
     def test_installazione_esistente_riavvio_permessi_e_ritiro_voce(self):
         previous = [r for r in self.records.values() if r["kind"] != "experiment"]
         with TemporaryDirectory() as tmp, patch.object(store, "DATA", Path(tmp)):

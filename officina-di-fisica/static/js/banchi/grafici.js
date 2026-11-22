@@ -51,9 +51,9 @@ export function plot(c) {
             .map(([x, y], j) => {
               const [prevX, prevY] = s.points[j];
               const end = Math.min(x, s.shadeUntil ?? x);
-              return end <= prevX
+              return x <= prevX
                 ? ''
-                : `<rect x="${X(prevX)}" y="${Math.min(Y(0), Y(prevY))}" width="${X(end) - X(prevX)}" height="${Math.abs(Y(prevY) - Y(0))}" fill="${prevY < 0 ? '#b6504d' : '#357f79'}" opacity="0.25"/>`;
+                : `<rect data-shade-to="${X(x)}" x="${X(prevX)}" y="${Math.min(Y(0), Y(prevY))}" width="${Math.max(0, X(end) - X(prevX))}" height="${Math.abs(Y(prevY) - Y(0))}" fill="${prevY < 0 ? '#b6504d' : '#357f79'}" opacity="0.25"/>`;
             })
             .join('')
         : '';
@@ -103,10 +103,13 @@ export function plot(c) {
       (floor - roof) / (top - bottom) +
       '" r="4.7" fill="#8c412c"/>';
   }
+  const point = Number.isFinite(c.point)
+    ? `<circle data-measure-point data-zero="${Y(0)}" data-scale="${(floor - roof) / (top - bottom)}" cx="${X(c.at)}" cy="${Y(c.point)}" r="4.5" fill="#a44929" stroke="#fffdf7" stroke-width="1.2"/>`
+    : '';
   const marker = Number.isFinite(c.at)
     ? `<line class="bench-cursor" data-track="${esc(c.track || '')}" data-lo="${lo}" data-hi="${hi}" x1="${X(c.at)}" x2="${X(c.at)}" y1="${roof}" y2="${floor}"/>`
     : '';
-  return `<figure class="bench-plot"><figcaption>${esc(c.title)}</figcaption><svg viewBox="0 0 472 176" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${area}${paths}${marker}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="background:${colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div>${c.categories ? '<small>' + c.categories.map(esc).join(' · ') + '</small>' : ''}</figure>`;
+  return `<figure class="bench-plot"><figcaption>${esc(c.title)}</figcaption><svg viewBox="0 0 472 176" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${area}${paths}${marker}${point}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="background:${colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div>${c.categories ? '<small>' + c.categories.map(esc).join(' · ') + '</small>' : ''}</figure>`;
 }
 export function moveCursor(node, time, track, value) {
   for (const el of node.querySelectorAll('.bench-cursor')) {
@@ -115,6 +118,16 @@ export function moveCursor(node, time, track, value) {
     el.setAttribute('x1', x);
     el.setAttribute('x2', x);
     const svg = el.ownerSVGElement;
+    const dot = svg.querySelector('[data-measure-point]');
+    if (dot && Number.isFinite(value)) {
+      dot.setAttribute('cx', x);
+      dot.setAttribute('cy', Number(dot.dataset.zero) - value * Number(dot.dataset.scale));
+    }
+    for (const rect of svg.querySelectorAll('[data-shade-to]'))
+      rect.setAttribute(
+        'width',
+        Math.max(0, Math.min(x, Number(rect.dataset.shadeTo)) - Number(rect.getAttribute('x'))),
+      );
     const clip = svg.querySelector('[data-integral-start]');
     if (clip) {
       const start = Number(clip.dataset.integralStart);

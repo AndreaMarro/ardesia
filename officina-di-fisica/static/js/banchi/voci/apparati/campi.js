@@ -244,7 +244,12 @@ export const campi = {
       c.viola,
     );
     for (const x of [-1.65, 1.65])
-      for (const z of [-0.6, 0.6]) b.arrow([x, 0.39, z], [x, 1.38 + s.campo, z], c.verde);
+      for (const z of [-0.6, 0.6])
+        b.arrow(
+          [x, 0.39, z],
+          [x, s.campoRelativo === undefined ? 1.38 + s.campo : 0.39 + 1.8 * s.campoRelativo, z],
+          c.verde,
+        );
     if (s.variazione !== undefined)
       b.arrow([-2.12, 1.48, 0], [-2.12, 1.48 + 0.41 * s.variazione, 0], c.rosso);
     if (s.corrente) {

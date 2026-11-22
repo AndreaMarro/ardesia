@@ -153,3 +153,25 @@
  .bench-room[data-moment=Esplora] .settings-drawer { order: -2; }
  .bench-room[data-moment=Esplora] .bench-side .settings-drawer[open] { margin-top: 0; }
 }
+
+.bench-comparison { margin: 1.4rem 0; padding: clamp(.8rem,2.2vw,1.55rem); border: 1px solid var(--edge); border-radius: 14px; background: #faf8f0; }
+.bench-comparison h2 { margin: 0; font: 650 clamp(1.35rem,2.2vw,1.9rem)/1.15 var(--sans); }
+.bench-comparison header p { margin: .4rem 0 1rem; max-width: 78ch; }
+.measure-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .85rem; margin: 0 0 .8rem; }
+.measure-pair figure { margin: 0; min-width: 0; overflow: hidden; border: 1px solid #c5c0af; border-radius: 9px; background: #fffdf6; }
+.measure-pair figcaption { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .3rem .7rem; padding: .6rem .8rem; border-bottom: 1px solid #dcd5c5; font: 600 .92rem/1.35 var(--sans); }
+.measure-pair figcaption strong { color: #276759; }
+.measure-pair figure:nth-child(2) figcaption strong { color: #67439a; }
+.measure-pair figcaption span, .measure-pair p { font: .84rem/1.4 var(--sans); }
+.measure-diagram { display: block; width: 100%; max-height: 225px; background: #f1eee3; }
+.measure-pair p { margin: 0; padding: .5rem .8rem; }
+.measure-pair b { font: 650 .93rem/1.4 var(--mono); }
+.measure-change { margin: .6rem 0; font-weight: 600; }
+.measure-work summary { width: fit-content; cursor: pointer; color: var(--violet-dark); }
+.measure-work p { margin: .4rem 0; overflow-wrap: anywhere; }
+@media(max-width: 580px) {
+  .measure-pair { grid-template-columns: 1fr; }
+  .measure-diagram { max-height: 155px; }
+  .bench-comparison button { min-height: 44px; }
+}
+.clock-scale { margin: .3rem 0; font: .8rem/1.35 var(--sans); color: var(--muted); }

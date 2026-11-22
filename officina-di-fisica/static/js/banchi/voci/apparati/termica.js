@@ -11,7 +11,7 @@ function bicchiere(b, x, h, r = 0.47) {
 }
 export const termica = {
   pistone(b, s) {
-    const h = 0.18 + 2.08 * s.volume,
+    const h = 0.14 + 2.08 * s.volume,
       r = 0.74;
     bicchiere(b, 0, 2.48, r + 0.055);
     b.rod([0, 0.14, 0], [0, h, 0], r, tinta(s.temperatura ?? 0.56), 0.26);
@@ -106,9 +106,28 @@ export const termica = {
           0.07,
           c.acqua,
         );
+    if (!s.vapore) {
+      const q = s.energia;
+      // Q in kJ for 100 g. The temperature is constant while both phases coexist.
+      const temperature = q === undefined ? 0 : q < 2 ? -10 + 5 * q : Math.max(0, (q - 36) / 0.42);
+      const x = 1.4,
+        zero = 0.88,
+        height = zero + 0.026 * temperature;
+      b.rod([x, 0.38, 0], [x, 2.23, 0], 0.078, c.acqua, 0.24);
+      b.rod([x, 0.38, 0], [x, height, 0], 0.047, c.rosso);
+      b.ball([x, 0.35, 0], 0.105, c.rosso);
+      b.line(
+        [
+          [x - 0.12, zero, 0],
+          [x + 0.12, zero, 0],
+        ],
+        c.inchiostro,
+      );
+      b.label([x + 0.35, zero + 0.1, 0], '0 °C');
+    }
     if (s.energia !== undefined)
       b.arrow([-1.71, 0.75, 0], [-1.71 + (0.85 * s.energia) / 54, 0.75, 0], c.rosso);
-    b.label([0.95, 0.76, 0], 'Liquido');
+    if (f > 0) b.label([-1.08, 0.64, 0.18], 'Liquido');
   },
   barra(b, s) {
     const len = 0.5 + 3.8 * s.lunghezza;
@@ -130,7 +149,18 @@ export const termica = {
       [1.4, 0.46, 0],
       [-1.4, 0.46, 0],
     ];
-    loop.slice(1).forEach((q, i) => b.rod(loop[i], q, 0.14, i < 2 ? c.rosso : c.acqua, 0.62));
+    loop.slice(1).forEach((q, i) => b.rod(loop[i], q, 0.14, i < 2 ? c.rosso : c.acqua, 0.5));
+    if (s.giri !== undefined) {
+      const lengths = loop.slice(1).map((q, i) => Math.hypot(...q.map((v, j) => v - loop[i][j])));
+      const total = lengths.reduce((sum, l) => sum + l, 0);
+      for (let i = 0; i < 10; i++) {
+        let distance = ((s.giri + i / 10) % 1) * total;
+        let k = 0;
+        while (k < lengths.length - 1 && distance > lengths[k]) distance -= lengths[k++];
+        const q = loop[k].map((v, j) => v + ((loop[k + 1][j] - v) * distance) / lengths[k]);
+        b.ball(q, 0.085, i ? c.metallo : c.ocra);
+      }
+    }
     b.box([-1.4, 0.18, 0], [0.75, 0.22, 0.61], c.ocra);
     b.box([1.4, 2.16, 0], [0.72, 0.32, 0.63], c.verde);
     b.arrow([-1.42, 0.75, 0.2], [-1.42, 0.75 + s.portata, 0.2], c.rosso);

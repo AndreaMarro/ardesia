@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { chromium } from 'playwright';
+import { chromium, webkit } from 'playwright';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
@@ -15,6 +15,8 @@ const records = (
     ),
   )
 ).flat();
+const engine = process.env.ASTRA_BROWSER || 'chromium';
+assert.ok(['chromium', 'webkit'].includes(engine), 'Motore browser sconosciuto');
 const tmp = await mkdtemp(path.join(tmpdir(), 'officina-voci-'));
 const boot =
   "from server.store import initialize; from server.web import Handler,ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(('127.0.0.1',0),Handler); print(s.server_port,flush=True); s.serve_forever()";
@@ -24,7 +26,17 @@ const server = spawn('python3', ['-c', boot], {
   stdio: ['ignore', 'pipe', 'inherit'],
 });
 const url = 'http://127.0.0.1:' + String((await once(server.stdout, 'data'))[0]).trim() + '/';
-const browser = await chromium.launch({ channel: 'chrome', args: ['--enable-unsafe-swiftshader'] });
+let browser;
+try {
+  browser =
+    engine === 'webkit'
+      ? await webkit.launch()
+      : await chromium.launch({ channel: 'chrome', args: ['--enable-unsafe-swiftshader'] });
+} catch (error) {
+  server.kill();
+  await rm(tmp, { recursive: true, force: true });
+  throw error;
+}
 const errors = [],
   external = [],
   evidence = process.env.ASTRA_SHOTS,
@@ -38,6 +50,14 @@ const representatives = new Set([
   'SIM-C5-L10-02',
   'SIM-C6-L05-01',
 ]);
+const sequenceIds = new Set([
+  'SIM-C1-L004-04',
+  'SIM-C2-L007-05',
+  'SIM-C3-L04-03',
+  'SIM-C4-L09-03',
+  'SIM-C5-L05-03',
+  'SIM-C6-L01-01',
+]);
 const only = process.env.ASTRA_CASE;
 const widths = { desktop: [1440, 960], tablet: [810, 1080], mobile: [390, 844], alternativa: [390, 844] };
 const courseFilter = process.env.ASTRA_COURSE;
@@ -47,7 +67,7 @@ async function navigate(p, route, selector) {
   await p.evaluate((route) => {
     location.hash = route;
   }, route);
-  await p.locator(selector).waitFor({ state: 'visible' });
+  await p.locator(selector).first().waitFor({ state: 'visible' });
 }
 async function navigationShot(page, format, name) {
   if (!evidence || !['desktop', 'mobile'].includes(format)) return;
@@ -72,8 +92,10 @@ async function findLens(page, format) {
     await search.waitFor();
     const fits = await page.locator('.mast nav a').evaluateAll((links) => {
       const bounds = links.map((a) => a.getBoundingClientRect());
-      return document.documentElement.scrollWidth <= innerWidth + 1 &&
-        bounds.every((b, i) => b.width > 0 && b.right <= innerWidth && (!i || b.left >= bounds[i-1].right));
+      return (
+        document.documentElement.scrollWidth <= innerWidth + 1 &&
+        bounds.every((b, i) => b.width > 0 && b.right <= innerWidth && (!i || b.left >= bounds[i - 1].right))
+      );
     });
     assert.ok(fits, 'Navigazione leggibile anche a 320 px');
     await page.setViewportSize(normal);
@@ -194,6 +216,19 @@ try {
     await p.locator('[data-bench="SIM-C1-L001-01"]').waitFor();
     await p.getByRole('link', { name: 'Torna all’attività' }).click();
     await p.locator('.topic-shelf[data-course=C1]').waitFor();
+    for (const cid of ['C1', 'C2', 'C3', 'C4', 'C5', 'C6']) {
+      await navigate(p, 'corso/' + cid + '/lezioni', '.chapter-lab-link[href^="#laboratori/' + cid + '/"]');
+      const referenced = cid === 'C6' ? records : records.filter((r) => r.course === cid);
+      const chapterIds = [...new Set(referenced.map((r) => r.skill))].sort();
+      const routes = await p
+        .locator('.chapter-lab-link')
+        .evaluateAll((links) => links.map((a) => a.hash).sort());
+      assert.deepEqual(
+        routes,
+        chapterIds.map((id) => '#laboratori/' + cid + '/' + id),
+        cid + ' · un accesso per capitolo',
+      );
+    }
     let lastLesson = '';
     for (const r of available) {
       const act = await esperienza(r),
@@ -213,11 +248,10 @@ try {
           (el) => el.closest('details').previousElementSibling?.textContent || '',
         );
         assert.ok(paragraph.startsWith(r.anchor), r.id + ' · collegamento fuori dal paragrafo della voce');
-        await a.evaluate((el) => (el.closest('details').open = true));
+        assert.ok(await a.isVisible(), r.id + ' · voce già visibile nel paragrafo');
         await a.click();
         const row = p.locator('[data-bench="' + r.id + '"]');
         await row.waitFor();
-        const c = row.locator('canvas');
         if (noGL) await row.locator('.bench-diagram').waitFor();
         else await row.locator('canvas[data-painted="yes"]').waitFor();
         assert.equal(await row.locator('h1').innerText(), r.title);
@@ -240,6 +274,42 @@ try {
         else await param.fill(String(target));
         const measured = parse(await read());
         close(measured, expected);
+        let motionChecked = false;
+        const clock = act.clock;
+        if (clock) {
+          const more = row.locator('.time-options');
+          const instant = row.locator('[data-instant]');
+          const period = clock.duration(target, expected);
+          assert.ok(period > 0);
+          await more.locator('summary').click();
+          const take = async (fraction) => {
+            const t = Number((period * fraction).toFixed(7));
+            await instant.fill(String(t));
+            await instant.press('Tab');
+            if (clock.input) close(parse(await read()), act.model.solve({ x: t }).y);
+            else {
+              close(parse(await read()), expected);
+              close(
+                parse(await row.locator('[data-readings] div').last().locator('strong').innerText()),
+                clock.signal(target, t, expected),
+              );
+            }
+            return row.locator('.bench-stage').screenshot();
+          };
+          const first = await take(0.13),
+            second = await take(0.62);
+          assert.ok(!first.equals(second), r.id + ' · movimento fisico a camera ferma');
+          if (imgDir && format === 'desktop' && sequenceIds.has(r.id)) {
+            const fractions = r.course === 'C6' ? [0, 0.5, 1] : [0, 0.13, 0.62];
+            for (const [i, fraction] of fractions.entries()) {
+              const shot = fraction === 0.13 ? first : fraction === 0.62 ? second : await take(fraction);
+              await writeFile(path.join(imgDir, r.id + '-tempo-' + i + '.png'), shot);
+            }
+          }
+          motionChecked = true;
+          await more.locator('summary').click();
+          await row.locator('[data-compare]').click();
+        }
         const button = row.locator('[data-next]');
         if (!noGL) {
           await row.locator('[data-view=top]').click();
@@ -255,12 +325,31 @@ try {
         const overflow = await p.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
         assert.equal(overflow, false);
         await button.click();
+        const pair = row.locator('[data-comparison]');
+        assert.ok(await pair.isVisible());
+        assert.equal(await pair.locator('header p').innerText(), act.observe);
+        const figures = pair.locator('figure');
+        assert.equal(await figures.count(), 2);
+        close(parse(await figures.nth(0).locator('p b').innerText()), base);
+        close(parse(await figures.nth(1).locator('p b').innerText()), expected);
+        assert.equal(await pair.locator('svg[role=img]').count(), 2);
+        await pair.locator('[data-pin]').click();
+        close(parse(await figures.nth(0).locator('p b').innerText()), expected);
+        await row.locator('[data-reset]').click();
+        await pair.locator('[data-pair-next]').click();
+        close(parse(await figures.nth(0).locator('p b').innerText()), base);
+        close(parse(await figures.nth(1).locator('p b').innerText()), expected);
         await button.click();
-        if (imgDir && (format === 'desktop' || representatives.has(r.id))) {
+        if (imgDir && (format === 'desktop' || process.env.ASTRA_GALLERY || representatives.has(r.id))) {
           await row
             .locator('.bench-stage')
             .screenshot({ path: path.join(imgDir, r.id + '.jpg'), type: 'jpeg', quality: 82 });
           if (representatives.has(r.id)) {
+            await pair.screenshot({
+              path: path.join(imgDir, r.id + '-confronto.jpg'),
+              type: 'jpeg',
+              quality: 85,
+            });
             await p.evaluate(() => scrollTo(0, 0));
             await p.screenshot({ path: path.join(imgDir, r.id + '-pagina.jpg'), type: 'jpeg', quality: 82 });
           }
@@ -284,7 +373,13 @@ try {
         await row.getByRole('link', { name: 'Torna all’attività' }).click();
         await a.waitFor({ state: 'visible' });
         assert.equal(await a.evaluate((el) => el.closest('details').open), true);
-        results.push({ id: r.id, format, lettura: measured });
+        results.push({
+          id: r.id,
+          format,
+          lettura: measured,
+          misureConfrontate: 2,
+          movimentoVerificato: motionChecked,
+        });
       } catch (error) {
         throw new Error(format + ' ' + r.id + ': ' + error.message, { cause: error });
       }
