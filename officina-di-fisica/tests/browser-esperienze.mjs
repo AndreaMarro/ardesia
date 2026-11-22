@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { chromium, webkit } from 'playwright';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
-import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, rm, appendFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -61,7 +61,17 @@ const sequenceIds = new Set([
 const only = process.env.ASTRA_CASE;
 const widths = { desktop: [1440, 960], tablet: [810, 1080], mobile: [390, 844], alternativa: [390, 844] };
 const courseFilter = process.env.ASTRA_COURSE;
-const available = records.filter((r) => (!only || r.id === only) && (!courseFilter || r.course === courseFilter));
+const exerciseClocks = process.env.ASTRA_CLOCKS === '1';
+const selected = records.filter(
+  (r) => (!only || r.id === only) && (!courseFilter || r.course === courseFilter),
+);
+const startId = process.env.ASTRA_FROM;
+const first = startId ? selected.findIndex((r) => r.id === startId) : 0;
+assert.ok(first >= 0, 'La voce iniziale deve appartenere alla selezione');
+const subset = selected.slice(first);
+const available = exerciseClocks
+  ? (await Promise.all(subset.map(async (r) => ((await esperienza(r)).clock ? r : null)))).filter(Boolean)
+  : subset;
 assert.ok(available.length, 'La selezione deve contenere almeno una simulazione');
 async function navigate(p, route, selector) {
   await p.evaluate((route) => {
@@ -69,6 +79,79 @@ async function navigate(p, route, selector) {
   }, route);
   await p.locator(selector).first().waitFor({ state: 'visible' });
 }
+async function playback(row, duration, pace, noGL) {
+  await row.locator('[data-rewind]').click();
+  await row.locator('[data-loop]').check();
+  await row.locator('.bench-stage').scrollIntoViewIfNeeded();
+  const sample = await row.evaluate(async (node, diagram) => {
+    const stage = node.querySelector('.bench-stage');
+    const startStop = node.querySelector('[data-play]');
+    const cursor = node.querySelector('[data-scrub]');
+    const canvas = stage.querySelector('canvas');
+    let draws = 0;
+    const observer = new MutationObserver(() => { draws++; });
+    if (diagram) observer.observe(stage.querySelector('[data-drawing]'), { childList: true });
+    const sampleFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+    await sampleFrame();
+    await sampleFrame();
+    const frames = Number(canvas.dataset.frames || 0);
+    const start = performance.now();
+    startStop.click();
+    await new Promise((resolve) => setTimeout(resolve, 550));
+    startStop.click();
+    const elapsed = performance.now() - start;
+    const simulated = cursor.valueAsNumber;
+    observer.disconnect();
+    const painted = diagram ? draws : Number(canvas.dataset.frames) - frames;
+    await new Promise((resolve) => setTimeout(resolve, 120));
+    return { elapsed, simulated, painted, paused: cursor.valueAsNumber, button: startStop.textContent };
+  }, noGL);
+  assert.ok(sample.painted > 1 && sample.button !== 'Pausa', 'riproduzione e pausa');
+  assert.equal(sample.paused, sample.simulated, 'il tempo deve restare fermo in pausa');
+  const difference = sample.simulated - (sample.elapsed * pace) / 1000;
+  const errorMs = (Math.abs(difference - duration * Math.round(difference / duration)) * 1000) / pace;
+  assert.ok(errorMs < 100, 'tempo simulato e tempo trascorso · scarto ' + errorMs + ' ms');
+  return {
+    fotogrammiAlSecondo: Math.round((1000 * sample.painted) / sample.elapsed),
+    scartoMs: Math.round(errorMs),
+  };
+}
+
+async function checkLessonLayout(ctx, format) {
+  const phone = format === 'mobile';
+  const [lesson, course, id, figure] = phone
+    ? ['C1-L008', 'C1', 'SIM-C1-L008-01', 'C1-energia.svg']
+    : ['C4-L07', 'C4', 'SIM-C4-L07-01', 'C4-condensatore.svg'];
+  const page = await ctx.newPage();
+  let showFigure;
+  const delayed = new Promise((resolve) => {
+    showFigure = resolve;
+  });
+  try {
+    await page.route('**/figures/' + figure, async (route) => {
+      await delayed;
+      await route.continue();
+    });
+    await page.goto(url + '#materiale/' + lesson + '/' + course, { waitUntil: 'domcontentloaded' });
+    const link = page.locator('a[href^="#banco/' + id + '/"]');
+    const image = page.locator('.reader img[src$="' + figure + '"]');
+    await link.scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.fonts.ready);
+    const coordinate = () => link.evaluate((el) => el.getBoundingClientRect().top + scrollY);
+    const before = await coordinate();
+    const reservedHeight = await image.evaluate((el) => el.getBoundingClientRect().height);
+    showFigure();
+    await image.evaluate((el) => el.decode());
+    assert.ok(reservedHeight > 0, 'Spazio riservato alla figura della lezione');
+    assert.ok(Math.abs((await coordinate()) - before) <= 1, 'La figura sposta il collegamento al banco');
+    await link.click();
+    await page.locator('[data-bench="' + id + '"]').waitFor();
+  } finally {
+    showFigure();
+    await page.close();
+  }
+}
+
 async function navigationShot(page, format, name) {
   if (!evidence || !['desktop', 'mobile'].includes(format)) return;
   const dir = path.join(evidence, format);
@@ -185,7 +268,7 @@ try {
       external.push(route.request().url());
       return route.abort();
     });
-    await ctx.addInitScript((noGL) => {
+    await ctx.addInitScript(({ noGL, exerciseClocks }) => {
       const original = HTMLCanvasElement.prototype.getContext;
       HTMLCanvasElement.prototype.getContext = function (type, ...args) {
         if (noGL && type.includes('webgl')) return null;
@@ -193,20 +276,28 @@ try {
         if (type === 'webgl2' && gl && !gl.observed) {
           gl.observed = true;
           const canvas = this;
+          if (exerciseClocks) {
+            const clear = gl.clear.bind(gl);
+            gl.clear = (...v) => {
+              canvas.dataset.frames = String(Number(canvas.dataset.frames || 0) + 1);
+              return clear(...v);
+            };
+          }
           for (const name of ['drawElements', 'drawArrays']) {
             const draw = gl[name].bind(gl);
             gl[name] = (...v) => {
-              canvas.dataset.painted = 'yes';
+              if (!canvas.dataset.painted) canvas.dataset.painted = 'yes';
               return draw(...v);
             };
           }
         }
         return gl;
       };
-    }, noGL);
+    }, { noGL, exerciseClocks });
     await ctx.request.post(url + 'api/demo', { headers: { 'X-Astra-Request': '1' }, data: {} });
+    if (format === 'mobile' || format === 'tablet') await checkLessonLayout(ctx, format);
     const p = await ctx.newPage();
-    p.setDefaultTimeout(6500);
+    p.setDefaultTimeout(30000);
     p.on('pageerror', (e) => errors.push(String(e)));
     await findLens(p, format);
     const shelf = p.locator('.topic-shelf[data-course=C1]');
@@ -228,6 +319,11 @@ try {
         chapterIds.map((id) => '#laboratori/' + cid + '/' + id),
         cid + ' · un accesso per capitolo',
       );
+    }
+    const journal = readingsDir && path.join(readingsDir, 'visite-' + format + '.jsonl');
+    if (journal) {
+      await mkdir(readingsDir, { recursive: true });
+      await writeFile(journal, '');
     }
     let lastLesson = '';
     for (const r of available) {
@@ -274,7 +370,7 @@ try {
         else await param.fill(String(target));
         const measured = parse(await read());
         close(measured, expected);
-        let motionChecked = false;
+        let motionChecked = false, run;
         const clock = act.clock;
         if (clock) {
           const more = row.locator('.time-options');
@@ -306,6 +402,7 @@ try {
               await writeFile(path.join(imgDir, r.id + '-tempo-' + i + '.png'), shot);
             }
           }
+          if (exerciseClocks) run = await playback(row, period, clock.pace, noGL);
           motionChecked = true;
           await more.locator('summary').click();
           await row.locator('[data-compare]').click();
@@ -373,15 +470,20 @@ try {
         await row.getByRole('link', { name: 'Torna all’attività' }).click();
         await a.waitFor({ state: 'visible' });
         assert.equal(await a.evaluate((el) => el.closest('details').open), true);
-        results.push({
+        const result = {
           id: r.id,
           format,
           lettura: measured,
           misureConfrontate: 2,
           movimentoVerificato: motionChecked,
-        });
+          ...(run && { riproduzione: run }),
+        };
+        results.push(result);
+        if (journal) await appendFile(journal, JSON.stringify(result) + '\n');
       } catch (error) {
-        throw new Error(format + ' ' + r.id + ': ' + error.message, { cause: error });
+        const screen = await p.locator('main h1').first().textContent({ timeout: 1000 }).catch(() => '');
+        const route = new URL(p.url()).hash;
+        throw new Error(format + ' ' + r.id + ' · ' + route + ' · ' + screen + ': ' + error.message, { cause: error });
       }
     }
     console.log(format + ' · ' + available.length + ' simulazioni, collegamenti e verifiche');

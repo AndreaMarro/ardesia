@@ -1,7 +1,7 @@
 export const experiments = {
   // Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale
   'SIM-C6-L01-01': {
-    observe: "Segui l’impulso dal microfono alla parete e ritorno. Ferma l’orologio a metà del tempo di eco e individua dove si trova.",
+    observe: "Segui l’impulso dalla sorgente alla parete e poi al microfono. Ferma l’orologio a metà del tempo di eco e individua dove si trova.",
     measure: (x) => 0.17 * x,
     apparatus: (x, y) => ({ eco: x / 20 }),
   },

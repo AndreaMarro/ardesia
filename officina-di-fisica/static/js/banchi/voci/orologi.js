@@ -245,7 +245,7 @@ const motions = {
     label: 'Distanza dell’impulso dal microfono',
     unit: 'm',
     signal: (x, t) => 0.34 * Math.min(t, x - t),
-    setup: 'La parete resta ferma per tutta la prova. Il segnale viaggia a 0,34 m ogni millisecondo.',
+    setup: 'La sorgente e il microfono sono nello stesso punto. Il segnale viaggia a 0,34 m ogni millisecondo, si riflette sulla parete ferma e ritorna al microfono.',
   },
   'C6-L02-01': {
     duration: () => 4,

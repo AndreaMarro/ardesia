@@ -153,7 +153,7 @@ export const ondulatoria = {
         b.ball([at, 1.01, 0.34], 0.13, c.viola);
         b.label([at, 1.43, 0.36], s.frazioneEco >= 1 - 1e-8 ? 'Riflessione' : 'Impulso', c.viola);
       }
-      b.label([left, 1.61, 0], 'Microfono');
+      b.label([left, 1.61, 0], 'Sorgente e microfono');
       b.label([wall, 2.1, 0], 'Riflettore');
       return;
     }
