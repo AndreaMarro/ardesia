@@ -36,6 +36,19 @@ La prima esecuzione parallela ha raggiunto il timeout nel confronto del ciclo te
 
 Durante le prove successive, il caricamento tardivo di due figure poteva spostare il collegamento mentre lo studente lo toccava. Con il download della figura ritardato apposta in WebKit, il link si spostava di 141 px nella lezione sull’energia di C1 e di 213 px nella lezione sul condensatore di C4. Lo spazio della figura ora è riservato all’apertura. Nelle stesse due prove lo spostamento misurato è stato di 0 px e il collegamento ha aperto il laboratorio giusto.
 
+## Misura della riproduzione
+
+Abbiamo avviato e fermato tutti i 44 orologi nel viewport touch da 390 × 844. Il test conta i disegni effettivi della scena, confronta l’istante simulato con il tempo trascorso e controlla la pausa. La finestra di misura è di 550 ms a velocità normale per 43 esperimenti e di 660 ms a mezza velocità per l’induzione di C4. Lo scarto è riportato in millisecondi equivalenti di tempo reale. I valori descrivono queste brevi prove su Mac. [Misure per ciascuno dei 44 laboratori](orologi.csv)
+
+| Browser | Disegni al secondo, mediana | Minimo e massimo | Massimo scarto dell’orologio |
+| --- | ---: | ---: | ---: |
+| Chromium | 63 | 58–63 | 6 ms |
+| WebKit | 33 | 29–33 | 34 ms |
+
+Nella prima prova in parallelo con altri browser, WebKit è sceso a 5 disegni/s in una delle 43 scene e un controllo sull’orologio del banco di Poiseuille ha superato la tolleranza. La tabella riporta la ripetizione in WebKit senza altri collaudi in esecuzione, con le stesse soglie.
+
+La suite dei dieci banchi di approfondimento ha verificato 30 scene WebGL, 10 tavole alternative e 20 problemi. La suite dei cinque esperimenti guidati ha completato 66 casi per browser, comprendendo anche il passaggio agli altri banchi. I 230 test JavaScript e i 23 test Python sono passati. Il controllo dei contenuti ha validato 991 record e quello tipografico 747 formule. La suite generale ha percorso C6, inclusa la simulazione d’esame con 31 quesiti, e la suite dell’editor ha verificato il ciclo di modifica e pubblicazione nel quaderno di prova.
+
 Le schermate provengono da browser su Mac con viewport e interazione touch emulati. La verifica della comprensione con studenti e le misure su dispositivi fisici richiedono una prova sul campo. [Cinque filmati delle esperienze guidate e confronto con l’interfaccia precedente](../movimento/README.md)
 
 ## Riprodurre i controlli
