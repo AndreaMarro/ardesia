@@ -19,6 +19,51 @@ function arrow(x, y, X, Y, c = dark) {
     c,
   );
 }
+function capillaryPlate(p, s, t, stage, equations) {
+  const left = 58,
+    right = 398,
+    axis = 98;
+  const radius = 17 * p.r;
+  const y = (ratio) => axis - radius * ratio;
+  const x = (ratio, initial = 0) => left + (right - left) * equations.tracerFraction(s, ratio, t, initial);
+  let plate =
+    '<g aria-label="Pareti del capillare">' +
+    path(`M${left} ${y(1)} H${right} M${left} ${y(-1)} H${right}`, green) +
+    '</g>' +
+    path(`M33 ${y(1)} h10 M38 ${y(1)} V${axis} M33 ${axis} h10`, dark) +
+    label(24, 19, 'R = ' + n(p.r) + ' mm') +
+    label(294, 19, 'L = ' + n(p.length) + ' cm');
+  if (stage < 0) return plate;
+  if (!s.laminar) return plate + label(26, 188, 'Re = ' + n(s.re) + ' · fuori dal regime laminare');
+  if (stage < 1) return plate;
+
+  const vmax = equations.velocity(s, 0);
+  const profileX = (ratio) => 215 + (82 * equations.velocity(s, ratio)) / vmax;
+  plate += label(144, 19, 'Profilo v(r)/v(0)');
+  plate += path(
+    Array.from({ length: 33 }, (_, i) => {
+      const h = i / 16 - 1;
+      return (i ? 'L' : 'M') + profileX(h) + ' ' + y(h);
+    }).join(' '),
+    purple,
+  );
+  for (const h of [-0.75, 0, 0.75]) plate += arrow(215, y(h), profileX(h), y(h), purple);
+  const probe = p.probe;
+  plate += path(`M${left} ${y(probe)} H${right}`, red, true);
+  for (const h of [-1, -0.5, 0, 0.8, 1]) {
+    for (const initial of [0.12, 0.46, 0.79]) {
+      plate += dot(x(h, initial), y(h), h === 0 ? gold : green, Math.min(3.5, radius * 0.17));
+    }
+  }
+  return (
+    plate +
+    '<g aria-label="Tracciante della sonda">' +
+    dot(x(probe), y(probe), red, 5) +
+    '</g>' +
+    label(25, 188, 'Sonda · r/R = ' + n(probe) + ' · v = ' + n(equations.velocity(s, probe)) + ' m/s') +
+    label(313, 188, 'v(R) = 0 m/s')
+  );
+}
 export function drawing(model, p, s, t, stage, title, projection = 'top', equations) {
   let d = '';
   const reveal = stage >= 0;
@@ -77,19 +122,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
         path(`M151 ${y} H279`, green, true) +
         label(82, 179, 'h = ' + n(p.h) + ' m');
   } else if (model === 'tubo') {
-    d = path('M38 52 H399 M38 141 H399', green) + label(35, 34, 'parete · asse orizzontale');
-    if (reveal && s.laminar)
-      for (let i = -4; i <= 4; i++) {
-        const v = 1 - (i / 4) ** 2;
-        d += arrow(101, 96 + i * 10, 101 + 180 * v, 96 + i * 10, purple);
-      }
-    if (reveal && s.laminar) {
-      for (const h of [0, 0.5, 0.8, 1]) {
-        for (const x0 of [0.05, 0.4, 0.75])
-          d += dot(39 + 359 * equations.tracerFraction(s, h, t, x0), 96 - 43 * h, h === 0 ? gold : green, 4);
-      }
-    }
-    d += label(44, 174, reveal && s.laminar ? 'v = 0 alla parete' : 'sezione longitudinale');
+    d = capillaryPlate(p, s, t, stage, equations);
   } else if (model === 'gas') {
     const volume = s.instant?.V ?? p.V;
     const y = 150 - 18 * volume;

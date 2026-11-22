@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { chromium } from 'playwright';
+import { chromium, webkit } from 'playwright';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
@@ -8,6 +8,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { piloti, problemi } from '../static/js/banchi/quaderno.js';
 
+const engine = process.env.ASTRA_BROWSER || 'chromium';
+assert.ok(['chromium', 'webkit'].includes(engine), 'ASTRA_BROWSER deve essere chromium o webkit');
 const root = fileURLToPath(new URL('../', import.meta.url)),
   tmp = await mkdtemp(path.join(tmpdir(), 'cric-moto-'));
 const output = process.env.ASTRA_SHOTS;
@@ -23,7 +25,7 @@ const server = spawn(
   { cwd: root, env: { ...process.env, ASTRA_DATA: tmp }, stdio: ['ignore', 'pipe', 'inherit'] },
 );
 const url = 'http://127.0.0.1:' + String((await once(server.stdout, 'data'))[0]).trim() + '/';
-const browser = await chromium.launch({ channel: 'chrome', args: ['--enable-unsafe-swiftshader'] });
+let browser;
 const reports = [],
   errors = [];
 async function shot(page, file, sel) {
@@ -36,6 +38,57 @@ async function shot(page, file, sel) {
       scrollTo({ top: 0, behavior: 'instant' });
     });
   await (sel || page).screenshot({ path: dest, animations: 'disabled' });
+}
+async function checkCapillaryPlate(b, seek) {
+  const svg = b.locator('.bench-stage .bench-diagram');
+  const walls = svg.locator('[aria-label="Pareti del capillare"]');
+  const probe = svg.locator('[aria-label="Tracciante della sonda"] circle');
+  const set = (name, value) => b.locator('[name="' + name + '"]').fill(String(value));
+  const reading = async (label) => {
+    const value = await b
+      .locator('[data-readings] div')
+      .filter({ hasText: label })
+      .locator('strong')
+      .innerText();
+    return Number(value.split(/\s/)[0].replace(',', '.'));
+  };
+  const geometry = () =>
+    walls.evaluate((el) => {
+      const { x, y, width, height } = el.getBBox();
+      return { x, y, width, height };
+    });
+  const coord = async (key) => Number(await probe.getAttribute(key));
+  const base = await geometry(),
+    baseQ = await reading('Portata'),
+    basePressure = await reading('Caduta');
+  await set('r', 3);
+  assert.equal((await geometry()).height, 2 * base.height, 'doppio raggio, doppio diametro sullo schermo');
+  assert.ok(Math.abs((await reading('Portata')) / baseQ - 16) < 0.02);
+  assert.equal(await reading('Caduta'), basePressure);
+
+  await b.locator('[name=mode]').selectOption('flow');
+  const widePressure = await reading('Caduta');
+  await set('r', 1.5);
+  assert.equal(await reading('Portata'), 1);
+  assert.ok(Math.abs((await reading('Caduta')) / widePressure - 16) < 0.02);
+  await set('probe', 0.5);
+  await seek(0.1);
+  const v = ((2 * 1e-6) / (Math.PI * 0.0015 ** 2)) * (1 - 0.5 ** 2);
+  assert.ok(Math.abs(((await coord('cx')) - base.x) / base.width - (v * 0.1) / 0.2) < 1e-5);
+  assert.equal(await coord('cy'), base.y + base.height / 4);
+  await set('probe', 1);
+  const stationary = await coord('cx');
+  await seek(0.2);
+  assert.equal(await coord('cx'), stationary);
+  assert.equal(await coord('cy'), base.y);
+  assert.equal(await reading('Velocità locale'), 0);
+
+  await set('r', 0.5);
+  await set('mu', 1);
+  await set('flow', 12);
+  assert.equal(await probe.count(), 0);
+  assert.ok(await b.locator('.bench-warning').isVisible());
+  await b.locator('[data-reset]').click();
 }
 async function explore(p, id, device, noGL) {
   const b = p.locator('[data-bench="' + id + '"]'),
@@ -147,12 +200,15 @@ async function explore(p, id, device, noGL) {
       changes++;
     });
     if (noGL) observer.observe(diagram, { childList: true });
+    const clock = el.closest('.bench-instrument').querySelector('[data-instant]');
+    const firstTime = clock.valueAsNumber;
     const base = Number(canvas.dataset.frames || 0),
       start = performance.now();
     await new Promise((resolve) => setTimeout(resolve, 660));
     observer.disconnect();
     return {
       elapsed: performance.now() - start,
+      simulated: clock.valueAsNumber - firstTime,
       changes: noGL ? changes : Number(canvas.dataset.frames) - base,
     };
   }, noGL);
@@ -173,6 +229,10 @@ async function explore(p, id, device, noGL) {
   await p.waitForTimeout(115);
   assert.equal(await actual(), paused);
   assert.ok(sample.changes > 0, device + ' ' + id + ' deve disegnare durante la riproduzione');
+  // The displayed time refreshes every 80 ms and may cross the end of a repeating cycle.
+  const difference = sample.simulated - sample.elapsed / 2000;
+  const clockErrorMs = Math.round(1000 * Math.abs(difference - duration * Math.round(difference / duration)));
+  assert.ok(clockErrorMs < 90, id + ' · scarto del tempo mostrato a ½×: ' + clockErrorMs + ' ms');
   await phase(3).click();
   const drawings = new Set();
   for (let i = 0; i < 4; i++) {
@@ -201,15 +261,21 @@ async function explore(p, id, device, noGL) {
   await phase(2).click();
   await b.locator('[data-reset]').click();
   assert.equal(await actual(), 0);
+  if (noGL && pilot === 'tubo') await checkCapillaryPlate(b, seek);
   reports.push({
     device,
     id,
     noGL,
     launchMs,
     framesPerSecond: Number(((sample.changes * 1000) / sample.elapsed).toFixed(1)),
+    clockErrorMs,
   });
 }
 try {
+  browser =
+    engine === 'webkit'
+      ? await webkit.launch()
+      : await chromium.launch({ channel: 'chrome', args: ['--enable-unsafe-swiftshader'] });
   for (const [device, width, height] of [
     ['desktop', 1440, 960],
     ['tablet', 810, 1080],
@@ -275,7 +341,7 @@ try {
     );
   }
 } finally {
-  await browser.close();
+  await browser?.close();
   const end = once(server, 'exit');
   server.kill();
   await end;

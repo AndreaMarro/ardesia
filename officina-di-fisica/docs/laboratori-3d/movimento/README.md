@@ -45,7 +45,7 @@ Lo stesso tempo simulato alimenta modello, geometria, tavola 2D, grafici e lettu
 | Banchi estesi | 30 aperture WebGL, 10 tavole alternative, 20 problemi precedenti. Verificato che ogni banco carichi soltanto il proprio modello. Verificati il gesto di zoom touch, il rilascio dei contesti e il ritorno dalla lezione o dal quesito in corso. |
 | Regressioni dell’app | Superati navigazione C6, esempi guidati, simulazione d’esame, errori e recupero, ripresa su un secondo client, cinque laboratori guidati, PDF e accesso autore. La prova dell’editor comprende bozze, ripristino delle versioni, pubblicazione e visualizzazione mobile. |
 
-Le misure provengono da Chrome 157 su Mac Apple M1, 8 GB, scala del dispositivo 1. Il tempo va dal cambio di pagina al primo disegno. La mediana usa i cinque piloti nella sessione locale. La cadenza conta i disegni effettivi durante una finestra di circa 0,66 s. Il testo e le tavole SVG si aggiornano ogni 80 ms circa mentre l’orologio conserva i secondi simulati. [Misure individuali dei 66 casi](misure.csv)
+La prima serie di misure proviene da Chrome 157 su Mac Apple M1, 8 GB, scala del dispositivo 1. Il tempo va dal cambio di pagina al primo disegno. La mediana usa i cinque piloti nella sessione locale. La cadenza conta i disegni effettivi durante una finestra di circa 0,66 s. Il testo e le tavole SVG si aggiornano ogni 80 ms circa mentre l’orologio conserva i secondi simulati. [Misure individuali dei 66 casi](misure.csv)
 
 | Profilo | Primo disegno 3D, mediana | Disegni 3D/s, minimo–massimo | Prima tavola 2D, mediana | Aggiornamenti 2D/s |
 | --- | --- | --- | --- | --- |
@@ -67,6 +67,30 @@ node tests/editor.mjs
 node tests/browser-banchi.mjs
 node tests/browser-esperienze.mjs
 ASTRA_SHOTS=var/collaudo-moto node tests/browser-movimento.mjs
+```
+
+### Secondo collaudo in Chromium e WebKit
+
+La prova ripete gli stessi 11 fenomeni in Chromium e WebKit per macOS. Ogni motore esegue 66 casi, sui tre schermi già descritti, con WebGL e con il diagramma alternativo. I 60 casi dei cinque fenomeni animati confrontano due fotogrammi con la camera ferma. In riproduzione a ½× confrontano anche l’avanzamento dell’orologio mostrato con metà del tempo trascorso. Lo scarto massimo fra gli intervalli misurati è **39 ms**. Il valore a schermo si aggiorna circa ogni 80 ms. [Misure di tutti i 132 casi](confronto-browser.csv)
+
+| Motore sul Mac | Profilo | Primo disegno 3D dei cinque piloti, mediana | Disegni 3D/s, minimo–massimo |
+| --- | --- | --- | --- |
+| WebKit | Desktop | 275 ms | 28,6–30,3 |
+| WebKit | Tablet | 294 ms | 30,3 |
+| WebKit | Smartphone | 230 ms | 28,7–30,3 |
+| Chromium | Desktop | 157 ms | 58,9–60,6 |
+| Chromium | Tablet | 105 ms | 60,4–60,5 |
+| Chromium | Smartphone | 98 ms | 60,3–60,6 |
+
+La tavola di Poiseuille ora mostra il raggio su una scala fissa. Nel confronto entrambe le colonne hanno tubo lungo 20 cm, caduta di pressione di 80 Pa e sonda a metà raggio. Passando da R = 1,5 mm a R = 3 mm, il diametro disegnato raddoppia, la velocità locale quadruplica da 0,04219 a 0,1687 m/s e la portata cresce da 0,1988 a 3,181 mL/s. Con Q fissata a 1 mL/s la stessa variazione di raggio fa scendere la caduta di pressione da 402,4 a 25,15 Pa. Il punto rosso avanza alla velocità locale e rimane fermo quando la sonda tocca la parete. Il test controlla anche la scomparsa dei traccianti fuori dal dominio laminare. [Apri il banco](http://127.0.0.1:8847/#banco/LAB3D-04)
+
+![Tavola del capillare in WebKit su viewport smartphone. Le colonne cambiano il raggio, le righe confrontano la figura precedente con la correzione.](poiseuille-webkit.webp)
+
+Con entrambi i motori installati per Playwright, questi comandi ripetono il confronto.
+
+```sh
+ASTRA_BROWSER=webkit ASTRA_SHOTS=var/confronto/webkit node tests/browser-movimento.mjs
+ASTRA_BROWSER=chromium ASTRA_SHOTS=var/confronto/chromium node tests/browser-movimento.mjs
 ```
 
 Per registrare le cinque esperienze da un server locale in modalità verifica, eseguire `node tools/registra-movimento.mjs http://127.0.0.1:8847/ var/clip`. Il registratore usa una sessione di prova separata e richiede Chrome e FFmpeg.

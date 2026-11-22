@@ -31,7 +31,11 @@ const legends = {
     'vx · viola / vy · ocra / vz · grafite',
   ],
   stevino: ['A · sonda mobile', 'B · presa alla stessa quota', 'Fondo · presa a 2 m'],
-  tubo: ['Ingresso → uscita', 'Frecce · velocità locale / punti · traccianti', 'Anello viola · sezione'],
+  tubo: [
+    'Ingresso → uscita',
+    'Frecce · velocità rispetto al centro, v(r)/v(0). Punti · traccianti',
+    'Viola · profilo nella sezione di misura',
+  ],
   gas: [
     'Pistone · metallo / volume · ocra',
     'Freccia · spinta del gas',
