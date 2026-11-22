@@ -30,12 +30,16 @@ class BanchiEditoriali(TestCase):
                                     for b in lesson["blocks"]))
                 topics.add((lesson["id"], topic["topic"]))
         table = (ROOT / "docs/laboratori-3d/voci.md").read_text()
+        experiences = {(r["skill"], r["topic"]): r for r in self.rows.values() if r["kind"] == "experiment"}
         for lesson in self.rows.values():
             if lesson["kind"] == "lesson":
                 section = table.split("## " + lesson["id"] + " · ")[1].split("\n## ")[0]
                 for topic in lesson["coverage"]:
                     row = next(line for line in section.splitlines() if line.startswith("| " + topic + " |"))
-                    self.assertIn("LAB3D-" if (lesson["id"], topic) in topics else "Progetto ", row)
+                    key = (lesson["id"], topic)
+                    self.assertIn(experiences[key]["id"], row)
+                    if key in topics:
+                        self.assertIn("LAB3D-", row)
         catalog = (ROOT / "docs/laboratori-3d/catalogo.md").read_text()
         self.assertEqual(catalog.count("| Progettato |"), 30)
         self.assertEqual(catalog.count("| Disponibile · LAB3D-"), 10)

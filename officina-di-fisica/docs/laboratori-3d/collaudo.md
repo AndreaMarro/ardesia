@@ -2,6 +2,8 @@
 
 Verifica locale del 22 novembre 2026, dalla baseline `237f18c562946763d60e861a83fc47ef11da63ce`. Chrome 157.0.8103.80 e Playwright 1.60 su macOS 26.0.1. Il contesto WebGL del browser ha identificato **ANGLE Metal, Apple M1**. Il tablet e lo smartphone sono viewport con touch emulato sullo stesso Mac. Il database temporaneo di ciascuna suite viene creato dal seed dell’app.
 
+Il verbale fotografa la consegna dei dieci banchi alla versione `fbb2b86`. Il collaudo successivo segue tutte le 181 voci nei tre formati e nella modalità alternativa. [Esiti delle simulazioni di lezione](esperienze.md)
+
 ## Risultati
 
 | Prova | Esito |

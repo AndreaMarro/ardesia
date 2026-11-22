@@ -22,6 +22,7 @@ export const kinds = {
   question: 'Quesito',
   lab: 'Laboratorio',
   bench: 'Laboratorio 3D',
+  experiment: 'Simulazione di lezione',
 };
 export const errorNames = {
   concetto: 'Errore concettuale',

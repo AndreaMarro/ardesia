@@ -143,6 +143,8 @@ KIND = {
     "example": "esempio svolto",
     "question": "quesito",
     "lab": "laboratorio",
+    "bench": "banco 3D di approfondimento",
+    "experiment": "simulazione di lezione",
     "section": "sezione",
     "method": "attività di metodo",
 }
@@ -454,13 +456,13 @@ def main():
         "",
         "## Banca pubblicata",
         "",
-        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori | Attività di metodo |",
-        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|",
+        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori guidati | Banchi 3D | Simulazioni di lezione | Attività di metodo |",
+        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|",
     ]
     for c in courses:
         s = stats[c]
         inventory.append(
-            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} | {s['method']} |"
+            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} | {s['bench']} | {s['experiment']} | {s['method']} |"
         )
     inventory += [
         "",
@@ -479,7 +481,7 @@ def main():
     inventory.extend(
         [
             "",
-            "Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le rappresentazioni calcolate dal vivo nei laboratori appartengono alla colonna laboratori.",
+            "Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le ultime colonne distinguono i laboratori guidati, i banchi 3D di approfondimento, le simulazioni delle singole voci e le attività di metodo. [Mappa delle simulazioni di lezione](laboratori-3d/voci.md)",
             "",
             "## Matrice del programma",
             "",

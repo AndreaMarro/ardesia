@@ -1,19 +1,19 @@
 # Inventario editoriale e copertura MUR
 
-Questa fotografia riguarda il manoscritto iniziale distribuito nei file content/*.json. Comprende 800 record con identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.
+Questa fotografia riguarda il manoscritto iniziale distribuito nei file content/*.json. Comprende 991 record con identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.
 
 Fonti ministeriali consultate il 21 novembre 2026 per l’anno accademico 2026/27. I collegamenti ai documenti archiviati sono sotto la matrice.
 
 ## Banca pubblicata
 
-| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori | Attività di metodo |
-|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|
-| C1 · Strumenti e Meccanica | 10 | 23 | 23 | 100 | 0 | 100 | 37 / 51 / 12 | 49 | 6 | 1 | 2 |
-| C2 · Fluidi | 10 | 21 | 21 | 100 | 0 | 100 | 38 / 52 / 10 | 23 | 12 | 1 | 2 |
-| C3 · Termodinamica | 10 | 23 | 23 | 100 | 0 | 100 | 33 / 46 / 21 | 28 | 14 | 1 | 2 |
-| C4 · Elettricità e Magnetismo | 10 | 21 | 21 | 100 | 0 | 100 | 31 / 48 / 21 | 35 | 21 | 1 | 2 |
-| C5 · Onde, Ottica e Radiazioni | 10 | 22 | 22 | 100 | 0 | 100 | 38 / 49 / 13 | 17 | 3 | 1 | 2 |
-| C6 · Fisica completa | 6 | 7 | 7 | 13 | 93 | 106 | 64 / 12 / 30 | 10 | 6 | 0 | 0 |
+| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori guidati | Banchi 3D | Simulazioni di lezione | Attività di metodo |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|
+| C1 · Strumenti e Meccanica | 10 | 23 | 23 | 100 | 0 | 100 | 37 / 51 / 12 | 49 | 6 | 1 | 2 | 42 | 2 |
+| C2 · Fluidi | 10 | 21 | 21 | 100 | 0 | 100 | 38 / 52 / 10 | 23 | 12 | 1 | 2 | 41 | 2 |
+| C3 · Termodinamica | 10 | 23 | 23 | 100 | 0 | 100 | 33 / 46 / 21 | 28 | 14 | 1 | 2 | 36 | 2 |
+| C4 · Elettricità e Magnetismo | 10 | 21 | 21 | 100 | 0 | 100 | 31 / 48 / 21 | 35 | 21 | 1 | 2 | 29 | 2 |
+| C5 · Onde, Ottica e Radiazioni | 10 | 22 | 22 | 100 | 0 | 100 | 38 / 49 / 13 | 17 | 3 | 1 | 2 | 27 | 2 |
+| C6 · Fisica completa | 6 | 7 | 7 | 13 | 93 | 106 | 64 / 12 / 30 | 10 | 6 | 0 | 0 | 6 | 0 |
 
 ## Verifiche dei microcorsi
 
@@ -25,7 +25,7 @@ Fonti ministeriali consultate il 21 novembre 2026 per l’anno accademico 2026/2
 | C4 | 10 | 10 | 20 | 100 |
 | C5 | 10 | 10 | 20 | 100 |
 
-Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le rappresentazioni calcolate dal vivo nei laboratori appartengono alla colonna laboratori.
+Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le ultime colonne distinguono i laboratori guidati, i banchi 3D di approfondimento, le simulazioni delle singole voci e le attività di metodo. [Mappa delle simulazioni di lezione](laboratori-3d/voci.md)
 
 ## Matrice del programma
 

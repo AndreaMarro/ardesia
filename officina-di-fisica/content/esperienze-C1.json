@@ -1,0 +1,1683 @@
+[
+  {
+    "id": "SIM-C1-L001-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 1,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Notazione scientifica",
+    "topic": "Notazione scientifica",
+    "anchor": "La notazione scientifica separa le cifre significative",
+    "summary": "Come può lo stesso spessore avere due scritture numeriche diverse?",
+    "apparatus": "calibro",
+    "control": {
+      "label": "Esponente di dieci",
+      "unit": "1",
+      "min": -6.0,
+      "max": -2.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Spessore",
+      "unit": "µm"
+    },
+    "formula": "d = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm",
+    "interpretation": "Il calibro ingrandisce la sezione di un foglio ideale. Ogni scatto dell’esponente moltiplica lo spessore per dieci. Un micrometro è un milionesimo di metro.",
+    "references": [
+      [
+        -6.0,
+        2.0
+      ],
+      [
+        -3.0,
+        2000.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × 10^({x} + 6)",
+    "transferPrompt": "Una scheda riporta uno spessore di 2 × 10ⁿ metri con n = {x}. Quale spessore scriveresti nel quaderno in micrometri?"
+  },
+  {
+    "id": "SIM-C1-L001-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 2,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Grandezze fisiche, dimensioni e SI",
+    "topic": "Grandezze fisiche, dimensioni e SI",
+    "anchor": "Nel Sistema Internazionale lunghezza, massa e tempo",
+    "summary": "Quanti cubetti da un centimetro entrano nel campione?",
+    "apparatus": "campione",
+    "control": {
+      "label": "Lato del cubo",
+      "unit": "cm",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Volume",
+      "unit": "cm³"
+    },
+    "formula": "V = ℓ × ℓ × ℓ",
+    "interpretation": "Conta in tre direzioni. Raddoppiare il lato raddoppia ciascuno dei tre conteggi. L’unità di volume è il cubo dell’unità di lunghezza.",
+    "references": [
+      [
+        2.0,
+        8.0
+      ],
+      [
+        3.0,
+        27.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x}³",
+    "transferPrompt": "Vuoi riempire una scatola cubica di lato {x} con cubetti da 1 cm³. Quale volume devono occupare in tutto?"
+  },
+  {
+    "id": "SIM-C1-L001-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 3,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Conversioni tra unità",
+    "topic": "Conversioni tra unità",
+    "anchor": "In laboratorio due persone descrivono lo stesso",
+    "summary": "Dove si trova la stessa tacca leggendo in millimetri e in centimetri?",
+    "apparatus": "calibro",
+    "control": {
+      "label": "Apertura del calibro",
+      "unit": "mm",
+      "min": 0.0,
+      "max": 50.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Lettura in centimetri",
+      "unit": "cm"
+    },
+    "formula": "d(cm) = d(mm) / 10",
+    "interpretation": "Le ganasce delimitano la stessa distanza su due scale. Dieci intervalli da un millimetro occupano un intervallo da un centimetro.",
+    "references": [
+      [
+        10.0,
+        1.0
+      ],
+      [
+        25.0,
+        2.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 10",
+    "transferPrompt": "Il calibro indica {x}, ma il disegno tecnico usa i centimetri. Quale numero riporteresti sul disegno?"
+  },
+  {
+    "id": "SIM-C1-L001-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 4,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Stima di ordine di grandezza",
+    "topic": "Stima di ordine di grandezza",
+    "anchor": "La notazione scientifica separa le cifre significative",
+    "summary": "Una cassa d’acqua di un metro di lato si pesa in chili o in tonnellate?",
+    "apparatus": "campione",
+    "control": {
+      "label": "Lato della cassa",
+      "unit": "m",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa d’acqua",
+      "unit": "kg"
+    },
+    "formula": "m = ρℓ³, con ρ = 1000 kg/m³",
+    "interpretation": "Stima prima il volume in metri cubi. Un metro cubo d’acqua ha massa circa mille chilogrammi. Aumentando il lato, verifica quando cambia l’ordine di grandezza della massa.",
+    "references": [
+      [
+        1.0,
+        1000.0
+      ],
+      [
+        2.0,
+        8000.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1000 × {x}³",
+    "transferPrompt": "Una cassa cubica di lato interno {x} viene riempita d’acqua. Quanti chilogrammi d’acqua dovrà sostenere il ripiano?"
+  },
+  {
+    "id": "SIM-C1-L001-05",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 5,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Grandezze intensive ed estensive",
+    "topic": "Grandezze intensive ed estensive",
+    "anchor": "Dividi in due parti uguali un liquido",
+    "summary": "Quale proprietà conserva ciascun pezzo quando riunisci più campioni?",
+    "apparatus": "campione",
+    "control": {
+      "label": "Numero di campioni uguali",
+      "unit": "1",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa complessiva",
+      "unit": "g"
+    },
+    "formula": "m = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³",
+    "interpretation": "Ogni pezzo ha volume 30 cm³ e massa 60 g. Conta i pezzi e somma le masse. Anche il volume cresce dello stesso fattore, perciò il loro rapporto resta 2 g/cm³.",
+    "references": [
+      [
+        2.0,
+        120.0
+      ],
+      [
+        4.0,
+        240.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "60 × {x}",
+    "transferPrompt": "Un campione pesa 60 g. Ne metti {x} uguali sulla bilancia. Quale massa leggi anche se la densità rimane la stessa?"
+  },
+  {
+    "id": "SIM-C1-L001-06",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L001",
+    "order": 6,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Scalari e vettori",
+    "topic": "Scalari e vettori",
+    "anchor": "Nel Sistema Internazionale lunghezza, massa e tempo",
+    "summary": "Ruotando la velocità cambiano il modulo e la componente orizzontale nello stesso modo?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Direzione della velocità",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Componente orizzontale",
+      "unit": "m/s"
+    },
+    "formula": "vₓ = 4 cos θ, con modulo v = 4 m/s",
+    "interpretation": "La punta resta sulla circonferenza di raggio fisso. L’ombra sull’asse orizzontale cambia segno oltre 90°. Il modulo è uno scalare.",
+    "references": [
+      [
+        0.0,
+        4.0
+      ],
+      [
+        90.0,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × cos({x}°)",
+    "transferPrompt": "Un carrello viaggia a 4 m/s formando un angolo di {x} con l’asse della guida. Quale velocità misura un sensore orientato lungo quell’asse?"
+  },
+  {
+    "id": "SIM-C1-L002-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L002",
+    "order": 1,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Funzioni trigonometriche elementari",
+    "topic": "Funzioni trigonometriche elementari",
+    "anchor": "Nel triangolo rettangolo il coseno è cateto",
+    "summary": "Quanto sale l’estremità di un’asta lunga 10 cm?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Inclinazione del segmento",
+      "unit": "°",
+      "min": 0.0,
+      "max": 90.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Altezza",
+      "unit": "cm"
+    },
+    "formula": "h = 10 sin θ",
+    "interpretation": "Il triangolo rettangolo ha per ipotenusa l’asta. La proiezione verticale è il cateto opposto all’angolo misurato dall’orizzontale.",
+    "references": [
+      [
+        30.0,
+        5.0
+      ],
+      [
+        90.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × sin({x}°)",
+    "transferPrompt": "Una bacchetta lunga 10 cm poggia su un piano e forma un angolo di {x} con l’orizzontale. A quale altezza arriva l’estremo libero?"
+  },
+  {
+    "id": "SIM-C1-L002-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L002",
+    "order": 2,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Definizione, componenti e modulo dei vettori",
+    "topic": "Definizione, componenti e modulo dei vettori",
+    "anchor": "Un tragitto obliquo può essere descritto dando",
+    "summary": "Quanto è lungo uno spostamento di 3 m a destra e 4 m in alto?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Componente verticale",
+      "unit": "m",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Modulo dello spostamento",
+      "unit": "m"
+    },
+    "formula": "s = √(3² + sᵧ²)",
+    "interpretation": "Segui prima i due cateti e poi il segmento che unisce partenza e arrivo. Per il modulo si sommano i quadrati delle componenti ortogonali.",
+    "references": [
+      [
+        0.0,
+        3.0
+      ],
+      [
+        4.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "√(3² + {x}²)",
+    "transferPrompt": "Su una mappa percorri 3 m a est e {x} verso nord. Quanto misura il segmento che unisce partenza e arrivo?"
+  },
+  {
+    "id": "SIM-C1-L002-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L002",
+    "order": 3,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Somma e differenza",
+    "topic": "Somma e differenza",
+    "anchor": "Per sommare due vettori porta l’origine della",
+    "summary": "Dove finisci se il secondo tratto ti riporta indietro?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Secondo spostamento",
+      "unit": "m",
+      "min": -4.0,
+      "max": 4.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Spostamento risultante",
+      "unit": "m"
+    },
+    "formula": "s = 3 m + b",
+    "interpretation": "Trasla la coda della seconda freccia sulla punta della prima. Lo spostamento risultante va dalla partenza all’arrivo. Una componente negativa sottrae distanza lungo l’asse.",
+    "references": [
+      [
+        -2.0,
+        1.0
+      ],
+      [
+        3.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 + {x}",
+    "transferPrompt": "Dopo un primo tratto di +3 m aggiungi uno spostamento con segno di {x}. A quale distanza orientata dal via finisci?"
+  },
+  {
+    "id": "SIM-C1-L002-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L002",
+    "order": 4,
+    "section": "Misura e rappresentazione",
+    "version": 1,
+    "title": "Prodotto scalare e vettoriale",
+    "topic": "Prodotto scalare e vettoriale",
+    "anchor": "Il prodotto scalare misura quanto un vettore",
+    "summary": "Quando il prodotto scalare è nullo, dove punta il prodotto vettoriale?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Angolo fra i vettori",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Prodotto scalare",
+      "unit": "m²"
+    },
+    "formula": "a·b = 6 cos θ; (a×b)𝓏 = 6 sin θ",
+    "interpretation": "I due vettori sono lunghi 3 m e 2 m. Osserva la proiezione del secondo sul primo e ruota la vista per vedere la normale al loro piano. L’ordine a×b fissa il verso con la mano destra.",
+    "references": [
+      [
+        0.0,
+        6.0
+      ],
+      [
+        90.0,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 × cos({x}°)",
+    "transferPrompt": "Due segmenti orientati di 2 m e 3 m formano un angolo di {x}. Quanto vale il prodotto che usa la proiezione del secondo sul primo?"
+  },
+  {
+    "id": "SIM-C1-L003-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 1,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Posizione e spostamento",
+    "topic": "Posizione e spostamento",
+    "anchor": "Sul pavimento segna un’origine e scegli il",
+    "summary": "Il carrello termina alla sinistra o alla destra del punto di partenza?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Posizione finale",
+      "unit": "m",
+      "min": -2.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Spostamento",
+      "unit": "m"
+    },
+    "formula": "Δx = x finale − 2 m",
+    "interpretation": "La tacca di partenza resta a 2 m. Conta gli intervalli con segno dal riferimento al carrello. La posizione finale si legge rispetto allo zero della rotaia.",
+    "references": [
+      [
+        0.0,
+        -2.0
+      ],
+      [
+        5.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} − 2",
+    "transferPrompt": "La rotaia ha lo zero prima della partenza. Parti dalla tacca 2 m e termini alla coordinata {x}. Quale spostamento annoti, con il suo segno?"
+  },
+  {
+    "id": "SIM-C1-L003-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 2,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Traiettoria e legge oraria",
+    "topic": "Traiettoria e legge oraria",
+    "anchor": "Sul pavimento segna un’origine e scegli il",
+    "summary": "Come individui un punto della traiettoria con un solo istante?",
+    "apparatus": "volo",
+    "control": {
+      "label": "Tempo",
+      "unit": "s",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.1
+    },
+    "measure": {
+      "label": "Quota",
+      "unit": "m"
+    },
+    "formula": "x = 3t; y = 10t − 5t²",
+    "interpretation": "La pallina parte dal piano con componenti iniziali 3 e 10 m/s. Leggi insieme le due coordinate riferite allo stesso tempo. Per il calcolo mentale si assume g = 10 m/s².",
+    "references": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x} − (5 × {x} × {x})",
+    "transferPrompt": "Una pallina lascia il banco con velocità verticale iniziale di 10 m/s. Dopo {x}, a quale quota si trova rispetto al punto di lancio, con g = 10 m/s²?"
+  },
+  {
+    "id": "SIM-C1-L003-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 3,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Velocità media e istantanea",
+    "topic": "Velocità media e istantanea",
+    "anchor": "Tra due istanti la velocità media è",
+    "summary": "Che velocità leggi avvicinando la seconda misura all’istante 1 s?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Durata dell’intervallo",
+      "unit": "s",
+      "min": 0.25,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Velocità media",
+      "unit": "m/s"
+    },
+    "formula": "s(t)=t²; v media = [(1+Δt)²−1]/Δt = 2+Δt",
+    "interpretation": "Il primo segno è la posizione a 1 s. La secante fra le due posizioni dà la velocità media. Riducendo l’intervallo si avvicina alla velocità istantanea di 2 m/s.",
+    "references": [
+      [
+        1.0,
+        3.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 + {x}",
+    "transferPrompt": "Un sensore registra s(t) = t² in metri. Fra t = 1 s e un istante successivo di {x}, quale velocità media deduci dalle due posizioni?"
+  },
+  {
+    "id": "SIM-C1-L003-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 4,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Accelerazione media e istantanea",
+    "topic": "Accelerazione media e istantanea",
+    "anchor": "Per ottenere l’accelerazione istantanea si riduce l’intervallo",
+    "summary": "Come ricavi l’accelerazione istantanea da due letture del tachimetro?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Durata della misura",
+      "unit": "s",
+      "min": 0.25,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Accelerazione media",
+      "unit": "m/s²"
+    },
+    "formula": "v(t)=t²; a media = [(1+Δt)²−1]/Δt = 2+Δt",
+    "interpretation": "La velocità cresce come il quadrato del tempo, in unità SI. Dividi la variazione di velocità per l’intervallo, poi restringilo verso l’istante iniziale. La freccia rappresenta la velocità finale.",
+    "references": [
+      [
+        1.0,
+        3.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 + {x}",
+    "transferPrompt": "Nel registro di un carrello v(t) = t² in m/s. Inizi a t = 1 s e misuri per {x}. Quale accelerazione media ricavi?"
+  },
+  {
+    "id": "SIM-C1-L003-05",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 5,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Moto rettilineo uniforme",
+    "topic": "Moto rettilineo uniforme",
+    "anchor": "Sul pavimento segna un’origine e scegli il",
+    "summary": "Quali intervalli percorre il carrello in tempi uguali?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo",
+      "unit": "s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Posizione",
+      "unit": "m"
+    },
+    "formula": "x = −1 m + (2 m/s)t",
+    "interpretation": "Parti dalla tacca −1 m. La velocità è sempre +2 m/s, perciò ogni secondo aggiunge due metri alla posizione.",
+    "references": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        3.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−1 + 2 × {x}",
+    "transferPrompt": "Il primo fotogramma mostra il carrello a −1 m. Si muove poi a +2 m/s. Dopo {x}, quale tacca si trova sotto il carrello?"
+  },
+  {
+    "id": "SIM-C1-L003-06",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L003",
+    "order": 6,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Grafici cinematici",
+    "topic": "Grafici cinematici",
+    "anchor": "Tra due istanti la velocità media è",
+    "summary": "Come riconosci sul grafico il ritorno del carrello?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo di lettura",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Spostamento dal via",
+      "unit": "m"
+    },
+    "formula": "Δx = 2t per t ≤ 2; Δx = 4 − 2(t−2) dopo l’inversione",
+    "interpretation": "Per due secondi il carrello avanza a 2 m/s, poi torna con la stessa rapidità. La pendenza della posizione cambia segno. L’inversione istantanea è una schematizzazione.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        3.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "tratti",
+    "transferPrompt": "Una guida procede a +2 m/s per due secondi e poi inverte a −2 m/s. Quanto vale lo spostamento con segno quando il cronometro indica {x}?"
+  },
+  {
+    "id": "SIM-C1-L004-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L004",
+    "order": 1,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Moto uniformemente accelerato",
+    "topic": "Moto uniformemente accelerato",
+    "anchor": "Se la velocità cambia della stessa quantità",
+    "summary": "A parità di intervallo il carrello accelerato percorre sempre lo stesso tratto?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Posizione dal riposo",
+      "unit": "m"
+    },
+    "formula": "s = ½at², con a = 2 m/s²",
+    "interpretation": "Parti da fermo e mantieni la risultante costante. Confronta la distanza nel primo e nel secondo secondo: la velocità cresce anche durante ciascun intervallo.",
+    "references": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        3.0,
+        9.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} × {x}",
+    "transferPrompt": "Al segnale il carrello parte da fermo con accelerazione costante di 2 m/s². A quale distanza dal via devi mettere un sensore che scatti dopo {x}?"
+  },
+  {
+    "id": "SIM-C1-L004-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L004",
+    "order": 2,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Caduta libera",
+    "topic": "Caduta libera",
+    "anchor": "Vicino alla superficie terrestre e per distanze",
+    "summary": "Da una quota di 20 m, quando arriva a terra una pallina lasciata ferma?",
+    "apparatus": "caduta",
+    "control": {
+      "label": "Tempo dalla liberazione",
+      "unit": "s",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.1
+    },
+    "measure": {
+      "label": "Quota sul pavimento",
+      "unit": "m"
+    },
+    "formula": "h = 20 m − ½gt², con g = 10 m/s²",
+    "interpretation": "Segui la pallina fra le tacche verticali. Ogni secondo guadagna la stessa velocità verso il basso, mentre gli spazi percorsi aumentano. Si trascura l’aria.",
+    "references": [
+      [
+        1.0,
+        15.0
+      ],
+      [
+        2.0,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 − (5 × {x} × {x})",
+    "transferPrompt": "Lasci una pallina a 20 m dal pavimento. Trascurando l’aria e usando g = 10 m/s², quale quota misuri dopo {x}?"
+  },
+  {
+    "id": "SIM-C1-L004-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L004",
+    "order": 3,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Moto parabolico",
+    "topic": "Moto parabolico",
+    "anchor": "Per un lancio obliquo si usa lo",
+    "summary": "A parità di velocità verticale, che cosa cambia nella parabola?",
+    "apparatus": "volo",
+    "control": {
+      "label": "Velocità orizzontale",
+      "unit": "m/s",
+      "min": 1.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Gittata",
+      "unit": "m"
+    },
+    "formula": "T = 2vᵧ/g = 2 s; R = vₓT",
+    "interpretation": "La pallina riparte ogni volta con vᵧ = 10 m/s e ritorna alla quota iniziale. Il tempo di volo resta 2 s per g = 10 m/s². Guarda la proiezione a terra per leggere la gittata.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        5.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Due lanci hanno lo stesso tempo di volo di 2 s. Se la nuova velocità orizzontale è {x}, quanto si sposta orizzontalmente la pallina?"
+  },
+  {
+    "id": "SIM-C1-L004-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L004",
+    "order": 4,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Moto circolare uniforme e accelerazione centripeta",
+    "topic": "Moto circolare uniforme e accelerazione centripeta",
+    "anchor": "Una velocità può variare anche se il",
+    "summary": "Quale freccia punta al centro e quanto aumenta se raddoppi la velocità?",
+    "apparatus": "cerchio",
+    "control": {
+      "label": "Velocità tangenziale",
+      "unit": "m/s",
+      "min": 1.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Accelerazione centripeta",
+      "unit": "m/s²"
+    },
+    "formula": "a = v²/r, con r = 2 m",
+    "interpretation": "La velocità è tangente alla circonferenza. La sua direzione cambia continuamente: l’accelerazione è diretta verso il centro e cresce con il quadrato della rapidità.",
+    "references": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} × {x} / 2",
+    "transferPrompt": "Un punto del bordo gira a {x} su un cerchio di raggio 2 m. Quale accelerazione verso il centro serve per mantenerlo sul cerchio?"
+  },
+  {
+    "id": "SIM-C1-L005-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 1,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Sistemi inerziali e primo principio",
+    "topic": "Sistemi inerziali e primo principio",
+    "anchor": "In un sistema inerziale un corpo con",
+    "summary": "Che cosa fa un carrello già in movimento quando cessa la spinta?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo dopo la spinta",
+      "unit": "s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Posizione",
+      "unit": "m"
+    },
+    "formula": "ΣF = 0 ⇒ v = 1,5 m/s; x = vt",
+    "interpretation": "Sulla guida orizzontale ideale la risultante è nulla. Nel riferimento inerziale del laboratorio resta la velocità iniziale. Il carrello continua ad attraversare tacche equidistanti.",
+    "references": [
+      [
+        1.0,
+        1.5
+      ],
+      [
+        4.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1,5 × {x}",
+    "transferPrompt": "Il carrello percorre senza attrito la guida a 1,5 m/s. Quanti metri dal via misuri {x} dopo che la spinta è cessata?"
+  },
+  {
+    "id": "SIM-C1-L005-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 2,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Equilibrio traslazionale e statico",
+    "topic": "Equilibrio traslazionale e statico",
+    "anchor": "Scegli gli assi per ridurre i conti",
+    "summary": "Quale spinta equilibra una trazione di 6 N verso sinistra?",
+    "apparatus": "forze",
+    "control": {
+      "label": "Forza verso destra",
+      "unit": "N",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Risultante orizzontale",
+      "unit": "N"
+    },
+    "formula": "ΣFₓ = F − 6 N",
+    "interpretation": "Applica le due forze allo stesso blocco. Quando le frecce si compensano, un blocco inizialmente fermo resta fermo. In verticale peso e reazione si equilibrano.",
+    "references": [
+      [
+        6.0,
+        0.0
+      ],
+      [
+        9.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} − 6",
+    "transferPrompt": "Due dinamometri tirano un blocco. Quello di sinistra indica 6 N e quello di destra {x}. Quale forza orizzontale totale trovi prendendo la destra positiva?"
+  },
+  {
+    "id": "SIM-C1-L005-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 3,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Secondo principio della dinamica",
+    "topic": "Secondo principio della dinamica",
+    "anchor": "Scegli gli assi per ridurre i conti",
+    "summary": "Quanto accelera un blocco di 2 kg e in quale verso?",
+    "apparatus": "forze",
+    "control": {
+      "label": "Forza risultante",
+      "unit": "N",
+      "min": -8.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Accelerazione",
+      "unit": "m/s²"
+    },
+    "formula": "a = ΣF / (2 kg)",
+    "interpretation": "Sulla guida senza attrito la spinta orizzontale è la risultante. Dividila per la massa inerziale. Il segno indica il verso; forza e accelerazione hanno unità diverse.",
+    "references": [
+      [
+        -4.0,
+        -2.0
+      ],
+      [
+        6.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 2",
+    "transferPrompt": "Un carrello di 2 kg riceve una forza risultante di {x}. Quale accelerazione prevedi lungo la guida?"
+  },
+  {
+    "id": "SIM-C1-L005-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 4,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Azione e reazione",
+    "topic": "Azione e reazione",
+    "anchor": "Il terzo principio riguarda due corpi distinti.",
+    "summary": "Perché due forze opposte non si annullano nel bilancio di un singolo carrello?",
+    "apparatus": "coppia",
+    "control": {
+      "label": "Forza di A su B",
+      "unit": "N",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Forza di B su A lungo x",
+      "unit": "N"
+    },
+    "formula": "F di B su A = −F di A su B",
+    "interpretation": "Osserva i due punti di applicazione. B subisce la forza verso destra; A subisce quella verso sinistra. Solo allargando il sistema a entrambi le due forze diventano interne.",
+    "references": [
+      [
+        3.0,
+        -3.0
+      ],
+      [
+        8.0,
+        -8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−{x}",
+    "transferPrompt": "Nel contatto fra due carrelli A esercita su B la forza con segno {x}. Quale forza legge un sensore su A, con lo stesso asse?"
+  },
+  {
+    "id": "SIM-C1-L005-05",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 5,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Forza peso e normale",
+    "topic": "Forza peso e normale",
+    "anchor": "Scegli gli assi per ridurre i conti",
+    "summary": "La bilancia perpendicolare al piano misura tutto il peso?",
+    "apparatus": "piano",
+    "control": {
+      "label": "Inclinazione",
+      "unit": "°",
+      "min": 0.0,
+      "max": 75.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Reazione normale",
+      "unit": "N"
+    },
+    "formula": "N = mg cos θ, con mg = 20 N",
+    "interpretation": "Inclina lentamente il piano. Il peso resta verticale; la normale ruota con la superficie e bilancia solo la componente perpendicolare. Il blocco è trattenuto lungo la guida.",
+    "references": [
+      [
+        0.0,
+        20.0
+      ],
+      [
+        60.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 × cos({x}°)",
+    "transferPrompt": "Un pacco pesa 20 N su un ripiano inclinato di {x}. Quanto segna il sensore perpendicolare al ripiano?"
+  },
+  {
+    "id": "SIM-C1-L005-06",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L005",
+    "order": 6,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Tensione in un filo",
+    "topic": "Tensione in un filo",
+    "anchor": "Scegli gli assi per ridurre i conti",
+    "summary": "Cosa legge il dinamometro se sollevi un corpo di 2 kg accelerando?",
+    "apparatus": "caduta",
+    "control": {
+      "label": "Accelerazione verso l’alto",
+      "unit": "m/s²",
+      "min": -5.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Tensione del filo",
+      "unit": "N"
+    },
+    "formula": "T − mg = ma; T = 2(10+a)",
+    "interpretation": "Il filo ideale tira verso l’alto e il peso è diretto verso il basso. A velocità costante il filo sostiene 20 N; un’accelerazione positiva richiede una tensione maggiore.",
+    "references": [
+      [
+        0.0,
+        20.0
+      ],
+      [
+        3.0,
+        26.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × (10 + {x})",
+    "transferPrompt": "Un filo sostiene una massa di 2 kg che ha accelerazione verticale {x}, con verso positivo in alto. Quanto segna il dinamometro se g = 10 m/s²?"
+  },
+  {
+    "id": "SIM-C1-L006-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L006",
+    "order": 1,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Attrito statico e dinamico",
+    "topic": "Attrito statico e dinamico",
+    "anchor": "I coefficienti μ sono adimensionali. Trova prima",
+    "summary": "Perché aumentando la spinta la lettura dell’attrito può diminuire?",
+    "apparatus": "forze",
+    "control": {
+      "label": "Spinta su un blocco fermo",
+      "unit": "N",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Attrito in modulo",
+      "unit": "N"
+    },
+    "formula": "fₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N",
+    "interpretation": "Ogni prova comincia da fermo. Fino a 6 N l’attrito statico si adatta. Oltre la soglia il blocco parte e il modello assegna all’attrito dinamico 3 N.",
+    "references": [
+      [
+        4.0,
+        4.0
+      ],
+      [
+        10.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "attrito",
+    "transferPrompt": "Parti con il blocco fermo e applichi {x}. L’attrito statico arriva a 6 N e quello durante lo scorrimento vale 3 N. Quale modulo dell’attrito misuri?"
+  },
+  {
+    "id": "SIM-C1-L006-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L006",
+    "order": 2,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Forza elastica e legge di Hooke",
+    "topic": "Forza elastica e legge di Hooke",
+    "anchor": "Una molla ideale esercita una forza di",
+    "summary": "Verso dove tira una molla allungata e verso dove spinge se compressa?",
+    "apparatus": "molla",
+    "control": {
+      "label": "Allungamento",
+      "unit": "cm",
+      "min": -4.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Forza elastica",
+      "unit": "N"
+    },
+    "formula": "F = −kx; k = 50 N/m; x(m) = x(cm)/100",
+    "interpretation": "Il segno meno indica il ritorno verso l’equilibrio. Con 50 N/m ogni centimetro produce mezzo newton. La legge vale nel tratto elastico.",
+    "references": [
+      [
+        -2.0,
+        1.0
+      ],
+      [
+        4.0,
+        -2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−0,5 × {x}",
+    "transferPrompt": "Sposti la punta di una molla di {x} rispetto al riposo. Con k = 50 N/m, quale forza con segno esercita la molla lungo l’asse?"
+  },
+  {
+    "id": "SIM-C1-L006-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L006",
+    "order": 3,
+    "section": "Moto e forze",
+    "version": 1,
+    "title": "Forza gravitazionale",
+    "topic": "Forza gravitazionale",
+    "anchor": "La gravitazione fra due masse puntiformi o",
+    "summary": "Quanto si indebolisce l’attrazione se raddoppi la distanza?",
+    "apparatus": "gravita",
+    "control": {
+      "label": "Distanza fra i centri in raggi di riferimento",
+      "unit": "1",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Forza rispetto a F₀",
+      "unit": "1"
+    },
+    "formula": "F/F₀ = (r₀/r)²",
+    "interpretation": "Le due sfere hanno masse fisse e distribuzioni simmetriche. Misura dal centro al centro. Entrambe subiscono forze uguali in modulo e dirette l’una verso l’altra.",
+    "references": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        2.0,
+        0.25
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 / ({x}²)",
+    "transferPrompt": "Fra due masse la distanza diventa {x} volte quella di riferimento. Quale frazione della forza originaria resta?"
+  },
+  {
+    "id": "SIM-C1-L007-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L007",
+    "order": 1,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Lavoro di una forza",
+    "topic": "Lavoro di una forza",
+    "anchor": "Una forza diretta nel verso del moto",
+    "summary": "Quando una forza consuma energia cinetica invece di fornirla?",
+    "apparatus": "vettori",
+    "control": {
+      "label": "Angolo tra forza e spostamento",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Lavoro della forza",
+      "unit": "J"
+    },
+    "formula": "W = Fs cos θ = (4 N)(3 m)cos θ",
+    "interpretation": "Lo spostamento è verso destra. Soltanto la componente parallela della forza compie lavoro. A 90° il contributo è nullo; oltre diventa negativo.",
+    "references": [
+      [
+        0.0,
+        12.0
+      ],
+      [
+        120.0,
+        -6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 × cos({x}°)",
+    "transferPrompt": "Una forza di 4 N agisce durante uno spostamento di 3 m con angolo di {x}. Quanti joule trasferisce al corpo?"
+  },
+  {
+    "id": "SIM-C1-L007-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L007",
+    "order": 2,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Potenza media e istantanea",
+    "topic": "Potenza media e istantanea",
+    "anchor": "La potenza media misura quanto rapidamente viene",
+    "summary": "Quanto rapidamente il motore sta trasferendo energia in questo istante?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Istante della lettura",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza istantanea",
+      "unit": "W"
+    },
+    "formula": "F = 3 N; v = 2t; P = Fv = 6t",
+    "interpretation": "La forza costante di 3 N accelera da fermo una massa di 1,5 kg. Il tachimetro cresce linearmente. Da zero all’istante scelto la potenza media vale metà di quella finale.",
+    "references": [
+      [
+        1.0,
+        6.0
+      ],
+      [
+        3.0,
+        18.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 × {x}",
+    "transferPrompt": "La trazione è 3 N e la velocità cresce come v = 2t in m/s. All’istante {x}, quale potenza eroga la trazione?"
+  },
+  {
+    "id": "SIM-C1-L007-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L007",
+    "order": 3,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Teorema dell’energia cinetica",
+    "topic": "Teorema dell’energia cinetica",
+    "anchor": "Sommando i lavori di tutte le forze",
+    "summary": "Quanto deve crescere il lavoro per raddoppiare la velocità da fermo?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Lavoro netto",
+      "unit": "J",
+      "min": 0.0,
+      "max": 16.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Velocità finale",
+      "unit": "m/s"
+    },
+    "formula": "W = ΔK = ½(2 kg)v² ⇒ v = √W",
+    "interpretation": "Una forza netta di 1 N compie lavoro lungo la guida. L’energia assorbita si ritrova nell’energia cinetica. Il lavoro quadruplica per raddoppiare la rapidità.",
+    "references": [
+      [
+        4.0,
+        2.0
+      ],
+      [
+        9.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "√({x})",
+    "transferPrompt": "Un carrello di 2 kg parte da fermo e riceve un lavoro netto di {x}. A quale velocità taglia il traguardo?"
+  },
+  {
+    "id": "SIM-C1-L008-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L008",
+    "order": 1,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Forze conservative e non conservative",
+    "topic": "Forze conservative e non conservative",
+    "anchor": "Un calo dell’energia meccanica durante uno scorrimento",
+    "summary": "Due percorsi alla stessa quota hanno lo stesso costo energetico?",
+    "apparatus": "percorso",
+    "control": {
+      "label": "Lunghezza del percorso sul piano",
+      "unit": "m",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Lavoro dell’attrito",
+      "unit": "J"
+    },
+    "formula": "W attrito = −fℓ = −2ℓ; W peso = 0",
+    "interpretation": "Le estremità hanno lo stesso dislivello nullo. Il peso compie lavoro nullo su entrambi; l’attrito di 2 N dissipa energia lungo tutto il cammino. Osserva l’allungarsi della deviazione.",
+    "references": [
+      [
+        1.0,
+        -2.0
+      ],
+      [
+        4.0,
+        -8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−2 × {x}",
+    "transferPrompt": "Lo stesso blocco percorre un tragitto orizzontale lungo {x} contro un attrito di 2 N. Quale lavoro con segno compie l’attrito?"
+  },
+  {
+    "id": "SIM-C1-L008-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L008",
+    "order": 2,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Energia potenziale gravitazionale ed elastica",
+    "topic": "Energia potenziale gravitazionale ed elastica",
+    "anchor": "La prima espressione di U vale per",
+    "summary": "Quali due riserve di energia crescono sollevando un corpo collegato a una molla sotto di esso?",
+    "apparatus": "molla",
+    "control": {
+      "label": "Spostamento verticale",
+      "unit": "cm",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Energia potenziale totale",
+      "unit": "mJ"
+    },
+    "formula": "ΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m",
+    "interpretation": "Il riferimento è la molla scarica e la quota iniziale. Sollevando il corpo di h si guadagna energia gravitazionale e si allunga la molla di h. Converti i centimetri in metri prima di sommare.",
+    "references": [
+      [
+        2.0,
+        22.0
+      ],
+      [
+        10.0,
+        150.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x} + 0,5 × {x} × {x}",
+    "transferPrompt": "Un peso di 1 N sale di {x} e tende di altrettanto una molla inizialmente a riposo di k = 10 N/m. Di quanti millijoule cambia l’energia potenziale complessiva?"
+  },
+  {
+    "id": "SIM-C1-L008-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L008",
+    "order": 3,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Energia meccanica e conservazione",
+    "topic": "Energia meccanica e conservazione",
+    "anchor": "Scrivi l’energia meccanica come K + U.",
+    "summary": "Dove si ritrovano i joule perduti dalla quota?",
+    "apparatus": "caduta",
+    "control": {
+      "label": "Quota sulla guida",
+      "unit": "m",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Energia cinetica",
+      "unit": "J"
+    },
+    "formula": "K = mg(h₀−h) = 10(5−h)",
+    "interpretation": "Una massa di 1 kg parte ferma a 5 m, con g = 10 m/s² e attriti trascurati. La somma di energia potenziale e cinetica resta 50 J durante la discesa.",
+    "references": [
+      [
+        5.0,
+        0.0
+      ],
+      [
+        2.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × (5 − {x})",
+    "transferPrompt": "Un corpo di peso 10 N scende da 5 m senza attrito, partendo da fermo. Quanta energia cinetica ha passando alla quota {x}?"
+  },
+  {
+    "id": "SIM-C1-L009-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L009",
+    "order": 1,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Quantità di moto e impulso",
+    "topic": "Quantità di moto e impulso",
+    "anchor": "Un urto modifica in poco tempo la",
+    "summary": "Per quanto tempo devi spingere per raddoppiare la variazione di quantità di moto?",
+    "apparatus": "urto",
+    "control": {
+      "label": "Durata della spinta",
+      "unit": "s",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Impulso ricevuto",
+      "unit": "N·s"
+    },
+    "formula": "J = FΔt = Δp, con F = 4 N",
+    "interpretation": "Una massa di 8 kg parte ferma sotto 4 N costanti. La freccia di velocità cresce con la durata della spinta. Un newton secondo equivale a un chilogrammo metro al secondo.",
+    "references": [
+      [
+        1.0,
+        4.0
+      ],
+      [
+        2.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × {x}",
+    "transferPrompt": "Una spinta di 4 N resta costante per {x}. Di quanto cambia la quantità di moto nella direzione della spinta?"
+  },
+  {
+    "id": "SIM-C1-L009-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L009",
+    "order": 2,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Conservazione della quantità di moto nei sistemi isolati",
+    "topic": "Conservazione della quantità di moto nei sistemi isolati",
+    "anchor": "Se allarghi il sistema includendo entrambi i",
+    "summary": "Qual è la velocità comune di due carrelli identici che si agganciano?",
+    "apparatus": "urto",
+    "control": {
+      "label": "Velocità iniziale di A",
+      "unit": "m/s",
+      "min": -3.0,
+      "max": 3.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Velocità comune dopo l’urto",
+      "unit": "m/s"
+    },
+    "formula": "v finale = (mvₐ + m·0)/(2m) = vₐ/2",
+    "interpretation": "Il secondo carrello è inizialmente fermo e il primo lo raggiunge dal lato adatto al verso scelto. Dopo l’aggancio la massa mobile raddoppia. Il momento si conserva, l’energia cinetica diminuisce.",
+    "references": [
+      [
+        -2.0,
+        -1.0
+      ],
+      [
+        3.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 2",
+    "transferPrompt": "Un carrello che viaggia a {x} si aggancia a un carrello fermo identico. Qual è la velocità immediatamente dopo il contatto?"
+  },
+  {
+    "id": "SIM-C1-L010-01",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L010",
+    "order": 1,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Centro di massa e suo moto",
+    "topic": "Centro di massa e suo moto",
+    "anchor": "Un insieme di corpi può ruotare o",
+    "summary": "Dove avanza il centro di massa di due carrelli disuguali?",
+    "apparatus": "urto",
+    "control": {
+      "label": "Tempo",
+      "unit": "s",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Posizione del centro di massa",
+      "unit": "m"
+    },
+    "formula": "xCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t",
+    "interpretation": "I carrelli da 1 e 3 kg avanzano entrambi a 1 m/s. Il punto di equilibrio è più vicino al carrello pesante. All’esterno non agisce alcuna risultante orizzontale.",
+    "references": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        2.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 + {x}",
+    "transferPrompt": "Due masse in rapporto 1 a 3 partono da −2 m e +2 m, entrambe a +1 m/s. Dove si trova il loro centro di massa dopo {x}?"
+  },
+  {
+    "id": "SIM-C1-L010-02",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L010",
+    "order": 2,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Corpo rigido",
+    "topic": "Corpo rigido",
+    "anchor": "In un corpo rigido ideale le distanze",
+    "summary": "Cosa cambia ruotando un corpo rigido e cosa resta costante?",
+    "apparatus": "leva",
+    "control": {
+      "label": "Angolo dell’asta",
+      "unit": "°",
+      "min": 0.0,
+      "max": 90.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Separazione verticale degli estremi",
+      "unit": "cm"
+    },
+    "formula": "Δy = L sin θ, con L = 20 cm",
+    "interpretation": "I due punti marcati sono distanti 20 cm lungo l’asta. La distanza fra loro rimane costante anche quando le proiezioni verticale e orizzontale cambiano.",
+    "references": [
+      [
+        30.0,
+        10.0
+      ],
+      [
+        90.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 × sin({x}°)",
+    "transferPrompt": "Ruoti una bacchetta rigida di 20 cm portandola a {x} rispetto al tavolo. Quanto vale il dislivello tra le estremità?"
+  },
+  {
+    "id": "SIM-C1-L010-03",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L010",
+    "order": 3,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Momento torcente",
+    "topic": "Momento torcente",
+    "anchor": "Scegli una convenzione, per esempio momento antiorario",
+    "summary": "Perché applicare la stessa forza più lontano dal fulcro cambia il momento?",
+    "apparatus": "leva",
+    "control": {
+      "label": "Braccio perpendicolare",
+      "unit": "cm",
+      "min": 0.0,
+      "max": 40.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Momento della forza",
+      "unit": "N·m"
+    },
+    "formula": "τ = F b = 10 × b(cm)/100",
+    "interpretation": "La forza di 10 N è perpendicolare all’asta. Misura dal perno alla linea d’azione. Qui si legge il modulo del momento; la spinta sul lato destro verso il basso fa ruotare in senso orario.",
+    "references": [
+      [
+        10.0,
+        1.0
+      ],
+      [
+        30.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 10",
+    "transferPrompt": "Una chiave esercita 10 N, con braccio perpendicolare di {x}. Quale momento fornisce rispetto al perno?"
+  },
+  {
+    "id": "SIM-C1-L010-04",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L010",
+    "order": 4,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Equilibrio rotazionale",
+    "topic": "Equilibrio rotazionale",
+    "anchor": "Scegli una convenzione, per esempio momento antiorario",
+    "summary": "Quanta forza bilancia un peso da 6 N posto a 20 cm dal perno?",
+    "apparatus": "leva",
+    "control": {
+      "label": "Braccio della forza equilibrante",
+      "unit": "cm",
+      "min": 10.0,
+      "max": 40.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Forza richiesta",
+      "unit": "N"
+    },
+    "formula": "F b = (6 N)(20 cm) ⇒ F = 120/b",
+    "interpretation": "Le due forze verticali ai lati opposti producono momenti di segno opposto. Per l’equilibrio rotazionale i loro moduli devono coincidere.",
+    "references": [
+      [
+        10.0,
+        12.0
+      ],
+      [
+        30.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "120 / {x}",
+    "transferPrompt": "Un carico di 6 N agisce a 20 cm dal fulcro. Con un braccio utile di {x} sul lato opposto, quale forza lo equilibra?"
+  },
+  {
+    "id": "SIM-C1-L010-05",
+    "kind": "experiment",
+    "course": "C1",
+    "skill": "C1-L010",
+    "order": 5,
+    "section": "Energia, impulso ed equilibrio",
+    "version": 1,
+    "title": "Leve nel corpo umano",
+    "topic": "Leve nel corpo umano",
+    "anchor": "Nelle leve del corpo umano i bracci",
+    "summary": "Perché il muscolo dell’avambraccio può esercitare più forza del peso in mano?",
+    "apparatus": "leva",
+    "control": {
+      "label": "Braccio del muscolo",
+      "unit": "cm",
+      "min": 2.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Trazione del muscolo",
+      "unit": "N"
+    },
+    "formula": "F muscolo × b = (10 N)(30 cm)",
+    "interpretation": "Il gomito è il fulcro. Mano e inserzione sono dallo stesso lato e le forze hanno versi opposti. Si trascura il peso dell’avambraccio e si usa il braccio perpendicolare della trazione.",
+    "references": [
+      [
+        3.0,
+        100.0
+      ],
+      [
+        6.0,
+        50.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "300 / {x}",
+    "transferPrompt": "Un peso di 10 N ha braccio di 30 cm rispetto all’articolazione. Se il braccio perpendicolare del muscolo è {x}, quale trazione serve all’equilibrio?"
+  }
+]

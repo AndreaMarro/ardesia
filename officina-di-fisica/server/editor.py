@@ -24,9 +24,11 @@ from .store import (
 
 from .method import validate_method
 
-KINDS = {"course", "section", "lesson", "example", "question", "lab", "method", "bench"}
+KINDS = {"course", "section", "lesson", "example", "question", "lab", "method", "bench", "experiment"}
 TYPES = {"text", "formula", "figure", "attachment", "example", "question", "lab"}
 LAB_SPEC = json.loads((ROOT / "static" / "lab-models.json").read_text())
+EXPERIMENTS = {r["id"]: r for path in (ROOT / "content").glob("esperienze-C*.json")
+               for r in json.loads(path.read_text())}
 CATEGORIES = {"concetto", "calcolo", "algebra", "unità", "testo", "modello"}
 
 
@@ -139,6 +141,32 @@ def validate(db, r, objects, extra=()):
         require(r.get("difficulty") in (1, 2, 3), "Difficoltà da 1 a 3.")
     if kind == "method":
         validate_method(r)
+    if kind == "experiment":
+        ref(r.get("skill"), {"lesson"})
+        lesson = objects[r["skill"]]
+        require(
+            lesson["course"] == r["course"] and r.get("topic") in lesson.get("coverage", ()),
+            "Collega la simulazione a una voce della sua lezione.",
+        )
+        anchor = r.get("anchor")
+        require(
+            isinstance(anchor, str) and anchor.strip()
+            and any(b["type"] == "text" and b["text"].startswith(anchor) for b in lesson["blocks"]),
+            "Il paragrafo associato è assente.",
+        )
+        require(
+            all(isinstance(r.get(k), str) and r[k].strip()
+                for k in ("formula", "interpretation", "summary", "transferPrompt")),
+            "Completa il percorso sperimentale.",
+        )
+        require(r["transferPrompt"].count("{x}") == 1,
+                "Indica il dato del problema di trasferimento con {x}.")
+        source = EXPERIMENTS.get(r["id"])
+        physics = ("skill", "topic", "apparatus", "control", "measure", "references", "substitution", "discrete")
+        require(
+            source is not None and all(r.get(k) == source.get(k) for k in physics),
+            "Misure e parametri devono corrispondere al modello fisico installato.",
+        )
     if kind == "bench":
         require(r.get("model") in ("piano", "volo", "stevino", "tubo", "gas", "calore",
                                    "campo", "circuito", "lente", "onde"), "Scena 3D sconosciuta.")

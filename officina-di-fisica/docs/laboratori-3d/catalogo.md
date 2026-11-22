@@ -1,6 +1,8 @@
 # Catalogo editoriale dei banchi
 
-Il progetto comprende 40 banchi, distribuiti tra le sette unità MUR. Dieci sono accessibili agli studenti, due per ciascun microcorso C1–C5. Ogni riga associa una domanda sperimentale al modello che la rende verificabile. Le sigle Q nelle righe si riferiscono al corso della prima lezione indicata. [Indice delle singole voci di lezione](voci.md) · [Fonti e licenze dei candidati](fonti.md)
+Questo catalogo raccoglie 40 progetti di banchi di approfondimento, distribuiti tra le sette unità MUR. Dieci sono accessibili agli studenti, due per ciascun microcorso C1–C5. Ogni riga associa una domanda sperimentale al modello che la rende verificabile. Le sigle Q nelle righe si riferiscono al corso della prima lezione indicata. [Indice delle singole voci di lezione](voci.md) · [Fonti e licenze dei candidati](fonti.md)
+
+Ciascuna delle 181 voci delle lezioni dispone inoltre di una simulazione dedicata già accessibile nel paragrafo. [Simulazioni disponibili per voce](voci.md)
 
 Il pendolo è un’applicazione a piccoli angoli dell’oscillatore armonico dell’unità 4.1. Il profilo di viscosità fa già parte del capillare. Nella selezione compaiono capillarità, intensità acustica e campi elettromagnetici, espliciti nel syllabus. Per le verifiche a nodi e maglie, Kirchhoff esplicita i bilanci di carica ed energia implicati nel collegamento dei resistori. [Syllabus MUR archiviato](../sources/MUR-syllabus-fisica-2026.pdf)
 

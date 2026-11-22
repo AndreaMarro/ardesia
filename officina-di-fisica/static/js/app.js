@@ -90,12 +90,47 @@ function labs() {
       'Prima fai una previsione. Poi modifica un parametro e confronta ciò che osservi con il modello.',
     ) +
     '<h2 class="bench-collection">Banchi tridimensionali</h2><div class="rows">' +
-    state.benches.map(b => indexRow(b.course, b.title, b.summary, 'banco/' + b.id, subjectDrawing(b.course))).join('') +
-    '</div><h2 class="bench-collection">Laboratori guidati</h2>' +
+    state.benches
+      .map((b) => indexRow(b.course, b.title, b.summary, 'banco/' + b.id, subjectDrawing(b.course)))
+      .join('') +
+    '</div><h2 class="bench-collection">Simulazioni delle singole voci</h2>' +
+    state.courses
+      .map(
+        (c) =>
+          `<details class="topic-shelf" data-course="${esc(c.id)}"><summary>${esc(c.id + ' · ' + c.title)}</summary><div class="topic-shelf-body"></div></details>`,
+      )
+      .join('') +
+    '<h2 class="bench-collection">Laboratori guidati</h2>' +
     `<div class="rows">${state.labs
       .sort((a, b) => a.order - b.order)
       .map((l) => indexRow(l.course, l.title, titleOf(l.course), 'lab/' + l.id, subjectDrawing(l.course)))
       .join('')}</div>`;
+  for (const shelf of main.querySelectorAll('.topic-shelf'))
+    shelf.ontoggle = async () => {
+      if (!shelf.open || shelf.dataset.loaded) return;
+      shelf.dataset.loaded = 'loading';
+      const box = shelf.querySelector('.topic-shelf-body'),
+        course = shelf.dataset.course;
+      try {
+        const { items } = await api('/course/' + course);
+        const local = items.filter((r) => r.course === course);
+        box.innerHTML = local
+          .filter((r) => r.kind === 'lesson')
+          .map((l) => {
+            const sims = local
+              .filter((r) => r.kind === 'experiment' && r.skill === l.id)
+              .sort((a, b) => a.order - b.order);
+            return sims.length
+              ? `<details><summary>${esc(l.title)} · ${sims.length}</summary>${sims.map((r) => listLine(r.title, 'banco/' + r.id + '/laboratori', r.summary)).join('')}</details>`
+              : '';
+          })
+          .join('');
+        shelf.dataset.loaded = 'yes';
+      } catch (error) {
+        box.textContent = error.message;
+        delete shelf.dataset.loaded;
+      }
+    };
 }
 function sources() {
   main.innerHTML =
@@ -230,7 +265,7 @@ async function coursePage(id, tab = 'parti') {
 }
 async function material(id, course) {
   const r = await api('/item/' + id);
-  if (r.kind === 'bench') return go('banco/' + id);
+  if (['bench','experiment'].includes(r.kind)) return go('banco/' + id);
   if (r.kind === 'lab') return labPage(id, course);
   course = course || r.course;
   if (r.kind === 'question') {

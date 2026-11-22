@@ -12,7 +12,7 @@ export function benchLinks(id) {
 export function lessonBenches(node, r) {
   const paragraphs = [...node.querySelectorAll('.copy > p')],
     used = new Map();
-  for (const topic of r.benchTopics || []) {
+  for (const topic of [...(r.experiments || []), ...(r.benchTopics || [])]) {
     const dest = paragraphs.find((el) => el.textContent.startsWith(topic.anchor)) || node;
     let group = used.get(dest);
     if (!group) {
@@ -29,7 +29,7 @@ export function lessonBenches(node, r) {
     }
     group.insertAdjacentHTML(
       'beforeend',
-      `<a href="#${esc(benchRoute(topic.bench, topic.index))}"><strong>${esc(topic.topic)}</strong><span>${esc(topic.question)} →</span></a>`,
+      `<a href="#${esc(benchRoute(topic.bench, topic.index))}"><strong>${topic.index === undefined ? '' : 'Banco esteso · '}${esc(topic.topic)}</strong><span>${esc(topic.question)} →</span></a>`,
     );
   }
 }

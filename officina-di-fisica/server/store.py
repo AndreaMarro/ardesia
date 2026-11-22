@@ -181,7 +181,9 @@ def published(db):
                 for b in r["blocks"] + r.get("promptBlocks", [])
                 if b.get("ref")
             )
-            if not dependencies.issubset(live):
+            removed_topic = (r["kind"] == "experiment"
+                             and r["topic"] not in live.get(r["skill"], {}).get("coverage", ()))
+            if removed_topic or not dependencies.issubset(live):
                 unavailable.append(key)
         if not unavailable:
             return list(live.values())
@@ -220,13 +222,21 @@ def courses_for(rows, r):
 
 
 def in_course(rows, key, kind=None):
+    # Resolve included courses once, then test each material's primary and reused courses.
+    courses = {r["id"]: r.get("includes", ()) for r in rows if r["kind"] == "course"}
+    included = {key}
+    pending = [key]
+    while pending:
+        children = set(courses.get(pending.pop(), ())) - included
+        included.update(children)
+        pending.extend(children)
     return sorted(
         (
             r
             for r in rows
             if r["kind"] != "course"
             and (not kind or r["kind"] == kind)
-            and key in courses_for(rows, r)
+            and (r["course"] in included or not included.isdisjoint(r.get("reuse", ())))
         ),
         key=lambda r: (r["course"], r.get("order", 0), r["id"]),
     )
@@ -253,6 +263,10 @@ def grants(db, user, rows=None):
 
 
 def can_read(db, user, rows, rec):
+    if rec["kind"] == "experiment":
+        lesson = next((r for r in rows if r["kind"] == "lesson" and r["id"] == rec["skill"]), None)
+        return bool(lesson and rec["topic"] in lesson.get("coverage", ())
+                    and can_read(db, user, rows, lesson))
     if rec["kind"] == "course":
         return True
     if rec["kind"] in ("lesson", "example", "question") and not rec.get("exam"):

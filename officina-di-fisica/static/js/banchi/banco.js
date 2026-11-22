@@ -1,7 +1,14 @@
 import { api, esc, crumb, main, state, link } from '../ui.js';
 import { defaults, inRange, n } from './misure.js';
 import { plot, moveCursor } from './grafici.js';
-const areas = { C1: 'Meccanica', C2: 'Fluidi', C3: 'Termodinamica', C4: 'Elettricità', C5: 'Onde e ottica' };
+const areas = {
+  C1: 'Meccanica',
+  C2: 'Fluidi',
+  C3: 'Termodinamica',
+  C4: 'Elettricità',
+  C5: 'Onde e ottica',
+  C6: 'Raccordi fra i corsi',
+};
 const legends = {
   piano: [
     'Peso · rosso / Normale · verde',
@@ -48,9 +55,13 @@ function exercises(record) {
     .join('');
 }
 export async function benchPage(id, origin, topicIndex) {
-  const r = await api('/item/' + encodeURIComponent(id));
-  if (r.kind !== 'bench' || !Object.hasOwn(legends, r.model)) throw Error('Banco non disponibile.');
-  const model = await import('./modelli/' + r.model + '.js');
+  const item = await api('/item/' + encodeURIComponent(id));
+  const activity =
+    item.kind === 'experiment' ? await (await import('./voci/esperimento.js')).esperienza(item) : null;
+  const r = activity?.record || item;
+  if (!activity && (r.kind !== 'bench' || !Object.hasOwn(legends, r.model)))
+    throw Error('Banco non disponibile.');
+  const model = activity?.model || (await import('./modelli/' + r.model + '.js'));
   if (!document.querySelector('#bench-styles')) {
     const l = document.createElement('link');
     l.id = 'bench-styles';
@@ -63,7 +74,7 @@ export async function benchPage(id, origin, topicIndex) {
   main.innerHTML =
     crumb([['Laboratori', 'laboratori'], [r.course + ' · ' + areas[r.course]]]) +
     `<article class="bench-room" data-bench="${r.id}">
- <header class="bench-head"><div><div class="meta">Banco ${esc(r.id.slice(-2))} · ${esc(areas[r.course])}</div><h1>${esc(r.title)}</h1><p>${esc(focus?.question || r.summary)}</p></div><img src="/identita/segno.svg" width="54" height="54" alt="Cric"></header>
+ <header class="bench-head"><div><div class="meta">${activity ? 'Simulazione di lezione' : 'Banco ' + esc(r.id.slice(-2))} · ${esc(areas[r.course])}</div><h1>${esc(r.title)}</h1><p>${esc(focus?.question || r.summary)}</p></div><img src="/identita/segno.svg" width="54" height="54" alt="Cric"></header>
  <div class="bench-work"><section class="bench-instrument" aria-label="Strumento di osservazione"><div class="bench-strip"><strong>Banco sperimentale</strong><span data-display>Preparazione della vista…</span></div>
  <div class="bench-stage"><canvas tabindex="0" aria-label="${esc(r.title)}. Frecce per ruotare, più e meno per lo zoom, Home per la vista iniziale."></canvas><div data-drawing hidden></div></div>
  <div data-legend class="bench-key"></div><div class="bench-views" aria-label="Viste del banco"><button data-view="orbit">Obliqua</button><button data-view="top">Alto</button><button data-view="side">Laterale</button>${r.model === 'onde' ? '<button data-view="section">Sezione</button>' : ''}<button data-view="diagram">${graphite}</button><button data-reset-view aria-label="Ripristina vista">↺ Vista</button></div>
@@ -81,6 +92,20 @@ export async function benchPage(id, origin, topicIndex) {
     get = (sel) => root.querySelector(sel),
     canvas = get('canvas'),
     stageBox = get('.bench-stage');
+  const voiceControls = activity && get('[data-experiment] > div');
+  if (voiceControls) {
+    voiceControls.className = 'voice-controls';
+    voiceControls.hidden = true;
+    const pair = document.createElement('button');
+    pair.type = 'button';
+    pair.dataset.compare = '';
+    pair.textContent = 'Seconda misura';
+    const reset = voiceControls.querySelector('[data-reset]');
+    reset.textContent = 'Prima misura';
+    reset.after(pair);
+    stageBox.after(voiceControls);
+    get('[data-experiment]').classList.add('voice-chart');
+  }
   let p = defaults(model.params),
     s = model.solve(p),
     stage = -1,
@@ -102,7 +127,14 @@ export async function benchPage(id, origin, topicIndex) {
     graphBox = get('[data-graphs]'),
     diagram = get('[data-drawing]');
   const active = () => inViewport && !document.hidden && root.isConnected && !disposed;
-  const isTimed = () => s.duration > 0 && stage >= (r.model === 'tubo' || r.model === 'volo' ? 1 : 0);
+  const timeline =
+    activity &&
+    /^(Tempo|Istante)(?: |$)/.test(r.control.label) &&
+    r.control.unit === 's' &&
+    r.control.min === 0;
+  const duration = () => (timeline ? r.control.max : s.duration);
+  const isTimed = () =>
+    (timeline || s.duration > 0) && stage >= (r.model === 'tubo' || r.model === 'volo' ? 1 : 0);
   function measurements() {
     const reads = model.readings(p, s, t);
     get('[data-readings]').innerHTML = reads
@@ -118,7 +150,7 @@ export async function benchPage(id, origin, topicIndex) {
     } else gpu?.frame(t);
     if (stage >= 0 && textToo) {
       measurements();
-      get('[data-time]').textContent = n(t) + ' s';
+      get('[data-time]').textContent = n(timeline ? s.x : t) + ' s';
       get('[data-scrub]').value = s.duration ? t / s.duration : 0;
       if (['volo', 'onde'].includes(r.model)) moveCursor(graphBox, t);
     }
@@ -128,7 +160,7 @@ export async function benchPage(id, origin, topicIndex) {
     last = 0;
     cancelAnimationFrame(raf);
     raf = 0;
-    get('[data-play]').textContent = t >= s.duration ? 'Ripeti' : 'Avvia';
+    get('[data-play]').textContent = t >= duration() ? 'Ripeti' : 'Avvia';
   }
   function tick(now) {
     raf = 0;
@@ -136,12 +168,19 @@ export async function benchPage(id, origin, topicIndex) {
       last = 0;
       return;
     }
-    if (last) t = Math.min(s.duration, t + (now - last) / 1000);
+    if (last) t = Math.min(duration(), t + (now - last) / 1000);
     last = now;
-    const fresh = now - lastText >= 90 || t >= s.duration;
-    frame(fresh);
+    const fresh = now - lastText >= 90 || t >= duration();
+    if (timeline) {
+      const x = Math.min(duration(), Math.round(t / r.control.step) * r.control.step);
+      if (x !== p.x) {
+        p = { x };
+        s = model.solve(p);
+        draw();
+      }
+    } else frame(fresh);
     if (fresh) lastText = now;
-    if (t >= s.duration) {
+    if (t >= duration()) {
       stop();
       return;
     }
@@ -166,8 +205,11 @@ export async function benchPage(id, origin, topicIndex) {
   media.addEventListener('change', motion);
   function draw() {
     if (view !== 'diagram' && gpu) gpu.rebuild(world.build, p, s, stage);
-    get('[data-legend]').textContent =
-      stage < 0 ? 'Apparato iniziale' : legends[r.model].slice(0, Math.min(stage + 1, 3)).join('   ·   ');
+    get('[data-legend]').textContent = activity
+      ? activity.legend(stage)
+      : stage < 0
+        ? 'Apparato iniziale'
+        : legends[r.model].slice(0, Math.min(stage + 1, 3)).join('   ·   ');
     if (stage >= 0) {
       const steps = model.steps(p, s),
         [title, text, equation] = steps[stage];
@@ -183,6 +225,7 @@ export async function benchPage(id, origin, topicIndex) {
       get('.bench-warning').hidden = !warn;
       graphBox.innerHTML = model.graphs(p, s, t, stage).map(plot).join('');
       get('.bench-time').hidden = !isTimed();
+      if (timeline) get('[data-scrub]').hidden = true;
       for (const a of model.params) {
         const row = get('[data-row="' + a.key + '"]');
         row.hidden = Boolean(a.when && p[a.when[0]] !== a.when[1]);
@@ -198,7 +241,10 @@ export async function benchPage(id, origin, topicIndex) {
   }
   async function setView(next) {
     if (next === 'diagram' && !drawing) {
-      drawing = (await import('./tavola.js')).drawing;
+      if (activity) {
+        const { disegna2D } = await import('./voci/tavola.js');
+        drawing = (_, p, s, t, step, title) => disegna2D(activity.elements(s.x, step), title);
+      } else drawing = (await import('./tavola.js')).drawing;
       if (disposed) return;
     }
     if (next !== 'diagram' && !available) return;
@@ -231,7 +277,7 @@ export async function benchPage(id, origin, topicIndex) {
       if (!startingContext) throw Error('WebGL2');
       const [renderer, scene] = await Promise.all([
         import('./scena.js'),
-        import('./scene/' + r.model + '.js'),
+        activity?.scene || import('./scene/' + r.model + '.js'),
       ]);
       if (disposed) return;
       world = scene;
@@ -272,6 +318,7 @@ export async function benchPage(id, origin, topicIndex) {
     e.currentTarget.hidden = true;
     get('[data-guide]').hidden = false;
     get('[data-experiment]').hidden = false;
+    if (voiceControls) voiceControls.hidden = false;
     get('[data-guide] details').open = true;
     draw();
   };
@@ -305,6 +352,12 @@ export async function benchPage(id, origin, topicIndex) {
     s = model.solve(p);
     draw();
   };
+  if (voiceControls)
+    get('[data-compare]').onclick = () => {
+      const input = voiceControls.querySelector('[name=x]');
+      input.value = String(r.references[1][0]);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    };
   get('[data-reset]').onclick = () => {
     stop();
     t = 0;
@@ -314,7 +367,8 @@ export async function benchPage(id, origin, topicIndex) {
   };
   get('[data-play]').onclick = () => {
     if (playing) return stop();
-    if (t >= s.duration) t = 0;
+    if (timeline) t = s.x;
+    if (t >= duration()) t = 0;
     playing = true;
     get('[data-play]').textContent = 'Pausa';
     visibility();
@@ -331,9 +385,18 @@ export async function benchPage(id, origin, topicIndex) {
         const a = r.assessment[Number(form.dataset.check)],
           answer = Number(form.elements.answer.value.trim().replace(',', '.'));
         const ok =
-          Number.isFinite(answer) && Math.abs(answer - a.value) <= Math.max(0.001, Math.abs(a.value) * 0.005);
-        form.querySelector('[role=status]').textContent =
-          (ok ? 'Corretto. ' : 'Rivedi il calcolo. ') + a.worked;
+          form.elements.answer.value.trim() !== '' &&
+          Number.isFinite(answer) &&
+          Math.abs(answer - a.value) <= Math.max(activity ? 0.000001 : 0.001, Math.abs(a.value) * 0.005);
+        let hint = 'Rivedi il calcolo. ';
+        if (activity && !ok && Number.isFinite(answer) && a.value) {
+          const ratio = Math.abs(answer / a.value);
+          if (Math.sign(answer) === -Math.sign(a.value) && Math.abs(ratio - 1) < 0.01)
+            hint = 'Controlla il verso o il segno dello scambio. ';
+          else if ([10, 100, 1000, 0.1, 0.01, 0.001].some((k) => Math.abs(ratio / k - 1) < 0.01))
+            hint = 'Ricontrolla le unità e le potenze di dieci. ';
+        }
+        form.querySelector('[role=status]').textContent = (ok ? 'Corretto. ' : hint) + a.worked;
       }),
   );
   const note = get('.bench-note');

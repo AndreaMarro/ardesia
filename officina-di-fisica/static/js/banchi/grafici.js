@@ -40,13 +40,32 @@ export function plot(c) {
         d += (pen ? 'L' : 'M') + X(x).toFixed(2) + ' ' + Y(y).toFixed(2);
         pen = true;
       }
-      return `<path d="${d}" stroke="${colors[i % 4]}" stroke-width="2.6" fill="none" ${s.dash ? 'stroke-dasharray="5 4"' : ''}/>`;
+      if (s.markers)
+        return s.points
+          .map(([x, y]) => `<circle cx="${X(x)}" cy="${Y(y)}" r="3.4" fill="${colors[i % 4]}"/>`)
+          .join('');
+      const fill = s.fillZero
+        ? s.points
+            .slice(1)
+            .map(([x, y], j) => {
+              const [prevX, prevY] = s.points[j];
+              const end = Math.min(x, s.shadeUntil ?? x);
+              return end <= prevX
+                ? ''
+                : `<rect x="${X(prevX)}" y="${Math.min(Y(0), Y(prevY))}" width="${X(end) - X(prevX)}" height="${Math.abs(Y(prevY) - Y(0))}" fill="${prevY < 0 ? '#b6504d' : '#357f79'}" opacity="0.25"/>`;
+            })
+            .join('')
+        : '';
+      return (
+        fill +
+        `<path d="${d}" stroke="${colors[i % 4]}" stroke-width="2.6" fill="none" ${s.dash ? 'stroke-dasharray="5 4"' : ''}/>`
+      );
     })
     .join('');
   const marker = Number.isFinite(c.at)
     ? `<line class="bench-cursor" data-lo="${lo}" data-hi="${hi}" x1="${X(c.at)}" x2="${X(c.at)}" y1="${roof}" y2="${floor}"/>`
     : '';
-  return `<figure class="bench-plot"><figcaption>${esc(c.title)}</figcaption><svg viewBox="0 0 472 176" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${paths}${marker}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="background:${colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div></figure>`;
+  return `<figure class="bench-plot"><figcaption>${esc(c.title)}</figcaption><svg viewBox="0 0 472 176" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${paths}${marker}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="background:${colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div>${c.categories ? '<small>' + c.categories.map(esc).join(' · ') + '</small>' : ''}</figure>`;
 }
 export function moveCursor(node, time) {
   for (const el of node.querySelectorAll('.bench-cursor')) {

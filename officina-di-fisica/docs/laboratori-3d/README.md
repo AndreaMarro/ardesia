@@ -1,6 +1,6 @@
 # Biblioteca dei laboratori 3D
 
-Dieci banchi interattivi, due per ciascun microcorso tematico. Ogni banco contiene una previsione, quattro passaggi guidati, un esercizio di verifica e un problema di trasferimento. I 20 problemi hanno risposta numerica, unità e correzione ragionata. I cinque laboratori guidati precedenti sono ancora disponibili nella loro sezione. [Apri il catalogo nell’anteprima locale](http://127.0.0.1:8847/#laboratori)
+Le 56 lezioni offrono una simulazione 3D per ciascuna delle 181 voci di programma. Dal paragrafo puoi prevedere un risultato, variare una grandezza, misurarne un’altra e mettere alla prova il calcolo con due esercizi corretti. Il catalogo ospita anche dieci banchi di approfondimento con 20 problemi e i cinque laboratori guidati dell’Officina. [Apri il catalogo locale](http://127.0.0.1:8847/#laboratori) · [Mappa delle 181 voci](voci.md) · [Schermate e collaudo delle voci](esperienze.md)
 
 ![Le dieci scene riprese in WebGL durante il collaudo](prove/biblioteca.webp)
 
@@ -8,9 +8,9 @@ Dieci banchi interattivi, due per ciascun microcorso tematico. Ogni banco contie
 
 Nell’anteprima sul Mac i due banchi C2 sono aperti subito. Per i corsi riservati, in modalità verifica il pulsante **Apri un quaderno di prova** apre il materiale richiesto. Per avviare la stessa versione da una copia del repository, eseguire `python3 app.py serve --port 8847` dalla cartella dell’app. I collegamenti locali qui sotto puntano a quell’istanza.
 
-Le 56 lezioni comprendono 181 voci testuali di programma. Sono presenti 79 domande di osservazione per 77 voci distinte, distribuite in 32 lezioni. Nel paragrafo pertinente si apre **Esplora questo passaggio in 3D** e si sceglie una domanda. Anche 26 esempi e 85 quesiti distinti sono collegati ai banchi. Il ritorno ripristina paragrafo, passaggio, scorrimento, selezione del recupero e risposta in compilazione. Nelle prove con correzione differita gli aiuti compaiono dopo la consegna. Le note confluiscono nel quaderno esistente. [Mappa delle 181 voci](voci.md)
+Tutte le voci hanno un ingresso nella propria lezione. In 77 voci trovi anche uno o più richiami ai dieci banchi estesi, per 79 osservazioni aggiuntive. Ai banchi estesi portano anche 26 esempi e 85 quesiti. Il ritorno dalla simulazione riapre il paragrafo di origine. Nelle prove con correzione differita gli aiuti compaiono dopo la consegna. Le osservazioni si possono salvare nel quaderno esistente. [Mappa delle 181 voci](voci.md)
 
-Il catalogo editoriale raccoglie 40 progetti, compresi i dieci disponibili. Le 104 voci di lezione ancora da sviluppare restano consultabili nella mappa editoriale della consegna. [Catalogo completo](catalogo.md)
+Il catalogo editoriale dei banchi di approfondimento raccoglie 40 progetti, di cui dieci disponibili. [Catalogo degli approfondimenti](catalogo.md)
 
 ## Banchi, modelli e verifiche
 

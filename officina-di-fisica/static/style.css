@@ -386,3 +386,8 @@ details > summary { min-height: 42px; padding: .45rem 0; }
 .bench-topic summary { font: 650 .88rem/1.5 var(--sans); padding: .35rem 0; color: var(--violet-dark); }
 .bench-topic a { display: block; margin: .6rem 0; font: .91rem/1.4 var(--sans); text-decoration: none; }
 .bench-topic a span { display: block; text-decoration: underline; }
+
+.topic-shelf { border-bottom: 1px solid var(--line, #bcb7ad); }
+.topic-shelf summary { cursor: pointer; padding: .85rem .4rem; font-weight: 700; }
+.topic-shelf-body { padding: 0 .6rem .35rem 1.15rem; }
+.topic-shelf-body summary { font-weight: 600; }
