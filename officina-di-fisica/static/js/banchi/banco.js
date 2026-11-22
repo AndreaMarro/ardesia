@@ -1,7 +1,6 @@
 import { api, esc, crumb, main, state, link } from '../ui.js';
 import { defaults, inRange, n, nextTime } from './misure.js';
 import { plot, moveCursor } from './grafici.js';
-import { disegnoPasso } from './tavola.js';
 import {
   barraTempo,
   concentrazione,
@@ -117,6 +116,7 @@ export async function benchPage(id, origin, topicIndex) {
   const activity =
     item.kind === 'experiment' ? await (await import('./voci/esperimento.js')).esperienza(item) : null;
   const pilot = piloti[id];
+  const disegnoPasso = pilot ? (await import('./tavola.js')).disegnoPasso : null;
   const source = activity?.record || item;
   const r = pilot
     ? { ...source, model: pilot, assessment: [...source.assessment, ...problemi[pilot]] }
@@ -194,6 +194,7 @@ export async function benchPage(id, origin, topicIndex) {
           sceneLevel(),
           r.title,
           get('[data-projection]').value,
+          model,
         );
     } else gpu?.frame(t);
     if (stage < 0 || !textToo) return;
@@ -208,7 +209,7 @@ export async function benchPage(id, origin, topicIndex) {
     }
     if (explanation) {
       get('[data-equation]').textContent = explanation[2];
-      get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0]);
+      get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0], model);
     }
     if (isTimed()) {
       const time = timeline ? s.x : t;

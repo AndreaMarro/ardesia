@@ -1,7 +1,5 @@
 import { esc } from '../ui.js';
 import { n } from './misure.js';
-import { coefficients, displacement } from './modelli/onde.js';
-import { tracerFraction } from './modelli/tubo.js';
 const purple = '#623eaa',
   green = '#157474',
   red = '#ae4745',
@@ -21,7 +19,7 @@ function arrow(x, y, X, Y, c = dark) {
     c,
   );
 }
-export function drawing(model, p, s, t, stage, title, projection = 'top') {
+export function drawing(model, p, s, t, stage, title, projection = 'top', equations) {
   let d = '';
   const reveal = stage >= 0;
   if (model === 'piano') {
@@ -88,7 +86,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top') {
     if (reveal && s.laminar) {
       for (const h of [0, 0.5, 0.8, 1]) {
         for (const x0 of [0.05, 0.4, 0.75])
-          d += dot(39 + 359 * tracerFraction(s, h, t, x0), 96 - 43 * h, h === 0 ? gold : green, 4);
+          d += dot(39 + 359 * equations.tracerFraction(s, h, t, x0), 96 - 43 * h, h === 0 ? gold : green, 4);
       }
     }
     d += label(44, 174, reveal && s.laminar ? 'v = 0 alla parete' : 'sezione longitudinale');
@@ -195,7 +193,7 @@ export function drawing(model, p, s, t, stage, title, projection = 'top') {
           }).join(' '),
           color,
         );
-      d += poly((x) => displacement(s, coefficients(s, x, p.z), t), green);
+      d += poly((x) => equations.displacement(s, equations.coefficients(s, x, p.z), t), green);
       d +=
         dot(30 + ((p.x + 1.2) * 369) / 2.4, baseline - 13000 * s.instant.y, red) +
         label(254, 181, 'x (m) · z = ' + n(p.z) + ' m');
@@ -291,10 +289,10 @@ function lancioDisegno(i, p, s, t, q) {
     label(298, 61, 'T = ' + n(s.duration) + ' s')
   );
 }
-function flussoDisegno(i, p, s, t) {
+function flussoDisegno(i, p, s, t, q, equations) {
   if (!s.laminar) return label(22, 55, 'Re = ' + n(s.re)) + label(22, 82, 'Profilo laminare fuori dominio');
   if (i === 0) {
-    const distance = (h) => 48 + 213 * tracerFraction(s, h, t);
+    const distance = (h) => 48 + 213 * equations.tracerFraction(s, h, t);
     return (
       path('M48 24 H266 M48 101 H266') +
       path('M48 63 H266', green, true) +
@@ -428,7 +426,7 @@ function bobinaDisegno(i, p, s, t, q) {
     label(224, 98, 'I = ' + n(q.current) + ' A')
   );
 }
-function ondeDisegno(i, p, s, t, q) {
+function ondeDisegno(i, p, s, t, q, equations) {
   if (i === 0) {
     const k = s.k,
       x = (u) => 43 + 225 * u,
@@ -468,7 +466,7 @@ function ondeDisegno(i, p, s, t, q) {
     return d + label(5, 18, 'y (mm)');
   }
   const X = (u) => 42 + 220 * u,
-    Y = (u) => 64 - 8500 * displacement(s, s.probe, u / p.f);
+    Y = (u) => 64 - 8500 * equations.displacement(s, s.probe, u / p.f);
   return (
     path('M42 14 V104 M42 64 H266') +
     trace(X, Y, green) +
@@ -486,6 +484,6 @@ const disegni = {
   induzione: bobinaDisegno,
   onde: ondeDisegno,
 };
-export function disegnoPasso(key, index, p, s, t, q, title) {
-  return `<svg viewBox="0 0 430 122" role="img" aria-label="${esc(title)}">${disegni[key](index, p, s, t, q)}</svg>`;
+export function disegnoPasso(key, index, p, s, t, q, title, equations) {
+  return `<svg viewBox="0 0 430 122" role="img" aria-label="${esc(title)}">${disegni[key](index, p, s, t, q, equations)}</svg>`;
 }

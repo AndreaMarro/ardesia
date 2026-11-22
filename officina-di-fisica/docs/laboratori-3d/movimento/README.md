@@ -42,16 +42,16 @@ Lo stesso tempo simulato alimenta modello, geometria, tavola 2D, grafici e lettu
 | Esperimenti di lezione | 181 ID distinti per ciascuna delle quattro configurazioni, 724 percorsi completi. Per ogni voce si apre il collegamento dal suo paragrafo, si confrontano le letture e si risolvono entrambi i problemi. Il ritorno alla lezione conserva il passaggio aperto. [Letture di tutte le 181 voci nei quattro profili](voci-verificate.csv) |
 | Distribuzione delle voci | C1 42, C2 41, C3 36, C4 29, C5 27, C6 6. Il catalogo del percorso completo include anche le voci dei cinque microcorsi. |
 | Nuova interfaccia | 11 fenomeni × 3 schermi × 2 renderer, 66 casi. Verificati anche la tastiera in concentrazione, la sospensione a pagina nascosta, la pausa, il reset e la corrispondenza fra istante e grafico. |
-| Banchi estesi | 30 aperture WebGL, 10 tavole alternative, 20 problemi precedenti. Verificati il gesto di zoom touch, il rilascio dei contesti e il ritorno dalla lezione o dal quesito in corso. |
+| Banchi estesi | 30 aperture WebGL, 10 tavole alternative, 20 problemi precedenti. Verificato che ogni banco carichi soltanto il proprio modello. Verificati il gesto di zoom touch, il rilascio dei contesti e il ritorno dalla lezione o dal quesito in corso. |
 | Regressioni dell’app | Superati navigazione C6, esempi guidati, simulazione d’esame, errori e recupero, ripresa su un secondo client, cinque laboratori guidati, PDF e accesso autore. La prova dell’editor comprende bozze, ripristino delle versioni, pubblicazione e visualizzazione mobile. |
 
 Le misure provengono da Chrome 157 su Mac Apple M1, 8 GB, scala del dispositivo 1. Il tempo va dal cambio di pagina al primo disegno. La mediana usa i cinque piloti nella sessione locale. La cadenza conta i disegni effettivi durante una finestra di circa 0,66 s. Il testo e le tavole SVG si aggiornano ogni 80 ms circa mentre l’orologio conserva i secondi simulati. [Misure individuali dei 66 casi](misure.csv)
 
 | Profilo | Primo disegno 3D, mediana | Disegni 3D/s, minimo–massimo | Prima tavola 2D, mediana | Aggiornamenti 2D/s |
 | --- | --- | --- | --- | --- |
-| Desktop | 104 ms | 58,8–60,6 | 39 ms | 12,1 |
-| Tablet | 112 ms | 60,5–60,6 | 86 ms | 12,1 |
-| Smartphone | 109 ms | 59,0–60,6 | 42 ms | 12,1 |
+| Desktop | 96 ms | 59–60,5 | 32 ms | 12,1 |
+| Tablet | 74 ms | 60,4–60,5 | 31 ms | 12,1 |
+| Smartphone | 107 ms | 60,4–60,5 | 44 ms | 12,1 |
 
 Tablet e smartphone sono profili touch emulati. Restano da misurare fluidità e consumi su dispositivi fisici e da osservare la comprensione con studenti in aula. La prova visiva ha incluso confronto prima/dopo, lettura delle didascalie sui tre formati e controllo delle registrazioni a camera ferma.
 
