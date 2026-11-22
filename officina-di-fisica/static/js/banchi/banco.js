@@ -70,7 +70,7 @@ export async function benchPage(id, origin, topicIndex) {
     document.head.append(l);
   }
   const focus = topicIndex === undefined ? null : r.topics?.[Number(topicIndex)];
-  const back = origin && /^(?:materiale|corso|prova|laboratori)(?:\/|$)/.test(origin) ? origin : 'laboratori';
+  const back = origin && /^(?:materiale|corso|prova|lab|laboratori)(?:\/|$)/.test(origin) ? origin : 'laboratori';
   main.innerHTML =
     crumb([['Laboratori', 'laboratori'], [r.course + ' · ' + areas[r.course]]]) +
     `<article class="bench-room" data-bench="${r.id}">

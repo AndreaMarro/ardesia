@@ -6,6 +6,8 @@ Le 56 lezioni offrono una simulazione 3D per ciascuna delle 181 voci di programm
 
 ## Accesso e collegamenti
 
+Dal menu principale scegli **Simulazioni 3D**. Puoi cercare una parola, come **lente**, oppure sfogliare le voci per corso e lezione. Ogni lezione ha un pulsante sotto il titolo. Nei laboratori guidati trovi i collegamenti alle simulazioni 3D della lezione. Nel banco ottico puoi aprire entrambi gli esperimenti sulle lenti e, al ritorno, riprendere con la distanza e le note che avevi impostato. [Le due simulazioni di ottica](http://127.0.0.1:8847/#laboratori/C5/C5-L10) · [Ricerca su smartphone](prove-voci/ricerca-lente-mobile.jpg) · [Banco ottico su desktop](prove-voci/banco-ottico-collegamenti-desktop.jpg)
+
 Nell’anteprima sul Mac i due banchi C2 sono aperti subito. Per i corsi riservati, in modalità verifica il pulsante **Apri un quaderno di prova** apre il materiale richiesto. Per avviare la stessa versione da una copia del repository, eseguire `python3 app.py serve --port 8847` dalla cartella dell’app. I collegamenti locali qui sotto puntano a quell’istanza.
 
 Tutte le voci hanno un ingresso nella propria lezione. In 77 voci trovi anche uno o più richiami ai dieci banchi estesi, per 79 osservazioni aggiuntive. Ai banchi estesi portano anche 26 esempi e 85 quesiti. Il ritorno dalla simulazione riapre il paragrafo di origine. Nelle prove con correzione differita gli aiuti compaiono dopo la consegna. Le osservazioni si possono salvare nel quaderno esistente. [Mappa delle 181 voci](voci.md)

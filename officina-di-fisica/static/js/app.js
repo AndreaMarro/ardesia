@@ -1,4 +1,5 @@
 import {benchLinks, lessonBenches} from './banchi/collegamenti.js';
+import {showSimulationIndex} from './banchi/catalogo.js';
 import {
   main,
   state,
@@ -82,55 +83,26 @@ function home() {
   <section aria-labelledby="cover-index"><div class="rule-head"><h2 id="cover-index">I percorsi</h2><p>Cinque microcorsi tematici e un percorso completo.</p></div>${catalog()}</section>
   ${previewOfficina()}`;
 }
-function labs() {
-  main.innerHTML =
-    crumb([['Inizio', 'home'], ['Laboratori']]) +
-    head(
-      'I laboratori',
-      'Prima fai una previsione. Poi modifica un parametro e confronta ciò che osservi con il modello.',
-    ) +
-    '<h2 class="bench-collection">Banchi tridimensionali</h2><div class="rows">' +
-    state.benches
-      .map((b) => indexRow(b.course, b.title, b.summary, 'banco/' + b.id, subjectDrawing(b.course)))
-      .join('') +
-    '</div><h2 class="bench-collection">Simulazioni delle singole voci</h2>' +
-    state.courses
-      .map(
-        (c) =>
-          `<details class="topic-shelf" data-course="${esc(c.id)}"><summary>${esc(c.id + ' · ' + c.title)}</summary><div class="topic-shelf-body"></div></details>`,
-      )
-      .join('') +
-    '<h2 class="bench-collection">Laboratori guidati</h2>' +
-    `<div class="rows">${state.labs
-      .sort((a, b) => a.order - b.order)
-      .map((l) => indexRow(l.course, l.title, titleOf(l.course), 'lab/' + l.id, subjectDrawing(l.course)))
-      .join('')}</div>`;
-  for (const shelf of main.querySelectorAll('.topic-shelf'))
-    shelf.ontoggle = async () => {
-      if (!shelf.open || shelf.dataset.loaded) return;
-      shelf.dataset.loaded = 'loading';
-      const box = shelf.querySelector('.topic-shelf-body'),
-        course = shelf.dataset.course;
-      try {
-        const { items } = await api('/course/' + course);
-        const local = items.filter((r) => r.course === course);
-        box.innerHTML = local
-          .filter((r) => r.kind === 'lesson')
-          .map((l) => {
-            const sims = local
-              .filter((r) => r.kind === 'experiment' && r.skill === l.id)
-              .sort((a, b) => a.order - b.order);
-            return sims.length
-              ? `<details><summary>${esc(l.title)} · ${sims.length}</summary>${sims.map((r) => listLine(r.title, 'banco/' + r.id + '/laboratori', r.summary)).join('')}</details>`
-              : '';
-          })
-          .join('');
-        shelf.dataset.loaded = 'yes';
-      } catch (error) {
-        box.textContent = error.message;
-        delete shelf.dataset.loaded;
-      }
-    };
+async function labs(courseId, lessonId) {
+  const { lessons } = await api('/simulazioni' + (courseId ? '/' + encodeURIComponent(courseId) : ''));
+  const course = state.courses.find((c) => c.id === courseId);
+  const lesson = lessons.find((l) => l.id === lessonId);
+  if (lessonId && !lesson) throw Error('Questa lezione non è presente nel catalogo delle simulazioni di ' + courseId + '.');
+  const crumbs = [['Inizio', 'home'], ['Simulazioni 3D', course ? 'laboratori' : undefined]];
+  if (course) crumbs.push([courseId, lesson ? 'laboratori/' + courseId : undefined]);
+  if (lesson) crumbs.push(['Lezione']);
+  const title = lesson ? lesson.title : course ? 'Simulazioni 3D di ' + courseId : 'Simulazioni 3D';
+  main.innerHTML = crumb(crumbs) +
+    head(title, lesson ? '' : course ? course.title : 'Scegli un argomento per aprire il suo modello e metterlo alla prova.',
+      lesson ? 'Simulazioni 3D della lezione · ' + lesson.id : '') +
+    '<section id="simulazioni-voci" aria-label="Simulazioni degli argomenti"></section>';
+  if (!course) main.insertAdjacentHTML('beforeend',
+    '<section class="sim-collections" aria-label="Altre attività di laboratorio"><h2 class="bench-collection">Banchi tridimensionali di approfondimento</h2><div class="rows">' +
+    state.benches.map((b) => indexRow(b.course, b.title, b.summary, 'banco/' + b.id, subjectDrawing(b.course))).join('') +
+    '</div><h2 class="bench-collection">Laboratori guidati</h2><div class="rows">' +
+    [...state.labs].sort((a, b) => a.order - b.order)
+      .map((l) => indexRow(l.course, l.title, titleOf(l.course), 'lab/' + l.id, subjectDrawing(l.course))).join('') + '</div></section>');
+  showSimulationIndex(main.querySelector('#simulazioni-voci'), lessons, course, lesson, main.querySelector('.sim-collections'));
 }
 function sources() {
   main.innerHTML =
@@ -178,7 +150,7 @@ function c1Start() {
   return `<section class="c1-paths" aria-label="Scegli il tuo percorso">
     <article><h2>Studio completo</h2>
       <p>Segui le lezioni, leggi gli esempi svolti e prova gli esercizi. Poi passa al laboratorio e alle verifiche.</p>
-      ${link('Inizia dalle lezioni', courseUrl('C1', 'lezioni'), true)}</article>
+      <div class="actions">${link('Inizia dalle lezioni', courseUrl('C1', 'lezioni'), true)}${link('Simulazioni 3D di C1', 'laboratori/C1')}</div></article>
     <article><h2>Preparazione rapida all’esame</h2>
       <p>Parti dai quesiti prioritari, recupera gli errori e misura i progressi con diagnosi e simulazioni.</p>
       ${link('Vai agli esercizi prioritari', courseUrl('C1', 'esercizi'), true)}</article>
@@ -205,6 +177,7 @@ async function coursePage(id, tab = 'parti') {
     ['parti', 'Inizia qui'],
     ['metodo', 'Formule e grafici'],
     ['lezioni', 'Lezioni'],
+    ['simulazioni', 'Simulazioni 3D', 'laboratori/' + id],
     ['esempi', 'Esempi svolti'],
     ['esercizi', 'Esercizi'],
     ['recupero', 'Errori e recupero'],
@@ -220,7 +193,7 @@ async function coursePage(id, tab = 'parti') {
       c.id + ' / ' + (c.includes?.length ? 'Percorso integrale' : 'Microcorso di Fisica'),
     ) + subjectDrawing(c.includes?.length ? 'C6' : c.id) + '</div>';
   const utilities =
-    `<div class="actions">${!data.owned ? link(state.mode === 'verifica' ? 'Accesso e ordine di verifica' : 'Acquista il percorso', 'acquisto/' + id, true) : link('Allenati', 'allenamento/' + id, true)}${!data.owned && data.preview.length ? link('Leggi un’anteprima', 'materiale/' + data.preview[0] + '/' + id) : ''}${c.id === 'C6' ? link('Diagnosi e simulazioni', 'allenamento/C6') : ''}</div><nav class="tabs" aria-label="Materiali del percorso">${tabs.map(([t, l]) => `<a class="${t === tab ? 'active' : ''}" ${t === tab ? 'aria-current="page"' : ''} href="#${courseUrl(id, t)}">${l}</a>`).join('')}</nav>`;
+    `<div class="actions">${!data.owned ? link(state.mode === 'verifica' ? 'Accesso e ordine di verifica' : 'Acquista il percorso', 'acquisto/' + id, true) : link('Allenati', 'allenamento/' + id, true)}${!data.owned && data.preview.length ? link('Leggi un’anteprima', 'materiale/' + data.preview[0] + '/' + id) : ''}${c.id === 'C6' ? link('Diagnosi e simulazioni', 'allenamento/C6') : ''}</div><nav class="tabs" aria-label="Materiali del percorso">${tabs.map(([t, l, route]) => `<a class="${t === tab ? 'active' : ''}" ${t === tab ? 'aria-current="page"' : ''} href="#${esc(route || courseUrl(id, t))}">${l}</a>`).join('')}</nav>`;
   let body = '';
   if (id === 'C1' && tab === 'parti') {
     body = c1Start();
@@ -237,7 +210,7 @@ async function coursePage(id, tab = 'parti') {
   } else if (tab === 'recupero') {
     body = data.owned ? '<section id="raccolta-errori" class="big-list"></section>' : gate(id);
   } else if (tab === 'attivita') {
-    body = `<div class="split"><div><h2>Verifica il tuo lavoro</h2><p class="deck">Allenamento con feedback, verifiche con correzione alla consegna.</p><div class="actions">${link('Apri le attività', 'allenamento/' + id, true)}</div></div><div><h3>Laboratori del percorso</h3>${data.items.filter(r=>r.kind==='bench').map(r=>listLine(r.title,'banco/'+r.id+'/'+encodeURIComponent(location.hash.slice(1)),r.summary)).join('')}${data.items
+    body = `<div class="split"><div><h2>Verifica il tuo lavoro</h2><p class="deck">Allenamento con feedback, verifiche con correzione alla consegna.</p><div class="actions">${link('Apri le attività', 'allenamento/' + id, true)}</div></div><div><h3>Laboratori del percorso</h3>${listLine('Simulazioni 3D delle lezioni', 'laboratori/' + id)}${data.items.filter(r=>r.kind==='bench').map(r=>listLine(r.title,'banco/'+r.id+'/'+encodeURIComponent(location.hash.slice(1)),r.summary)).join('')}${data.items
       .filter((r) => r.kind === 'lab')
       .map((r) => listLine(r.title, 'lab/' + r.id + '/' + id))
       .join('')}</div></div>`;
@@ -304,9 +277,12 @@ async function material(id, course) {
     )
     .join('');
   const lab = data.items.find((l) => l.kind === 'lab' && l.course === r.course);
+  const simulations = r.kind === 'lesson' && r.experiments?.length
+    ? '<div class="actions">' + link('Simulazioni 3D della lezione (' + r.experiments.length + ')',
+      'laboratori/' + course + '/' + r.id) + '</div>' : '';
   main.innerHTML =
     crumb([['Percorsi', 'percorsi'], [titleOf(course), courseUrl(course, course === 'C6' && r.kind === 'lesson' ? 'lezioni' : 'parti')], [kinds[r.kind] || 'Materiale']]) +
-    `<div class="layout"><aside class="index"><details ${matchMedia('(min-width:641px)').matches ? 'open' : ''}><summary>Indice del modulo</summary><h3>${esc(titleOf(r.course))}</h3>${indexLinks}</details></aside><article class="reader"><div class="meta">${esc(kinds[r.kind])} · ${esc(r.id)}</div><h1>${esc(r.title)}</h1>${r.prompt ? `<p class="exercise-prompt">${esc(r.prompt)}</p>${blocks(r.promptBlocks)}` : ''}<div class="lettura-contenuto">${blocks(r.blocks)}</div><div class="actions">${state.user ? button(r.readVersion === r.version ? 'Lettura registrata' : r.readVersion ? 'Segna la nuova versione come letta' : 'Segna come letta', 'read') : ''}${r.kind === 'lesson' && examples.length ? link('Segui un esempio', 'materiale/' + examples[0].id + '/' + course, true) : ''}${data.owned && q ? button('Prova un problema', 'exercise', true) : ''}</div>${r.kind === 'lesson' && examples.length ? '<h3>Esempi svolti</h3>' + examples.map((e) => listLine(e.title, 'materiale/' + e.id + '/' + course)).join('') : ''}${lab ? listLine(lab.title, 'lab/' + lab.id + '/' + course, 'Laboratorio') : ''}${lessons[idx + 1] ? listLine('Lezione successiva', 'materiale/' + lessons[idx + 1].id + '/' + course, lessons[idx + 1].title) : ''}</article></div>`;
+    `<div class="layout"><aside class="index"><details ${matchMedia('(min-width:641px)').matches ? 'open' : ''}><summary>Indice del modulo</summary><h3>${esc(titleOf(r.course))}</h3>${indexLinks}</details></aside><article class="reader"><div class="meta">${esc(kinds[r.kind])} · ${esc(r.id)}</div><h1>${esc(r.title)}</h1>${simulations}${r.prompt ? `<p class="exercise-prompt">${esc(r.prompt)}</p>${blocks(r.promptBlocks)}` : ''}<div class="lettura-contenuto">${blocks(r.blocks)}</div><div class="actions">${state.user ? button(r.readVersion === r.version ? 'Lettura registrata' : r.readVersion ? 'Segna la nuova versione come letta' : 'Segna come letta', 'read') : ''}${r.kind === 'lesson' && examples.length ? link('Segui un esempio', 'materiale/' + examples[0].id + '/' + course, true) : ''}${data.owned && q ? button('Prova un problema', 'exercise', true) : ''}</div>${r.kind === 'lesson' && examples.length ? '<h3>Esempi svolti</h3>' + examples.map((e) => listLine(e.title, 'materiale/' + e.id + '/' + course)).join('') : ''}${lab ? listLine(lab.title, 'lab/' + lab.id + '/' + course, 'Laboratorio') : ''}${lessons[idx + 1] ? listLine('Lezione successiva', 'materiale/' + lessons[idx + 1].id + '/' + course, lessons[idx + 1].title) : ''}</article></div>`;
   const reading = main.querySelector('.lettura-contenuto');
   if (r.kind === 'lesson') lessonBenches(reading, r);
   installaPassaggi(reading, r);
@@ -331,7 +307,7 @@ async function router() {
   closeBench?.();
   closeBench = undefined;
   if (page === 'banco' && parts[1] && parts[1] === displayedRoute &&
-      /^(materiale|corso|prova)\//.test(displayedRoute)) {
+      /^(?:materiale|corso|prova|lab|laboratori)(?:\/|$)/.test(displayedRoute)) {
     const fragment = document.createDocumentFragment();
     returnPage = {route: displayedRoute, fragment, scroll: window.scrollY, focus: document.activeElement, user: state.user?.id};
     fragment.append(...main.childNodes);
@@ -370,7 +346,7 @@ async function router() {
     } else if (page === 'sprint') main.innerHTML = sprintContent();
     else if (page === 'corso') await coursePage(...parts);
     else if (page === 'materiale') await material(...parts);
-    else if (page === 'laboratori') labs();
+    else if (page === 'laboratori') await labs(...parts);
     else if (page === 'banco') closeBench = await (await import('./banchi/banco.js')).benchPage(...parts);
     else if (page === 'lab') await labPage(...parts);
     else if (page === 'fonti') sources();

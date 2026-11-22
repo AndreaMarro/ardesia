@@ -47,7 +47,97 @@ async function navigate(p, route, selector) {
   }, route);
   await p.locator(selector).waitFor({ state: 'visible' });
 }
+async function navigationShot(page, format, name) {
+  if (!evidence || !['desktop', 'mobile'].includes(format)) return;
+  const dir = path.join(evidence, format);
+  await mkdir(dir, { recursive: true });
+  await page.evaluate(async () => { await document.fonts.ready; scrollTo(0, 0); });
+  await page.screenshot({ path: path.join(dir, name + '.jpg'), type: 'jpeg', quality: 82 });
+}
+
+async function findLens(page, format) {
+  const lens = 'SIM-C5-L10-02';
+  const destination = page.locator('[data-bench="' + lens + '"]');
+  const back = page.getByRole('link', { name: 'Torna all’attività' });
+  const subjectLink = page.locator('a[href^="#banco/' + lens + '/"]');
+  await page.goto(url);
+  await page.getByRole('navigation', { name: 'Navigazione principale' })
+    .getByRole('link', { name: 'Simulazioni 3D' }).click();
+  const search = page.getByRole('searchbox', { name: 'Cerca un argomento' });
+  if (format === 'mobile') {
+    const normal = page.viewportSize();
+    await page.setViewportSize({width: 320, height: 700});
+    await search.waitFor();
+    const fits = await page.locator('.mast nav a').evaluateAll((links) => {
+      const bounds = links.map((a) => a.getBoundingClientRect());
+      return document.documentElement.scrollWidth <= innerWidth + 1 &&
+        bounds.every((b, i) => b.width > 0 && b.right <= innerWidth && (!i || b.left >= bounds[i-1].right));
+    });
+    assert.ok(fits, 'Navigazione leggibile anche a 320 px');
+    await page.setViewportSize(normal);
+  }
+  await search.fill('lente');
+  await subjectLink.waitFor();
+  assert.equal(await page.locator('.sim-collections').isVisible(), false);
+  await page.locator('a[href^="#banco/SIM-C5-L10-01/"]').waitFor();
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+  await navigationShot(page, format, 'cerca-lente');
+  await subjectLink.click();
+  await destination.waitFor();
+  await back.click();
+  await search.waitFor();
+  assert.equal(await search.inputValue(), 'lente');
+  assert.ok(await subjectLink.isVisible());
+  await search.fill('zzzzz');
+  await page.locator('#simulazioni-voci').getByText('Nessuna simulazione trovata.', {exact: false}).waitFor();
+  await search.fill('');
+  assert.ok(await page.locator('.sim-collections').isVisible());
+  assert.ok(await page.locator('.topic-shelf[data-course=C1]').isVisible());
+
+  await navigate(page, 'corso/C5/attivita', '.tabs');
+  await page.getByRole('link', {name: 'Simulazioni 3D delle lezioni'}).click();
+  await search.waitFor();
+  assert.equal(await page.locator('.sim-results a').count(), records.filter((r) => r.course === 'C5').length);
+  await navigate(page, 'materiale/C5-L10/C5', '.reader');
+  await page.getByRole('link', {name: 'Simulazioni 3D della lezione (2)'}).click();
+  const visible = page.locator('#simulazioni-voci a:visible');
+  await visible.first().waitFor();
+  assert.equal(await visible.count(), 2);
+  await subjectLink.click();
+  await destination.waitFor();
+  await back.click();
+  await subjectLink.waitFor();
+
+  await navigate(page, 'lab/LAB-C5/C5', '#lab-view');
+  await navigationShot(page, format, 'banco-ottico');
+  const distance = page.getByLabel('Valore numerico di Distanza oggetto cm');
+  await distance.fill('8.5');
+  await distance.press('Tab');
+  const note = page.getByLabel('Che cosa hai osservato?');
+  await note.fill('Osservo un’immagine virtuale.');
+  await subjectLink.click();
+  await destination.waitFor();
+  await back.click();
+  await distance.waitFor();
+  assert.equal(await distance.inputValue(), '8.5');
+  assert.equal(await note.inputValue(), 'Osservo un’immagine virtuale.');
+  await page.getByRole('navigation', { name: 'Navigazione principale' })
+    .getByRole('link', {name: 'Simulazioni 3D'}).click();
+  await search.waitFor();
+}
+
 try {
+  const publishedIds = records.map((r) => r.id).sort();
+  for (const course of ['', 'C5', 'C6']) {
+    const response = await fetch(url + 'api/simulazioni' + (course ? '/' + course : ''));
+    assert.equal(response.status, 200);
+    const {lessons} = await response.json();
+    const outlines = lessons.flatMap((l) => l.experiments);
+    assert.ok(outlines.every((e) => Object.keys(e).sort().join() === 'id,summary,title'));
+    const ids = outlines.map((e) => e.id).sort();
+    assert.deepEqual(ids, course === 'C5' ? records.filter((r) => r.course === course).map((r) => r.id).sort() : publishedIds);
+  }
+  assert.equal((await fetch(url + 'api/item/SIM-C5-L10-02')).status, 403);
   for (const [format, [width, height]] of Object.entries(widths)) {
     if (process.env.ASTRA_VIEW && format !== process.env.ASTRA_VIEW) continue;
     const noGL = format === 'alternativa',
@@ -86,7 +176,7 @@ try {
     const p = await ctx.newPage();
     p.setDefaultTimeout(6500);
     p.on('pageerror', (e) => errors.push(String(e)));
-    await p.goto(url + '#laboratori');
+    await findLens(p, format);
     const shelf = p.locator('.topic-shelf[data-course=C1]');
     await shelf.locator(':scope > summary').click();
     await shelf.locator('.topic-shelf-body details summary').first().click();

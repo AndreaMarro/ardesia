@@ -77,6 +77,33 @@ def short(r):
     }
 
 
+def simulation_outlines(experiments):
+    return [
+        {"id": e["id"], "title": e["title"], "summary": e.get("summary", "")}
+        for e in sorted(experiments, key=lambda e: (e["order"], e["id"]))
+    ]
+
+
+def simulation_index(rows, experiments):
+    by_lesson = {}
+    for e in experiments:
+        by_lesson.setdefault(e["skill"], []).append(e)
+    lessons = sorted(
+        (r for r in rows if r["kind"] == "lesson" and r["id"] in by_lesson),
+        key=lambda r: (r["course"], r["order"], r["id"]),
+    )
+    return [
+        {
+            "id": r["id"],
+            "course": r["course"],
+            "title": r["title"],
+            "section": r.get("section", ""),
+            "experiments": simulation_outlines(by_lesson[r["id"]]),
+        }
+        for r in lessons
+    ]
+
+
 def auth_limit(db, key):
     row = db.execute("SELECT * FROM failures WHERE key=?", (key,)).fetchone()
     require(
@@ -325,6 +352,14 @@ class Handler(BaseHTTPRequestHandler):
                 "benches": sorted((short(r) for r in rows if r["kind"] == "bench"), key=lambda r: r["order"]),
                 "labs": [short(r) for r in rows if r["kind"] == "lab"],
             }
+        if not post and p[:2] == ["api", "simulazioni"] and len(p) in (2, 3):
+            if len(p) == 3:
+                require(any(r["kind"] == "course" and r["id"] == p[2] for r in rows),
+                        "Percorso non trovato.", 404)
+                experiments = in_course(rows, p[2], "experiment")
+            else:
+                experiments = (r for r in rows if r["kind"] == "experiment")
+            return {"lessons": simulation_index(rows, experiments)}
         if not post and p[:2] == ["api", "course"] and len(p) == 3:
             c = record(db, p[2])
             require(c["kind"] == "course", "Percorso non trovato.", 404)
@@ -425,6 +460,9 @@ class Handler(BaseHTTPRequestHandler):
                     key=lambda e: r["coverage"].index(e["topic"]),
                 )
                 r = dict(r, benchTopics=topics, experiments=experiments)
+            if r["kind"] == "lab":
+                linked = (e for e in rows if e["kind"] == "experiment" and e["skill"] == r.get("skill"))
+                r = dict(r, simulations=simulation_outlines(linked))
             if u and r["kind"] in ("lesson", "example"):
                 last = db.execute(
                     "SELECT v FROM reads WHERE user=? AND id=?", (u["id"], r["id"])

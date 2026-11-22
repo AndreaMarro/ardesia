@@ -7,6 +7,7 @@ import {
   go,
   esc,
   link,
+  listLine,
   head,
   crumb,
   titleOf,
@@ -21,6 +22,7 @@ import {
   startRun,
 } from './ui.js';
 import { models, parameters, modes, initial } from './models.js';
+import { benchRoute } from './banchi/collegamenti.js';
 import { vignetta } from './anteprima.js';
 const ink = '#123a39',
   red = '#a93622',
@@ -265,9 +267,15 @@ export async function labPage(id, context) {
     owned = state.courses.find((o) => o.id === c)?.owned;
   const predictionsKey = 'astra-lab-' + (state.user?.id || 'ospite') + '-' + id + '-' + r.version;
   const saved = JSON.parse(sessionStorage.getItem(predictionsKey) || '{}');
+  const sims = r.simulations || [];
+  const related = sims.length
+    ? '<details class="sim-related"' + (sims.length <= 3 ? ' open' : '') +
+      '><summary>Simulazioni 3D di questa lezione · ' + sims.length + '</summary>' +
+      sims.map((e) => listLine(e.title, benchRoute(e.id))).join('') + '</details>'
+    : '';
   main.innerHTML =
-    crumb([['Laboratori', 'laboratori'], [r.title]]) +
-    head(r.title, titleOf(r.course), 'Laboratorio · ' + r.course) +
+    crumb([['Simulazioni 3D', 'laboratori'], [r.title]]) +
+    head(r.title, titleOf(r.course), 'Laboratorio guidato · ' + r.course) + related +
     `<section class="split"><div><h2>Il modello</h2>${blocks(r.blocks)}<label class="field">La tua previsione<span class="helper">${esc(r.prediction)}</span><textarea id="prediction" rows="2">${esc(saved.prediction || '')}</textarea></label></div><aside class="sheetpanel intro-card">${vignetta('osserva')}<h3>Osservazione guidata</h3><p>${esc(r.observation)}</p></aside></section><section class="labpanel"><div class="kickerline"><h2>Il banco</h2>${button('Ripristina parametri', 'reset')}</div><figure class="labfigure" id="lab-view"></figure><div class="meters" id="meters" aria-live="off"></div><div class="labfields">${modes[m] ? `<label>Configurazione<select id="lab-mode">${modes[m].map((v) => `<option ${v === d.mode ? 'selected' : ''}>${v}</option>`).join('')}</select></label>` : ''}${parameters[m].map(([k, title, unit, min, max, step]) => `<div><label for="slide-${k}">${esc(title)} ${esc(unit)}</label><input id="slide-${k}" type="range" min="${min}" max="${max}" step="${step}" value="${d[k]}"><label class="sr" for="val-${k}">Valore numerico di ${esc(title)} ${esc(unit)}</label><input type="number" id="val-${k}" min="${min}" max="${max}" step="${step}" value="${d[k]}"><small>${num(min)} – ${num(max)} ${esc(unit)}</small></div>`).join('')}</div></section><label class="field">Che cosa hai osservato?<textarea id="lab-note">${esc(saved.note || '')}</textarea></label><div class="actions">${state.user ? button('Salva osservazione', 'save-observation', true) : ''}${owned ? button('Verifica con un problema', 'lab-test') : link('Apri il percorso', 'corso/' + c)}</div><details><summary>Confronta la tua interpretazione</summary><p class="notice">${esc(r.interpretation)}</p></details>`;
   if (m === 'C3') $('#lab-mode').setAttribute('aria-label', 'Trasformazione termodinamica');
   function draw() {
