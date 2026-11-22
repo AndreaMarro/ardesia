@@ -14,6 +14,8 @@ Le 56 lezioni contengono 181 voci editoriali. Ognuna ha una domanda sperimentale
 
 C6 riusa anche le 175 simulazioni di C1–C5 con lo stesso identificatore. I 362 problemi comprendono 181 verifiche di misura e 181 problemi di trasferimento scritti per la singola voce. Si aggiungono ai 20 problemi dei dieci banchi estesi. La biblioteca offre inoltre i cinque laboratori guidati precedenti. [Dieci banchi con le rispettive schede](README.md) · [Inventario completo](../inventario.md)
 
+Dalla home scegli **Laboratori 3D per capitolo**, oppure apri **Lezioni** nel microcorso. Accanto al titolo di ciascun capitolo trovi il numero dei suoi banchi. Anche il testo della lezione offre l’accesso alla singola voce accanto al passaggio pertinente. Nei momenti **Esplora** e **Comprendi** puoi fissare una misura A, modificare la misura B e controllare il calcolo. [Verifiche per voce, viste desktop e smartphone e sei sequenze temporali](capitoli/README.md)
+
 ## Dalla previsione al calcolo
 
 Nella prima lezione C1, per esempio, lo studente prevede che cosa accadrà portando da 2 a 3 cm il lato di un cubo. Il reticolo fa vedere quanti cubetti da un centimetro entrano in una fila, in uno strato e nel volume intero. La prima misura dà 8 cm³, la seconda 27 cm³. L’area della faccia passa invece da 4 a 9 cm². Il quaderno propone poi una scatola di un’altra dimensione. [Prova il cubo, accessibile dalla prima lezione](http://127.0.0.1:8847/#banco/SIM-C1-L001-02)
