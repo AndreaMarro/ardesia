@@ -3,31 +3,11 @@ import { legende } from './legende.js';
 import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
-const famiglie = {
-  meccanica:
-    'calibro campione vettori binario volo caduta cerchio forze coppia piano molla gravita percorso urto leva',
-  fluidi: 'fasi strati vasca manometro pressa galleggia condotto profilo rete film goccia capillare',
-  termica: 'pistone termometro calorimetro fase barra convezione radiazione ciclo motore microstati',
-  campi: 'cariche piastre dipoli filo circuito condensatori bussola lorentz spira',
-  onde: 'oscillatore onda onde2 sorgente doppler em assorbitore fotone nucleo decadimento ottica',
-};
-const gruppi = Object.fromEntries(
-  Object.entries(famiglie).flatMap(([family, keys]) => keys.split(' ').map((key) => [key, family])),
-);
-const names = { onde: 'ondulatoria' };
+import { resolveEngine } from './engines.js';
 const valore = (a, u) => n(a) + (u && u !== '1' ? ' ' + u : '');
 const stabile = (x) => (Math.abs(x) < 1e-11 ? 0 : x);
 export async function esperienza(record) {
-  if (!/^C[1-6]$/.test(record.course)) throw Error('Corso della simulazione sconosciuto.');
-  const family = gruppi[record.apparatus];
-  if (!family) throw Error('Apparato della simulazione sconosciuto.');
-  const [{ experiments }, module] = await Promise.all([
-    import('./modelli/' + record.course + '.js'),
-    import('./apparati/' + family + '.js'),
-  ]);
-  const law = experiments[record.id],
-    instrument = module[names[family] || family][record.apparatus];
-  if (!law || !instrument) throw Error('Modello della voce non disponibile.');
+  const {law, instrument, legend} = await resolveEngine(record);
   const a = record.control,
     m = record.measure,
     [[x0, y0], [x1, y1]] = record.references;
@@ -57,7 +37,7 @@ export async function esperienza(record) {
       )
     : param('x', a.label, a.unit === '1' ? '' : a.unit, a.min, a.max, a.step, x0);
   const calc = (x) => stabile(law.measure(x));
-  const clock = orologioVoce(record, law);
+  const clock = record.engine ? null : orologioVoce(record, law);
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -296,7 +276,7 @@ export async function esperienza(record) {
     height: high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
     eye: top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
-    bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course],
+    bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course] ?? 0xe9eeea,
   };
   const scene = {
     spec,
@@ -317,6 +297,6 @@ export async function esperienza(record) {
     measurement,
     clock,
     observe: law.observe,
-    legend: () => legende[record.apparatus],
+    legend: () => legend ?? legende[record.apparatus],
   };
 }

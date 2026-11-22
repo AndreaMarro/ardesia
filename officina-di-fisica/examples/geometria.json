@@ -1,0 +1,80 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "GEO",
+      "kind": "course",
+      "course": "GEO",
+      "order": 7,
+      "section": "Misure geometriche",
+      "title": "Geometria delle figure",
+      "skill": "",
+      "prerequisites": [],
+      "blocks": [],
+      "summary": "Conta unità quadrate e verifica l’area."
+    },
+    {
+      "id": "GEO-L01",
+      "kind": "lesson",
+      "course": "GEO",
+      "order": 1,
+      "section": "Misure geometriche",
+      "title": "Misurare una superficie",
+      "skill": "GEO-L01",
+      "prerequisites": [],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Disponi tre file di quadratini di lato 1 cm. Con quattro colonne puoi contarli uno alla volta oppure moltiplicare le tre file per quattro. Cambia il numero di colonne mantenendo fissa l’altezza."
+        }
+      ],
+      "coverage": [
+        "Area del rettangolo"
+      ]
+    },
+    {
+      "id": "SIM-GEO-AREA",
+      "kind": "experiment",
+      "course": "GEO",
+      "order": 1,
+      "section": "Misure geometriche",
+      "title": "Quanti centimetri quadrati?",
+      "skill": "GEO-L01",
+      "prerequisites": [],
+      "blocks": [],
+      "topic": "Area del rettangolo",
+      "anchor": "Disponi tre file di quadratini",
+      "apparatus": "area-rettangolo",
+      "engine": {
+        "id": "area-rettangolo",
+        "version": "1.0.0"
+      },
+      "control": {
+        "label": "Base",
+        "unit": "cm",
+        "min": 1,
+        "max": 8,
+        "step": 1
+      },
+      "measure": {
+        "label": "Area",
+        "unit": "cm²"
+      },
+      "references": [
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          15
+        ]
+      ],
+      "summary": "Quanti quadratini aggiunge una colonna?",
+      "formula": "A = b × h",
+      "substitution": "{x} × 3",
+      "interpretation": "Un centimetro in più di base aggiunge una colonna di tre quadratini, ognuno di area 1 cm².",
+      "transferPrompt": "La base diventa {x}. Se l’altezza rimane 3 cm, qual è la nuova area?"
+    }
+  ]
+}

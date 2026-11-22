@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1.0.0",
+  "id": "area-rettangolo",
+  "version": "1.0.0",
+  "title": "Area per tassellazione",
+  "inputUnit": "cm",
+  "outputUnit": "cm²",
+  "law": {
+    "op": "multiply",
+    "left": {
+      "input": true
+    },
+    "right": {
+      "value": 3,
+      "unit": "cm"
+    }
+  },
+  "references": [
+    [
+      1,
+      3
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      8,
+      24
+    ]
+  ],
+  "observe": "Conta le tre file di quadratini. Aggiungi una colonna e osserva di quanto aumenta l’area.",
+  "legend": "Un quadratino ha il lato di 1 cm e l’area di 1 cm².",
+  "sha256": "fb6eba54f37c954a827e8e2e3647d45f7ca8787051781724909297b3b45bb362"
+}

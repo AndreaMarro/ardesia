@@ -88,8 +88,10 @@ export function recoveryCollection(node, items, course) {
 export async function trainPage(id) {
   const c = state.courses.find((c) => c.id === id);
   if (!c) throw Error('Corso non disponibile.');
+  const examProfile = c.assessmentProfile;
+  const papers = Array.from({length: examProfile?.papers || 0}, (_, i) => i + 1);
   const activities =
-    id === 'C6'
+    c.includes?.length
       ? [
           ['diagnosis', 'Diagnosi d’ingresso', 'Due passaggi per area, con correzione dopo la consegna.'],
           ['mixed', 'Problemi misti', 'Scegli il modello leggendo la situazione.'],
@@ -113,7 +115,7 @@ export async function trainPage(id) {
     crumb([['Percorsi', 'percorsi'], [c.title, 'corso/' + id], ['Attività']]) +
     head('Mettiti alla prova', c.title) +
     (!c.owned ? gate(id) : '') +
-    `<section class="big-list">${activities.map(([v, t, s], i) => `<article class="order"><h3>${t}</h3><p>${s}</p>${c.owned ? `<button class="textbtn" id="act-${i}">Inizia · ${esc(t)}</button>` : ''}</article>`).join('')}</section>${id === 'C6' ? `<section class="sheetpanel"><h2>Simulazioni di Fisica</h2><p>21 quesiti a scelta fra cinque opzioni e 10 completamenti. Hai 50 minuti. Una risposta corretta vale +1, un errore −0,1 e un’omissione 0. I risultati e le soluzioni si aprono alla consegna o alla scadenza.</p><p class="helper">Puoi confermare una risposta e correggerla una volta. La scelta esplicita di omettere è definitiva. Le risposte già registrate restano salvate anche cambiando dispositivo.</p>${c.owned ? `<label class="field">Durata<select id="minutes"><option value="50">50 minuti · ordinaria</option><option value="65">65 minuti · allenamento con +30%</option><option value="75">75 minuti · allenamento con +50%</option></select></label><div class="actions">${[1, 2, 3].map((i) => button('Avvia fascicolo ' + i, 'exam-' + i, true)).join('')}</div>` : ''}<a href="#fonti">Regole e fonti ministeriali</a></section>` : ''}`;
+    `<section class="big-list">${activities.map(([v, t, s], i) => `<article class="order"><h3>${t}</h3><p>${s}</p>${c.owned ? `<button class="textbtn" id="act-${i}">Inizia · ${esc(t)}</button>` : ''}</article>`).join('')}</section>${examProfile ? `<section class="sheetpanel"><h2>${esc(examProfile.title)}</h2><p>${examProfile.choices} quesiti a scelta fra ${examProfile.options} opzioni e ${examProfile.completions} completamenti. Hai ${examProfile.minutes[0]} minuti. Una risposta corretta vale +1, un errore −${examProfile.wrongPenalty.toLocaleString('it-IT')} e un’omissione 0. I risultati e le soluzioni si aprono alla consegna o alla scadenza.</p><p class="helper">Puoi confermare una risposta e correggerla una volta. La scelta esplicita di omettere è definitiva. Le risposte già registrate restano salvate anche cambiando dispositivo.</p>${c.owned ? `<label class="field">Durata<select id="minutes">${examProfile.minutes.map((n,i) => '<option value="' + n + '">' + n + ' minuti' + (i ? ' · allenamento' : ' · ordinaria') + '</option>').join('')}</select></label><div class="actions">${papers.map((i) => button('Avvia fascicolo ' + i, 'exam-' + i, true)).join('')}</div>` : ''}${examProfile.medicalScale ? '<a href="#fonti">Regole e fonti ministeriali</a>' : ''}</section>` : ''}`;
   demo('allenamento/' + id);
   activities.forEach(([v], i) =>
     on('#act-' + i, 'click', () => {
@@ -121,7 +123,7 @@ export async function trainPage(id) {
       return startRun({ course: id, mode, part: Number(part) || 1 });
     }),
   );
-  [1, 2, 3].forEach((i) =>
+  papers.forEach((i) =>
     on('#exam-' + i, 'click', () =>
       startRun({ course: id, mode: 'exam', exam: i, minutes: Number($('#minutes').value) }),
     ),
@@ -157,7 +159,7 @@ export async function runPage(id, initial) {
       diagnosis = `<div class="callout">${vignetta('riprendi')}<h3>Ritorna sul passaggio</h3><p>${esc(q.error.message || 'Ricostruisci il modello e ricontrolla le unità.')}</p><div class="actions">${link(target.startsWith('lab/') ? 'Apri il laboratorio' : 'Rileggi la spiegazione', target)}${button('Controlla con un altro problema', 'retest', true)}${q.prerequisites?.find((k) => k !== q.skill) ? link('Riprendi il prerequisito', 'materiale/' + q.prerequisites.find((k) => k !== q.skill)) : ''}</div></div>`;
     }
     const result = score
-      ? `<section class="sheetpanel intro-card"><h2>Esito della consegna</h2><div class="meters"><div class="meter"><span>Corrette</span><b>${score.right}</b></div><div class="meter"><span>Errate</span><b>${score.wrong}</b></div><div class="meter"><span>Omesse</span><b>${score.omitted}</b></div>${exam ? `<div class="meter"><span>Punteggio grezzo</span><b>${num(score.score, 4)} / 31</b></div>` : ''}</div>${exam ? `<p>${score.score === 31 ? 'Equivalente di carriera: 30 e lode.' : score.score >= 18 ? 'Equivalente di carriera: ' + Math.floor(score.score + 0.5) + '/30.' : 'Soglia di 18 punti grezzi non raggiunta.'}</p>` : ''}<p class="helper">Seleziona un numero per rivedere consegna, risposta e svolgimento.</p></section>`
+      ? `<section class="sheetpanel intro-card"><h2>Esito della consegna</h2><div class="meters"><div class="meter"><span>Corrette</span><b>${score.right}</b></div><div class="meter"><span>Errate</span><b>${score.wrong}</b></div><div class="meter"><span>Omesse</span><b>${score.omitted}</b></div>${exam ? `<div class="meter"><span>Punteggio grezzo</span><b>${num(score.score, 4)} / ${run.items.length}</b></div>` : ''}</div>${exam && run.assessmentProfile?.medicalScale ? `<p>${score.score === 31 ? 'Equivalente di carriera: 30 e lode.' : score.score >= 18 ? 'Equivalente di carriera: ' + Math.floor(score.score + 0.5) + '/30.' : 'Soglia di 18 punti grezzi non raggiunta.'}</p>` : ''}<p class="helper">Seleziona un numero per rivedere consegna, risposta e svolgimento.</p></section>`
       : '';
     main.innerHTML =
       crumb([['Il mio studio', 'studio'], [modeNames[run.mode]]]) +

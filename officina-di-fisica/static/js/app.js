@@ -1,3 +1,4 @@
+import { attachPathway } from './percorso.js';
 import {benchLinks, lessonBenches} from './banchi/collegamenti.js';
 import {showSimulationIndex} from './banchi/catalogo.js';
 import {
@@ -242,6 +243,10 @@ async function coursePage(id, tab = 'parti') {
   } else {
     main.innerHTML = title + utilities + body;
   }
+  if (tab === 'lezioni' && data.owned) {
+    main.insertAdjacentHTML('beforeend', '<details class="c1-index" data-learning-path><summary>Prerequisiti e prossima attività</summary><div data-path-panel></div></details>');
+    attachPathway(main.querySelector('[data-learning-path]'), id);
+  }
   if (tab === 'metodo') installActivities(main, data.activities);
   if (tab === 'recupero' && data.owned) recoveryCollection($('#raccolta-errori'), data.items, id);
   demo('corso/' + id);
@@ -295,6 +300,11 @@ async function material(id, course) {
     `<div class="layout"><aside class="index"><details ${matchMedia('(min-width:641px)').matches ? 'open' : ''}><summary>Indice del modulo</summary><h3>${esc(titleOf(r.course))}</h3>${indexLinks}</details></aside><article class="reader"><div class="meta">${esc(kinds[r.kind])} · ${esc(r.id)}</div><h1>${esc(r.title)}</h1>${simulations}${r.prompt ? `<p class="exercise-prompt">${esc(r.prompt)}</p>${blocks(r.promptBlocks)}` : ''}<div class="lettura-contenuto">${blocks(r.blocks)}</div><div class="actions">${state.user ? button(r.readVersion === r.version ? 'Lettura registrata' : r.readVersion ? 'Segna la nuova versione come letta' : 'Segna come letta', 'read') : ''}${r.kind === 'lesson' && examples.length ? link('Segui un esempio', 'materiale/' + examples[0].id + '/' + course, true) : ''}${data.owned && q ? button('Prova un problema', 'exercise', true) : ''}</div>${r.kind === 'lesson' && examples.length ? '<h3>Esempi svolti</h3>' + examples.map((e) => listLine(e.title, 'materiale/' + e.id + '/' + course)).join('') : ''}${lab ? listLine(lab.title, 'lab/' + lab.id + '/' + course, 'Laboratorio') : ''}${lessons[idx + 1] ? listLine('Lezione successiva', 'materiale/' + lessons[idx + 1].id + '/' + course, lessons[idx + 1].title) : ''}</article></div>`;
   const reading = main.querySelector('.lettura-contenuto');
   if (r.kind === 'lesson') lessonBenches(reading, r);
+  if (r.kind === 'lesson' && r.scaffold) {
+    const captions = {'richiama-prerequisito':'Richiama il prerequisito', 'confronta-le-misure':'Confronta le misure', 'segui-un-esempio':'Segui un esempio'};
+    reading.insertAdjacentHTML('beforeend', '<details class="c1-index"><summary>' +
+      esc(captions[r.scaffold.strategy]) + '</summary><p>' + esc(r.scaffold.citation) + '</p></details>');
+  }
   installaPassaggi(reading, r);
   if (r.kind === 'example') reading.insertAdjacentHTML('afterend', benchLinks(id));
   on('#read', 'click', async () => {

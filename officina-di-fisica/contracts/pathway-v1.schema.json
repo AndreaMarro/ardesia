@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Percorso formativo",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "const": "1.0.0"
+    },
+    "course": {
+      "type": "string"
+    },
+    "lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "competencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mastery": {
+            "enum": [
+              "da esplorare",
+              "prima evidenza",
+              "da consolidare",
+              "risultati stabili"
+            ]
+          },
+          "independentFamilies": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "resources": {
+            "type": "object",
+            "properties": {
+              "question": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "experiment": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "next": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "lesson",
+                  "practice",
+                  "example",
+                  "experiment"
+                ]
+              },
+              "id": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "version",
+          "competencies",
+          "prerequisites",
+          "mastery",
+          "independentFamilies",
+          "resources",
+          "next"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "apiVersion",
+    "course",
+    "lessons"
+  ],
+  "additionalProperties": false
+}

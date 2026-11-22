@@ -88,9 +88,9 @@ function exercises(record) {
 function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
   const kind = activity ? 'Simulazione di lezione' : 'Banco ' + r.id.slice(-2);
   return (
-    crumb([['Simulazioni 3D', 'laboratori'], [r.course + ' · ' + areas[r.course]]]) +
+    crumb([['Simulazioni 3D', 'laboratori'], [r.course + ' · ' + (areas[r.course] || state.courses.find(c => c.id === r.course)?.title || r.course)]]) +
     `<article class="bench-room" data-bench="${esc(r.id)}">
-    <header class="bench-head"><div><div class="meta">${esc(kind)} · ${esc(areas[r.course])}</div><h1>${esc(r.title)}</h1><p>${esc(focus?.question || r.summary)}</p></div><img src="/identita/cric-al-banco.svg" width="90" height="76" alt="Cric"></header>
+    <header class="bench-head"><div><div class="meta">${esc(kind)} · ${esc((areas[r.course] || state.courses.find(c => c.id === r.course)?.title || r.course))}</div><h1>${esc(r.title)}</h1><p>${esc(focus?.question || r.summary)}</p></div><img src="/identita/cric-al-banco.svg" width="90" height="76" alt="Cric"></header>
     ${sequenza()}<div class="bench-work">
     <section class="bench-instrument" aria-label="Strumento di osservazione">
       <div class="bench-strip"><span data-display>Preparazione della vista…</span><button type="button" data-focus aria-pressed="false">⛶ Concentrazione</button></div>
@@ -104,7 +104,7 @@ function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
       <form data-predict><div class="meta">Prima di osservare</div><h2>Fai una previsione</h2><fieldset><legend>${esc(r.prediction.question)}</legend>${r.prediction.options.map((o, i) => `<label><input type="radio" name="prediction" value="${i}" required> ${esc(o)}</label>`).join('')}</fieldset><button class="solid">Confronta con il banco →</button></form>
       <div data-guide hidden><div class="meta" data-count></div><h2 data-step-title></h2><p data-explain></p><p class="bench-equation" data-equation></p>
       <div class="math-walk" hidden><div class="math-art" data-math-art></div><span data-math-count></span><div class="math-actions"><button data-math-back aria-label="Disegno precedente">←</button><button data-math-next>Disegno successivo →</button></div></div>
-      <div class="bench-nav"><button data-prev aria-label="Passaggio precedente">← Indietro</button><button data-next class="solid">Avanti →</button></div>
+      <div class="bench-nav"><button data-prev>← Indietro</button><button data-next class="solid">Avanti →</button></div>
       <details class="initial-choice"><summary>La tua previsione iniziale</summary><p data-response></p></details><details class="initial-choice" data-reference hidden><summary>Passaggi e misure di riferimento</summary><div data-reference-content></div></details></div>
     </aside>
     <section data-experiment hidden class="bench-experiment">

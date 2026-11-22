@@ -6,6 +6,8 @@ import mimetypes
 import os
 import re
 import secrets
+import sys
+import time
 from http import cookies
 from http.server import BaseHTTPRequestHandler
 from http.server import ThreadingHTTPServer as ThreadingHTTPServer
@@ -13,6 +15,12 @@ from pathlib import Path
 from urllib.parse import quote, unquote, urlparse
 
 from . import commerce, editor, learning
+from .application.pathways import learning_path
+from .adapters.engines import checkpoints, installed
+from .adapters.exam_policies import exam_policy
+from collections import Counter
+from .adapters.contracts import CONTRACTS
+from .adapters.learning_repository import SQLiteLearningRepository
 from .store import (
     DATA,
     NOW,
@@ -126,22 +134,29 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "Officina/1"
 
     def log_message(self, fmt, *args):
-        if os.environ.get("ASTRA_LOG") == "1":
-            super().log_message(fmt, *args)
+        # response() emits bounded route families without URLs, cookies or query strings.
+        pass
 
     def response(
         self, body, status=200, mime="application/json; charset=utf-8", headers=None
     ):
         data = body if isinstance(body, bytes) else encode(body).encode()
+        request_id = secrets.token_hex(8)
         self.send_response(status)
+        self.send_header("X-Request-ID", request_id)
+        if os.environ.get("ASTRA_LOG") == "1":
+            family = self.path.split("?", 1)[0].split("/")[1:3]
+            component = family[-1] if family and family[-1] in {
+                "v1", "state", "health", "course", "item", "run", "runs", "author", "login", "simulazioni"
+            } else "resource"
+            print(encode({"requestId": request_id, "component": component, "method": self.command,
+                          "status": status, "bytes": len(data),
+                          "durationMs": round((time.monotonic() - self.started) * 1000, 2)}),
+                  file=sys.stderr, flush=True)
         self.send_header("Content-Type", mime)
         self.send_header("Content-Length", str(len(data)))
-        self.send_header(
-            "Cache-Control",
-            "no-store"
-            if not self.path.startswith("/vendor/")
-            else "public, max-age=604800",
-        )
+        if "Cache-Control" not in (headers or {}):
+            self.send_header("Cache-Control", "public, max-age=604800" if self.path.startswith("/vendor/") else "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "same-origin")
         self.send_header(
@@ -178,6 +193,7 @@ class Handler(BaseHTTPRequestHandler):
         self.handle_request(True)
 
     def handle_request(self, write):
+        self.started = time.monotonic()
         self.cookie_header = None
         try:
             path = unquote(urlparse(self.path).path)
@@ -221,8 +237,7 @@ class Handler(BaseHTTPRequestHandler):
             token = raw.get("astra_session")
             token = token.value if token else ""
             with connect() as db:
-                if write or path.startswith("/api/run/"):
-                    db.execute("BEGIN IMMEDIATE")
+                db.execute("BEGIN IMMEDIATE" if write or path.startswith("/api/run/") else "BEGIN")
                 user = db.execute(
                     "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
                     (digest(token), NOW()),
@@ -249,8 +264,19 @@ class Handler(BaseHTTPRequestHandler):
 
     def route(self, db, u, p, d, post, token):
         path = "/".join(p)
+        if not post and path == "api/v1/openapi.json":
+            return json.loads((CONTRACTS / "openapi.json").read_text())
+        if not post and p[:3] == ["api", "v1", "schemas"] and len(p) == 4:
+            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1"}
+            name = p[3].removesuffix(".schema.json")
+            require(p[3] == name + ".schema.json" and name in names, "Schema assente.", 404)
+            return json.loads((CONTRACTS / p[3]).read_text())
+        if not post and p[:3] == ["api", "v1", "engines"] and len(p) == 6:
+            meta, code = installed({"id": p[3], "version": p[4]})
+            require(p[5] == meta["sha256"] + ".js", "Edizione del motore assente.", 404)
+            return code, "text/javascript; charset=utf-8", {"Cache-Control": "public, max-age=31536000, immutable"}
         if not post and path == "api/health":
-            return {"product": "officina-di-fisica", "edition": "1.0.0"}
+            return {"product": "officina-di-fisica", "edition": "1.1.0"}
         if post and path in (
             "api/register",
             "api/login",
@@ -331,10 +357,14 @@ class Handler(BaseHTTPRequestHandler):
             need_author(u)
             return self.author(db, u, p[2:], d, post)
         rows = published(db)
+        if not post and p[:3] == ["api", "v1", "courses"] and len(p) == 5 and p[4] == "learning-path":
+            need_user(u)
+            return learning_path(SQLiteLearningRepository(db, u, rows), p[3])
         if not post and path == "api/state":
             courses = sorted(
                 (r for r in rows if r["kind"] == "course"), key=lambda r: r["order"]
             )
+            counts = {c["id"]: Counter(r["kind"] for r in in_course(rows, c["id"])) for c in courses}
             return {
                 "user": account(db, u),
                 "mode": config(db).get("mode", "verifica"),
@@ -342,8 +372,9 @@ class Handler(BaseHTTPRequestHandler):
                     dict(
                         short(c),
                         owned=entitled(db, u, rows, c["id"]),
+                        assessmentProfile=exam_policy(c),
                         counts={
-                            k: len(in_course(rows, c["id"], k))
+                            k: counts[c["id"]][k]
                             for k in ("lesson", "example", "question", "lab", "bench", "experiment")
                         },
                     )
@@ -447,6 +478,9 @@ class Handler(BaseHTTPRequestHandler):
                     course=r["course"],
                 )
             require(not post, "Operazione non disponibile.", 405)
+            if r["kind"] == "experiment" and "engine" in r:
+                meta, _ = installed(r["engine"])
+                return dict(r, engineSpec=dict(meta, checkpoints=checkpoints(meta, r["control"])))
             if r["kind"] == "lesson":
                 topics = [
                     dict(t, bench=b["id"], index=i)
@@ -700,6 +734,9 @@ class Handler(BaseHTTPRequestHandler):
             return {"ok": True}
         if post and route == "import":
             return editor.imported(db, u, d["package"], d.get("commit") is True)
+        if post and route == "scaffold":
+            require(type(d.get("commit")) is bool, "Specifica la decisione editoriale.")
+            return editor.review_scaffold(db, u, d.get("proposal"), d["commit"])
         if post and route == "upload":
             return editor.save_asset(db, d)
         if not post and route == "commerce":
