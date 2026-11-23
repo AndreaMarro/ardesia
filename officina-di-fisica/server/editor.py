@@ -154,7 +154,10 @@ def save_asset(db, a):
     except (ValueError, KeyError, ET.ParseError, binascii.Error):
         raise Problem("File o codifica non validi.")
     path = DATA / "uploads" / key
-    if not path.exists():
+    from .adapters import hosted
+    if hosted.enabled():
+        hosted.save_bytes(db, "asset/" + key, raw)
+    elif not path.exists():
         temp = path.with_suffix(".tmp")
         temp.write_bytes(raw)
         temp.replace(path)
@@ -163,6 +166,15 @@ def save_asset(db, a):
         (key, Path(a.get("name", "allegato")).name[:160], a["mime"], len(raw)),
     )
     return {"src": "/asset/" + key}
+
+
+def read_asset(db, key):
+    from .adapters import hosted
+    if hosted.enabled():
+        raw = hosted.load_bytes(db, "asset/" + key)
+        require(raw, "Allegato non disponibile.", 404)
+        return raw
+    return (DATA / "uploads" / key).read_bytes()
 
 
 def imported(db, user, pkg, commit):
@@ -264,7 +276,7 @@ def export(db):
                 name=row["name"],
                 mime=row["mime"],
                 data=base64.b64encode(
-                    (DATA / "uploads" / row["id"]).read_bytes()
+                    read_asset(db, row["id"])
                 ).decode(),
             )
         )

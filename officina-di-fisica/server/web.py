@@ -203,13 +203,16 @@ class Handler(BaseHTTPRequestHandler):
         self.cookie(token, age)
         return {"ok": True}
 
+    def client_ip(self):
+        return self.client_address[0]
+
     def do_GET(self):
-        self.handle_request(False)
+        self.dispatch_officina(False)
 
     def do_POST(self):
-        self.handle_request(True)
+        self.dispatch_officina(True)
 
-    def handle_request(self, write):
+    def dispatch_officina(self, write):
         self.started = time.monotonic()
         self.cookie_header = None
         try:
@@ -253,8 +256,9 @@ class Handler(BaseHTTPRequestHandler):
             raw = cookies.SimpleCookie(self.headers.get("Cookie", ""))
             token = raw.get("astra_session")
             token = token.value if token else ""
-            with connect() as db:
-                db.execute("BEGIN IMMEDIATE" if write or path.startswith("/api/run/") else "BEGIN")
+            mutable = write or path.startswith("/api/run/")
+            with connect(readonly=not mutable) as db:
+                db.execute("BEGIN IMMEDIATE" if mutable else "BEGIN")
                 user = db.execute(
                     "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
                     (digest(token), NOW()),
@@ -300,7 +304,11 @@ class Handler(BaseHTTPRequestHandler):
             require(p[5] == meta["sha256"] + ".js", "Edizione del motore assente.", 404)
             return code, "text/javascript; charset=utf-8", {"Cache-Control": "public, max-age=31536000, immutable"}
         if not post and path == "api/health":
-            return {"product": "officina-di-fisica", "edition": "1.1.0"}
+            health = {"product": "officina-di-fisica", "edition": "1.1.0"}
+            release = os.environ.get("OFFICINA_COMMIT", "")
+            if os.environ.get("ASTRA_HOSTED") == "1" and re.fullmatch(r"[a-f0-9]{40}", release):
+                health["commit"] = release
+            return health
         if post and path in (
             "api/register",
             "api/login",
@@ -326,7 +334,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.login(db, uid)
             if path == "api/owner":
                 require(
-                    self.client_address[0] in ("127.0.0.1", "::1"),
+                    os.environ.get("ASTRA_HOSTED") != "1" and self.client_address[0] in ("127.0.0.1", "::1"),
                     "Accesso locale richiesto.",
                     403,
                 )
@@ -342,7 +350,7 @@ class Handler(BaseHTTPRequestHandler):
             mail = str(d.get("email", "")).strip().casefold()
             pwd = str(d.get("password", ""))
             require(0 < len(mail) <= 254 and len(pwd) <= 512, "Credenziali non valide.")
-            limit = digest(self.client_address[0])
+            limit = digest(self.client_ip())
             auth_limit(db, limit)
             if path == "api/register":
                 require(
@@ -642,7 +650,7 @@ class Handler(BaseHTTPRequestHandler):
                 403,
             )
             return (
-                f.read_bytes(),
+                editor.read_asset(db, p[1]) if p[0] == "asset" else f.read_bytes(),
                 mime,
                 {
                     "Content-Disposition": (
@@ -656,7 +664,7 @@ class Handler(BaseHTTPRequestHandler):
             from .printing import locate
 
             require(entitled(db, u, rows, p[1]), "Accesso al percorso richiesto.", 403)
-            f = locate(rows, p[1], p[2])
+            f = locate(rows, p[1], p[2], db)
             require(f, "Edizione PDF da rigenerare nell’area autore.", 409)
             return (
                 f.read_bytes(),
@@ -694,7 +702,7 @@ class Handler(BaseHTTPRequestHandler):
                         sys.executable,
                         str(ROOT / "tools" / "inventario.py"),
                         "--database",
-                        str(DATA / "officina.sqlite3"),
+                        db.execute("PRAGMA database_list").fetchone()[2],
                         "--out",
                         target,
                     ],
@@ -812,5 +820,5 @@ class Handler(BaseHTTPRequestHandler):
             from .printing import queue, status
 
             rows = published(db)
-            return queue(rows, d["course"], d["book"]) if post else status(rows)
+            return queue(rows, d["course"], d["book"], db) if post else status(rows, db)
         raise Problem("Strumento non trovato.", 404)

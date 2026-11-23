@@ -31,7 +31,10 @@ class ManagedConnection(sqlite3.Connection):
             self.close()
 
 
-def connect():
+def connect(*, readonly=False):
+    from .adapters import hosted
+    if hosted.enabled():
+        return hosted.reader(ManagedConnection) if readonly else hosted.Primary()
     db = sqlite3.connect(
         DATA / "officina.sqlite3", timeout=20, factory=ManagedConnection
     )
@@ -87,14 +90,17 @@ def initialize():
     for name in ("uploads", "pdf"):
         (DATA / name).mkdir(exist_ok=True)
     with connect() as db:
-        db.execute("PRAGMA journal_mode=WAL")
+        if os.environ.get("ASTRA_HOSTED") != "1":
+            db.execute("PRAGMA journal_mode=WAL")
         db.execute("BEGIN IMMEDIATE")
         migrate(db, [path.read_text() for path in sorted((ROOT / "migrations").glob("[0-9][0-9][0-9]_*.sql"))])
         bind_releases(db)
+        existing = {row["id"]: row for row in db.execute("SELECT id,live,draft FROM heads")}
         for rec in catalog_seed():
-            if rec["id"] in BUNDLED_V1_HASHES and rec["version"] == 2:
+            head = existing.get(rec["id"])
+            if head and head["live"] == 1 and head["draft"] is None and rec["id"] in BUNDLED_V1_HASHES and rec["version"] == 2:
                 update_bundled_solution(db, rec)
-            if db.execute("SELECT 1 FROM heads WHERE id=?", (rec["id"],)).fetchone():
+            if head:
                 continue
             rec.setdefault("review", "edizione Astra · controlli automatici")
             db.execute("INSERT INTO heads VALUES(?,?,NULL)", (rec["id"], rec["version"]))
