@@ -4,15 +4,17 @@ export const measure = (base) => 3 * base;
 
 /** @type {import('../../../../contracts/engine.js').Draw} */
 export function draw(board, {x}) {
-  const scale = 0.42, left = -1.8;
-  board.box([left + x * scale / 2, .38, 0], [x * scale, .12, 3 * scale], 0x147979);
-  for (let i = 0; i <= x; i++) {
-    board.line([[left + i * scale, .45, -.63], [left + i * scale, .45, .63]], 0xffedc5);
+  const unit = .70, bottom = .29, left = -x * unit / 2;
+  const height = 3 * unit, width = x * unit;
+  board.box([0, bottom + height / 2, 0], [width, height, .14], 0x21665c);
+  for (let column = 0; column < x; column++) {
+    for (let row = 0; row < 3; row++) {
+      const atX = left + (column + .5) * unit;
+      const atY = bottom + (row + .5) * unit;
+      const ink = (column + row) % 2 ? 0x96d6bf : 0x46a992;
+      board.box([atX, atY, .085], [unit - .032, unit - .032, .04], ink);
+    }
   }
-  for (let i = 0; i <= 3; i++) {
-    const z = -.63 + i * scale;
-    board.line([[left, .45, z], [left + x * scale, .45, z]], 0xffedc5);
-  }
-  board.label([left + x * scale / 2, .95, .8], 'Base ' + x + ' cm');
-  board.label([left - .5, .9, 0], '3 cm');
+  board.label([0, bottom + height + .3, .13], 'Base ' + x + ' cm');
+  board.label([left - .30, bottom + height / 2, .14], '3 cm');
 }

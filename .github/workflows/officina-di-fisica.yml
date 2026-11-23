@@ -2,7 +2,9 @@ name: Officina di Fisica
 
 on:
   pull_request:
-    branches: [officina-di-fisica]
+    paths:
+      - "officina-di-fisica/**"
+      - ".github/workflows/officina-di-fisica.yml"
   push:
     branches: [officina-di-fisica]
   workflow_dispatch:

@@ -13,6 +13,7 @@ from .domain.identity import encode, digest, need_author, need_user, safe_key
 from .domain.catalog import courses_for, in_course
 from .domain.errors import Problem, require
 from .adapters.migrations import migrate
+from .adapters.engines import bind_releases
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(os.environ.get("ASTRA_DATA", ROOT / "var")).resolve()
@@ -100,7 +101,8 @@ def initialize():
     with connect() as db:
         db.execute("PRAGMA journal_mode=WAL")
         db.execute("BEGIN IMMEDIATE")
-        migrate(db, (SCHEMA, (ROOT / "migrations/002_run_policies.sql").read_text()))
+        migrate(db, [path.read_text() for path in sorted((ROOT / "migrations").glob("[0-9][0-9][0-9]_*.sql"))])
+        bind_releases(db)
         for rec in catalog_seed():
             if rec["id"] in BUNDLED_V1_HASHES and rec["version"] == 2:
                 update_bundled_solution(db, rec)

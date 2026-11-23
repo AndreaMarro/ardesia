@@ -22,7 +22,7 @@ from .store import (
 
 from .adapters.engines import validate_experiment
 from .adapters.exam_policies import exam_policy
-from .domain.pathway import prerequisites
+from .domain.pathway import prerequisites, unique_experiments
 from .adapters.contracts import schema, validate as validate_contract
 from .editorial.service import EditorialWorkspace
 from .domain.authoring import ContentPolicy, KINDS, validate_record
@@ -221,6 +221,7 @@ def imported(db, user, pkg, commit):
         try:
             prerequisites(obj)
             prerequisites(obj, "course")
+            unique_experiments(obj)
         except Problem as error:
             errors.append(str(error))
     if errors or not commit:

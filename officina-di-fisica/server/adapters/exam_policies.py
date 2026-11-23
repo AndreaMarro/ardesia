@@ -16,4 +16,6 @@ def exam_policy(course):
         validate(policy, schema("exam-v1"))
         require(len(set(policy["minutes"])) == len(policy["minutes"]) and policy["choices"] + policy["completions"] > 0,
                 "Durate o numero di domande non validi.")
+        require(not policy["medicalScale"] or policy["choices"] + policy["completions"] == 31,
+                "La scala sanitaria richiede 31 quesiti.")
     return policy

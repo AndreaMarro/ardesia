@@ -12,8 +12,8 @@ import zipfile
 
 APP = Path(__file__).resolve().parents[1]
 PROJECT = APP.name
-DIRECTORIES = {'content', 'contracts', 'examples', 'materials', 'migrations', 'policies', 'server', 'static', 'tools'}
-TOP = {'app.py', 'Area autore.command', 'Avvia Officina.command', 'README.md', 'package.json'}
+DIRECTORIES = {'content', 'contracts', 'docs', 'examples', 'materials', 'migrations', 'policies', 'server', 'static', 'tests', 'tools'}
+TOP = {'app.py', 'Area autore.command', 'Avvia Officina.command', 'README.md', 'package.json', 'package-lock.json'}
 
 
 def build(target):
@@ -21,7 +21,7 @@ def build(target):
     import io
     import tarfile
     tree = subprocess.check_output(['git','rev-parse','HEAD:'+PROJECT], cwd=APP)
-    source = subprocess.check_output(['git','archive','--format=tar',tree.decode().strip()], cwd=APP)
+    source = subprocess.check_output(['git','archive','--format=tar',tree.decode().strip()], cwd=APP.parent)
     with tarfile.open(fileobj=io.BytesIO(source)) as archive, zipfile.ZipFile(target, 'w') as result:
         for item in sorted(archive.getmembers(), key=lambda m:m.name):
             first = item.name.split('/')[0]

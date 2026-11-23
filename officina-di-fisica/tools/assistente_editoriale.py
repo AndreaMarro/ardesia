@@ -5,8 +5,9 @@ import os
 import sys
 from pathlib import Path
 
-from server.adapters.contracts import schema
+from server.adapters.contracts import schema, validate
 from server.adapters.editorial_mcp import MCP, check_proposal
+from server.adapters.editorial_sandbox import confine_stdio
 from server.adapters.providers import ChatCompletions, Ollama
 from server.domain.errors import Problem
 from server.editorial.service import EditorialWorkspace
@@ -19,13 +20,20 @@ def main():
     parser.add_argument("--course", action="append", required=True)
     parser.add_argument("--allow", action="append", choices=("search", "read", "propose"), required=True)
     parser.add_argument("--concepts", type=Path, default=ROOT / "examples/authoring/concepts.json")
+    parser.add_argument("--library", type=Path, help="Snapshot delle lezioni pubblicate esportato dall’autore")
     parser.add_argument("--provider", choices=("ollama", "chat-completions"))
     parser.add_argument("--endpoint")
     parser.add_argument("--model")
     parser.add_argument("--object")
     args = parser.parse_args()
-    workspace = EditorialWorkspace(catalog_seed(), set(args.course), json.loads(args.concepts.read_text()), args.allow)
+    records = catalog_seed()
+    if args.library:
+        library = json.loads(args.library.read_text(encoding="utf-8"))
+        validate(library, schema("library-v1"))
+        records = library["records"]
+    workspace = EditorialWorkspace(records, set(args.course), json.loads(args.concepts.read_text()), args.allow)
     if args.operation == "mcp":
+        confine_stdio()
         MCP(workspace).serve(sys.stdin.buffer, sys.stdout)
         return
     if not all((args.provider, args.endpoint, args.model, args.object)):

@@ -8,9 +8,9 @@ In copertina **Cric**, la chiave inglese con la matita in spalla, cambia posa co
 
 ## Ritrovare l’edizione su GitHub
 
-Il prodotto ha una cartella autonoma nel branch **officina-di-fisica** di **AndreaMarro/ardesia**. La cartella contiene codice, sorgenti didattiche, tavole, PDF, verifiche e manuali. Il tag del prodotto nel monorepo è **officina-di-fisica-v1.0.0**. [Cartella su GitHub](https://github.com/AndreaMarro/ardesia/tree/officina-di-fisica/officina-di-fisica) · [ZIP della sola Officina](https://github.com/AndreaMarro/ardesia/raw/refs/heads/officina-di-fisica/officina-di-fisica/distribuzione/Officina-di-Fisica-1.0.0.zip)
+L’edizione 1.1 vive nella cartella `officina-di-fisica/` del ramo ufficiale omonimo di AndreaMarro/ardesia. Dalla home scegli **Laboratori 3D per capitolo** per raggiungere ciascuna delle 181 voci. La release contiene il pacchetto verificato della sola Officina e la sua impronta SHA-256. [Cartella canonica](https://github.com/AndreaMarro/ardesia/tree/officina-di-fisica/officina-di-fisica) · [Release 1.1](https://github.com/AndreaMarro/ardesia/releases/tag/officina-di-fisica-v1.1.0) · [Revisione tecnica, didattica e UX](docs/architettura/README.md)
 
-Anche il bundle Git nella cartella di distribuzione permette di recuperare il repository autonomo e il suo tag `v1.0.0`. Dopo averlo scaricato puoi eseguire `git clone Officina-di-Fisica-1.0.0.bundle Officina-di-Fisica`. Per lavorare direttamente sul branch di Ardesia scaricando la sola cartella del prodotto:
+Il bundle Git storico nella cartella di distribuzione permette di recuperare l’edizione autonoma 1.0.0. Dopo averlo scaricato puoi eseguire `git clone Officina-di-Fisica-1.0.0.bundle Officina-di-Fisica`. Per lavorare direttamente sul branch di Ardesia scaricando la sola cartella del prodotto:
 
 ```sh
 git clone --filter=blob:none --sparse --single-branch --branch officina-di-fisica https://github.com/AndreaMarro/ardesia.git ardesia-officina

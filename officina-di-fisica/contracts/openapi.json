@@ -249,6 +249,41 @@
           }
         }
       }
+    },
+    "/author/editorial-library/{course}": {
+      "get": {
+        "summary": "Esporta le lezioni pubblicate del corso per il lavoro editoriale",
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Libreria editoriale",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas/library-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
     }
   },
   "components": {

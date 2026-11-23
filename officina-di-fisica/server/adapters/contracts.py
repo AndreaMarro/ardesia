@@ -20,8 +20,9 @@ def validate(value, rule, field="$", root=None, depth=0):
     require(depth <= 40, "Oggetto troppo profondo in " + field)
     if "$ref" in rule:
         ref = rule["$ref"]
-        require(ref.startswith("#/$defs/") and ref[len("#/$defs/"):] in root.get("$defs", {}), "Schema locale sconosciuto.")
-        return validate(value, root["$defs"][ref[len("#/$defs/"):]], field, root, depth + 1)
+        name = ref.removeprefix("#/$defs/")
+        require(name != ref and name in root.get("$defs", {}), "Schema locale sconosciuto.")
+        return validate(value, root["$defs"][name], field, root, depth + 1)
     if "oneOf" in rule:
         matches = 0
         for variant in rule["oneOf"]:

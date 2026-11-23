@@ -454,10 +454,8 @@ try {
         await button.click();
         for (const [i, task] of record.assessment.entries()) {
           const form = row.locator('[data-check="' + i + '"]');
-          assert.ok(
-            (await form.innerText()).includes(task.prompt),
-            r.id + ' · consegna diversa dal problema della voce',
-          );
+          assert.equal(await form.locator(':scope > p').first().innerText(), task.prompt,
+            r.id + ' · consegna diversa dal problema della voce');
           if (format === 'desktop') {
             await form.locator('[name=answer]').fill(String(-Math.abs(task.value) - 123));
             await form.locator('button').click();

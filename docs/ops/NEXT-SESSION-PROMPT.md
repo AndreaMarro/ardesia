@@ -30,3 +30,9 @@ Esito integrazione documentale338: main778e2ebbb6f5d8f6b836d799d8a3fdfc41e66a58 
 ## 21 novembre 2026 · Ritrovare l’Officina di Fisica
 
 Per un lavoro sui sei corsi di Andrea usare il branch `officina-di-fisica`, directory `officina-di-fisica/`, tag `officina-di-fisica-v1.0.0`. Avviare la copia locale con `python3 app.py serve --open` dalla directory del prodotto. Il pacchetto ZIP contiene la sola Officina e il bundle conserva il repository autonomo. Lo stato degli studenti e le istruzioni bancarie reali appartengono all’installazione privata. Il verbale di collaudo, la matrice MUR e il README documentano l’edizione. [Indice](../../officina-di-fisica/README.md) · [Distribuzione](../../officina-di-fisica/distribuzione/) · [Registro di questo branch](ARDESIA-RUNLOG.md)
+
+## Cric / Officina di Fisica · aggiornamento del 23 novembre 2026
+
+Per questa applicazione partire dal ramo `officina-di-fisica`, dallo stato terminale della PR 339 e dalle verifiche riferite al commit integrato. Il capitolo e la voce sono le chiavi di navigazione dei laboratori. Il rapporto distingue risultati su Mac reale, viewport touch emulati e valutazioni umane ancora aperte. [PR 339](https://github.com/AndreaMarro/ardesia/pull/339) · [Revisione canonica](../../officina-di-fisica/docs/architettura/README.md)
+
+Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati sono il collaudo touch/lettore di schermo su telefono fisico, la prova di comprensione con studenti e il collaudo di un modello editoriale scelto dal docente. Dipendenze e risultati attesi sono nell’ultima voce dedicata a Cric. [Registro](ARDESIA-RUNLOG.md)

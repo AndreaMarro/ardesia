@@ -41,6 +41,17 @@ def registry():
     return load_registry(Path(os.environ.get("ASTRA_EXTENSIONS", DEFAULT)).resolve())
 
 
+def bind_releases(db):
+    """Preserve the meaning of an installed edition across restarts."""
+    for (key, version), (meta, _) in registry().items():
+        # The hash covers semantics, units and numerical references as well as the JS digest.
+        signature = hashlib.sha256(json.dumps(meta, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        db.execute("INSERT OR IGNORE INTO engine_releases VALUES(?,?,?)", (key, version, signature))
+        saved = db.execute("SELECT sha256 FROM engine_releases WHERE id=? AND version=?", (key, version)).fetchone()
+        require(saved[0] == signature, "Versione del motore già installata con contenuto diverso: "
+                + key + " " + version + ". Installa la modifica con una nuova versione.", 409)
+
+
 def installed(ref):
     validate(ref, schema("engine-ref-v1"))
     pair = registry().get((ref["id"], ref["version"]))

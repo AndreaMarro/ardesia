@@ -196,7 +196,7 @@ def validate_record(r: dict, objects: dict, policy: ContentPolicy) -> bool:
                 isinstance(a["value"], (int, float))
                 and math.isfinite(a["value"])
                 and isinstance(a.get("tolerance"), (float, int))
-                and 0 <= a["tolerance"] < math.inf
+                and 0 <= a.get("tolerance", 0) < math.inf
                 and isinstance(a.get("unit", ""), str),
                 "Valore, unità e tolleranza assoluta richiesti.",
             )

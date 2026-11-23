@@ -10,12 +10,14 @@ import sys
 import time
 from http import cookies
 from http.server import BaseHTTPRequestHandler
+from threading import Lock
 from http.server import ThreadingHTTPServer as ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import quote, unquote, urlparse
 
 from . import commerce, editor, learning
 from .application.pathways import learning_path
+from .editorial.service import editorial_library
 from .adapters.engines import checkpoints, installed
 from .adapters.exam_policies import exam_policy
 from collections import Counter
@@ -130,6 +132,9 @@ def fail_login(db, key):
     db.commit()
 
 
+_log_lock = Lock()
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "Officina/1"
 
@@ -149,10 +154,12 @@ class Handler(BaseHTTPRequestHandler):
             component = family[-1] if family and family[-1] in {
                 "v1", "state", "health", "course", "item", "run", "runs", "author", "login", "simulazioni"
             } else "resource"
-            print(encode({"requestId": request_id, "component": component, "method": self.command,
-                          "status": status, "bytes": len(data),
-                          "durationMs": round((time.monotonic() - self.started) * 1000, 2)}),
-                  file=sys.stderr, flush=True)
+            entry = {"requestId": request_id, "component": component, "method": self.command,
+                     "status": status, "bytes": len(data),
+                     "durationMs": round((time.monotonic() - self.started) * 1000, 2)}
+            with _log_lock:
+                sys.stderr.write(encode(entry) + "\n")
+                sys.stderr.flush()
         self.send_header("Content-Type", mime)
         self.send_header("Content-Length", str(len(data)))
         if "Cache-Control" not in (headers or {}):
@@ -267,7 +274,7 @@ class Handler(BaseHTTPRequestHandler):
         if not post and path == "api/v1/openapi.json":
             return json.loads((CONTRACTS / "openapi.json").read_text())
         if not post and p[:3] == ["api", "v1", "schemas"] and len(p) == 4:
-            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1"}
+            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1"}
             name = p[3].removesuffix(".schema.json")
             require(p[3] == name + ".schema.json" and name in names, "Schema assente.", 404)
             return json.loads((CONTRACTS / p[3]).read_text())
@@ -627,6 +634,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def author(self, db, u, p, d, post):
         route = "/".join(p)
+        if not post and len(p) == 2 and p[0] == "editorial-library":
+            require(safe_key(p[1]), "Corso sconosciuto.")
+            library = editorial_library(published(db), p[1])
+            return (encode(library).encode(), "application/json; charset=utf-8",
+                    {"Content-Disposition": 'attachment; filename="lezioni-' + p[1] + '.json"'})
         if not post and len(p) == 2 and p[0] == "inventario":
             import subprocess
             import sys

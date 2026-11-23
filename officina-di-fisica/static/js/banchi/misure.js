@@ -1,6 +1,6 @@
 export const g = 9.81;
 export const rad = (degrees) => (degrees * Math.PI) / 180;
-const numberFormat = new Intl.NumberFormat('it-IT', { maximumSignificantDigits: 4 });
+const numberFormat = new Intl.NumberFormat('it-IT', { maximumSignificantDigits: 4, useGrouping: 'always' });
 export const n = (value) => (Number.isFinite(value) ? numberFormat.format(value) : '—');
 export const param = (key, label, unit, min, max, step, value) => ({
   key,

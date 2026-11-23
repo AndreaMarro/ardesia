@@ -4,6 +4,8 @@ import json
 import os
 import random
 import sqlite3
+import subprocess
+import sys
 import tempfile
 import threading
 import unittest
@@ -17,7 +19,7 @@ from unittest.mock import patch
 from server import editor, learning, store
 from server.adapters.contracts import schema
 from server.adapters.editorial_mcp import check_proposal
-from server.adapters.engines import checkpoints, installed, load_registry, validate_experiment
+from server.adapters.engines import bind_releases, checkpoints, load_registry, validate_experiment
 from server.adapters.migrations import migrate
 from server.adapters.providers import ChatCompletions, Ollama
 from server.application.pathways import learning_path
@@ -79,6 +81,50 @@ class Architecture(unittest.TestCase):
             with self.assertRaisesRegex(Problem, 'Impronta'):
                 load_registry(Path(tmp))
 
+    def test_engine_version_is_immutable_across_restarts(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(store, 'DATA', Path(tmp)), patch.dict(
+                os.environ, ASTRA_EXTENSIONS=str(EXAMPLES / 'extensions')):
+            store.initialize()
+            with store.connect() as db:
+                altered = dict(META, legend='Legenda modificata')
+                with patch('server.adapters.engines.registry', return_value={
+                        (META['id'], META['version']):(altered, b'')}), self.assertRaisesRegex(Problem, 'nuova versione'):
+                    bind_releases(db)
+
+    def test_custom_assessment_retains_original_grading(self):
+        profile = dict(title='Misura la superficie', papers=1, choices=1, completions=0, options=2,
+                       minutes=[5], wrongPenalty=.25, medicalScale=False)
+        pack = deepcopy(PACKAGE)
+        pack['records'][0]['assessmentProfile'] = profile
+        question = dict(kind='question', id='GEO-Q1', course='GEO', title='Area di una tessera', order=1,
+                        section='Misure geometriche', skill='GEO-L01', family='tessere', prerequisites=['GEO-L01'],
+                        difficulty=1, prompt='Base 4 cm, altezza 3 cm. Qual è l’area?', exam=1,
+                        blocks=[dict(type='text', text='Moltiplica 4 per 3. Ottieni 12 centimetri quadrati.')],
+                        hints=['Conta le tre file.'], error=dict(category='unità',message='Controlla le due dimensioni.',
+                        target='GEO-L01'), answer=dict(type='choice',value='12 cm²',options=['12 cm²','7 cm²']))
+        pack['records'].append(question)
+        with tempfile.TemporaryDirectory() as tmp, patch.object(store, 'DATA', Path(tmp)), patch.dict(
+                os.environ, ASTRA_EXTENSIONS=str(EXAMPLES / 'extensions')):
+            store.initialize()
+            user = dict(id='owner',role='autore')
+            with store.connect() as db:
+                result = editor.imported(db,user,pack,True)
+                self.assertEqual(result['errors'], [])
+                editor.publish(db,user,{r['id']:1 for r in pack['records']})
+                rows = store.published(db)
+                rid = learning.start(db,user,rows,dict(course='GEO',mode='exam',exam=1,requestId='esame-1'))['id']
+                view = learning.details(db,user,rows,rid)
+                self.assertEqual(len(view['items']),1)
+                self.assertIn(view['deadline']-view['serverTime'], range(296,301))
+                learning.details(db,user,rows,rid,dict(action='answer',idx=0,value='7 cm²'))
+                course = store.record(db,'GEO',1)
+                course['assessmentProfile'] = dict(profile, wrongPenalty=1)
+                editor.write_draft(db,user,course,1)
+                editor.publish(db,user,{'GEO':2})
+                final = learning.details(db,user,store.published(db),rid,dict(action='finish'))
+                self.assertEqual(final['assessmentProfile']['wrongPenalty'],.25)
+                self.assertEqual(final['result']['score'],-.25)
+
     def test_prerequisites_and_evidence(self):
         rows = [dict(id='a', kind='lesson', version=2, title='Prima'), dict(id='b', kind='lesson', version=1,
                 title='Dopo', prerequisites=['a'], coverage=['misura']), dict(kind='experiment', id='x', skill='b')]
@@ -117,6 +163,20 @@ class Architecture(unittest.TestCase):
                 self.assertEqual(db.execute('PRAGMA user_version').fetchone()[0], 2)
             with self.assertRaises(RuntimeError):
                 upgrade([first])
+
+    def test_stdio_service_denies_file_and_network_after_loading(self):
+        trial = """import socket
+from server.adapters.editorial_sandbox import confine_stdio
+confine_stdio()
+for op in (lambda: open('README.md', 'rb'), socket.socket):
+    try:
+        op()
+    except PermissionError:
+        continue
+    raise AssertionError('capacità inattesa')
+print('stdio disponibile')"""
+        proof = subprocess.run([sys.executable, '-c', trial], cwd=ROOT, capture_output=True, text=True, check=True)
+        self.assertEqual(proof.stdout.strip(), 'stdio disponibile')
 
     def test_editorial_scope_provider_protocols_and_deterministic_review(self):
         rows = store.catalog_seed()

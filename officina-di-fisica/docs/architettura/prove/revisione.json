@@ -1,0 +1,264 @@
+{
+  "audits": [
+    {
+      "page": "desktop-autore",
+      "violations": [],
+      "incomplete": [],
+      "passed": 25
+    },
+    {
+      "page": "desktop-prerequisiti",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".topic-row > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 21
+    },
+    {
+      "page": "desktop-lezione",
+      "violations": [],
+      "incomplete": [],
+      "passed": 19
+    },
+    {
+      "page": "desktop-strumento",
+      "violations": [],
+      "incomplete": [],
+      "passed": 25
+    },
+    {
+      "page": "desktop-confronto",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            "figure:nth-child(1) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            "text[x=\"184.24\"]",
+            "figure:nth-child(2) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            "text[x=\"134.89000000000001\"]"
+          ]
+        }
+      ],
+      "passed": 27
+    },
+    {
+      "page": "desktop-verifica",
+      "violations": [],
+      "incomplete": [],
+      "passed": 26
+    },
+    {
+      "page": "mobile-tavola-prerequisiti",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".topic-row > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 21
+    },
+    {
+      "page": "mobile-tavola-lezione",
+      "violations": [],
+      "incomplete": [],
+      "passed": 19
+    },
+    {
+      "page": "mobile-tavola-strumento",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            "text[x=\"231.08\"]",
+            "text[x=\"134.89000000000001\"]"
+          ]
+        }
+      ],
+      "passed": 27
+    },
+    {
+      "page": "mobile-tavola-confronto",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".bench-diagram > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            ".bench-diagram > text[x=\"134.89000000000001\"][y=\"98.58000000000001\"][fill=\"#352d42\"]",
+            "figure:nth-child(1) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            "text[x=\"184.24\"]",
+            "figure:nth-child(2) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            ".measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"134.89000000000001\"][y=\"98.58000000000001\"][fill=\"#352d42\"]"
+          ]
+        }
+      ],
+      "passed": 27
+    },
+    {
+      "page": "mobile-tavola-verifica",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".bench-diagram > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            ".bench-diagram > text[x=\"134.89000000000001\"][y=\"98.58000000000001\"][fill=\"#352d42\"]"
+          ]
+        }
+      ],
+      "passed": 28
+    },
+    {
+      "page": "mobile-tavola-320px",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".bench-diagram > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            ".bench-diagram > text[x=\"134.89000000000001\"][y=\"98.58000000000001\"][fill=\"#352d42\"]"
+          ]
+        }
+      ],
+      "passed": 28
+    },
+    {
+      "page": "mobile-webgl-prerequisiti",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".topic-row > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 21
+    },
+    {
+      "page": "mobile-webgl-lezione",
+      "violations": [],
+      "incomplete": [],
+      "passed": 19
+    },
+    {
+      "page": "mobile-webgl-strumento",
+      "violations": [],
+      "incomplete": [],
+      "passed": 25
+    },
+    {
+      "page": "mobile-webgl-confronto",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            "figure:nth-child(1) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            "text[x=\"184.24\"]",
+            "figure:nth-child(2) > .measure-diagram[viewBox=\"0 0 460 215\"] > text[x=\"231.08\"][y=\"39.070000000000014\"][fill=\"#352d42\"]",
+            "text[x=\"134.89000000000001\"]"
+          ]
+        }
+      ],
+      "passed": 27
+    },
+    {
+      "page": "mobile-webgl-verifica",
+      "violations": [],
+      "incomplete": [],
+      "passed": 26
+    },
+    {
+      "page": "mobile-webgl-320px",
+      "violations": [],
+      "incomplete": [],
+      "passed": 26
+    },
+    {
+      "page": "desktop-home",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".solid > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/C1\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/C2\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/C3\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/C4\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/C5\"] > .arrow[aria-hidden=\"true\"]",
+            ".complete > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#corso/GEO\"] > .arrow[aria-hidden=\"true\"]",
+            "text[x=\"106\"]",
+            "#didascalia-campione"
+          ]
+        }
+      ],
+      "passed": 23
+    },
+    {
+      "page": "desktop-orientamento-C1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".line-link > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 18
+    },
+    {
+      "page": "desktop-lezione-C1",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            ".base:nth-child(3) > .mbin",
+            ".math:nth-child(2) > .katex-display > .katex > .katex-html[aria-hidden=\"true\"] > .base:nth-child(6) > .mord:nth-child(2) > .mfrac > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span:nth-child(1) > .sizing.reset-size6.size3 > .mtight.mord > .mtight.mord",
+            ".base:nth-child(3) > .mord:nth-child(2) > .msupsub > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span > .sizing.reset-size6.size3 > .mtight.mord > .mathnormal.mtight.mord",
+            ".base:nth-child(5) > .mord:nth-child(2) > .msupsub > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span > .sizing.reset-size6.size3 > .mtight.mord > .mathnormal.mtight.mord",
+            ".math:nth-child(5) > .katex-display > .katex > .katex-html[aria-hidden=\"true\"] > .base:nth-child(5) > .mbin",
+            ".math:nth-child(5) > .katex-display > .katex > .katex-html[aria-hidden=\"true\"] > .base:nth-child(6) > .mord:nth-child(2) > .mfrac > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span:nth-child(1) > .sizing.reset-size6.size3 > .mtight.mord > .mtight.mord",
+            ".base:nth-child(2) > .mord > .mfrac > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span:nth-child(1) > .mord > .mathnormal.mord",
+            ".minner > .mord > .mfrac > .vlist-t2.vlist-t > .vlist-r:nth-child(1) > .vlist > span:nth-child(1) > .mord > .mathnormal.mord",
+            ".line-link[href$=\"#materiale/C1-E007/C1\"] > span[aria-hidden=\"true\"]",
+            "a[href$=\"#materiale/C1-E008/C1\"] > span[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C1/C1\"] > span[aria-hidden=\"true\"]",
+            ".line-link[href$=\"#materiale/C1-L005/C1\"] > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 20
+    },
+    {
+      "page": "desktop-esame-C6",
+      "violations": [],
+      "incomplete": [],
+      "passed": 20
+    }
+  ],
+  "measures": {
+    "LCP": 184,
+    "CLS": 0.04521644195687809,
+    "INP": 56
+  },
+  "rendering": {
+    "desktop": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "mobile-webgl": "Apple GPU"
+  },
+  "errors": []
+}

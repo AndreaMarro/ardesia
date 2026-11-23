@@ -78,6 +78,13 @@ async function install(page) {
   await page.getByText(/3 materiali importati/).waitFor();
   const targets = Object.fromEntries(sample.records.map((r)=>[r.id,1]));
   await post(page,'author/publish',{targets});
+  const libraryReply = await page.request.get(url+'api/author/editorial-library/GEO');
+  assert.ok(libraryReply.ok());
+  const library = await libraryReply.json();
+  const librarySchema=await (await page.request.get(url+'api/v1/schemas/library-v1.schema.json')).json();
+  assert.ok(new Ajv2020().compile(librarySchema)(library));
+  assert.deepEqual(library.records.map(r=>r.id),['GEO-L01']);
+  assert.equal(library.records[0].blocks[0].text,sample.records[1].blocks[0].text);
   await page.getByText('Rivedi una proposta di aiuto didattico',{exact:true}).click();
   const proposal={objectId:'GEO-L01',version:1,passage:0,strategy:'confronta-le-misure'};
   await page.locator('#scaffold-source').fill(JSON.stringify(proposal));
@@ -144,6 +151,13 @@ async function learner(browser, profile) {
       return info?gl.getParameter(info.UNMASKED_RENDERER_WEBGL):'WebGL2';
     });
   }
+  if(!mobile){
+    const focus=lab.locator('[data-focus]');
+    await focus.focus(); await page.keyboard.press('Enter');
+    await page.locator('dialog[open]').waitFor();
+    await page.keyboard.press('Escape');
+    assert.ok(await focus.evaluate(el=>el===document.activeElement));
+  }
   await lab.locator('[name=prediction]').nth(2).check();
   await lab.locator('[data-predict] button').click();
   const read=lab.locator('[data-readings] div').nth(1).locator('strong');
@@ -171,7 +185,8 @@ async function learner(browser, profile) {
   await ctx.close();
 }
 async function performanceRun(browser) {
-  const page=await browser.newPage({viewport:{width:1365,height:900}});
+  const context=await browser.newContext({viewport:{width:1365,height:900}});
+  const page=await context.newPage();
   await page.addInitScript({content:vitals+"\nwindow.officinaVitals={}; for (const fn of ['onLCP','onCLS','onINP']) webVitals[fn](m=>window.officinaVitals[m.name]=m.value,{reportAllChanges:true,durationThreshold:16});"});
   await go(page,'home','main h1');
   await page.locator('nav[aria-label="Navigazione principale"] a[href="#percorsi"]').click();
@@ -209,6 +224,10 @@ try {
   await audit(smoke,'desktop-home');
   await post(smoke,'demo',{});
   await smoke.reload();
+  await go(smoke,'corso/C1','main .c1-paths');
+  await audit(smoke,'desktop-orientamento-C1');
+  await go(smoke,'materiale/C1-L004/C1','.bench-topic');
+  await audit(smoke,'desktop-lezione-C1');
   await go(smoke,'allenamento/C6','#exam-1');
   await audit(smoke,'desktop-esame-C6');
   await smoke.close();

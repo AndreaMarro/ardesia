@@ -223,6 +223,17 @@ function exchangePage() {
     `<div class="split"><section class="sheetpanel"><h2>Importa un lotto</h2><label class="field">File di contenuti (.json)<input type="file" id="batch-file" accept=".json,application/json"></label><p id="batch-file-name" class="helper"></p><details><summary>Incolla il contenuto JSON</summary><label class="field">Lotto in formato astra/1<textarea id="batch-source" rows="7" spellcheck="false"></textarea></label></details><div class="actions">${button('Controlla il lotto', 'check-batch', true)}${button('Importa in bozza', 'commit-batch')}</div><div id="batch-report" role="status"></div></section>
     <aside class="sheetpanel intro-card"><h2>Esporta l’archivio</h2><p>L’esportazione contiene i materiali di lavoro, i riferimenti alle figure e i file caricati. Ogni record include la versione da cui ripartire.</p><div class="actions">${button('Scarica archivio JSON', 'export-all')}</div><details><summary>Struttura del lotto</summary><p>La chiave <code>schema</code> vale <code>astra/1</code>. In <code>records</code> inserisci lezioni, esempi, quesiti o configurazioni, ognuno con un ID stabile. Per un nuovo ID la versione di partenza è 0. Per aggiornare un ID esistente conserva il suo <code>baseVersion</code>. I file caricati sono inclusi in <code>assets</code>.</p></details></aside></div><p id="action-status" role="alert"></p>`;
   main.insertAdjacentHTML('beforeend', '<details class="sheetpanel"><summary>Rivedi una proposta di aiuto didattico</summary><label class="field">Proposta JSON<textarea id="scaffold-source" rows="4"></textarea></label><button id="preview-scaffold">Verifica il passaggio</button><div id="scaffold-review" aria-live="polite"></div></details>');
+  const library = document.createElement('div');
+  library.innerHTML = '<label class="field">Lezioni pubblicate del corso<select>' +
+    state.courses.map(c => '<option value="' + esc(c.id) + '">' + esc(c.title) + '</option>').join('') +
+    '</select></label><a download>Scarica le lezioni per lo strumento editoriale</a>';
+  select('#scaffold-source').parentElement.before(library);
+  const course = library.querySelector('select');
+  function selectLibrary() {
+    library.querySelector('a').href = '/api/author/editorial-library/' + encodeURIComponent(course.value);
+  }
+  course.addEventListener('change', selectLibrary);
+  selectLibrary();
   const proposalInput = select('#scaffold-source');
   const review = select('#scaffold-review');
   proposalInput.addEventListener('input', () => review.replaceChildren());

@@ -46,3 +46,13 @@ def pathway(objects: list, observations: dict) -> list:
                        "mastery": state, "independentFamilies": evidence.get("families", 0),
                        "resources": dict(options), "next": dict(zip(("kind", "id", "reason"), action))})
     return result
+
+
+def unique_experiments(objects: dict) -> None:
+    topics = {}
+    for key, row in objects.items():
+        if row["kind"] == "experiment":
+            topic = (row["skill"], row["topic"])
+            if topic in topics:
+                raise Problem(f"La voce ha già un laboratorio: {topics[topic]} / {key}.")
+            topics[topic] = key

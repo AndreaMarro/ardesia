@@ -13,6 +13,19 @@ def words(text):
     return set(re.findall(r"[a-z0-9]{3,}", ascii_text)) - {"che", "con", "una", "del", "della", "per", "nel", "dei"}
 
 
+def editorial_library(records, course):
+    lessons = []
+    for row in records:
+        if row["kind"] == "lesson" and row["course"] == course:
+            selected = {k: row[k] for k in ("id", "kind", "course", "version", "title", "coverage", "prerequisites")
+                        if k in row}
+            selected["blocks"] = [{"type": "text", "text": b["text"][:1600]} for b in row["blocks"]
+                                  if b["type"] == "text" and b["text"].strip()][:6]
+            lessons.append(selected)
+    require(lessons, "Questo corso non contiene lezioni pubblicate.", 404)
+    return {"schema": "officina/editorial-library/1", "course": course, "records": lessons}
+
+
 class ProposalProvider(Protocol):
     def propose(self, source: dict, contract: dict) -> dict: ...
 
