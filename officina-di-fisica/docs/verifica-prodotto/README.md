@@ -58,3 +58,9 @@ La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto s
 | Ambito | Sorgente e contratto | Persistenza | Ingresso | Verifiche |
 | --- | --- | --- | --- | --- |
 | C4 · elettricità e magnetismo | 166 decisioni editoriali, 28 edizioni aggiornate, registro delle impronte delle prime edizioni | Versioni e tentativi fissati, fascicoli del corso | Allenamento individuale, esempi, banco del campo elettrico, esperimento sul raggio, dispensa ed eserciziario | Correttezza di campo e flusso, 24 svolgimenti a 320 px, riconciliazione di chiavi, permessi e dati sulle due edizioni. [Contratto ed evidenze](edizione-c4.md) |
+
+## Continuità dei banchi
+
+| Funzione | Sorgente e contratto | Dati | Interazione | Prova |
+| --- | --- | --- | --- | --- |
+| Riapertura della vista 3D | `banco.js` conserva la scelta, `scena.js` conserva camera e risorse fino all’uscita. I due renderer consumano il medesimo modello. | Parametri pubblicati, tempo corrente, misura fissata e letture. La pista Campo conserva la sessione formativa esistente. | Tavola durante il guasto, stessa proiezione al ritorno della GPU, scelta manuale, gesti e tastiera | [Contratto ed esiti per SHA](continuita-banchi.md) · [Percorso browser](../../tests/browser-continuita-banchi.mjs) |
