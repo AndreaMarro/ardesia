@@ -307,7 +307,7 @@ async function material(id, course) {
     reading.insertAdjacentHTML('beforeend', '<details class="c1-index"><summary>' +
       esc(captions[r.scaffold.strategy]) + '</summary><p>' + esc(r.scaffold.citation) + '</p></details>');
   }
-  await lettorePersonale(reading, r);
+  typeset(main);
   if (r.kind === 'example') reading.insertAdjacentHTML('afterend', benchLinks(id));
   on('#read', 'click', async () => {
     await api('/read', { id });
@@ -315,6 +315,7 @@ async function material(id, course) {
     $('#read').textContent = 'Lettura registrata';
   });
   on('#exercise', 'click', () => startRun({ course, skill: r.skill, mode: 'practice' }));
+  await lettorePersonale(reading, r);
 }
 let closePage, returnPage, displayedRoute;
 async function router() {

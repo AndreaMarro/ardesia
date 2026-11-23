@@ -59,6 +59,15 @@ async function fallbackAndSession(browser, base) {
       Object.defineProperty(window,'speechSynthesis',{value:synth});
       Object.defineProperty(window,'SpeechSynthesisUtterance',{value:class {constructor(text) {this.text=text;}}});
     });
+    const fallback = await ctx.newPage();
+    await fallback.route('**/js/preferenze-lettura.js', route => route.abort());
+    await fallback.goto(base+'/#materiale/C6-L01/C6');
+    await fallback.getByText(/preferenze e l’ascolto sono temporaneamente indisponibili/).waitFor();
+    await fallback.getByRole('button',{name:'Un passaggio alla volta'}).click();
+    await fallback.getByRole('button',{name:'Avanti',exact:true}).click();
+    await fallback.getByText('Passaggio 2 di 4',{exact:true}).waitFor();
+    assert.ok(await fallback.locator('.reader .katex').count());
+    await fallback.close();
     const p = await ctx.newPage();
     await p.goto(base+'/#materiale/C6-L01/C6');
     await p.getByText('Testo e ascolto',{exact:true}).click();
@@ -145,7 +154,7 @@ async function fallbackAndSession(browser, base) {
     await back();
     await p.locator('#retry').waitFor();
     assert.equal(await p.locator('#response input').count(),0);
-    return ['ritorno dal banco con scelta e numero', 'invio concorrente e cambio sessione', 'ospite', 'voce remota e tardiva', 'cambio passaggio e navigazione', 'mappe assenti e ripresa', 'logout in seconda scheda', 'esame sigillato'];
+    return ['caricamento tardivo e modulo opzionale assente', 'conferma del salvataggio con risposta ritardata', 'ritorno dal banco con scelta e numero', 'invio concorrente e cambio sessione', 'ospite', 'voce remota e tardiva', 'cambio passaggio e navigazione', 'mappe assenti e ripresa', 'logout in seconda scheda', 'esame sigillato'];
   } finally { await ctx.close(); }
 }
 
@@ -176,8 +185,23 @@ async function journey(engine, base, width, height, scale) {
       if (stage==='trascrizione' && width<500) await page.locator('[data-transcript]').scrollIntoViewIfNeeded();
       await page.screenshot({path:path.join(out,name+'-'+stage+'.png'),animations:'disabled'});
     }
+    const checkLatency = engine === chromium && width === 1440;
+    let resumeModule;
+    const moduleGate = new Promise(resolve => { resumeModule = resolve; });
+    if (checkLatency) {
+      await page.route('**/js/preferenze-lettura.js', async route => {
+        await moduleGate;
+        await route.continue();
+      }, {times:1});
+    }
     const before = performance.now();
     await page.goto(base+'/#materiale/C6-L01/C6');
+    if (checkLatency) {
+      try {
+        await page.locator('.reader').waitFor();
+        assert.ok(await page.locator('.reader .katex math').count(), 'Formula prima del modulo facoltativo');
+      } finally { resumeModule(); }
+    }
     await page.locator('[data-lettore]').waitFor();
     await page.locator('.copy math').waitFor({state:'attached'});
     const openMs = Math.round(performance.now()-before);
@@ -189,9 +213,19 @@ async function journey(engine, base, width, height, scale) {
     await page.getByLabel('Spaziatura').selectOption('spacious');
     await page.getByLabel('Contrasto',{exact:true}).selectOption('high');
     await page.getByRole('checkbox',{name:'Modalità concentrazione'}).check();
-    await page.getByLabel('All’apertura').selectOption('steps');
-    await page.getByText('Passaggio 1 di 4',{exact:true}).waitFor();
     const prefs = page.locator('[data-message]');
+    await page.getByText('Preferenza salvata nel quaderno.',{exact:true}).waitFor();
+    let resumeSave;
+    const saveGate = new Promise(resolve => { resumeSave = resolve; });
+    await page.route('**/api/v1/me/reading-preferences', async route => {
+      await saveGate;
+      await route.continue();
+    }, {times:1});
+    try {
+      await page.getByLabel('All’apertura').selectOption('steps');
+      await page.getByText('Passaggio 1 di 4',{exact:true}).waitFor();
+      assert.equal(await prefs.innerText(),'Salvataggio in corso…');
+    } finally { resumeSave(); }
     await page.waitForFunction(()=>document.querySelector('[data-message]').textContent.includes('salvata'));
     await page.reload();
     await page.getByText('Passaggio 1 di 4',{exact:true}).waitFor();

@@ -124,6 +124,7 @@ export function installReader(container, record) {
       return;
     }
     if (!reset) apply({...selected, ...changes});
+    message.textContent = 'Salvataggio in corso…';
     // Serialize this browser’s gestures. The server merges only changed fields across devices.
     writes = writes.then(async () => {
       const next = await api('/v1/me/reading-preferences', changes, {'X-Officina-Session':scope});

@@ -62,3 +62,8 @@ L7, prima della correzione. Sul ramo ufficiale `c0cf5478`, digitare `37` in C1-Q
 Sul caso L7 lo stesso percorso conferma ora il valore `37` al rientro autorizzato. La scelta multipla rimane selezionata. Se il secondo client ha già inviato `19`, la schermata mostra la consegna `19` e il voto del server. Se cambia quaderno, il tentativo richiede nuovamente l’accesso. La prova estesa dei dieci banchi verifica anche 30 scene WebGL e 10 tavole di riserva. Il selettore del collaudo punta alla dicitura **Segui lo svolgimento**, che apre ancora le equazioni. **Testo e ascolto** è disponibile all’interno. Il verbale dei cinque profili registra le altezze effettive dei selettori aperti e la disponibilità rilevata delle voci. [Verbale per SHA](prove/lettore-browser.json)
 
 Le schermate di confronto provengono dalla stessa lezione C6-L01. [Prima, Chromium desktop](prove/lettore-prima-desktop.png) · [Prima, WebKit mobile](prove/lettore-prima-mobile.png)
+
+
+### Lettura e salvataggio con rete lenta
+
+Su `3080d0f1` il collaudo Linux ha osservato la lezione prima della composizione KaTeX. Su WebKit la ricarica ha talvolta riaperto il profilo precedente. Due controprove riproducono separatamente i casi trattenendo la risposta del modulo facoltativo e la conferma del salvataggio. La lezione compone subito le formule e attiva le azioni sul testo. Se il modulo facoltativo manca, restano disponibili i passaggi manuali. Ogni nuova modifica segnala **Salvataggio in corso…** fino alla conferma della stessa scelta. La prova ricarica la pagina dopo tale conferma e confronta il profilo restituito dal quaderno. [Collaudo Linux della candidata intermedia](https://github.com/AndreaMarro/ardesia/actions/runs/45209548578/job/137814502367)

@@ -107,8 +107,20 @@ export function installaPassaggi(container, record, onChange = () => {}) {
 }
 
 export async function lettorePersonale(container, record) {
-  const { installReader } = await import('./preferenze-lettura.js');
-  if (container?.isConnected) installReader(container, record);
+  let reader;
+  try {
+    reader = await import('./preferenze-lettura.js');
+  } catch {
+    if (!container?.isConnected) return;
+    installaPassaggi(container, record);
+    const notice = document.createElement('p');
+    notice.className = 'helper';
+    notice.setAttribute('role', 'status');
+    notice.textContent = 'Le preferenze e l’ascolto sono temporaneamente indisponibili. Puoi continuare a leggere.';
+    container.prepend(notice);
+    return;
+  }
+  if (container?.isConnected) reader.installReader(container, record);
 }
 
 export function segnaleLettori(root, event) {
