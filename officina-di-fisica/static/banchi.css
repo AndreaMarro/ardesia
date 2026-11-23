@@ -80,6 +80,9 @@
 .bench-plot svg, .bench-diagram { width: 100%; display: block; }
 .bench-diagram { height: 100%; padding: .5rem; }
 .bench-diagram text, .bench-plot text { font: 14px var(--sans); fill: var(--ink); }
+@media (max-width: 640px) {
+  .plot-large-labels svg text { font-size: 23px; }
+}
 .bg-grid { stroke: #d9d5c8; fill: none; }
 .bench-cursor { stroke: #9d422e; stroke-dasharray: 4 3; stroke-width: 1.8; }
 .curve-key { display: flex; flex-wrap: wrap; gap: .4rem .7rem; font: .75rem var(--sans); }

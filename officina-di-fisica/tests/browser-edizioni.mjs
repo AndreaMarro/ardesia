@@ -147,6 +147,11 @@ async function readSecant(page, base, profile, bench, fallback) {
       const graph=drawer.locator('figure').filter({hasText:'Secante fra gli estremi'});
       assert.ok((await graph.locator('svg').getAttribute('aria-label')).includes('Tempo dalla prima lettura (s)'));
       assert.equal(await graph.locator('svg path[stroke-dasharray="5 4"]').count(),1);
+      if (fallback) {
+        const size=await graph.locator('svg text').first().evaluate(el=>
+          parseFloat(getComputedStyle(el).fontSize)*el.getScreenCTM().a);
+        assert.ok(size>=12,'dimensione in pixel CSS delle etichette della secante: '+size);
+      }
       if(bench.id.endsWith('04')) await capture(page,graph,profile+'-secante');
     }
   }

@@ -109,7 +109,7 @@ export function plot(c) {
   const marker = Number.isFinite(c.at)
     ? `<line class="bench-cursor" data-track="${esc(c.track || '')}" data-lo="${lo}" data-hi="${hi}" x1="${X(c.at)}" x2="${X(c.at)}" y1="${roof}" y2="${floor}"/>`
     : '';
-  return `<figure class="bench-plot"><figcaption>${esc(c.title)}</figcaption><svg viewBox="0 0 472 176" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${area}${paths}${marker}${point}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="background:${colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div>${c.categories ? '<small>' + c.categories.map(esc).join(' · ') + '</small>' : ''}</figure>`;
+  return `<figure class="bench-plot${c.largeLabels ? ' plot-large-labels' : ''}"><figcaption>${esc(c.title)}</figcaption><svg viewBox="${c.largeLabels ? '0 -12 472 196' : '0 0 472 176'}" role="img" aria-label="${esc(c.title + ', ' + c.x + ', ' + c.y)}">${grid}<path d="M${left} ${roof} V${floor} H${right}" fill="none" stroke="#40394c"/>${txt(left, 13, c.y, 'start')}${txt(right, 171, c.x, 'end')}${area}${paths}${marker}${point}</svg><div class="curve-key">${c.series.map((s, i) => `<span><i style="${s.dash ? 'height:0;border-top:3px dashed '+colors[i % 4] : 'background:'+colors[i % 4]}"></i>${esc(s.name)}</span>`).join('')}</div>${c.categories ? '<small>' + c.categories.map(esc).join(' · ') + '</small>' : ''}</figure>`;
 }
 export function moveCursor(node, time, track, value) {
   for (const el of node.querySelectorAll('.bench-cursor')) {
