@@ -45,7 +45,17 @@ async function capture(state) {
 }
 try {
   const readRelease = async () => (await (await context.request.get(base+'/api/health')).json()).commit;
-  const release = await readRelease();
+  const expected = process.env.OFFICINA_COMMIT_ATTESO;
+  let release = await readRelease();
+  if (expected) {
+    assert.match(expected, /^[a-f0-9]{40}$/);
+    const deadline = Date.now() + 4 * 60_000;
+    while (release !== expected && Date.now() < deadline) {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      release = await readRelease();
+    }
+    assert.equal(release, expected, 'La distribuzione del ramo ufficiale deve precedere il collaudo HTTPS.');
+  }
   assert.match(release,/^[a-f0-9]{40}$/);
   const headers = {'X-Astra-Request':'1'};
   const demo = await context.request.post(base+'/api/demo',{headers,data:{}});

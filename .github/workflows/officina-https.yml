@@ -10,6 +10,7 @@ on:
   push:
     branches: [officina-di-fisica]
     paths:
+      - 'officina-di-fisica/content/**'
       - 'officina-di-fisica/api/**'
       - 'officina-di-fisica/vercel.json'
       - 'officina-di-fisica/tests/browser-pubblicazione.mjs'
@@ -38,6 +39,7 @@ jobs:
     env:
       OFFICINA_BASE_URL: https://officina-di-fisica.vercel.app
       ASTRA_EVIDENCE: prove-https
+      OFFICINA_COMMIT_ATTESO: ${{ github.event_name == 'push' && github.sha || '' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         if: runner.os != 'Windows'
