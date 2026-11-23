@@ -9,7 +9,7 @@ Fonti ministeriali consultate il 21 novembre 2026 per l’anno accademico 2026/2
 | Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori guidati | Banchi 3D | Simulazioni di lezione | Attività di metodo |
 |---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|
 | C1 · Strumenti e Meccanica | 10 | 23 | 23 | 100 | 0 | 100 | 37 / 51 / 12 | 50 | 6 | 1 | 2 | 42 | 2 |
-| C2 · Fluidi | 10 | 21 | 21 | 100 | 0 | 100 | 38 / 52 / 10 | 23 | 12 | 1 | 2 | 41 | 2 |
+| C2 · Fluidi | 10 | 21 | 21 | 100 | 0 | 100 | 38 / 52 / 10 | 24 | 12 | 1 | 2 | 41 | 2 |
 | C3 · Termodinamica | 10 | 23 | 23 | 100 | 0 | 100 | 33 / 46 / 21 | 28 | 14 | 1 | 2 | 36 | 2 |
 | C4 · Elettricità e Magnetismo | 10 | 21 | 21 | 100 | 0 | 100 | 31 / 48 / 21 | 36 | 21 | 1 | 2 | 29 | 2 |
 | C5 · Onde, Ottica e Radiazioni | 10 | 22 | 22 | 100 | 0 | 100 | 38 / 49 / 13 | 18 | 3 | 1 | 2 | 27 | 2 |
@@ -64,4 +64,4 @@ L’impronta SHA-256 di ogni record consente il confronto tra esportazioni. La t
 
 ## Riferimenti da ricontrollare
 
-- Versione successiva al manoscritto mappato · C1-E005, C1-E014, C1-E017, C1-L001, C1-L004, C1-L006, C1-Q002, C1-Q006, C1-Q007, C1-Q008, C1-Q013, C1-Q023, C1-Q027, C1-Q034, C1-Q039, C1-Q044, C1-Q051, C1-Q056, C1-Q064, C1-Q067, C1-Q077, C1-Q078, C1-Q080, C1-Q083, C1-Q085, C1-Q094, C1-Q095, C4-E017, C4-E019, C4-Q001, C4-Q003, C4-Q004, C4-Q010, C4-Q011, C4-Q014, C4-Q016, C4-Q024, C4-Q026, C4-Q028, C4-Q029, C4-Q031, C4-Q035, C4-Q039, C4-Q044, C4-Q049, C4-Q052, C4-Q061, C4-Q064, C4-Q065, C4-Q074, C4-Q081, C4-Q091, C4-Q099, C5-E007, C5-L04, C5-Q003, C5-Q038, C5-Q039, C5-Q041, C5-Q052, C5-Q084, C5-Q096
+- Versione successiva al manoscritto mappato · C1-E005, C1-E014, C1-E017, C1-L001, C1-L004, C1-L006, C1-Q002, C1-Q006, C1-Q007, C1-Q008, C1-Q013, C1-Q023, C1-Q027, C1-Q034, C1-Q039, C1-Q044, C1-Q051, C1-Q056, C1-Q064, C1-Q067, C1-Q077, C1-Q078, C1-Q080, C1-Q083, C1-Q085, C1-Q094, C1-Q095, C2-E013, C2-E016, C2-Q002, C2-Q011, C2-Q014, C2-Q037, C2-Q049, C2-Q062, C2-Q076, C2-Q089, C2-Q092, C4-E017, C4-E019, C4-Q001, C4-Q003, C4-Q004, C4-Q010, C4-Q011, C4-Q014, C4-Q016, C4-Q024, C4-Q026, C4-Q028, C4-Q029, C4-Q031, C4-Q035, C4-Q039, C4-Q044, C4-Q049, C4-Q052, C4-Q061, C4-Q064, C4-Q065, C4-Q074, C4-Q081, C4-Q091, C4-Q099, C5-E007, C5-L04, C5-Q003, C5-Q038, C5-Q039, C5-Q041, C5-Q052, C5-Q084, C5-Q096

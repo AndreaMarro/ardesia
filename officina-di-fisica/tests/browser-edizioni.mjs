@@ -5,6 +5,8 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {readEdition} from './browser-copia-edizione.mjs';
+import {misuraFluidi} from './browser-fluidi.mjs';
 import { chromium, webkit } from 'playwright';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -20,38 +22,15 @@ const mechanicsTexts = mechanics.filter(row => mechanicsIds.has(row.id));
 const friction = mechanics.find(row => row.id === 'C1-Q078');
 const secants = (await json('content/esperienze-C1.json')).filter(row =>
   ['SIM-C1-L003-03','SIM-C1-L003-04'].includes(row.id));
+const fluids = await json('content/C2.json');
+const fluidIds = new Set(Object.keys(await json('tests/fixtures/c2-edizione-v1.json')));
+const fluidTexts = fluids.filter(row => fluidIds.has(row.id));
+const probe = fluids.find(row => row.id==='C2-Q062');
+const fluidBenches = (await json('content/esperienze-C2.json')).filter(row => fluidIds.has(row.id));
 const bench = (await json('content/esperienze-C5.json')).find(row => row.id === 'SIM-C5-L06-01');
 const data = await mkdtemp(path.join(tmpdir(), 'officina-edizioni-'));
 const boot = "from server.store import initialize; from server.web import Handler,ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(('127.0.0.1',0),Handler); print(s.server_port,flush=True); s.serve_forever()";
 const server = spawn('python3', ['-uc', boot], {cwd: root, env: {...process.env, ASTRA_DATA: data}, stdio: ['ignore','pipe','inherit']});
-
-async function readEdition(page, base, record) {
-  await page.goto(base + '/#materiale/' + record.id + '/' + record.course);
-  let copy;
-  if (record.kind === 'question') {
-    await page.locator('#single').press('Enter');
-    await page.getByText(record.prompt, {exact: true}).first().waitFor();
-    await page.locator('#reveal').press('Enter');
-    copy = page.locator('.feedback > .copy');
-  } else {
-    await page.getByRole('heading', {name: record.title, level: 1, exact: true}).waitFor();
-    copy = page.locator('.lettura-contenuto > .copy');
-  }
-  await copy.waitFor();
-  await page.waitForFunction(() => !document.querySelector('.feedback [data-tex],.lettura-contenuto [data-tex]'));
-  await page.evaluate(() => document.fonts.ready);
-  const rendered = await copy.evaluate(el => [...el.children].map(block => {
-    const body = block.querySelector('math annotation,figcaption,:scope > p,:scope > span > strong');
-    return body?.textContent ?? block.textContent;
-  }));
-  const normalize = list => list.map(text => text.replace(/\s+/g, ' ').trim());
-  assert.deepEqual(normalize(rendered), normalize(record.blocks.map(b => b.text)), record.id);
-  const widths = await copy.locator('.math').evaluateAll(nodes => nodes.map(el => ({
-    width: el.clientWidth, scroll: el.scrollWidth, typeset: el.querySelector('.katex-html').getBoundingClientRect().width,
-  })));
-  assert.ok(widths.every(w => w.scroll <= w.width+1 && w.typeset <= w.width+1), record.id + ' ' + JSON.stringify(widths));
-  return {copy, widths};
-}
 
 async function audit(page) {
   const result = await page.evaluate(async () => {
@@ -264,7 +243,16 @@ try {
       report.fields=await fields(page,base,profile,fallback);
       report.mechanics={friction:await illustratedSolution(page,base,profile,friction,'attrito'),secants:[]};
       for (const secant of secants) report.mechanics.secants.push(await readSecant(page,base,profile,secant,fallback));
+      report.fluids={probe:await illustratedSolution(page,base,profile,probe,'sezione'), benches:[]};
+      for(const bench of fluidBenches)
+        report.fluids.benches.push(await misuraFluidi(page,base,profile,bench,fallback,{capture,audit}));
       if(width===320) {
+        report.fluids.materials={};
+        for(const record of fluidTexts) {
+          const {copy,widths}=await readEdition(page,base,record);
+          report.fluids.materials[record.id]=widths;
+          if(record.id==='C2-E016') await capture(page,copy,profile+'-'+record.id);
+        }
         report.mechanics.materials={};
         for(const record of mechanicsTexts) {
           const {copy,widths}=await readEdition(page,base,record);
@@ -284,7 +272,7 @@ try {
   }
   const sha=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
   await writeFile(path.join(output,'edizioni.json'),JSON.stringify({sha,reports},null,2)+'\n');
-  console.log('PASS · quattro profili · sensore e campi, attrito e secanti · C5 '+texts.length+' e C1 '+mechanicsTexts.length+' materiali a 320 px.');
+  console.log('PASS · quattro profili · sensore e campi, attrito e secanti · C5 '+texts.length+' e C1 '+mechanicsTexts.length+' e C2 '+fluidTexts.length+' materiali a 320 px.');
 } finally {
   const closed=once(server,'exit');
   server.kill();

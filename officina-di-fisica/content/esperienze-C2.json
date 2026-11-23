@@ -335,7 +335,7 @@
     "skill": "C2-L002",
     "order": 4,
     "section": "Fluidi in quiete",
-    "version": 1,
+    "version": 2,
     "title": "Manometro a U",
     "topic": "Manometro a U",
     "anchor": "Un manometro a U traduce una differenza",
@@ -352,8 +352,8 @@
       "label": "Dislivello con segno",
       "unit": "cm"
     },
-    "formula": "Δh = Δp/(ρg), con acqua e g = 10 m/s²",
-    "interpretation": "Le due braccia hanno uguale sezione. Se la pressione a sinistra aumenta, quel livello scende e l’altro sale. La misura è la differenza fra i livelli, pari al doppio dello spostamento di ciascuno.",
+    "formula": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².",
+    "interpretation": "Alla stessa quota la pressione nell’acqua in quiete è uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con −1 kPa il ramo destro è più basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di metà del dislivello.",
     "references": [
       [
         -1.0,
@@ -366,7 +366,7 @@
     ],
     "blocks": [],
     "substitution": "10 × {x}",
-    "transferPrompt": "I due rami del manometro ad acqua ricevono la differenza di pressione con segno {x}. Quale dislivello in centimetri corrisponde a questa lettura?"
+    "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?"
   },
   {
     "id": "SIM-C2-L003-01",
@@ -575,11 +575,11 @@
     "skill": "C2-L004",
     "order": 3,
     "section": "Fluidi in quiete",
-    "version": 1,
+    "version": 2,
     "title": "Condizioni di galleggiamento e immersione",
     "topic": "Condizioni di galleggiamento e immersione",
     "anchor": "Questa relazione vale per un corpo libero",
-    "summary": "Quanta parte del blocco rimane sopra la superficie?",
+    "summary": "Quale percentuale del volume del blocco resta immersa nell’acqua?",
     "apparatus": "galleggia",
     "control": {
       "label": "Densità del blocco",
@@ -593,7 +593,7 @@
       "unit": "%"
     },
     "formula": "V immerso / V = ρ corpo / ρ acqua",
-    "interpretation": "Lascia libero il blocco in acqua da 1000 kg/m³. All’equilibrio spinta e peso coincidono. A densità uguale il corpo completamente immerso è in equilibrio indifferente.",
+    "interpretation": "Il peso di tutto il blocco è bilanciato dalla spinta sul solo volume immerso. Con densità 250 kg/m³, un quarto del volume sposta acqua a sufficienza e tre quarti restano fuori. A 1000 kg/m³ il blocco deve essere interamente immerso. Finché rimane immerso senza toccare il fondo, spinta e peso si compensano a qualsiasi profondità. La tavola mostra una delle posizioni possibili.",
     "references": [
       [
         250.0,
@@ -606,7 +606,7 @@
     ],
     "blocks": [],
     "substitution": "{x} / 10",
-    "transferPrompt": "Un blocco omogeneo di densità {x} galleggia in acqua da 1000 kg/m³. Quale percentuale del suo volume resta sotto il pelo libero?"
+    "transferPrompt": "Un blocco omogeneo di densità {x} è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?"
   },
   {
     "id": "SIM-C2-L005-01",
