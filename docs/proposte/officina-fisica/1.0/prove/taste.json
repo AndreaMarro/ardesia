@@ -1,0 +1,253 @@
+{
+  "version": "2.1.5",
+  "commit": "12af471f627f866411b4bd785b19646d3672784c",
+  "mode": "--app",
+  "runs": {
+    "baseline": {
+      "at": "2026-11-23T09:10:47.672Z",
+      "allow": [],
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "mixed-font-headline",
+          "width": 1440,
+          "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+          "fix": "Set the whole headline in one face. Emphasis comes from the words."
+        },
+        {
+          "level": "WARN",
+          "id": "micro-label",
+          "width": 1440,
+          "message": "1 tiny uppercase letter-spaced label(s): \"C1 / Microcorso di Fisica\"",
+          "fix": "Prefer sentence case at body size.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #f8f5ea, text #f8f5ea).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "FAIL",
+          "id": "palette-purple",
+          "width": 1440,
+          "message": "Indigo / violet (text #44258d).",
+          "fix": "Use the accent from the drawn palette.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "font-count",
+          "width": 1440,
+          "message": "3 typefaces in use (Work Sans, Baskervville, ui-monospace).",
+          "fix": "Two at most.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "panel-void",
+          "width": 1440,
+          "message": "1 card(s) hold a blank band inside: 55px in \"Preparazione rapida all’esame\".",
+          "fix": "A card stretches to its neighbour only when it has content to fill. Keep a legend or a note directly under its chart (only an action or a total may sit at a stretched card's foot), let a short card keep its own height (align-items: start), and let a filtered block shrink to its rows."
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 81px (\"Strumenti e Meccanica\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "edge-text",
+          "width": 390,
+          "message": "7 text block(s) sit 12–15px from the phone's edge: \"Percorsi\" (14px); \"Percorsi\" (16px); \"C1 / Microcorso di Fisica\" (14px)",
+          "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+        },
+        {
+          "level": "WARN",
+          "id": "heavy-borders",
+          "width": 390,
+          "message": "3 panel borders are dark against their ground: #5936ae on #ffffff (8.19:1) | #a19b9d on #f8f5ea (2.5:1) | #221c30 on #f8f5ea (15.07:1)",
+          "fix": "A panel border is a whisper: about 1.1–1.3:1 against its ground on a light screen (#e5e7eb–#ededed on white), and about 1.2–1.5:1 on a dark one (#1a1a1a on #000, #2e2e2e on #111). Darker lines turn the screen into a grid of boxes; keep the stronger line for controls."
+        }
+      ],
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ]
+      ]
+    },
+    "passo": {
+      "at": "2026-11-23T09:33:23.154Z",
+      "allow": [],
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Dove ti fermi?\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ],
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "draw": {
+        "style": "editorial-greeting",
+        "seed": 927
+      }
+    },
+    "campo": {
+      "at": "2026-11-23T09:33:23.265Z",
+      "allow": [],
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Banco del moto\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ],
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "draw": {
+        "style": "data-terminal",
+        "seed": 928
+      },
+      "prima": [
+        {
+          "level": "WARN",
+          "id": "heavy-borders",
+          "width": 1440,
+          "message": "3 panel borders are dark against their ground: #506273 on #16212e (2.58:1) | #506273 on #16212e (2.58:1) | #506273 on #16212e (2.58:1)",
+          "fix": "A panel border is a whisper: about 1.1–1.3:1 against its ground on a light screen (#e5e7eb–#ededed on white), and about 1.2–1.5:1 on a dark one (#1a1a1a on #000, #2e2e2e on #111). Darker lines turn the screen into a grid of boxes; keep the stronger line for controls.",
+          "alsoAt": [
+            768
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Banco del moto\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "ragged-row",
+          "width": 768,
+          "message": "1 pair(s) of cards in one row end at different heights (by 100px).",
+          "fix": "Cards that share a row share a bottom edge: balance them by their content (the same number of rows, a block of similar height beside it), or stack them. In testing, ragged rows were marked down every time."
+        }
+      ]
+    },
+    "margine": {
+      "at": "2026-11-23T09:33:23.032Z",
+      "allow": [],
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            768,
+            390
+          ]
+        }
+      ],
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "draw": {
+        "style": "framed-sheet",
+        "seed": 929
+      }
+    }
+  }
+}

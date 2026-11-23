@@ -1,0 +1,133 @@
+{
+  "concepts": [
+    "Passo",
+    "Campo",
+    "Margine"
+  ],
+  "criteria": [
+    {
+      "id": "usabilita",
+      "weight": 13,
+      "scores": [
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "id": "accessibilita_cognitiva",
+      "weight": 17,
+      "scores": [
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "id": "efficacia_didattica",
+      "weight": 23,
+      "scores": [
+        4,
+        5,
+        4
+      ]
+    },
+    {
+      "id": "identita_visiva",
+      "weight": 14,
+      "scores": [
+        3,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "fattibilita",
+      "weight": 11,
+      "scores": [
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "id": "manutenzione",
+      "weight": 7,
+      "scores": [
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "id": "estensibilita",
+      "weight": 10,
+      "scores": [
+        4,
+        5,
+        3
+      ]
+    },
+    {
+      "id": "economia_unitaria",
+      "weight": 5,
+      "scores": [
+        5,
+        4,
+        3
+      ]
+    }
+  ],
+  "scenarios": {
+    "laboratorio": [
+      13,
+      17,
+      23,
+      14,
+      11,
+      7,
+      10,
+      5
+    ],
+    "recupero": [
+      22,
+      25,
+      16,
+      5,
+      12,
+      8,
+      6,
+      6
+    ],
+    "identita": [
+      12,
+      15,
+      17,
+      24,
+      7,
+      8,
+      8,
+      9
+    ]
+  },
+  "cost": {
+    "objects": 100,
+    "authorEURh": 30,
+    "sessions": 10000,
+    "minutes": [
+      20,
+      40,
+      30
+    ],
+    "variableEUR": [
+      0.02,
+      0.03,
+      0.05
+    ],
+    "completion": [
+      0.7,
+      0.65,
+      0.55
+    ]
+  }
+}

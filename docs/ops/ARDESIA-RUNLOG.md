@@ -1141,3 +1141,13 @@ Passi da valutare con Andrea dopo questa consegna:
 1. Quando sarà disponibile un telefono autorizzato, aprire una voce del corso, effettuare previsione, misura e trasferimento anche con il lettore di schermo. Conservare modello, versione del sistema e verbale.
 2. Con il docente e studenti disponibili, osservare la lettura di C1-Q027 e il trasferimento a un caso diverso. Registrare errori concettuali e aiuti richiesti senza identificativi personali.
 3. Quando sarà scelto un modello editoriale, eseguire una proposta sul corpus approvato e registrare versione, citazione, giudizio umano e decisione di pubblicazione.
+
+## 23 novembre 2026 · Tre direzioni di prodotto per Officina di Fisica
+
+Sul ramo di progettazione di Officina 1.1.0, il dossier 1.0 confronta Passo, Campo e Margine sullo stesso C1-Q027. L’ospite trova un banco per «grafici cinematici» e zero per «aree con segno». Campo è la prima ipotesi da testare; con priorità al recupero vince Passo. L’applicazione pubblicata conserva il proprio albero Git. [Dossier e prototipi](../proposte/officina-fisica/1.0/README.md) · [Matrice](../proposte/officina-fisica/1.0/decisione.md)
+
+Taste Skill 2.1.5 è stato applicato nella modalità dedicata alle schermate di app. La verifica a 768 px ha portato a ridisegnare la console di Campo. A 320 px si è ridotta la spaziatura del quaderno per lasciare interamente a vista il pulsante principale. Il pacchetto offline ha superato 24 flussi nei due motori e 72 scansioni automatiche. In WebKit la prova da file richiede di bloccare HTTP(S) individualmente, perché l’interruttore offline impedisce anche la prima navigazione locale. Il primo test storico in locale è scaduto su Edizioni PDF; l’intera replica è riuscita. [Misure e limiti](../proposte/officina-fisica/1.0/verifica.md)
+
+1. Il committente confronta le tre esperienze e sceglie quale ipotesi provare. Esito atteso: direzione e obiettivo di misura espliciti.
+2. Dopo la scelta, organizzare il pilot sul lessico, la correzione e la ripresa con studenti consenzienti. Esito atteso: tempi, rinunce, errori e aiuti aggregati sul denominatore dichiarato.
+3. Con trasferimento e accessibilità riesaminati, decidere una sola verticale e verificarla su un secondo argomento. Il telefono fisico resta rinviato. [Roadmap e criteri](../proposte/officina-fisica/1.0/fattibilita.md)

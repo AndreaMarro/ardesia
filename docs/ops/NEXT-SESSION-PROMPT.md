@@ -36,3 +36,7 @@ Per un lavoro sui sei corsi di Andrea usare il branch `officina-di-fisica`, dire
 Per questa applicazione partire dal ramo `officina-di-fisica`, dallo stato terminale della PR 339 e dalle verifiche riferite al commit integrato. Il capitolo e la voce sono le chiavi di navigazione dei laboratori. Il rapporto distingue risultati su Mac reale, viewport touch emulati e valutazioni umane ancora aperte. [PR 339](https://github.com/AndreaMarro/ardesia/pull/339) · [Revisione canonica](../../officina-di-fisica/docs/architettura/README.md)
 
 Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati sono il collaudo touch/lettore di schermo su telefono fisico, la prova di comprensione con studenti e il collaudo di un modello editoriale scelto dal docente. Dipendenze e risultati attesi sono nell’ultima voce dedicata a Cric. [Registro](ARDESIA-RUNLOG.md)
+
+## Officina · scelta della direzione di prodotto
+
+Il dossier 1.0 e i tre prototipi offline si trovano nella proposta di progettazione. La versione applicativa di riferimento è Officina 1.1.0. Il primo passo dipende dalla scelta di Andrea tra Passo, Campo e Margine. Seguono un pilot controbilanciato e, solo dopo l’esito, una verticale applicativa con gate di comprensione, accessibilità e costo della seconda attività. [Confronto](../proposte/officina-fisica/1.0/README.md) · [Protocollo](../proposte/officina-fisica/1.0/decisione.md) · [Registro](ARDESIA-RUNLOG.md)
