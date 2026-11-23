@@ -48,3 +48,11 @@ Su desktop la scheda attiva ha un solo comando principale. Su smartphone la risp
 ![WebKit mobile, risposta autonoma sul secondo problema e data di ripasso](prove/diario-mobile.png)
 
 Dalla directory dell’applicazione, `python3 tools/misura_diario.py` esegue il benchmark e il confronto HTTP di tutti i quesiti di studio. `node tests/browser-diario.mjs` produce cinque sequenze in un archivio temporaneo. La CI pubblica screenshot, esiti e pacchetto della stessa esecuzione. Valutazioni DSA o ADHD individuali, osservazione con lettore di schermo personale e miglioramento dell’apprendimento richiedono prove con partecipanti.
+
+## Livello del nuovo problema
+
+La lettura della prima schermata ha mostrato che il criterio di difficoltà usato nella selezione rimaneva implicito. Nel codice `ebcbca77017053abb8709f592ff7918a89bc85ff` lo studente legge il livello del nuovo quesito e, quando applicabile, che coincide con quello della prima domanda. Per C1-Q027 e C1-Q021 è 2 su 3. La controprova sceglie tra due livelli disponibili e poi ripete la scelta dopo che il caso più vicino è già apparso nel quaderno. L’informazione su un recupero che segue un esame riguarda esclusivamente il nuovo quesito di studio. Le due schermate qui sopra sono di questa revisione.
+
+| ID | Baseline → modifica | Rischio | Prova | SHA | Esito |
+| --- | --- | --- | --- | --- | --- |
+| D3 | Livello implicito → motivazione visibile al retest | Confondere la difficoltà del materiale con un giudizio sul lettore | Test sulla selezione, lettura del livello a schermo, soluzione indipendente di C1-Q021 in cinque configurazioni. 15 scansioni axe. [Esiti](prove/diario-livello.json) | `ebcbca77` | PASS |
