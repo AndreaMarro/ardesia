@@ -75,3 +75,9 @@ La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto s
 | Funzione | Sorgente e contratto | Dati | Interazione | Prova |
 | --- | --- | --- | --- | --- |
 | Segno del lavoro e misura delle pendenze in C1 | Sorgenti dei corsi C1/C2 riproducibili e due grafici con secante fra gli estremi del segnale | 181 voci C1, 24 nuove edizioni, soluzioni v1/v2 e due fascicoli | Confronto fra supporti, lettura a tappe, misura della velocità e dell’accelerazione, ritorno al paragrafo | [Contratto e registro C1](edizione-c1.md) · [Riapertura di due versioni](../../tools/collauda_riapertura.py) |
+
+## Fluidi
+
+| Funzione | Sorgente e contratto | Dati | Interazione | Prova |
+| --- | --- | --- | --- | --- |
+| Pressione fra due rami, equilibrio del blocco e flusso nel tubo | Sorgenti C2, sezione di tubo e modelli del manometro e del galleggiamento | 178 decisioni editoriali, dati sperimentali e versioni assegnate al tentativo | Lettura per passi, previsione, misura e ritorno al paragrafo | [Contratto e registro C2](edizione-c2.md) |
