@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="it">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>C1-Q027 · Confronto delle schermate</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font:
+        16px/1.5 system-ui,
+        sans-serif;
+      color: #182521;
+      background: #f8f8f5;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      max-width: 1760px;
+      margin: auto;
+      padding: clamp(16px, 3vw, 44px);
+    }
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #182521;
+      padding-bottom: 10px;
+    }
+    h1 {
+      font:
+        550 clamp(28px, 3vw, 46px) / 1.15 Georgia,
+        serif;
+      letter-spacing: -0.035em;
+      margin: 0;
+    }
+    h2 {
+      font-size: 24px;
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+    p {
+      max-width: 70ch;
+    }
+    form {
+      display: flex;
+      align-items: end;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      margin: 18px 0;
+    }
+    label,
+    legend {
+      font-weight: 600;
+    }
+    select {
+      display: block;
+      max-width: 100%;
+      font: inherit;
+      color: inherit;
+      background: white;
+      border: 1px solid #66736c;
+      padding: 8px;
+      min-height: 44px;
+    }
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    fieldset label {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      min-height: 44px;
+      padding-right: 10px;
+      font-weight: 400;
+    }
+    a {
+      color: #153e64;
+      text-underline-offset: 3px;
+    }
+    a:focus-visible,
+    select:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #8c3610;
+      outline-offset: 3px;
+    }
+    #plates {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(12px, 2vw, 32px);
+      align-items: start;
+    }
+    figure {
+      margin: 0;
+      min-width: 0;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    figure > a {
+      display: block;
+    }
+    figcaption > p {
+      margin: 0.5rem 0;
+    }
+    figcaption b {
+      margin-right: 0.35em;
+    }
+    .link-original {
+      display: inline-block;
+      padding: 8px 0;
+      min-height: 44px;
+    }
+    @media (max-width: 850px) {
+      #plates {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 680px;
+      }
+      form {
+        align-items: start;
+      }
+      header {
+        gap: 6px;
+      }
+    }
+  </style>
+  <header>
+    <h1>Un esercizio, tre interfacce</h1>
+    <span>C1-Q027 · Aree di segno opposto</span>
+  </header>
+  <main>
+    <p>
+      Confronta lo stesso momento in Campo, Passo e Margine. Le lettere indicano
+      elementi della schermata. Apri un’immagine per leggerla alla risoluzione
+      originale.
+    </p>
+    <form id="filters">
+      <label
+        >Momento dell’esercizio
+        <select id="state">
+          <option value="ingresso">Prima di rispondere</option>
+          <option value="base-errore">Previsione del verso errata</option>
+          <option value="trasferimento" selected>
+            Passaggio al ritorno di 7 s
+          </option>
+          <option value="segno">Invio di +2 m</option>
+          <option value="ripresa">Riapertura dopo l’errore</option>
+          <option value="correzione">Riapertura dopo la correzione</option>
+        </select>
+      </label>
+      <fieldset>
+        <legend>Schermata osservata</legend>
+        <label
+          ><input name="device" value="desktop" type="radio" checked />Desktop
+          1440 × 900</label
+        ><label
+          ><input name="device" value="mobile" type="radio" />Mobile 390 ×
+          844</label
+        >
+      </fieldset>
+    </form>
+    <p id="context" role="status"></p>
+    <div id="plates"></div>
+    <p>
+      <a href="../confronto.html">Prova gli stessi gesti nei prototipi</a> ·
+      <a href="README.md">Leggi la revisione e il protocollo</a>
+    </p>
+    <noscript
+      >Le 36 schermate sono raggiungibili anche dalla tabella nella
+      revisione.</noscript
+    >
+  </main>
+  <script type="application/json" id="catalogo">{
+  "ingresso": {
+    "campo": [
+      "La tacca zero dà un riferimento alla posizione. Il tempo si può già spostare.",
+      "Questo selettore cambia la durata del ritorno. Il cursore sotto la pista cambia invece l’istante osservato."
+    ],
+    "passo": [
+      "La domanda si legge sul grafico velocità-tempo, con assi, unità e due aree tratteggiate.",
+      "L’indizio è facoltativo. Aprirlo divide le aree in caselle da un metro."
+    ],
+    "margine": [
+      "I dati del sensore e il grafico restano accanto alle operazioni sul desktop e le precedono sul telefono.",
+      "La terza riga riunisce andata e ritorno. Si aggiorna con i due valori scritti sopra."
+    ]
+  },
+  "base-errore": {
+    "campo": [
+      "La misura restituisce subito la posizione corretta anche dopo la previsione sbagliata.",
+      "Il riscontro invita a confrontare due aree. La vista selezionata è ancora la pista."
+    ],
+    "passo": [
+      "La risposta riprende «Più indietro» e distingue durata e metri percorsi in un secondo.",
+      "Le dodici caselle sopra lo zero e le dieci sotto permettono di controllare la spiegazione."
+    ],
+    "margine": [
+      "I due addendi digitati, +12 e −10 m, restano visibili sulla riga della somma.",
+      "Il riscontro riguarda lo spostamento. Il focus torna al risultato di questa riga."
+    ]
+  },
+  "trasferimento": {
+    "campo": [
+      "Il nome del banco rimane. In questa fase la pista e il selettore delle rappresentazioni scompaiono.",
+      "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s."
+    ],
+    "passo": [
+      "La tappa della sessione rimane visibile. Sul telefono si legge «Passo 3 di 3».",
+      "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s."
+    ],
+    "margine": [
+      "La consegna del foglio continua a dire 5 s. La nuova domanda, qui sotto o di fianco, specifica 7 s.",
+      "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s."
+    ]
+  },
+  "segno": {
+    "campo": [
+      "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+      "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce."
+    ],
+    "passo": [
+      "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+      "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce."
+    ],
+    "margine": [
+      "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+      "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce."
+    ]
+  },
+  "ripresa": {
+    "campo": [
+      "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+      "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo."
+    ],
+    "passo": [
+      "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+      "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo."
+    ],
+    "margine": [
+      "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+      "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo."
+    ]
+  },
+  "correzione": {
+    "campo": [
+      "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+      "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia."
+    ],
+    "passo": [
+      "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+      "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia."
+    ],
+    "margine": [
+      "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+      "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia."
+    ]
+  }
+}</script>
+  <script>
+    (() => {
+      const byId = (id) => document.getElementById(id);
+      const notes = JSON.parse(byId('catalogo').textContent);
+      const states = [...byId('state').options].map((o) => o.value);
+      const captions = {
+        ingresso: 'Il ritorno dura 5 s. Nessuna risposta è stata inviata.',
+        'base-errore':
+          'Il risultato corretto è +2 m. In tutti e tre i casi chi risponde si colloca dietro lo zero.',
+        trasferimento:
+          'Il ritorno passa da 5 a 7 s. Il campo della risposta è ancora vuoto.',
+        segno:
+          'Tutti hanno inviato +2 m sul caso da 7 s. La grandezza è corretta, il segno è errato.',
+        ripresa:
+          'È stata ricaricata la stessa scheda dopo l’errore. Il campo conserva +2 m.',
+        correzione:
+          'È stata inviata la correzione −2 m e ricaricata la stessa scheda.',
+      };
+      const fallback = matchMedia('(max-width:700px)').matches
+        ? 'mobile'
+        : 'desktop';
+      function render() {
+        const [format, key] = location.hash.slice(1).split('/');
+        const device = ['desktop', 'mobile'].includes(format)
+          ? format
+          : fallback;
+        const state = states.includes(key) ? key : 'trasferimento';
+        document.querySelector('input[value="' + device + '"]').checked = true;
+        byId('state').value = state;
+        byId('context').textContent = captions[state];
+        const plates = byId('plates');
+        plates.replaceChildren();
+        for (const concept of ['campo', 'passo', 'margine']) {
+          const name = concept[0].toUpperCase() + concept.slice(1);
+          const href =
+            'schermate/' + [device, state, concept].join('-') + '.webp';
+          const fig = document.createElement('figure'),
+            title = document.createElement('h2');
+          title.textContent = name;
+          const link = document.createElement('a'),
+            img = new Image();
+          link.href = href;
+          img.width = device === 'desktop' ? 1476 : 426;
+          img.height = device === 'desktop' ? 1085 : 1123;
+          img.src = href;
+          img.alt =
+            name +
+            ' · ' +
+            byId('state').selectedOptions[0].text +
+            ' · ' +
+            device +
+            '. Apri a risoluzione originale.';
+          link.append(img);
+          const caption = document.createElement('figcaption');
+          notes[state][concept].forEach((note, i) => {
+            const p = document.createElement('p'),
+              label = document.createElement('b');
+            label.textContent = i ? 'B' : 'A';
+            p.append(label, document.createTextNode(note));
+            caption.append(p);
+          });
+          fig.append(title, link, caption);
+          plates.append(fig);
+        }
+      }
+      byId('filters').addEventListener('change', () => {
+        location.hash =
+          document.querySelector('input[name=device]:checked').value +
+          '/' +
+          byId('state').value;
+      });
+      window.addEventListener('hashchange', render);
+      render();
+    })();
+  </script>
+</html>

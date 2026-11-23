@@ -1,0 +1,578 @@
+{
+  "skill": "Taste Skill 2.1.5",
+  "commit": "12af471f627f866411b4bd785b19646d3672784c",
+  "htmlSHA256": "a75b016d6e09a0cf43739c579548ce4006d6ed10a8e0be53be945afc25208a56",
+  "mode": "--app",
+  "widths": [
+    1440,
+    390
+  ],
+  "runs": [
+    {
+      "state": "ingresso",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "ragged-row",
+          "width": 1440,
+          "message": "1 pair(s) of cards in one row end at different heights (by 248px).",
+          "fix": "Cards that share a row share a bottom edge: balance them by their content (the same number of rows, a block of similar height beside it), or stack them. In testing, ragged rows were marked down every time."
+        }
+      ]
+    },
+    {
+      "state": "ingresso",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Dove ti fermi?\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "ingresso",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "base-errore",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": []
+    },
+    {
+      "state": "base-errore",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Restano due metri\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "base-errore",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "trasferimento",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "47% of the first screen is one empty block (1440×420px at 0,480).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "state": "trasferimento",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "40% of the first screen is one empty block (1440×360px at 0,540).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Un altro ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "trasferimento",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "segno",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "40% of the first screen is one empty block (1440×360px at 0,540).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "state": "segno",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "33% of the first screen is one empty block (1440×300px at 0,600).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Un altro ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "segno",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "ripresa",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "47% of the first screen is one empty block (1440×420px at 0,480).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "state": "ripresa",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "40% of the first screen is one empty block (1440×360px at 0,540).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Un altro ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "ripresa",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "correzione",
+      "concept": "campo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "40% of the first screen is one empty block (1440×360px at 0,540).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        }
+      ]
+    },
+    {
+      "state": "correzione",
+      "concept": "passo",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "hero-void",
+          "width": 1440,
+          "message": "33% of the first screen is one empty block (1440×300px at 0,600).",
+          "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 52px (\"Un altro ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    },
+    {
+      "state": "correzione",
+      "concept": "margine",
+      "sizes": [
+        [
+          1440,
+          900
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "allow": [],
+      "exit": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "palette-cream",
+          "width": 1440,
+          "message": "Yellow-cream background (page background #faf6ed, section #fefbf4, button #fefbf4).",
+          "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+          "alsoAt": [
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "app-title-size",
+          "width": 1440,
+          "message": "The h1 is 68px (\"Il segno del ritorno\").",
+          "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+          "alsoAt": [
+            390
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,10 @@
 # Tre modi di studiare fisica
 
-**Dossier di progettazione 1.0 · revisione 2 · 23 novembre 2026**
+**Dossier di progettazione 1.0 · revisione 3 · 23 novembre 2026**
 
 Materiale per la scelta di prodotto di Andrea Marro. La baseline è Officina di Fisica 1.1.0, pubblicata con la PR #339. I prototipi in questa cartella lavorano su uno stesso caso e su dati locali della demo. [Versione esaminata](https://github.com/AndreaMarro/ardesia/releases/tag/officina-di-fisica-v1.1.0)
+
+**Per scegliere fra Campo, Passo e Margine**, apri il confronto annotato. Mostra lo stesso errore, il cambio da 5 a 7 secondi e il comportamento alla ricarica in 36 schermate desktop e mobile. La proposta da valutare riguarda solo il recupero del segno in C1-Q027. [Leggi il confronto con le schermate su GitHub](revisione/README.md) · [Sfoglia la galleria HTML](revisione/galleria.html) · [Unico incremento proposto](revisione/integrazione.md)
 
 **Prova i tre concept.** Scarica lo ZIP, estrai `confronto.html` e aprilo nel browser. Sotto «Il ritorno basta?» trovi la traccia del sensore e tre ingressi. Scegli **Campo** per muovere subito il segnalino sulla pista in 3D. Il collegamento **Confronto** permette di passare da uno all’altro. Il file include interfaccia, grafici e caratteri e funziona offline. [Scarica i prototipi](prototipi-offline.zip?raw=true) · [HTML autonomo](confronto.html) · [Galleria desktop e mobile](verifica.md)
 

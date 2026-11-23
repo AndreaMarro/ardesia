@@ -1,0 +1,1882 @@
+{
+  "item": "C1-Q027",
+  "revision": 2,
+  "htmlSHA256": "a75b016d6e09a0cf43739c579548ce4006d6ed10a8e0be53be945afc25208a56",
+  "engine": "148.0.7778.96",
+  "playwright": "1.60.0",
+  "states": [
+    [
+      "ingresso",
+      "Prima di rispondere"
+    ],
+    [
+      "base-errore",
+      "Previsione del verso errata"
+    ],
+    [
+      "trasferimento",
+      "Passaggio al ritorno di 7 s"
+    ],
+    [
+      "segno",
+      "Invio di +2 m"
+    ],
+    [
+      "ripresa",
+      "Riapertura dopo l’errore"
+    ],
+    [
+      "correzione",
+      "Riapertura dopo la correzione"
+    ]
+  ],
+  "concepts": [
+    "campo",
+    "passo",
+    "margine"
+  ],
+  "cases": [
+    {
+      "id": "desktop-ingresso-campo",
+      "concept": "campo",
+      "state": "ingresso",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 10,
+      "bodyTokensInFrame": 50,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 21.8,
+      "primaryRect": {
+        "x": 948,
+        "y": 377,
+        "w": 356,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#plot svg",
+          "note": "La tacca zero dà un riferimento alla posizione. Il tempo si può già spostare.",
+          "rect": {
+            "x": 162,
+            "y": 281,
+            "w": 702,
+            "h": 231
+          }
+        },
+        {
+          "selector": "#duration",
+          "note": "Questo selettore cambia la durata del ritorno. Il cursore sotto la pista cambia invece l’istante osservato.",
+          "rect": {
+            "x": 1085,
+            "y": 263,
+            "w": 81,
+            "h": 44
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-base-errore-campo",
+      "concept": "campo",
+      "state": "base-errore",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 10,
+      "bodyTokensInFrame": 78,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "axisTextPx": 21.8,
+      "primaryRect": null,
+      "focus": "timeline",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#below #phase",
+          "note": "La misura restituisce subito la posizione corretta anche dopo la previsione sbagliata.",
+          "rect": {
+            "x": 948,
+            "y": 329,
+            "w": 356,
+            "h": 22
+          }
+        },
+        {
+          "selector": "#below .stack > p:first-of-type",
+          "note": "Il riscontro invita a confrontare due aree. La vista selezionata è ancora la pista.",
+          "rect": {
+            "x": 948,
+            "y": 369,
+            "w": 356,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-trasferimento-campo",
+      "concept": "campo",
+      "state": "trasferimento",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 44,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "h1",
+          "note": "Il nome del banco rimane. In questa fase la pista e il selettore delle rappresentazioni scompaiono.",
+          "rect": {
+            "x": 136,
+            "y": 105,
+            "w": 1168,
+            "h": 35
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 136,
+            "y": 208,
+            "w": 730,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-segno-campo",
+      "concept": "campo",
+      "state": "segno",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 62,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 136,
+            "y": 302,
+            "w": 730,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 136,
+            "y": 430,
+            "w": 730,
+            "h": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-ripresa-campo",
+      "concept": "campo",
+      "state": "ripresa",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 44,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 136,
+            "y": 302,
+            "w": 730,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 136,
+            "y": 364,
+            "w": 730,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-correzione-campo",
+      "concept": "campo",
+      "state": "correzione",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 60,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 32
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 136,
+            "y": 302,
+            "w": 730,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 136,
+            "y": 430,
+            "w": 730,
+            "h": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-ingresso-passo",
+      "concept": "passo",
+      "state": "ingresso",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 51,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 17.2,
+      "primaryRect": {
+        "x": 477,
+        "y": 718,
+        "w": 815,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".plot svg",
+          "note": "La domanda si legge sul grafico velocità-tempo, con assi, unità e due aree tratteggiate.",
+          "rect": {
+            "x": 489,
+            "y": 232,
+            "w": 791,
+            "h": 222
+          }
+        },
+        {
+          "selector": "#hint summary",
+          "note": "L’indizio è facoltativo. Aprirlo divide le aree in caselle da un metro.",
+          "rect": {
+            "x": 477,
+            "y": 464,
+            "w": 168,
+            "h": 44
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-base-errore-passo",
+      "concept": "passo",
+      "state": "base-errore",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 2,
+      "bodyTokensInFrame": 110,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "axisTextPx": 17.2,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".session .lead",
+          "note": "La risposta riprende «Più indietro» e distingue durata e metri percorsi in un secondo.",
+          "rect": {
+            "x": 477,
+            "y": 174,
+            "w": 815,
+            "h": 64
+          }
+        },
+        {
+          "selector": ".plot svg",
+          "note": "Le dodici caselle sopra lo zero e le dieci sotto permettono di controllare la spiegazione.",
+          "rect": {
+            "x": 489,
+            "y": 264,
+            "w": 791,
+            "h": 222
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-trasferimento-passo",
+      "concept": "passo",
+      "state": "trasferimento",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 57,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": ".rail",
+          "note": "La tappa della sessione rimane visibile. Sul telefono si legge «Passo 3 di 3».",
+          "rect": {
+            "x": 136,
+            "y": 69,
+            "w": 269,
+            "h": 496
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 477,
+            "y": 230,
+            "w": 815,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-segno-passo",
+      "concept": "passo",
+      "state": "segno",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 75,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 477,
+            "y": 341,
+            "w": 815,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 477,
+            "y": 495,
+            "w": 815,
+            "h": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-ripresa-passo",
+      "concept": "passo",
+      "state": "ripresa",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 57,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 477,
+            "y": 341,
+            "w": 815,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 477,
+            "y": 417,
+            "w": 815,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-correzione-passo",
+      "concept": "passo",
+      "state": "correzione",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 73,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 51.84
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 477,
+            "y": 341,
+            "w": 815,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 477,
+            "y": 495,
+            "w": 815,
+            "h": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-ingresso-margine",
+      "concept": "margine",
+      "state": "ingresso",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 54,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 21.6
+      },
+      "axisTextPx": 18.9,
+      "primaryRect": {
+        "x": 785,
+        "y": 549,
+        "w": 483,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".plot svg",
+          "note": "I dati del sensore e il grafico restano accanto alle operazioni sul desktop e le precedono sul telefono.",
+          "rect": {
+            "x": 172,
+            "y": 336,
+            "w": 540,
+            "h": 244
+          }
+        },
+        {
+          "selector": "#formula2",
+          "note": "La terza riga riunisce andata e ritorno. Si aggiorna con i due valori scritti sopra.",
+          "rect": {
+            "x": 785,
+            "y": 493,
+            "w": 317,
+            "h": 32
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-base-errore-margine",
+      "concept": "margine",
+      "state": "base-errore",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 73,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 21.6
+      },
+      "axisTextPx": 18.9,
+      "primaryRect": null,
+      "focus": "n2",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#formula2",
+          "note": "I due addendi digitati, +12 e −10 m, restano visibili sulla riga della somma.",
+          "rect": {
+            "x": 785,
+            "y": 493,
+            "w": 317,
+            "h": 32
+          }
+        },
+        {
+          "selector": "#note2",
+          "note": "Il riscontro riguarda lo spostamento. Il focus torna al risultato di questa riga.",
+          "rect": {
+            "x": 785,
+            "y": 534,
+            "w": 483,
+            "h": 46
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-trasferimento-margine",
+      "concept": "margine",
+      "state": "trasferimento",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 73,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 18.9,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": ".spread > section:first-child .lead",
+          "note": "La consegna del foglio continua a dire 5 s. La nuova domanda, qui sotto o di fianco, specifica 7 s.",
+          "rect": {
+            "x": 172,
+            "y": 296,
+            "w": 540,
+            "h": 32
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 785,
+            "y": 370,
+            "w": 483,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-segno-margine",
+      "concept": "margine",
+      "state": "segno",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 91,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 18.9,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 785,
+            "y": 464,
+            "w": 483,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 785,
+            "y": 592,
+            "w": 483,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-ripresa-margine",
+      "concept": "margine",
+      "state": "ripresa",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 73,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 18.9,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 785,
+            "y": 464,
+            "w": 483,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 785,
+            "y": 526,
+            "w": 483,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "desktop-correzione-margine",
+      "concept": "margine",
+      "state": "correzione",
+      "device": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scrollY": 0,
+      "documentWidth": 1440,
+      "enabledControlsInFrame": 7,
+      "bodyTokensInFrame": 89,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 68
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 18.9,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 785,
+            "y": 464,
+            "w": 483,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 785,
+            "y": 592,
+            "w": 483,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ingresso-campo",
+      "concept": "campo",
+      "state": "ingresso",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 10,
+      "bodyTokensInFrame": 50,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 13.4,
+      "primaryRect": {
+        "x": 18,
+        "y": 646,
+        "w": 354,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#plot svg",
+          "note": "La tacca zero dà un riferimento alla posizione. Il tempo si può già spostare.",
+          "rect": {
+            "x": 30,
+            "y": 231,
+            "w": 330,
+            "h": 109
+          }
+        },
+        {
+          "selector": "#duration",
+          "note": "Questo selettore cambia la durata del ritorno. Il cursore sotto la pista cambia invece l’istante osservato.",
+          "rect": {
+            "x": 155,
+            "y": 539,
+            "w": 81,
+            "h": 44
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-base-errore-campo",
+      "concept": "campo",
+      "state": "base-errore",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 82,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 9,
+      "bodyTokensInFrame": 74,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "axisTextPx": 13.4,
+      "primaryRect": null,
+      "focus": "timeline",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#below #phase",
+          "note": "La misura restituisce subito la posizione corretta anche dopo la previsione sbagliata.",
+          "rect": {
+            "x": 18,
+            "y": 519,
+            "w": 354,
+            "h": 22
+          }
+        },
+        {
+          "selector": "#below .stack > p:first-of-type",
+          "note": "Il riscontro invita a confrontare due aree. La vista selezionata è ancora la pista.",
+          "rect": {
+            "x": 18,
+            "y": 559,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-trasferimento-campo",
+      "concept": "campo",
+      "state": "trasferimento",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 44,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "h1",
+          "note": "Il nome del banco rimane. In questa fase la pista e il selettore delle rappresentazioni scompaiono.",
+          "rect": {
+            "x": 18,
+            "y": 72,
+            "w": 354,
+            "h": 29
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 18,
+            "y": 159,
+            "w": 354,
+            "h": 72
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-segno-campo",
+      "concept": "campo",
+      "state": "segno",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 62,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 18,
+            "y": 277,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 18,
+            "y": 405,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ripresa-campo",
+      "concept": "campo",
+      "state": "ripresa",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 44,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 18,
+            "y": 277,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 18,
+            "y": 339,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-correzione-campo",
+      "concept": "campo",
+      "state": "correzione",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 60,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 26
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 18,
+            "y": 277,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 18,
+            "y": 405,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ingresso-passo",
+      "concept": "passo",
+      "state": "ingresso",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 41,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 14.7,
+      "primaryRect": {
+        "x": 18,
+        "y": 633,
+        "w": 354,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".plot svg",
+          "note": "La domanda si legge sul grafico velocità-tempo, con assi, unità e due aree tratteggiate.",
+          "rect": {
+            "x": 22,
+            "y": 227,
+            "w": 346,
+            "h": 157
+          }
+        },
+        {
+          "selector": "#hint summary",
+          "note": "L’indizio è facoltativo. Aprirlo divide le aree in caselle da un metro.",
+          "rect": {
+            "x": 18,
+            "y": 390,
+            "w": 168,
+            "h": 44
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-base-errore-passo",
+      "concept": "passo",
+      "state": "base-errore",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 2,
+      "bodyTokensInFrame": 100,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "axisTextPx": 14.7,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".session .lead",
+          "note": "La risposta riprende «Più indietro» e distingue durata e metri percorsi in un secondo.",
+          "rect": {
+            "x": 18,
+            "y": 156,
+            "w": 354,
+            "h": 74
+          }
+        },
+        {
+          "selector": ".plot svg",
+          "note": "Le dodici caselle sopra lo zero e le dieci sotto permettono di controllare la spiegazione.",
+          "rect": {
+            "x": 22,
+            "y": 252,
+            "w": 346,
+            "h": 157
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-trasferimento-passo",
+      "concept": "passo",
+      "state": "trasferimento",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 47,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": ".rail",
+          "note": "La tappa della sessione rimane visibile. Sul telefono si legge «Passo 3 di 3».",
+          "rect": {
+            "x": 18,
+            "y": 54,
+            "w": 354,
+            "h": 37
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 18,
+            "y": 202,
+            "w": 354,
+            "h": 72
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-segno-passo",
+      "concept": "passo",
+      "state": "segno",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 65,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 18,
+            "y": 337,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 18,
+            "y": 491,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ripresa-passo",
+      "concept": "passo",
+      "state": "ripresa",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 47,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 18,
+            "y": 337,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 18,
+            "y": 413,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-correzione-passo",
+      "concept": "passo",
+      "state": "correzione",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 63,
+      "h1": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 30
+      },
+      "body": {
+        "family": "\"Work Sans\", Arial, sans-serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": null,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 18,
+            "y": 337,
+            "w": 354,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 18,
+            "y": 491,
+            "w": 354,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ingresso-margine",
+      "concept": "margine",
+      "state": "ingresso",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 0,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 5,
+      "bodyTokensInFrame": 54,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 17
+      },
+      "axisTextPx": 14.2,
+      "primaryRect": {
+        "x": 28,
+        "y": 725,
+        "w": 334,
+        "h": 48
+      },
+      "focus": "lavoro",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": ".plot svg",
+          "note": "I dati del sensore e il grafico restano accanto alle operazioni sul desktop e le precedono sul telefono.",
+          "rect": {
+            "x": 28,
+            "y": 239,
+            "w": 334,
+            "h": 151
+          }
+        },
+        {
+          "selector": "#formula2",
+          "note": "La terza riga riunisce andata e ritorno. Si aggiorna con i due valori scritti sopra.",
+          "rect": {
+            "x": 28,
+            "y": 672,
+            "w": 209,
+            "h": 26
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-base-errore-margine",
+      "concept": "margine",
+      "state": "base-errore",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 90,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 69,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 17
+      },
+      "axisTextPx": 14.2,
+      "primaryRect": null,
+      "focus": "n2",
+      "transfer": null,
+      "annotations": [
+        {
+          "selector": "#formula2",
+          "note": "I due addendi digitati, +12 e −10 m, restano visibili sulla riga della somma.",
+          "rect": {
+            "x": 28,
+            "y": 582,
+            "w": 209,
+            "h": 26
+          }
+        },
+        {
+          "selector": "#note2",
+          "note": "Il riscontro riguarda lo spostamento. Il focus torna al risultato di questa riga.",
+          "rect": {
+            "x": 28,
+            "y": 620,
+            "w": 334,
+            "h": 46
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-trasferimento-margine",
+      "concept": "margine",
+      "state": "trasferimento",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 63,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 4,
+      "bodyTokensInFrame": 67,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 14.2,
+      "primaryRect": null,
+      "focus": "phase",
+      "transfer": {
+        "value": "",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": ".spread > section:first-child .lead",
+          "note": "La consegna del foglio continua a dire 5 s. La nuova domanda, qui sotto o di fianco, specifica 7 s.",
+          "rect": {
+            "x": 28,
+            "y": 119,
+            "w": 334,
+            "h": 50
+          }
+        },
+        {
+          "selector": "#phase + p",
+          "note": "Il nuovo caso mantiene +3 m/s per 4 s e porta il ritorno a −2 m/s per 7 s.",
+          "rect": {
+            "x": 28,
+            "y": 469,
+            "w": 334,
+            "h": 72
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-segno-margine",
+      "concept": "margine",
+      "state": "segno",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 236,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 67,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 14.2,
+      "primaryRect": null,
+      "focus": "tx",
+      "transfer": {
+        "value": "+2",
+        "invalid": "true",
+        "feedback": "Due metri è lo scarto giusto. Pensa da che parte dello zero arrivi dopo 14 m di ritorno."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Il campo contiene +2. Dopo l’invio riceve il focus e lo stato di errore.",
+          "rect": {
+            "x": 28,
+            "y": 414,
+            "w": 334,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "Il messaggio riconosce la grandezza giusta e chiede da che parte dello zero si finisce.",
+          "rect": {
+            "x": 28,
+            "y": 542,
+            "w": 334,
+            "h": 72
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-ripresa-margine",
+      "concept": "margine",
+      "state": "ripresa",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 146,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 65,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 14.2,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "+2",
+        "invalid": null,
+        "feedback": ""
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Ricaricando la scheda il campo conserva +2, ma perde lo stato di errore.",
+          "rect": {
+            "x": 28,
+            "y": 504,
+            "w": 334,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#transfer button",
+          "note": "Il messaggio precedente è scomparso. Per rileggerlo occorre verificare di nuovo.",
+          "rect": {
+            "x": 28,
+            "y": 566,
+            "w": 334,
+            "h": 48
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobile-correzione-margine",
+      "concept": "margine",
+      "state": "correzione",
+      "device": "mobile",
+      "width": 390,
+      "height": 844,
+      "scrollY": 212,
+      "documentWidth": 390,
+      "enabledControlsInFrame": 6,
+      "bodyTokensInFrame": 65,
+      "h1": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 34
+      },
+      "body": {
+        "family": "Baskervville, Georgia, serif",
+        "px": 16
+      },
+      "formula": null,
+      "axisTextPx": 14.2,
+      "primaryRect": null,
+      "focus": "body",
+      "transfer": {
+        "value": "−2",
+        "invalid": null,
+        "feedback": "Hai ottenuto −2 m. Il ritorno vale −14 m e supera i 12 m di andata."
+      },
+      "annotations": [
+        {
+          "selector": "#tx",
+          "note": "Dopo la correzione e la ricarica il valore −2 è leggibile con la sua unità.",
+          "rect": {
+            "x": 28,
+            "y": 438,
+            "w": 334,
+            "h": 44
+          }
+        },
+        {
+          "selector": "#tx-message",
+          "note": "La conferma riporta −14 m di ritorno e 12 m di andata. La spiegazione è fornita dall’interfaccia.",
+          "rect": {
+            "x": 28,
+            "y": 566,
+            "w": 334,
+            "h": 48
+          }
+        }
+      ]
+    }
+  ]
+}

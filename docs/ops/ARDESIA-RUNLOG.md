@@ -1161,3 +1161,13 @@ In una prima prova il pulsante del banco superava il bordo di 11 px sul telefono
 1. Andrea può confrontare il segno sulle tre interfacce. Registrare il gesto o il testo che richiede un’ulteriore revisione prima di scegliere una direzione. [Prototipo](../proposte/officina-fisica/1.0/confronto.html)
 2. Dopo la scelta, verificare con studenti se trovano la pista e spiegano il segno su un ritorno di sette secondi. Registrare risposte e aiuti come previsto dal [protocollo](../proposte/officina-fisica/1.0/decisione.md).
 3. Quando sarà disponibile il telefono concordato, verificare cursore, cambio vista e lettura sequenziale con la tecnologia assistiva in uso. Allegare dispositivo e risultato al collaudo.
+
+## 23 novembre 2026 · Lo stesso errore in Campo, Passo e Margine
+
+La PR 340 raccoglie 36 schermate riprese dai prototipi a 1440 × 900 e 390 × 844. Ogni direzione attraversa sei momenti, dalla previsione del verso alla ricarica dopo la correzione. Nell’esercizio da 7 s Margine mantiene in vista la consegna e il grafico da 5 s. In tutti i concept il valore +2 m rimane alla riapertura, ma il campo perde la diagnosi sul segno. Campo rimanda alle aree mentre mostra la pista. Il rapporto separa questi comportamenti dalle ipotesi su comprensione, consolidamento e preferenze individuali. [Tavole e protocollo](../proposte/officina-fisica/1.0/revisione/README.md)
+
+Taste Skill 2.1.5 ha restituito 0 FAIL e 27 WARN sull’insieme dei 18 rapporti a due risoluzioni. Per consentire la replica, ogni schermata conserva coordinate e due annotazioni in testo. La misura della densità esclude le parole degli indizi chiusi. Il telefono è emulato e la prova su hardware touch è rinviata. [Rilievi per stato](../proposte/officina-fisica/1.0/revisione/taste.json) · [Misure nel browser](../proposte/officina-fisica/1.0/revisione/misure.json)
+
+1. Andrea esamina il trasferimento nelle tre viste e sceglie se sperimentare il recupero del segno di Campo per C1-Q027. Esito atteso, decisione esplicita sulla sola verticale.
+2. Se selezionata, usare il pilot per verificare reperibilità, controllo del ritmo e spiegazione del segno, con riscontri distinti alla ripresa e a sette giorni.
+3. Prima del merge tecnico applicare alla stessa verticale i criteri scientifici, di accesso, di accessibilità e conservazione. Il binario è riutilizzabile con i parametri del quesito. [Percorso d’integrazione](../proposte/officina-fisica/1.0/revisione/integrazione.md)

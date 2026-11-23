@@ -53,6 +53,8 @@ Calcolo per Campo: `(100 × 40/60 × 30 + 10.000 × 0,03) / (10.000 × 0,65) = 0
 
 ## Roadmap di PR atomiche
 
+Questa tabella conserva le alternative considerate nella prima versione. La revisione comparativa successiva delimita **un solo incremento per la decisione attuale**, con percorsi d’ingresso, riuso dei componenti esistenti e criteri di accettazione. [Integrazione del recupero del segno in C1-Q027](revisione/integrazione.md)
+
 Stime di lavoro tecnico/editoriale in giornate-persona, da verificare con il team. La decisione sul prodotto appartiene al committente. Il punto di ritorno è sempre la route canonica nella sua versione corrente.
 
 | PR candidata e dipendenza | Confine e stima (H) | Gate di accettazione | Ritorno |
