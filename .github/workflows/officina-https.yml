@@ -27,7 +27,7 @@ jobs:
         include:
           - {os: windows-2025, browser: edge, install: msedge}
           - {os: windows-2025, browser: firefox, install: firefox}
-          - {os: ubuntu-24.04, browser: chromium, install: chromium}
+          - {os: ubuntu-24.04, browser: chromium, install: chromium, parameters: '--webgl'}
           - {os: ubuntu-24.04, browser: firefox, install: firefox}
           - {os: macos-15, browser: webkit, install: webkit}
     runs-on: ${{ matrix.os }}
@@ -60,7 +60,7 @@ jobs:
           node-version: '22'
       - run: npm ci --no-audit --no-fund
       - run: npx playwright install --with-deps ${{ matrix.install }}
-      - run: node tests/browser-pubblicazione.mjs ${{ matrix.browser }}
+      - run: node tests/browser-pubblicazione.mjs ${{ matrix.browser }} ${{ matrix.parameters }}
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:

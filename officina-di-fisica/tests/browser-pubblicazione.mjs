@@ -4,18 +4,22 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { chromium, firefox, webkit } from 'playwright';
+import { PNG } from 'pngjs';
 
 const base = process.env.OFFICINA_BASE_URL;
 assert.equal(new URL(base).protocol, 'https:');
 const name = process.argv[2] || 'chromium';
 const mobile = process.argv.includes('--telefono'), tablet = process.argv.includes('--tablet');
 const flat = process.argv.includes('--senza-webgl');
+const requireGL = process.argv.includes('--webgl');
 const viewport = mobile ? {width: 320, height: 780} : tablet ? {width: 820, height: 1180} : {width: 1440, height: 960};
 const engine = {chromium, firefox, webkit, edge: chromium}[name];
 const output = process.env.ASTRA_EVIDENCE || 'prove-https';
 const profile = [os.platform(), name, viewport.width, flat ? 'tavola' : 'banco'].join('-');
 await mkdir(output, {recursive:true});
-const browser = await engine.launch(name === 'edge' ? {channel:'msedge'} : {});
+const options = name === 'edge' ? {channel:'msedge'} : {};
+if (requireGL) options.args = ['--enable-unsafe-swiftshader'];
+const browser = await engine.launch(options);
 const context = await browser.newContext({viewport, hasTouch: mobile || tablet, isMobile: (mobile || tablet) && name !== 'firefox',
   reducedMotion:'reduce', locale:'it-IT'});
 if (flat) await context.addInitScript(() => {
@@ -62,14 +66,29 @@ try {
   await panel.getByRole('button',{name:'Rivedi questi 7 s sulla pista'}).click();
   const bank = panel.locator('[data-banco]');
   const clock = bank.getByLabel('Istante sulla pista (s)',{exact:true});
+  const canvas = bank.locator('canvas');
+  if (requireGL) await canvas.waitFor({state:'visible'});
   const states = [];
+  let turningFrame;
   for (let t=1; t<=11; t++) {
     await clock.press('ArrowRight');
     if ([4,9,10,11].includes(t)) states.push(await bank.locator('[data-lettura]').innerText());
+    if (t === 4 && requireGL) turningFrame = PNG.sync.read(await canvas.screenshot());
   }
   assert.deepEqual(states,['A 4 s · posizione +12 m · distanza percorsa 12 m','A 9 s · posizione +2 m · distanza percorsa 22 m',
     'A 10 s · posizione 0 m · distanza percorsa 24 m','A 11 s · posizione −2 m · distanza percorsa 26 m']);
   const render = await bank.locator('canvas:visible').count() ? 'WebGL2' : 'tavola 2D';
+  let changedPixels;
+  if (requireGL) {
+    assert.equal(render,'WebGL2');
+    const finishFrame = PNG.sync.read(await canvas.screenshot());
+    assert.deepEqual([finishFrame.width,finishFrame.height],[turningFrame.width,turningFrame.height]);
+    let count = 0;
+    for (let i=0; i<finishFrame.data.length; i+=4)
+      if (Math.abs(finishFrame.data[i]-turningFrame.data[i])+Math.abs(finishFrame.data[i+1]-turningFrame.data[i+1])+Math.abs(finishFrame.data[i+2]-turningFrame.data[i+2])>50) count++;
+    changedPixels = count / (finishFrame.width*finishFrame.height);
+    assert.ok(changedPixels>0.001,'Il carrello deve muoversi anche nel fotogramma WebGL.');
+  }
   if (flat) {assert.equal(render,'tavola 2D'); await bank.locator('[data-pista-piana] svg').waitFor();}
   await capture('pista');
   await page.goto(base+'/#laboratori');
@@ -87,7 +106,7 @@ try {
   await page.waitForFunction(() => document.activeElement?.getAttribute('href')?.startsWith('#banco/SIM-C5-L10-02/'));
   assert.deepEqual(errors,[]);
   const evidence = {profile,url:base,os:os.type()+' '+os.release(),engine:name,version:browser.version(),viewport,
-    emulatedTouch:mobile||tablet,reducedMotion:true,render,states,keyboardFocus:true,restoredAnswer:true,pageErrors:errors};
+    emulatedTouch:mobile||tablet,reducedMotion:true,render,changedPixels,states,keyboardFocus:true,restoredAnswer:true,pageErrors:errors};
   await writeFile(path.join(output,profile+'.json'),JSON.stringify(evidence,null,2)+'\n');
   console.log(JSON.stringify(evidence));
 } catch (failure) {
