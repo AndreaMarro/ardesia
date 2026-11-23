@@ -161,6 +161,7 @@ async function continuity(page, base, profile) {
   await selected(page,'side');
   await page.evaluate(()=>document.fonts.ready);
   await screen.focus();
+  await page.waitForFunction(() => document.querySelector('.bench-stage canvas').testDraws>0);
   const original = await capture(page,name+'-laterale');
   if (profile.width>500) {
     const box = await screen.boundingBox();
@@ -172,9 +173,22 @@ async function continuity(page, base, profile) {
     assert.ok(changed(original,await capture(page))>0.008,'mouse pan');
     await screen.press('Home');
   }
+  await screen.evaluate(el => {
+    el.addEventListener('keydown', event => {
+      el.panInput = {key:event.key, shifted:event.shiftKey, draws:el.testDraws, at:performance.now()};
+    }, {capture:true,once:true});
+  });
   await screen.press('Shift+ArrowRight');
-  const pan = changed(original,await capture(page));
-  assert.ok(pan>0.008, 'keyboard pan '+pan);
+  const received = await screen.evaluate(el => el.panInput);
+  assert.ok(received?.key==='ArrowRight' && received.shifted, 'tasto ricevuto dal canvas');
+  await page.waitForFunction(n => document.querySelector('.bench-stage canvas').testDraws>n, received.draws, {timeout:1000});
+  let pan, panMs;
+  do {
+    pan = changed(original,await capture(page));
+    panMs = await screen.evaluate(el => Math.round(performance.now()-el.panInput.at));
+  } while (pan<=0.008 && panMs<1000);
+  assert.ok(pan>0.008 && panMs<=1000, 'keyboard pan '+pan+' dopo '+panMs+' ms');
+  const panDraws = await screen.evaluate(el => el.testDraws-el.panInput.draws);
   for (let i=0;i<12;i++) await screen.press('Shift+ArrowRight');
   const limit = await capture(page);
   await screen.press('Shift+ArrowRight');
@@ -267,7 +281,7 @@ async function continuity(page, base, profile) {
   await restore(page);
   await selected(page,'orbit');
   assert.equal(await page.locator('[data-bench]').count(),1);
-  return {profile:name,pan,recovered,fallbackMs,restoredMs,buffer,during,after};
+  return {profile:name,pan,panMs,panDraws,recovered,fallbackMs,restoredMs,buffer,during,after};
 }
 
 async function interruptFirstLoad(browser, base) {
