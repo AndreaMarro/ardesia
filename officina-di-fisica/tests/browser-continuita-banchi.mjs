@@ -174,9 +174,12 @@ async function continuity(page, base, profile) {
     await screen.press('Home');
   }
   await screen.evaluate(el => {
-    el.addEventListener('keydown', event => {
+    function record(event) {
+      if (event.key==='Shift') return;
       el.panInput = {key:event.key, shifted:event.shiftKey, draws:el.testDraws, at:performance.now()};
-    }, {capture:true,once:true});
+      el.removeEventListener('keydown', record, true);
+    }
+    el.addEventListener('keydown', record, true);
   });
   await screen.press('Shift+ArrowRight');
   const received = await screen.evaluate(el => el.panInput);
