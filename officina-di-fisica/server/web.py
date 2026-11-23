@@ -6,6 +6,7 @@ import mimetypes
 import os
 import re
 import secrets
+import sqlite3
 import sys
 import time
 from http import cookies
@@ -256,15 +257,16 @@ class Handler(BaseHTTPRequestHandler):
             raw = cookies.SimpleCookie(self.headers.get("Cookie", ""))
             token = raw.get("astra_session")
             token = token.value if token else ""
-            mutable = write or path.startswith("/api/run/")
-            with connect(readonly=not mutable) as db:
-                db.execute("BEGIN IMMEDIATE" if mutable else "BEGIN")
-                user = db.execute(
-                    "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
-                    (digest(token), NOW()),
-                ).fetchone()
-                parts = path.strip("/").split("/")
-                result = self.route(db, user, parts, data, write, token)
+            hosted = os.environ.get("ASTRA_HOSTED") == "1"
+            run_read = not write and path.startswith("/api/run/")
+            try:
+                result = self.authorized_request(path, data, write, token, write or (run_read and not hosted))
+            except sqlite3.OperationalError as exc:
+                # Recheck identity, access and deadline on the writer only when a read
+                # actually has to finalize an expired attempt.
+                if not (hosted and run_read and exc.sqlite_errorcode == sqlite3.SQLITE_READONLY):
+                    raise
+                result = self.authorized_request(path, data, write, token, True)
             if isinstance(result, tuple):
                 self.response(result[0], mime=result[1], headers=result[2])
             else:
@@ -282,6 +284,15 @@ class Handler(BaseHTTPRequestHandler):
             self.response(
                 {"error": "Operazione interrotta. I dati salvati sono al sicuro."}, 500
             )
+
+    def authorized_request(self, path, data, write, token, mutable):
+        with connect(readonly=not mutable, request_snapshot=mutable) as db:
+            db.execute("BEGIN IMMEDIATE" if mutable else "BEGIN")
+            user = db.execute(
+                "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
+                (digest(token), NOW()),
+            ).fetchone()
+            return self.route(db, user, path.strip("/").split("/"), data, write, token)
 
     def query_params(self):
         query = urlparse(self.path).query

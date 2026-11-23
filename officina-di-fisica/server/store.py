@@ -31,10 +31,10 @@ class ManagedConnection(sqlite3.Connection):
             self.close()
 
 
-def connect(*, readonly=False):
+def connect(*, readonly=False, request_snapshot=False):
     from .adapters import hosted
     if hosted.enabled():
-        return hosted.reader(ManagedConnection) if readonly else hosted.Primary()
+        return hosted.reader(ManagedConnection) if readonly else hosted.Primary(request_snapshot)
     db = sqlite3.connect(
         DATA / "officina.sqlite3", timeout=20, factory=ManagedConnection
     )

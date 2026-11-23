@@ -56,6 +56,9 @@ try{
   assert.deepEqual(errors,[]);
   await writeFile(path.join(directory,mode+'.json'),JSON.stringify({domain:base,mode,engine:browser.version(),lessons:index.lessons.length,results},null,2)+'\n');
   console.log(mode,results.length,'banchi',2*results.length,'letture');
+}catch(failure){
+  console.error(JSON.stringify({count:results.length,state:await page.locator('main').innerText().then(value=>value.slice(-350)),hash:new URL(page.url()).hash}));
+  throw failure;
 }finally{
   await context.request.post(base+'/api/logout',{data:{},headers}).catch(()=>{});
   await browser.close();

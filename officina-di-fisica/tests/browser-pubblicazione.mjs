@@ -30,7 +30,13 @@ if (flat) await context.addInitScript(() => {
 });
 const page = await context.newPage();
 page.setDefaultTimeout(25000);
-const errors = [];
+const errors = [], requests = [];
+page.on('response', response => {
+  if (response.status()>=400 && response.url().startsWith(base+'/api/')) {
+    const family = new URL(response.url()).pathname.split('/').slice(0,3).join('/');
+    requests.push([family,response.status()]);
+  }
+});
 page.on('pageerror', error => errors.push(error.message));
 async function capture(state) {
   await page.screenshot({path:path.join(output, profile+'-'+state+'.png'), animations:'disabled'});
@@ -112,8 +118,8 @@ try {
 } catch (failure) {
   const state = await page.evaluate(() => ({heading:document.querySelector('main h1')?.textContent,
     focus:document.activeElement?.id, response:document.querySelector('#campo-riscontro')?.textContent,
-    alert:document.querySelector('[role=alert]')?.textContent}));
-  console.error(JSON.stringify({profile,state,errors}));
+    alert:document.querySelector('[role=alert]')?.textContent, excerpt:document.querySelector('main')?.innerText?.slice(-290)}));
+  console.error(JSON.stringify({profile,state,errors,requests}));
   throw failure;
 } finally {
   await context.request.post(base+'/api/logout',{headers:{'X-Astra-Request':'1'},data:{}}).catch(()=>{});

@@ -105,11 +105,6 @@ def short_course(c):
 
 def locate(rows, c, b, db=None):
     stamp = fingerprint(rows, c, b)
-    for root in (DATA / "pdf", ROOT / "materials"):
-        f = root / (c + "-" + b + ".pdf")
-        m = f.with_suffix(".stamp")
-        if f.is_file() and m.is_file() and m.read_text().strip() == stamp:
-            return f
     if hosted.enabled() and db is not None:
         cache = DATA / "pdf" / (stamp + ".pdf")
         if cache.is_file():
@@ -121,6 +116,11 @@ def locate(rows, c, b, db=None):
                 tmp.write(raw)
             Path(tmp.name).replace(cache)
             return cache
+    for root in (DATA / "pdf", ROOT / "materials"):
+        f = root / (c + "-" + b + ".pdf")
+        m = f.with_suffix(".stamp")
+        if f.is_file() and m.is_file() and m.read_text().strip() == stamp:
+            return f
     return None
 
 

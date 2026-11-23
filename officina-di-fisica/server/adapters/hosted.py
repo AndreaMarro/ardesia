@@ -7,6 +7,7 @@ import threading
 from pathlib import Path
 
 _replication = threading.Lock()
+_writers = threading.Lock()
 _replica = None
 _replica_path = None
 
@@ -56,27 +57,61 @@ class Cursor:
 
 
 class Primary:
-    def __init__(self):
+    def __init__(self, request_snapshot=False):
+        self.owns_writer = False
+        self.request_snapshot = request_snapshot
+        self.snapshot = None
+        self.clean_transaction = False
+        self.open_primary()
+
+    def open_primary(self):
         import libsql
         url, token = credentials()
         self.connection = libsql.connect(url, auth_token=token, isolation_level="DEFERRED")
         self.connection.execute("PRAGMA foreign_keys=ON")
 
+    def finish_snapshot(self):
+        if self.snapshot is not None:
+            self.snapshot.close()
+            self.snapshot = None
+        self.clean_transaction = False
+
     def execute(self, sql, values=()):
+        if sql == "BEGIN IMMEDIATE" and not self.owns_writer:
+            # Wait in Python before entering the synchronous native driver. Otherwise a
+            # competing native BEGIN can hold the interpreter while the first writer must commit.
+            _writers.acquire()
+            self.owns_writer = True
+        if self.clean_transaction:
+            if sql.lstrip().upper().startswith("SELECT"):
+                # BEGIN IMMEDIATE already owns the primary's writer lock. This synchronized
+                # snapshot therefore includes every earlier commit, including revocations.
+                if self.snapshot is None:
+                    self.snapshot = reader(sqlite3.Connection)
+                    self.snapshot.execute("BEGIN")
+                return self.snapshot.execute(sql, values)
+            self.finish_snapshot()
         # Turso reserves PRAGMA user_version. Keep the same migration number in the durable archive.
         if sql == "PRAGMA user_version":
             sql = "SELECT CAST(value AS INTEGER) FROM settings WHERE key='hosted_schema'"
         elif sql.startswith("PRAGMA user_version="):
             values = (str(int(sql.split("=", 1)[1])),)
             sql = "INSERT OR REPLACE INTO settings VALUES('hosted_schema',?)"
-        for attempt in range(4):
+        deadline = time.monotonic() + 12
+        pause = 0.06
+        while True:
             try:
-                return Cursor(self.connection.execute(sql, tuple(values)))
+                cursor = Cursor(self.connection.execute(sql, tuple(values)))
+                self.clean_transaction = sql == "BEGIN IMMEDIATE" and self.request_snapshot
+                return cursor
             except ValueError as exc:
                 detail = str(exc).lower()
                 busy = any(word in detail for word in ("locked", "busy", "transaction timeout", "transaction timed out"))
-                if sql == "BEGIN IMMEDIATE" and busy and attempt < 3:
-                    time.sleep(0.06 * (2 ** attempt))
+                if sql == "BEGIN IMMEDIATE" and busy and time.monotonic() < deadline:
+                    self.connection.close()
+                    time.sleep(pause)
+                    pause = min(0.4, pause * 2)
+                    self.open_primary()
                     continue
                 if busy:
                     from ..domain.errors import Problem
@@ -87,11 +122,22 @@ class Primary:
     def in_transaction(self):
         return self.connection.in_transaction
 
+    def release_writer(self):
+        if self.owns_writer:
+            self.owns_writer = False
+            _writers.release()
+
     def commit(self):
+        self.finish_snapshot()
         self.connection.commit()
+        self.release_writer()
 
     def close(self):
-        self.connection.close()
+        try:
+            self.finish_snapshot()
+            self.connection.close()
+        finally:
+            self.release_writer()
 
     def __enter__(self):
         return self
