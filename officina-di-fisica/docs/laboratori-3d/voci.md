@@ -20,7 +20,7 @@ C6 riunisce le simulazioni degli altri cinque corsi e aggiunge sei esperienze di
 | Notazione scientifica | [SIM-C1-L001-01](http://127.0.0.1:8847/#banco/SIM-C1-L001-01) | Come può lo stesso spessore avere due scritture numeriche diverse? | [LAB3D-07](http://127.0.0.1:8847/#banco/LAB3D-07) |
 | Grandezze fisiche, dimensioni e SI | [SIM-C1-L001-02](http://127.0.0.1:8847/#banco/SIM-C1-L001-02) | Quanti cubetti da un centimetro entrano nel campione? | [LAB3D-06](http://127.0.0.1:8847/#banco/LAB3D-06) |
 | Conversioni tra unità | [SIM-C1-L001-03](http://127.0.0.1:8847/#banco/SIM-C1-L001-03) | Dove si trova la stessa tacca leggendo in millimetri e in centimetri? | [LAB3D-04](http://127.0.0.1:8847/#banco/LAB3D-04) |
-| Stima di ordine di grandezza | [SIM-C1-L001-04](http://127.0.0.1:8847/#banco/SIM-C1-L001-04) | Una cassa d’acqua di un metro di lato si pesa in chili o in tonnellate? | [LAB3D-03](http://127.0.0.1:8847/#banco/LAB3D-03) |
+| Stima di ordine di grandezza | [SIM-C1-L001-04](http://127.0.0.1:8847/#banco/SIM-C1-L001-04) | Quanti chilogrammi d’acqua contiene la cassa di lato 1 m? Quante tonnellate diventano se raddoppi il lato? | [LAB3D-03](http://127.0.0.1:8847/#banco/LAB3D-03) |
 | Grandezze intensive ed estensive | [SIM-C1-L001-05](http://127.0.0.1:8847/#banco/SIM-C1-L001-05) | Quale proprietà conserva ciascun pezzo quando riunisci più campioni? | [LAB3D-05](http://127.0.0.1:8847/#banco/LAB3D-05) |
 | Scalari e vettori | [SIM-C1-L001-06](http://127.0.0.1:8847/#banco/SIM-C1-L001-06) | Ruotando la velocità cambiano il modulo e la componente orizzontale nello stesso modo? | [LAB3D-01](http://127.0.0.1:8847/#banco/LAB3D-01) |
 

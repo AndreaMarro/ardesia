@@ -911,9 +911,17 @@ class Workflows(unittest.TestCase):
                 break
             time.sleep(0.12)
         self.assertTrue(progress["ready"], progress)
-        self.assertTrue(
-            self.admin.fetch("/download/Cdoc/dispensa").startswith(b"%PDF-")
-        )
+        printed = self.admin.fetch("/download/Cdoc/dispensa")
+        self.assertTrue(printed.startswith(b"%PDF-"))
+        poppler = shutil.which("pdftotext")
+        if poppler:
+            first_page = subprocess.run(
+                [poppler, "-f", "1", "-l", "1", "-layout", "-", "-"], input=printed,
+                check=True, capture_output=True,
+            ).stdout.decode()
+            self.assertRegex(first_page, r"Il primo esperimento[ \t]+1\b")
+            self.assertGreaterEqual(first_page.count("Il primo esperimento"), 2)
+            self.assertIn("C1-E001", first_page)
         example = self.author_get("C1-E001")
         edited = deepcopy(example["record"])
         edited["blocks"].append(

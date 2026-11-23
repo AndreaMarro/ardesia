@@ -105,7 +105,20 @@ La spinta netta va dalla camera a 104 kPa verso quella a 100 kPa. Con pressioni 
         0.01,
         18 * 4 / 12,
         "Con forza fissata il prodotto pA resta costante.",
-        r"$p_1A_1=p_2A_2\quad\Rightarrow\quad p_2=18(4/12)=6\,\mathrm{kPa}~L’area triplica e la stessa forza si distribuisce su tre volte la superficie.",
+        r"""
+La domanda chiede la nuova pressione quando cambia soltanto l'area di contatto. La forza normale esercitata resta identica; cambia la superficie su cui si distribuisce. Non serve conoscere il valore numerico della forza.
+@C2-Q007-superficie|Due superfici sotto la stessa forza: nel secondo caso l'area è tre volte maggiore e la pressione è tre volte minore.
+Indico con A₁ = 4 cm² e p₁ = 18 kPa la condizione iniziale; con A₂ = 12 cm² e p₂ = ? quella finale. Poiché è una pressione media su una superficie uniformemente sollecitata, posso usare p = F/A.
+$p=\frac{F_\perp}{A}
+Ricavo la forza dalla formula iniziale moltiplicando entrambi i membri per A: F = pA. La forza è la stessa nelle due situazioni, perciò il prodotto pressione per area non cambia.
+$F_\perp=p_1A_1=p_2A_2
+Ora isolo la pressione finale p₂. Nella seconda uguaglianza p₂ è moltiplicata per A₂: divido entrambi i membri per A₂.
+$\frac{p_1A_1}{A_2}=\frac{p_2A_2}{A_2}\quad\Rightarrow\quad p_2=p_1\frac{A_1}{A_2}
+Sostituisco i dati. Non converto i centimetri quadrati in metri quadrati perché compaiono in un rapporto: cm² sopra e sotto si semplificano.
+$p_2=18\,\mathrm{kPa}\cdot\frac{4\,\mathrm{cm^2}}{12\,\mathrm{cm^2}}=18\cdot\frac13\,\mathrm{kPa}=6\,\mathrm{kPa}
+Controllo: la superficie è triplicata, quindi la forza si divide su tre volte l'area e la pressione si riduce a un terzo. Sei chilopascal è effettivamente un terzo di diciotto.
+Trucco utile: quando F resta costante, pressione e area sono inversamente proporzionali. Se A raddoppia, p si dimezza; se A triplica, p diventa un terzo. Questo ragionamento non vale se cambia anche la forza.
+""",
         "modello|Identifica la forza come grandezza mantenuta costante.",
     )
     M(

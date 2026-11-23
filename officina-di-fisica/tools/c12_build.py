@@ -5,6 +5,7 @@ import math
 import re
 import unicodedata
 from collections import Counter
+from decimal import Decimal
 from pathlib import Path
 from xml.etree import ElementTree
 
@@ -34,6 +35,14 @@ def blocks(lines):
     return result
 
 
+def edition_json(rows):
+    pretty = json.dumps(rows, ensure_ascii=False, indent=2)
+    # Le chiavi numeriche e le tolleranze distribuite usano decimali leggibili.
+    return re.sub(r'("(?:value|tolerance)": )(-?[\d.]+e[+-]\d+)(?=,?$)',
+                  lambda match: match[1] + format(Decimal(match[2]), "f"),
+                  pretty, flags=re.MULTILINE) + "\n"
+
+
 class Course:
     def __init__(self, code):
         self.code = code
@@ -42,7 +51,7 @@ class Course:
         self.skill = None
         self.numeric = []
 
-    def add(self, kind, title, lines, extra):
+    def add(self, kind, title, lines, extra, version):
         self.counts[kind] += 1
         prefix = {"lesson": "L", "example": "E", "question": "Q"}[kind]
         rid = f"{self.code}-{prefix}{self.counts[kind]:03d}"
@@ -58,27 +67,28 @@ class Course:
             title=title,
             skill=self.skill,
             prerequisites=self.prereqs if kind == "lesson" else [self.skill],
-            version=1,
+            version=version,
             blocks=blocks(lines),
             **extra,
         )
         self.rows.append(row)
         return row
 
-    def lesson(self, title, section, coverage, lines, prereqs=()):
+    def lesson(self, title, section, coverage, lines, prereqs=(), *, version=1):
         self.section = section
         self.prereqs = [f"{self.code}-L{i:03d}" for i in prereqs]
-        return self.add("lesson", title, lines, dict(coverage=coverage.split("|")))
+        return self.add("lesson", title, lines, dict(coverage=coverage.split("|")), version)
 
-    def example(self, title, difficulty, prompt, lines):
+    def example(self, title, difficulty, prompt, lines, *, version=1):
         return self.add(
             "example",
             title,
             lines,
             dict(difficulty=difficulty, prompt=prompt, family=slug(title)),
+            version,
         )
 
-    def _q(self, title, prompt, answer, hint, lines, issue, level):
+    def _q(self, title, prompt, answer, hint, lines, issue, level, version):
         category, feedback = issue.split("|", 1)
         row = self.add(
             "question",
@@ -92,10 +102,11 @@ class Course:
                 hints=[hint],
                 error=dict(category=category, message=feedback, target=self.skill),
             ),
+            version,
         )
         return row
 
-    def num(self, title, prompt, value, unit, tol, check, hint, why, issue, level=2):
+    def num(self, title, prompt, value, unit, tol, check, hint, why, issue, level=2, *, version=1):
         assert math.isclose(value, check, abs_tol=tol, rel_tol=1e-9), (
             title,
             value,
@@ -109,10 +120,11 @@ class Course:
             why,
             issue,
             level,
+            version,
         )
         self.numeric.append((row["id"], value, check))
 
-    def choice(self, title, prompt, correct, wrong, hint, why, issue, level=2):
+    def choice(self, title, prompt, correct, wrong, hint, why, issue, level=2, *, version=1):
         options = [correct] + wrong.split("|")
         k = (self.counts["question"] * 7 + 1) % len(options)
         options = options[k:] + options[:k]
@@ -124,9 +136,10 @@ class Course:
             why,
             issue,
             level,
+            version,
         )
 
-    def word(self, title, prompt, word, aliases, hint, why, issue, level=1):
+    def word(self, title, prompt, word, aliases, hint, why, issue, level=1, *, version=1):
         return self._q(
             title,
             prompt,
@@ -135,6 +148,7 @@ class Course:
             why,
             issue,
             level,
+            version,
         )
 
     def save(self):
@@ -155,7 +169,7 @@ class Course:
                     )
         dest = ROOT / "content" / f"{self.code}.json"
         tmp = dest.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(self.rows, ensure_ascii=False, indent=2) + "\n")
+        tmp.write_text(edition_json(self.rows))
         tmp.replace(dest)
         print(self.code, dict(self.counts), "calcoli ricalcolati", len(self.numeric))
 

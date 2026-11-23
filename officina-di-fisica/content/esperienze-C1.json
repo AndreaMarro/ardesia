@@ -126,11 +126,11 @@
     "skill": "C1-L001",
     "order": 4,
     "section": "Misura e rappresentazione",
-    "version": 1,
+    "version": 2,
     "title": "Stima di ordine di grandezza",
     "topic": "Stima di ordine di grandezza",
     "anchor": "La notazione scientifica separa le cifre significative",
-    "summary": "Una cassa d’acqua di un metro di lato si pesa in chili o in tonnellate?",
+    "summary": "Quanti chilogrammi d’acqua contiene la cassa di lato 1 m? Quante tonnellate diventano se raddoppi il lato?",
     "apparatus": "campione",
     "control": {
       "label": "Lato della cassa",
@@ -144,7 +144,7 @@
       "unit": "kg"
     },
     "formula": "m = ρℓ³, con ρ = 1000 kg/m³",
-    "interpretation": "Stima prima il volume in metri cubi. Un metro cubo d’acqua ha massa circa mille chilogrammi. Aumentando il lato, verifica quando cambia l’ordine di grandezza della massa.",
+    "interpretation": "La massa si ottiene moltiplicando la densità dell’acqua per il volume interno della cassa. Con un lato di 1 m il volume è 1 m³ e l’acqua ha massa circa 1000 kg, cioè 1 t. Raddoppia il lato e confronta quanti cubi da un metro entrano nella nuova cassa.",
     "references": [
       [
         1.0,
@@ -327,7 +327,7 @@
     "skill": "C1-L002",
     "order": 3,
     "section": "Misura e rappresentazione",
-    "version": 1,
+    "version": 2,
     "title": "Somma e differenza",
     "topic": "Somma e differenza",
     "anchor": "Per sommare due vettori porta l’origine della",
@@ -345,7 +345,7 @@
       "unit": "m"
     },
     "formula": "s = 3 m + b",
-    "interpretation": "Trasla la coda della seconda freccia sulla punta della prima. Lo spostamento risultante va dalla partenza all’arrivo. Una componente negativa sottrae distanza lungo l’asse.",
+    "interpretation": "Trasla la coda della seconda freccia sulla punta della prima. La risultante va dalla partenza all’arrivo. Se torni indietro di 4 m dopo i primi 3 m in avanti, finisci un metro a sinistra del via. Lo spostamento è −1 m e la distanza percorsa è 7 m.",
     "references": [
       [
         -2.0,
@@ -358,7 +358,7 @@
     ],
     "blocks": [],
     "substitution": "3 + {x}",
-    "transferPrompt": "Dopo un primo tratto di +3 m aggiungi uno spostamento con segno di {x}. A quale distanza orientata dal via finisci?"
+    "transferPrompt": "Dopo un primo tratto di +3 m aggiungi uno spostamento con segno di {x}. Qual è lo spostamento totale rispetto alla partenza?"
   },
   {
     "id": "SIM-C1-L002-04",
@@ -487,7 +487,7 @@
     "skill": "C1-L003",
     "order": 3,
     "section": "Moto e forze",
-    "version": 1,
+    "version": 2,
     "title": "Velocità media e istantanea",
     "topic": "Velocità media e istantanea",
     "anchor": "Tra due istanti la velocità media è",
@@ -504,8 +504,8 @@
       "label": "Velocità media",
       "unit": "m/s"
     },
-    "formula": "s(t)=t²; v media = [(1+Δt)²−1]/Δt = 2+Δt",
-    "interpretation": "Il primo segno è la posizione a 1 s. La secante fra le due posizioni dà la velocità media. Riducendo l’intervallo si avvicina alla velocità istantanea di 2 m/s.",
+    "formula": "s(t) = k t², k = 1 m/s². Da t₀ = 1 s, v media = k (2t₀ + Δt).",
+    "interpretation": "Leggi la posizione ai due estremi dell’intervallo, sottrai quella iniziale e dividi per il tempo trascorso. Da 1 a 2 s il carrello va da 1 a 4 m, quindi la secante dà 3 m/s. Accorciando l’intervallo la pendenza si avvicina a 2 m/s, la velocità istantanea a 1 s.",
     "references": [
       [
         1.0,
@@ -518,7 +518,7 @@
     ],
     "blocks": [],
     "substitution": "2 + {x}",
-    "transferPrompt": "Un sensore registra s(t) = t² in metri. Fra t = 1 s e un istante successivo di {x}, quale velocità media deduci dalle due posizioni?"
+    "transferPrompt": "Il sensore misura la posizione s(t) = k t², con k = 1 m/s². Parti da t₀ = 1 s e osserva per {x}. Quale velocità media ricavi?"
   },
   {
     "id": "SIM-C1-L003-04",
@@ -527,7 +527,7 @@
     "skill": "C1-L003",
     "order": 4,
     "section": "Moto e forze",
-    "version": 1,
+    "version": 2,
     "title": "Accelerazione media e istantanea",
     "topic": "Accelerazione media e istantanea",
     "anchor": "Per ottenere l’accelerazione istantanea si riduce l’intervallo",
@@ -544,8 +544,8 @@
       "label": "Accelerazione media",
       "unit": "m/s²"
     },
-    "formula": "v(t)=t²; a media = [(1+Δt)²−1]/Δt = 2+Δt",
-    "interpretation": "La velocità cresce come il quadrato del tempo, in unità SI. Dividi la variazione di velocità per l’intervallo, poi restringilo verso l’istante iniziale. La freccia rappresenta la velocità finale.",
+    "formula": "v(t) = k t², k = 1 m/s³. Da t₀ = 1 s, a media = k (2t₀ + Δt).",
+    "interpretation": "Il tachimetro passa da 1 m/s a 4 m/s fra 1 e 2 s. Una variazione di 3 m/s in un secondo dà 3 m/s². Riduci l’intervallo. La pendenza del grafico velocità–tempo tende a 2 m/s², l’accelerazione all’istante 1 s. La freccia del carrello mostra la velocità finale.",
     "references": [
       [
         1.0,
@@ -558,7 +558,7 @@
     ],
     "blocks": [],
     "substitution": "2 + {x}",
-    "transferPrompt": "Nel registro di un carrello v(t) = t² in m/s. Inizi a t = 1 s e misuri per {x}. Quale accelerazione media ricavi?"
+    "transferPrompt": "Il tachimetro indica v(t) = k t², con k = 1 m/s³. Parti da t₀ = 1 s e osserva per {x}. Quale accelerazione media ricavi?"
   },
   {
     "id": "SIM-C1-L003-05",
@@ -607,7 +607,7 @@
     "skill": "C1-L003",
     "order": 6,
     "section": "Moto e forze",
-    "version": 1,
+    "version": 2,
     "title": "Grafici cinematici",
     "topic": "Grafici cinematici",
     "anchor": "Tra due istanti la velocità media è",
@@ -624,8 +624,8 @@
       "label": "Spostamento dal via",
       "unit": "m"
     },
-    "formula": "Δx = 2t per t ≤ 2; Δx = 4 − 2(t−2) dopo l’inversione",
-    "interpretation": "Per due secondi il carrello avanza a 2 m/s, poi torna con la stessa rapidità. La pendenza della posizione cambia segno. L’inversione istantanea è una schematizzazione.",
+    "formula": "Δx = (2 m/s)t fino a 2 s. In seguito Δx = 4 m − (2 m/s)(t − 2 s).",
+    "interpretation": "A 2 s il carrello ha raggiunto la posizione +4 m. La pendenza del grafico posizione–tempo cambia segno quando il carrello inverte il verso. A 4 s è tornato al via. L’inversione istantanea idealizza una manovra che in un carrello reale richiede tempo.",
     "references": [
       [
         1.0,
@@ -638,7 +638,7 @@
     ],
     "blocks": [],
     "substitution": "tratti",
-    "transferPrompt": "Una guida procede a +2 m/s per due secondi e poi inverte a −2 m/s. Quanto vale lo spostamento con segno quando il cronometro indica {x}?"
+    "transferPrompt": "Un carrello procede a +2 m/s per due secondi e poi torna a −2 m/s. Quanto vale lo spostamento con segno quando il cronometro indica {x}?"
   },
   {
     "id": "SIM-C1-L004-01",
@@ -1247,7 +1247,7 @@
     "skill": "C1-L007",
     "order": 3,
     "section": "Energia, impulso ed equilibrio",
-    "version": 1,
+    "version": 2,
     "title": "Teorema dell’energia cinetica",
     "topic": "Teorema dell’energia cinetica",
     "anchor": "Sommando i lavori di tutte le forze",
@@ -1264,8 +1264,8 @@
       "label": "Velocità finale",
       "unit": "m/s"
     },
-    "formula": "W = ΔK = ½(2 kg)v² ⇒ v = √W",
-    "interpretation": "Una forza netta di 1 N compie lavoro lungo la guida. L’energia assorbita si ritrova nell’energia cinetica. Il lavoro quadruplica per raddoppiare la rapidità.",
+    "formula": "W = ΔK. Da fermo v = √(2W/m), con m = 2 kg.",
+    "interpretation": "Una risultante di 1 N accompagna il carrello lungo la guida. Il lavoro netto diventa energia cinetica. Con la massa di 2 kg e un lavoro di 9 J ottieni v² = 9 m²/s², quindi v = 3 m/s. Per raddoppiare la rapidità occorre quadruplicare il lavoro, perché l’energia dipende da v².",
     "references": [
       [
         4.0,
@@ -1447,7 +1447,7 @@
     "skill": "C1-L009",
     "order": 2,
     "section": "Energia, impulso ed equilibrio",
-    "version": 1,
+    "version": 2,
     "title": "Conservazione della quantità di moto nei sistemi isolati",
     "topic": "Conservazione della quantità di moto nei sistemi isolati",
     "anchor": "Se allarghi il sistema includendo entrambi i",
@@ -1465,7 +1465,7 @@
       "unit": "m/s"
     },
     "formula": "v finale = (mvₐ + m·0)/(2m) = vₐ/2",
-    "interpretation": "Il secondo carrello è inizialmente fermo e il primo lo raggiunge dal lato adatto al verso scelto. Dopo l’aggancio la massa mobile raddoppia. Il momento si conserva, l’energia cinetica diminuisce.",
+    "interpretation": "Il secondo carrello è fermo. Il primo si avvicina dal lato indicato dal suo verso. Dopo l’aggancio la massa mobile raddoppia e la velocità comune è metà di quella iniziale. Per una velocità iniziale diversa da zero la quantità di moto si conserva e l’energia cinetica si dimezza. Imposta zero. Entrambi i carrelli restano fermi, senza urto né perdita di energia.",
     "references": [
       [
         -2.0,

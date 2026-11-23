@@ -14,6 +14,12 @@ const course = await json('content/C5.json');
 const reviewed = new Set(Object.keys(await json('tests/fixtures/c5-edizione-v1.json')));
 const texts = course.filter(row => reviewed.has(row.id));
 const sensor = texts.find(row => row.id === 'C5-Q039');
+const mechanics = await json('content/C1.json');
+const mechanicsIds = new Set(Object.keys(await json('tests/fixtures/c1-edizione-v1.json')));
+const mechanicsTexts = mechanics.filter(row => mechanicsIds.has(row.id));
+const friction = mechanics.find(row => row.id === 'C1-Q078');
+const secants = (await json('content/esperienze-C1.json')).filter(row =>
+  ['SIM-C1-L003-03','SIM-C1-L003-04'].includes(row.id));
 const bench = (await json('content/esperienze-C5.json')).find(row => row.id === 'SIM-C5-L06-01');
 const data = await mkdtemp(path.join(tmpdir(), 'officina-edizioni-'));
 const boot = "from server.store import initialize; from server.web import Handler,ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(('127.0.0.1',0),Handler); print(s.server_port,flush=True); s.serve_forever()";
@@ -64,18 +70,18 @@ async function capture(page, element, file) {
   await page.screenshot({path:path.join(output,file+'.png'), animations:'disabled'});
 }
 
-async function projection(page, base, profile) {
-  const {copy, widths} = await readEdition(page, base, sensor);
+async function illustratedSolution(page, base, profile, record, name) {
+  const {copy, widths} = await readEdition(page, base, record);
   const img = copy.locator('figure img');
   await img.evaluate(el => el.decode());
-  assert.equal(await img.getAttribute('alt'), sensor.blocks.find(b => b.type==='figure').text);
-  await capture(page, copy, profile+'-sensore');
+  assert.equal(await img.getAttribute('alt'), record.blocks.find(b => b.type==='figure').text);
+  await capture(page, name==='sensore' ? copy : img, profile+'-'+name);
   const full = await audit(page);
   const area = page.locator('.feedback');
   await area.getByRole('button',{name:'Un passaggio alla volta',exact:true}).press('Enter');
   const next = area.getByRole('button',{name:'Avanti',exact:true});
   const positions = [];
-  for (let i=0; i<sensor.blocks.length; i++) {
+  for (let i=0; i<record.blocks.length; i++) {
     const status = await area.locator('.lettura-stato').innerText();
     assert.ok(!positions.includes(status));
     positions.push(status);
@@ -87,6 +93,74 @@ async function projection(page, base, profile) {
   assert.ok(await show.evaluate(el => document.activeElement===el));
   await show.press('Enter');
   return {widths, positions, full};
+}
+
+async function delayedReader(page, base, keyboard) {
+  // Il link è già usabile mentre il modulo opzionale del lettore è ancora in arrivo.
+  const bench=secants[1], module='**/preferenze-lettura.js';
+  let release;
+  const held=new Promise(resolve=>{release=resolve;});
+  await page.route(module,async route=>{await held; await route.continue();},{times:1});
+  const requested=page.waitForRequest(module);
+  const origin=page.locator('a[href^="#banco/'+bench.id+'/"]');
+  try {
+    await page.goto(base+'/#materiale/'+bench.skill+'/C1',{waitUntil:'domcontentloaded'});
+    await requested;
+    assert.equal(await page.locator('main').getAttribute('aria-busy'),'true');
+    if(keyboard) await origin.press('Enter');
+    else await origin.click();
+    await page.waitForURL('**/#banco/**');
+  } finally {release();}
+  await page.getByRole('link',{name:'Torna all’attività'}).press('Enter');
+  await origin.waitFor();
+  await page.locator('main:not([aria-busy])').waitFor();
+  assert.ok(await origin.evaluate(el=>el===document.activeElement), 'focus dopo il caricamento tardivo');
+  return keyboard ? 'tastiera' : 'puntatore';
+}
+
+async function readSecant(page, base, profile, bench, fallback) {
+  await page.goto(base+'/#materiale/'+bench.skill+'/C1');
+  const origin=page.locator('a[href^="#banco/'+bench.id+'/"]');
+  assert.ok((await origin.locator('xpath=../..').innerText()).includes(bench.anchor));
+  await origin.press('Enter');
+  await page.getByRole('heading',{name:bench.title,level:1}).waitFor();
+  await page.getByLabel('Aumenta',{exact:true}).check();
+  await page.locator('[data-predict] button').press('Enter');
+  assert.equal(await page.locator('[data-explain]').innerText(),bench.interpretation);
+  assert.equal(await page.locator('[data-view=side]').isDisabled(),fallback);
+  await page.locator('[data-view=diagram]').press('Enter');
+  await page.locator('[data-drawing]:visible svg').waitFor();
+  const slider=page.locator('#bp-x');
+  const readout=page.locator('[data-readings] > div').filter({hasText:bench.measure.label}).locator('strong');
+  const unit=bench.id.endsWith('03') ? 'm/s' : 'm/s²';
+  await slider.press('Home');
+  const observations=[];
+  for (const [dt,expected] of [[.25,'2,25'],[1,'3'],[2,'4']]) {
+    while(Number(await slider.inputValue())<dt) await slider.press('ArrowRight');
+    assert.equal(Number(await slider.inputValue()),dt);
+    const value=(await readout.innerText()).trim();
+    assert.equal(value,expected+' '+unit);
+    observations.push({dt,value});
+    if(dt===1) {
+      const drawer=page.locator('[data-plots]');
+      if(!await drawer.evaluate(el=>el.open)) await drawer.locator('summary').press('Enter');
+      const graph=drawer.locator('figure').filter({hasText:'Secante fra gli estremi'});
+      assert.ok((await graph.locator('svg').getAttribute('aria-label')).includes('Tempo dalla prima lettura (s)'));
+      assert.equal(await graph.locator('svg path[stroke-dasharray="5 4"]').count(),1);
+      if (fallback) {
+        const size=await graph.locator('svg text').first().evaluate(el=>
+          parseFloat(getComputedStyle(el).fontSize)*el.getScreenCTM().a);
+        assert.ok(size>=12,'dimensione in pixel CSS delle etichette della secante: '+size);
+      }
+      if(bench.id.endsWith('04')) await capture(page,graph,profile+'-secante');
+    }
+  }
+  const access=await audit(page);
+  await page.getByRole('link',{name:'Torna all’attività'}).press('Enter');
+  await origin.waitFor();
+  await page.locator('main:not([aria-busy])').waitFor();
+  assert.ok(await origin.evaluate(el=>el===document.activeElement),'ritorno da '+bench.id);
+  return {id:bench.id,observations,access};
 }
 
 async function fields(page, base, profile, fallback) {
@@ -146,9 +220,18 @@ try {
       const page=await context.newPage();
       const errors=[];
       page.on('pageerror',error => errors.push(error.message));
-      const report={profile,fallback,projection:await projection(page,base,profile)};
+      const late=await delayedReader(page,base,fallback);
+      const report={profile,fallback,late,projection:await illustratedSolution(page,base,profile,sensor,'sensore')};
       report.fields=await fields(page,base,profile,fallback);
+      report.mechanics={friction:await illustratedSolution(page,base,profile,friction,'attrito'),secants:[]};
+      for (const secant of secants) report.mechanics.secants.push(await readSecant(page,base,profile,secant,fallback));
       if(width===320) {
+        report.mechanics.materials={};
+        for(const record of mechanicsTexts) {
+          const {copy,widths}=await readEdition(page,base,record);
+          report.mechanics.materials[record.id]=widths;
+          if (record.id==='C1-Q007') await capture(page,copy,profile+'-'+record.id);
+        }
         report.materials={};
         for(const record of texts) {
           const {widths,copy}=await readEdition(page,base,record);
@@ -162,7 +245,7 @@ try {
   }
   const sha=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
   await writeFile(path.join(output,'edizioni.json'),JSON.stringify({sha,reports},null,2)+'\n');
-  console.log('PASS · quattro profili, proiezione del sensore, campi con segno e ritorno al paragrafo, '+texts.length+' materiali verificati a 320 px.');
+  console.log('PASS · quattro profili · sensore e campi, attrito e secanti · C5 '+texts.length+' e C1 '+mechanicsTexts.length+' materiali a 320 px.');
 } finally {
   const closed=once(server,'exit');
   server.kill();
