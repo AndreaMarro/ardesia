@@ -14,6 +14,7 @@ const data = await mkdtemp(path.join(tmpdir(),'officina-continuita-'));
 const boot = "from server.store import initialize; from server.web import Handler,ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(('127.0.0.1',0),Handler); print(s.server_port,flush=True); s.serve_forever()";
 const server = spawn('python3', ['-uc',boot], {cwd:root, env:{...process.env,ASTRA_DATA:data},stdio:['ignore','pipe','inherit']});
 const reports = [];
+const firstLayouts = {};
 const stage = '.bench-stage';
 const canvas = stage + ' canvas';
 const diagram = '[data-drawing]:not([hidden]) svg';
@@ -33,6 +34,69 @@ function changed(a, b) {
     if (delta > 12) count++;
   }
   return count / (left.width*left.height);
+}
+
+async function firstBenchLayout(browser, base) {
+  const context = await browser.newContext({viewport:{width:810,height:1080},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  const states = [];
+  try {
+    await context.request.post(base+'/api/demo',{headers:{'X-Astra-Request':'1'},data:{}});
+    for (const outcome of ['pronto','errore','uscita']) {
+      const page = await context.newPage();
+      let release;
+      const held = new Promise(resolve => { release = resolve; });
+      const css = '**/banchi.css';
+      await page.route(css, async route => {
+        await held;
+        if (outcome==='errore') await route.abort('failed');
+        else await route.continue();
+      }, {times:1});
+      try {
+        await page.goto(base+'/#laboratori');
+        const search = page.getByRole('searchbox',{name:'Cerca un argomento'});
+        await search.fill('lente');
+        const lens = page.locator('a[href^="#banco/SIM-C5-L10-02/"]');
+        const request = page.waitForRequest(css);
+        await lens.click();
+        await request;
+        assert.equal(await page.locator('[data-bench]').count(),0,'i comandi attendono lo stile');
+        await page.getByText('Apertura del banco…',{exact:true}).waitFor();
+        if (outcome==='uscita') {
+          await page.getByRole('navigation',{name:'Navigazione principale'}).getByRole('link',{name:'Simulazioni 3D'}).click();
+          await search.waitFor();
+          release();
+          await page.locator('main:not([aria-busy])').waitFor();
+          assert.equal(await page.locator('[data-bench]').count(),0);
+        } else {
+          release();
+          const room = page.locator('[data-bench="SIM-C5-L10-02"]');
+          await room.waitFor();
+          if (outcome==='errore') {
+            await page.getByText('Il banco usa la disposizione di base.',{exact:true}).waitFor();
+            await room.locator('input[name=prediction]').first().check();
+            await room.locator('[data-predict] button').press('Enter');
+            assert.ok((await room.locator('[data-readings]').innerText()).length>0);
+          }
+          await page.getByRole('link',{name:'Torna all’attività'}).click();
+          await search.waitFor();
+          assert.equal(await search.inputValue(),'lente');
+          if (outcome==='errore') {
+            const retry = page.waitForRequest(css);
+            await lens.click();
+            await retry;
+            await room.waitFor();
+            assert.equal(await page.getByText('Il banco usa la disposizione di base.',{exact:true}).count(),0);
+            assert.ok(await page.locator('#bench-styles').evaluate(node=>Boolean(node.sheet)));
+          }
+        }
+        states.push(outcome);
+      } finally {
+        release();
+        await page.close();
+      }
+    }
+    return states;
+  } finally { await context.close(); }
 }
 
 async function predict(page, base, id) {
@@ -289,12 +353,13 @@ try {
           console.log('PASS',engine.name(),width);
         } finally { await ctx.close(); }
       }
+      firstLayouts[engine.name()] = await firstBenchLayout(browser,base);
       await interruptFirstLoad(browser,base);
       await withoutGPU(browser,base);
     } finally { await browser.close(); }
   }
   const sha = execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
-  await writeFile(path.join(output,'continuita.json'),JSON.stringify({sha,reports},null,2)+'\n');
+  await writeFile(path.join(output,'continuita.json'),JSON.stringify({sha,reports,firstLayouts},null,2)+'\n');
 } finally {
   const exited = once(server,'exit');
   server.kill();
